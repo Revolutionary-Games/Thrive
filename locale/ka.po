@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-08 11:45+0300\n"
+"POT-Creation-Date: 2024-08-09 15:50+0300\n"
 "PO-Revision-Date: 2024-08-01 06:50+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -266,7 +266,7 @@ msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
+msgstr "{0}-ის პოპულაცია შეიცვალა {1}-ით {2}-ში მიზეზით: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
 msgstr "ავტო-ევოს გამოცნობა"
@@ -422,7 +422,7 @@ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
+msgstr "ბიომრავალფეროვნების მზრდელი სახეობები უახლოესი ბიომიდან მითითებული თავისუფალი პოპულაციაა"
 
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr "ბომრავალფეროვნების გამზრდელი სახეობები შექმნისას მუტაციას განიცდის"
@@ -488,7 +488,7 @@ msgid "CANNOT_ENGULF"
 msgstr "შთანთქმა შეუძლებელია"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "მეტაბურთის გადაადგილება შეუძლებელია მისივე შთამომავლების ხეში"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
@@ -704,7 +704,7 @@ msgid "COLOUR_PICKER_R_TOOLTIP"
 msgstr "ფერის წითელი არხის მნიშვნელობა"
 
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "გაჯერებულობის მნიშვნელობა. ნაცრისფრის რაოდენობა მითითებულ ფერში"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
 msgstr "Value (brightness) მნიშვნელობა, ფერის სიკაშკაშე, ან ინტენსივობა"
@@ -1069,7 +1069,7 @@ msgid "CRAFTING_RESULTS"
 msgstr "შედეგები"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
-msgstr ""
+msgstr "აირჩიეთ შექმნის რეცეპტი ან დაამატეთ გასაფილტრი ელემენტები"
 
 msgid "CRAFTING_TAKE_ALL"
 msgstr "ყველას აღება"
@@ -1165,7 +1165,7 @@ msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "დღეღამის ციკლის ჩართვა"
 
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr ""
+msgstr "(ფოტოსინთეზი ღამით არაეფექტურია, ამიტომ მას წინასწარი დაგეგმვა სჭირდება)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr ""
@@ -1188,7 +1188,7 @@ msgstr ""
 "უყურებთ კოორდინატებს: {1}"
 
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Physics-ის გამართვის ნახატი ხელმიუწვდომელია ამ აგების ტიპში"
 
 msgid "DEBUG_PANEL"
 msgstr "გამართვის პანელი"
@@ -1431,7 +1431,7 @@ msgid "EASTEREGG_MESSAGE_14"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_15"
-msgstr ""
+msgstr "მინიშნება: შეგიძლიათ შთანთქათ ნაგლეჯები, რკინა და სხვ."
 
 msgid "EASTEREGG_MESSAGE_16"
 msgstr ""
@@ -1443,7 +1443,7 @@ msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
+msgstr "სასაცილოა: ინფუზორიები Didinium ნადირობს ქალამანაზე."
 
 msgid "EASTEREGG_MESSAGE_2"
 msgstr ""
@@ -1533,7 +1533,7 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "ინტერფეისის განათების ეფექტების ჩართვა"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "ენდოსიმბიოზის პროცესი უკვე დასრულდა. დაასრულეთ ის რედაქტორში"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
@@ -1560,7 +1560,7 @@ msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
 msgstr ""
 
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr ""
+msgstr "ამ სახეობას ორგანელაში ვერ გადაიყვანთ"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
 msgstr ""
@@ -1635,7 +1635,7 @@ msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr "შეცდომა: ახალი პარამეტრების კონფიგურაციის ფაილში შენახვა ჩავარდა."
 
 msgid "ERROR_FETCHING_EXPLANATION"
-msgstr ""
+msgstr "სიახლეების გამოთხოვა ჩავარდა შეცდომით: {0}"
 
 msgid "ERROR_FETCHING_NEWS"
 msgstr "სიახლეების გამოთხოვის შეცდომა"
@@ -1696,7 +1696,7 @@ msgid "EXPORT_ALL_WORLDS"
 msgstr "ყველა სამყაროს გატანა"
 
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
-msgstr ""
+msgstr "ყველა სამყაროს მონაცემების გატანა მძიმით გამოყოფილ (csv) ფორმატში"
 
 msgid "EXPORT_SUCCESS"
 msgstr "გატანა წარმატებულია"
@@ -1738,7 +1738,7 @@ msgid "FAILED"
 msgstr "ჩავარდა"
 
 msgid "FAILED_ONE_OR_MORE_SAVE_DELETION_DESCRIPTION"
-msgstr ""
+msgstr "შეცდომა: ერთი ან მეტი შენახვის ფაილის წაშლა ჩავარდა."
 
 msgid "FAILED_SAVE_DELETION"
 msgstr "შეცდომა: შენახულის წაშლა ჩავარდა"
@@ -1762,7 +1762,7 @@ msgid "FEBRUARY"
 msgstr "თებერვალი"
 
 msgid "FEED_ITEM_CONTENT_PARSING_FAILED"
-msgstr ""
+msgstr "ამ ლენტის ელემენტის შემცველობის დამუშავება ჩავარდა."
 
 msgid "FEED_ITEM_MISSING_CONTENT"
 msgstr "ამ ლენტის ელემენტს შემცველობა არ გააჩნია."
@@ -1957,7 +1957,7 @@ msgid "GLOBAL_INITIAL_LETTER"
 msgstr "გ"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b]-ის პოპულაცის ნაწილი მიგრირებულია {1}-ზე {2}-დან"
 
 msgid "GLUCOSE"
 msgstr "გლუკოზა"
@@ -2185,7 +2185,7 @@ msgid "INTERNALS"
 msgstr "შიგნეულობა"
 
 msgid "INTERNAL_NAME_IN_USE"
-msgstr ""
+msgstr "მითითებული შიდა სახელის მქონე მოდი უკვე არსებობს"
 
 msgid "INTERNAL_NAME_REQUIRED"
 msgstr "შიდა სახელ აუცილებელია"
@@ -2416,7 +2416,7 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr "ეს ენა დასრულებულია {0}%-ით"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
-msgstr ""
+msgstr "ეს ენა ჯერ კიდევ მუშავდება. (დასრულებულია {0}%)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
@@ -2557,7 +2557,7 @@ msgid "LIFE_ORIGIN_POND"
 msgstr "პატარა თბილი ტბორი"
 
 msgid "LIFE_ORIGIN_TOOLTIP"
-msgstr ""
+msgstr "ზოგიერთი პარამეტრი, შეიძლება, გათიშული იყოს, თუ ამჟამად, მხოლოდ, LAWK-ია ჩართული"
 
 msgid "LIFE_ORIGIN_VENTS"
 msgstr "ჰიდროთერმული ღრმულები"
@@ -2911,9 +2911,8 @@ msgstr "თაგუნას შუა ღილაკი"
 msgid "MIGRATE"
 msgstr "მიგრაცია"
 
-#, fuzzy
 msgid "MIGRATION_FAILED_TO_ADD"
-msgstr "მოდის შექმნა ჩავარდა"
+msgstr "შეცდომა: მიგრაციის დამატება ჩავარდა. შეამოწმეთ მიგრაციის პარამეტრები"
 
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "პოპულაციის მიგრაცია {0}-დან ..."
@@ -3016,7 +3015,7 @@ msgid "MOD_ASSEMBLY_CLASS_CREATION_FAILED"
 msgstr "{0}: მოდის assembly-ის კლასის გამოტვირთვის მეთოდის გამოძახება ჩავარდა"
 
 msgid "MOD_ASSEMBLY_CLASS_NOT_FOUND"
-msgstr ""
+msgstr "{0}: მითითებული მოდის კლასი \"{1}\" მოდის assembly-ში აღმოჩენილი არაა"
 
 msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: მოდის assembly-ის ინიციალიზაციის მეთოდის გამოძახება ჩავარდა"
@@ -3112,10 +3111,10 @@ msgid "MORE_INFO"
 msgstr "მეტი ინფორმაციის ჩვენება"
 
 msgid "MORE_INFO_PROMPT"
-msgstr ""
+msgstr "დააწექით [thrive:input]დახმარებას[/thrive:input] მეტი ინფორმაციის Thriveopedia-ზე სანახავად."
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "სტრატეგიული ხედის პანორამირება, როცა კურსორი ეკრანი წიბოსთანაა"
 
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "თაგუნათი ხედის მგრძნობიარობა"
@@ -3238,7 +3237,7 @@ msgid "MUTATION_COST_MULTIPLIER"
 msgstr "მუტაციის ფასის კოფიციენტი"
 
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr ""
+msgstr "(ორგანელების ფასი. მემბრანები და სხვა ელემენტები რედაქტორში)"
 
 msgid "MUTATION_POINTS"
 msgstr "მუტაციის ქულები"
@@ -3352,7 +3351,7 @@ msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "მიმდინარე უჯრედის ზომა მეტისმეტად პატარაა სამიზნის შთანთქმისთვის"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr ""
+msgstr "არასაკმარისი სივრცე შთანთქმული მასის საცავში სამიზნის შთანთქმისთვის"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr "ატფ-ის წარმოება ჩახშობილია ტოქსინის მიერ"
@@ -3679,7 +3678,7 @@ msgid "PATCH_NOTE_CHANGES_HEADING"
 msgstr "ცვლილებები:"
 
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
-msgstr ""
+msgstr "იხილეთ ამ რელიზის სრული დეტალები [color=#3796e1][url={0}]GitHub[/url][/color]-ზე"
 
 msgid "PATREON_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს Patreon-ის გვერდს"
@@ -3915,7 +3914,7 @@ msgid "REFRESH"
 msgstr "განახლება"
 
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
+msgstr "მიგრაციის დაბრუნება სამიზნე ბიომში ამოწყვეტის შემთხვევაში"
 
 msgid "REPORT"
 msgstr "ანგარიში"
@@ -4146,7 +4145,7 @@ msgid "SAVE_UPGRADE_FAILED"
 msgstr "შენახულის გაუმჯობესება ჩავარდა"
 
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
-msgstr ""
+msgstr "მითითებულ შენახულზე აწევა ჩავარდა შემდეგი შეცდომით:"
 
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr "ინფორმაციის შენახვა ჩავარდა მიზეზით: {0}"
@@ -4310,9 +4309,8 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Thrive-ის სიახლეების ლენტის ჩვენება (ინტერნეტიდან)"
 
-#, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
-msgstr "სირბილის რეჟიმის გადართვა. სირბილის რეჟიმისას უჯრედები უფრო სწრაფად მოძრაობენ, მაგრამ უფრო მეტ ატფ-ს ხარჯავენ და სახეობის აგება კიდევ უფრო მეტ ატფ-ს."
+msgstr "სიდეროფორის გასროლა"
 
 msgid "SIGNALING_AGENT"
 msgstr "სიგნალის ნივთიერება"
@@ -4396,7 +4394,7 @@ msgid "SPACE_STRUCTURE_NO_EXTRA_DESCRIPTION"
 msgstr "დამატებითი ინფორმაცია ხელმისაწვდომი არაა"
 
 msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
-msgstr ""
+msgstr "სტრუქტურა მშენებლების ფლოტს და რესურსებს ელოდება: {0}"
 
 msgid "SPAWN_AMMONIA"
 msgstr "ამიაკის შექმნა"
@@ -4427,6 +4425,16 @@ msgstr "სახეობები:"
 
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
+"[b]სახეობები[/b]\n"
+"  {0}:{1}\n"
+"[b]თაობა[/b]\n"
+"  {2}\n"
+"[b]პოპულაცია[/b]\n"
+"  {3}\n"
+"[b]ფერი[/b]\n"
+"  #{4}\n"
+"[b]ქცევა[/b]\n"
+"  {5}"
 
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr "მუტირებულია"
@@ -4510,7 +4518,7 @@ msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam-ის კლიენტის ბიბლიოთეკის ინიციალიზაცია ჩავარდა"
 
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
-msgstr ""
+msgstr "თქვენს Steam-ის ანგარიშს Thrive-ის ლიცენზია არ გააჩნია"
 
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
@@ -4861,7 +4869,7 @@ msgid "TOGGLE_BINDING"
 msgstr "მიბმის რეჟიმის გადართვა"
 
 msgid "TOGGLE_BINDING_TOOLTIP"
-msgstr ""
+msgstr "მიმაგრების რეჟიმის გადართვა. შეეხეთ სხვა უჯრედებს კოლონიის შესაქმნელად."
 
 msgid "TOGGLE_DEBUG_PANEL"
 msgstr "გამართვის პანელის გადართვა"
@@ -5170,7 +5178,7 @@ msgid "UNLOCK_CONDITION_COMPOUND_IS_BELOW"
 msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] ბიომში {1}-ზე ნაკლებია"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
-msgstr ""
+msgstr "[thrive:compound type=\"{0}\"][/thrive:compound] ბიომში {1}-სა და {2}-ს შორისაა"
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
 msgstr "მონელებულია {0} მიკრობი      (ამჟამად {1})"
@@ -5281,13 +5289,13 @@ msgid "VACUOLE_IS_SPECIALIZED"
 msgstr "სპეციალიზებული ვაკუოლა"
 
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
-msgstr ""
+msgstr "ვაკუოლა {0} ერთეულ ყველა ნაერთს შეინახავს"
 
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "ზრდის უჯრედის საცავის სივრცეს."
 
 msgid "VACUOLE_SPECIALIZED_DESCRIPTION"
-msgstr ""
+msgstr "ვაკუოლა არჩეული ნაერთის {0} ერთეულს შეინახავს"
 
 msgid "VALUE_WITH_UNIT"
 msgstr "{0} {1}"
@@ -5470,7 +5478,7 @@ msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr ""
 
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "უჯრედს [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] განვითარებისთვის [b]ქემოპლასტები[/b] სჭირდება."
 
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
@@ -5566,7 +5574,7 @@ msgid "WIKI_CILIA_PROCESSES"
 msgstr "პროცესების გარეშე."
 
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "უჯრედს [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] განვითარებისთვის [b]წამწამი[/b] სჭირდება."
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -5755,7 +5763,7 @@ msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
 msgstr ""
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr ""
+msgstr "უჯრედს [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] განვითარებისთვის [b]აზოტის ჩამჭერი პლასტიდები[/b] სჭირდება."
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
@@ -6019,7 +6027,7 @@ msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr "პროცესების გარეშე."
 
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
-msgstr ""
+msgstr "უჯრედს [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] განვითარებისთვის [b]სასიგნალო აგენტები[/b] სჭირდება."
 
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
@@ -6163,7 +6171,7 @@ msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "პროცესების გარეშე"
 
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "უჯრედს [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] განვითარებისთვის [b]ვაკუოლები[/b] სჭირდება."
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
@@ -6224,6 +6232,8 @@ msgstr "მიმდინარე სამყაროს ზოგადი 
 
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
+"გვიანი სტადიის პროტოტიპების ჩასმა: {0}\n"
+"სააღდგომო კვერცხების ჩასმა: {1}"
 
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr "სამყაროსთან შეფარდებით"
@@ -6250,7 +6260,7 @@ msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr ""
+msgstr "შეგიძლიათ, Thrive-ის მომავალ განვითარებას მხარი Patreon-ზე დაუჭიროთ."
 
 msgid "ZOOM_IN"
 msgstr "გადიდება"
