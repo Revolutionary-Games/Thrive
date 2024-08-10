@@ -1272,11 +1272,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             foreach (ref readonly var chunk in chunksSet.GetEntities())
             {
-                // Ignore already despawning chunks
-                ref var timed = ref chunk.Get<TimedLife>();
+                if (chunk.Has<TimedLife>())
+                {
+                    // Ignore already despawning chunks
+                    ref var timed = ref chunk.Get<TimedLife>();
 
-                if (timed.TimeToLiveRemaining <= 0)
-                    continue;
+                    if (timed.TimeToLiveRemaining <= 0)
+                        continue;
+                }
 
                 // Ignore chunks that wouldn't yield any useful compounds when absorbing
                 ref var compounds = ref chunk.Get<CompoundStorage>();
