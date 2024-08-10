@@ -236,10 +236,8 @@ public static class MicrobeControlHelpers
     public static void SetMoveSpeedPrecise(this ref MicrobeControl control, WorldPosition selfPosition,
         Vector3 targetPosition, float speed)
     {
-        var angleToTarget = selfPosition.Position.AngleTo(targetPosition) - selfPosition.Rotation.GetAngle();
-
-        control.MovementDirection = new Vector3(Mathf.Sin(angleToTarget) * speed, 0,
-            Mathf.Cos(angleToTarget) * speed);
+        control.MovementDirection = selfPosition.Rotation.Inverse()
+            * (targetPosition - selfPosition.Position) * speed;
     }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,
