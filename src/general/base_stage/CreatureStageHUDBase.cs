@@ -1099,7 +1099,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         var currentPlayer = stage.GameWorld.PlayerSpecies;
 
         // TODO: if we want to allow going back stages, this will need to be adjusted
-        var mustBeSameStage = (Species species) => currentPlayer.GetType() == species.GetType();
+        var mustBeSameStage = (Species species) => 
+            currentPlayer.GetType() == species.GetType() && species.Population > 0;
 
         return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
