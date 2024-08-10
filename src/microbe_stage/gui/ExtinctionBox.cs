@@ -11,12 +11,15 @@ public partial class ExtinctionBox : CustomWindow
     [Export]
     public NodePath LoadMenuPath = null!;
 
+    [Export]
+    public NodePath ExtinctionMessagePath;
+
 #pragma warning disable CA2213
     private Control extinctionMenu = null!;
     private Control loadMenu = null!;
 
     [Export]
-    private CustomRichTextLabel extinctionMessage = null!;
+    private Label extinctionMessage = null!;
 
     [Export]
     private CustomRichTextLabel continueText = null!;
@@ -47,6 +50,7 @@ public partial class ExtinctionBox : CustomWindow
     {
         extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
+        extinctionMessage = GetNode<Label>(ExtinctionMessagePath);
 
         UpdateContinueOption();
     }
@@ -164,7 +168,7 @@ public partial class ExtinctionBox : CustomWindow
 
         if (ShowContinueAs != null)
         {
-            extinctionMessage.ExtendedBbcode = Localization.Translate("EXTINCTION_BOX_TEXT_CONTINUE");
+            extinctionMessage.Text = Localization.Translate("EXTINCTION_BOX_TEXT_CONTINUE");
 
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
                 .FormatSafe(ShowContinueAs.FormattedNameBbCode,
