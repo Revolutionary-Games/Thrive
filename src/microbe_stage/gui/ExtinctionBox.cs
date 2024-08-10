@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 
 /// <summary>
 ///   Game over screen for the player when they are extinct
@@ -26,10 +27,15 @@ public partial class ExtinctionBox : CustomWindow
     private Button? continueButton;
 #pragma warning restore CA2213
 
+    // a non-null value indicates that the game is allowing switching species
+    private Type? speciesSwitchType = null;
+
     private Species? speciesToContinueAs;
 
     [Signal]
     public delegate void ContinueSelectedEventHandler(uint species);
+
+    public Type? SpeciesSwitchType { get; set; }
 
     public Species? ShowContinueAs
     {
@@ -177,6 +183,20 @@ public partial class ExtinctionBox : CustomWindow
         }
         else
         {
+            if (SpeciesSwitchType != null)
+            {
+                if (SpeciesSwitchType == typeof(MicrobeSpecies))
+                {
+                    GetNode<Label>(ExtinctionMessagePath).Text =
+                        Localization.Translate("EXTINCTION_BOX_TEXT_GAME_OVER_MICROBE");
+                }
+                else
+                {
+                    GetNode<Label>(ExtinctionMessagePath).Text =
+                        Localization.Translate("EXTINCTION_BOX_TEXT_GAME_OVER_EARLY_MULTICELLULAR");
+                }
+            }
+
             continueButton.Visible = false;
             continueText.Visible = false;
         }

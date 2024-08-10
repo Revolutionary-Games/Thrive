@@ -566,10 +566,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         if (stage!.GameWorld.WorldSettings.SwitchSpeciesOnExtinction)
         {
+            box.SpeciesSwitchType = stage.GameWorld.PlayerSpecies.GetType();
             continueAs = GetPotentialSpeciesToContinueAs();
 
             if (continueAs == null)
                 GD.Print("No species to continue as found");
+        }
+        else
+        {
+            box.SpeciesSwitchType = null;
         }
 
         box.ShowContinueAs = continueAs;
