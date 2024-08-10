@@ -35,7 +35,14 @@ public partial class ExtinctionBox : CustomWindow
     [Signal]
     public delegate void ContinueSelectedEventHandler(uint species);
 
-    public Type? SpeciesSwitchType { get; set; }
+    public Type? SpeciesSwitchType
+    {
+        get => speciesSwitchType;
+        set
+        {
+            speciesSwitchType = value;
+        }
+    }
 
     public Species? ShowContinueAs
     {
