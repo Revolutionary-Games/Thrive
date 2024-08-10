@@ -562,6 +562,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         var box = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
 
+        // update our own population before looking for nearby species
+        stage!.GameWorld.PlayerSpecies.Population = 0;
         Species? continueAs = null;
 
         if (stage!.GameWorld.WorldSettings.SwitchSpeciesOnExtinction)
@@ -1099,8 +1101,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         var currentPlayer = stage.GameWorld.PlayerSpecies;
 
         // TODO: if we want to allow going back stages, this will need to be adjusted
-        var mustBeSameStage = (Species species) => 
-            currentPlayer.GetType() == species.GetType() && species.Population > 0;
+        var mustBeSameStage = (Species species) => currentPlayer.GetType() == species.GetType();
 
         return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
