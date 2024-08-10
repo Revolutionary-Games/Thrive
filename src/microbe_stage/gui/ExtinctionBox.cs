@@ -16,6 +16,9 @@ public partial class ExtinctionBox : CustomWindow
     private Control loadMenu = null!;
 
     [Export]
+    private CustomRichTextLabel extinctionMessage = null!;
+
+    [Export]
     private CustomRichTextLabel continueText = null!;
 
     [Export]
@@ -161,11 +164,14 @@ public partial class ExtinctionBox : CustomWindow
 
         if (ShowContinueAs != null)
         {
-            continueButton.Visible = true;
+            extinctionMessage.ExtendedBbcode = Localization.Translate("EXTINCTION_BOX_TEXT_CONTINUE");
+
             continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
                 .FormatSafe(ShowContinueAs.FormattedNameBbCode,
                     StringUtils.ThreeDigitFormat(ShowContinueAs.Population));
             continueText.Visible = true;
+
+            continueButton.Visible = true;
         }
         else
         {
