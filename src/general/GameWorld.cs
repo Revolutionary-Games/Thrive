@@ -290,10 +290,6 @@ public class GameWorld : ISaveLoadable
         if (deleteOldPlayer)
         {
             oldPlayer.Obsolete = true;
-
-            // Remove all populations of the old species to make sure it is extinct
-            oldPlayer.Population = 0;
-            Map.RemoveAllPopulationsOf(oldPlayer);
         }
 
         species.BecomePlayerSpecies();
