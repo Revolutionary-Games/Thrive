@@ -525,6 +525,9 @@ find at least version `0.21`.
 On Linux use your package manager to install the `gettext` package. On Mac the same package
 is available through Homebrew.
 
+`msgmerge` is part of the gettext tools. So any errors with that
+missing are about these gettext tools.
+
 ## Running the Format Checks
 
 When you are getting ready to commit you should run `dotnet run
@@ -646,6 +649,17 @@ Your locally cloned Thrive version may get messed up from time to time.
 
 You can find information about how to translate the game on the 
 [Working with translation page](working_with_translations.md).
+
+### Errors with running the translation extraction (`Failed to find translation tool 'msgmerge'`)
+
+These errors are related to the gettext tools, which must be installed
+and added to system PATH. So if you get this error double check that
+you have installed latest gettext version (some Windows sources for
+these tools have really old versions) and added the folder to
+PATH. After installing you need to restart the terminal / command
+prompt you are using to run the translation extraction as it will
+still be using the old PATH value. The easiest solution to that is to
+restart the terminal / command prompt so that it loads the new PATH.
 
 ### All files are marked as changed
 
