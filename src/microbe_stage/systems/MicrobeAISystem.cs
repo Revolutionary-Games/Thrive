@@ -741,10 +741,11 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         if (isIronEater && chunkIsIron && gameWorld!.WorldSettings.ExperimentalFeatures)
         {
             control.EmitSiderophore(ref organelles, entity);
+            SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk, 100);
         }
         else
         {
-            SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk);
+            SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk, 2);
         }
 
         // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
@@ -1057,11 +1058,11 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void SetEngulfIfClose(ref MicrobeControl control, ref Engulfer engulfer, ref WorldPosition position,
-        in Entity entity, Vector3 targetPosition)
+        in Entity entity, Vector3 targetPosition, float distanceMultiplier)
     {
         // Turn on engulf mode if close
         // Sometimes "close" is hard to discern since microbes can range from straight lines to circles
-        if ((position.Position - targetPosition).LengthSquared() <= engulfer.EngulfingSize * 2.0f)
+        if ((position.Position - targetPosition).LengthSquared() <= engulfer.EngulfingSize * distanceMultiplier)
         {
             control.SetStateColonyAware(entity, MicrobeState.Engulf);
         }
