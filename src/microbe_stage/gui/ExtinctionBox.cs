@@ -1,5 +1,5 @@
-﻿using Godot;
-using System;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Game over screen for the player when they are extinct
@@ -13,7 +13,7 @@ public partial class ExtinctionBox : CustomWindow
     public NodePath LoadMenuPath = null!;
 
     [Export]
-    public NodePath ExtinctionMessagePath;
+    public NodePath? ExtinctionMessagePath;
 
 #pragma warning disable CA2213
     private Control extinctionMenu = null!;
@@ -99,6 +99,11 @@ public partial class ExtinctionBox : CustomWindow
             {
                 ExtinctionMenuPath.Dispose();
                 LoadMenuPath.Dispose();
+            }
+
+            if (ExtinctionMessagePath != null)
+            {
+                ExtinctionMessagePath.Dispose();
             }
         }
 
