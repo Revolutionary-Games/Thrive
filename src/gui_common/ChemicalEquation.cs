@@ -93,8 +93,6 @@ public partial class ChemicalEquation : VBoxContainer
             if (value == lastToggle)
                 return;
 
-            EmitSignal(SignalName.ToggleProcessPressed, this);
-
             lastToggle = value;
 
             toggleProcess.ButtonPressed = value;
@@ -330,5 +328,7 @@ public partial class ChemicalEquation : VBoxContainer
     private void ToggleButtonPressed(bool toggled)
     {
         ProcessEnabled = toggled;
+
+        EmitSignal(SignalName.ToggleProcessPressed, this);
     }
 }

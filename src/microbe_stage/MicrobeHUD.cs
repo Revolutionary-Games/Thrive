@@ -844,18 +844,26 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (!stage!.HasAlivePlayer || !stage!.Player.Has<BioProcesses>())
             return;
 
+        if (equation.EquationFromProcess == null)
+        {
+            GD.PrintErr("Equation has no process set");
+            return;
+        }
+
         ref var processes = ref stage.Player.Get<BioProcesses>();
 
-        if (processes.ActiveProcesses == null)
+        var activeProcesses = processes.ActiveProcesses;
+
+        if (activeProcesses == null)
             return;
 
-        for (int i = 0; i < processes.ActiveProcesses.Count; ++i)
+        for (int i = 0; i < activeProcesses.Count; ++i)
         {
-            if (processes.ActiveProcesses[i].Process.Name == equation.EquationFromProcess!.Name)
+            if (activeProcesses[i].Process.Name == equation.EquationFromProcess.Name)
             {
-                var process = processes.ActiveProcesses[i];
+                var process = activeProcesses[i];
                 process.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
-                processes.ActiveProcesses[i] = process;
+                activeProcesses[i] = process;
             }
         }
     }
