@@ -10,6 +10,8 @@ public class ThriveopediaManager
 
     private readonly List<Thriveopedia> activeThriveopedias = new();
 
+    private readonly List<ISpeciesDataProvider> speciesDataProviders = new();
+
     public delegate void OnPageOpened(string pageName);
 
     public static ThriveopediaManager Instance => ManagerInstance;
@@ -36,15 +38,52 @@ public class ThriveopediaManager
 
     public static Species? GetActiveSpeciesData(uint speciesId)
     {
-        foreach (var thriveopedia in Instance.activeThriveopedias)
+        foreach (var provider in Instance.speciesDataProviders)
         {
-            var species = thriveopedia.GetActiveSpeciesData(speciesId);
+            var species = provider.GetActiveSpeciesData(speciesId);
 
             if (species != null)
                 return species;
         }
 
         return null;
+    }
+
+    /// <summary>
+    ///   Report a non-Thriveopedia SpeciesDataProvider
+    /// </summary>
+    public static void ReportNonThriveopediaSpeciesDataProvider(ISpeciesDataProvider speciesDataProvider)
+    {
+        if (speciesDataProvider is Thriveopedia)
+        {
+            GD.PrintErr("Thriveopedia registered as generic species data provider");
+            return;
+        }
+
+        if (Instance.speciesDataProviders.Contains(speciesDataProvider))
+        {
+            GD.PrintErr("Duplicate Thriveopedia registration");
+            return;
+        }
+
+        Instance.speciesDataProviders.Add(speciesDataProvider);
+    }
+
+    /// <summary>
+    ///   Removes a non-Thriveopedia SpeciesDataProvider
+    /// </summary>
+    public static void RemoveNonThriveopediaSpeciesDataProvider(ISpeciesDataProvider speciesDataProvider)
+    {
+        if (speciesDataProvider is Thriveopedia)
+        {
+            GD.PrintErr("Thriveopedia removed as generic species data provider");
+            return;
+        }
+
+        if (!Instance.speciesDataProviders.Remove(speciesDataProvider))
+        {
+            GD.PrintErr("Failed to unregister Thriveopedia");
+        }
     }
 
     /// <summary>
@@ -59,6 +98,7 @@ public class ThriveopediaManager
         }
 
         Instance.activeThriveopedias.Add(thriveopedia);
+        Instance.speciesDataProviders.Add(thriveopedia);
     }
 
     public static void RemoveActiveThriveopedia(Thriveopedia thriveopedia)
@@ -66,6 +106,11 @@ public class ThriveopediaManager
         if (!Instance.activeThriveopedias.Remove(thriveopedia))
         {
             GD.PrintErr("Failed to unregister Thriveopedia");
+        }
+
+        if (!Instance.speciesDataProviders.Remove(thriveopedia))
+        {
+            GD.PrintErr("Failed to unregister Thriveopedia as species data provider");
         }
     }
 }
