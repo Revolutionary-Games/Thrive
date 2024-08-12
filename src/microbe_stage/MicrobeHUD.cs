@@ -841,7 +841,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void ToggleProcessPressed(ChemicalEquation equation)
     {
-        if (!stage!.Player.Has<BioProcesses>())
+        if (!stage!.HasAlivePlayer || !stage!.Player.Has<BioProcesses>())
             return;
 
         ref var processes = ref stage.Player.Get<BioProcesses>();
