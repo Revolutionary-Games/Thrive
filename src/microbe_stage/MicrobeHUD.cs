@@ -841,12 +841,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     private void ToggleProcessPressed(ChemicalEquation equation)
     {
-        if (!stage!.HasAlivePlayer || !stage!.Player.Has<BioProcesses>())
+        if (!stage!.HasAlivePlayer || !stage.Player.Has<BioProcesses>())
             return;
 
         if (equation.EquationFromProcess == null)
         {
-            GD.PrintErr("Equation has no process set");
+            GD.PrintErr("Equation has no process set for process speed control in player");
             return;
         }
 
@@ -861,7 +861,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         for (int i = 0; i < processesCount; ++i)
         {
-            if (activeProcesses[i].Process.Name == equation.EquationFromProcess.Name)
+            // Update speed of the process controlled by the GUI control that signaled this change
+            if (equation.EquationFromProcess.MatchesUnderlyingProcess(activeProcesses[i].Process))
             {
                 var process = activeProcesses[i];
                 process.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
