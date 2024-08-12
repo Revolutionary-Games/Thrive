@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=71 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=73 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -137,6 +137,38 @@ expand_margin_right = 3.0
 [sub_resource type="StyleBoxEmpty" id="10"]
 
 [sub_resource type="StyleBoxEmpty" id="11"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xr1tc"]
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.678271, 0.74902, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.00392157, 0.956863, 0.905882, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u70kv"]
+content_margin_left = 5.0
+content_margin_top = 4.0
+content_margin_right = 5.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0.435294, 0.52549, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 0.6, 0.537255, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
 
 [sub_resource type="StyleBoxFlat" id="12"]
 bg_color = Color(0.0666667, 1, 0.835294, 1)
@@ -566,7 +598,8 @@ CheckButton/colors/font_color = Color(1, 1, 1, 1)
 CheckButton/colors/font_color_disabled = Color(1, 1, 1, 1)
 CheckButton/colors/font_color_hover = Color(1, 1, 1, 1)
 CheckButton/colors/font_color_hover_pressed = Color(1, 1, 1, 1)
-CheckButton/colors/font_color_pressed = Color(0, 0, 0, 1)
+CheckButton/colors/font_color_pressed = Color(1, 1, 1, 1)
+CheckButton/colors/font_pressed_color = Color(1, 1, 1, 1)
 CheckButton/constants/check_vadjust = 0
 CheckButton/constants/hseparation = 1
 CheckButton/fonts/font = ExtResource("1_fiqxx")
@@ -577,9 +610,9 @@ CheckButton/icons/on_disabled = null
 CheckButton/styles/disabled = null
 CheckButton/styles/focus = null
 CheckButton/styles/hover = null
-CheckButton/styles/hover_pressed = null
+CheckButton/styles/hover_pressed = SubResource("StyleBoxFlat_xr1tc")
 CheckButton/styles/normal = null
-CheckButton/styles/pressed = null
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_u70kv")
 ColorPicker/constants/h_width = 30
 ColorPicker/constants/label_width = 10
 ColorPicker/constants/margin = 4
