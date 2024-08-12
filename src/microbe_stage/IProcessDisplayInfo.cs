@@ -13,7 +13,8 @@ using System.Collections.Generic;
 public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
 {
     /// <summary>
-    ///   User readable name
+    ///   User readable name. Do not use to match process information, use <see cref="MatchesUnderlyingProcess"/>
+    ///   instead.
     /// </summary>
     public string Name { get; }
 
@@ -33,7 +34,7 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs { get; }
 
     /// <summary>
-    ///   All of the output compounds
+    ///   All the output compounds
     /// </summary>
     public IReadOnlyDictionary<Compound, float> Outputs { get; }
 
@@ -46,4 +47,10 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     ///   The limiting compounds in speed. Or null if not set
     /// </summary>
     public IReadOnlyList<Compound>? LimitingCompounds { get; }
+
+    /// <summary>
+    ///   Checks if this process info is for the given underlying process
+    /// </summary>
+    /// <returns>True if matches, false if this info is for some other process type</returns>
+    public bool MatchesUnderlyingProcess(BioProcess process);
 }
