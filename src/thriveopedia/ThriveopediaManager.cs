@@ -62,7 +62,7 @@ public class ThriveopediaManager
 
         if (Instance.speciesDataProviders.Contains(speciesDataProvider))
         {
-            GD.PrintErr("Duplicate Thriveopedia registration");
+            GD.PrintErr("Duplicate species data provider registration");
             return;
         }
 
@@ -82,7 +82,7 @@ public class ThriveopediaManager
 
         if (!Instance.speciesDataProviders.Remove(speciesDataProvider))
         {
-            GD.PrintErr("Failed to unregister Thriveopedia");
+            GD.PrintErr("Failed to unregister species data provider");
         }
     }
 
