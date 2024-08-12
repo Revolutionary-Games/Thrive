@@ -10,6 +10,11 @@ using Godot;
 /// </summary>
 public partial class CustomRichTextLabel : RichTextLabel
 {
+    /// <summary>
+    /// Custom provider for species data, that will be used instead of Thriveopedia
+    /// </summary>
+    public ISpeciesDataProvider CustomSpeciesDataProvider = null!;
+
     private string? extendedBbcode;
 
     private string? heightWorkaroundRanForString;
@@ -156,7 +161,19 @@ public partial class CustomRichTextLabel : RichTextLabel
 #pragma warning restore CA2245
     }
 
-    private static bool GetSpeciesFromMeta(string metaString, out Species? species)
+    private Species? GetSpeciesData(uint speciesId)
+    {
+        if (CustomSpeciesDataProvider == null)
+        {
+            return ThriveopediaManager.GetActiveSpeciesData(speciesId);
+        }
+        else
+        {
+            return CustomSpeciesDataProvider.GetActiveSpeciesData(speciesId);
+        }
+    }
+
+    private bool GetSpeciesFromMeta(string metaString, out Species? species)
     {
         // TODO: is there a way to avoid this extra memory allocation?
         var speciesCode = metaString.Substring("species:".Length);
@@ -168,7 +185,7 @@ public partial class CustomRichTextLabel : RichTextLabel
             return false;
         }
 
-        species = ThriveopediaManager.GetActiveSpeciesData(speciesId);
+        species = GetSpeciesData(speciesId);
 
         if (species == null)
         {

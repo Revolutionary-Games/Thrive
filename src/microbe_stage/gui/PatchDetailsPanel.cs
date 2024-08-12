@@ -133,6 +133,14 @@ public partial class PatchDetailsPanel : PanelContainer
         Completed,
     }
 
+    public ISpeciesDataProvider CustomSpeciesDataProvider
+    {
+        set
+        {
+            speciesInfoDisplay.CustomSpeciesDataProvider = value;
+        }
+    }
+
     [JsonIgnore]
     public Action<Patch>? OnMoveToPatchClicked { get; set; }
 

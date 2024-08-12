@@ -15,7 +15,7 @@ using Godot;
 ///     Partial class: GUI, auto-evo, world control
 ///   </para>
 /// </remarks>
-public partial class AutoEvoExploringTool : NodeWithInput
+public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 {
     // Tab paths
 
@@ -348,6 +348,10 @@ public partial class AutoEvoExploringTool : NodeWithInput
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
         exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
 
+        autoEvoResultsLabel.CustomSpeciesDataProvider = this;
+        currentWorldStatisticsLabel.CustomSpeciesDataProvider = this;
+        patchDetailsPanel.CustomSpeciesDataProvider = this;
+
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
@@ -416,6 +420,29 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public void AskExit()
     {
         exitConfirmationDialog.PopupCenteredShrink();
+    }
+
+    public Species? GetActiveSpeciesData(uint speciesId)
+    {
+        var gameworld = world.GameProperties.GameWorld;
+
+        for (int i = generationDisplayed; i >= 0; --i)
+        {
+            gameworld.GenerationHistory[i].AllSpeciesData
+                .TryGetValue(speciesId, out var speciesRecord);
+
+            if (speciesRecord == null)
+                return null;
+
+            var species = speciesRecord.Species;
+
+            if (species != null)
+                return species;
+
+            // If species of speciesRecord is null, then the species have data in earlier generations
+        }
+
+        return null;
     }
 
     protected override void Dispose(bool disposing)
