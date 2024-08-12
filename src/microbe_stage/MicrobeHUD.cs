@@ -857,7 +857,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         if (activeProcesses == null)
             return;
 
-        for (int i = 0; i < activeProcesses.Count; ++i)
+        var processesCount = activeProcesses.Count;
+
+        for (int i = 0; i < processesCount; ++i)
         {
             if (activeProcesses[i].Process.Name == equation.EquationFromProcess.Name)
             {
