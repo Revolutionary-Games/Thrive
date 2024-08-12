@@ -85,6 +85,12 @@ public partial class ChemicalEquation : VBoxContainer
         }
     }
 
+    public bool ShowToggle
+    {
+        get => toggleProcess!.Visible;
+        set => toggleProcess!.Visible = value;
+    }
+
     public bool ProcessEnabled
     {
         get => lastToggle;

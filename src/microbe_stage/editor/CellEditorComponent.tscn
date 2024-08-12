@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=65 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
@@ -36,6 +36,7 @@
 [ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="35"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
+[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="42"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
 [ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="44"]
@@ -347,7 +348,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processList")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -411,6 +412,7 @@ calculateBalancesWhenMoving = NodePath("RightPanel/VBoxContainer/Statistics/VBox
 compoundBalance = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 compoundStorageLastingTimes = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundStorageStatistics")
 notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
+processList = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessList")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -1022,6 +1024,10 @@ mouse_filter = 1
 layout_mode = 2
 
 [node name="CompoundStorageStatistics" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("28_vnd4w")]
+layout_mode = 2
+
+[node name="ProcessList" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("41_n2bpg")]
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]

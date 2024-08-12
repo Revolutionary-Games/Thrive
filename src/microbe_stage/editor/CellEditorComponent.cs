@@ -269,6 +269,9 @@ public partial class CellEditorComponent :
     [Export]
     private CustomRichTextLabel notEnoughStorageWarning = null!;
 
+    [Export]
+    private ProcessList processList = null!;
+
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
@@ -787,6 +790,9 @@ public partial class CellEditorComponent :
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
         }
+
+        processList.ShowToggles = false;
+        processList.ShowSpinners = false;
 
         UpdateMicrobePartSelections();
 
@@ -1902,6 +1908,36 @@ public partial class CellEditorComponent :
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
+
+        var processes = new List<TweakedProcess>();
+        var processStatistics = new List<ProcessSpeedInformation>();
+
+        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
+
+        foreach (var process in processes!)
+        {
+            var singleProcess = new ProcessSpeedInformation(process.Process);
+
+            foreach (var input in process.Process.Inputs)
+            {
+                var inputValue = input.Value;
+                inputValue *= process.Rate;
+
+                singleProcess.WritableInputs.Add(input.Key, inputValue);
+            }
+
+            foreach (var output in process.Process.Outputs)
+            {
+                var outputValue = output.Value;
+                outputValue *= process.Rate;
+
+                singleProcess.WritableOutputs.Add(output.Key, outputValue);
+            }
+
+            processStatistics.Add(singleProcess);
+        }
+
+        processList.ProcessesToShow = processStatistics;
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
