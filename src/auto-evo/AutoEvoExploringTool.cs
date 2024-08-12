@@ -348,13 +348,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
         exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
 
-        autoEvoResultsLabel.CustomSpeciesDataProvider = this;
-        currentWorldStatisticsLabel.CustomSpeciesDataProvider = this;
-        patchDetailsPanel.CustomSpeciesDataProvider = this;
-
         patchMapDrawer.OnSelectedPatchChanged += UpdatePatchDetailPanel;
 
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
+
+        ThriveopediaManager.ReportNonThriveopediaSpeciesDataProvider(this);
 
         // Init button translation
         OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
@@ -376,6 +374,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Abort the current run to avoid problems
         autoEvoRun?.Abort();
+
+        ThriveopediaManager.RemoveNonThriveopediaSpeciesDataProvider(this);
     }
 
     public override void _Process(double delta)
