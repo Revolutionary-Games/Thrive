@@ -11,7 +11,7 @@ using Godot;
 public partial class CustomRichTextLabel : RichTextLabel
 {
     /// <summary>
-    /// Custom provider for species data, that will be used instead of Thriveopedia
+    /// Custom provider for species data. If null, defaults to Thriveopedia
     /// </summary>
     public ISpeciesDataProvider CustomSpeciesDataProvider = null!;
 

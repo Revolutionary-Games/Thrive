@@ -439,7 +439,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             if (species != null)
                 return species;
 
-            // If species of speciesRecord is null, then the species have data in earlier generations
+            // If species of speciesRecord is null, then the species should have data in an earlier generation
         }
 
         return null;
