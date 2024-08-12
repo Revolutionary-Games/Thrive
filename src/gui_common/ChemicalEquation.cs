@@ -15,7 +15,7 @@ public partial class ChemicalEquation : VBoxContainer
     private Label? title;
 
     [Export]
-    private CheckButton toggleProcess = null!;
+    private CheckButton? toggleProcess;
 
     [Export]
     private TextureRect? spinner;
@@ -87,15 +87,14 @@ public partial class ChemicalEquation : VBoxContainer
 
     public bool ProcessEnabled
     {
-        get => toggleProcess.ButtonPressed;
+        get => lastToggle;
         set
         {
             if (value == lastToggle)
                 return;
 
             lastToggle = value;
-
-            toggleProcess.ButtonPressed = value;
+            ApplyProcessToggleValue();
         }
     }
 
@@ -119,6 +118,7 @@ public partial class ChemicalEquation : VBoxContainer
     public override void _Ready()
     {
         UpdateEquation();
+        ApplyProcessToggleValue();
     }
 
     public override void _EnterTree()
@@ -330,5 +330,11 @@ public partial class ChemicalEquation : VBoxContainer
         ProcessEnabled = toggled;
 
         EmitSignal(SignalName.ToggleProcessPressed, this);
+    }
+
+    private void ApplyProcessToggleValue()
+    {
+        if (toggleProcess != null)
+            toggleProcess.ButtonPressed = ProcessEnabled;
     }
 }
