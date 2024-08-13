@@ -156,7 +156,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 #pragma warning restore CA2245
     }
 
-    private bool GetSpeciesFromMeta(string metaString, out Species? species)
+    private static bool GetSpeciesFromMeta(string metaString, out Species? species)
     {
         // TODO: is there a way to avoid this extra memory allocation?
         var speciesCode = metaString.Substring("species:".Length);
