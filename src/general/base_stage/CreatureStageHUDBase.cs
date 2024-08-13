@@ -750,12 +750,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected void UpdateStrain()
     {
-        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
-        {
-            strainBar.Visible = false;
-            return;
-        }
-
         var readStrainFraction = ReadPlayerStrainFraction();
 
         // Skip the rest of the method if player does not have strain
@@ -1036,7 +1030,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
         mucocystHotkey.Visible = showMucocyst;
-        sprintHotkey.Visible = showSprint && stage!.GameWorld.WorldSettings.ExperimentalFeatures;
+        sprintHotkey.Visible = showSprint;
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
