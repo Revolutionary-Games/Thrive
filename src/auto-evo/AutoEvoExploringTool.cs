@@ -431,10 +431,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             gameWorld.GenerationHistory[i].AllSpeciesData
                 .TryGetValue(speciesId, out var speciesRecord);
 
-            if (speciesRecord == null)
-                continue;
-
-            var species = speciesRecord.Species;
+            var species = speciesRecord?.Species;
 
             if (species != null)
                 return species;
