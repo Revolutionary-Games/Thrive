@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=73 format=3 uid="uid://b4cx0o110g4b6"]
+[gd_resource type="Theme" load_steps=75 format=3 uid="uid://b4cx0o110g4b6"]
 
 [ext_resource type="FontVariation" uid="uid://dgd4ajpji2jb1" path="res://assets/fonts/variants/Jura-SemiBold.tres" id="1_fiqxx"]
 [ext_resource type="Texture2D" uid="uid://bjchgyy3gt2vp" path="res://assets/textures/gui/bevel/grab.png" id="2"]
@@ -416,6 +416,22 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y7g70"]
+bg_color = Color(0, 0.290196, 0.34902, 0.470588)
+border_color = Color(0, 0.129412, 0.156863, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi4pt"]
+bg_color = Color(0, 0.74902, 0.713726, 0.588235)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [sub_resource type="StyleBoxFlat" id="32"]
 content_margin_left = 10.0
 content_margin_top = 0.0
@@ -828,6 +844,10 @@ RichTextLabel/styles/focus = null
 RichTextLabel/styles/normal = null
 ScrollContainer/styles/bg = null
 SpinBox/icons/updown = null
+SprintBar/base_type = &"ProgressBar"
+SprintBar/font_sizes/font_size = 12
+SprintBar/styles/background = SubResource("StyleBoxFlat_y7g70")
+SprintBar/styles/fill = SubResource("StyleBoxFlat_bi4pt")
 TabBar/colors/font_color_bg = Color(0, 0, 0, 1)
 TabBar/colors/font_color_disabled = Color(0, 0, 0, 1)
 TabBar/colors/font_color_fg = Color(0, 0, 0, 1)
