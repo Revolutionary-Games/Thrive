@@ -488,6 +488,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
+    ///   Since temperature works differently to other compounds, we use this method to deal with it. Logic here
+    ///   is liable to be updated in the future to use alternative effect models.
+    /// </summary>
+    public static float CalculateTemperatureEffect(float temperature)
+    {
+        // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
+        var optimal = Constants.OPTIMAL_THERMOPLAST_TEMPERATURE;
+        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
+    }
+
+    /// <summary>
     ///   Sets the biome whose environmental values affect processes
     /// </summary>
     public void SetBiome(BiomeConditions newBiome)
@@ -543,17 +554,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return 0;
 
         return environmentalCompoundProperties.Ambient;
-    }
-
-    /// <summary>
-    ///   Since temperature works differently to other compounds, we use this method to deal with it. Logic here
-    ///   is liable to be updated in the future to use alternative effect models.
-    /// </summary>
-    private static float CalculateTemperatureEffect(float temperature)
-    {
-        // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
-        var optimal = 100;
-        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 
     private void ProcessNode(ref BioProcesses processor, ref CompoundStorage storage, float delta)
@@ -644,7 +644,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             if (!entry.Key.IsEnvironmental)
                 continue;
 
-            // Processing runs on the current game time following values
+            // Processing runs on the current game time foll//owing values
             var ambient = GetAmbient(entry.Key, CompoundAmountType.Current);
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);

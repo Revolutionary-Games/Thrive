@@ -166,6 +166,7 @@ public partial class CellEditorComponent :
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 #pragma warning disable CA2213
 
     // Light level controls
@@ -1909,29 +1910,32 @@ public partial class CellEditorComponent :
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
+        // Handle process list
         var processes = new List<TweakedProcess>();
         var processStatistics = new List<ProcessSpeedInformation>();
 
         ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
 
+        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+
         foreach (var process in processes!)
         {
-            var singleProcess = new ProcessSpeedInformation(process.Process);
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
 
-            foreach (var input in process.Process.Inputs)
+            if (consumptionProductionRatio < 1.0)
             {
-                var inputValue = input.Value;
-                inputValue *= process.Rate;
+                foreach (var input in singleProcess.Inputs)
+                {
+                    if (input.Key == atp)
+                        continue;
 
-                singleProcess.WritableInputs.Add(input.Key, inputValue);
-            }
+                    singleProcess.WritableInputs[input.Key] = input.Value * consumptionProductionRatio;
+                }
 
-            foreach (var output in process.Process.Outputs)
-            {
-                var outputValue = output.Value;
-                outputValue *= process.Rate;
-
-                singleProcess.WritableOutputs.Add(output.Key, outputValue);
+                foreach (var output in singleProcess.Outputs)
+                {
+                    singleProcess.WritableOutputs[output.Key] = output.Value * consumptionProductionRatio;
+                }
             }
 
             processStatistics.Add(singleProcess);
