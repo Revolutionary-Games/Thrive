@@ -424,11 +424,11 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     public Species? GetActiveSpeciesData(uint speciesId)
     {
-        var gameworld = world.GameProperties.GameWorld;
+        var gameWorld = world.GameProperties.GameWorld;
 
         for (int i = generationDisplayed; i >= 0; --i)
         {
-            gameworld.GenerationHistory[i].AllSpeciesData
+            gameWorld.GenerationHistory[i].AllSpeciesData
                 .TryGetValue(speciesId, out var speciesRecord);
 
             if (speciesRecord == null)
