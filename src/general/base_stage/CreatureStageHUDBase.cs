@@ -175,6 +175,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();
 
+    private readonly StringName barFillName = new("fill");
+
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     [Export]
@@ -772,11 +774,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
             if (strainIsRed)
             {
-                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+                strainBar.AddThemeStyleboxOverride(barFillName, strainBarRedFill);
             }
             else
             {
-                strainBar.RemoveThemeStyleboxOverride("fill");
+                strainBar.RemoveThemeStyleboxOverride(barFillName);
             }
         }
 
@@ -1158,6 +1160,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             fadeParameterName.Dispose();
 
             strainBarRedFill?.Dispose();
+
+            barFillName.Dispose();
         }
 
         base.Dispose(disposing);
