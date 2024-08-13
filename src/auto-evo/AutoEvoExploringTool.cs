@@ -432,7 +432,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 .TryGetValue(speciesId, out var speciesRecord);
 
             if (speciesRecord == null)
-                return null;
+                continue;
 
             var species = speciesRecord.Species;
 
