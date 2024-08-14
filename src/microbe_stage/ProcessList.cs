@@ -22,7 +22,11 @@ public partial class ProcessList : VBoxContainer
         set => processesToShow = value?.Select(d => new StrictProcessDisplayInfoEquality(d)).ToList();
     }
 
+    [Export]
     public bool ShowSpinners { get; set; } = true;
+
+    [Export]
+    public bool ShowToggles { get; set; } = true;
 
     /// <summary>
     ///   The default color for all the process titles in this list. TODO: test that this works still
@@ -79,6 +83,7 @@ public partial class ProcessList : VBoxContainer
     {
         var equation = chemicalEquationScene.Instantiate<ChemicalEquation>();
         equation.ShowSpinner = ShowSpinners;
+        equation.ShowToggle = ShowToggles;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));

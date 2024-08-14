@@ -40,6 +40,7 @@ public partial class ChemicalEquation : VBoxContainer
 
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
+    private bool showToggle;
     private Color defaultTitleColour = Colors.White;
 
     /// <summary>
@@ -81,6 +82,16 @@ public partial class ChemicalEquation : VBoxContainer
         set
         {
             showSpinner = value;
+            UpdateHeader();
+        }
+    }
+
+    public bool ShowToggle
+    {
+        get => showToggle;
+        set
+        {
+            showToggle = value;
             UpdateHeader();
         }
     }
@@ -206,6 +217,9 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (spinner != null)
             spinner.Visible = ShowSpinner;
+
+        if (toggleProcess != null)
+            toggleProcess.Visible = ShowToggle;
 
         if (title == null || EquationFromProcess == null)
             return;
