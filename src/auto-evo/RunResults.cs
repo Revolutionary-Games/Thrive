@@ -901,7 +901,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 {
                     // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
                     LogEventGloballyAndLocally(world, patch,
-                        new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedNameBbCode),
+                        new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedNameBbCodeNonStyled),
                         species.PlayerSpecies, "extinction.png");
 
                     continue;
@@ -912,19 +912,19 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     if (finalPatchPopulation > previousPatchPopulation)
                     {
                         patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                species.FormattedNameBbCode, finalPatchPopulation),
+                                species.FormattedNameBbCodeNonStyled, finalPatchPopulation),
                             species.PlayerSpecies, "popUp.png");
                     }
                     else
                     {
                         patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                species.FormattedNameBbCode, finalPatchPopulation),
+                                species.FormattedNameBbCodeNonStyled, finalPatchPopulation),
                             species.PlayerSpecies, "popDown.png");
                     }
                 }
                 else
                 {
-                    patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedNameBbCode),
+                    patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedNameBbCodeNonStyled),
                         species.PlayerSpecies, "extinctionLocal.png");
                 }
 
@@ -933,13 +933,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     if (globalPopulation > previousGlobalPopulation)
                     {
                         world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                species.FormattedNameBbCode, globalPopulation),
+                                species.FormattedNameBbCodeNonStyled, globalPopulation),
                             species.PlayerSpecies, "popUp.png");
                     }
                     else
                     {
                         world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                species.FormattedNameBbCode, globalPopulation),
+                                species.FormattedNameBbCodeNonStyled, globalPopulation),
                             species.PlayerSpecies, "popDown.png");
                     }
                 }
@@ -950,19 +950,19 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 // Log to destination patch
                 // TODO: these events need to dynamically reveal their names in the event log once the player
                 // discovers them
-                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedNameBbCode,
+                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedNameBbCodeNonStyled,
                         migration.Value.From.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
 
                 // Log to game world
                 world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                        migration.Key.FormattedNameBbCode, migration.Value.To.VisibleName,
+                        migration.Key.FormattedNameBbCodeNonStyled, migration.Value.To.VisibleName,
                         migration.Value.From.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
 
                 // Log to origin patch
                 migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                        migration.Key.FormattedNameBbCode, migration.Value.To.VisibleName),
+                        migration.Key.FormattedNameBbCodeNonStyled, migration.Value.To.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
             }
 
@@ -981,13 +981,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     {
                         case NewSpeciesType.FillNiche:
                             LogEventGloballyAndLocally(world, patch, new LocalizedString("TIMELINE_NICHE_FILL",
-                                    newSpeciesEntry.FormattedNameBbCode, speciesResult.SplitFrom.FormattedNameBbCode),
+                                    newSpeciesEntry.FormattedNameBbCodeNonStyled, speciesResult.SplitFrom.FormattedNameBbCodeNonStyled),
                                 false, "newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             LogEventGloballyAndLocally(world, patch, new LocalizedString(
-                                    "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedNameBbCode,
-                                    speciesResult.SplitFrom.FormattedNameBbCode),
+                                    "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedNameBbCodeNonStyled,
+                                    speciesResult.SplitFrom.FormattedNameBbCodeNonStyled),
                                 false, "newSpecies.png");
                             break;
                         default:
