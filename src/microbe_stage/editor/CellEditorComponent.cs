@@ -162,6 +162,8 @@ public partial class CellEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
+
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
@@ -1960,18 +1962,11 @@ public partial class CellEditorComponent :
             var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
-            // otherwise use maximum production values
+            // otherwise use maximum production values (this matches the equilibrium display mode and what happens
+            // in game once exiting the editor)
             if (consumptionProductionRatio < 1.0f)
             {
-                foreach (var input in singleProcess.Inputs)
-                {
-                    singleProcess.WritableInputs[input.Key] = input.Value * consumptionProductionRatio;
-                }
-
-                foreach (var output in singleProcess.Outputs)
-                {
-                    singleProcess.WritableOutputs[output.Key] = output.Value * consumptionProductionRatio;
-                }
+                singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);
             }
 
             processStatistics.Add(singleProcess);

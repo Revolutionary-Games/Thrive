@@ -57,6 +57,50 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
         return Process == process;
     }
 
+    /// <summary>
+    ///   Scales all non-environmental inputs and outputs with the given modifier
+    /// </summary>
+    public void ScaleSpeed(float modifier, Dictionary<Compound, float>? workMemory)
+    {
+        workMemory ??= new Dictionary<Compound, float>();
+
+        if (WritableInputs.Count > 0)
+        {
+            workMemory.Clear();
+
+            foreach (var input in WritableInputs)
+            {
+                if (input.Key.IsEnvironmental)
+                    continue;
+
+                workMemory.Add(input.Key, input.Value * modifier);
+            }
+
+            foreach (var entry in workMemory)
+            {
+                WritableInputs[entry.Key] = entry.Value;
+            }
+        }
+
+        if (WritableOutputs.Count > 0)
+        {
+            workMemory.Clear();
+
+            foreach (var output in WritableOutputs)
+            {
+                if (output.Key.IsEnvironmental)
+                    continue;
+
+                workMemory.Add(output.Key, output.Value * modifier);
+            }
+
+            foreach (var entry in workMemory)
+            {
+                WritableOutputs[entry.Key] = entry.Value;
+            }
+        }
+    }
+
     public bool Equals(IProcessDisplayInfo? other)
     {
         return Equals((object?)other);
