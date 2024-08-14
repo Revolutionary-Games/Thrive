@@ -6,6 +6,7 @@ namespace Systems;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Components;
 using DefaultEcs;
@@ -58,7 +59,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
-        ref List<TweakedProcess>? result)
+        [NotNull] ref List<TweakedProcess>? result)
     {
         result ??= new List<TweakedProcess>();
 

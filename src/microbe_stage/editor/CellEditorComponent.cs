@@ -1955,7 +1955,7 @@ public partial class CellEditorComponent :
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
-        foreach (var process in processes!)
+        foreach (var process in processes)
         {
             var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
 
