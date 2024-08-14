@@ -22,8 +22,10 @@ public partial class ProcessList : VBoxContainer
         set => processesToShow = value?.Select(d => new StrictProcessDisplayInfoEquality(d)).ToList();
     }
 
+    [Export]
     public bool ShowSpinners { get; set; } = true;
 
+    [Export]
     public bool ShowToggles { get; set; } = true;
 
     /// <summary>

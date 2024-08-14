@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Godot;
 
 /// <summary>
@@ -40,6 +41,7 @@ public partial class ChemicalEquation : VBoxContainer
 
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
+    private bool showToggle;
     private Color defaultTitleColour = Colors.White;
 
     /// <summary>
@@ -87,8 +89,13 @@ public partial class ChemicalEquation : VBoxContainer
 
     public bool ShowToggle
     {
-        get => toggleProcess!.Visible;
-        set => toggleProcess!.Visible = value;
+        get => showToggle;
+
+        set
+        {
+            showToggle = value;
+            UpdateHeader();
+        }
     }
 
     public bool ProcessEnabled
@@ -212,6 +219,9 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (spinner != null)
             spinner.Visible = ShowSpinner;
+
+        if (toggleProcess != null)
+            toggleProcess.Visible = ShowToggle;
 
         if (title == null || EquationFromProcess == null)
             return;

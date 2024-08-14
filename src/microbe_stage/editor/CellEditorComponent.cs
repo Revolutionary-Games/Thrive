@@ -167,6 +167,7 @@ public partial class CellEditorComponent :
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
 #pragma warning disable CA2213
 
     // Light level controls
@@ -271,7 +272,13 @@ public partial class CellEditorComponent :
     private CustomRichTextLabel notEnoughStorageWarning = null!;
 
     [Export]
+    private Button processListButton = null!;
+
+    [Export]
     private ProcessList processList = null!;
+
+    [Export]
+    private CustomWindow processListWindow = null!;
 
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
@@ -791,9 +798,6 @@ public partial class CellEditorComponent :
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
         }
-
-        processList.ShowToggles = false;
-        processList.ShowSpinners = false;
 
         UpdateMicrobePartSelections();
 
@@ -1909,39 +1913,9 @@ public partial class CellEditorComponent :
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
-
         // Handle process list
-        var processes = new List<TweakedProcess>();
-        var processStatistics = new List<ProcessSpeedInformation>();
 
-        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
-
-        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
-
-        foreach (var process in processes!)
-        {
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
-
-            if (consumptionProductionRatio < 1.0)
-            {
-                foreach (var input in singleProcess.Inputs)
-                {
-                    if (input.Key == atp)
-                        continue;
-
-                    singleProcess.WritableInputs[input.Key] = input.Value * consumptionProductionRatio;
-                }
-
-                foreach (var output in singleProcess.Outputs)
-                {
-                    singleProcess.WritableOutputs[output.Key] = output.Value * consumptionProductionRatio;
-                }
-            }
-
-            processStatistics.Add(singleProcess);
-        }
-
-        processList.ProcessesToShow = processStatistics;
+        HandleProcessList(energyBalance, biome);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
@@ -1968,6 +1942,42 @@ public partial class CellEditorComponent :
         specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private void HandleProcessList(EnergyBalanceInfo energyBalance, BiomeConditions biome)
+    {
+        var processes = new List<TweakedProcess>();
+
+        // Empty list to later fill
+        var processStatistics = new List<ProcessSpeedInformation>();
+
+        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
+
+        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+
+        foreach (var process in processes!)
+        {
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
+
+            // If produces more ATP than consumes, lower down production for inputs and for outputs,
+            // otherwise use maximum production values
+            if (consumptionProductionRatio < 1.0f)
+            {
+                foreach (var input in singleProcess.Inputs)
+                {
+                    singleProcess.WritableInputs[input.Key] = input.Value * consumptionProductionRatio;
+                }
+
+                foreach (var output in singleProcess.Outputs)
+                {
+                    singleProcess.WritableOutputs[output.Key] = output.Value * consumptionProductionRatio;
+                }
+            }
+
+            processStatistics.Add(singleProcess);
+        }
+
+        processList.ProcessesToShow = processStatistics;
     }
 
     /// <summary>
@@ -2899,6 +2909,11 @@ public partial class CellEditorComponent :
 
         var organelle = GetOrganelleDefinition(ActiveActionName);
         componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
+    }
+
+    private void ToggleProcessList()
+    {
+        processListWindow.Visible = !processListWindow.Visible;
     }
 
     private class PendingAutoEvoPrediction

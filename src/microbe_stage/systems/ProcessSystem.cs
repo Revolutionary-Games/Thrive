@@ -644,7 +644,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             if (!entry.Key.IsEnvironmental)
                 continue;
 
-            // Processing runs on the current game time foll//owing values
+            // Processing runs on the current game time following values
             var ambient = GetAmbient(entry.Key, CompoundAmountType.Current);
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);

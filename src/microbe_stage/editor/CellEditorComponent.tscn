@@ -348,7 +348,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processList")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "processListWindow")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -412,7 +412,9 @@ calculateBalancesWhenMoving = NodePath("RightPanel/VBoxContainer/Statistics/VBox
 compoundBalance = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
 compoundStorageLastingTimes = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundStorageStatistics")
 notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
-processList = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessList")
+processListButton = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
+processList = NodePath("ProcessPanel/ScrollContainer/ProcessList")
+processListWindow = NodePath("ProcessPanel")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -1026,9 +1028,9 @@ layout_mode = 2
 [node name="CompoundStorageStatistics" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("28_vnd4w")]
 layout_mode = 2
 
-[node name="ProcessList" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("41_n2bpg")]
-custom_minimum_size = Vector2(0, 30)
+[node name="ProcessListButton" type="Button" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "PROCESS_PANEL_TITLE"
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 196)
@@ -1284,6 +1286,23 @@ offset_bottom = 0.0
 [node name="EndosymbiosisPopup" parent="." instance=ExtResource("38_e0n84")]
 layout_mode = 1
 
+[node name="ProcessPanel" parent="." instance=ExtResource("39")]
+custom_minimum_size = Vector2(400, 400)
+WindowTitle = "PROCESS_PANEL_TITLE"
+Resizable = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ProcessPanel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+follow_focus = true
+
+[node name="ProcessList" parent="ProcessPanel/ScrollContainer" instance=ExtResource("41_n2bpg")]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+ShowSpinners = false
+ShowToggles = false
+
 [node name="PredictionExplanation" parent="." instance=ExtResource("39")]
 custom_minimum_size = Vector2(550, 500)
 WindowTitle = "AUTO-EVO_PREDICTION"
@@ -1354,6 +1373,7 @@ text = "CLOSE"
 [connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
 [connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving" to="." method="OnBalanceShowOptionsChanged"]
 [connection signal="BalanceTypeChanged" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay" to="." method="OnCompoundBalanceTypeChanged"]
+[connection signal="pressed" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton" to="." method="ToggleProcessList"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
