@@ -175,6 +175,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();
 
+    private readonly StringName barFillName = new("fill");
+
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     [Export]
@@ -748,12 +750,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected void UpdateStrain()
     {
-        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
-        {
-            strainBar.Visible = false;
-            return;
-        }
-
         var readStrainFraction = ReadPlayerStrainFraction();
 
         // Skip the rest of the method if player does not have strain
@@ -772,11 +768,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
             if (strainIsRed)
             {
-                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+                strainBar.AddThemeStyleboxOverride(barFillName, strainBarRedFill);
             }
             else
             {
-                strainBar.RemoveThemeStyleboxOverride("fill");
+                strainBar.RemoveThemeStyleboxOverride(barFillName);
             }
         }
 
@@ -1034,7 +1030,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
         mucocystHotkey.Visible = showMucocyst;
-        sprintHotkey.Visible = showSprint && stage!.GameWorld.WorldSettings.ExperimentalFeatures;
+        sprintHotkey.Visible = showSprint;
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
@@ -1158,6 +1154,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             fadeParameterName.Dispose();
 
             strainBarRedFill?.Dispose();
+
+            barFillName.Dispose();
         }
 
         base.Dispose(disposing);

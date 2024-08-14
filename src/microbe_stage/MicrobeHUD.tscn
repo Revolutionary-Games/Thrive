@@ -40,10 +40,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2vtv"]
 bg_color = Color(1, 0.301961, 0.301961, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="Animation" id="39"]
 resource_name = "HideCompoundsPanels"
@@ -742,15 +742,20 @@ layout_mode = 1
 
 [node name="Strain" type="ProgressBar" parent="."]
 visible = false
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_right = 200.0
-offset_bottom = 27.0
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 183.0
+offset_right = 125.0
+offset_bottom = 198.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SprintBar"
 max_value = 0.9
 step = 0.001
 show_percentage = false
