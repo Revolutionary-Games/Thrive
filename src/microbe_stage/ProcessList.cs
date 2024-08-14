@@ -14,6 +14,9 @@ public partial class ProcessList : VBoxContainer
     private ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation> createdProcessControls = null!;
     private List<StrictProcessDisplayInfoEquality>? processesToShow;
 
+    [Signal]
+    public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
+
     public IEnumerable<IProcessDisplayInfo>? ProcessesToShow
     {
         set => processesToShow = value?.Select(d => new StrictProcessDisplayInfoEquality(d)).ToList();
@@ -78,6 +81,10 @@ public partial class ProcessList : VBoxContainer
         equation.ShowSpinner = ShowSpinners;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
 
+        equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
+
+        equation.ProcessEnabled = process.DisplayInfo.CurrentSpeed > 0;
+
         if (ProcessesTitleColour != null)
             equation.DefaultTitleFont = ProcessesTitleColour;
 
@@ -85,5 +92,10 @@ public partial class ProcessList : VBoxContainer
         equation.EquationFromProcess = process.DisplayInfo;
 
         return equation;
+    }
+
+    private void HandleToggleProcess(ChemicalEquation equation)
+    {
+        EmitSignal(SignalName.ToggleProcessPressed, equation);
     }
 }

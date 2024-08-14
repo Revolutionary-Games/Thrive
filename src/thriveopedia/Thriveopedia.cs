@@ -7,7 +7,7 @@ using Godot;
 ///   Central store of game information for the player. Acts like a browser. Can be opened in-game and from the main
 ///   menu. Some pages relating to a game in progress are only available in-game.
 /// </summary>
-public partial class Thriveopedia : ControlWithInput
+public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 {
     [Export]
     public NodePath? BackButtonPath;

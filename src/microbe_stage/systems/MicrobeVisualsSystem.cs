@@ -156,6 +156,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
         if (cellProperties.CreatedMembrane == null)
         {
+            // TODO: pooling for membrane instances?
             var membrane = membraneScene.Value.Instantiate<Membrane>() ??
                 throw new Exception("Invalid membrane scene");
 
@@ -285,6 +286,15 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
+    /// <summary>
+    ///   Creates visuals for organelles in a container
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: could try pooling some microbe visuals if possible (would be relatively hard to detect when ones are
+    ///     unused as this system doesn't handle deleting the visuals after use)
+    ///   </para>
+    /// </remarks>
     private void CreateOrganelleVisuals(Node3D parentNode, ref OrganelleContainer organelleContainer,
         ref CellProperties cellProperties)
     {

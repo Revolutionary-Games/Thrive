@@ -2,8 +2,7 @@
 using System.Linq;
 
 /// <summary>
-///   Speed information of a process in specific patch. Used in the
-///   editor to show info to the player.
+///   Speed information of a process in specific patch. Used in the editor to show info to the player.
 /// </summary>
 public class ProcessSpeedInformation : IProcessDisplayInfo
 {
@@ -52,6 +51,11 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public float Efficiency { get; set; }
 
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
+
+    public bool MatchesUnderlyingProcess(BioProcess process)
+    {
+        return Process == process;
+    }
 
     public bool Equals(IProcessDisplayInfo? other)
     {

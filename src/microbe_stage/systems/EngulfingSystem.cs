@@ -877,6 +877,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             return endosome;
 
         // New entry needed
+        // TODO: pooling for endosome instances
         var newData = endosomeScene.Instantiate<Endosome>();
 
         // Tint is not applied here as all phagosome tints are applied always after processing an engulfer

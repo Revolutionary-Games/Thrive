@@ -1587,6 +1587,12 @@ public static class Constants
 
     public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
 
+    /// <summary>
+    ///   Used to allow bindings like CTRL+A to happen while also allowing CTRL to be bound by itself if no further
+    ///   keys are pressed for this amount of time.
+    /// </summary>
+    public const float MODIFIER_KEY_REBIND_DELAY = 0.5f;
+
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
     /// <summary>
