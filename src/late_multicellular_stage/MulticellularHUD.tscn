@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=47 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://bqbt1jtgup58k" path="res://src/awakening_stage/gui/InventoryScreen.tscn" id="29"]
 [ext_resource type="Texture2D" uid="uid://myc8kb3pyj03" path="res://assets/textures/gui/bevel/actions/BuildStructure.png" id="30"]
 [ext_resource type="Texture2D" uid="uid://b6tpqpuuux2xy" path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" id="30_bwfja"]
+[ext_resource type="Texture2D" uid="uid://bqtewn0kgu43l" path="res://assets/textures/gui/bevel/actions/CellSprint.png" id="30_isqlj"]
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="32"]
 [ext_resource type="Texture2D" uid="uid://drrdhfwd5s8e2" path="res://assets/textures/gui/bevel/actions/EngulfEject.png" id="33"]
 [ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="37_rwj55"]
@@ -500,7 +501,7 @@ tooltip_text = "SPRINT_ACTION_TOOLTIP"
 theme_override_styles/normal = SubResource("StyleBoxFlat_1ao1s")
 theme_override_styles/hover = SubResource("StyleBoxFlat_0pur5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_0pur5")
-ActionIcon = ExtResource("19")
+ActionIcon = ExtResource("30_isqlj")
 ActionName = "g_sprint"
 
 [node name="Shield" parent="ScrollContainer/HotBar" instance=ExtResource("78")]
