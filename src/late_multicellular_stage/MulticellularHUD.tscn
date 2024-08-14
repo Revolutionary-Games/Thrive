@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://5m75uu7qtg8x"]
+[gd_scene load_steps=46 format=3 uid="uid://5m75uu7qtg8x"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://u7o6febei0qr" path="res://src/gui_common/MouseHoverPanel.tscn" id="6"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dvmlda3belyek" path="res://assets/textures/gui/bevel/actions/OpenInventory.png" id="9"]
 [ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularHUD.cs" id="11"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="12"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessPanel.tscn" id="13"]
+[ext_resource type="PackedScene" uid="uid://dgqw7nudbxobi" path="res://src/microbe_stage/ProcessPanel.tscn" id="13"]
 [ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_ayo6l"]
 [ext_resource type="PackedScene" uid="uid://bk6re4dgb8r3n" path="res://src/microbe_stage/gui/CompoundPanels.tscn" id="14_47uq8"]
 [ext_resource type="PackedScene" uid="uid://g70pm5ndiqf2" path="res://src/microbe_stage/gui/PatchExtinctionBox.tscn" id="16"]
@@ -39,12 +39,12 @@
 [ext_resource type="PackedScene" uid="uid://qwg2dluu8ow0" path="res://src/microbe_stage/PausePrompt.tscn" id="77"]
 [ext_resource type="PackedScene" path="res://src/gui_common/ActionButton.tscn" id="78"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa3p7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gpwlk"]
 bg_color = Color(1, 0.301961, 0.301961, 1)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxFlat" id="28"]
 bg_color = Color(0.47451, 0.560784, 0.588235, 0.392157)
@@ -157,7 +157,7 @@ mucocystHotkey = NodePath("ScrollContainer/HotBar/Shield")
 sprintHotkey = NodePath("ScrollContainer/HotBar/Sprint")
 strainBar = NodePath("Strain")
 damageScreenEffect = NodePath("DamageEffect")
-strainBarRedFill = SubResource("StyleBoxFlat_oa3p7")
+strainBarRedFill = SubResource("StyleBoxFlat_gpwlk")
 pausePrompt = NodePath("PausePrompt")
 pauseInfo = NodePath("PausePrompt/PauseInfo")
 hudMessages = NodePath("HUDMessages")
@@ -584,15 +584,20 @@ layout_mode = 1
 
 [node name="Strain" type="ProgressBar" parent="."]
 visible = false
-custom_minimum_size = Vector2(400, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_right = 200.0
-offset_bottom = 27.0
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = 183.0
+offset_right = 125.0
+offset_bottom = 198.0
 grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SprintBar"
 max_value = 0.9
 step = 0.001
 show_percentage = false

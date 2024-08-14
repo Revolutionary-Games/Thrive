@@ -737,7 +737,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         ai.TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         control.LookAtPoint = ai.TargetPosition;
 
-        // Check if use siderophore
+        // Check if using siderophore
         if (isIronEater && chunkIsIron && gameWorld!.WorldSettings.ExperimentalFeatures)
         {
             control.EmitSiderophore(ref organelles, entity);
@@ -789,8 +789,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
 
             // Sprint until full strain
-            if (gameWorld!.WorldSettings.ExperimentalFeatures)
-                control.Sprinting = true;
+            control.Sprinting = true;
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -829,8 +828,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
 
-            if (gameWorld!.WorldSettings.ExperimentalFeatures)
-                control.Sprinting = true;
+            control.Sprinting = true;
         }
 
         // Predators can use slime jets as an ambush mechanism
