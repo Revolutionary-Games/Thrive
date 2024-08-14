@@ -1913,8 +1913,8 @@ public partial class CellEditorComponent :
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
-        // Handle process list
 
+        // Handle process list
         HandleProcessList(energyBalance, biome);
     }
 
