@@ -15,8 +15,8 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     public string Name => Process.Name;
 
-    public Dictionary<Compound, float> WritableInputs { get; set; } = new();
-    public Dictionary<Compound, float> WritableOutputs { get; set; } = new();
+    public Dictionary<Compound, float> WritableInputs { get; } = new();
+    public Dictionary<Compound, float> WritableOutputs { get; } = new();
     public List<Compound> WritableLimitingCompounds { get; } = new();
 
     public Dictionary<Compound, float> WritableFullSpeedRequiredEnvironmentalInputs { get; } = new();
