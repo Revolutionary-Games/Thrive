@@ -89,7 +89,6 @@ public partial class ChemicalEquation : VBoxContainer
     public bool ShowToggle
     {
         get => showToggle;
-
         set
         {
             showToggle = value;

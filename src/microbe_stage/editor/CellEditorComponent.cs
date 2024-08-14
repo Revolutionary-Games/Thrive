@@ -330,6 +330,8 @@ public partial class CellEditorComponent :
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
+    private LightLevelOption lightLevel;
+
 
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
@@ -1957,7 +1959,18 @@ public partial class CellEditorComponent :
 
         foreach (var process in processes!)
         {
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
+            var amount = CompoundAmountType.Current;
+
+            if (lightLevel == LightLevelOption.Day)
+                amount = CompoundAmountType.Maximum;
+
+            if (lightLevel == LightLevelOption.Night)
+                amount = CompoundAmountType.Minimum;
+
+            if (lightLevel == LightLevelOption.Average)
+                amount = CompoundAmountType.Average;
+
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, amount);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values
@@ -2591,6 +2604,8 @@ public partial class CellEditorComponent :
     private void ApplyLightLevelOption()
     {
         calculateBalancesAsIfDay.Disabled = false;
+
+        lightLevel = selectedLightLevelOption;
 
         // Show selected light level
         switch (selectedLightLevelOption)
