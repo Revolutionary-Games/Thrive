@@ -236,8 +236,8 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 }
             }
 
-            // TODO: the above part is already implemented as extension for PlayerMicrobeInput (so could share a bit of
-            // code for checking if ready to shoot yet)
+            // TODO: some of the checks above part are already implemented as extension for PlayerMicrobeInput
+            // (so could share a bit of code for checking if ready to shoot yet)
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
             control.AgentEmissionCooldown =
