@@ -124,14 +124,14 @@ public abstract class Species : ICloneable
     /// </summary>
     [JsonIgnore]
     public string FormattedNameBbCode => PlayerSpecies ?
-        $"[b][i]{FormattedNameBbCodeNonStyled}[/i][/b]" :
-        $"[i]{FormattedNameBbCodeNonStyled}[/i]";
+        $"[b][i]{FormattedNameBbCodeUnstyled}[/i][/b]" :
+        $"[i]{FormattedNameBbCodeUnstyled}[/i]";
 
     /// <summary>
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for hover-over tooltips.
     /// </summary>
     [JsonIgnore]
-    public string FormattedNameBbCodeNonStyled => PlayerSpecies ?
+    public string FormattedNameBbCodeUnstyled => PlayerSpecies ?
         $"[url=species:{ID}]{FormattedName}[/url]" :
         $"[url=species:{ID}]{FormattedName}[/url]";
 
