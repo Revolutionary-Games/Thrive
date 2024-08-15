@@ -28,6 +28,9 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     [Export]
     private CellStatsIndicator atpIndicator = null!;
+
+    [Export]
+    private Slider toxicitySlider = null!;
 #pragma warning restore CA2213
 
     public ToxinUpgradeGUI()
@@ -66,6 +69,8 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         var currentlySelectedType = ToxinType.Oxytoxy;
 
+        toxicitySlider.Value = 0;
+
         if (organelle.Upgrades != null)
         {
             currentlySelectedType = organelle.Upgrades.GetToxinTypeFromUpgrades();
@@ -76,6 +81,8 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 {
                     GD.PrintErr("Mismatch between custom toxin upgrade data and unlocked features list");
                 }
+
+                toxicitySlider.Value = toxinUpgrades.Toxicity;
             }
         }
 
@@ -125,8 +132,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (upgradeName != Constants.ORGANELLE_UPGRADE_SPECIAL_NONE)
             organelleUpgrades.UnlockedFeatures.Add(upgradeName);
 
-        // TODO: this will only really be needed when we have potency / toxicity slider implemented
-        // organelleUpgrades.CustomUpgradeData = new ToxinUpgrades(selectedType);
+        organelleUpgrades.CustomUpgradeData = new ToxinUpgrades(selectedType, (float)toxicitySlider.Value);
 
         return true;
     }

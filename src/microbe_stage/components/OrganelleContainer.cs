@@ -92,6 +92,14 @@ public struct OrganelleContainer
     /// </summary>
     public float OrganellesCapacity;
 
+    /// <summary>
+    ///   To simplify toxin calculations toxicity is averaged over all the toxin vacuoles. The only alternative
+    ///   would be to track per type the toxicity and that would be quite a bit more difficult number to use, and
+    ///   would require a save upgrade step or a breakage point. For what are valid values here see:
+    ///   <see cref="ToxinUpgrades.Toxicity"/>
+    /// </summary>
+    public float AverageToxinToxicity;
+
     public int HexCount;
 
     /// <summary>
@@ -458,7 +466,10 @@ public static class OrganelleContainerHelpers
         // Cells have a minimum of at least one unit of lipase enzyme
         container.AvailableEnzymes[Lipase.Value] = 1;
 
+        float rawToxicityValue = 0;
+
         container.AgentVacuoleCount = 0;
+        container.AverageToxinToxicity = 0;
         container.IronBreakdownEfficiency = 0;
         container.MucocystCount = 0;
         container.OrganellesCapacity = 0;
@@ -507,6 +518,11 @@ public static class OrganelleContainerHelpers
 
                     container.AvailableToxinTypes.TryGetValue(toxinType, out var existing);
                     container.AvailableToxinTypes[toxinType] = existing + 1;
+
+                    if (organelle.Upgrades?.CustomUpgradeData is ToxinUpgrades toxinUpgrades)
+                    {
+                        rawToxicityValue += toxinUpgrades.Toxicity;
+                    }
                 }
                 else if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
@@ -566,6 +582,8 @@ public static class OrganelleContainerHelpers
                 }
             }
         }
+
+        container.AverageToxinToxicity = rawToxicityValue / container.AgentVacuoleCount;
     }
 
     public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,

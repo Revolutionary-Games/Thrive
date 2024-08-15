@@ -5,7 +5,7 @@
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="2_ysgr0"]
 [ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="4_dj6ma"]
 
-[node name="ToxinUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("toxinTypeSelection", "toxinTypeDescription", "damageIndicator", "damagePerOxygenIndicator", "baseMovementIndicator", "atpIndicator")]
+[node name="ToxinUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("toxinTypeSelection", "toxinTypeDescription", "damageIndicator", "damagePerOxygenIndicator", "baseMovementIndicator", "atpIndicator", "toxicitySlider")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,6 +20,7 @@ damageIndicator = NodePath("StatsContainer/Damage")
 damagePerOxygenIndicator = NodePath("StatsContainer/DamagPerOxygen")
 baseMovementIndicator = NodePath("StatsContainer/BaseMovementReduction")
 atpIndicator = NodePath("StatsContainer/ATPReduction")
+toxicitySlider = NodePath("HSlider")
 
 [node name="Explanation" type="Label" parent="."]
 custom_minimum_size = Vector2(150, 0)
@@ -58,9 +59,10 @@ autowrap_mode = 3
 
 [node name="HSlider" type="HSlider" parent="."]
 layout_mode = 2
-tooltip_text = "TO_BE_IMPLEMENTED"
-value = 50.0
-editable = false
+tooltip_text = "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+min_value = -1.0
+max_value = 1.0
+step = 0.05
 scrollable = false
 tick_count = 7
 
@@ -70,6 +72,8 @@ layout_mode = 2
 [node name="FireRate" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+tooltip_text = "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+mouse_filter = 0
 text = "TOXIN_PREFER_FIRE_RATE"
 label_settings = ExtResource("2_ysgr0")
 
@@ -77,10 +81,13 @@ label_settings = ExtResource("2_ysgr0")
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
 
 [node name="Toxicity" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
+tooltip_text = "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+mouse_filter = 0
 text = "TOXIN_PREFER_TOXICITY"
 label_settings = ExtResource("2_ysgr0")
 
