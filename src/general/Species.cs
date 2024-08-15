@@ -131,9 +131,7 @@ public abstract class Species : ICloneable
     ///   Returns <see cref="FormattedName"/> but includes bbcode tags for hover-over tooltips.
     /// </summary>
     [JsonIgnore]
-    public string FormattedNameBbCodeUnstyled => PlayerSpecies ?
-        $"[url=species:{ID}]{FormattedName}[/url]" :
-        $"[url=species:{ID}]{FormattedName}[/url]";
+    public string FormattedNameBbCodeUnstyled => $"[url=species:{ID}]{FormattedName}[/url]";
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
