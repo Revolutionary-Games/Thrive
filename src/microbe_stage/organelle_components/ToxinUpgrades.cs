@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 ///   Upgrades for toxin firing organelles
 /// </summary>
 /// <remarks>
@@ -32,7 +34,8 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     {
         if (other is ToxinUpgrades toxinUpgrades)
         {
-            return toxinUpgrades.BaseType == BaseType;
+            return toxinUpgrades.BaseType == BaseType &&
+                Math.Abs(Toxicity - toxinUpgrades.Toxicity) < MathUtils.EPSILON;
         }
 
         return false;
