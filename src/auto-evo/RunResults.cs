@@ -951,7 +951,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 // TODO: these events need to dynamically reveal their names in the event log once the player
                 // discovers them
                 patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM",
-                    migration.Key.FormattedNameBbCodeUnstyled, migration.Value.From.VisibleName),
+                        migration.Key.FormattedNameBbCodeUnstyled, migration.Value.From.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
 
                 // Log to game world
@@ -981,8 +981,8 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     {
                         case NewSpeciesType.FillNiche:
                             LogEventGloballyAndLocally(world, patch, new LocalizedString("TIMELINE_NICHE_FILL",
-                                    newSpeciesEntry.FormattedNameBbCodeUnstyled,
-                                    speciesResult.SplitFrom.FormattedNameBbCodeUnstyled), false, "newSpecies.png");
+                                newSpeciesEntry.FormattedNameBbCodeUnstyled,
+                                speciesResult.SplitFrom.FormattedNameBbCodeUnstyled), false, "newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             LogEventGloballyAndLocally(world, patch, new LocalizedString(
