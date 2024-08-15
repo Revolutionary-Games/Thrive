@@ -14,12 +14,19 @@ public partial class ProcessList : VBoxContainer
     private ChildObjectCache<StrictProcessDisplayInfoEquality, ChemicalEquation> createdProcessControls = null!;
     private List<StrictProcessDisplayInfoEquality>? processesToShow;
 
+    [Signal]
+    public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
+
     public IEnumerable<IProcessDisplayInfo>? ProcessesToShow
     {
         set => processesToShow = value?.Select(d => new StrictProcessDisplayInfoEquality(d)).ToList();
     }
 
+    [Export]
     public bool ShowSpinners { get; set; } = true;
+
+    [Export]
+    public bool ShowToggles { get; set; } = true;
 
     /// <summary>
     ///   The default color for all the process titles in this list. TODO: test that this works still
@@ -76,7 +83,12 @@ public partial class ProcessList : VBoxContainer
     {
         var equation = chemicalEquationScene.Instantiate<ChemicalEquation>();
         equation.ShowSpinner = ShowSpinners;
+        equation.ShowToggle = ShowToggles;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
+
+        equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
+
+        equation.ProcessEnabled = process.DisplayInfo.CurrentSpeed > 0;
 
         if (ProcessesTitleColour != null)
             equation.DefaultTitleFont = ProcessesTitleColour;
@@ -85,5 +97,10 @@ public partial class ProcessList : VBoxContainer
         equation.EquationFromProcess = process.DisplayInfo;
 
         return equation;
+    }
+
+    private void HandleToggleProcess(ChemicalEquation equation)
+    {
+        EmitSignal(SignalName.ToggleProcessPressed, equation);
     }
 }

@@ -813,6 +813,8 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.25f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
@@ -1586,6 +1588,12 @@ public static class Constants
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
 
     public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
+
+    /// <summary>
+    ///   Used to allow bindings like CTRL+A to happen while also allowing CTRL to be bound by itself if no further
+    ///   keys are pressed for this amount of time.
+    /// </summary>
+    public const float MODIFIER_KEY_REBIND_DELAY = 0.5f;
 
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 

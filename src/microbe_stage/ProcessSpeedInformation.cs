@@ -2,8 +2,7 @@
 using System.Linq;
 
 /// <summary>
-///   Speed information of a process in specific patch. Used in the
-///   editor to show info to the player.
+///   Speed information of a process in specific patch. Used in the editor to show info to the player.
 /// </summary>
 public class ProcessSpeedInformation : IProcessDisplayInfo
 {
@@ -52,6 +51,55 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public float Efficiency { get; set; }
 
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
+
+    public bool MatchesUnderlyingProcess(BioProcess process)
+    {
+        return Process == process;
+    }
+
+    /// <summary>
+    ///   Scales all non-environmental inputs and outputs with the given modifier
+    /// </summary>
+    public void ScaleSpeed(float modifier, Dictionary<Compound, float>? workMemory)
+    {
+        workMemory ??= new Dictionary<Compound, float>();
+
+        if (WritableInputs.Count > 0)
+        {
+            workMemory.Clear();
+
+            foreach (var input in WritableInputs)
+            {
+                if (input.Key.IsEnvironmental)
+                    continue;
+
+                workMemory.Add(input.Key, input.Value * modifier);
+            }
+
+            foreach (var entry in workMemory)
+            {
+                WritableInputs[entry.Key] = entry.Value;
+            }
+        }
+
+        if (WritableOutputs.Count > 0)
+        {
+            workMemory.Clear();
+
+            foreach (var output in WritableOutputs)
+            {
+                if (output.Key.IsEnvironmental)
+                    continue;
+
+                workMemory.Add(output.Key, output.Value * modifier);
+            }
+
+            foreach (var entry in workMemory)
+            {
+                WritableOutputs[entry.Key] = entry.Value;
+            }
+        }
+    }
 
     public bool Equals(IProcessDisplayInfo? other)
     {

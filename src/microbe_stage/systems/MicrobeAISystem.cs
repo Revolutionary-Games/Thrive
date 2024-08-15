@@ -111,7 +111,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
         // also aren't eaten already
-        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundBag>()
+        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundStorage>()
             .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
 
         var simulationParameters = SimulationParameters.Instance;
@@ -737,7 +737,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         ai.TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         control.LookAtPoint = ai.TargetPosition;
 
-        // Check if use siderophore
+        // Check if using siderophore
         if (isIronEater && chunkIsIron && gameWorld!.WorldSettings.ExperimentalFeatures)
         {
             control.EmitSiderophore(ref organelles, entity);
@@ -760,7 +760,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
         else
         {
-            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeedTowardsPoint(ref position, chunk, Constants.AI_BASE_MOVEMENT);
         }
     }
 
@@ -789,8 +789,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
 
             // Sprint until full strain
-            if (gameWorld!.WorldSettings.ExperimentalFeatures)
-                control.Sprinting = true;
+            control.Sprinting = true;
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -822,15 +821,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
-                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SetMoveSpeedTowardsPoint(ref position, target, Constants.AI_BASE_MOVEMENT);
             }
         }
         else
         {
-            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeedTowardsPoint(ref position, target, Constants.AI_BASE_MOVEMENT);
 
-            if (gameWorld!.WorldSettings.ExperimentalFeatures)
-                control.Sprinting = true;
+            control.Sprinting = true;
         }
 
         // Predators can use slime jets as an ambush mechanism
@@ -1272,11 +1270,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             foreach (ref readonly var chunk in chunksSet.GetEntities())
             {
-                // Ignore already despawning chunks
-                ref var timed = ref chunk.Get<TimedLife>();
+                if (chunk.Has<TimedLife>())
+                {
+                    // Ignore already despawning chunks
+                    ref var timed = ref chunk.Get<TimedLife>();
 
-                if (timed.TimeToLiveRemaining <= 0)
-                    continue;
+                    if (timed.TimeToLiveRemaining <= 0)
+                        continue;
+                }
 
                 // Ignore chunks that wouldn't yield any useful compounds when absorbing
                 ref var compounds = ref chunk.Get<CompoundStorage>();

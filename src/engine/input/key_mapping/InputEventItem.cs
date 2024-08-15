@@ -30,6 +30,21 @@ public partial class InputEventItem : MarginContainer
 #pragma warning restore CA2213
 
     /// <summary>
+    ///   Keeps track of binding modifier keys directly as inputs and not as part of a combination
+    /// </summary>
+    private ModifierKeyMode modifierKeyStatus;
+
+    private double timeSinceModifier;
+
+    private enum ModifierKeyMode
+    {
+        None,
+        ShiftPressed,
+        AltPressed,
+        CtrlPressed,
+    }
+
+    /// <summary>
     ///   If this is currently awaiting the user to press a button (for rebinding purposes)
     /// </summary>
     public bool WaitingForInput { get; private set; }
@@ -130,6 +145,83 @@ public partial class InputEventItem : MarginContainer
 
         KeyPromptHelper.IconsChanged -= OnIconsChanged;
         KeyPromptHelper.ControllerTypeChanged -= OnControllerChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        // Delayed key binding (to allow shift to be used in modifier combinations, for example)
+        if (modifierKeyStatus == ModifierKeyMode.None)
+            return;
+
+        timeSinceModifier += delta;
+        if (timeSinceModifier < Constants.MODIFIER_KEY_REBIND_DELAY)
+            return;
+
+        // Reset state first to prevent errors being able to trigger this multiple times in a row
+        timeSinceModifier = 0;
+        var keyToBind = modifierKeyStatus;
+        modifierKeyStatus = ModifierKeyMode.None;
+
+        GD.Print("Delay-binding a modifier key as an input");
+
+        // TODO: allow controlling if physical keys or key labels should be used when rebinding by the user
+        InputEventKey newInput;
+
+        switch (keyToBind)
+        {
+            case ModifierKeyMode.ShiftPressed:
+                newInput = new InputEventKey
+                {
+                    Keycode = Key.Shift,
+                    Pressed = true,
+                };
+                break;
+            case ModifierKeyMode.AltPressed:
+                newInput = new InputEventKey
+                {
+                    Keycode = Key.Alt,
+                    Pressed = true,
+                };
+                break;
+            case ModifierKeyMode.CtrlPressed:
+                newInput = new InputEventKey
+                {
+                    Keycode = Key.Ctrl,
+                    Pressed = true,
+                };
+                break;
+
+            default:
+                GD.PrintErr("Unknown modifier key state");
+                return;
+        }
+
+        var groupList = GroupList;
+
+        if (groupList == null)
+        {
+            GD.PrintErr("InputEventItem has no group list");
+            return;
+        }
+
+        if (groupList.IsConflictDialogOpen())
+            return;
+
+        try
+        {
+            var old = AssociatedEvent;
+            AssociatedEvent = new SpecifiedInputKey(newInput, true);
+
+            // Check conflicts, and don't proceed if there is a conflict
+            if (CheckNewKeyConflicts(newInput, groupList, old))
+                return;
+
+            OnKeybindingSuccessfullyChanged();
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Failed to delay-bind a key: ", e);
+        }
     }
 
     /// <summary>
@@ -243,11 +335,18 @@ public partial class InputEventItem : MarginContainer
                     return;
                 }
 
-                // TODO: allow binding these (probably need to wait a bit to see if a second keypress is coming soon)
-                // See: https://github.com/Revolutionary-Games/Thrive/issues/3887
+                // Binding these are delayed operations to allow binding key combinations
                 case Key.Alt:
+                    modifierKeyStatus = ModifierKeyMode.AltPressed;
+                    timeSinceModifier = 0;
+                    return;
                 case Key.Shift:
+                    modifierKeyStatus = ModifierKeyMode.ShiftPressed;
+                    timeSinceModifier = 0;
+                    return;
                 case Key.Ctrl:
+                    modifierKeyStatus = ModifierKeyMode.CtrlPressed;
+                    timeSinceModifier = 0;
                     return;
             }
         }
@@ -277,6 +376,9 @@ public partial class InputEventItem : MarginContainer
             // TODO: controller device keybinding mode setting
             controllerAxis.Device = -1;
         }
+
+        // If receiving another input to rebind, then queued modifier key rebinding is cancelled
+        modifierKeyStatus = ModifierKeyMode.None;
 
         // The old key input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;

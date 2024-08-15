@@ -17,6 +17,11 @@ using World = DefaultEcs.World;
 ///     something this has runtime cost of 1 even though 0.25-0.5 would be more suitable based on raw numbers.
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     TODO: could pool some visuals to decrease the performance hit spawning a bunch of stuff causes
+///   </para>
+/// </remarks>
 [With(typeof(PredefinedVisuals))]
 [With(typeof(SpatialInstance))]
 [RuntimeCost]

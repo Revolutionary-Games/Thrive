@@ -215,9 +215,38 @@ public static class MicrobeControlHelpers
         return true;
     }
 
+    /// <summary>
+    ///   Sets microbe speed straight forward.
+    /// </summary>
+    /// <param name="control">Control to hold commands.</param>
+    /// <param name="speed">Speed at which to move.</param>
     public static void SetMoveSpeed(this ref MicrobeControl control, float speed)
     {
         control.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    /// <summary>
+    ///   Moves microbe towards target position, even if that position is not forward.
+    ///   This does NOT handle any turning. So this is basically cell drifting.
+    /// </summary>
+    /// <param name="control">Control to hold commands.</param>
+    /// <param name="selfPosition">Position of microbe moving.</param>
+    /// <param name="targetPosition">Vector3 that microbe will move towards.</param>
+    /// <param name="speed">Speed at which to move.</param>
+    public static void SetMoveSpeedTowardsPoint(this ref MicrobeControl control, ref WorldPosition selfPosition,
+        Vector3 targetPosition, float speed)
+    {
+        var vectorToTarget = targetPosition - selfPosition.Position;
+
+        // If already at target don't move anywhere
+        if (vectorToTarget.LengthSquared() < MathUtils.EPSILON)
+        {
+            control.MovementDirection = Vector3.Zero;
+            return;
+        }
+
+        // MovementDirection doesn't have to be normalized, so it isn't here
+        control.MovementDirection = selfPosition.Rotation.Inverse() * vectorToTarget * speed;
     }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,

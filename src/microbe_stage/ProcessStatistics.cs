@@ -294,6 +294,11 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs = null;
     }
 
+    public bool MatchesUnderlyingProcess(BioProcess process)
+    {
+        return Process == process;
+    }
+
     public bool Equals(IProcessDisplayInfo? other)
     {
         return Equals((object?)other);
@@ -388,6 +393,11 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public IReadOnlyDictionary<Compound, float> Outputs => WritableOutputs;
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
+
+    public bool MatchesUnderlyingProcess(BioProcess process)
+    {
+        return owner.Process == process;
+    }
 
     public bool Equals(IProcessDisplayInfo? other)
     {

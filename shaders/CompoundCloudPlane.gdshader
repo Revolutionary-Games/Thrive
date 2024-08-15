@@ -15,7 +15,7 @@ uniform vec2 UVOffset = vec2(0, 0);
 // This must evenly divide into 1 or tiling will break
 uniform float NoiseScale = 14;
 
-uniform float BrightnessMultiplier = 1.2;
+uniform float BrightnessMultiplier = 1.0;
 uniform float CLOUD_SPEED = 0.013;
 
 // Setting this too low makes the clouds invisible
@@ -60,7 +60,7 @@ void fragment() {
                   colour4 * cloud4;
 
     float adjustedAlpha = min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) *
-        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.4, 0.4, 0.8);
+        clamp(min(cloud1 + cloud2 + cloud3 + cloud4, 1.0) * 0.5, 0.5, 0.9);
 
     ALPHA = adjustedAlpha;
     ALBEDO = colour.rgb;

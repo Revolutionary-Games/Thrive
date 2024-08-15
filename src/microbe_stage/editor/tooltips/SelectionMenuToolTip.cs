@@ -251,6 +251,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
 
         processList.ShowSpinners = false;
+        processList.ShowToggles = false;
         processList.MarkRedOnLimitingCompounds = true;
         processList.ProcessesToShow = processes;
     }
