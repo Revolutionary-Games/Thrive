@@ -117,3 +117,4 @@ layout_mode = 2
 Description = "STAT_BASE_MOVEMENT_REDUCTION"
 
 [connection signal="item_selected" from="ToxinType" to="." method="OnToxinTypeSelected"]
+[connection signal="value_changed" from="HSlider" to="." method="OnToxicityChanged"]

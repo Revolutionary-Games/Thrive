@@ -50,6 +50,26 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
+    public static float ToxinAmountMultiplierFromToxicity(float toxicity)
+    {
+        // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
+
+        if (toxicity < 0)
+        {
+            // Low-damage
+            return 0.89f * (1 - Math.Abs(toxicity)) + 0.1f;
+        }
+
+        if (toxicity > 0)
+        {
+            // High-damage
+            return 0.99f * toxicity + 1.0f;
+        }
+
+        // No modification from default
+        return 1;
+    }
+
     protected override void Update(float delta, in Entity entity)
     {
         ref var control = ref entity.Get<MicrobeControl>();
@@ -243,26 +263,6 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             control.AgentEmissionCooldown =
                 ToxinCooldownWithToxicity(organelles.AgentVacuoleCount, organelles.AverageToxinToxicity);
         }
-    }
-
-    private float ToxinAmountMultiplierFromToxicity(float toxicity)
-    {
-        // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
-
-        if (toxicity < 0)
-        {
-            // Low-damage
-            return 0.89f * (1 - Math.Abs(toxicity)) + 0.1f;
-        }
-
-        if (toxicity > 0)
-        {
-            // High-damage
-            return 0.99f * toxicity + 1.0f;
-        }
-
-        // No modification from default
-        return 1;
     }
 
     private float ToxinCooldownWithToxicity(int vacuoleCount, float toxicity)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Upgrades for toxin vacuole and prokaryotic variant of it
@@ -31,7 +32,10 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     [Export]
     private Slider toxicitySlider = null!;
+
 #pragma warning restore CA2213
+
+    private ToxinType latestToxinType;
 
     public ToxinUpgradeGUI()
     {
@@ -158,11 +162,20 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         baseMovementIndicator.Visible = false;
         atpIndicator.Visible = false;
 
+        latestToxinType = toxinType;
+
+        UpdateToxinStats(toxinType);
+    }
+
+    private void UpdateToxinStats(ToxinType toxinType)
+    {
+        var damageMultiplier = MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity((float)toxicitySlider.Value);
+
         switch (toxinType)
         {
             case ToxinType.Oxytoxy:
             {
-                damageIndicator.Value = Constants.OXYTOXY_DAMAGE;
+                damageIndicator.Value = (float)Math.Round(Constants.OXYTOXY_DAMAGE * damageMultiplier, 1);
                 damagePerOxygenIndicator.Visible = true;
                 damagePerOxygenIndicator.Value = -100 * Constants.OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE;
                 baseMovementIndicator.Value = 0;
@@ -172,7 +185,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
             case ToxinType.Cytotoxin:
             {
-                damageIndicator.Value = Constants.CYTOTOXIN_DAMAGE;
+                damageIndicator.Value = (float)Math.Round(Constants.CYTOTOXIN_DAMAGE * damageMultiplier, 1);
                 damagePerOxygenIndicator.Value = 0;
                 baseMovementIndicator.Value = 0;
                 atpIndicator.Value = 0;
@@ -184,7 +197,8 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 damageIndicator.Value = 0;
                 damagePerOxygenIndicator.Value = 0;
                 baseMovementIndicator.Visible = true;
-                baseMovementIndicator.Value = 100 * Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
+                baseMovementIndicator.Value =
+                    (float)Math.Round(100 * Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF * damageMultiplier);
                 atpIndicator.Value = 0;
                 break;
             }
@@ -195,13 +209,13 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 damagePerOxygenIndicator.Value = 0;
                 baseMovementIndicator.Value = 0;
                 atpIndicator.Visible = true;
-                atpIndicator.Value = 100 * Constants.CHANNEL_INHIBITOR_ATP_DEBUFF;
+                atpIndicator.Value = (float)Math.Round(100 * Constants.CHANNEL_INHIBITOR_ATP_DEBUFF * damageMultiplier);
                 break;
             }
 
             case ToxinType.OxygenMetabolismInhibitor:
             {
-                damageIndicator.Value = Constants.OXYGEN_INHIBITOR_DAMAGE;
+                damageIndicator.Value = (float)Math.Round(Constants.OXYGEN_INHIBITOR_DAMAGE * damageMultiplier, 1);
                 damagePerOxygenIndicator.Visible = true;
                 damagePerOxygenIndicator.Value = 100 * Constants.OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE;
                 baseMovementIndicator.Value = 0;
@@ -217,5 +231,13 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private void OnToxinTypeSelected(int index)
     {
         ApplySelection((ToxinType)toxinTypeSelection.GetItemId(index));
+    }
+
+    private void OnToxicityChanged(float value)
+    {
+        _ = value;
+
+        // Update stats as the toxicity affects these
+        UpdateToxinStats(latestToxinType);
     }
 }
