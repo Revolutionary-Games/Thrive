@@ -357,7 +357,7 @@ public class AutoEvoRun
         foreach (var entry in combinedExternalEffects)
         {
             builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED_2",
-                entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
+                entry.Key.Species.FormattedNameBbCode, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
 
             builder.Append('\n');
         }
