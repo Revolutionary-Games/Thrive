@@ -75,7 +75,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
                     newSpecies.Organelles.AddFast(newOrganelle, workMemory1, workMemory2);
             }
 
-            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles);
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, new MutationWorkMemory());
 
             mutated.Add(Tuple.Create(newSpecies, mp - 10));
         }
