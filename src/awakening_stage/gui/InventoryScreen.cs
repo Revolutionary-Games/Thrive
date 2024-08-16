@@ -1356,7 +1356,7 @@ public partial class InventoryScreen : ControlWithInput
         }
 
         // Only update the available materials if the data actually changed
-        if (!newMaterials.SequenceEqual(availableCraftingMaterials))
+        if (!newMaterials.Equals(availableCraftingMaterials))
             availableCraftingMaterials = newMaterials;
     }
 

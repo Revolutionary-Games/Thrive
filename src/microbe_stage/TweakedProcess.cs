@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
@@ -9,7 +10,7 @@
 ///     data packing when this is used in lists.
 ///   </para>
 /// </remarks>
-public struct TweakedProcess
+public struct TweakedProcess : IEquatable<TweakedProcess>
 {
     [JsonProperty]
     public readonly BioProcess Process;
@@ -45,6 +46,9 @@ public struct TweakedProcess
 
     public bool Equals(TweakedProcess other)
     {
+        if (Process != other.Process)
+            return false;
+
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         return Rate == other.Rate && ReferenceEquals(Process, other.Process);
     }
