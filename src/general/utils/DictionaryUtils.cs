@@ -104,6 +104,67 @@ public static class DictionaryUtils
         }
     }
 
+    /// <summary>
+    ///   An equals check that works to check if two dictionaries have the same items
+    /// </summary>
+    /// <returns>True if equal</returns>
+    public static bool DictionaryEquals<TKey, TValue>(this Dictionary<TKey, TValue> dictionary,
+        Dictionary<TKey, TValue> other)
+        where TKey : notnull
+        where TValue : IEquatable<TValue>
+    {
+        if (dictionary.Count != other.Count)
+            return false;
+
+        var keys1 = dictionary.Keys;
+
+        foreach (var key in keys1)
+        {
+            var value1 = dictionary[key];
+
+            if (!other.TryGetValue(key, out var value2))
+                return false;
+
+            if (!value1.Equals(value2))
+                return false;
+        }
+
+        return true;
+    }
+
+    public static bool DictionaryEquals<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> items1,
+        IEnumerable<KeyValuePair<TKey, TValue>> items2)
+        where TKey : IEquatable<TKey>
+        where TValue : IEquatable<TValue>
+    {
+        // When working with enumerables it is not possible to avoid allocations in any case so this should be fine
+        // to allocate enumerators like this
+        using var enumerator1 = items1.GetEnumerator();
+        using var enumerator2 = items2.GetEnumerator();
+
+        while (enumerator1.MoveNext())
+        {
+            // Fail if different count
+            if (!enumerator2.MoveNext())
+                return false;
+
+            var value1 = enumerator1.Current;
+            var value2 = enumerator2.Current;
+
+            if (!value1.Value.Equals(value2.Value))
+                return false;
+
+            if (!value1.Key.Equals(value2.Key))
+                return false;
+        }
+
+        // Fail if different number of items
+        if (enumerator2.MoveNext())
+            return false;
+
+        return true;
+    }
+
     public static Dictionary<TKey, TValue> CloneShallow<TKey, TValue>(this IReadOnlyDictionary<TKey, TValue> dictionary)
         where TKey : notnull
     {

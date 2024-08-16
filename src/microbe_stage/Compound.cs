@@ -9,7 +9,7 @@ using Saving.Serializers;
 ///   entry of this type
 /// </summary>
 [TypeConverter($"Saving.Serializers.{nameof(CompoundStringConverter)}")]
-public class Compound : IRegistryType
+public class Compound : IRegistryType, IEquatable<Compound>
 {
     /// <summary>
     ///   Display name for the user to see
@@ -154,6 +154,15 @@ public class Compound : IRegistryType
     public string GetUntranslatedName()
     {
         return untranslatedName ?? "error";
+    }
+
+    public bool Equals(Compound? other)
+    {
+        if (other == null)
+            return false;
+
+        // TODO: maybe only compare by reference? Or is this kind of flexibility fine?
+        return InternalName == other.InternalName;
     }
 
     public override string ToString()
