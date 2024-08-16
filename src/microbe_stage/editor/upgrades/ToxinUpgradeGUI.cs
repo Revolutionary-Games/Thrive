@@ -143,7 +143,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public Vector2 GetMinDialogSize()
     {
-        return new Vector2(350, 370);
+        return new Vector2(350, 380);
     }
 
     private void ApplySelection(ToxinType toxinType)
