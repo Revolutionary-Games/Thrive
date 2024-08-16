@@ -50,6 +50,26 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
+    public static float ToxinAmountMultiplierFromToxicity(float toxicity)
+    {
+        // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
+
+        if (toxicity < 0)
+        {
+            // Low-damage
+            return 0.89f * (1 - Math.Abs(toxicity)) + 0.1f;
+        }
+
+        if (toxicity > 0)
+        {
+            // High-damage
+            return 0.99f * toxicity + 1.0f;
+        }
+
+        // No modification from default
+        return 1;
+    }
+
     protected override void Update(float delta, in Entity entity)
     {
         ref var control = ref entity.Get<MicrobeControl>();
@@ -151,13 +171,14 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             if (organelles.IronBreakdownEfficiency < 1)
                 return;
 
-            // The cooldown time is inversely proportional to the amount of agent vacuoles with a little nerf.
+            // The cooldown time is inversely proportional to the power of iron agents in total
             control.AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN * 5 / organelles.IronBreakdownEfficiency;
 
             SpawnHelpers.SpawnIronProjectile(worldSimulation, organelles.IronBreakdownEfficiency,
                 Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, organelles.IronBreakdownEfficiency,
                 entity);
 
+            // TODO: a separate siderophore sound effect?
             soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
         else
@@ -204,16 +225,20 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 // TODO: this needs changing if fire/toxicity is customizable per agent type (and separate compounds
                 // aren't used per agent type)
 
-                // Emit as much as you have, but don't start the cooldown if that's zero
+                // Emit as much as you have, but don't start if there's way too little toxin
                 float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
                 if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
                     return;
 
                 compounds.TakeCompound(agentType, amountEmitted);
 
+                // Adjust amount based on toxicity to make the shot more or less effective
+                var damagingToxinAmount =
+                    amountEmitted * ToxinAmountMultiplierFromToxicity(organelles.AverageToxinToxicity);
+
                 var agent = SpawnHelpers.SpawnAgentProjectile(worldSimulation,
                     new AgentProperties(entity.Get<SpeciesMember>().Species, agentType, selectedToxinType),
-                    amountEmitted, Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, amountEmitted,
+                    damagingToxinAmount, Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, amountEmitted,
                     entity);
 
                 ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
@@ -231,12 +256,31 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 }
             }
 
-            // TODO: the above part is already implemented as extension for PlayerMicrobeInput (so could share a bit of
-            // code for checking if ready to shoot yet)
+            // TODO: some of the checks above part are already implemented as extension for PlayerMicrobeInput
+            // (so could share a bit of code for checking if ready to shoot yet)
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
-            control.AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / organelles.AgentVacuoleCount;
+            control.AgentEmissionCooldown =
+                ToxinCooldownWithToxicity(organelles.AgentVacuoleCount, organelles.AverageToxinToxicity);
         }
+    }
+
+    private float ToxinCooldownWithToxicity(int vacuoleCount, float toxicity)
+    {
+        if (toxicity < 0)
+        {
+            // High-firerate
+            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * (1.0f - (0.5f * Math.Abs(toxicity)));
+        }
+
+        if (toxicity > 0)
+        {
+            // Low-firerate
+            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * (1 + toxicity);
+        }
+
+        // No modification from default
+        return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount;
     }
 
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,

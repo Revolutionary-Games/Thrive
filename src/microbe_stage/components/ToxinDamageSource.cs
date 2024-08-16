@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 public struct ToxinDamageSource
 {
     /// <summary>
-    ///   Scales the damage
+    ///   Scales the damage (or other effect the toxin does)
     /// </summary>
     public float ToxinAmount;
 
