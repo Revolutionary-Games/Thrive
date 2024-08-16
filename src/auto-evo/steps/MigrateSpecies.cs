@@ -36,34 +36,31 @@ public class MigrateSpecies : IRunStep
         if (occupants.Count == 0)
             return true;
 
-        for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; ++i)
+        var species = occupants.Random(random);
+
+        // TODO: Make this a game option?
+        if (species.PlayerSpecies)
+            return true;
+
+        var population = patch.GetSpeciesSimulationPopulation(species);
+        if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
+            return true;
+
+        // Select a random adjacent target patch
+        // TODO: could prefer patches this species is not already
+        // in or about to go extinct, or really anything other
+        // than random selection
+        var target = patch.Adjacent.ToList().Random(random);
+        var targetMiche = results.GetMicheForPatch(target);
+
+        // Calculate random amount of population to send
+        int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
+            population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
+
+        if (moveAmount > 0 && targetMiche.InsertSpecies(species, cache, true))
         {
-            var species = occupants.Random(random);
-
-            // TODO: Make this a game option?
-            if (species.PlayerSpecies)
-                continue;
-
-            var population = patch.GetSpeciesSimulationPopulation(species);
-            if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
-                continue;
-
-            // Select a random adjacent target patch
-            // TODO: could prefer patches this species is not already
-            // in or about to go extinct, or really anything other
-            // than random selection
-            var target = patch.Adjacent.ToList().Random(random);
-            var targetMiche = results.GetMicheForPatch(target);
-
-            // Calculate random amount of population to send
-            int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
-                population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
-
-            if (moveAmount > 0 && targetMiche.InsertSpecies(species, cache, true))
-            {
-                results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
-                return true;
-            }
+            results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
+            return true;
         }
 
         return true;

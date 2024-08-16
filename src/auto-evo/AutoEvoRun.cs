@@ -392,7 +392,10 @@ public class AutoEvoRun
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings));
 
-            steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings)));
+            for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; ++i)
+            {
+                steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings)));
+            }
         }
 
         steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
