@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-14 13:35+0200\n"
+"POT-Creation-Date: 2024-08-16 10:05+0300\n"
 "PO-Revision-Date: 2024-08-01 06:50+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -124,13 +124,11 @@ msgstr "(სიჩქარე, რომლითაც AI-ის სახე�
 msgid "ALL"
 msgstr "ყველა"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "სახეობებისთვის არ-მუტაციის უფლების მიცემა (თუ არაა აღმოჩენილი კარგი მუტაცია)"
+msgstr "გადაშენებისას შესაბამის სახეობებზე გადართვის დაშვება"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "(მოთამაშის სახეობის ოსმორეგულაციის ფასი)"
+msgstr "(საშუალებას გაძლევთ, თამაში სხვა სახეობით გააგრძელოთ, მისი დასრულების გარეშე)"
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "სახეობებისთვის არ-მიგრაციის უფლების მიცემა (თუ კარგი მიგრაცია აღმოჩენილი არაა)"
@@ -696,6 +694,9 @@ msgstr "აირჩიეთ ფერი თამაშის ფანჯრ
 
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"ფერი: {0}\n"
+"მარცხენა თაგუნა: ამ პრესეტის გამოყენება\n"
+"მარჯვენა თაგუნა: ამ პრესეტის წაშლა"
 
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
@@ -779,7 +780,7 @@ msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} მოხმარება"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr ""
+msgstr "(არასაკმარისია, რომ გაუძლოთ ღამეს, რომლის სიგრძეა {0})"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
 msgstr ""
@@ -844,13 +845,11 @@ msgstr "ერთეული: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workhop-ის შემცველობა აიტვირთება საქაღალდიდან: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "აყვავების გაგრძელება"
+msgstr "გაგრძელება"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "აირჩიეთ სახეობა"
+msgstr "[center]თამაში ჯერ არ დასრულებულა. შეგიძლიათ [b]გააგრძელოთ[/b] ის და ითამაშოთ სახეობით {0} პოპულაციით {1}.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "აყვავების გაგრძელება"
@@ -1467,7 +1466,7 @@ msgid "EASTEREGG_MESSAGE_25"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
+msgstr "სასაცილოა, მაგრამ Thrive ღია კოდის მქონე Godot ძრავაზეა დაწერილი!"
 
 msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
@@ -1479,7 +1478,7 @@ msgid "EASTEREGG_MESSAGE_4"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_5"
-msgstr ""
+msgstr "სასაცილოა, მაგრამ მეტაბოლოსომა ისაა, რასაც პოლიჰედრულ ორგანელა ეწოდება."
 
 msgid "EASTEREGG_MESSAGE_6"
 msgstr ""
@@ -1551,13 +1550,13 @@ msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
 msgstr ""
 
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr ""
+msgstr "ამ ენდოსიმბიოზის პროცესის დასრულება და მისი მოთავსება ორგანელის სახით"
 
 msgid "ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "ენდოსიმბიოზში გადასაქცევად შესაფერის სახეობების შთანთქმა ჯერ არ მომხდარა"
 
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "ამ სახეობას ორგანელაში ვერ გადაიყვანთ"
@@ -1688,9 +1687,8 @@ msgstr "გასვლა გამშვებამდე"
 msgid "EXPERIMENTAL_FEATURES"
 msgstr "ექსპერიმენტული ფუნქციები"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(სიჩქარე, რომლითაც AI-ის სახეობები განიცდიან მუტაციას)"
+msgstr "(ჩართავს დამატების ფუნქციებს, რომლებიც ბოლომდე დამუშავებული არაა, რომ ნაგულისხმევად იყოს ჩართული. ასე რომ, თუ ამათით თამაშობთ, გაგვიზიარეთ თქვენი აზრი ამათ შესახებ)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "ყველა სამყაროს გატანა"
@@ -1813,7 +1811,7 @@ msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "იყენებს [thrive:compound type=\"atp\"][/thrive:compound]-ს უჯრედის გადაადგილების სიჩქარის გასაზრდელად."
 
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr "{0} ფლოტი"
@@ -1849,7 +1847,7 @@ msgid "FOG_OF_WAR_INTENSE"
 msgstr "ინტენსიური ომის ნისლი"
 
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
-msgstr ""
+msgstr "(გამოჩენილი იქნება, მხოლოდ, ბიომები, სადაც მომხმარებელი უკვე ნამყოფია)"
 
 msgid "FOG_OF_WAR_MODE"
 msgstr "ომის ნისლის რეჟიმი"
@@ -1864,7 +1862,7 @@ msgid "FOOD_CHAIN"
 msgstr "საჭმლის ჯაჭვი"
 
 msgid "FOOD_SOURCE_ENERGY_INFO"
-msgstr ""
+msgstr "{0} ენერგია: {1} (თავსებადობა: {2}) სულ ხელმისაწვდომი ენერგია: {3} (სულ თავსებადობა: {4})"
 
 msgid "FORGET_MOD_DETAILS"
 msgstr "ლოკალური მონაცემების წაშლა"
@@ -2074,7 +2072,7 @@ msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "შემდეგი ფაზის პროტოტიპების ჩასმა"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
-msgstr ""
+msgstr "(ზოგიერთი ფუნქცია, შეიძლება, ხელმისაწვდომი არ იყოს, როცა შემდეგ დონეებს მიაღწევთ)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "ინდუსტრიული ფაზა"
@@ -2203,7 +2201,7 @@ msgid "INVALID_SAVE_NAME_POPUP"
 msgstr "შენახულის სახელი არ შეიძლება, სპეციალურ სიმბოლოებს შეიცავდეს (<>:\"/\\|?*)"
 
 msgid "INVALID_SPECIES_NAME_POPUP"
-msgstr ""
+msgstr "სახეობის სახელი ბინომურ დასახელების სისტემას უნდა ემორჩილებოდეს (სახეობა და ეპითეტი)!"
 
 msgid "INVALID_TAG"
 msgstr "მითითებულია არასწორი ჭდე \"{0}\""
@@ -2419,7 +2417,7 @@ msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr "ეს ენა ჯერ კიდევ მუშავდება. (დასრულებულია {0}%)"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
-msgstr ""
+msgstr "ეს თარგმანი დაუსრულებელია (მზადაა {0}%). დაგვეხმარეთ თარგმანში!"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "ბოლო ორგანელას ვერ წაშლით"
@@ -2485,7 +2483,7 @@ msgid "LAWK_ONLY"
 msgstr "მხოლოდ სრჩვ"
 
 msgid "LAWK_ONLY_EXPLANATION"
-msgstr ""
+msgstr "(ნაწილებისა და შესაძლებლობების შეზღუდვა რეალურ სამყაროზე)"
 
 msgid "LEAD_ARTIST"
 msgstr "წამყვანი მხატვარი"
@@ -2647,7 +2645,7 @@ msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "მრავალუჯრედიანი რედაქტორის ჩატვირთვა"
 
 msgid "LOADING_TIP"
-msgstr ""
+msgstr "შეცდომის გასასწორებლად რედაქტორში დაბრუნების ღილაკს დააჭირეთ"
 
 msgid "LOAD_FINISHED"
 msgstr "ჩატვირთვა დასრულდა"
@@ -2680,7 +2678,7 @@ msgid "LOCK_DAY_NIGHT_CYCYLE"
 msgstr "დღეღამის ციკლის გამორთვა"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
+msgstr "ამ სახეობაზე ნაკლები სახეობის დაბალ ბიომრავალფეროვნებად ჩათვლა"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "აღმოჩენილია დაბალი წარმადობა"
@@ -2918,26 +2916,22 @@ msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr "პოპულაციის მიგრაცია {0}-დან ..."
 
 msgid "MIGRATION_STATUS_TEXT"
-msgstr ""
+msgstr "მოხდება პოპულაციის {2} ერთეულის მიგრაცია {0}-დან {1}-მდე"
 
-#, fuzzy
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
-msgstr "(მოთამაშის სახეობის ოსმორეგულაციის ფასი)"
+msgstr "აირჩიეთ სამიზნე ბიომა მიგრაციისთვის, რომელიც მიერთებულია წყარო ბიომასთან"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr ""
 
-#, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "(მოთამაშის სახეობის ოსმორეგულაციის ფასი)"
+msgstr "აირჩიეთ, რამხელა პოპულაციის მიგრაცია მოხდება წყარო ბიომიდან სამიზნეში"
 
-#, fuzzy
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
-msgstr "(სიჩქარე, რომლითაც AI-ის სახეობები განიცდიან მუტაციას)"
+msgstr "აირჩიეთ ბიომა, რომელშიც თქვენი სახეობებია, რომ ის მიგრაციის წყაროდ გამოვიყენო"
 
-#, fuzzy
 msgid "MIGRATION_TOOLTIP"
-msgstr "ეწვიეთ ჩვენს Patreon-ის გვერდს"
+msgstr "მოახდინეთ თქვენი სახეობების მიგრაცია ბიომებს შორის იმ ბიომის გაუნძრევლად, რომელშიც თქვენ იმყოფებით"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} მლნ"
@@ -3021,7 +3015,7 @@ msgid "MOD_ASSEMBLY_INIT_CALL_FAILED"
 msgstr "{0}: მოდის assembly-ის ინიციალიზაციის მეთოდის გამოძახება ჩავარდა"
 
 msgid "MOD_ASSEMBLY_LOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0}: მოდის assembly-ის ინიციალიზაციის მეთოდის გამოძახება ჩავარდა გამონაკლისით: {1}"
 
 msgid "MOD_ASSEMBLY_LOAD_EXCEPTION"
 msgstr "{0}: Assembly-ის ჩატვირთვა ჩავარდა გამონაკლისით: {1}"
@@ -3030,7 +3024,7 @@ msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED"
 msgstr "{0}: მოდის assembly-ის გამოტვირთვის მეთოდის გამოძახება ჩავარდა"
 
 msgid "MOD_ASSEMBLY_UNLOAD_CALL_FAILED_EXCEPTION"
-msgstr ""
+msgstr "{0} მოდის assembly-ის გამოტვირთვის მეთოდი ჩავარდა გამონაკლისით: {1}"
 
 msgid "MOD_AUTHOR"
 msgstr "მოდის ავტორი:"
@@ -3552,7 +3546,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "ორგანელების განბლოკვა ჩართულია"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr ""
+msgstr "(ზოგიერთი ორგანელა განბლოკავს პირობებს, რომელიც მათ დასასმელადაა საჭირო)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "ორგანიზმის სტატისტიკები"
@@ -3759,7 +3753,7 @@ msgid "PLAYER_DEATH_POPULATION_PENALTY"
 msgstr "მოთამაშის სიკვდილის სასჯელი პოპულაციაზე"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
-msgstr ""
+msgstr "(კოეფიციენტი პოპულაციის შესამცირებლად მოთამაშის თითოეული სიკვდილის შემდეგ)"
 
 msgid "PLAYER_DIED"
 msgstr "მოთამაშე მოკვდა"
@@ -4061,7 +4055,7 @@ msgid "RUN_RESULT_SPLIT_FROM"
 msgstr "{0}-დან გამოყოფილი"
 
 msgid "RUN_RESULT_SPLIT_OFF_TO"
-msgstr ""
+msgstr "ზოგიერთი ბიომის პოპულაცია გამოეყო, რომ ახალი სახეობა {0} შეექმნა:"
 
 msgid "RUN_X_WORLDS"
 msgstr "{0} სამყაროს გაშვება"
@@ -4241,7 +4235,7 @@ msgid "SELECT_A_TECHNOLOGY"
 msgstr "აირჩიეთ ტექნოლოგია TechWeb-დან"
 
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "აირჩიეთ უჯრედის ტიპი რედაქტორში ჩასასწორებლად რედაქტორის ჩანართიდან"
 
 msgid "SELECT_ENZYME"
 msgstr "აირჩიეთ ფერმენტი:"
@@ -4259,7 +4253,7 @@ msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "აირჩიეთ მოსათავსებელი სტრუქტურა"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr ""
+msgstr "აირჩიეთ რედაქტორის ჩანართში ჩასასწორებელი ქსოვილის ტიპი"
 
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
 msgstr "აირჩიეთ ნაერთი, რომელსაც ვაკუოლა შეინახავს:"
@@ -4271,7 +4265,7 @@ msgid "SESSILE"
 msgstr "მჯდომარე"
 
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
-msgstr ""
+msgstr "ეს მნიშვნელობა, მხოლოდ, ახალ თამაშებს შეეხებათ, რომლებსაც ამ პარამეტრის ცვლილების შემდეგ დაიწყებთ"
 
 msgid "SFX_VOLUME"
 msgstr "SFX ხმა"
@@ -4316,7 +4310,7 @@ msgid "SIGNALING_AGENT"
 msgstr "სიგნალის ნივთიერება"
 
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
-msgstr ""
+msgstr "გეჭიროთ ღილაკზე, რომ თქვენი სახეობის სხვა უჯრედების მართვის მენიუ გაჩვენოთ"
 
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
@@ -4455,10 +4449,10 @@ msgid "SPECIES_PRESENT"
 msgstr "არსებული სახეობები"
 
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
+msgstr "მინიმალური პოპულაცია სახეობებისთვის მათი კარგი მუტაციებით დასაყოფად"
 
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
+msgstr "სახეობების მინიმალური პოპულაციის ნაწილი, რომელსაც მუტაციებით გამოყოფა შეუძლიათ"
 
 msgid "SPECIES_TO_FIND"
 msgstr "საპოვნო სახეობები:"
@@ -4752,7 +4746,7 @@ msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "წარმოქმნის [thrive:compound type=\"atp\"][/thrive:compound]-ს ტემპერატურის გრადიენტის გამოყენებით. სიჩქარე [thrive:compound type=\"temperature\"][/thrive:compound]-სთან ერთად იზრდება."
 
 msgid "THERMOSYNTHASE"
 msgstr "თერმოსინთაზა"
@@ -4761,7 +4755,7 @@ msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "წარმოქმნის [thrive:compound type=\"atp\"][/thrive:compound]-ს ტემპერატურის გრადიენტის გამოყენებით. სიჩქარე [thrive:compound type=\"temperature\"][/thrive:compound]-სთან ერთად იზრდება."
 
 msgid "THERMOSYNTHESIS"
 msgstr "თერმოსინთეზი"
@@ -4845,7 +4839,7 @@ msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr "[b][u]{0}[/u][/b] გაქრა ამ ბიომიდან"
 
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
-msgstr ""
+msgstr "[b][u]{0}[/u][/b] პოპულაციის ნაწილი დამიგრირდა ამ ბიომში {1}-დან"
 
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b]-ის პოპულაციის ნაწილი დამიგრირდა {1}-ში"
@@ -4960,6 +4954,10 @@ msgstr "ტოქსინის ეფექტები სამიზნე�
 
 msgid "TOXIN_RESISTANCE"
 msgstr "ტოქსინის წინააღმდეგობა"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "ფარის შექმნა"
 
 msgid "TOXIN_TYPE_COLON"
 msgstr "ტოქსინის ტიპი:"
@@ -5097,7 +5095,7 @@ msgid "UNAPPLIED_MOD_CHANGES"
 msgstr "არსებობს გადაუტარებელი ცვლილებები"
 
 msgid "UNAPPLIED_MOD_CHANGES_DESCRIPTION"
-msgstr ""
+msgstr "მოდების ჩასატვირთად ან გამოსატვირთად ჯერ თქვენი ცვლილებები უნდა გადაატაროთ."
 
 msgid "UNBIND_ALL"
 msgstr "ყველა მიმაგრების გაუქმება"
@@ -5262,7 +5260,7 @@ msgid "USE_AUTO_HARMONY"
 msgstr "Harmony-ის ავტოჩატვირთვის გამოყენება"
 
 msgid "USE_AUTO_HARMONY_TOOLTIP"
-msgstr ""
+msgstr "Harmony-ის პაჩების ავტომატური ჩატვირთვა Assembly-დან (არ სჭირდება მოდის კლასის მითითება)"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "მორგებული მომხმარებლის სახელის გამოყენება"
@@ -5321,9 +5319,8 @@ msgstr "ნახვა"
 msgid "VIEW_ALL"
 msgstr "ყველას ნახვა"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
-msgstr "პროცესების გარეშე."
+msgstr "უჯრედის პროცესების ხედი"
 
 msgid "VIEW_ONLINE"
 msgstr "ინტერნეტში ნახვა"
@@ -5977,7 +5974,7 @@ msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "მოთამაშე [b]პროტოპლაზმას[/b] ვერ განავითარებს. არამოთამაშის სახეობებს ეს შეზღუდვების გარეშე შეუძლია."
 
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""

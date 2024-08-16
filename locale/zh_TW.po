@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-14 13:35+0200\n"
+"POT-Creation-Date: 2024-08-16 10:05+0300\n"
 "PO-Revision-Date: 2024-07-27 14:22+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -124,13 +124,11 @@ msgstr "（AI 物種突變的速度）"
 msgid "ALL"
 msgstr "全部"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "允許物種不突變（如果沒有合適的突變）"
+msgstr "允許在滅絕後切換到其他相關物種"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "選擇與目標區域相連的來源區域進行遷移"
+msgstr "（允許在滅絕後以不同物種繼續進行遊戲，而非結束遊戲）"
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "允許物種不遷移（如果沒有發現良好的遷移情況）"
@@ -882,13 +880,11 @@ msgstr "單位：{0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "工作坊內容將從以下資料夾上傳：{0}"
 
-#, fuzzy
 msgid "CONTINUE"
 msgstr "繼續遊戲"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "選擇一個物種"
+msgstr "[center]遊戲尚未結束。您可以切換到種群數量為 {1} 的物種 {0} 並[b]繼續遊戲[/b]。[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "繼續遊戲"
@@ -5304,6 +5300,10 @@ msgstr "毒素對目標的影響"
 msgid "TOXIN_RESISTANCE"
 msgstr "毒素抗性"
 
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "不同類型的毒素具有不同的作用，對某些類型的細胞更有效。對於具有多種不同毒素類型的細胞，它們按順序使用，而不是一次全部發射。"
+
 msgid "TOXIN_TYPE_COLON"
 msgstr "毒素類型："
 
@@ -5765,9 +5765,8 @@ msgstr "檢視器"
 msgid "VIEW_ALL"
 msgstr "查看所有"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
-msgstr "無代謝過程。"
+msgstr "查看細胞代謝過程"
 
 msgid "VIEW_ONLINE"
 msgstr "在網路上查看"

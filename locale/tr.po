@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-14 13:35+0200\n"
+"POT-Creation-Date: 2024-08-16 10:05+0300\n"
 "PO-Revision-Date: 2024-07-27 14:22+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -124,16 +124,14 @@ msgstr "(AI türlerinin mutasyona uğrama hızı)"
 msgid "ALL"
 msgstr "Tümü"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Türün mutasyona uğramasına izin verme (eğer iyi bir mutasyon bulunamazsa)"
+msgstr "Soy tükendiğinde, akraba bir türe geçiş yapılmasına izin ver"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "Göç için kaynak araziye bağlı, varılacak bir arazi seçin"
+msgstr "(soy tükendiğinde, oyunun bitmesi yerine, oyuna başka bir tür ile devam edilmesine izin verir)"
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Türün göç etmesine izin verme (eğer göç edilecek bir yer bulunamazsa)"
+msgstr "Türün göç etmesine izin verme (eğer göç edilecek iyi bir yer bulunamazsa)"
 
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr "Türün mutasyona uğramasına izin verme (eğer iyi bir mutasyon bulunamazsa)"
@@ -577,7 +575,7 @@ msgid "CHEAT_MENU"
 msgstr "Hile menüsü"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "Hücre işleyişini göster / gizle"
+msgstr "Hücre işlemlerini göster / gizle"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -882,13 +880,11 @@ msgstr "Birim: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Atölye içeriği bu klasörden karşıya yüklenecek: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "İlerlemeye Devam Et"
+msgstr "Devam Et"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "Bir tür seç"
+msgstr "[center]Ama oyun henüz bitmedi. {1} popülasyonu olan {0} türüne geçiş yaparak oyuna [b]devam edebilirsiniz[/b].[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "İlerlemeye Devam Et"
@@ -4146,7 +4142,7 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Hücre İşleyişi"
+msgstr "Hücre İşlemleri"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programlama Ekibi"
@@ -4631,9 +4627,8 @@ msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyar�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Thrive haber akışını göster (internetten indirilir)"
 
-#, fuzzy
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
-msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder. Ancak bu hücreler daha fazla ATP tüketir ve yorgunluk arttıkça ATP tüketimi daha da artar."
+msgstr "Sideroforu ateş et"
 
 msgid "SIGNALING_AGENT"
 msgstr "Sinyal Verici Ajan"
@@ -5305,6 +5300,10 @@ msgstr "Hedef Üzerindeki Toksin Etkileri"
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksin Direnci"
 
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "Farklı toksin türleri, belirli hücre türlerine karşı daha etkili olan, çeşitli etkilere sahiptir. Birden fazla farklı toksin türüne sahip olan hücrelerde, bu toksinler aynı anda ateşlenmek yerine sırayla kullanılır."
+
 msgid "TOXIN_TYPE_COLON"
 msgstr "Toksin Türü:"
 
@@ -5768,9 +5767,8 @@ msgstr "Görüntüleyici"
 msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
-msgstr "İşlem yok."
+msgstr "Hücre İşlemlerini İncele"
 
 msgid "VIEW_ONLINE"
 msgstr "Online Olarak Görüntüle"

@@ -408,8 +408,28 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         // The following operation might be expensive so we only do this if any extinction occured
         if (extinctSpecies.Any())
         {
-            var datasets = extinctSpecies.Distinct().ToList();
-            speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(datasets, speciesPopulationChart);
+            var seenEntries = new List<KeyValuePair<string, ChartDataSet>>();
+
+            // Need to manually make this list distinct as otherwise an inefficient default comparer is used
+            foreach (var pair in extinctSpecies)
+            {
+                bool exist = false;
+
+                // A linear search should be fine as there shouldn't be that many items
+                foreach (var seenEntry in seenEntries)
+                {
+                    if (seenEntry.Key == pair.Key)
+                    {
+                        exist = true;
+                        break;
+                    }
+                }
+
+                if (!exist)
+                    seenEntries.Add(pair);
+            }
+
+            speciesPopDatasetsLegend = new SpeciesPopulationDatasetsLegend(seenEntries, speciesPopulationChart);
             speciesPopulationChart.LegendMode = LineChart.LegendDisplayMode.CustomOrNone;
         }
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-14 13:35+0200\n"
+"POT-Creation-Date: 2024-08-16 10:05+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,11 +54,11 @@ msgid "ACCEPT"
 msgstr ""
 
 #: ../src/late_multicellular_stage/MulticellularHUD.cs:289
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:275
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:276
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:273
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:274
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1016
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1040
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -290,8 +290,8 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:338
-#: ../src/microbe_stage/MicrobeHUD.tscn:497
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:339
+#: ../src/microbe_stage/MicrobeHUD.tscn:498
 msgid "ATP"
 msgstr ""
 
@@ -469,12 +469,12 @@ msgid "BATHYPELAGIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:706
-#: ../src/microbe_stage/MicrobeHUD.tscn:430
+#: ../src/microbe_stage/MicrobeHUD.tscn:431
 msgid "BECOME_MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeHUD.cs:662
-#: ../src/microbe_stage/MicrobeHUD.tscn:423
+#: ../src/microbe_stage/MicrobeHUD.tscn:424
 msgid "BECOME_MULTICELLULAR"
 msgstr ""
 
@@ -617,7 +617,7 @@ msgstr ""
 msgid "BUILD_QUEUE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:450
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:451
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr ""
@@ -713,27 +713,27 @@ msgstr ""
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:900
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:896
 msgid "CATEGORY_AN_ABUNDANCE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:904
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:900
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:908
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:904
 msgid "CATEGORY_LITTLE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:902
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:898
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:906
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:902
 msgid "CATEGORY_SOME"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:910
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:906
 msgid "CATEGORY_VERY_LITTLE"
 msgstr ""
 
@@ -1591,7 +1591,7 @@ msgstr ""
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:975
+#: ../src/auto-evo/AutoEvoExploringTool.cs:999
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -2104,8 +2104,8 @@ msgstr ""
 msgid "EJECT_ENGULFED"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:492
-#: ../src/microbe_stage/MicrobeHUD.tscn:631
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:493
+#: ../src/microbe_stage/MicrobeHUD.tscn:632
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
@@ -2125,15 +2125,15 @@ msgstr ""
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1293
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1294
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1299
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1300
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1270
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1271
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
@@ -2193,19 +2193,19 @@ msgstr ""
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2880
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2860
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2718
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2698
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2891
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2871
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2884
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2864
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2483,7 +2483,7 @@ msgstr ""
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:694
+#: ../src/auto-evo/AutoEvoExploringTool.cs:718
 msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
@@ -2491,8 +2491,8 @@ msgstr ""
 msgid "FIRE_TOXIN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:467
-#: ../src/microbe_stage/MicrobeHUD.tscn:641
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:468
+#: ../src/microbe_stage/MicrobeHUD.tscn:642
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
@@ -2583,7 +2583,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2897
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2877
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2684,7 +2684,7 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2818
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2798
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1115
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
@@ -2831,7 +2831,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:192
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:193
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -3556,7 +3556,7 @@ msgstr ""
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:367
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:369
 msgid "LIGHT"
 msgstr ""
 
@@ -3908,8 +3908,8 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:988
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1032
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1012
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1056
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
@@ -4366,15 +4366,15 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:262
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:263
 msgid "MOVE_TO_LAND"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:429
+#: ../src/microbe_stage/MicrobeHUD.tscn:430
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:422
+#: ../src/microbe_stage/MicrobeHUD.tscn:423
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
@@ -4386,19 +4386,19 @@ msgstr ""
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:579
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:580
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:580
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:581
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:574
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:575
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:575
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:576
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
@@ -4423,8 +4423,8 @@ msgstr ""
 msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:509
-#: ../src/microbe_stage/MicrobeHUD.tscn:704
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:510
+#: ../src/microbe_stage/MicrobeHUD.tscn:705
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr ""
 
@@ -4649,12 +4649,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1087
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1088
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:142
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1079
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1080
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4666,7 +4666,7 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:482
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:484
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4687,7 +4687,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2912
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2892
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -4703,7 +4703,7 @@ msgstr ""
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:457
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:458
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -4747,8 +4747,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:29
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:39
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:49
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2729
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2741
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2709
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2721
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:515
 msgid "N_A"
@@ -5201,7 +5201,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:289
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:47
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:422
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:498
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:357
@@ -5331,8 +5331,8 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:288
-#: ../src/microbe_stage/MicrobeHUD.tscn:443
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:289
+#: ../src/microbe_stage/MicrobeHUD.tscn:444
 #: ../src/society_stage/gui/SocietyHUD.tscn:210
 msgid "POPULATION_CAPITAL"
 msgstr ""
@@ -5345,7 +5345,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2748
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2728
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -5361,11 +5361,11 @@ msgstr ""
 msgid "PRESSURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:371
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:373
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:448
+#: ../src/engine/input/key_mapping/InputEventItem.cs:550
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -5465,7 +5465,7 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:838
+#: ../src/auto-evo/AutoEvoExploringTool.cs:862
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:265
 msgid "READY"
 msgstr ""
@@ -5703,7 +5703,7 @@ msgstr ""
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:710
+#: ../src/auto-evo/AutoEvoExploringTool.cs:734
 msgid "RUN_X_WORLDS"
 msgstr ""
 
@@ -5899,8 +5899,8 @@ msgstr ""
 msgid "SECRETE_SLIME"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:484
-#: ../src/microbe_stage/MicrobeHUD.tscn:683
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:485
+#: ../src/microbe_stage/MicrobeHUD.tscn:684
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
@@ -6041,7 +6041,7 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:715
+#: ../src/microbe_stage/MicrobeHUD.tscn:716
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
 msgstr ""
 
@@ -6050,7 +6050,7 @@ msgstr ""
 msgid "SIGNALING_AGENT"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:672
+#: ../src/microbe_stage/MicrobeHUD.tscn:673
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
@@ -6208,7 +6208,7 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:311
+#: ../src/general/Species.cs:317
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -6270,8 +6270,8 @@ msgstr ""
 msgid "SPRINT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:499
-#: ../src/microbe_stage/MicrobeHUD.tscn:693
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:500
+#: ../src/microbe_stage/MicrobeHUD.tscn:694
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
 
@@ -6305,19 +6305,19 @@ msgstr ""
 msgid "STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:106
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:113
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:110
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:117
 msgid "STAT_BASE_MOVEMENT_REDUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:98
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:105
 msgid "STAT_DAMAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:102
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:109
 msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
@@ -6640,7 +6640,7 @@ msgstr ""
 msgid "TEMPERATURE"
 msgstr ""
 
-#: ../src/general/base_stage/CreatureStageHUDBase.cs:364
+#: ../src/general/base_stage/CreatureStageHUDBase.cs:366
 msgid "TEMPERATURE_SHORT"
 msgstr ""
 
@@ -6832,7 +6832,7 @@ msgstr ""
 msgid "TOGGLE_BINDING"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:651
+#: ../src/microbe_stage/MicrobeHUD.tscn:652
 msgid "TOGGLE_BINDING_TOOLTIP"
 msgstr ""
 
@@ -6841,12 +6841,12 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:433
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:457
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:434
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:458
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:619
+#: ../src/microbe_stage/MicrobeHUD.tscn:620
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
@@ -6862,7 +6862,7 @@ msgstr ""
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:443
+#: ../src/late_multicellular_stage/MulticellularHUD.tscn:444
 msgid "TOGGLE_INVENTORY"
 msgstr ""
 
@@ -6924,7 +6924,7 @@ msgstr ""
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:56
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:57
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
 msgstr ""
 
@@ -6956,15 +6956,15 @@ msgstr ""
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:73
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:77
 msgid "TOXIN_PREFER_FIRE_RATE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:84
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:91
 msgid "TOXIN_PREFER_TOXICITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:90
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:97
 msgid "TOXIN_PROPERTIES_HEADING"
 msgstr ""
 
@@ -6974,11 +6974,18 @@ msgstr ""
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:33
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:62
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:75
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:84
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:89
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:34
 msgid "TOXIN_TYPE_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:28
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:29
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr ""
 
@@ -6996,7 +7003,6 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:814
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn:61
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -7148,7 +7154,7 @@ msgstr ""
 msgid "UNBIND_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.tscn:662
+#: ../src/microbe_stage/MicrobeHUD.tscn:663
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
@@ -7307,7 +7313,7 @@ msgstr ""
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:57
+#: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:64
 msgid "UPGRADE_COST"
 msgstr ""
 
