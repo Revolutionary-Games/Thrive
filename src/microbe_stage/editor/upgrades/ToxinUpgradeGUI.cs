@@ -169,7 +169,8 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     private void UpdateToxinStats(ToxinType toxinType)
     {
-        var damageMultiplier = MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity((float)toxicitySlider.Value);
+        var damageMultiplier =
+            MicrobeEmissionSystem.ToxinAmountMultiplierFromToxicity((float)toxicitySlider.Value, toxinType);
 
         switch (toxinType)
         {
