@@ -550,7 +550,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateChunk": {
+        "phosphateBigChunk": {
           "Name": "PHOSPHATE_CHUNK",
           "Meshes": [
             {
@@ -562,13 +562,13 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
             }
           ],
-          "Density": 0.00005,
+          "Density": 0.00001,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
           "Size": 50,
-          "VentAmount": 10,
+          "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -1017,7 +1017,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateChunk": {
+        "phosphateBigChunk": {
           "Name": "PHOSPHATE_CHUNK",
           "Meshes": [
             {
@@ -1029,13 +1029,13 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
             }
           ],
-          "Density": 0.00002,
+          "Density": 0.000004,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
           "Size": 50,
-          "VentAmount": 10,
+          "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -1567,7 +1567,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateChunk": {
+        "phosphateBigChunk": {
           "Name": "PHOSPHATE_CHUNK",
           "Meshes": [
             {
@@ -1579,13 +1579,13 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
             }
           ],
-          "Density": 0.00004,
+          "Density": 0.000008,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
           "Size": 50,
-          "VentAmount": 10,
+          "VentAmount": 6,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -1773,25 +1773,21 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateChunk": {
+        "phosphateBigChunk": {
           "Name": "PHOSPHATE_CHUNK",
           "Meshes": [
-            {
-              "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
-            },
             {
               "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
             }
           ],
-          "Density": 0.00009,
+          "Density": 0.000013,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
           "Size": 50,
-          "VentAmount": 10,
+          "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -2183,7 +2179,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateChunk": {
+        "phosphateBigChunk": {
           "Name": "PHOSPHATE_CHUNK",
           "Meshes": [
             {
@@ -2195,13 +2191,13 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
             }
           ],
-          "Density": 0.00003,
+          "Density": 0.000006,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
           "Size": 50,
-          "VentAmount": 10,
+          "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
@@ -2389,7 +2385,7 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateChunk": {
+        "phosphateBigChunk": {
           "Name": "PHOSPHATE_CHUNK",
           "Meshes": [
             {
@@ -2401,13 +2397,13 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
             }
           ],
-          "Density": 0.00007,
+          "Density": 0.000014,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
           "Size": 50,
-          "VentAmount": 10,
+          "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
