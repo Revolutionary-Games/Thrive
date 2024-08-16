@@ -68,7 +68,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, random);
+            CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, new MutationWorkMemory(), random);
 
             mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
         }

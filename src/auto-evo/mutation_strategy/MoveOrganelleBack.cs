@@ -31,7 +31,7 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
             newSpecies.Organelles.Remove(organelle);
 
             CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
-                newSpecies, new Random());
+                newSpecies, new MutationWorkMemory(), new Random());
 
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
         }

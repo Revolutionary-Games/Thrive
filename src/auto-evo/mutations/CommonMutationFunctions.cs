@@ -54,9 +54,9 @@ public static class CommonMutationFunctions
     }
 
     public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
-        Random random)
+        MutationWorkMemory workMemory, Random random)
     {
-        var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, random);
+        var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory, random);
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -72,7 +72,7 @@ public static class CommonMutationFunctions
     }
 
     public static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, Random random)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, MutationWorkMemory workMemory, Random random)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
@@ -104,7 +104,7 @@ public static class CommonMutationFunctions
                             // Face movement to move forward
                             result.Orientation = 3;
 
-                            if (existingOrganelles.CanPlace(result, new List<Hex>(), new List<Hex>()))
+                            if (existingOrganelles.CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
                             {
                                 return result;
                             }
@@ -115,7 +115,7 @@ public static class CommonMutationFunctions
                         {
                             result.Orientation = rotation;
 
-                            if (existingOrganelles.CanPlace(result, new List<Hex>(), new List<Hex>()))
+                            if (existingOrganelles.CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
                             {
                                 return result;
                             }
@@ -128,7 +128,7 @@ public static class CommonMutationFunctions
         return null;
     }
 
-    public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles)
+    public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)
     {
         var workMemory1 = new HashSet<Hex>();
         var workMemory2 = new List<Hex>();
