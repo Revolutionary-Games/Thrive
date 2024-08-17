@@ -18,12 +18,12 @@ public class RootPressure : SelectionPressure
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         return 1;
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
         return 0;
     }

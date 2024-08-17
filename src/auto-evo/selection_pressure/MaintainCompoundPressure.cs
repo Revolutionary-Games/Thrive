@@ -2,28 +2,27 @@
 
 using Godot;
 
-public class MaintainCompound : SelectionPressure
+public class MaintainCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_MAINTAIN_COMPOUND_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
-    private readonly Patch patch;
+
     private readonly Compound compound;
 
-    public MaintainCompound(Patch patch, float weight, Compound compound) : base(weight, [
+    public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
     ])
     {
-        this.patch = patch;
         this.compound = compound;
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
@@ -57,7 +56,7 @@ public class MaintainCompound : SelectionPressure
         return Mathf.Min(compoundCreated / compoundUsed, 1);
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
         return 0;
     }

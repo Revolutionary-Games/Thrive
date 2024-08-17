@@ -144,7 +144,7 @@ public class Miche
         }
     }
 
-    public bool InsertSpecies(Species species, SimulationCache cache, bool dry = false)
+    public bool InsertSpecies(Species species, Patch patch, SimulationCache cache, bool dry = false)
     {
         var occupants = new HashSet<Species>();
         GetOccupants(occupants);
@@ -153,7 +153,7 @@ public class Miche
 
         scoresDictionary[species] = 0.0f;
 
-        return InsertSpecies(species, scoresDictionary, cache, dry, occupants);
+        return InsertSpecies(species, patch, scoresDictionary, cache, dry, occupants);
     }
 
     /// <summary>
@@ -162,10 +162,10 @@ public class Miche
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
-    public bool InsertSpecies(Species species, Dictionary<Species, float> scoresSoFar, SimulationCache cache, bool dry,
-        HashSet<Species> workingMemory)
+    public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float> scoresSoFar,
+        SimulationCache cache, bool dry, HashSet<Species> workingMemory)
     {
-        var myScore = Pressure.Score(species, cache);
+        var myScore = Pressure.Score(species, patch, cache);
 
         // Prune branch if species fails any pressures
         if (myScore <= 0)
@@ -187,7 +187,7 @@ public class Miche
         foreach (var currentSpecies in workingMemory)
         {
             newScores[currentSpecies] = scoresSoFar[currentSpecies] +
-                Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, cache));
+                Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
         }
 
         // We check here to see if scores more than 0, because
@@ -203,7 +203,7 @@ public class Miche
         var inserted = false;
         foreach (var child in Children)
         {
-            if (child.InsertSpecies(species, newScores, cache, dry, workingMemory))
+            if (child.InsertSpecies(species, patch, newScores, cache, dry, workingMemory))
             {
                 inserted = true;
 

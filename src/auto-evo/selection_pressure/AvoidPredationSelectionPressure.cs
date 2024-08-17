@@ -3,7 +3,6 @@
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
     public readonly Species Predator;
-    public readonly Patch Patch;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -12,7 +11,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    public AvoidPredationSelectionPressure(Species predator, float weight, Patch patch) : base(weight, [
+    public AvoidPredationSelectionPressure(Species predator, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound("oxytoxy"),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
             CommonMutationFunctions.Direction.Front),
@@ -27,15 +26,14 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         new ChangeMembraneRigidity(false),
     ])
     {
-        Patch = patch;
         Predator = predator;
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
-        var predationScore = cache.GetPredationScore(Predator, species, Patch.Biome);
+        var predationScore = cache.GetPredationScore(Predator, species, patch.Biome);
 
         if (predationScore <= 0)
         {
@@ -45,7 +43,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         return 1 / predationScore;
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
         return 0;
     }

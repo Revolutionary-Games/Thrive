@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 12:14-0500\n"
+"POT-Creation-Date: 2024-08-17 17:51-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "ABORT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:124
+#: ../src/auto-evo/AutoEvoRun.cs:126
 msgid "ABORTED_DOT"
 msgstr ""
 
@@ -174,7 +174,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1198
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1201
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:358
+#: ../src/auto-evo/AutoEvoRun.cs:370
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
@@ -345,7 +345,7 @@ msgstr ""
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:139
+#: ../src/auto-evo/AutoEvoRun.cs:141
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
@@ -887,7 +887,8 @@ msgstr ""
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:80
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:62
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:88
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -1101,7 +1102,7 @@ msgstr ""
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:76
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:69
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1591,7 +1592,7 @@ msgstr ""
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1157
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1160
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -1919,7 +1920,7 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:72
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:69
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -2471,7 +2472,7 @@ msgstr ""
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:127
+#: ../src/auto-evo/AutoEvoRun.cs:129
 msgid "FINISHED_DOT"
 msgstr ""
 
@@ -3867,7 +3868,7 @@ msgstr ""
 msgid "MICHE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:11
+#: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:10
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr ""
 
@@ -3879,11 +3880,11 @@ msgstr ""
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/CompoundConversionEfficiencyPressure.cs:11
+#: ../src/auto-evo/selection_pressure/CompoundConversionEfficiencyPressure.cs:10
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
 msgstr ""
 
-#: ../src/gui_common/MicheDetailsPanel.cs:90
+#: ../src/gui_common/MicheDetailsPanel.cs:88
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
@@ -3891,7 +3892,7 @@ msgstr ""
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/MaintainCompound.cs:9
+#: ../src/auto-evo/selection_pressure/MaintainCompoundPressure.cs:9
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -3964,8 +3965,8 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1170
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1214
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1173
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1217
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
@@ -4726,12 +4727,7 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:82
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:94
-msgid "NOT_FOUND_CHUNK"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:130
+#: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4920,7 +4916,7 @@ msgstr ""
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:140
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
@@ -5410,7 +5406,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:71
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:63
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -5526,7 +5522,7 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:925
+#: ../src/auto-evo/AutoEvoExploringTool.cs:927
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:279
 msgid "READY"
 msgstr ""
@@ -6345,7 +6341,7 @@ msgstr ""
 msgid "START"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:145
 msgid "STARTING"
 msgstr ""
 

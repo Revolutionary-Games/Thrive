@@ -14,6 +14,7 @@ using Thread = System.Threading.Thread;
 public class AutoEvoRun
 {
     protected readonly IAutoEvoConfiguration configuration;
+    protected readonly AutoEvoGlobalCache globalCache;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
@@ -41,10 +42,11 @@ public class AutoEvoRun
 
     private int completeSteps;
 
-    public AutoEvoRun(GameWorld world)
+    public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache)
     {
         Parameters = new RunParameters(world);
         configuration = world.WorldSettings.AutoEvoConfiguration;
+        this.globalCache = globalCache;
     }
 
     private enum RunStage
@@ -163,6 +165,16 @@ public class AutoEvoRun
     }
 
     protected RunParameters Parameters { get; }
+
+    public static AutoEvoGlobalCache GetGlobalCache(AutoEvoRun? autoEvoRun, WorldGenerationSettings worldSettings)
+    {
+        if (autoEvoRun != null)
+        {
+            return autoEvoRun.globalCache;
+        }
+
+        return new AutoEvoGlobalCache(worldSettings);
+    }
 
     /// <summary>
     ///   Starts this run if not started already
@@ -380,7 +392,7 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, worldSettings));
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
 
             foreach (var species in entry.Value.SpeciesInPatch)
             {

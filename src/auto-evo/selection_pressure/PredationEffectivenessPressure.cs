@@ -10,10 +10,7 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Patch patch;
-    private readonly float totalEnergy;
-
-    public PredationEffectivenessPressure(Species prey, Patch patch, float weight) :
+    public PredationEffectivenessPressure(Species prey, float weight) :
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
             AddOrganelleAnywhere.ThatCreateCompound("oxytoxy"),
@@ -28,19 +25,12 @@ public class PredationEffectivenessPressure : SelectionPressure
             new ChangeMembraneType("single"),
         ])
     {
-        this.patch = patch;
-
-        patch.SpeciesInPatch.TryGetValue(prey, out long population);
-
-        totalEnergy = population * CommonPressureFunctions.GetOrganelleCount(prey) *
-            Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
-
         Prey = prey;
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         // No Cannibalism
         if (species == Prey)
@@ -60,9 +50,12 @@ public class PredationEffectivenessPressure : SelectionPressure
         return predatorScore;
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
-        return totalEnergy;
+        patch.SpeciesInPatch.TryGetValue(Prey, out long population);
+
+        return population * CommonPressureFunctions.GetOrganelleCount(Prey) *
+            Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
     }
 
     public override LocalizedString GetDescription()

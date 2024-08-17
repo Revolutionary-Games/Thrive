@@ -191,7 +191,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
             TotalFitness = totalFitness,
-            TotalAvailableEnergy = pressure.GetEnergy(),
+            TotalAvailableEnergy = pressure.GetEnergy(patch),
         };
     }
 

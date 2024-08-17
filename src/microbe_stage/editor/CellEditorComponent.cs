@@ -1875,8 +1875,8 @@ public partial class CellEditorComponent :
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies,
-            cachedAutoEvoPredictionSpecies);
+        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
+            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
         run.Start();
 
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);

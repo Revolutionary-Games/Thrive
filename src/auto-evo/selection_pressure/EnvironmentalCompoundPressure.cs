@@ -14,13 +14,12 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
-    private readonly float totalEnergy;
     private readonly Compound createdCompound;
     private readonly Compound compound;
-    private readonly Patch patch;
+    private readonly float energyMultiplier;
 
-    public EnvironmentalCompoundPressure(Patch patch, float weight, Compound compound, Compound createdCompound,
-        float energyMultiplier) :
+    public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
+        float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatUseCompound(compound),
         ])
@@ -35,14 +34,12 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
         this.compound = compound;
         this.createdCompound = createdCompound;
-        this.patch = patch;
-
-        totalEnergy = patch.Biome.AverageCompounds[compound].Ambient * energyMultiplier;
+        this.energyMultiplier = energyMultiplier;
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
@@ -60,9 +57,9 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         return Mathf.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
-        return totalEnergy;
+        return patch.Biome.AverageCompounds[compound].Ambient * energyMultiplier;
     }
 
     public override LocalizedString GetDescription()

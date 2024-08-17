@@ -821,7 +821,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             // If the previous one has finished / failed
-            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld) { FullSpeed = true };
+            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings)) { FullSpeed = true };
             autoEvoRun.Start();
         }
         else
@@ -888,7 +889,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
-            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld);
+            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings));
         }
 
         // To avoid concurrent steps
@@ -1057,9 +1059,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         else
         {
             var cache = new SimulationCache(world.WorldSettings);
+            var globalCache = new AutoEvoGlobalCache(world.WorldSettings);
 
-            var generateMiche = new GenerateMiche(patch, cache, world.WorldSettings);
-            var newMiche = generateMiche.GenerateMicheTree();
+            var generateMiche = new GenerateMiche(patch, cache, globalCache);
+            var newMiche = generateMiche.GenerateMicheTree(globalCache);
 
             generateMiche.PopulateMiche(newMiche);
 
@@ -1101,7 +1104,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             micheSpeciesDetailsPanel.Visible = false;
             micheDetailsPanel.Visible = true;
 
-            micheDetailsPanel.PreviewMiche = micheData;
+            micheDetailsPanel.SetPreview(micheData, patchDisplayed);
         }
     }
 

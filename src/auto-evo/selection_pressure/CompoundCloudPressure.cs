@@ -10,12 +10,10 @@ public class CompoundCloudPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly float totalEnergy;
     private readonly Compound compound;
     private readonly bool isDayNightCycleEnabled;
-    private readonly Patch patch;
 
-    public CompoundCloudPressure(Patch patch, float weight, Compound compound, bool isDayNightCycleEnabled) :
+    public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
         base(weight, [
             new ChangeMembraneRigidity(true),
             new ChangeMembraneType("single"),
@@ -26,21 +24,11 @@ public class CompoundCloudPressure : SelectionPressure
 
         this.compound = compound;
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
-        this.patch = patch;
-
-        if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
-        {
-            totalEnergy = compoundData.Density * compoundData.Amount * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
-        }
-        else
-        {
-            totalEnergy = 0.0f;
-        }
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
@@ -64,9 +52,14 @@ public class CompoundCloudPressure : SelectionPressure
         return score;
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
-        return totalEnergy;
+        if (patch.Biome.AverageCompounds.TryGetValue(compound, out var compoundData))
+        {
+            return compoundData.Density * compoundData.Amount * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
+        }
+
+        return 0.0f;
     }
 
     public override LocalizedString GetDescription()

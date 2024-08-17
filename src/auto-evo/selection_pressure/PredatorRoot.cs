@@ -11,18 +11,15 @@ public class PredatorRoot : SelectionPressure
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
-    private readonly Patch patch;
-
-    public PredatorRoot(Patch patch, float weight) : base(weight, [
+    public PredatorRoot(float weight) : base(weight, [
         AddOrganelleAnywhere.ThatConvertBetweenCompounds("glucose", "atp"),
     ])
     {
-        this.patch = patch;
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
@@ -45,7 +42,7 @@ public class PredatorRoot : SelectionPressure
         return 0;
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
         return 0;
     }

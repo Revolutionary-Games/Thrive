@@ -14,27 +14,13 @@ public partial class MicheDetailsPanel : MarginContainer
     public NodePath? MicheDetailsLabelPath;
 
     public WorldGenerationSettings? WorldSettings = null;
+    public Patch? CurrentPatch = null;
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? micheDetailsLabel;
 #pragma warning restore CA2213
 
     private Miche? previewMiche;
-
-    public Miche? PreviewMiche
-    {
-        get => previewMiche;
-        set
-        {
-            if (previewMiche == value)
-                return;
-
-            previewMiche = value;
-
-            if (previewMiche != null && micheDetailsLabel != null)
-                UpdateMichePreview();
-        }
-    }
 
     public override void _Ready()
     {
@@ -58,6 +44,18 @@ public partial class MicheDetailsPanel : MarginContainer
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
     }
 
+    public void SetPreview(Miche miche, Patch patch)
+    {
+        if (previewMiche == miche)
+            return;
+
+        previewMiche = miche;
+        CurrentPatch = patch;
+
+        if (previewMiche != null && CurrentPatch != null && micheDetailsLabel != null)
+            UpdateMichePreview();
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -76,7 +74,7 @@ public partial class MicheDetailsPanel : MarginContainer
     /// </summary>
     private void UpdateMichePreview()
     {
-        if (previewMiche == null || WorldSettings == null)
+        if (previewMiche == null || WorldSettings == null || CurrentPatch == null)
         {
             micheDetailsLabel!.ExtendedBbcode = null;
             return;
@@ -89,9 +87,10 @@ public partial class MicheDetailsPanel : MarginContainer
 
         micheDetailsLabel!.ExtendedBbcode = Localization.Translate("MICHE_DETAIL_TEXT").FormatSafe(
             previewMiche.Pressure.ToString(),
-            previewMiche.Pressure.GetEnergy(),
+            previewMiche.Pressure.GetEnergy(CurrentPatch),
             string.Join("\n  ",
-                occupants.Select(b => b.FormattedName + ": " + Math.Round(previewMiche.Pressure.Score(b, cache), 3))));
+                occupants.Select(b => b.FormattedName + ": " +
+                    Math.Round(previewMiche.Pressure.Score(b, CurrentPatch, cache), 3))));
     }
 
     private void OnTranslationsChanged()

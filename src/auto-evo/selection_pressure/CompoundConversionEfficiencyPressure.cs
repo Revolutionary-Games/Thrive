@@ -2,7 +2,6 @@
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
 {
-    public readonly Patch Patch;
     public readonly Compound FromCompound;
     public readonly Compound ToCompound;
 
@@ -12,28 +11,27 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    public CompoundConversionEfficiencyPressure(Patch patch, Compound compound, Compound outCompound, float weight) :
+    public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
             RemoveOrganelle.ThatCreateCompound(outCompound),
         ])
     {
-        Patch = patch;
         FromCompound = compound;
         ToCompound = outCompound;
     }
 
     public override LocalizedString Name => NameString;
 
-    public override float Score(Species species, SimulationCache cache)
+    public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, Patch.Biome);
+        return cache.GetCompoundConversionScoreForSpecies(FromCompound, ToCompound, microbeSpecies, patch.Biome);
     }
 
-    public override float GetEnergy()
+    public override float GetEnergy(Patch patch)
     {
         return 0;
     }

@@ -16,14 +16,13 @@ public class GenerateMiche : IRunStep
     private readonly Compound temperature = SimulationParameters.Instance.GetCompound("temperature");
     private readonly Patch patch;
     private readonly SimulationCache cache;
+    private readonly AutoEvoGlobalCache globalCache;
 
-    private readonly WorldGenerationSettings worldSettings;
-
-    public GenerateMiche(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings)
+    public GenerateMiche(Patch patch, SimulationCache cache, AutoEvoGlobalCache globalCache)
     {
         this.patch = patch;
         this.cache = cache;
-        this.worldSettings = worldSettings;
+        this.globalCache = globalCache;
     }
 
     public int TotalSteps => 1;
@@ -32,16 +31,16 @@ public class GenerateMiche : IRunStep
 
     public bool RunStep(RunResults results)
     {
-        var generatedMiche = GenerateMicheTree();
+        var generatedMiche = GenerateMicheTree(globalCache);
         results.AddNewMicheForPatch(patch, PopulateMiche(generatedMiche));
 
         return true;
     }
 
-    public Miche GenerateMicheTree()
+    public Miche GenerateMicheTree(AutoEvoGlobalCache globalCache)
     {
-        var rootMiche = new Miche(new RootPressure());
-        var generatedMiche = new Miche(new MetabolicStabilityPressure(patch, 10.0f));
+        var rootMiche = new Miche(globalCache.RootPressure);
+        var generatedMiche = new Miche(globalCache.MetabolicStabilityPressure);
 
         rootMiche.AddChild(generatedMiche);
 
@@ -51,9 +50,8 @@ public class GenerateMiche : IRunStep
         if (patch.Biome.TryGetCompound(glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
             glucoseAmount.Amount > 0)
         {
-            var glucoseMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 1.5f));
-            glucoseMiche.AddChild(new Miche(
-                new CompoundCloudPressure(patch, 1, glucose, worldSettings.DayNightCycleEnabled)));
+            var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
+            glucoseMiche.AddChild(new Miche(globalCache.GlucoseCloudPressure));
 
             generatedMiche.AddChild(glucoseMiche);
         }
@@ -66,13 +64,13 @@ public class GenerateMiche : IRunStep
         // Iron
         if (hasSmallIronChunk || hasBigIronChunk)
         {
-            var ironMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, iron, atp, 1.0f));
+            var ironMiche = new Miche(globalCache.IronConversionEfficiencyPressure);
 
             if (hasSmallIronChunk)
-                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironSmallChunk", iron)));
+                ironMiche.AddChild(new Miche(globalCache.SmallIronChunkPressure));
 
             if (hasBigIronChunk)
-                ironMiche.AddChild(new Miche(new ChunkCompoundPressure(patch, 1, "ironBigChunk", iron)));
+                ironMiche.AddChild(new Miche(globalCache.BigIronChunkPressure));
 
             generatedMiche.AddChild(ironMiche);
         }
@@ -81,12 +79,10 @@ public class GenerateMiche : IRunStep
         if (patch.Biome.TryGetCompound(hydrogenSulfide, CompoundAmountType.Biome, out var hydrogenSulfideAmount) &&
             hydrogenSulfideAmount.Amount > 0)
         {
-            var hydrogenSulfideMiche = new Miche(
-                new CompoundConversionEfficiencyPressure(patch, hydrogenSulfide, glucose, 1.0f));
-            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 0.5f));
-            var maintainGlucose = new Miche(new MaintainCompound(patch, 1, glucose));
-            var envPressure = new Miche(new CompoundCloudPressure(patch, 1.0f, hydrogenSulfide,
-                worldSettings.DayNightCycleEnabled));
+            var hydrogenSulfideMiche = new Miche(globalCache.HydrogenSulfideConversionEfficiencyPressure);
+            var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
+            var maintainGlucose = new Miche(globalCache.MaintainGlucose);
+            var envPressure = new Miche(globalCache.HydrogenSulfideCloudPressure);
 
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
@@ -98,10 +94,10 @@ public class GenerateMiche : IRunStep
         if (patch.Biome.TryGetCompound(sunlight, CompoundAmountType.Biome, out var sunlightAmount) &&
             sunlightAmount.Ambient >= 0.25f)
         {
-            var sunlightMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, sunlight, glucose, 1.0f));
-            var generateATP = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 0.5f));
-            var maintainGlucose = new Miche(new MaintainCompound(patch, 1, glucose));
-            var envPressure = new Miche(new EnvironmentalCompoundPressure(patch, 1, sunlight, glucose, 10000));
+            var sunlightMiche = new Miche(globalCache.SunlightConversionEfficiencyPressure);
+            var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
+            var maintainGlucose = new Miche(globalCache.MaintainGlucose);
+            var envPressure = new Miche(globalCache.SunlightCompoundPressure);
 
             maintainGlucose.AddChild(envPressure);
             generateATP.AddChild(maintainGlucose);
@@ -113,22 +109,24 @@ public class GenerateMiche : IRunStep
         if (patch.Biome.TryGetCompound(temperature, CompoundAmountType.Biome, out var temperatureAmount) &&
             temperatureAmount.Ambient > 60)
         {
-            var tempMiche = new Miche(new CompoundConversionEfficiencyPressure(patch, temperature, atp, 1.0f));
-            tempMiche.AddChild(new Miche(new EnvironmentalCompoundPressure(patch, 1, temperature, atp, 100)));
+            var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);
+            tempMiche.AddChild(new Miche(globalCache.TemperatureCompoundPressure));
 
             generatedMiche.AddChild(tempMiche);
         }
 
-        var predationRoot = new Miche(new PredatorRoot(patch, 5));
-        var predationGlucose = new Miche(new CompoundConversionEfficiencyPressure(patch, glucose, atp, 1.0f));
+        var predationRoot = new Miche(globalCache.PredatorRoot);
+        var predationGlucose = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
 
         // Heterotrophic Miches
         foreach (var possiblePrey in patch.SpeciesInPatch)
         {
-            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, patch, 1.0f)));
+            predationGlucose.AddChild(new Miche(new PredationEffectivenessPressure(possiblePrey.Key, 1.0f)));
         }
 
-        predationRoot.AddChild(predationGlucose);
+        if (patch.SpeciesInPatch.Count > 1)
+            predationRoot.AddChild(predationGlucose);
+
         generatedMiche.AddChild(predationRoot);
 
         return rootMiche;
@@ -138,7 +136,7 @@ public class GenerateMiche : IRunStep
     {
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
-            miche.InsertSpecies(species, cache);
+            miche.InsertSpecies(species, patch, cache);
         }
 
         return miche;

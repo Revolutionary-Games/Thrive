@@ -5,9 +5,9 @@
 /// </summary>
 public static class AutoEvo
 {
-    public static AutoEvoRun CreateRun(GameWorld world)
+    public static AutoEvoRun CreateRun(GameWorld world, AutoEvoGlobalCache globalCache)
     {
-        var result = new AutoEvoRun(world);
+        var result = new AutoEvoRun(world, globalCache);
 
         if (Settings.Instance.RunAutoEvoDuringGamePlay)
         {

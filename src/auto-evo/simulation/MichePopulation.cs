@@ -58,16 +58,16 @@ public static class MichePopulation
     ///   Estimates the initial population numbers
     /// </summary>
     public static int CalculateMicrobePopulationInPatch(Species species, Miche miche,
-        BiomeConditions biomeConditions, SimulationCache cache)
+        Patch patch, SimulationCache cache)
     {
         // This assumes that only leaf nodes have energy, but the way Selection Pressures are designed
         // this is a reasonable assumption
         var leafNodes = new List<Miche>();
         miche.GetLeafNodes(leafNodes, x => x.Occupant == species);
 
-        var individualCost = CalculateMicrobeIndividualCost(species, biomeConditions, cache);
+        var individualCost = CalculateMicrobeIndividualCost(species, patch.Biome, cache);
 
-        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy()) / individualCost);
+        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
     }
 
     /// <summary>
@@ -185,7 +185,7 @@ public static class MichePopulation
         var miche = populations.GetMicheForPatch(patch);
 
         foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
-            miche.InsertSpecies(extraSpecies, cache);
+            miche.InsertSpecies(extraSpecies, patch, cache);
 
         // This prevents duplicates caused by ExtraSpecies
         var species = new HashSet<Species>();
@@ -225,8 +225,8 @@ public static class MichePopulation
                         continue;
 
                     // Weighted score is intentionally not used here as negatives break everything
-                    var score = cache.GetPressureScore(currentMiche.Pressure, microbeSpecies) /
-                        cache.GetPressureScore(currentMiche.Pressure, (MicrobeSpecies)node.Occupant!) *
+                    var score = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies) /
+                        cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
                         currentMiche.Pressure.Strength;
 
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
@@ -239,7 +239,7 @@ public static class MichePopulation
 
             foreach (var currentSpecies in species)
             {
-                var micheEnergy = node.Pressure.GetEnergy() * (scoresDictionary[currentSpecies] / totalScore);
+                var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
 
                 if (trackEnergy)
                 {

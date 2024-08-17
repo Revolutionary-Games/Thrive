@@ -18,8 +18,8 @@ public abstract class SelectionPressure
         get;
     }
 
-    public abstract float Score(Species species, SimulationCache cache);
-    public abstract float GetEnergy();
+    public abstract float Score(Species species, Patch patch, SimulationCache cache);
+    public abstract float GetEnergy(Patch patch);
 
     /// <summary>
     ///   Calculates the relative difference between the old and new scores
