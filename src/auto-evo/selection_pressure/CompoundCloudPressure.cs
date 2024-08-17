@@ -18,7 +18,7 @@ public class CompoundCloudPressure : SelectionPressure
     public CompoundCloudPressure(Patch patch, float weight, Compound compound, bool isDayNightCycleEnabled) :
         base(weight, [
             new ChangeMembraneRigidity(true),
-            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
+            new ChangeMembraneType("single"),
         ])
     {
         if (!compound.IsCloud)

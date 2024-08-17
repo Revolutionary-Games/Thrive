@@ -10,14 +10,13 @@ public class PredationEffectivenessPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
     private readonly Patch patch;
     private readonly float totalEnergy;
 
     public PredationEffectivenessPressure(Species prey, Patch patch, float weight) :
         base(weight, [
             new AddOrganelleAnywhere(organelle => organelle.MPCost < 30),
-            AddOrganelleAnywhere.ThatCreateCompound(Oxytoxy),
+            AddOrganelleAnywhere.ThatCreateCompound("oxytoxy"),
             new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent, CommonMutationFunctions.Direction.Front),
             new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
                 CommonMutationFunctions.Direction.Rear),
@@ -26,7 +25,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
             new ChangeMembraneRigidity(true),
-            new ChangeMembraneType(SimulationParameters.Instance.GetMembrane("single")),
+            new ChangeMembraneType("single"),
         ])
     {
         this.patch = patch;

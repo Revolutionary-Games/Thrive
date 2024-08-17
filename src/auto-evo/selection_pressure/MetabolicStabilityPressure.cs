@@ -7,12 +7,11 @@ public class MetabolicStabilityPressure : SelectionPressure
     private static readonly LocalizedString NameString = new LocalizedString("MICHE_METABOLIC_STABILITY_PRESSURE");
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private readonly Patch patch;
 
     public MetabolicStabilityPressure(Patch patch, float weight) : base(weight, [
-        AddOrganelleAnywhere.ThatCreateCompound(ATP),
-        RemoveOrganelle.ThatUseCompound(ATP),
+        AddOrganelleAnywhere.ThatCreateCompound("atp"),
+        RemoveOrganelle.ThatUseCompound("atp"),
     ])
     {
         this.patch = patch;

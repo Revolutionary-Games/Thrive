@@ -22,10 +22,24 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any());
     }
 
+    public static RemoveOrganelle ThatUseCompound(string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        return ThatUseCompound(compound);
+    }
+
     public static RemoveOrganelle ThatCreateCompound(Compound compound)
     {
         return new RemoveOrganelle(organelle => organelle.RunnableProcesses
             .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any());
+    }
+
+    public static RemoveOrganelle ThatCreateCompound(string compoundName)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        return ThatCreateCompound(compound);
     }
 
     public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)

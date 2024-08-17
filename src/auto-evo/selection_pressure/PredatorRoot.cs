@@ -8,13 +8,13 @@ public class PredatorRoot : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
-    private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
-    private Patch patch;
+    private readonly Patch patch;
 
     public PredatorRoot(Patch patch, float weight) : base(weight, [
-        AddOrganelleAnywhere.ThatConvertBetweenCompounds(Glucose, ATP),
+        AddOrganelleAnywhere.ThatConvertBetweenCompounds("glucose", "atp"),
     ])
     {
         this.patch = patch;
@@ -27,7 +27,7 @@ public class PredatorRoot : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var atpFromGlucose = cache.GetCompoundGeneratedFrom(Glucose, ATP, microbeSpecies, patch.Biome);
+        var atpFromGlucose = cache.GetCompoundGeneratedFrom(glucose, atp, microbeSpecies, patch.Biome);
 
         // Ensure that a predator actually needs the glucose from prey
         if (atpFromGlucose >= cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome).TotalConsumption)

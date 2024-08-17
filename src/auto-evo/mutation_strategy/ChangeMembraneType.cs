@@ -7,9 +7,9 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 {
     private MembraneType membraneType;
 
-    public ChangeMembraneType(MembraneType membraneType)
+    public ChangeMembraneType(string membraneType)
     {
-        this.membraneType = membraneType;
+        this.membraneType = SimulationParameters.Instance.GetMembrane(membraneType);
     }
 
     public bool Repeatable => false;

@@ -26,11 +26,27 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             .Any(proc => proc.Process.Inputs.ContainsKey(compound)), direction);
     }
 
+    public static AddOrganelleAnywhere ThatUseCompound(string compoundName, CommonMutationFunctions.Direction direction
+        = CommonMutationFunctions.Direction.Neutral)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        return ThatUseCompound(compound, direction);
+    }
+
     public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Any(proc => proc.Process.Outputs.ContainsKey(compound)), direction);
+    }
+
+    public static AddOrganelleAnywhere ThatCreateCompound(string compoundName,
+        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+    {
+        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+
+        return ThatCreateCompound(compound, direction);
     }
 
     public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
@@ -39,6 +55,15 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Any(proc => proc.Process.Inputs.ContainsKey(fromCompound) &&
                 proc.Process.Outputs.ContainsKey(toCompound)), direction);
+    }
+
+    public static AddOrganelleAnywhere ThatConvertBetweenCompounds(string fromCompoundName, string toCompoundName,
+        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
+    {
+        var fromCompound = SimulationParameters.Instance.GetCompound(fromCompoundName);
+        var toCompound = SimulationParameters.Instance.GetCompound(toCompoundName);
+
+        return ThatConvertBetweenCompounds(fromCompound, toCompound, direction);
     }
 
     public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
