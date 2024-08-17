@@ -206,7 +206,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
             var compounds = entity.Get<CompoundStorage>().Compounds;
 
-            // Stop engulfing if out of ATP or if this is an engulfable that has been engulfed
+            // Stop engulfing if this is an engulfable that has been engulfed
             bool engulfed = false;
 
             if (entity.Has<Engulfable>())
@@ -214,7 +214,9 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
             }
 
-            if (compounds.TakeCompound(atp, cost) < cost - 0.001f || engulfed)
+            compounds.TakeCompound(atp, cost);
+
+            if (engulfed)
             {
                 control.SetStateColonyAware(entity, MicrobeState.Normal);
             }

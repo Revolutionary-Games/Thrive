@@ -86,7 +86,13 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             if (compounds.TakeCompound(atp, cost) < cost)
             {
                 // Ran out of ATP, disable engulf
-                control.SetStateColonyAware(entity, MicrobeState.Normal);
+                // control.SetStateColonyAware(entity, MicrobeState.Normal);
+
+                health.CurrentHealth -= Constants.ENGULF_NO_ATP_DAMAGE;
+
+                entity.SendNoticeIfPossible(() =>
+                    new SimpleHUDMessage(Localization.Translate("ENGULF_NO_ATP_DAMAGE_MESSAGE"),
+                        DisplayDuration.Short));
             }
         }
     }
