@@ -72,7 +72,8 @@ public static class CommonMutationFunctions
     }
 
     public static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, MutationWorkMemory workMemory, Random random)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, MutationWorkMemory workMemory,
+        Random random)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
@@ -104,7 +105,8 @@ public static class CommonMutationFunctions
                             // Face movement to move forward
                             result.Orientation = 3;
 
-                            if (existingOrganelles.CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
+                            if (existingOrganelles
+                                .CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
                             {
                                 return result;
                             }
@@ -115,7 +117,8 @@ public static class CommonMutationFunctions
                         {
                             result.Orientation = rotation;
 
-                            if (existingOrganelles.CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
+                            if (existingOrganelles
+                                .CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
                             {
                                 return result;
                             }
