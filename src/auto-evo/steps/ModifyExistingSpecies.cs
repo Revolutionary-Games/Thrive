@@ -167,10 +167,8 @@ public class ModifyExistingSpecies : IRunStep
         var mutationsToTry = new List<Mutation>();
 
         var leafNodes = new List<Miche>();
-        miche.GetLeafNodes(leafNodes, x => x.Occupant != null);
-
         var emptyLeafNodes = new List<Miche>();
-        miche.GetLeafNodes(emptyLeafNodes, x => x.Occupant == null);
+        miche.GetLeafNodes(leafNodes, emptyLeafNodes, x => x.Occupant != null);
 
         foreach (var species in oldOccupants)
         {

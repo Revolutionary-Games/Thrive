@@ -79,6 +79,28 @@ public class Miche
         }
     }
 
+    public void GetLeafNodes(List<Miche> passingNodes, List<Miche> failingNodes, Func<Miche, bool> criteria)
+    {
+        if (IsLeafNode())
+        {
+            if (criteria(this))
+            {
+                passingNodes.Add(this);
+            }
+            else
+            {
+                failingNodes.Add(this);
+            }
+
+            return;
+        }
+
+        foreach (var child in Children)
+        {
+            child.GetLeafNodes(passingNodes, failingNodes, criteria);
+        }
+    }
+
     public void GetOccupants(HashSet<Species> occupantsSet)
     {
         if (Occupant != null)
