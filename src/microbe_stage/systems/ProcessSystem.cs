@@ -178,49 +178,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         foreach (var organelle in organelles)
         {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                ProcessSpeedInformation processData;
-                if (cache != null && amountType == CompoundAmountType.Average)
-                {
-                    processData = cache.GetProcessMaximumSpeed(process, biome);
-                }
-                else
-                {
-                    processData = CalculateProcessMaximumSpeed(process, biome, amountType);
-                }
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, result);
 
-                if (processData.WritableInputs.TryGetValue(ATP, out var amount))
-                {
-                    processATPConsumption += amount;
-
-                    result.AddConsumption(organelle.Definition.InternalName, amount);
-                }
-
-                if (processData.WritableOutputs.TryGetValue(ATP, out amount))
-                {
-                    result.AddProduction(organelle.Definition.InternalName, amount);
-
-                    var isInPatch = true;
-
-                    foreach (var input in processData.WritableInputs)
-                    {
-                        if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
-                        {
-                            if (inputCompoundData.Amount > 0 || inputCompoundData.Ambient > 0)
-                                continue;
-                        }
-
-                        isInPatch = false;
-                        break;
-                    }
-
-                    if (isInPatch)
-                    {
-                        processATPProduction += amount;
-                    }
-                }
-            }
+            processATPProduction += production;
+            processATPConsumption += consumption;
 
             // Take special cell components that take energy into account
             if (includeMovementCost && organelle.Definition.HasMovementComponent)
@@ -443,6 +404,76 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         return balancesToSupplement;
+    }
+
+    public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
+        BiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
+    {
+        float processATPProduction = 0.0f;
+        float processATPConsumption = 0.0f;
+
+        foreach (var process in organelle.Definition.RunnableProcesses)
+        {
+            ProcessSpeedInformation processData;
+            if (cache != null && amountType == CompoundAmountType.Average)
+            {
+                processData = cache.GetProcessMaximumSpeed(process, biome);
+            }
+            else
+            {
+                processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+            }
+
+            if (processData.WritableInputs.TryGetValue(ATP, out var amount))
+            {
+                processATPConsumption += amount;
+
+                result?.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+
+            if (processData.WritableOutputs.TryGetValue(ATP, out amount))
+            {
+                result?.AddProduction(organelle.Definition.InternalName, amount);
+
+                var isInPatch = true;
+
+                foreach (var input in processData.WritableInputs)
+                {
+                    if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
+                    {
+                        if (inputCompoundData.Amount > 0 || inputCompoundData.Ambient > 0)
+                            continue;
+                    }
+
+                    bool isInChunk = false;
+
+                    foreach (var chunk in biome.Chunks.Values)
+                    {
+                        if (chunk.Compounds != null && chunk.Compounds.TryGetValue(input.Key, out var chunkCompound))
+                        {
+                            if (chunkCompound.Amount > 0)
+                            {
+                                isInChunk = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (isInChunk)
+                        continue;
+
+                    isInPatch = false;
+                    break;
+                }
+
+                if (isInPatch)
+                {
+                    processATPProduction += amount;
+                }
+            }
+        }
+
+        return (processATPProduction, processATPConsumption);
     }
 
     /// <summary>
