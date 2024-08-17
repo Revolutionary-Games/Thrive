@@ -237,7 +237,8 @@ public class ModifyExistingSpecies : IRunStep
             Mutation? bestMutation = null;
             var bestScore = 0.0f;
 
-            var parentTraversal = nonEmptyLeafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()).ToList();
+            var parentTraversal = nonEmptyLeafNodes.Where(x => x.Occupant == species)
+                .Select(x => x.BackTraversal()).ToList();
 
             foreach (var mutation in mutationsToTry)
             {
