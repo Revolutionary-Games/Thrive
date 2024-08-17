@@ -72,66 +72,6 @@ public static class CommonMutationFunctions
         }
     }
 
-    private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
-        List<Hex> workMemory2, Random random)
-    {
-        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
-
-        // Loop through all the organelles and find an open spot to
-        // place our new organelle attached to existing organelles
-        // This almost always is over at the first iteration, so it's
-        // not a huge performance hog
-        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
-        {
-            // The otherOrganelle is the organelle we wish to be next to
-            // Loop its hexes and check positions next to them
-            foreach (var hex in otherOrganelle.RotatedHexes)
-            {
-                // Offset by hexes in organelle we are looking at
-                var pos = otherOrganelle.Position + hex;
-
-                foreach (int side in SideTraversalOrder(hex, direction, random))
-                {
-                    for (int radius = 1; radius <= 3; ++radius)
-                    {
-                        // Offset by hex offset multiplied by a factor to check for greater range
-                        var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
-                        hexOffset *= radius;
-                        result.Position = pos + hexOffset;
-
-                        if (organelle.HasMovementComponent)
-                        {
-                            // Face movement to move forward
-                            result.Orientation = 3;
-
-                            if (existingOrganelles
-                                .CanPlace(result, workMemory1, workMemory2))
-                            {
-                                return result;
-                            }
-                        }
-
-                        // Check every possible rotation value.
-                        for (int rotation = 0; rotation <= 5; ++rotation)
-                        {
-                            result.Orientation = rotation;
-
-                            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
-                            {
-                                return result;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        // Not good to signal normal program flow with exceptions so this now returns null when not being able to find
-        // a position
-        return null;
-    }
-
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)
     {
         var workMemory1 = new HashSet<Hex>();
@@ -196,6 +136,65 @@ public static class CommonMutationFunctions
 
             organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);
         }
+    }
+
+    private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
+        List<Hex> workMemory2, Random random)
+    {
+        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        // Loop through all the organelles and find an open spot to
+        // place our new organelle attached to existing organelles
+        // This almost always is over at the first iteration, so it's
+        // not a huge performance hog
+        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
+        {
+            // The otherOrganelle is the organelle we wish to be next to
+            // Loop its hexes and check positions next to them
+            foreach (var hex in otherOrganelle.RotatedHexes)
+            {
+                // Offset by hexes in organelle we are looking at
+                var pos = otherOrganelle.Position + hex;
+
+                foreach (int side in SideTraversalOrder(hex, direction, random))
+                {
+                    // pick a hex direction, with a slight bias towards forwards
+                    for (int radius = 1; radius <= 3; ++radius)
+                    {
+                        // Offset by hex offset multiplied by a factor to check for greater range
+                        var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
+                        hexOffset *= radius;
+                        result.Position = pos + hexOffset;
+
+                        if (organelle.HasMovementComponent)
+                        {
+                            // Face movement to move forward
+                            result.Orientation = 3;
+
+                            if (existingOrganelles
+                                .CanPlace(result, workMemory1, workMemory2))
+                            {
+                                return result;
+                            }
+                        }
+
+                        // Check every possible rotation value.
+                        for (int rotation = 0; rotation <= 5; ++rotation)
+                        {
+                            result.Orientation = rotation;
+
+                            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+                            {
+                                return result;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 
     private static Hex.HexSide[] SideTraversalOrder(Hex hex, Direction direction, Random random)

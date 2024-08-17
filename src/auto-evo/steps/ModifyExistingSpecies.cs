@@ -208,7 +208,7 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        // Disregard "mutations" that result in indentical species"
+        // Disregard "mutations" that result in identical species"
         mutationsToTry = mutationsToTry.Where(x => x.Item1 != x.Item2).OrderBy(_ => random.Next())
             .Take(totalMutationsToTry).ToList();
 
