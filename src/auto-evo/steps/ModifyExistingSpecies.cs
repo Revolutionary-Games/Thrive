@@ -179,8 +179,8 @@ public class ModifyExistingSpecies : IRunStep
             if (species is not MicrobeSpecies microbeSpecies)
                 continue;
 
-            foreach (var traversal in
-                nonEmptyLeafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
+            foreach (var traversal in nonEmptyLeafNodes
+                .Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
             {
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
