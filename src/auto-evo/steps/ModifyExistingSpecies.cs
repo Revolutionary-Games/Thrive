@@ -180,7 +180,7 @@ public class ModifyExistingSpecies : IRunStep
                 continue;
 
             foreach (var traversal in nonEmptyLeafNodes
-                .Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
+            .Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
             {
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
