@@ -43,6 +43,7 @@ using World = DefaultEcs.World;
 [WritesToComponent(typeof(MicrobeColony))]
 [WritesToComponent(typeof(MicrobeAI))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
+[WritesToComponent(typeof(DamageCooldown))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
@@ -876,6 +877,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             return endosome;
 
         // New entry needed
+        // TODO: pooling for endosome instances
         var newData = endosomeScene.Instantiate<Endosome>();
 
         // Tint is not applied here as all phagosome tints are applied always after processing an engulfer
@@ -1458,6 +1460,14 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         PerformEjectionForceAndAttachedRemove(entity, ref engulfable, engulfableObject);
 
         RemoveEngulfedObject(ref engulfer, engulfableObject, ref engulfable, false);
+
+        // When ejecting something with a pilus it can immediately deal max pilus damage to the engulfer, to prevent
+        // that damage cooldown is added when ejecting
+        if (entity.Has<DamageCooldown>())
+        {
+            ref var damageCooldown = ref entity.Get<DamageCooldown>();
+            damageCooldown.StartCooldown(Constants.PILUS_MAX_COOLDOWN);
+        }
 
         // The phagosome will be deleted automatically, we just hide it here to make it disappear on the same frame
         // as the ejection completes

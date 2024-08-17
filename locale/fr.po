@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-02 12:03+0300\n"
+"POT-Creation-Date: 2024-08-17 12:14-0500\n"
 "PO-Revision-Date: 2024-07-26 07:22+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -123,6 +123,14 @@ msgstr "(vitesse de mutation des espèces contrôlées par l'IA)"
 
 msgid "ALL"
 msgstr "Tout"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
@@ -881,6 +889,13 @@ msgstr "Unité : {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Le contenu provenant du Workshop sera téléchargé depuis le dossier : {0}"
+
+msgid "CONTINUE"
+msgstr "Continuer"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Sélectionner une espèce"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Continuez à prospérer"
@@ -4766,6 +4781,10 @@ msgstr "Active / désactive les popup d'avertissement de progrès non sauvegard�
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Afficher le flux des actualités de Thrive (téléchargé depuis internet)"
 
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Visitez notre page Patreon"
+
 msgid "SIGNALING_AGENT"
 msgstr "Agent de signalisation"
 
@@ -5457,6 +5476,10 @@ msgstr "Effets de la toxine sur la cible"
 msgid "TOXIN_RESISTANCE"
 msgstr "Résistance aux toxines"
 
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
+
 msgid "TOXIN_TYPE_COLON"
 msgstr "Type de toxine :"
 
@@ -5855,9 +5878,8 @@ msgstr "Pilus injectisome"
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Transforme le pilus en un injectisome, infligeant des dégats par toxines lors de l'empalement d'autres cellules"
 
-#, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST"
-msgstr "{0} ({1} PM)"
+msgstr "Mucocyste"
 
 #, fuzzy
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
@@ -5950,6 +5972,10 @@ msgstr "Visionneur"
 
 msgid "VIEW_ALL"
 msgstr "Voir toutes"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Pas de processus."
 
 msgid "VIEW_ONLINE"
 msgstr "Voir en ligne"

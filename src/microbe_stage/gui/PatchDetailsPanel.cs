@@ -217,7 +217,7 @@ public partial class PatchDetailsPanel : PanelContainer
         set
         {
             migrationManagerEnabled = value;
-            UpdateMoveToPatchButton();
+            UpdateMigrationManagerVisibility();
         }
     }
 

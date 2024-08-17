@@ -486,11 +486,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         previousSpecies.Obsolete = true;
 
         // Log becoming multicellular in the timeline
-        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
-            true, "multicellularTimelineMembraneTouch.png");
+        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR",
+            previousSpecies.FormattedNameBbCodeUnstyled), true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
+            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedNameBbCodeUnstyled),
             true, "multicellularTimelineMembraneTouch.png");
 
         if (WorldSimulation.Processing)
@@ -958,6 +958,18 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdateBackground();
 
         UpdatePatchLightLevelSettings();
+    }
+
+    protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
+    {
+        base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
+
+        // Update spawners if staying in the same patch as otherwise they wouldn't be updated and would spawn the
+        // obsolete species
+        if (inPatch == GameWorld.Map.CurrentPatch)
+        {
+            patchManager.UpdateSpawners(inPatch, this);
+        }
     }
 
     protected override void OnLightLevelUpdate()

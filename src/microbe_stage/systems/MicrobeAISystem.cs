@@ -111,7 +111,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
         // also aren't eaten already
-        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundBag>()
+        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundStorage>()
             .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
 
         var simulationParameters = SimulationParameters.Instance;
@@ -431,17 +431,23 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
         }
 
+        var isIronEater = organelles.IronBreakdownEfficiency > 0;
+
+        // Siderophore is experimental feature
+        if (!gameWorld!.WorldSettings.ExperimentalFeatures)
+            isIronEater = false;
+
         // If there are no threats, look for a chunk to eat
         // TODO: still consider engulfing things if we're in a colony that can engulf (has engulfer cells)
         if (cellProperties.MembraneType.CanEngulf)
         {
             var targetChunk = GetNearestChunkItem(in entity, ref engulfer, ref position, compounds,
-                speciesFocus, speciesOpportunism, random);
+                speciesFocus, speciesOpportunism, random, isIronEater, out var isChunkBigIron);
+
             if (targetChunk != null)
             {
                 PursueAndConsumeChunks(ref position, ref ai, ref control, ref engulfer, entity,
-                    targetChunk.Value.Position, speciesActivity, random);
-
+                    targetChunk.Value.Position, speciesActivity, random, ref organelles, isIronEater, isChunkBigIron);
                 return;
             }
         }
@@ -491,19 +497,26 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? GetNearestChunkItem(
         in Entity entity, ref Engulfer engulfer, ref WorldPosition position,
-        CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random)
+        CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random, bool ironEater,
+        out bool isBigIron)
     {
         (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? chosenChunk = null;
         float bestFoundChunkDistance = float.MaxValue;
 
         BuildChunksCache();
 
+        isBigIron = false;
+
         // Retrieve nearest potential chunk
         foreach (var chunk in chunkDataCache)
         {
-            // Skip too big things
-            if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
-                continue;
+            if (!ironEater)
+            {
+                // Skip too big things
+
+                if (engulfer.EngulfingSize < chunk.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+                    continue;
+            }
 
             // And too distant things
             var distance = (chunk.Position - position.Position).LengthSquared();
@@ -522,6 +535,15 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                     {
                         chosenChunk = chunk;
                         bestFoundChunkDistance = distance;
+
+                        if (ironEater)
+                        {
+                            // TODO: this should have a more robust check (than just pure size)
+                            if (p.Key == iron && chunk.EngulfSize > 50)
+                            {
+                                isBigIron = true;
+                            }
+                        }
                     }
 
                     break;
@@ -708,12 +730,22 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void PursueAndConsumeChunks(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
-        ref Engulfer engulfer, in Entity entity, Vector3 chunk, float speciesActivity, Random random)
+        ref Engulfer engulfer, in Entity entity, Vector3 chunk, float speciesActivity, Random random,
+        ref OrganelleContainer organelles, bool isIronEater = false, bool chunkIsIron = false)
     {
         // This is a slight offset of where the chunk is, to avoid a forward-facing part blocking it
         ai.TargetPosition = chunk + new Vector3(0.5f, 0.0f, 0.5f);
         control.LookAtPoint = ai.TargetPosition;
-        SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk);
+
+        // Check if using siderophore
+        if (isIronEater && chunkIsIron && gameWorld!.WorldSettings.ExperimentalFeatures)
+        {
+            control.EmitSiderophore(ref organelles, entity);
+        }
+        else
+        {
+            SetEngulfIfClose(ref control, ref engulfer, ref position, entity, chunk);
+        }
 
         // Just in case something is obstructing chunk engulfing, wiggle a little sometimes
         if (random.NextDouble() < 0.05)
@@ -728,7 +760,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
         else
         {
-            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeedTowardsPoint(ref position, chunk, Constants.AI_BASE_MOVEMENT);
         }
     }
 
@@ -757,9 +789,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
 
             // Sprint until full strain
-
-            if (gameWorld!.WorldSettings.ExperimentalFeatures)
-                control.Sprinting = true;
+            control.Sprinting = true;
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -791,15 +821,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION / 5, random))
             {
-                control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+                control.SetMoveSpeedTowardsPoint(ref position, target, Constants.AI_BASE_MOVEMENT);
             }
         }
         else
         {
-            control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);
+            control.SetMoveSpeedTowardsPoint(ref position, target, Constants.AI_BASE_MOVEMENT);
 
-            if (gameWorld!.WorldSettings.ExperimentalFeatures)
-                control.Sprinting = true;
+            control.Sprinting = true;
         }
 
         // Predators can use slime jets as an ambush mechanism
@@ -1241,11 +1270,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             foreach (ref readonly var chunk in chunksSet.GetEntities())
             {
-                // Ignore already despawning chunks
-                ref var timed = ref chunk.Get<TimedLife>();
+                if (chunk.Has<TimedLife>())
+                {
+                    // Ignore already despawning chunks
+                    ref var timed = ref chunk.Get<TimedLife>();
 
-                if (timed.TimeToLiveRemaining <= 0)
-                    continue;
+                    if (timed.TimeToLiveRemaining <= 0)
+                        continue;
+                }
 
                 // Ignore chunks that wouldn't yield any useful compounds when absorbing
                 ref var compounds = ref chunk.Get<CompoundStorage>();

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-02 12:03+0300\n"
+"POT-Creation-Date: 2024-08-17 12:14-0500\n"
 "PO-Revision-Date: 2024-07-06 16:31+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -123,6 +123,14 @@ msgstr "(Velocidad con la cual las species de la AI mutan)"
 
 msgid "ALL"
 msgstr "Todos"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "Permitir que las especies no tengan mutaciones (en caso que no se encuentren buenas mutaciones)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Permitir que las especies no migren de zona (en caso que no hayan buenas zonas para migrar)"
@@ -881,6 +889,14 @@ msgstr "Tritanomalía (Azul-Amarillo)"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "El contenido Workshop será cargado desde la carpeta: {0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Continuar prosperando"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Selecciona una especie"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Continuar prosperando"
@@ -4945,6 +4961,10 @@ msgstr "Activa / Desactiva la advertencia de que perderás los datos no guardado
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Mostrar noticias de Thrive (Descarga desde internet)"
 
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Visita nuestro Patreon"
+
 msgid "SIGNALING_AGENT"
 msgstr "Agente señalizador"
 
@@ -5673,6 +5693,10 @@ msgid "TOXIN_RESISTANCE"
 msgstr "Resistencia Tóxica"
 
 #, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
+
+#, fuzzy
 msgid "TOXIN_TYPE_COLON"
 msgstr "Tipo:"
 
@@ -6175,6 +6199,10 @@ msgstr "Visualizador"
 #, fuzzy
 msgid "VIEW_ALL"
 msgstr "Deshabilitar todo"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Aumenta la velocidad de rotación de células grandes."
 
 #, fuzzy
 msgid "VIEW_ONLINE"

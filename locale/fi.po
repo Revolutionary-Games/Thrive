@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-02 12:03+0300\n"
+"POT-Creation-Date: 2024-08-17 12:14-0500\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -133,6 +133,18 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 
 msgid "ALL"
 msgstr "Kaikki"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "on saanut mutaation"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
 #, fuzzy
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
@@ -924,6 +936,14 @@ msgstr "Tritanopia (sininen-keltainen)"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop-sisältö lähetetään kansiosta: {0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Aloita selviytyminen"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Valitse alue nähdäksesi sen tiedot tässä"
 
 #, fuzzy
 msgid "CONTINUE_THRIVING"
@@ -5059,6 +5079,10 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "SIGNALING_AGENT"
 msgstr "Viestintäkeskus"
 
@@ -5789,6 +5813,14 @@ msgid "TOXIN_RESISTANCE"
 msgstr "Myrkyn kestävyys"
 
 #, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Aggressiiviset mikrobit kulkevat pidempiä etäisyyksiä jahdatessaan muita\n"
+"ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
+"Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
+"käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
+
+#, fuzzy
 msgid "TOXIN_TYPE_COLON"
 msgstr "Terv.:"
 
@@ -6293,6 +6325,10 @@ msgstr "Tarkastelija"
 #, fuzzy
 msgid "VIEW_ALL"
 msgstr "Ei käytössä"
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
 
 #, fuzzy
 msgid "VIEW_ONLINE"

@@ -196,7 +196,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             }
 
             // Remove ATP due to strain even if not moving
-            // This is calculated similarily to the regular movement cost for consistency
+            // This is calculated similarly to the regular movement cost for consistency
             var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
             compounds.TakeCompound(atp, strainCost);
 
@@ -226,8 +226,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
             cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
-        // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
-        // movement cost
+        bool usesSprintingForce = false;
 
         if (entity.Has<StrainAffected>())
         {
@@ -235,10 +234,11 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             ref var strain = ref entity.Get<StrainAffected>();
             strainMultiplier = GetStrainAtpMultiplier(ref strain);
 
-            // TODO: move this if down in the future
+            // TODO: move this if down in the future (once save compatibility is broken next time)
             if (control.Sprinting)
             {
                 strain.IsUnderStrain = true;
+                usesSprintingForce = true;
             }
             else
             {
@@ -246,6 +246,8 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             }
         }
 
+        // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
+        // movement cost
         var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
         var got = compounds.TakeCompound(atp, cost);
@@ -255,6 +257,14 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         {
             // Not enough ATP to move at full speed
             force *= 0.5f;
+
+            // Force out of sprint if not enough ATP
+            if (usesSprintingForce)
+            {
+                control.Sprinting = false;
+
+                // Under strain will reset on the next update to false
+            }
         }
 
         // TODO: this if check can be removed (can be assumed to be present) once save compatibility is next broken
@@ -282,7 +292,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
 
-        if (control.Sprinting)
+        if (usesSprintingForce)
         {
             force *= Constants.SPRINTING_FORCE_MULTIPLIER;
 

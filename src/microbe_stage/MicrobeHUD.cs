@@ -36,6 +36,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private ActionButton unbindAllHotkey = null!;
 
     [Export]
+    private ActionButton siderophoreHotkey = null!;
+
+    [Export]
     private Button multicellularButton = null!;
 
     [Export]
@@ -75,6 +78,9 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
     [Signal]
     public delegate void OnMucocystButtonPressedEventHandler();
+
+    [Signal]
+    public delegate void OnSiderophoreButtonPressedEventHandler();
 
     [Signal]
     public delegate void OnToggleBindingButtonPressedEventHandler();
@@ -433,6 +439,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         bool showToxin;
         bool showSlime;
         bool showMucocyst;
+        bool showSiderophore;
 
         bool engulfing;
         bool usingMucocyst;
@@ -448,6 +455,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showToxin = vacuoles > 0;
             showSlime = slimeJets > 0;
             showMucocyst = mucocysts > 0;
+            showSiderophore = false;
 
             engulfing = colony.ColonyState == MicrobeState.Engulf;
             usingMucocyst = colony.ColonyState == MicrobeState.MucocystShield;
@@ -457,6 +465,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             showToxin = organelles.AgentVacuoleCount > 0;
             showSlime = organelles.SlimeJets is { Count: > 0 };
             showMucocyst = organelles.MucocystCount > 0;
+            showSiderophore = organelles.IronBreakdownEfficiency > 0 && stage.WorldSettings.ExperimentalFeatures;
 
             engulfing = control.State == MicrobeState.Engulf;
             usingMucocyst = control.State == MicrobeState.MucocystShield;
@@ -473,6 +482,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         // member might be able to
         UpdateBaseAbilitiesBar(cellProperties.CanEngulfInColony(player), showToxin, showSlime,
             organelles.HasSignalingAgent, showMucocyst, true, engulfing, isDigesting, usingMucocyst, control.Sprinting);
+
+        siderophoreHotkey.Visible = showSiderophore;
 
         bindingModeHotkey.Visible = organelles.CanBind(ref species);
         unbindAllHotkey.Visible = organelles.CanUnbind(ref species, player);
@@ -807,6 +818,11 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         EmitSignal(SignalName.OnMucocystButtonPressed);
     }
 
+    private void OnSiderophorePressed()
+    {
+        EmitSignal(SignalName.OnSiderophoreButtonPressed);
+    }
+
     private void OnEjectEngulfedPressed()
     {
         EmitSignal(SignalName.OnEjectEngulfedButtonPressed);
@@ -821,5 +837,37 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     {
         UpdateColonySizeForMulticellular();
         UpdateColonySizeForMacroscopic();
+    }
+
+    private void ToggleProcessPressed(ChemicalEquation equation)
+    {
+        if (!stage!.HasAlivePlayer || !stage.Player.Has<BioProcesses>())
+            return;
+
+        if (equation.EquationFromProcess == null)
+        {
+            GD.PrintErr("Equation has no process set for process speed control in player");
+            return;
+        }
+
+        ref var processes = ref stage.Player.Get<BioProcesses>();
+
+        var activeProcesses = processes.ActiveProcesses;
+
+        if (activeProcesses == null)
+            return;
+
+        var processesCount = activeProcesses.Count;
+
+        for (int i = 0; i < processesCount; ++i)
+        {
+            // Update speed of the process controlled by the GUI control that signaled this change
+            if (equation.EquationFromProcess.MatchesUnderlyingProcess(activeProcesses[i].Process))
+            {
+                var process = activeProcesses[i];
+                process.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
+                activeProcesses[i] = process;
+            }
+        }
     }
 }

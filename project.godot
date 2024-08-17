@@ -15,7 +15,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
-config/version="0.6.7.1"
+config/version="0.7.0.0"
 run/main_scene="res://src/general/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
@@ -499,6 +499,11 @@ g_sprint={
 g_toggle_mucocyst={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":84,"physical_keycode":0,"key_label":0,"unicode":116,"echo":false,"script":null)
+]
+}
+g_fire_siderophore={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":89,"physical_keycode":0,"key_label":0,"unicode":121,"echo":false,"script":null)
 ]
 }
 

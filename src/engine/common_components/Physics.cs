@@ -47,7 +47,7 @@ public struct Physics
     public bool TrackVelocity;
 
     /// <summary>
-    ///   Sets the axis lock type applied when the body is created (for example constraining to the the Y-axis).
+    ///   Sets the axis lock type applied when the body is created (for example constraining to the Y-axis).
     ///   This limitation exists because there's currently no need to allow physics bodies to add / remove the
     ///   axis lock dynamically, so if this value is changed then the body needs to be forcefully recreated.
     /// </summary>

@@ -8,6 +8,9 @@ using Godot;
 /// </summary>
 public partial class EndosymbiosisPopup : CustomWindow
 {
+    [Export]
+    public bool Lawk;
+
 #pragma warning disable CA2213
     [Export]
     private Label generalExplanationLabel = null!;
@@ -141,7 +144,7 @@ public partial class EndosymbiosisPopup : CustomWindow
 
             var choice = candidateGUIScene.Instantiate<EndosymbiosisCandidateOption>();
 
-            MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies(microbeSpecies, tempSymbionts);
+            MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies(microbeSpecies, tempSymbionts, Lawk);
 
             // TODO: should engulfed things that have no potential organelles be shown at all? (they are shown now
             // with a text saying there's no candidate organelles)

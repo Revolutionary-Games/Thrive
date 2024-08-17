@@ -55,7 +55,7 @@ public class WorldGenerationSettings
     public bool LAWK { get; set; }
 
     /// <summary>
-    ///   Whether or not experimental features are enabled this game
+    ///   Whether experimental features are enabled this game
     /// </summary>
     public bool ExperimentalFeatures { get; set; }
 
@@ -101,6 +101,9 @@ public class WorldGenerationSettings
 
     [JsonIgnore]
     public bool PassiveGainOfReproductionCompounds => Difficulty.PassiveReproduction;
+
+    [JsonIgnore]
+    public bool SwitchSpeciesOnExtinction => Difficulty.SwitchSpeciesOnExtinction;
 
     [JsonIgnore]
     public bool LimitReproductionCompoundUseSpeed => Difficulty.LimitGrowthRate;

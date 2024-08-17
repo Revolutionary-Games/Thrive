@@ -162,9 +162,13 @@ public partial class CellEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
+
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
+
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
 #pragma warning disable CA2213
 
@@ -268,6 +272,15 @@ public partial class CellEditorComponent :
 
     [Export]
     private CustomRichTextLabel notEnoughStorageWarning = null!;
+
+    [Export]
+    private Button processListButton = null!;
+
+    [Export]
+    private ProcessList processList = null!;
+
+    [Export]
+    private CustomWindow processListWindow = null!;
 
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
@@ -1902,6 +1915,9 @@ public partial class CellEditorComponent :
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
+
+        // Handle process list
+        HandleProcessList(energyBalance, biome);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
@@ -1928,6 +1944,35 @@ public partial class CellEditorComponent :
         specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private void HandleProcessList(EnergyBalanceInfo energyBalance, BiomeConditions biome)
+    {
+        var processes = new List<TweakedProcess>();
+
+        // Empty list to later fill
+        var processStatistics = new List<ProcessSpeedInformation>();
+
+        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
+
+        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+
+        foreach (var process in processes)
+        {
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
+
+            // If produces more ATP than consumes, lower down production for inputs and for outputs,
+            // otherwise use maximum production values (this matches the equilibrium display mode and what happens
+            // in game once exiting the editor)
+            if (consumptionProductionRatio < 1.0f)
+            {
+                singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);
+            }
+
+            processStatistics.Add(singleProcess);
+        }
+
+        processList.ProcessesToShow = processStatistics;
     }
 
     /// <summary>
@@ -2859,6 +2904,11 @@ public partial class CellEditorComponent :
 
         var organelle = GetOrganelleDefinition(ActiveActionName);
         componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
+    }
+
+    private void ToggleProcessList()
+    {
+        processListWindow.Visible = !processListWindow.Visible;
     }
 
     private class PendingAutoEvoPrediction

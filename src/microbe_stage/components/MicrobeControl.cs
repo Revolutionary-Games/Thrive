@@ -28,6 +28,11 @@ public struct MicrobeControl
     public Compound? QueuedToxinToEmit;
 
     /// <summary>
+    ///   If true, microbe will fire iron breakdown substance on next update.
+    /// </summary>
+    public bool QueuedSiderophoreToEmit;
+
+    /// <summary>
     ///   This is here as this is very closely related to <see cref="QueuedSlimeSecretionTime"/>
     /// </summary>
     public float SlimeSecretionCooldown;
@@ -90,6 +95,7 @@ public struct MicrobeControl
         LookAtPoint = startingPosition + new Vector3(0, 0, -1);
         MovementDirection = new Vector3(0, 0, 0);
         QueuedToxinToEmit = null;
+        QueuedSiderophoreToEmit = false;
         SlimeSecretionCooldown = 0;
         QueuedSlimeSecretionTime = 0;
         AgentEmissionCooldown = 0;
@@ -179,9 +185,68 @@ public static class MicrobeControlHelpers
         return true;
     }
 
+    public static bool EmitSiderophore(this ref MicrobeControl control, ref OrganelleContainer organelles,
+        in Entity entity)
+    {
+        // Disallow when engulfed
+        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+            return false;
+
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            // TODO: remove the delegate allocation here
+            colony.PerformForOtherColonyMembersThanLeader(m =>
+                m.Get<MicrobeControl>()
+                    .EmitSiderophore(ref m.Get<OrganelleContainer>(),
+                        m));
+        }
+
+        if (control.AgentEmissionCooldown > 0)
+            return false;
+
+        // Only shoot if you have any iron-breaking organelles
+        if (organelles.IronBreakdownEfficiency < 1)
+            return false;
+
+        control.QueuedSiderophoreToEmit = true;
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Sets microbe speed straight forward.
+    /// </summary>
+    /// <param name="control">Control to hold commands.</param>
+    /// <param name="speed">Speed at which to move.</param>
     public static void SetMoveSpeed(this ref MicrobeControl control, float speed)
     {
         control.MovementDirection = new Vector3(0, 0, -speed);
+    }
+
+    /// <summary>
+    ///   Moves microbe towards target position, even if that position is not forward.
+    ///   This does NOT handle any turning. So this is basically cell drifting.
+    /// </summary>
+    /// <param name="control">Control to hold commands.</param>
+    /// <param name="selfPosition">Position of microbe moving.</param>
+    /// <param name="targetPosition">Vector3 that microbe will move towards.</param>
+    /// <param name="speed">Speed at which to move.</param>
+    public static void SetMoveSpeedTowardsPoint(this ref MicrobeControl control, ref WorldPosition selfPosition,
+        Vector3 targetPosition, float speed)
+    {
+        var vectorToTarget = targetPosition - selfPosition.Position;
+
+        // If already at target don't move anywhere
+        if (vectorToTarget.LengthSquared() < MathUtils.EPSILON)
+        {
+            control.MovementDirection = Vector3.Zero;
+            return;
+        }
+
+        // MovementDirection doesn't have to be normalized, so it isn't here
+        control.MovementDirection = selfPosition.Rotation.Inverse() * vectorToTarget * speed;
     }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,

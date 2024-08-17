@@ -116,6 +116,20 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    [RunOnKeyDown("g_fire_siderophore")]
+    public void EmitSiderophore()
+    {
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return;
+
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.EmitSiderophore(ref stage.Player.Get<OrganelleContainer>(), stage.Player);
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {
@@ -335,9 +349,6 @@ public partial class PlayerMicrobeInput : NodeWithInput
     [RunOnKeyDown("g_sprint")]
     public bool StartSprint()
     {
-        if (!stage.WorldSettings.ExperimentalFeatures)
-            return false;
-
         if (!stage.HasPlayer)
             return false;
 
@@ -362,9 +373,6 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
     public void ToggleSprint()
     {
-        if (!stage.WorldSettings.ExperimentalFeatures)
-            return;
-
         if (!stage.HasPlayer)
             return;
 

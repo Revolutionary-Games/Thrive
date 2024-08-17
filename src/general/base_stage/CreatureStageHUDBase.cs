@@ -175,6 +175,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();
 
+    private readonly StringName barFillName = new("fill");
+
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
     [Export]
@@ -560,7 +562,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
+        var box = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
+
+        Species? continueAs = null;
+
+        if (stage!.GameWorld.WorldSettings.SwitchSpeciesOnExtinction)
+        {
+            continueAs = GetPotentialSpeciesToContinueAs();
+
+            if (continueAs == null)
+                GD.Print("No species to continue as found");
+        }
+
+        box.ShowContinueAs = continueAs;
+        box.Connect(ExtinctionBox.SignalName.ContinueSelected, new Callable(this, nameof(ContinueAsSpecies)));
+
+        extinctionBox = box;
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }
@@ -590,6 +607,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         winExtinctBoxHolder.Hide();
         patchExtinctionBox?.Hide();
+
+        // Allow extinction box to show again / stop showing it so that it doesn't mess with patch extinction box if
+        // the player continued the game after extinction.
+        extinctionBox?.QueueFree();
+        extinctionBox = null;
     }
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
@@ -627,7 +649,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     /// <summary>
-    ///   Opens the dialog to a fossilise the species selected with a given fossilisation button.
+    ///   Opens the dialog to fossilise the species selected with a given fossilisation button.
     /// </summary>
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
@@ -728,12 +750,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected void UpdateStrain()
     {
-        if (!stage!.GameWorld.WorldSettings.ExperimentalFeatures)
-        {
-            strainBar.Visible = false;
-            return;
-        }
-
         var readStrainFraction = ReadPlayerStrainFraction();
 
         // Skip the rest of the method if player does not have strain
@@ -752,11 +768,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
             if (strainIsRed)
             {
-                strainBar.AddThemeStyleboxOverride("fill", strainBarRedFill);
+                strainBar.AddThemeStyleboxOverride(barFillName, strainBarRedFill);
             }
             else
             {
-                strainBar.RemoveThemeStyleboxOverride("fill");
+                strainBar.RemoveThemeStyleboxOverride(barFillName);
             }
         }
 
@@ -1014,7 +1030,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
         mucocystHotkey.Visible = showMucocyst;
-        sprintHotkey.Visible = showSprint && stage!.GameWorld.WorldSettings.ExperimentalFeatures;
+        sprintHotkey.Visible = showSprint;
 
         sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
@@ -1061,6 +1077,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 bar.Hide();
             }
         }
+    }
+
+    protected virtual Species? GetPotentialSpeciesToContinueAs()
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("No stage to get available species through");
+            return null;
+        }
+
+        var currentPlayer = stage.GameWorld.PlayerSpecies;
+
+        // TODO: if we want to allow going back stages, this will need to be adjusted
+        var mustBeSameStage = (Species species) => currentPlayer.GetType() == species.GetType();
+
+        return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
 
     protected void OpenMenu()
@@ -1122,6 +1154,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             fadeParameterName.Dispose();
 
             strainBarRedFill?.Dispose();
+
+            barFillName.Dispose();
         }
 
         base.Dispose(disposing);
@@ -1190,5 +1224,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             button.UpdatePosition();
         }
+    }
+
+    private void ContinueAsSpecies(uint id)
+    {
+        var species = stage?.GameWorld.GetSpecies(id);
+
+        if (species == null)
+        {
+            GD.PrintErr("Couldn't find species to continue as");
+            return;
+        }
+
+        stage!.ContinueGameAsSpecies(species);
     }
 }

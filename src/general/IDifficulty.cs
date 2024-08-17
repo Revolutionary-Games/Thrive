@@ -45,6 +45,12 @@ public interface IDifficulty : IRegistryAssignable
     public bool PassiveReproduction { get; }
 
     /// <summary>
+    ///   Whether the player is allowed to switch to a related species on extinction (so can continue instead of
+    ///   losing the game)
+    /// </summary>
+    public bool SwitchSpeciesOnExtinction { get; }
+
+    /// <summary>
     ///   Whether microbes are limited in how fast they can consume reproduction compounds to grow
     /// </summary>
     public bool LimitGrowthRate { get; }
@@ -82,6 +88,7 @@ public static class DifficultyHelpers
             OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             PassiveReproduction = difficulty.PassiveReproduction,
+            SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
             LimitGrowthRate = difficulty.LimitGrowthRate,
             FogOfWarMode = difficulty.FogOfWarMode,
             OrganelleUnlocksEnabled = difficulty.OrganelleUnlocksEnabled,
@@ -101,6 +108,7 @@ public static class DifficultyHelpers
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Passive Reproduction: {difficulty.PassiveReproduction}" +
+            $", Switch on Extinction: {difficulty.SwitchSpeciesOnExtinction}" +
             $", Limit Growth Rate: {difficulty.LimitGrowthRate}" +
             $", Fog Of War Mode: {difficulty.FogOfWarMode}" +
             $", Organelle Unlocks Enabled: {difficulty.OrganelleUnlocksEnabled}";

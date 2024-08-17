@@ -52,7 +52,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
         {
             damageSource.ProjectileInitialized = true;
 
-            // Need to setup callbacks etc. for this to work
+            // Need to set up callbacks etc. for this to work
 
             // TODO: make sure this system runs before the collision management to make sure no double data apply
             // happens
@@ -137,7 +137,7 @@ public sealed class ToxinCollisionSystem : AEntitySetSystem<float>
             GD.PrintErr("Unexpected error in collision filter: ", e);
         }
 
-        // No reason why this shouldn't collie
+        // No reason why this shouldn't collide
         return true;
     }
 

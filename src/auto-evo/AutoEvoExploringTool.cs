@@ -15,7 +15,7 @@ using Godot;
 ///     Partial class: GUI, auto-evo, world control
 ///   </para>
 /// </remarks>
-public partial class AutoEvoExploringTool : NodeWithInput
+public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 {
     // Tab paths
 
@@ -390,6 +390,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().ToList();
 
+        ThriveopediaManager.ReportNonThriveopediaSpeciesDataProvider(this);
+
         // Init button translation
         OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
 
@@ -412,6 +414,8 @@ public partial class AutoEvoExploringTool : NodeWithInput
 
         // Abort the current run to avoid problems
         autoEvoRun?.Abort();
+
+        ThriveopediaManager.RemoveNonThriveopediaSpeciesDataProvider(this);
     }
 
     public override void _Process(double delta)
@@ -456,6 +460,26 @@ public partial class AutoEvoExploringTool : NodeWithInput
     public void AskExit()
     {
         exitConfirmationDialog.PopupCenteredShrink();
+    }
+
+    public Species? GetActiveSpeciesData(uint speciesId)
+    {
+        var gameWorld = world.GameProperties.GameWorld;
+
+        for (int i = generationDisplayed; i >= 0; --i)
+        {
+            gameWorld.GenerationHistory[i].AllSpeciesData
+                .TryGetValue(speciesId, out var speciesRecord);
+
+            var species = speciesRecord?.Species;
+
+            if (species != null)
+                return species;
+
+            // If species of speciesRecord is null, then the species should have data in an earlier generation
+        }
+
+        return null;
     }
 
     protected override void Dispose(bool disposing)

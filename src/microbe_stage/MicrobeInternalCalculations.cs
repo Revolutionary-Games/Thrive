@@ -640,7 +640,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
-        List<(OrganelleDefinition Organelle, int Cost)> result)
+        List<(OrganelleDefinition Organelle, int Cost)> result, bool lawk)
     {
         var organelles = species.Organelles.Organelles;
 
@@ -649,9 +649,12 @@ public static class MicrobeInternalCalculations
         {
             var organelle = organelles[i];
 
-            // Skip things that don't give anything from endosymbiosis
+            // Skip things that don't give anything from endosymbiosis or don't suit LAWK
             var resultType = organelle.Definition.EndosymbiosisUnlocks;
             if (resultType == null)
+                continue;
+
+            if (!resultType.LAWK && lawk)
                 continue;
 
             // Handle each resulting organelle type just once

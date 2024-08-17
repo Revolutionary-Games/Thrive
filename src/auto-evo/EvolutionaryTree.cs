@@ -230,7 +230,11 @@ public partial class EvolutionaryTree : Control
                 SetupTreeNode(record.Species, speciesNodes[splitFromID].Last(), generation);
 
                 speciesOrigin.Add(speciesID, (splitFromID, generation));
-                speciesNames.Add(speciesID, record.Species.FormattedName);
+
+                // If the player switches to a new species, that can cause that a species name already exists, so
+                // names are only added if not already there to prevent player set names from being overwritten
+                if (!speciesNames.ContainsKey(speciesID))
+                    speciesNames.Add(speciesID, record.Species.FormattedName);
             }
             else if (record.MutatedPropertiesID != null)
             {

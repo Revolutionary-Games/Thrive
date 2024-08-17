@@ -430,6 +430,8 @@ public static class Constants
     public const float MACROLIDE_BASE_MOVEMENT_DEBUFF = 0.8f;
     public const float MACROLIDE_DEBUFF_DURATION = 5;
 
+    public const float TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH = 0.5f;
+
     /// <summary>
     ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
     ///   up to a cap.
@@ -813,6 +815,8 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.25f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
@@ -911,7 +915,7 @@ public static class Constants
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
-    public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
+    public const float CORPSE_CHUNK_AMOUNT_MULTIPLIER = 1.0f;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
@@ -1591,6 +1595,12 @@ public static class Constants
     public const float CONTROLLER_INPUT_SENSITIVITY_STEP = 0.04f;
 
     public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
+
+    /// <summary>
+    ///   Used to allow bindings like CTRL+A to happen while also allowing CTRL to be bound by itself if no further
+    ///   keys are pressed for this amount of time.
+    /// </summary>
+    public const float MODIFIER_KEY_REBIND_DELAY = 0.5f;
 
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 

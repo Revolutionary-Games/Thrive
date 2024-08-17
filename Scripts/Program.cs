@@ -19,13 +19,11 @@ public class Program
         // This has too many verbs now so some more manual work is required here as this has ran out of the template
         // arguments available from the library
         var parserResult = CommandLineHelpers.CreateParser()
-            .ParseArguments(args, [
-                typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions), typeof(ChangesOptions),
-                typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions), typeof(UploadOptions),
-                typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
+            .ParseArguments(args, typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions),
+                typeof(ChangesOptions), typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions),
+                typeof(UploadOptions), typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
                 typeof(TranslationProgressOptions), typeof(CreditsOptions), typeof(WikiOptions),
-                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions),
-            ]);
+                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions));
 
         int result;
         if (parserResult is Parsed<object> parsed)

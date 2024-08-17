@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-02 12:03+0300\n"
+"POT-Creation-Date: 2024-08-17 12:14-0500\n"
 "PO-Revision-Date: 2023-10-12 00:43+0000\n"
 "Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -123,6 +123,19 @@ msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "ALL"
 msgstr "Visi"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "Leisti rūšims nemutuoti (jei nerandama geros mutacijos)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
 
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr "Leisti rūšims nemigruoti (jei nerandama geros migracijos)"
@@ -878,6 +891,20 @@ msgstr "Vienetas: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop turinys bus įkeltas iš aplanko: {0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Toliau Klestėti"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr ""
+"Pasiekėte \"Thrive\" \"užbaigtos\" dalies pabaigą.\n"
+"Jei norite, galite tęsti vėlesnių etapų prototipus, kurie pridedami prie žaidimo. Jie gali būti labai neišbaigti, juose gali būti naudojama pakaitinė grafika ir apskritai jie gali būti labai grubūs. Jie įtraukti į žaidimą, kad parodytų galimą būsimą žaidimo kryptį ir mūsų bendrą etapų sujungimo viziją.\n"
+"\n"
+"Daugumoje prototipų negalėsite išsaugoti, jei tęsite žaidimą arba grįšite jį tęsę. Jei norite sugrįžti į šį etapą, prieš tęsdami išsaugokite dabar.\n"
+"\n"
+"Valdiklių palaikymas prototipuose taip pat yra daug neišbaigtesnis. Jei nuspręsite tęsti, supraskite, kad vėlesni etapai yra prototipai, ir nesiskųskite dėl jų neišbaigtumo."
 
 msgid "CONTINUE_THRIVING"
 msgstr "Toliau Klestėti"
@@ -4569,6 +4596,10 @@ msgstr ""
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Baigti žaidimą"
+
 msgid "SIGNALING_AGENT"
 msgstr ""
 
@@ -5231,6 +5262,15 @@ msgid "TOXIN_RESISTANCE"
 msgstr ""
 
 #, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Nusileidimas panaikins jūsų pakilusio statusą ir grąžins jus į Mikrobų Etapą. Iš ten galėsite vėl pereiti žaidimą, išsaugoję dabartinį išsaugojimą.\n"
+"\n"
+"Už naująjį peržaidimą gausite nusileidimo privilegiją. Būsimoje versijoje galėsite patys pasirinkti šį privalumą, tačiau kol kas jis visada bus 20 % sumažėjęs osmoreguliacijos koeficientas.\n"
+"\n"
+"Kai patvirtinsite nusileidimą, galėsite redaguoti žaidimo nustatymus ir pasirinkti naują pasaulio sėklą, kad galėtumėte žaisti kitame žemėlapyje arba, pavyzdžiui, išjungti LAWK."
+
+#, fuzzy
 msgid "TOXIN_TYPE_COLON"
 msgstr "Pavadinimas:"
 
@@ -5593,6 +5633,10 @@ msgstr "Galerijos žiūryklė"
 
 msgid "VIEW_ALL"
 msgstr ""
+
+#, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Padidina didelių ląstelių sukimosi greitį."
 
 msgid "VIEW_ONLINE"
 msgstr ""

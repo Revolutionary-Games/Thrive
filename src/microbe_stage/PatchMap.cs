@@ -374,6 +374,28 @@ public class PatchMap : ISaveLoadable
     }
 
     /// <summary>
+    ///   Finds patch with the highest population for species
+    /// </summary>
+    /// <param name="species">Species to check</param>
+    /// <returns>Patch with the highest population or null if no patch has this species</returns>
+    public Patch? FindBestPatchForSpecies(Species species)
+    {
+        Patch? best = null;
+        long bestValue = 0;
+
+        foreach (var patch in Patches.Values)
+        {
+            if (patch.SpeciesInPatch.TryGetValue(species, out var population) && population > bestValue)
+            {
+                best = patch;
+                bestValue = population;
+            }
+        }
+
+        return best;
+    }
+
+    /// <summary>
     ///   Replaces a species with a different one. This is done when the class of a species needs to change
     /// </summary>
     /// <param name="old">The old species to remove</param>
@@ -387,9 +409,21 @@ public class PatchMap : ISaveLoadable
     }
 
     /// <summary>
+    ///   Removes population of species from all patches. Should be used very sparingly.
+    /// </summary>
+    /// <param name="oldPlayer">Species to snap out of existence</param>
+    public void RemoveAllPopulationsOf(Species oldPlayer)
+    {
+        foreach (var patch in Patches.Values)
+        {
+            patch.SpeciesInPatch.Remove(oldPlayer);
+        }
+    }
+
+    /// <summary>
     ///   Check if patch link <code>id1->id2</code> or <code>id2->id1</code> exists
     /// </summary>
-    /// <returns>True if at least an one-direction link exists</returns>
+    /// <returns>True if at least a one-direction link exists</returns>
     public bool ContainsPatchAdjacency(int id1, int id2)
     {
         return PatchAdjacencies.Contains((id1, id2)) || PatchAdjacencies.Contains((id2, id1));
@@ -429,7 +463,7 @@ public class PatchMap : ISaveLoadable
     ///   Updates the visibility of a given patch and its neighbours according to the <see cref="FogOfWarMode"/>
     /// </summary>
     /// <param name="patch">The patch to be updated</param>
-    /// <returns>Whether or not an update has actually been performed</returns>
+    /// <returns>Whether an update has actually been performed</returns>
     public bool UpdatePatchVisibility(Patch patch)
     {
         switch (FogOfWar)

@@ -70,7 +70,8 @@ public partial class EndosymbiosisCandidateOption : VBoxContainer
 
         foreach (var (organelle, cost) in organelleChoices)
         {
-            if (shownChoices.Any(c => c.Organelle == organelle) || selectionButtons.ContainsKey(organelle.InternalName))
+            if (shownChoices.Any(c => c.Organelle == organelle) ||
+                selectionButtons.ContainsKey(organelle.InternalName))
             {
                 GD.PrintErr("Duplicate endosymbiosis choice: ", organelle.InternalName);
                 continue;
