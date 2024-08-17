@@ -166,58 +166,55 @@ public class ModifyExistingSpecies : IRunStep
 
         var mutationsToTry = new List<Mutation>();
 
-        var leafNodes = new List<Miche>();
+        var nonEmptyLeafNodes = new List<Miche>();
         var emptyLeafNodes = new List<Miche>();
-        miche.GetLeafNodes(leafNodes, emptyLeafNodes, x => x.Occupant != null);
+        miche.GetLeafNodes(nonEmptyLeafNodes, emptyLeafNodes, x => x.Occupant != null);
 
+        // TODO: have the above function calculate these back traversals while finding leaves
+        var emptyTraversals = emptyLeafNodes.Select(x => x.BackTraversal()).ToList();
+
+        // For each existing species, add adaptations based on the existing pressures
         foreach (var species in oldOccupants)
         {
             if (species is not MicrobeSpecies microbeSpecies)
                 continue;
 
-            foreach (var traversal in leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
+            foreach (var traversal in
+                nonEmptyLeafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()))
             {
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
                 pressures.AddRange(SpeciesDependentPressures(miche, species));
 
-                var variants = GenerateMutations(microbeSpecies, worldSettings.AutoEvoConfiguration.MutationsPerSpecies,
-                    cache, pressures, random);
+                var variants = GenerateMutations(microbeSpecies,
+                    worldSettings.AutoEvoConfiguration.MutationsPerSpecies, cache, pressures, random);
 
                 mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(microbeSpecies,
                     speciesToAdd, RunResults.NewSpeciesType.SplitDueToMutation)).ToList());
             }
-        }
 
-        // This section of the code tries to mutate species into unfilled miches
-        // Not exactly realistic, but more diversity is more fun for the player
-        var emptyTraversals = emptyLeafNodes.Select(x => x.BackTraversal()).ToList();
-
-        foreach (var species in oldOccupants)
-        {
-            if (species is not MicrobeSpecies microbeSpecies)
-                continue;
-
+            // This section of the code tries to mutate species into unfilled miches
+            // Not exactly realistic, but more diversity is more fun for the player
             foreach (var traversal in emptyTraversals)
             {
                 var pressures = traversal.Select(x => x.Pressure).ToList();
 
                 pressures.AddRange(SpeciesDependentPressures(miche, species));
 
-                var variants = GenerateMutations(microbeSpecies, worldSettings.AutoEvoConfiguration.MutationsPerSpecies,
-                    cache,
-                    pressures, random);
+                var variants = GenerateMutations(microbeSpecies,
+                    worldSettings.AutoEvoConfiguration.MutationsPerSpecies, cache, pressures, random);
 
                 mutationsToTry.AddRange(variants.Select(speciesToAdd => new Mutation(microbeSpecies,
                     speciesToAdd, RunResults.NewSpeciesType.FillNiche)).ToList());
             }
         }
 
+        // Disregard "mutations" that result in indentical species"
         mutationsToTry = mutationsToTry.Where(x => x.Item1 != x.Item2).OrderBy(_ => random.Next())
             .Take(totalMutationsToTry).ToList();
 
+        // Add these mutant species into a new miche
         var newMiche = miche.DeepCopy();
-
         foreach (var mutation in mutationsToTry)
         {
             mutation.Item2.OnEdited();
@@ -240,7 +237,7 @@ public class ModifyExistingSpecies : IRunStep
             Mutation? bestMutation = null;
             var bestScore = 0.0f;
 
-            var parentTraversal = leafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()).ToList();
+            var parentTraversal = nonEmptyLeafNodes.Where(x => x.Occupant == species).Select(x => x.BackTraversal()).ToList();
 
             foreach (var mutation in mutationsToTry)
             {
