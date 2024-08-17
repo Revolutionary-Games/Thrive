@@ -54,9 +54,10 @@ public static class CommonMutationFunctions
     }
 
     public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
-        MutationWorkMemory workMemory, Random random)
+        List<Hex> workMemory1, List<Hex> workMemory2, Random random)
     {
-        var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory, random);
+        var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory2,
+            random);
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -71,15 +72,15 @@ public static class CommonMutationFunctions
         }
     }
 
-    public static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, MutationWorkMemory workMemory,
-        Random random)
+    private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
+        List<Hex> workMemory2, Random random)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
 
         // Loop through all the organelles and find an open spot to
         // place our new organelle attached to existing organelles
-        // This almost always is over at the first iteration, so its
+        // This almost always is over at the first iteration, so it's
         // not a huge performance hog
         foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
         {
@@ -92,7 +93,6 @@ public static class CommonMutationFunctions
 
                 foreach (int side in SideTraversalOrder(hex, direction, random))
                 {
-                    // pick a hex direction, with a slight bias towards forwards
                     for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
@@ -106,7 +106,7 @@ public static class CommonMutationFunctions
                             result.Orientation = 3;
 
                             if (existingOrganelles
-                                .CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
+                                .CanPlace(result, workMemory1, workMemory2))
                             {
                                 return result;
                             }
@@ -117,8 +117,7 @@ public static class CommonMutationFunctions
                         {
                             result.Orientation = rotation;
 
-                            if (existingOrganelles
-                                .CanPlace(result, workMemory.WorkingMemory1, workMemory.WorkingMemory2))
+                            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
                             {
                                 return result;
                             }
@@ -128,6 +127,8 @@ public static class CommonMutationFunctions
             }
         }
 
+        // Not good to signal normal program flow with exceptions so this now returns null when not being able to find
+        // a position
         return null;
     }
 

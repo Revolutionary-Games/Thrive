@@ -24,6 +24,10 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
+        var random = new Random();
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
             MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
@@ -31,7 +35,7 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
             newSpecies.Organelles.Remove(organelle);
 
             CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
-                newSpecies, new MutationWorkMemory(), new Random());
+                newSpecies, workMemory1, workMemory2, random);
 
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
         }

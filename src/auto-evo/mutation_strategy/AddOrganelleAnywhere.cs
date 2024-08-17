@@ -55,6 +55,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
+        var workMemory1 = new List<Hex>();
+        var workMemory2 = new List<Hex>();
+
         foreach (var organelle in organelles)
         {
             if (organelle.MPCost > mp)
@@ -68,7 +71,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, new MutationWorkMemory(), random);
+            CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2, random);
 
             mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
         }
