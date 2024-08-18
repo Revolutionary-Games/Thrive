@@ -133,7 +133,21 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
-        for (int i = 0; i < Math.Min(chunksToSpawn, Constants.CORPSE_CHUNK_AMOUNT_CAP); ++i)
+
+        if (chunksToSpawn > 8)
+        {
+            chunksToSpawn = 8 + (chunksToSpawn - 8) / 2;
+        }
+
+        if (chunksToSpawn > 16)
+        {
+            chunksToSpawn = 16 + (chunksToSpawn - 16) / 3;
+        }
+
+        if (chunksToSpawn > 20)
+            chunksToSpawn = 20;
+
+        for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
             float amount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
