@@ -914,6 +914,7 @@ public static class Constants
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
     public const float CORPSE_CHUNK_AMOUNT_MULTIPLIER = 1.0f;
+    public const int CORPSE_CHUNK_AMOUNT_CAP = 20;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
