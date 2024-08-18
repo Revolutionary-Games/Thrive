@@ -45,6 +45,9 @@
               poedit
               gettext
 
+              # Profiling
+              flamegraph
+
               # Runtime dependencies
               xorg.libX11
               xorg.libXcursor

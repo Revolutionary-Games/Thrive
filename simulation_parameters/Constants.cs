@@ -973,6 +973,8 @@ public static class Constants
     public const float MAX_OPACITY_MUTATION = 0.01f;
 
     // Mutation Variables
+    public const int MAX_VARIANTS_PER_MUTATION = 50;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 100;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;

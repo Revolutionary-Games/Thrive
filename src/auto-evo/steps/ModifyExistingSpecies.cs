@@ -106,10 +106,10 @@ public class ModifyExistingSpecies : IRunStep
                 }
 
                 // TODO: Make these a performance setting?
-                if (outputSpecies.Count > 60)
+                if (outputSpecies.Count > Constants.MAX_VARIANTS_PER_MUTATION)
                 {
-                    inputSpecies = GetTopMutations(baseSpecies, outputSpecies, patch, 60 / 2, cache, selectionPressures)
-                        .ToList();
+                    inputSpecies = GetTopMutations(baseSpecies, outputSpecies, patch,
+                        Constants.MAX_VARIANTS_PER_MUTATION / 2, cache, selectionPressures).ToList();
                 }
                 else
                 {
@@ -118,10 +118,10 @@ public class ModifyExistingSpecies : IRunStep
 
                 viableVariants.AddRange(inputSpecies);
 
-                if (viableVariants.Count > 120)
+                if (viableVariants.Count > Constants.MAX_VARIANTS_IN_MUTATIONS)
                 {
-                    viableVariants = GetTopMutations(baseSpecies, viableVariants, patch, 120 / 2, cache,
-                        selectionPressures).ToList();
+                    viableVariants = GetTopMutations(baseSpecies, viableVariants, patch,
+                        Constants.MAX_VARIANTS_IN_MUTATIONS / 2, cache, selectionPressures).ToList();
                 }
 
                 if (outputSpecies.Count == 0)
@@ -132,7 +132,10 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
-        foreach (var variant in viableVariants.Select(x => x.Item1))
+        var topMutations = GetTopMutations(baseSpecies, viableVariants, patch, amount, cache, selectionPressures)
+            .Select(x => x.Item1).ToList();
+
+        foreach (var variant in topMutations)
         {
             if (variant == baseSpecies)
                 continue;
@@ -150,8 +153,7 @@ public class ModifyExistingSpecies : IRunStep
                 Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
-        return GetTopMutations(baseSpecies, viableVariants, patch, amount, cache, selectionPressures)
-            .Select(x => x.Item1).ToList();
+        return topMutations;
     }
 
     public bool RunStep(RunResults results)

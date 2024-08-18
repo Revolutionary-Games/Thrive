@@ -14,7 +14,7 @@ public partial class MicheDetailsPanel : MarginContainer
     public NodePath? MicheDetailsLabelPath;
 
     public WorldGenerationSettings? WorldSettings = null;
-    public Patch? CurrentPatch = null;
+    public Patch? CurrentPatch;
 
 #pragma warning disable CA2213
     private CustomRichTextLabel? micheDetailsLabel;
