@@ -27,6 +27,7 @@ public class GameWorld : ISaveLoadable
     ///     This isn't saved and can be recreated at any time if necessary
     ///   </para>
     /// </remarks>
+    [JsonIgnore]
     public readonly AutoEvoGlobalCache AutoEvoGlobalCache;
 
     [JsonProperty]
