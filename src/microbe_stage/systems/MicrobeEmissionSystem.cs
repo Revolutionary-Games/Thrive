@@ -50,20 +50,32 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
-    public static float ToxinAmountMultiplierFromToxicity(float toxicity)
+    public static float ToxinAmountMultiplierFromToxicity(float toxicity, ToxinType type)
     {
         // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
+
+        float strengthModifier = Constants.TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH;
+
+        // Some toxin types are way too strong with the default modifier, so decrease their effects further
+        if (type == ToxinType.ChannelInhibitor)
+        {
+            strengthModifier *= 0.8f;
+        }
+        else if (type == ToxinType.Macrolide)
+        {
+            strengthModifier *= 0.25f;
+        }
 
         if (toxicity < 0)
         {
             // Low-damage
-            return 0.89f * (1 - Math.Abs(toxicity)) + 0.1f;
+            return 0.89f * (1 - Math.Abs(toxicity) * strengthModifier) + 0.1f;
         }
 
         if (toxicity > 0)
         {
             // High-damage
-            return 0.99f * toxicity + 1.0f;
+            return 0.99f * (toxicity * strengthModifier) + 1.0f;
         }
 
         // No modification from default
@@ -233,8 +245,8 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 compounds.TakeCompound(agentType, amountEmitted);
 
                 // Adjust amount based on toxicity to make the shot more or less effective
-                var damagingToxinAmount =
-                    amountEmitted * ToxinAmountMultiplierFromToxicity(organelles.AverageToxinToxicity);
+                var damagingToxinAmount = amountEmitted *
+                    ToxinAmountMultiplierFromToxicity(organelles.AverageToxinToxicity, selectedToxinType);
 
                 var agent = SpawnHelpers.SpawnAgentProjectile(worldSimulation,
                     new AgentProperties(entity.Get<SpeciesMember>().Species, agentType, selectedToxinType),
