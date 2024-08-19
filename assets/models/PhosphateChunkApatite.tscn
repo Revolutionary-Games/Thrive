@@ -1,0 +1,43 @@
+[gd_scene load_steps=10 format=3 uid="uid://ork3xiril0bq"]
+
+[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_8gjbn"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_w0d41"]
+[ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="3_hcl7f"]
+[ext_resource type="Texture2D" uid="uid://bqu53aph1rp7d" path="res://assets/textures/Crystal_roughness.png" id="4_4nulp"]
+[ext_resource type="ArrayMesh" uid="uid://33tvx663lr0x" path="res://assets/models/PhosphateChunkApatiteCrystal.mesh" id="5_cdma8"]
+[ext_resource type="Texture2D" uid="uid://ppco0jrr2v0q" path="res://assets/textures/Crystal_normal.png" id="7_1vk26"]
+[ext_resource type="ArrayMesh" uid="uid://bxhmnyjk1vfrh" path="res://assets/models/PhosphateChunkApatiteRock.mesh" id="8_7qf82"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5qfg"]
+resource_local_to_scene = true
+render_priority = 18
+shader = ExtResource("1_8gjbn")
+shader_parameter/albedo = Color(0, 0.34902, 0.792157, 0.980392)
+shader_parameter/roughness = 0.6
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.7
+shader_parameter/metallic = 0.57
+shader_parameter/metallicTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/emission = Color(0.00120977, 0.106283, 0.502601, 1)
+shader_parameter/emissionEnergy = 0.75
+shader_parameter/clearcoat = 0.3
+shader_parameter/clearcoatRoughness = 0.1
+shader_parameter/dissolveValue = 0.0
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.305535, 0.33352, 0.660643, 1)
+shader_parameter/albedoTex = ExtResource("3_hcl7f")
+shader_parameter/roughnessTex = ExtResource("4_4nulp")
+shader_parameter/dissolveTexture = ExtResource("2_w0d41")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqecf"]
+albedo_texture = ExtResource("3_hcl7f")
+normal_enabled = true
+normal_texture = ExtResource("7_1vk26")
+
+[node name="Apatite" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_r5qfg")
+mesh = ExtResource("5_cdma8")
+
+[node name="Rock" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_xqecf")
+mesh = ExtResource("8_7qf82")
