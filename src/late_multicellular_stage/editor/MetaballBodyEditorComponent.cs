@@ -106,7 +106,9 @@ public partial class MetaballBodyEditorComponent :
 
     private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
 
-    private PackedScene metaballDisplayerScene = null!;
+    private PackedScene visualMetaballDisplayerScene = null!;
+
+    private PackedScene structuralMetaballDisplayerScene = null!;
 #pragma warning restore CA2213
 
     // TODO: add way to control the size of the placed metaball
@@ -115,6 +117,8 @@ public partial class MetaballBodyEditorComponent :
 
     [JsonProperty]
     private string newName = "unset";
+
+    private bool previewMode;
 
     /// <summary>
     ///   True when visuals of already placed things need to be updated
@@ -133,6 +137,28 @@ public partial class MetaballBodyEditorComponent :
         Reproduction,
         Behaviour,
         Appearance,
+    }
+
+    public bool PreviewMode
+    {
+        get => previewMode;
+        set
+        {
+            bool updateNeeded = false;
+
+            if (previewMode != value)
+            {
+                updateNeeded = true;
+            }
+
+            previewMode = value;
+
+            if (updateNeeded)
+                UpdateAlreadyPlacedVisuals();
+
+            if (hoverMetaballDisplayer != null)
+                hoverMetaballDisplayer.Visible = !PreviewMode;
+        }
     }
 
     [JsonIgnore]
@@ -239,7 +265,7 @@ public partial class MetaballBodyEditorComponent :
         }
 
         // Show the ball that is about to be placed
-        if (activeActionName != null && Editor.ShowHover)
+        if (activeActionName != null && Editor.ShowHover && !PreviewMode)
         {
             GetMouseMetaball(out var position, out var parentMetaball);
 
@@ -363,6 +389,9 @@ public partial class MetaballBodyEditorComponent :
         if (!Visible)
             return false;
 
+        if (PreviewMode)
+            return false;
+
         // Can't open popup menu while moving something
         if (MovingPlacedMetaball != null)
         {
@@ -391,6 +420,22 @@ public partial class MetaballBodyEditorComponent :
 
         ShowCellMenu(metaballs.Select(h => h).Distinct());
         return true;
+    }
+
+    public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
+    {
+        SetEditorWorldGuideObjectVisibility(shown);
+
+        if (structuralMetaballDisplayer != null)
+        {
+            structuralMetaballDisplayer.Visible = shown && !PreviewMode;
+            hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
+        }
+
+        if (visualMetaballDisplayer != null)
+        {
+            visualMetaballDisplayer.Visible = shown && PreviewMode;
+        }
     }
 
     protected CellType CellTypeFromName(string name)
@@ -441,7 +486,9 @@ public partial class MetaballBodyEditorComponent :
     {
         base.LoadScenes();
 
-        metaballDisplayerScene =
+        visualMetaballDisplayerScene =
+            GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularConvolutionDisplayer.tscn");
+        structuralMetaballDisplayerScene =
             GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn");
     }
 
@@ -450,9 +497,16 @@ public partial class MetaballBodyEditorComponent :
         return new MetaballLayout<MulticellularMetaball>(OnMetaballAdded, OnMetaballRemoved);
     }
 
-    protected override IMetaballDisplayer<MulticellularMetaball> CreateMetaballDisplayer()
+    protected override IMetaballDisplayer<MulticellularMetaball> CreateVisualMetaballDisplayer()
     {
-        var displayer = metaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
+        var displayer = visualMetaballDisplayerScene.Instantiate<MulticellularConvolutionDispayer>();
+        Editor.RootOfDynamicallySpawned.AddChild(displayer);
+        return displayer;
+    }
+
+    protected override IMetaballDisplayer<MulticellularMetaball> CreateStructuralMetaballDisplayer()
+    {
+        var displayer = structuralMetaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }
@@ -964,10 +1018,20 @@ public partial class MetaballBodyEditorComponent :
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        if (alreadyPlacedVisuals == null)
+        if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
             throw new InvalidOperationException("Editor component not initialized");
 
-        alreadyPlacedVisuals.DisplayFromList(editedMetaballs);
+        visualMetaballDisplayer.Visible = PreviewMode;
+        structuralMetaballDisplayer.Visible = !PreviewMode;
+
+        if (PreviewMode)
+        {
+            visualMetaballDisplayer.DisplayFromList(editedMetaballs);
+        }
+        else
+        {
+            structuralMetaballDisplayer.DisplayFromList(editedMetaballs);
+        }
     }
 
     private void OnSpeciesNameChanged(string newText)
@@ -1125,6 +1189,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 
@@ -1132,6 +1197,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 reproductionTab.Show();
                 reproductionTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 
@@ -1139,6 +1205,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 
@@ -1146,6 +1213,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
+                PreviewMode = true;
                 break;
             }
 

@@ -69,7 +69,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected List<TMetaball> hoverMetaballData = new();
 
-    protected IMetaballDisplayer<TMetaball>? alreadyPlacedVisuals;
+    protected IMetaballDisplayer<TMetaball>? structuralMetaballDisplayer;
+    protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
     protected IMetaballDisplayer<TMetaball>? hoverMetaballDisplayer;
 
     private const float DefaultHoverAlpha = 0.8f;
@@ -241,7 +242,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             throw new InvalidOperationException($"{GetType().Name} not initialized");
 
         // TODO: should we display the hover metaballs setup on the previous frame here?
-        hoverMetaballsChanged = true;
+        // hoverMetaballsChanged = true;
         if (hoverMetaballsChanged)
         {
             hoverMetaballDisplayer.OverrideColourAlpha =
@@ -275,10 +276,15 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     {
         SetEditorWorldGuideObjectVisibility(shown);
 
-        if (alreadyPlacedVisuals != null)
+        if (structuralMetaballDisplayer != null)
         {
-            alreadyPlacedVisuals.Visible = shown;
+            structuralMetaballDisplayer.Visible = shown;
             hoverMetaballDisplayer!.Visible = shown;
+        }
+
+        if (visualMetaballDisplayer != null)
+        {
+            visualMetaballDisplayer.Visible = shown;
         }
     }
 
@@ -523,15 +529,21 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected virtual IMetaballDisplayer<TMetaball> CreateMetaballDisplayer()
+    protected virtual IMetaballDisplayer<TMetaball> CreateVisualMetaballDisplayer()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual IMetaballDisplayer<TMetaball> CreateStructuralMetaballDisplayer()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
     protected virtual void LoadMetaballDisplayers()
     {
-        alreadyPlacedVisuals = CreateMetaballDisplayer();
-        hoverMetaballDisplayer = CreateMetaballDisplayer();
+        visualMetaballDisplayer = CreateVisualMetaballDisplayer();
+        structuralMetaballDisplayer = CreateStructuralMetaballDisplayer();
+        hoverMetaballDisplayer = CreateStructuralMetaballDisplayer();
         hoverMetaballDisplayer.OverrideColourAlpha = DefaultHoverAlpha;
     }
 

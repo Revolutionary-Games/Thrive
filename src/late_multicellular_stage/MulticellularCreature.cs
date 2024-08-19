@@ -35,7 +35,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     private ISpawnSystem? spawnSystem;
 
 #pragma warning disable CA2213
-    private MulticellularMetaballDisplayer metaballDisplayer = null!;
+    private MulticellularConvolutionDispayer metaballDisplayer = null!;
 
     private Node3D? buildingToPlaceGhost;
 #pragma warning restore CA2213
@@ -165,7 +165,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
         atp = SimulationParameters.Instance.GetCompound("atp");
         glucose = SimulationParameters.Instance.GetCompound("glucose");
 
-        metaballDisplayer = GetNode<MulticellularMetaballDisplayer>("MetaballDisplayer");
+        metaballDisplayer = GetNode<MulticellularConvolutionDispayer>("MetaballDisplayer");
     }
 
     /// <summary>

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://doe55k2jyc4xn"]
+
+[ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularConvolutionDispayer.cs" id="1_11vo3"]
+
+[node name="MulticellularConvolutionDisplayer" type="MeshInstance3D"]
+script = ExtResource("1_11vo3")
