@@ -372,12 +372,16 @@ public static class MicrobeControlHelpers
         if (control.State == targetState)
             return;
 
-        control.State = targetState;
-
         if (NeedsToUseForcedState(ref compoundStorage, atp))
         {
+            // Don't force if the damage would kill the cell to avoid state change being a death button
+            float damage = Constants.ENGULF_NO_ATP_DAMAGE;
+
+            if (damage >= health.CurrentHealth)
+                return;
+
             // Need to force this cell into a mode, so deal the damage
-            health.DealDamage(Constants.ENGULF_NO_ATP_DAMAGE, "forcedState");
+            health.DealDamage(damage, "forcedState");
 
             control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
 
@@ -387,6 +391,8 @@ public static class MicrobeControlHelpers
                     new SimpleHUDMessage(Localization.Translate("ENGULF_NO_ATP_DAMAGE_MESSAGE")));
             }
         }
+
+        control.State = targetState;
     }
 
     public static bool NeedsToUseForcedState(ref CompoundStorage compoundStorage, Compound atp)
