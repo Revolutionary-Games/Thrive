@@ -19,7 +19,6 @@ using DefaultEcs.Threading;
 [With(typeof(OrganelleContainer))]
 [With(typeof(CellProperties))]
 [With(typeof(MicrobeStatus))]
-[With(typeof(MicrobeControl))]
 [With(typeof(CompoundStorage))]
 [With(typeof(Engulfable))]
 [With(typeof(SpeciesMember))]
@@ -62,7 +61,6 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     protected override void Update(float delta, in Entity entity)
     {
         ref var status = ref entity.Get<MicrobeStatus>();
-        ref var control = ref entity.Get<MicrobeControl>();
         ref var health = ref entity.Get<Health>();
         ref var cellProperties = ref entity.Get<CellProperties>();
 
@@ -77,6 +75,9 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         TakeOsmoregulationEnergyCost(entity, ref cellProperties, compounds, delta);
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
+
+        // There used to be engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
+        // sense to be in there
     }
 
     private void HandleOsmoregulationDamage(in Entity entity, ref MicrobeStatus status, ref Health health,
