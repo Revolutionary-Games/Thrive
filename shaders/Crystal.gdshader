@@ -28,7 +28,7 @@ void fragment() {
     vec2 baseUV = UV;
     vec4 albedoUV = texture(albedoTex, baseUV);
     albedoUV.rgb = mix(pow((albedoUV.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
-        albedoUV.rgb.rgb * (1.0 / 12.92), lessThan(albedoUV.rgb, vec3(0.04045)));
+        albedoUV.rgb * (1.0 / 12.92), lessThan(albedoUV.rgb, vec3(0.04045)));
 
     // Handle dissolve animation
     vec4 dissolveTex = texture(dissolveTexture, UV);
@@ -38,20 +38,26 @@ void fragment() {
         growColor.rgb;
 
     ALBEDO = albedo.rgb * albedoUV.rgb;
+
     float roughnessUV = 1.0 - dot(texture(roughnessTex, baseUV), roughnessTextureChannel);
     ROUGHNESS = roughnessUV * roughness;
+    
     float metallicTex = dot(texture(roughnessTex, baseUV), metallicTextureChannel);
     METALLIC = metallicTex * metallic;
+    
     SPECULAR = specular;
-    float emissionTex = 1.0 - (texture(roughnessTex, baseUV).a);
     ALPHA *= albedo.a * albedoUV.a;
+
     if (dissolveValue > 0.0)
     {
         EMISSION = dissolveOutline;
     }
     else
     {
-        EMISSION = (emission.rgb*emissionTex)*emissionEnergy;
+        float emissionTex = 1.0 - (texture(roughnessTex, baseUV).a);
+        EMISSION = (emission.rgb * emissionTex) * emissionEnergy;
     }
-    CLEARCOAT = clearcoat;	CLEARCOAT_ROUGHNESS = clearcoatRoughness;
+
+    CLEARCOAT = clearcoat;
+    CLEARCOAT_ROUGHNESS = clearcoatRoughness;
 }
