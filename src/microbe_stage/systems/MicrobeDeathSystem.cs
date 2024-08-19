@@ -114,10 +114,6 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds, glucose);
 
-        // Queues either 1 corpse chunk or a factor of the hexes
-        // TODO: should there be a max amount (maybe like 20?)
-        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
-
         // An enumerator to step through all available organelles in a random order when making chunks
         // TODO: fix the closure allocation here
         using var organellesAvailableEnumerator =
@@ -132,6 +128,27 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         }
 
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
+
+        // Queues either 1 corpse chunk or a factor of the hexes
+        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
+
+        // Apply a soft cap to the number of chunks
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
+        {
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER +
+                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER) / 2;
+        }
+
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER)
+        {
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER +
+                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER) / 3;
+        }
+
+        // And then a hard maximum limit to not cause massive performance problems if there are for some reason huge
+        // cells that die
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_CAP)
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_CAP;
 
         for (int i = 0; i < chunksToSpawn; ++i)
         {
