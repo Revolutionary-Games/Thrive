@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ppco0jrr2v0q" path="res://assets/textures/Crystal_normal.png" id="7_1vk26"]
 [ext_resource type="ArrayMesh" uid="uid://bxhmnyjk1vfrh" path="res://assets/models/PhosphateChunkApatiteRock.mesh" id="8_7qf82"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8dtu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5qfg"]
 resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("1_8gjbn")
@@ -22,7 +22,7 @@ shader_parameter/emission = Color(0.00120977, 0.106283, 0.502601, 1)
 shader_parameter/emissionEnergy = 0.75
 shader_parameter/clearcoat = 0.3
 shader_parameter/clearcoatRoughness = 0.1
-shader_parameter/dissolveValue = null
+shader_parameter/dissolveValue = 0.0
 shader_parameter/outlineWidth = null
 shader_parameter/growColor = Color(0.305535, 0.33352, 0.660643, 1)
 shader_parameter/albedoTex = ExtResource("3_hcl7f")
@@ -30,13 +30,12 @@ shader_parameter/roughnessTex = ExtResource("4_4nulp")
 shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqecf"]
-resource_local_to_scene = true
 albedo_texture = ExtResource("3_hcl7f")
 normal_enabled = true
 normal_texture = ExtResource("7_1vk26")
 
 [node name="Apatite" type="MeshInstance3D"]
-material_override = SubResource("ShaderMaterial_e8dtu")
+material_override = SubResource("ShaderMaterial_r5qfg")
 mesh = ExtResource("5_cdma8")
 
 [node name="Rock" type="MeshInstance3D" parent="."]

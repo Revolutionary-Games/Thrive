@@ -1,8 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://wx7arr7bfuxb"]
+[gd_scene load_steps=7 format=3 uid="uid://wx7arr7bfuxb"]
 
-[ext_resource type="Material" uid="uid://bj80cbu4ulsi1" path="res://assets/models/Crystal.material" id="1_x6h51"]
+[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_iow0h"]
+[ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="2_axsc8"]
 [ext_resource type="ArrayMesh" uid="uid://d1gltlusc5d8t" path="res://assets/models/PhosphateChunkStruvite.mesh" id="2_p6wjv"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_sagnm"]
+[ext_resource type="Texture2D" uid="uid://bqu53aph1rp7d" path="res://assets/textures/Crystal_roughness.png" id="4_nmebl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6x57o"]
+resource_local_to_scene = true
+render_priority = 17
+shader = ExtResource("1_iow0h")
+shader_parameter/albedo = Color(0.94902, 0.94902, 0.882353, 1)
+shader_parameter/roughness = 0.75
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.587
+shader_parameter/metallic = 0.576
+shader_parameter/metallicTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/emission = Color(0.272279, 0.272276, 0.137457, 0.878431)
+shader_parameter/emissionEnergy = 0.25
+shader_parameter/clearcoat = 0.3
+shader_parameter/clearcoatRoughness = 0.1
+shader_parameter/dissolveValue = 0.0
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.841326, 0.841511, 0.763965, 1)
+shader_parameter/albedoTex = ExtResource("2_axsc8")
+shader_parameter/roughnessTex = ExtResource("4_nmebl")
+shader_parameter/dissolveTexture = ExtResource("3_sagnm")
 
 [node name="Struvite" type="MeshInstance3D"]
-material_override = ExtResource("1_x6h51")
+material_override = SubResource("ShaderMaterial_6x57o")
 mesh = ExtResource("2_p6wjv")
