@@ -214,8 +214,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
             }
 
-            compounds.TakeCompound(atp, cost);
-
             if (engulfed)
             {
                 control.SetStateColonyAware(entity, MicrobeState.Normal);
