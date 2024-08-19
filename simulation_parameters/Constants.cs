@@ -788,9 +788,14 @@ public static class Constants
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
     /// <summary>
+    ///   How long can cell be in engulf mode after activating without ATP
+    /// </summary>
+    public const float ENGULF_NO_ATP_TIME = 3f;
+
+    /// <summary>
     ///   How much cell is damaged from engulfing while without ATP
     /// </summary>
-    public const float ENGULF_NO_ATP_DAMAGE = 0.1f;
+    public const float ENGULF_NO_ATP_DAMAGE = 10f;
 
     /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell

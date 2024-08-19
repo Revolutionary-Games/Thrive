@@ -199,6 +199,17 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
+        if (control.ForcedStateRemaining > 0)
+        {
+            control.ForcedStateRemaining -= delta;
+
+            if (control.ForcedStateRemaining <= 0)
+            {
+                control.ForcedState = MicrobeState.Normal;
+                control.State = MicrobeState.Normal;
+            }
+        }
+
         if (actuallyEngulfing)
         {
             // Drain atp
@@ -214,14 +225,29 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
             }
 
-            if (engulfed)
+            var outOfATP = compounds.TakeCompound(atp, cost) < cost - 0.001f;
+
+            if (engulfed || outOfATP)
             {
-                control.SetStateColonyAware(entity, MicrobeState.Normal);
+                if (outOfATP)
+                {
+                    if (control.ForcedState == MicrobeState.Normal && control.State == MicrobeState.Engulf)
+                    {
+                        control.ForcedState = MicrobeState.Engulf;
+                        control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
+                        health.CurrentHealth -= Constants.ENGULF_NO_ATP_DAMAGE;
+                    }
+                }
+                else
+                {
+                    control.SetStateColonyAware(entity, MicrobeState.Normal);
+                }
             }
             else
             {
                 checkEngulfStartCollisions = true;
             }
+
         }
         else
         {

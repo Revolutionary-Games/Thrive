@@ -77,24 +77,6 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         TakeOsmoregulationEnergyCost(entity, ref cellProperties, compounds, delta);
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
-
-        // Take extra ATP if in engulf mode (and disable engulf mode if out of ATP)
-        if (control.State == MicrobeState.Engulf)
-        {
-            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
-
-            if (compounds.TakeCompound(atp, cost) < cost)
-            {
-                // Ran out of ATP, disable engulf
-                // control.SetStateColonyAware(entity, MicrobeState.Normal);
-
-                health.CurrentHealth -= Constants.ENGULF_NO_ATP_DAMAGE;
-
-                entity.SendNoticeIfPossible(() =>
-                    new SimpleHUDMessage(Localization.Translate("ENGULF_NO_ATP_DAMAGE_MESSAGE"),
-                        DisplayDuration.Short));
-            }
-        }
     }
 
     private void HandleOsmoregulationDamage(in Entity entity, ref MicrobeStatus status, ref Health health,

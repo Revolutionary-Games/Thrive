@@ -55,6 +55,14 @@ public struct MicrobeControl
     public MicrobeState State;
 
     /// <summary>
+    ///   Forces state that remains even if State is different. <b>By changing it, it doesn't change State,
+    ///   it's only an indicator.</b>
+    /// </summary>
+    public MicrobeState ForcedState;
+
+    public float ForcedStateRemaining;
+
+    /// <summary>
     ///   A counter to determine the next toxin type to be fired (keeps an approximate count of fired toxins).
     /// </summary>
     /// <remarks>
