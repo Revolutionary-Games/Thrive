@@ -790,6 +790,22 @@ public static class Constants
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
     /// <summary>
+    ///   How long can cell be in engulf mode after activating without ATP
+    /// </summary>
+    public const float ENGULF_NO_ATP_TIME = 3.0f;
+
+    /// <summary>
+    ///   How much cell is damaged from engulfing while without ATP
+    /// </summary>
+    public const float ENGULF_NO_ATP_DAMAGE = 10.0f;
+
+    /// <summary>
+    ///   If cell has less than this ATP, then it triggers forced mode enter and takes damage.
+    ///   <see cref="Components.MicrobeControlHelpers.EnterEngulfModeForcedState"/>
+    /// </summary>
+    public const float ENGULF_NO_ATP_TRIGGER_THRESHOLD = 0.7f;
+
+    /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell
     /// </summary>
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;

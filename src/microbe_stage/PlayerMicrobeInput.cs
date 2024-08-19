@@ -18,6 +18,8 @@ public partial class PlayerMicrobeInput : NodeWithInput
 {
     private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
 
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
     private bool autoMove;
 
 #pragma warning disable CA2213 // this is our parent object
@@ -206,7 +208,11 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
         else if (cellProperties.CanEngulfInColony(stage.Player))
         {
-            control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
+            var player = stage.Player;
+
+            // This uses forced entry to allow the player to engulf even if dying from no ATP
+            control.EnterEngulfModeForcedState(ref player.Get<Health>(), ref player.Get<CompoundStorage>(), player,
+                atp);
         }
     }
 
