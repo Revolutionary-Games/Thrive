@@ -63,7 +63,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         }
 
         var meshGen = new DualContourer();
-        meshGen.PointsPerUnit = 3;
+        meshGen.PointsPerUnit = Constants.CREATURE_MESH_RESOLUTION;
         meshGen.UnitsFrom = minExtends;
         meshGen.UnitsTo = maxExtends;
 

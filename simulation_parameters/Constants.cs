@@ -1532,6 +1532,8 @@ public static class Constants
     /// </summary>
     public const float DEBUG_DRAW_MAX_DISTANCE_ORIGIN = 1000000000;
 
+    public const int CREATURE_MESH_RESOLUTION = 3;
+
     /// <summary>
     ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
     ///   than the long message time as defined in <see cref="HUDMessages.TimeToFadeFromDuration"/>
