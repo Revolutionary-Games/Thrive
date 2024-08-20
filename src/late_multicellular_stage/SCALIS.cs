@@ -225,7 +225,7 @@ public class Scalis : IMeshGeneratingFunction
             {
                 return Mathf.Atan(VectorFromTo(pointB, pointA).Dot(VectorFromTo(pointB, pointP))
                         / Mathf.Sqrt(discriminant)) +
-                        Mathf.Atan(VectorFromTo(pointA, pointB).Dot(VectorFromTo(pointA, pointP)) /
+                    Mathf.Atan(VectorFromTo(pointA, pointB).Dot(VectorFromTo(pointA, pointP)) /
                         Mathf.Sqrt(discriminant)) * pointA.DistanceTo(pointB)
                     / Mathf.Sqrt(discriminant);
             }
