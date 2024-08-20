@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
@@ -167,26 +168,14 @@ public class DualContourer
         // GD.Print($"Allocated memory in {sw.Elapsed}");
         sw.Restart();
 
-        Vector3I gridOffset = -gridFrom;
-
-        for (int x = gridFrom.X; x <= gridTo.X + 1; ++x)
-        {
-            for (int y = gridFrom.Y; y <= gridTo.Y + 1; ++y)
-            {
-                for (int z = gridFrom.Z; z <= gridTo.Z + 1; ++z)
-                {
-                    // var gridPos = new Vector3I(x, y, z);
-                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) / PointsPerUnit;
-
-                    shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
-                }
-            }
-        }
+        CalculatePoints(shapePoints, gridFrom, gridTo);
 
         sw.Stop();
 
         // GD.Print($"Calculated points in {sw.Elapsed}");
         sw.Restart();
+
+        Vector3I gridOffset = -gridFrom;
 
         for (int x = gridFrom.X; x <= gridTo.X; ++x)
         {
@@ -247,6 +236,49 @@ public class DualContourer
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
         return mesh;
+    }
+
+    private void CalculatePoints(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
+    {
+        var sw = new Stopwatch();
+        sw.Start();
+
+        Vector3I gridOffset = -gridFrom;
+
+        Parallel.For(gridFrom.X, gridTo.X + 1, delegate(int x)
+        {
+            Parallel.For(gridFrom.Y, gridTo.Y + 1, delegate(int y)
+            {
+                Parallel.For(gridFrom.Z, gridTo.Z + 1, delegate(int z)
+                {
+                    // var gridPos = new Vector3I(x, y, z);
+                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) / PointsPerUnit;
+
+                    shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
+                });
+            });
+        });
+
+        sw.Stop();
+    }
+
+    private void CalculatePointsPartially(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
+    {
+        Vector3I gridOffset = -gridFrom;
+
+        for (int x = gridFrom.X; x <= gridTo.X; ++x)
+        {
+            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
+            {
+                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
+                {
+                    // var gridPos = new Vector3I(x, y, z);
+                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) / PointsPerUnit;
+
+                    shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
+                }
+            }
+        }
     }
 
     private void SetColours(List<Vector3> points, Color[] colours)
@@ -327,17 +359,11 @@ public class DualContourer
         float d = 0.25f / PointsPerUnit;
 
         int count = points.Count;
-        for (int i = 0; i < count; i++)
+        Parallel.For(0, count, delegate(int i)
         {
             float functionAtPoint = MathFunction!.GetValue(points[i]);
 
             Vector3 normal = GetFunctionMomentarySpeed(points[i], functionAtPoint, d);
-
-            if (normal == Vector3.Zero)
-            {
-                // GD.Print("Normal uncalculated because of cut-off");
-                continue;
-            }
 
             // If we move one unit in the direction of the normal, function value should be this much more.
             // (If we assume that the function is completely )
@@ -356,7 +382,7 @@ public class DualContourer
             {
                 meshNormals[i] = -normal / instanteousSpeed;
             }
-        }
+        });
     }
 
     private void PlaceTriangles(Vector3I gridPos, Vector3I[] trisToPlace, List<Vector3> points, List<int> tris,
