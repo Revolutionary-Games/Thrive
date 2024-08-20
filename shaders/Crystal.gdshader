@@ -38,26 +38,17 @@ void fragment() {
         growColor.rgb;
 
     ALBEDO = albedo.rgb * albedoUV.rgb;
-
+    ALPHA = round(cutoff) * albedo.a * albedoUV.a;
+    
     float roughnessUV = 1.0 - dot(texture(roughnessTex, baseUV), roughnessTextureChannel);
     ROUGHNESS = roughnessUV * roughness;
     
     float metallicTex = dot(texture(roughnessTex, baseUV), metallicTextureChannel);
     METALLIC = metallicTex * metallic;
-    
     SPECULAR = specular;
-    ALPHA *= albedo.a * albedoUV.a;
 
-    if (dissolveValue > 0.0)
-    {
-        EMISSION = dissolveOutline;
-    }
-    else
-    {
-        float emissionTex = 1.0 - (texture(roughnessTex, baseUV).a);
-        EMISSION = (emission.rgb * emissionTex) * emissionEnergy;
-    }
-
+    float emissionTex = 1.0 - (texture(roughnessTex, baseUV).a);
+    EMISSION = dissolveOutline * (emission.rgb * emissionTex) * emissionEnergy;
     CLEARCOAT = clearcoat;
     CLEARCOAT_ROUGHNESS = clearcoatRoughness;
 }
