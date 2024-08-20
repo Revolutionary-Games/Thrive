@@ -22,15 +22,20 @@ public class DualContourer
 
     public IMeshGeneratingFunction? MathFunction;
 
-    private System.Collections.Generic.Dictionary<int, Vector3I[]> lookupTableInt = new();
+    private static System.Collections.Generic.Dictionary<int, Vector3I[]>? lookupTableInt;
 
     public DualContourer()
     {
-        CalculateLookupTable();
+        CalculateLookupTableIfNeeded();
     }
 
-    public void CalculateLookupTable()
+    public void CalculateLookupTableIfNeeded()
     {
+        if (lookupTableInt != null)
+            return;
+
+        lookupTableInt = new();
+
         // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
 
         bool reverseTriangleFaces = false;
@@ -306,7 +311,7 @@ public class DualContourer
             shapePoints[x + 1, y + 1, z],
             shapePoints[x + 1, y + 1, z + 1]);
 
-        lookupTableInt.TryGetValue(id, out var result);
+        lookupTableInt!.TryGetValue(id, out var result);
 
         return result;
     }

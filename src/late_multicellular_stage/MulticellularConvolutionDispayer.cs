@@ -9,7 +9,6 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
     private const float AABBMargin = 0.1f;
 
     private StandardMaterial3D? material;
-    private Mesh metaballSphere = null!;
 
     private float? overrideColourAlpha;
 
@@ -33,7 +32,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         base._Ready();
 
         // This is here in case we need custom shader effects at some point
-        // Material = new ShaderMaterial()
+        // material = new ShaderMaterial()
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
@@ -63,8 +62,6 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
             maxExtends.Z = Mathf.Max(maxExtends.Z, metaball.Position.Z + metaball.Radius + 0.5f);
         }
 
-        // GD.Print(minExtends + ", " + maxExtends);
-
         var meshGen = new DualContourer();
         meshGen.PointsPerUnit = 3;
         meshGen.UnitsFrom = minExtends;
@@ -88,7 +85,6 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
             if (material != null)
             {
                 material.Dispose();
-                metaballSphere.Dispose();
             }
         }
 
