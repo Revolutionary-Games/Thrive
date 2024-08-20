@@ -46,11 +46,11 @@ public class DualContourer
 
             // [0;0;0] point is the origin (center of the cube)
             // All other points point to neighbooring cubes.
-            // All of the coordinates are one of the following: -1; 0; 1
+            // All of the coordinates are one of the following: -1, 0, or 1
             List<Vector3I> tris = new List<Vector3I>(6);
 
             // Use XOR to ensure that only one of the two points is in the shape
-            // If both are in the shape, then there are no triangles going between them
+            // If both or none are in the shape, then there are no triangles going between them
 
             // Parallel to x face, plane going through z = 1 and y = 1
             if (cube.Points[0, 1, 1] ^ cube.Points[1, 1, 1])
@@ -159,12 +159,12 @@ public class DualContourer
         var triIndices = new List<int>(capacity);
 
         // Shape point is located at intersection of three lines of the grid
-        // if true, then the point is inside shape, otherwise outside
-        var shapePoints = new bool[(gridTo.X - gridFrom.X) + 2,
-            (gridTo.Y - gridFrom.Y) + 2,
-            (gridTo.Z - gridFrom.Z) + 2];
+        // if a point's value is true, the point is inside shape, otherwise outside
+        var shapePoints = new bool[gridTo.X - gridFrom.X + 2,
+            gridTo.Y - gridFrom.Y + 2,
+            gridTo.Z - gridFrom.Z + 2];
 
-        // Points at grid-cell centers at coordinates of gridpoint are related to shape points with coordinates of:
+        // Points at grid cell centers at coordinates of gridpoint are related to shape points with coordinates of:
         // [gridpoint.X; gridpoint.X + 1] for x, [gridpoint.Y; gridpoint.Y + 1] for y,
         // [gridpoint.Z; gridpoint.Z + 1] for z
 
@@ -175,10 +175,9 @@ public class DualContourer
 
         CalculatePoints(shapePoints, gridFrom, gridTo);
 
-        sw.Stop();
-
-        // GD.Print($"Calculated points in {sw.Elapsed}");
-        sw.Restart();
+        /*sw.Stop();
+        GD.Print($"Calculated points in {sw.Elapsed}");
+        sw.Restart();*/
 
         Vector3I gridOffset = -gridFrom;
 
@@ -203,10 +202,9 @@ public class DualContourer
             }
         }
 
-        sw.Stop();
-
-        // GD.Print($"Placed triangles in {sw.Elapsed}");
-        sw.Restart();
+        /*sw.Stop();
+        GD.Print($"Placed triangles in {sw.Elapsed}");
+        sw.Restart();*/
 
         var normals = new Vector3[points.Count];
 
@@ -216,11 +214,8 @@ public class DualContourer
             AdjustVertices(points, 0.25f, normals);
         }
 
-        sw.Stop();
-
-        // GD.Print($"Adjusted vertices in {sw.Elapsed}");
-
-        // GD.Print($"{points.Count} vertices; {triIndices.Count / 3} triangles");
+        /*sw.Stop();
+        GD.Print($"Adjusted vertices in {sw.Elapsed}");*/
 
         var colors = new Color[points.Count];
 
@@ -232,10 +227,10 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Vertex] = points.ToArray();
         arrays[(int)Mesh.ArrayType.Index] = triIndices.ToArray();
         arrays[(int)Mesh.ArrayType.Normal] = normals;
+        arrays[(int)Mesh.ArrayType.Color] = colors;
 
         // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
         // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
-        arrays[(int)Mesh.ArrayType.Color] = colors;
 
         ArrayMesh mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
