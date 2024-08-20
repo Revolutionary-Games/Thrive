@@ -128,7 +128,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
             ++i;
         }
 
-        CustomAabb = new Aabb(-extends, extends);
+        CustomAabb = new Aabb(-extends, extends * 2);
     }
 
     protected override void Dispose(bool disposing)

@@ -262,25 +262,6 @@ public class DualContourer
         sw.Stop();
     }
 
-    private void CalculatePointsPartially(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
-    {
-        Vector3I gridOffset = -gridFrom;
-
-        for (int x = gridFrom.X; x <= gridTo.X; ++x)
-        {
-            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
-            {
-                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
-                {
-                    // var gridPos = new Vector3I(x, y, z);
-                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) / PointsPerUnit;
-
-                    shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
-                }
-            }
-        }
-    }
-
     private void SetColours(List<Vector3> points, Color[] colours)
     {
         for (int i = 0; i < colours.Length; i++)
