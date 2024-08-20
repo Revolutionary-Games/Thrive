@@ -15,7 +15,7 @@ public class Scalis : IMeshGeneratingFunction
     /// </summary>
     public Metaball[]? Points;
 
-    private static int[] coefficients = new int[] { 1, 2, 1 };
+    private static int[] coefficients = { 1, 2, 1 };
 
     private float surfaceValue = 1.0f;
 
@@ -101,7 +101,8 @@ public class Scalis : IMeshGeneratingFunction
 
             for (int k = 0; k < coefficients.Length; k++)
             {
-                value += coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1) * Convolution(k, i, a, b, pos);
+                value += coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1)
+                    * Convolution(k, i, a, b, pos);
             }
         }
 
@@ -223,7 +224,8 @@ public class Scalis : IMeshGeneratingFunction
             if (i == 2)
             {
                 return Mathf.Atan(VectorFromTo(pointB, pointA).Dot(VectorFromTo(pointB, pointP))
-                        / Mathf.Sqrt(discriminant)) + Mathf.Atan(VectorFromTo(pointA, pointB).Dot(VectorFromTo(pointA, pointP)) /
+                        / Mathf.Sqrt(discriminant)) +
+                        Mathf.Atan(VectorFromTo(pointA, pointB).Dot(VectorFromTo(pointA, pointP)) /
                         Mathf.Sqrt(discriminant)) * pointA.DistanceTo(pointB)
                     / Mathf.Sqrt(discriminant);
             }

@@ -34,7 +34,7 @@ public class DualContourer
         if (lookupTableInt != null)
             return;
 
-        lookupTableInt = new();
+        lookupTableInt = new System.Collections.Generic.Dictionary<int, Vector3I[]>();
 
         // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
 

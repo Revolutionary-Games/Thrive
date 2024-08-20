@@ -82,10 +82,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
     {
         if (disposing)
         {
-            if (material != null)
-            {
-                material.Dispose();
-            }
+            material?.Dispose();
         }
 
         base.Dispose(disposing);
