@@ -49,6 +49,11 @@ public struct MicrobeControl
     public float AgentEmissionCooldown;
 
     /// <summary>
+    ///   How long to remain in <see cref="State"/> even if ATP requirements are not fulfilled (time in seconds)
+    /// </summary>
+    public float ForcedStateRemaining;
+
+    /// <summary>
     ///   This is an overall state of the Microbe. Use <see cref="MicrobeControlHelpers.SetStateColonyAware"/> to
     ///   apply state for a colony lead cell in a way that also applies it to other colony members.
     /// </summary>
@@ -142,6 +147,44 @@ public static class MicrobeControlHelpers
         }
 
         control.State = targetState;
+    }
+
+    /// <summary>
+    ///   Enters engulf mode. This variant forces the mode on for a few seconds even if ATP requirements are not
+    ///   fulfilled at the cost of a bit of damage.
+    /// </summary>
+    public static void EnterEngulfModeForcedState(this ref MicrobeControl control, ref Health health,
+        ref CompoundStorage compoundStorage, in Entity entity, Compound atp)
+    {
+        if (control.State == MicrobeState.Engulf)
+            return;
+
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            if (colony.ColonyState != MicrobeState.Engulf)
+            {
+                colony.ColonyState = MicrobeState.Engulf;
+
+                foreach (var colonyMember in colony.ColonyMembers)
+                {
+                    // The IsAlive check should be unnecessary here but as this is a general method there's this
+                    // extra safety against crashing due to colony bugs
+                    if (colonyMember != entity && colonyMember.IsAlive)
+                    {
+                        ref var memberControl = ref colonyMember.Get<MicrobeControl>();
+                        ref var memberHealth = ref colonyMember.Get<Health>();
+                        ref var memberCompoundStorage = ref colonyMember.Get<CompoundStorage>();
+
+                        ForceStateApplyIfRequired(ref memberControl, ref memberHealth, ref memberCompoundStorage,
+                            colonyMember, MicrobeState.Engulf, false, atp);
+                    }
+                }
+            }
+        }
+
+        ForceStateApplyIfRequired(ref control, ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
     }
 
     /// <summary>
@@ -316,5 +359,50 @@ public static class MicrobeControlHelpers
         {
             control.State = MicrobeState.Normal;
         }
+    }
+
+    /// <summary>
+    ///   Forcefully sets a cell in a state and deals damage
+    /// </summary>
+    public static void ForceStateApplyIfRequired(this ref MicrobeControl control, ref Health health,
+        ref CompoundStorage compoundStorage, in Entity entity, MicrobeState targetState, bool sendHUDNotice,
+        Compound atp)
+    {
+        // Do nothing if already in correct state
+        if (control.State == targetState)
+            return;
+
+        if (NeedsToUseForcedState(ref compoundStorage, atp))
+        {
+            // Don't force if the damage would kill the cell to avoid state change being a death button
+            float damage = Constants.ENGULF_NO_ATP_DAMAGE;
+
+            if (damage >= health.CurrentHealth)
+                return;
+
+            // Need to force this cell into a mode, so deal the damage
+            health.DealDamage(damage, "forcedState");
+
+            control.ForcedStateRemaining = Constants.ENGULF_NO_ATP_TIME;
+
+            if (sendHUDNotice)
+            {
+                entity.SendNoticeIfPossible(() =>
+                    new SimpleHUDMessage(Localization.Translate("ENGULF_NO_ATP_DAMAGE_MESSAGE")));
+            }
+        }
+
+        control.State = targetState;
+    }
+
+    public static bool NeedsToUseForcedState(ref CompoundStorage compoundStorage, Compound atp)
+    {
+        if (compoundStorage.Compounds.GetCompoundAmount(atp) > Constants.ENGULF_NO_ATP_TRIGGER_THRESHOLD)
+        {
+            // If cell has good amount of ATP, don't force it into engulf mode
+            return false;
+        }
+
+        return true;
     }
 }

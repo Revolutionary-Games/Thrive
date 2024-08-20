@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-17 20:18+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1702,6 +1702,9 @@ msgstr "Джерела енергії:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Введіть існуючий ID"
 
@@ -2947,17 +2950,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] відокремились від [b][u]{1}[/u][/b] як новий вид через різні утиски відбору"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Тиск"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Хмари сполук"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Хмари сполук"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -2973,32 +2974,27 @@ msgstr ""
 "[b]Поведінка[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Хмари сполук"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Хмари сполук"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Тиск"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Винищення {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Тиск"
+msgstr "Винищення {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Тиск"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4117,6 +4113,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/секунду"
 
 msgid "PHOSPHATE"
+msgstr "Фосфат"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Фосфат"
 
 msgid "PHOTOSYNTHESIS"
@@ -7024,18 +7024,6 @@ msgstr "Віддалитись"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Помилка: брила не знайдена"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Хмари сполук"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Тиск"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Мапа Ділянок"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Підсилення басів"

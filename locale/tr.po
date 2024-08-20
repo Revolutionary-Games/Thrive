@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-07-27 14:22+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1690,6 +1690,9 @@ msgstr "Enerji Kaynakları:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Mevcut ID'yi Gir"
 
@@ -2932,17 +2935,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b], farklı seçilim baskılarından dolayı, yeni bir tür olarak, [b][u]{1}[/u][/b] türünden ayrıldı"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Basınç"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Bileşik bulutu"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Bileşik bulutu"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -2958,32 +2959,27 @@ msgstr ""
 "[b]Davranış[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Bileşik bulutu"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Bileşik bulutu"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Basınç"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "{0} türünün yenilmesi"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Basınç"
+msgstr "{0} türünün yenilmesi"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Basınç"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4087,6 +4083,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
 msgid "PHOSPHATE"
+msgstr "Fosfat"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Fosfat"
 
 msgid "PHOTOSYNTHESIS"
@@ -7128,18 +7128,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Hata: Parça bulunamadı"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Bileşik bulutu"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Basınç"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Arazi Haritası"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Windows'ta bilinmiyor"

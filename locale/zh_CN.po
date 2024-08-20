@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-19 00:11+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1690,6 +1690,9 @@ msgstr "能量来源："
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "输入已有的编号"
 
@@ -2932,17 +2935,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是进化压力"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "压力"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "化合物云"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "化合物云"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -2958,32 +2959,27 @@ msgstr ""
 "[b]行为[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "化合物云"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "化合物云"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "压力"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "捕食{0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "压力"
+msgstr "捕食{0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "压力"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4087,6 +4083,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "每秒"
 
 msgid "PHOSPHATE"
+msgstr "磷酸盐"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "磷酸盐"
 
 msgid "PHOTOSYNTHESIS"
@@ -7127,18 +7127,6 @@ msgstr "缩小"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "错误：区块未找到"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "化合物云"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "压力"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "地区图"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "低音增强"

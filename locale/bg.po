@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1791,6 +1791,9 @@ msgstr "Източници на енергия:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Въвеждане на съществуващ идентификационен №"
 
@@ -3086,17 +3089,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] поради селекционен натиск"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Налягане"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Облаци"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Облаци"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -3112,32 +3113,27 @@ msgstr ""
 "[b]Поведение[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Облаци"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Облаци"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Налягане"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "{0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Налягане"
+msgstr "{0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Налягане"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4287,6 +4283,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/в секунда"
 
 msgid "PHOSPHATE"
+msgstr "Фосфат"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Фосфат"
 
 msgid "PHOTOSYNTHESIS"
@@ -7270,18 +7270,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Грешка: Фрагментът не е намерен"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Облаци"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Налягане"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Карта"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Клавиш „Bassboost“"

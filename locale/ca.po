@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1733,6 +1733,9 @@ msgstr "Fonts d'energia:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Introduïr ID Existent"
 
@@ -3077,17 +3080,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a noves espècies degut a diferents pressions selectives"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Pressió"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Núvols de Compostos"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Núvols de Compostos"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -3103,32 +3104,27 @@ msgstr ""
 "[b]Comportament[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Núvols de Compostos"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Núvols de Compostos"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Pressió"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Predació de {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Pressió"
+msgstr "Predació de {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Pressió"
+msgstr ""
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -4322,6 +4318,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/segon"
 
 msgid "PHOSPHATE"
+msgstr "Fosfat"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Fosfat"
 
 msgid "PHOTOSYNTHESIS"
@@ -7322,18 +7322,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Error: tros no trobat"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Núvols de Compostos"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Pressió"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Mapa d'Indrets del món"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Tecla Bassboost"

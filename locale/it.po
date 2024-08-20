@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1735,6 +1735,9 @@ msgstr "Fonti di energia:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia totale accumulata è {0}, con un costo individuale di {1}, risultante in una popolazione (non calibrata) di {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Inserisci ID esistente"
 
@@ -3074,17 +3077,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Nuova specie: [b][u]{0}[/u][/b] si è diramata da [b][u]{1}[/u][/b] a causa di pressioni selettive diverse"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Pressione"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Nuvole di composti"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Nuvole di composti"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -3100,32 +3101,27 @@ msgstr ""
 "[b]Comportamento[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Nuvole di composti"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Nuvole di composti"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Pressione"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Predazione di {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Pressione"
+msgstr "Predazione di {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Pressione"
+msgstr ""
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -4308,6 +4304,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "al secondo"
 
 msgid "PHOSPHATE"
+msgstr "Fosfato"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Fosfato"
 
 msgid "PHOTOSYNTHESIS"
@@ -7305,18 +7305,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Errore: frammento non trovato"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Nuvole di composti"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Pressione"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Mappa delle zone"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost (tasto audio)"

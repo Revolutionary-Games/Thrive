@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1705,6 +1705,9 @@ msgstr "Źródła Energii:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Całkowita zdobyta energia wynosi {0} z indywidualnym kosztem {1} tworzącym nieuregulowaną populację {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Podaj Istniejące ID"
 
@@ -2969,17 +2972,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Ciśnienie"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Chmury związków"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Chmury związków"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -2995,32 +2996,27 @@ msgstr ""
 "[b]Zachowanie[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Chmury związków"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Chmury związków"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Ciśnienie"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Drapieżnictwo {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Ciśnienie"
+msgstr "Drapieżnictwo {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Ciśnienie"
+msgstr ""
 
 msgid "MICHE_TREE"
 msgstr ""
@@ -4149,6 +4145,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/sekundę"
 
 msgid "PHOSPHATE"
+msgstr "Fosforany (PO₄³⁻)"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Fosforany (PO₄³⁻)"
 
 msgid "PHOTOSYNTHESIS"
@@ -6970,18 +6970,6 @@ msgstr "Oddal"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Błąd: nie znaleziono chunku"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Chmury związków"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Ciśnienie"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Mapa Obszarów"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Podbicie Bassów"

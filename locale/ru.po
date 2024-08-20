@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-22 23:22+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1694,6 +1694,9 @@ msgstr "Источники Энергии:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Общая собранная энергия равна {0} с индивидуальными затратами {1}, результатом чего является нескорректированная популяция количеством в {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Ввести существующий ID"
 
@@ -2936,17 +2939,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Вид [b][u]{0}[/u][/b] отделился от вида [b][u]{1}[/u][/b] как новый вид в связи с различными условиями отбора"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "Давление"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Облака веществ"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "Облака веществ"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -2962,32 +2963,27 @@ msgstr ""
 "[b]Поведение[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "Облака веществ"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "Облака веществ"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "Давление"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "Истребление {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "Давление"
+msgstr "Истребление {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "Давление"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4099,6 +4095,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/секунд"
 
 msgid "PHOSPHATE"
+msgstr "Фосфат"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "Фосфат"
 
 msgid "PHOTOSYNTHESIS"
@@ -6990,18 +6990,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Ошибка: фрагмент не найден"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "Облака веществ"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "Давление"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "Карта Биомов"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "BassBoost"

@@ -193,45 +193,11 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         ref var control = ref entity.Get<MicrobeControl>();
         ref var cellProperties = ref entity.Get<CellProperties>();
 
-        bool checkEngulfStartCollisions = false;
-
         var actuallyEngulfing = control.State == MicrobeState.Engulf && cellProperties.MembraneType.CanEngulf;
 
         cellProperties.CreatedMembrane?.HandleEngulfAnimation(actuallyEngulfing, delta);
 
-        if (actuallyEngulfing)
-        {
-            // Drain atp
-            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
-
-            var compounds = entity.Get<CompoundStorage>().Compounds;
-
-            // Stop engulfing if out of ATP or if this is an engulfable that has been engulfed
-            bool engulfed = false;
-
-            if (entity.Has<Engulfable>())
-            {
-                engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
-            }
-
-            if (compounds.TakeCompound(atp, cost) < cost - 0.001f || engulfed)
-            {
-                control.SetStateColonyAware(entity, MicrobeState.Normal);
-            }
-            else
-            {
-                checkEngulfStartCollisions = true;
-            }
-        }
-        else
-        {
-            if (control.State == MicrobeState.Engulf)
-            {
-                // Force out of incorrect state (but don't force whole colony in case there is a cell type in the
-                // colony that can engulf even if the leader can't)
-                control.State = MicrobeState.Normal;
-            }
-        }
+        bool checkEngulfStartCollisions = HandleEngulfModeStateUpdate(ref control, entity, actuallyEngulfing, delta);
 
         ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
 
@@ -858,6 +824,76 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         animation.Interpolate = false;
 
         animation.AnimationTimeElapsed = 0;
+    }
+
+    /// <summary>
+    ///   Checks if cell can stay in engulf mode and updates states if cannot
+    /// </summary>
+    private bool HandleEngulfModeStateUpdate(ref MicrobeControl control, in Entity entity, bool actuallyEngulfing,
+        float delta)
+    {
+        bool checkEngulfStartCollisions = false;
+
+        if (actuallyEngulfing)
+        {
+            // Drain atp
+            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
+
+            var compounds = entity.Get<CompoundStorage>().Compounds;
+
+            // Stop engulfing if out of ATP or if this is an engulfable that has been engulfed
+            bool engulfed = false;
+
+            if (entity.Has<Engulfable>())
+            {
+                engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
+            }
+
+            var outOfATP = compounds.TakeCompound(atp, cost) < cost - 0.001f;
+
+            if (engulfed || outOfATP)
+            {
+                if (outOfATP)
+                {
+                    if (control.ForcedStateRemaining > 0)
+                    {
+                        control.ForcedStateRemaining -= delta;
+
+                        // Not absolutely necessary to force to zero as a negative value would work as well but this
+                        // is a bit nicer data then in the component and probably doesn't cost much performance
+                        if (control.ForcedStateRemaining < 0)
+                            control.ForcedStateRemaining = 0;
+
+                        // Staying in engulf mode thanks to forced entry even without ATP
+                        checkEngulfStartCollisions = true;
+                    }
+                    else
+                    {
+                        // No longer any ATP, or forced state, so get out of the state
+                        control.SetStateColonyAware(entity, MicrobeState.Normal);
+                    }
+                }
+                else
+                {
+                    control.SetStateColonyAware(entity, MicrobeState.Normal);
+                }
+            }
+            else
+            {
+                checkEngulfStartCollisions = true;
+            }
+        }
+        else
+        {
+            if (control.State == MicrobeState.Engulf)
+            {
+                // Force out of incorrect state (but don't force whole colony in case there is a cell type in the
+                // colony that can engulf even if the leader can't)
+                control.State = MicrobeState.Normal;
+            }
+        }
+
+        return checkEngulfStartCollisions;
     }
 
     private Endosome CreateEndosome(in Entity entity, ref SpatialInstance endosomeParent, in Entity engulfedObject,

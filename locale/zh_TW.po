@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-07-27 14:22+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1690,6 +1690,9 @@ msgstr "能量來源："
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為 {0}，個體成本為 {1}，未修正前的種群數量為 {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "輸入已有 ID"
 
@@ -2932,17 +2935,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，成為了一個新物種，原因是演化壓力"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "壓力"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "化合物雲"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "化合物雲"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -2958,32 +2959,27 @@ msgstr ""
 "[b]行為[/b]\n"
 "  {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "化合物雲"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "化合物雲"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "壓力"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "捕食 {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "壓力"
+msgstr "捕食 {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "壓力"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4087,6 +4083,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "/s"
 
 msgid "PHOSPHATE"
+msgstr "磷酸鹽"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "磷酸鹽"
 
 msgid "PHOTOSYNTHESIS"
@@ -7126,18 +7126,6 @@ msgstr "縮小"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "錯誤：找不到區塊"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "化合物雲"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "壓力"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "區域地圖"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "在 Windows 上未知"

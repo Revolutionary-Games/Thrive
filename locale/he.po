@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 17:51-0500\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1748,6 +1748,9 @@ msgstr "מקורות אנרגיה:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "סך האנרגיה שנאספה הוא {0} עם עלות בודדת של {1} וכתוצאה מכך אוכלוסייה בלתי מותאמת של {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "הכנס ID קיים"
 
@@ -3080,17 +3083,15 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשל לחץ ברירה שונים"
 
-#, fuzzy
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "לחץ"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "ענני תרכובות"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr "ענני תרכובות"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -3106,32 +3107,27 @@ msgstr ""
 "[b]התנהגות[/b]\n"
 " {5}"
 
-#, fuzzy
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr "ענני תרכובות"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr "ענני תרכובות"
+msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr "לחץ"
+msgstr ""
 
-#, fuzzy
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr "טריפה של {0}"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "לחץ"
+msgstr "טריפה של {0}"
 
-#, fuzzy
 msgid "MICHE_ROOT_PRESSURE"
-msgstr "לחץ"
+msgstr ""
 
 #, fuzzy
 msgid "MICHE_TREE"
@@ -4293,6 +4289,10 @@ msgid "PER_SECOND_SLASH"
 msgstr "\\לשנייה"
 
 msgid "PHOSPHATE"
+msgstr "פוספט"
+
+#, fuzzy
+msgid "PHOSPHATE_CHUNK"
 msgstr "פוספט"
 
 msgid "PHOTOSYNTHESIS"
@@ -7278,18 +7278,6 @@ msgstr "זום החוצה"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "תקלה: גוש לא נמצא"
-
-#, fuzzy
-#~ msgid "COMPOUND_CLOUD_PRESSURE"
-#~ msgstr "ענני תרכובות"
-
-#, fuzzy
-#~ msgid "STORAGE_PRESSURE"
-#~ msgstr "לחץ"
-
-#, fuzzy
-#~ msgid "PATCH"
-#~ msgstr "מפת האזורים"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "מקש Bassboost"
