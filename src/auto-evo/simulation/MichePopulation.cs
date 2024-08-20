@@ -42,18 +42,6 @@ public static class MichePopulation
         }
     }
 
-    public static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
-        SimulationCache cache)
-    {
-        if (species is not MicrobeSpecies microbeSpecies)
-            throw new ArgumentException("Unhandled species type passed");
-
-        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
-
-        return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-    }
-
     /// <summary>
     ///   Estimates the initial population numbers
     /// </summary>
@@ -68,6 +56,18 @@ public static class MichePopulation
         var individualCost = CalculateMicrobeIndividualCost(species, patch.Biome, cache);
 
         return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
+    }
+
+    private static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
+        SimulationCache cache)
+    {
+        if (species is not MicrobeSpecies microbeSpecies)
+            throw new ArgumentException("Unhandled species type passed");
+
+        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
+
+        return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
     }
 
     /// <summary>
@@ -182,10 +182,17 @@ public static class MichePopulation
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
 
+        // Note that this modifies the miche tree while simulating
         var miche = populations.GetMicheForPatch(patch);
 
+        var scores = new Dictionary<Species, float>();
+        var workMemory = new HashSet<Species>();
+        miche.SetupScores(scores, workMemory);
+
         foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
-            miche.InsertSpecies(extraSpecies, patch, cache);
+        {
+            miche.InsertSpecies(extraSpecies, patch, scores, cache, false, workMemory);
+        }
 
         // This prevents duplicates caused by ExtraSpecies
         var species = new HashSet<Species>();
@@ -210,14 +217,29 @@ public static class MichePopulation
         var leafNodes = new List<Miche>();
         miche.GetLeafNodes(leafNodes, x => x.Occupant != null);
 
-        var energyDictionary = species.ToDictionary(x => x, _ => 0.0);
+        // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
+        // might benefit from extra precision
+        var energyDictionary = species.ToDictionary(x => x, _ => 0.0f);
+
+        // This doesn't use miche.SetupScores as this wants scores for all species, even ones that aren't in the
+        // tree yet
+
+        var currentBackTraversal = new List<Miche>();
+        var scoresDictionary = new Dictionary<Species, float>();
 
         foreach (var node in leafNodes)
         {
-            var totalScore = 0.0;
-            var scoresDictionary = species.ToDictionary(x => x, _ => 0.0);
+            float totalScore = 0;
 
-            foreach (var currentMiche in node.BackTraversal())
+            scoresDictionary.Clear();
+            foreach (var entry in species)
+            {
+                scoresDictionary[entry] = 0;
+            }
+
+            currentBackTraversal.Clear();
+            node.BackTraversal(currentBackTraversal);
+            foreach (var currentMiche in currentBackTraversal)
             {
                 foreach (var currentSpecies in species)
                 {
@@ -225,6 +247,7 @@ public static class MichePopulation
                         continue;
 
                     // Weighted score is intentionally not used here as negatives break everything
+                    // TODO: this should have safety handling if occupant is null or not a microbe species
                     var score = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies) /
                         cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
                         currentMiche.Pressure.Strength;
@@ -244,7 +267,7 @@ public static class MichePopulation
                 if (trackEnergy)
                 {
                     populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
-                        (float)scoresDictionary[currentSpecies], (float)totalScore, (float)micheEnergy);
+                        scoresDictionary[currentSpecies], totalScore, micheEnergy);
                 }
 
                 energyDictionary[currentSpecies] += micheEnergy;
@@ -265,8 +288,19 @@ public static class MichePopulation
 
             // Remove any species that don't hold a miche
             // Probably should make this a setting and throw a multiplier here
-            // It does give a large speed up though
-            if (!leafNodes.Any(x => x.Occupant == currentSpecies) && !currentSpecies.PlayerSpecies)
+            // It does give a large speed-up though
+            bool isOccupantSomewhere = false;
+
+            foreach (var leafNode in leafNodes)
+            {
+                if (leafNode.Occupant == currentSpecies)
+                {
+                    isOccupantSomewhere = true;
+                    break;
+                }
+            }
+
+            if (!isOccupantSomewhere && !currentSpecies.PlayerSpecies)
                 newPopulation = 0;
 
             // Can't survive without enough population
@@ -276,7 +310,7 @@ public static class MichePopulation
             if (trackEnergy)
             {
                 populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
-                    (float)energyDictionary[currentSpecies], individualCost);
+                    energyDictionary[currentSpecies], individualCost);
             }
 
             populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);

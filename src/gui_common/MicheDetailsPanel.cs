@@ -6,7 +6,7 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Shows various details about a species to the player
+///   Shows various details about a miche to the player
 /// </summary>
 public partial class MicheDetailsPanel : MarginContainer
 {

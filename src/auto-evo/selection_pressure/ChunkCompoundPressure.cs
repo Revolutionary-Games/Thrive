@@ -59,8 +59,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("CHUNK_FOOD_SOURCE",
-            new LocalizedString(chunkType));
+        return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(chunkType));
     }
 
     public override float GetEnergy(Patch patch)
@@ -85,8 +84,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override string ToString()
     {
-        var chunkName = new LocalizedString("CHUNK_FOOD_SOURCE",
-            new LocalizedString(chunkType));
+        var chunkName = Localization.Translate("CHUNK_FOOD_SOURCE").FormatSafe(Localization.Translate(chunkType));
 
         return $"{Name} ({chunkName})";
     }

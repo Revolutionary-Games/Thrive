@@ -148,6 +148,19 @@ public class EarlyMulticellularSpecies : Species
         }
     }
 
+    public override float GetPredationTargetSizeFactor()
+    {
+        var totalOrganelles = 0;
+
+        int count = Cells.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            totalOrganelles += Cells[i].Organelles.Count;
+        }
+
+        return totalOrganelles;
+    }
+
     public override object Clone()
     {
         var result = new EarlyMulticellularSpecies(ID, Genus, Epithet);

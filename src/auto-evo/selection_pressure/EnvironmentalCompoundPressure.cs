@@ -64,9 +64,8 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        // TODO: somehow allow the compound name to translate properly. We now have custom BBCode to refer to
-        // compounds so this should be doable
-        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE", compound.Name);
+        return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE",
+            new LocalizedString(compound.GetUntranslatedName()));
     }
 
     public override string ToString()

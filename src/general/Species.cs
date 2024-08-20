@@ -293,6 +293,12 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    ///   Gets a species size factor used in parts of auto-evo
+    /// </summary>
+    /// <returns>Size factor of this species</returns>
+    public abstract float GetPredationTargetSizeFactor();
+
+    /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
     ///   referring to the old data. In for example the Mutations

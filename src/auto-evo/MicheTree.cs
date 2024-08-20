@@ -15,6 +15,7 @@ using Godot;
 public partial class MicheTree : Control
 {
     // TODO: See if this class and EvolutionaryTree can be combined into a parent class
+    // https://github.com/Revolutionary-Games/Thrive/issues/5373
 
     [Export]
     public NodePath TreePath = null!;
@@ -76,10 +77,6 @@ public partial class MicheTree : Control
     /// </summary>
     private Control tree = null!;
 
-    // Local copy of fonts
-    private LabelSettings bodyItalicFont = null!;
-    private LabelSettings bodyFont = null!;
-
     private PackedScene treeNodeScene = null!;
 #pragma warning restore CA2213
 
@@ -92,11 +89,6 @@ public partial class MicheTree : Control
 
     private bool dragging;
     private Vector2 lastMousePosition;
-
-    /// <summary>
-    ///   Default size of lato-small font.
-    /// </summary>
-    private float smallFontSize;
 
     /// <summary>
     ///   The tree's size factor.
@@ -125,12 +117,6 @@ public partial class MicheTree : Control
         tree = GetNode<Control>(TreePath);
 
         treeNodeScene = GD.Load<PackedScene>("res://src/auto-evo/MicheTreeNode.tscn");
-
-        // Font size is adjusted dynamically so this needs to be a copy.
-        bodyItalicFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Italic-Small.tres");
-        smallFontSize = bodyItalicFont.FontSize;
-
-        bodyFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Regular-Small.tres");
     }
 
     public override void _Process(double delta)
@@ -148,9 +134,6 @@ public partial class MicheTree : Control
         }
     }
 
-    /// <summary>
-    ///   A miche tree for debugging the miche system. Supports dragging and zooming.
-    /// </summary>
     public void SetMiche(Miche miche)
     {
         if (rootMiche == miche)

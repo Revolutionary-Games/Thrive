@@ -64,9 +64,7 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        // TODO: somehow allow the compound name to translate properly. Maybe we need to use bbcode to refer to the
-        // compounds?
-        return new LocalizedString("COMPOUND_FOOD_SOURCE", compound.Name);
+        return new LocalizedString("COMPOUND_FOOD_SOURCE", new LocalizedString(compound.GetUntranslatedName()));
     }
 
     public override string ToString()

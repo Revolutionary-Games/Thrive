@@ -17,6 +17,9 @@ public class MigrateSpecies : IRunStep
     {
         this.patch = patch;
         this.cache = cache;
+
+        // TODO: take in a random seed (would help to make sure the random cannot result in the same sequence as
+        // this class instances are allocated in a pretty tight loop
         random = new Random();
     }
 
@@ -31,14 +34,14 @@ public class MigrateSpecies : IRunStep
         var occupantsSet = new HashSet<Species>();
         miche.GetOccupants(occupantsSet);
 
-        var occupants = occupantsSet.ToList();
-
-        if (occupants.Count == 0)
+        if (occupantsSet.Count < 1)
             return true;
+
+        var occupants = occupantsSet.ToList();
 
         var species = occupants.Random(random);
 
-        // TODO: Make this a game option?
+        // Player has a separate GUI to control their migrations purposefully so auto-evo doesn't do it automatically
         if (species.PlayerSpecies)
             return true;
 
@@ -47,17 +50,19 @@ public class MigrateSpecies : IRunStep
             return true;
 
         // Select a random adjacent target patch
-        // TODO: could prefer patches this species is not already
-        // in or about to go extinct, or really anything other
+        // TODO: could prefer patches this species is not already in or about to go extinct, or really anything other
         // than random selection
-        var target = patch.Adjacent.ToList().Random(random);
+        var target = patch.Adjacent.Random(random);
         var targetMiche = results.GetMicheForPatch(target);
 
         // Calculate random amount of population to send
-        int moveAmount = (int)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
+        var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
             population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
-        if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, cache, true))
+        var scores = new Dictionary<Species, float>();
+        miche.SetupScores(scores, occupantsSet);
+
+        if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, scores, cache, true, occupantsSet))
         {
             results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
             return true;

@@ -410,8 +410,6 @@ public class AutoEvoRun
             }
         }
 
-        steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
-
         // The new populations don't depend on the mutations, this is so that when
         // the player edits their species the other species they are competing
         // against are the same (so we can show some performance predictions in the
@@ -421,6 +419,10 @@ public class AutoEvoRun
             { CanRunConcurrently = false });
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
+
+        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
+        // numbers
+        steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
     }
 
     /// <summary>

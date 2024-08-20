@@ -1,19 +1,20 @@
 ﻿namespace AutoEvo;
 
+using System.Collections.Generic;
+
 /// <summary>
-///   Dynamically generates the Miche for each Patch
+///   Dynamically generates the <see cref="Miche"/> tree for each <see cref="Patch"/>
 /// </summary>
 public class GenerateMiche : IRunStep
 {
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private readonly Compound hydrogenSulfide =
         SimulationParameters.Instance.GetCompound("hydrogensulfide");
 
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     private readonly Compound temperature = SimulationParameters.Instance.GetCompound("temperature");
+
     private readonly Patch patch;
     private readonly SimulationCache cache;
     private readonly AutoEvoGlobalCache globalCache;
@@ -72,6 +73,9 @@ public class GenerateMiche : IRunStep
             if (hasBigIronChunk)
                 ironMiche.AddChild(new Miche(globalCache.BigIronChunkPressure));
 
+            // TODO: maybe allowing direct iron in a patch should also be considered (though not currently used by
+            // any biome in the game)?
+
             generatedMiche.AddChild(ironMiche);
         }
 
@@ -91,6 +95,7 @@ public class GenerateMiche : IRunStep
         }
 
         // Sunlight
+        // TODO: should there be a dynamic energy level requirement rather than an absolute value?
         if (patch.Biome.TryGetCompound(sunlight, CompoundAmountType.Biome, out var sunlightAmount) &&
             sunlightAmount.Ambient >= 0.25f)
         {
@@ -106,6 +111,7 @@ public class GenerateMiche : IRunStep
         }
 
         // Heat
+        // TODO: the 60 here should be a constant or explained some other way what the threshold is
         if (patch.Biome.TryGetCompound(temperature, CompoundAmountType.Biome, out var temperatureAmount) &&
             temperatureAmount.Ambient > 60)
         {
@@ -134,9 +140,13 @@ public class GenerateMiche : IRunStep
 
     public Miche PopulateMiche(Miche miche)
     {
+        var scores = new Dictionary<Species, float>();
+        var workMemory = new HashSet<Species>();
+        miche.SetupScores(scores, workMemory);
+
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
-            miche.InsertSpecies(species, patch, cache);
+            miche.InsertSpecies(species, patch, scores, cache, false, workMemory);
         }
 
         return miche;

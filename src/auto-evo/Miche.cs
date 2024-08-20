@@ -41,16 +41,6 @@ public class Miche
         return Children.Count == 0;
     }
 
-    public Miche Root()
-    {
-        if (Parent == null)
-        {
-            return this;
-        }
-
-        return Parent.Root();
-    }
-
     public void GetLeafNodes(List<Miche> nodes)
     {
         if (IsLeafNode())
@@ -115,11 +105,6 @@ public class Miche
         }
     }
 
-    public IEnumerable<Miche> BackTraversal()
-    {
-        return BackTraversal(new List<Miche>());
-    }
-
     public IEnumerable<Miche> BackTraversal(List<Miche> currentTraversal)
     {
         currentTraversal.Insert(0, this);
@@ -136,29 +121,31 @@ public class Miche
         newChild.Parent = this;
     }
 
-    public void AddChildren(IEnumerable<Miche> newChildren)
+    public void SetupScores(Dictionary<Species, float> scores, HashSet<Species> workMemory)
     {
-        foreach (var child in newChildren)
+        workMemory.Clear();
+        GetOccupants(workMemory);
+
+        scores.Clear();
+
+        foreach (var occupant in workMemory)
         {
-            AddChild(child);
+            scores[occupant] = 0;
         }
-    }
-
-    public bool InsertSpecies(Species species, Patch patch, SimulationCache cache, bool dry = false)
-    {
-        var occupants = new HashSet<Species>();
-        GetOccupants(occupants);
-
-        var scoresDictionary = occupants.ToDictionary(x => x, _ => 0.0f);
-
-        scoresDictionary[species] = 0.0f;
-
-        return InsertSpecies(species, patch, scoresDictionary, cache, dry, occupants);
     }
 
     /// <summary>
     ///   Inserts a species into any spots on the tree where the species is a better fit than any current occupants
     /// </summary>
+    /// <param name="species">Species to try to insert</param>
+    /// <param name="patch">Patch this miche is in for calculating scores</param>
+    /// <param name="scoresSoFar">
+    ///   Scores generated so far, initialize this data with <see cref="SetupScores"/>. Not modified by this
+    ///   method.
+    /// </param>
+    /// <param name="cache">Data cache for faster calculation</param>
+    /// <param name="dry">If true the species is not inserted but only checked if it could be inserted</param>
+    /// <param name="workingMemory">Temporary working memory to use by this method, automatically cleared</param>
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
@@ -240,6 +227,7 @@ public class Miche
     {
         var parentHash = Parent != null ? Parent.GetHashCode() : 53;
 
+        // TODO: as Occupant can change it should not be used as part of the hash code
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
     }

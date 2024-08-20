@@ -2,6 +2,10 @@
 
 using System.Collections.Generic;
 
+/// <summary>
+///   Selection pressures in miches both score species how well they do and also generate mutations for species to be
+///   better in terms of this selection pressure
+/// </summary>
 public abstract class SelectionPressure
 {
     public readonly float Strength;
@@ -13,10 +17,7 @@ public abstract class SelectionPressure
         Mutations = mutations;
     }
 
-    public abstract LocalizedString Name
-    {
-        get;
-    }
+    public abstract LocalizedString Name { get; }
 
     public abstract float Score(Species species, Patch patch, SimulationCache cache);
     public abstract float GetEnergy(Patch patch);
@@ -57,7 +58,10 @@ public abstract class SelectionPressure
         return Name;
     }
 
-    // ToString is used to display the Selection Pressure in the Miche Tree
+    /// <summary>
+    ///   Converts this to a string. For some reason this is used to display the Selection Pressure in the Miche Tree.
+    /// </summary>
+    /// <returns>A readable string of this selection pressure</returns>
     public override string ToString()
     {
         return Name.ToString();

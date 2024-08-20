@@ -1,8 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   MicheTreeNode represents a selectable node for a Miche
-///   in <see cref="MicheTree"/>
+///   MicheTreeNode represents a selectable node for a Miche in <see cref="MicheTree"/>
 /// </summary>
 public partial class MicheTreeNode : TextureButton
 {
@@ -20,6 +19,7 @@ public partial class MicheTreeNode : TextureButton
     private Texture2D pressedNormalRed = null!;
 #pragma warning restore CA2213
 
+    // TODO: this code is probably copied from somewhere else and likely isn't the case with Godot 4 anymore
     // Due to the fact that Godot doesn't have a pressed hover texture builtin, this is commented out.
     // private Texture pressedHoveredGreen = null!;
     // private Texture pressedHoveredRed = null!;

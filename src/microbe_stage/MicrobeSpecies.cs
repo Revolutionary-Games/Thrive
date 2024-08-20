@@ -239,6 +239,11 @@ public class MicrobeSpecies : Species, ICellDefinition
         cachedFillTimes.Clear();
     }
 
+    public override float GetPredationTargetSizeFactor()
+    {
+        return Organelles.Count;
+    }
+
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
         return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
