@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj2bhfpek0lxw"]
+
+[ext_resource type="Material" uid="uid://cv03dk123h0a3" path="res://assets/models/Crystal.material" id="1_04273"]
+[ext_resource type="ArrayMesh" path="res://assets/models/PhosphateChunkStruviteSmall1.mesh" id="2_4stpu"]
+
+[node name="Struvite" type="MeshInstance3D"]
+material_override = ExtResource("1_04273")
+mesh = ExtResource("2_4stpu")

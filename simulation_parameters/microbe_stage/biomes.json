@@ -260,6 +260,80 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
+        "ironBigChunk": {
+          "Name": "BIG_IRON_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/Iron5.tscn",
+              "ConvexShapePath": "res://assets/models/Iron5.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
+            }
+          ],
+          "Density": 0.00008,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1400,
+          "Size": 100,
+          "VentAmount": 20,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "iron": {
+              "Amount": 60000
+            }
+          },
+          "DissolverEnzyme": "rusticyanin"
+        },
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
+            }
+          ],
+          "Density": 0.00003,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 10
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
+            }
+          ],
+          "Density": 0.000004,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 45,
+          "VentAmount": 8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 15000
+            }
+          }
+        },
         "marineSnow": {
           "Name": "MARINE_SNOW",
           "Meshes": [
@@ -341,34 +415,6 @@
               "Amount": 100
             }
           }
-        },
-        "ironBigChunk": {
-          "Name": "BIG_IRON_CHUNK",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/Iron5.tscn",
-              "ConvexShapePath": "res://assets/models/Iron5.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/IronRockLarge2.tscn",
-              "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
-            }
-          ],
-          "Density": 0.00008,
-          "Dissolves": true,
-          "Radius": 10,
-          "ChunkScale": 1,
-          "PhysicsDensity": 1400,
-          "Size": 100,
-          "VentAmount": 20,
-          "Damages": 0,
-          "DeleteOnTouch": false,
-          "Compounds": {
-            "iron": {
-              "Amount": 60000
-            }
-          },
-          "DissolverEnzyme": "rusticyanin"
         },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
@@ -550,30 +596,65 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateBigChunk": {
-          "Name": "PHOSPHATE_CHUNK",
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
             },
             {
-              "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall2.shape"
             }
           ],
-          "Density": 0.00001,
+          "Density": 0.00009,
           "Dissolves": true,
-          "Radius": 10,
+          "Radius": 3,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
-          "Size": 50,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteLarge.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteLarge.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
+            }
+          ],
+          "Density": 0.000008,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 30,
           "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 60000
+              "Amount": 150
             }
           }
         },
@@ -1017,30 +1098,53 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateBigChunk": {
-          "Name": "PHOSPHATE_CHUNK",
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
             },
             {
-              "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
+            }
+          ],
+          "Density": 0.00004,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
             }
           ],
           "Density": 0.000004,
           "Dissolves": true,
-          "Radius": 10,
+          "Radius": 6,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
-          "Size": 50,
+          "Size": 45,
           "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 60000
+              "Amount": 15000
             }
           }
         },
@@ -1567,30 +1671,65 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateBigChunk": {
-          "Name": "PHOSPHATE_CHUNK",
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
             },
             {
-              "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall2.shape"
             }
           ],
-          "Density": 0.000008,
+          "Density": 0.00005,
           "Dissolves": true,
-          "Radius": 10,
+          "Radius": 3,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
-          "Size": 50,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteLarge.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteLarge.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
+            }
+          ],
+          "Density": 0.000004,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 45,
           "VentAmount": 6,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 60000
+              "Amount": 15000
             }
           }
         },
@@ -1773,26 +1912,57 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateBigChunk": {
-          "Name": "PHOSPHATE_CHUNK",
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
             }
           ],
-          "Density": 0.000013,
+          "Density": 0.0001,
           "Dissolves": true,
-          "Radius": 10,
+          "Radius": 3,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
-          "Size": 50,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
+            }
+          ],
+          "Density": 0.00001,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 45,
           "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 60000
+              "Amount": 15000
             }
           }
         },
@@ -2179,30 +2349,69 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateBigChunk": {
-          "Name": "PHOSPHATE_CHUNK",
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
             },
             {
-              "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall2.shape"
+            }
+          ],
+          "Density": 0.00007,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteLarge.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteLarge.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
             }
           ],
           "Density": 0.000006,
           "Dissolves": true,
-          "Radius": 10,
+          "Radius": 6,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
-          "Size": 50,
+          "Size": 45,
           "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 60000
+              "Amount": 15000
             }
           }
         },
@@ -2385,30 +2594,65 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "phosphateBigChunk": {
-          "Name": "PHOSPHATE_CHUNK",
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/PhosphateChunkStruvite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkStruvite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteSmall1.shape"
             },
             {
-              "ScenePath": "res://assets/models/PhosphateChunkApatite.tscn",
-              "ConvexShapePath": "res://assets/models/PhosphateChunkApatite.shape"
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall2.shape"
             }
           ],
-          "Density": 0.000014,
+          "Density": 0.0001,
           "Dissolves": true,
-          "Radius": 10,
+          "Radius": 3,
           "ChunkScale": 1,
           "PhysicsDensity": 2100,
-          "Size": 50,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteLarge.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteLarge.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkApatiteLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkApatiteLarge1.shape"
+            }
+          ],
+          "Density": 0.00001,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 45,
           "VentAmount": 8,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "phosphates": {
-              "Amount": 60000
+              "Amount": 15000
             }
           }
         },

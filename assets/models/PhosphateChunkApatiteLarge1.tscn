@@ -1,0 +1,33 @@
+[gd_scene load_steps=10 format=3 uid="uid://ork3xiril0bq"]
+
+[ext_resource type="Material" uid="uid://b056l0x46ynl0" path="res://assets/models/CrystalApatite.material" id="1_gaqkn"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_w0d41"]
+[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="3_b8lrv"]
+[ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="3_hcl7f"]
+[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="4_w85ja"]
+[ext_resource type="ArrayMesh" uid="uid://33tvx663lr0x" path="res://assets/models/PhosphateChunkApatiteLargeCrystal.mesh" id="5_cdma8"]
+[ext_resource type="Texture2D" uid="uid://ppco0jrr2v0q" path="res://assets/textures/Crystal_normal.png" id="7_1vk26"]
+[ext_resource type="ArrayMesh" uid="uid://bxhmnyjk1vfrh" path="res://assets/models/PhosphateChunkApatiteLargeRock.mesh" id="8_7qf82"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsbfc"]
+resource_local_to_scene = true
+render_priority = 17
+shader = ExtResource("4_w85ja")
+shader_parameter/depletion = null
+shader_parameter/dissolveValue = null
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = Color(0.61, 0.45445, 0.2989, 1)
+shader_parameter/fullTexture = ExtResource("3_hcl7f")
+shader_parameter/depletedTexture = ExtResource("3_hcl7f")
+shader_parameter/normalTexture = ExtResource("7_1vk26")
+shader_parameter/dissolveTexture = ExtResource("2_w0d41")
+
+[node name="Apatite" type="MeshInstance3D" node_paths=PackedStringArray("meshChildren")]
+material_override = ExtResource("1_gaqkn")
+mesh = ExtResource("5_cdma8")
+script = ExtResource("3_b8lrv")
+meshChildren = [NodePath("Rock")]
+
+[node name="Rock" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_hsbfc")
+mesh = ExtResource("8_7qf82")
