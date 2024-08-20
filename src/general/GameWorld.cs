@@ -19,6 +19,17 @@ using Xoshiro.PRNG64;
 [UseThriveSerializer]
 public class GameWorld : ISaveLoadable
 {
+    /// <summary>
+    ///   Stores some instances to be used between many different auto-evo runs
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This isn't saved and can be recreated at any time if necessary
+    ///   </para>
+    /// </remarks>
+    [JsonIgnore]
+    public readonly AutoEvoGlobalCache AutoEvoGlobalCache;
+
     [JsonProperty]
     public UnlockProgress UnlockProgress = new();
 
@@ -66,6 +77,8 @@ public class GameWorld : ISaveLoadable
     {
         WorldSettings = settings;
         LightCycle.ApplyWorldSettings(settings);
+
+        AutoEvoGlobalCache = new AutoEvoGlobalCache(WorldSettings);
 
         if (startingSpecies == null)
         {
@@ -116,6 +129,8 @@ public class GameWorld : ISaveLoadable
         // Note that as the properties are applied from a save after the constructor, the save is correctly loaded
         // but these extra objects get created and garbage collected
         TimedEffects = new TimedWorldOperations();
+
+        AutoEvoGlobalCache = new AutoEvoGlobalCache(WorldSettings);
 
         // Register glucose reduction
         TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
@@ -888,7 +903,7 @@ public class GameWorld : ISaveLoadable
         if (autoEvo != null)
             return;
 
-        autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+        autoEvo = AutoEvo.AutoEvo.CreateRun(this, AutoEvoGlobalCache);
     }
 
     private uint GetNextSpeciesID()

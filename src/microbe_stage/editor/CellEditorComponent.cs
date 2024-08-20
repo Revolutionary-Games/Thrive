@@ -381,7 +381,7 @@ public partial class CellEditorComponent :
 
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
-    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild everytime when
+    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild every time when
     ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
     private bool microbeVisualizationOrganellePositionsAreDirty = true;
@@ -1875,8 +1875,8 @@ public partial class CellEditorComponent :
 
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies,
-            cachedAutoEvoPredictionSpecies);
+        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
+            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
         run.Start();
 
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);

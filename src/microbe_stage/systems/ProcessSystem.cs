@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using AutoEvo;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -140,7 +141,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType);
+            isPlayerSpecies, worldSettings, amountType, null);
     }
 
     /// <summary>
@@ -162,10 +163,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
+    /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType)
+        CompoundAmountType amountType, SimulationCache? cache)
     {
         var result = new EnergyBalanceInfo();
 
@@ -177,24 +179,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         foreach (var organelle in organelles)
         {
-            foreach (var process in organelle.Definition.RunnableProcesses)
-            {
-                var processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, result);
 
-                if (processData.WritableInputs.TryGetValue(ATP, out var amount))
-                {
-                    processATPConsumption += amount;
-
-                    result.AddConsumption(organelle.Definition.InternalName, amount);
-                }
-
-                if (processData.WritableOutputs.TryGetValue(ATP, out amount))
-                {
-                    processATPProduction += amount;
-
-                    result.AddProduction(organelle.Definition.InternalName, amount);
-                }
-            }
+            processATPProduction += production;
+            processATPConsumption += consumption;
 
             // Take special cell components that take energy into account
             if (includeMovementCost && organelle.Definition.HasMovementComponent)
@@ -419,6 +407,76 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return balancesToSupplement;
     }
 
+    public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
+        BiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
+    {
+        float processATPProduction = 0.0f;
+        float processATPConsumption = 0.0f;
+
+        foreach (var process in organelle.Definition.RunnableProcesses)
+        {
+            ProcessSpeedInformation processData;
+            if (cache != null && amountType == CompoundAmountType.Average)
+            {
+                processData = cache.GetProcessMaximumSpeed(process, biome);
+            }
+            else
+            {
+                processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+            }
+
+            if (processData.WritableInputs.TryGetValue(ATP, out var amount))
+            {
+                processATPConsumption += amount;
+
+                result?.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+
+            if (processData.WritableOutputs.TryGetValue(ATP, out amount))
+            {
+                result?.AddProduction(organelle.Definition.InternalName, amount);
+
+                var isInPatch = true;
+
+                foreach (var input in processData.WritableInputs)
+                {
+                    if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
+                    {
+                        if (inputCompoundData.Amount > 0 || inputCompoundData.Ambient > 0)
+                            continue;
+                    }
+
+                    bool isInChunk = false;
+
+                    foreach (var chunk in biome.Chunks.Values)
+                    {
+                        if (chunk.Compounds != null && chunk.Compounds.TryGetValue(input.Key, out var chunkCompound))
+                        {
+                            if (chunkCompound.Amount > 0)
+                            {
+                                isInChunk = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (isInChunk)
+                        continue;
+
+                    isInPatch = false;
+                    break;
+                }
+
+                if (isInPatch)
+                {
+                    processATPProduction += amount;
+                }
+            }
+        }
+
+        return (processATPProduction, processATPConsumption);
+    }
+
     /// <summary>
     ///   Calculates the maximum speed a process can run at in a biome based on the environmental compounds.
     ///   Can be switched between the average, maximum etc. conditions that occur in the span of an in-game day.
@@ -585,7 +643,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in processor.ActiveProcesses)
             {
-                // If rate is 0 dont do it
+                // If rate is 0 don't do it
                 // The rate specifies how fast fraction of the specified process numbers this cell can do
                 // TODO: would be nice still to report these to process statistics
                 if (process.Rate <= 0.0f)

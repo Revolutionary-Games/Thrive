@@ -13,6 +13,9 @@ using Godot;
 ///     To use this, simply add this inside any controller and adjust its size.
 ///     Don't put this under a draggable controller.
 ///   </para>
+///   <para>
+///     Combine this with MicheTree: https://github.com/Revolutionary-Games/Thrive/issues/5373
+///   </para>
 /// </remarks>
 public partial class EvolutionaryTree : Control
 {
@@ -221,7 +224,7 @@ public partial class EvolutionaryTree : Control
                 if (record.SplitFromID == null)
                 {
                     SetupTreeNode(record.Species,
-                        speciesNodes[speciesID].Last(), generation - 1, true);
+                        speciesNodes[speciesID].Last(), generation, true);
                 }
             }
             else if (record.SplitFromID != null)

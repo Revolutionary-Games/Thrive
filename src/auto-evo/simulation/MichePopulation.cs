@@ -3,21 +3,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   Main class for the population simulation part.
+///   Main class for miche based population simulation.
 ///   This contains the algorithm for determining how much population species gain or lose
 /// </summary>
-public static class PopulationSimulation
+public static class MichePopulation
 {
-    private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
-    private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-    private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
-    private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-    private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
-
     public static void Simulate(SimulationConfiguration parameters, SimulationCache? existingCache,
         Random randomSource)
     {
@@ -44,10 +37,37 @@ public static class PopulationSimulation
 
         while (parameters.StepsLeft > 0)
         {
-            RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache,
-                parameters.AutoEvoConfiguration, parameters.WorldSettings);
+            RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
             --parameters.StepsLeft;
         }
+    }
+
+    /// <summary>
+    ///   Estimates the initial population numbers
+    /// </summary>
+    public static int CalculateMicrobePopulationInPatch(Species species, Miche miche,
+        Patch patch, SimulationCache cache)
+    {
+        // This assumes that only leaf nodes have energy, but the way Selection Pressures are designed
+        // this is a reasonable assumption
+        var leafNodes = new List<Miche>();
+        miche.GetLeafNodes(leafNodes, x => x.Occupant == species);
+
+        var individualCost = CalculateMicrobeIndividualCost(species, patch.Biome, cache);
+
+        return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
+    }
+
+    private static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
+        SimulationCache cache)
+    {
+        if (species is not MicrobeSpecies microbeSpecies)
+            throw new ArgumentException("Unhandled species type passed");
+
+        var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions);
+
+        return energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
+            * species.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
     }
 
     /// <summary>
@@ -141,15 +161,13 @@ public static class PopulationSimulation
     }
 
     private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
-        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache,
-        IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings)
+        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache)
     {
         foreach (var entry in patchesToSimulate)
         {
             // Simulate the species in each patch taking into account the already computed populations
             SimulatePatchStep(parameters, entry.Value,
-                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0),
-                random, cache, autoEvoConfiguration, worldSettings);
+                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), random, cache);
         }
     }
 
@@ -157,140 +175,143 @@ public static class PopulationSimulation
     ///   The heart of the simulation that handles the processed parameters and calculates future populations.
     /// </summary>
     private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, Random random, SimulationCache cache,
-        IAutoEvoConfiguration autoEvoConfiguration, WorldGenerationSettings worldSettings)
+        IEnumerable<Species> genericSpecies, Random random, SimulationCache cache)
     {
         _ = random;
 
         var populations = simulationConfiguration.Results;
         bool trackEnergy = simulationConfiguration.CollectEnergyInformation;
-        bool dayNightCycle = worldSettings.DayNightCycleEnabled;
 
-        // This algorithm version is for microbe species
-        // TODO: add simulation for multicellular
-        var species = genericSpecies.Select(s => s as MicrobeSpecies).Where(s => s != null).Select(s => s!)
-            .ToList();
+        // Note that this modifies the miche tree while simulating
+        var miche = populations.GetMicheForPatch(patch);
+
+        var scores = new Dictionary<Species, float>();
+        var workMemory = new HashSet<Species>();
+        miche.SetupScores(scores, workMemory);
+
+        foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
+        {
+            miche.InsertSpecies(extraSpecies, patch, scores, cache, false, workMemory);
+        }
+
+        // This prevents duplicates caused by ExtraSpecies
+        var species = new HashSet<Species>();
+
+        foreach (var currentSpecies in genericSpecies)
+        {
+            if (simulationConfiguration.ExcludedSpecies.Contains(currentSpecies))
+                continue;
+
+            species.Add(currentSpecies);
+        }
+
+        foreach (var currentSpecies in simulationConfiguration.ExtraSpecies)
+        {
+            species.Add(currentSpecies);
+        }
 
         // Skip if there aren't any species in this patch
         if (species.Count < 1)
             return;
 
-        var energyBySpecies = new Dictionary<MicrobeSpecies, float>();
-        foreach (var currentSpecies in species)
+        var leafNodes = new List<Miche>();
+        miche.GetLeafNodes(leafNodes, x => x.Occupant != null);
+
+        // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
+        // might benefit from extra precision
+        var energyDictionary = species.ToDictionary(x => x, _ => 0.0f);
+
+        // This doesn't use miche.SetupScores as this wants scores for all species, even ones that aren't in the
+        // tree yet
+
+        var currentBackTraversal = new List<Miche>();
+        var scoresDictionary = new Dictionary<Species, float>();
+
+        foreach (var node in leafNodes)
         {
-            energyBySpecies[currentSpecies] = 0.0f;
-        }
+            float totalScore = 0;
 
-        bool strictCompetition = autoEvoConfiguration.StrictNicheCompetition;
-
-        var niches = new List<FoodSource>
-        {
-            new EnvironmentalFoodSource(patch, Sunlight, Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT),
-            new EnvironmentalFoodSource(patch, Temperature, Constants.AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT),
-            new CompoundFoodSource(patch, Glucose, dayNightCycle),
-            new CompoundFoodSource(patch, HydrogenSulfide, dayNightCycle),
-            new CompoundFoodSource(patch, Iron, dayNightCycle),
-            new ChunkFoodSource(patch, "marineSnow"),
-            new ChunkFoodSource(patch, "ironSmallChunk"),
-            new ChunkFoodSource(patch, "ironBigChunk"),
-        };
-
-        foreach (var currentSpecies in species)
-        {
-            niches.Add(new HeterotrophicFoodSource(patch, currentSpecies, cache));
-        }
-
-        foreach (var niche in niches)
-        {
-            // If there isn't a source of energy here, no need for more calculations
-            if (niche.TotalEnergyAvailable() <= MathUtils.EPSILON)
-                continue;
-
-            var fitnessBySpecies = new Dictionary<MicrobeSpecies, float>();
-            var totalNicheFitness = 0.0f;
-            foreach (var currentSpecies in species)
+            scoresDictionary.Clear();
+            foreach (var entry in species)
             {
-                float thisSpeciesFitness;
-
-                if (strictCompetition)
-                {
-                    // Softly enforces https://en.wikipedia.org/wiki/Competitive_exclusion_principle
-                    // by exaggerating fitness differences
-                    thisSpeciesFitness =
-                        Mathf.Max(Mathf.Pow(niche.FitnessScore(currentSpecies, cache, worldSettings), 2.5f), 0.0f);
-                }
-                else
-                {
-                    thisSpeciesFitness = Mathf.Max(niche.FitnessScore(currentSpecies, cache, worldSettings), 0.0f);
-                }
-
-                fitnessBySpecies[currentSpecies] = thisSpeciesFitness;
-                totalNicheFitness += thisSpeciesFitness;
+                scoresDictionary[entry] = 0;
             }
 
-            // If no species can get energy this way, no need for more calculations
-            if (totalNicheFitness <= MathUtils.EPSILON)
+            currentBackTraversal.Clear();
+            node.BackTraversal(currentBackTraversal);
+            foreach (var currentMiche in currentBackTraversal)
             {
-                continue;
+                foreach (var currentSpecies in species)
+                {
+                    if (currentSpecies is not MicrobeSpecies microbeSpecies)
+                        continue;
+
+                    // Weighted score is intentionally not used here as negatives break everything
+                    // TODO: this should have safety handling if occupant is null or not a microbe species
+                    var score = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies) /
+                        cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
+                        currentMiche.Pressure.Strength;
+
+                    if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
+                        score *= score;
+
+                    totalScore += score;
+                    scoresDictionary[currentSpecies] += score;
+                }
             }
 
             foreach (var currentSpecies in species)
             {
-                var energy = fitnessBySpecies[currentSpecies] * niche.TotalEnergyAvailable() / totalNicheFitness;
-
-                // If this species can't gain energy here, don't count it (this also prevents it from appearing
-                // in food sources (if that's not what we want), if the species doesn't use this food source
-                if (energy <= MathUtils.EPSILON)
-                    continue;
-
-                energyBySpecies[currentSpecies] += energy;
+                var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
 
                 if (trackEnergy)
                 {
-                    populations.AddTrackedEnergyForSpecies(currentSpecies, patch, niche,
-                        fitnessBySpecies[currentSpecies], energy, totalNicheFitness);
+                    populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
+                        scoresDictionary[currentSpecies], totalScore, micheEnergy);
                 }
+
+                energyDictionary[currentSpecies] += micheEnergy;
             }
         }
 
         foreach (var currentSpecies in species)
         {
-            var energyBalanceInfo = cache.GetEnergyBalanceForSpecies(currentSpecies, patch.Biome);
-            var individualCost = energyBalanceInfo.TotalConsumptionStationary + energyBalanceInfo.TotalMovement
-                * currentSpecies.Behaviour.Activity / Constants.MAX_SPECIES_ACTIVITY;
-
-            // Modify populations based on energy
-            var newPopulation = (long)(energyBySpecies[currentSpecies]
-                / individualCost);
-
-            if (trackEnergy)
+            if (currentSpecies is not MicrobeSpecies microbeSpecies)
             {
-                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
-                    energyBySpecies[currentSpecies], individualCost);
+                var population = simulationConfiguration.Results.GetPopulationInPatch(currentSpecies, patch);
+                populations.AddPopulationResultForSpecies(currentSpecies, patch, population);
+                continue;
             }
 
-            // TODO: this is a hack for now to make the player experience better, try to get the same rules working
-            // for the player and AI species in the future.
-            if (currentSpecies.PlayerSpecies)
+            var individualCost = CalculateMicrobeIndividualCost(microbeSpecies, patch.Biome, cache);
+            long newPopulation = (long)(individualCost / energyDictionary[currentSpecies]);
+
+            // Remove any species that don't hold a miche
+            // Probably should make this a setting and throw a multiplier here
+            // It does give a large speed-up though
+            bool isOccupantSomewhere = false;
+
+            foreach (var leafNode in leafNodes)
             {
-                // Severely penalize a species that can't osmoregulate
-                if (energyBalanceInfo.FinalBalanceStationary < 0)
+                if (leafNode.Occupant == currentSpecies)
                 {
-                    newPopulation /= 10;
+                    isOccupantSomewhere = true;
+                    break;
                 }
             }
-            else
-            {
-                // Severely penalize a species that can't move indefinitely
-                if (energyBalanceInfo.FinalBalance < 0)
-                {
-                    newPopulation /= 10;
-                }
-            }
+
+            if (!isOccupantSomewhere && !currentSpecies.PlayerSpecies)
+                newPopulation = 0;
 
             // Can't survive without enough population
             if (newPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                 newPopulation = 0;
+
+            if (trackEnergy)
+            {
+                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
+                    energyDictionary[currentSpecies], individualCost);
+            }
 
             populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
         }

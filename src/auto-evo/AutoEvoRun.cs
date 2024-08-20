@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
-using Xoshiro.PRNG64;
 using Thread = System.Threading.Thread;
 
 /// <summary>
@@ -15,6 +14,7 @@ using Thread = System.Threading.Thread;
 public class AutoEvoRun
 {
     protected readonly IAutoEvoConfiguration configuration;
+    protected readonly AutoEvoGlobalCache globalCache;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
@@ -42,10 +42,11 @@ public class AutoEvoRun
 
     private int completeSteps;
 
-    public AutoEvoRun(GameWorld world)
+    public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache)
     {
         Parameters = new RunParameters(world);
         configuration = world.WorldSettings.AutoEvoConfiguration;
+        this.globalCache = globalCache;
     }
 
     private enum RunStage
@@ -164,6 +165,16 @@ public class AutoEvoRun
     }
 
     protected RunParameters Parameters { get; }
+
+    public static AutoEvoGlobalCache GetGlobalCache(AutoEvoRun? autoEvoRun, WorldGenerationSettings worldSettings)
+    {
+        if (autoEvoRun != null)
+        {
+            return autoEvoRun.globalCache;
+        }
+
+        return new AutoEvoGlobalCache(worldSettings);
+    }
 
     /// <summary>
     ///   Starts this run if not started already
@@ -370,75 +381,32 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
-        // TODO: allow passing in a seed
-        var random = new XoShiRo256starstar();
-
-        var alreadyHandledSpecies = new HashSet<Species>();
-
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
         var autoEvoConfiguration = configuration;
 
+        var allSpecies = new HashSet<Species>();
+
+        var generateMicheCache = new SimulationCache(worldSettings);
+
         foreach (var entry in map.Patches)
         {
-            // TODO: No one should be allowed to update the SpeciesInPatch.
-            // If this happens, the root cause must be addressed.
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
 
-            // Iterate over a copy to be secure from changes to the dictionary.
-            var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
-            foreach (var speciesEntry in speciesInPatchCopy)
+            foreach (var species in entry.Value.SpeciesInPatch)
             {
-                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
-                if (speciesEntry.Key == null)
-                    throw new Exception("Species key in a patch is null");
-
-                if (alreadyHandledSpecies.Contains(speciesEntry.Key))
-                    continue;
-
-                alreadyHandledSpecies.Add(speciesEntry.Key);
-
-                // The player species doesn't get random mutations. And also doesn't spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
-                {
-                }
-                else
-                {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random, autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMutate,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
-
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random, autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMigrate));
-                }
+                allSpecies.Add(species.Key);
             }
+        }
 
-            // Verify the length.
-            if (speciesInPatchCopy.Count != entry.Value.SpeciesInPatch.Count)
-            {
-                GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
-            }
-            else
-            {
-                // Check that each entry is still the same.
-                foreach (var speciesEntry in speciesInPatchCopy)
-                {
-                    if (!entry.Value.SpeciesInPatch.TryGetValue(speciesEntry.Key, out long value)
-                        || speciesEntry.Value != value)
-                    {
-                        GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
-                        break;
-                    }
-                }
-            }
+        foreach (var entry in map.Patches)
+        {
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings));
 
-            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
-                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
+            for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; ++i)
             {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings, map, entry.Value, random));
+                steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings)));
             }
         }
 
@@ -450,14 +418,11 @@ public class AutoEvoRun
         steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true)
             { CanRunConcurrently = false });
 
-        // Due to species splitting migrations may end up being invalid
-        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
-        steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
-
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
-        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
+        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
+        // numbers
+        steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
     }
 
     /// <summary>

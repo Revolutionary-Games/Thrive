@@ -992,6 +992,8 @@ public static class Constants
     public const float MAX_OPACITY_MUTATION = 0.01f;
 
     // Mutation Variables
+    public const int MAX_VARIANTS_PER_MUTATION = 50;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 100;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
@@ -1078,24 +1080,21 @@ public static class Constants
     /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
-    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 30;
 
     // Auto evo population algorithm tweak variables
     // TODO: move all of these into auto-evo_parameters.json
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-    public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
+    public const int AUTO_EVO_MOVE_ATTEMPTS = 5;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
-    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 150000;
-    public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
+    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
@@ -1111,6 +1110,14 @@ public static class Constants
 
     public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
     public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
+
+    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
+
+    public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
+    public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
+
+    public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
@@ -1491,11 +1498,11 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
-    // Min/max values for each customisable difficulty option
+    // Min/max values for each customizable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
     public const float MAX_MP_MULTIPLIER = 2;
-    public const float MIN_AI_MUTATION_RATE = 0.5f;
-    public const float MAX_AI_MUTATION_RATE = 5;
+    public const float MIN_AI_MUTATION_RATE = 0.7f;
+    public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
     public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;

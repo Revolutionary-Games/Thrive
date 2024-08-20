@@ -31,6 +31,8 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </remarks>
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
+    private Dictionary<Patch, Miche> micheByPatch = new();
+
     public enum NewSpeciesType
     {
         /// <summary>
@@ -65,6 +67,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return results.ToDictionary(r => r.Key.ID,
             r => new SpeciesRecordFull((Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID,
                 r.Value.SplitFrom?.ID));
+    }
+
+    public void AddNewMicheForPatch(Patch patch, Miche miche)
+    {
+        micheByPatch[patch] = miche;
     }
 
     public void AddMutationResultForSpecies(Species species, Species? mutated)
@@ -171,27 +178,24 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
-    public void AddTrackedEnergyForSpecies(MicrobeSpecies species, Patch patch, FoodSource niche,
-        float speciesFitness, float speciesEnergy, float totalFitness)
+    public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
+        float speciesFitness, float totalFitness, float speciesEnergy)
     {
-        if (niche == null)
-            throw new ArgumentException("niche is missing", nameof(niche));
-
         MakeSureResultExistsForSpecies(species);
 
         var dataReceiver = results[species].GetEnergyResults(patch);
 
-        var nicheDescription = niche.GetDescription();
+        var nicheDescription = pressure.GetDescription();
         dataReceiver.PerNicheEnergy[nicheDescription] = new SpeciesPatchEnergyResults.NicheInfo
         {
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
             TotalFitness = totalFitness,
-            TotalAvailableEnergy = niche.TotalEnergyAvailable(),
+            TotalAvailableEnergy = pressure.GetEnergy(patch),
         };
     }
 
-    public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
+    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch,
         long unadjustedPopulation, float totalEnergy, float individualCost)
     {
         MakeSureResultExistsForSpecies(species);
@@ -363,6 +367,27 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
 
         world.Map.DiscardGameplayPopulations();
+    }
+
+    public Miche GetMicheForPatch(Patch patch)
+    {
+        if (!micheByPatch.TryGetValue(patch, out var miche))
+            throw new ArgumentException("Miche not found for " + patch.Name + " in MicheByPatch");
+
+        return miche;
+    }
+
+    /// <summary>
+    ///   Returns the miche by patch dictionary
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This should not be used in AutoEvo code, prefer <see cref="GetMicheForPatch"/>.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<Patch, Miche> InspectPatchMicheData()
+    {
+        return micheByPatch;
     }
 
     /// <summary>

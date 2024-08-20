@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 13:26+0200\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,11 +37,11 @@ msgstr ""
 msgid "ABILITIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:319
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
 msgid "ABORT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:125
+#: ../src/auto-evo/AutoEvoRun.cs:126
 msgid "ABORTED_DOT"
 msgstr ""
 
@@ -162,19 +162,19 @@ msgstr ""
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:374
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
 msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:369
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:383
 msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:155
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1040
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1201
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:359
+#: ../src/auto-evo/AutoEvoRun.cs:370
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
@@ -345,7 +345,7 @@ msgstr ""
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:140
+#: ../src/auto-evo/AutoEvoRun.cs:141
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
@@ -367,7 +367,7 @@ msgstr ""
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:662
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:678
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:249
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
@@ -378,7 +378,7 @@ msgstr ""
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:259
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:273
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
@@ -407,7 +407,7 @@ msgstr ""
 msgid "AWARE_STAGE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:727
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:832
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:515 ../src/general/MainMenu.tscn:816
 #: ../src/general/NewGameSettings.tscn:959 ../src/general/OptionsMenu.tscn:1674
@@ -540,9 +540,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1281
 #: ../simulation_parameters/microbe_stage/biomes.json:1543
 #: ../simulation_parameters/microbe_stage/biomes.json:1749
-#: ../simulation_parameters/microbe_stage/biomes.json:1979
-#: ../simulation_parameters/microbe_stage/biomes.json:2159
-#: ../simulation_parameters/microbe_stage/biomes.json:2365
+#: ../simulation_parameters/microbe_stage/biomes.json:1975
+#: ../simulation_parameters/microbe_stage/biomes.json:2155
+#: ../simulation_parameters/microbe_stage/biomes.json:2361
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
@@ -567,19 +567,19 @@ msgstr ""
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:382
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:396
 msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:396
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
 msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:407
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
 msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:412
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
 msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
@@ -883,11 +883,12 @@ msgstr ""
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:134
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:130
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:82
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:62
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:87
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -1101,7 +1102,7 @@ msgstr ""
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/CompoundFoodSource.cs:62
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:67
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -1133,7 +1134,7 @@ msgstr ""
 msgid "CONCEPT_ART"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:112
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
 msgid "CONFIG"
 msgstr ""
 
@@ -1145,7 +1146,7 @@ msgstr ""
 msgid "CONFIRM_DELETE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:736
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:841
 #: ../src/general/PauseMenu.tscn:325
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
@@ -1587,11 +1588,11 @@ msgstr ""
 msgid "CURRENT_RESEARCH_PROGRESS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:216
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:999
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1160
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -1648,7 +1649,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:366
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:383
 msgid "DEATH"
 msgstr ""
 
@@ -1919,7 +1920,7 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/EnvironmentalFoodSource.cs:41
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:67
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -2125,15 +2126,15 @@ msgstr ""
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1294
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1330
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1300
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1336
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1271
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1307
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
@@ -2209,7 +2210,7 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/OsmoregulationAndHealingSystem.cs:94
+#: ../src/microbe_stage/components/MicrobeControl.cs:391
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2289,11 +2290,11 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2080
+#: ../simulation_parameters/microbe_stage/biomes.json:2076
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:700
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:716
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2342,15 +2343,15 @@ msgstr ""
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:336
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:334
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:348
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:741
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:846
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
@@ -2475,7 +2476,7 @@ msgstr ""
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:128
+#: ../src/auto-evo/AutoEvoRun.cs:129
 msgid "FINISHED_DOT"
 msgstr ""
 
@@ -2483,11 +2484,11 @@ msgstr ""
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:279
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:293
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:718
+#: ../src/auto-evo/AutoEvoExploringTool.cs:779
 msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
@@ -2533,9 +2534,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1226
 #: ../simulation_parameters/microbe_stage/biomes.json:1488
 #: ../simulation_parameters/microbe_stage/biomes.json:1694
-#: ../simulation_parameters/microbe_stage/biomes.json:1904
-#: ../simulation_parameters/microbe_stage/biomes.json:2104
-#: ../simulation_parameters/microbe_stage/biomes.json:2310
+#: ../simulation_parameters/microbe_stage/biomes.json:1900
+#: ../simulation_parameters/microbe_stage/biomes.json:2100
+#: ../simulation_parameters/microbe_stage/biomes.json:2306
 msgid "FLOATING_HAZARD"
 msgstr ""
 
@@ -2697,7 +2698,7 @@ msgstr ""
 msgid "GENERAL"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:555
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:569
 msgid "GENERATIONS"
 msgstr ""
 
@@ -2717,7 +2718,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:958
+#: ../src/auto-evo/RunResults.cs:983
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2749,10 +2750,10 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1130
 #: ../simulation_parameters/microbe_stage/biomes.json:1391
 #: ../simulation_parameters/microbe_stage/biomes.json:1598
-#: ../simulation_parameters/microbe_stage/biomes.json:1804
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
-#: ../simulation_parameters/microbe_stage/biomes.json:2214
-#: ../simulation_parameters/microbe_stage/biomes.json:2502
+#: ../simulation_parameters/microbe_stage/biomes.json:1800
+#: ../simulation_parameters/microbe_stage/biomes.json:2003
+#: ../simulation_parameters/microbe_stage/biomes.json:2210
+#: ../simulation_parameters/microbe_stage/biomes.json:2498
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
@@ -2873,11 +2874,11 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1959
+#: ../simulation_parameters/microbe_stage/biomes.json:1955
 msgid "ICESHARD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1877
+#: ../simulation_parameters/microbe_stage/biomes.json:1873
 msgid "ICESHELF"
 msgstr ""
 
@@ -2957,7 +2958,7 @@ msgstr ""
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:244
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
@@ -3717,10 +3718,10 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:97
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:420
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
 msgid "LOW_BIODIVERSITY_LIMIT"
 msgstr ""
 
@@ -3749,7 +3750,7 @@ msgstr ""
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:118
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:126
 msgid "MAP"
 msgstr ""
 
@@ -3761,7 +3762,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:760
 #: ../simulation_parameters/microbe_stage/biomes.json:1048
 #: ../simulation_parameters/microbe_stage/biomes.json:1309
-#: ../simulation_parameters/microbe_stage/biomes.json:2420
+#: ../simulation_parameters/microbe_stage/biomes.json:2416
 msgid "MARINE_SNOW"
 msgstr ""
 
@@ -3769,7 +3770,7 @@ msgstr ""
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:432
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:446
 msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr ""
 
@@ -3814,7 +3815,7 @@ msgstr ""
 msgid "MEDIASTOP"
 msgstr ""
 
-#: ../src/auto-evo/EvolutionaryTree.cs:407
+#: ../src/auto-evo/EvolutionaryTree.cs:410
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
 #: ../src/microbe_stage/editor/TimelineTab.cs:260
 msgid "MEGA_YEARS"
@@ -3867,6 +3868,62 @@ msgstr ""
 msgid "MIB_VALUE"
 msgstr ""
 
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:144
+msgid "MICHE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/AvoidPredationSelectionPressure.cs:10
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:10
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/CompoundCloudPressure.cs:9
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/CompoundConversionEfficiencyPressure.cs:10
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#: ../src/gui_common/MicheDetailsPanel.cs:88
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:10
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/MaintainCompoundPressure.cs:9
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/MetabolicStabilityPressure.cs:7
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/NoOpPressure.cs:10
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:9
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/PredatorRoot.cs:7
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/selection_pressure/RootPressure.cs:7
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+msgid "MICHE_TREE"
+msgstr ""
+
 #: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
 msgid "MICROBE"
 msgstr ""
@@ -3912,12 +3969,12 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1012
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1056
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1173
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1217
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:298
+#: ../src/microbe_stage/MicrobeSpecies.cs:303
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -4338,7 +4395,7 @@ msgstr ""
 msgid "MOVEMENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:444
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:458
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
@@ -4481,7 +4538,7 @@ msgstr ""
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:456
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:470
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
@@ -4544,7 +4601,7 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:468
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:482
 msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
@@ -4653,12 +4710,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1088
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1124
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:142
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1080
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1116
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -4674,11 +4731,7 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/ChunkFoodSource.cs:84
-msgid "NOT_FOUND_CHUNK"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoRun.cs:131
+#: ../src/auto-evo/AutoEvoRun.cs:132
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4867,7 +4920,7 @@ msgstr ""
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:141
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
@@ -5106,6 +5159,10 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:797
+msgid "PATCH_COLON"
+msgstr ""
+
 #: ../src/microbe_stage/gui/PatchExtinctionBox.tscn:80
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -5240,8 +5297,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1021
 #: ../simulation_parameters/microbe_stage/biomes.json:1571
 #: ../simulation_parameters/microbe_stage/biomes.json:1777
-#: ../simulation_parameters/microbe_stage/biomes.json:2187
-#: ../simulation_parameters/microbe_stage/biomes.json:2393
+#: ../simulation_parameters/microbe_stage/biomes.json:2183
+#: ../simulation_parameters/microbe_stage/biomes.json:2389
 msgid "PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -5340,7 +5397,7 @@ msgstr ""
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:327
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
@@ -5350,11 +5407,11 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:634
+#: ../src/auto-evo/RunResults.cs:659
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:767
+#: ../src/auto-evo/RunResults.cs:792
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
@@ -5362,7 +5419,7 @@ msgstr ""
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/auto-evo/simulation/food_source/HeterotrophicFoodSource.cs:91
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:63
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -5390,7 +5447,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:649
+#: ../src/auto-evo/RunResults.cs:674
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -5415,11 +5472,11 @@ msgstr ""
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:479
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:493
 msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:484
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:498
 msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
@@ -5478,8 +5535,8 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:862
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:265
+#: ../src/auto-evo/AutoEvoExploringTool.cs:927
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:279
 msgid "READY"
 msgstr ""
 
@@ -5503,11 +5560,11 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:489
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
 msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:124
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:132
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:108
 msgid "REPORT"
 msgstr ""
@@ -5644,7 +5701,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:735 ../src/general/PauseMenu.cs:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:840 ../src/general/PauseMenu.cs:409
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
@@ -5688,39 +5745,39 @@ msgstr ""
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:274
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:748
+#: ../src/auto-evo/RunResults.cs:773
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:729
+#: ../src/auto-evo/RunResults.cs:754
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:680
+#: ../src/auto-evo/RunResults.cs:705
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:683
+#: ../src/auto-evo/RunResults.cs:708
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:667
+#: ../src/auto-evo/RunResults.cs:692
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:700
+#: ../src/auto-evo/RunResults.cs:725
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:734
+#: ../src/auto-evo/AutoEvoExploringTool.cs:795
 msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:312
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:326
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
 
@@ -5904,7 +5961,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2287
+#: ../simulation_parameters/microbe_stage/biomes.json:2283
 msgid "SEA_FLOOR"
 msgstr ""
 
@@ -5944,15 +6001,16 @@ msgstr ""
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:561
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:576
 msgid "SELECT_A_GENERATION"
 msgstr ""
 
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:804
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:93
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:588
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:604
 msgid "SELECT_A_SPECIES"
 msgstr ""
 
@@ -6138,9 +6196,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1245
 #: ../simulation_parameters/microbe_stage/biomes.json:1507
 #: ../simulation_parameters/microbe_stage/biomes.json:1713
-#: ../simulation_parameters/microbe_stage/biomes.json:1923
-#: ../simulation_parameters/microbe_stage/biomes.json:2123
-#: ../simulation_parameters/microbe_stage/biomes.json:2329
+#: ../simulation_parameters/microbe_stage/biomes.json:1919
+#: ../simulation_parameters/microbe_stage/biomes.json:2119
+#: ../simulation_parameters/microbe_stage/biomes.json:2325
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
@@ -6212,7 +6270,7 @@ msgstr ""
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:582
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
 msgid "SPECIES"
 msgstr ""
@@ -6221,11 +6279,11 @@ msgstr ""
 msgid "SPECIES_COLON"
 msgstr ""
 
-#: ../src/general/Species.cs:317
+#: ../src/general/Species.cs:323
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:724
+#: ../src/auto-evo/RunResults.cs:749
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -6251,11 +6309,11 @@ msgstr ""
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:502
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:516
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:516
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:530
 msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
 msgstr ""
 
@@ -6275,7 +6333,7 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:740
+#: ../src/auto-evo/RunResults.cs:765
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -6296,7 +6354,7 @@ msgstr ""
 msgid "START"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:144
+#: ../src/auto-evo/AutoEvoRun.cs:145
 msgid "STARTING"
 msgstr ""
 
@@ -6459,7 +6517,7 @@ msgstr ""
 msgid "STRATEGY_STAGES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:494
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:508
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
@@ -6792,11 +6850,11 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:983
+#: ../src/auto-evo/RunResults.cs:1008
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:989
+#: ../src/auto-evo/RunResults.cs:1014
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -6805,27 +6863,27 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:904
+#: ../src/auto-evo/RunResults.cs:929
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:927
+#: ../src/auto-evo/RunResults.cs:952
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:953
+#: ../src/auto-evo/RunResults.cs:978
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:964
+#: ../src/auto-evo/RunResults.cs:989
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:920 ../src/auto-evo/RunResults.cs:941
+#: ../src/auto-evo/RunResults.cs:945 ../src/auto-evo/RunResults.cs:966
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:914 ../src/auto-evo/RunResults.cs:935
+#: ../src/auto-evo/RunResults.cs:939 ../src/auto-evo/RunResults.cs:960
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -7171,7 +7229,7 @@ msgstr ""
 msgid "UNBIND_ALL_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/PlayerMicrobeInput.cs:269
+#: ../src/microbe_stage/PlayerMicrobeInput.cs:275
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
@@ -7394,7 +7452,7 @@ msgstr ""
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:525
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
 msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
@@ -7467,7 +7525,7 @@ msgstr ""
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:130
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:138
 msgid "VIEWER"
 msgstr ""
 
@@ -7548,11 +7606,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:862
+#: ../src/auto-evo/RunResults.cs:887
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:643
+#: ../src/auto-evo/RunResults.cs:668
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
@@ -8869,7 +8927,7 @@ msgstr ""
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:106
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
 msgid "WORLD"
 msgstr ""
 
@@ -8877,7 +8935,7 @@ msgstr ""
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:186
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:200
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr ""
 

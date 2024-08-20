@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 13:26+0200\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -2903,7 +2903,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Zet dag/nacht cyclus vast"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3028,6 +3029,63 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] is afgesplitst van [b][u]{1}[/u][/b] als een nieuwe soort door een verschil in selectiedruk"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Samenstellings-wolken"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Soorten[/b]\n"
+"  {0}:{1}\n"
+"[b]Generatie[/b]\n"
+"  {2}\n"
+"[b]Bevolking[/b]\n"
+"  {3}\n"
+"[b]Kleur[/b]\n"
+"  #{4}\n"
+"[b]Gedrag[/b]\n"
+"  {5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Predatie van {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "Dump SceneTree"
 
 msgid "MICROBE"
 msgstr "Microbe"
@@ -3768,9 +3826,6 @@ msgstr "Basisbeweging"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Klaar om bewerker te openen"
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "Error: chunk niet gevonden"
-
 msgid "NOT_STARTED_DOT"
 msgstr "Niet begonnen."
 
@@ -4076,6 +4131,10 @@ msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoev
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eerdere Ontwikkelaars"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Beste Plek:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -7114,6 +7173,9 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Error: chunk niet gevonden"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Basversterking"

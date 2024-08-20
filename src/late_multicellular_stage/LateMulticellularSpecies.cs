@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
@@ -145,6 +146,11 @@ public class LateMulticellularSpecies : Species
         {
             BodyLayout.Add(metaball.Clone(metaballMapping));
         }
+    }
+
+    public override float GetPredationTargetSizeFactor()
+    {
+        throw new NotImplementedException("Size factor for auto-evo not implemented for late multicellular species");
     }
 
     /// <summary>

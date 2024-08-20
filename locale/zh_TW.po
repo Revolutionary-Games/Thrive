@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 13:26+0200\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-07-27 14:22+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -2804,7 +2804,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "鎖定晝夜循環"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -2926,6 +2927,63 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] 從 [b][u]{1}[/u][/b] 中分支出來，成為了一個新物種，原因是演化壓力"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "化合物雲"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]物種[/b]\n"
+"  {0}：{1}\n"
+"[b]世代[/b]\n"
+"  {2}\n"
+"[b]種群數量[/b]\n"
+"  {3}\n"
+"[b]顏色[/b]\n"
+"  #{4}\n"
+"[b]行為[/b]\n"
+"  {5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "捕食 {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "傾印 SceneTree"
 
 msgid "MICROBE"
 msgstr "微生物"
@@ -3645,9 +3703,6 @@ msgstr "基礎移動速度因毒素而降低"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "錯誤：找不到區塊"
-
 msgid "NOT_STARTED_DOT"
 msgstr "尚未開始。"
 
@@ -3942,6 +3997,10 @@ msgstr "（被動地從環境中獲得繁殖所需的化合物）"
 
 msgid "PAST_DEVELOPERS"
 msgstr "過去的開發人員"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "最佳區域："
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -7064,6 +7123,9 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "錯誤：找不到區塊"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "在 Windows 上未知"

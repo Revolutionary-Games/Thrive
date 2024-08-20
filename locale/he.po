@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 13:26+0200\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -2951,7 +2951,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "מ"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -3075,6 +3075,63 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] התפצל מ[b][u]{1}[/u][/b] כמין חדש בשל לחץ ברירה שונים"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "ענני תרכובות"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]מינים[/b]\n"
+" {0}:{1}\n"
+"[b]דור[/b]\n"
+" {2}\n"
+"[b]אוכלוסיה[/b]\n"
+" {3}\n"
+"[b]צבע[/b]\n"
+" #{4}\n"
+"[b]התנהגות[/b]\n"
+" {5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "טריפה של {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "נטוש SceneTree"
 
 #, fuzzy
 msgid "MICROBE"
@@ -3822,9 +3879,6 @@ msgstr "מהירות בסיסית"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "תקלה: גוש לא נמצא"
-
 msgid "NOT_STARTED_DOT"
 msgstr "לא התחיל."
 
@@ -4143,6 +4197,10 @@ msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהלי
 
 msgid "PAST_DEVELOPERS"
 msgstr "מפתחים לשעבר"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "האזור הטוב ביותר:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -7217,6 +7275,9 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "תקלה: גוש לא נמצא"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "מקש Bassboost"

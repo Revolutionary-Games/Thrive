@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-17 13:26+0200\n"
+"POT-Creation-Date: 2024-08-20 15:20+0300\n"
 "PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -2851,7 +2851,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Trancar Ciclo Dia/Noite"
 
 msgid "LOW_BIODIVERSITY_LIMIT"
@@ -2956,6 +2957,62 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] separou-se de [b][u]{1}[/u][/b] como uma nova espécie devido a diferentes pressões de seleção"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Nuvens de compostos"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Espécie[/b]\n"
+"     {0}:{1}\n"
+"[b]Geração[/b]\n"
+"     {2}\n"
+"[b]População[/b]\n"
+"     {3}\n"
+"[b]Cor[/b]\n"
+"     #{4}\n"
+"[b]Comportamento[/b]\n"
+"     {5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Predação de {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TREE"
+msgstr ""
 
 msgid "MICROBE"
 msgstr "Micróbio"
@@ -3683,9 +3740,6 @@ msgstr "Movimento Base"
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "Erro: bloco não encontrado"
-
 msgid "NOT_STARTED_DOT"
 msgstr "Não iniciada."
 
@@ -3989,6 +4043,10 @@ msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de faz
 
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores anteriores"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Melhor Região:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -7002,6 +7060,9 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Erro: bloco não encontrado"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"

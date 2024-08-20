@@ -40,6 +40,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     [Export]
     public NodePath ViewerPath = null!;
 
+    [Export]
+    public NodePath MichePath = null!;
+
     // World controls paths
 
     [Export]
@@ -169,6 +172,20 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     [Export]
     public NodePath SpeciesDetailsPanelPath = null!;
 
+    // Miche paths
+
+    [Export]
+    public NodePath PatchListMenuPath = null!;
+
+    [Export]
+    public NodePath MicheTreePath = null!;
+
+    [Export]
+    public NodePath MicheDetailsPanelPath = null!;
+
+    [Export]
+    public NodePath MicheSpeciesDetailsPanelPath = null!;
+
     // Dialog paths
 
     [Export]
@@ -189,6 +206,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private Control mapTab = null!;
     private Control reportTab = null!;
     private Control viewerTab = null!;
+    private Control micheTab = null!;
 
     // World controls
 
@@ -242,6 +260,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private EvolutionaryTree evolutionaryTree = null!;
     private SpeciesDetailsPanelWithFossilisation speciesDetailsPanelWithFossilisation = null!;
 
+    // Miche controls
+    private CustomDropDown patchListMenu = null!;
+    private MicheTree micheTree = null!;
+    private MicheDetailsPanel micheDetailsPanel = null!;
+    private SpeciesDetailsPanel micheSpeciesDetailsPanel = null!;
+
     private CustomConfirmationDialog exitConfirmationDialog = null!;
     private CustomConfirmationDialog exportSuccessNotificationDialog = null!;
 #pragma warning restore CA2213
@@ -262,6 +286,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     private int worldsPendingToRun;
 
+    /// <summary>
+    ///   The patch that the miche tab is displaying,
+    ///   which equals to the selected popup item index of <see cref="patchListMenu"/>
+    /// </summary>
+    private Patch patchDisplayed = null!;
+
     private bool ready;
 
     private enum TabIndex
@@ -271,6 +301,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         Map,
         Report,
         Viewer,
+        Miche,
     }
 
     private enum RunControlState
@@ -295,6 +326,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         mapTab = GetNode<Control>(MapPath);
         reportTab = GetNode<Control>(ReportPath);
         viewerTab = GetNode<Control>(ViewerPath);
+        micheTab = GetNode<Control>(MichePath);
 
         allWorldsStatisticsLabel = GetNode<CustomRichTextLabel>(AllWorldsStatisticsLabelPath);
         worldsListMenu = GetNode<CustomDropDown>(WorldsListMenuPath);
@@ -345,6 +377,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         evolutionaryTree = GetNode<EvolutionaryTree>(EvolutionaryTreePath);
         speciesDetailsPanelWithFossilisation = GetNode<SpeciesDetailsPanelWithFossilisation>(SpeciesDetailsPanelPath);
 
+        patchListMenu = GetNode<CustomDropDown>(PatchListMenuPath);
+        micheTree = GetNode<MicheTree>(MicheTreePath);
+
+        micheDetailsPanel = GetNode<MicheDetailsPanel>(MicheDetailsPanelPath);
+        micheSpeciesDetailsPanel = GetNode<SpeciesDetailsPanel>(MicheSpeciesDetailsPanelPath);
+
         exitConfirmationDialog = GetNode<CustomConfirmationDialog>(ExitConfirmationDialogPath);
         exportSuccessNotificationDialog = GetNode<CustomConfirmationDialog>(ExportSuccessNotificationDialogPath);
 
@@ -364,6 +402,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             new Callable(this, nameof(SpeciesListMenuIndexChanged)));
         worldsListMenu.Popup.Connect(PopupMenu.SignalName.IndexPressed,
             new Callable(this, nameof(WorldsListMenuIndexChanged)));
+        patchListMenu.Popup.Connect(PopupMenu.SignalName.IndexPressed,
+            new Callable(this, nameof(PatchListMenuIndexChanged)));
 
         InitNewWorld();
     }
@@ -455,6 +495,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 MapPath.Dispose();
                 ReportPath.Dispose();
                 ViewerPath.Dispose();
+                MichePath.Dispose();
                 AllWorldsStatisticsLabelPath.Dispose();
                 WorldsListMenuPath.Dispose();
                 NewWorldButtonPath.Dispose();
@@ -496,6 +537,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 SpeciesDetailsPanelPath.Dispose();
                 ExitConfirmationDialogPath.Dispose();
                 ExportSuccessNotificationDialogPath.Dispose();
+                PatchListMenuPath.Dispose();
+                MicheTreePath.Dispose();
+                MicheSpeciesDetailsPanelPath.Dispose();
+                MicheDetailsPanelPath.Dispose();
             }
         }
 
@@ -640,6 +685,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 configTab.Visible = false;
                 reportTab.Visible = false;
                 viewerTab.Visible = false;
+                micheTab.Visible = false;
                 speciesSelectPanel.Visible = false;
                 historyReportSplit.Visible = true;
                 mapTab.Visible = true;
@@ -652,6 +698,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 configTab.Visible = false;
                 mapTab.Visible = false;
                 viewerTab.Visible = false;
+                micheTab.Visible = false;
                 speciesSelectPanel.Visible = false;
                 historyReportSplit.Visible = true;
                 reportTab.Visible = true;
@@ -667,6 +714,20 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 speciesSelectPanel.Visible = true;
                 historyReportSplit.Visible = true;
                 viewerTab.Visible = true;
+                micheTab.Visible = false;
+                break;
+            }
+
+            case TabIndex.Miche:
+            {
+                worldTab.Visible = false;
+                reportTab.Visible = false;
+                mapTab.Visible = false;
+                configTab.Visible = false;
+                speciesSelectPanel.Visible = true;
+                historyReportSplit.Visible = true;
+                viewerTab.Visible = false;
+                micheTab.Visible = true;
                 break;
             }
         }
@@ -760,7 +821,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
             // If the previous one has finished / failed
-            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld) { FullSpeed = true };
+            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings)) { FullSpeed = true };
             autoEvoRun.Start();
         }
         else
@@ -802,6 +864,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             s => (Species)s.Value.Clone()));
         world.PatchHistoryList.Add(gameWorld.Map.Patches.ToDictionary(s => s.Key,
             s => (PatchSnapshot)s.Value.CurrentSnapshot.Clone()));
+        world.MicheHistoryList.Add(results.InspectPatchMicheData().ToDictionary(s => s.Key,
+            s => s.Value.DeepCopy()));
 
         // Add checkbox to history container
         historyListMenu.AddItem(world.CurrentGeneration.ToString(CultureInfo.CurrentCulture), false, Colors.White);
@@ -825,7 +889,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         if (autoEvoRun?.Aborted != false || autoEvoRun.Finished)
         {
-            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld);
+            autoEvoRun = new AutoEvoRun(world.GameProperties.GameWorld,
+                AutoEvoRun.GetGlobalCache(autoEvoRun, world.WorldSettings));
         }
 
         // To avoid concurrent steps
@@ -866,6 +931,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         generationDisplayed = world.CurrentGeneration;
 
+        micheDetailsPanel.WorldSettings = world.WorldSettings;
+
+        patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
+        patchMapDrawer.SelectedPatch = patchMapDrawer.PlayerPatch;
+        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+
         // Rebuild history list
         historyListMenu.ClearAllItems();
         for (int i = 0; i <= world.CurrentGeneration; ++i)
@@ -876,12 +947,21 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         historyListMenu.CreateElements();
         HistoryListMenuIndexChanged(world.CurrentGeneration);
 
+        // Rebuild patch list
+        patchListMenu.ClearAllItems();
+        foreach (var pair in world.GameProperties.GameWorld.Map.Patches.OrderBy(p => p.Value.Name.ToString()))
+        {
+            patchListMenu.AddItem(pair.Value.Name.ToString(), false, Colors.White);
+        }
+
+        patchListMenu.CreateElements();
+
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
         UpdateCurrentWorldStatistics();
 
-        patchMapDrawer.Map = world.GameProperties.GameWorld.Map;
-        patchDetailsPanel.SelectedPatch = patchMapDrawer.PlayerPatch;
+        if (patchMapDrawer.PlayerPatch != null)
+            PatchListMenuUpdate(patchMapDrawer.PlayerPatch);
 
         world.GameProperties.GameWorld.BuildEvolutionaryTree(evolutionaryTree);
 
@@ -948,6 +1028,86 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateSpeciesPreview(world.SpeciesHistoryList[generation][id]);
     }
 
+    private void PatchListMenuIndexChanged(int index)
+    {
+        var patchName = patchListMenu.Popup.GetItemText(index);
+        var selectedPatch = world.GameProperties.GameWorld.Map.Patches.Values
+            .First(p => p.Name.ToString() == patchName);
+
+        // Get current snapshot
+        var patch = new Patch(selectedPatch.Name, 0, selectedPatch.BiomeTemplate, selectedPatch.BiomeType,
+            world.PatchHistoryList[generationDisplayed][selectedPatch.ID])
+        {
+            TimePeriod = selectedPatch.TimePeriod,
+            Depth = { [0] = selectedPatch.Depth[0], [1] = selectedPatch.Depth[1] },
+            Visibility = selectedPatch.Visibility,
+        };
+
+        PatchListMenuUpdate(patch);
+    }
+
+    private void PatchListMenuUpdate(Patch patch)
+    {
+        patchDisplayed = patch;
+        patchListMenu.Text = patch.Name.ToString();
+
+        if (generationDisplayed != world.CurrentGeneration &&
+            world.MicheHistoryList[generationDisplayed].TryGetValue(patch, out Miche? miche))
+        {
+            micheTree.SetMiche(miche);
+        }
+        else
+        {
+            var cache = new SimulationCache(world.WorldSettings);
+            var globalCache = new AutoEvoGlobalCache(world.WorldSettings);
+
+            var generateMiche = new GenerateMiche(patch, cache, globalCache);
+            var newMiche = generateMiche.GenerateMicheTree(globalCache);
+
+            generateMiche.PopulateMiche(newMiche);
+
+            micheTree.SetMiche(newMiche);
+        }
+    }
+
+    private void MicheTreeNodeSelected(int micheHash)
+    {
+        if (!micheTree.MicheByHash.TryGetValue(micheHash, out var micheData))
+        {
+            throw new ArgumentException("Invalid hash passed into MicheTreeNodeSelected");
+        }
+
+        // NoOps are being used to hold species nodes
+        if (micheData.Pressure.GetType() == typeof(NoOpPressure))
+        {
+            if (micheData.Occupant == null)
+                return;
+
+            micheSpeciesDetailsPanel.Visible = true;
+            micheDetailsPanel.Visible = false;
+
+            Species species;
+            if (generationDisplayed == world.CurrentGeneration)
+            {
+                species = patchDisplayed.SpeciesInPatch.Keys.First(p => p.ID == micheData.Occupant.ID);
+            }
+            else
+            {
+                species = world.SpeciesHistoryList[generationDisplayed].Values
+                    .First(p => p.ID == micheData.Occupant.ID);
+            }
+
+            micheSpeciesDetailsPanel.PreviewSpecies = species;
+        }
+        else
+        {
+            micheSpeciesDetailsPanel.Visible = false;
+            micheDetailsPanel.Visible = true;
+
+            micheDetailsPanel.SetPreview(micheData, patchDisplayed);
+        }
+    }
+
     private void UpdatePatchDetailPanel(PatchMapDrawer drawer)
     {
         var selectedPatch = drawer.SelectedPatch;
@@ -965,6 +1125,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         };
 
         patchDetailsPanel.SelectedPatch = patch;
+        PatchListMenuUpdate(patch);
     }
 
     private void PlayWithCurrentSettingPressed()
@@ -1072,6 +1233,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         /// </summary>
         public readonly AutoEvoConfiguration AutoEvoConfiguration;
 
+        public readonly WorldGenerationSettings WorldSettings;
+
         /// <summary>
         ///   The game itself
         /// </summary>
@@ -1083,6 +1246,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         public readonly List<Dictionary<uint, Species>> SpeciesHistoryList = new();
 
         public readonly List<Dictionary<int, PatchSnapshot>> PatchHistoryList = new();
+        public readonly List<Dictionary<Patch, Miche>> MicheHistoryList = new();
 
         /// <summary>
         ///   This list stores all auto-evo results.
@@ -1108,8 +1272,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         public AutoEvoExploringToolWorld(IAutoEvoConfiguration configuration)
         {
             AutoEvoConfiguration = configuration.Clone();
-            GameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings
-                { AutoEvoConfiguration = AutoEvoConfiguration });
+            WorldSettings = new WorldGenerationSettings { AutoEvoConfiguration = AutoEvoConfiguration };
+            GameProperties = GameProperties.StartNewMicrobeGame(WorldSettings);
 
             RunResultsList.Add(new LocalizedStringBuilder());
             SpeciesHistoryList.Add(new Dictionary<uint, Species>
