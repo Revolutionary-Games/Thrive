@@ -148,7 +148,7 @@ public class DualContourer
         Vector3I gridTo = new Vector3I((int)(UnitsTo.X * PointsPerUnit), (int)(UnitsTo.Y * PointsPerUnit),
             (int)(UnitsTo.Z * PointsPerUnit));
 
-        // Safety checks not to blow PCs
+        // Safety checks not to blow up PCs
         gridFrom.Clamp(new Vector3I(-100, -100, -100), new Vector3I(100, 100, 100));
         gridTo.Clamp(new Vector3I(-100, -100, -100), new Vector3I(100, 100, 100));
 
