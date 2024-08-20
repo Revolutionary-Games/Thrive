@@ -34,7 +34,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
         base._Ready();
 
         // This is here in case we need custom shader effects at some point
-        // Material = new ShaderMaterial()
+        // material = new ShaderMaterial()
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
