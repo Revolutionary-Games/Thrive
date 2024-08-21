@@ -242,7 +242,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             throw new InvalidOperationException($"{GetType().Name} not initialized");
 
         // TODO: should we display the hover metaballs setup on the previous frame here?
-        // hoverMetaballsChanged = true;
+        hoverMetaballsChanged = true;
         if (hoverMetaballsChanged)
         {
             hoverMetaballDisplayer.OverrideColourAlpha =

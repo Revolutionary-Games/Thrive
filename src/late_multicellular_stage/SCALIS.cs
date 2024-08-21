@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-/// Mathematic function based on convolution surfaces. Uses bones, each defined by two metaballs.
+///   Mathematic function based on convolution surfaces. Uses bones, each defined by two metaballs, to calculate value
+///   of an arbitrary point in space.
 /// </summary>
 public class Scalis : IMeshGeneratingFunction
 {
