@@ -1026,11 +1026,11 @@ public partial class MetaballBodyEditorComponent :
 
         if (PreviewMode)
         {
-            visualMetaballDisplayer.DisplayFromList(editedMetaballs);
+            visualMetaballDisplayer.DisplayFromLayout(editedMetaballs);
         }
         else
         {
-            structuralMetaballDisplayer.DisplayFromList(editedMetaballs);
+            structuralMetaballDisplayer.DisplayFromLayout(editedMetaballs);
         }
     }
 

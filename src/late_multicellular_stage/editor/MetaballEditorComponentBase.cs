@@ -69,8 +69,16 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected List<TMetaball> hoverMetaballData = new();
 
+    /// <summary>
+    /// Displays metaballs' structure in the editor
+    /// </summary>
     protected IMetaballDisplayer<TMetaball>? structuralMetaballDisplayer;
+
+    /// <summary>
+    /// Displays metaballs' shape the way it would actually look in game. Used in preview mode.
+    /// </summary>
     protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
+
     protected IMetaballDisplayer<TMetaball>? hoverMetaballDisplayer;
 
     private const float DefaultHoverAlpha = 0.8f;
@@ -252,7 +260,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             while (hoverMetaballData.Count > usedHoverMetaballIndex)
                 hoverMetaballData.RemoveAt(hoverMetaballData.Count - 1);
 
-            hoverMetaballDisplayer.DisplayFromList(hoverMetaballData);
+            hoverMetaballDisplayer.DisplayFromLayout(hoverMetaballData);
 
             hoverMetaballsChanged = false;
         }

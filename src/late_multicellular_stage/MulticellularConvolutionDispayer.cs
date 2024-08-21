@@ -46,7 +46,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromList(IReadOnlyCollection<MulticellularMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyCollection<MulticellularMetaball> layout)
     {
         Vector3 minExtends = Vector3.Zero;
         Vector3 maxExtends = Vector3.Zero;

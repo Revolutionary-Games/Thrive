@@ -254,7 +254,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromList(lateSpecies.BodyLayout);
+        metaballDisplayer.DisplayFromLayout(lateSpecies.BodyLayout);
     }
 
     /// <summary>

@@ -102,7 +102,7 @@ public partial class MetaballTest : Node
                     throw new ArgumentOutOfRangeException();
             }
 
-            metaballDisplayer.DisplayFromList(layout);
+            metaballDisplayer.DisplayFromLayout(layout);
         }
     }
 
