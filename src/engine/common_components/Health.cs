@@ -22,6 +22,11 @@ public struct Health
     public float CurrentHealth;
     public float MaxHealth;
 
+    /// <summary>
+    ///   Time until can regen again;
+    /// </summary>
+    public float HealthRegenCooldown;
+
     // TODO: an invulnerability duration to automatically turn of invulnerability? (needed to reimplement pilus
     // damage cooldown)
 
@@ -86,6 +91,8 @@ public static class HealthHelpers
 
         // This should result in at least reasonable health even if thread race conditions hit here
         health.CurrentHealth = Math.Max(0, health.CurrentHealth - damage);
+
+        health.HealthRegenCooldown = Constants.HEALTH_REGENERATION_COOLDOWN;
 
         var damageEvent = new DamageEventNotice(damageSource, damage);
         var damageList = health.RecentDamageReceived;

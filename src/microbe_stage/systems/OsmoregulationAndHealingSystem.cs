@@ -150,16 +150,23 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     /// </summary>
     private void HandleHitpointsRegeneration(ref Health health, CompoundBag compounds, float delta)
     {
-        if (health.CurrentHealth >= health.MaxHealth)
-            return;
-
-        if (compounds.GetCompoundAmount(atp) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
-            return;
-
-        health.CurrentHealth += Constants.HEALTH_REGENERATION_RATE * delta;
-        if (health.CurrentHealth > health.MaxHealth)
+        if (health.HealthRegenCooldown > 0)
         {
-            health.CurrentHealth = health.MaxHealth;
+            health.HealthRegenCooldown -= delta;
+        }
+        else
+        {
+            if (health.CurrentHealth >= health.MaxHealth)
+                return;
+
+            if (compounds.GetCompoundAmount(atp) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
+                return;
+
+            health.CurrentHealth += Constants.HEALTH_REGENERATION_RATE * delta;
+            if (health.CurrentHealth > health.MaxHealth)
+            {
+                health.CurrentHealth = health.MaxHealth;
+            }
         }
     }
 }
