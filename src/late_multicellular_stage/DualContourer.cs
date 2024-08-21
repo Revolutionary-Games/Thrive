@@ -32,101 +32,6 @@ public class DualContourer
         CalculateLookupTableIfNeeded();
     }
 
-    public void CalculateLookupTableIfNeeded()
-    {
-        if (lookupTableInt != null)
-            return;
-
-        lookupTableInt = new System.Collections.Generic.Dictionary<int, Vector3I[]>();
-
-        // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
-
-        bool reverseTriangleFaces = false;
-
-        for (int i = 1; i <= 254; ++i)
-        {
-            Cube cube = new Cube(i); // Make cube from index
-
-            // [0;0;0] point is the origin (center of the cube)
-            // All other points point to neighbooring cubes.
-            // All of the coordinates are one of the following: -1, 0, or 1
-            List<Vector3I> tris = new List<Vector3I>(6);
-
-            // Use XOR to ensure that only one of the two points is in the shape
-            // If both or none are in the shape, then there are no triangles going between them
-
-            // Parallel to x face, plane going through z = 1 and y = 1
-            if (cube.Points[0, 1, 1] ^ cube.Points[1, 1, 1])
-            {
-                tris.Add(new Vector3I(0, 0, 0));
-                tris.Add(new Vector3I(0, 1, 1));
-                tris.Add(new Vector3I(0, 0, 1));
-
-                tris.Add(new Vector3I(0, 0, 0));
-                tris.Add(new Vector3I(0, 1, 0));
-                tris.Add(new Vector3I(0, 1, 1));
-
-                if (cube.Points[0, 1, 1])
-                {
-                    int lastID = tris.Count - 1;
-
-                    (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
-                    (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
-                }
-            }
-
-            // Parallel to z face, plane going through x = 1 and y = 1
-            if (cube.Points[1, 1, 0] ^ cube.Points[1, 1, 1])
-            {
-                tris.Add(new Vector3I(0, 0, 0));
-                tris.Add(new Vector3I(1, 0, 0));
-                tris.Add(new Vector3I(1, 1, 0));
-
-                tris.Add(new Vector3I(0, 0, 0));
-                tris.Add(new Vector3I(1, 1, 0));
-                tris.Add(new Vector3I(0, 1, 0));
-
-                if (cube.Points[1, 1, 0])
-                {
-                    int lastID = tris.Count - 1;
-
-                    (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
-                    (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
-                }
-            }
-
-            // Parallel to y face, plane going through z = 1 and x = 1
-            if (cube.Points[1, 0, 1] ^ cube.Points[1, 1, 1])
-            {
-                tris.Add(new Vector3I(0, 0, 0));
-                tris.Add(new Vector3I(1, 0, 1));
-                tris.Add(new Vector3I(1, 0, 0));
-
-                tris.Add(new Vector3I(0, 0, 0));
-                tris.Add(new Vector3I(0, 0, 1));
-                tris.Add(new Vector3I(1, 0, 1));
-
-                if (cube.Points[1, 0, 1])
-                {
-                    int lastID = tris.Count - 1;
-
-                    (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
-                    (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
-                }
-            }
-
-            if (reverseTriangleFaces)
-            {
-                for (int j = 1; j < tris.Count; j += 3)
-                {
-                    (tris[j], tris[j + 1]) = (tris[j + 1], tris[j]);
-                }
-            }
-
-            lookupTableInt.Add(i, tris.ToArray());
-        }
-    }
-
     public bool IsInShape(Vector3 pos)
     {
         if (MathFunction!.GetValue(pos) > MathFunction.SurfaceValue)
@@ -239,6 +144,101 @@ public class DualContourer
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
         return mesh;
+    }
+
+    private static void CalculateLookupTableIfNeeded()
+    {
+        if (lookupTableInt != null)
+            return;
+
+        lookupTableInt = new System.Collections.Generic.Dictionary<int, Vector3I[]>();
+
+        // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
+
+        bool reverseTriangleFaces = false;
+
+        for (int i = 1; i <= 254; ++i)
+        {
+            Cube cube = new Cube(i); // Make cube from index
+
+            // [0;0;0] point is the origin (center of the cube)
+            // All other points point to neighbooring cubes.
+            // All of the coordinates are one of the following: -1, 0, or 1
+            List<Vector3I> tris = new List<Vector3I>(6);
+
+            // Use XOR to ensure that only one of the two points is in the shape
+            // If both or none are in the shape, then there are no triangles going between them
+
+            // Parallel to x face, plane going through z = 1 and y = 1
+            if (cube.Points[0, 1, 1] ^ cube.Points[1, 1, 1])
+            {
+                tris.Add(new Vector3I(0, 0, 0));
+                tris.Add(new Vector3I(0, 1, 1));
+                tris.Add(new Vector3I(0, 0, 1));
+
+                tris.Add(new Vector3I(0, 0, 0));
+                tris.Add(new Vector3I(0, 1, 0));
+                tris.Add(new Vector3I(0, 1, 1));
+
+                if (cube.Points[0, 1, 1])
+                {
+                    int lastID = tris.Count - 1;
+
+                    (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
+                    (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
+                }
+            }
+
+            // Parallel to z face, plane going through x = 1 and y = 1
+            if (cube.Points[1, 1, 0] ^ cube.Points[1, 1, 1])
+            {
+                tris.Add(new Vector3I(0, 0, 0));
+                tris.Add(new Vector3I(1, 0, 0));
+                tris.Add(new Vector3I(1, 1, 0));
+
+                tris.Add(new Vector3I(0, 0, 0));
+                tris.Add(new Vector3I(1, 1, 0));
+                tris.Add(new Vector3I(0, 1, 0));
+
+                if (cube.Points[1, 1, 0])
+                {
+                    int lastID = tris.Count - 1;
+
+                    (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
+                    (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
+                }
+            }
+
+            // Parallel to y face, plane going through z = 1 and x = 1
+            if (cube.Points[1, 0, 1] ^ cube.Points[1, 1, 1])
+            {
+                tris.Add(new Vector3I(0, 0, 0));
+                tris.Add(new Vector3I(1, 0, 1));
+                tris.Add(new Vector3I(1, 0, 0));
+
+                tris.Add(new Vector3I(0, 0, 0));
+                tris.Add(new Vector3I(0, 0, 1));
+                tris.Add(new Vector3I(1, 0, 1));
+
+                if (cube.Points[1, 0, 1])
+                {
+                    int lastID = tris.Count - 1;
+
+                    (tris[lastID], tris[lastID - 1]) = (tris[lastID - 1], tris[lastID]);
+                    (tris[lastID - 3], tris[lastID - 4]) = (tris[lastID - 4], tris[lastID - 3]);
+                }
+            }
+
+            if (reverseTriangleFaces)
+            {
+                for (int j = 1; j < tris.Count; j += 3)
+                {
+                    (tris[j], tris[j + 1]) = (tris[j + 1], tris[j]);
+                }
+            }
+
+            lookupTableInt.Add(i, tris.ToArray());
+        }
     }
 
     private void CalculatePoints(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
