@@ -120,8 +120,52 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         if (result.SplitOffPatches == null)
             return;
 
-        result.SpreadToPatches.RemoveAll(s =>
-            result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
+        lock (result.SpreadToPatches)
+        {
+            result.SpreadToPatches.RemoveAll(s =>
+                result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
+        }
+    }
+
+    /// <summary>
+    ///   Makes sure that the species doesn't attempt to migrate to one patch from multiple source patches as this is
+    ///   currently not supported by <see cref="GetMigrationsTo"/>
+    /// </summary>
+    public void RemoveDuplicateTargetPatchMigrations(Species species)
+    {
+        SpeciesResult? result;
+
+        lock (results)
+        {
+            if (!results.TryGetValue(species, out result))
+                return;
+        }
+
+        lock (result.SpreadToPatches)
+        {
+            var spreads = result.SpreadToPatches;
+            int migrationCount = spreads.Count;
+
+            for (int i = 1; i < migrationCount; ++i)
+            {
+                for (int j = 0; j < i; ++j)
+                {
+                    // Remove later migrations that target the same patch as an earlier one
+                    if (spreads[i].To != spreads[j].To)
+                        continue;
+
+                    // Debugging code which can be enabled to track how much pruning happens
+                    GD.Print($"Removed Patch migration to {spreads[i].To} from {spreads[j].From} for " +
+                        $"species {species} as this is a duplicate migration target");
+
+                    spreads.RemoveAt(i);
+
+                    --i;
+                    --migrationCount;
+                    break;
+                }
+            }
+        }
     }
 
     public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
@@ -577,7 +621,14 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             {
                 // Theoretically, nothing prevents migration from several patches, so no continue.
                 if (migration.To == patch)
-                    migrationsToPatch.Add(resultEntry.Key, migration);
+                {
+                    // TODO: should this support the species migrating from multiple patches to the target patch
+                    if (!migrationsToPatch.TryAdd(resultEntry.Key, migration))
+                    {
+                        GD.PrintErr("Species tried to migrate to a target patch from multiple patches at once, " +
+                            "this is currently unsupported, losing this migration");
+                    }
+                }
             }
         }
 
