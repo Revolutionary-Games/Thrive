@@ -43,10 +43,7 @@ public class DualContourer
 
     public Mesh DualContour()
     {
-        // GD.Print("Starting mesh generation");
-
         var sw = new Stopwatch();
-
         sw.Start();
 
         var placedPoints =
@@ -77,16 +74,7 @@ public class DualContourer
         // [gridpoint.X; gridpoint.X + 1] for x, [gridpoint.Y; gridpoint.Y + 1] for y,
         // [gridpoint.Z; gridpoint.Z + 1] for z
 
-        sw.Stop();
-
-        // GD.Print($"Allocated memory in {sw.Elapsed}");
-        sw.Restart();
-
         CalculatePoints(shapePoints, gridFrom, gridTo);
-
-        /*sw.Stop();
-        GD.Print($"Calculated points in {sw.Elapsed}");
-        sw.Restart();*/
 
         Vector3I gridOffset = -gridFrom;
 
@@ -111,10 +99,6 @@ public class DualContourer
             }
         }
 
-        /*sw.Stop();
-        GD.Print($"Placed triangles in {sw.Elapsed}");
-        sw.Restart();*/
-
         var normals = new Vector3[points.Count];
 
         if (Smoothen)
@@ -122,9 +106,6 @@ public class DualContourer
             AdjustVertices(points);
             AdjustVertices(points, 0.25f, normals);
         }
-
-        /*sw.Stop();
-        GD.Print($"Adjusted vertices in {sw.Elapsed}");*/
 
         var colors = new Color[points.Count];
 
@@ -143,6 +124,9 @@ public class DualContourer
 
         ArrayMesh mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+
+        sw.Stop();
+        GD.Print($"Generated a mesh in {sw.Elapsed}");
 
         return mesh;
     }
