@@ -14,7 +14,7 @@ public class MulticellularMetaball : Metaball
     ///   The cell type this metaball consists of
     /// </summary>
     [JsonProperty]
-    public CellType CellType { get; private set; }
+    public CellType CellType { get; set; }
 
     [JsonIgnore]
     public override Color Colour => CellType.Colour;

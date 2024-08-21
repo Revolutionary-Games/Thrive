@@ -209,4 +209,26 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
             }
         }
     }
+
+    public Metaball? GetClosestMetaballToPosition(Godot.Vector3 position)
+    {
+        var closestDistance = 10000.0f;
+        Metaball? closestMetaball = null;
+
+        foreach (var metaball in this)
+        {
+            if (metaball.Parent == null)
+                continue;
+
+            var distance = metaball.Position.DistanceTo(position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestMetaball = metaball;
+            }
+        }
+
+        return closestMetaball;
+    }
 }

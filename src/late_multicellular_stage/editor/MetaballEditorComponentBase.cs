@@ -394,7 +394,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         var actions = new List<TAction>();
         int alreadyDeleted = 0;
 
-        RunWithSymmetry(basePosition, baseMetaball, (_, metaball) =>
+        RunWithSymmetry(0, basePosition, baseMetaball, (_, metaball) =>
         {
             if (metaball == null)
                 return;
@@ -574,9 +574,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected void OnSymmetryPressed()
     {
-        throw new NotImplementedException("symmetry not implemented");
-
-        /*
         if (symmetry == HexEditorSymmetry.SixWaySymmetry)
         {
             ResetSymmetryButton();
@@ -596,7 +593,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         Symmetry = symmetry;
         UpdateSymmetryIcon();
-        */
     }
 
     // LineLengthCheckDisable is needed here as our XML indent check doesn't support splitting tags on multiple lines
@@ -708,7 +704,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     ///     TODO: this is not implemented currently and just returns the given primary position
     ///   </para>
     /// </remarks>
-    protected void RunWithSymmetry(Vector3 position, TMetaball? parent, Action<Vector3, TMetaball?> callback,
+    protected void RunWithSymmetry(float diameter, Vector3 position, TMetaball? parent, Action<Vector3, TMetaball?> callback,
         HexEditorSymmetry? overrideSymmetry = null)
     {
         overrideSymmetry ??= Symmetry;
@@ -718,6 +714,34 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             case HexEditorSymmetry.None:
             {
                 callback(position, parent);
+                break;
+            }
+
+            case HexEditorSymmetry.XAxisSymmetry:
+            {
+                var symmetryPosition = position * new Vector3(-1, 1, 1);
+
+                if (position.DistanceTo(symmetryPosition) < diameter / 2)
+                {
+                    callback(position, parent);
+                }
+                else
+                {
+                    callback(position, parent);
+
+                    if (parent != null)
+                    {
+                        var symmetryParent = (TMetaball?)editedMetaballs.GetClosestMetaballToPosition(parent.Position * new Vector3(-1, 1, 1));
+
+                        callback(symmetryPosition, symmetryParent);
+                    }
+                    else
+                    {
+                            callback(symmetryPosition, parent);
+
+                    }
+                }
+
                 break;
             }
 
