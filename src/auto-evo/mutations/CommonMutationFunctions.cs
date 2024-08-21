@@ -63,7 +63,7 @@ public static class CommonMutationFunctions
         if (position == null)
             return;
 
-        newSpecies.Organelles.Add(position);
+        newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
 
         // If the new species is a eukaryote, mark this as such.
         if (organelle == Nucleus)
@@ -74,25 +74,30 @@ public static class CommonMutationFunctions
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)
     {
-        var workMemory1 = new HashSet<Hex>();
-        var workMemory2 = new List<Hex>();
-        var workMemory3 = new Queue<Hex>();
+        HashSet<Hex>? mainHexes = null;
 
-        var islandHexes = new List<Hex>();
-        var mainHexes = new HashSet<Hex>();
+        // Use as much work memory as we can get from what we are given
+        // TODO: this would need one more hashset to not allocate memory
+        var islandHexes = workMemory.WorkingMemory1;
 
-        organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);
+        organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
+            workMemory.WorkingMemory4);
 
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            organelles.ComputeHexCache(mainHexes, workMemory2);
+            // Unfortunately it seems that just barely the cache is not enough for this to not allocate memory
+            mainHexes ??= new HashSet<Hex>();
+            organelles.ComputeHexCache(mainHexes, workMemory.WorkingMemory2);
 
-            // Compute shortest hex distance
+            // Compute the shortest hex distance
             Hex minSubHex = default;
             int minDistance = int.MaxValue;
-            foreach (var mainHex in mainHexes.Except(islandHexes))
+            foreach (var mainHex in mainHexes)
             {
+                if (islandHexes.Contains(mainHex))
+                    continue;
+
                 foreach (var islandHex in islandHexes)
                 {
                     var sub = islandHex - mainHex;
@@ -121,8 +126,11 @@ public static class CommonMutationFunctions
             minSubHex.R = (int)(minSubHex.R * (minDistance - 1.0) / minDistance);
 
             // Move all island organelles by minSubHex
-            foreach (var organelle in organelles)
+            var organelleCount = organelles.Count;
+            for (int i = 0; i < organelleCount; ++i)
             {
+                var organelle = organelles[i];
+
                 foreach (var islandHex in islandHexes)
                 {
                     if (organelle.Definition.GetRotatedHexes(organelle.Orientation)
@@ -134,7 +142,8 @@ public static class CommonMutationFunctions
                 }
             }
 
-            organelles.GetIslandHexes(islandHexes, workMemory1, workMemory2, workMemory3);
+            organelles.GetIslandHexes(islandHexes, workMemory.WorkingMemory3, workMemory.WorkingMemory2,
+                workMemory.WorkingMemory4);
         }
     }
 
@@ -148,10 +157,12 @@ public static class CommonMutationFunctions
         // place our new organelle attached to existing organelles
         // This almost always is over at the first iteration, so it's
         // not a huge performance hog
+        // TODO: try to avoid the memory allocation here
         foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
         {
             // The otherOrganelle is the organelle we wish to be next to
             // Loop its hexes and check positions next to them
+            // TODO: and here
             foreach (var hex in otherOrganelle.RotatedHexes)
             {
                 // Offset by hexes in organelle we are looking at

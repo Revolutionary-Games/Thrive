@@ -169,6 +169,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache)
     {
+        // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
+        // further items
         var result = new EnergyBalanceInfo();
 
         float processATPProduction = 0.0f;
