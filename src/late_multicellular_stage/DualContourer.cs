@@ -232,18 +232,23 @@ public class DualContourer
 
         Vector3I gridOffset = -gridFrom;
 
-        int step = gridFrom.X / 8 + 1;
+        int stepX = (gridTo.X - gridFrom.X) / 4 + 1;
+        int stepY = (gridTo.Y - gridFrom.Y) / 4 + 1;
+        int stepZ = (gridTo.Z - gridFrom.Z) / 4 + 1;
 
-        for (int x = gridFrom.X; x <= gridTo.X; x += step + 1)
+        for (int x = gridFrom.X; x <= gridTo.X; x += stepX + 1)
         {
-            Vector3I from = gridFrom;
-            Vector3I to = gridTo;
-
-            from.X = x;
-            to.X = Mathf.Clamp(x + step, x, gridTo.X);
-
-            var task = new Task(() => CalculatePointsInRange(shapePoints, from, to, gridOffset));
-            tasks.Add(task);
+            for (int y = gridFrom.Y; y <= gridTo.Y; y += stepY + 1)
+            {
+                for (int z = gridFrom.Z; z <= gridTo.Z; z += stepZ + 1)
+                {
+                    Vector3I from = new Vector3I(x, y, z);
+                    Vector3I to = from + new Vector3I(stepX, stepY, stepZ);
+                    to = to.Clamp(from, gridTo);
+                    var task = new Task(() => CalculatePointsInRange(shapePoints, from, to, gridOffset));
+                    tasks.Add(task);
+                }
+            }
         }
 
         TaskExecutor.Instance.RunTasks(tasks);
