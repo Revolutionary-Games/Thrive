@@ -206,7 +206,7 @@ public class ModifyExistingSpecies : IRunStep
                         var oldScore = cache.GetPressureScore(pressure, patch, species);
 
                         // Break if mutation fails a pressure
-                        if (newScore < 0)
+                        if (newScore <= 0)
                         {
                             combinedScores = -1;
                             break;
