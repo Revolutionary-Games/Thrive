@@ -70,12 +70,12 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected List<TMetaball> hoverMetaballData = new();
 
     /// <summary>
-    /// Displays metaballs' structure in the editor
+    ///   Displays metaballs' structure in the editor
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? structuralMetaballDisplayer;
 
     /// <summary>
-    /// Displays metaballs' shape the way it would actually look in game. Used in preview mode.
+    ///   Displays metaballs' shape the way it would actually look in game. Used in preview mode.
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
 

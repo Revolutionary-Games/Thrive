@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
 
+/// <summary>
+///   Generates meshes from mathematical functions defined in 3D space. Uses Dual contouring for this.
+/// </summary>
 public class DualContourer
 {
     public int PointsPerUnit = 4;

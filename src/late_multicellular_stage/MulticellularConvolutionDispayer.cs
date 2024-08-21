@@ -62,6 +62,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
             maxExtends.Z = Mathf.Max(maxExtends.Z, metaball.Position.Z + metaball.Radius + 0.5f);
         }
 
+        // TODO: find a way to cache those calculations in future as they are quite expensive.
         var meshGen = new DualContourer();
         meshGen.PointsPerUnit = Constants.CREATURE_MESH_RESOLUTION;
         meshGen.UnitsFrom = minExtends;

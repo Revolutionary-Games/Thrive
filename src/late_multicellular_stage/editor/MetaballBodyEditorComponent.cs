@@ -139,6 +139,10 @@ public partial class MetaballBodyEditorComponent :
         Appearance,
     }
 
+    /// <summary>
+    ///   If this is enabled, the creature will be shown as it would actually look in game. Editing metaballs is
+    ///   disabled during preview (except for undo/redo).
+    /// </summary>
     public bool PreviewMode
     {
         get => previewMode;
