@@ -155,8 +155,8 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                         continue;
 
                     // Debugging code which can be enabled to track how much pruning happens
-                    GD.Print($"Removed Patch migration to {spreads[i].To} from {spreads[j].From} for " +
-                        $"species {species} as this is a duplicate migration target");
+                    /*GD.Print($"Removed Patch migration to {spreads[i].To} from {spreads[j].From} for " +
+                        $"species {species} as this is a duplicate migration target");*/
 
                     spreads.RemoveAt(i);
 
