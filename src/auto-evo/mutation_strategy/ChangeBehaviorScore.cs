@@ -26,7 +26,7 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
     // As it cost no MP the mutation code could just repeat this forever
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
@@ -34,9 +34,7 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
         var change = (float)new Random().NextDouble() * maxChange;
 
         if (Math.Abs(change) < 1)
-        {
-            return [];
-        }
+            return null;
 
         switch (attribute)
         {
