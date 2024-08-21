@@ -46,7 +46,7 @@ public class Scalis : IMeshGeneratingFunction
 
         const int i = 3;
 
-        var boneDistances = new float[points.Count - (points.Count == 1? 0 : 1)];
+        var boneDistances = new float[points.Count - (points.Count == 1 ? 0 : 1)];
 
         // "Additive value" is a hack that allows us to approximate close-by bones "fusing" together, allowing a more
         // precise cutoff.
@@ -57,7 +57,7 @@ public class Scalis : IMeshGeneratingFunction
             if (points.Count == 1)
             {
                 boneDistances[0] = SquareCutoffValue(pos, points.First().Position / sigma, points.First().Position
-                        / sigma);
+                    / sigma);
             }
             else
             {
@@ -147,9 +147,6 @@ public class Scalis : IMeshGeneratingFunction
 
     public Color GetColour(Vector3 pos)
     {
-        if (points == null)
-            return Colors.Black;
-
         if (points.Count == 1)
             return points.First().Colour;
 

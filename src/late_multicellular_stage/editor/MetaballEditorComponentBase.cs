@@ -76,6 +76,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     /// <summary>
     ///   Displays metaballs' shape the way it would actually look in game. Used in preview mode.
+    ///   Should display metaballs using the convolution displayer.
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
 
