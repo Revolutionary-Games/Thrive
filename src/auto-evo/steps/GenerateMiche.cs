@@ -140,13 +140,15 @@ public class GenerateMiche : IRunStep
 
     public Miche PopulateMiche(Miche miche)
     {
-        var scores = new Dictionary<Species, float>();
+        // If no species, don't need to do anything
+        if (patch.SpeciesInPatch.Count < 1)
+            return miche;
+
         var workMemory = new HashSet<Species>();
-        miche.SetupScores(scores, workMemory);
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
-            miche.InsertSpecies(species, patch, scores, cache, false, workMemory);
+            miche.InsertSpecies(species, patch, null, cache, false, workMemory);
         }
 
         return miche;

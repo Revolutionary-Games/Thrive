@@ -91,6 +91,10 @@ public class Miche
         }
     }
 
+    /// <summary>
+    ///   Adds occupants of this and all child miches to the set. Does not clear the set before adding.
+    /// </summary>
+    /// <param name="occupantsSet">Where to *append* the results</param>
     public void GetOccupants(HashSet<Species> occupantsSet)
     {
         if (Occupant != null)
@@ -121,27 +125,13 @@ public class Miche
         newChild.Parent = this;
     }
 
-    public void SetupScores(Dictionary<Species, float> scores, HashSet<Species> workMemory)
-    {
-        workMemory.Clear();
-        GetOccupants(workMemory);
-
-        scores.Clear();
-
-        foreach (var occupant in workMemory)
-        {
-            scores[occupant] = 0;
-        }
-    }
-
     /// <summary>
     ///   Inserts a species into any spots on the tree where the species is a better fit than any current occupants
     /// </summary>
     /// <param name="species">Species to try to insert</param>
     /// <param name="patch">Patch this miche is in for calculating scores</param>
     /// <param name="scoresSoFar">
-    ///   Scores generated so far, initialize this data with <see cref="SetupScores"/>. Not modified by this
-    ///   method.
+    ///   Scores generated so far. If not called recursively just pass in null. Not modified by this method.
     /// </param>
     /// <param name="cache">Data cache for faster calculation</param>
     /// <param name="dry">If true the species is not inserted but only checked if it could be inserted</param>
@@ -149,7 +139,7 @@ public class Miche
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
-    public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float> scoresSoFar,
+    public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float>? scoresSoFar,
         SimulationCache cache, bool dry, HashSet<Species> workingMemory)
     {
         var myScore = Pressure.Score(species, patch, cache);
@@ -166,15 +156,40 @@ public class Miche
             return true;
         }
 
+        // TODO: somehow avoid this recursive method call memory allocations
         var newScores = new Dictionary<Species, float>();
 
         workingMemory.Clear();
         GetOccupants(workingMemory);
 
-        foreach (var currentSpecies in workingMemory)
+        // Build new scores on top of previous values
+        if (scoresSoFar == null)
         {
-            newScores[currentSpecies] = scoresSoFar[currentSpecies] +
-                Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
+            // Initial call, not recursive
+
+            foreach (var currentSpecies in workingMemory)
+            {
+                newScores[currentSpecies] =
+                    Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
+            }
+        }
+        else
+        {
+            foreach (var currentSpecies in workingMemory)
+            {
+                var addedScoreAmount =
+                    Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
+
+                // If some species doesn't have a score yet, the score it starts off with is 0
+                if (scoresSoFar.TryGetValue(currentSpecies, out var score))
+                {
+                    newScores[currentSpecies] = score + addedScoreAmount;
+                }
+                else
+                {
+                    newScores[currentSpecies] = addedScoreAmount;
+                }
+            }
         }
 
         // We check here to see if scores more than 0, because
