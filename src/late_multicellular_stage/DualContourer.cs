@@ -35,7 +35,7 @@ public class DualContourer
 
     public bool IsInShape(Vector3 pos)
     {
-        if (MathFunction!.GetValue(pos) > MathFunction.SurfaceValue)
+        if (MathFunction.GetValue(pos) > MathFunction.SurfaceValue)
             return true;
 
         return false;
@@ -270,7 +270,7 @@ public class DualContourer
     {
         for (int i = 0; i < colours.Length; i++)
         {
-            colours[i] = MathFunction!.GetColour(points[i]);
+            colours[i] = MathFunction.GetColour(points[i]);
         }
     }
 
@@ -318,7 +318,7 @@ public class DualContourer
     private Vector3 GetFunctionMomentarySpeed(Vector3 realPos, float funcAtPoint, float d = 0.01f)
     {
         Vector3 direction = new Vector3(
-            (MathFunction!.GetValue(new Vector3(realPos.X + d, realPos.Y, realPos.Z)) - funcAtPoint) / d,
+            (MathFunction.GetValue(new Vector3(realPos.X + d, realPos.Y, realPos.Z)) - funcAtPoint) / d,
             (MathFunction.GetValue(new Vector3(realPos.X, realPos.Y + d, realPos.Z)) - funcAtPoint) / d,
             (MathFunction.GetValue(new Vector3(realPos.X, realPos.Y, realPos.Z + d)) - funcAtPoint) / d);
 
@@ -346,7 +346,7 @@ public class DualContourer
         int count = points.Count;
         Parallel.For(0, count, delegate(int i)
         {
-            float functionAtPoint = MathFunction!.GetValue(points[i]);
+            float functionAtPoint = MathFunction.GetValue(points[i]);
 
             Vector3 normal = GetFunctionMomentarySpeed(points[i], functionAtPoint, d);
 
