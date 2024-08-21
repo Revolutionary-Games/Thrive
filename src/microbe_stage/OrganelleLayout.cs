@@ -177,7 +177,13 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
         result.Clear();
 
-        result.AddRange(hex.Definition.GetRotatedHexes(hex.Orientation));
+        var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
+        var count = rotated.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            result.Add(rotated[i]);
+        }
     }
 
     /// <summary>
