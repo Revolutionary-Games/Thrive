@@ -302,9 +302,9 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     {
                         var patch = world.Map.GetPatch(populationEntry.Key.ID);
 
-                        if (patch.AddSpecies(entry.Key, populationEntry.Value) != true)
+                        if (!patch.AddSpecies(entry.Key, populationEntry.Value))
                         {
-                            GD.PrintErr("RunResults has new species with invalid patch or it was failed to be added");
+                            GD.PrintErr("RunResults has new species that already exists in patch");
                         }
                     }
                 }

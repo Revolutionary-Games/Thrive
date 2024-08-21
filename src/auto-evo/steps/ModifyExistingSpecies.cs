@@ -157,7 +157,8 @@ public class ModifyExistingSpecies : IRunStep
         {
             mutation.Item2.OnEdited();
 
-            newMiche.InsertSpecies(mutation.Item2, patch, scores, cache, false, workMemory);
+            if (newMiche.InsertSpecies(mutation.Item2, patch, scores, cache, false, workMemory))
+                scores[mutation.Item2] = 0;
         }
 
         newOccupantsWorkMemory.Clear();
