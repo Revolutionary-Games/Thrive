@@ -68,7 +68,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         meshGen.UnitsTo = maxExtends;
 
         var mathFunction = new Scalis();
-        mathFunction.SurfaceValue = 2;
+        mathFunction.SurfaceValue = 1;
         mathFunction.FindBones(layout);
 
         meshGen.MathFunction = mathFunction;
