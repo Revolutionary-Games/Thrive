@@ -232,9 +232,21 @@ public class DualContourer
 
         Vector3I gridOffset = -gridFrom;
 
-        int stepX = (gridTo.X - gridFrom.X) / 4 + 1;
-        int stepY = (gridTo.Y - gridFrom.Y) / 4 + 1;
-        int stepZ = (gridTo.Z - gridFrom.Z) / 4 + 1;
+        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+
+        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+            --availableThreads;
+
+        if (!Settings.Instance.RunGameSimulationMultithreaded || GenerateThreadedSystems.UseCheckedComponentAccess)
+        {
+            availableThreads = 1;
+        }
+
+        int threadsPerEdge = Mathf.Clamp(Mathf.CeilToInt(2f * availableThreads / 8f), 2, 4);
+
+        int stepX = (gridTo.X - gridFrom.X) / threadsPerEdge;
+        int stepY = (gridTo.Y - gridFrom.Y) / threadsPerEdge;
+        int stepZ = (gridTo.Z - gridFrom.Z) / threadsPerEdge;
 
         for (int x = gridFrom.X; x <= gridTo.X; x += stepX + 1)
         {
@@ -346,7 +358,20 @@ public class DualContourer
 
         var tasks = new List<Task>();
 
-        int step = points.Count / 32 + 1;
+        int availableThreads = TaskExecutor.Instance.ParallelTasks;
+
+        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+            --availableThreads;
+
+        if (!Settings.Instance.RunGameSimulationMultithreaded || GenerateThreadedSystems.UseCheckedComponentAccess)
+        {
+            availableThreads = 1;
+        }
+
+        int step = points.Count / availableThreads;
+
+        if (step < 1)
+            step = 1;
 
         int count = points.Count;
 
