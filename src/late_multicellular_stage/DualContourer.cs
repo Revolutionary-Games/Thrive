@@ -339,10 +339,6 @@ public class DualContourer
         // 5. Make a second pass of 1-4. This algorithm is only an approximation, so sometimes one-pass approach
         // results in spiky meshes. Optionally clamp the value more than on the first pass.
 
-        float maxToleratedChange = changeClamp / PointsPerUnit;
-
-        float d = 0.25f / PointsPerUnit;
-
         var tasks = new List<Task>();
 
         int step = points.Count / 32 + 1;
@@ -360,7 +356,8 @@ public class DualContourer
         TaskExecutor.Instance.RunTasks(tasks);
     }
 
-    private void AdjustVerticesInRange(int from, int to, List<Vector3> points, float changeClamp = 0.5f, Vector3[]? meshNormals = null)
+    private void AdjustVerticesInRange(int from, int to, List<Vector3> points, float changeClamp = 0.5f,
+        Vector3[]? meshNormals = null)
     {
         float maxToleratedChange = changeClamp / PointsPerUnit;
         float d = 0.25f / PointsPerUnit;
