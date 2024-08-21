@@ -23,13 +23,14 @@ public class DualContourer
 
     public bool Smoothen = true;
 
-    public IMeshGeneratingFunction? MathFunction;
+    public IMeshGeneratingFunction MathFunction;
 
     private static System.Collections.Generic.Dictionary<int, Vector3I[]>? lookupTableInt;
 
-    public DualContourer()
+    public DualContourer(IMeshGeneratingFunction mathFunction)
     {
         CalculateLookupTableIfNeeded();
+        MathFunction = mathFunction;
     }
 
     public bool IsInShape(Vector3 pos)
