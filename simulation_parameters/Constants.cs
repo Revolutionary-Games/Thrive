@@ -645,6 +645,11 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
+    /// <summary>
+    ///   Time until cell can regenerate after taking damage;
+    /// </summary>
+    public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
+
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;

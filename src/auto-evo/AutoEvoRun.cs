@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
+using Xoshiro.PRNG64;
 using Thread = System.Threading.Thread;
 
 /// <summary>
@@ -357,7 +358,7 @@ public class AutoEvoRun
 
             combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
 
-            // We can ignore coefficients because we trust that CalculateFinalExternalEffectSizes has been called first
+            // We can ignore coefficients because we trust that CalculateFinalExternalEffectSizes has been called first,
             // and so we also don't need to
 
             combinedExternalEffects[key] = existingEffectAmount + entry.Constant;
@@ -381,6 +382,8 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
+        var random = new XoShiRo256starstar();
+
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
@@ -404,10 +407,7 @@ public class AutoEvoRun
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings));
 
-            for (int i = 0; i < Constants.AUTO_EVO_MOVE_ATTEMPTS; ++i)
-            {
-                steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings)));
-            }
+            steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings), random));
         }
 
         // The new populations don't depend on the mutations, this is so that when

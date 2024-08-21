@@ -149,15 +149,13 @@ public class ModifyExistingSpecies : IRunStep
         // Add these mutant species into a new miche
         // TODO: add some way to avoid the deep copy here
         var newMiche = miche.DeepCopy();
-        var scores = new Dictionary<Species, float>();
         var workMemory = new HashSet<Species>();
-        newMiche.SetupScores(scores, workMemory);
 
         foreach (var mutation in mutationsToTry)
         {
             mutation.Item2.OnEdited();
 
-            newMiche.InsertSpecies(mutation.Item2, patch, scores, cache, false, workMemory);
+            newMiche.InsertSpecies(mutation.Item2, patch, null, cache, false, workMemory);
         }
 
         newOccupantsWorkMemory.Clear();
@@ -382,8 +380,11 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2);
 
-                    PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
-                        selectionPressures);
+                    if (mutated != null)
+                    {
+                        PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
+                            selectionPressures);
+                    }
                 }
 
                 // TODO: Make these a performance setting?

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
@@ -86,8 +85,26 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   match between these two.
     /// </summary>
     [JsonIgnore]
-    public float BaseHexSize => Organelles.Organelles.Sum(o => o.Definition.HexCount)
-        * (IsBacteria ? 0.5f : 1.0f);
+    public float BaseHexSize
+    {
+        get
+        {
+            var raw = 0.0f;
+
+            // Need to do the calculation this way to avoid extra memory allocations
+            var organelles = Organelles.Organelles;
+            int count = organelles.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                raw += organelles[i].Definition.HexCount;
+            }
+
+            if (IsBacteria)
+                return raw * 0.5f;
+
+            return raw;
+        }
+    }
 
     /// <summary>
     ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
@@ -272,9 +289,12 @@ public class MicrobeSpecies : Species, ICellDefinition
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 
-        foreach (var organelle in Organelles)
+        var organelles = Organelles.Organelles;
+        var organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
-            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            result.Organelles.AddFast((OrganelleTemplate)organelles[i].Clone(), workMemory1, workMemory2);
         }
 
         return result;

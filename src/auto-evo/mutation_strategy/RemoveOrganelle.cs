@@ -42,10 +42,10 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         return ThatCreateCompound(compound);
     }
 
-    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         if (mp < 10)
-            return [];
+            return null;
 
         // TODO: Make this something passed in
         var random = new Random();

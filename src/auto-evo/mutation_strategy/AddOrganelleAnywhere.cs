@@ -66,11 +66,11 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return ThatConvertBetweenCompounds(fromCompound, toCompound, direction);
     }
 
-    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         // If a cheaper organelle gets added this will need to be updated
         if (mp < 20)
-            return [];
+            return null;
 
         // TODO: Make this something passed in
         var random = new Random();

@@ -127,9 +127,13 @@ public class SimulationCache
         var compoundIn = 0.0f;
         var compoundOut = 0.0f;
 
-        foreach (var organelle in species.Organelles)
+        // For maximum efficiency as this is called an absolute ton the following approach is used
+        var organelles = species.Organelles.Organelles;
+        var count = organelles.Count;
+
+        for (var i = 0; i < count; ++i)
         {
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            foreach (var process in organelles[i].Definition.RunnableProcesses)
             {
                 if (process.Process.Inputs.TryGetValue(fromCompound, out var inputAmount))
                 {
@@ -168,9 +172,12 @@ public class SimulationCache
 
         cached = 0.0f;
 
-        foreach (var organelle in species.Organelles)
+        var organelles = species.Organelles.Organelles;
+        var organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
-            foreach (var process in organelle.Definition.RunnableProcesses)
+            foreach (var process in organelles[i].Definition.RunnableProcesses)
             {
                 if (process.Process.Inputs.ContainsKey(fromCompound))
                 {
@@ -371,8 +378,13 @@ public class SimulationCache
         var oxytoxyScore = 0.0f;
         var mucilageScore = 0.0f;
 
-        foreach (var organelle in microbeSpecies.Organelles)
+        var organelles = microbeSpecies.Organelles.Organelles;
+        var organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+
             if (organelle.Definition.HasPilusComponent)
             {
                 pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
