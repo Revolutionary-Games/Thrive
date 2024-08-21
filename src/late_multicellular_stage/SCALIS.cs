@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+/// Mathematic function based on convolution surfaces. Uses bones, each defined by two metaballs.
+/// </summary>
 public class Scalis : IMeshGeneratingFunction
 {
     public float CutoffPointMultiplier = 1.5f;
