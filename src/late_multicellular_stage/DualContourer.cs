@@ -242,7 +242,7 @@ public class DualContourer
             availableThreads = 1;
         }
 
-        int threadsPerEdge = Mathf.Clamp(Mathf.CeilToInt(2f * availableThreads / 8f), 2, 4);
+        int threadsPerEdge = Mathf.Clamp(Mathf.CeilToInt(2.0f * availableThreads / 8.0f), 2, 4);
 
         int stepX = (gridTo.X - gridFrom.X) / threadsPerEdge;
         int stepY = (gridTo.Y - gridFrom.Y) / threadsPerEdge;
