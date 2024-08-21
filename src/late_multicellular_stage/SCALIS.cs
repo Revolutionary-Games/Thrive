@@ -198,7 +198,7 @@ public class Scalis : IMeshGeneratingFunction
 
         if (i < 0)
         {
-            throw new Exception("i is less that 0");
+            throw new ArgumentException("i is less that 0");
         }
 
         return sigma * sigma * (i - 3) / (i - 2) * NormalizationFactor(i - 2, sigma);
