@@ -428,7 +428,7 @@ public partial class MetaballBodyEditorComponent :
 
     public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
     {
-        SetEditorWorldGuideObjectVisibility(shown);
+        base.SetEditorWorldTabSpecificObjectVisibility(shown);
 
         if (structuralMetaballDisplayer != null)
         {
