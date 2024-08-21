@@ -42,11 +42,13 @@ public class OrganelleLayout<T> : HexLayout<T>
             Vector3 weightedSum = Vector3.Zero;
 
             // TODO: shouldn't this take multihex organelles into account?
-            foreach (var organelle in Organelles)
+            var organelleList = Organelles;
+            var listLength = organelleList.Count;
+            for (int i = 0; i < listLength; ++i)
             {
                 // totalMass += organelle.Definition.Mass;
                 ++count;
-                weightedSum += Hex.AxialToCartesian(organelle.Position) /* * organelle.Definition.Mass*/;
+                weightedSum += Hex.AxialToCartesian(organelleList[i].Position) /* * organelle.Definition.Mass*/;
             }
 
             if (count == 0)

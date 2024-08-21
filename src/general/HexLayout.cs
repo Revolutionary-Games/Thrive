@@ -199,7 +199,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    ///   Searches hex list for an hex at the specified hex
+    ///   Searches hex list for a hex at the specified hex
     /// </summary>
     public T? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
@@ -245,7 +245,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
 
     public void CopyTo(T[] array, int arrayIndex)
     {
-        foreach (var hex in this)
+        foreach (var hex in existingHexes)
         {
             array[arrayIndex++] = hex;
         }
