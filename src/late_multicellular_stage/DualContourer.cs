@@ -228,26 +228,42 @@ public class DualContourer
 
     private void CalculatePoints(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
     {
-        var sw = new Stopwatch();
-        sw.Start();
+        var tasks = new List<Task>();
 
         Vector3I gridOffset = -gridFrom;
 
-        Parallel.For(gridFrom.X, gridTo.X + 1, delegate(int x)
+        int step = gridFrom.X / 8 + 1;
+
+        for (int x = gridFrom.X; x <= gridTo.X; x += step + 1)
         {
-            Parallel.For(gridFrom.Y, gridTo.Y + 1, delegate(int y)
+            Vector3I from = gridFrom;
+            Vector3I to = gridTo;
+
+            from.X = x;
+            to.X = Mathf.Clamp(x + step, x, gridTo.X);
+
+            var task = new Task(() => CalculatePointsInRange(shapePoints, from, to, gridOffset));
+            tasks.Add(task);
+        }
+
+        TaskExecutor.Instance.RunTasks(tasks);
+    }
+
+    private void CalculatePointsInRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo, Vector3I gridOffset)
+    {
+        for (int x = gridFrom.X; x <= gridTo.X; x++)
+        {
+            for (int y = gridFrom.Y; y <= gridTo.Y; y++)
             {
-                Parallel.For(gridFrom.Z, gridTo.Z + 1, delegate(int z)
+                for (int z = gridFrom.Z; z <= gridTo.Z; z++)
                 {
                     // var gridPos = new Vector3I(x, y, z);
                     var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) / PointsPerUnit;
 
                     shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
-                });
-            });
-        });
-
-        sw.Stop();
+                }
+            }
+        }
     }
 
     private void SetColours(List<Vector3> points, Color[] colours)
@@ -327,12 +343,35 @@ public class DualContourer
 
         float d = 0.25f / PointsPerUnit;
 
-        int count = points.Count;
-        Parallel.For(0, count, delegate(int i)
-        {
-            float functionAtPoint = MathFunction.GetValue(points[i]);
+        var tasks = new List<Task>();
 
-            Vector3 normal = GetFunctionMomentarySpeed(points[i], functionAtPoint, d);
+        int step = points.Count / 32 + 1;
+
+        int count = points.Count;
+
+        for (int i = 0; i < count; i += step + 1)
+        {
+            int from = i;
+            int to = Mathf.Clamp(i + step, i, count - 1);
+            var task = new Task(() => AdjustVerticesInRange(from, to, points, changeClamp, meshNormals));
+            tasks.Add(task);
+        }
+
+        TaskExecutor.Instance.RunTasks(tasks);
+    }
+
+    private void AdjustVerticesInRange(int from, int to, List<Vector3> points, float changeClamp = 0.5f, Vector3[]? meshNormals = null)
+    {
+        float maxToleratedChange = changeClamp / PointsPerUnit;
+        float d = 0.25f / PointsPerUnit;
+
+        for (int i = from; i <= to; ++i)
+        {
+            var point = points[i];
+
+            float functionAtPoint = MathFunction.GetValue(point);
+
+            Vector3 normal = GetFunctionMomentarySpeed(point, functionAtPoint, d);
 
             // If we move one unit in the direction of the normal, function value should be this much more.
             // (If we assume that the function is completely )
@@ -345,13 +384,13 @@ public class DualContourer
             change.Y = Mathf.Clamp(change.Y, -maxToleratedChange, maxToleratedChange);
             change.Z = Mathf.Clamp(change.Z, -maxToleratedChange, maxToleratedChange);
 
-            points[i] += change;
+            points[i] = point + change;
 
             if (meshNormals != null)
             {
                 meshNormals[i] = -normal / instanteousSpeed;
             }
-        });
+        }
     }
 
     private void PlaceTriangles(Vector3I gridPos, Vector3I[] trisToPlace, List<Vector3> points, List<int> tris,
