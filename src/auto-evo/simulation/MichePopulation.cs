@@ -185,13 +185,11 @@ public static class MichePopulation
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetMicheForPatch(patch);
 
-        var scores = new Dictionary<Species, float>();
         var workMemory = new HashSet<Species>();
-        miche.SetupScores(scores, workMemory);
 
         foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
         {
-            miche.InsertSpecies(extraSpecies, patch, scores, cache, false, workMemory);
+            miche.InsertSpecies(extraSpecies, patch, null, cache, false, workMemory);
         }
 
         // This prevents duplicates caused by ExtraSpecies

@@ -149,16 +149,13 @@ public class ModifyExistingSpecies : IRunStep
         // Add these mutant species into a new miche
         // TODO: add some way to avoid the deep copy here
         var newMiche = miche.DeepCopy();
-        var scores = new Dictionary<Species, float>();
         var workMemory = new HashSet<Species>();
-        newMiche.SetupScores(scores, workMemory);
 
         foreach (var mutation in mutationsToTry)
         {
             mutation.Item2.OnEdited();
 
-            if (newMiche.InsertSpecies(mutation.Item2, patch, scores, cache, false, workMemory))
-                scores[mutation.Item2] = 0;
+            newMiche.InsertSpecies(mutation.Item2, patch, null, cache, false, workMemory);
         }
 
         newOccupantsWorkMemory.Clear();
