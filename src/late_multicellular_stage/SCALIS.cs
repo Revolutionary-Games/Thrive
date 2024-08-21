@@ -21,13 +21,21 @@ public class Scalis : IMeshGeneratingFunction
     ///   Every metaball represents a point in creature's skeleton.
     ///   Each bone is formed between a point and its parent.
     /// </summary>
-    private readonly IReadOnlyCollection<MulticellularMetaball> points;
+    private readonly MulticellularMetaball[] points;
 
     private float surfaceValue = 1.0f;
 
     public Scalis(IReadOnlyCollection<MulticellularMetaball> metaballs)
     {
-        points = metaballs;
+        points = new MulticellularMetaball[metaballs.Count];
+
+        int i = 0;
+
+        foreach (var point in metaballs)
+        {
+            points[i] = point;
+            ++i;
+        }
     }
 
     public float SurfaceValue
@@ -46,7 +54,8 @@ public class Scalis : IMeshGeneratingFunction
 
         const int i = 3;
 
-        var boneDistances = new float[points.Count - (points.Count == 1 ? 0 : 1)];
+        // Value of the root metaball is skipped and is always 0.0f;
+        var boneDistances = new float[points.Length];
 
         // "Additive value" is a hack that allows us to approximate close-by bones "fusing" together, allowing a more
         // precise cutoff.
@@ -54,16 +63,17 @@ public class Scalis : IMeshGeneratingFunction
 
         if (Cutoff)
         {
-            if (points.Count == 1)
+            if (points.Length == 1)
             {
                 boneDistances[0] = SquareCutoffValue(pos, points.First().Position / sigma, points.First().Position
                     / sigma);
             }
             else
             {
-                int j = 0;
-                foreach (var point in points)
+                for (int j = 0; j < points.Length; j++)
                 {
+                    var point = points[j];
+
                     if (point.Parent == null)
                         continue;
 
@@ -77,22 +87,21 @@ public class Scalis : IMeshGeneratingFunction
                     {
                         return 10.0f;
                     }
-
-                    ++j;
                 }
             }
         }
 
-        int j1 = 0;
-        foreach (var point in points)
+        for (int j = 0; j < points.Length; j++)
         {
-            if (point.Parent == null && points.Count > 1)
+            var point = points[j];
+
+            if (point.Parent == null && points.Length > 1)
                 continue;
 
             float aRadius = point.Radius;
             float bRadius;
 
-            if (points.Count == 1)
+            if (points.Length == 1)
             {
                 bRadius = point.Radius;
             }
@@ -101,17 +110,16 @@ public class Scalis : IMeshGeneratingFunction
                 bRadius = point.Parent!.Radius;
             }
 
-            if (Cutoff && boneDistances[j1] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
+            if (Cutoff && boneDistances[j] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
                     * CutoffPointMultiplier * 2.0f / SurfaceValue, 2.0f))
             {
-                ++j1;
                 continue;
             }
 
             Vector3 a = point.Position / sigma;
             Vector3 b;
 
-            if (points.Count == 1)
+            if (points.Length == 1)
             {
                 b = point.Position / sigma;
                 a.X -= aRadius;
@@ -138,8 +146,6 @@ public class Scalis : IMeshGeneratingFunction
                 value += coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1)
                     * Convolution(k, i, a, b, pos);
             }
-
-            ++j1;
         }
 
         return value / NormalizationFactor(i, sigma);
@@ -147,8 +153,8 @@ public class Scalis : IMeshGeneratingFunction
 
     public Color GetColour(Vector3 pos)
     {
-        if (points.Count == 1)
-            return points.First().Colour;
+        if (points.Length == 1)
+            return points[0].Colour;
 
         Color colourSum = Colors.Black;
 
