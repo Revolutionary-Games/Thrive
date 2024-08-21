@@ -15,19 +15,19 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         const float change = Constants.AUTO_EVO_MUTATION_RIGIDITY_STEP;
         const float mpCost = change * 10 * 2;
 
         if (mp < mpCost)
-            return [];
+            return null;
 
         if (Lower && baseSpecies.MembraneRigidity == -1.0f)
-            return [];
+            return null;
 
         if (!Lower && baseSpecies.MembraneRigidity == 1.0f)
-            return [];
+            return null;
 
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 

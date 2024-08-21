@@ -14,13 +14,13 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, float>> MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
     {
         if (baseSpecies.MembraneType == membraneType)
-            return [];
+            return null;
 
         if (mp < membraneType.EditorCost)
-            return [];
+            return null;
 
         var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 

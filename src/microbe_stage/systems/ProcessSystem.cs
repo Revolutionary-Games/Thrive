@@ -133,7 +133,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Computes the energy balance for the given organelles in biome and at a given time during the day (or type
     ///   can be specified to be a different type of value)
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType)
     {
@@ -156,7 +156,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </param>
     /// <param name="includeMovementCost">
     ///   Only when true are movement related energy costs included in the calculation. When false base movement data
-    ///   is provided but it is not taken into account in the sums, but total movement cost is not calculated. If that
+    ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
     ///   is required then include movement cost parameter should be set to true and from the result the variables
     ///   giving balance without movement should be used as an alternative to setting this false.
     /// </param>
@@ -164,11 +164,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleTemplate> organelles,
+    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache)
     {
+        // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
+        // further items
         var result = new EnergyBalanceInfo();
 
         float processATPProduction = 0.0f;
@@ -177,8 +179,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         int hexCount = 0;
 
-        foreach (var organelle in organelles)
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+
             var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, result);
 
             processATPProduction += production;

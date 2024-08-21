@@ -6,24 +6,32 @@ using Systems;
 
 public static class MicrobeInternalCalculations
 {
-    public static Vector3 MaximumSpeedDirection(IEnumerable<OrganelleTemplate> organelles)
+    public static Vector3 MaximumSpeedDirection(IReadOnlyList<OrganelleTemplate> organelles)
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
 
-        var movementOrganelles = organelles.Where(o => o.Definition.HasMovementComponent)
-            .ToList();
+        var organelleCount = organelles.Count;
 
-        foreach (var organelle in movementOrganelles)
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
             maximumMovementDirection += GetOrganelleDirection(organelle);
         }
 
         // After calculating the sum of all organelle directions we subtract the movement components which
-        // are symmetric and we choose the one who would benefit the max-speed the most.
-        foreach (var organelle in movementOrganelles)
+        // are symmetric, and we choose the one who would benefit the max-speed the most.
+        for (int i = 0; i < organelleCount; ++i)
         {
-            maximumMovementDirection = ChooseFromSymmetricFlagella(movementOrganelles,
-                organelle, maximumMovementDirection);
+            var organelle = organelles[i];
+
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
+            maximumMovementDirection = ChooseFromSymmetricFlagella(organelles, organelle, maximumMovementDirection);
         }
 
         // If the flagella are positioned symmetrically we assume the forward position as default
@@ -765,6 +773,8 @@ public static class MicrobeInternalCalculations
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
 
             if (organelle != testedOrganelle &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))

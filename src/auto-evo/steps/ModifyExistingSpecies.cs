@@ -380,8 +380,11 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2);
 
-                    PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
-                        selectionPressures);
+                    if (mutated != null)
+                    {
+                        PruneMutations(temporaryMutations2, speciesTuple.Item1, mutated, patch, cache,
+                            selectionPressures);
+                    }
                 }
 
                 // TODO: Make these a performance setting?

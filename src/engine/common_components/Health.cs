@@ -92,6 +92,7 @@ public static class HealthHelpers
         // This should result in at least reasonable health even if thread race conditions hit here
         health.CurrentHealth = Math.Max(0, health.CurrentHealth - damage);
 
+        // TODO: should there be a minimum damage, like 0.01 after which the cooldown is only triggered?
         health.HealthRegenCooldown = Constants.HEALTH_REGENERATION_COOLDOWN;
 
         var damageEvent = new DamageEventNotice(damageSource, damage);
