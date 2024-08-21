@@ -63,9 +63,8 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         }
 
         // TODO: find a way to cache those mesh generations in future as they are quite expensive.
-        var mathFunction = new Scalis();
+        var mathFunction = new Scalis(layout);
         mathFunction.SurfaceValue = 1;
-        mathFunction.FindBones(layout);
 
         var meshGen = new DualContourer(mathFunction);
         meshGen.PointsPerUnit = Constants.CREATURE_MESH_RESOLUTION;

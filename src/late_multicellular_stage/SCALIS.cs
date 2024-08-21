@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -14,35 +15,25 @@ public class Scalis : IMeshGeneratingFunction
 
     public bool Cutoff = true;
 
-    /// <summary>
-    ///   Every two consecutive points form a bone
-    /// </summary>
-    public Metaball[]? Points;
-
     private static int[] coefficients = { 1, 2, 1 };
 
+    /// <summary>
+    ///   Every metaball represents a point in creature's skeleton.
+    ///   Each bone is formed between a point and its parent.
+    /// </summary>
+    private readonly IReadOnlyCollection<MulticellularMetaball> points;
+
     private float surfaceValue = 1.0f;
+
+    public Scalis(IReadOnlyCollection<MulticellularMetaball> metaballs)
+    {
+        points = metaballs;
+    }
 
     public float SurfaceValue
     {
         get => surfaceValue;
         set => surfaceValue = value;
-    }
-
-    public void FindBones(IReadOnlyCollection<MulticellularMetaball> layout)
-    {
-        var newPoints = new List<Metaball>();
-
-        foreach (var metaball in layout)
-        {
-            if (metaball.Parent == null)
-                continue;
-
-            newPoints.Add(metaball);
-            newPoints.Add(metaball.Parent);
-        }
-
-        Points = newPoints.ToArray();
     }
 
     public float GetValue(Vector3 pos)
@@ -55,7 +46,7 @@ public class Scalis : IMeshGeneratingFunction
 
         const int i = 3;
 
-        var boneDistances = new float[Points!.Length / 2];
+        var boneDistances = new float[points.Count - (points.Count == 1? 0 : 1)];
 
         // "Additive value" is a hack that allows us to approximate close-by bones "fusing" together, allowing a more
         // precise cutoff.
@@ -63,34 +54,73 @@ public class Scalis : IMeshGeneratingFunction
 
         if (Cutoff)
         {
-            for (int j = 0; j < Points.Length; j += 2)
+            if (points.Count == 1)
             {
-                boneDistances[j / 2] = SquareCutoffValue(pos, Points[j].Position / sigma, Points[j + 1].Position
-                    / sigma);
-                additiveValue += 0.75f / (boneDistances[j / 2] * Mathf.Max(Points[j].Radius, Points[j + 1].Radius));
-
-                float minRadius = Mathf.Min(Points[j].Radius, Points[j + 1].Radius);
-
-                if (minRadius > 0.5f && boneDistances[j / 2] < InnerCutoffPointMultiplier * minRadius / SurfaceValue)
+                boneDistances[0] = SquareCutoffValue(pos, points.First().Position / sigma, points.First().Position
+                        / sigma);
+            }
+            else
+            {
+                int j = 0;
+                foreach (var point in points)
                 {
-                    return 10.0f;
+                    if (point.Parent == null)
+                        continue;
+
+                    boneDistances[j] = SquareCutoffValue(pos, point.Position / sigma, point.Parent.Position
+                        / sigma);
+                    additiveValue += 0.75f / (boneDistances[j] * Mathf.Max(point.Radius, point.Parent.Radius));
+
+                    float minRadius = Mathf.Min(point.Radius, point.Parent.Radius);
+
+                    if (minRadius > 0.5f && boneDistances[j] < InnerCutoffPointMultiplier * minRadius / SurfaceValue)
+                    {
+                        return 10.0f;
+                    }
+
+                    ++j;
                 }
             }
         }
 
-        for (int j = 0; j < Points.Length; j += 2)
+        int j1 = 0;
+        foreach (var point in points)
         {
-            float aRadius = Points[j].Radius;
-            float bRadius = Points[j + 1].Radius;
+            if (point.Parent == null && points.Count > 1)
+                continue;
 
-            if (Cutoff && boneDistances[j / 2] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
+            float aRadius = point.Radius;
+            float bRadius;
+
+            if (points.Count == 1)
+            {
+                bRadius = point.Radius;
+            }
+            else
+            {
+                bRadius = point.Parent!.Radius;
+            }
+
+            if (Cutoff && boneDistances[j1] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
                     * CutoffPointMultiplier * 2.0f / SurfaceValue, 2.0f))
             {
+                ++j1;
                 continue;
             }
 
-            Vector3 a = Points[j].Position / sigma;
-            Vector3 b = Points[j + 1].Position / sigma;
+            Vector3 a = point.Position / sigma;
+            Vector3 b;
+
+            if (points.Count == 1)
+            {
+                b = point.Position / sigma;
+                a.X -= aRadius;
+                b.X += aRadius;
+            }
+            else
+            {
+                b = point.Parent!.Position / sigma;
+            }
 
             float tau0 = aRadius > bRadius ? bRadius : aRadius;
             float deltaTau = Mathf.Abs(aRadius - bRadius);
@@ -108,6 +138,8 @@ public class Scalis : IMeshGeneratingFunction
                 value += coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1)
                     * Convolution(k, i, a, b, pos);
             }
+
+            ++j1;
         }
 
         return value / NormalizationFactor(i, sigma);
@@ -115,27 +147,30 @@ public class Scalis : IMeshGeneratingFunction
 
     public Color GetColour(Vector3 pos)
     {
-        if (Points == null)
+        if (points == null)
             return Colors.Black;
 
-        if (Points.Length == 1)
-            return Points[0].Colour;
+        if (points.Count == 1)
+            return points.First().Colour;
 
         Color colourSum = Colors.Black;
 
         float contributionSum = 0.0f;
 
-        for (int j = 0; j < Points.Length; j += 2)
+        foreach (var point in points)
         {
-            float abDistanceSquared = Points[j].Position.DistanceSquaredTo(Points[j + 1].Position);
+            if (point.Parent == null)
+                continue;
 
-            Vector3 linePos = ClosestPoint(pos, Points[j].Position, Points[j + 1].Position);
+            float abDistanceSquared = point.Position.DistanceSquaredTo(point.Parent.Position);
+
+            Vector3 linePos = ClosestPoint(pos, point.Position, point.Parent.Position);
 
             float contribution = 1.0f / linePos.DistanceSquaredTo(pos);
 
             contributionSum += contribution;
 
-            colourSum += Points[j].Colour.Lerp(Points[j + 1].Colour, Points[j].Position.DistanceSquaredTo(linePos)
+            colourSum += point.Colour.Lerp(point.Parent.Colour, point.Position.DistanceSquaredTo(linePos)
                 / abDistanceSquared) * contribution;
         }
 
