@@ -23,13 +23,12 @@ public class ModifyExistingSpecies : IRunStep
     private readonly HashSet<Species> speciesWorkMemory = new();
     private readonly HashSet<Species> newOccupantsWorkMemory = new();
 
-    private readonly HashSet<Species> workMemory = new();
-
     // TODO: this class was originally written with a bunch of LINQ and temporary memory allocations. This has been
     // converted to use persistent memory to avoid allocations but maybe the algorithm should be reworked with the
     // new constraints in mind to get rid of the mess of fields
 
-    private readonly HashSet<Species> predatorCalculationMemory = new();
+    private readonly HashSet<Species> workMemory = new();
+
     private readonly List<Miche> predatorCalculationMemory2 = new();
     private readonly List<Species> predatorPressuresTemporary = new();
 
@@ -64,7 +63,7 @@ public class ModifyExistingSpecies : IRunStep
 
     private Miche? miche;
     private Miche? micheForMutationTests;
-    
+
     private Step step;
 
     public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings)
@@ -251,7 +250,8 @@ public class ModifyExistingSpecies : IRunStep
                         continue;
 
                     var newPopulation =
-                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.Item2, micheForMutationTests!, patch, cache);
+                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.Item2, micheForMutationTests!, patch,
+                            cache);
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
@@ -457,7 +457,7 @@ public class ModifyExistingSpecies : IRunStep
     {
         result.Clear();
 
-        predatorCalculationMemory.Clear();
+        workMemory.Clear();
         predatorCalculationMemory2.Clear();
 
         micheTree.GetLeafNodes(predatorCalculationMemory2);
@@ -466,11 +466,11 @@ public class ModifyExistingSpecies : IRunStep
         {
             if (potentialMiche.Pressure is PredationEffectivenessPressure pressure && pressure.Prey == species)
             {
-                potentialMiche.GetOccupants(predatorCalculationMemory);
+                potentialMiche.GetOccupants(workMemory);
             }
         }
 
-        foreach (var predator in predatorCalculationMemory)
+        foreach (var predator in workMemory)
         {
             result.Add(predator);
         }
