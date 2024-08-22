@@ -3,6 +3,11 @@ using System.Linq;
 using Godot;
 using Godot.Collections;
 
+// See below why this is disabled
+#if DEBUG && DISABLED
+using System.Diagnostics;
+#endif
+
 /// <summary>
 ///   Applies organelle shader parameters to child nodes
 /// </summary>
@@ -20,8 +25,29 @@ public partial class OrganelleMeshWithChildren : MeshInstance3D
     {
         bool found = false;
 
-        if (meshChildren == null)
+        if (meshChildren == null || meshChildren.Count < 1)
         {
+            // This check cannot be enabled because apparently Godot editor really hates being able to set the value
+            // to null so for now this check is not enabled as fixing it requires manual editing of a file and not
+            // using the Godot editor
+#if DEBUG && DISABLED
+            if (meshChildren != null)
+            {
+                GD.PrintErr("Mesh children is set but it is empty, this wastes an object allocation unnecessarily");
+                GD.PrintErr($"Problematic node with mesh children property: {this}");
+
+                if (IsInsideTree())
+                {
+                    GD.PrintErr("Node is at: ", GetPath());
+                }
+
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+
+                return;
+            }
+#endif
+
             foreach (var mesh in GetChildren().OfType<GeometryInstance3D>())
             {
                 if (mesh.MaterialOverride is ShaderMaterial shaderMaterial)
