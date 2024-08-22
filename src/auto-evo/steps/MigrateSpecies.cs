@@ -42,7 +42,7 @@ public class MigrateSpecies : IRunStep
 
         // TODO: take in a random seed (would help to make sure the random cannot result in the same sequence as
         // this class instances are allocated in a pretty tight loop
-        random = new XoShiRo128starstar(randomSource.Next());
+        random = new XoShiRo128starstar(randomSource.NextInt64());
     }
 
     public bool Done => stepsDone >= Constants.AUTO_EVO_MOVE_ATTEMPTS;

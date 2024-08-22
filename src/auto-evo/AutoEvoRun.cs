@@ -405,7 +405,8 @@ public class AutoEvoRun
 
         foreach (var entry in map.Patches)
         {
-            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings));
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
+                random));
 
             steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings), random));
         }

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 using Mutation = System.Tuple<MicrobeSpecies, MicrobeSpecies, RunResults.NewSpeciesType>;
 
 /// <summary>
@@ -12,6 +13,9 @@ using Mutation = System.Tuple<MicrobeSpecies, MicrobeSpecies, RunResults.NewSpec
 /// </summary>
 public class ModifyExistingSpecies : IRunStep
 {
+    // TODO: Possibly make this a performance setting?
+    private const int TotalMutationsToTry = 20;
+
     private readonly Patch patch;
     private readonly SimulationCache cache;
 
@@ -24,7 +28,8 @@ public class ModifyExistingSpecies : IRunStep
     // converted to use persistent memory to avoid allocations but maybe the algorithm should be reworked with the
     // new constraints in mind to get rid of the mess of fields
 
-    private readonly HashSet<Species> predatorCalculationMemory = new();
+    private readonly HashSet<Species> workMemory = new();
+
     private readonly List<Miche> predatorCalculationMemory2 = new();
     private readonly List<Species> predatorPressuresTemporary = new();
 
@@ -43,211 +48,228 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Tuple<MicrobeSpecies, float>> temporaryResultForTopMutations = new();
 
     private readonly MutationSorter mutationSorter;
+    private readonly Random random;
 
-    public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings)
+    private readonly List<Mutation> mutationsToTry = new();
+    private readonly HashSet<MicrobeSpecies> handledMutations = new();
+
+    private readonly List<Miche> speciesSpecificLeaves = new();
+
+    private readonly int expectedSpeciesCount;
+
+    private readonly List<Miche> nonEmptyLeafNodes = new();
+    private readonly List<Miche> emptyLeafNodes = new();
+
+    private Dictionary<Species, long>.Enumerator speciesEnumerator;
+
+    private Miche? miche;
+    private Miche? micheForMutationTests;
+
+    private Step step;
+
+    public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
+        Random randomSeed)
     {
         this.patch = patch;
         this.cache = cache;
         this.worldSettings = worldSettings;
 
         mutationSorter = new MutationSorter(patch, cache);
+
+        random = new XoShiRo256starstar(randomSeed.NextInt64());
+
+        // Patch species count is used to know how many steps there are to perform
+        expectedSpeciesCount = patch.SpeciesInPatch.Count;
+        speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
     }
 
-    public int TotalSteps => 1;
+    private enum Step
+    {
+        /// <summary>
+        ///   This runs once for each species (plus one base case)
+        /// </summary>
+        Mutations,
+
+        MutationFilter,
+
+        MutationTest,
+
+        /// <summary>
+        ///   This runs once for each species (plus one base case)
+        /// </summary>
+        PerSpeciesResultPostProcessing,
+
+        FinalApply,
+    }
+
+    /// <summary>
+    ///   See <see cref="Step"/> for explanation on the step count
+    /// </summary>
+    public int TotalSteps => 5 + expectedSpeciesCount * 2;
 
     public bool CanRunConcurrently => true;
 
     public bool RunStep(RunResults results)
     {
-        // TODO: Have this be passed in
-        var random = new Random();
-
-        var miche = results.GetMicheForPatch(patch);
-
-        miche.GetOccupants(speciesWorkMemory);
-
-        // TODO: Possibly make this a performance setting?
-        const int totalMutationsToTry = 20;
-
-        var mutationsToTry = new List<Mutation>();
-
-        var nonEmptyLeafNodes = new List<Miche>();
-        var emptyLeafNodes = new List<Miche>();
-        miche.GetLeafNodes(nonEmptyLeafNodes, emptyLeafNodes, x => x.Occupant != null);
-
-        // For each existing species, add adaptations based on the existing pressures
-        foreach (var species in speciesWorkMemory)
+        // Setup miche data if missing
+        if (miche == null)
         {
-            if (species is not MicrobeSpecies microbeSpecies)
-                continue;
+            miche = results.GetMicheForPatch(patch);
 
-            // The traversal end up being re-calculated quite many times, but this way we avoid quite a lot of memory
-            // allocations
+            miche.GetOccupants(speciesWorkMemory);
 
-            foreach (var nonEmptyLeaf in nonEmptyLeafNodes)
-            {
-                if (nonEmptyLeaf.Occupant == species)
-                    continue;
-
-                currentTraversal.Clear();
-                nonEmptyLeaf.BackTraversal(currentTraversal);
-
-                temporaryPressures.Clear();
-                foreach (var traversalMiche in currentTraversal)
-                {
-                    temporaryPressures.Add(traversalMiche.Pressure);
-                }
-
-                SpeciesDependentPressures(temporaryPressures, miche, species);
-
-                var variants = GenerateMutations(microbeSpecies,
-                    worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures, random);
-
-                foreach (var variant in variants)
-                {
-                    mutationsToTry.Add(new Mutation(microbeSpecies, variant,
-                        RunResults.NewSpeciesType.SplitDueToMutation));
-                }
-            }
-
-            // This section of the code tries to mutate species into unfilled miches
-            // Not exactly realistic, but more diversity is more fun for the player
-            foreach (var emptyLeafNode in emptyLeafNodes)
-            {
-                currentTraversal.Clear();
-                emptyLeafNode.BackTraversal(currentTraversal);
-
-                temporaryPressures.Clear();
-                foreach (var traversalMiche in currentTraversal)
-                {
-                    temporaryPressures.Add(traversalMiche.Pressure);
-                }
-
-                SpeciesDependentPressures(temporaryPressures, miche, species);
-
-                var variants = GenerateMutations(microbeSpecies,
-                    worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures, random);
-
-                foreach (var variant in variants)
-                {
-                    mutationsToTry.Add(new Mutation(microbeSpecies, variant, RunResults.NewSpeciesType.FillNiche));
-                }
-            }
+            miche.GetLeafNodes(nonEmptyLeafNodes, emptyLeafNodes, x => x.Occupant != null);
         }
 
-        // Disregard "mutations" that result in identical species"
-        mutationsToTry.RemoveAll(m => m.Item1 == m.Item2);
-
-        // Then shuffle and take only as many mutations as we want to try
-        mutationsToTry.Shuffle(random);
-
-        while (mutationsToTry.Count > totalMutationsToTry)
+        // This auto-evo step is split into sub steps so that each run doesn't take many seconds like it would
+        // otherwise
+        switch (step)
         {
-            mutationsToTry.RemoveAt(mutationsToTry.Count - 1);
-        }
-
-        // Add these mutant species into a new miche
-        // TODO: add some way to avoid the deep copy here
-        var newMiche = miche.DeepCopy();
-        var workMemory = new HashSet<Species>();
-
-        foreach (var mutation in mutationsToTry)
-        {
-            mutation.Item2.OnEdited();
-
-            newMiche.InsertSpecies(mutation.Item2, patch, null, cache, false, workMemory);
-        }
-
-        newOccupantsWorkMemory.Clear();
-        newMiche.GetOccupants(newOccupantsWorkMemory);
-
-        var handledMutations = new HashSet<MicrobeSpecies>();
-
-        var speciesSpecificLeaves = new List<Miche>();
-
-        // This gets the best mutation for each species.
-        // All other mutations will split off to form a new species.
-        foreach (var species in speciesWorkMemory)
-        {
-            if (newOccupantsWorkMemory.Contains(species) || species.PlayerSpecies)
-                continue;
-
-            Mutation? bestMutation = null;
-            var bestScore = 0.0f;
-
-            speciesSpecificLeaves.Clear();
-
-            foreach (var nonEmptyLeafNode in nonEmptyLeafNodes)
+            case Step.Mutations:
             {
-                if (nonEmptyLeafNode.Occupant == species)
-                    speciesSpecificLeaves.Add(nonEmptyLeafNode);
-            }
+                // For each existing species, add adaptations based on the existing pressures
 
-            foreach (var mutation in mutationsToTry)
-            {
-                if (mutation.Item1 != species)
-                    continue;
-
-                var combinedScores = 0.0f;
-
-                foreach (var traversalToDo in speciesSpecificLeaves)
+                // Process mutations for one species per step
+                if (speciesEnumerator.MoveNext())
                 {
-                    currentTraversal.Clear();
-                    traversalToDo.BackTraversal(currentTraversal);
+                    var species = speciesEnumerator.Current.Key;
 
-                    foreach (var currentMiche in currentTraversal)
+                    if (species is MicrobeSpecies microbeSpecies)
                     {
-                        var pressure = currentMiche.Pressure;
-
-                        var newScore = cache.GetPressureScore(pressure, patch, mutation.Item2);
-                        var oldScore = cache.GetPressureScore(pressure, patch, species);
-
-                        // Break if mutation fails a pressure
-                        if (newScore <= 0)
-                        {
-                            combinedScores = -1;
-                            break;
-                        }
-
-                        combinedScores += pressure.WeightedComparedScores(newScore, oldScore);
+                        GetMutationsForSpecies(microbeSpecies);
                     }
-
-                    if (combinedScores < 0)
-                        break;
                 }
-
-                if (combinedScores > bestScore)
+                else
                 {
-                    bestScore = combinedScores;
-                    bestMutation = mutation;
+                    // All mutations generated, next is the step to try them
+                    step = Step.MutationFilter;
+
+                    // Reset this for another enumeration later
+                    speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
+
+                    // Just for safety generate any mutations still missing in case the miche data and species in patch
+                    // are not in sync
+                    foreach (var species in speciesWorkMemory)
+                    {
+                        if (patch.SpeciesInPatch.ContainsKey(species))
+                            continue;
+
+                        // This is really only a problem as this doesn't allow the splitting into steps to work well
+                        GD.PrintErr("Miche tree has a species not in the patch populations, still calculating " +
+                            "mutations for it");
+
+                        if (species is MicrobeSpecies microbeSpecies)
+                        {
+                            GetMutationsForSpecies(microbeSpecies);
+                        }
+                    }
                 }
+
+                break;
             }
 
-            if (bestMutation != null)
+            case Step.MutationFilter:
             {
-                handledMutations.Add(bestMutation.Item2);
-                results.AddMutationResultForSpecies(bestMutation.Item1, bestMutation.Item2);
+                // Disregard "mutations" that result in identical species"
+                mutationsToTry.RemoveAll(m => m.Item1 == m.Item2);
+
+                // Then shuffle and take only as many mutations as we want to try
+                mutationsToTry.Shuffle(random);
+
+                while (mutationsToTry.Count > TotalMutationsToTry)
+                {
+                    mutationsToTry.RemoveAt(mutationsToTry.Count - 1);
+                }
+
+                foreach (var mutation in mutationsToTry)
+                {
+                    mutation.Item2.OnEdited();
+                }
+
+                // Setup the new miche tree to use for testing the mutations to not modify the state of the original
+                // TODO: add some way to avoid the deep copy here
+                micheForMutationTests = miche.DeepCopy();
+
+                step = Step.MutationTest;
+                break;
             }
+
+            case Step.MutationTest:
+            {
+                // Add these mutant species into a new miche to test them
+                foreach (var mutation in mutationsToTry)
+                {
+                    micheForMutationTests!.InsertSpecies(mutation.Item2, patch, null, cache, false, workMemory);
+                }
+
+                newOccupantsWorkMemory.Clear();
+                micheForMutationTests!.GetOccupants(newOccupantsWorkMemory);
+
+                step = Step.PerSpeciesResultPostProcessing;
+                break;
+            }
+
+            case Step.PerSpeciesResultPostProcessing:
+            {
+                // This gets the best mutation for each species.
+                // All other mutations will split off to form a new species.
+
+                // Process this one species per step
+                if (speciesEnumerator.MoveNext())
+                {
+                    var species = speciesEnumerator.Current.Key;
+
+                    if (species is MicrobeSpecies)
+                    {
+                        HandleSpeciesSpecificResult(results, species);
+                    }
+                }
+                else
+                {
+                    step = Step.FinalApply;
+
+                    // Just for safety again handle any mising items
+                    foreach (var species in speciesWorkMemory)
+                    {
+                        if (patch.SpeciesInPatch.ContainsKey(species))
+                            continue;
+
+                        HandleSpeciesSpecificResult(results, species);
+                    }
+                }
+
+                break;
+            }
+
+            case Step.FinalApply:
+            {
+                foreach (var mutation in mutationsToTry)
+                {
+                    // Before adding the results for the species we verify the mutations were not overridden in the
+                    // miche tree by a better mutation. This prevents species from instantly going extinct.
+                    if (!newOccupantsWorkMemory.Contains(mutation.Item2) || !handledMutations.Add(mutation.Item2))
+                        continue;
+
+                    var newPopulation =
+                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.Item2, micheForMutationTests!, patch,
+                            cache);
+
+                    if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
+                    {
+                        results.AddNewSpecies(mutation.Item2, [new KeyValuePair<Patch, long>(patch, newPopulation)],
+                            mutation.Item3, mutation.Item1);
+                    }
+                }
+
+                return true;
+            }
+
+            default:
+                throw new ArgumentOutOfRangeException();
         }
 
-        foreach (var mutation in mutationsToTry)
-        {
-            // Before adding the results for the species we verify the mutations were not overridden in the miche tree
-            // by a better mutation. This prevents species from instantly going extinct.
-            if (newOccupantsWorkMemory.Contains(mutation.Item2) && handledMutations.Add(mutation.Item2))
-            {
-                var newPopulation =
-                    MichePopulation.CalculateMicrobePopulationInPatch(mutation.Item2, newMiche, patch, cache);
-
-                if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
-                {
-                    results.AddNewSpecies(mutation.Item2, [new KeyValuePair<Patch, long>(patch, newPopulation)],
-                        mutation.Item3, mutation.Item1);
-                }
-            }
-        }
-
-        return true;
+        // More steps to run
+        return false;
     }
 
     private static void PruneMutations(List<Tuple<MicrobeSpecies, float>> addResultsTo, MicrobeSpecies baseSpecies,
@@ -294,11 +316,130 @@ public class ModifyExistingSpecies : IRunStep
         }
     }
 
-    private void SpeciesDependentPressures(List<SelectionPressure> dataReceiver, Miche miche, Species species)
+    private void GetMutationsForSpecies(MicrobeSpecies microbeSpecies)
+    {
+        // The traversal end up being re-calculated quite many times, but this way we avoid quite a lot of memory
+        // allocations
+
+        foreach (var nonEmptyLeaf in nonEmptyLeafNodes)
+        {
+            if (nonEmptyLeaf.Occupant == microbeSpecies)
+                continue;
+
+            currentTraversal.Clear();
+            nonEmptyLeaf.BackTraversal(currentTraversal);
+
+            temporaryPressures.Clear();
+            foreach (var traversalMiche in currentTraversal)
+            {
+                temporaryPressures.Add(traversalMiche.Pressure);
+            }
+
+            SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
+
+            var variants = GenerateMutations(microbeSpecies,
+                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
+
+            foreach (var variant in variants)
+            {
+                mutationsToTry.Add(new Mutation(microbeSpecies, variant,
+                    RunResults.NewSpeciesType.SplitDueToMutation));
+            }
+        }
+
+        // This section of the code tries to mutate species into unfilled miches
+        // Not exactly realistic, but more diversity is more fun for the player
+        foreach (var emptyLeafNode in emptyLeafNodes)
+        {
+            currentTraversal.Clear();
+            emptyLeafNode.BackTraversal(currentTraversal);
+
+            temporaryPressures.Clear();
+            foreach (var traversalMiche in currentTraversal)
+            {
+                temporaryPressures.Add(traversalMiche.Pressure);
+            }
+
+            SpeciesDependentPressures(temporaryPressures, miche!, microbeSpecies);
+
+            var variants = GenerateMutations(microbeSpecies,
+                worldSettings.AutoEvoConfiguration.MutationsPerSpecies, temporaryPressures);
+
+            foreach (var variant in variants)
+            {
+                mutationsToTry.Add(new Mutation(microbeSpecies, variant, RunResults.NewSpeciesType.FillNiche));
+            }
+        }
+    }
+
+    private void HandleSpeciesSpecificResult(RunResults results, Species species)
+    {
+        if (newOccupantsWorkMemory.Contains(species) || species.PlayerSpecies)
+            return;
+
+        Mutation? bestMutation = null;
+        var bestScore = 0.0f;
+
+        speciesSpecificLeaves.Clear();
+
+        foreach (var nonEmptyLeafNode in nonEmptyLeafNodes)
+        {
+            if (nonEmptyLeafNode.Occupant == species)
+                speciesSpecificLeaves.Add(nonEmptyLeafNode);
+        }
+
+        foreach (var mutation in mutationsToTry)
+        {
+            if (mutation.Item1 != species)
+                continue;
+
+            var combinedScores = 0.0f;
+
+            foreach (var traversalToDo in speciesSpecificLeaves)
+            {
+                currentTraversal.Clear();
+                traversalToDo.BackTraversal(currentTraversal);
+
+                foreach (var currentMiche in currentTraversal)
+                {
+                    var pressure = currentMiche.Pressure;
+
+                    var newScore = cache.GetPressureScore(pressure, patch, mutation.Item2);
+                    var oldScore = cache.GetPressureScore(pressure, patch, species);
+
+                    // Break if mutation fails a pressure
+                    if (newScore <= 0)
+                    {
+                        combinedScores = -1;
+                        break;
+                    }
+
+                    combinedScores += pressure.WeightedComparedScores(newScore, oldScore);
+                }
+
+                if (combinedScores < 0)
+                    break;
+            }
+
+            if (combinedScores > bestScore)
+            {
+                bestScore = combinedScores;
+                bestMutation = mutation;
+            }
+        }
+
+        if (bestMutation != null)
+        {
+            handledMutations.Add(bestMutation.Item2);
+            results.AddMutationResultForSpecies(bestMutation.Item1, bestMutation.Item2);
+        }
+    }
+
+    private void SpeciesDependentPressures(List<SelectionPressure> dataReceiver, Miche targetMiche, Species species)
     {
         predatorPressuresTemporary.Clear();
 
-        PredatorsOf(predatorPressuresTemporary, miche, species);
+        PredatorsOf(predatorPressuresTemporary, targetMiche, species);
 
         foreach (var predator in predatorPressuresTemporary)
         {
@@ -317,20 +458,20 @@ public class ModifyExistingSpecies : IRunStep
     {
         result.Clear();
 
-        predatorCalculationMemory.Clear();
+        workMemory.Clear();
         predatorCalculationMemory2.Clear();
 
         micheTree.GetLeafNodes(predatorCalculationMemory2);
 
-        foreach (var miche in predatorCalculationMemory2)
+        foreach (var potentialMiche in predatorCalculationMemory2)
         {
-            if (miche.Pressure is PredationEffectivenessPressure pressure && pressure.Prey == species)
+            if (potentialMiche.Pressure is PredationEffectivenessPressure pressure && pressure.Prey == species)
             {
-                miche.GetOccupants(predatorCalculationMemory);
+                potentialMiche.GetOccupants(workMemory);
             }
         }
 
-        foreach (var predator in predatorCalculationMemory)
+        foreach (var predator in workMemory)
         {
             result.Add(predator);
         }
@@ -342,7 +483,7 @@ public class ModifyExistingSpecies : IRunStep
     /// </summary>
     /// <returns>List of viable variants, and the provided species</returns>
     private List<MicrobeSpecies> GenerateMutations(MicrobeSpecies baseSpecies, int amount,
-        List<SelectionPressure> selectionPressures, Random random)
+        List<SelectionPressure> selectionPressures)
     {
         float totalMP = 100 * worldSettings.AIMutationMultiplier;
 
@@ -378,6 +519,8 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var speciesTuple in inputSpecies)
                 {
+                    // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
+                    // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
                     var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2);
 
                     if (mutated != null)
