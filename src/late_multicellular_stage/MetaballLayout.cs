@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
+using Godot;
 
 /// <summary>
 ///   A species shape specified by metaballs
@@ -210,7 +211,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         }
     }
 
-    public Metaball? GetClosestMetaballToPosition(Godot.Vector3 position)
+    public Metaball? GetClosestMetaballToPosition(Vector3 position)
     {
         var closestDistance = 10000.0f;
         Metaball? closestMetaball = null;

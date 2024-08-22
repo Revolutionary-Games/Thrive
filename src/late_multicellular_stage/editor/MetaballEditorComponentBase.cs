@@ -704,11 +704,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// <param name="parent">The base parent</param>
     /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
     /// <param name="overrideSymmetry">If set, overrides the current symmetry</param>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this is not implemented currently and just returns the given primary position
-    ///   </para>
-    /// </remarks>
     protected void RunWithSymmetry(float diameter, Vector3 position, TMetaball? parent,
         Action<Vector3, TMetaball?> callback, HexEditorSymmetry? overrideSymmetry = null)
     {
@@ -751,7 +746,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             }
 
             default:
-                throw new NotSupportedException("symmetry editing not implemented yet");
+                throw new NotSupportedException("Other symmetry modes are not implemented");
         }
     }
 
