@@ -702,6 +702,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// <summary>
     ///   Runs given callback for all symmetry positions
     /// </summary>
+    /// <param name="diameter">Diameter of placed metaball</param>
     /// <param name="position">The base position</param>
     /// <param name="parent">The base parent</param>
     /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
@@ -745,7 +746,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
                     }
                     else
                     {
-                            callback(symmetryPosition, parent);
+                        callback(symmetryPosition, parent);
                     }
                 }
 
