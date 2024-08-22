@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
-using Godot;
 
 /// <summary>
 ///   A species shape specified by metaballs
