@@ -751,6 +751,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         // To prevent being clicked twice
         multicellularButton.Disabled = true;
+        editorButton.Disabled = true;
 
         EnsureGameIsUnpausedForEditor();
 
@@ -780,6 +781,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         // To prevent being clicked twice
         macroscopicButton.Disabled = true;
+        editorButton.Disabled = true;
 
         EnsureGameIsUnpausedForEditor();
 
