@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Xoshiro.PRNG64;
 using Mutation = System.Tuple<MicrobeSpecies, MicrobeSpecies, RunResults.NewSpeciesType>;
 
 /// <summary>
@@ -66,7 +67,8 @@ public class ModifyExistingSpecies : IRunStep
 
     private Step step;
 
-    public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings)
+    public ModifyExistingSpecies(Patch patch, SimulationCache cache, WorldGenerationSettings worldSettings,
+        Random randomSeed)
     {
         this.patch = patch;
         this.cache = cache;
@@ -74,8 +76,7 @@ public class ModifyExistingSpecies : IRunStep
 
         mutationSorter = new MutationSorter(patch, cache);
 
-        // TODO: Have a seed for this be passed in
-        random = new Random();
+        random = new XoShiRo256starstar(randomSeed.NextInt64());
 
         // Patch species count is used to know how many steps there are to perform
         expectedSpeciesCount = patch.SpeciesInPatch.Count;
