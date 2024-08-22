@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource path="res://src/late_multicellular_stage/MulticellularMetaballDisplayer.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularMetaballDisplayer.cs" id="1"]
 
 [node name="MulticellularMetaballDisplayer" type="MultiMeshInstance3D"]
-script = ExtResource( 1 )
+script = ExtResource(1)

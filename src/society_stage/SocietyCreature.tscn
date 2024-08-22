@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://cme7gow3koff2"]
 
-[ext_resource path="res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/society_stage/SocietyCreature.cs" type="Script" id=2]
+[ext_resource type="Script" path="res://src/society_stage/SocietyCreature.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://doe55k2jyc4xn" path="res://src/late_multicellular_stage/MulticellularConvolutionDisplayer.tscn" id="2_gvmdy"]
 
 [node name="SocietyCreature" type="Node3D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="MetaballDisplayer" parent="." instance=ExtResource( 1 )]
+[node name="MetaballDisplayer" parent="." instance=ExtResource("2_gvmdy")]
