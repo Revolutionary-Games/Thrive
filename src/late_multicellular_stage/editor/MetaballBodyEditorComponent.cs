@@ -652,7 +652,8 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaballSize, symmetryParent);
+                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaballSize,
+                    symmetryParent);
 
                 if (placed != null)
                 {
