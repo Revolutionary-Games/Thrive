@@ -106,10 +106,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
-        set
-        {
-            symmetry = value;
-        }
+        set => symmetry = value;
     }
 
     /// <summary>
