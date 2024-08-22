@@ -25,7 +25,7 @@ public class DualContourer
 
     public IMeshGeneratingFunction MathFunction;
 
-    private static System.Collections.Generic.Dictionary<int, Vector3I[]>? lookupTableInt;
+    private static readonly System.Collections.Generic.Dictionary<int, Vector3I[]> LookupTableInt = new();
 
     public DualContourer(IMeshGeneratingFunction mathFunction)
     {
@@ -33,18 +33,13 @@ public class DualContourer
         MathFunction = mathFunction;
     }
 
-    public bool IsInShape(Vector3 pos)
-    {
-        if (MathFunction.GetValue(pos) > MathFunction.SurfaceValue)
-            return true;
-
-        return false;
-    }
-
     public Mesh DualContour()
     {
         var sw = new Stopwatch();
         sw.Start();
+
+        // TODO: when this feature is polished up the amount of allocations done in this method should be attempted
+        // to be reduced whenever possible (probably with persistent data structures that are cleared before each use)
 
         var placedPoints =
             new System.Collections.Generic.Dictionary<Vector3I, int>(); // int is point's index in points[]
@@ -92,9 +87,7 @@ public class DualContourer
                     if (tris == null)
                         continue;
 
-                    PlaceTriangles(gridPos,
-                        tris,
-                        points, triIndices, placedPoints);
+                    PlaceTriangles(gridPos, tris, points, triIndices, placedPoints);
                 }
             }
         }
@@ -133,10 +126,8 @@ public class DualContourer
 
     private static void CalculateLookupTableIfNeeded()
     {
-        if (lookupTableInt != null)
+        if (LookupTableInt.Count > 0)
             return;
-
-        lookupTableInt = new System.Collections.Generic.Dictionary<int, Vector3I[]>();
 
         // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
 
@@ -147,8 +138,8 @@ public class DualContourer
             Cube cube = new Cube(i); // Make cube from index
 
             // [0;0;0] point is the origin (center of the cube)
-            // All other points point to neighbooring cubes.
-            // All of the coordinates are one of the following: -1, 0, or 1
+            // All other points point to neighbouring cubes.
+            // All the coordinates are one of the following: -1, 0, or 1
             List<Vector3I> tris = new List<Vector3I>(6);
 
             // Use XOR to ensure that only one of the two points is in the shape
@@ -222,8 +213,16 @@ public class DualContourer
                 }
             }
 
-            lookupTableInt.Add(i, tris.ToArray());
+            LookupTableInt.Add(i, tris.ToArray());
         }
+    }
+
+    private bool IsInShape(Vector3 pos)
+    {
+        if (MathFunction.GetValue(pos) > MathFunction.SurfaceValue)
+            return true;
+
+        return false;
     }
 
     private void CalculatePoints(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo)
@@ -233,14 +232,6 @@ public class DualContourer
         Vector3I gridOffset = -gridFrom;
 
         int availableThreads = TaskExecutor.Instance.ParallelTasks;
-
-        if (Settings.Instance.RunAutoEvoDuringGamePlay)
-            --availableThreads;
-
-        if (!Settings.Instance.RunGameSimulationMultithreaded || GenerateThreadedSystems.UseCheckedComponentAccess)
-        {
-            availableThreads = 1;
-        }
 
         int threadsPerEdge = Mathf.Clamp(Mathf.CeilToInt(2.0f * availableThreads / 8.0f), 2, 3);
 
@@ -257,6 +248,8 @@ public class DualContourer
             {
                 for (int z = gridFrom.Z; z <= gridTo.Z; z += stepZ + 1)
                 {
+                    // TODO: avoid lambda captures of variables here (at least from and this is captured)
+                    // that cause memory allocations
                     Vector3I from = new Vector3I(x, y, z);
                     Vector3I to = from + new Vector3I(stepX, stepY, stepZ);
                     to = to.Clamp(from, gridTo);
@@ -271,14 +264,16 @@ public class DualContourer
 
     private void CalculatePointsInRange(bool[,,] shapePoints, Vector3I gridFrom, Vector3I gridTo, Vector3I gridOffset)
     {
-        for (int x = gridFrom.X; x <= gridTo.X; x++)
+        float realFactor = 1.0f / PointsPerUnit;
+
+        for (int x = gridFrom.X; x <= gridTo.X; ++x)
         {
-            for (int y = gridFrom.Y; y <= gridTo.Y; y++)
+            for (int y = gridFrom.Y; y <= gridTo.Y; ++y)
             {
-                for (int z = gridFrom.Z; z <= gridTo.Z; z++)
+                for (int z = gridFrom.Z; z <= gridTo.Z; ++z)
                 {
                     // var gridPos = new Vector3I(x, y, z);
-                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) / PointsPerUnit;
+                    var realPos = new Vector3(x - 0.5f, y - 0.5f, z - 0.5f) * realFactor;
 
                     shapePoints[x + gridOffset.X, y + gridOffset.Y, z + gridOffset.Z] = IsInShape(realPos);
                 }
@@ -330,13 +325,16 @@ public class DualContourer
             shapePoints[x + 1, y + 1, z],
             shapePoints[x + 1, y + 1, z + 1]);
 
-        lookupTableInt!.TryGetValue(id, out var result);
+        LookupTableInt.TryGetValue(id, out var result);
 
         return result;
     }
 
     private Vector3 GetFunctionMomentarySpeed(Vector3 realPos, float funcAtPoint, float d = 0.01f)
     {
+        // TODO: there's quite many divisions in a few methods here that are still called in loops that execute very
+        // many times. It's perhaps faster to convert these to use multiplications as division is the most expensive
+        // basic math operation for a CPU to do.
         Vector3 direction = new Vector3(
             (MathFunction.GetValue(new Vector3(realPos.X + d, realPos.Y, realPos.Z)) - funcAtPoint) / d,
             (MathFunction.GetValue(new Vector3(realPos.X, realPos.Y + d, realPos.Z)) - funcAtPoint) / d,
@@ -351,25 +349,17 @@ public class DualContourer
     private void AdjustVertices(List<Vector3> points, float changeClamp = 0.5f, Vector3[]? meshNormals = null)
     {
         // Vertex adjustment by normals:
-        // 1. Find functions instanteous speed at vertex
+        // 1. Find functions instantaneous speed at vertex
         // 2. Find required distance change for vertex to be at the mesh's surface
         // 3. Clamp the change for it not to be too far from the initial position.
         // In other words, no vertex should end up in a place where another vertex theoretically may be.
-        // 4. Apply change, using instanteous speed's vector as direction
+        // 4. Apply change, using instantaneous speed's vector as direction
         // 5. Make a second pass of 1-4. This algorithm is only an approximation, so sometimes one-pass approach
         // results in spiky meshes. Optionally clamp the value more than on the first pass.
 
         var tasks = new List<Task>();
 
         int availableThreads = TaskExecutor.Instance.ParallelTasks;
-
-        if (Settings.Instance.RunAutoEvoDuringGamePlay)
-            --availableThreads;
-
-        if (!Settings.Instance.RunGameSimulationMultithreaded || GenerateThreadedSystems.UseCheckedComponentAccess)
-        {
-            availableThreads = 1;
-        }
 
         int step = points.Count / availableThreads;
 
@@ -382,6 +372,8 @@ public class DualContourer
         {
             int from = i;
             int to = Mathf.Clamp(i + step, i, count - 1);
+
+            // TODO: try to avoid lambda allocations that capture many variables
             var task = new Task(() => AdjustVerticesInRange(from, to, points, changeClamp, meshNormals));
             tasks.Add(task);
         }
@@ -405,10 +397,10 @@ public class DualContourer
 
             // If we move one unit in the direction of the normal, function value should be this much more.
             // (If we assume that the function is completely )
-            float instanteousSpeed = normal.Length();
+            float instantaneousSpeed = normal.Length();
 
-            Vector3 change = (normal / instanteousSpeed) * ((MathFunction.SurfaceValue - functionAtPoint)
-                / instanteousSpeed);
+            Vector3 change = (normal / instantaneousSpeed) * ((MathFunction.SurfaceValue - functionAtPoint)
+                / instantaneousSpeed);
 
             change.X = Mathf.Clamp(change.X, -maxToleratedChange, maxToleratedChange);
             change.Y = Mathf.Clamp(change.Y, -maxToleratedChange, maxToleratedChange);
@@ -418,7 +410,7 @@ public class DualContourer
 
             if (meshNormals != null)
             {
-                meshNormals[i] = -normal / instanteousSpeed;
+                meshNormals[i] = -normal / instantaneousSpeed;
             }
         }
     }
@@ -433,10 +425,8 @@ public class DualContourer
             placedPoints.Add(gridPos, originIndex);
         }
 
-        for (int i = 0; i < trisToPlace.Length; i++)
+        foreach (var pointRelativePos in trisToPlace)
         {
-            var pointRelativePos = trisToPlace[i];
-
             if (pointRelativePos == Vector3I.Zero)
             {
                 tris.Add(originIndex);
@@ -461,7 +451,7 @@ public class DualContourer
 
     private struct Cube
     {
-        public bool[,,] Points;
+        public readonly bool[,,] Points;
 
         public Cube(int id)
         {

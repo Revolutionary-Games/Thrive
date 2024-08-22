@@ -4,8 +4,8 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Mathematic function based on convolution surfaces. Uses bones, each defined by two metaballs, to calculate value
-///   of an arbitrary point in space.
+///   Mathematical function based on convolution surfaces. Uses bones, each defined by two metaballs, to calculate
+///   value of an arbitrary point in space.
 /// </summary>
 public class Scalis : IMeshGeneratingFunction
 {
@@ -15,7 +15,7 @@ public class Scalis : IMeshGeneratingFunction
 
     public bool Cutoff = true;
 
-    private static int[] coefficients = { 1, 2, 1 };
+    private static readonly int[] Coefficients = { 1, 2, 1 };
 
     /// <summary>
     ///   Every metaball represents a point in creature's skeleton.
@@ -47,10 +47,11 @@ public class Scalis : IMeshGeneratingFunction
     public float GetValue(Vector3 pos)
     {
         const float sigma = 1.0f;
+        const float inverseSigma = 1 / sigma;
 
         float value = 0.0f;
 
-        pos /= sigma;
+        pos *= inverseSigma;
 
         const int i = 3;
 
@@ -65,25 +66,26 @@ public class Scalis : IMeshGeneratingFunction
         {
             if (points.Length == 1)
             {
-                boneDistances[0] = SquareCutoffValue(pos, points.First().Position / sigma, points.First().Position
-                    / sigma);
+                boneDistances[0] = SquareCutoffValue(pos, points.First().Position * inverseSigma,
+                    points.First().Position * inverseSigma);
             }
             else
             {
-                for (int j = 0; j < points.Length; j++)
+                for (int j = 0; j < points.Length; ++j)
                 {
                     var point = points[j];
 
                     if (point.Parent == null)
                         continue;
 
-                    boneDistances[j] = SquareCutoffValue(pos, point.Position / sigma, point.Parent.Position
-                        / sigma);
+                    boneDistances[j] = SquareCutoffValue(pos, point.Position * inverseSigma, point.Parent.Position
+                        * inverseSigma);
                     additiveValue += 0.75f / (boneDistances[j] * Mathf.Max(point.Radius, point.Parent.Radius));
 
                     float minRadius = Mathf.Min(point.Radius, point.Parent.Radius);
 
-                    if (minRadius > 0.5f && boneDistances[j] < InnerCutoffPointMultiplier * minRadius / SurfaceValue)
+                    // This accesses the field directly rather than through the property to avoid a property get call
+                    if (minRadius > 0.5f && boneDistances[j] < InnerCutoffPointMultiplier * minRadius / surfaceValue)
                     {
                         return 10.0f;
                     }
@@ -91,7 +93,7 @@ public class Scalis : IMeshGeneratingFunction
             }
         }
 
-        for (int j = 0; j < points.Length; j++)
+        for (int j = 0; j < points.Length; ++j)
         {
             var point = points[j];
 
@@ -111,23 +113,23 @@ public class Scalis : IMeshGeneratingFunction
             }
 
             if (Cutoff && boneDistances[j] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
-                    * CutoffPointMultiplier * 2.0f / SurfaceValue, 2.0f))
+                    * CutoffPointMultiplier * 2.0f / surfaceValue, 2.0f))
             {
                 continue;
             }
 
-            Vector3 a = point.Position / sigma;
+            Vector3 a = point.Position * inverseSigma;
             Vector3 b;
 
             if (points.Length == 1)
             {
-                b = point.Position / sigma;
+                b = point.Position * inverseSigma;
                 a.X -= aRadius;
                 b.X += aRadius;
             }
             else
             {
-                b = point.Parent!.Position / sigma;
+                b = point.Parent!.Position * inverseSigma;
             }
 
             float tau0 = aRadius > bRadius ? bRadius : aRadius;
@@ -138,12 +140,12 @@ public class Scalis : IMeshGeneratingFunction
                 (a, b) = (b, a);
             }
 
-            // Since i is always 3, we can cut down on some calculations and make static coeff array
+            // Since "i" is always 3, we can cut down on some calculations and make static coeff array
             // var coeff = BinomialExpansion(i - 1);
 
-            for (int k = 0; k < coefficients.Length; k++)
+            for (int k = 0; k < Coefficients.Length; ++k)
             {
-                value += coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1)
+                value += Coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1)
                     * Convolution(k, i, a, b, pos);
             }
         }
@@ -179,7 +181,8 @@ public class Scalis : IMeshGeneratingFunction
 
         colourSum /= contributionSum;
 
-        colourSum.A = 0.0f;
+        // Make result colour always opaque
+        colourSum.A = 1.0f;
 
         return colourSum;
     }
@@ -202,18 +205,6 @@ public class Scalis : IMeshGeneratingFunction
         }
 
         return sigma * sigma * (i - 3) / (i - 2) * NormalizationFactor(i - 2, sigma);
-    }
-
-    private List<int> BinomialExpansion(int n)
-    {
-        var coeff = new List<int>(n + 1);
-        coeff.Add(1);
-        for (int i = 0; i < n; i++)
-        {
-            coeff.Add(coeff[i] * (n - i) / (i + 1));
-        }
-
-        return coeff;
     }
 
     private Vector3 ClosestPoint(Vector3 pos, Vector3 a, Vector3 b)
@@ -260,11 +251,12 @@ public class Scalis : IMeshGeneratingFunction
 
             if (i == 2)
             {
+                var inverseOfSquareOfDiscriminant = 1.0f / Mathf.Sqrt(discriminant);
                 return Mathf.Atan((pointA - pointB).Dot(pointP - pointB)
-                        / Mathf.Sqrt(discriminant)) +
-                    Mathf.Atan((pointB - pointA).Dot(pointP - pointA) /
-                        Mathf.Sqrt(discriminant)) * pointA.DistanceTo(pointB)
-                    / Mathf.Sqrt(discriminant);
+                        * inverseOfSquareOfDiscriminant) +
+                    Mathf.Atan((pointB - pointA).Dot(pointP - pointA) * inverseOfSquareOfDiscriminant) *
+                    pointA.DistanceTo(pointB)
+                    * inverseOfSquareOfDiscriminant;
             }
 
             return pointA.DistanceTo(pointB) / (i - 2) / discriminant
