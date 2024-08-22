@@ -414,13 +414,12 @@ public class AutoEvoRun
             steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
         }
 
-        // The new populations don't depend on the mutations, this is so that when
-        // the player edits their species the other species they are competing
-        // against are the same (so we can show some performance predictions in the
-        // editor and suggested changes)
-        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true)
-            { CanRunConcurrently = false });
+        // The new populations don't depend on the mutations, but will take into account changes in the miche tree.
+        // This is so that when the player edits their species the other species they are competing
+        // against are the same (so we can show some performance predictions in the editor and suggested changes)
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true));
+
+        steps.Enqueue(new RegisterNewSpecies(Parameters.World, allSpecies));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 

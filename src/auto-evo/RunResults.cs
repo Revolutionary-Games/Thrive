@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using JetBrains.Annotations;
+using PossibleSpecies =
+    System.Tuple<Species, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Patch, long>>,
+        RunResults.NewSpeciesType, Species>;
 
 /// <summary>
 ///   Container for results before they are applied.
@@ -31,7 +34,9 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </remarks>
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
-    private Dictionary<Patch, Miche> micheByPatch = new();
+    private readonly List<PossibleSpecies> modifiedSpecies = new();
+
+    private readonly Dictionary<Patch, Miche> micheByPatch = new();
 
     public enum NewSpeciesType
     {
@@ -74,11 +79,24 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         micheByPatch[patch] = miche;
     }
 
-    public void AddMutationResultForSpecies(Species species, Species? mutated)
+    public void AddMutationResultForSpecies(Species species, Species? mutated,
+        IEnumerable<KeyValuePair<Patch, long>> populationBoostInPatches)
     {
         MakeSureResultExistsForSpecies(species);
 
         results[species].MutatedProperties = mutated;
+
+        foreach (var pop in populationBoostInPatches)
+        {
+            if (results[species].NewPopulationInPatches.ContainsKey(pop.Key))
+            {
+                results[species].NewPopulationInPatches[pop.Key] += pop.Value;
+            }
+            else
+            {
+                results[species].NewPopulationInPatches[pop.Key] = pop.Value;
+            }
+        }
     }
 
     public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
@@ -168,6 +186,17 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
+    public List<PossibleSpecies> GetPossibleSpeciesList()
+    {
+        return modifiedSpecies;
+    }
+
+    public void AddPossibleMutation(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
+        NewSpeciesType addType, Species parentSpecies)
+    {
+        modifiedSpecies.Add(new PossibleSpecies(species, initialPopulationInPatches, addType, parentSpecies));
+    }
+
     public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
         NewSpeciesType addType, Species parentSpecies)
     {
@@ -180,21 +209,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         {
             results[species].NewPopulationInPatches[patchPopulation.Key] = Math.Max(patchPopulation.Value, 0);
         }
-    }
-
-    public void AddSplitResultForSpecies(Species species, Species splitSpecies, List<Patch> patchesToConvert)
-    {
-        if (patchesToConvert == null || patchesToConvert.Count < 1)
-            throw new ArgumentException("split patches is missing", nameof(patchesToConvert));
-
-        MakeSureResultExistsForSpecies(species);
-        MakeSureResultExistsForSpecies(splitSpecies);
-
-        results[species].SplitOff = splitSpecies;
-        results[species].SplitOffPatches = patchesToConvert;
-
-        results[splitSpecies].NewlyCreated = NewSpeciesType.SplitDueToMutation;
-        results[splitSpecies].SplitFrom = species;
     }
 
     public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
