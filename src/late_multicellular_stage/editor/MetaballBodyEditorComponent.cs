@@ -118,8 +118,6 @@ public partial class MetaballBodyEditorComponent :
     [JsonProperty]
     private string newName = "unset";
 
-    private bool previewMode;
-
     /// <summary>
     ///   True when visuals of already placed things need to be updated
     /// </summary>
@@ -137,32 +135,6 @@ public partial class MetaballBodyEditorComponent :
         Reproduction,
         Behaviour,
         Appearance,
-    }
-
-    /// <summary>
-    ///   If this is enabled, the creature will be shown as it would actually look in game. Editing metaballs is
-    ///   disabled during preview (except for undo/redo).
-    /// </summary>
-    public bool PreviewMode
-    {
-        get => previewMode;
-        set
-        {
-            bool updateNeeded = false;
-
-            if (previewMode != value)
-            {
-                updateNeeded = true;
-            }
-
-            previewMode = value;
-
-            if (updateNeeded)
-                UpdateAlreadyPlacedVisuals();
-
-            if (hoverMetaballDisplayer != null)
-                hoverMetaballDisplayer.Visible = !PreviewMode;
-        }
     }
 
     [JsonIgnore]
@@ -424,22 +396,6 @@ public partial class MetaballBodyEditorComponent :
 
         ShowCellMenu(metaballs.Select(h => h).Distinct());
         return true;
-    }
-
-    public override void SetEditorWorldTabSpecificObjectVisibility(bool shown)
-    {
-        base.SetEditorWorldTabSpecificObjectVisibility(shown);
-
-        if (structuralMetaballDisplayer != null)
-        {
-            structuralMetaballDisplayer.Visible = shown && !PreviewMode;
-            hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
-        }
-
-        if (visualMetaballDisplayer != null)
-        {
-            visualMetaballDisplayer.Visible = shown && PreviewMode;
-        }
     }
 
     protected CellType CellTypeFromName(string name)
@@ -1015,27 +971,6 @@ public partial class MetaballBodyEditorComponent :
         UpdateAlreadyPlacedVisuals();
 
         UpdateArrow();
-    }
-
-    /// <summary>
-    ///   This updates the metaball displayer that is used to show the currently placed metaballs in the edited layout
-    /// </summary>
-    private void UpdateAlreadyPlacedVisuals()
-    {
-        if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
-            throw new InvalidOperationException("Editor component not initialized");
-
-        visualMetaballDisplayer.Visible = PreviewMode;
-        structuralMetaballDisplayer.Visible = !PreviewMode;
-
-        if (PreviewMode)
-        {
-            visualMetaballDisplayer.DisplayFromLayout(editedMetaballs);
-        }
-        else
-        {
-            structuralMetaballDisplayer.DisplayFromLayout(editedMetaballs);
-        }
     }
 
     private void OnSpeciesNameChanged(string newText)

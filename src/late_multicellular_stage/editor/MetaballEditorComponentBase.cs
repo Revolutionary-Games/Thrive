@@ -70,12 +70,12 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     protected List<TMetaball> hoverMetaballData = new();
 
     /// <summary>
-    ///   Displays metaballs' structure in the editor
+    ///   Displays structure of metaballs in the editor
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? structuralMetaballDisplayer;
 
     /// <summary>
-    ///   Displays metaballs' shape the way it would actually look in game. Used in preview mode.
+    ///   Displays shape of the metaballs the way it would actually look in game. Used in preview mode.
     ///   Should display metaballs using the convolution displayer.
     /// </summary>
     protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
@@ -103,6 +103,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
 
+    private bool previewMode;
+
     private IEnumerable<(Vector3 Position, TMetaball? Parent)>? mouseHoverPositions;
 
     protected MetaballEditorComponentBase()
@@ -122,6 +124,28 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
             if (symmetry != HexEditorSymmetry.None)
                 throw new NotSupportedException("Symmetry editing not implemented yet");
+        }
+    }
+
+    /// <summary>
+    ///   If this is enabled, the creature will be shown as it would actually look in game. Editing metaballs is
+    ///   disabled during preview (except for undo/redo).
+    /// </summary>
+    [JsonProperty]
+    public bool PreviewMode
+    {
+        get => previewMode;
+        set
+        {
+            bool updateNeeded = previewMode != value;
+
+            previewMode = value;
+
+            if (updateNeeded)
+                UpdateAlreadyPlacedVisuals();
+
+            if (hoverMetaballDisplayer != null)
+                hoverMetaballDisplayer.Visible = !PreviewMode;
         }
     }
 
@@ -287,13 +311,13 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         if (structuralMetaballDisplayer != null)
         {
-            structuralMetaballDisplayer.Visible = shown;
-            hoverMetaballDisplayer!.Visible = shown;
+            structuralMetaballDisplayer.Visible = shown && !PreviewMode;
+            hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
         }
 
         if (visualMetaballDisplayer != null)
         {
-            visualMetaballDisplayer.Visible = shown;
+            visualMetaballDisplayer.Visible = shown && PreviewMode;
         }
     }
 
@@ -794,6 +818,32 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         bool forceHide = false)
     {
         throw new NotImplementedException();
+    }
+
+    /// <summary>
+    ///   This updates the metaball displayer that is used to show the currently placed metaballs in the edited layout
+    /// </summary>
+    protected void UpdateAlreadyPlacedVisuals()
+    {
+        if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
+            throw new InvalidOperationException("Editor component not initialized");
+
+        // If not currently visible at all, don't update visibility, it'll be updated once this tab becomes active
+        // again
+        if (visualMetaballDisplayer.Visible || structuralMetaballDisplayer.Visible)
+        {
+            visualMetaballDisplayer.Visible = PreviewMode;
+            structuralMetaballDisplayer.Visible = !PreviewMode;
+        }
+
+        if (PreviewMode)
+        {
+            visualMetaballDisplayer.DisplayFromLayout(editedMetaballs);
+        }
+        else
+        {
+            structuralMetaballDisplayer.DisplayFromLayout(editedMetaballs);
+        }
     }
 
     protected virtual void PerformActiveAction()
