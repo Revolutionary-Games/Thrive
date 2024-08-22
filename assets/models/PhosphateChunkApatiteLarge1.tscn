@@ -26,7 +26,6 @@ shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 material_override = ExtResource("1_gaqkn")
 mesh = ExtResource("5_cdma8")
 script = ExtResource("3_b8lrv")
-meshChildren = [NodePath("Rock")]
 
 [node name="Rock" type="MeshInstance3D" parent="."]
 material_override = SubResource("ShaderMaterial_hsbfc")
