@@ -1233,6 +1233,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         /// </summary>
         public NewSpeciesType? NewlyCreated;
 
+        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES:
         /// <summary>
         ///   If set, the specified species split off from this species taking all the population listed in
         ///   <see cref="SplitOffPatches"/>

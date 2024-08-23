@@ -188,6 +188,9 @@ public class ModifyExistingSpecies : IRunStep
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
+                    // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
+                    // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
+                    // the original miche tree state.
                     miche.InsertSpecies(mutation.MutatedSpecies, patch, null, cache, false, workMemory);
                 }
 
@@ -204,9 +207,13 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // Before adding the results for the species we verify the mutations were not overridden in the
                     // miche tree by a better mutation. This prevents species from instantly going extinct.
+                    // TODO: make sure that the handledMutations contains check here properly detects duplicate
+                    // mutations (microbe species equality comparison may not be fully setup for this use case)
                     if (!newOccupantsWorkMemory.Contains(mutation.MutatedSpecies) ||
                         !handledMutations.Add(mutation.MutatedSpecies))
+                    {
                         continue;
+                    }
 
                     var newPopulation =
                         MichePopulation.CalculateMicrobePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
@@ -494,7 +501,7 @@ public class ModifyExistingSpecies : IRunStep
         return lastGeneratedMutations;
     }
 
-    public record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
+    private record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
         RunResults.NewSpeciesType AddType);
 
     private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, float>>

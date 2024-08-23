@@ -38,6 +38,7 @@ public class RegisterNewSpecies : IRunStep
 
         var modifiedSpecies = results.GetPossibleSpeciesList();
 
+        // Look through the extinct species and find their best modified variant to make it into that species' mutation
         foreach (var extinct in extinctSpecies)
         {
             if (extinct.PlayerSpecies)
@@ -68,6 +69,7 @@ public class RegisterNewSpecies : IRunStep
             }
         }
 
+        // Add other mutations as full new species (that split off)
         foreach (var species in modifiedSpecies)
         {
             if (handledSpecies.Add(species.Species))
