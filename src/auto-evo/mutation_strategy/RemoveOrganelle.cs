@@ -42,7 +42,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         return ThatCreateCompound(compound);
     }
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
     {
         if (mp < 10)
             return null;
