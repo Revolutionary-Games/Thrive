@@ -194,6 +194,9 @@ public static class MichePopulation
         {
             miche.InsertSpecies(extraSpecies, patch, null, cache, false, workMemory);
 
+            if (simulationConfiguration.ExcludedSpecies.Contains(extraSpecies))
+                throw new InvalidOperationException("Excluded species may not contain defined extra species");
+
             species.Add(extraSpecies);
         }
 

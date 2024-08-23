@@ -400,6 +400,8 @@ public class ModifyExistingSpecies : IRunStep
             }
         }
 
+        bool lawk = worldSettings.LAWK;
+
         mutationSorter.Setup(baseSpecies, selectionPressures);
 
         tempMutationStrategies.Shuffle(random);
@@ -416,7 +418,7 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
                     // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2);
+                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk);
 
                     if (mutated != null)
                     {

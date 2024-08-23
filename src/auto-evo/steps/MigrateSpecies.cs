@@ -25,8 +25,6 @@ public class MigrateSpecies : IRunStep
         this.map = map;
         this.worldSettings = worldSettings;
 
-        // TODO: take in a random seed (would help to make sure the random cannot result in the same sequence as
-        // this class instances are allocated in a pretty tight loop
         random = new XoShiRo128starstar(randomSource.NextInt64());
     }
 
@@ -40,6 +38,10 @@ public class MigrateSpecies : IRunStep
         if (species.PlayerSpecies)
             return true;
 
+        // To limit species migrations to the actual limit, we need to pick random patches to try to migrate from
+        // to ensure all patches have a chance to eventually send some population
+        var attemptsLeft = worldSettings.AutoEvoConfiguration.MoveAttemptsPerSpecies;
+
         foreach (var patch in map.Patches.Values)
         {
             if (!patch.SpeciesInPatch.ContainsKey(species))
@@ -50,7 +52,7 @@ public class MigrateSpecies : IRunStep
             if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
                 continue;
 
-            for (var i = 0; i < worldSettings.AutoEvoConfiguration.MoveAttemptsPerSpecies; ++i)
+            for (var i = 0; i < attemptsLeft; ++i)
             {
                 // Select a random adjacent target patch
                 // TODO: could prefer patches this species is not already in or about to go extinct, or really anything
