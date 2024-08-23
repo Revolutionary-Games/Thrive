@@ -80,15 +80,17 @@ public static class MichePopulation
         // Copy non excluded species
         foreach (var candidateSpecies in parameters.OriginalMap.FindAllSpeciesWithPopulation())
         {
-            if (parameters.ExcludedSpecies.Contains(candidateSpecies))
+            if (parameters.ReplacedSpecies.TryGetValue(candidateSpecies, out var replacement))
+            {
+                // Copy replacement species to simulate
+                species.Add(replacement);
                 continue;
+            }
 
             species.Add(candidateSpecies);
         }
 
-        // Copy extra species
-        species.AddRange(parameters.ExtraSpecies);
-
+        // TODO: this can probably be removed soon finally
         foreach (var entry in species)
         {
             // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
@@ -109,30 +111,24 @@ public static class MichePopulation
             {
                 long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
 
-                // If this is an extra species, this first takes the
-                // population from excluded species that match its index, if that
-                // doesn't exist then the global population number (from Species) is used
-                if (currentPopulation == 0 && parameters.ExtraSpecies.Contains(currentSpecies))
+                // If this is a replacement species, this instead takes the
+                if (currentPopulation == 0)
                 {
-                    bool useGlobal = true;
+                    Species? isExtraFor = null;
 
-                    for (int i = 0; i < parameters.ExtraSpecies.Count; ++i)
+                    foreach (var tuple in parameters.ReplacedSpecies)
                     {
-                        if (parameters.ExtraSpecies[i] == currentSpecies)
+                        if (tuple.Value == currentSpecies)
                         {
-                            if (parameters.ExcludedSpecies.Count > i)
-                            {
-                                currentPopulation =
-                                    patch.GetSpeciesSimulationPopulation(parameters.ExcludedSpecies[i]);
-                                useGlobal = false;
-                            }
-
+                            isExtraFor = tuple.Key;
                             break;
                         }
                     }
 
-                    if (useGlobal)
-                        currentPopulation = currentSpecies.Population;
+                    if (isExtraFor != null)
+                    {
+                        currentPopulation = patch.GetSpeciesSimulationPopulation(isExtraFor);
+                    }
                 }
 
                 // Apply migrations
@@ -187,23 +183,18 @@ public static class MichePopulation
 
         var workMemory = new HashSet<Species>();
 
-        // This prevents duplicates caused by ExtraSpecies
         var species = new HashSet<Species>();
 
-        foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
-        {
-            miche.InsertSpecies(extraSpecies, patch, null, cache, false, workMemory);
-
-            if (simulationConfiguration.ExcludedSpecies.Contains(extraSpecies))
-                throw new InvalidOperationException("Excluded species may not contain defined extra species");
-
-            species.Add(extraSpecies);
-        }
-
+        // TODO: switch this to something else that doesn't require a memory allocation to iterate
         foreach (var currentSpecies in genericSpecies)
         {
-            if (simulationConfiguration.ExcludedSpecies.Contains(currentSpecies))
+            if (simulationConfiguration.ReplacedSpecies.TryGetValue(currentSpecies, out var replacement))
+            {
+                miche.InsertSpecies(replacement, patch, null, cache, false, workMemory);
+
+                species.Add(replacement);
                 continue;
+            }
 
             species.Add(currentSpecies);
         }
