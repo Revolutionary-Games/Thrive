@@ -187,24 +187,24 @@ public static class MichePopulation
 
         var workMemory = new HashSet<Species>();
 
+        // This prevents duplicates caused by ExtraSpecies
+        var species = new HashSet<Species>();
+
         foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
         {
             miche.InsertSpecies(extraSpecies, patch, null, cache, false, workMemory);
-        }
 
-        // This prevents duplicates caused by ExtraSpecies
-        var species = new HashSet<Species>();
+            if (simulationConfiguration.ExcludedSpecies.Contains(extraSpecies))
+                throw new InvalidOperationException("Excluded species may not contain defined extra species");
+
+            species.Add(extraSpecies);
+        }
 
         foreach (var currentSpecies in genericSpecies)
         {
             if (simulationConfiguration.ExcludedSpecies.Contains(currentSpecies))
                 continue;
 
-            species.Add(currentSpecies);
-        }
-
-        foreach (var currentSpecies in simulationConfiguration.ExtraSpecies)
-        {
             species.Add(currentSpecies);
         }
 
@@ -262,7 +262,7 @@ public static class MichePopulation
             {
                 var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
 
-                if (trackEnergy)
+                if (trackEnergy && micheEnergy > 0)
                 {
                     populations.AddTrackedEnergyForSpecies(currentSpecies, patch, node.Pressure,
                         scoresDictionary[currentSpecies], totalScore, micheEnergy);
@@ -282,7 +282,7 @@ public static class MichePopulation
             }
 
             var individualCost = CalculateMicrobeIndividualCost(microbeSpecies, patch.Biome, cache);
-            long newPopulation = (long)(individualCost / energyDictionary[currentSpecies]);
+            long newPopulation = (long)(energyDictionary[currentSpecies] / individualCost);
 
             // Remove any species that don't hold a miche
             // Probably should make this a setting and throw a multiplier here
