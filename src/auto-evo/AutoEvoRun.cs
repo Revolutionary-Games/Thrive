@@ -417,7 +417,7 @@ public class AutoEvoRun
         // The new populations don't depend on the mutations, but will take into account changes in the miche tree.
         // This is so that when the player edits their species the other species they are competing
         // against are the same (so we can show some performance predictions in the editor and suggested changes)
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true));
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, true));
 
         steps.Enqueue(new RegisterNewSpecies(Parameters.World, allSpecies));
 
