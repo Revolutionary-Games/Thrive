@@ -4,6 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+/// <summary>
+///   Step that selects the best mutation for each species and registers all new species in results
+/// </summary>
 public class RegisterNewSpecies : IRunStep
 {
     private readonly GameWorld world;
