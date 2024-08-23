@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -84,6 +85,14 @@ public static class MichePopulation
             {
                 // Copy replacement species to simulate
                 species.Add(replacement);
+
+#if DEBUG
+                if (replacement.ID != candidateSpecies.ID)
+                {
+                    GD.PrintErr("Replacement species ID should match the replaced species, otherwise bad " +
+                        "things will happen");
+                }
+#endif
                 continue;
             }
 
