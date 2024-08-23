@@ -5,18 +5,8 @@ using System.Collections.Generic;
 using Xoshiro.PRNG32;
 
 /// <summary>
-///   Step that generates species migrations for each patch
+///   Step that generates species migrations for each species
 /// </summary>
-/// <remarks>
-///   <para>
-///     TODO: this can currently cause migrations for a single species from many patches to move to a single patch
-///     this is unsupported by <see cref="RunResults.GetMigrationsTo"/> so these migrations are removed by
-///     <see cref="RemoveInvalidMigrations"/> but it would be better if this class was fixed instead, probably. The old
-///     approach processed migrations *per species* instead of per patch to not hit in to the same data model
-///     limitation. To track how much this happens a debug print can be uncommented in
-///     RemoveDuplicateTargetPatchMigrations.
-///   </para>
-/// </remarks>
 public class MigrateSpecies : IRunStep
 {
     private readonly Species species;
