@@ -419,6 +419,8 @@ public class AutoEvoRun
         // against are the same (so we can show some performance predictions in the editor and suggested changes)
         steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, true));
 
+        steps.Enqueue(new RegisterNewSpecies(Parameters.World, allSpecies));
+
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
