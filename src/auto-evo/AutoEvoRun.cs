@@ -409,9 +409,9 @@ public class AutoEvoRun
                 random));
         }
 
-        foreach (var entry in map.Patches)
+        foreach (var species in allSpecies)
         {
-            steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings), random));
+            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
         }
 
         // The new populations don't depend on the mutations, but will take into account changes in the miche tree.
