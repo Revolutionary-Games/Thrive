@@ -30,8 +30,8 @@ public class EditorAutoEvoRun : AutoEvoRun
         }
 
         steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,
-            new List<Species> { ModifiedProperties },
-            new List<Species> { OriginalEditedSpecies }, true));
+            new Dictionary<Species, Species>
+                { { OriginalEditedSpecies, ModifiedProperties } }, true));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map,
             OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);

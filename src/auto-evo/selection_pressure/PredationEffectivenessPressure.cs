@@ -33,7 +33,8 @@ public class PredationEffectivenessPressure : SelectionPressure
     public override float Score(Species species, Patch patch, SimulationCache cache)
     {
         // No Cannibalism
-        if (species == Prey)
+        // Compared by ID here to make sure temporary species variants are not allowed to predate themselves
+        if (species.ID == Prey.ID)
         {
             return 0.0f;
         }

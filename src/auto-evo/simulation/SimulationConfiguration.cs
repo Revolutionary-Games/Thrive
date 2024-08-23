@@ -28,28 +28,17 @@ public class SimulationConfiguration
     public RunResults Results { get; set; } = new();
 
     /// <summary>
-    ///   List of species to ignore in the map for simulation.
+    ///   Dictionary of species replacements to perform before running the simulation.
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     If there is an extra species matching index of an entry here, the population of the species here is used
-    ///     for the initial population of the extra species.
-    ///   </para>
-    /// </remarks>
-    /// <value>The excluded species.</value>
-    public List<Species> ExcludedSpecies { get; set; } = new();
-
-    /// <summary>
-    ///   List of extra species to simulate in addition to the ones in the map.
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     If a population for the extra species is not found through ExcludedSpecies the global population from
-    ///     the Species object is used for all patches.
+    ///     The keys in this dictionary are the old species, which when processed are instead immediately replaced by
+    ///     their respective values. So this is a mapping from an old species to a new one that should be used instead
+    ///     of the old one in the simulation.
     ///   </para>
     /// </remarks>
     /// <value>The extra species.</value>
-    public List<Species> ExtraSpecies { get; set; } = new();
+    public Dictionary<Species, Species> ReplacedSpecies { get; set; } = new();
 
     /// <summary>
     ///   Migrations to apply before running the simulation.
