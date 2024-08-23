@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -127,12 +127,6 @@ msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Ĝeneralaj Statistikoj de Ĉiuj Mondoj"
@@ -447,18 +441,6 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenazo estas proteino kapabla uzi gasan nitrogenon kaj ĉelan energion en la formo de ATP por produkti amoniakon, ĉefan kreskonutraĵon por ĉeloj. Ĉi tio estas procezo nomata Anaeroba Nitrogena Fiksado. Ĉar la nitrogenazo estas suspensie en la citoplasmo, la ĉirkaŭa fluidaĵo iom fermentas."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -3002,9 +2984,6 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
-
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Agado"
@@ -3040,10 +3019,6 @@ msgstr "Mara neĝo"
 
 msgid "MASTER_VOLUME"
 msgstr "Ĉefa laŭ t"
-
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "formortis de la planedo"
 
 msgid "MAX_FPS"
 msgstr "Maks. FPS:"
@@ -3833,9 +3808,6 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
-
 msgid "NEW_GAME"
 msgstr "Nova ludo"
 
@@ -4494,12 +4466,6 @@ msgstr ""
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr "Proteinoj"
 
@@ -4561,9 +4527,6 @@ msgstr "Refarui la lastan agon"
 
 msgid "REFRESH"
 msgstr "Aktualigu"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
 
 msgid "REPORT"
 msgstr "Ra"
@@ -5202,12 +5165,6 @@ msgstr "Specio loĝantaro"
 
 msgid "SPECIES_PRESENT"
 msgstr "Nunaj specio"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
 
 #, fuzzy
 msgid "SPECIES_TO_FIND"
@@ -6243,9 +6200,6 @@ msgstr "Aldonunovan funkcion por klavo"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Uzu propran salutnomon"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
@@ -7467,6 +7421,13 @@ msgstr "Zomu"
 
 msgid "ZOOM_OUT"
 msgstr "Malzomu"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
+
+#, fuzzy
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "formortis de la planedo"
 
 #, fuzzy
 #~ msgid "NOT_FOUND_CHUNK"

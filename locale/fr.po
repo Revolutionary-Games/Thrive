@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-07-26 07:22+0000\n"
 "Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -131,12 +131,6 @@ msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trou
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistiques génériques de tous les mondes"
@@ -429,18 +423,6 @@ msgstr "Appuyez sur [thrive:input]g_toggle_binding[/thrive:input] pour basculer 
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Lier les axes ensemble"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Probabilité de créer une nouvelle espèce pour accroître la biodiversité à partir d'un secteur voisin"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Une espèce d'un secteur proche qui augmente la biodiversité augmente en population gratuitement"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Une espèce qui augmente la biodiversité est mutée dès sa création"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuole bioluminescente"
@@ -2847,9 +2829,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Verrouiller le cycle jour/nuit"
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Considérer que les secteurs contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
-
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Faibles performances détectées"
 
@@ -2882,9 +2861,6 @@ msgstr "Neige marine"
 
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Nombre maximum d'espèces dans un secteur avant des extinctions forcées"
 
 msgid "MAX_FPS"
 msgstr "FPS max. :"
@@ -3688,9 +3664,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "ACTUALITÉS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Population initiale pour les espèces augmentant la biodiversité"
-
 msgid "NEW_GAME"
 msgstr "Nouvelle partie"
 
@@ -4296,12 +4269,6 @@ msgstr "Équipe de programmation"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Équipe de gestion du projet"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Protéger les populations fraîchement immigrées de la limite d'espèces"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Protéger les espèces nouvellement créées de la limite d'espèces"
-
 msgid "PROTEINS"
 msgstr "Protéines"
 
@@ -4360,9 +4327,6 @@ msgstr "Répéter la dernière action"
 
 msgid "REFRESH"
 msgstr "Rafraîchir"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Rembourser les migrations en cas d'extinction dans le secteur cible"
 
 msgid "REPORT"
 msgstr "Rapport"
@@ -4928,12 +4892,6 @@ msgstr "Population de l'espèce"
 
 msgid "SPECIES_PRESENT"
 msgstr "Espèces présentes"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Population minimale pour que les espèces divergent si plusieurs mutations favorables sont trouvées"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Proportion minimale de la population nécessaire à une divergence par mutation"
 
 msgid "SPECIES_TO_FIND"
 msgstr "Espèce à trouver :"
@@ -5916,9 +5874,6 @@ msgstr "Chargement automatique des patchs Harmony à partir de l'Assembleur (ne 
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utiliser un nom d'utilisateur personnalisé"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "La création d'espèces pour augmenter la biodiversité vole de la population aux espèces existantes"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Saisie manuelle du nombre de thread en arrière-plan"
@@ -7171,6 +7126,51 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Probabilité de créer une nouvelle espèce pour accroître la biodiversité à partir d'un secteur voisin"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Une espèce d'un secteur proche qui augmente la biodiversité augmente en population gratuitement"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Une espèce qui augmente la biodiversité est mutée dès sa création"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Considérer que les secteurs contenant jusqu'à ce nombre d'espèces ont une faible biodiversité"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Nombre maximum d'espèces dans un secteur avant des extinctions forcées"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Population initiale pour les espèces augmentant la biodiversité"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Protéger les populations fraîchement immigrées de la limite d'espèces"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Protéger les espèces nouvellement créées de la limite d'espèces"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Rembourser les migrations en cas d'extinction dans le secteur cible"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Population minimale pour que les espèces divergent si plusieurs mutations favorables sont trouvées"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Proportion minimale de la population nécessaire à une divergence par mutation"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "La création d'espèces pour augmenter la biodiversité vole de la population aux espèces existantes"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Erreur : morceau introuvable"

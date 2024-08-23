@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -135,12 +135,6 @@ msgstr ""
 "en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
 "Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
 "en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
 
 #, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
@@ -441,18 +435,6 @@ msgstr "Druk [thrive:input]g_toggle_binding[/thrive:input] om verbindingsmodus t
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind assen bij elkaar"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Kans in elk gebied met een paar soorten (lage biodiversiteit) om nieuwe soorten te maken"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Kans om een nieuwe soort te maken om de biodiversiteit te vergroten vanuit een naburig gebied"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Soort die de biodiversiteit vergroot van omliggende gebied krijgt gratis een bevolkingsaantal"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Soort die de Biodiversiteit vergroot is gemuteerd tijdens creatie"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
@@ -3015,9 +2997,6 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
-
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Prestaties"
@@ -3053,10 +3032,6 @@ msgstr "Mariene sneeuw"
 
 msgid "MASTER_VOLUME"
 msgstr "Meester volume"
-
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "stierf uit op de planeet"
 
 msgid "MAX_FPS"
 msgstr "Max FPS:"
@@ -3807,9 +3782,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NIEUWS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Startpopulatie voor soorten die de biodiversiteit vergroten"
-
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
@@ -4454,12 +4426,6 @@ msgstr "Programmeerteam"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Project Management Team"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr "Proteïnen"
 
@@ -4523,9 +4489,6 @@ msgstr "Voer de laatste actie opnieuw uit"
 
 msgid "REFRESH"
 msgstr "Vernieuwen"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
 
 msgid "REPORT"
 msgstr "Rapport"
@@ -5136,12 +5099,6 @@ msgstr "Soortenpopulatie"
 
 msgid "SPECIES_PRESENT"
 msgstr "Soorten aanwezig"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
 
 #, fuzzy
 msgid "SPECIES_TO_FIND"
@@ -6164,9 +6121,6 @@ msgstr "Zelfmoord"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een gebruikersnaam naar keuze"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Handmatig aantal achtergrondthreads instellen"
@@ -7354,6 +7308,28 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Kans in elk gebied met een paar soorten (lage biodiversiteit) om nieuwe soorten te maken"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Kans om een nieuwe soort te maken om de biodiversiteit te vergroten vanuit een naburig gebied"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Soort die de biodiversiteit vergroot van omliggende gebied krijgt gratis een bevolkingsaantal"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Soort die de Biodiversiteit vergroot is gemuteerd tijdens creatie"
+
+#, fuzzy
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "stierf uit op de planeet"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Startpopulatie voor soorten die de biodiversiteit vergroten"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Fout: brokstuk niet gevonden"

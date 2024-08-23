@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -145,14 +145,6 @@ msgstr ""
 "ja taistelevat todennäköisemmin takaisin hyökkääjiäänsä vastaan.\n"
 "Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
 "käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
-
-#, fuzzy
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
-
-#, fuzzy
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "on saanut mutaation"
 
 #, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
@@ -452,18 +444,6 @@ msgstr "Vaihda liittymismoodia painamall [thrive:input]g_toggle_binding[/thrive:
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Liitä akselit yhteen"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Uuden lajin luomisen mahdollisuus pienen lajimäärän (matala biodiversiteetti) alueissa"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminesenssivä vakuoli"
@@ -3056,9 +3036,6 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
-
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Suorituskyky"
@@ -3094,10 +3071,6 @@ msgstr "Leijuvat hiukkaset"
 
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
-
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "sukupuuttoon planeetalta"
 
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
@@ -3902,9 +3875,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "UUTISET"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
-
 msgid "NEW_GAME"
 msgstr "Uusi Peli"
 
@@ -4552,12 +4522,6 @@ msgstr "Ohjelmointitiimi"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr "Proteiini"
 
@@ -4621,9 +4585,6 @@ msgstr "Tee uudelleen viimeisin toimenpide"
 
 msgid "REFRESH"
 msgstr "Virkistä"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
 
 msgid "REPORT"
 msgstr "Raportti"
@@ -5241,12 +5202,6 @@ msgstr "Lajien populaatiot"
 
 msgid "SPECIES_PRESENT"
 msgstr "Läsnäolevat lajit"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
 
 #, fuzzy
 msgid "SPECIES_TO_FIND"
@@ -6266,9 +6221,6 @@ msgstr "Lisää uusi syöte"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
@@ -7466,6 +7418,21 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#, fuzzy
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Osa populaatiosta ([u]{0}[/u]) ovat muuttaneet {1}"
+
+#, fuzzy
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "on saanut mutaation"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Uuden lajin luomisen mahdollisuus pienen lajimäärän (matala biodiversiteetti) alueissa"
+
+#, fuzzy
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "sukupuuttoon planeetalta"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Virhe: lohkaretta ei löytynyt"

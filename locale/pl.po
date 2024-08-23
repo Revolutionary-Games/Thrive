@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -131,12 +131,6 @@ msgstr "Pozwól gatunkowi nie mutować (jeśli nie została znaleziona dobra mut
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "(lokalizacja początkowa)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Pozwól gatunkowi nie migrować (jeśli nie została znaleziona dobra migracja)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Pozwól gatunkowi nie mutować (jeśli nie została znaleziona dobra mutacja)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Ogólne Statystyki Wszystkich Światów"
@@ -423,18 +417,6 @@ msgstr "Naciśnij [thrive:input]g_toggle_binding[/thrive:input] aby przełączy�
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Złącz osie ze sobą"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Szansa utworzenia nowego gatunku na obszarze z niską bioróżnorodnością"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Szansa utworzenia nowego gatunku z pobliskiego obszaru by zwiększyć bioróżnorodność"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Zwiększający bioróżnorodność gatunek z pobliskiego obszaru otrzymuje darmową populację"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Zwiększający bioróżnorodność gatunek mutuje na utworzeniu"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Świecąca Wakuola"
@@ -2847,9 +2829,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Włącz cykl dnia i nocy"
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
-
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Wydajność"
@@ -2883,9 +2862,6 @@ msgstr "Śnieg morski"
 
 msgid "MASTER_VOLUME"
 msgstr "Ogólna głośność"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Maksymalna liczba gatunków w obszarze"
 
 msgid "MAX_FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
@@ -3670,9 +3646,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NEWSY"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Wstępna populacja dla gatunku zwiększającego bioróżnorodność"
-
 msgid "NEW_GAME"
 msgstr "Nowa Gra"
 
@@ -4273,12 +4246,6 @@ msgstr "Programiści"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Menadżerzy"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Ochrona dopiero co przeniesionych gatunków przed limitem gatunków"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Chroń nowo stworzone gatunki od czapki gatunkowej"
-
 msgid "PROTEINS"
 msgstr "Białka"
 
@@ -4337,9 +4304,6 @@ msgstr "Powtórz ostatnią czynność"
 
 msgid "REFRESH"
 msgstr "Odśwież"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Zwracaj migracje w przypadku wymarcia w docelowym obszarze"
 
 msgid "REPORT"
 msgstr "Raport"
@@ -4907,12 +4871,6 @@ msgstr "Populacja Gatunku"
 
 msgid "SPECIES_PRESENT"
 msgstr "Obecne Gatunki"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Minimalna populacja dla gatunku by się rozdzielić poprzez dobrze znalezione mutacje"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Minimalny fragment populacji gatunku by umożliwić podział poprzez mutacje"
 
 #, fuzzy
 msgid "SPECIES_TO_FIND"
@@ -5862,9 +5820,6 @@ msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Utworzenie gatunku zwiększającego bioróżnorodność kradnie populację od istniejącego gatunku"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ustaw ręcznie liczbę wątków w tle"
@@ -6971,6 +6926,51 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Pozwól gatunkowi nie migrować (jeśli nie została znaleziona dobra migracja)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Pozwól gatunkowi nie mutować (jeśli nie została znaleziona dobra mutacja)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Szansa utworzenia nowego gatunku na obszarze z niską bioróżnorodnością"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Szansa utworzenia nowego gatunku z pobliskiego obszaru by zwiększyć bioróżnorodność"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Zwiększający bioróżnorodność gatunek z pobliskiego obszaru otrzymuje darmową populację"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Zwiększający bioróżnorodność gatunek mutuje na utworzeniu"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Bież pod uwagę obszary z do tak wielu gatunków mających niską bioróżnorodność"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Maksymalna liczba gatunków w obszarze"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Wstępna populacja dla gatunku zwiększającego bioróżnorodność"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Ochrona dopiero co przeniesionych gatunków przed limitem gatunków"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Chroń nowo stworzone gatunki od czapki gatunkowej"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Zwracaj migracje w przypadku wymarcia w docelowym obszarze"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Minimalna populacja dla gatunku by się rozdzielić poprzez dobrze znalezione mutacje"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Minimalny fragment populacji gatunku by umożliwić podział poprzez mutacje"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Utworzenie gatunku zwiększającego bioróżnorodność kradnie populację od istniejącego gatunku"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Błąd: nie znaleziono chunku"

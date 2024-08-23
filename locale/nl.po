@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -136,12 +136,6 @@ msgstr ""
 "Je zult neerdalingsextraatjes krijgen voor de verdere spelduur. In een toekomstige versie zul je het extraatje zelf kunnen kiezen maar voor nu zul je altijd een 20% verlaging in osmoregulatiekosten krijgen. \n"
 "\n"
 "Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Sta soorten toe niet te migreren (als geen goede migratieplek kon worden gevonden)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Sta soorten toe niet te muteren (als geen goede mutatie kon worden gevonden)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generieke Statistieken voor Alle Werelden"
@@ -437,18 +431,6 @@ msgstr "Druk op [thrive:input]g_toggle_binding[/thrive:input] om verbindingsmodu
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind assen samen"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Kans in elke patch met een aantal soorten (lage biodiversiteit) om nieuwe soorten te ontwikkelen"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Kans om nieuwe soorten te ontwikkelen om de biodiversiteit te vergroten vanuit een nabijgelegen plek"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Door biodiversiteit vergrote soorten van nabijgelegen gebieden krijgen gratis populatie"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biodiversiteit vergroot soort mutaties tijdens creatie"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
@@ -2911,9 +2893,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Zet dag/nacht cyclus vast"
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
-
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Lage Prestaties Gedetecteerd"
 
@@ -2946,9 +2925,6 @@ msgstr "Mariene sneeuw"
 
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
 
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
@@ -3742,9 +3718,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NIEUWS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Start populatie voor biodiversiteit vergrotende soorten"
-
 msgid "NEW_GAME"
 msgstr "Nieuw spel"
 
@@ -4352,12 +4325,6 @@ msgstr "Programmeerteam"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Projectbeheerteam"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Bescherm recent gemigreerde soorten van soort cap"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Bescherm zojuist gecreëerde soorten van soort cap"
-
 msgid "PROTEINS"
 msgstr "Eiwitten"
 
@@ -4416,9 +4383,6 @@ msgstr "De laatste actie opnieuw doen"
 
 msgid "REFRESH"
 msgstr "Ververs"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Terugkeer migratie in geval van uitsterven in het doel gebied"
 
 msgid "REPORT"
 msgstr "Rapport"
@@ -4981,12 +4945,6 @@ msgstr "Bevolking Soorten"
 
 msgid "SPECIES_PRESENT"
 msgstr "Aanwezige Soorten"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Minimale populatie voor soorten om te delen bij meerdere goed gevonden mutaties"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Minimale populatie fractie van een soort om splitsing bij mutaties toe te staan"
 
 msgid "SPECIES_TO_FIND"
 msgstr "Soorten om te Vinden:"
@@ -5977,9 +5935,6 @@ msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet ges
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Soorten die de biodiversiteit vergroten stelen bevolking van bestaande soorten"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Stel handmatig de nummers van achtergrond threads in"
@@ -7177,6 +7132,51 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Sta soorten toe niet te migreren (als geen goede migratieplek kon worden gevonden)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Sta soorten toe niet te muteren (als geen goede mutatie kon worden gevonden)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Kans in elke patch met een aantal soorten (lage biodiversiteit) om nieuwe soorten te ontwikkelen"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Kans om nieuwe soorten te ontwikkelen om de biodiversiteit te vergroten vanuit een nabijgelegen plek"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Door biodiversiteit vergrote soorten van nabijgelegen gebieden krijgen gratis populatie"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Biodiversiteit vergroot soort mutaties tijdens creatie"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Overweeg dat gebieden met tot deze hoeveelheid soorten een lage biodiversiteit hebben"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Maximum hoeveelheid soorten in een gebied voordat uitsterven wordt afgedwongen"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Start populatie voor biodiversiteit vergrotende soorten"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Bescherm recent gemigreerde soorten van soort cap"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Bescherm zojuist gecreëerde soorten van soort cap"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Terugkeer migratie in geval van uitsterven in het doel gebied"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Minimale populatie voor soorten om te delen bij meerdere goed gevonden mutaties"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Minimale populatie fractie van een soort om splitsing bij mutaties toe te staan"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Soorten die de biodiversiteit vergroten stelen bevolking van bestaande soorten"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Error: chunk niet gevonden"

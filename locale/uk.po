@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-06-17 20:18+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -131,12 +131,6 @@ msgstr "Дозволити виду не мутувати"
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "Різні типи токсинів мають різноманітні ефекти, кожен з яких є ефективним проти тих чи інших типів клітин. Якщо клітина має декілька типів токсинів, вони випорскуватимуться послідовно, а не водночас."
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Дозволити виду не мігрувати"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Дозволити виду не мутувати"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Загальна статистика усіх світів"
@@ -431,18 +425,6 @@ msgstr "Натисніть [thrive:input]g_toggle_binding[/thrive:input] для 
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Об'єднати осі разом"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Шанси утворити новий вид для збільшення біорізноманіття з сусідньої ділянки"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Видам із сусідніх біомів, що збільшують біорізноманіття, надається додаткова популяція"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Розкол біорізноманіття– це матації"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Біолюмінесцентна вакуоля"
@@ -2827,9 +2809,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Заблокувати цикл дня/ночі"
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Низький ліміт біорізноманіття"
-
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Виявлено низький рівень продуктивності"
 
@@ -2862,9 +2841,6 @@ msgstr "Морський сніг"
 
 msgid "MASTER_VOLUME"
 msgstr "Загальна гучність"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Максимум видів в ділянці"
 
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
@@ -3647,9 +3623,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "НОВИНИ"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Нове біорізноманіття збільшує видові популяції"
-
 msgid "NEW_GAME"
 msgstr "Нова гра"
 
@@ -4246,12 +4219,6 @@ msgstr "Команда програмістів"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Команда з проджект менеджменту"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Захисні міграції від витісняючих видів"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Захист нових клітин від витісняючих видів"
-
 msgid "PROTEINS"
 msgstr "Білки"
 
@@ -4310,9 +4277,6 @@ msgstr "Повернути попередню дію"
 
 msgid "REFRESH"
 msgstr "Оновити"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Повернення міграцій у вимираннях"
 
 msgid "REPORT"
 msgstr "Звіт"
@@ -4873,12 +4837,6 @@ msgstr "Видова Популяція"
 
 msgid "SPECIES_PRESENT"
 msgstr "Сучасні види"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Види розділенні за мутаційним поргом розміру популяції"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Види розділенні за мутаційним поргом частки популяції"
 
 msgid "SPECIES_TO_FIND"
 msgstr "Наявні види:"
@@ -5821,9 +5779,6 @@ msgstr "Автоматичне завантаження патчів Гармо�
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Використання біорізноманіття розділенням сил"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Встановити кількість фонових потоків вручну"
@@ -7025,6 +6980,51 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Дозволити виду не мігрувати"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Дозволити виду не мутувати"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Шанси утворити новий вид для збільшення біорізноманіття з сусідньої ділянки"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Видам із сусідніх біомів, що збільшують біорізноманіття, надається додаткова популяція"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Розкол біорізноманіття– це матації"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Низький ліміт біорізноманіття"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Максимум видів в ділянці"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Нове біорізноманіття збільшує видові популяції"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Захисні міграції від витісняючих видів"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Захист нових клітин від витісняючих видів"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Повернення міграцій у вимираннях"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Види розділенні за мутаційним поргом розміру популяції"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Види розділенні за мутаційним поргом частки популяції"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Використання біорізноманіття розділенням сил"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Помилка: брила не знайдена"

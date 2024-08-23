@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -141,12 +141,6 @@ msgstr ""
 "e sono più propensi a combattere quando aggrediti.\n"
 "I microbi pacifici, invece, ignorano i soggetti lontani\n"
 "e sono meno inclini a sparare tossine ai propri predatori."
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Permetti alle specie di non migrare (se nessuna migrazione ottimale è trovata)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Permetti alle specie di non mutare (se una buona mutazione non è trovata)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Statistiche generali di tutti i mondi"
@@ -442,18 +436,6 @@ msgstr "Premi [thrive:input]g_toggle_binding[/thrive:input] per attivare la moda
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Probabilità in ciascuna zona con poche specie (bassa biodiversità) di crearne una nuova"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Probabilità di creare una nuova specie per aumentare la biodiversità a partire da una zona adiacente"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Alle specie che aumentano la biodiversità che vengono da zone vicine viene data popolazione gratuitamente"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Specie che aumentano la biodiversità sono mutate appena vengono create"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacuolo bioluminescente"
@@ -2952,9 +2934,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Numero di specie per zona sopra il quale la zona stessa non è considerata a bassa biodiversità"
-
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Prestazioni"
@@ -2986,9 +2965,6 @@ msgstr "Neve marina"
 
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
 
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
@@ -3809,9 +3785,6 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Popolazione iniziale delle specie aumenta-biodiversità"
-
 msgid "NEW_GAME"
 msgstr "Nuova partita"
 
@@ -4435,12 +4408,6 @@ msgstr "Squadra Programmatori"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Squadra Gestori del Progetto"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Proteggi le popolazioni appena migrate dal tetto specie"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Proteggi le specie appena create dal tetto specie"
-
 msgid "PROTEINS"
 msgstr "Proteine"
 
@@ -4501,10 +4468,6 @@ msgstr "Ripristina l'ultima azione"
 
 msgid "REFRESH"
 msgstr "Aggiorna"
-
-#, fuzzy
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Rimborsa le migrazioni nelle estinzioni"
 
 msgid "REPORT"
 msgstr "Riepilogo"
@@ -5095,12 +5058,6 @@ msgstr "Popolazione delle specie"
 
 msgid "SPECIES_PRESENT"
 msgstr "Specie presenti"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
 
 #, fuzzy
 msgid "SPECIES_TO_FIND"
@@ -6097,10 +6054,6 @@ msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di spec
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza un nome utente personalizzato"
-
-#, fuzzy
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Usa separazione forzata biodiversità"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Imposta manualmente il numero di thread in background"
@@ -7306,6 +7259,47 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Permetti alle specie di non migrare (se nessuna migrazione ottimale è trovata)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Permetti alle specie di non mutare (se una buona mutazione non è trovata)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Probabilità in ciascuna zona con poche specie (bassa biodiversità) di crearne una nuova"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Probabilità di creare una nuova specie per aumentare la biodiversità a partire da una zona adiacente"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Alle specie che aumentano la biodiversità che vengono da zone vicine viene data popolazione gratuitamente"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Specie che aumentano la biodiversità sono mutate appena vengono create"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Numero di specie per zona sopra il quale la zona stessa non è considerata a bassa biodiversità"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Numero massimo di specie per zona prima che vengano effettuate estinzioni forzate"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Popolazione iniziale delle specie aumenta-biodiversità"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Proteggi le popolazioni appena migrate dal tetto specie"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Proteggi le specie appena create dal tetto specie"
+
+#, fuzzy
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Rimborsa le migrazioni nelle estinzioni"
+
+#, fuzzy
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Usa separazione forzata biodiversità"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Errore: frammento non trovato"

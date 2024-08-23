@@ -63,58 +63,13 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     // Auto-evo parameters paths
 
     [Export]
-    public NodePath AllowSpeciesToNotMutatePath = null!;
-
-    [Export]
-    public NodePath AllowSpeciesToNotMigratePath = null!;
-
-    [Export]
-    public NodePath BiodiversityAttemptFillChancePath = null!;
-
-    [Export]
-    public NodePath BiodiversityFromNeighbourPatchChancePath = null!;
-
-    [Export]
-    public NodePath BiodiversityNearbyPatchIsFreePopulationPath = null!;
-
-    [Export]
-    public NodePath BiodiversitySplitIsMutatedPath = null!;
-
-    [Export]
-    public NodePath LowBiodiversityLimitPath = null!;
-
-    [Export]
-    public NodePath MaximumSpeciesInPatchPath = null!;
-
-    [Export]
     public NodePath MoveAttemptsPerSpeciesPath = null!;
 
     [Export]
     public NodePath MutationsPerSpeciesPath = null!;
 
     [Export]
-    public NodePath NewBiodiversityIncreasingSpeciesPopulationPath = null!;
-
-    [Export]
-    public NodePath ProtectMigrationsFromSpeciesCapPath = null!;
-
-    [Export]
-    public NodePath ProtectNewCellsFromSpeciesCapPath = null!;
-
-    [Export]
-    public NodePath RefundMigrationsInExtinctionsPath = null!;
-
-    [Export]
     public NodePath StrictNicheCompetitionPath = null!;
-
-    [Export]
-    public NodePath SpeciesSplitByMutationThresholdPopulationAmountPath = null!;
-
-    [Export]
-    public NodePath SpeciesSplitByMutationThresholdPopulationFractionPath = null!;
-
-    [Export]
-    public NodePath UseBiodiversityForceSplitPath = null!;
 
     // Status and control paths
 
@@ -217,24 +172,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private Button worldExportButton = null!;
 
     // Auto-evo parameters controls.
-    private CheckBox allowSpeciesToNotMutateCheckBox = null!;
-    private CheckBox allowSpeciesToNotMigrateCheckBox = null!;
-    private SpinBox biodiversityAttemptFillChanceSpinBox = null!;
-    private SpinBox biodiversityFromNeighbourPatchChanceSpinBox = null!;
-    private CheckBox biodiversityNearbyPatchIsFreePopulationCheckBox = null!;
-    private CheckBox biodiversitySplitIsMutatedCheckBox = null!;
-    private SpinBox lowBiodiversityLimitSpinBox = null!;
-    private SpinBox maximumSpeciesInPatchSpinBox = null!;
     private SpinBox moveAttemptsPerSpeciesSpinBox = null!;
     private SpinBox mutationsPerSpeciesSpinBox = null!;
-    private SpinBox newBiodiversityIncreasingSpeciesPopulationSpinBox = null!;
-    private CheckBox protectMigrationsFromSpeciesCapCheckBox = null!;
-    private CheckBox protectNewCellsFromSpeciesCapCheckBox = null!;
-    private CheckBox refundMigrationsInExtinctionsCheckBox = null!;
     private CheckBox strictNicheCompetitionCheckBox = null!;
-    private SpinBox speciesSplitByMutationThresholdPopulationAmountSpinBox = null!;
-    private SpinBox speciesSplitByMutationThresholdPopulationFractionSpinBox = null!;
-    private CheckBox useBiodiversityForceSplitCheckBox = null!;
 
     // Status controls
     private Label runStatusLabel = null!;
@@ -334,28 +274,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         currentWorldStatisticsLabel = GetNode<CustomRichTextLabel>(CurrentWorldStatisticsLabelPath);
         worldExportButton = GetNode<Button>(WorldExportButtonPath);
 
-        allowSpeciesToNotMutateCheckBox = GetNode<CheckBox>(AllowSpeciesToNotMutatePath);
-        allowSpeciesToNotMigrateCheckBox = GetNode<CheckBox>(AllowSpeciesToNotMigratePath);
-        biodiversityAttemptFillChanceSpinBox = GetNode<SpinBox>(BiodiversityAttemptFillChancePath);
-        biodiversityFromNeighbourPatchChanceSpinBox = GetNode<SpinBox>(BiodiversityFromNeighbourPatchChancePath);
-        biodiversitySplitIsMutatedCheckBox = GetNode<CheckBox>(BiodiversitySplitIsMutatedPath);
-        biodiversityNearbyPatchIsFreePopulationCheckBox =
-            GetNode<CheckBox>(BiodiversityNearbyPatchIsFreePopulationPath);
-        lowBiodiversityLimitSpinBox = GetNode<SpinBox>(LowBiodiversityLimitPath);
-        maximumSpeciesInPatchSpinBox = GetNode<SpinBox>(MaximumSpeciesInPatchPath);
         moveAttemptsPerSpeciesSpinBox = GetNode<SpinBox>(MoveAttemptsPerSpeciesPath);
         mutationsPerSpeciesSpinBox = GetNode<SpinBox>(MutationsPerSpeciesPath);
-        newBiodiversityIncreasingSpeciesPopulationSpinBox =
-            GetNode<SpinBox>(NewBiodiversityIncreasingSpeciesPopulationPath);
-        protectMigrationsFromSpeciesCapCheckBox = GetNode<CheckBox>(ProtectMigrationsFromSpeciesCapPath);
-        protectNewCellsFromSpeciesCapCheckBox = GetNode<CheckBox>(ProtectNewCellsFromSpeciesCapPath);
-        refundMigrationsInExtinctionsCheckBox = GetNode<CheckBox>(RefundMigrationsInExtinctionsPath);
         strictNicheCompetitionCheckBox = GetNode<CheckBox>(StrictNicheCompetitionPath);
-        speciesSplitByMutationThresholdPopulationAmountSpinBox =
-            GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationAmountPath);
-        speciesSplitByMutationThresholdPopulationFractionSpinBox =
-            GetNode<SpinBox>(SpeciesSplitByMutationThresholdPopulationFractionPath);
-        useBiodiversityForceSplitCheckBox = GetNode<CheckBox>(UseBiodiversityForceSplitPath);
 
         runStatusLabel = GetNode<Label>(RunStatusLabelPath);
         finishXGenerationsSpinBox = GetNode<SpinBox>(FinishXGenerationsSpinBoxPath);
@@ -501,24 +422,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 NewWorldButtonPath.Dispose();
                 CurrentWorldStatisticsLabelPath.Dispose();
                 WorldExportButtonPath.Dispose();
-                AllowSpeciesToNotMutatePath.Dispose();
-                AllowSpeciesToNotMigratePath.Dispose();
-                BiodiversityAttemptFillChancePath.Dispose();
-                BiodiversityFromNeighbourPatchChancePath.Dispose();
-                BiodiversityNearbyPatchIsFreePopulationPath.Dispose();
-                BiodiversitySplitIsMutatedPath.Dispose();
-                LowBiodiversityLimitPath.Dispose();
-                MaximumSpeciesInPatchPath.Dispose();
-                MoveAttemptsPerSpeciesPath.Dispose();
                 MutationsPerSpeciesPath.Dispose();
-                NewBiodiversityIncreasingSpeciesPopulationPath.Dispose();
-                ProtectMigrationsFromSpeciesCapPath.Dispose();
-                ProtectNewCellsFromSpeciesCapPath.Dispose();
-                RefundMigrationsInExtinctionsPath.Dispose();
                 StrictNicheCompetitionPath.Dispose();
-                SpeciesSplitByMutationThresholdPopulationAmountPath.Dispose();
-                SpeciesSplitByMutationThresholdPopulationFractionPath.Dispose();
-                UseBiodiversityForceSplitPath.Dispose();
+                MoveAttemptsPerSpeciesPath.Dispose();
                 RunStatusLabelPath.Dispose();
                 FinishXGenerationsSpinBoxPath.Dispose();
                 FinishXGenerationsButtonPath.Dispose();
@@ -567,31 +473,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     private void InitAutoEvoConfigControls()
     {
-        allowSpeciesToNotMutateCheckBox.ButtonPressed = world.AutoEvoConfiguration.AllowSpeciesToNotMutate;
-        allowSpeciesToNotMigrateCheckBox.ButtonPressed = world.AutoEvoConfiguration.AllowSpeciesToNotMigrate;
-        biodiversityAttemptFillChanceSpinBox.Value = world.AutoEvoConfiguration.BiodiversityAttemptFillChance;
-        biodiversityFromNeighbourPatchChanceSpinBox.Value =
-            world.AutoEvoConfiguration.BiodiversityFromNeighbourPatchChance;
-        biodiversitySplitIsMutatedCheckBox.ButtonPressed =
-            world.AutoEvoConfiguration.BiodiversityNearbyPatchIsFreePopulation;
-        biodiversityNearbyPatchIsFreePopulationCheckBox.ButtonPressed =
-            world.AutoEvoConfiguration.BiodiversitySplitIsMutated;
-        lowBiodiversityLimitSpinBox.Value = world.AutoEvoConfiguration.LowBiodiversityLimit;
-        maximumSpeciesInPatchSpinBox.Value = world.AutoEvoConfiguration.MaximumSpeciesInPatch;
         moveAttemptsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MoveAttemptsPerSpecies;
         mutationsPerSpeciesSpinBox.Value = world.AutoEvoConfiguration.MutationsPerSpecies;
-        newBiodiversityIncreasingSpeciesPopulationSpinBox.Value =
-            world.AutoEvoConfiguration.NewBiodiversityIncreasingSpeciesPopulation;
-        protectMigrationsFromSpeciesCapCheckBox.ButtonPressed =
-            world.AutoEvoConfiguration.ProtectMigrationsFromSpeciesCap;
-        protectNewCellsFromSpeciesCapCheckBox.ButtonPressed = world.AutoEvoConfiguration.ProtectNewCellsFromSpeciesCap;
-        refundMigrationsInExtinctionsCheckBox.ButtonPressed = world.AutoEvoConfiguration.RefundMigrationsInExtinctions;
         strictNicheCompetitionCheckBox.ButtonPressed = world.AutoEvoConfiguration.StrictNicheCompetition;
-        speciesSplitByMutationThresholdPopulationAmountSpinBox.Value =
-            world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount;
-        speciesSplitByMutationThresholdPopulationFractionSpinBox.Value =
-            world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction;
-        useBiodiversityForceSplitCheckBox.ButtonPressed = world.AutoEvoConfiguration.UseBiodiversityForceSplit;
     }
 
     private void SetControlButtonsState(RunControlState runControlState)
@@ -746,31 +630,9 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (!ready)
             return;
 
-        world.AutoEvoConfiguration.AllowSpeciesToNotMutate = allowSpeciesToNotMutateCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.AllowSpeciesToNotMigrate = allowSpeciesToNotMigrateCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.BiodiversityAttemptFillChance = (int)biodiversityAttemptFillChanceSpinBox.Value;
-        world.AutoEvoConfiguration.BiodiversityFromNeighbourPatchChance =
-            (float)biodiversityFromNeighbourPatchChanceSpinBox.Value;
-        world.AutoEvoConfiguration.BiodiversityNearbyPatchIsFreePopulation =
-            biodiversitySplitIsMutatedCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.BiodiversitySplitIsMutated =
-            biodiversityNearbyPatchIsFreePopulationCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.LowBiodiversityLimit = (int)lowBiodiversityLimitSpinBox.Value;
-        world.AutoEvoConfiguration.MaximumSpeciesInPatch = (int)maximumSpeciesInPatchSpinBox.Value;
         world.AutoEvoConfiguration.MoveAttemptsPerSpecies = (int)moveAttemptsPerSpeciesSpinBox.Value;
         world.AutoEvoConfiguration.MutationsPerSpecies = (int)mutationsPerSpeciesSpinBox.Value;
-        world.AutoEvoConfiguration.NewBiodiversityIncreasingSpeciesPopulation =
-            (int)newBiodiversityIncreasingSpeciesPopulationSpinBox.Value;
-        world.AutoEvoConfiguration.ProtectMigrationsFromSpeciesCap =
-            protectMigrationsFromSpeciesCapCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.ProtectNewCellsFromSpeciesCap = protectNewCellsFromSpeciesCapCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.RefundMigrationsInExtinctions = refundMigrationsInExtinctionsCheckBox.ButtonPressed;
         world.AutoEvoConfiguration.StrictNicheCompetition = strictNicheCompetitionCheckBox.ButtonPressed;
-        world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount =
-            (int)speciesSplitByMutationThresholdPopulationAmountSpinBox.Value;
-        world.AutoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction =
-            (float)speciesSplitByMutationThresholdPopulationFractionSpinBox.Value;
-        world.AutoEvoConfiguration.UseBiodiversityForceSplit = useBiodiversityForceSplitCheckBox.ButtonPressed;
     }
 
     private void OnFinishXGenerationsSpinBoxValueChanged(float value)
