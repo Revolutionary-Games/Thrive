@@ -7,9 +7,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using JetBrains.Annotations;
-using PossibleSpecies =
-    System.Tuple<Species, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<Patch, long>>,
-        RunResults.NewSpeciesType, Species>;
 
 /// <summary>
 ///   Container for results before they are applied.
@@ -1187,6 +1184,9 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     {
         return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
     }
+
+    public record struct PossibleSpecies(Species Species, IEnumerable<KeyValuePair<Patch, long>>
+        InitialPopulationInPatches, NewSpeciesType AddType, Species ParentSpecies);
 
     public class SpeciesResult
     {

@@ -1,6 +1,5 @@
 ﻿namespace AutoEvo;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,15 +44,14 @@ public class RegisterNewSpecies : IRunStep
             if (extinct.PlayerSpecies)
                 continue;
 
-            Tuple<Species, IEnumerable<KeyValuePair<Patch, long>>, RunResults.NewSpeciesType, Species>?
-                bestSpecies = null;
+            RunResults.PossibleSpecies? bestSpecies = null;
             var bestPopulation = 0.0;
 
             foreach (var species in modifiedSpecies)
             {
-                if (species.Item4 == extinct)
+                if (species.ParentSpecies == extinct)
                 {
-                    var speciesPopulation = species.Item2.Sum(x => x.Value);
+                    var speciesPopulation = species.InitialPopulationInPatches.Sum(x => x.Value);
                     if (speciesPopulation > bestPopulation)
                     {
                         bestSpecies = species;
@@ -64,16 +62,19 @@ public class RegisterNewSpecies : IRunStep
 
             if (bestSpecies != null)
             {
-                results.AddMutationResultForSpecies(extinct, bestSpecies.Item1, bestSpecies.Item2);
-                handledSpecies.Add(bestSpecies.Item1);
+                results.AddMutationResultForSpecies(extinct, bestSpecies.Value.Species,
+                    bestSpecies.Value.InitialPopulationInPatches);
+
+                handledSpecies.Add(bestSpecies.Value.Species);
             }
         }
 
         foreach (var species in modifiedSpecies)
         {
-            if (handledSpecies.Add(species.Item1))
+            if (handledSpecies.Add(species.Species))
             {
-                results.AddNewSpecies(species.Item1, species.Item2, species.Item3, species.Item4);
+                results.AddNewSpecies(species.Species, species.InitialPopulationInPatches, species.AddType,
+                    species.ParentSpecies);
             }
         }
 

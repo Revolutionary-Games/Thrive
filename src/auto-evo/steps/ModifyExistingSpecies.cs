@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Xoshiro.PRNG64;
-using Mutation = System.Tuple<MicrobeSpecies, MicrobeSpecies, RunResults.NewSpeciesType>;
 
 /// <summary>
 ///   Uses miches to create a mutation for an existing species. Also creates new species from existing ones as
@@ -165,7 +164,7 @@ public class ModifyExistingSpecies : IRunStep
             case Step.MutationFilter:
             {
                 // Disregard "mutations" that result in identical species"
-                mutationsToTry.RemoveAll(m => m.Item1 == m.Item2);
+                mutationsToTry.RemoveAll(m => m.ParentSpecies == m.MutatedSpecies);
 
                 // Then shuffle and take only as many mutations as we want to try
                 mutationsToTry.Shuffle(random);
@@ -177,7 +176,7 @@ public class ModifyExistingSpecies : IRunStep
 
                 foreach (var mutation in mutationsToTry)
                 {
-                    mutation.Item2.OnEdited();
+                    mutation.MutatedSpecies.OnEdited();
                 }
 
                 step = Step.MutationTest;
@@ -189,7 +188,7 @@ public class ModifyExistingSpecies : IRunStep
                 // Add these mutant species into a new miche to test them
                 foreach (var mutation in mutationsToTry)
                 {
-                    miche.InsertSpecies(mutation.Item2, patch, null, cache, false, workMemory);
+                    miche.InsertSpecies(mutation.MutatedSpecies, patch, null, cache, false, workMemory);
                 }
 
                 newOccupantsWorkMemory.Clear();
@@ -205,17 +204,19 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // Before adding the results for the species we verify the mutations were not overridden in the
                     // miche tree by a better mutation. This prevents species from instantly going extinct.
-                    if (!newOccupantsWorkMemory.Contains(mutation.Item2) || !handledMutations.Add(mutation.Item2))
+                    if (!newOccupantsWorkMemory.Contains(mutation.MutatedSpecies) ||
+                        !handledMutations.Add(mutation.MutatedSpecies))
                         continue;
 
                     var newPopulation =
-                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.Item2, miche!, patch,
+                        MichePopulation.CalculateMicrobePopulationInPatch(mutation.MutatedSpecies, miche!, patch,
                             cache);
 
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
-                        results.AddPossibleMutation(mutation.Item2,
-                            [new KeyValuePair<Patch, long>(patch, newPopulation)], mutation.Item3, mutation.Item1);
+                        results.AddPossibleMutation(mutation.MutatedSpecies,
+                            [new KeyValuePair<Patch, long>(patch, newPopulation)], mutation.AddType,
+                            mutation.ParentSpecies);
                     }
                 }
 
@@ -492,6 +493,9 @@ public class ModifyExistingSpecies : IRunStep
 
         return lastGeneratedMutations;
     }
+
+    public record struct Mutation(MicrobeSpecies ParentSpecies, MicrobeSpecies MutatedSpecies,
+        RunResults.NewSpeciesType AddType);
 
     private class MutationSorter(Patch patch, SimulationCache cache) : IComparer<Tuple<MicrobeSpecies, float>>
     {
