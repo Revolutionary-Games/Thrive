@@ -215,7 +215,7 @@ public class ModifyExistingSpecies : IRunStep
                     if (newPopulation > Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
                     {
                         results.AddPossibleMutation(mutation.MutatedSpecies,
-                            [new KeyValuePair<Patch, long>(patch, newPopulation)], mutation.AddType,
+                            new KeyValuePair<Patch, long>(patch, newPopulation), mutation.AddType,
                             mutation.ParentSpecies);
                     }
                 }

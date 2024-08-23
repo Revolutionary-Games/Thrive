@@ -77,23 +77,22 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     }
 
     public void AddMutationResultForSpecies(Species species, Species? mutated,
-        IEnumerable<KeyValuePair<Patch, long>> populationBoostInPatches)
+        KeyValuePair<Patch, long> populationBoostInPatches)
     {
         MakeSureResultExistsForSpecies(species);
 
         results[species].MutatedProperties = mutated;
 
-        foreach (var pop in populationBoostInPatches)
+        results[species].NewPopulationInPatches.TryGetValue(populationBoostInPatches.Key, out var existing);
+        results[species].NewPopulationInPatches[populationBoostInPatches.Key] =
+            existing + populationBoostInPatches.Value;
+
+        // This code is kept in case the population increase is changed to allow multiple items
+        /*foreach (var population in populationBoostInPatches)
         {
-            if (results[species].NewPopulationInPatches.ContainsKey(pop.Key))
-            {
-                results[species].NewPopulationInPatches[pop.Key] += pop.Value;
-            }
-            else
-            {
-                results[species].NewPopulationInPatches[pop.Key] = pop.Value;
-            }
-        }
+            results[species].NewPopulationInPatches.TryGetValue(population.Key, out var existing);
+            results[species].NewPopulationInPatches[population.Key] = existing + population.Value;
+        }*/
     }
 
     public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
@@ -188,7 +187,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return modifiedSpecies;
     }
 
-    public void AddPossibleMutation(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
+    public void AddPossibleMutation(Species species, KeyValuePair<Patch, long> initialPopulationInPatches,
         NewSpeciesType addType, Species parentSpecies)
     {
         modifiedSpecies.Add(new PossibleSpecies(species, initialPopulationInPatches, addType, parentSpecies));
@@ -206,6 +205,18 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         {
             results[species].NewPopulationInPatches[patchPopulation.Key] = Math.Max(patchPopulation.Value, 0);
         }
+    }
+
+    public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
+        NewSpeciesType addType, Species parentSpecies)
+    {
+        MakeSureResultExistsForSpecies(species);
+
+        results[species].NewlyCreated = addType;
+        results[species].SplitFrom = parentSpecies;
+
+        results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
+            Math.Max(initialPopulationInPatch.Value, 0);
     }
 
     public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
@@ -1185,7 +1196,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
     }
 
-    public record struct PossibleSpecies(Species Species, IEnumerable<KeyValuePair<Patch, long>>
+    /// <summary>
+    ///   A species that may come into existence due to auto-evo simulation, but it isn't guaranteed yet. These are
+    ///   resolved by <see cref="RegisterNewSpecies"/>
+    /// </summary>
+    public record struct PossibleSpecies(Species Species, KeyValuePair<Patch, long>
         InitialPopulationInPatches, NewSpeciesType AddType, Species ParentSpecies);
 
     public class SpeciesResult

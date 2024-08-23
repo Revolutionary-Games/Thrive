@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System.Collections.Generic;
-using System.Linq;
 
 /// <summary>
 ///   Step that selects the best mutation for each species and registers all new species in results
@@ -45,13 +44,13 @@ public class RegisterNewSpecies : IRunStep
                 continue;
 
             RunResults.PossibleSpecies? bestSpecies = null;
-            var bestPopulation = 0.0;
+            var bestPopulation = 0L;
 
             foreach (var species in modifiedSpecies)
             {
                 if (species.ParentSpecies == extinct)
                 {
-                    var speciesPopulation = species.InitialPopulationInPatches.Sum(x => x.Value);
+                    var speciesPopulation = species.InitialPopulationInPatches.Value;
                     if (speciesPopulation > bestPopulation)
                     {
                         bestSpecies = species;
