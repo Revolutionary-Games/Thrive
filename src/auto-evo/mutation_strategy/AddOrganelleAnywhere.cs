@@ -66,7 +66,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return ThatConvertBetweenCompounds(fromCompound, toCompound, direction);
     }
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
     {
         // If a cheaper organelle gets added this will need to be updated
         if (mp < 20)
@@ -86,6 +86,10 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         foreach (var organelle in organelles)
         {
             if (organelle.MPCost > mp)
+                continue;
+
+            // Important to not accidentally add non-LAWK organelles in LAWK game
+            if (!organelle.LAWK && lawk)
                 continue;
 
             if (organelle.RequiresNucleus && baseSpecies.IsBacteria)

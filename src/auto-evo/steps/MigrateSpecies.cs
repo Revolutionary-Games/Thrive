@@ -2,113 +2,117 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Xoshiro.PRNG32;
 
 /// <summary>
-///   Step that generates species migrations for each patch
+///   Step that generates species migrations for each species
 /// </summary>
-/// <remarks>
-///   <para>
-///     TODO: this can currently cause migrations for a single species from many patches to move to a single patch
-///     this is unsupported by <see cref="RunResults.GetMigrationsTo"/> so these migrations are removed by
-///     <see cref="RemoveInvalidMigrations"/> but it would be better if this class was fixed instead, probably. The old
-///     approach processed migrations *per species* instead of per patch to not hit in to the same data model
-///     limitation. To track how much this happens a debug print can be uncommented in
-///     RemoveDuplicateTargetPatchMigrations.
-///   </para>
-/// </remarks>
 public class MigrateSpecies : IRunStep
 {
-    private readonly Patch patch;
+    private readonly Species species;
+    private readonly PatchMap map;
+    private readonly WorldGenerationSettings worldSettings;
     private readonly SimulationCache cache;
     private readonly Random random;
 
     private readonly HashSet<Species> speciesWorkMemory = new();
 
-    /// <summary>
-    ///   To avoid generating duplicate migrations, this remembers
-    /// </summary>
-    private readonly List<(Species Species, Patch Patch)> alreadyDoneMigrations = new();
-
-    private int stepsDone;
-
-    private List<Species>? occupants;
-
-    public MigrateSpecies(Patch patch, SimulationCache cache, Random randomSource)
+    public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
+        Random randomSource)
     {
-        this.patch = patch;
+        this.species = species;
         this.cache = cache;
+        this.map = map;
+        this.worldSettings = worldSettings;
 
-        // TODO: take in a random seed (would help to make sure the random cannot result in the same sequence as
-        // this class instances are allocated in a pretty tight loop
         random = new XoShiRo128starstar(randomSource.NextInt64());
     }
 
-    public bool Done => stepsDone >= Constants.AUTO_EVO_MOVE_ATTEMPTS;
-
-    public int TotalSteps => Constants.AUTO_EVO_MOVE_ATTEMPTS;
+    public int TotalSteps => 1;
 
     public bool CanRunConcurrently => true;
 
     public bool RunStep(RunResults results)
     {
-        ++stepsDone;
-
-        if (occupants == null)
-        {
-            var miche = results.GetMicheForPatch(patch);
-
-            var occupantsSet = new HashSet<Species>();
-            miche.GetOccupants(occupantsSet);
-
-            occupants = occupantsSet.ToList();
-        }
-
-        if (occupants.Count < 1)
-            return Done;
-
-        var species = occupants.Random(random);
-
         // Player has a separate GUI to control their migrations purposefully so auto-evo doesn't do it automatically
         if (species.PlayerSpecies)
-            return Done;
+            return true;
 
-        // TODO: should a single species be allowed to migrate to multiple patches at once or just one migration in
-        // general?
-        /*foreach (var (doneSpecies, _) in alreadyDoneMigrations)
+        // To limit species migrations to the actual limit, we need to pick random patches to try to migrate from
+        // to ensure all patches have a chance to eventually send some population
+        int attemptsLeft = worldSettings.AutoEvoConfiguration.MoveAttemptsPerSpecies;
+
+        var sourcePatches = new List<Patch>();
+
+        // To prevent generating duplicate migrations this needs to remember target patches. This limitation is a
+        // data model limitation where a single target patch cannot have a species migrate to it form multiple patches
+        // at once.
+        var usedTargets = new HashSet<Patch>();
+
+        foreach (var patch in map.Patches.Values)
         {
-            if (doneSpecies == species)
-                return Done;
-        }*/
+            if (!patch.SpeciesInPatch.ContainsKey(species))
+                continue;
 
-        var population = patch.GetSpeciesSimulationPopulation(species);
-        if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
-            return Done;
-
-        // Select a random adjacent target patch
-        // TODO: could prefer patches this species is not already in or about to go extinct, or really anything other
-        // than random selection
-        var target = patch.Adjacent.Random(random);
-
-        foreach (var (doneSpecies, donePatch) in alreadyDoneMigrations)
-        {
-            if (doneSpecies == species && donePatch == target)
-                return Done;
+            sourcePatches.Add(patch);
         }
 
-        var targetMiche = results.GetMicheForPatch(target);
+        sourcePatches.Shuffle(random);
 
-        // Calculate random amount of population to send
-        var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
-            population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
+        // To not randomly pick the same adjacent patch multiple times as a migration target
+        var shuffledNeighbours = new List<Patch>();
 
-        if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, speciesWorkMemory))
+        foreach (var patch in sourcePatches)
         {
-            results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
-            alreadyDoneMigrations.Add((species, target));
+            if (attemptsLeft <= 0)
+            {
+                // Stop checking once all attempts are used up even if there are still patches this species is in
+                break;
+            }
+
+            var population = patch.GetSpeciesSimulationPopulation(species);
+
+            if (population < Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION)
+                continue;
+
+            // Try all neighbour patches in random order
+            shuffledNeighbours.Clear();
+            foreach (var adjacent in patch.Adjacent)
+            {
+                shuffledNeighbours.Add(adjacent);
+            }
+
+            // TODO: could prefer patches this species is not already in or about to go extinct, or really anything
+            // other than random selection
+            shuffledNeighbours.Shuffle(random);
+
+            foreach (var target in shuffledNeighbours)
+            {
+                // Skip checking population send to the same patch multiple times
+                if (usedTargets.Contains(target))
+                    continue;
+
+                --attemptsLeft;
+                var targetMiche = results.GetMicheForPatch(target);
+
+                // Calculate random amount of population to send
+                var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
+                    population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
+
+                if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, speciesWorkMemory))
+                {
+                    results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
+                    usedTargets.Add(target);
+
+                    // Only one migration per patch
+                    break;
+                }
+
+                if (attemptsLeft <= 0)
+                    break;
+            }
         }
 
-        return Done;
+        return true;
     }
 }

@@ -407,8 +407,11 @@ public class AutoEvoRun
         {
             steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
                 random));
+        }
 
-            steps.Enqueue(new MigrateSpecies(entry.Value, new SimulationCache(worldSettings), random));
+        foreach (var species in allSpecies)
+        {
+            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
         }
 
         // The new populations don't depend on the mutations, this is so that when

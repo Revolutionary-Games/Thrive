@@ -15,7 +15,7 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
     {
         if (mp < Constants.ORGANELLE_MOVE_COST)
             return null;
