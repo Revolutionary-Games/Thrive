@@ -1873,6 +1873,13 @@ public partial class CellEditorComponent :
             throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"),
             hexTemporaryMemory, hexTemporaryMemory2);
 
+        // Need to copy player species property to have auto-evo treat the predicted population the same way as
+        // the player in a real run
+        if (Editor.EditedBaseSpecies.PlayerSpecies)
+        {
+            cachedAutoEvoPredictionSpecies.BecomePlayerSpecies();
+        }
+
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
         var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
