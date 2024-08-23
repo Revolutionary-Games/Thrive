@@ -29,7 +29,7 @@ public class CalculatePopulation : IRunStep
 
     public int TotalSteps => 1;
 
-    public bool CanRunConcurrently { get; set; } = true;
+    public bool CanRunConcurrently => false;
 
     public bool RunStep(RunResults results)
     {
