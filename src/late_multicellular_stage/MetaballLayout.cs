@@ -213,7 +213,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public Metaball? GetClosestMetaballToPosition(Vector3 position)
     {
-        var closestDistance = 10000.0f;
+        var closestDistance = float.MaxValue;
         Metaball? closestMetaball = null;
 
         foreach (var metaball in this)
@@ -221,7 +221,7 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
             if (metaball.Parent == null)
                 continue;
 
-            var distance = metaball.Position.DistanceTo(position);
+            var distance = metaball.Position.DistanceSquaredTo(position);
 
             if (distance < closestDistance)
             {
