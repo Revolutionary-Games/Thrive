@@ -18,8 +18,8 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public static RemoveOrganelle ThatUseCompound(Compound compound)
     {
-        return new RemoveOrganelle(organelle => organelle.RunnableProcesses
-            .Where(proc => proc.Process.Inputs.ContainsKey(compound)).Any());
+        return new RemoveOrganelle(organelle =>
+            organelle.RunnableProcesses.Any(proc => proc.Process.Inputs.ContainsKey(compound)));
     }
 
     public static RemoveOrganelle ThatUseCompound(string compoundName)
@@ -31,8 +31,8 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public static RemoveOrganelle ThatCreateCompound(Compound compound)
     {
-        return new RemoveOrganelle(organelle => organelle.RunnableProcesses
-            .Where(proc => proc.Process.Outputs.ContainsKey(compound)).Any());
+        return new RemoveOrganelle(organelle =>
+            organelle.RunnableProcesses.Any(proc => proc.Process.Outputs.ContainsKey(compound)));
     }
 
     public static RemoveOrganelle ThatCreateCompound(string compoundName)
@@ -44,7 +44,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
     {
-        if (mp < 10)
+        if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;
 
         // TODO: Make this something passed in
@@ -54,7 +54,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS).ToList();
 
         if (organelles.Count <= 1)
-            return [];
+            return null;
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
@@ -91,7 +91,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
             CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, new MutationWorkMemory());
 
-            mutated.Add(Tuple.Create(newSpecies, mp - 10));
+            mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
         }
 
         return mutated;
