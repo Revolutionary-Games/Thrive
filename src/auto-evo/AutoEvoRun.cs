@@ -424,7 +424,7 @@ public class AutoEvoRun
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
+        // numbers?
         steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
     }
 
