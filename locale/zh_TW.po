@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-07-27 14:22+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -129,12 +129,6 @@ msgstr "允許在滅絕後切換到其他相關物種"
 
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "（允許在滅絕後以不同物種繼續進行遊戲，而非結束遊戲）"
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "允許物種不遷移（如果沒有發現良好的遷移情況）"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "允許物種不突變（如果沒有合適的突變）"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "全世界的生物統計"
@@ -427,18 +421,6 @@ msgstr "按下[thrive:input]g_toggle_binding[/thrive:input]切換結合模式。
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "綁定座標軸"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "在每個物種較少（低生物多樣性）的區域有機會創造一個新物種"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "從鄰近區域創造新物種以增加生物多樣性的機率"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "從臨近區域來的增加生物多樣性的物種獲得額外的種群數量"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "增加生物多樣性的物種會在被創造時突變"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
@@ -2812,9 +2794,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "鎖定晝夜循環"
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "將物種數少於此值的區塊視為低生物多樣性"
-
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "偵測到性能低下"
 
@@ -2847,9 +2826,6 @@ msgstr "海洋雪"
 
 msgid "MASTER_VOLUME"
 msgstr "主音量"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "強制滅絕前區域的物種上限"
 
 msgid "MAX_FPS"
 msgstr "最大 FPS："
@@ -3620,9 +3596,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "新聞"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "生物多樣性物種的初始種群數量"
-
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
@@ -4216,12 +4189,6 @@ msgstr "程式設計團隊"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "專案管理團隊"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "保護剛遷移的族群免受物種容量上限的影響"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "保護剛創造的物種免受物種容量上限的影響"
-
 msgid "PROTEINS"
 msgstr "蛋白質"
 
@@ -4280,9 +4247,6 @@ msgstr "重做上一個動作"
 
 msgid "REFRESH"
 msgstr "重新整理"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "在目標區域滅絕時，返還遷移花費"
 
 msgid "REPORT"
 msgstr "報告"
@@ -4841,12 +4805,6 @@ msgstr "物種種群數量"
 
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "透過多個良好的突變來分支物種所需的最小種群數量"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "允許透過突變分支物種的最小種群數量比例"
 
 msgid "SPECIES_TO_FIND"
 msgstr "尋找物種："
@@ -5780,9 +5738,6 @@ msgstr "自動從 Assembly 載入 Harmony 補丁（不需要指定模組類別�
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自訂使用者名稱"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "在創造增加生物多樣性的物種時減少現有物種的數量"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設定後台執行緒數"
@@ -7127,6 +7082,51 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "允許物種不遷移（如果沒有發現良好的遷移情況）"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "允許物種不突變（如果沒有合適的突變）"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "在每個物種較少（低生物多樣性）的區域有機會創造一個新物種"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "從鄰近區域創造新物種以增加生物多樣性的機率"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "從臨近區域來的增加生物多樣性的物種獲得額外的種群數量"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "增加生物多樣性的物種會在被創造時突變"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "將物種數少於此值的區塊視為低生物多樣性"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "強制滅絕前區域的物種上限"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "生物多樣性物種的初始種群數量"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "保護剛遷移的族群免受物種容量上限的影響"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "保護剛創造的物種免受物種容量上限的影響"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "在目標區域滅絕時，返還遷移花費"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "透過多個良好的突變來分支物種所需的最小種群數量"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "允許透過突變分支物種的最小種群數量比例"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "在創造增加生物多樣性的物種時減少現有物種的數量"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "錯誤：找不到區塊"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: 2024-08-17 13:27+0200\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -129,12 +129,6 @@ msgstr "Allow switching to related species on extinction"
 
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr "(allows continuing the game with a different species on extinction instead of getting a game over)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Allow species to not migrate (if no good migration is found)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Allow species to not mutate (if no good mutation is found)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generic Statistics of All Worlds"
@@ -426,18 +420,6 @@ msgstr "Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding mo
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind axes together"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Chance in each patch with few species (low biodiversity) to create a new species"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Chance to create a new species to increase biodiversity from a nearby patch"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Biodiversity-increasing species from nearby patch is given free population"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biodiversity-increasing species is mutated on creation"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
@@ -2810,9 +2792,6 @@ msgstr "L"
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Lock Day Night Cycle"
 
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Consider patches with up to this many species having low biodiversity"
-
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Low Performance Detected"
 
@@ -2845,9 +2824,6 @@ msgstr "Marine snow"
 
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Maximum species in a patch before forced extinctions"
 
 msgid "MAX_FPS"
 msgstr "Max FPS:"
@@ -3609,9 +3585,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NEWS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Initial population for biodiversity-increasing species"
-
 msgid "NEW_GAME"
 msgstr "New Game"
 
@@ -4204,12 +4177,6 @@ msgstr "Programming Team"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Project Management Team"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Protect just migrated populations from species cap"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Protect just created species from species cap"
-
 msgid "PROTEINS"
 msgstr "Proteins"
 
@@ -4268,9 +4235,6 @@ msgstr "Redo the last action"
 
 msgid "REFRESH"
 msgstr "Refresh"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Refund migrations in case of extinction in the target patch"
 
 msgid "REPORT"
 msgstr "Report"
@@ -4828,12 +4792,6 @@ msgstr "Species Population"
 
 msgid "SPECIES_PRESENT"
 msgstr "Species Present"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Minimum population for species to split by multiple good found mutations"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Minimum population fraction of a species to allow split by mutations"
 
 msgid "SPECIES_TO_FIND"
 msgstr "Species to Find:"
@@ -5773,9 +5731,6 @@ msgstr "Automatically load Harmony patches from Assembly (doesn't require specif
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Biodiversity-increasing species creation steals population from existing species"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
@@ -7120,6 +7075,51 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Allow species to not migrate (if no good migration is found)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Allow species to not mutate (if no good mutation is found)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Chance in each patch with few species (low biodiversity) to create a new species"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Chance to create a new species to increase biodiversity from a nearby patch"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Biodiversity-increasing species from nearby patch is given free population"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Biodiversity-increasing species is mutated on creation"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Consider patches with up to this many species having low biodiversity"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Maximum species in a patch before forced extinctions"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Initial population for biodiversity-increasing species"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Protect just migrated populations from species cap"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Protect just created species from species cap"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Refund migrations in case of extinction in the target patch"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Minimum population for species to split by multiple good found mutations"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Minimum population fraction of a species to allow split by mutations"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Biodiversity-increasing species creation steals population from existing species"
 
 #~ msgid "NOT_FOUND_CHUNK"
 #~ msgstr "Error: chunk not found"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-21 09:09+0300\n"
+"POT-Creation-Date: 2024-08-22 19:34-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,11 +37,11 @@ msgstr ""
 msgid "ABILITIES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:318
 msgid "ABORT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:126
+#: ../src/auto-evo/AutoEvoRun.cs:127
 msgid "ABORTED_DOT"
 msgstr ""
 
@@ -162,19 +162,11 @@ msgstr ""
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:388
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:383
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:169
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:154
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1201
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1063
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -332,7 +324,7 @@ msgstr ""
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:370
+#: ../src/auto-evo/AutoEvoRun.cs:371
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
@@ -345,7 +337,7 @@ msgstr ""
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:141
+#: ../src/auto-evo/AutoEvoRun.cs:142
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
@@ -367,7 +359,7 @@ msgstr ""
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:678
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:531
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:249
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
@@ -378,7 +370,7 @@ msgstr ""
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:273
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:258
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr ""
 
@@ -407,7 +399,7 @@ msgstr ""
 msgid "AWARE_STAGE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:832
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:515 ../src/general/MainMenu.tscn:816
 #: ../src/general/NewGameSettings.tscn:959 ../src/general/OptionsMenu.tscn:1674
@@ -577,22 +569,6 @@ msgstr ""
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:396
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:410
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:421
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:426
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr ""
-
 #: ../simulation_parameters/microbe_stage/organelles.json:1028
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:813
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -694,7 +670,7 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:801
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:815
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -1144,7 +1120,7 @@ msgstr ""
 msgid "CONCEPT_ART"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:120
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:105
 msgid "CONFIG"
 msgstr ""
 
@@ -1156,7 +1132,7 @@ msgstr ""
 msgid "CONFIRM_DELETE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:841
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:694
 #: ../src/general/PauseMenu.tscn:325
 #: ../src/thriveopedia/pages/ThriveopediaMuseumPage.tscn:118
 msgid "CONFIRM_EXIT"
@@ -1598,11 +1574,11 @@ msgstr ""
 msgid "CURRENT_RESEARCH_PROGRESS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:230
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:215
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1160
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1022
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -2304,7 +2280,7 @@ msgstr ""
 msgid "ESTUARY"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:716
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:569
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
 
@@ -2353,15 +2329,15 @@ msgstr ""
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:350
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:335
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:348
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:333
 msgid "EXPORT_ALL_WORLDS_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:846
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:699
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
@@ -2486,7 +2462,7 @@ msgstr ""
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:129
+#: ../src/auto-evo/AutoEvoRun.cs:130
 msgid "FINISHED_DOT"
 msgstr ""
 
@@ -2494,11 +2470,11 @@ msgstr ""
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:293
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:278
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:779
+#: ../src/auto-evo/AutoEvoExploringTool.cs:641
 msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
@@ -2708,7 +2684,7 @@ msgstr ""
 msgid "GENERAL"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:569
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:422
 msgid "GENERATIONS"
 msgstr ""
 
@@ -2728,7 +2704,7 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:983
+#: ../src/auto-evo/RunResults.cs:1048
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2968,7 +2944,7 @@ msgstr ""
 msgid "INGESTED_MATTER"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:244
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:229
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
@@ -3731,10 +3707,6 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:434
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr ""
-
 #: ../src/general/MainMenu.tscn:889
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
@@ -3760,7 +3732,7 @@ msgstr ""
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:126
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:111
 msgid "MAP"
 msgstr ""
 
@@ -3778,10 +3750,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:602
 msgid "MASTER_VOLUME"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:446
-msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:327
@@ -3878,7 +3846,7 @@ msgstr ""
 msgid "MIB_VALUE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:144
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:129
 msgid "MICHE"
 msgstr ""
 
@@ -3930,7 +3898,7 @@ msgstr ""
 msgid "MICHE_ROOT_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:769
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:622
 msgid "MICHE_TREE"
 msgstr ""
 
@@ -3979,12 +3947,12 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1173
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1217
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1035
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1079
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:303
+#: ../src/microbe_stage/MicrobeSpecies.cs:323
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -4405,7 +4373,7 @@ msgstr ""
 msgid "MOVEMENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:458
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:371
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
@@ -4548,7 +4516,7 @@ msgstr ""
 msgid "MUSIC_VOLUME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:470
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:383
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
 
@@ -4609,10 +4577,6 @@ msgstr ""
 
 #: ../src/gui_common/ThriveFeedDisplayer.tscn:25
 msgid "NEWS"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:482
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
 msgstr ""
 
 #: ../src/general/MainMenu.tscn:296
@@ -4741,7 +4705,7 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:132
+#: ../src/auto-evo/AutoEvoRun.cs:133
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4930,7 +4894,7 @@ msgstr ""
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:142
+#: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
@@ -5169,7 +5133,7 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:797
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:650
 msgid "PATCH_COLON"
 msgstr ""
 
@@ -5398,7 +5362,7 @@ msgstr ""
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:341
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:326
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
@@ -5408,11 +5372,11 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:659
+#: ../src/auto-evo/RunResults.cs:724
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:792
+#: ../src/auto-evo/RunResults.cs:857
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
@@ -5448,7 +5412,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:674
+#: ../src/auto-evo/RunResults.cs:739
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -5471,14 +5435,6 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:531
 msgid "PROJECT_MANAGEMENT_TEAM"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:493
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:498
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:680
@@ -5536,8 +5492,8 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:927
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:279
+#: ../src/auto-evo/AutoEvoExploringTool.cs:789
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:264
 msgid "READY"
 msgstr ""
 
@@ -5561,11 +5517,7 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:503
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:132
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:117
 #: ../src/microbe_stage/editor/MicrobeEditorTabButtons.tscn:108
 msgid "REPORT"
 msgstr ""
@@ -5702,7 +5654,7 @@ msgstr ""
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:840 ../src/general/PauseMenu.cs:409
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:693 ../src/general/PauseMenu.cs:409
 msgid "RETURN_TO_MENU_WARNING"
 msgstr ""
 
@@ -5746,39 +5698,39 @@ msgstr ""
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:288
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:273
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:773
+#: ../src/auto-evo/RunResults.cs:838
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:754
+#: ../src/auto-evo/RunResults.cs:819
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:705
+#: ../src/auto-evo/RunResults.cs:770
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:708
+#: ../src/auto-evo/RunResults.cs:773
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:692
+#: ../src/auto-evo/RunResults.cs:757
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:725
+#: ../src/auto-evo/RunResults.cs:790
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:795
+#: ../src/auto-evo/AutoEvoExploringTool.cs:657
 msgid "RUN_X_WORLDS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:326
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:311
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
 
@@ -6002,16 +5954,16 @@ msgstr ""
 msgid "SELECTED_SAVE_IS_UPGRADEABLE_PROMPT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:576
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:429
 msgid "SELECT_A_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:804
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:657
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:93
 msgid "SELECT_A_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:604
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:457
 msgid "SELECT_A_SPECIES"
 msgstr ""
 
@@ -6281,7 +6233,7 @@ msgstr ""
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:597
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:450
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:35
 msgid "SPECIES"
 msgstr ""
@@ -6294,7 +6246,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:749
+#: ../src/auto-evo/RunResults.cs:814
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -6320,14 +6272,6 @@ msgstr ""
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:516
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:530
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
-
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:47
 msgid "SPECIES_TO_FIND"
 msgstr ""
@@ -6344,7 +6288,7 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:765
+#: ../src/auto-evo/RunResults.cs:830
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -6365,7 +6309,7 @@ msgstr ""
 msgid "START"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:145
+#: ../src/auto-evo/AutoEvoRun.cs:146
 msgid "STARTING"
 msgstr ""
 
@@ -6528,7 +6472,7 @@ msgstr ""
 msgid "STRATEGY_STAGES"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:508
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:392
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
@@ -6861,11 +6805,11 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1008
+#: ../src/auto-evo/RunResults.cs:1073
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1014
+#: ../src/auto-evo/RunResults.cs:1079
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -6874,27 +6818,27 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:929
+#: ../src/auto-evo/RunResults.cs:994
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:1017
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:978
+#: ../src/auto-evo/RunResults.cs:1043
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:989
+#: ../src/auto-evo/RunResults.cs:1054
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:945 ../src/auto-evo/RunResults.cs:966
+#: ../src/auto-evo/RunResults.cs:1010 ../src/auto-evo/RunResults.cs:1031
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:939 ../src/auto-evo/RunResults.cs:960
+#: ../src/auto-evo/RunResults.cs:1004 ../src/auto-evo/RunResults.cs:1025
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -7463,10 +7407,6 @@ msgstr ""
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:539
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:1023
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
@@ -7536,7 +7476,7 @@ msgstr ""
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:138
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:123
 msgid "VIEWER"
 msgstr ""
 
@@ -7617,11 +7557,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:887
+#: ../src/auto-evo/RunResults.cs:952
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:668
+#: ../src/auto-evo/RunResults.cs:733
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
@@ -8938,7 +8878,7 @@ msgstr ""
 msgid "WORKSHOP_VISIBILITY_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:114
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:99
 msgid "WORLD"
 msgstr ""
 
@@ -8946,7 +8886,7 @@ msgstr ""
 msgid "WORLD_EXPORT_SUCCESS_MESSAGE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.tscn:200
+#: ../src/auto-evo/AutoEvoExploringTool.tscn:185
 msgid "WORLD_GENERAL_STATISTICS"
 msgstr ""
 
