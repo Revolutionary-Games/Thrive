@@ -213,7 +213,7 @@ public static class MichePopulation
             return;
 
         var leafNodes = new List<Miche>();
-        miche.GetLeafNodes(leafNodes, x => x.Occupant != null && x.Occupant is MicrobeSpecies);
+        miche.GetLeafNodes(leafNodes, x => x.Occupant is MicrobeSpecies);
 
         // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
         // might benefit from extra precision
