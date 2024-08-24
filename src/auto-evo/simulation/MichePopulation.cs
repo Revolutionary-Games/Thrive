@@ -213,14 +213,11 @@ public static class MichePopulation
             return;
 
         var leafNodes = new List<Miche>();
-        miche.GetLeafNodes(leafNodes, x => x.Occupant != null);
+        miche.GetLeafNodes(leafNodes, x => x.Occupant != null && x.Occupant is MicrobeSpecies);
 
         // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
         // might benefit from extra precision
         var energyDictionary = species.ToDictionary(x => x, _ => 0.0f);
-
-        // This doesn't use miche.SetupScores as this wants scores for all species, even ones that aren't in the
-        // tree yet
 
         var currentBackTraversal = new List<Miche>();
         var scoresDictionary = new Dictionary<Species, float>();
@@ -237,29 +234,43 @@ public static class MichePopulation
 
             currentBackTraversal.Clear();
             node.BackTraversal(currentBackTraversal);
-            foreach (var currentMiche in currentBackTraversal)
+            foreach (var currentSpecies in species)
             {
-                foreach (var currentSpecies in species)
+                if (currentSpecies is not MicrobeSpecies microbeSpecies)
+                    continue;
+
+                var transversalScore = 0.0f;
+
+                foreach (var currentMiche in currentBackTraversal)
                 {
-                    if (currentSpecies is not MicrobeSpecies microbeSpecies)
-                        continue;
+                    var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies);
+
+                    if (rawScore <= 0)
+                    {
+                        transversalScore = 0;
+                        break;
+                    }
 
                     // Weighted score is intentionally not used here as negatives break everything
-                    // TODO: this should have safety handling if occupant is null or not a microbe species
-                    var score = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies) /
+                    var score = rawScore /
                         cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
                         currentMiche.Pressure.Strength;
 
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
                         score *= score;
 
-                    totalScore += score;
-                    scoresDictionary[currentSpecies] += score;
+                    transversalScore += score;
                 }
+
+                totalScore += transversalScore;
+                scoresDictionary[currentSpecies] += transversalScore;
             }
 
             foreach (var currentSpecies in species)
             {
+                if (totalScore <= 0)
+                    break;
+
                 var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
 
                 if (trackEnergy && micheEnergy > 0)
