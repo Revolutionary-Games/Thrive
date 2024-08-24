@@ -723,6 +723,8 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
                 if (position.DistanceTo(symmetryPosition) < diameter / 2)
                 {
+                    // If too close with the symmetry position, run as if symmetry was turned off to not have
+                    // overlapping metaballs
                     callback(position, parent);
                 }
                 else
@@ -731,14 +733,17 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
                     if (parent != null)
                     {
-                        var symmetryParent = (TMetaball?)editedMetaballs.GetClosestMetaballToPosition(
+                        // Resolve symmetry position's parent if there was a parent for the primary position
+                        var symmetryParent = editedMetaballs.GetClosestMetaballToPosition(
                             parent.Position * new Vector3(-1, 1, 1));
+
+                        // TODO: should this verify that the parent is close enough to the actual position to use?
 
                         callback(symmetryPosition, symmetryParent);
                     }
                     else
                     {
-                        callback(symmetryPosition, parent);
+                        callback(symmetryPosition, null);
                     }
                 }
 

@@ -462,8 +462,7 @@ public partial class MetaballBodyEditorComponent :
         var metaball = new MulticellularMetaball(CellTypeFromName(
             activeActionName ?? throw new InvalidOperationException("no action active")));
 
-        bool added =
-            AddMetaball(metaball);
+        bool added = AddMetaball(metaball);
 
         if (added)
         {
@@ -652,7 +651,7 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaballSize,
+                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaball.Size,
                     symmetryParent);
 
                 if (placed != null)

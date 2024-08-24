@@ -196,8 +196,12 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public IEnumerable<T> GetMetaballsNotTouchingParents(float contactThreshold = 0.1f, float toleranceMultiplier = 2)
     {
-        foreach (var metaball in this)
+        foreach (var metaball in metaballs)
         {
+            // Root is a special case as it doesn't have a parent, it is allowed to be anywhere
+            if (metaball.Parent == null)
+                continue;
+
             var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.Parent.Radius);
             var distance = metaball.Position.DistanceTo(metaball.Parent.Position);
 
@@ -208,16 +212,13 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
         }
     }
 
-    public Metaball? GetClosestMetaballToPosition(Vector3 position)
+    public T? GetClosestMetaballToPosition(Vector3 position)
     {
         var closestDistance = float.MaxValue;
-        Metaball? closestMetaball = null;
+        T? closestMetaball = null;
 
-        foreach (var metaball in this)
+        foreach (var metaball in metaballs)
         {
-            if (metaball.Parent == null)
-                continue;
-
             var distance = metaball.Position.DistanceSquaredTo(position);
 
             if (distance < closestDistance)
