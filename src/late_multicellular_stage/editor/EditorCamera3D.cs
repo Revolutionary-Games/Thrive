@@ -273,7 +273,6 @@ public partial class EditorCamera3D : Camera3D
         ApplyTransform();
     }
 
-
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { 1.0f, -1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
     public void Resize(double delta, float value)
     {

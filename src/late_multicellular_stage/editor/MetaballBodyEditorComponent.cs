@@ -66,11 +66,11 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     public NodePath CannotReduceBrainPowerPopupPath = null!;
 
-    private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
-
     // TODO: add way to control the size of the placed metaball
     [JsonProperty]
     public float MetaballSize = 1.0f;
+
+    private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
 
