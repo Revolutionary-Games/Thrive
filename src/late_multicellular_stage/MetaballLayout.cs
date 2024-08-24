@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
@@ -195,8 +196,9 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
 
     public IEnumerable<T> GetMetaballsNotTouchingParents(float contactThreshold = 0.1f, float toleranceMultiplier = 2)
     {
-        foreach (var metaball in this)
+        foreach (var metaball in metaballs)
         {
+            // Root is a special case as it doesn't have a parent, it is allowed to be anywhere
             if (metaball.Parent == null)
                 continue;
 
@@ -208,5 +210,24 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
                 yield return metaball;
             }
         }
+    }
+
+    public T? GetClosestMetaballToPosition(Vector3 position)
+    {
+        var closestDistance = float.MaxValue;
+        T? closestMetaball = null;
+
+        foreach (var metaball in metaballs)
+        {
+            var distance = metaball.Position.DistanceSquaredTo(position);
+
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestMetaball = metaball;
+            }
+        }
+
+        return closestMetaball;
     }
 }

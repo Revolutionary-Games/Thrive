@@ -118,13 +118,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
-        set
-        {
-            symmetry = value;
-
-            if (symmetry != HexEditorSymmetry.None)
-                throw new NotSupportedException("Symmetry editing not implemented yet");
-        }
+        set => symmetry = value;
     }
 
     /// <summary>
@@ -433,7 +427,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         var actions = new List<TAction>();
         int alreadyDeleted = 0;
 
-        RunWithSymmetry(basePosition, baseMetaball, (_, metaball) =>
+        RunWithSymmetry(0, basePosition, baseMetaball, (_, metaball) =>
         {
             if (metaball == null)
                 return;
@@ -619,7 +613,14 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected void OnSymmetryPressed()
     {
-        throw new NotImplementedException("symmetry not implemented");
+        if (symmetry == HexEditorSymmetry.XAxisSymmetry)
+        {
+            ResetSymmetryButton();
+        }
+        else if (symmetry == HexEditorSymmetry.None)
+        {
+            symmetry = HexEditorSymmetry.XAxisSymmetry;
+        }
 
         /*
         if (symmetry == HexEditorSymmetry.SixWaySymmetry)
@@ -637,11 +638,10 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         else if (symmetry == HexEditorSymmetry.FourWaySymmetry)
         {
             symmetry = HexEditorSymmetry.SixWaySymmetry;
-        }
+        }*/
 
         Symmetry = symmetry;
         UpdateSymmetryIcon();
-        */
     }
 
     // LineLengthCheckDisable is needed here as our XML indent check doesn't support splitting tags on multiple lines
@@ -744,17 +744,13 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// <summary>
     ///   Runs given callback for all symmetry positions
     /// </summary>
+    /// <param name="diameter">Diameter of placed metaball</param>
     /// <param name="position">The base position</param>
     /// <param name="parent">The base parent</param>
     /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
     /// <param name="overrideSymmetry">If set, overrides the current symmetry</param>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this is not implemented currently and just returns the given primary position
-    ///   </para>
-    /// </remarks>
-    protected void RunWithSymmetry(Vector3 position, TMetaball? parent, Action<Vector3, TMetaball?> callback,
-        HexEditorSymmetry? overrideSymmetry = null)
+    protected void RunWithSymmetry(float diameter, Vector3 position, TMetaball? parent,
+        Action<Vector3, TMetaball?> callback, HexEditorSymmetry? overrideSymmetry = null)
     {
         overrideSymmetry ??= Symmetry;
 
@@ -766,8 +762,41 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
                 break;
             }
 
+            case HexEditorSymmetry.XAxisSymmetry:
+            {
+                var symmetryPosition = position * new Vector3(-1, 1, 1);
+
+                if (position.DistanceTo(symmetryPosition) < diameter / 2)
+                {
+                    // If too close with the symmetry position, run as if symmetry was turned off to not have
+                    // overlapping metaballs
+                    callback(position, parent);
+                }
+                else
+                {
+                    callback(position, parent);
+
+                    if (parent != null)
+                    {
+                        // Resolve symmetry position's parent if there was a parent for the primary position
+                        var symmetryParent = editedMetaballs.GetClosestMetaballToPosition(
+                            parent.Position * new Vector3(-1, 1, 1));
+
+                        // TODO: should this verify that the parent is close enough to the actual position to use?
+
+                        callback(symmetryPosition, symmetryParent);
+                    }
+                    else
+                    {
+                        callback(symmetryPosition, null);
+                    }
+                }
+
+                break;
+            }
+
             default:
-                throw new NotSupportedException("symmetry editing not implemented yet");
+                throw new NotSupportedException("Other symmetry modes are not implemented");
         }
     }
 
