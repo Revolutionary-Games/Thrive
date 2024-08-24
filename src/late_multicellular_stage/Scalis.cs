@@ -133,7 +133,7 @@ public class Scalis : IMeshGeneratingFunction
             }
         }
 
-        return value / 2.0f;
+        return value / NormalizationFactor(i, sigma);
     }
 
     public Color GetColour(Vector3 pos)
