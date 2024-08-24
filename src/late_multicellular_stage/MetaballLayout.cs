@@ -198,9 +198,6 @@ public class MetaballLayout<T> : ICollection<T>, IReadOnlyCollection<T>
     {
         foreach (var metaball in this)
         {
-            if (metaball.Parent == null)
-                continue;
-
             var maxDistance = toleranceMultiplier * (metaball.Radius + metaball.Parent.Radius);
             var distance = metaball.Position.DistanceTo(metaball.Parent.Position);
 
