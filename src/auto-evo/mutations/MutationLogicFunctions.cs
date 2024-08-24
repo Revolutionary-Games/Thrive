@@ -1,6 +1,7 @@
 ﻿namespace AutoEvo;
 
 using System.Linq;
+using Microsoft.Extensions.Logging.Abstractions;
 
 public class MutationLogicFunctions
 {
@@ -21,7 +22,7 @@ public class MutationLogicFunctions
             newSpecies.Genus = parentSpecies.Genus;
         }
 
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(lowercase = true);
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
     }
 
     private static bool MicrobeSpeciesIsNewGenus(MicrobeSpecies species1, MicrobeSpecies species2)
