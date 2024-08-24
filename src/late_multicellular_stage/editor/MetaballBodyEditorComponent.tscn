@@ -311,7 +311,7 @@ _data = {
 "show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control"]
+[node name="MetaballBodyEditorComponent" type="Control" node_paths=PackedStringArray("MetaballResizeScroll")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,11 +339,12 @@ DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName"
 MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
 CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
 IslandErrorPath = NodePath("IslandError")
+MetaballResizeScroll = NodePath("BottomRight/VBoxContainer/MetaballResize")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
-CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
-FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
-FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+CancelButtonPath = NodePath("BottomRight/VBoxContainer/HBoxContainer/CancelButton")
+FinishWarningBadgePath = NodePath("BottomRight/VBoxContainer/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
+FinishOrNextButtonPath = NodePath("BottomRight/VBoxContainer/HBoxContainer/ConfirmButton")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(350, 0)
@@ -645,11 +646,22 @@ offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BottomRight"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BottomRight"]
+layout_mode = 2
+
+[node name="MetaballResize" type="HSlider" parent="BottomRight/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "RESIZE_METABALL_TOOLTIP"
+min_value = 0.4
+max_value = 10.0
+step = 0.2
+value = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomRight/VBoxContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="CancelButton" type="Button" parent="BottomRight/HBoxContainer"]
+[node name="CancelButton" type="Button" parent="BottomRight/VBoxContainer/HBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
@@ -662,7 +674,7 @@ theme_override_styles/pressed = SubResource("13")
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 
-[node name="ConfirmButton" type="Button" parent="BottomRight/HBoxContainer"]
+[node name="ConfirmButton" type="Button" parent="BottomRight/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
@@ -672,7 +684,7 @@ theme_override_styles/hover = SubResource("15")
 theme_override_styles/focus = SubResource("41")
 text = "NEXT_CAPITAL"
 
-[node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]
+[node name="MarginContainer" type="MarginContainer" parent="BottomRight/VBoxContainer/HBoxContainer/ConfirmButton"]
 layout_mode = 0
 anchor_left = 1.0
 anchor_right = 1.0
@@ -686,7 +698,7 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="WarningBadge" type="TextureRect" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer"]
+[node name="WarningBadge" type="TextureRect" parent="BottomRight/VBoxContainer/HBoxContainer/ConfirmButton/MarginContainer"]
 visible = false
 custom_minimum_size = Vector2(21, 21)
 layout_mode = 2
@@ -695,7 +707,7 @@ size_flags_vertical = 0
 texture = ExtResource("14")
 expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/VBoxContainer/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge"]
 libraries = {
 "": SubResource("AnimationLibrary_vbjf3")
 }
@@ -773,9 +785,10 @@ mouse_filter = 2
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
 [connection signal="OnSymmetryChanged" from="EditorComponentBottomLeftButtons" to="." method="OnSymmetryPressed"]
 [connection signal="OnUndo" from="EditorComponentBottomLeftButtons" to="." method="Undo"]
-[connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
-[connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
-[connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
+[connection signal="drag_ended" from="BottomRight/VBoxContainer/MetaballResize" to="." method="OnResizeMetaballSliderDragged"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
+[connection signal="pressed" from="BottomRight/VBoxContainer/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
+[connection signal="animation_finished" from="BottomRight/VBoxContainer/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
 [connection signal="Confirmed" from="NewTissueTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_submitted" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]

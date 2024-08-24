@@ -274,7 +274,7 @@ public partial class EditorCamera3D : Camera3D
     }
 
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { 1.0f, -1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
-    public void Resize(double delta, float value)
+    public void ResizeMetaball(double delta, float value)
     {
         if (!Input.IsActionPressed(panModeAction) || EditorComponent == null)
             return;
@@ -283,7 +283,10 @@ public partial class EditorCamera3D : Camera3D
 
         value *= ResizeValue;
 
-        EditorComponent.MetaballSize = (float)Mathf.Clamp(EditorComponent.MetaballSize + value, 0.4, 10.0);
+        EditorComponent.MetaballSize = (float)Mathf.Clamp(EditorComponent.MetaballSize + value, Constants.METABALL_MIN_SIZE, Constants.METABALL_MAX_SIZE);
+
+        if (EditorComponent.MetaballResizeScroll != null)
+            EditorComponent.MetaballResizeScroll.Value = EditorComponent.MetaballSize;
     }
 
     [RunOnAxis(new[] { "g_move_down", "g_move_up" }, new[] { -1.0f, 1.0f })]

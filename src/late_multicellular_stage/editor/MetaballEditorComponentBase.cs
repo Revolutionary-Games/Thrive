@@ -32,6 +32,11 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     [Export]
     public NodePath IslandErrorPath = null!;
 
+#pragma warning disable CA2213
+    [Export]
+    public HSlider? MetaballResizeScroll;
+#pragma warning restore CA2213
+
     /// <summary>
     ///   Set above 0 to make sure the arrow doesn't overlap with the ground circle graphics
     /// </summary>

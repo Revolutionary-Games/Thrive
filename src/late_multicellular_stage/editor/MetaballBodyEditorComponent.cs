@@ -156,6 +156,12 @@ public partial class MetaballBodyEditorComponent :
 
         ApplySelectionMenuTab();
 
+        if (MetaballResizeScroll != null)
+        {
+            MetaballResizeScroll.MinValue = Constants.METABALL_MIN_SIZE;
+            MetaballResizeScroll.MaxValue = Constants.METABALL_MAX_SIZE;
+        }
+        
         RegisterTooltips();
     }
 
@@ -1116,6 +1122,11 @@ public partial class MetaballBodyEditorComponent :
 
         selectedSelectionMenuTab = selection;
         ApplySelectionMenuTab();
+    }
+
+    private void OnResizeMetaballSliderDragged(bool changed)
+    {
+        MetaballSize = (float)MetaballResizeScroll!.Value;
     }
 
     private void ApplySelectionMenuTab()
