@@ -9,7 +9,7 @@ using Godot;
 /// </summary>
 public class Scalis : IMeshGeneratingFunction
 {
-    public float CutoffPointMultiplier = 1.5f;
+    public float CutoffPointMultiplier = 1.2f;
 
     public float InnerCutoffPointMultiplier = 2.0f;
 
@@ -23,6 +23,8 @@ public class Scalis : IMeshGeneratingFunction
     /// </summary>
     private readonly MulticellularMetaball[] points;
 
+    private readonly float[] boneMaxSquareDistanceCache;
+
     private float surfaceValue = 1.0f;
 
     public Scalis(IReadOnlyCollection<MulticellularMetaball> metaballs)
@@ -35,6 +37,26 @@ public class Scalis : IMeshGeneratingFunction
         {
             points[i] = point;
             ++i;
+        }
+
+        boneMaxSquareDistanceCache = new float[points.Length];
+
+        for (int j = 0; j < points.Length; j++)
+        {
+            if (points[j].Parent == null)
+                continue;
+
+            float maxDistanceFromCenter = (points[j].Position - points[j].Parent!.Position).Length() * 0.5f
+                + points[j].Radius + points[j].Parent!.Radius;
+            maxDistanceFromCenter *= CutoffPointMultiplier;
+
+            boneMaxSquareDistanceCache[j] =
+                Mathf.Pow(maxDistanceFromCenter, 2.0f);
+        }
+
+        if (points.Length == 1)
+        {
+            boneMaxSquareDistanceCache[0] = MathF.Pow(points[0].Radius * 2.0f, 2.0f);
         }
     }
 
@@ -55,44 +77,6 @@ public class Scalis : IMeshGeneratingFunction
 
         const int i = 3;
 
-        // Value of the root metaball is skipped and is always 0.0f;
-        var boneDistances = new float[points.Length];
-
-        // "Additive value" is a hack that allows us to approximate close-by bones "fusing" together, allowing a more
-        // precise cutoff.
-        float additiveValue = 0.0f;
-
-        if (Cutoff)
-        {
-            if (points.Length == 1)
-            {
-                boneDistances[0] = SquareCutoffValue(pos, points.First().Position * inverseSigma,
-                    points.First().Position * inverseSigma);
-            }
-            else
-            {
-                for (int j = 0; j < points.Length; ++j)
-                {
-                    var point = points[j];
-
-                    if (point.Parent == null)
-                        continue;
-
-                    boneDistances[j] = SquareCutoffValue(pos, point.Position * inverseSigma, point.Parent.Position
-                        * inverseSigma);
-                    additiveValue += 0.75f / (boneDistances[j] * Mathf.Max(point.Radius, point.Parent.Radius));
-
-                    float minRadius = Mathf.Min(point.Radius, point.Parent.Radius);
-
-                    // This accesses the field directly rather than through the property to avoid a property get call
-                    if (minRadius > 0.5f && boneDistances[j] < InnerCutoffPointMultiplier * minRadius / surfaceValue)
-                    {
-                        return 10.0f;
-                    }
-                }
-            }
-        }
-
         for (int j = 0; j < points.Length; ++j)
         {
             var point = points[j];
@@ -112,12 +96,6 @@ public class Scalis : IMeshGeneratingFunction
                 bRadius = point.Parent!.Radius;
             }
 
-            if (Cutoff && boneDistances[j] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
-                    * CutoffPointMultiplier * 2.0f / surfaceValue, 2.0f))
-            {
-                continue;
-            }
-
             Vector3 a = point.Position * inverseSigma;
             Vector3 b;
 
@@ -130,6 +108,11 @@ public class Scalis : IMeshGeneratingFunction
             else
             {
                 b = point.Parent!.Position * inverseSigma;
+            }
+
+            if (Cutoff && boneMaxSquareDistanceCache[j] < (pos - (a + b) * 0.5f).LengthSquared())
+            {
+                continue;
             }
 
             float tau0 = aRadius > bRadius ? bRadius : aRadius;
@@ -150,7 +133,7 @@ public class Scalis : IMeshGeneratingFunction
             }
         }
 
-        return value / NormalizationFactor(i, sigma);
+        return value / 2.0f;
     }
 
     public Color GetColour(Vector3 pos)
