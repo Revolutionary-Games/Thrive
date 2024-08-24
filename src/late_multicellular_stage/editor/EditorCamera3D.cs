@@ -270,7 +270,8 @@ public partial class EditorCamera3D : Camera3D
         ApplyTransform();
     }
 
-    [RunOnAxis(new[] { "e_increase_size", "e_decrease_size" }, new[] { 1.0f, -1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
+    [RunOnAxis(new[] { "e_increase_size", "e_decrease_size" }, new[] { 1.0f, -1.0f }, UseDiscreteKeyInputs = true,
+        Priority = -1)]
     public void ResizeMetaball(double delta, float value)
     {
         _ = delta;
