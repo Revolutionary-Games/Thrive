@@ -31,7 +31,9 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </remarks>
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
-    private Dictionary<Patch, Miche> micheByPatch = new();
+    private readonly List<PossibleSpecies> modifiedSpecies = new();
+
+    private readonly Dictionary<Patch, Miche> micheByPatch = new();
 
     public enum NewSpeciesType
     {
@@ -74,11 +76,23 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         micheByPatch[patch] = miche;
     }
 
-    public void AddMutationResultForSpecies(Species species, Species? mutated)
+    public void AddMutationResultForSpecies(Species species, Species? mutated,
+        KeyValuePair<Patch, long> populationBoostInPatches)
     {
         MakeSureResultExistsForSpecies(species);
 
         results[species].MutatedProperties = mutated;
+
+        results[species].NewPopulationInPatches.TryGetValue(populationBoostInPatches.Key, out var existing);
+        results[species].NewPopulationInPatches[populationBoostInPatches.Key] =
+            existing + populationBoostInPatches.Value;
+
+        // This code is kept in case the population increase is changed to allow multiple items
+        /*foreach (var population in populationBoostInPatches)
+        {
+            results[species].NewPopulationInPatches.TryGetValue(population.Key, out var existing);
+            results[species].NewPopulationInPatches[population.Key] = existing + population.Value;
+        }*/
     }
 
     public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
@@ -168,6 +182,17 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
+    public List<PossibleSpecies> GetPossibleSpeciesList()
+    {
+        return modifiedSpecies;
+    }
+
+    public void AddPossibleMutation(Species species, KeyValuePair<Patch, long> initialPopulationInPatches,
+        NewSpeciesType addType, Species parentSpecies)
+    {
+        modifiedSpecies.Add(new PossibleSpecies(species, initialPopulationInPatches, addType, parentSpecies));
+    }
+
     public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
         NewSpeciesType addType, Species parentSpecies)
     {
@@ -182,19 +207,16 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
-    public void AddSplitResultForSpecies(Species species, Species splitSpecies, List<Patch> patchesToConvert)
+    public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
+        NewSpeciesType addType, Species parentSpecies)
     {
-        if (patchesToConvert == null || patchesToConvert.Count < 1)
-            throw new ArgumentException("split patches is missing", nameof(patchesToConvert));
-
         MakeSureResultExistsForSpecies(species);
-        MakeSureResultExistsForSpecies(splitSpecies);
 
-        results[species].SplitOff = splitSpecies;
-        results[species].SplitOffPatches = patchesToConvert;
+        results[species].NewlyCreated = addType;
+        results[species].SplitFrom = parentSpecies;
 
-        results[splitSpecies].NewlyCreated = NewSpeciesType.SplitDueToMutation;
-        results[splitSpecies].SplitFrom = species;
+        results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
+            Math.Max(initialPopulationInPatch.Value, 0);
     }
 
     public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
@@ -1174,6 +1196,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
     }
 
+    /// <summary>
+    ///   A species that may come into existence due to auto-evo simulation, but it isn't guaranteed yet. These are
+    ///   resolved by <see cref="RegisterNewSpecies"/>
+    /// </summary>
+    public record struct PossibleSpecies(Species Species, KeyValuePair<Patch, long>
+        InitialPopulationInPatches, NewSpeciesType AddType, Species ParentSpecies);
+
     public class SpeciesResult
     {
         public Species Species;
@@ -1204,6 +1233,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         /// </summary>
         public NewSpeciesType? NewlyCreated;
 
+        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES:
         /// <summary>
         ///   If set, the specified species split off from this species taking all the population listed in
         ///   <see cref="SplitOffPatches"/>

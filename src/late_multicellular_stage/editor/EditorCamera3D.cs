@@ -284,7 +284,7 @@ public partial class EditorCamera3D : Camera3D
 
         value *= ResizeValue;
 
-        EditorComponent.MetaballSize = (float)Mathf.Clamp(EditorComponent.MetaballSize + value, 0.2, 10.0);
+        EditorComponent.MetaballSize = (float)Mathf.Clamp(EditorComponent.MetaballSize + value, 0.4, 10.0);
     }
 
     [RunOnAxis(new[] { "g_move_down", "g_move_up" }, new[] { -1.0f, 1.0f })]
