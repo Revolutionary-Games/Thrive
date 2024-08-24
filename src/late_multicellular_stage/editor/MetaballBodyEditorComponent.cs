@@ -161,7 +161,7 @@ public partial class MetaballBodyEditorComponent :
             MetaballResizeScroll.MinValue = Constants.METABALL_MIN_SIZE;
             MetaballResizeScroll.MaxValue = Constants.METABALL_MAX_SIZE;
         }
-        
+
         RegisterTooltips();
     }
 
