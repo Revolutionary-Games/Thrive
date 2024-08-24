@@ -22,6 +22,15 @@ public class Scalis : IMeshGeneratingFunction
     /// </summary>
     private readonly MulticellularMetaball[] points;
 
+    /// <summary>
+    ///   Max squared distance from a bone's center for a point to be calculated.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     i-th element here refers to the i-th point's bone in points[]. If that point has no parent, then it has no
+    ///     bone, so the distance in this array is meningless for the point.
+    ///   </para>
+    /// </remarks>
     private readonly float[] boneMaxSquareDistanceCache;
 
     private float surfaceValue = 1.0f;
@@ -205,11 +214,6 @@ public class Scalis : IMeshGeneratingFunction
             return b;
 
         return linePos;
-    }
-
-    private float SquareCutoffValue(Vector3 pos, Vector3 a, Vector3 b)
-    {
-        return (ClosestPoint(pos, a, b) - pos).LengthSquared();
     }
 
     private float Convolution(int k, int i, Vector3 pointA, Vector3 pointB, Vector3 pointP)
