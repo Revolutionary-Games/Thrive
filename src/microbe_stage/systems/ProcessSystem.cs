@@ -120,7 +120,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             foreach (var process in organelle.RunnableProcesses)
             {
-                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome, amountType));
+                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome, amountType, false));
             }
 
             result[organelle.InternalName] = info;
@@ -285,7 +285,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType);
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -340,7 +340,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType);
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
 
                 useRatio = false;
 
@@ -427,55 +427,21 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
             else
             {
-                processData = CalculateProcessMaximumSpeed(process, biome, amountType);
+                processData = CalculateProcessMaximumSpeed(process, biome, amountType, true);
             }
 
-            if (processData.WritableInputs.TryGetValue(ATP, out var amount))
+            if (processData.WritableInputs.TryGetValue(ATP, out var amount) && amount > 0)
             {
                 processATPConsumption += amount;
 
                 result?.AddConsumption(organelle.Definition.InternalName, amount);
             }
 
-            if (processData.WritableOutputs.TryGetValue(ATP, out amount))
+            if (processData.WritableOutputs.TryGetValue(ATP, out amount) && amount > 0)
             {
                 result?.AddProduction(organelle.Definition.InternalName, amount);
 
-                var isInPatch = true;
-
-                foreach (var input in processData.WritableInputs)
-                {
-                    if (biome.Compounds.TryGetValue(input.Key, out var inputCompoundData))
-                    {
-                        if (inputCompoundData.Amount > 0 || inputCompoundData.Ambient > 0)
-                            continue;
-                    }
-
-                    bool isInChunk = false;
-
-                    foreach (var chunk in biome.Chunks.Values)
-                    {
-                        if (chunk.Compounds != null && chunk.Compounds.TryGetValue(input.Key, out var chunkCompound))
-                        {
-                            if (chunkCompound.Amount > 0)
-                            {
-                                isInChunk = true;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (isInChunk)
-                        continue;
-
-                    isInPatch = false;
-                    break;
-                }
-
-                if (isInPatch)
-                {
-                    processATPProduction += amount;
-                }
+                processATPProduction += amount;
             }
         }
 
@@ -487,12 +453,49 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Can be switched between the average, maximum etc. conditions that occur in the span of an in-game day.
     /// </summary>
     public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        BiomeConditions biome, CompoundAmountType pointInTimeType)
+        BiomeConditions biome, CompoundAmountType pointInTimeType, bool checkIfInPatch)
     {
         var result = new ProcessSpeedInformation(process.Process);
 
         float speedFactor = 1.0f;
         float efficiency = 1.0f;
+
+        if (checkIfInPatch)
+        {
+            foreach (var input in process.Process.Inputs)
+            {
+                if (input.Key == ATP)
+                    continue;
+
+                // Quickly check all inputs to see if they are in the patch
+                var inPatch = false;
+                if (biome.AverageCompounds.TryGetValue(input.Key, out var neededCompound))
+                {
+                    if (neededCompound.Ambient > 0 || neededCompound.Amount > 0)
+                    {
+                        inPatch = true;
+                    }
+                }
+
+                if (!inPatch)
+                {
+                    foreach (var chunk in biome.Chunks.Values)
+                    {
+                        if (chunk.Density > 0 && chunk.Compounds?.TryGetValue(input.Key, out var chunkCompound) == true)
+                        {
+                            if (chunkCompound.Amount > 0)
+                            {
+                                inPatch = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (!inPatch)
+                    speedFactor = 0;
+            }
+        }
 
         // Environmental inputs need to be processed first
         foreach (var input in process.Process.Inputs)

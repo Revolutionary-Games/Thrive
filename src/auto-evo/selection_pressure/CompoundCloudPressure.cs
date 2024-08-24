@@ -33,7 +33,7 @@ public class CompoundCloudPressure : SelectionPressure
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var score = cache.GetSpeedForSpecies(microbeSpecies);
+        var score = MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.6f);
 
         // Species that are less active during the night get a small penalty here based on their activity
         if (isDayNightCycleEnabled && cache.GetUsesVaryingCompoundsForSpecies(microbeSpecies, patch.Biome))

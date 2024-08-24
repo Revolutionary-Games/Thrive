@@ -315,6 +315,7 @@ public class ModifyExistingSpecies : IRunStep
 
         // This section of the code tries to mutate species into unfilled miches
         // Not exactly realistic, but more diversity is more fun for the player
+        // TODO: Make this an auto-evo option
         foreach (var emptyLeafNode in emptyLeafNodes)
         {
             currentTraversal.Clear();
