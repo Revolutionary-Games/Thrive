@@ -49,16 +49,18 @@ public class Scalis : IMeshGeneratingFunction
 
         boneMaxSquareDistanceCache = new float[points.Length];
 
-        for (int j = 0; j < points.Length; j++)
+        for (i = 0; i < points.Length; i++)
         {
-            if (points[j].Parent == null)
+            var point = points[i];
+
+            if (point.Parent == null)
                 continue;
 
-            float maxDistanceFromCenter = (points[j].Position - points[j].Parent!.Position).Length() * 0.5f
-                + points[j].Radius + points[j].Parent!.Radius;
+            float maxDistanceFromCenter = (point.Position - point.Parent!.Position).Length() * 0.5f
+                + point.Radius + point.Parent!.Radius;
             maxDistanceFromCenter *= CutoffPointMultiplier;
 
-            boneMaxSquareDistanceCache[j] =
+            boneMaxSquareDistanceCache[i] =
                 Mathf.Pow(maxDistanceFromCenter, 2.0f);
         }
 
