@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class EditorCamera3D : Camera3D
 {
+    [Export]
+    public MetaballBodyEditorComponent? EditorComponent;
+
     /// <summary>
     ///   Minimum distance the camera can be at from the rotate point
     /// </summary>
@@ -45,6 +48,9 @@ public partial class EditorCamera3D : Camera3D
 
     [Export]
     public bool InvertedMousePanning;
+
+    [Export]
+    public float ResizeValue = 0.2f;
 
     /// <summary>
     ///   The current rotation around the X-axis
@@ -258,10 +264,27 @@ public partial class EditorCamera3D : Camera3D
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1.0f, 1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
     public void ZoomInOrOut(double delta, float value)
     {
+        if (Input.IsActionPressed(panModeAction))
+            return;
+
         _ = delta;
 
         ViewDistance = (ViewDistance + ZoomSpeed * value).Clamp(MinDistance, MaxDistance);
         ApplyTransform();
+    }
+
+
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { 1.0f, -1.0f }, UseDiscreteKeyInputs = true, Priority = -1)]
+    public void Resize(double delta, float value)
+    {
+        if (!Input.IsActionPressed(panModeAction) || EditorComponent == null)
+            return;
+
+        _ = delta;
+
+        value *= ResizeValue;
+
+        EditorComponent.MetaballSize = (float)Mathf.Clamp(EditorComponent.MetaballSize + value, 0.2, 10.0);
     }
 
     [RunOnAxis(new[] { "g_move_down", "g_move_up" }, new[] { -1.0f, 1.0f })]
@@ -291,6 +314,7 @@ public partial class EditorCamera3D : Camera3D
         if (disposing)
         {
             panModeAction.Dispose();
+            EditorComponent?.Dispose();
         }
 
         base.Dispose(disposing);

@@ -66,6 +66,10 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     public NodePath CannotReduceBrainPowerPopupPath = null!;
 
+    // TODO: add way to control the size of the placed metaball
+    [JsonProperty]
+    public float MetaballSize = 1.0f;
+
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
@@ -110,10 +114,6 @@ public partial class MetaballBodyEditorComponent :
 
     private PackedScene structuralMetaballDisplayerScene = null!;
 #pragma warning restore CA2213
-
-    // TODO: add way to control the size of the placed metaball
-    [JsonProperty]
-    private float metaballSize = 1.0f;
 
     [JsonProperty]
     private string newName = "unset";
@@ -600,7 +600,7 @@ public partial class MetaballBodyEditorComponent :
 
     private Vector3 FinalMetaballPosition(Vector3 position, MulticellularMetaball parent, float? size = null)
     {
-        size ??= metaballSize;
+        size ??= MetaballSize;
         var direction = (position - parent.Position).Normalized();
 
         return parent.Position + direction * (parent.Radius + size.Value * 0.5f);
@@ -615,7 +615,7 @@ public partial class MetaballBodyEditorComponent :
         {
             Parent = parent,
             Position = parent != null ? FinalMetaballPosition(position, parent) : position,
-            Size = metaballSize,
+            Size = MetaballSize,
         };
 
         if (hoverMetaballData.Count <= usedHoverMetaballIndex)
@@ -663,7 +663,7 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(cellType, symmetryPosition, metaballSize, symmetryParent);
+                var placed = CreatePlaceActionIfPossible(cellType, symmetryPosition, MetaballSize, symmetryParent);
 
                 if (placed != null)
                 {
@@ -793,7 +793,7 @@ public partial class MetaballBodyEditorComponent :
                 action = new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(
                     DoMetaballPlaceAction,
                     UndoMetaballPlaceAction,
-                    new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, metaballSize,
+                    new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, MetaballSize,
                         parent));
             }
 
