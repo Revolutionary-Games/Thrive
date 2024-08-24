@@ -212,6 +212,7 @@ public static class MichePopulation
         if (species.Count < 1)
             return;
 
+        // TODO: When supporting Multicell Species replace the is Microbe Species with a null check
         var leafNodes = new List<Miche>();
         miche.GetLeafNodes(leafNodes, x => x.Occupant is MicrobeSpecies);
 
