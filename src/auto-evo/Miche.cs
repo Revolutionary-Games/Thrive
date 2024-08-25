@@ -254,14 +254,14 @@ public class Miche
     {
         public HashSet<Species> WorkingHashSet = new();
 
-        private List<Dictionary<Species, float>> ScoreDictionaries = new();
+        private readonly List<Dictionary<Species, float>> scoreDictionaries = new();
 
         public Dictionary<Species, float> GetScoresAtDepth(int depth)
         {
-            while (ScoreDictionaries.Count <= depth)
-                ScoreDictionaries.Add(new Dictionary<Species, float>());
+            while (scoreDictionaries.Count <= depth)
+                scoreDictionaries.Add(new Dictionary<Species, float>());
 
-            return ScoreDictionaries[depth];
+            return scoreDictionaries[depth];
         }
     }
 }
