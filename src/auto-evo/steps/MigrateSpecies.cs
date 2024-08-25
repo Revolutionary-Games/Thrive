@@ -15,8 +15,6 @@ public class MigrateSpecies : IRunStep
     private readonly SimulationCache cache;
     private readonly Random random;
 
-    private readonly HashSet<Species> speciesWorkMemory = new();
-
     public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
         Random randomSource)
     {
@@ -99,7 +97,9 @@ public class MigrateSpecies : IRunStep
                 var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
                     population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
-                if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, speciesWorkMemory))
+                var insertWorkMemory = new Miche.InsertWorkingMemory(targetMiche);
+
+                if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, insertWorkMemory))
                 {
                     results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
                     usedTargets.Add(target);

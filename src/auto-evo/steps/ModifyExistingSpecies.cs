@@ -62,6 +62,7 @@ public class ModifyExistingSpecies : IRunStep
     private Dictionary<Species, long>.Enumerator speciesEnumerator;
 
     private Miche? miche;
+    private Miche.InsertWorkingMemory? insertWorkingMemory;
 
     private Step step;
 
@@ -112,6 +113,8 @@ public class ModifyExistingSpecies : IRunStep
             miche.GetOccupants(speciesWorkMemory);
 
             miche.GetLeafNodes(nonEmptyLeafNodes, emptyLeafNodes, x => x.Occupant != null);
+
+            insertWorkingMemory = new Miche.InsertWorkingMemory(miche);
         }
 
         // This auto-evo step is split into sub steps so that each run doesn't take many seconds like it would
@@ -191,7 +194,7 @@ public class ModifyExistingSpecies : IRunStep
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.
-                    miche.InsertSpecies(mutation.MutatedSpecies, patch, null, cache, false, workMemory);
+                    miche.InsertSpecies(mutation.MutatedSpecies, patch, null, cache, false, insertWorkingMemory!);
                 }
 
                 newOccupantsWorkMemory.Clear();

@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo;
 
-using System.Collections.Generic;
-
 /// <summary>
 ///   Dynamically generates the <see cref="Miche"/> tree for each <see cref="Patch"/>
 /// </summary>
@@ -144,11 +142,11 @@ public class GenerateMiche : IRunStep
         if (patch.SpeciesInPatch.Count < 1)
             return miche;
 
-        var workMemory = new HashSet<Species>();
+        var insertWorkMemory = new Miche.InsertWorkingMemory(miche);
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
-            miche.InsertSpecies(species, patch, null, cache, false, workMemory);
+            miche.InsertSpecies(species, patch, null, cache, false, insertWorkMemory);
         }
 
         return miche;

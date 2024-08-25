@@ -190,7 +190,7 @@ public static class MichePopulation
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetMicheForPatch(patch);
 
-        var workMemory = new HashSet<Species>();
+        var insertWorkMemory = new Miche.InsertWorkingMemory(miche);
 
         var species = new HashSet<Species>();
 
@@ -199,7 +199,7 @@ public static class MichePopulation
         {
             if (simulationConfiguration.ReplacedSpecies.TryGetValue(currentSpecies, out var replacement))
             {
-                miche.InsertSpecies(replacement, patch, null, cache, false, workMemory);
+                miche.InsertSpecies(replacement, patch, null, cache, false, insertWorkMemory);
 
                 species.Add(replacement);
                 continue;

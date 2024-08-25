@@ -125,6 +125,26 @@ public class Miche
         newChild.Parent = this;
     }
 
+    public int GetDeepestDepth()
+    {
+        return GetDeepestDepth(1);
+    }
+
+    public int GetDeepestDepth(int depth)
+    {
+        if (IsLeafNode())
+            return depth;
+
+        var maxDepth = depth;
+
+        foreach (var child in Children)
+        {
+            maxDepth = Math.Max(maxDepth, child.GetDeepestDepth(depth + 1));
+        }
+
+        return maxDepth;
+    }
+
     /// <summary>
     ///   Inserts a species into any spots on the tree where the species is a better fit than any current occupants
     /// </summary>
@@ -136,11 +156,12 @@ public class Miche
     /// <param name="cache">Data cache for faster calculation</param>
     /// <param name="dry">If true the species is not inserted but only checked if it could be inserted</param>
     /// <param name="workingMemory">Temporary working memory to use by this method, automatically cleared</param>
+    /// <param name="depth">Depth in the miche tree</param>
     /// <returns>
     ///   Returns a bool based on if the species was inserted into a leaf node
     /// </returns>
     public bool InsertSpecies(Species species, Patch patch, Dictionary<Species, float>? scoresSoFar,
-        SimulationCache cache, bool dry, HashSet<Species> workingMemory)
+        SimulationCache cache, bool dry, InsertWorkingMemory workingMemory, int depth = 0)
     {
         var myScore = Pressure.Score(species, patch, cache);
 
@@ -156,18 +177,17 @@ public class Miche
             return true;
         }
 
-        // TODO: somehow avoid this recursive method call memory allocations
-        var newScores = new Dictionary<Species, float>();
+        var newScores = workingMemory.ScoreDictionaries[depth];
+        newScores.Clear();
 
-        workingMemory.Clear();
-        GetOccupants(workingMemory);
+        workingMemory.WorkingHashSet.Clear();
+        GetOccupants(workingMemory.WorkingHashSet);
 
         // Build new scores on top of previous values
         if (scoresSoFar == null)
         {
             // Initial call, not recursive
-
-            foreach (var currentSpecies in workingMemory)
+            foreach (var currentSpecies in workingMemory.WorkingHashSet)
             {
                 newScores[currentSpecies] =
                     Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
@@ -175,7 +195,7 @@ public class Miche
         }
         else
         {
-            foreach (var currentSpecies in workingMemory)
+            foreach (var currentSpecies in workingMemory.WorkingHashSet)
             {
                 var addedScoreAmount =
                     Pressure.WeightedComparedScores(myScore, Pressure.Score(currentSpecies, patch, cache));
@@ -205,7 +225,7 @@ public class Miche
         var inserted = false;
         foreach (var child in Children)
         {
-            if (child.InsertSpecies(species, patch, newScores, cache, dry, workingMemory))
+            if (child.InsertSpecies(species, patch, newScores, cache, dry, workingMemory, depth + 1))
             {
                 inserted = true;
 
@@ -245,5 +265,22 @@ public class Miche
         // TODO: as Occupant can change it should not be used as part of the hash code
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
+    }
+
+    public class InsertWorkingMemory
+    {
+        public HashSet<Species> WorkingHashSet = new();
+
+        public List<Dictionary<Species, float>> ScoreDictionaries;
+
+        public InsertWorkingMemory(Miche miche)
+        {
+            ScoreDictionaries = [];
+
+            for (var i = 0; i < miche.GetDeepestDepth(); ++i)
+            {
+                ScoreDictionaries.Add(new Dictionary<Species, float>());
+            }
+        }
     }
 }
