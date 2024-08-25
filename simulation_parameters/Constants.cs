@@ -650,6 +650,12 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
 
+    /// <summary>
+    ///   This much damage has to be dealt in a single instance to prevent health regen. This is pretty high to avoid
+    ///   small trickle damage the player can't notice from preventing health regen.
+    /// </summary>
+    public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
+
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
