@@ -453,14 +453,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Can be switched between the average, maximum etc. conditions that occur in the span of an in-game day.
     /// </summary>
     public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        BiomeConditions biome, CompoundAmountType pointInTimeType, bool checkIfInPatch)
+        BiomeConditions biome, CompoundAmountType pointInTimeType, bool requireInputCompoundsInBiome)
     {
         var result = new ProcessSpeedInformation(process.Process);
 
         float speedFactor = 1.0f;
         float efficiency = 1.0f;
 
-        if (checkIfInPatch)
+        if (requireInputCompoundsInBiome)
         {
             foreach (var input in process.Process.Inputs)
             {

@@ -22,6 +22,8 @@ public static class MichePopulation
         // to IRunStep.RunStep might not be worth the effort at all
         var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
 
+        var insertWorkMemory = new Miche.InsertWorkingMemory();
+
         var random = new XoShiRo256starstar(randomSource.NextInt64());
 
         var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
@@ -38,7 +40,7 @@ public static class MichePopulation
 
         while (parameters.StepsLeft > 0)
         {
-            RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
+            RunSimulationStep(parameters, speciesToSimulate, patchesList, insertWorkMemory, random, cache);
             --parameters.StepsLeft;
         }
     }
@@ -166,13 +168,15 @@ public static class MichePopulation
     }
 
     private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
-        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache)
+        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Miche.InsertWorkingMemory insertWorkingMemory,
+        Random random, SimulationCache cache)
     {
         foreach (var entry in patchesToSimulate)
         {
             // Simulate the species in each patch taking into account the already computed populations
             SimulatePatchStep(parameters, entry.Value,
-                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), random, cache);
+                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), insertWorkingMemory,
+                random, cache);
         }
     }
 
@@ -180,7 +184,8 @@ public static class MichePopulation
     ///   The heart of the simulation that handles the processed parameters and calculates future populations.
     /// </summary>
     private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, Random random, SimulationCache cache)
+        IEnumerable<Species> genericSpecies, Miche.InsertWorkingMemory insertWorkingMemory, Random random,
+        SimulationCache cache)
     {
         _ = random;
 
@@ -190,8 +195,6 @@ public static class MichePopulation
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetMicheForPatch(patch);
 
-        var insertWorkMemory = new Miche.InsertWorkingMemory(miche);
-
         var species = new HashSet<Species>();
 
         // TODO: switch this to something else that doesn't require a memory allocation to iterate
@@ -199,7 +202,7 @@ public static class MichePopulation
         {
             if (simulationConfiguration.ReplacedSpecies.TryGetValue(currentSpecies, out var replacement))
             {
-                miche.InsertSpecies(replacement, patch, null, cache, false, insertWorkMemory);
+                miche.InsertSpecies(replacement, patch, null, cache, false, insertWorkingMemory);
 
                 species.Add(replacement);
                 continue;

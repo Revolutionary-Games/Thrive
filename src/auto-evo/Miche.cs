@@ -125,26 +125,6 @@ public class Miche
         newChild.Parent = this;
     }
 
-    public int GetDeepestDepth()
-    {
-        return GetDeepestDepth(1);
-    }
-
-    public int GetDeepestDepth(int depth)
-    {
-        if (IsLeafNode())
-            return depth;
-
-        var maxDepth = depth;
-
-        foreach (var child in Children)
-        {
-            maxDepth = Math.Max(maxDepth, child.GetDeepestDepth(depth + 1));
-        }
-
-        return maxDepth;
-    }
-
     /// <summary>
     ///   Inserts a species into any spots on the tree where the species is a better fit than any current occupants
     /// </summary>
@@ -177,7 +157,7 @@ public class Miche
             return true;
         }
 
-        var newScores = workingMemory.ScoreDictionaries[depth];
+        var newScores = workingMemory.GetScoresAtDepth(depth);
         newScores.Clear();
 
         workingMemory.WorkingHashSet.Clear();
@@ -267,20 +247,21 @@ public class Miche
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
     }
 
+    /// <summary>
+    ///   Working memory used to reduce memory allocations in miche.insert()
+    /// </summary>
     public class InsertWorkingMemory
     {
         public HashSet<Species> WorkingHashSet = new();
 
-        public List<Dictionary<Species, float>> ScoreDictionaries;
+        private List<Dictionary<Species, float>> ScoreDictionaries = new();
 
-        public InsertWorkingMemory(Miche miche)
+        public Dictionary<Species, float> GetScoresAtDepth(int depth)
         {
-            ScoreDictionaries = [];
-
-            for (var i = 0; i < miche.GetDeepestDepth(); ++i)
-            {
+            while (ScoreDictionaries.Count <= depth)
                 ScoreDictionaries.Add(new Dictionary<Species, float>());
-            }
+
+            return ScoreDictionaries[depth];
         }
     }
 }

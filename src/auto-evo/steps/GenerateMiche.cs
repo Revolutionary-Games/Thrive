@@ -142,7 +142,7 @@ public class GenerateMiche : IRunStep
         if (patch.SpeciesInPatch.Count < 1)
             return miche;
 
-        var insertWorkMemory = new Miche.InsertWorkingMemory(miche);
+        var insertWorkMemory = new Miche.InsertWorkingMemory();
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {

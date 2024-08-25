@@ -14,6 +14,7 @@ public class MigrateSpecies : IRunStep
     private readonly WorldGenerationSettings worldSettings;
     private readonly SimulationCache cache;
     private readonly Random random;
+    private readonly Miche.InsertWorkingMemory insertWorkingMemory;
 
     public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
         Random randomSource)
@@ -22,6 +23,8 @@ public class MigrateSpecies : IRunStep
         this.cache = cache;
         this.map = map;
         this.worldSettings = worldSettings;
+
+        insertWorkingMemory = new Miche.InsertWorkingMemory();
 
         random = new XoShiRo128starstar(randomSource.NextInt64());
     }
@@ -97,9 +100,7 @@ public class MigrateSpecies : IRunStep
                 var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
                     population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
-                var insertWorkMemory = new Miche.InsertWorkingMemory(targetMiche);
-
-                if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, insertWorkMemory))
+                if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, insertWorkingMemory))
                 {
                     results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
                     usedTargets.Add(target);
