@@ -28,7 +28,7 @@ public class Scalis : IMeshGeneratingFunction
     /// <remarks>
     ///   <para>
     ///     i-th element here refers to the i-th point's bone in points[]. If that point has no parent, then it has no
-    ///     bone, so the distance in this array is meningless for the point.
+    ///     bone, so the distance in this array is meaningless for the point.
     ///   </para>
     /// </remarks>
     private readonly float[] boneMaxSquareDistanceCache;
@@ -49,19 +49,19 @@ public class Scalis : IMeshGeneratingFunction
 
         boneMaxSquareDistanceCache = new float[points.Length];
 
-        for (i = 0; i < points.Length; i++)
+        for (i = 0; i < points.Length; ++i)
         {
             var point = points[i];
 
-            if (point.Parent == null)
+            var pointParent = point.Parent;
+            if (pointParent == null)
                 continue;
 
-            float maxDistanceFromCenter = (point.Position - point.Parent!.Position).Length() * 0.5f
-                + point.Radius + point.Parent!.Radius;
+            float maxDistanceFromCenter = (point.Position - pointParent.Position).Length() * 0.5f
+                + point.Radius + pointParent.Radius;
             maxDistanceFromCenter *= CutoffPointMultiplier;
 
-            boneMaxSquareDistanceCache[i] =
-                Mathf.Pow(maxDistanceFromCenter, 2.0f);
+            boneMaxSquareDistanceCache[i] = Mathf.Pow(maxDistanceFromCenter, 2.0f);
         }
 
         if (points.Length == 1)
