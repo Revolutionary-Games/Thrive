@@ -404,7 +404,7 @@ public partial class SimulationParameters : Node
         foreach (var organelle in usedOrganelles)
         {
             chosenOrganelle = organelle;
-            valueLeft -= organelle.ProkaryoteChance;
+            valueLeft -= 1;
 
             if (valueLeft <= 0.00001f)
                 return chosenOrganelle;
@@ -429,7 +429,7 @@ public partial class SimulationParameters : Node
         foreach (var organelle in usedOrganelles)
         {
             chosenOrganelle = organelle;
-            valueLeft -= organelle.ChanceToCreate;
+            valueLeft -= 1;
 
             if (valueLeft <= 0.00001f)
                 return chosenOrganelle;
@@ -802,16 +802,16 @@ public partial class SimulationParameters : Node
         {
             var organelle = entry.Value;
 
-            if (organelle.ChanceToCreate > 0)
+            if (organelle.AutoEvoCanPlace)
             {
                 eukaryoticOrganelles.Add(organelle);
-                eukaryoticOrganellesChance += organelle.ChanceToCreate;
-            }
+                eukaryoticOrganellesChance += 1;
 
-            if (organelle.ProkaryoteChance > 0)
-            {
-                prokaryoticOrganelles.Add(organelle);
-                prokaryoticOrganellesTotalChance += organelle.ChanceToCreate;
+                if (!organelle.RequiresNucleus)
+                {
+                    prokaryoticOrganelles.Add(organelle);
+                    prokaryoticOrganellesTotalChance += 1;
+                }
             }
         }
     }
