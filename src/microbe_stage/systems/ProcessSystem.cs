@@ -265,7 +265,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Assumes that all processes run at maximum speed
+    ///     Assumes that all processes run at maximum speed but only if input compounds are present in
+    ///     <see cref="biome"/>
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
@@ -316,7 +317,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Assumes that the cell produces at most as much ATP as it consumes
+    ///     Assumes that the cell produces at most as much ATP as it consumes (but can only run processes that have
+    ///     input compounds present in <see cref="biome"/>)
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
@@ -412,6 +414,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         return balancesToSupplement;
     }
 
+    /// <summary>
+    ///   Calculates ATP balance with the given organelle in the given <see cref="biome"/> (so only processes with
+    ///   input compounds present in the biome can run)
+    /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
         BiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
     {
@@ -452,6 +458,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Calculates the maximum speed a process can run at in a biome based on the environmental compounds.
     ///   Can be switched between the average, maximum etc. conditions that occur in the span of an in-game day.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     If <see cref="requireInputCompoundsInBiome"/> is true then this method checks that the process inputs
+    ///     (except ATP) is present in <see cref="biome"/> and if some input is not available then the process is
+    ///     calculated to have <b>0</b> speed.
+    ///   </para>
+    /// </remarks>
     public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
         BiomeConditions biome, CompoundAmountType pointInTimeType, bool requireInputCompoundsInBiome)
     {
@@ -464,6 +477,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var input in process.Process.Inputs)
             {
+                // TODO: maybe this check should be expanded to consider any input compounds that the cell can produce
+                // *itself* that way this will consider non-directly used compounds and calculate the speed correctly.
+                // Without this any compounds cells usually produce will need to be skipped here similarly to ATP.
                 if (input.Key == ATP)
                     continue;
 
