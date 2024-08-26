@@ -42,7 +42,7 @@ public class AutoEvoGlobalCache
         MetabolicStabilityPressure = new MetabolicStabilityPressure(10.0f);
 
         MinorGlucoseConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(glucose, atp, 0.75f);
-        MaintainGlucose = new MaintainCompoundPressure(glucose, 1.0f);
+        MaintainGlucose = new MaintainCompoundPressure(glucose, 1.5f);
 
         GlucoseConversionEfficiencyPressure = new CompoundConversionEfficiencyPressure(glucose, atp, 1.5f);
         GlucoseCloudPressure = new CompoundCloudPressure(glucose, worldSettings.DayNightCycleEnabled, 1.0f);

@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Godot;
 using Xoshiro.PRNG64;
 
 /// <summary>
@@ -21,6 +22,8 @@ public static class MichePopulation
         // to IRunStep.RunStep might not be worth the effort at all
         var cache = existingCache ?? new SimulationCache(parameters.WorldSettings);
 
+        var insertWorkMemory = new Miche.InsertWorkingMemory();
+
         var random = new XoShiRo256starstar(randomSource.NextInt64());
 
         var speciesToSimulate = CopyInitialPopulationsToResults(parameters);
@@ -37,7 +40,7 @@ public static class MichePopulation
 
         while (parameters.StepsLeft > 0)
         {
-            RunSimulationStep(parameters, speciesToSimulate, patchesList, random, cache);
+            RunSimulationStep(parameters, speciesToSimulate, patchesList, insertWorkMemory, random, cache);
             --parameters.StepsLeft;
         }
     }
@@ -80,15 +83,25 @@ public static class MichePopulation
         // Copy non excluded species
         foreach (var candidateSpecies in parameters.OriginalMap.FindAllSpeciesWithPopulation())
         {
-            if (parameters.ExcludedSpecies.Contains(candidateSpecies))
+            if (parameters.ReplacedSpecies.TryGetValue(candidateSpecies, out var replacement))
+            {
+                // Copy replacement species to simulate
+                species.Add(replacement);
+
+#if DEBUG
+                if (replacement.ID != candidateSpecies.ID)
+                {
+                    GD.PrintErr("Replacement species ID should match the replaced species, otherwise bad " +
+                        "things will happen");
+                }
+#endif
                 continue;
+            }
 
             species.Add(candidateSpecies);
         }
 
-        // Copy extra species
-        species.AddRange(parameters.ExtraSpecies);
-
+        // TODO: this can probably be removed soon finally
         foreach (var entry in species)
         {
             // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
@@ -109,30 +122,24 @@ public static class MichePopulation
             {
                 long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
 
-                // If this is an extra species, this first takes the
-                // population from excluded species that match its index, if that
-                // doesn't exist then the global population number (from Species) is used
-                if (currentPopulation == 0 && parameters.ExtraSpecies.Contains(currentSpecies))
+                // If this is a replacement species, this instead takes the
+                if (currentPopulation == 0)
                 {
-                    bool useGlobal = true;
+                    Species? isExtraFor = null;
 
-                    for (int i = 0; i < parameters.ExtraSpecies.Count; ++i)
+                    foreach (var tuple in parameters.ReplacedSpecies)
                     {
-                        if (parameters.ExtraSpecies[i] == currentSpecies)
+                        if (tuple.Value == currentSpecies)
                         {
-                            if (parameters.ExcludedSpecies.Count > i)
-                            {
-                                currentPopulation =
-                                    patch.GetSpeciesSimulationPopulation(parameters.ExcludedSpecies[i]);
-                                useGlobal = false;
-                            }
-
+                            isExtraFor = tuple.Key;
                             break;
                         }
                     }
 
-                    if (useGlobal)
-                        currentPopulation = currentSpecies.Population;
+                    if (isExtraFor != null)
+                    {
+                        currentPopulation = patch.GetSpeciesSimulationPopulation(isExtraFor);
+                    }
                 }
 
                 // Apply migrations
@@ -161,13 +168,15 @@ public static class MichePopulation
     }
 
     private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species,
-        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Random random, SimulationCache cache)
+        IEnumerable<KeyValuePair<int, Patch>> patchesToSimulate, Miche.InsertWorkingMemory insertWorkingMemory,
+        Random random, SimulationCache cache)
     {
         foreach (var entry in patchesToSimulate)
         {
             // Simulate the species in each patch taking into account the already computed populations
             SimulatePatchStep(parameters, entry.Value,
-                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), random, cache);
+                species.Where(s => parameters.Results.GetPopulationInPatch(s, entry.Value) > 0), insertWorkingMemory,
+                random, cache);
         }
     }
 
@@ -175,7 +184,8 @@ public static class MichePopulation
     ///   The heart of the simulation that handles the processed parameters and calculates future populations.
     /// </summary>
     private static void SimulatePatchStep(SimulationConfiguration simulationConfiguration, Patch patch,
-        IEnumerable<Species> genericSpecies, Random random, SimulationCache cache)
+        IEnumerable<Species> genericSpecies, Miche.InsertWorkingMemory insertWorkingMemory, Random random,
+        SimulationCache cache)
     {
         _ = random;
 
@@ -185,25 +195,18 @@ public static class MichePopulation
         // Note that this modifies the miche tree while simulating
         var miche = populations.GetMicheForPatch(patch);
 
-        var workMemory = new HashSet<Species>();
-
-        // This prevents duplicates caused by ExtraSpecies
         var species = new HashSet<Species>();
 
-        foreach (var extraSpecies in simulationConfiguration.ExtraSpecies)
-        {
-            miche.InsertSpecies(extraSpecies, patch, null, cache, false, workMemory);
-
-            if (simulationConfiguration.ExcludedSpecies.Contains(extraSpecies))
-                throw new InvalidOperationException("Excluded species may not contain defined extra species");
-
-            species.Add(extraSpecies);
-        }
-
+        // TODO: switch this to something else that doesn't require a memory allocation to iterate
         foreach (var currentSpecies in genericSpecies)
         {
-            if (simulationConfiguration.ExcludedSpecies.Contains(currentSpecies))
+            if (simulationConfiguration.ReplacedSpecies.TryGetValue(currentSpecies, out var replacement))
+            {
+                miche.InsertSpecies(replacement, patch, null, cache, false, insertWorkingMemory);
+
+                species.Add(replacement);
                 continue;
+            }
 
             species.Add(currentSpecies);
         }
@@ -213,14 +216,13 @@ public static class MichePopulation
             return;
 
         var leafNodes = new List<Miche>();
-        miche.GetLeafNodes(leafNodes, x => x.Occupant != null);
+
+        // TODO: When supporting multicellular species replace the is MicrobeSpecies with a null check
+        miche.GetLeafNodes(leafNodes, x => x.Occupant is MicrobeSpecies);
 
         // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
         // might benefit from extra precision
         var energyDictionary = species.ToDictionary(x => x, _ => 0.0f);
-
-        // This doesn't use miche.SetupScores as this wants scores for all species, even ones that aren't in the
-        // tree yet
 
         var currentBackTraversal = new List<Miche>();
         var scoresDictionary = new Dictionary<Species, float>();
@@ -237,26 +239,41 @@ public static class MichePopulation
 
             currentBackTraversal.Clear();
             node.BackTraversal(currentBackTraversal);
-            foreach (var currentMiche in currentBackTraversal)
+            foreach (var currentSpecies in species)
             {
-                foreach (var currentSpecies in species)
+                if (currentSpecies is not MicrobeSpecies microbeSpecies)
+                    continue;
+
+                var traversalScore = 0.0f;
+
+                foreach (var currentMiche in currentBackTraversal)
                 {
-                    if (currentSpecies is not MicrobeSpecies microbeSpecies)
-                        continue;
+                    var rawScore = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies);
+
+                    if (rawScore <= 0)
+                    {
+                        traversalScore = 0;
+                        break;
+                    }
 
                     // Weighted score is intentionally not used here as negatives break everything
-                    // TODO: this should have safety handling if occupant is null or not a microbe species
-                    var score = cache.GetPressureScore(currentMiche.Pressure, patch, microbeSpecies) /
+                    var score = rawScore /
                         cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
                         currentMiche.Pressure.Strength;
 
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
                         score *= score;
 
-                    totalScore += score;
-                    scoresDictionary[currentSpecies] += score;
+                    traversalScore += score;
                 }
+
+                totalScore += traversalScore;
+                scoresDictionary[currentSpecies] += traversalScore;
             }
+
+            // No need to process species if there isn't any score to give any energy
+            if (totalScore <= 0)
+                continue;
 
             foreach (var currentSpecies in species)
             {

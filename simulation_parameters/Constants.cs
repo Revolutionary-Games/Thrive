@@ -650,6 +650,12 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
 
+    /// <summary>
+    ///   This much damage has to be dealt in a single instance to prevent health regen. This is pretty high to avoid
+    ///   small trickle damage the player can't notice from preventing health regen.
+    /// </summary>
+    public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
+
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
     public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
@@ -930,6 +936,10 @@ public static class Constants
     public const int METABALL_REMOVE_COST = 5;
     public const int METABALL_MOVE_COST = 3;
     public const int METABALL_RESIZE_COST = 3;
+
+    public const float METABALL_MIN_SIZE = 0.4f;
+    public const float METABALL_SIZE_STEP = 0.1f;
+    public const float METABALL_MAX_SIZE = 5.0f;
 
     public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
