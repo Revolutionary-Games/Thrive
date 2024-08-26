@@ -64,12 +64,11 @@ public static class CommonMutationFunctions
 
         while (mp > 0)
         {
-            var mutationList = mutationStrategy.MutationsOf(mutated, mp, true)?.OrderBy(_ => random.Next()).ToList();
+            var mutation = mutationStrategy.MutationsOf(mutated, mp, true)?.OrderBy(_ => random.Next())
+                .FirstOrDefault();
 
-            if (mutationList == null || mutationList.Count <= 0)
+            if (mutation == null)
                 break;
-
-            var mutation = mutationList[0];
 
             mutated = mutation.Item1;
             mp -= mutation.Item2;
