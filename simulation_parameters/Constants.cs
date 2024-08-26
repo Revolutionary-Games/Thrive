@@ -375,11 +375,6 @@ public static class Constants
     public const int INITIAL_SPLIT_POPULATION_MIN = 600;
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
 
-    /// <summary>
-    ///   If true a mutated copy of the (player) species is created when entering the editor
-    /// </summary>
-    public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
-
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";

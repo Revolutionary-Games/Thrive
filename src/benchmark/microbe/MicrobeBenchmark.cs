@@ -471,14 +471,14 @@ public partial class MicrobeBenchmark : Node
         aiGroup2Seed = random.Next();
 
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
-        var mutator = new Mutations(random);
         var workMemory = new MutationWorkMemory();
 
         for (int i = 0; i < SPECIES_COUNT; ++i)
         {
-            var species = mutator.CreateRandomSpecies(world.NewMicrobeSpecies(nameGenerator.GenerateNameSection(random),
-                    nameGenerator.GenerateNameSection(random, true)), AI_MUTATION_MULTIPLIER, false,
-                workMemory, random.Next(MUTATION_STEPS_MIN, MUTATION_STEPS_MAX));
+            var species = CommonMutationFunctions.GenerateRandomSpecies(world.NewMicrobeSpecies(
+                    nameGenerator.GenerateNameSection(random),
+                    nameGenerator.GenerateNameSection(random, true)),
+                workMemory, random, random.Next(200, 500));
 
             generatedSpecies.Add(species);
         }

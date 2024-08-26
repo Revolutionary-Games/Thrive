@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
+using Godot;
 
 public static class CommonMutationFunctions
 {
@@ -51,6 +53,46 @@ public static class CommonMutationFunctions
         Front,
         Neutral,
         Rear,
+    }
+
+    public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, MutationWorkMemory workMemory,
+        Random random, float mp = 300)
+    {
+        var mutationStrategy = new AddOrganelleAnywhere(_ => true);
+
+        GameWorld.SetInitialSpeciesProperties(mutated, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
+
+        while (mp > 0)
+        {
+            var mutationList = mutationStrategy.MutationsOf(mutated, mp, true)?.OrderBy(_ => random.Next()).ToList();
+
+            if (mutationList == null || mutationList.Count <= 0)
+                break;
+
+            var mutation = mutationList[0];
+
+            mutated = mutation.Item1;
+            mp -= mutation.Item2;
+
+            var oldColour = mutated.Colour;
+
+            var redShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+            var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
+
+            mutated.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0, 1),
+                Mathf.Clamp((float)(oldColour.G + greenShift), 0, 1),
+                Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
+        }
+
+        // Override the default species starting name to have more variability in the names
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        mutated.Epithet = nameGenerator.GenerateNameSection(random, true);
+        mutated.Genus = nameGenerator.GenerateNameSection(random);
+
+        mutated.OnEdited();
+
+        return mutated;
     }
 
     public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,

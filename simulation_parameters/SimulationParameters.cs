@@ -391,56 +391,6 @@ public partial class SimulationParameters : Node
         return screenEffects.Values;
     }
 
-    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random, bool lawkOnly)
-    {
-        float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
-
-        // Filter to only LAWK organelles if necessary
-        IEnumerable<OrganelleDefinition> usedOrganelles = prokaryoticOrganelles;
-        if (lawkOnly)
-            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
-
-        OrganelleDefinition? chosenOrganelle = null;
-        foreach (var organelle in usedOrganelles)
-        {
-            chosenOrganelle = organelle;
-            valueLeft -= organelle.ProkaryoteChance;
-
-            if (valueLeft <= 0.00001f)
-                return chosenOrganelle;
-        }
-
-        if (chosenOrganelle == null)
-            throw new InvalidOperationException("No organelle chosen to add");
-
-        return chosenOrganelle;
-    }
-
-    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random, bool lawkOnly)
-    {
-        float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
-
-        // Filter to only LAWK organelles if necessary
-        IEnumerable<OrganelleDefinition> usedOrganelles = eukaryoticOrganelles;
-        if (lawkOnly)
-            usedOrganelles = usedOrganelles.Where(o => o.LAWK);
-
-        OrganelleDefinition? chosenOrganelle = null;
-        foreach (var organelle in usedOrganelles)
-        {
-            chosenOrganelle = organelle;
-            valueLeft -= organelle.ChanceToCreate;
-
-            if (valueLeft <= 0.00001f)
-                return chosenOrganelle;
-        }
-
-        if (chosenOrganelle == null)
-            throw new InvalidOperationException("No organelle chosen to add");
-
-        return chosenOrganelle;
-    }
-
     public PatchMapNameGenerator GetPatchMapNameGenerator()
     {
         return PatchMapNameGenerator;
