@@ -1966,7 +1966,8 @@ public partial class CellEditorComponent :
 
         foreach (var process in processes)
         {
-            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current);
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current,
+                false);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens

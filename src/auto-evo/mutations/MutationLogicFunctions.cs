@@ -21,7 +21,7 @@ public class MutationLogicFunctions
             newSpecies.Genus = parentSpecies.Genus;
         }
 
-        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection();
+        newSpecies.Epithet = SimulationParameters.Instance.NameGenerator.GenerateNameSection(null, true);
     }
 
     private static bool MicrobeSpeciesIsNewGenus(MicrobeSpecies species1, MicrobeSpecies species2)

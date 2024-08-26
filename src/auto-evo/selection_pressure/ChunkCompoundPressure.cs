@@ -36,7 +36,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
         // Speed is not too important to chunk microbes
         // But all else being the same faster is better than slower
-        score += cache.GetSpeedForSpecies(microbeSpecies) * 0.1f;
+        score += MathF.Pow(cache.GetSpeedForSpecies(microbeSpecies), 0.4f);
 
         // Diminishing returns on storage
         score += (Mathf.Pow(microbeSpecies.StorageCapacities.Nominal + 1, 0.8f) - 1) / 0.8f;
