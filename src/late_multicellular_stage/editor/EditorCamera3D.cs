@@ -7,9 +7,6 @@ using Newtonsoft.Json;
 /// </summary>
 public partial class EditorCamera3D : Camera3D
 {
-    [Export]
-    public MetaballBodyEditorComponent? EditorComponent;
-
     /// <summary>
     ///   Minimum distance the camera can be at from the rotate point
     /// </summary>
@@ -48,9 +45,6 @@ public partial class EditorCamera3D : Camera3D
 
     [Export]
     public bool InvertedMousePanning;
-
-    [Export]
-    public float ResizeValue = 0.2f;
 
     /// <summary>
     ///   The current rotation around the X-axis
@@ -270,24 +264,6 @@ public partial class EditorCamera3D : Camera3D
         ApplyTransform();
     }
 
-    [RunOnAxis(new[] { "e_increase_size", "e_decrease_size" }, new[] { 1.0f, -1.0f }, UseDiscreteKeyInputs = true,
-        Priority = -1)]
-    public void ResizeMetaball(double delta, float value)
-    {
-        _ = delta;
-
-        value *= ResizeValue;
-
-        if (EditorComponent == null)
-            return;
-
-        EditorComponent.MetaballSize = Mathf.Clamp(EditorComponent.MetaballSize + value,
-            Constants.METABALL_MIN_SIZE, Constants.METABALL_MAX_SIZE);
-
-        if (EditorComponent.MetaballResizeScroll != null)
-            EditorComponent.MetaballResizeScroll.Value = EditorComponent.MetaballSize;
-    }
-
     [RunOnAxis(new[] { "g_move_down", "g_move_up" }, new[] { -1.0f, 1.0f })]
     public void PanUpDown(double delta, float value)
     {
@@ -315,7 +291,6 @@ public partial class EditorCamera3D : Camera3D
         if (disposing)
         {
             panModeAction.Dispose();
-            EditorComponent?.Dispose();
         }
 
         base.Dispose(disposing);

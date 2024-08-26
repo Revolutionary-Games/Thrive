@@ -32,11 +32,6 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     [Export]
     public NodePath IslandErrorPath = null!;
 
-#pragma warning disable CA2213
-    [Export]
-    public HSlider? MetaballResizeScroll;
-#pragma warning restore CA2213
-
     /// <summary>
     ///   Set above 0 to make sure the arrow doesn't overlap with the ground circle graphics
     /// </summary>
@@ -53,6 +48,9 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected AudioStream hexPlacementSound = null!;
 #pragma warning restore CA2213
+
+    [JsonProperty]
+    protected float metaballSize = 1.0f;
 
     [JsonProperty]
     protected string? activeActionName;
@@ -103,6 +101,9 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     // Another section of Godot objects here as these are private (and not protected like the above set)
 #pragma warning disable CA2213
+    [Export]
+    private HSlider? metaballResizeScroll;
+
     private CustomConfirmationDialog islandPopup = null!;
 #pragma warning restore CA2213
 
@@ -264,6 +265,17 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         hoverMetaballsChanged = true;
         hoverMetaballData.Clear();
+
+        if (metaballResizeScroll != null)
+        {
+            metaballResizeScroll.Value = metaballSize;
+            metaballResizeScroll.MinValue = Constants.METABALL_MIN_SIZE;
+            metaballResizeScroll.MaxValue = Constants.METABALL_MAX_SIZE;
+
+            // Allow GUI to have smaller step but not bigger
+            if (metaballResizeScroll.Step > Constants.METABALL_SIZE_STEP)
+                metaballResizeScroll.Step = Constants.METABALL_SIZE_STEP;
+        }
     }
 
     public override void _Process(double delta)
@@ -461,6 +473,30 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         if (metaball != null)
             RemoveAtPosition(position, metaball);
+    }
+
+    [RunOnKeyDown("e_increase_size", Priority = 1)]
+    public void IncreaseMetaballSize()
+    {
+        metaballSize += Constants.METABALL_SIZE_STEP;
+
+        if (metaballSize > Constants.METABALL_MAX_SIZE)
+            metaballSize = Constants.METABALL_MAX_SIZE;
+
+        if (metaballResizeScroll != null)
+            metaballResizeScroll.Value = metaballSize;
+    }
+
+    [RunOnKeyDown("e_decrease_size", Priority = 1)]
+    public void DecreaseMetaballSize()
+    {
+        metaballSize -= Constants.METABALL_SIZE_STEP;
+
+        if (metaballSize < Constants.METABALL_MIN_SIZE)
+            metaballSize = Constants.METABALL_MIN_SIZE;
+
+        if (metaballResizeScroll != null)
+            metaballResizeScroll.Value = metaballSize;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -958,5 +994,10 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     private void UpdateSymmetryIcon()
     {
         componentBottomLeftButtons.SetSymmetry(symmetry);
+    }
+
+    private void OnResizeMetaballSliderDragged(float value)
+    {
+        metaballSize = value;
     }
 }

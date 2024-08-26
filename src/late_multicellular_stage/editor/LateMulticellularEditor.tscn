@@ -45,9 +45,8 @@ EditorTabSelectorPath = NodePath("LateMulticellularEditorGUI/MicrobeEditorTabBut
 
 [node name="EditorWorld" parent="." instance=ExtResource("7")]
 
-[node name="PrimaryCamera" parent="EditorWorld" index="0" node_paths=PackedStringArray("EditorComponent")]
+[node name="PrimaryCamera" parent="EditorWorld" index="0"]
 current = true
-EditorComponent = NodePath("../../LateMulticellularEditorGUI/MetaballBodyEditorComponent")
 
 [node name="WorldEnvironment" parent="EditorWorld" index="6"]
 environment = SubResource("Environment_x23mp")
@@ -105,8 +104,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="LateMulticellularEditorGUI/NoCellSelected"]

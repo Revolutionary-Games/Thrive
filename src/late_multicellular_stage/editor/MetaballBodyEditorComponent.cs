@@ -66,10 +66,6 @@ public partial class MetaballBodyEditorComponent :
     [Export]
     public NodePath CannotReduceBrainPowerPopupPath = null!;
 
-    // TODO: add way to control the size of the placed metaball
-    [JsonProperty]
-    public float MetaballSize = 1.0f;
-
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
 
 #pragma warning disable CA2213
@@ -155,12 +151,6 @@ public partial class MetaballBodyEditorComponent :
             GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/CellTypeSelection.tscn");
 
         ApplySelectionMenuTab();
-
-        if (MetaballResizeScroll != null)
-        {
-            MetaballResizeScroll.MinValue = Constants.METABALL_MIN_SIZE;
-            MetaballResizeScroll.MaxValue = Constants.METABALL_MAX_SIZE;
-        }
 
         RegisterTooltips();
     }
@@ -268,7 +258,7 @@ public partial class MetaballBodyEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(MetaballSize, position, parentMetaball,
+            RunWithSymmetry(metaballSize, position, parentMetaball,
                 (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
                 effectiveSymmetry);
         }
@@ -482,7 +472,7 @@ public partial class MetaballBodyEditorComponent :
         var metaball = new MulticellularMetaball(CellTypeFromName(
             activeActionName ?? throw new InvalidOperationException("no action active")));
 
-        metaball.Size = MetaballSize;
+        metaball.Size = metaballSize;
 
         bool added = AddMetaball(metaball);
 
@@ -610,7 +600,7 @@ public partial class MetaballBodyEditorComponent :
 
     private Vector3 FinalMetaballPosition(Vector3 position, MulticellularMetaball parent, float? size = null)
     {
-        size ??= MetaballSize;
+        size ??= metaballSize;
         var direction = (position - parent.Position).Normalized();
 
         return parent.Position + direction * (parent.Radius + size.Value * 0.5f);
@@ -625,7 +615,7 @@ public partial class MetaballBodyEditorComponent :
         {
             Parent = parent,
             Position = parent != null ? FinalMetaballPosition(position, parent) : position,
-            Size = MetaballSize,
+            Size = metaballSize,
         };
 
         if (hoverMetaballData.Count <= usedHoverMetaballIndex)
@@ -804,7 +794,7 @@ public partial class MetaballBodyEditorComponent :
                 action = new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(
                     DoMetaballPlaceAction,
                     UndoMetaballPlaceAction,
-                    new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, MetaballSize,
+                    new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, metaballSize,
                         parent));
             }
 
@@ -1122,11 +1112,6 @@ public partial class MetaballBodyEditorComponent :
 
         selectedSelectionMenuTab = selection;
         ApplySelectionMenuTab();
-    }
-
-    private void OnResizeMetaballSliderDragged(bool changed)
-    {
-        MetaballSize = (float)MetaballResizeScroll!.Value;
     }
 
     private void ApplySelectionMenuTab()
