@@ -752,16 +752,16 @@ public partial class SimulationParameters : Node
         {
             var organelle = entry.Value;
 
-            if (organelle.ChanceToCreate > 0)
+            if (organelle.AutoEvoCanPlace)
             {
                 eukaryoticOrganelles.Add(organelle);
-                eukaryoticOrganellesChance += organelle.ChanceToCreate;
-            }
+                eukaryoticOrganellesChance += 1;
 
-            if (organelle.ProkaryoteChance > 0)
-            {
-                prokaryoticOrganelles.Add(organelle);
-                prokaryoticOrganellesTotalChance += organelle.ChanceToCreate;
+                if (!organelle.RequiresNucleus)
+                {
+                    prokaryoticOrganelles.Add(organelle);
+                    prokaryoticOrganellesTotalChance += 1;
+                }
             }
         }
     }

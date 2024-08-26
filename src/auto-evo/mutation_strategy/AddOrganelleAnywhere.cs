@@ -13,7 +13,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
-        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(x => x.AutoEvoCanPlace)
+            .ToFrozenSet();
+
         this.direction = direction;
     }
 
