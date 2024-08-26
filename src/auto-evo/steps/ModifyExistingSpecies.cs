@@ -29,6 +29,8 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly HashSet<Species> workMemory = new();
 
+    private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
+
     private readonly List<Miche> predatorCalculationMemory2 = new();
     private readonly List<Species> predatorPressuresTemporary = new();
 
@@ -51,8 +53,6 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly List<Mutation> mutationsToTry = new();
     private readonly HashSet<MicrobeSpecies> handledMutations = new();
-
-    private readonly List<Miche> speciesSpecificLeaves = new();
 
     private readonly int expectedSpeciesCount;
 
@@ -191,7 +191,7 @@ public class ModifyExistingSpecies : IRunStep
                     // WARNING: this modifies the miche tree meaning that no other step may be running at the same time
                     // that uses the miche tree for the same patch. And no further auto-evo steps after this can use
                     // the original miche tree state.
-                    miche.InsertSpecies(mutation.MutatedSpecies, patch, null, cache, false, workMemory);
+                    miche.InsertSpecies(mutation.MutatedSpecies, patch, null, cache, false, insertWorkingMemory);
                 }
 
                 newOccupantsWorkMemory.Clear();
@@ -315,6 +315,7 @@ public class ModifyExistingSpecies : IRunStep
 
         // This section of the code tries to mutate species into unfilled miches
         // Not exactly realistic, but more diversity is more fun for the player
+        // TODO: Make this an auto-evo option
         foreach (var emptyLeafNode in emptyLeafNodes)
         {
             currentTraversal.Clear();
