@@ -14,12 +14,15 @@ public class ChunkCompoundPressure : SelectionPressure
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private readonly string chunkType;
+    private readonly string readableName;
     private readonly Compound compound;
 
-    public ChunkCompoundPressure(string chunkType, Compound compound, float weight) : base(weight, [])
+    public ChunkCompoundPressure(string chunkType, Compound compound, float weight, string readableName) :
+        base(weight, [])
     {
         this.compound = compound;
         this.chunkType = chunkType;
+        this.readableName = readableName;
     }
 
     public override LocalizedString Name => NameString;
@@ -59,7 +62,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(chunkType));
+        return new LocalizedString("CHUNK_FOOD_SOURCE", new LocalizedString(readableName));
     }
 
     public override float GetEnergy(Patch patch)
