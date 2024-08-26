@@ -937,6 +937,10 @@ public static class Constants
     public const int METABALL_MOVE_COST = 3;
     public const int METABALL_RESIZE_COST = 3;
 
+    public const float METABALL_MIN_SIZE = 0.4f;
+    public const float METABALL_SIZE_STEP = 0.1f;
+    public const float METABALL_MAX_SIZE = 5.0f;
+
     public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info

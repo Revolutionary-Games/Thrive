@@ -111,10 +111,6 @@ public partial class MetaballBodyEditorComponent :
     private PackedScene structuralMetaballDisplayerScene = null!;
 #pragma warning restore CA2213
 
-    // TODO: add way to control the size of the placed metaball
-    [JsonProperty]
-    private float metaballSize = 1.0f;
-
     [JsonProperty]
     private string newName = "unset";
 
@@ -475,6 +471,8 @@ public partial class MetaballBodyEditorComponent :
     {
         var metaball = new MulticellularMetaball(CellTypeFromName(
             activeActionName ?? throw new InvalidOperationException("no action active")));
+
+        metaball.Size = metaballSize;
 
         bool added = AddMetaball(metaball);
 
