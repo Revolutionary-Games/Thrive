@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,7 +8,7 @@ using Godot;
 /// </summary>
 public class Scalis : IMeshGeneratingFunction
 {
-    public float CutoffPointMultiplier = 1.5f;
+    public float CutoffPointMultiplier = 1.2f;
 
     public float InnerCutoffPointMultiplier = 2.0f;
 
@@ -23,6 +22,17 @@ public class Scalis : IMeshGeneratingFunction
     /// </summary>
     private readonly MulticellularMetaball[] points;
 
+    /// <summary>
+    ///   Max squared distance from a bone's center for a point to be calculated.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     i-th element here refers to the i-th point's bone in points[]. If that point has no parent, then it has no
+    ///     bone, so the distance in this array is meaningless for the point.
+    ///   </para>
+    /// </remarks>
+    private readonly float[] boneMaxSquareDistanceCache;
+
     private float surfaceValue = 1.0f;
 
     public Scalis(IReadOnlyCollection<MulticellularMetaball> metaballs)
@@ -35,6 +45,28 @@ public class Scalis : IMeshGeneratingFunction
         {
             points[i] = point;
             ++i;
+        }
+
+        boneMaxSquareDistanceCache = new float[points.Length];
+
+        for (i = 0; i < points.Length; ++i)
+        {
+            var point = points[i];
+
+            var pointParent = point.Parent;
+            if (pointParent == null)
+                continue;
+
+            float maxDistanceFromCenter = (point.Position - pointParent.Position).Length() * 0.5f
+                + point.Radius + pointParent.Radius;
+            maxDistanceFromCenter *= CutoffPointMultiplier;
+
+            boneMaxSquareDistanceCache[i] = Mathf.Pow(maxDistanceFromCenter, 2.0f);
+        }
+
+        if (points.Length == 1)
+        {
+            boneMaxSquareDistanceCache[0] = MathF.Pow(points[0].Radius * 2.0f, 2.0f);
         }
     }
 
@@ -55,44 +87,6 @@ public class Scalis : IMeshGeneratingFunction
 
         const int i = 3;
 
-        // Value of the root metaball is skipped and is always 0.0f;
-        var boneDistances = new float[points.Length];
-
-        // "Additive value" is a hack that allows us to approximate close-by bones "fusing" together, allowing a more
-        // precise cutoff.
-        float additiveValue = 0.0f;
-
-        if (Cutoff)
-        {
-            if (points.Length == 1)
-            {
-                boneDistances[0] = SquareCutoffValue(pos, points.First().Position * inverseSigma,
-                    points.First().Position * inverseSigma);
-            }
-            else
-            {
-                for (int j = 0; j < points.Length; ++j)
-                {
-                    var point = points[j];
-
-                    if (point.Parent == null)
-                        continue;
-
-                    boneDistances[j] = SquareCutoffValue(pos, point.Position * inverseSigma, point.Parent.Position
-                        * inverseSigma);
-                    additiveValue += 0.75f / (boneDistances[j] * Mathf.Max(point.Radius, point.Parent.Radius));
-
-                    float minRadius = Mathf.Min(point.Radius, point.Parent.Radius);
-
-                    // This accesses the field directly rather than through the property to avoid a property get call
-                    if (minRadius > 0.5f && boneDistances[j] < InnerCutoffPointMultiplier * minRadius / surfaceValue)
-                    {
-                        return 10.0f;
-                    }
-                }
-            }
-        }
-
         for (int j = 0; j < points.Length; ++j)
         {
             var point = points[j];
@@ -112,12 +106,6 @@ public class Scalis : IMeshGeneratingFunction
                 bRadius = point.Parent!.Radius;
             }
 
-            if (Cutoff && boneDistances[j] - additiveValue > Mathf.Pow(Mathf.Max(aRadius, bRadius)
-                    * CutoffPointMultiplier * 2.0f / surfaceValue, 2.0f))
-            {
-                continue;
-            }
-
             Vector3 a = point.Position * inverseSigma;
             Vector3 b;
 
@@ -130,6 +118,11 @@ public class Scalis : IMeshGeneratingFunction
             else
             {
                 b = point.Parent!.Position * inverseSigma;
+            }
+
+            if (Cutoff && boneMaxSquareDistanceCache[j] < (pos - (a + b) * 0.5f).LengthSquared())
+            {
+                continue;
             }
 
             float tau0 = aRadius > bRadius ? bRadius : aRadius;
@@ -223,11 +216,6 @@ public class Scalis : IMeshGeneratingFunction
             return b;
 
         return linePos;
-    }
-
-    private float SquareCutoffValue(Vector3 pos, Vector3 a, Vector3 b)
-    {
-        return (ClosestPoint(pos, a, b) - pos).LengthSquared();
     }
 
     private float Convolution(int k, int i, Vector3 pointA, Vector3 pointB, Vector3 pointP)
