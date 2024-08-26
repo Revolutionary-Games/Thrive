@@ -56,15 +56,9 @@ public class OrganelleDefinition : IRegistryType
     public float RelativeDensityVolume = 1;
 
     /// <summary>
-    ///   The (relative) chance this organelle is placed in an eukaryote when applying mutations or generating random
-    ///   species (to do roulette selection).
+    ///   Controls if Auto-Evo can place this organelle as a mutation
     /// </summary>
-    public float ChanceToCreate;
-
-    /// <summary>
-    ///   Same as <see cref="ChanceToCreate"/> but for prokaryotes (bacteria)
-    /// </summary>
-    public float ProkaryoteChance;
+    public bool AutoEvoCanPlace = true;
 
     /// <summary>
     ///   If set to true this part is unimplemented and isn't loadable (and not all properties are required)
@@ -422,12 +416,6 @@ public class OrganelleDefinition : IRegistryType
         if (Density < 100)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "Density is unset or unrealistically low");
-        }
-
-        if (ProkaryoteChance != 0 && RequiresNucleus)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Prokaryote chance is non-zero but player requires a nucleus to place this");
         }
 
         if (InitialComposition == null || InitialComposition.Count < 1)
