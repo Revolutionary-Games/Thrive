@@ -14,7 +14,7 @@ public class MigrateSpecies : IRunStep
     private readonly WorldGenerationSettings worldSettings;
     private readonly SimulationCache cache;
     private readonly Random random;
-    private readonly Miche.InsertWorkingMemory insertWorkingMemory;
+    private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
 
     public MigrateSpecies(Species species, PatchMap map, WorldGenerationSettings worldSettings, SimulationCache cache,
         Random randomSource)
@@ -23,8 +23,6 @@ public class MigrateSpecies : IRunStep
         this.cache = cache;
         this.map = map;
         this.worldSettings = worldSettings;
-
-        insertWorkingMemory = new Miche.InsertWorkingMemory();
 
         random = new XoShiRo128starstar(randomSource.NextInt64());
     }

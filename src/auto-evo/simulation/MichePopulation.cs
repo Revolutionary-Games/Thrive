@@ -215,8 +215,9 @@ public static class MichePopulation
         if (species.Count < 1)
             return;
 
-        // TODO: When supporting Multicell Species replace the is Microbe Species with a null check
         var leafNodes = new List<Miche>();
+
+        // TODO: When supporting multicellular species replace the is MicrobeSpecies with a null check
         miche.GetLeafNodes(leafNodes, x => x.Occupant is MicrobeSpecies);
 
         // TODO: check if energy should be calculated as doubles because the summed numbers can get pretty high that
@@ -243,7 +244,7 @@ public static class MichePopulation
                 if (currentSpecies is not MicrobeSpecies microbeSpecies)
                     continue;
 
-                var transversalScore = 0.0f;
+                var traversalScore = 0.0f;
 
                 foreach (var currentMiche in currentBackTraversal)
                 {
@@ -251,7 +252,7 @@ public static class MichePopulation
 
                     if (rawScore <= 0)
                     {
-                        transversalScore = 0;
+                        traversalScore = 0;
                         break;
                     }
 
@@ -263,18 +264,19 @@ public static class MichePopulation
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
                         score *= score;
 
-                    transversalScore += score;
+                    traversalScore += score;
                 }
 
-                totalScore += transversalScore;
-                scoresDictionary[currentSpecies] += transversalScore;
+                totalScore += traversalScore;
+                scoresDictionary[currentSpecies] += traversalScore;
             }
+
+            // No need to process species if there isn't any score to give any energy
+            if (totalScore <= 0)
+                continue;
 
             foreach (var currentSpecies in species)
             {
-                if (totalScore <= 0)
-                    break;
-
                 var micheEnergy = node.Pressure.GetEnergy(patch) * (scoresDictionary[currentSpecies] / totalScore);
 
                 if (trackEnergy && micheEnergy > 0)

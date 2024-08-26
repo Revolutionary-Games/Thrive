@@ -158,7 +158,6 @@ public class Miche
         }
 
         var newScores = workingMemory.GetScoresAtDepth(depth);
-        newScores.Clear();
 
         workingMemory.WorkingHashSet.Clear();
         GetOccupants(workingMemory.WorkingHashSet);
@@ -167,6 +166,7 @@ public class Miche
         if (scoresSoFar == null)
         {
             // Initial call, not recursive
+
             foreach (var currentSpecies in workingMemory.WorkingHashSet)
             {
                 newScores[currentSpecies] =
@@ -248,11 +248,11 @@ public class Miche
     }
 
     /// <summary>
-    ///   Working memory used to reduce memory allocations in miche.insert()
+    ///   Working memory used to reduce memory allocations in <see cref="Miche.InsertSpecies"/>
     /// </summary>
     public class InsertWorkingMemory
     {
-        public HashSet<Species> WorkingHashSet = new();
+        public readonly HashSet<Species> WorkingHashSet = new();
 
         private readonly List<Dictionary<Species, float>> scoreDictionaries = new();
 
@@ -261,7 +261,12 @@ public class Miche
             while (scoreDictionaries.Count <= depth)
                 scoreDictionaries.Add(new Dictionary<Species, float>());
 
-            return scoreDictionaries[depth];
+            var result = scoreDictionaries[depth];
+
+            // Clear any previous data before returning to make calling this method simpler
+            result.Clear();
+
+            return result;
         }
     }
 }

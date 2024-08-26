@@ -29,6 +29,8 @@ public class ModifyExistingSpecies : IRunStep
 
     private readonly HashSet<Species> workMemory = new();
 
+    private readonly Miche.InsertWorkingMemory insertWorkingMemory = new();
+
     private readonly List<Miche> predatorCalculationMemory2 = new();
     private readonly List<Species> predatorPressuresTemporary = new();
 
@@ -52,8 +54,6 @@ public class ModifyExistingSpecies : IRunStep
     private readonly List<Mutation> mutationsToTry = new();
     private readonly HashSet<MicrobeSpecies> handledMutations = new();
 
-    private readonly List<Miche> speciesSpecificLeaves = new();
-
     private readonly int expectedSpeciesCount;
 
     private readonly List<Miche> nonEmptyLeafNodes = new();
@@ -62,7 +62,6 @@ public class ModifyExistingSpecies : IRunStep
     private Dictionary<Species, long>.Enumerator speciesEnumerator;
 
     private Miche? miche;
-    private Miche.InsertWorkingMemory insertWorkingMemory;
 
     private Step step;
 
@@ -80,7 +79,6 @@ public class ModifyExistingSpecies : IRunStep
         // Patch species count is used to know how many steps there are to perform
         expectedSpeciesCount = patch.SpeciesInPatch.Count;
         speciesEnumerator = patch.SpeciesInPatch.GetEnumerator();
-        insertWorkingMemory = new Miche.InsertWorkingMemory();
     }
 
     private enum Step
