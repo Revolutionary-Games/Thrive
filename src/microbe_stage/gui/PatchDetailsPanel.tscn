@@ -142,10 +142,12 @@ horizontal_alignment = 1
 
 [node name="Depth" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "200-340m below sea level"
 label_settings = ExtResource("7_o264b")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="PhysicalConditions" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]
 layout_mode = 2

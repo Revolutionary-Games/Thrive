@@ -235,9 +235,11 @@ size_flags_vertical = 3
 
 [node name="GlucoseReduction" type="Label" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 text = "The amount of glucose has been reduced to ... of the previous amount."
 label_settings = ExtResource("7_8c2s4")
+autowrap_mode = 3
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
