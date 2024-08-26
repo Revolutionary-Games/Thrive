@@ -222,14 +222,11 @@ public static class SpawnHelpers
         entity.Set(new WorldPosition(location,
             new Quaternion(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
 
-        // TODO: redo chunk visuals with the loadable visual definitions
-        // entity.Set(new PredefinedVisuals
-        // {
-        //     VisualIdentifier = VisualResourceIdentifier.AgentProjectile,
-        // });
-        entity.Set(new PathLoadedSceneVisuals
+        var meshes = chunkType.Meshes;
+
+        entity.Set(new PredefinedVisuals
         {
-            ScenePath = selectedMesh.ScenePath,
+            VisualIdentifier = meshes[random.Next(meshes.Count)].VisualResource,
         });
 
         entity.Set(new SpatialInstance

@@ -33,4 +33,16 @@ public enum VisualResourceIdentifier
     ///   Iron projectile effect
     /// </summary>
     SiderophoreProjectile,
+
+    SmallIronChunk1,
+
+    SmallIronChunk2,
+
+    SmallIronChunk3,
+
+    SmallIronChunk4,
+
+    BigIronChunk1,
+
+    BigIronChunk2,
 }
