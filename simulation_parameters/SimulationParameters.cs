@@ -50,12 +50,6 @@ public partial class SimulationParameters : Node
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
 
-    // These are for mutations to be able to randomly pick items in a weighted manner
-    private List<OrganelleDefinition> prokaryoticOrganelles = null!;
-    private float prokaryoticOrganellesTotalChance;
-    private List<OrganelleDefinition> eukaryoticOrganelles = null!;
-    private float eukaryoticOrganellesChance;
-
     private List<Compound>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
 
@@ -734,36 +728,9 @@ public partial class SimulationParameters : Node
 
         NameGenerator.Resolve(this);
 
-        BuildOrganelleChances();
-
         // TODO: there could also be a check for making sure non-existent compounds, processes etc. are not used
 
         visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.Identifier, t => t.Value);
-    }
-
-    private void BuildOrganelleChances()
-    {
-        prokaryoticOrganelles = new List<OrganelleDefinition>();
-        eukaryoticOrganelles = new List<OrganelleDefinition>();
-        prokaryoticOrganellesTotalChance = 0.0f;
-        eukaryoticOrganellesChance = 0.0f;
-
-        foreach (var entry in organelles)
-        {
-            var organelle = entry.Value;
-
-            if (organelle.AutoEvoCanPlace)
-            {
-                eukaryoticOrganelles.Add(organelle);
-                eukaryoticOrganellesChance += 1;
-
-                if (!organelle.RequiresNucleus)
-                {
-                    prokaryoticOrganelles.Add(organelle);
-                    prokaryoticOrganellesTotalChance += 1;
-                }
-            }
-        }
     }
 
     private List<Compound> ComputeCloudCompounds()
