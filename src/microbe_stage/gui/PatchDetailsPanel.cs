@@ -696,7 +696,8 @@ public partial class PatchDetailsPanel : PanelContainer
                     else
                     {
                         migrationAmountSelector.MaxValue =
-                            currentlyEditedMigration.SourcePatch.GetSpeciesSimulationPopulation(SpeciesToUseForMigrations);
+                            currentlyEditedMigration.SourcePatch.GetSpeciesSimulationPopulation(
+                            SpeciesToUseForMigrations);
                     }
 
                     migrationAmountSelector.Value = migrationAmountSelector.MaxValue * 0.5f;
