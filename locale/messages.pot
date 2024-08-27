@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-22 19:34-0500\n"
+"POT-Creation-Date: 2024-08-27 11:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -49,7 +49,8 @@ msgstr ""
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:551
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:734
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:552
 msgid "ACCEPT"
 msgstr ""
 
@@ -188,7 +189,7 @@ msgid "AMBIANCE_VOLUME"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:17
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:340
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:341
 msgid "AMMONIA"
 msgstr ""
 
@@ -277,7 +278,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:439
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:480
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:484
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:242
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:243
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
@@ -500,7 +501,7 @@ msgstr ""
 msgid "BEHAVIOUR_OPPORTUNISM"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:354
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:357
 msgid "BELOW_SEA_LEVEL"
 msgstr ""
 
@@ -574,7 +575,7 @@ msgstr ""
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:351
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:354
 msgid "BIOME_LABEL"
 msgstr ""
 
@@ -635,7 +636,8 @@ msgstr ""
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:19
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:565
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:735
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:566
 #: ../src/modding/NewModGUI.tscn:334
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
 #: ../src/thriveopedia/fossilisation/FossilisationDialog.tscn:127
@@ -695,7 +697,7 @@ msgid "CAPSLOCK"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:174
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:292
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:293
 msgid "CARBON_DIOXIDE"
 msgstr ""
 
@@ -1032,7 +1034,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:493
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/CompoundPanels.tscn:662
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:304
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:305
 msgid "COMPOUNDS"
 msgstr ""
 
@@ -1561,7 +1563,7 @@ msgstr ""
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:132
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:133
 msgid "CURRENT_LOCATION_CAPITAL"
 msgstr ""
 
@@ -1836,6 +1838,10 @@ msgstr ""
 
 #: ../src/modding/ModManager.tscn:434
 msgid "DISCARD_CHANGES"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:773
+msgid "DISCARD_MIGRATION"
 msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
@@ -2704,12 +2710,12 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1048
+#: ../src/auto-evo/RunResults.cs:1034
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:77
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:365
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:366
 msgid "GLUCOSE"
 msgstr ""
 
@@ -2856,7 +2862,7 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:57
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:315
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:316
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
@@ -3095,7 +3101,7 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:139
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:415
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:416
 msgid "IRON"
 msgstr ""
 
@@ -3134,6 +3140,10 @@ msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:551
 msgid "JUNE"
+msgstr ""
+
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:772
+msgid "KEEP_MIGRATION"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:143
@@ -3563,7 +3573,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:370
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:373
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
@@ -3571,7 +3581,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:237
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:238
 msgid "LIGHT_MAX"
 msgstr ""
 
@@ -4076,40 +4086,40 @@ msgstr ""
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:474
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:475
 msgid "MIGRATE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:640
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:643
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:788
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:795
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:793
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:800
 msgid "MIGRATION_STATUS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:748
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:753
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:766
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:771
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:757
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:762
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:739
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:491
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:744
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:492
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:472
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:473
 msgid "MIGRATION_TOOLTIP"
 msgstr ""
 
@@ -4417,7 +4427,7 @@ msgstr ""
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:459
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:460
 msgid "MOVE_TO_THIS_PATCH"
 msgstr ""
 
@@ -4618,7 +4628,7 @@ msgid "NEXT_EDITOR_TAB"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:189
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:273
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:274
 msgid "NITROGEN"
 msgstr ""
 
@@ -5053,7 +5063,7 @@ msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:159
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:254
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:255
 msgid "OXYGEN"
 msgstr ""
 
@@ -5239,7 +5249,7 @@ msgstr ""
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:422
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:498
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:357
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:360
 #: ../src/microbe_stage/MicrobeHUD.cs:306
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:157
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:160
@@ -5263,7 +5273,7 @@ msgid "PER_SECOND_SLASH"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:37
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:390
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:391
 msgid "PHOSPHATE"
 msgstr ""
 
@@ -5273,7 +5283,7 @@ msgid "PHOTOSYNTHESIS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:431
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:152
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:153
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
@@ -5372,11 +5382,11 @@ msgstr ""
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:724
+#: ../src/auto-evo/RunResults.cs:710
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:857
+#: ../src/auto-evo/RunResults.cs:843
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
@@ -5392,7 +5402,7 @@ msgstr ""
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:190
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:191
 msgid "PRESSURE"
 msgstr ""
 
@@ -5412,7 +5422,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:739
+#: ../src/auto-evo/RunResults.cs:725
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -5702,27 +5712,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:838
+#: ../src/auto-evo/RunResults.cs:824
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:819
+#: ../src/auto-evo/RunResults.cs:805
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:770
+#: ../src/auto-evo/RunResults.cs:756
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:773
+#: ../src/auto-evo/RunResults.cs:759
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:757
+#: ../src/auto-evo/RunResults.cs:743
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:790
+#: ../src/auto-evo/RunResults.cs:776
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
@@ -5959,7 +5969,7 @@ msgid "SELECT_A_GENERATION"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:657
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:93
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:94
 msgid "SELECT_A_PATCH"
 msgstr ""
 
@@ -6246,7 +6256,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:814
+#: ../src/auto-evo/RunResults.cs:800
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -6268,7 +6278,7 @@ msgstr ""
 msgid "SPECIES_POPULATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:434
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:435
 msgid "SPECIES_PRESENT"
 msgstr ""
 
@@ -6276,7 +6286,7 @@ msgstr ""
 msgid "SPECIES_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:409
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:412
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
@@ -6288,7 +6298,7 @@ msgstr ""
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:830
+#: ../src/auto-evo/RunResults.cs:816
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -6549,7 +6559,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1447
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:474
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:209
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:210
 msgid "SUNLIGHT"
 msgstr ""
 
@@ -6662,7 +6672,7 @@ msgstr ""
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:286
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:467
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:164
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:165
 msgid "TEMPERATURE"
 msgstr ""
 
@@ -6805,11 +6815,11 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1073
+#: ../src/auto-evo/RunResults.cs:1059
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1079
+#: ../src/auto-evo/RunResults.cs:1065
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -6818,27 +6828,27 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:994
+#: ../src/auto-evo/RunResults.cs:980
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1017
+#: ../src/auto-evo/RunResults.cs:1003
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1043
+#: ../src/auto-evo/RunResults.cs:1029
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1054
+#: ../src/auto-evo/RunResults.cs:1040
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1010 ../src/auto-evo/RunResults.cs:1031
+#: ../src/auto-evo/RunResults.cs:996 ../src/auto-evo/RunResults.cs:1017
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1004 ../src/auto-evo/RunResults.cs:1025
+#: ../src/auto-evo/RunResults.cs:990 ../src/auto-evo/RunResults.cs:1011
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -7242,7 +7252,7 @@ msgstr ""
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:107
+#: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:108
 #: ../src/microbe_stage/Patch.cs:21
 msgid "UNKNOWN_PATCH"
 msgstr ""
@@ -7447,7 +7457,7 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:240
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:426
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:502
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:358
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:361
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:157
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:160
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:166
@@ -7557,11 +7567,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:952
+#: ../src/auto-evo/RunResults.cs:938
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:733
+#: ../src/auto-evo/RunResults.cs:719
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
