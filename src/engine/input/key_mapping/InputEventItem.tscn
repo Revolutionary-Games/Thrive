@@ -9,7 +9,7 @@ theme = ExtResource("2")
 script = ExtResource("1")
 ButtonPath = NodePath("HBoxContainer/RebindButton")
 XButtonPath = NodePath("HBoxContainer/XButton")
-GraphicalLabelSettings = ExtResource("3_s47vc")
+graphicalLabelSettings = ExtResource("3_s47vc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

@@ -586,7 +586,7 @@ public partial class InputEventItem : MarginContainer
         {
             button.Text = string.Empty;
 
-            alternativeButtonContentToText = AssociatedEvent.GenerateGraphicalRepresentation(GraphicalLabelSettings);
+            alternativeButtonContentToText = AssociatedEvent.GenerateGraphicalRepresentation(graphicalLabelSettings);
 
             button.AddChild(alternativeButtonContentToText);
 
