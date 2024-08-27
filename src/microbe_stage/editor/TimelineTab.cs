@@ -110,7 +110,7 @@ public partial class TimelineTab : PanelContainer
             globalEventsContainer.FreeChildren();
             cachedGlobalTimelineElements = new List<TimelineSection>();
 
-            foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
+            foreach (var entry in editor.CurrentGame.GameWorld.EventsLog.OrderBy(s => s.Key))
             {
                 var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
                     (entry.Key, entry.Value))
