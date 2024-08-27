@@ -194,9 +194,56 @@ public class SpecifiedInputKey : ICloneable
         return ((JoyButton)code, device);
     }
 
-    public Control GenerateGraphicalRepresentation()
+    public Control GenerateGraphicalRepresentation(LabelSettings labelSettings = null!)
     {
         var container = new HBoxContainer();
+
+        if (Shift || Control || Alt)
+        {
+            if (toStringBuilder == null)
+            {
+                toStringBuilder = new StringBuilder();
+            }
+            else
+            {
+                toStringBuilder.Clear();
+            }
+
+            if (Control)
+            {
+                toStringBuilder.Append(Localization.Translate("CTRL"));
+                toStringBuilder.Append('+');
+            }
+
+            if (Alt)
+            {
+                toStringBuilder.Append(Localization.Translate("ALT"));
+                toStringBuilder.Append('+');
+            }
+
+            if (Shift)
+            {
+                toStringBuilder.Append(Localization.Translate("SHIFT"));
+                toStringBuilder.Append('+');
+            }
+
+            var labelPositioner = new MarginContainer
+            {
+                MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+            };
+            labelPositioner.AddThemeConstantOverride("margin_left", 8);
+
+            labelPositioner.AddChild(new Label
+            {
+                Text = toStringBuilder.ToString(),
+                LabelSettings = labelSettings,
+                VerticalAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+            });
+
+            container.AddChild(labelPositioner);
+        }
 
         switch (Type)
         {
