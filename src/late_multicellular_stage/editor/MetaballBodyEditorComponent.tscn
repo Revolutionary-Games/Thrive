@@ -311,7 +311,7 @@ _data = {
 "show": SubResource("19")
 }
 
-[node name="MetaballBodyEditorComponent" type="Control"]
+[node name="MetaballBodyEditorComponent" type="Control" node_paths=PackedStringArray("metaballResizeScroll")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -339,6 +339,7 @@ DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName"
 MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
 CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
 IslandErrorPath = NodePath("IslandError")
+metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
@@ -624,7 +625,7 @@ layout_mode = 2
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "We plan to implement convolution surfaces to make the \"skin\" of the creatures. Currently this is not implemented so the metaballs are rendered with just basic spheres to give some impression of what the shape is."
+text = "Appearance customization has not been implemented yet, but the creature is shown with a basic convolution surface wrapped around the metaballs."
 label_settings = ExtResource("7_ck2k0")
 autowrap_mode = 3
 
@@ -632,7 +633,6 @@ autowrap_mode = 3
 layout_mode = 1
 offset_right = 641.0
 grow_vertical = 0
-ShowSymmetryButton = false
 ShowNewButton = false
 
 [node name="BottomRight" type="MarginContainer" parent="."]
@@ -700,6 +700,28 @@ expand_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_vbjf3")
 }
+
+[node name="MetaballSizeControls" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -159.0
+offset_top = -102.0
+offset_right = -9.0
+offset_bottom = -62.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MetaballSize" type="HSlider" parent="MetaballSizeControls"]
+layout_mode = 2
+tooltip_text = "RESIZE_METABALL_TOOLTIP"
+min_value = 0.4
+max_value = 5.0
+step = 0.1
+value = 1.0
 
 [node name="IslandError" parent="." instance=ExtResource("7")]
 custom_minimum_size = Vector2(600, 0)
@@ -777,6 +799,7 @@ mouse_filter = 2
 [connection signal="pressed" from="BottomRight/HBoxContainer/CancelButton" to="." method="OnCancelActionClicked"]
 [connection signal="pressed" from="BottomRight/HBoxContainer/ConfirmButton" to="." method="NextOrFinishClicked"]
 [connection signal="animation_finished" from="BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge/AnimationPlayer" to="." method="HideFinishButtonWarningAfterAnimation"]
+[connection signal="value_changed" from="MetaballSizeControls/MetaballSize" to="." method="OnResizeMetaballSliderDragged"]
 [connection signal="Confirmed" from="NewTissueTypeSetup" to="." method="OnNewCellTypeConfirmed"]
 [connection signal="text_changed" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTypeNameChanged"]
 [connection signal="text_submitted" from="NewTissueTypeSetup/VBoxContainer2/NewName" to="." method="OnNewCellTextAccepted"]

@@ -93,7 +93,10 @@ public static class HealthHelpers
         health.CurrentHealth = Math.Max(0, health.CurrentHealth - damage);
 
         // TODO: should there be a minimum damage, like 0.01 after which the cooldown is only triggered?
-        health.HealthRegenCooldown = Constants.HEALTH_REGENERATION_COOLDOWN;
+        // Only trigger cooldown once enough damage is taken to make sure really small trickle damage doesn't cause
+        // the health regen to stop for apparently no reason
+        if (damage > Constants.HEALTH_REGEN_STOP_DAMAGE_THRESHOLD)
+            health.HealthRegenCooldown = Constants.HEALTH_REGENERATION_COOLDOWN;
 
         var damageEvent = new DamageEventNotice(damageSource, damage);
         var damageList = health.RecentDamageReceived;

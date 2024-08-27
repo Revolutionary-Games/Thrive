@@ -211,19 +211,7 @@ public class SimulationCache
             return cached;
         }
 
-        cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions, CompoundAmountType.Average);
-
-        foreach (var input in process.Process.Inputs)
-        {
-            if (biomeConditions.Compounds.TryGetValue(input.Key, out var inputCompoundData))
-            {
-                if (inputCompoundData.Amount <= 0 && inputCompoundData.Ambient <= 0)
-                {
-                    cached.CurrentSpeed = 0;
-                    break;
-                }
-            }
-        }
+        cached = ProcessSystem.CalculateProcessMaximumSpeed(process, biomeConditions, CompoundAmountType.Average, true);
 
         cachedProcessSpeeds.Add(key, cached);
         return cached;

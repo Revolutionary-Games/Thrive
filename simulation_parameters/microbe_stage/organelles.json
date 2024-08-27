@@ -16,8 +16,6 @@
       "Pilus"
     ],
     "ShouldScale": false,
-    "ProkaryoteChance": 0.5,
-    "ChanceToCreate": 0.5,
     "Density": 1500,
     "RelativeDensityVolume": 0,
     "Graphics": {
@@ -80,8 +78,6 @@
     "Enzymes": {
       "rusticyanin": 1
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 0.5,
     "Density": 1100,
     "IronBreakdownEfficiency": 1,
     "Graphics": {
@@ -116,8 +112,6 @@
         "Capacity": 0.5
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 1,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn"
@@ -158,8 +152,7 @@
         "Capacity": 15
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0,
+    "AutoEvoCanPlace": false,
     "Density": 1100,
     "CorpseChunkGraphics": {
       "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
@@ -192,8 +185,6 @@
         "Capacity": 0.5
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 0.5,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn"
@@ -231,8 +222,6 @@
         "Compound": "oxytoxy"
       }
     },
-    "ProkaryoteChance": 0.5,
-    "ChanceToCreate": 1,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
@@ -311,8 +300,6 @@
         "Capacity": 0.5
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 0.5,
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chromatophore.tscn"
@@ -353,8 +340,6 @@
         "Capacity": 0.5
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 0.5,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Metabolosome.tscn"
@@ -391,8 +376,6 @@
         "Capacity": 1
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 1,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn"
@@ -425,8 +408,6 @@
         "Capacity": 0.5
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 0.5,
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Thermosynthase.tscn"
@@ -472,8 +453,6 @@
         "Capacity": 1
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 1,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chemoplast.tscn"
@@ -505,8 +484,6 @@
         "Momentum": 50
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 6,
     "Density": 1200,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -552,8 +529,6 @@
         "Capacity": 8
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 3,
     "Density": 1200,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -590,8 +565,6 @@
         "Capacity": 1
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 3,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn"
@@ -641,8 +614,6 @@
         "Compound": "oxytoxy"
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 1,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn"
@@ -721,8 +692,6 @@
     "FeatureTags": [
       "BindingAgent"
     ],
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/BindingAgent.tscn"
@@ -773,8 +742,6 @@
         "Capacity": 1.5
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 1,
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chloroplast.tscn"
@@ -815,8 +782,6 @@
         "Capacity": 1
       }
     },
-    "ProkaryoteChance": 2,
-    "ChanceToCreate": 1,
     "Density": 1000,
     "CorpseChunkGraphics": {
       "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
@@ -886,8 +851,6 @@
       "Nucleus"
     ],
     "ShouldScale": false,
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0,
     "Density": 1200,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -915,8 +878,6 @@
     "Components": {
       "Chemoreceptor": {}
     },
-    "ProkaryoteChance": 0.2,
-    "ChanceToCreate": 0.2,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Chemoreceptor.tscn"
@@ -949,8 +910,6 @@
       },
       "SlimeJet": {}
     },
-    "ProkaryoteChance": 0.3,
-    "ChanceToCreate": 0.3,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/SlimeJet.tscn",
@@ -996,8 +955,6 @@
     "FeatureTags": [
       "SignalingAgent"
     ],
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0.4,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/SignalingAgent.tscn"
@@ -1023,8 +980,6 @@
     ],
     "Processes": {},
     "Components": {},
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0,
     "Name": "BIOLUMINESCENT_VACUOLE",
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "RequiresNucleus": true,
@@ -1056,8 +1011,6 @@
         "Capacity": 1
       }
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 1,
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Thermoplast.tscn"
@@ -1097,8 +1050,6 @@
     "Components": {
       "Cilia": {}
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 6,
     "Density": 1100,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -1152,8 +1103,6 @@
       "chitinase": 0,
       "cellulase": 0
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0.4,
     "Density": 1100,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Lysosome.tscn"
@@ -1204,8 +1153,6 @@
     "Enzymes": {
       "rusticyanin": 1
     },
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 1,
     "Density": 1100,
     "IronBreakdownEfficiency": 2,
     "Graphics": {
@@ -1244,8 +1191,6 @@
     "FeatureTags": [
       "Axon"
     ],
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0,
     "Density": 1100,
     "RelativeDensityVolume": 1,
     "Graphics": {
@@ -1290,8 +1235,6 @@
     "FeatureTags": [
       "Myofibril"
     ],
-    "ProkaryoteChance": 0,
-    "ChanceToCreate": 0,
     "Density": 1200,
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/Myofibril.tscn"

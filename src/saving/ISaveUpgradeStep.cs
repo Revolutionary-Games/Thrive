@@ -88,6 +88,8 @@ public static class SaveUpgradeSteps
             { "0.6.6.1", new UpgradeJustVersionNumber("0.6.6.2") },
             { "0.6.7.0-rc1", new UpgradeJustVersionNumber("0.6.7.0") },
             { "0.6.7.0", new UpgradeJustVersionNumber("0.6.7.1") },
+            { "0.7.0.0-alpha", new UpgradeJustVersionNumber("0.7.0.0-rc1") },
+            { "0.6.7.1", new UpgradeJustVersionNumber("0.7.0.0-rc1") },
         };
     }
 }

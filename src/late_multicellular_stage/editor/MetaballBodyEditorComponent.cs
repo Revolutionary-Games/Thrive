@@ -111,10 +111,6 @@ public partial class MetaballBodyEditorComponent :
     private PackedScene structuralMetaballDisplayerScene = null!;
 #pragma warning restore CA2213
 
-    // TODO: add way to control the size of the placed metaball
-    [JsonProperty]
-    private float metaballSize = 1.0f;
-
     [JsonProperty]
     private string newName = "unset";
 
@@ -262,7 +258,7 @@ public partial class MetaballBodyEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(position, parentMetaball,
+            RunWithSymmetry(metaballSize, position, parentMetaball,
                 (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
                 effectiveSymmetry);
         }
@@ -473,8 +469,12 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        bool added =
-            AddMetaball(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+        var metaball = new MulticellularMetaball(CellTypeFromName(
+            activeActionName ?? throw new InvalidOperationException("no action active")));
+
+        metaball.Size = metaballSize;
+
+        bool added = AddMetaball(metaball);
 
         if (added)
         {
@@ -642,7 +642,7 @@ public partial class MetaballBodyEditorComponent :
     ///   Places a cell of the specified type under the cursor and also applies symmetry to place multiple
     /// </summary>
     /// <returns>True when at least one metaball got placed</returns>
-    private bool AddMetaball(CellType cellType)
+    private bool AddMetaball(MulticellularMetaball metaball)
     {
         GetMouseMetaball(out var position, out var parentMetaball);
 
@@ -651,7 +651,7 @@ public partial class MetaballBodyEditorComponent :
         // For symmetrically placed cells keep track of where we already placed something
         var usedPositions = new HashSet<Vector3>();
 
-        RunWithSymmetry(position, parentMetaball,
+        RunWithSymmetry(metaball.Size, position, parentMetaball,
             (symmetryPosition, symmetryParent) =>
             {
                 if (symmetryParent == null)
@@ -663,7 +663,8 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(cellType, symmetryPosition, metaballSize, symmetryParent);
+                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaball.Size,
+                    symmetryParent);
 
                 if (placed != null)
                 {
