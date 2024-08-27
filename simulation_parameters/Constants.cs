@@ -1087,12 +1087,6 @@ public static class Constants
     public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
-    ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
-    ///   etc. for which is the most beneficial
-    /// </summary>
-    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 15;
-
-    /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
     public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 30;
@@ -1102,7 +1096,6 @@ public static class Constants
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-    public const int AUTO_EVO_MOVE_ATTEMPTS = 5;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
@@ -1120,12 +1113,6 @@ public static class Constants
 
     public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
-    public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
-    public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
-
-    public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
-    public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
-
     public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
     public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
@@ -1138,6 +1125,10 @@ public static class Constants
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
+
+    public const bool AUTO_EVO_TRACK_STEP_TIME = false;
+
+    public const float AUTO_EVO_SINGLE_STEP_WARNING_TIME = 0.4f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
     public const float GLUCOSE_MIN = 0.0f;
@@ -1165,7 +1156,7 @@ public static class Constants
     public const int MAX_DESPAWNS_PER_FRAME = 4;
 
     /// <summary>
-    ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
+    ///   Multiplier for how many organelles inside spawned cells contribute to the entity count.
     /// </summary>
     public const float ORGANELLE_ENTITY_WEIGHT = 0.1f;
 

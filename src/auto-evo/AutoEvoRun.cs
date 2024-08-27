@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -476,6 +477,37 @@ public class AutoEvoRun
     }
 
     /// <summary>
+    ///   Single step run wrapper that handles checking timing if needed
+    /// </summary>
+    /// <returns>Returns true when step is complete and can be discarded</returns>
+    [SuppressMessage("ReSharper", "HeuristicUnreachableCode", Justification = "False positive due to Constant bool")]
+    private static bool RunSingleStep(IRunStep step, RunResults results)
+    {
+        DateTime startTime;
+
+#pragma warning disable CS0162 // Unreachable code detected
+        if (Constants.AUTO_EVO_TRACK_STEP_TIME)
+            startTime = DateTime.Now;
+
+        var result = step.RunStep(results);
+
+        if (Constants.AUTO_EVO_TRACK_STEP_TIME)
+        {
+            var duration = DateTime.Now - startTime;
+
+            if (duration > TimeSpan.FromSeconds(Constants.AUTO_EVO_SINGLE_STEP_WARNING_TIME))
+            {
+                GD.PrintErr($"Single auto-evo step {step.GetType().Name} took too long! Steps should be " +
+                    "split into sub-steps that don't take more than " +
+                    $"{Constants.AUTO_EVO_SINGLE_STEP_WARNING_TIME} seconds, but this step took: {duration}");
+            }
+        }
+#pragma warning restore CS0162 // Unreachable code detected
+
+        return result;
+    }
+
+    /// <summary>
     ///   Run this instance. Should only be called in a background thread
     /// </summary>
     private void Run()
@@ -580,7 +612,7 @@ public class AutoEvoRun
 
     private void NormalRunPartOfNextStep()
     {
-        if (runSteps.Peek().RunStep(results))
+        if (RunSingleStep(runSteps.Peek(), results))
             runSteps.Dequeue();
 
         Interlocked.Increment(ref completeSteps);
@@ -595,7 +627,7 @@ public class AutoEvoRun
         {
             ++steps;
 
-            if (step.RunStep(results))
+            if (RunSingleStep(step, results))
                 break;
         }
 
