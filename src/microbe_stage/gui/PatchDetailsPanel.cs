@@ -673,37 +673,37 @@ public partial class PatchDetailsPanel : PanelContainer
                 break;
 
             case MigrationWizardStep.SelectDestinationPatch:
+            {
+                currentlyEditedMigration.DestinationPatch = patch;
+                MigrationStep = MigrationWizardStep.SelectPopulationAmount;
+
+                // Setup population selection
+                // TODO: should there be min and max limits for the migration to not allow migrating all of the
+                // population?
+                migrationAmountSelector.MinValue = 1;
+                migrationAmountSelector.Step = 1;
+
+                if (currentlyEditedMigration.SourcePatch == null)
                 {
-                    currentlyEditedMigration.DestinationPatch = patch;
-                    MigrationStep = MigrationWizardStep.SelectPopulationAmount;
-
-                    // Setup population selection
-                    // TODO: should there be min and max limits for the migration to not allow migrating all of the
-                    // population?
-                    migrationAmountSelector.MinValue = 1;
-                    migrationAmountSelector.Step = 1;
-
-                    if (currentlyEditedMigration.SourcePatch == null)
-                    {
-                        GD.PrintErr("Migration in incorrect state, source patch not set");
-                        migrationAmountSelector.MaxValue = 200;
-                    }
-                    else if (SpeciesToUseForMigrations == null)
-                    {
-                        GD.PrintErr("Missing species to use for migrations so max population is incorrect");
-                        migrationAmountSelector.MaxValue = 200;
-                    }
-                    else
-                    {
-                        migrationAmountSelector.MaxValue =
-                            currentlyEditedMigration.SourcePatch.GetSpeciesSimulationPopulation(
-                            SpeciesToUseForMigrations);
-                    }
-
-                    migrationAmountSelector.Value = migrationAmountSelector.MaxValue * 0.5f;
-
-                    break;
+                    GD.PrintErr("Migration in incorrect state, source patch not set");
+                    migrationAmountSelector.MaxValue = 200;
                 }
+                else if (SpeciesToUseForMigrations == null)
+                {
+                    GD.PrintErr("Missing species to use for migrations so max population is incorrect");
+                    migrationAmountSelector.MaxValue = 200;
+                }
+                else
+                {
+                    migrationAmountSelector.MaxValue =
+                        currentlyEditedMigration.SourcePatch.GetSpeciesSimulationPopulation(
+                        SpeciesToUseForMigrations);
+                }
+
+                migrationAmountSelector.Value = migrationAmountSelector.MaxValue * 0.5f;
+
+                break;
+            }
         }
     }
 
@@ -730,51 +730,51 @@ public partial class PatchDetailsPanel : PanelContainer
         switch (MigrationStep)
         {
             case MigrationWizardStep.NotInProgress:
-                {
-                    migrationAccept.Disabled = true;
-                    migrationAccept.Text = Localization.Translate("ACCEPT");
-                    migrationCancel.Text = Localization.Translate("CANCEL");
+            {
+                migrationAccept.Disabled = true;
+                migrationAccept.Text = Localization.Translate("ACCEPT");
+                migrationCancel.Text = Localization.Translate("CANCEL");
 
-                    break;
-                }
+                break;
+            }
 
             case MigrationWizardStep.SelectSourcePatch:
-                {
-                    migrationAccept.Disabled = true;
+            {
+                migrationAccept.Disabled = true;
 
-                    migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_SOURCE_EXPLANATION");
+                migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_SOURCE_EXPLANATION");
 
-                    break;
-                }
+                break;
+            }
 
             case MigrationWizardStep.SelectDestinationPatch:
-                {
-                    migrationAccept.Disabled = true;
+            {
+                migrationAccept.Disabled = true;
 
-                    migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_DESTINATION_EXPLANATION");
+                migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_DESTINATION_EXPLANATION");
 
-                    break;
-                }
+                break;
+            }
 
             case MigrationWizardStep.SelectPopulationAmount:
-                {
-                    migrationAccept.Disabled = false;
+            {
+                migrationAccept.Disabled = false;
 
-                    migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_POPULATION_EXPLANATION");
+                migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_POPULATION_EXPLANATION");
 
-                    break;
-                }
+                break;
+            }
 
             case MigrationWizardStep.Completed:
-                {
-                    migrationAccept.Disabled = false;
+            {
+                migrationAccept.Disabled = false;
 
-                    migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_ONLY_ONE_ALLOWED");
-                    migrationAccept.Text = Localization.Translate("KEEP_MIGRATION");
-                    migrationCancel.Text = Localization.Translate("DISCARD_MIGRATION");
+                migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_ONLY_ONE_ALLOWED");
+                migrationAccept.Text = Localization.Translate("KEEP_MIGRATION");
+                migrationCancel.Text = Localization.Translate("DISCARD_MIGRATION");
 
-                    break;
-                }
+                break;
+            }
 
             default:
                 throw new ArgumentOutOfRangeException();
