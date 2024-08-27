@@ -231,7 +231,8 @@ public class SpecifiedInputKey : ICloneable
             {
                 MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
             };
-            labelPositioner.AddThemeConstantOverride("margin_left", 8);
+            labelPositioner.AddThemeConstantOverride("margin_left", 6);
+            labelPositioner.AddThemeConstantOverride("margin_top", 2);
 
             labelPositioner.AddChild(new Label
             {
