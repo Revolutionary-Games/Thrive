@@ -194,7 +194,7 @@ public class SpecifiedInputKey : ICloneable
         return ((JoyButton)code, device);
     }
 
-    public Control GenerateGraphicalRepresentation(LabelSettings labelSettings = null!)
+    public Control GenerateGraphicalRepresentation(LabelSettings labelSettings)
     {
         var container = new HBoxContainer();
 
