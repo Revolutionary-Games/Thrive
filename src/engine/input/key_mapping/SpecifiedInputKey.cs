@@ -209,23 +209,7 @@ public class SpecifiedInputKey : ICloneable
                 toStringBuilder.Clear();
             }
 
-            if (Control)
-            {
-                toStringBuilder.Append(Localization.Translate("CTRL"));
-                toStringBuilder.Append('+');
-            }
-
-            if (Alt)
-            {
-                toStringBuilder.Append(Localization.Translate("ALT"));
-                toStringBuilder.Append('+');
-            }
-
-            if (Shift)
-            {
-                toStringBuilder.Append(Localization.Translate("SHIFT"));
-                toStringBuilder.Append('+');
-            }
+            AppendModifierText(toStringBuilder);
 
             var labelPositioner = new MarginContainer
             {
@@ -410,23 +394,7 @@ public class SpecifiedInputKey : ICloneable
             toStringBuilder.Clear();
         }
 
-        if (Control)
-        {
-            toStringBuilder.Append(Localization.Translate("CTRL"));
-            toStringBuilder.Append('+');
-        }
-
-        if (Alt)
-        {
-            toStringBuilder.Append(Localization.Translate("ALT"));
-            toStringBuilder.Append('+');
-        }
-
-        if (Shift)
-        {
-            toStringBuilder.Append(Localization.Translate("SHIFT"));
-            toStringBuilder.Append('+');
-        }
+        AppendModifierText(toStringBuilder);
 
         if (Type is InputType.Key or InputType.KeyLabel or InputType.PhysicalKey)
         {
@@ -541,6 +509,27 @@ public class SpecifiedInputKey : ICloneable
 
             default:
                 throw new ArgumentException("Unknown type of event to convert to input key");
+        }
+    }
+
+    private void AppendModifierText(StringBuilder stringBuilder)
+    {
+        if (Control)
+        {
+            stringBuilder.Append(Localization.Translate("CTRL"));
+            stringBuilder.Append('+');
+        }
+
+        if (Alt)
+        {
+            stringBuilder.Append(Localization.Translate("ALT"));
+            stringBuilder.Append('+');
+        }
+
+        if (Shift)
+        {
+            stringBuilder.Append(Localization.Translate("SHIFT"));
+            stringBuilder.Append('+');
         }
     }
 
