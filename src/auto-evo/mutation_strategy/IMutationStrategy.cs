@@ -20,5 +20,5 @@ public interface IMutationStrategy<T>
     ///   List of mutated species, null if no possible mutations are found (some strategies may return an empty list
     ///   instead in this case)
     /// </returns>
-    public List<Tuple<T, float>>? MutationsOf(T baseSpecies, float mp, bool lawk);
+    public List<Tuple<T, float>>? MutationsOf(T baseSpecies, float mp, bool lawk, Random random);
 }

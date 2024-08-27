@@ -42,13 +42,11 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
         return ThatCreateCompound(compound);
     }
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+        Random random)
     {
         if (mp < Constants.ORGANELLE_REMOVE_COST)
             return null;
-
-        // TODO: Make this something passed in
-        var random = new Random();
 
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
             .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS).ToList();

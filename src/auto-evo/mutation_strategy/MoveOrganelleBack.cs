@@ -15,14 +15,14 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+        Random random)
     {
         if (mp < Constants.ORGANELLE_MOVE_COST)
             return null;
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
-        var random = new Random();
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
 

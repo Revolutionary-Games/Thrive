@@ -64,7 +64,7 @@ public static class CommonMutationFunctions
 
         while (mp > 0)
         {
-            var mutation = mutationStrategy.MutationsOf(mutated, mp, true)?.OrderBy(_ => random.Next())
+            var mutation = mutationStrategy.MutationsOf(mutated, mp, true, random)?.OrderBy(_ => random.Next())
                 .FirstOrDefault();
 
             if (mutation == null)
