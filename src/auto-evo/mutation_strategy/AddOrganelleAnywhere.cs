@@ -8,13 +8,13 @@ using System.Linq;
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
     private readonly CommonMutationFunctions.Direction direction;
-    private readonly FrozenSet<OrganelleDefinition> allOrganelles;
+    private readonly OrganelleDefinition[] allOrganelles;
 
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(x => x.AutoEvoCanPlace)
-            .ToFrozenSet();
+            .ToArray();
 
         this.direction = direction;
     }
