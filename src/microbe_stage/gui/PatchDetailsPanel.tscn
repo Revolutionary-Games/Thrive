@@ -30,7 +30,7 @@
 texture = ExtResource("9")
 region_rect = Rect2(0, 0, 429, 1)
 
-[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
+[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
 custom_minimum_size = Vector2(340, 0)
 offset_right = 352.0
 offset_bottom = 620.0
@@ -53,6 +53,7 @@ migrationStatusLabel = NodePath("MigrationMenu/MarginContainer7/MigrationSetupDe
 migrationErrorLabel = NodePath("MigrationMenu/MarginContainer8/MigrationError")
 migrationAmountSelector = NodePath("MigrationMenu/MarginContainer3/PopulationAmount")
 migrationAccept = NodePath("MigrationMenu/MarginContainer5/Accept")
+migrationCancel = NodePath("MigrationMenu/MarginContainer2/Cancel")
 physicalConditionsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions")
 atmosphereContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses")
 compoundsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds")
