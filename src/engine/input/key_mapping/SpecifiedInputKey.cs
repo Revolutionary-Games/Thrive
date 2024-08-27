@@ -238,7 +238,6 @@ public class SpecifiedInputKey : ICloneable
                 Text = toStringBuilder.ToString(),
                 LabelSettings = labelSettings,
                 VerticalAlignment = VerticalAlignment.Center,
-                HorizontalAlignment = HorizontalAlignment.Center,
                 MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
             });
 
