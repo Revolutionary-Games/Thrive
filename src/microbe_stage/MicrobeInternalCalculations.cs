@@ -754,7 +754,7 @@ public static class MicrobeInternalCalculations
 
         if (hexCount > Constants.MAX_HEX_SIZE_BEFORE_PENALTY)
         {
-            retval += Constants.ATP_COST_FOR_OSMOREGULATION * 
+            retval += Constants.ATP_COST_FOR_OSMOREGULATION *
                 (float)Math.Pow(hexCount - Constants.MAX_HEX_SIZE_BEFORE_PENALTY, Constants.ATP_COST_EXPONENT) *
             membrane.OsmoregulationFactor;
         }
