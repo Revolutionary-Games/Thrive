@@ -749,8 +749,17 @@ public static class MicrobeInternalCalculations
 
     public static float OsmoregulationCost(int hexCount, MembraneType membrane)
     {
-        return Constants.ATP_COST_FOR_OSMOREGULATION * (float)Math.Pow(hexCount, Constants.ATP_COST_EXPONENT) *
+        float retval = Constants.ATP_COST_FOR_OSMOREGULATION
+            * Math.Min(hexCount, Constants.MAX_HEX_SIZE_BEFORE_PENALTY) * membrane.OsmoregulationFactor;
+
+        if (hexCount > Constants.MAX_HEX_SIZE_BEFORE_PENALTY)
+        {
+            retval += Constants.ATP_COST_FOR_OSMOREGULATION * 
+                (float)Math.Pow(hexCount - Constants.MAX_HEX_SIZE_BEFORE_PENALTY, Constants.ATP_COST_EXPONENT) *
             membrane.OsmoregulationFactor;
+        }
+
+        return retval;
     }
 
     private static float MovementForce(float movementForce, float directionFactor)

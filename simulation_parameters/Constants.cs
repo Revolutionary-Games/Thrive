@@ -14,6 +14,7 @@ public static class Constants
 {
     // Move this somewhere else!
     public const float ATP_COST_EXPONENT = 1.2f;
+    public const int MAX_HEX_SIZE_BEFORE_PENALTY = 5;
 
     /// <summary>
     ///   Used to prevent lag causing massive simulation instability spikes (due to resource consumption etc. scaling
