@@ -22,6 +22,9 @@ public partial class InputEventItem : MarginContainer
     private readonly StringName uiAcceptAction = new("ui_accept");
 
 #pragma warning disable CA2213
+    [Export]
+    private LabelSettings graphicalLabelSettings = null!;
+
     private Button button = null!;
     private Button xButton = null!;
     private bool wasPressingButton;
@@ -583,7 +586,7 @@ public partial class InputEventItem : MarginContainer
         {
             button.Text = string.Empty;
 
-            alternativeButtonContentToText = AssociatedEvent.GenerateGraphicalRepresentation();
+            alternativeButtonContentToText = AssociatedEvent.GenerateGraphicalRepresentation(graphicalLabelSettings);
 
             button.AddChild(alternativeButtonContentToText);
 

@@ -10,6 +10,9 @@ public class SpecifiedInputKey : ICloneable
 {
     private StringBuilder? toStringBuilder;
 
+    private StringName? marginLeftName;
+    private StringName? marginRightName;
+
     [JsonConstructor]
     public SpecifiedInputKey()
     {
@@ -194,9 +197,53 @@ public class SpecifiedInputKey : ICloneable
         return ((JoyButton)code, device);
     }
 
-    public Control GenerateGraphicalRepresentation()
+    public Control GenerateGraphicalRepresentation(LabelSettings labelSettings)
     {
         var container = new HBoxContainer();
+
+        // Add extra modifiers in front of the main graphical representation
+        if (Shift || Control || Alt)
+        {
+            if (Type is InputType.ControllerAxis or InputType.ControllerButton)
+            {
+                GD.PrintErr("Generated a graphical representation for a controller input with a modifier, " +
+                    "this is likely very wrong");
+            }
+
+            if (toStringBuilder == null)
+            {
+                toStringBuilder = new StringBuilder();
+            }
+            else
+            {
+                toStringBuilder.Clear();
+            }
+
+            AppendModifierText(toStringBuilder);
+
+            // Re-use StringNames if this single object is converted to a graphical representation multiple times
+            // TODO: could optimally push these even to a higher level code (or maybe make these static?) to reduce
+            // further how many times these are used
+            marginLeftName ??= new StringName("margin_left");
+            marginRightName ??= new StringName("margin_top");
+
+            var labelPositioner = new MarginContainer
+            {
+                MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+            };
+            labelPositioner.AddThemeConstantOverride(marginLeftName, 6);
+            labelPositioner.AddThemeConstantOverride(marginRightName, 2);
+
+            labelPositioner.AddChild(new Label
+            {
+                Text = toStringBuilder.ToString(),
+                LabelSettings = labelSettings,
+                VerticalAlignment = VerticalAlignment.Center,
+                MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+            });
+
+            container.AddChild(labelPositioner);
+        }
 
         switch (Type)
         {
@@ -351,7 +398,7 @@ public class SpecifiedInputKey : ICloneable
     /// <summary>
     ///   Creates a string for the button to show.
     /// </summary>
-    /// <returns>A human readable string.</returns>
+    /// <returns>A human-readable string.</returns>
     public override string ToString()
     {
         if (toStringBuilder == null)
@@ -363,23 +410,7 @@ public class SpecifiedInputKey : ICloneable
             toStringBuilder.Clear();
         }
 
-        if (Control)
-        {
-            toStringBuilder.Append(Localization.Translate("CTRL"));
-            toStringBuilder.Append('+');
-        }
-
-        if (Alt)
-        {
-            toStringBuilder.Append(Localization.Translate("ALT"));
-            toStringBuilder.Append('+');
-        }
-
-        if (Shift)
-        {
-            toStringBuilder.Append(Localization.Translate("SHIFT"));
-            toStringBuilder.Append('+');
-        }
+        AppendModifierText(toStringBuilder);
 
         if (Type is InputType.Key or InputType.KeyLabel or InputType.PhysicalKey)
         {
@@ -494,6 +525,27 @@ public class SpecifiedInputKey : ICloneable
 
             default:
                 throw new ArgumentException("Unknown type of event to convert to input key");
+        }
+    }
+
+    private void AppendModifierText(StringBuilder stringBuilder)
+    {
+        if (Control)
+        {
+            stringBuilder.Append(Localization.Translate("CTRL"));
+            stringBuilder.Append('+');
+        }
+
+        if (Alt)
+        {
+            stringBuilder.Append(Localization.Translate("ALT"));
+            stringBuilder.Append('+');
+        }
+
+        if (Shift)
+        {
+            stringBuilder.Append(Localization.Translate("SHIFT"));
+            stringBuilder.Append('+');
         }
     }
 
