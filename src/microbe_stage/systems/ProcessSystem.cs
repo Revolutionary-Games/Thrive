@@ -230,7 +230,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         // Add osmoregulation
-        result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
+        result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * (float)Math.Pow(hexCount, Constants.ATP_COST_EXPONENT) *
             membrane.OsmoregulationFactor;
 
         if (isPlayerSpecies)

@@ -104,7 +104,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     {
         ref var organelles = ref entity.Get<OrganelleContainer>();
 
-        var osmoregulationCost = organelles.HexCount * cellProperties.MembraneType.OsmoregulationFactor *
+        var osmoregulationCost = (float)Math.Pow(organelles.HexCount, Constants.ATP_COST_EXPONENT) * cellProperties.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION * delta;
 
         int colonySize = 0;
