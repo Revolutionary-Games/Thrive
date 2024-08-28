@@ -582,12 +582,12 @@ public partial class PhysicsTest : Node
 
         physicalWorld.RemoveGravity();
 
-        var mutator = new Mutations(random);
         var workMemory = new MutationWorkMemory();
 
         // Generate a random, pretty big microbe species to use for testing
         var microbeSpecies =
-            mutator.CreateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), 1, false, workMemory, 25);
+            CommonMutationFunctions.GenerateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), workMemory,
+                random);
 
         testMicrobeOrganellePositions =
             microbeSpecies.Organelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();

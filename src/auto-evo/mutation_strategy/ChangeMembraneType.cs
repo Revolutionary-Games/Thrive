@@ -14,7 +14,8 @@ public class ChangeMembraneType : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => false;
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+        Random random)
     {
         if (baseSpecies.MembraneType == membraneType)
             return null;

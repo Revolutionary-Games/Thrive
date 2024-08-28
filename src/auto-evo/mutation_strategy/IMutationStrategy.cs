@@ -16,9 +16,10 @@ public interface IMutationStrategy<T>
     /// <param name="lawk">
     ///   The game LAWK status, should be true when game was started in LAWK mode, affects which mutations are valid
     /// </param>
+    /// <param name="random">The random object</param>
     /// <returns>
     ///   List of mutated species, null if no possible mutations are found (some strategies may return an empty list
     ///   instead in this case)
     /// </returns>
-    public List<Tuple<T, float>>? MutationsOf(T baseSpecies, float mp, bool lawk);
+    public List<Tuple<T, float>>? MutationsOf(T baseSpecies, float mp, bool lawk, Random random);
 }

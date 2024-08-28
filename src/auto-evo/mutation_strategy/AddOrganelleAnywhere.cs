@@ -1,20 +1,19 @@
 ﻿namespace AutoEvo;
 
 using System;
-using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
 
 public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 {
     private readonly CommonMutationFunctions.Direction direction;
-    private readonly FrozenSet<OrganelleDefinition> allOrganelles;
+    private readonly OrganelleDefinition[] allOrganelles;
 
     public AddOrganelleAnywhere(Func<OrganelleDefinition, bool> criteria, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).Where(x => x.AutoEvoCanPlace)
-            .ToFrozenSet();
+            .ToArray();
 
         this.direction = direction;
     }
@@ -68,14 +67,12 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         return ThatConvertBetweenCompounds(fromCompound, toCompound, direction);
     }
 
-    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk)
+    public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
+        Random random)
     {
         // If a cheaper organelle gets added this will need to be updated
         if (mp < 20)
             return null;
-
-        // TODO: Make this something passed in
-        var random = new Random();
 
         var organelles = allOrganelles.OrderBy(_ => random.Next())
             .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS).ToList();
