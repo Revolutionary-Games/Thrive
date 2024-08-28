@@ -48,17 +48,14 @@ public partial class MicrobeBenchmark : Node
     // results are no longer comparable
     private const int FIRST_PHASE_CELL_COUNT = 150;
     private const int SPECIES_COUNT = 10;
-    private const int MUTATION_STEPS_MIN = 3;
-    private const int MUTATION_STEPS_MAX = 8;
-    private const float AI_MUTATION_MULTIPLIER = 1;
     private const float MAX_SPAWN_DISTANCE = 110;
     private const float SPAWN_DISTANCE_INCREMENT = 1.8f;
 
     // The starting spawn interval
     private const float SPAWN_INTERVAL = 0.121f;
-    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 70;
+    private const float SPAWN_INTERVAL_REDUCE_EVERY_N = 75;
     private const float SPAWN_INTERVAL_REDUCE_AMOUNT = 0.0005f;
-    private const float MIN_SPAWN_INTERVAL = 0.01f;
+    private const float MIN_SPAWN_INTERVAL = 0.005f;
 
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
     private const float GLUCOSE_CLOUD_AMOUNT = 20000;
@@ -67,20 +64,31 @@ public partial class MicrobeBenchmark : Node
 
     private const int TARGET_FPS_FOR_SPAWNING = 60;
     private const float STRESS_TEST_END_THRESHOLD = 9;
-    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 100;
-    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.09f;
-    private const float STRESS_TEST_END_THRESHOLD_MIN = 1.0f;
+    private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 120;
+    private const float STRESS_TEST_THRESHOLD_REDUCE = 0.07f;
+    private const float STRESS_TEST_END_THRESHOLD_MIN = 0.5f;
+
+    private const int STRESS_TEST_ABSOLUTE_END = 2500;
 
     private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
     private const int REMAINING_MICROBES_THRESHOLD = 40;
-    private const int RANDOM_SEED = 256345464;
 
-    // Good other seeds:
-    // Some big cells, no toxins, quite a lot of eating
+    private const int RANDOM_SEED = 256345461;
+
+    // Quite good new seed with small cells
     // private const int RANDOM_SEED = 256345461;
 
-    // Big cells, toxins, quite slow to die at the end
-    // private const int RANDOM_SEED = 256345463;
+    // Quite lively activity
+    // private const int RANDOM_SEED = 986586944;
+
+    // Quite good but a lot of early dying and then inactivity due to taking ATP damage
+    // private const int RANDOM_SEED = 653564247;
+
+    // Quite good but has slime jets
+    // private const int RANDOM_SEED = 653564254;
+
+    // Old seed, no longer good with the new mutation algorithm
+    // private const int RANDOM_SEED = 256345464;
 
     /// <summary>
     ///   Increment this if the functionality of the benchmark changes considerably
@@ -88,12 +96,6 @@ public partial class MicrobeBenchmark : Node
     private const int VERSION = 1;
 
     private readonly BenchmarkHelpers.BenchmarkChangedSettingsStore storedSettings = new();
-
-    // We don't register the tracking callback here as we disallow reproduction so cells can't divide and require
-    // to be added
-    private readonly DummySpawnSystem dummySpawnSystem = new();
-
-    private readonly IMicrobeSpawnEnvironment dummyEnvironment = new DummyMicrobeSpawnEnvironment();
 
     private readonly List<Entity> spawnedMicrobes = new();
     private readonly List<Species> generatedSpecies = new();
@@ -116,6 +118,11 @@ public partial class MicrobeBenchmark : Node
 
     private CompoundCloudSystem? cloudSystem;
 #pragma warning restore CA2213
+
+    /// <summary>
+    ///   Dummy environment to use. Can't be loaded here as it depends on simulation parameters.
+    /// </summary>
+    private IMicrobeSpawnEnvironment dummyEnvironment = null!;
 
     private Compound glucose = null!;
     private Compound ammonia = null!;
@@ -182,6 +189,8 @@ public partial class MicrobeBenchmark : Node
         glucose = simulationParameters.GetCompound("glucose");
         ammonia = simulationParameters.GetCompound("ammonia");
         phosphates = simulationParameters.GetCompound("phosphates");
+
+        dummyEnvironment = new DummyMicrobeSpawnEnvironment();
 
         StartBenchmark();
     }
@@ -361,7 +370,8 @@ public partial class MicrobeBenchmark : Node
                     STRESS_TEST_THRESHOLD_REDUCE);
 
                 // Quit if it has been a while since the last spawn or there's been way too much data already
-                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) || fpsValues.Count > 3000)
+                if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) ||
+                    fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
                 {
                     microbeStressTestResult = spawnCounter;
                     microbeStressTestMinFPS = (float)fpsValues.Min();
