@@ -10,6 +10,9 @@ public class SpecifiedInputKey : ICloneable
 {
     private StringBuilder? toStringBuilder;
 
+    private StringName? marginLeftName;
+    private StringName? marginRightName;
+
     [JsonConstructor]
     public SpecifiedInputKey()
     {
@@ -198,8 +201,15 @@ public class SpecifiedInputKey : ICloneable
     {
         var container = new HBoxContainer();
 
+        // Add extra modifiers in front of the main graphical representation
         if (Shift || Control || Alt)
         {
+            if (Type is InputType.ControllerAxis or InputType.ControllerButton)
+            {
+                GD.PrintErr("Generated a graphical representation for a controller input with a modifier, " +
+                    "this is likely very wrong");
+            }
+
             if (toStringBuilder == null)
             {
                 toStringBuilder = new StringBuilder();
@@ -211,12 +221,18 @@ public class SpecifiedInputKey : ICloneable
 
             AppendModifierText(toStringBuilder);
 
+            // Re-use StringNames if this single object is converted to a graphical representation multiple times
+            // TODO: could optimally push these even to a higher level code (or maybe make these static?) to reduce
+            // further how many times these are used
+            marginLeftName ??= new StringName("margin_left");
+            marginRightName ??= new StringName("margin_top");
+
             var labelPositioner = new MarginContainer
             {
                 MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
             };
-            labelPositioner.AddThemeConstantOverride("margin_left", 6);
-            labelPositioner.AddThemeConstantOverride("margin_top", 2);
+            labelPositioner.AddThemeConstantOverride(marginLeftName, 6);
+            labelPositioner.AddThemeConstantOverride(marginRightName, 2);
 
             labelPositioner.AddChild(new Label
             {
@@ -382,7 +398,7 @@ public class SpecifiedInputKey : ICloneable
     /// <summary>
     ///   Creates a string for the button to show.
     /// </summary>
-    /// <returns>A human readable string.</returns>
+    /// <returns>A human-readable string.</returns>
     public override string ToString()
     {
         if (toStringBuilder == null)
