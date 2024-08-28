@@ -747,6 +747,12 @@ public static class MicrobeInternalCalculations
         return Constants.AI_ACTIVITY_NIGHT_MULTIPLIER;
     }
 
+    public static float OsmoregulationCost(int hexCount, MembraneType membrane)
+    {
+        return Constants.ATP_COST_FOR_OSMOREGULATION * (float)Math.Pow(hexCount, Constants.ATP_COST_EXPONENT) *
+            membrane.OsmoregulationFactor;
+    }
+
     private static float MovementForce(float movementForce, float directionFactor)
     {
         if (directionFactor < 0)
