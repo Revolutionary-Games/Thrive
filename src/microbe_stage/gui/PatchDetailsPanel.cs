@@ -726,13 +726,16 @@ public partial class PatchDetailsPanel : PanelContainer
         if (MigrationStep != MigrationWizardStep.NotInProgress)
             UpdateMigrationStatusText();
 
+        // Technically these translation keys are used elsewhere as well so these don't need a translation call, as
+        // these should be the same as by default on the button in the scene
+        migrationAccept.Text = "ACCEPT";
+        migrationCancel.Text = "CANCEL";
+
         switch (MigrationStep)
         {
             case MigrationWizardStep.NotInProgress:
             {
                 migrationAccept.Disabled = true;
-                migrationAccept.Text = Localization.Translate("ACCEPT");
-                migrationCancel.Text = Localization.Translate("CANCEL");
 
                 break;
             }
