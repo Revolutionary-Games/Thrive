@@ -66,6 +66,9 @@ public partial class PatchDetailsPanel : PanelContainer
     private Button migrationAccept = null!;
 
     [Export]
+    private Button migrationCancel = null!;
+
+    [Export]
     private CollapsibleList physicalConditionsContainer = null!;
 
     [Export]
@@ -723,6 +726,11 @@ public partial class PatchDetailsPanel : PanelContainer
         if (MigrationStep != MigrationWizardStep.NotInProgress)
             UpdateMigrationStatusText();
 
+        // Technically these translation keys are used elsewhere as well so these don't need a translation call, as
+        // these should be the same as by default on the button in the scene
+        migrationAccept.Text = "ACCEPT";
+        migrationCancel.Text = "CANCEL";
+
         switch (MigrationStep)
         {
             case MigrationWizardStep.NotInProgress:
@@ -764,6 +772,8 @@ public partial class PatchDetailsPanel : PanelContainer
                 migrationAccept.Disabled = false;
 
                 migrationStepExplanation.Text = Localization.Translate("MIGRATION_STEP_ONLY_ONE_ALLOWED");
+                migrationAccept.Text = Localization.Translate("KEEP_MIGRATION");
+                migrationCancel.Text = Localization.Translate("DISCARD_MIGRATION");
 
                 break;
             }
