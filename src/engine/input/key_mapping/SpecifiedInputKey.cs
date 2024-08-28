@@ -11,7 +11,7 @@ public class SpecifiedInputKey : ICloneable
     private StringBuilder? toStringBuilder;
 
     private StringName? marginLeftName;
-    private StringName? marginRightName;
+    private StringName? marginTopName;
 
     [JsonConstructor]
     public SpecifiedInputKey()
@@ -225,14 +225,14 @@ public class SpecifiedInputKey : ICloneable
             // TODO: could optimally push these even to a higher level code (or maybe make these static?) to reduce
             // further how many times these are used
             marginLeftName ??= new StringName("margin_left");
-            marginRightName ??= new StringName("margin_top");
+            marginTopName ??= new StringName("margin_top");
 
             var labelPositioner = new MarginContainer
             {
                 MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
             };
             labelPositioner.AddThemeConstantOverride(marginLeftName, 6);
-            labelPositioner.AddThemeConstantOverride(marginRightName, 2);
+            labelPositioner.AddThemeConstantOverride(marginTopName, 2);
 
             labelPositioner.AddChild(new Label
             {
