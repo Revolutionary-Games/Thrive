@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -323,19 +322,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         var species = (MicrobeSpecies?)CurrentGame.GameWorld.PlayerSpecies;
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
 
-#pragma warning disable 162
-
-        // Disabled warning as this is a tweak constant
-        // ReSharper disable ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
-        if (Constants.CREATE_COPY_OF_EDITED_SPECIES)
-        {
-            // Create a mutated version of the current species code to compete against the player
-            CreateMutatedSpeciesCopy(species);
-        }
-
-        // ReSharper restore ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
-#pragma warning restore 162
-
         base.SetupEditedSpecies();
     }
 
@@ -372,20 +358,5 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     private void OnSelectPatchForReportTab(Patch patch)
     {
         reportTab.UpdatePatchDetails(patch, patch);
-    }
-
-    private void CreateMutatedSpeciesCopy(Species species)
-    {
-        var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
-
-        var random = new XoShiRo128starstar();
-
-        var population = random.Next(Constants.INITIAL_SPLIT_POPULATION_MIN,
-            Constants.INITIAL_SPLIT_POPULATION_MAX + 1);
-
-        if (!CurrentGame.GameWorld.Map.CurrentPatch!.AddSpecies(newSpecies, population))
-        {
-            GD.PrintErr("Failed to create a mutated version of the edited species");
-        }
     }
 }

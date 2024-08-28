@@ -427,7 +427,7 @@ public class ModifyExistingSpecies : IRunStep
                 {
                     // TODO: this seems like the longest part, so splitting this into multiple steps (maybe bundling
                     // up mutation strategies) would be good to have the auto-evo steps flow more smoothly
-                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk);
+                    var mutated = mutationStrategy.MutationsOf(speciesTuple.Item1, speciesTuple.Item2, lawk, random);
 
                     if (mutated != null)
                     {

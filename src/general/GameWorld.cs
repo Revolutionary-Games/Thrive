@@ -49,9 +49,6 @@ public class GameWorld : ISaveLoadable
     private uint speciesIdCounter;
 
     [JsonProperty]
-    private Mutations mutator = new();
-
-    [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new();
 
     [JsonProperty]
@@ -346,8 +343,8 @@ public class GameWorld : ISaveLoadable
                     random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
                         Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX + 1);
 
-                var randomSpecies = mutator.CreateRandomSpecies(NewMicrobeSpecies(string.Empty, string.Empty),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory);
+                var randomSpecies = CommonMutationFunctions.GenerateRandomSpecies(
+                    NewMicrobeSpecies(string.Empty, string.Empty), workMemory, random);
 
                 GenerationHistory[0].AllSpeciesData
                     .Add(randomSpecies.ID, new SpeciesRecordLite(randomSpecies, population));
@@ -365,27 +362,6 @@ public class GameWorld : ISaveLoadable
         TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
-    }
-
-    /// <summary>
-    ///   Creates a mutated copy of a species
-    /// </summary>
-    public Species CreateMutatedSpecies(Species species)
-    {
-        switch (species)
-        {
-            case MicrobeSpecies s:
-            {
-                var workMemory = new MutationWorkMemory();
-
-                // Mutator will mutate the name
-                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies(species.Genus, species.Epithet),
-                    WorldSettings.AIMutationMultiplier, WorldSettings.LAWK, workMemory);
-            }
-
-            default:
-                throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
-        }
     }
 
     /// <inheritdoc cref="RegisterAutoEvoCreatedSpecies"/>
