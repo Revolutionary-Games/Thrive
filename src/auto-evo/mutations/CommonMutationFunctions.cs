@@ -94,7 +94,7 @@ public static class CommonMutationFunctions
         return mutated;
     }
 
-    public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
+    public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
         List<Hex> workMemory1, List<Hex> workMemory2, Random random)
     {
         var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory2,
@@ -102,7 +102,7 @@ public static class CommonMutationFunctions
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
-            return;
+            return false;
 
         newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
 
@@ -111,6 +111,8 @@ public static class CommonMutationFunctions
         {
             newSpecies.IsBacteria = false;
         }
+
+        return true;
     }
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)

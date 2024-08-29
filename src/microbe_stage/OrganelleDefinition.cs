@@ -8,7 +8,7 @@ using Saving.Serializers;
 using UnlockConstraints;
 
 /// <summary>
-///   Definition for a type of an organelle. This is not a placed organelle in a microbe
+///   Definition for a type of organelle. This is not a placed organelle in a microbe
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -363,10 +363,13 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     The <see cref="PlacedOrganelle.HasComponent{T}"/> method checks for the actual component class this checks
-    ///     for the *factory* class. For performance reasons a few components are available as direct boolean
-    ///     properties, if a component you want to check for has such a boolean defined for it, use those instead of
-    ///     this general interface.
+    ///     This checks for the *factory* class. For performance reasons a few components are available as direct
+    ///     boolean properties, if a component you want to check for has such a boolean defined for it, use those
+    ///     instead of this general interface.
+    ///   </para>
+    ///   <para>
+    ///     It used to be the case that there was a variant on <see cref="PlacedOrganelle"/> checking the actual
+    ///     component type, but that was phased out due to runtime performance concerns.
     ///   </para>
     /// </remarks>
     public bool HasComponentFactory<T>()

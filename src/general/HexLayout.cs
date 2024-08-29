@@ -77,6 +77,20 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
+    ///   Adds a new hex-based element to this layout if possible.
+    /// </summary>
+    /// <returns>True if it could be placed</returns>
+    public bool AddIfPossible(T hex, List<Hex> temporaryStorage, List<Hex> temporaryStorage2)
+    {
+        if (!CanPlace(hex, temporaryStorage, temporaryStorage2))
+            return false;
+
+        existingHexes.Add(hex);
+        onAdded?.Invoke(hex);
+        return true;
+    }
+
+    /// <summary>
     ///   Generic interface implementation of add. Note that this allocates memory and should be avoided.
     /// </summary>
     public void Add(T hex)

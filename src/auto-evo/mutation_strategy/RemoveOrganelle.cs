@@ -49,46 +49,53 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             return null;
 
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
-            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS).ToList();
+            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
-        if (organelles.Count <= 1)
-            return null;
+        List<Tuple<MicrobeSpecies, float>>? mutated = null;
 
-        var mutated = new List<Tuple<MicrobeSpecies, float>>();
-
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
+        MutationWorkMemory? workMemory = null;
 
         foreach (var organelle in organelles)
         {
-            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            bool forceBacteria = false;
 
             if (organelle.Definition == Nucleus)
             {
                 if (baseSpecies.Organelles.Any(x => x.Definition.RequiresNucleus))
                     continue;
 
-                newSpecies.IsBacteria = true;
+                forceBacteria = true;
             }
 
-            newSpecies.Organelles.Clear();
+            // Don't clone organelles as we want to do those ourselves
+            var newSpecies = baseSpecies.Clone(false);
+
+            if (forceBacteria)
+                newSpecies.IsBacteria = true;
+
+            workMemory ??= new MutationWorkMemory();
 
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
-            foreach (var parentOrganelle in baseSpecies.Organelles)
+            // This is now slightly improved - hhyyrylainen
+            var baseOrganelles = baseSpecies.Organelles.Organelles;
+            var count = baseSpecies.Organelles.Count;
+
+            for (var i = 0; i < count; ++i)
             {
+                var parentOrganelle = baseOrganelles[i];
+
                 if (parentOrganelle == organelle)
                     continue;
 
-                var newOrganelle = (OrganelleTemplate)parentOrganelle.Clone();
-
                 // Copy the organelle
-                if (newSpecies.Organelles.CanPlace(newOrganelle, workMemory1, workMemory2))
-                    newSpecies.Organelles.AddFast(newOrganelle, workMemory1, workMemory2);
+                var newOrganelle = (OrganelleTemplate)parentOrganelle.Clone();
+                newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
 
-            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, new MutationWorkMemory());
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, workMemory);
 
+            mutated ??= new List<Tuple<MicrobeSpecies, float>>();
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
         }
 
