@@ -129,28 +129,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     public OrganelleUpgrades? Upgrades { get; private set; }
 
     /// <summary>
-    ///   Computes the total storage capacity of this organelle
-    /// </summary>
-    [JsonIgnore]
-    public float StorageCapacity
-    {
-        get
-        {
-            float value = 0.0f;
-
-            foreach (var component in Components)
-            {
-                if (component is StorageComponent storage)
-                {
-                    value += storage.Capacity;
-                }
-            }
-
-            return value;
-        }
-    }
-
-    /// <summary>
     ///   Can be set by organelle components to override the enzymes returned by <see cref="GetEnzymes"/>. This is
     ///   not saved right now as this is only used by <see cref="LysosomeComponent"/> which will re-add when the
     ///   component is re-initialized.
@@ -182,21 +160,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     }
 
     // TODO: remove if this stays unused
-    /// <summary>
-    ///   Checks if this organelle has the specified component type
-    /// </summary>
-    public bool HasComponent<T>()
-        where T : class
-    {
-        foreach (var component in Components)
-        {
-            // TODO: determine if is T or as T is better
-            if (component is T)
-                return true;
-        }
-
-        return false;
-    }
 
     /// <summary>
     ///   Gives organelles more compounds to grow (or takes free compounds).
