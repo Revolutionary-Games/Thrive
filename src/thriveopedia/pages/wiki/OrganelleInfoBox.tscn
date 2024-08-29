@@ -51,7 +51,7 @@ label_settings = ExtResource("3_vcfpd")
 custom_minimum_size = Vector2(80, 60)
 layout_mode = 2
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="Model" type="TextureRect" parent="MarginContainer/VBoxContainer"]
 visible = false
@@ -59,7 +59,7 @@ custom_minimum_size = Vector2(250, 250)
 layout_mode = 2
 size_flags_horizontal = 3
 expand_mode = 1
-stretch_mode = 4
+stretch_mode = 5
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0.25098)
