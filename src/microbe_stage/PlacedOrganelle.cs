@@ -9,7 +9,7 @@ using Systems;
 ///   An organelle that has been placed in a simulated microbe. Very different from <see cref="OrganelleTemplate"/> and
 ///   <see cref="OrganelleDefinition"/>.
 /// </summary>
-public class PlacedOrganelle : IPositionedOrganelle
+public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 {
     private readonly List<Compound> tempCompoundsToProcess = new();
 
@@ -411,6 +411,22 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
 
         return (externalPosition + orientation * offset, orientation * extraRotation);
+    }
+
+    /// <summary>
+    ///   Clones this organelle, but doesn't preserve visual and graphics state. The new instance can be added to a
+    ///   different microbe to finish initializing it.
+    /// </summary>
+    /// <returns>A cloned instance based on the same core data but no full runtime state</returns>
+    public object Clone()
+    {
+        return new PlacedOrganelle(Definition, Position, Orientation, compoundsLeft.CloneShallow(),
+            (OrganelleUpgrades?)Upgrades?.Clone())
+        {
+            WasSplit = WasSplit,
+            IsDuplicate = IsDuplicate,
+            SisterOrganelle = SisterOrganelle,
+        };
     }
 
     private void InitializeComponents()
