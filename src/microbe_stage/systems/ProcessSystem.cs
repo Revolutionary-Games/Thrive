@@ -436,14 +436,18 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 processData = CalculateProcessMaximumSpeed(process, biome, amountType, true);
             }
 
-            if (processData.WritableInputs.TryGetValue(ATP, out var amount) && amount > 0)
+            var amount = processData.ATPConsumption;
+
+            if (amount > 0)
             {
                 processATPConsumption += amount;
 
                 result?.AddConsumption(organelle.Definition.InternalName, amount);
             }
 
-            if (processData.WritableOutputs.TryGetValue(ATP, out amount) && amount > 0)
+            amount = processData.ATPProduction;
+
+            if (amount > 0)
             {
                 result?.AddProduction(organelle.Definition.InternalName, amount);
 
@@ -552,7 +556,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             // Normal, cloud input
 
-            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
+            var adjustedValue = entry.Value * speedFactor;
+            result.WritableInputs.Add(entry.Key, adjustedValue);
+
+            if (entry.Key == ATP)
+                result.ATPConsumption += adjustedValue;
         }
 
         foreach (var entry in process.Process.Outputs)
@@ -563,6 +571,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             if (amount <= 0)
                 result.WritableLimitingCompounds.Add(entry.Key);
+
+            if (entry.Key == ATP)
+                result.ATPProduction += amount;
         }
 
         result.CurrentSpeed = speedFactor;
