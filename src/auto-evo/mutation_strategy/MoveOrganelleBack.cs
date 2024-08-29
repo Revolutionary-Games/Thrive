@@ -32,10 +32,14 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
             newSpecies.Organelles.Remove(organelle);
 
-            CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
-                newSpecies, workMemory1, workMemory2, random);
-
-            mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
+            if (CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
+                    newSpecies, workMemory1, workMemory2, random))
+            {
+                // Add mutation attempt only if was able to place the organelle
+                // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step
+                // for things that cannot be moved?
+                mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_MOVE_COST));
+            }
         }
 
         return mutated;

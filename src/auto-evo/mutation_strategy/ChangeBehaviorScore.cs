@@ -29,13 +29,13 @@ public class ChangeBehaviorScore : IMutationStrategy<MicrobeSpecies>
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
         Random random)
     {
-        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
-
         // TODO: Make random something passed in
         var change = (float)random.NextDouble() * maxChange;
 
         if (Math.Abs(change) < 1)
             return null;
+
+        var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
         switch (attribute)
         {

@@ -74,8 +74,14 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         if (mp < 20)
             return null;
 
+        // TODO: would the following be more efficient?
+        // var organelles = allOrganelles.ToList();
+        // organelles.Shuffle(random);
+        // organelles.RemoveRange(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS,
+        //     organelles.Count - Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
+
         var organelles = allOrganelles.OrderBy(_ => random.Next())
-            .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS).ToList();
+            .Take(Constants.AUTO_EVO_ORGANELLE_ADD_ATTEMPTS);
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
@@ -99,9 +105,13 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
             var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2, random);
-
-            mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
+            // In the rare case that adding the organelle fails, this can skip adding it to be tested as the species
+            // is not any different
+            if (CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2,
+                    random))
+            {
+                mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
+            }
         }
 
         return mutated;

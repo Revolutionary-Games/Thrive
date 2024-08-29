@@ -49,27 +49,31 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
             return null;
 
         var organelles = baseSpecies.Organelles.Where(x => Criteria(x.Definition))
-            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS).ToList();
+            .OrderBy(_ => random.Next()).Take(Constants.AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS);
 
-        if (organelles.Count <= 1)
-            return null;
+        List<Tuple<MicrobeSpecies, float>>? mutated = null;
 
-        var mutated = new List<Tuple<MicrobeSpecies, float>>();
-
-        var workMemory = new MutationWorkMemory();
+        MutationWorkMemory? workMemory = null;
 
         foreach (var organelle in organelles)
         {
             // Don't clone organelles as we want to do those ourselves
-            var newSpecies = baseSpecies.Clone(false);
+            bool forceBacteria = false;
 
             if (organelle.Definition == Nucleus)
             {
                 if (baseSpecies.Organelles.Any(x => x.Definition.RequiresNucleus))
                     continue;
 
-                newSpecies.IsBacteria = true;
+                forceBacteria = true;
             }
+
+            var newSpecies = baseSpecies.Clone(false);
+
+            if (forceBacteria)
+                newSpecies.IsBacteria = true;
+
+            workMemory ??= new MutationWorkMemory();
 
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
@@ -91,6 +95,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
             CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, workMemory);
 
+            mutated ??= new List<Tuple<MicrobeSpecies, float>>();
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
         }
 
