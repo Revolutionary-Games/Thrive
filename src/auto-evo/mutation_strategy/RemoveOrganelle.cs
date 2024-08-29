@@ -56,12 +56,12 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
+        var workMemory = new MutationWorkMemory();
 
         foreach (var organelle in organelles)
         {
-            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            // Don't clone organelles as we want to do those ourselves
+            var newSpecies = baseSpecies.Clone(false);
 
             if (organelle.Definition == Nucleus)
             {
@@ -71,23 +71,25 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
                 newSpecies.IsBacteria = true;
             }
 
-            newSpecies.Organelles.Clear();
-
             // Is this the best way to do this? Probably not, but this is how mutations.cs does is
             // and the other way outright did not work
-            foreach (var parentOrganelle in baseSpecies.Organelles)
+            // This is now slightly improved - hhyyrylainen
+            var baseOrganelles = baseSpecies.Organelles.Organelles;
+            var count = baseSpecies.Organelles.Count;
+
+            for (var i = 0; i < count; ++i)
             {
+                var parentOrganelle = baseOrganelles[i];
+
                 if (parentOrganelle == organelle)
                     continue;
 
-                var newOrganelle = (OrganelleTemplate)parentOrganelle.Clone();
-
                 // Copy the organelle
-                if (newSpecies.Organelles.CanPlace(newOrganelle, workMemory1, workMemory2))
-                    newSpecies.Organelles.AddFast(newOrganelle, workMemory1, workMemory2);
+                var newOrganelle = (OrganelleTemplate)parentOrganelle.Clone();
+                newSpecies.Organelles.AddIfPossible(newOrganelle, workMemory.WorkingMemory1, workMemory.WorkingMemory2);
             }
 
-            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, new MutationWorkMemory());
+            CommonMutationFunctions.AttachIslandHexes(newSpecies.Organelles, workMemory);
 
             mutated.Add(Tuple.Create(newSpecies, mp - Constants.ORGANELLE_REMOVE_COST));
         }
