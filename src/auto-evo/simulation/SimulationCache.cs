@@ -70,7 +70,7 @@ public class SimulationCache
     public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
-        // different species but with same organelles to be able to use the same cache value)
+        // different species but with same organelles to be able to use the same cache value) would be nice here
         var key = (species, biomeConditions);
 
         if (cachedEnergyBalances.TryGetValue(key, out var cached))

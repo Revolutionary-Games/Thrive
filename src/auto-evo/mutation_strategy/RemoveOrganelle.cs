@@ -57,7 +57,6 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
         foreach (var organelle in organelles)
         {
-            // Don't clone organelles as we want to do those ourselves
             bool forceBacteria = false;
 
             if (organelle.Definition == Nucleus)
@@ -68,6 +67,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
                 forceBacteria = true;
             }
 
+            // Don't clone organelles as we want to do those ourselves
             var newSpecies = baseSpecies.Clone(false);
 
             if (forceBacteria)
