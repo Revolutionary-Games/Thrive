@@ -64,6 +64,24 @@ public class BioProcess : IRegistryType
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
+    public float GetRateWithConditions(BiomeConditions conditions)
+    {
+        var rate = 1.0f;
+
+        foreach (var input in Inputs)
+        {
+            if (input.Key.IsEnvironmental)
+            {
+                foreach (var compound in conditions.AverageCompounds)
+                {
+                    if (compound.Key.Equals(input.Key))
+                        rate = compound.Value.Ambient / input.Value;
+                }
+            }
+        }
+
+        return rate;
+    }
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);
