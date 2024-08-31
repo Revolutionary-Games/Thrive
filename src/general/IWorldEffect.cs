@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
+using SharedBase.ModelVerifiers;
 
 /// <summary>
 ///   Time dependent effects running on a world
@@ -34,68 +37,140 @@ public class GlucoseReductionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
-        var glucose = SimulationParameters.Instance.GetCompound("glucose");
+        ApplyCompoundsAddition();
+    }
 
-        var totalAmount = 0.0f;
-        var totalChunkAmount = 0.0f;
+    private void ApplyCompoundsAddition()
+    {
+        var atp = SimulationParameters.Instance.GetCompound("atp");
+        var temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        var initialTotalDensity = 0.0f;
-        var finalTotalDensity = 0.0f;
+        var outputModifier = 0.01f;
+        var inputModifier = 150f;
+        var environmentalModifier = 3f;
+        var modifier = 0.0000005f;
 
-        foreach (var key in targetWorld.Map.Patches.Keys)
+        foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
-            var patch = targetWorld.Map.Patches[key];
+            var totalAdded = new Dictionary<Compound, float>();
 
-            if (!patch.Biome.ChangeableCompounds.TryGetValue(glucose, out BiomeCompoundProperties glucoseValue))
-                return;
+            var patch = patchKeyValue.Value;
 
-            totalAmount += glucoseValue.Amount;
-            initialTotalDensity += glucoseValue.Density;
-            totalChunkAmount += patch.GetTotalChunkCompoundAmount(glucose);
-
-            // If there are microbes to be eating up the primordial soup, reduce the milk
-            if (patch.SpeciesInPatch.Count > 0)
+            foreach (var species in patch.SpeciesInPatch)
             {
-                var initialGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
-                    patch.GetTotalChunkCompoundAmount(glucose), 3);
+                foreach (var reproductionCompound in species.Key.BaseReproductionCost)
+                {
+                    var add = -species.Value * modifier * reproductionCompound.Value *
+                        patch.Biome.AverageCompounds[reproductionCompound.Key].Density;
 
-                glucoseValue.Density = Math.Max(glucoseValue.Density * targetWorld.WorldSettings.GlucoseDecay,
-                    Constants.GLUCOSE_MIN);
+                    if (totalAdded.ContainsKey(reproductionCompound.Key))
+                    {
+                        totalAdded[reproductionCompound.Key] += add;
+                    }
+                    else
+                    {
+                        totalAdded.Add(reproductionCompound.Key, add);
+                    }
+                }
 
-                patch.Biome.ModifyLongTermCondition(glucose, glucoseValue);
+                if (species.Key is MicrobeSpecies microbeSpecies)
+                {
+                    foreach (var organelle in microbeSpecies.Organelles.Organelles)
+                    {
+                        if (organelle.Definition.Processes == null)
+                            continue;
 
-                var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
-                    patch.GetTotalChunkCompoundAmount(glucose), 3);
+                        foreach (var process in organelle.Definition.Processes!)
+                        {
+                            var bioProcess = SimulationParameters.Instance.GetBioProcess(process.Key);
 
-                var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
+                            foreach (var input in bioProcess.Inputs)
+                            {
+                                if (input.Key == temperature)
+                                    continue;
 
-                patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucose.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
-                    "glucoseDown.png");
+                                var add = 0.0f;
+
+                                if (patch.Biome.AverageCompounds.ContainsKey(input.Key))
+                                {
+                                    if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
+                                    {
+                                        add = -species.Value * modifier * input.Value * inputModifier *
+                                        patch.Biome.AverageCompounds[input.Key].Ambient * environmentalModifier;
+                                    }
+                                    else
+                                    {
+                                        add = -species.Value * modifier * input.Value * inputModifier *
+                                        patch.Biome.AverageCompounds[input.Key].Density;
+                                    }
+                                }
+                                else
+                                {
+                                    add = -species.Value * modifier * input.Value * inputModifier;
+                                }
+
+
+                                if (totalAdded.ContainsKey(input.Key))
+                                {
+                                    totalAdded[input.Key] += add;
+                                }
+                                else
+                                {
+                                    totalAdded.Add(input.Key, add);
+                                }
+                            }
+
+                            foreach (var output in bioProcess.Outputs)
+                            {
+                                if (output.Key.IsAgent || output.Key == atp || output.Key == temperature)
+                                    continue;
+
+                                var add = 0.0f
+
+                                if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
+                                {
+                                    add = species.Value * modifier * output.Value * outputModifier * environmentalModifier;
+                                }
+                                else
+                                {
+                                    add = species.Value * modifier * output.Value * outputModifier;
+                                }
+
+
+                                if (totalAdded.ContainsKey(output.Key))
+                                {
+                                    totalAdded[output.Key] += add;
+                                }
+                                else
+                                {
+                                    totalAdded.Add(output.Key, add);
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
 
-            finalTotalDensity += patch.Biome.ChangeableCompounds[glucose].Density;
-        }
+            // Apply results
+            foreach (var compound in patch.Biome.ChangeableCompounds)
+            {
+                var tweakedBiomeConditions = compound.Value;
 
-        var initialTotalGlucose = Math.Round(initialTotalDensity * totalAmount + totalChunkAmount, 3);
+                if (totalAdded.ContainsKey(compound.Key))
+                {
+                    if (compound.Key.IsEnvironmental)
+                    {
+                        tweakedBiomeConditions.Ambient = Math.Clamp(patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Ambient + totalAdded[compound.Key], 0, 1);
+                    }
+                    else
+                    {
+                        tweakedBiomeConditions.Density = Math.Clamp(patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Density + totalAdded[compound.Key], 0, 1);
+                    }
+                }
 
-        // Prevent a division by zero
-        if (initialTotalGlucose == 0)
-            return;
-
-        var finalTotalGlucose = Math.Round(finalTotalDensity * totalAmount + totalChunkAmount, 3);
-        var globalReduction = Math.Round((initialTotalGlucose - finalTotalGlucose) / initialTotalGlucose * 100, 1);
-
-        if (globalReduction >= 50)
-        {
-            targetWorld.LogEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
-                false, "glucoseDown.png");
-        }
-        else if (globalReduction > 0)
-        {
-            targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                    glucose.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
-                "glucoseDown.png");
+                targetWorld.Map.Patches[patchKeyValue.Key].Biome.ModifyLongTermCondition(compound.Key, tweakedBiomeConditions);
+            }
         }
     }
 }
