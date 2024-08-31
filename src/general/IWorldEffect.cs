@@ -45,9 +45,9 @@ public class GlucoseReductionEffect : IWorldEffect
         var atp = SimulationParameters.Instance.GetCompound("atp");
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        var outputModifier = 0.01f;
+        var outputModifier = 150f;
         var inputModifier = 150f;
-        var environmentalModifier = 3f;
+        var environmentalModifier = 100f;
         var modifier = 0.0000005f;
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
@@ -84,6 +84,7 @@ public class GlucoseReductionEffect : IWorldEffect
                         {
                             var bioProcess = SimulationParameters.Instance.GetBioProcess(process.Key);
 
+                            // Inputs
                             foreach (var input in bioProcess.Inputs)
                             {
                                 if (input.Key == temperature)
@@ -95,7 +96,7 @@ public class GlucoseReductionEffect : IWorldEffect
                                 {
                                     if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
                                     {
-                                        add = -species.Value * modifier * input.Value * inputModifier *
+                                        add = -species.Value * modifier * input.Value *
                                         patch.Biome.AverageCompounds[input.Key].Ambient * environmentalModifier;
                                     }
                                     else
@@ -120,22 +121,23 @@ public class GlucoseReductionEffect : IWorldEffect
                                 }
                             }
 
+                            // Outputs
                             foreach (var output in bioProcess.Outputs)
                             {
                                 if (output.Key.IsAgent || output.Key == atp || output.Key == temperature)
                                     continue;
 
-                                var add = 0.0f
+                                var add = 0.0f;
 
-                                if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
+                                if (patch.Biome.AverageCompounds[output.Key].Ambient > 0)
                                 {
-                                    add = species.Value * modifier * output.Value * outputModifier * environmentalModifier;
+                                    add = species.Value * modifier * output.Value * environmentalModifier;
                                 }
                                 else
                                 {
-                                    add = species.Value * modifier * output.Value * outputModifier;
+                                    add = species.Value * modifier * output.Value * outputModifier
+                                        * patch.Biome.AverageCompounds[output.Key].Density;
                                 }
-
 
                                 if (totalAdded.ContainsKey(output.Key))
                                 {
