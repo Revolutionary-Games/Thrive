@@ -192,8 +192,12 @@ public class GlucoseReductionEffect : IWorldEffect
                 {
                     var newConditions = compound.Value;
 
-                    var fractionDensity = (compound.Value.Density - adjacent.Biome.Compounds[compound.Key].Density) / (patch.Value.Adjacent.Count + 1);
-                    var fractionAmbient = (compound.Value.Ambient - adjacent.Biome.Compounds[compound.Key].Ambient) / (patch.Value.Adjacent.Count + 1);
+                    var fractionDensity =
+                        (compound.Value.Density -
+                        adjacent.Biome.Compounds[compound.Key].Density) / (patch.Value.Adjacent.Count + 1);
+                    var fractionAmbient =
+                        (compound.Value.Ambient 
+                        adjacent.Biome.Compounds[compound.Key].Ambient) / (patch.Value.Adjacent.Count + 1);
 
                     newConditions.Density -= fractionDensity;
                     newConditions.Ambient -= fractionAmbient;
