@@ -36,6 +36,7 @@ public class GlucoseReductionEffect : IWorldEffect
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
         ApplyCompoundsAddition();
+        HandlePatchCompoundDiffusion();
     }
 
     private void ApplyCompoundsAddition()
@@ -177,6 +178,28 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 targetWorld.Map.Patches[patchKeyValue.Key].Biome.ModifyLongTermCondition(compound.Key,
                     tweakedBiomeConditions);
+            }
+        }
+    }
+
+    private void HandlePatchCompoundDiffusion()
+    {
+        foreach (var patch in targetWorld.Map.Patches)
+        {
+            foreach (var adjacent in patch.Value.Adjacent)
+            {
+                foreach (var compound in patch.Value.Biome.Compounds)
+                {
+                    var newConditions = compound.Value;
+
+                    var fractionDensity = (compound.Value.Density - adjacent.Biome.Compounds[compound.Key].Density) / (patch.Value.Adjacent.Count + 1);
+                    var fractionAmbient = (compound.Value.Ambient - adjacent.Biome.Compounds[compound.Key].Ambient) / (patch.Value.Adjacent.Count + 1);
+
+                    newConditions.Density -= fractionDensity;
+                    newConditions.Ambient -= fractionAmbient;
+
+                    targetWorld.Map.Patches[patch.Key].Biome.ModifyLongTermCondition(compound.Key, newConditions);
+                }
             }
         }
     }
