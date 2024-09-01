@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
 using Newtonsoft.Json;
-using SharedBase.ModelVerifiers;
 
 /// <summary>
 ///   Time dependent effects running on a world
@@ -45,9 +43,9 @@ public class GlucoseReductionEffect : IWorldEffect
         var atp = SimulationParameters.Instance.GetCompound("atp");
         var temperature = SimulationParameters.Instance.GetCompound("temperature");
 
-        var outputModifier = 500f;
-        var inputModifier = 500f;
-        var environmentalModifier = 100f;
+        var outputModifier = 500.0f;
+        var inputModifier = 500.0f;
+        var environmentalModifier = 100.0f;
         var modifier = 0.0000005f;
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
@@ -93,18 +91,19 @@ public class GlucoseReductionEffect : IWorldEffect
                                 if (input.Key == temperature)
                                     continue;
 
-                                var add = 0.0f;
+                                float add;
 
                                 if (patch.Biome.AverageCompounds.ContainsKey(input.Key))
                                 {
                                     if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
                                     {
-                                        add = -species.Value * modifier * input.Value * environmentalModifier * rate;
+                                        add = -species.Value * modifier * input.Value * environmentalModifier
+                                            * rate;
                                     }
                                     else
                                     {
                                         add = -species.Value * modifier * input.Value * inputModifier *
-                                        patch.Biome.AverageCompounds[input.Key].Density * rate;
+                                            patch.Biome.AverageCompounds[input.Key].Density * rate;
                                     }
                                 }
                                 else
@@ -128,11 +127,12 @@ public class GlucoseReductionEffect : IWorldEffect
                                 if (output.Key.IsAgent || output.Key == atp || output.Key == temperature)
                                     continue;
 
-                                var add = 0.0f;
+                                float add;
 
                                 if (output.Key.IsGas)
                                 {
-                                    add = species.Value * modifier * output.Value * environmentalModifier * rate;
+                                    add = species.Value * modifier * output.Value * environmentalModifier
+                                        * rate;
                                 }
                                 else
                                 {
@@ -163,15 +163,20 @@ public class GlucoseReductionEffect : IWorldEffect
                 {
                     if (compound.Key.IsEnvironmental)
                     {
-                        tweakedBiomeConditions.Ambient = Math.Clamp(patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Ambient + totalAdded[compound.Key], 0, 1);
+                        tweakedBiomeConditions.Ambient = Math.Clamp(
+                            patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Ambient
+                            + totalAdded[compound.Key], 0, 1);
                     }
                     else
                     {
-                        tweakedBiomeConditions.Density = Math.Clamp(patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Density + totalAdded[compound.Key], 0, 1);
+                        tweakedBiomeConditions.Density = Math.Clamp(
+                            patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Density
+                            + totalAdded[compound.Key], 0, 1);
                     }
                 }
 
-                targetWorld.Map.Patches[patchKeyValue.Key].Biome.ModifyLongTermCondition(compound.Key, tweakedBiomeConditions);
+                targetWorld.Map.Patches[patchKeyValue.Key].Biome.ModifyLongTermCondition(compound.Key,
+                    tweakedBiomeConditions);
             }
         }
     }
