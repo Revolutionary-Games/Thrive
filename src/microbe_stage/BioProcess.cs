@@ -82,6 +82,7 @@ public class BioProcess : IRegistryType
 
         return rate;
     }
+
     public void ApplyTranslations()
     {
         TranslationHelper.ApplyTranslations(this);

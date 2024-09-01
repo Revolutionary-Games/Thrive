@@ -112,7 +112,6 @@ public class GlucoseReductionEffect : IWorldEffect
                                     add = -species.Value * modifier * input.Value * inputModifier;
                                 }
 
-
                                 if (totalAdded.ContainsKey(input.Key))
                                 {
                                     totalAdded[input.Key] += add;
@@ -152,7 +151,6 @@ public class GlucoseReductionEffect : IWorldEffect
                             }
                         }
                     }
-
                 }
             }
 
