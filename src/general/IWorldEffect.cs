@@ -47,7 +47,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
         var outputModifier = 500f;
         var inputModifier = 500f;
-        var environmentalModifier = 10f;
+        var environmentalModifier = 100f;
         var modifier = 0.0000005f;
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
@@ -73,6 +73,7 @@ public class GlucoseReductionEffect : IWorldEffect
                     }
                 }
 
+                // Microbe species handling
                 if (species.Key is MicrobeSpecies microbeSpecies)
                 {
                     foreach (var organelle in microbeSpecies.Organelles.Organelles)
@@ -98,8 +99,7 @@ public class GlucoseReductionEffect : IWorldEffect
                                 {
                                     if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
                                     {
-                                        add = -species.Value * modifier * input.Value *
-                                        patch.Biome.AverageCompounds[input.Key].Ambient * environmentalModifier * rate;
+                                        add = -species.Value * modifier * input.Value * environmentalModifier * rate;
                                     }
                                     else
                                     {

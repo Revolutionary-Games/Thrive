@@ -75,7 +75,7 @@ public class BioProcess : IRegistryType
                 foreach (var compound in conditions.AverageCompounds)
                 {
                     if (compound.Key.Equals(input.Key))
-                        rate = compound.Value.Ambient / input.Value;
+                        rate = compound.Value.Ambient / rate;
                 }
             }
         }
