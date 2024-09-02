@@ -1004,18 +1004,20 @@ fit_content = true
 
 [node name="NumbersAtDay" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 tooltip_text = "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 theme_override_font_sizes/font_size = 12
 text = "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+text_overrun_behavior = 4
+clip_text = true
 
 [node name="NumbersWhenMoving" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 tooltip_text = "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 theme_override_font_sizes/font_size = 12
 button_pressed = true
 text = "BALANCE_DISPLAY_WHILE_MOVING"
+text_overrun_behavior = 4
+clip_text = true
 
 [node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
@@ -1030,7 +1032,10 @@ layout_mode = 2
 
 [node name="ProcessListButton" type="Button" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 14
 text = "VIEW_CELL_PROCESSES"
+text_overrun_behavior = 3
+clip_text = true
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 196)
