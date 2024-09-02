@@ -376,7 +376,7 @@ public partial class PatchDetailsPanel : PanelContainer
         var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound, CompoundAmountType.Biome);
         lightLabel.Text =
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
-                sunlightCompound))), "lx");
+            sunlightCompound))), "lx");
         lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
@@ -385,10 +385,10 @@ public partial class PatchDetailsPanel : PanelContainer
             Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         nitrogenLabel.Text =
             percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, nitrogenCompound),
-                Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
+            Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         co2Label.Text =
             percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
-                Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
+            Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
 
         var otherAmount = CalculateOtherCompoundAmount();
 
@@ -414,28 +414,28 @@ public partial class PatchDetailsPanel : PanelContainer
         // Compounds
         hydrogenSulfideLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch!, hydrogensulfideCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
+            .ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch!, ammoniaCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
+            .ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch!, glucoseCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
+            .ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch!, phosphatesCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
+            .ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch!, ironCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
+            .ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
 
-        foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
+        foreach (var species in SelectedPatch!.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
             speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));

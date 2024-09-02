@@ -261,8 +261,6 @@ public class BiomeConditions : ICloneable
                 "Chunks missing");
         }
 
-        float sumOfGasses = 0;
-
         foreach (var compound in compounds)
         {
             if (compound.Value.Density * Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR is < 0 or > 1)
@@ -270,11 +268,6 @@ public class BiomeConditions : ICloneable
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     $"Density {compound.Value.Density} invalid for {compound.Key} " +
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
-            }
-
-            if (compound.Value.Ambient > 0 && compound.Key.IsGas)
-            {
-                sumOfGasses += compound.Value.Ambient;
             }
         }
 
