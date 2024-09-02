@@ -52,6 +52,10 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 
+    // Direct access to ATP values as these need to be read a lot in auto-evo
+    public float ATPProduction { get; set; }
+    public float ATPConsumption { get; set; }
+
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
         return Process == process;

@@ -55,7 +55,7 @@ text = "PEACEFUL"
 label_settings = ExtResource("3_g62sd")
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
 [node name="AggressionLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression/HBoxContainer"]
@@ -64,6 +64,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "AGGRESSIVE"
 label_settings = ExtResource("3_g62sd")
+horizontal_alignment = 2
 
 [node name="AggressionSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Aggression"]
 layout_mode = 2
@@ -95,7 +96,7 @@ label_settings = ExtResource("3_g62sd")
 clip_text = true
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
 [node name="OpportunismLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism/HBoxContainer"]
@@ -104,6 +105,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "OPPORTUNISTIC"
 label_settings = ExtResource("3_g62sd")
+horizontal_alignment = 2
 
 [node name="OpportunismSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Opportunism"]
 layout_mode = 2
@@ -134,7 +136,7 @@ text = "BRAVE"
 label_settings = ExtResource("3_g62sd")
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
 [node name="FearLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear/HBoxContainer"]
@@ -143,6 +145,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "FEARFUL"
 label_settings = ExtResource("3_g62sd")
+horizontal_alignment = 2
 
 [node name="FearSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Fear"]
 layout_mode = 2
@@ -173,7 +176,7 @@ text = "SESSILE"
 label_settings = ExtResource("3_g62sd")
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
 [node name="ActivityLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity/HBoxContainer"]
@@ -182,6 +185,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "ACTIVE"
 label_settings = ExtResource("3_g62sd")
+horizontal_alignment = 2
 
 [node name="ActivitySlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Activity"]
 layout_mode = 2
@@ -212,7 +216,7 @@ text = "RESPONSIVE"
 label_settings = ExtResource("3_g62sd")
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
-custom_minimum_size = Vector2(30, 0)
+custom_minimum_size = Vector2(45, 0)
 layout_mode = 2
 
 [node name="FocusLabel2" type="Label" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus/HBoxContainer"]
@@ -221,6 +225,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "FOCUSED"
 label_settings = ExtResource("3_g62sd")
+horizontal_alignment = 2
 
 [node name="FocusSlider" type="HSlider" parent="ScrollContainer/MarginContainer/VBoxContainer/Focus"]
 layout_mode = 2

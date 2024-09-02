@@ -38,7 +38,7 @@ public class PredatorRoot : SelectionPressure
             return 0.5f;
         }
 
-        // for now we strictly forbid predators that need another food source to live
+        // For now, we strictly forbid predators that need another food source to live
         return 0;
     }
 

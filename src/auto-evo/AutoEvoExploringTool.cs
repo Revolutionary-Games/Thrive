@@ -315,6 +315,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Init button translation
         OnFinishXGenerationsSpinBoxValueChanged((float)finishXGenerationsSpinBox.Value);
+        OnRunXWorldsSpinBoxValueChanged((float)runXWorldsSpinBox.Value);
 
         // Connect custom dropdown handler
         historyListMenu.Popup.Connect(PopupMenu.SignalName.IndexPressed,

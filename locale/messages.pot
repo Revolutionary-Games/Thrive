@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-27 12:03+0200\n"
+"POT-Creation-Date: 2024-08-30 09:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgstr ""
 msgid "ABORT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:127
+#: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "ABORTED_DOT"
 msgstr ""
 
@@ -49,7 +49,6 @@ msgstr ""
 msgid "ABYSSOPELAGIC"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:735
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:554
 msgid "ACCEPT"
 msgstr ""
@@ -176,7 +175,7 @@ msgid "ALREADY_ASCENDED"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:165
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:374
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:541
 msgid "ALT"
 msgstr ""
 
@@ -325,7 +324,7 @@ msgstr ""
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:371
+#: ../src/auto-evo/AutoEvoRun.cs:372
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
@@ -338,7 +337,7 @@ msgstr ""
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:142
+#: ../src/auto-evo/AutoEvoRun.cs:143
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
@@ -356,7 +355,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:258
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:283
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
@@ -367,7 +366,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:259
 #: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:284
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:215
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -637,7 +636,6 @@ msgstr ""
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:19
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:736
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:568
 #: ../src/modding/NewModGUI.tscn:334
 #: ../src/space_stage/gui/SpaceConstructionPopup.tscn:48
@@ -1205,8 +1203,8 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:428
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:444
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:459
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:475
 msgid "CONTROLLER_ANY_DEVICE"
 msgstr ""
 
@@ -1556,7 +1554,7 @@ msgid "CREDITS"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:163
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:368
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:535
 msgid "CTRL"
 msgstr ""
 
@@ -1845,7 +1843,7 @@ msgstr ""
 msgid "DISCARD_CHANGES"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:774
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:776
 msgid "DISCARD_MIGRATION"
 msgstr ""
 
@@ -2473,7 +2471,7 @@ msgstr ""
 msgid "FIND_CURRENT_PATCH"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:130
+#: ../src/auto-evo/AutoEvoRun.cs:131
 msgid "FINISHED_DOT"
 msgstr ""
 
@@ -2643,7 +2641,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:198
+#: ../src/benchmark/microbe/MicrobeBenchmark.cs:207
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:151
 #: ../src/engine/DebugOverlays.tscn:71
@@ -3151,7 +3149,7 @@ msgstr ""
 msgid "JUNE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:773
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:775
 msgid "KEEP_MIGRATION"
 msgstr ""
 
@@ -3521,7 +3519,7 @@ msgstr ""
 msgid "LEFT_ARROW"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:403
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:434
 msgid "LEFT_MOUSE"
 msgstr ""
 
@@ -3672,7 +3670,7 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:65
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
@@ -3971,7 +3969,7 @@ msgstr ""
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:323
+#: ../src/microbe_stage/MicrobeSpecies.cs:322
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
@@ -4091,7 +4089,7 @@ msgstr ""
 msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:405
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:436
 msgid "MIDDLE_MOUSE"
 msgstr ""
 
@@ -4103,27 +4101,27 @@ msgstr ""
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:796
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:798
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:801
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:803
 msgid "MIGRATION_STATUS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:754
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:756
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:772
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:774
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:763
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:765
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:745
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:747
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:494
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr ""
@@ -4724,7 +4722,7 @@ msgstr ""
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:133
+#: ../src/auto-evo/AutoEvoRun.cs:134
 msgid "NOT_STARTED_DOT"
 msgstr ""
 
@@ -4913,7 +4911,7 @@ msgstr ""
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:143
+#: ../src/auto-evo/AutoEvoRun.cs:144
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
@@ -4998,7 +4996,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:638
+#: ../src/microbe_stage/OrganelleDefinition.cs:641
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5419,7 +5417,7 @@ msgstr ""
 msgid "PRESSURE_SHORT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/InputEventItem.cs:550
+#: ../src/engine/input/key_mapping/InputEventItem.cs:553
 msgid "PRESS_KEY_DOT_DOT_DOT"
 msgstr ""
 
@@ -5693,7 +5691,7 @@ msgstr ""
 msgid "RIGHT_ARROW"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:404
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:435
 msgid "RIGHT_MOUSE"
 msgstr ""
 
@@ -6044,7 +6042,7 @@ msgid "SFX_VOLUME"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:162
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:380
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:547
 msgid "SHIFT"
 msgstr ""
 
@@ -6249,11 +6247,11 @@ msgstr ""
 msgid "SPAWN_PHOSPHATES"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:410
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:441
 msgid "SPECIAL_MOUSE_1"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:411
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:442
 msgid "SPECIAL_MOUSE_2"
 msgstr ""
 
@@ -6333,7 +6331,7 @@ msgstr ""
 msgid "START"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoRun.cs:146
+#: ../src/auto-evo/AutoEvoRun.cs:147
 msgid "STARTING"
 msgstr ""
 
@@ -7258,7 +7256,7 @@ msgstr ""
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:412
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:443
 msgid "UNKNOWN_MOUSE"
 msgstr ""
 
@@ -7589,19 +7587,19 @@ msgstr ""
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:407
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:438
 msgid "WHEEL_DOWN"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:408
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:439
 msgid "WHEEL_LEFT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:409
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:440
 msgid "WHEEL_RIGHT"
 msgstr ""
 
-#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:406
+#: ../src/engine/input/key_mapping/SpecifiedInputKey.cs:437
 msgid "WHEEL_UP"
 msgstr ""
 

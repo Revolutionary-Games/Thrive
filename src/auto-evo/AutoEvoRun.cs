@@ -548,6 +548,7 @@ public class AutoEvoRun
         switch (state)
         {
             case RunStage.GatheringInfo:
+            {
                 GatherInfo(runSteps);
 
                 // +2 is for this step and the result apply step
@@ -556,7 +557,10 @@ public class AutoEvoRun
                 Interlocked.Increment(ref completeSteps);
                 state = RunStage.Stepping;
                 return false;
+            }
+
             case RunStage.Stepping:
+            {
                 if (runSteps.Count < 1)
                 {
                     // All steps complete
@@ -600,11 +604,15 @@ public class AutoEvoRun
                 }
 
                 return false;
+            }
+
             case RunStage.Ended:
+            {
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
                 Interlocked.Increment(ref completeSteps);
                 return true;
+            }
         }
 
         throw new InvalidOperationException("run stage enum value not handled");

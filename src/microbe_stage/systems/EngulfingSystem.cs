@@ -19,7 +19,7 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     In an optimal ECS design this would be a much more general system, but due to being ported from the old
-///     microbe code, this is heavily dependent on microbes being the engulfers. If this was done with a brand new
+///     microbe code, this is heavily dependent on microbes being the engulfers. If this was done with a brand-new
 ///     design this code wouldn't be this good to have so many assumptions about the types of engulfers.
 ///   </para>
 /// </remarks>

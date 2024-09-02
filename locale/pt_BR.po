@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-27 12:03+0200\n"
+"POT-Creation-Date: 2024-08-30 09:33+0300\n"
 "PO-Revision-Date: 2024-06-11 06:06+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -338,9 +338,8 @@ msgstr "Ao marcar a opção, os números calculados neste painel serão calculad
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Incluir o custo de movimento"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Abrir as configurações avançadas"
+msgstr "Quando a opção é marcada, os valores mostrados são calculados com base no pressuposto de que a célula está constantemente em movimento"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilidade"
@@ -406,9 +405,8 @@ msgstr "Melhor Região:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedaço de ferro grande"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Pedaço de ferro grande"
+msgstr "Pedaço de fosfato grande"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Bi"
@@ -745,11 +743,10 @@ msgstr "Compostos"
 
 #, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "Composto:"
+msgstr "Saldo em equilíbrio"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "Composto:"
+msgstr "Saldo em velocidade máxima"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder compostos"
@@ -763,16 +760,18 @@ msgstr "(preenche o armazenamento em {0} s)"
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "(preenche o armazenamento em {0} s, que é mais tempo que a luz utilizável de {1} s)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "Mostrar/esconder compostos"
+msgstr ""
+"Modo para calcular o saldo de compostos; por exemplo, a opção “velocidade máxima” calcula pressupondo que todos os processos ocorram em velocidade máxima\n"
+"enquanto que a opção “equilíbrio” calcula com os processos ocorrendo rápido o suficiente para ter um saldo de ATP não negativo"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "Mostrar/esconder compostos"
+msgstr ""
+"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
+"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
@@ -789,24 +788,24 @@ msgstr "As concentrações de {0} diminuíram em {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "consumo de {0}"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "Compostos"
+msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Apenas {1} [thrive:compound type=\"{0}\"][/thrive:compound] consegue ser gerado durante o dia, mas necessita-se de {2} para sobreviver à noite."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "consumo de {0}"
+msgstr "Não há armazenamento suficiente para [thrive:compound type=\"{0}\"][/thrive:compound], visto que a noite dura {2} s, enquanto a célula consegue manter somente {1} s de compostos."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr "Compostos"
+msgstr "Capacidade de Armazenamento"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr "Compostos"
+msgstr ""
+"Essa seção exibe quanto tempo a célula demora para usar cada composto a partir do armazenamento máximo.\n"
+"Esses números são sempre calculados como se fosse noite e podem ser usados para verificar se a célula tem\n"
+"armazenamento suficiente para sobreviver a noite inteira. Ao desligar o custo de movimento, é calculado a quantidade\n"
+"mínima para sobreviver quando se fica imóvel a noite inteira para conservar energia."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto:"
@@ -869,13 +868,11 @@ msgstr "Unidade: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "O conteúdo da Oficina será atualizado da pasta: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "Continuar a prosperar"
+msgstr "Continuar"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "Selecione uma espécie"
+msgstr "[center]No entanto, o jogo ainda não acabou. Você pode [b]continuar jogando[/b] como a espécie {0} com {1} indivíduos.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Continuar a prosperar"
@@ -892,17 +889,14 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Prosseguir para o protótipo do estágio?"
 
-#, fuzzy
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr "Zonas mortas do controle"
+msgstr "Qualquer Dispositivo"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_L2"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "L2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Gatilho Esquerdo"
 
 #, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_X"
@@ -912,21 +906,17 @@ msgstr "Visualizador dos eixos do controle:"
 msgid "CONTROLLER_AXIS_LEFT_Y"
 msgstr "Visualizador dos eixos do controle:"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Direção Negativa"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr "Sensibilidade do controle"
+msgstr "Direção Positiva"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_R2"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "R2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Gatilho Direito"
 
 #, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_X"
@@ -939,20 +929,17 @@ msgstr "Visualizador dos eixos do controle:"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizador dos eixos do controle:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Direcional para Baixo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Direcional Para a Esquerda"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "Botão Direcional Para a Direita"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Direcional Para Cima"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
@@ -998,33 +985,28 @@ msgstr "Zona morta:"
 msgid "CONTROLLER_BUTTON_PS_CROSS"
 msgstr "Zona morta:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr "Zonas mortas do controle"
+msgstr "L1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr "Zonas mortas do controle"
+msgstr "L3"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
 msgstr "Zona morta:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr "Zonas mortas do controle"
+msgstr "R1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr "Zonas mortas do controle"
+msgstr "R3"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Zonas mortas do controle"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Botão com Logo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
@@ -1043,19 +1025,16 @@ msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr "Tipos de prompts de botões do controle:"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Touch Pad"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr "Zona morta:"
+msgstr "Botão Direcional"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr "Zona morta:"
+msgstr "A"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr "Zona morta:"
+msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr ""
@@ -1067,13 +1046,11 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_START"
 msgstr "Sensibilidade do controle"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr "Zona morta:"
+msgstr "X"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr "Zona morta:"
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Zonas mortas do controle"
@@ -1092,9 +1069,8 @@ msgstr "Tipos de prompts de botões do controle:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Sensibilidade do controle"
 
-#, fuzzy
 msgid "CONTROLLER_UNKNOWN_AXIS"
-msgstr "Zonas mortas do controle"
+msgstr "Eixo Desconhecido"
 
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar erro para a Área de Transferência"
@@ -1108,9 +1084,8 @@ msgstr "Protanopia (Vermelho-Verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Azul-Amarelo)"
 
-#, fuzzy
 msgid "CPU_THREADS"
-msgstr "Tarefas:"
+msgstr "Threads"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Limpar entradas selecionadas"
@@ -1260,9 +1235,8 @@ msgstr "(duração do dia no jogo em segundos)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Ativar o ciclo dia/noite"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "(AVISO: a fotossíntese se tornará menos viável)"
+msgstr "(a fotossíntese deixa de ser efetiva durante a noite)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "A calibração das zonas mortas foi concluída. Elas estão sendo mostradas abaixo."
@@ -1293,9 +1267,8 @@ msgstr "Painel de depuração"
 msgid "DECEMBER"
 msgstr "Dezembro"
 
-#, fuzzy
 msgid "DECREASE_ITEM_SIZE"
-msgstr "Expelir mucilagem"
+msgstr "Diminuir o tamanho do objeto"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Serviço padrão de saída"
@@ -1505,13 +1478,11 @@ msgstr "Exibir barra de habilidades"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "OpenGL"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "Vulkan"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Exibir nomes dos botões de seleções de partes"
@@ -1674,64 +1645,50 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efeitos de luz na interface"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "O processo de endossimbiose está completo, termine-o no editor"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "O alvo da endossimbiose foi transformado em uma organela temporária, o que fará com que a endossimbiose avance se você conseguir entrar no editor"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Um endossimbionte já está presente. Entre no editor para avançar o processo de endossimbiose"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "Múltiplas Organelas"
+msgstr "Organelas disponíveis para transformar-se"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endossimbiose"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Desconectar todos"
+msgstr "Cancelar o processo de endossimbiose. Essa ação anula todo o processo atual neste endossimbionte!"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+msgstr "Finalizar este processo de endossimbiose e colocar como organela"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"Micróbios agressivos perseguirão sua presa por mais tempo\n"
-"e são mais propensos a lutar com predadores quando atacados.\n"
-"Entretanto, os micróbios mais pacíficos não vão perseguir outros por tanto tempo\n"
-"e são menos inclinados a usar toxinas contra predadores."
+msgstr "Endossimbiose é um processo que transforma outra espécie em um endossimbionte (uma espécie que vive dentro de outra em uma relação simbiótica). Isso desbloqueia a organela criada e dá uma cópia gratuita dessa organela. Candidatos viáveis para virar organelas são exibidos abaixo após serem fagocitados. O tempo que o processo leva depende do quão adequado o candidato é para a endossimbiose (exibido abaixo de cada organela candidata)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Nenhuma espécie adequada para a endossimbiose foi fagocitada ainda"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "Organelas Desconectadas"
+msgstr "Esta espécie não pode ser transformada em uma organela válida"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"Isso mostra quantos pop-ups foram dispensados permanentemente pelo usuário.\n"
-"Se alguns dos pop-ups que necessita foram dispensados, o botão junto a isso pode ser usado para fazer todos os pop-ups reaparecerem."
+msgstr "Para avançar um processo de endossimbiose, a espécie alvo deve ser fagocitada para torná-la em uma organela temporária (somente uma pode estar presente de cada vez). O progresso é salvo assim que você entrar no editor com a organela temporária presente."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Procariontes podem ter no máximo um endossimbionte"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Também transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Entre no editor com esta espécie como uma organela temporária para avançar"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "Abre o editor e modifica a sua espécie"
+msgstr "Começar a endossimbiose para esta espécie (disponível assim que o tipo de organela for selecionado)"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "Falta um título"
+msgstr "Endossimbiose"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1752,7 +1709,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total coletada é {0}, a um custo de {1} por indivíduo, resultando em uma população (não ajustada) de {2}"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Ferido por tentar fagocitar sem ATP"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Insira ID Existente"
@@ -1841,19 +1798,17 @@ msgstr "Construções"
 msgid "EXIT"
 msgstr "Sair"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Ir para a próxima aba do editor"
+msgstr "Sair do Editor"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sair para o Lançador"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Recursos experimentais"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr "(ativa recursos adicionais que não estão maduros o suficiente para serem incluídos no jogo padrão. Se você jogar com eles, diga-nos o que achou)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportar Todos os Mundos"
@@ -1940,13 +1895,11 @@ msgstr "Publicado em {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Esse item foi truncado por ser muito longo, leia o original para obter todo o conteúdo. {0}"
 
-#, fuzzy
 msgid "FERROPLAST"
-msgstr "Termoplasto"
+msgstr "Ferroplasto"
 
-#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+msgstr "O ferroplasto é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado para uso de seu hospedeiro eucariótico. É capaz de oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico a outra com uma eficiência bem maior do que pode ser conseguido com a rusticianina. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá utilizar. Contudo, o ferroplasto precisa de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, e níveis maiores de qualquer um desses no ambiente diminuirá a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
@@ -4329,7 +4282,7 @@ msgid "QUIT"
 msgstr "Sair"
 
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Sai do jogo"
+msgstr "Sair do jogo"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
@@ -4532,7 +4485,7 @@ msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+msgstr "Rusticianina é uma proteína que consegue usar o [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound] para oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico para outro. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá usar."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."

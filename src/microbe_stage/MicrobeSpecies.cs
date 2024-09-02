@@ -278,6 +278,11 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public override object Clone()
     {
+        return Clone(true);
+    }
+
+    public MicrobeSpecies Clone(bool cloneOrganelles)
+    {
         var result = new MicrobeSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
@@ -286,15 +291,9 @@ public class MicrobeSpecies : Species, ICellDefinition
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-
-        var organelles = Organelles.Organelles;
-        var organelleCount = organelles.Count;
-
-        for (int i = 0; i < organelleCount; ++i)
+        if (cloneOrganelles)
         {
-            result.Organelles.AddFast((OrganelleTemplate)organelles[i].Clone(), workMemory1, workMemory2);
+            result.Organelles = Organelles.Clone();
         }
 
         return result;

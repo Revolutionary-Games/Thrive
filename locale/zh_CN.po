@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-08-27 12:03+0200\n"
+"POT-Creation-Date: 2024-08-30 09:33+0300\n"
 "PO-Revision-Date: 2024-06-19 00:11+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -403,9 +403,8 @@ msgstr "最繁荣的地区："
 msgid "BIG_IRON_CHUNK"
 msgstr "大铁块"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "大铁块"
+msgstr "大磷酸盐块"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} *10⁹"
@@ -2924,61 +2923,53 @@ msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
 msgid "MICHE"
-msgstr ""
+msgstr "生态导向源"
 
-#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
-msgstr "[b][u]{0}[/u][/b]从[b][u]{1}[/u][/b]中分裂出来，成为了一个新的物种，原因是进化压力"
+msgstr "避免自然捕食选择的压力"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "营养物碎块压力"
 
-#, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
-msgstr "化合物云"
-
-msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr ""
+msgstr "化合物云压力"
 
 #, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "化合物转化效率压强"
+
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
-"[b]物种[/b]\n"
-"  {0}：{1}\n"
-"[b]世代[/b]\n"
-"  {2}\n"
-"[b]种群数量[/b]\n"
-"  {3}\n"
-"[b]颜色[/b]\n"
-"  #{4}\n"
-"[b]行为[/b]\n"
-"  {5}"
+"[b]自然选择压力[/b]\n"
+"  {0}\n"
+"[b]能量[/b]\n"
+"  {1}\n"
+"[b]适应分数[/b]\n"
+"  {2}"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "环境化合物压强"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "维持化合物压强"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "代谢稳定压力"
 
 msgid "MICHE_NO_OP_PRESSURE"
-msgstr ""
+msgstr "无操作压力"
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "捕食效率压力"
 
-#, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
-msgstr "捕食{0}"
+msgstr "掠食者根部压力"
 
 msgid "MICHE_ROOT_PRESSURE"
-msgstr ""
+msgstr "根部压力"
 
-#, fuzzy
 msgid "MICHE_TREE"
-msgstr "转储SceneTree"
+msgstr "生态导向源树状图"
 
 msgid "MICROBE"
 msgstr "微生物"
@@ -3990,9 +3981,8 @@ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 msgid "PAST_DEVELOPERS"
 msgstr "过去的开发人员"
 
-#, fuzzy
 msgid "PATCH_COLON"
-msgstr "最繁荣的地区："
+msgstr "区域："
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4733,9 +4723,8 @@ msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thri
 msgid "SMALL_IRON_CHUNK"
 msgstr "小铁块"
 
-#, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
-msgstr "小铁块"
+msgstr "小磷酸盐碎块"
 
 msgid "SOCIETY_STAGE"
 msgstr "社会阶段"
@@ -5347,9 +5336,13 @@ msgstr "对目标的毒性效果"
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
 
-#, fuzzy
 msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
-msgstr "不同种类的毒素的效果不同，有些对特定种类的细胞会有奇效。当一个细胞有多种毒素时，它们会被依序发射而不是被同时发射。"
+msgstr ""
+"毒素可以自定义以造成更多伤害，但发射速度更慢、\n"
+"或发射速度更快，但每发伤害更低。\n"
+"所有毒素细胞器的平均毒性决定了总发射速度和伤害修正值。\n"
+"只有毒素细胞器唯一时，此处显示的伤害值才是完全准确的。\n"
+"或者所有细胞器都被修改为具有相同的毒性值。"
 
 msgid "TOXIN_TYPE_COLON"
 msgstr "毒素类型："
@@ -5809,9 +5802,8 @@ msgstr "查看器"
 msgid "VIEW_ALL"
 msgstr "查看所有"
 
-#, fuzzy
 msgid "VIEW_CELL_PROCESSES"
-msgstr "无代谢过程。"
+msgstr "查看细胞代谢过程"
 
 msgid "VIEW_ONLINE"
 msgstr "在互联网上查看"
