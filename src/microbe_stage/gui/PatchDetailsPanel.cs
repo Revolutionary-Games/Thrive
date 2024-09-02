@@ -94,6 +94,8 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label phosphateLabel = null!;
     private Label ironLabel = null!;
 
+    private Control otherCompoundBase;
+
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
     private TextureRect hydrogenSulfideSituation = null!;
@@ -261,11 +263,11 @@ public partial class PatchDetailsPanel : PanelContainer
         var co2Base = atmosphereContainer.GetItem<Control>("CO2");
         co2Label = co2Base.GetNode<Label>(labelPath);
 
-        otherCompoundLabel = null!;
-        var otherCompoundBase = atmosphereContainer.GetItem<Control>("Other");
-        otherCompoundLabel = otherCompoundBase.GetNode<Label>(labelPath);
-
         // co2Situation = co2Base.GetNode<TextureRect>(situation);
+
+        otherCompoundLabel = null!;
+        otherCompoundBase = atmosphereContainer.GetItem<Control>("Other");
+        otherCompoundLabel = otherCompoundBase.GetNode<Label>(labelPath);
 
         // Compounds list
         hydrogenSulfideLabel = null!;
@@ -388,9 +390,26 @@ public partial class PatchDetailsPanel : PanelContainer
             percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
 
-        otherCompoundLabel.Text = percentageFormat.FormatSafe(100.0f - Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound)
-            + GetCompoundAmount(SelectedPatch, nitrogenCompound) + GetCompoundAmount(SelectedPatch, oxygenCompound)),
+        var otherAmount = CalculateOtherCompoundAmount();
+
+        otherCompoundLabel.Text = percentageFormat.FormatSafe(otherAmount,
             Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS);
+
+        if (SelectedPatch != null)
+        {
+            if (otherAmount <= 0)
+            {
+                otherCompoundBase.Visible = false;
+            }
+            else
+            {
+                otherCompoundBase.Visible = true;
+            }
+        }
+        else
+        {
+            otherCompoundBase.Visible = false;
+        }
 
         // Compounds
         hydrogenSulfideLabel.Text =
@@ -827,6 +846,16 @@ public partial class PatchDetailsPanel : PanelContainer
 
         currentlyEditedMigration.Amount = population;
         UpdateMigrationStatusText();
+    }
+
+    private float CalculateOtherCompoundAmount()
+    {
+        if (SelectedPatch == null)
+           return 0;
+
+        return (float)Math.Floor(10 * (100.0f - (GetCompoundAmount(SelectedPatch, carbondioxideCompound)
+            + GetCompoundAmount(SelectedPatch, nitrogenCompound) + GetCompoundAmount(SelectedPatch, oxygenCompound))))
+            / 10;
     }
 
     public class Migration
