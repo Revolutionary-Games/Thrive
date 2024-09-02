@@ -266,11 +266,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <remarks>
     ///   <para>
     ///     Assumes that all processes run at maximum speed but only if input compounds are present in
-    ///     <see cref="biome"/>
+    ///     <see cref="biome"/> when <see cref="requireInputCompoundsInBiome"/> is true. If false processes can be
+    ///     assumed to run at normal speed even without the input compounds being present in the given biome.
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType)
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        bool requireInputCompoundsInBiome)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -286,7 +288,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
+                var speedAdjusted =
+                    CalculateProcessMaximumSpeed(process, biome, amountType, requireInputCompoundsInBiome);
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -306,9 +309,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType)
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        bool requireInputCompoundsInBiome)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType);
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
+            requireInputCompoundsInBiome);
     }
 
     /// <summary>
