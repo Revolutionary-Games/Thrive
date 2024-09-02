@@ -94,7 +94,7 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label phosphateLabel = null!;
     private Label ironLabel = null!;
 
-    private Control otherCompoundBase;
+    private Control otherCompoundBase = null!;
 
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
@@ -413,23 +413,23 @@ public partial class PatchDetailsPanel : PanelContainer
 
         // Compounds
         hydrogenSulfideLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch!, hydrogensulfideCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch!, ammoniaCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch!, glucoseCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch!, phosphatesCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ironCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch!, ironCompound),
                     Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
                 .ToString(CultureInfo.CurrentCulture);
 
