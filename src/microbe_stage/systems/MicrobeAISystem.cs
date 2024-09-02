@@ -353,6 +353,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                     }
                 }
 
+                // If we have enough of everything that makes atp, wait a bit to generate some more
                 if (!outOfSomething)
                 {
                     control.SetMoveSpeed(0.0f);
