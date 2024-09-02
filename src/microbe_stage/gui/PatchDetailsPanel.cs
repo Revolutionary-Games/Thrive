@@ -87,6 +87,7 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label oxygenLabel = null!;
     private Label nitrogenLabel = null!;
     private Label co2Label = null!;
+    private Label otherCompoundLabel = null!;
     private Label hydrogenSulfideLabel = null!;
     private Label ammoniaLabel = null!;
     private Label glucoseLabel = null!;
@@ -260,6 +261,10 @@ public partial class PatchDetailsPanel : PanelContainer
         var co2Base = atmosphereContainer.GetItem<Control>("CO2");
         co2Label = co2Base.GetNode<Label>(labelPath);
 
+        otherCompoundLabel = null!;
+        var otherCompoundBase = atmosphereContainer.GetItem<Control>("Other");
+        otherCompoundLabel = otherCompoundBase.GetNode<Label>(labelPath);
+
         // co2Situation = co2Base.GetNode<TextureRect>(situation);
 
         // Compounds list
@@ -382,6 +387,10 @@ public partial class PatchDetailsPanel : PanelContainer
         co2Label.Text =
             percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
+
+        otherCompoundLabel.Text = percentageFormat.FormatSafe(100.0f - Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound)
+            + GetCompoundAmount(SelectedPatch, nitrogenCompound) + GetCompoundAmount(SelectedPatch, oxygenCompound)),
+            Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS);
 
         // Compounds
         hydrogenSulfideLabel.Text =
