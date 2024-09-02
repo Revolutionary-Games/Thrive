@@ -846,11 +846,11 @@ public partial class PatchDetailsPanel : PanelContainer
     private float CalculateOtherCompoundAmount()
     {
         if (SelectedPatch == null)
-           return 0;
+            return 0;
 
         return (float)Math.Floor(10 * (100.0f - (GetCompoundAmount(SelectedPatch, carbondioxideCompound)
-            + GetCompoundAmount(SelectedPatch, nitrogenCompound) + GetCompoundAmount(SelectedPatch, oxygenCompound))))
-            / 10;
+            + GetCompoundAmount(SelectedPatch, nitrogenCompound) + GetCompoundAmount(SelectedPatch,
+                oxygenCompound)))) / 10;
     }
 
     public class Migration
