@@ -343,13 +343,20 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
             {
+                bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
                 {
-                    if (IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f)
+                    if (IsVitalCompound(compound.Key, compounds) && compound.Value <= 0.0f)
                     {
-                        control.SetMoveSpeed(0.0f);
-                        return;
+                        outOfSomething = true;
                     }
+                }
+
+                if (!outOfSomething)
+                {
+                    control.SetMoveSpeed(0.0f);
+                    ai.ATPThreshold *= 0.9f;
+                    return;
                 }
             }
 
