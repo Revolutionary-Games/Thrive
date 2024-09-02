@@ -57,21 +57,12 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
         foreach (var organelle in organelles)
         {
-            bool forceBacteria = false;
-
+            // The player cannot remove the nucleus, so Auto-Evo should not be able to either
             if (organelle.Definition == Nucleus)
-            {
-                if (baseSpecies.Organelles.Any(x => x.Definition.RequiresNucleus))
-                    continue;
-
-                forceBacteria = true;
-            }
+                continue;
 
             // Don't clone organelles as we want to do those ourselves
             var newSpecies = baseSpecies.Clone(false);
-
-            if (forceBacteria)
-                newSpecies.IsBacteria = true;
 
             workMemory ??= new MutationWorkMemory();
 
