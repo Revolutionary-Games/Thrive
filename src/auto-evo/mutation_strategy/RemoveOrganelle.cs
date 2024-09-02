@@ -57,6 +57,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
         foreach (var organelle in organelles)
         {
+            // The player cannot remove the nucleus, so Auto-Evo should not be able to either
             if (organelle.Definition == Nucleus)
                 continue;
 
