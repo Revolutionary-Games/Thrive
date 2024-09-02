@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bwegwjlcioasf"]
+[gd_scene load_steps=27 format=3 uid="uid://bwegwjlcioasf"]
 
 [ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="2"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://d4k6fcmyngydt" path="res://assets/textures/gui/bevel/1xSymmetry.png" id="18"]
 [ext_resource type="Texture2D" uid="uid://dgn0a345ydfa1" path="res://assets/textures/gui/bevel/redoButtonActive.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://bacp3rllk2nfq" path="res://assets/textures/gui/bevel/buttonActive.png" id="20"]
+[ext_resource type="FontFile" uid="uid://dblvrxw3ue372" path="res://assets/fonts/Lato-Italic.ttf" id="20_ffguv"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="21"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.cs" id="22"]
 [ext_resource type="Texture2D" uid="uid://dggmsgyoxac4d" path="res://assets/textures/gui/bevel/buttonDisabled.png" id="23"]
@@ -140,6 +141,7 @@ custom_minimum_size = Vector2(240, 27)
 layout_mode = 2
 focus_mode = 1
 mouse_force_pass_scroll_events = false
+theme_override_fonts/font = ExtResource("20_ffguv")
 placeholder_text = "SPECIES_NAME_DOT_DOT_DOT"
 max_length = 60
 caret_blink = true
