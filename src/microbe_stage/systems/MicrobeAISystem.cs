@@ -339,16 +339,17 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
-        if (ai.ATPThreshold > Mathf.Epsilon)
+        if (ai.ATPThreshold > MathUtils.EPSILON)
         {
             if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
             {
                 bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
                 {
-                    if (IsVitalCompound(compound.Key, compounds) && compound.Value <= Mathf.Epsilon)
+                    if (IsVitalCompound(compound.Key, compounds) && compound.Value <= MathUtils.EPSILON)
                     {
                         outOfSomething = true;
+                        break;
                     }
                 }
 
