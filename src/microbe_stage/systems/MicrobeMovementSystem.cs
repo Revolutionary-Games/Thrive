@@ -195,10 +195,17 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
                 strain.IsUnderStrain = false;
             }
 
-            // Remove ATP due to strain even if not moving
-            // This is calculated similarly to the regular movement cost for consistency
-            var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
-            compounds.TakeCompound(atp, strainCost);
+            // Remove ATP due to strain even if not moving (but only if strain is active, because otherwise this would
+            // take the movement cost even while not moving meaning the editor ATP balance bar would be totally
+            // inaccurate)
+            if (strainMultiplier > 1)
+            {
+                // This is calculated similarly to the regular movement cost for consistency
+                // TODO: is it fine for this to be so punishing? By taking the base movement cost here even though
+                // the cell is not moving (this could take just the portion of strain multiplier that is above 1)
+                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
+                compounds.TakeCompound(atp, strainCost);
+            }
 
             // Slime jets work even when not holding down any movement keys
             var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
