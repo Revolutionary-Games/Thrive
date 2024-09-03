@@ -390,47 +390,40 @@ public partial class PatchDetailsPanel : PanelContainer
             percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
 
-        var otherAmount = CalculateOtherCompoundAmount();
+        var otherAmount = CalculateUnaccountedForCompoundPercentage();
 
         otherCompoundLabel.Text = percentageFormat.FormatSafe(otherAmount,
             Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS);
 
-        if (SelectedPatch != null)
+        if (otherAmount <= 0)
         {
-            if (otherAmount <= 0)
-            {
-                otherCompoundBase.Visible = false;
-            }
-            else
-            {
-                otherCompoundBase.Visible = true;
-            }
+            otherCompoundBase.Visible = false;
         }
         else
         {
-            otherCompoundBase.Visible = false;
+            otherCompoundBase.Visible = true;
         }
 
         // Compounds
         hydrogenSulfideLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch!, hydrogensulfideCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch!, ammoniaCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch!, glucoseCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch!, phosphatesCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch!, ironCompound),
+            Math.Round(GetCompoundAmount(SelectedPatch, ironCompound),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
 
-        foreach (var species in SelectedPatch!.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
+        foreach (var species in SelectedPatch.SpeciesInPatch.Keys.OrderBy(s => s.FormattedName))
         {
             speciesList.AppendLine(Localization.Translate("SPECIES_WITH_POPULATION").FormatSafe(
                 species.FormattedNameBbCode, SelectedPatch.GetSpeciesSimulationPopulation(species)));
@@ -843,7 +836,7 @@ public partial class PatchDetailsPanel : PanelContainer
         UpdateMigrationStatusText();
     }
 
-    private float CalculateOtherCompoundAmount()
+    private float CalculateUnaccountedForCompoundPercentage()
     {
         if (SelectedPatch == null)
             return 0;
