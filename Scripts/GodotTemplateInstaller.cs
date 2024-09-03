@@ -6,7 +6,6 @@ using System.IO.Compression;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.CodeAnalysis;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
 
