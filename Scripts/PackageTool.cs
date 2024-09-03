@@ -113,14 +113,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (options.Dehydrated)
         {
-            DefaultPlatforms = new[] { PackagePlatform.Linux, PackagePlatform.Windows };
+            DefaultPlatforms = [PackagePlatform.Linux, PackagePlatform.Windows];
         }
         else
         {
-            // For now our mac builds kind of need to be done on a mac so this reflects that
+            // For now our mac builds kind of need to be done on a Mac so this reflects that
             if (OperatingSystem.IsMacOS())
             {
-                DefaultPlatforms = new[] { PackagePlatform.Mac };
+                DefaultPlatforms = [PackagePlatform.Mac];
             }
             else
             {
@@ -165,6 +165,22 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
+        // Make sure Thrive has been compiled as this seems to be able to cause an issue where the back button from
+        // new game settings doesn't work
+        ColourConsole.WriteNormalLine("Making sure Thrive C# code is compiled");
+
+        var startInfo = new ProcessStartInfo("dotnet");
+        startInfo.ArgumentList.Add("build");
+        startInfo.ArgumentList.Add(SteamBuild.THRIVE_CSPROJ);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteWarningLine("Building Thrive with dotnet failed");
+            return false;
+        }
+
         // For now, by default disable Steam mode to make the script easier to use
         options.Steam ??= false;
 
@@ -240,7 +256,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        // TODO: mac steam support
+        // TODO: Mac steam support
         if (options.Steam != null && platform is not PackagePlatform.Mac and not PackagePlatform.Web)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,

@@ -145,7 +145,15 @@ public partial class ModUploader : Control
 
         fileSelectDialog = GetNode<FileDialog>(FileSelectDialogPath);
 
-        fileSelectDialog.Filters = SteamHandler.RecommendedFileEndings.Select(e => "*" + e).ToArray();
+        // Title is not automatically translated by Godot so we need to do it ourselves
+        fileSelectDialog.Title = Localization.Translate("SELECT_PREVIEW_IMAGE");
+
+        // Construct a filter that allows selecting any image types and has localized text for the name of the file
+        // types
+        var fileTypeName = Localization.Translate("IMAGE_FILE_TYPES");
+
+        fileSelectDialog.Filters =
+            [string.Join(",", SteamHandler.RecommendedFileEndings.Select(e => "*" + e)) + ";" + fileTypeName];
 
         UpdateWorkshopNoticeTexts();
     }

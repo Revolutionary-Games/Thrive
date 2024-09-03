@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 [JSONAlwaysDynamicType]
 public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
@@ -20,6 +21,7 @@ public class EndosymbiontPlaceActionData : EditorCombinableActionData<CellType>
     /// </summary>
     public EndosymbiosisData.InProgressEndosymbiosis? OverriddenEndosymbiosisOnUndo;
 
+    [JsonConstructor]
     public EndosymbiontPlaceActionData(OrganelleTemplate placedOrganelle, Hex placementLocation, int placementRotation,
         EndosymbiosisData.InProgressEndosymbiosis relatedEndosymbiosisAction)
     {

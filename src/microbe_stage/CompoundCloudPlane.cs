@@ -989,7 +989,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void CreateDensityTexture()
     {
-        image = Image.Create(Size, Size, false, Image.Format.Rgba8);
+        image = Image.CreateEmpty(Size, Size, false, Image.Format.Rgba8);
         texture = ImageTexture.CreateFromImage(image);
 
         var material = (ShaderMaterial)Material;

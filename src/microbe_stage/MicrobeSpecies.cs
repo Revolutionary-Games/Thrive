@@ -165,9 +165,13 @@ public class MicrobeSpecies : Species, ICellDefinition
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
         // which could basically make them die instantly in certain situations)
         var simulationParameters = SimulationParameters.Instance;
+
+        // TODO: improve this depending on the default patch: https://github.com/Revolutionary-Games/Thrive/issues/5446
         var biomeConditions = simulationParameters.GetBiome("default").Conditions;
+
+        // False is passed here until we can make the initial compounds patch specific
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
-            biomeConditions, CompoundAmountType.Biome);
+            biomeConditions, CompoundAmountType.Biome, false);
 
         var glucose = simulationParameters.GetCompound("glucose");
         var atp = simulationParameters.GetCompound("atp");
