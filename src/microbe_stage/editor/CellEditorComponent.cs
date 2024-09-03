@@ -1936,8 +1936,7 @@ public partial class CellEditorComponent :
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                compoundBalanceData =
-                    ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType);
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
                 compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
