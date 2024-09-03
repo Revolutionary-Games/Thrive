@@ -281,7 +281,7 @@ public class BiomeConditions : ICloneable
         if (sumOfGasses > 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Gas compounds shouldn't together be over 100");
+                "Gas compounds shouldn't together be over 100%");
         }
 
         foreach (var chunk in Chunks)
