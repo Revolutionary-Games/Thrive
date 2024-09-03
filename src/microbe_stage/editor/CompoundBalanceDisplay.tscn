@@ -36,12 +36,11 @@ layout_mode = 2
 tooltip_text = "COMPOUND_BALANCE_MODE_TOOLTIP"
 text_overrun_behavior = 4
 clip_text = true
-item_count = 2
 selected = 0
 fit_to_longest_item = false
+item_count = 2
 popup/item_0/text = "COMPOUNDS_AT_EQUILIBRIUM"
 popup/item_0/id = 1
 popup/item_1/text = "COMPOUNDS_AT_MAX_SPEED"
-popup/item_1/id = 0
 
 [connection signal="item_selected" from="CompoundBalanceMode" to="." method="OnBalanceModeChanged"]

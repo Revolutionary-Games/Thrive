@@ -401,7 +401,7 @@ public partial class GalleryViewer : CustomWindow
 
     private void OnGallerySelected(Button button)
     {
-        var selected = button.Name;
+        var selected = button.Name.ToString();
 
         var gallery = SimulationParameters.Instance.GetGallery(selected);
         assetsCategoryDropdown.Clear();
