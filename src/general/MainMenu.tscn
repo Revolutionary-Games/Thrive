@@ -833,61 +833,61 @@ custom_minimum_size = Vector2(680, 0)
 offset_top = 28.0
 offset_right = 680.0
 offset_bottom = 148.0
-WindowTitle = "OPENGL_MODE_WARNING"
 HideCancelButton = true
 DialogText = "OPENGL_MODE_WARNING_EXPLANATION"
+WindowTitle = "OPENGL_MODE_WARNING"
 
 [node name="ModsInstalledButNothingEnabledWarning" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(550, 0)
 offset_right = 163.0
 offset_bottom = 97.0
-WindowTitle = "NO_MODS_ENABLED"
+DialogType = 1
 CenterText = false
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
+WindowTitle = "NO_MODS_ENABLED"
 Exclusive = false
-DialogType = 1
 
 [node name="SafeModeWarningDialog" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(550, 370)
 offset_right = 40.0
 offset_bottom = 40.0
-WindowTitle = "SAFE_MODE_TITLE"
 HideCancelButton = true
 DialogText = "SAFE_MODE_EXPLANATION"
+WindowTitle = "SAFE_MODE_TITLE"
 
 [node name="ModFailureDialog" parent="." instance=ExtResource("15")]
 custom_minimum_size = Vector2(400, 350)
-WindowTitle = "MOD_LOAD_ERRORS"
 ErrorMessage = "MOD_LOAD_ERRORS_OCCURRED"
 ExceptionInfo = ""
+WindowTitle = "MOD_LOAD_ERRORS"
 
 [node name="ThanksForBuyingDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
 offset_right = 163.0
 offset_bottom = 97.0
-WindowTitle = "THANK_YOU_TITLE"
+NoticeType = 1
 CenterText = false
 HideCancelButton = true
 DialogText = "THANKS_FOR_BUYING_THRIVE"
-NoticeType = 1
+WindowTitle = "THANK_YOU_TITLE"
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource("4")]
 custom_minimum_size = Vector2(500, 0)
 offset_right = 40.0
 offset_bottom = 40.0
-WindowTitle = "STEAM_INIT_FAILED"
 HideCancelButton = true
 DialogText = "STEAM_INIT_FAILED_DESCRIPTION"
+WindowTitle = "STEAM_INIT_FAILED"
 
 [node name="LowPerformanceDialog" parent="." instance=ExtResource("59")]
 custom_minimum_size = Vector2(500, 0)
-WindowTitle = "LOW_MENU_PERFORMANCE"
-ShowCloseButton = false
-DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 NoticeType = 2
 DialogType = 1
 PermanentDismissType = 1
+DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
+WindowTitle = "LOW_MENU_PERFORMANCE"
+ShowCloseButton = false
 
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
