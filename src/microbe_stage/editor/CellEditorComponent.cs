@@ -2232,7 +2232,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in placeablePartSelectionElements.Values)
         {
-            selection.Selected = selection.Name == selectedOrganelle;
+            selection.Selected = selection.Name.ToString() == selectedOrganelle;
         }
     }
 
@@ -2241,7 +2241,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in membraneSelectionElements.Values)
         {
-            selection.Selected = selection.Name == membrane;
+            selection.Selected = selection.Name.ToString() == membrane;
         }
     }
 
