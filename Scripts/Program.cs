@@ -16,7 +16,7 @@ public class Program
     {
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
-        // This has too many verbs now so some more manual work is required here as this has ran out of the template
+        // This has too many verbs now so some more manual work is required here as this has run out of the template
         // arguments available from the library
         var parserResult = CommandLineHelpers.CreateParser()
             .ParseArguments(args, typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions),
