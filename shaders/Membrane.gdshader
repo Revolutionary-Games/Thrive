@@ -29,7 +29,7 @@ void vertex(){
 
 float fresnel(float power, vec3 normal, vec3 view)
 {
-	return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.9 + 0.1) * 2.5, power), 0.0, 1.0);
+	return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.875 + 0.125) * 3.0, power), 0.0, 1.0);
 }
 
 void fragment(){
