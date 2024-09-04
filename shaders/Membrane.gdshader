@@ -1,5 +1,4 @@
 shader_type spatial;
-render_mode depth_prepass_alpha;
 
 // Any changes to these two must be matched in EngulfEffect.gdshader
 // Set to 0 to disable wiggle
@@ -30,10 +29,7 @@ void vertex(){
 
 float fresnel(float power, vec3 normal, vec3 view)
 {
-	// Because of how Godot's alpha cutoff works, objects with low opacity,
-	// may be 'cut off', meaning that organelles will render over membrane.
-	// So the resulting value here should be high enough for it not to happen.
-	return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.8 + 0.2) * 3.0, power), 0.0, 1.0);
+	return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.9 + 0.1) * 2.5, power), 0.0, 1.0);
 }
 
 void fragment(){
@@ -54,18 +50,18 @@ void fragment(){
 
 	vec3 adjusted_view = VIEW;
 	// Not an absolutely necessary step, but it makes fresnel look better
-	adjusted_view = normalize(adjusted_view + vec3(0.0f, 0.0f, 1.5f));
+	adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
 
-	normalmap = normalmap * 2.0f - 1.0f;
+	normalmap = normalmap * 2.0 - 1.0;
 
 	vec3 normals = normalmap.z * NORMAL
 	+ normalmap.x * TANGENT
 	+ normalmap.y * BINORMAL;
 
-	normals = normalize(mix(NORMAL, normals, 1.0f));
+	normals = normalize(mix(NORMAL, normals, 1.0));
 
 	ALBEDO = final.xyz;
-    ALPHA = fresnel(4.0f, normals, adjusted_view);
+    ALPHA = fresnel(3.0, normals, adjusted_view);
     // DEPTH = 0.0f;
-	ROUGHNESS = 0.7f;
+	ROUGHNESS = 0.7;
 }

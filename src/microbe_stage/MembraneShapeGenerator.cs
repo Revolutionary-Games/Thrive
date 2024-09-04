@@ -23,8 +23,7 @@ public class MembraneShapeGenerator
     private static readonly int MembraneResolution = Constants.MEMBRANE_RESOLUTION;
 
     /// <summary>
-    ///   Amount of segments on one side of the above described square. The amount of points on the side of
-    ///   the membrane.
+    ///   Half the amount of points on the membrane prism's side. Total amount is equal to verticalResolution * 2 + 1.
     /// </summary>
     private static readonly int MembraneVerticalResolution = Constants.MEMBRANE_VERTICAL_RESOLUTION;
 
@@ -64,7 +63,6 @@ public class MembraneShapeGenerator
         for (int i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
-
             if (Mathf.Abs(pos.X) + 1 > cellDimensions)
             {
                 cellDimensions = (int)Mathf.Abs(pos.X) + 1;
