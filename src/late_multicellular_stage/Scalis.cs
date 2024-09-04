@@ -61,7 +61,7 @@ public class Scalis : IMeshGeneratingFunction
                 + point.Radius + pointParent.Radius;
             maxDistanceFromCenter *= CutoffPointMultiplier;
 
-            boneMaxSquareDistanceCache[i] = Mathf.Pow(maxDistanceFromCenter, 2.0f);
+            boneMaxSquareDistanceCache[i] = MathF.Pow(maxDistanceFromCenter, 2.0f);
         }
 
         if (points.Length == 1)
@@ -126,7 +126,7 @@ public class Scalis : IMeshGeneratingFunction
             }
 
             float tau0 = aRadius > bRadius ? bRadius : aRadius;
-            float deltaTau = Mathf.Abs(aRadius - bRadius);
+            float deltaTau = MathF.Abs(aRadius - bRadius);
 
             if (aRadius > bRadius)
             {
@@ -138,7 +138,7 @@ public class Scalis : IMeshGeneratingFunction
 
             for (int k = 0; k < Coefficients.Length; ++k)
             {
-                value += Coefficients[k] * Mathf.Pow(deltaTau, k) * Mathf.Pow(tau0, i - k - 1)
+                value += Coefficients[k] * MathF.Pow(deltaTau, k) * MathF.Pow(tau0, i - k - 1)
                     * Convolution(k, i, a, b, pos);
             }
         }
@@ -205,7 +205,7 @@ public class Scalis : IMeshGeneratingFunction
         var ab = b - a;
         var ap = pos - a;
 
-        float cos = ab.Dot(ap) / Mathf.Sqrt(ab.LengthSquared() * ap.LengthSquared());
+        float cos = ab.Dot(ap) / MathF.Sqrt(ab.LengthSquared() * ap.LengthSquared());
 
         if (cos < 0)
             return a;
@@ -221,7 +221,7 @@ public class Scalis : IMeshGeneratingFunction
     private float Convolution(int k, int i, Vector3 pointA, Vector3 pointB, Vector3 pointP)
     {
         float discriminant = pointA.DistanceSquaredTo(pointB) * pointA.DistanceSquaredTo(pointP)
-            - Mathf.Pow((pointB - pointA).Dot(pointP - pointA), 2.0f);
+            - MathF.Pow((pointB - pointA).Dot(pointP - pointA), 2.0f);
         if (discriminant <= 0)
         {
             return 0;
@@ -231,7 +231,7 @@ public class Scalis : IMeshGeneratingFunction
         {
             if (i == 1)
             {
-                return Mathf.Log((pointB.DistanceTo(pointA) * pointB.DistanceTo(pointP)
+                return MathF.Log((pointB.DistanceTo(pointA) * pointB.DistanceTo(pointP)
                         + (pointA - pointB).Dot(pointP - pointB))
                     / (pointA.DistanceTo(pointB) * pointA.DistanceTo(pointP) -
                         (pointB - pointA).Dot(pointP - pointA)));
@@ -239,10 +239,10 @@ public class Scalis : IMeshGeneratingFunction
 
             if (i == 2)
             {
-                var inverseOfSquareOfDiscriminant = 1.0f / Mathf.Sqrt(discriminant);
-                return Mathf.Atan((pointA - pointB).Dot(pointP - pointB)
+                var inverseOfSquareOfDiscriminant = 1.0f / MathF.Sqrt(discriminant);
+                return MathF.Atan((pointA - pointB).Dot(pointP - pointB)
                         * inverseOfSquareOfDiscriminant) +
-                    Mathf.Atan((pointB - pointA).Dot(pointP - pointA) * inverseOfSquareOfDiscriminant) *
+                    MathF.Atan((pointB - pointA).Dot(pointP - pointA) * inverseOfSquareOfDiscriminant) *
                     pointA.DistanceTo(pointB)
                     * inverseOfSquareOfDiscriminant;
             }
@@ -251,9 +251,9 @@ public class Scalis : IMeshGeneratingFunction
                 * ((i - 3) * pointA.DistanceTo(pointB) *
                     Convolution(0, i - 2, pointA, pointB, pointP)
                     + (pointA - pointB).Dot(pointP - pointB) /
-                    Mathf.Pow(pointB.DistanceTo(pointP), i - 2)
+                    MathF.Pow(pointB.DistanceTo(pointP), i - 2)
                     + (pointB - pointA).Dot(pointP - pointA) /
-                    Mathf.Pow(pointA.DistanceTo(pointP), i - 2));
+                    MathF.Pow(pointA.DistanceTo(pointP), i - 2));
         }
 
         if (k == 1)
@@ -262,14 +262,14 @@ public class Scalis : IMeshGeneratingFunction
             {
                 return (pointB - pointA).Dot(pointP - pointA) /
                     pointA.DistanceSquaredTo(pointB) * Convolution(0, 2, pointA, pointB, pointP)
-                    + Mathf.Log(pointB.DistanceTo(pointP) / pointA.DistanceTo(pointP))
+                    + MathF.Log(pointB.DistanceTo(pointP) / pointA.DistanceTo(pointP))
                     / pointA.DistanceTo(pointB);
             }
 
             return (pointB - pointA).Dot(pointP - pointA) /
                 pointA.DistanceSquaredTo(pointB) * Convolution(0, i, pointA, pointB, pointP)
-                + (Mathf.Pow(pointB.DistanceTo(pointP), 2 - i)
-                    - Mathf.Pow(pointA.DistanceTo(pointP), 2 - i)) /
+                + (MathF.Pow(pointB.DistanceTo(pointP), 2 - i)
+                    - MathF.Pow(pointA.DistanceTo(pointP), 2 - i)) /
                 pointA.DistanceTo(pointB) / (2 - i);
         }
 
@@ -278,12 +278,12 @@ public class Scalis : IMeshGeneratingFunction
             return (pointB - pointA).Dot(pointP - pointA) / pointA.DistanceSquaredTo(pointB)
                 * Convolution(i - 2, i, pointA, pointB, pointP)
                 + Convolution(i - 3, i - 2, pointA, pointB, pointP)
-                / (pointA - pointB).LengthSquared() + Mathf.Pow(pointB.DistanceTo(pointP), 2 - i) / (2 - i)
+                / (pointA - pointB).LengthSquared() + MathF.Pow(pointB.DistanceTo(pointP), 2 - i) / (2 - i)
                 / pointA.DistanceTo(pointB);
         }
 
         return (float)(i - 2 * k) / (i - k - 1) * (pointB - pointA).Dot(pointP - pointA)
             / (pointA - pointB).LengthSquared() * Convolution(k - 2, i, pointA, pointB, pointP)
-            - Mathf.Pow(pointB.DistanceTo(pointP), 2 - 1) / pointA.DistanceTo(pointB) / (i - k - 1);
+            - MathF.Pow(pointB.DistanceTo(pointP), 2 - 1) / pointA.DistanceTo(pointB) / (i - k - 1);
     }
 }

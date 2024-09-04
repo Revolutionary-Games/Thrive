@@ -939,7 +939,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // Used to get newly spawned microbes to move.
         if (control.MovementDirection.Length() == 0)
         {
-            ai.MoveWithRandomTurn(0, Mathf.Pi, position.Position, ref control, speciesActivity, random);
+            ai.MoveWithRandomTurn(0, MathF.PI, position.Position, ref control, speciesActivity, random);
             return;
         }
 

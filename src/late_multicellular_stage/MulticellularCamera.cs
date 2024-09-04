@@ -96,7 +96,7 @@ public partial class MulticellularCamera : Node3D, IGodotEarlyNodeResolve
     public float XRotation
     {
         get => xRotation;
-        set => xRotation = Mathf.Clamp(value, MinXRotation, MaxXRotation);
+        set => xRotation = Math.Clamp(value, MinXRotation, MaxXRotation);
     }
 
     /// <summary>
@@ -184,7 +184,7 @@ public partial class MulticellularCamera : Node3D, IGodotEarlyNodeResolve
         if (!Current || !AllowPlayerInput)
             return false;
 
-        ArmLength = Mathf.Clamp(ArmLength + ZoomSpeed * value, MinArmLength, MaxArmLength);
+        ArmLength = Math.Clamp(ArmLength + ZoomSpeed * value, MinArmLength, MaxArmLength);
         return true;
     }
 

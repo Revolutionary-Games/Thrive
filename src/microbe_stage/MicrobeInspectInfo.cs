@@ -72,7 +72,7 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
             }
 
             // Ignore small changes to reduce flickering.
-            if (Mathf.Abs(newAmount - oldAmount) >= Constants.COMPOUND_HOVER_INFO_THRESHOLD)
+            if (MathF.Abs(newAmount - oldAmount) >= Constants.COMPOUND_HOVER_INFO_THRESHOLD)
             {
                 hoveredCompounds[compound] = newAmount;
             }

@@ -878,8 +878,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     float dy = y + (delta * velocity.Y);
 
                     // So this is clamped to not go to the other clouds
-                    dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
-                    dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
+                    dx = Math.Clamp(dx, x0 - 0.5f, x0 + width + 0.5f);
+                    dy = Math.Clamp(dy, y0 - 0.5f, y0 + height + 0.5f);
 
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);

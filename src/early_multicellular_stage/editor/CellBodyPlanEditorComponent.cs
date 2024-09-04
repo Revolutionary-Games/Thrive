@@ -573,7 +573,7 @@ public partial class CellBodyPlanEditorComponent :
             var cartesian = Hex.AxialToCartesian(hex.Position);
 
             // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
+            highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
         }
 
         return highestPointInMiddleRows;

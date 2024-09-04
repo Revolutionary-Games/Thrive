@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Camera that rotates around a pivot.
@@ -56,10 +57,10 @@ public partial class OrbitCamera : Node3D
 
         rotation.X -= moveSpeed.Y * convertedDelta * RotationSpeed;
         rotation.Y -= moveSpeed.X * convertedDelta * RotationSpeed;
-        rotation.X = rotation.X.Clamp(-Mathf.Pi / 2, Mathf.Pi / 2);
+        rotation.X = Math.Clamp(rotation.X, -MathF.PI / 2, MathF.PI / 2);
         moveSpeed = Vector2.Zero;
 
-        Distance = Distance.Clamp(MinCameraDistance, MaxCameraDistance);
+        Distance = Math.Clamp(Distance, MinCameraDistance, MaxCameraDistance);
 
         camera.Position = camera.Position.Lerp(new Vector3(0, 0, Distance), InterpolateZoomSpeed * convertedDelta);
 

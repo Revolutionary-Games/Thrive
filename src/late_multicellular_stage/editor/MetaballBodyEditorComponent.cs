@@ -535,7 +535,7 @@ public partial class MetaballBodyEditorComponent :
                 continue;
 
             // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, metaball.Position.Z);
+            highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, metaball.Position.Z);
         }
 
         return highestPointInMiddleRows;

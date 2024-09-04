@@ -395,12 +395,12 @@ public partial class CustomWindow : TopLevelContainer
 
             var childMinSize = child.GetCombinedMinimumSize();
 
-            contentSize = new Vector2(Mathf.Max(childMinSize.X, contentSize.X),
-                Mathf.Max(childMinSize.Y, contentSize.Y));
+            contentSize = new Vector2(MathF.Max(childMinSize.X, contentSize.X),
+                MathF.Max(childMinSize.Y, contentSize.Y));
         }
 
         // Re-decide whether the largest rect is the default elements' or the contents'
-        return new Vector2(Mathf.Max(2 * buttonArea.GetValueOrDefault() + titleWidth.GetValueOrDefault(),
+        return new Vector2(MathF.Max(2 * buttonArea.GetValueOrDefault() + titleWidth.GetValueOrDefault(),
             contentSize.X + customMargin * 2), contentSize.Y + customMargin * 2);
     }
 
@@ -463,15 +463,15 @@ public partial class CustomWindow : TopLevelContainer
             // Clamp position to ensure window stays inside the screen
             // titleBarHeight may be larger than the space left after the window fills the entire screen so that last
             // Max is needed
-            Position = new Vector2(Mathf.Clamp(Position.X, 0, Math.Max(screenSize.X - Size.X, 0)),
-                Mathf.Clamp(Position.Y, titleBarHeight, Math.Max(titleBarHeight, screenSize.Y - Size.Y)));
+            Position = new Vector2(Math.Clamp(Position.X, 0, Math.Max(screenSize.X - Size.X, 0)),
+                Math.Clamp(Position.Y, titleBarHeight, Math.Max(titleBarHeight, screenSize.Y - Size.Y)));
         }
 
         if (Resizable)
         {
             // Size can't be bigger than the viewport
-            Size = new Vector2(Mathf.Min(Size.X, screenSize.X),
-                Mathf.Min(Size.Y, screenSize.Y - titleBarHeight));
+            Size = new Vector2(MathF.Min(Size.X, screenSize.X),
+                MathF.Min(Size.Y, screenSize.Y - titleBarHeight));
         }
     }
 
@@ -627,12 +627,12 @@ public partial class CustomWindow : TopLevelContainer
                 var bottom = Position.Y + Size.Y;
                 var maxY = bottom - minSize.Y;
 
-                newPosition.Y = Mathf.Clamp(globalMousePos.Y - dragOffset.Y, titleBarHeight, maxY);
+                newPosition.Y = Math.Clamp(globalMousePos.Y - dragOffset.Y, titleBarHeight, maxY);
                 newSize.Y = bottom - newPosition.Y;
             }
             else if (dragType.HasFlag(DragType.ResizeBottom))
             {
-                newSize.Y = Mathf.Min(globalMousePos.Y - newPosition.Y + dragOffsetFar.Y, screenSize.Y - newPosition.Y);
+                newSize.Y = MathF.Min(globalMousePos.Y - newPosition.Y + dragOffsetFar.Y, screenSize.Y - newPosition.Y);
             }
 
             if (dragType.HasFlag(DragType.ResizeLeft))
@@ -640,12 +640,12 @@ public partial class CustomWindow : TopLevelContainer
                 var right = Position.X + Size.X;
                 var maxX = right - minSize.X;
 
-                newPosition.X = Mathf.Clamp(globalMousePos.X - dragOffset.X, 0, maxX);
+                newPosition.X = Math.Clamp(globalMousePos.X - dragOffset.X, 0, maxX);
                 newSize.X = right - newPosition.X;
             }
             else if (dragType.HasFlag(DragType.ResizeRight))
             {
-                newSize.X = Mathf.Min(globalMousePos.X - newPosition.X + dragOffsetFar.X, screenSize.X - newPosition.X);
+                newSize.X = MathF.Min(globalMousePos.X - newPosition.X + dragOffsetFar.X, screenSize.X - newPosition.X);
             }
         }
 

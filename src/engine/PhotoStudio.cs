@@ -104,7 +104,7 @@ public partial class PhotoStudio : SubViewport
         float angle = Constants.PHOTO_STUDIO_CAMERA_FOV;
 
         // Some right angle triangle math that's hopefully right
-        return Mathf.Tan(MathUtils.DEGREES_TO_RADIANS * angle) * radius;
+        return MathF.Tan(MathUtils.DEGREES_TO_RADIANS * angle) * radius;
     }
 
     public override void _Ready()

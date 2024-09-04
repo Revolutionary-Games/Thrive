@@ -204,7 +204,7 @@ public class InProgressSave : IDisposable
                 }
 
                 SaveStatusOverlay.Instance.ShowMessage(Localization.Translate("SAVING_DOT_DOT_DOT"),
-                    Mathf.Inf);
+                    float.PositiveInfinity);
 
                 state = State.SaveData;
                 JSONDebug.FlushJSONTracesOut();

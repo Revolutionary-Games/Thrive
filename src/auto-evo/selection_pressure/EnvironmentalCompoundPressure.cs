@@ -1,7 +1,6 @@
 ﻿namespace AutoEvo;
 
 using System;
-using Godot;
 
 public class EnvironmentalCompoundPressure : SelectionPressure
 {
@@ -54,7 +53,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
 
         // Penalize Species that do not rely on this compound
-        return Mathf.Min(amountCreated / energyBalance.TotalConsumption, 1);
+        return MathF.Min(amountCreated / energyBalance.TotalConsumption, 1);
     }
 
     public override float GetEnergy(Patch patch)

@@ -174,7 +174,7 @@ public partial class ResourceManager : Node
             }
         }
 
-        savedForLaterProcessingTime = Mathf.Clamp((float)(originalBudget - timeTracker.Elapsed).TotalSeconds,
+        savedForLaterProcessingTime = Math.Clamp((float)(originalBudget - timeTracker.Elapsed).TotalSeconds,
             -Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 2,
             Constants.RESOURCE_TIME_BUDGET_PER_FRAME * 0.5f);
     }

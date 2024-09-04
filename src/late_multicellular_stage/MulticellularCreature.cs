@@ -211,7 +211,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
                 // is locked
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 2 *
-                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
+                    (Math.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
         else
@@ -220,7 +220,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             {
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 15 *
-                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
+                    (Math.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
 
@@ -367,7 +367,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             otherAudioPlayers.Add(player);
         }
 
-        player.VolumeDb = Mathf.LinearToDb(volume);
+        player.VolumeDb = MathF.LinearToDb(volume);
         player.Stream = sound;
         player.Play();*/
     }

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Provides extra level of abstraction to allow simultaneous switching between 3D positional and non positional
@@ -59,7 +60,7 @@ public partial class HybridAudioPlayer : Node3D
         get => volume;
         set
         {
-            volume = Mathf.Clamp(value, 0, 1);
+            volume = Math.Clamp(value, 0, 1);
             ApplyVolume();
         }
     }

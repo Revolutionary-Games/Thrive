@@ -110,7 +110,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
             foreach (var hex in organelle.RotatedHexes)
             {
                 var pos = Hex.AxialToCartesian(hex + position);
-                farthest = Mathf.Max(farthest, pos.DistanceTo(Vector3.Zero));
+                farthest = MathF.Max(farthest, pos.DistanceTo(Vector3.Zero));
             }
         }
 

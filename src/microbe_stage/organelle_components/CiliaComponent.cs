@@ -85,7 +85,7 @@ public class CiliaComponent : IOrganelleComponent
         }
         else
         {
-            targetSpeed = Mathf.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
+            targetSpeed = Math.Clamp(rotationSpeed, Constants.CILIA_MIN_ANIMATION_SPEED,
                 Constants.CILIA_MAX_ANIMATION_SPEED);
         }
 
@@ -97,7 +97,7 @@ public class CiliaComponent : IOrganelleComponent
         // TODO: would it make more sense to have this in the movement system?
         if (rawRotation > Constants.CILIA_ROTATION_NEEDED_FOR_ATP_COST)
         {
-            var cost = Mathf.Clamp(rawRotation * Constants.CILIA_ROTATION_ENERGY_BASE_MULTIPLIER,
+            var cost = Math.Clamp(rawRotation * Constants.CILIA_ROTATION_ENERGY_BASE_MULTIPLIER,
                 Constants.CILIA_ROTATION_NEEDED_FOR_ATP_COST, Constants.CILIA_ENERGY_COST);
 
             var requiredEnergy = cost * timeSinceRotationSample;

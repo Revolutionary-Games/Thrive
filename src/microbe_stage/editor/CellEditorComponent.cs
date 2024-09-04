@@ -1508,7 +1508,7 @@ public partial class CellEditorComponent :
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
                 // Get the min z-axis (highest point in the editor)
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
             }
         }
 
