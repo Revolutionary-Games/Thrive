@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode depth_prepass_alpha;
 
 // Any changes to these two must be matched in EngulfEffect.gdshader
 // Set to 0 to disable wiggle
