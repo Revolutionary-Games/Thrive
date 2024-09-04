@@ -123,7 +123,7 @@ public static class StringUtils
             {
                 if ((i == 0) || (i + 1 < input.Length && input[i + 1] == ' '))
                 {
-                    cutPosition++;
+                    ++cutPosition;
                     continue;
                 }
 

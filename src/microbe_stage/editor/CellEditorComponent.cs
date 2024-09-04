@@ -1735,7 +1735,7 @@ public partial class CellEditorComponent :
         List<(Hex Hex, int Orientation)> hexes, List<OrganelleTemplate> organelles)
     {
         var organellePositions = new List<(Hex Hex, OrganelleTemplate? Organelle, int Orientation, bool Occupied)>();
-        for (var i = 0; i < hexes.Count; i++)
+        for (var i = 0; i < hexes.Count; ++i)
         {
             var (hex, orientation) = hexes[i];
             var organelle = organelles[i];

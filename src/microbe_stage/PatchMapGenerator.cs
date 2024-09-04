@@ -432,7 +432,7 @@ public static class PatchMapGenerator
                     // If the vents and cave is on the left we need to adjust the water patches' position
                     if (!ventOrCaveToTheRight)
                     {
-                        for (int i = 0; i < waterPatchCount; i++)
+                        for (int i = 0; i < waterPatchCount; ++i)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
@@ -505,7 +505,7 @@ public static class PatchMapGenerator
                     // Adjust water patches' position
                     if (caveLinkedTo is 0 or 2)
                     {
-                        for (int i = 0; i < waterPatchCount; i++)
+                        for (int i = 0; i < waterPatchCount; ++i)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }

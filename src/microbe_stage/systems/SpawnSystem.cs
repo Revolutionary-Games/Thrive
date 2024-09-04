@@ -421,22 +421,22 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
         var sectorsToSpawn = new List<Vector2I>(12);
-        for (int y = -1; y <= 1; y++)
+        for (int y = -1; y <= 1; ++y)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
         }
 
-        for (int x = -1; x <= 1; x++)
+        for (int x = -1; x <= 1; ++x)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
         }
 
-        for (int y = -1; y <= 1; y++)
+        for (int y = -1; y <= 1; ++y)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
         }
 
-        for (int x = -1; x <= 1; x++)
+        for (int x = -1; x <= 1; ++x)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
         }

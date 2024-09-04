@@ -586,7 +586,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                     var rivalDistance = (rival.Position - chosenChunk.Value.Position).LengthSquared();
                     if (rivalDistance < 500.0f && rivalDistance < bestFoundChunkDistance)
                     {
-                        rivals++;
+                        ++rivals;
                     }
                 }
             }

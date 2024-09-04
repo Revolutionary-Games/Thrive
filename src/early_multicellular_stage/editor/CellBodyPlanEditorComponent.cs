@@ -751,7 +751,7 @@ public partial class CellBodyPlanEditorComponent :
         List<(Hex Hex, int Orientation)> hexes, List<HexWithData<CellTemplate>> cells)
     {
         var cellPositions = new List<(Hex Hex, HexWithData<CellTemplate> Cell, int Orientation, bool Occupied)>();
-        for (var i = 0; i < hexes.Count; i++)
+        for (var i = 0; i < hexes.Count; ++i)
         {
             var (hex, orientation) = hexes[i];
             var cell = cells[i];

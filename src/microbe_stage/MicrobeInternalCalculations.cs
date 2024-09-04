@@ -102,7 +102,7 @@ public static class MicrobeInternalCalculations
         compoundBag.ClearSpecificCapacities();
 
         int count = organelles.Count;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);

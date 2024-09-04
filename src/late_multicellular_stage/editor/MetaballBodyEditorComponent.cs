@@ -740,7 +740,8 @@ public partial class MetaballBodyEditorComponent :
         var cellPositions =
             new List<
                 (Vector3 Position, MulticellularMetaball Metaball, MulticellularMetaball? Parent, bool Occupied)>();
-        for (var i = 0; i < metaballPositions.Count; i++)
+
+        for (var i = 0; i < metaballPositions.Count; ++i)
         {
             var (hex, orientation) = metaballPositions[i];
             var cell = metaballs[i];

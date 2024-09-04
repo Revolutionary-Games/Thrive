@@ -791,7 +791,7 @@ public static class SpawnHelpers
 
         var currentPoint = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
-        for (int i = 0; i < clumpSize; i++)
+        for (int i = 0; i < clumpSize; ++i)
         {
             result.Add(initialLocation + currentPoint);
 

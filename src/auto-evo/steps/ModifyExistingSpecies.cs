@@ -419,7 +419,7 @@ public class ModifyExistingSpecies : IRunStep
         {
             var inputSpecies = viableVariants;
 
-            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; i++)
+            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
             {
                 temporaryMutations2.Clear();
 

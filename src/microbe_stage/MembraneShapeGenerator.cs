@@ -163,7 +163,7 @@ public class MembraneShapeGenerator
         uvs[writeIndex] = center;
         ++writeIndex;
 
-        for (int i = 0, end = vertexCount; i < end + 1; i++)
+        for (int i = 0, end = vertexCount; i < end + 1; ++i)
         {
             // Finds the UV coordinates be projecting onto a plane and
             // stretching to fit a circle.

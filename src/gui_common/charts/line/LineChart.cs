@@ -413,7 +413,7 @@ public partial class LineChart : VBoxContainer
                 UpdateDataSetVisibility(data.Key, visible);
 
                 if (visible)
-                    visibleDataSetCount++;
+                    ++visibleDataSetCount;
             }
 
             // Initialize line
@@ -934,7 +934,7 @@ public partial class LineChart : VBoxContainer
             return;
 
         // Populate the rows
-        for (int i = 0; i < XAxisTicks; i++)
+        for (int i = 0; i < XAxisTicks; ++i)
         {
             var label = new Label
             {

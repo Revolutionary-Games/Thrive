@@ -283,7 +283,7 @@ public class DualContourer
 
     private void SetColours(List<Vector3> points, Color[] colours)
     {
-        for (int i = 0; i < colours.Length; i++)
+        for (int i = 0; i < colours.Length; ++i)
         {
             colours[i] = MathFunction.GetColour(points[i]);
         }

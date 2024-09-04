@@ -200,7 +200,7 @@ public partial class Membrane : MeshInstance3D
         int n = membraneData.VertexCount;
         var vertices = membraneData.Vertices2D;
 
-        for (int i = 0; i < n - 1; i++)
+        for (int i = 0; i < n - 1; ++i)
         {
             if ((vertices[i].Y <= y && y < vertices[i + 1].Y) ||
                 (vertices[i + 1].Y <= y && y < vertices[i].Y))
