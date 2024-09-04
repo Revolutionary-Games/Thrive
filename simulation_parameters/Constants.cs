@@ -167,6 +167,8 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
+    public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
+    public const float MEMBRANE_HEIGHT = 1.0f;
 
     public const float MEMBRANE_ROOM_FOR_ORGANELLES = 1.9f;
     public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;

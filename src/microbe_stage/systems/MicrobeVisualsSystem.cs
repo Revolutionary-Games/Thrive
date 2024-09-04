@@ -32,8 +32,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     private readonly Lazy<PackedScene> membraneScene =
         new(() => GD.Load<PackedScene>("res://src/microbe_stage/Membrane.tscn"));
 
-    private readonly StringName tintParameterName = new("tint");
-
     private readonly List<ShaderMaterial> tempMaterialsList = new();
     private readonly List<PlacedOrganelle> tempVisualsToDelete = new();
 
@@ -69,7 +67,18 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     public override void Dispose()
     {
-        Dispose(true);
+        var maxWait = TimeSpan.FromSeconds(10);
+        foreach (var task in activeGenerationTasks)
+        {
+            if (!task.Wait(maxWait))
+            {
+                GD.PrintErr("Failed to wait for a background membrane generation task to finish on " +
+                    "dispose");
+            }
+        }
+
+        activeGenerationTasks.Clear();
+
         base.Dispose();
     }
 
@@ -300,8 +309,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
         organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
-        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
-
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
             // Only handle organelles that have graphics
@@ -346,29 +353,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                 parentNode.AddChild(extraLayer);
 
                 organelleContainer.CreatedOrganelleVisuals.Add(placedOrganelle, visualsInstance);
-            }
-
-            // Visuals already exist
-            var graphics = placedOrganelle.OrganelleGraphics;
-
-            if (graphics == null)
-                throw new Exception("Organelle graphics should not get reset to null");
-
-            // Materials need to be always fully fetched again to make sure we don't forget any active ones
-            int start = tempMaterialsList.Count;
-
-            // Use the model data from when the graphics were loaded for consistency
-            if (!graphics.GetMaterial(tempMaterialsList, placedOrganelle.LoadedGraphicsSceneInfo.ModelPath))
-            {
-                GD.PrintErr("Failed to fetch organelle materials for created: ",
-                    placedOrganelle.Definition.InternalName);
-            }
-
-            // Apply tint (again) to make sure it is up-to-date
-            int count = tempMaterialsList.Count;
-            for (int i = start; i < count; ++i)
-            {
-                tempMaterialsList[i].SetShaderParameter(tintParameterName, organelleColour);
             }
         }
 
@@ -448,25 +432,5 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         }
 
         Interlocked.Decrement(ref runningMembraneTaskCount);
-    }
-
-    private void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            tintParameterName.Dispose();
-        }
-
-        var maxWait = TimeSpan.FromSeconds(10);
-        foreach (var task in activeGenerationTasks)
-        {
-            if (!task.Wait(maxWait))
-            {
-                GD.PrintErr("Failed to wait for a background membrane generation task to finish on " +
-                    "dispose");
-            }
-        }
-
-        activeGenerationTasks.Clear();
     }
 }
