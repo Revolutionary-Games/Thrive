@@ -33,7 +33,7 @@ float fresnel(float power, vec3 normal, vec3 view)
 	// Because of how Godot's alpha cutoff works, objects with low opacity,
 	// may be 'cut off', meaning that organelles will render over membrane.
 	// So the resulting value here should be high enough for it not to happen.
-	return pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.8 + 0.2) * 2.4f, power);
+	return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.8 + 0.2) * 3.0, power), 0.0, 1.0);
 }
 
 void fragment(){
@@ -65,7 +65,7 @@ void fragment(){
 	normals = normalize(mix(NORMAL, normals, 1.0f));
 
 	ALBEDO = final.xyz;
-    ALPHA = fresnel(3.0f, normals, adjusted_view);
+    ALPHA = fresnel(4.0f, normals, adjusted_view);
     // DEPTH = 0.0f;
 	ROUGHNESS = 0.7f;
 }
