@@ -29,15 +29,15 @@ void vertex(){
 
 float fresnel(float power, vec3 normal, vec3 view)
 {
-	return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.875 + 0.125) * 3.0, power), 0.0, 1.0);
+    return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.875 + 0.125) * 3.0, power), 0.0, 1.0);
 }
 
 void fragment(){
     vec4 albedo = texture(albedoTexture, UV);
 
     vec4 normalmap = texture(normalTexture, UV);
-	NORMAL_MAP = normalmap.xyz;
-	NORMAL_MAP_DEPTH = 1.5f;
+    NORMAL_MAP = normalmap.xyz;
+    NORMAL_MAP_DEPTH = 1.5f;
 
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = ((albedo * healthFraction) +
@@ -48,20 +48,20 @@ void fragment(){
     float cutoff = dot(dissolveTex.rgb, vec3(0.34, 0.34, 0.34)) -
         float(-0.482 + clamp(dissolveValue, 0, 1));
 
-	vec3 adjusted_view = VIEW;
-	// Not an absolutely necessary step, but it makes fresnel look better
-	adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
+    vec3 adjusted_view = VIEW;
+    // Not an absolutely necessary step, but it makes fresnel look better
+    adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
 
-	normalmap = normalmap * 2.0 - 1.0;
+    normalmap = normalmap * 2.0 - 1.0;
 
-	vec3 normals = normalmap.z * NORMAL
-	+ normalmap.x * TANGENT
-	+ normalmap.y * BINORMAL;
+    vec3 normals = normalmap.z * NORMAL
+    + normalmap.x * TANGENT
+    + normalmap.y * BINORMAL;
 
-	normals = normalize(mix(NORMAL, normals, 1.0));
+    normals = normalize(mix(NORMAL, normals, 1.0));
 
-	ALBEDO = final.xyz;
+    ALBEDO = final.xyz;
     ALPHA = fresnel(3.0, normals, adjusted_view);
     // DEPTH = 0.0f;
-	ROUGHNESS = 0.7;
+    ROUGHNESS = 0.7;
 }
