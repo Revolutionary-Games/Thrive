@@ -39,6 +39,9 @@ set(USE_AVX512 OFF)
 # libraries
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# We need RTTI to be able to link without missing symbols when Jolt is built
+set(CPP_RTTI_ENABLED ON)
+
 add_subdirectory(JoltPhysics/Build EXCLUDE_FROM_ALL)
 
 # Boost libraries
