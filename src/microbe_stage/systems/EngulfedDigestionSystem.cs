@@ -188,6 +188,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                             engulfable.RequisiteEnzymeToDigest!.Name));
                     }
 
+                    // Count the size still in this case as otherwise there's a one frame flicker of the matter
+                    // storage bar if engulfing just something that cannot be digested
+                    usedCapacity += currentEngulfableSize;
+
                     continue;
                 }
 
