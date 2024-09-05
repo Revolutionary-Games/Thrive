@@ -304,7 +304,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         // var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
         var organelleColour = Colors.White;
 
-
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
             // Only handle organelles that have graphics
