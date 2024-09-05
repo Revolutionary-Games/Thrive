@@ -2074,7 +2074,7 @@
               "IsParticles": true
             }
           ],
-          "Density": 0.00005,
+          "Density": 0.00003,
           "Dissolves": false,
           "Radius": 2,
           "ChunkScale": 1,
@@ -2084,6 +2084,95 @@
           "DeleteOnTouch": true,
           "Compounds": {},
           "DamageType": "toxin"
+        },
+        "iceShard": {
+          "Name": "ICESHARD",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/Iceshard1.tscn",
+              "ConvexShapePath": "res://assets/models/Iceshard1.shape"
+              //"MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00006,
+          "Dissolves": true,
+          "Radius": 1,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 500,
+          "Damages": 10,
+          "DeleteOnTouch": true,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceChunkSmall": {
+          "Name": "ICE_CHUNK_SMALL",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSmall2.shape"
+            }
+          ],
+          "Density": 0.00008,
+          "Dissolves": false,
+          "Radius": 2,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1000,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceChunkBig": {
+          "Name": "ICE_CHUNK_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge2.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge3.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge3.shape"
+            }
+          ],
+          "Density": 0.00003,
+          "Dissolves": false,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 12000,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceSnowflake": {
+          "Name": "Snowflake",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkSnowflake.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSnowflake.shape"
+            }
+          ],
+          "Density": 0.000001,
+          "Dissolves": false,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 15000,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
         },
         "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
@@ -2120,26 +2209,6 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
-        },
-        "iceShard": {
-          "Name": "ICESHARD",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/Iceshard1.tscn",
-              "ConvexShapePath": "res://assets/models/Iceshard1.shape",
-              "MissingDefaultShaderSupport": true
-            }
-          ],
-          "Density": 0.0001,
-          "Dissolves": false,
-          "Radius": 1,
-          "ChunkScale": 1,
-          "PhysicsDensity": 4000,
-          "Size": 1000,
-          "Damages": 30,
-          "DeleteOnTouch": false,
-          "Compounds": {},
-          "DamageType": "ice"
         },
         "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",

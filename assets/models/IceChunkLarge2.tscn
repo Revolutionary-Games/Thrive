@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://0mbxlwabmmgp"]
+
+[ext_resource type="Shader" path="res://shaders/IceChunk.gdshader" id="1_1h4ju"]
+[ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_qawph"]
+[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="4_3ymnv"]
+[ext_resource type="ArrayMesh" uid="uid://dwku0n7qribgu" path="res://assets/models/IceChunkLarge2.mesh" id="5_p5w0v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bk0sm"]
+resource_local_to_scene = true
+render_priority = 17
+shader = ExtResource("1_1h4ju")
+shader_parameter/albedo = Color(0.878431, 1, 1, 0.94902)
+shader_parameter/roughness = 0.6
+shader_parameter/specular = 0.783
+shader_parameter/metallic = 0.6
+shader_parameter/emission = Color(0.32007, 0.3199, 0.435532, 0.933333)
+shader_parameter/emissionEnergy = 1.5
+shader_parameter/albedoTexture = ExtResource("2_qawph")
+shader_parameter/normalTexture = ExtResource("4_3ymnv")
+
+[node name="IceShardSnowflake" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_bk0sm")
+mesh = ExtResource("5_p5w0v")
