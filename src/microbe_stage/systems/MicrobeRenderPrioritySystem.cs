@@ -65,7 +65,7 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
 
             if (materialList.Length > 0)
             {
-                materialList[0].RenderPriority = renderOrder.RenderPriority + 20;
+                materialList[0].RenderPriority = renderOrder.RenderPriority + Constants.MEMBRANE_RENDER_PRIORITY;
             }
             else
             {

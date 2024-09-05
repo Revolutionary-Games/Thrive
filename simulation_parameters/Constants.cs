@@ -1472,6 +1472,8 @@ public static class Constants
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 
+    public const int MEMBRANE_RENDER_PRIORITY = 20;
+
     /// <summary>
     ///   Minimum hex distance before the same render priority.
     /// </summary>
