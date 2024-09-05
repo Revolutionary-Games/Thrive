@@ -148,6 +148,13 @@ message(STATUS "Configured native library version ${NATIVE_LIBRARY_VERSION}")
 configure_file("src/native/Include.h.in" "${PROJECT_BINARY_DIR}/Include.h")
 include_directories(${PROJECT_BINARY_DIR})
 
+# Configure gdextension stuff
+set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+set(FLOAT_PRECISION "single")
+
+# GODOT_CPP_SYSTEM_HEADERS
+# GODOT_CPP_WARNING_AS_ERROR
+
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
 

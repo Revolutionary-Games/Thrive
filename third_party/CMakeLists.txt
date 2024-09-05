@@ -5,6 +5,7 @@
 # TODO: option for turning JPH_TRACK_BROADPHASE_STATS on for debugging
 
 # Might as well get used to double precision impact now as we'll want that eventually anyway
+# In Jolt
 set(DOUBLE_PRECISION ON)
 
 if(THRIVE_AVX)
@@ -42,3 +43,6 @@ add_subdirectory(JoltPhysics/Build EXCLUDE_FROM_ALL)
 
 # Boost libraries
 add_subdirectory(boost EXCLUDE_FROM_ALL)
+
+# gdextension base module
+add_subdirectory(godot-cpp EXCLUDE_FROM_ALL)
