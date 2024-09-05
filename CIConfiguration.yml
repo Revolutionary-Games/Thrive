@@ -27,7 +27,7 @@ jobs:
           command: dotnet run --project Scripts -- check compile
       - run:
           name: Download native libraries
-          command: dotnet run --project Scripts -- native Fetch
+          command: dotnet run --project Scripts -- native Fetch Install
       - run:
           name: Create builds
           command: dotnet run --project Scripts -- package --dehydrated
