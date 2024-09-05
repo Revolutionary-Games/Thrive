@@ -162,8 +162,7 @@ public class MembraneShapeGenerator
                 int id = i + layer * vertexCount;
                 float turnFraction = 2.0f * MathF.PI * i / vertexCount;
 
-                float y = Mathf.Abs(layer - MembraneVerticalResolution) / (float)MembraneVerticalResolution;
-                y /= 2.0f;
+                float y = 0.9f * Mathf.Abs(layer - MembraneVerticalResolution) / (float)MembraneVerticalResolution;
 
                 (float sin, float cos) = MathF.SinCos(turnFraction);
 
@@ -171,14 +170,20 @@ public class MembraneShapeGenerator
 
                 uvs[id] = direction;
 
+                if (layer == layerCount - 1)
+                    GD.Print(uvs[id] + " for layer " + layer + " and y " + y);
+
                 // Find normals
-                Vector3 previous = i == 0 ? vertices[id - i] : vertices[id - 1];
-                Vector3 next = i == vertexCount - 1 ? vertices[id - i + vertexCount + 1] : vertices[id + 1];
+                Vector3 previous = i == 0 ? vertices[id + vertexCount - 1] : vertices[id - 1];
+                Vector3 next = i == vertexCount - 1 ? vertices[id - i] : vertices[id + 1];
 
                 Vector3 down = layer == 0 ? vertices[vertices.Length - 2] : vertices[id - vertexCount];
                 Vector3 up = layer == layerCount - 1 ? vertices[vertices.Length - 1] : vertices[id + vertexCount];
 
                 normals[id] = (next - previous).Cross(up - down).Normalized();
+
+                if (layer == layerCount - 1)
+                    GD.Print(normals[id]);
             }
         }
 
