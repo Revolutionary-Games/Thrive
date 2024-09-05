@@ -34,11 +34,15 @@ public class NativeLibs
     private const string GodotAPIFileName = "extension_api.json";
     private const string APIInContainer = "/godot-api";
 
+    private const string ExtensionInstallFolder = "lib";
+    private const string ExtensionInstallFolderDebug = "lib/debug";
+
     /// <summary>
     ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
     ///   library as a pure C# solution is used instead.
     /// </summary>
-    private static readonly IList<NativeConstants.Library> DefaultLibraries = [NativeConstants.Library.ThriveNative];
+    private static readonly IList<NativeConstants.Library> DefaultLibraries =
+        [NativeConstants.Library.ThriveNative, NativeConstants.Library.ThriveExtension];
 
     private readonly Program.NativeLibOptions options;
 
@@ -390,9 +394,54 @@ public class NativeLibs
     private Task<bool> InstallLibraryForEditor(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        ColourConsole.WriteWarningLine("This is a deprecated operation. Godot 4 now allows directly loading " +
-            "the library from its storage path so no install operation is required.");
+        if (library != NativeConstants.Library.ThriveExtension)
+        {
+            ColourConsole.WriteDebugLine("Skipping install for a library that doesn't need installing");
+            return Task.FromResult(true);
+        }
 
+        var tag = PrecompiledTag.None;
+
+        var target = ExtensionInstallFolder;
+
+        if (options.DebugLibrary)
+        {
+            target = ExtensionInstallFolderDebug;
+            tag = PrecompiledTag.Debug;
+        }
+
+        Directory.CreateDirectory(target);
+
+        ColourConsole.WriteInfoLine($"Installing library {library} to {target}");
+
+        ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
+        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
+            false, tag);
+        var originalLinkTo = linkTo;
+
+        if (!File.Exists(linkTo))
+        {
+            // Fall back to distributable version
+            ColourConsole.WriteNormalLine("Falling back to attempting distributable version");
+            linkTo = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
+                true, tag);
+
+            if (!File.Exists(linkTo))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected library doesn't exist (please 'Fetch' or 'Build' first): {originalLinkTo}");
+                ColourConsole.WriteNormalLine("Distributable version also didn't exist");
+                return Task.FromResult(false);
+            }
+
+            ColourConsole.WriteSuccessLine("Distributable version of library detected");
+        }
+
+        var linkFile = Path.Join(target, NativeConstants.GetLibraryDllName(library, platform, tag));
+
+        CreateLinkTo(linkFile, linkTo);
+
+        ColourConsole.WriteSuccessLine($"Successfully installed {library} to editor for {platform}");
         return Task.FromResult(true);
     }
 
@@ -915,6 +964,9 @@ public class NativeLibs
         startInfo.ArgumentList.Add("--headless");
 
         startInfo.ArgumentList.Add("--dump-extension-api");
+
+        // ReSharper disable once StringLiteralTypo
+        startInfo.ArgumentList.Add("--dump-gdextension-interface");
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
 

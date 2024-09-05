@@ -338,8 +338,12 @@ the game can be ran.
 
 The easiest way to get these is to download precompiled ones by running:
 ```sh
-dotnet run --project Scripts -- native Fetch
+dotnet run --project Scripts -- native Fetch Install
+dotnet run --project Scripts -- native Fetch Install -d
 ```
+
+The debug variants are needed when running through Godot Editor for
+Thrive GDExtension to work.
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
@@ -365,7 +369,13 @@ dotnet run --project Scripts -- native Package
 For a non-container, local compile install the native libraries for the Godot Editor
 in the Thrive folder with the following script:
 ```sh
-dotnet run --project Scripts -- native Build
+dotnet run --project Scripts -- native Build Install
+```
+
+Once compiled or downloaded, you need to install the libraries for local Godot
+Editor use:
+```sh
+dotnet run --project Scripts -- native Install
 ```
 
 Debug versions for easier native code development / more robust error

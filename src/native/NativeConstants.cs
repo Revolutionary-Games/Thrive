@@ -11,6 +11,7 @@ public class NativeConstants
 {
     public const int Version = 16;
     public const int EarlyCheck = 2;
+    public const int ExtensionVersion = 1;
 
     public const string LibraryFolder = "native_libs";
     public const string DistributableFolderName = "distributable";
@@ -28,6 +29,11 @@ public class NativeConstants
         ///   Library for early checking that everything is fine before loading <see cref="ThriveNative"/>
         /// </summary>
         EarlyCheck,
+
+        /// <summary>
+        ///   The GDExtension for Thrive
+        /// </summary>
+        ThriveExtension,
     }
 
     public static string GetLibraryVersion(Library library)
@@ -38,6 +44,8 @@ public class NativeConstants
                 return Version.ToString();
             case Library.EarlyCheck:
                 return EarlyCheck.ToString();
+            case Library.ThriveExtension:
+                return ExtensionVersion.ToString();
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);
         }
@@ -54,6 +62,12 @@ public class NativeConstants
         if (name == "early_checks")
         {
             library = Library.EarlyCheck;
+            return true;
+        }
+
+        if (name == "thrive_extension")
+        {
+            library = Library.ThriveExtension;
             return true;
         }
 
@@ -95,6 +109,21 @@ public class NativeConstants
                         return "libearly_checks.so";
                     case PackagePlatform.Windows:
                         return "libearly_checks.dll";
+                    case PackagePlatform.Windows32:
+                        throw new NotSupportedException("32-bit support is not done currently");
+                    case PackagePlatform.Mac:
+                        throw new NotImplementedException("TODO: name for this");
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+                }
+
+            case Library.ThriveExtension:
+                switch (platform)
+                {
+                    case PackagePlatform.Linux:
+                        return "libthrive_extension.so";
+                    case PackagePlatform.Windows:
+                        return "libthrive_extension.dll";
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:
