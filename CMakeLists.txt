@@ -144,6 +144,13 @@ if(NOT EARLY_CHECK_LIBRARY_VERSION)
   message(FATAL_ERROR "Failed to parse native (early check) library version")
 endif()
 
+string(REGEX MATCH "ExtensionVersion = ([0-9]+);" _ "${versionFile}")
+set(THRIVE_EXTENSION_VERSION ${CMAKE_MATCH_1})
+
+if(NOT THRIVE_EXTENSION_VERSION)
+  message(FATAL_ERROR "Failed to parse Thrive GDExtensions library version")
+endif()
+
 message(STATUS "Configured native library version ${NATIVE_LIBRARY_VERSION}")
 
 # Configure include file
@@ -153,9 +160,11 @@ include_directories(${PROJECT_BINARY_DIR})
 # Configure gdextension stuff
 if(THRIVE_GODOT_API_FILE)
   set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
+  include_directories("${THRIVE_GODOT_API_FILE}")
   message(STATUS "Using custom location of Godot API file")
 else()
   set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+  include_directories("${CMAKE_BINARY_DIR}/api")
 endif()
 
 set(FLOAT_PRECISION "single")
@@ -172,3 +181,4 @@ if(THRIVE_AVX)
 endif()
 
 add_subdirectory(src/native)
+add_subdirectory(src/extension)

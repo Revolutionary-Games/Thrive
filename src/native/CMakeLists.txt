@@ -1,4 +1,8 @@
 # Main library of the native side of things (non-Godot using)
+# The Godot using GDExtension code is in the "extension" sibling folder to this
+# Due to linking path etc. requirements, that library cannot easily link to
+# this which is why it is in a separate folder to clearly tell what it can
+# easily call
 
 # Note when the source code is packaged, boost (and other native)
 # libraries are not included and need to be separately downloaded
@@ -32,7 +36,8 @@ add_library(thrive_native SHARED
   physics/DebugDrawForwarder.cpp physics/DebugDrawForwarder.hpp
   physics/PhysicsCollision.hpp
   physics/PhysicsRayWithUserData.hpp
-  physics/ArrayRayCollector.hpp)
+  physics/ArrayRayCollector.hpp
+  shared/NativeLibIntercommunication.hpp)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)

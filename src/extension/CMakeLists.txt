@@ -1,0 +1,61 @@
+# GDExtension for Thrive using C++.
+# The non-Godot using C++ is in the "native" sibling folder.
+
+# Note when the source code is packaged, godot-cpp (and other native)
+# libraries are not included and need to be separately downloaded
+# (for example from our official Thrive git repository)
+
+if(THRIVE_AVX AND THRIVE_DISTRIBUTION)
+  message(STATUS "Skipping building thrive_extension as it is only made in"
+    "non-avx variant (when creating a distributable build)")
+  return()
+endif()
+
+add_library(thrive_extension SHARED
+  "${PROJECT_BINARY_DIR}/Include.h"
+  core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
+  core/ThriveConfig.cpp core/ThriveConfig.hpp
+)
+
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  target_compile_options(thrive_extension PRIVATE /W4 /wd4068)
+
+  if(WARNINGS_AS_ERRORS)
+    target_compile_options(thrive_extension PRIVATE /WX)
+  endif()
+
+  # TODO debug symbols in release for MSVC (and Distribution mode)
+
+else()
+  target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
+
+  if(WARNINGS_AS_ERRORS)
+    target_compile_options(thrive_extension PRIVATE -Werror)
+  endif()
+
+  target_compile_options(thrive_extension PRIVATE $<$<CONFIG:Release>:-g -O3>
+    $<$<CONFIG:Distribution>:-g -O3>)
+endif()
+
+target_compile_definitions(thrive_extension PRIVATE thrive_extension_BUILD)
+
+target_link_libraries(thrive_extension PRIVATE godot-cpp)
+
+target_include_directories(thrive_extension PUBLIC ${CMAKE_CURRENT_LIST_DIR}
+  ${CMAKE_CURRENT_LIST_DIR}/../native)
+
+target_precompile_headers(thrive_extension PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
+  PRIVATE "../../third_party/godot-cpp/include/godot_cpp/classes/ref.hpp"
+  "${GODOT_GDEXTENSION_DIR}/gdextension_interface.h"
+)
+
+set_target_properties(thrive_extension PROPERTIES
+  CXX_STANDARD 20
+  CXX_EXTENSIONS OFF)
+
+if(THRIVE_LTO)
+  # TODO: figure out why msys2 fails with this or disable this by default there
+  set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+endif()
+
+install(TARGETS thrive_extension)

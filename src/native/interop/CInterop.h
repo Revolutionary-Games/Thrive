@@ -16,6 +16,12 @@ extern "C"
 
     typedef bool (*OnFilterPhysicsCollision)(PhysicsCollision* potentialCollision);
 
+    /// Opaque type for passing through info on Thrive::NativeLibIntercommunication instances on the C# side
+    typedef struct NativeLibIntercommunicationOpaque
+    {
+        void* Pointers;
+    } NativeLibIntercommunicationOpaque;
+
     // ------------------------------------ //
     // General
 
