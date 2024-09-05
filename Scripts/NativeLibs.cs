@@ -94,13 +94,7 @@ public class NativeLibs
         }
 
         // Set sensible default platform definitions
-        if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Install))
-        {
-            // Install is just for current platform as it doesn't make sense to try to make the editor work on other
-            // platforms on one computer
-            platforms = new List<PackagePlatform> { PlatformUtilities.GetCurrentPlatform() };
-        }
-        else if (OperatingSystem.IsMacOS())
+        if (OperatingSystem.IsMacOS())
         {
             // Mac stuff only can be done on a Mac
             platforms = new List<PackagePlatform> { PackagePlatform.Mac };
@@ -396,18 +390,28 @@ public class NativeLibs
     {
         if (library != NativeConstants.Library.ThriveExtension)
         {
-            ColourConsole.WriteDebugLine("Skipping install for a library that doesn't need installing");
+            ColourConsole.WriteNormalLine($"Skipping install for a library ({library}) that doesn't need installing");
             return Task.FromResult(true);
         }
 
         var tag = PrecompiledTag.None;
+
+        // Allows different name when we are fudging the name a bit
+        var targetTags = PrecompiledTag.None;
+
+        // The extension library defaults to installing without AVX
+        // Due to the if above this is always true
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+        if (library == NativeConstants.Library.ThriveExtension)
+            tag = PrecompiledTag.WithoutAvx;
 
         var target = ExtensionInstallFolder;
 
         if (options.DebugLibrary)
         {
             target = ExtensionInstallFolderDebug;
-            tag = PrecompiledTag.Debug;
+            tag |= PrecompiledTag.Debug;
+            targetTags = PrecompiledTag.Debug;
         }
 
         Directory.CreateDirectory(target);
@@ -415,7 +419,8 @@ public class NativeLibs
         ColourConsole.WriteInfoLine($"Installing library {library} to {target}");
 
         ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
-        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
+        var libraryVersion = NativeConstants.GetLibraryVersion(library);
+        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
             false, tag);
         var originalLinkTo = linkTo;
 
@@ -423,10 +428,21 @@ public class NativeLibs
         {
             // Fall back to distributable version
             ColourConsole.WriteNormalLine("Falling back to attempting distributable version");
-            linkTo = NativeConstants.GetPathToLibraryDll(library, platform, NativeConstants.GetLibraryVersion(library),
-                true, tag);
 
-            if (!File.Exists(linkTo))
+            linkTo = TryToFindInstallSource(
+                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+
+                // Using AVX variant is fine locally
+                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
+                    tag | PrecompiledTag.WithoutAvx),
+                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                    tag | PrecompiledTag.WithoutAvx),
+                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
+                    tag & ~PrecompiledTag.WithoutAvx),
+                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                    tag & ~PrecompiledTag.WithoutAvx));
+
+            if (linkTo == null)
             {
                 ColourConsole.WriteErrorLine(
                     $"Expected library doesn't exist (please 'Fetch' or 'Build' first): {originalLinkTo}");
@@ -434,15 +450,28 @@ public class NativeLibs
                 return Task.FromResult(false);
             }
 
-            ColourConsole.WriteSuccessLine("Distributable version of library detected");
+            ColourConsole.WriteSuccessLine("A suitable version of library detected");
+            ColourConsole.WriteDebugLine($"Using library from: {linkTo}");
         }
 
-        var linkFile = Path.Join(target, NativeConstants.GetLibraryDllName(library, platform, tag));
+        var linkFile = Path.Join(target, NativeConstants.GetLibraryDllName(library, platform, targetTags));
 
         CreateLinkTo(linkFile, linkTo);
 
         ColourConsole.WriteSuccessLine($"Successfully installed {library} to editor for {platform}");
         return Task.FromResult(true);
+    }
+
+    private string? TryToFindInstallSource(params string[] toCheck)
+    {
+        foreach (var item in toCheck)
+        {
+            if (File.Exists(item))
+
+                return item;
+        }
+
+        return null;
     }
 
     private bool CopyLibraryFiles(NativeConstants.Library library, PackagePlatform platform,

@@ -5,12 +5,6 @@
 # libraries are not included and need to be separately downloaded
 # (for example from our official Thrive git repository)
 
-if(THRIVE_AVX AND THRIVE_DISTRIBUTION)
-  message(STATUS "Skipping building thrive_extension as it is only made in"
-    "non-avx variant (when creating a distributable build)")
-  return()
-endif()
-
 add_library(thrive_extension SHARED
   "${PROJECT_BINARY_DIR}/Include.h"
   core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
@@ -34,8 +28,8 @@ else()
     target_compile_options(thrive_extension PRIVATE -Werror)
   endif()
 
-  target_compile_options(thrive_extension PRIVATE $<$<CONFIG:Release>:-g -O3>
-    $<$<CONFIG:Distribution>:-g -O3>)
+  target_compile_options(thrive_extension PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
+    $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
 endif()
 
 target_compile_definitions(thrive_extension PRIVATE thrive_extension_BUILD)

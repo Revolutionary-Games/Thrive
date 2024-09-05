@@ -55,8 +55,8 @@ else()
     target_compile_options(thrive_native PRIVATE -Werror)
   endif()
 
-  target_compile_options(thrive_native PRIVATE $<$<CONFIG:Release>:-g -O3>
-    $<$<CONFIG:Distribution>:-g -O3>)
+  target_compile_options(thrive_native PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
+    $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
 endif()
 
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)

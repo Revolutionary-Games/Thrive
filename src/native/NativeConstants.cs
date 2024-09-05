@@ -121,8 +121,14 @@ public class NativeConstants
                 switch (platform)
                 {
                     case PackagePlatform.Linux:
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_extension_without_avx.so";
+
                         return "libthrive_extension.so";
                     case PackagePlatform.Windows:
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_extension_without_avx.dll";
+
                         return "libthrive_extension.dll";
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
