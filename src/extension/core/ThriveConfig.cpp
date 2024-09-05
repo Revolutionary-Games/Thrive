@@ -82,15 +82,16 @@ godot::Variant ThriveConfig::Initialize(const godot::Variant& intercommunication
     return {reinterpret_cast<int64_t>(InitializeImplementation(*convertedIntercommunication))};
 }
 
-void ThriveConfig::Shutdown() noexcept
+bool ThriveConfig::Shutdown() noexcept
 {
     if (!initialized)
     {
         ERR_PRINT("This config object is not initialized (shutdown called)");
-        return;
+        return false;
     }
 
     initialized = false;
+    return true;
 }
 
 // ------------------------------------ //

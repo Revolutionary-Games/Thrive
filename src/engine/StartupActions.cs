@@ -199,7 +199,17 @@ public partial class StartupActions : Node
                 return;
             }
 
-            GD.Print("Thrive extension load succeeded, version: ", ExtensionInterop.GetVersion());
+            var loadedVersion = ExtensionInterop.GetVersion();
+            GD.Print("Thrive extension load succeeded, version: ", loadedVersion);
+
+            if (loadedVersion != NativeConstants.ExtensionVersion)
+            {
+                GD.PrintErr("Thrive extension start failed, unexpected version. Version should be: ",
+                    NativeConstants.ExtensionVersion);
+
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+            }
         }
     }
 

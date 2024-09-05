@@ -4,12 +4,12 @@
 
 #include "Include.h"
 
-#include "shared/NativeLibIntercommunication.hpp"
+#include "core/NativeLibIntercommunication.hpp"
 
 namespace Thrive
 {
 
-/// Manages forwarding C# side configuration and other runtime data between Thrive parts into this module
+/// \brief Manages forwarding C# side configuration and other runtime data between Thrive parts into this module
 class ThriveConfig : public godot::Object
 {
     GDCLASS(ThriveConfig, godot::Object)
@@ -22,25 +22,25 @@ public:
     ThriveConfig() = default;
     ~ThriveConfig() override;
 
-    /// Checks that other running Thrive components are compatible
+    /// \brief Checks that other running Thrive components are compatible
     bool ReportOtherVersions(int csharpVersion, int nativeLibraryVersion) noexcept;
 
-    /// Wrapper for InitializeImplementation to be called through Godot
-    godot::Variant Initialize(const godot::Variant& intercommunication)noexcept;
+    /// \brief Wrapper for InitializeImplementation to be called through Godot
+    godot::Variant Initialize(const godot::Variant& intercommunication) noexcept;
 
     ThriveConfig* InitializeImplementation(NativeLibIntercommunication& intercommunication) noexcept;
 
-    void Shutdown() noexcept;
+    /// \brief Shuts down this extension. Returns true on success (fails if not initialized)
+    bool Shutdown() noexcept;
 
     // ------------------------------------ //
     // C# interop methods
-    int GetVersion() const noexcept;
+    [[nodiscard]] int GetVersion() const noexcept;
 
 protected:
     static void _bind_methods();
 
 private:
-
     bool initialized = false;
 };
 

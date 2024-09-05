@@ -50,7 +50,7 @@ public partial class PostShutdownActions : Node
         GD.Print("Shutting down native library");
 
         if (!ExtensionInterop.ShutdownExtension())
-            GD.PrintErr("Failed to shut down Thrive Extension properly");
+            GD.PrintErr("Thrive Extension failure on shutdown");
 
         NativeInterop.Shutdown();
 

@@ -84,9 +84,10 @@ public class ExtensionInterop
         if (shutdown)
             return true;
 
+        // No longer allow calling to the extension
         nativeConfigInstance = IntPtr.Zero;
-
         shutdown = true;
+
         var result = ThriveExtension.Value.Call("Shutdown");
 
         if (!result.AsBool())
@@ -94,6 +95,9 @@ public class ExtensionInterop
             GD.PrintErr("Failed to shutdown Thrive extension");
             return false;
         }
+
+        // Delete the native side object after shutdown
+        ThriveExtension.Value.Free();
 
         return true;
     }
