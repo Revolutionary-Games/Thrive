@@ -170,9 +170,6 @@ public class MembraneShapeGenerator
 
                 uvs[id] = direction;
 
-                if (layer == layerCount - 1)
-                    GD.Print(uvs[id] + " for layer " + layer + " and y " + y);
-
                 // Find normals
                 Vector3 previous = i == 0 ? vertices[id + vertexCount - 1] : vertices[id - 1];
                 Vector3 next = i == vertexCount - 1 ? vertices[id - i] : vertices[id + 1];
@@ -181,9 +178,6 @@ public class MembraneShapeGenerator
                 Vector3 up = layer == layerCount - 1 ? vertices[vertices.Length - 1] : vertices[id + vertexCount];
 
                 normals[id] = (next - previous).Cross(up - down).Normalized();
-
-                if (layer == layerCount - 1)
-                    GD.Print(normals[id]);
             }
         }
 
