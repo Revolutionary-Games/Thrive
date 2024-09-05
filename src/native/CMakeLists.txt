@@ -37,7 +37,8 @@ add_library(thrive_native SHARED
   physics/PhysicsCollision.hpp
   physics/PhysicsRayWithUserData.hpp
   physics/ArrayRayCollector.hpp
-  shared/NativeLibIntercommunication.hpp)
+  core/NativeLibIntercommunication.hpp
+  shared/IntercommunicationManager.cpp core/IntercommunicationManager.hpp)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   target_compile_options(thrive_native PRIVATE /W4 /wd4068)

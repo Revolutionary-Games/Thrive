@@ -245,8 +245,7 @@ public static class NativeInterop
             return Variant.CreateFrom(0);
         }
 
-        GD.PrintErr("TODO: intercommunication setup!");
-        return Variant.CreateFrom(0);
+        return NativeMethods.GetIntercommunicationBridge().ToInt64();
     }
 
     public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
@@ -718,6 +717,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr GetIntercommunicationBridge();
 
     [DllImport("early_checks")]
     internal static extern CPUCheckResult CheckRequiredCPUFeatures();

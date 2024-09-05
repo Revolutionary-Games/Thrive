@@ -62,11 +62,16 @@ public class ExtensionInterop
 
         var result = godotObject.Call("Initialize", intercommunication);
 
-        if (!result.AsBool())
+        var resultPtr = new IntPtr(result.AsInt64());
+
+        if (resultPtr == IntPtr.Zero)
         {
             GD.PrintErr("Thrive GDExtension initialization call failed");
             return false;
         }
+
+        // We now know the native instance we can call methods on
+        nativeConfigInstance = resultPtr;
 
         return true;
     }
