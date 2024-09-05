@@ -388,6 +388,10 @@ public class Program
         [Option('s', "symbolic-links", Required = false, Default = false,
             HelpText = "If specified prefer to use symlinks even on Windows")]
         public bool UseSymlinks { get; set; }
+
+        [Option("prepare-api-file", Required = false, Default = true,
+            HelpText = "Can be set to false to skip preparing Godot API files")]
+        public bool PrepareGodotAPI { get; set; }
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]

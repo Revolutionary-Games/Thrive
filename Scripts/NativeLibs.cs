@@ -30,12 +30,15 @@ public class NativeLibs
     private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
     private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
 
+    private const string APIFolderName = "api";
+    private const string GodotAPIFileName = "extension_api.json";
+    private const string APIInContainer = "/godot-api";
+
     /// <summary>
     ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
     ///   library as a pure C# solution is used instead.
     /// </summary>
-    private static readonly IList<NativeConstants.Library> DefaultLibraries = new[]
-        { NativeConstants.Library.ThriveNative };
+    private static readonly IList<NativeConstants.Library> DefaultLibraries = [NativeConstants.Library.ThriveNative];
 
     private readonly Program.NativeLibOptions options;
 
@@ -45,6 +48,8 @@ public class NativeLibs
 
     private readonly Lazy<Task<long>> thriveNativePrecompiledId;
     private readonly Lazy<Task<long>> earlyCheckPrecompiledId;
+
+    private bool scriptsAPIFileCreated;
 
     public NativeLibs(Program.NativeLibOptions options)
     {
@@ -72,6 +77,11 @@ public class NativeLibs
                 "available for download)");
         }
 
+        if (!options.PrepareGodotAPI)
+        {
+            ColourConsole.WriteNormalLine("Not preparing Godot API files, assuming they are there already");
+        }
+
         // Explicitly selected platforms override defaults
         if (this.options.Platforms is { Count: > 0 })
         {
@@ -88,7 +98,7 @@ public class NativeLibs
         }
         else if (OperatingSystem.IsMacOS())
         {
-            // Mac stuff only can be done on a mac
+            // Mac stuff only can be done on a Mac
             platforms = new List<PackagePlatform> { PackagePlatform.Mac };
         }
         else if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Build))
@@ -440,6 +450,15 @@ public class NativeLibs
         // Ensure Godot doesn't try to import anything funny from the build folder
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(buildFolder);
 
+        var apiFolder = Path.Join(buildFolder, APIFolderName);
+        Directory.CreateDirectory(apiFolder);
+
+        if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("API file could not be created");
+            return false;
+        }
+
         var installPath =
             Path.GetFullPath(GetLocalCMakeInstallTarget(platform, NativeConstants.GetLibraryVersion(library)));
 
@@ -621,6 +640,21 @@ public class NativeLibs
 
         Directory.CreateDirectory(compileInstallFolder);
 
+        var apiFolder = Path.GetFullPath("Scripts/GodotAPIData");
+        Directory.CreateDirectory(apiFolder);
+
+        // Only create the API file once as it is only needed to be created once as the location is re-used
+        if (!scriptsAPIFileCreated)
+        {
+            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("API file could not be created");
+                return false;
+            }
+
+            scriptsAPIFileCreated = true;
+        }
+
         var thriveContainerFolder = "/thrive";
 
         var startInfo = new ProcessStartInfo("podman");
@@ -631,6 +665,8 @@ public class NativeLibs
 
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:{thriveContainerFolder}:ro,z");
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
+
+        startInfo.ArgumentList.Add($"--volume={apiFolder}:{APIInContainer}:ro,z");
 
         if (options.Verbose)
         {
@@ -666,6 +702,8 @@ public class NativeLibs
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
 
         shCommandBuilder.Append("-DTHRIVE_AVX=ON ");
+
+        shCommandBuilder.Append($"-DTHRIVE_GODOT_API_FILE={APIInContainer} ");
 
         // We explicitly enable LTO with compiler flags when we want as CMake when testing LTO seems to ignore a bunch
         // of flags
@@ -849,6 +887,52 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
+
+        return true;
+    }
+
+    private async Task<bool> CreateGodotAPIFileInFolder(string folder, CancellationToken cancellationToken)
+    {
+        if (!options.PrepareGodotAPI)
+            return true;
+
+        ColourConsole.WriteInfoLine("Preparing Godot API file");
+
+        if (!await PackageTool.CheckGodotIsAvailable(cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Cannot generate Godot API file due to Godot being missing");
+            return false;
+        }
+
+        if (!Directory.Exists(folder))
+            throw new ArgumentException("Folder doesn't exist (must exist before calling this)", nameof(folder));
+
+        var startInfo = new ProcessStartInfo("godot")
+        {
+            WorkingDirectory = folder,
+        };
+
+        startInfo.ArgumentList.Add("--headless");
+
+        startInfo.ArgumentList.Add("--dump-extension-api");
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Failed to generate Godot API file (exit: {result.ExitCode}). Output: {result.FullOutput}");
+
+            return false;
+        }
+
+        if (!File.Exists(Path.Combine(folder, GodotAPIFileName)))
+        {
+            ColourConsole.WriteErrorLine($"Expected Godot API file not created in {folder}");
+            return false;
+        }
+
+        ColourConsole.WriteNormalLine("Created Godot API file");
 
         return true;
     }

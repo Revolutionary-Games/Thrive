@@ -45,6 +45,8 @@ option(NULL_HAS_UNUSUAL_REPRESENTATION
 
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake")
 
+option(THRIVE_GODOT_API_FILE "Set to override folder Godot API file is looked for in" "")
+
 # Also use a lib prefix on windows for consistency
 if(WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX_CXX "lib")
@@ -149,7 +151,13 @@ configure_file("src/native/Include.h.in" "${PROJECT_BINARY_DIR}/Include.h")
 include_directories(${PROJECT_BINARY_DIR})
 
 # Configure gdextension stuff
-set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+if(THRIVE_GODOT_API_FILE)
+  set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
+  message(STATUS "Using custom location of Godot API file")
+else()
+  set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+endif()
+
 set(FLOAT_PRECISION "single")
 
 # GODOT_CPP_SYSTEM_HEADERS

@@ -351,7 +351,18 @@ technically clang should work (please send us a PR if you can tweak it
 to work). On Mac Xcode (or at least the command line tools for it)
 should be used.
 
-You can compile and install the native libraries for the Godot Editor
+For the gdextension to be compiled, `godot` must be available in PATH
+to generate the required binding files. And when compiling outside the
+container Python and other [Godot build
+dependencies](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html#toc-devel-compiling)
+are required to be installed as well.
+
+To compile inside a container the native libraries:
+```sh
+dotnet run --project Scripts -- native Package
+```
+
+For a non-container, local compile install the native libraries for the Godot Editor
 in the Thrive folder with the following script:
 ```sh
 dotnet run --project Scripts -- native Build
