@@ -15,6 +15,7 @@ add_library(thrive_extension SHARED
   "${PROJECT_BINARY_DIR}/Include.h"
   core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
   core/ThriveConfig.cpp core/ThriveConfig.hpp
+  interop/ExtensionInterop.cpp interop/ExtensionInterop.h
 )
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")

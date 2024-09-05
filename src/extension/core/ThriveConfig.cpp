@@ -5,12 +5,12 @@
 namespace Thrive
 {
 
-ThriveConfig::ThriveConfig()
-{
-}
-
 ThriveConfig::~ThriveConfig()
 {
+    if (initialized)
+    {
+        ERR_PRINT("ThriveConfig is still initialized during destruction, Shutdown should be called first");
+    }
 }
 
 void ThriveConfig::_bind_methods()
@@ -23,7 +23,7 @@ void ThriveConfig::_bind_methods()
 }
 
 // ------------------------------------ //
-bool ThriveConfig::ReportOtherVersions(int csharpVersion, int nativeLibraryVersion)
+bool ThriveConfig::ReportOtherVersions(int csharpVersion, int nativeLibraryVersion) noexcept
 {
     if (csharpVersion != THRIVE_EXTENSION_VERSION)
     {
@@ -41,6 +41,62 @@ bool ThriveConfig::ReportOtherVersions(int csharpVersion, int nativeLibraryVersi
     }
 
     return true;
+}
+
+ThriveConfig* ThriveConfig::InitializeImplementation(NativeLibIntercommunication& intercommunication) noexcept
+{
+    if (intercommunication.SanityCheckValue != INTEROP_MAGIC_VALUE)
+    {
+        ERR_PRINT("Interop data passed to Thrive Extension is corrupt (unexpected magic value)");
+        return nullptr;
+    }
+
+    if (false)
+    {
+        ERR_PRINT("ThriveConfig object initialization failed");
+        return nullptr;
+    }
+
+    // Init succeeded
+    initialized = true;
+    return this;
+}
+
+godot::Variant ThriveConfig::Initialize(const godot::Variant& intercommunication) noexcept
+{
+    if (intercommunication.get_type() != godot::Variant::INT)
+    {
+        ERR_PRINT("Extension initialize expected to get an int as parameter");
+        return {false};
+    }
+
+    const auto convertedIntercommunication =
+        reinterpret_cast<NativeLibIntercommunication*>((int64_t)intercommunication);
+
+    if (convertedIntercommunication == nullptr)
+    {
+        ERR_PRINT("Extension initialize was given a null value as the intercommunication object");
+        return {false};
+    }
+
+    return {reinterpret_cast<int64_t>(InitializeImplementation(*convertedIntercommunication))};
+}
+
+void ThriveConfig::Shutdown() noexcept
+{
+    if (!initialized)
+    {
+        ERR_PRINT("This config object is not initialized (shutdown called)");
+        return;
+    }
+
+    initialized = false;
+}
+
+// ------------------------------------ //
+int ThriveConfig::GetVersion() const noexcept
+{
+    return THRIVE_EXTENSION_VERSION;
 }
 
 } // namespace Thrive

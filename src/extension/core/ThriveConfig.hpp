@@ -19,27 +19,29 @@ public:
     // code yet.
 
 public:
-    ThriveConfig();
+    ThriveConfig() = default;
     ~ThriveConfig() override;
 
     /// Checks that other running Thrive components are compatible
-    bool ReportOtherVersions(int csharpVersion, int nativeLibraryVersion);
+    bool ReportOtherVersions(int csharpVersion, int nativeLibraryVersion) noexcept;
 
     /// Wrapper for InitializeImplementation to be called through Godot
-    godot::Variant Initialize(const godot::Variant& intercommunication);
+    godot::Variant Initialize(const godot::Variant& intercommunication)noexcept;
 
-    ThriveConfig* InitializeImplementation(NativeLibIntercommunication& intercommunication);
+    ThriveConfig* InitializeImplementation(NativeLibIntercommunication& intercommunication) noexcept;
 
-    void Shutdown();
+    void Shutdown() noexcept;
 
     // ------------------------------------ //
     // C# interop methods
-    int GetVersion();
+    int GetVersion() const noexcept;
 
 protected:
     static void _bind_methods();
 
 private:
+
+    bool initialized = false;
 };
 
 } // namespace Thrive

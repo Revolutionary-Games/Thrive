@@ -14,7 +14,8 @@ using Godot;
 using SharedBase.Utilities;
 
 /// <summary>
-///   Calling interface from C# to the native code side of things for the native module
+///   Calling interface from C# to the native code side of things for the native module. For the GDExtension stuff see
+///   <see cref="ExtensionInterop"/>
 /// </summary>
 public static class NativeInterop
 {
@@ -37,6 +38,8 @@ public static class NativeInterop
 
     private static bool printedDistributableNotice;
     private static bool printedErrorAboutExecutablePath;
+
+    private static int version = -1;
 
 #if DEBUG
     private static bool printedSteamLibName;
@@ -114,7 +117,7 @@ public static class NativeInterop
             throw new InvalidOperationException("Native library is detected as incompatible");
         }
 
-        int version = NativeMethods.CheckAPIVersion();
+        version = NativeMethods.CheckAPIVersion();
 
         if (version != NativeConstants.Version)
         {
@@ -226,6 +229,24 @@ public static class NativeInterop
     public static void DisableAvx()
     {
         disableAvx = true;
+    }
+
+    /// <summary>
+    ///   Gets the intercommunication interface for the native libraries
+    /// </summary>
+    /// <returns>IntPtr put into the variant on success, 0 on failure</returns>
+    public static Variant GetIntercommunication(out int libraryVersion)
+    {
+        libraryVersion = version;
+
+        if (!nativeLoadSucceeded)
+        {
+            GD.PrintErr("Native load hasn't succeeded, cannot get intercommunication");
+            return Variant.CreateFrom(0);
+        }
+
+        GD.PrintErr("TODO: intercommunication setup!");
+        return Variant.CreateFrom(0);
     }
 
     public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
