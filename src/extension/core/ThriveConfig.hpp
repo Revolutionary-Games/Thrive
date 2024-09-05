@@ -30,6 +30,8 @@ public:
 
     ThriveConfig* InitializeImplementation(NativeLibIntercommunication& intercommunication);
 
+    void Shutdown();
+
     // ------------------------------------ //
     // C# interop methods
     int GetVersion();

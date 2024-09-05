@@ -15,6 +15,11 @@ ThriveConfig::~ThriveConfig()
 
 void ThriveConfig::_bind_methods()
 {
+    using namespace godot;
+    ClassDB::bind_method(
+        D_METHOD("ReportOtherVersions", "csharpVersion", "nativeLibraryVersion"), &ThriveConfig::ReportOtherVersions);
+    ClassDB::bind_method(D_METHOD("Initialize", "intercommunication"), &ThriveConfig::Initialize);
+    ClassDB::bind_method(D_METHOD("Shutdown"), &ThriveConfig::Shutdown);
 }
 
 // ------------------------------------ //
