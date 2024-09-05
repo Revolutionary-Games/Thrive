@@ -53,7 +53,7 @@ public class NativeLibs
     private readonly Lazy<Task<long>> thriveNativePrecompiledId;
     private readonly Lazy<Task<long>> earlyCheckPrecompiledId;
 
-    private bool scriptsAPIFileCreated;
+    private readonly HashSet<string> scriptsAPIFileCreated = new();
 
     public NativeLibs(Program.NativeLibOptions options)
     {
@@ -471,6 +471,8 @@ public class NativeLibs
     private async Task<bool> BuildLocally(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
+        // TODO: this step needs to be updated to compile all at once
+
         if (platform != PlatformUtilities.GetCurrentPlatform())
         {
             ColourConsole.WriteErrorLine("Building for non-current platform without podman is not supported");
@@ -502,10 +504,15 @@ public class NativeLibs
         var apiFolder = Path.Join(buildFolder, APIFolderName);
         Directory.CreateDirectory(apiFolder);
 
-        if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+        if (!scriptsAPIFileCreated.Contains(apiFolder))
         {
-            ColourConsole.WriteErrorLine("API file could not be created");
-            return false;
+            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("API file could not be created");
+                return false;
+            }
+
+            scriptsAPIFileCreated.Add(apiFolder);
         }
 
         var installPath =
@@ -693,7 +700,7 @@ public class NativeLibs
         Directory.CreateDirectory(apiFolder);
 
         // Only create the API file once as it is only needed to be created once as the location is re-used
-        if (!scriptsAPIFileCreated)
+        if (!scriptsAPIFileCreated.Contains(apiFolder))
         {
             if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
             {
@@ -701,7 +708,7 @@ public class NativeLibs
                 return false;
             }
 
-            scriptsAPIFileCreated = true;
+            scriptsAPIFileCreated.Add(apiFolder);
         }
 
         var thriveContainerFolder = "/thrive";

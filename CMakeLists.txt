@@ -90,7 +90,7 @@ else()
 endif()
 
 # Standard library and other linking flags
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 
   set(CLANG_DEFAULT_CXX_STDLIB libc++)
   set(CLANG_DEFAULT_RTLIB compiler-rt)
@@ -175,10 +175,11 @@ set(FLOAT_PRECISION "single")
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
 
-if(THRIVE_AVX)
+if(THRIVE_AVX AND THRIVE_DISTRIBUTION)
   # Early checks is not compiled in non-avx mode
   add_subdirectory(src/native/early_checks)
 endif()
 
 add_subdirectory(src/native)
 add_subdirectory(src/extension)
+
