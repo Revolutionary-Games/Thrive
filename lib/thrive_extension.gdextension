@@ -7,24 +7,24 @@ reloadable = true
 [libraries]
 
 # TODO: mac version
-# macos.debug = "res://bin/debug/libthrive_extension.framework"
-# macos.release = "res://bin/libthrive_extension.framework"
+# macos.debug = "res://lib/debug/libthrive_extension.framework"
+# macos.release = "res://lib/libthrive_extension.framework"
 
 # 32-bit version if we ever want to support that again
-# windows.debug.x86_32 = "res://bin/debug/libthrive_extension.x86_32.dll"
-# windows.release.x86_32 = "res://bin/libthrive_extension.x86_32.dll"
+# windows.debug.x86_32 = "res://lib/debug/libthrive_extension.x86_32.dll"
+# windows.release.x86_32 = "res://lib/libthrive_extension.x86_32.dll"
 
-windows.debug.x86_64 = "res://bin/debug/libthrive_extension.dll"
-windows.release.x86_64 = "res://bin/libthrive_extension.dll"
-linux.debug.x86_64 = "res://bin/debug/libthrive_extension.so" 
-linux.release.x86_64 = "res://bin/libthrive_extension.so"
+windows.debug.x86_64 = "res://lib/debug/libthrive_extension.dll"
+windows.release.x86_64 = "res://lib/libthrive_extension.dll"
+linux.debug.x86_64 = "res://lib/debug/libthrive_extension.so" 
+linux.release.x86_64 = "res://lib/libthrive_extension.so"
 
 # TODO: other architectures and phones
-# linux.debug.arm64 = "res://bin/debug/libthrive_extension.arm64.so"
-# linux.release.arm64 = "res://bin/libthrive_extension.arm64.so"
-# linux.debug.rv64 = "res://bin/debug/libthrive_extension.rv64.so"
-# linux.release.rv64 = "res://bin/libthrive_extension.rv64.so"
-# android.debug.x86_64 = "res://bin/debug/libthrive_extension.android.x86_64.so"
-# android.release.x86_64 = "res://bin/libthrive_extension.android.x86_64.so"
-# android.debug.arm64 = "res://bin/debug/libthrive_extension.android.arm64.so"
-# android.release.arm64 = "res://bin/libthrive_extension.android.arm64.so"
+# linux.debug.arm64 = "res://lib/debug/libthrive_extension.arm64.so"
+# linux.release.arm64 = "res://lib/libthrive_extension.arm64.so"
+# linux.debug.rv64 = "res://lib/debug/libthrive_extension.rv64.so"
+# linux.release.rv64 = "res://lib/libthrive_extension.rv64.so"
+# android.debug.x86_64 = "res://lib/debug/libthrive_extension.android.x86_64.so"
+# android.release.x86_64 = "res://lib/libthrive_extension.android.x86_64.so"
+# android.debug.arm64 = "res://lib/debug/libthrive_extension.android.arm64.so"
+# android.release.arm64 = "res://lib/libthrive_extension.android.arm64.so"
