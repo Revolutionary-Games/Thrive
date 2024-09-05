@@ -67,17 +67,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
     public override void Dispose()
     {
-        var maxWait = TimeSpan.FromSeconds(10);
-        foreach (var task in activeGenerationTasks)
-        {
-            if (!task.Wait(maxWait))
-            {
-                GD.PrintErr("Failed to wait for a background membrane generation task to finish on " +
-                    "dispose");
-            }
-        }
-
-        activeGenerationTasks.Clear();
+        Dispose(true);
 
         base.Dispose();
     }
@@ -395,6 +385,21 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
         activeGenerationTasks.Add(task);
         executor.AddTask(task);
+    }
+
+    private void Dispose(bool disposing)
+    {
+        var maxWait = TimeSpan.FromSeconds(10);
+        foreach (var task in activeGenerationTasks)
+        {
+            if (!task.Wait(maxWait))
+            {
+                GD.PrintErr("Failed to wait for a background membrane generation task to finish on " +
+                    "dispose");
+            }
+        }
+
+        activeGenerationTasks.Clear();
     }
 
     private void RunMembraneGenerationThread()
