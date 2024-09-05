@@ -70,7 +70,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     public override void Dispose()
     {
         Dispose(true);
-
         base.Dispose();
     }
 
@@ -301,6 +300,11 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
         organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
+        // To make organelles' color dependent on membrane's color:
+        // var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
+        var organelleColour = Colors.White;
+
+
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
             // Only handle organelles that have graphics
@@ -346,10 +350,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
                 organelleContainer.CreatedOrganelleVisuals.Add(placedOrganelle, visualsInstance);
             }
-
-            // To make organelles' color dependent on membrane's color:
-            // var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
-            var organelleColour = Colors.White;
 
             // Visuals already exist
             var graphics = placedOrganelle.OrganelleGraphics;
