@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-04 13:04+0300\n"
+"POT-Creation-Date: 2024-09-05 21:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -532,9 +532,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1385
 #: ../simulation_parameters/microbe_stage/biomes.json:1647
 #: ../simulation_parameters/microbe_stage/biomes.json:1888
-#: ../simulation_parameters/microbe_stage/biomes.json:2145
-#: ../simulation_parameters/microbe_stage/biomes.json:2325
-#: ../simulation_parameters/microbe_stage/biomes.json:2570
+#: ../simulation_parameters/microbe_stage/biomes.json:2214
+#: ../simulation_parameters/microbe_stage/biomes.json:2394
+#: ../simulation_parameters/microbe_stage/biomes.json:2639
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:53
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -544,8 +544,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1129
 #: ../simulation_parameters/microbe_stage/biomes.json:1710
 #: ../simulation_parameters/microbe_stage/biomes.json:1947
-#: ../simulation_parameters/microbe_stage/biomes.json:2392
-#: ../simulation_parameters/microbe_stage/biomes.json:2633
+#: ../simulation_parameters/microbe_stage/biomes.json:2461
+#: ../simulation_parameters/microbe_stage/biomes.json:2702
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:816
+#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:817
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
@@ -874,8 +874,8 @@ msgstr ""
 msgid "CHUNK_CELL_CORPSE_PART"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:65
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:90
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:64
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:89
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
@@ -1915,7 +1915,7 @@ msgstr ""
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:67
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:66
 msgid "DISSOLVED_COMPOUND_FOOD_SOURCE"
 msgstr ""
 
@@ -2285,7 +2285,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2246
+#: ../simulation_parameters/microbe_stage/biomes.json:2315
 msgid "ESTUARY"
 msgstr ""
 
@@ -2530,8 +2530,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1592
 #: ../simulation_parameters/microbe_stage/biomes.json:1833
 #: ../simulation_parameters/microbe_stage/biomes.json:2070
-#: ../simulation_parameters/microbe_stage/biomes.json:2270
-#: ../simulation_parameters/microbe_stage/biomes.json:2515
+#: ../simulation_parameters/microbe_stage/biomes.json:2339
+#: ../simulation_parameters/microbe_stage/biomes.json:2584
 msgid "FLOATING_HAZARD"
 msgstr ""
 
@@ -2746,9 +2746,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1495
 #: ../simulation_parameters/microbe_stage/biomes.json:1737
 #: ../simulation_parameters/microbe_stage/biomes.json:1970
-#: ../simulation_parameters/microbe_stage/biomes.json:2173
-#: ../simulation_parameters/microbe_stage/biomes.json:2419
-#: ../simulation_parameters/microbe_stage/biomes.json:2742
+#: ../simulation_parameters/microbe_stage/biomes.json:2242
+#: ../simulation_parameters/microbe_stage/biomes.json:2488
+#: ../simulation_parameters/microbe_stage/biomes.json:2811
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
@@ -2869,12 +2869,20 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2125
+#: ../simulation_parameters/microbe_stage/biomes.json:2089
 msgid "ICESHARD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2043
 msgid "ICESHELF"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/biomes.json:2132
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/biomes.json:2109
+msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
 #: ../src/modding/ModUploader.cs:458
@@ -3765,7 +3773,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:841
 #: ../simulation_parameters/microbe_stage/biomes.json:1152
 #: ../simulation_parameters/microbe_stage/biomes.json:1413
-#: ../simulation_parameters/microbe_stage/biomes.json:2660
+#: ../simulation_parameters/microbe_stage/biomes.json:2729
 msgid "MARINE_SNOW"
 msgstr ""
 
@@ -3875,7 +3883,7 @@ msgstr ""
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:10
+#: ../src/auto-evo/selection_pressure/ChunkCompoundPressure.cs:9
 msgid "MICHE_CHUNK_PRESSURE"
 msgstr ""
 
@@ -3891,7 +3899,7 @@ msgstr ""
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:10
+#: ../src/auto-evo/selection_pressure/EnvironmentalCompoundPressure.cs:9
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
 
@@ -5944,7 +5952,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2492
+#: ../simulation_parameters/microbe_stage/biomes.json:2561
 msgid "SEA_FLOOR"
 msgstr ""
 
@@ -6179,9 +6187,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
 #: ../simulation_parameters/microbe_stage/biomes.json:1611
 #: ../simulation_parameters/microbe_stage/biomes.json:1852
-#: ../simulation_parameters/microbe_stage/biomes.json:2089
-#: ../simulation_parameters/microbe_stage/biomes.json:2289
-#: ../simulation_parameters/microbe_stage/biomes.json:2534
+#: ../simulation_parameters/microbe_stage/biomes.json:2178
+#: ../simulation_parameters/microbe_stage/biomes.json:2358
+#: ../simulation_parameters/microbe_stage/biomes.json:2603
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:51
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -6191,8 +6199,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1102
 #: ../simulation_parameters/microbe_stage/biomes.json:1675
 #: ../simulation_parameters/microbe_stage/biomes.json:1916
-#: ../simulation_parameters/microbe_stage/biomes.json:2353
-#: ../simulation_parameters/microbe_stage/biomes.json:2598
+#: ../simulation_parameters/microbe_stage/biomes.json:2422
+#: ../simulation_parameters/microbe_stage/biomes.json:2667
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -6602,6 +6610,10 @@ msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:159
 msgid "SYSREQ"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/biomes.json:2159
+msgid "Snowflake"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:297
