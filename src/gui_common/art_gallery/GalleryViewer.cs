@@ -463,7 +463,7 @@ public partial class GalleryViewer : CustomWindow
 
         slideScreen.CurrentSlideIndex = CurrentCards.IndexOf((GalleryCard)playback);
         StopAllPlayback(playback);
-        activeAudioPlayers++;
+        ++activeAudioPlayers;
     }
 
     private void OnPlaybackStopped(object? sender, EventArgs args)

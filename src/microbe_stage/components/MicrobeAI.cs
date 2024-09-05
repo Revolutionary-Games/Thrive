@@ -87,9 +87,9 @@ public static class MicrobeAIHelpers
 
         var randDist = random.Next(speciesActivity, Constants.MAX_SPECIES_ACTIVITY);
         ai.TargetPosition = currentPosition
-            + new Vector3(Mathf.Cos(ai.PreviousAngle + turn) * randDist,
+            + new Vector3(MathF.Cos(ai.PreviousAngle + turn) * randDist,
                 0,
-                Mathf.Sin(ai.PreviousAngle + turn) * randDist);
+                MathF.Sin(ai.PreviousAngle + turn) * randDist);
         ai.PreviousAngle += turn;
         control.LookAtPoint = ai.TargetPosition;
         control.SetMoveSpeed(Constants.AI_BASE_MOVEMENT);

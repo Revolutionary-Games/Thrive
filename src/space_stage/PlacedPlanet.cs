@@ -111,7 +111,7 @@ public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
     {
         // Base food growing
         // TODO: convert this to come from the buildings
-        return Mathf.Log(Math.Max(Population, 1)) * 50 + 40;
+        return MathF.Log(Math.Max(Population, 1)) * 50 + 40;
     }
 
     public float CalculateFoodConsumption()
@@ -137,7 +137,7 @@ public partial class PlacedPlanet : Node3D, IEntityWithNameLabel
         // TODO: production from buildings
 
         // Placeholder some resource production
-        globalResourceHack.Add(rockResource, (10 + Mathf.Log(Math.Max(Population, 1)) * 3) * elapsed);
+        globalResourceHack.Add(rockResource, (10 + MathF.Log(Math.Max(Population, 1)) * 3) * elapsed);
     }
 
     private void HandleResourceConsumption(float elapsed, IResourceContainer globalResourceHack)

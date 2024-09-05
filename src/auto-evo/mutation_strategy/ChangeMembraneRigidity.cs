@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using Godot;
 
 public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
 {
@@ -41,7 +40,7 @@ public class ChangeMembraneRigidity : IMutationStrategy<MicrobeSpecies>
             newSpecies.MembraneRigidity += change;
         }
 
-        newSpecies.MembraneRigidity = Mathf.Max(Mathf.Min(newSpecies.MembraneRigidity, 1), -1);
+        newSpecies.MembraneRigidity = Math.Clamp(newSpecies.MembraneRigidity, -1, 1);
 
         return [Tuple.Create(newSpecies, mp - mpCost)];
     }

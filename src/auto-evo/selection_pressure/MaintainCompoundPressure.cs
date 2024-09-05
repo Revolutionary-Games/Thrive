@@ -1,6 +1,6 @@
 ﻿namespace AutoEvo;
 
-using Godot;
+using System;
 
 public class MaintainCompoundPressure : SelectionPressure
 {
@@ -53,7 +53,7 @@ public class MaintainCompoundPressure : SelectionPressure
         if (compoundCreated <= 0 || compoundUsed <= 0)
             return 0.0f;
 
-        return Mathf.Min(compoundCreated / compoundUsed, 1);
+        return MathF.Min(compoundCreated / compoundUsed, 1);
     }
 
     public override float GetEnergy(Patch patch)

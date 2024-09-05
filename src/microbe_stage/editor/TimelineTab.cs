@@ -164,7 +164,7 @@ public partial class TimelineTab : PanelContainer
             anchorRect = last?.HeaderGlobalRect ?? new Rect2(Vector2.Zero, Vector2.Zero);
         }
 
-        var diff = Mathf.Max(Mathf.Min(anchorRect.Position.Y, scrollRect.Position.Y), anchorRect.Position.Y +
+        var diff = MathF.Max(MathF.Min(anchorRect.Position.Y, scrollRect.Position.Y), anchorRect.Position.Y +
             anchorRect.Size.Y - scrollRect.Size.Y + (scrollRect.Size.Y - anchorRect.Size.Y));
 
         scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.Y);

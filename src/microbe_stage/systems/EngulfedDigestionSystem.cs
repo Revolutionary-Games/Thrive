@@ -253,7 +253,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 var efficiency =
                     MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme]);
 
-                var taken = Mathf.Min(totalAvailable, amount);
+                var taken = MathF.Min(totalAvailable, amount);
 
                 // Toxin damage
                 if (compound == oxytoxy && taken > 0)

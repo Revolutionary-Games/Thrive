@@ -710,7 +710,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: skip updating the label if value has not changed to save on memory allocations
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        var hpText = StringUtils.FormatNumber(MathF.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
 

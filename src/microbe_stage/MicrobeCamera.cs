@@ -310,7 +310,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             CameraHeight += ZoomSpeed * value;
         }
 
-        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+        CameraHeight = Math.Clamp(CameraHeight, MinCameraHeight, MaxCameraHeight);
 
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (CameraHeight != old)

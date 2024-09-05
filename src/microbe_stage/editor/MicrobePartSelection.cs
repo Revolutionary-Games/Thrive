@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -203,7 +204,7 @@ public partial class MicrobePartSelection : MarginContainer
         {
             // Negative MP cost means it actually gives MP, to convey that to the player we need to explicitly
             // prefix the cost with a positive sign
-            cost = "+" + Mathf.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
+            cost = "+" + MathF.Abs(mpCost).ToString(CultureInfo.CurrentCulture);
         }
         else
         {

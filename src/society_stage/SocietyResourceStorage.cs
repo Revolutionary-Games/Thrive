@@ -26,7 +26,7 @@ public class SocietyResourceStorage : IResourceContainer, IAggregateResourceSour
 
         resources.TryGetValue(resource, out var existing);
 
-        float newAmount = Mathf.Clamp(existing + amount, 0, Capacity);
+        float newAmount = Math.Clamp(existing + amount, 0, Capacity);
 
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (newAmount == existing)

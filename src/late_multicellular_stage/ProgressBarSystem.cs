@@ -257,7 +257,7 @@ public partial class ProgressBarSystem : Control
             var height = Constants.WORLD_PROGRESS_BAR_DEFAULT_HEIGHT *
                 (width / Constants.WORLD_PROGRESS_BAR_DEFAULT_WIDTH);
 
-            height = Mathf.Clamp(height, Constants.WORLD_PROGRESS_BAR_MIN_HEIGHT,
+            height = Math.Clamp(height, Constants.WORLD_PROGRESS_BAR_MIN_HEIGHT,
                 Constants.WORLD_PROGRESS_BAR_DEFAULT_HEIGHT);
 
             Bar.Size = new Vector2(width, height);

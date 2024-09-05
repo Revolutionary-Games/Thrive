@@ -399,7 +399,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         var orbitTurnAngle = toSpaceAnimatedUnit.GlobalPosition.Y /
             (Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT * 1.1f);
 
-        toSpaceAnimatedUnit.Rotation = new Vector3(0, 0, orbitTurnAngle * (Mathf.Pi / 2));
+        toSpaceAnimatedUnit.Rotation = new Vector3(0, 0, orbitTurnAngle * (MathF.PI / 2));
         toSpaceAnimatedUnit.GlobalPosition += new Vector3(-toSpaceUnitAcceleration * orbitTurnAngle,
             toSpaceUnitAcceleration * (1 - orbitTurnAngle), 0);
     }
