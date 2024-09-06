@@ -8,6 +8,9 @@
 
 /// \file Defines all of the API methods that can be called from C# specifically in this extension type
 
+// This file uses always API_EXPORT as this always exports (and this cannot use the same macro as the general interop
+// as that defines only it to build when that project is being built so this would result in non-exported DLL symbols)
+
 extern "C"
 {
     // ------------------------------------ //
@@ -17,5 +20,5 @@ extern "C"
     ///
     /// This mostly exists to check everything was loaded fine and can now be used
     /// \return The version number
-    [[maybe_unused]] THRIVE_NATIVE_API int32_t ExtensionGetVersion(ThriveConfig* thriveConfig);
+    [[maybe_unused]] API_EXPORT int32_t ExtensionGetVersion(ThriveConfig* thriveConfig);
 }
