@@ -330,8 +330,8 @@ public class MembraneShapeGenerator
         var uvs = new Vector2[bufferSize];
         var normals = new Vector3[bufferSize];
 
-        const float sideRounding = 25.0f;
-        const float smoothingPower = 3.0f;
+        const float sideRounding = Constants.MEMBRANE_SIDE_ROUNDING;
+        const float smoothingPower = Constants.MEMBRANE_SMOOTHING_POWER;
 
         float roundingMaximum = MathF.Pow(1.0f + sideRounding * 1.05f, smoothingPower);
         float roundingMinimum = 1.0f;
