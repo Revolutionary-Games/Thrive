@@ -312,7 +312,8 @@ public class MembraneShapeGenerator
         float averageSquareDistanceToCenter = 0.0f;
         for (int i = 0; i < vertexCount; i++)
         {
-            averageSquareDistanceToCenter += MathF.Pow(vertices2D[i].X - center.X, 2.0f) + MathF.Pow(vertices2D[i].Y - center.Z, 2.0f);
+            averageSquareDistanceToCenter += MathF.Pow(vertices2D[i].X - center.X, 2.0f)
+                + MathF.Pow(vertices2D[i].Y - center.Z, 2.0f);
         }
 
         averageSquareDistanceToCenter /= vertexCount;
