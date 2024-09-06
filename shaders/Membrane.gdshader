@@ -58,10 +58,11 @@ void fragment(){
     vec3 normals = normalmap.z * NORMAL
     + normalmap.x * TANGENT
     + normalmap.y * BINORMAL;
-
+    
+    // Mix basic normals with detail normals in some proportion
     normals = normalize(mix(NORMAL, normals, 1.0));
 
-    ALBEDO = final.xyz;
+    ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, normals, adjusted_view);
     ROUGHNESS = 0.7;
 }
