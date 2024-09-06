@@ -27,7 +27,8 @@ jobs:
           command: dotnet run --project Scripts -- check compile
       - run:
           name: Download native libraries
-          command: dotnet run --project Scripts -- native Fetch Install --debug false
+          # This doesn't fetch or install debug variants as they aren't strictly necessary for packaging
+          command: dotnet run --project Scripts -- native Fetch --debug false
       - run:
           name: Create builds
           command: dotnet run --project Scripts -- package --dehydrated
