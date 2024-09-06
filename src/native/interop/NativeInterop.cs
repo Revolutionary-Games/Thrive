@@ -510,6 +510,33 @@ public static class NativeInterop
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
 
+        if (library == NativeConstants.Library.ThriveExtension)
+        {
+            // Special GDExtension handling, we assume Godot has already loaded it
+
+            var modules = Process.GetCurrentProcess().Modules;
+            var count = modules.Count;
+
+            for (var i = 0; i < count; ++i)
+            {
+                var module = modules[i];
+
+                if (module.ModuleName.Contains("thrive_extension"))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Trying to use already loaded module path: {module.FileName}");
+#endif
+
+                    return NativeLibrary.Load(module.FileName);
+                }
+            }
+
+            GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
+                "will likely fail");
+
+            return NativeLibrary.Load(libraryName, assembly, searchPath);
+        }
+
         var currentPlatform = PlatformUtilities.GetCurrentPlatform();
 
         // TODO: add a flag / some kind of option to skip loading the debug library
