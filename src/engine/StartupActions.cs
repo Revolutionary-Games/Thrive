@@ -183,12 +183,17 @@ public partial class StartupActions : Node
             NativeInterop.Init(Settings.Instance);
 
             GD.Print("Starting load of Thrive GDExtension");
+
+            int loadedVersion;
+
             try
             {
                 if (!ExtensionInterop.LoadExtension())
                 {
                     throw new Exception("Load or init call returned false");
                 }
+
+                loadedVersion = ExtensionInterop.GetVersion();
             }
             catch (Exception e)
             {
@@ -199,7 +204,6 @@ public partial class StartupActions : Node
                 return;
             }
 
-            var loadedVersion = ExtensionInterop.GetVersion();
             GD.Print("Thrive extension load succeeded, version: ", loadedVersion);
 
             if (loadedVersion != NativeConstants.ExtensionVersion)
