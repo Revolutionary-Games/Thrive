@@ -5,8 +5,8 @@ RUN dnf install -y --setopt=deltarpm=false \
     cmake gcc-c++ clang lld git unzip \
     zlib-devel libxml2-devel libedit-devel ncurses-devel && dnf clean all
 
-ENV LLVM_VERSION "17.0.4"
-ENV NINJA_BUILD_VERSION "1.11.1"
+ENV LLVM_VERSION "18.1.8"
+ENV NINJA_BUILD_VERSION "1.12.1"
 
 # Parallel link jobs is recommended to be available ram / 15 GB (so this is now optimized for
 # 64 GB system)
@@ -91,11 +91,11 @@ FROM almalinux:9 as llvm-cross
 RUN dnf install -y --setopt=deltarpm=false \
     git unzip xz && dnf clean all
 
-ENV CMAKE_VERSION "3.27.7"
-ENV NINJA_BUILD_VERSION "1.11.1"
+ENV CMAKE_VERSION "3.30.3"
+ENV NINJA_BUILD_VERSION "1.12.1"
 
-# llvm-mingw 20231031 with LLVM 17.0.4
-ENV LLVM_MINGW_VERSION "20231031"
+# llvm-mingw 20240619 with LLVM 18.1.8
+ENV LLVM_MINGW_VERSION "20240619"
 
 # This probably controls what runtime is used
 # ucrt is much newer but only installed by default on Windows 10
@@ -140,7 +140,7 @@ RUN dnf update -y && dnf install -y --setopt=deltarpm=false \
 # Remove binutils but leave gcc
 RUN rpm --erase binutils binutils-gold --nodeps
 
-ENV CMAKE_VERSION "3.27.7"
+ENV CMAKE_VERSION "3.30.3"
 
 # Install cmake without installing gcc as a dependency
 RUN curl -L \
