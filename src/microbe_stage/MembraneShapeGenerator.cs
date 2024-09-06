@@ -172,7 +172,7 @@ public class MembraneShapeGenerator
                 // Find normals
                 Vector3 previous = i == 0 ? vertices[id + vertexCount - 1] : vertices[id - 1];
                 Vector3 next = i == vertexCount - 1 ? vertices[id - i] : vertices[id + 1];
-              
+
                 Vector3 down = layer == 0 ? vertices[vertices.Length - 2] : vertices[id - vertexCount];
                 Vector3 up = layer == layerCount - 1 ? vertices[vertices.Length - 1] : vertices[id + vertexCount];
 
