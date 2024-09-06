@@ -335,9 +335,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         delta *= 100.0f;
         var pos = new Vector2(cachedWorldPosition.X, cachedWorldPosition.Z);
 
-        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
+        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
+            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; ++j)
             {
                 var x0 = i;
                 var y0 = j;
@@ -358,9 +358,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void QueueUpdateTextureImage(List<Task> queue)
     {
-        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
+        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; ++i)
         {
-            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
+            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; ++j)
             {
                 var x0 = i;
                 var y0 = j;
@@ -622,7 +622,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result, bool onlyAbsorbable)
     {
-        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             var compound = Compounds[i];
             if (compound == null)
@@ -704,7 +704,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
-        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             var compound = Compounds[i];
             if (compound == null)
@@ -831,9 +831,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         float a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 int adjacentClouds = 4;
                 OldDensity[x, y] =
@@ -848,9 +848,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     {
         float a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 int adjacentClouds = 4;
                 OldDensity[x, y] =
@@ -865,9 +865,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
@@ -878,8 +878,8 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
                     float dy = y + (delta * velocity.Y);
 
                     // So this is clamped to not go to the other clouds
-                    dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
-                    dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
+                    dx = Math.Clamp(dx, x0 - 0.5f, x0 + width + 0.5f);
+                    dy = Math.Clamp(dy, y0 - 0.5f, y0 + height + 0.5f);
 
                     CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
                         out var s1, out var s0, out var t1, out var t0);
@@ -903,9 +903,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
@@ -929,9 +929,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
                 image!.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
@@ -941,9 +941,9 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private void PartialClearDensity(int x0, int y0, int width, int height)
     {
-        for (int x = x0; x < x0 + width; x++)
+        for (int x = x0; x < x0 + width; ++x)
         {
-            for (int y = y0; y < y0 + height; y++)
+            for (int y = y0; y < y0 + height; ++y)
             {
                 Density[x, y] = Vector4.Zero;
             }
@@ -978,7 +978,7 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
 
     private int GetCompoundIndex(Compound compound)
     {
-        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             if (Compounds[i] == compound)
                 return i;

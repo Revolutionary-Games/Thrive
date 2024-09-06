@@ -611,7 +611,7 @@ public static class Constants
     public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 20.0f;
     public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 8.5f;
 
-    public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
+    public const float INTERACTION_MAX_ANGLE_TO_VIEW = MathF.PI;
 
     public const float WORLD_PROGRESS_BAR_FULL_UPDATE_INTERVAL = 0.1f;
     public const float WORLD_PROGRESS_BAR_MAX_DISTANCE = 15.0f;

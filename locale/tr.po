@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-03 10:57+0300\n"
-"PO-Revision-Date: 2024-08-28 12:41+0000\n"
+"POT-Creation-Date: 2024-09-06 15:01+0300\n"
+"PO-Revision-Date: 2024-09-05 12:24+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -50,7 +50,7 @@ msgid "ACTION_AWAKEN"
 msgstr "Uyandır ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Uyanış Evresi'ne Geç. Yeterli zihin gücüne sahip olduğunuzda açılır (aksonlu doku türü)."
+msgstr "Uyanış Evresi'ne geç. Yeterli zihin gücüne sahip olduğunuzda açılır (aksonlu doku türü)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Başka bir eylem devam ettiğinden, mevcut işlem engellendi"
@@ -82,7 +82,7 @@ msgstr ""
 "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Ek doğrulamalar bir sorun algıladı: {0}"
+msgstr "Ek doğrulamalar bir sorun tespit etti: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Yeni bir tuş ataması yap"
@@ -1032,7 +1032,7 @@ msgstr "Kontrol Cihazı Ölü Bölgeleri"
 
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölgesi büyüklükleri, hareketin giriş olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
+"Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölge büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
 "Kalibrasyona başlamadan önce, lütfen bütün kontrol cihazı çubuklarını oynatın ve bırakın. Ayrıca kontrol cihazında, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da basın ve onları bırakın."
 
 msgid "CONTROLLER_DEADZONE_COLON"
@@ -2174,9 +2174,8 @@ msgstr "ID geçerli bir sayı değil"
 msgid "ID_NUMBER"
 msgstr "ID Numarası"
 
-#, fuzzy
 msgid "IMAGE_FILE_TYPES"
-msgstr "Hücre Zarı Türleri"
+msgstr "Desteklenen Resim Dosyaları"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Sonraki evre prototiplerini dahil et"
@@ -3057,7 +3056,7 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrop Serbest Yapım Düzenleyicisi"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4059,6 +4058,9 @@ msgstr "Performans"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Bağ koparmayı gerçekleştir"
+
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
@@ -7002,7 +7004,7 @@ msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr "Ek depo her durumda faydalı olsa da, bir[b]Koful[/b] özellikle [b]Fotosentez[/b] kullanan organizmalar ([b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidli[/url][/color][/b] veya [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlı[/url][/color][/b] hücreler) için yararlıdır. Eğer gece gündüz döngüsü oyun ayarlarından etkinleştirildiyse, fotosentetik hücreler, gece hayatta kalmak için gereken [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] depolamak için yeterli alana sahip olmalıdır."
+msgstr "Fazladan depolama her durumda faydalı olsa da, bir[b]Koful[/b] özellikle [b]Fotosentez[/b] kullanan organizmalar ([b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidli[/url][/color][/b] veya [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlı[/url][/color][/b] hücreler) için daha da yararlıdır. Eğer gece gündüz döngüsü oyun ayarlarından etkinleştirildiyse, fotosentetik hücreler, gece hayatta kalmak için gereken [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] depolamak için yeterli alana sahip olmalıdır."
 
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "Geliştirme yok."
@@ -7011,10 +7013,10 @@ msgid "WILL_YOU_THRIVE"
 msgstr "Başaracak mısınız?"
 
 msgid "WIN_BOX_TITLE"
-msgstr "BAŞARDIN!"
+msgstr "GELİŞTİN VE BAŞARDIN!"
 
 msgid "WIN_TEXT"
-msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! İsterseniz, bu mesaj gittikten sonra da oynamaya devam edebilirsiniz veya yeni bir konumda, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
+msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! Dilerseniz, bu mesaj gittikten sonra da oynamaya devam edebilir veya yeni bir dünyada, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Öğe Değişiklik Notları"
@@ -7026,7 +7028,7 @@ msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "Öğe Açıklaması:"
 
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr "Öğe Resim Önizlemesi:"
+msgstr "Öğe Önizleme Görseli:"
 
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr "Öğe Etiketleri (virgülle \",\" ayrılmış):"
@@ -7083,11 +7085,11 @@ msgstr "YouTube kanalımızı ziyaret edin"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
-"Thrive, açık kaynak kodlu bir projedir.\n"
+"Thrive, açık kaynaklı bir projedir.\n"
 "Oyun ekibine başvurmaksızın, bir çekme isteği göndererek oyuna katkıda bulunabilirsiniz."
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Gelecekte Thrive'ın geliştirilmesine yardımcı olmak için oyunu Patreon üzerinden destekleyebilirsiniz."
+msgstr "Thrive'ın gelecekte de geliştirilmesine yardımcı olmak için oyunu Patreon üzerinden destekleyebilirsiniz."
 
 msgid "ZOOM_IN"
 msgstr "Yakınlaştır"

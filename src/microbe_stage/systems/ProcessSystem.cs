@@ -594,7 +594,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
         var optimal = Constants.OPTIMAL_THERMOPLAST_TEMPERATURE;
-        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
+        return Math.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 
     /// <summary>

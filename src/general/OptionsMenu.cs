@@ -1451,7 +1451,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         int converted = (int)(value / Constants.MOUSE_INPUT_SENSITIVITY_STEP);
 
-        return Mathf.Clamp(converted, 0, 100);
+        return Math.Clamp(converted, 0, 100);
     }
 
     /// <summary>
@@ -1466,7 +1466,7 @@ public partial class OptionsMenu : ControlWithInput
     {
         int converted = (int)(value / Constants.CONTROLLER_INPUT_SENSITIVITY_STEP);
 
-        return Mathf.Clamp(converted, 0, 100);
+        return Math.Clamp(converted, 0, 100);
     }
 
     private float ControllerInputBarValueToSensitivity(float value)
@@ -1598,7 +1598,7 @@ public partial class OptionsMenu : ControlWithInput
             textFormat = Localization.Translate("LANGUAGE_TRANSLATION_PROGRESS");
         }
 
-        languageProgressLabel.Text = textFormat.FormatSafe(Mathf.Floor(progress));
+        languageProgressLabel.Text = textFormat.FormatSafe(MathF.Floor(progress));
     }
 
     // GUI Control Callbacks
@@ -2096,7 +2096,7 @@ public partial class OptionsMenu : ControlWithInput
         if (!Settings.Instance.UseManualThreadCount.Value)
             return;
 
-        int threads = Mathf.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
+        int threads = Math.Clamp((int)value, TaskExecutor.MinimumThreadCount, TaskExecutor.MaximumThreadCount);
         Settings.Instance.ThreadCount.Value = threads;
         Settings.Instance.ApplyThreadSettings();
 

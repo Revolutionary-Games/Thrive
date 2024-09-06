@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
@@ -8,27 +9,18 @@ using Godot;
 public static class MathUtils
 {
     public const float EPSILON = 0.00000001f;
-    public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
-    public const float RADIANS_TO_DEGREES = 180 / Mathf.Pi;
+    public const float DEGREES_TO_RADIANS = MathF.PI / 180;
+    public const float RADIANS_TO_DEGREES = 180 / MathF.PI;
     public const double FULL_CIRCLE = Math.PI * 2;
-    public const float RIGHT_ANGLE = Mathf.Pi / 2;
+    public const float RIGHT_ANGLE = MathF.PI / 2;
 
-    public static T Clamp<T>(this T val, T min, T max)
-        where T : IComparable<T>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int RoundToInt(float value)
     {
-        if (val.CompareTo(min) < 0)
-        {
-            return min;
-        }
-
-        if (val.CompareTo(max) > 0)
-        {
-            return max;
-        }
-
-        return val;
+        return (int)Math.Round(value);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static double Sigmoid(double x)
     {
         return 1 / (1 + Math.Exp(-x));
@@ -62,12 +54,20 @@ public static class MathUtils
     ///   Returns a Lerped value, and snaps to the target value if current and target
     ///   value is approximately equal by the specified tolerance value.
     /// </summary>
-    public static float Lerp(float from, float to, float weight, float tolerance = Mathf.Epsilon)
+    public static float Lerp(float from, float to, float weight, float tolerance = EPSILON)
     {
-        if (Mathf.IsEqualApprox(from, to, tolerance))
+        if (IsEqualApproximately(from, to, tolerance))
             return to;
 
         return Mathf.Lerp(from, to, weight);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static bool IsEqualApproximately(float a, float b, float tolerance)
+    {
+        // Intentional equality comparison before checking with absolute value
+        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        return a == b || Math.Abs(a - b) < tolerance;
     }
 
     /// <summary>
@@ -151,7 +151,7 @@ public static class MathUtils
                 continue;
 
             // Get the length of the part of the vector that's parallel to the direction
-            float directionalLength = difference.Length() * Mathf.Cos(angle);
+            float directionalLength = difference.Length() * MathF.Cos(angle);
 
             if (directionalLength > distance)
                 distance = directionalLength;

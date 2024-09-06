@@ -1,7 +1,7 @@
 ﻿namespace Components;
 
+using System;
 using System.Runtime.CompilerServices;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -261,7 +261,7 @@ public static class SoundEffectPlayerHelpers
                 // Detect already playing sound
                 if (slot.SoundFile == sound)
                 {
-                    var targetVolume = Mathf.Clamp(slot.Volume + changeSpeed, 0, maxVolume);
+                    var targetVolume = Math.Clamp(slot.Volume + changeSpeed, 0, maxVolume);
 
                     // The volume mostly changes until it reaches the max volume which is always the exact same
                     // ReSharper disable once CompareOfFloatsByEqualityOperator

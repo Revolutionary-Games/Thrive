@@ -125,7 +125,7 @@ public partial class CreditsScroll : Control
             return;
 
         scrollOffset += (float)(delta * ScrollSpeed);
-        smoothOffset = Mathf.Round(scrollOffset);
+        smoothOffset = MathF.Round(scrollOffset);
 
         switch (phase)
         {
@@ -676,7 +676,7 @@ public partial class CreditsScroll : Control
         {
             Text = text,
             CustomMinimumSize = new Vector2(Size.X * LicenseTextWidthFraction, 0),
-            Position = new Vector2(Mathf.Round(Size.X * (1.0f - LicenseTextWidthFraction)), 0),
+            Position = new Vector2(MathF.Round(Size.X * (1.0f - LicenseTextWidthFraction)), 0),
             HorizontalAlignment = HorizontalAlignment.Left,
             AutowrapMode = TextServer.AutowrapMode.WordSmart,
         });

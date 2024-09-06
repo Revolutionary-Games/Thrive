@@ -41,6 +41,10 @@ public partial class ChemicalEquation : VBoxContainer
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
     private bool showToggle;
+
+    // TODO: if some people prefer this on, add a GUI option to default this value as on
+    private bool showFullSecondText;
+
     private Color defaultTitleColour = Colors.White;
 
     /// <summary>
@@ -115,6 +119,22 @@ public partial class ChemicalEquation : VBoxContainer
     public bool ShowPerSecondLabel { get; set; } = true;
 
     /// <summary>
+    ///   Only if this is true the text "/ second" is shown fully, instead of being abbreviated to " / s"
+    /// </summary>
+    public bool ShowFullSecondText
+    {
+        get => showFullSecondText;
+        set
+        {
+            if (value == showFullSecondText)
+                return;
+
+            showFullSecondText = value;
+            UpdateSecondLabel();
+        }
+    }
+
+    /// <summary>
     ///   If true this will automatically check the set process for changes
     /// </summary>
     public bool AutoRefreshProcess { get; set; } = true;
@@ -162,11 +182,20 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void OnTranslationsChanged()
     {
-        if (perSecondLabel != null)
-            perSecondLabel.Text = Localization.Translate("PER_SECOND_SLASH");
+        UpdateSecondLabel();
 
         if (environmentSeparator != null)
             environmentSeparator.Text = GetEnvironmentLabelText();
+    }
+
+    private void UpdateSecondLabel()
+    {
+        if (perSecondLabel != null)
+        {
+            perSecondLabel.Text = showFullSecondText ?
+                Localization.Translate("PER_SECOND_SLASH") :
+                Localization.Translate("PER_SECOND_ABBREVIATION");
+        }
     }
 
     private void UpdateEquation()
@@ -205,7 +234,12 @@ public partial class ChemicalEquation : VBoxContainer
 
         if (perSecondLabel == null && ShowPerSecondLabel)
         {
-            perSecondLabel = new Label { Text = Localization.Translate("PER_SECOND_SLASH") };
+            perSecondLabel = new Label
+            {
+                Text = showFullSecondText ?
+                    Localization.Translate("PER_SECOND_SLASH") :
+                    Localization.Translate("PER_SECOND_ABBREVIATION"),
+            };
             firstLineContainer.AddChild(perSecondLabel);
         }
 

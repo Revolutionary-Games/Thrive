@@ -5,6 +5,7 @@
 # TODO: option for turning JPH_TRACK_BROADPHASE_STATS on for debugging
 
 # Might as well get used to double precision impact now as we'll want that eventually anyway
+# In Jolt
 set(DOUBLE_PRECISION ON)
 
 if(THRIVE_AVX)
@@ -38,7 +39,13 @@ set(USE_AVX512 OFF)
 # libraries
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# We need RTTI to be able to link without missing symbols when Jolt is built
+set(CPP_RTTI_ENABLED ON)
+
 add_subdirectory(JoltPhysics/Build EXCLUDE_FROM_ALL)
 
 # Boost libraries
 add_subdirectory(boost EXCLUDE_FROM_ALL)
+
+# gdextension base module
+add_subdirectory(godot-cpp EXCLUDE_FROM_ALL)

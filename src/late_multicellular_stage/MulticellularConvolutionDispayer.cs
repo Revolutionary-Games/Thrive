@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -53,13 +54,13 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
         foreach (var metaball in layout)
         {
-            minExtends.X = Mathf.Min(minExtends.X, metaball.Position.X - metaball.Radius - 0.5f);
-            minExtends.Y = Mathf.Min(minExtends.Y, metaball.Position.Y - metaball.Radius - 0.5f);
-            minExtends.Z = Mathf.Min(minExtends.Z, metaball.Position.Z - metaball.Radius - 0.5f);
+            minExtends.X = MathF.Min(minExtends.X, metaball.Position.X - metaball.Radius - 0.5f);
+            minExtends.Y = MathF.Min(minExtends.Y, metaball.Position.Y - metaball.Radius - 0.5f);
+            minExtends.Z = MathF.Min(minExtends.Z, metaball.Position.Z - metaball.Radius - 0.5f);
 
-            maxExtends.X = Mathf.Max(maxExtends.X, metaball.Position.X + metaball.Radius + 0.5f);
-            maxExtends.Y = Mathf.Max(maxExtends.Y, metaball.Position.Y + metaball.Radius + 0.5f);
-            maxExtends.Z = Mathf.Max(maxExtends.Z, metaball.Position.Z + metaball.Radius + 0.5f);
+            maxExtends.X = MathF.Max(maxExtends.X, metaball.Position.X + metaball.Radius + 0.5f);
+            maxExtends.Y = MathF.Max(maxExtends.Y, metaball.Position.Y + metaball.Radius + 0.5f);
+            maxExtends.Z = MathF.Max(maxExtends.Z, metaball.Position.Z + metaball.Radius + 0.5f);
         }
 
         // TODO: find a way to cache those mesh generations in future as they are quite expensive.

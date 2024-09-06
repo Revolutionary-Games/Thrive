@@ -97,10 +97,10 @@ public partial class PlaceholderTree : StaticBody3D, IInteractableEntity, IHarve
         harvested = true;
         InteractionDisabled = true;
 
-        // Setup a really simple falling animation
+        // Set up a really simple falling animation
         animationStart = Transform;
         animationEnd = new Transform3D(new Basis(animationStart.Basis.GetRotationQuaternion() *
-                new Quaternion(new Vector3(0, 0, 1), Mathf.Pi * 0.5f)),
+                new Quaternion(new Vector3(0, 0, 1), MathF.PI * 0.5f)),
             animationStart.Origin - new Vector3(0, -0.3f, 0));
 
         // Disable collision while being destroyed

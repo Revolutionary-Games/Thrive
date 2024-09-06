@@ -32,8 +32,6 @@ else()
 
   # For now, no debug symbols as it should be impossible to crash in this
   # simple library
-  # For some reason this needs to define NDEBUG explicitly to work (Thrive
-  # library gets the NDEBUG automatically from somewhere)
   # target_compile_options(early_checks PRIVATE $<$<CONFIG:Release>:-g -O3>
   #   $<$<CONFIG:Distribution>:-g -O3>)
   target_compile_options(early_checks PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>

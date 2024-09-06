@@ -260,7 +260,7 @@ public partial class EditorCamera3D : Camera3D
     {
         _ = delta;
 
-        ViewDistance = (ViewDistance + ZoomSpeed * value).Clamp(MinDistance, MaxDistance);
+        ViewDistance = Math.Clamp(ViewDistance + ZoomSpeed * value, MinDistance, MaxDistance);
         ApplyTransform();
     }
 

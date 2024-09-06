@@ -226,7 +226,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
             if (amountAvailable > MathUtils.EPSILON)
             {
                 // We can take some
-                var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+                var amountToTake = MathF.Min(allowedUseAmount, amountAvailable);
 
                 usedAmount += compounds.TakeCompound(entry.Key, amountToTake);
             }

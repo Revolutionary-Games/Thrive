@@ -229,7 +229,7 @@ public partial class CustomDropDown : MenuButton
         CustomMinimumSize = new Vector2(Popup.GetContentsMinimumSize().X + iconMaxWidth + 6, CustomMinimumSize.Y);
 
         // Set popup to minimum length
-        Popup.Size = new Vector2I(Mathf.RoundToInt(Size.X), 0);
+        Popup.Size = new Vector2I(MathUtils.RoundToInt(Size.X), 0);
     }
 
     private void OnPopupAboutToShow()

@@ -417,7 +417,7 @@ public static class PatchMapGenerator
 
                 // Build seafloor light, using 0m -> 1, 200m -> 0.01, floor to 0.01
                 var sunlightProperty = seafloor.Biome.ChangeableCompounds[sunlightCompound];
-                var sunlightAmount = (int)(Mathf.Pow(0.977237220956f, seafloor.Depth[1]) * 100) / 100.0f;
+                var sunlightAmount = (int)(MathF.Pow(0.977237220956f, seafloor.Depth[1]) * 100) / 100.0f;
                 sunlightProperty.Ambient = sunlightAmount;
 
                 seafloor.Biome.ChangeableCompounds[sunlightCompound] = sunlightProperty;
@@ -432,7 +432,7 @@ public static class PatchMapGenerator
                     // If the vents and cave is on the left we need to adjust the water patches' position
                     if (!ventOrCaveToTheRight)
                     {
-                        for (int i = 0; i < waterPatchCount; i++)
+                        for (int i = 0; i < waterPatchCount; ++i)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }
@@ -505,7 +505,7 @@ public static class PatchMapGenerator
                     // Adjust water patches' position
                     if (caveLinkedTo is 0 or 2)
                     {
-                        for (int i = 0; i < waterPatchCount; i++)
+                        for (int i = 0; i < waterPatchCount; ++i)
                         {
                             region.Patches[i].ScreenCoordinates += offsetHorizontal;
                         }

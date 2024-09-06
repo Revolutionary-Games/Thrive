@@ -338,8 +338,11 @@ the game can be ran.
 
 The easiest way to get these is to download precompiled ones by running:
 ```sh
-dotnet run --project Scripts -- native Fetch
+dotnet run --project Scripts -- native Fetch Install
 ```
+
+The debug variants are needed when running through Godot Editor for
+Thrive GDExtension to work.
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
@@ -351,24 +354,44 @@ technically clang should work (please send us a PR if you can tweak it
 to work). On Mac Xcode (or at least the command line tools for it)
 should be used.
 
-You can compile and install the native libraries for the Godot Editor
-in the Thrive folder with the following script:
+For the gdextension to be compiled, `godot` must be available in PATH
+to generate the required binding files. And when compiling outside the
+container Python and other [Godot build
+dependencies](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html#toc-devel-compiling)
+are required to be installed as well.
+
+To compile inside a container the native libraries:
 ```sh
-dotnet run --project Scripts -- native Build
+dotnet run --project Scripts -- native Package
 ```
 
-Debug versions for easier native code development / more robust error
-condition checking can be built and installed by adding `-d` to the
-end of the previous command to specify debug versions of the libraries
-to be used. Sometimes debug versions of the libraries are available
-for download and in those cases `-d` can be added to the end of the
-`Fetch` command as well.
+For a non-container, local compile install the native libraries for the Godot Editor
+in the Thrive folder with the following script:
+```sh
+dotnet run --project Scripts -- native Build Install
+```
 
 Note that for release making you need the native libraries for all
-platforms:
+platforms, which if you can't build, you should download with:
 ```sh
 dotnet run --project Scripts -- native Fetch
 ```
+
+Once compiled or downloaded, you need to install the libraries for local Godot
+Editor use:
+```sh
+dotnet run --project Scripts -- native Install
+```
+
+The script automatically also handles debug versions of the
+libraries. If desired to only work on one variant of libraries the
+`--debug false` or `--debug true` parameter can be defined.
+
+Debug versions offer easier native code development / more robust
+error condition checking. And the GDExtension library is required in
+debug mode when running Thrive through Godot without exporting the
+game.
+
 
 ## Using Development Environments
 
