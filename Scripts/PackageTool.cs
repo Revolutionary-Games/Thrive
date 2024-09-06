@@ -228,6 +228,37 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
+        // Make sure Godot Editor is configured with right native libraries as it exports them itself
+        ColourConsole.WriteInfoLine("Making sure GDExtension is installed in Godot as distributable version");
+
+        var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
+        {
+            DebugLibrary = false,
+            DisableColour = options.DisableColour,
+            Verbose = options.Verbose,
+            PrepareGodotAPI = true,
+        });
+
+        if (!await nativeLibraryTool.InstallEditorLibrariesBeforeRelease())
+        {
+            ColourConsole.WriteErrorLine(
+                "Failed to prepare editor libraries. Please run the native 'Fetch' tool first.");
+            return false;
+        }
+
+        // By default, disable Steam mode to make the script easier to use
+        options.Steam ??= false;
+
+        if (options.Steam != null)
+        {
+            ColourConsole.WriteInfoLine($"Will set Steam mode to {options.Steam.Value} before exporting");
+            steamMode = options.Steam.Value;
+        }
+        else
+        {
+            steamMode = await SteamBuild.IsSteamBuildEnabled(cancellationToken);
+        }
+
         // Make sure Thrive has been compiled as this seems to be able to cause an issue where the back button from
         // new game settings doesn't work
         ColourConsole.WriteNormalLine("Making sure Thrive C# code is compiled");
@@ -242,19 +273,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         {
             ColourConsole.WriteWarningLine("Building Thrive with dotnet failed");
             return false;
-        }
-
-        // For now, by default disable Steam mode to make the script easier to use
-        options.Steam ??= false;
-
-        if (options.Steam != null)
-        {
-            ColourConsole.WriteInfoLine($"Will set Steam mode to {options.Steam.Value} before exporting");
-            steamMode = options.Steam.Value;
-        }
-        else
-        {
-            steamMode = await SteamBuild.IsSteamBuildEnabled(cancellationToken);
         }
 
         var currentCommit = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
@@ -301,6 +319,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, options.Dehydrated, cancellationToken);
 
+        ColourConsole.WriteSuccessLine("Pre-build operations succeeded");
         return true;
     }
 
@@ -469,6 +488,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             DebugLibrary = false,
             DisableColour = options.DisableColour,
             Verbose = options.Verbose,
+            PrepareGodotAPI = true,
+
+            // Only the ThriveNative library is needed for manual copy (extension is copied by Godot)
+            Libraries = [NativeConstants.Library.ThriveNative],
         });
 
         ColourConsole.WriteNormalLine("Copying native libraries (hopefully they were downloaded / compiled already)");

@@ -194,6 +194,25 @@ public class NativeLibs
         return true;
     }
 
+    public async Task<bool> InstallEditorLibrariesBeforeRelease()
+    {
+        if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Linux, true,
+                false))
+        {
+            return false;
+        }
+
+        if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Windows,
+                true,
+                false))
+        {
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Editor libraries installed");
+        return true;
+    }
+
     private PrecompiledTag GetTag(bool localBuild)
     {
         var tag = PrecompiledTag.None;
@@ -416,6 +435,12 @@ public class NativeLibs
             return Task.FromResult(true);
         }
 
+        return PerformLibraryInstallForEditor(library, platform, false, true);
+    }
+
+    private Task<bool> PerformLibraryInstallForEditor(NativeConstants.Library library, PackagePlatform platform,
+        bool releaseMode, bool moreVerbose)
+    {
         var tag = PrecompiledTag.None;
 
         // Allows different name when we are fudging the name a bit
@@ -444,7 +469,7 @@ public class NativeLibs
 
         ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
         var libraryVersion = NativeConstants.GetLibraryVersion(library);
-        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false, tag);
+        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, releaseMode, tag);
         var originalLinkTo = linkTo;
 
         ColourConsole.WriteDebugLine($"Primary wanted source for library: {linkTo}");
@@ -452,22 +477,32 @@ public class NativeLibs
         if (!File.Exists(linkTo))
         {
             // Fall back to distributable version
-            ColourConsole.WriteNormalLine("Falling back to attempting other variants of library");
+            if (moreVerbose)
+                ColourConsole.WriteNormalLine("Falling back to attempting other variants of library");
 
-            // Using a different AVX variant is fine locally, then try the original tag but distributable version
-            linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
-                    false,
-                    tag | PrecompiledTag.WithoutAvx),
-                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
-                    tag & ~PrecompiledTag.WithoutAvx),
+            if (!releaseMode)
+            {
+                // Using a different AVX variant is fine locally, then try the original tag but distributable version
+                linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
+                        false,
+                        tag | PrecompiledTag.WithoutAvx),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
+                        tag & ~PrecompiledTag.WithoutAvx),
 
-                // Fallback to distributables after checking local variants all first
-                NativeConstants
-                    .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
-                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
-                    tag | PrecompiledTag.WithoutAvx),
-                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
-                    tag & ~PrecompiledTag.WithoutAvx));
+                    // Fallback to distributables after checking local variants all first
+                    NativeConstants
+                        .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                        tag | PrecompiledTag.WithoutAvx),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                        tag & ~PrecompiledTag.WithoutAvx));
+            }
+            else
+            {
+                linkTo = TryToFindInstallSource(
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false, tag));
+            }
 
             if (linkTo == null)
             {
@@ -477,7 +512,8 @@ public class NativeLibs
                 return Task.FromResult(false);
             }
 
-            ColourConsole.WriteSuccessLine("A suitable version of library detected");
+            if (moreVerbose)
+                ColourConsole.WriteSuccessLine("A suitable version of library detected");
             ColourConsole.WriteDebugLine($"Using library from: {linkTo}");
         }
 
@@ -487,7 +523,11 @@ public class NativeLibs
 
         ColourConsole.WriteNormalLine($"Installed library from: {linkTo}");
 
-        ColourConsole.WriteSuccessLine($"Successfully installed {library} to editor for {platform}");
+        if (moreVerbose)
+        {
+            ColourConsole.WriteSuccessLine($"Successfully installed {library} to editor for {platform}");
+        }
+
         return Task.FromResult(true);
     }
 
