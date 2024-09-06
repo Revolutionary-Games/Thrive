@@ -48,8 +48,11 @@ set_target_properties(thrive_extension PROPERTIES
   CXX_STANDARD 20
   CXX_EXTENSIONS OFF)
 
-if(THRIVE_LTO)
-  # TODO: figure out why msys2 fails with this or disable this by default there
+if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND WIN32)
+  message(STATUS "Disabling LTO for thrive_extension with Clang as that results in link failures")
+  target_compile_options(thrive_extension PRIVATE "-fno-lto")
+else()
+  message(STATUS "Enabling LTO for thrive_extension")
   set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
 endif()
 
