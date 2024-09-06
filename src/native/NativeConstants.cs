@@ -9,13 +9,26 @@ using SharedBase.Models;
 /// </summary>
 public class NativeConstants
 {
-    public const int Version = 16;
+    public const int Version = 17;
     public const int EarlyCheck = 2;
+    public const int ExtensionVersion = 3;
 
     public const string LibraryFolder = "native_libs";
     public const string DistributableFolderName = "distributable";
 
     public const string PackagedLibraryFolder = "lib";
+
+#pragma warning disable CA1823 // unused fields
+
+    // ReSharper disable UnreachableCode HeuristicUnreachableCode
+
+    // If the version numbers match, some unintended library build / delete situations will happen (until the build
+    // script is changed to compile all cmake stuff at once)
+    private const uint VersionNumbersDoNotMatch = (ExtensionVersion != Version) ? 0 : -42;
+    private const uint VersionNumbersDoNotMatch2 = (ExtensionVersion != EarlyCheck) ? 0 : -42;
+
+    // ReSharper restore UnreachableCode HeuristicUnreachableCode
+#pragma warning restore CA1823
 
     public enum Library
     {
@@ -28,6 +41,11 @@ public class NativeConstants
         ///   Library for early checking that everything is fine before loading <see cref="ThriveNative"/>
         /// </summary>
         EarlyCheck,
+
+        /// <summary>
+        ///   The GDExtension for Thrive
+        /// </summary>
+        ThriveExtension,
     }
 
     public static string GetLibraryVersion(Library library)
@@ -38,6 +56,8 @@ public class NativeConstants
                 return Version.ToString();
             case Library.EarlyCheck:
                 return EarlyCheck.ToString();
+            case Library.ThriveExtension:
+                return ExtensionVersion.ToString();
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);
         }
@@ -54,6 +74,12 @@ public class NativeConstants
         if (name == "early_checks")
         {
             library = Library.EarlyCheck;
+            return true;
+        }
+
+        if (name == "thrive_extension")
+        {
+            library = Library.ThriveExtension;
             return true;
         }
 
@@ -91,10 +117,33 @@ public class NativeConstants
             case Library.EarlyCheck:
                 switch (platform)
                 {
+                    // TODO: if this is started to be used again, this probably needs AVX handling as well (and should
+                    // always use the non-avx variant)
                     case PackagePlatform.Linux:
                         return "libearly_checks.so";
                     case PackagePlatform.Windows:
                         return "libearly_checks.dll";
+                    case PackagePlatform.Windows32:
+                        throw new NotSupportedException("32-bit support is not done currently");
+                    case PackagePlatform.Mac:
+                        throw new NotImplementedException("TODO: name for this");
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
+                }
+
+            case Library.ThriveExtension:
+                switch (platform)
+                {
+                    case PackagePlatform.Linux:
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_extension_without_avx.so";
+
+                        return "libthrive_extension.so";
+                    case PackagePlatform.Windows:
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_extension_without_avx.dll";
+
+                        return "libthrive_extension.dll";
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:

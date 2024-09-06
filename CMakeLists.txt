@@ -45,6 +45,8 @@ option(NULL_HAS_UNUSUAL_REPRESENTATION
 
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake")
 
+option(THRIVE_GODOT_API_FILE "Set to override folder Godot API file is looked for in" "")
+
 # Also use a lib prefix on windows for consistency
 if(WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX_CXX "lib")
@@ -88,7 +90,7 @@ else()
 endif()
 
 # Standard library and other linking flags
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 
   set(CLANG_DEFAULT_CXX_STDLIB libc++)
   set(CLANG_DEFAULT_RTLIB compiler-rt)
@@ -142,18 +144,42 @@ if(NOT EARLY_CHECK_LIBRARY_VERSION)
   message(FATAL_ERROR "Failed to parse native (early check) library version")
 endif()
 
+string(REGEX MATCH "ExtensionVersion = ([0-9]+);" _ "${versionFile}")
+set(THRIVE_EXTENSION_VERSION ${CMAKE_MATCH_1})
+
+if(NOT THRIVE_EXTENSION_VERSION)
+  message(FATAL_ERROR "Failed to parse Thrive GDExtensions library version")
+endif()
+
 message(STATUS "Configured native library version ${NATIVE_LIBRARY_VERSION}")
 
 # Configure include file
 configure_file("src/native/Include.h.in" "${PROJECT_BINARY_DIR}/Include.h")
 include_directories(${PROJECT_BINARY_DIR})
 
+# Configure gdextension stuff
+if(THRIVE_GODOT_API_FILE)
+  set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
+  include_directories("${THRIVE_GODOT_API_FILE}")
+  message(STATUS "Using custom location of Godot API file")
+else()
+  set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+  include_directories("${CMAKE_BINARY_DIR}/api")
+endif()
+
+set(FLOAT_PRECISION "single")
+
+# GODOT_CPP_SYSTEM_HEADERS
+# GODOT_CPP_WARNING_AS_ERROR
+
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
 
-if(THRIVE_AVX)
+if(THRIVE_AVX AND THRIVE_DISTRIBUTION)
   # Early checks is not compiled in non-avx mode
   add_subdirectory(src/native/early_checks)
 endif()
 
 add_subdirectory(src/native)
+add_subdirectory(src/extension)
+

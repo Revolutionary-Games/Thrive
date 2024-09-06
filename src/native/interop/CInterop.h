@@ -30,6 +30,10 @@ extern "C"
     /// other calls to the library have been performed
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 
+    /// \brief Gets the intercommunication bridge for the other native modules to use. Return value should be treated
+    /// as read only.
+    [[maybe_unused]] THRIVE_NATIVE_API NativeLibIntercommunicationOpaque* GetIntercommunicationBridge();
+
     // ------------------------------------ //
     // Logging
 
