@@ -309,6 +309,18 @@ public class MembraneShapeGenerator
 
         center /= vertexCount;
 
+        float averageSquareDistanceToCenter = 0.0f;
+        for (int i = 0; i < vertexCount; i++)
+        {
+            averageSquareDistanceToCenter += MathF.Pow(vertices2D[i].X - center.X, 2.0f) + MathF.Pow(vertices2D[i].Y - center.Z, 2.0f);
+        }
+
+        averageSquareDistanceToCenter /= vertexCount;
+
+        GD.Print(averageSquareDistanceToCenter);
+
+        float height = Constants.MEMBRANE_HEIGHT * Mathf.Clamp(averageSquareDistanceToCenter * 0.33f, 0.5f, 4.0f);
+
         int layerCount = MembraneVerticalResolution * 2 + 1;
 
         // The index list is actually a triangle list (each three consequtive indexes building a triangle)
@@ -335,8 +347,6 @@ public class MembraneShapeGenerator
 
         float roundingMaximum = MathF.Pow(1.0f + sideRounding * 1.05f, smoothingPower);
         float roundingMinimum = 1.0f;
-
-        float height = Constants.MEMBRANE_HEIGHT;
 
         // Place prism points, already with squishification
         for (int layer = 0; layer < layerCount; layer++)
