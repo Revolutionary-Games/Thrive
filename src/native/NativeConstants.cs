@@ -18,6 +18,18 @@ public class NativeConstants
 
     public const string PackagedLibraryFolder = "lib";
 
+#pragma warning disable CA1823 // unused fields
+
+    // ReSharper disable UnreachableCode HeuristicUnreachableCode
+
+    // If the version numbers match, some unintended library build / delete situations will happen (until the build
+    // script is changed to compile all cmake stuff at once)
+    private const uint VersionNumbersDoNotMatch = (ExtensionVersion != Version) ? 0 : -42;
+    private const uint VersionNumbersDoNotMatch2 = (ExtensionVersion != EarlyCheck) ? 0 : -42;
+
+    // ReSharper restore UnreachableCode HeuristicUnreachableCode
+#pragma warning restore CA1823
+
     public enum Library
     {
         /// <summary>

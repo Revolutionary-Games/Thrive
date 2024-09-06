@@ -339,7 +339,6 @@ the game can be ran.
 The easiest way to get these is to download precompiled ones by running:
 ```sh
 dotnet run --project Scripts -- native Fetch Install
-dotnet run --project Scripts -- native Fetch Install -d
 ```
 
 The debug variants are needed when running through Godot Editor for
@@ -372,24 +371,27 @@ in the Thrive folder with the following script:
 dotnet run --project Scripts -- native Build Install
 ```
 
+Note that for release making you need the native libraries for all
+platforms, which if you can't build, you should download with:
+```sh
+dotnet run --project Scripts -- native Fetch
+```
+
 Once compiled or downloaded, you need to install the libraries for local Godot
 Editor use:
 ```sh
 dotnet run --project Scripts -- native Install
 ```
 
-Debug versions for easier native code development / more robust error
-condition checking can be built and installed by adding `-d` to the
-end of the previous command to specify debug versions of the libraries
-to be used. Sometimes debug versions of the libraries are available
-for download and in those cases `-d` can be added to the end of the
-`Fetch` command as well.
+The script automatically also handles debug versions of the
+libraries. If desired to only work on one variant of libraries the
+`--debug false` or `--debug true` parameter can be defined.
 
-Note that for release making you need the native libraries for all
-platforms:
-```sh
-dotnet run --project Scripts -- native Fetch
-```
+Debug versions offer easier native code development / more robust
+error condition checking. And the GDExtension library is required in
+debug mode when running Thrive through Godot without exporting the
+game.
+
 
 ## Using Development Environments
 

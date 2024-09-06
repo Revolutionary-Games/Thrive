@@ -75,12 +75,6 @@ public class NativeLibs
             }
         }
 
-        if (options.DebugLibrary)
-        {
-            ColourConsole.WriteNormalLine("Using debug versions of libraries (these are not always " +
-                "available for download)");
-        }
-
         if (!options.PrepareGodotAPI)
         {
             ColourConsole.WriteNormalLine("Not preparing Godot API files, assuming they are there already");
@@ -102,10 +96,13 @@ public class NativeLibs
         else if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Build))
         {
             // Other platforms have cross compile but build defaults to just current platform
+            ColourConsole.WriteWarningLine("Due to performing a build, automatically configuring platforms to be " +
+                "just the current");
             platforms = new List<PackagePlatform> { PlatformUtilities.GetCurrentPlatform() };
         }
         else
         {
+            // Default platforms for non-Mac usage
             platforms = new List<PackagePlatform> { PackagePlatform.Linux, PackagePlatform.Windows };
         }
     }
@@ -117,8 +114,32 @@ public class NativeLibs
 
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(NativeConstants.LibraryFolder);
 
+        var originalDebug = options.DebugLibrary;
+
+        bool first = true;
+
         foreach (var operation in options.Operations)
         {
+            if (!first)
+            {
+                // Give a little bit of more breathing room in the output
+                ColourConsole.WriteNormalLine(string.Empty);
+            }
+
+            first = false;
+
+            if (originalDebug == null)
+            {
+                ColourConsole.WriteDebugLine("Running debug variant of operation");
+
+                options.DebugLibrary = true;
+                if (!await RunOperation(operation, cancellationToken))
+                    return false;
+
+                ColourConsole.WriteDebugLine("Running release variant of operation");
+                options.DebugLibrary = false;
+            }
+
             if (!await RunOperation(operation, cancellationToken))
                 return false;
         }
@@ -132,7 +153,7 @@ public class NativeLibs
     /// <param name="releaseFolder">The root of the release folder (with Thrive.pck and other files)</param>
     /// <param name="platform">The platform this release is for</param>
     /// <param name="useDistributableLibraries">
-    ///   If true then only distributable libraries (with symbols extracted and stripped) are used. Otherwise normally
+    ///   If true then only distributable libraries (with symbols extracted and stripped) are used. Otherwise, normally
     ///   built local libraries can be used.
     /// </param>
     public bool CopyToThriveRelease(string releaseFolder, PackagePlatform platform, bool useDistributableLibraries)
@@ -177,7 +198,7 @@ public class NativeLibs
     {
         var tag = PrecompiledTag.None;
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
             tag |= PrecompiledTag.Debug;
 
         if (localBuild && options.DisableLocalAvx)
@@ -190,6 +211,7 @@ public class NativeLibs
         CancellationToken cancellationToken)
     {
         ColourConsole.WriteNormalLine($"Performing operation {operation}");
+        ColourConsole.WriteDebugLine($"Debug mode is: {options.DebugLibrary}");
 
         switch (operation)
         {
@@ -308,7 +330,7 @@ public class NativeLibs
         foreach (var platform in platforms)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+            ColourConsole.WriteNormalLine($"Operating on {library} for {platform}");
 
             if (!await operation.Invoke(library, platform, cancellationToken))
             {
@@ -400,14 +422,14 @@ public class NativeLibs
         var targetTags = PrecompiledTag.None;
 
         // The extension library defaults to installing without AVX
-        // Due to the if above this is always true
+        // Due to the "if" above this is always true
         // ReSharper disable once ConditionIsAlwaysTrueOrFalse
         if (library == NativeConstants.Library.ThriveExtension)
             tag = PrecompiledTag.WithoutAvx;
 
         var target = ExtensionInstallFolder;
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
         {
             target = ExtensionInstallFolderDebug;
             tag |= PrecompiledTag.Debug;
@@ -416,7 +438,7 @@ public class NativeLibs
 
         Directory.CreateDirectory(target);
 
-        ColourConsole.WriteInfoLine($"Installing library {library} to {target}");
+        ColourConsole.WriteInfoLine($"Installing library {library} to {target} for {platform}");
 
         ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
         var libraryVersion = NativeConstants.GetLibraryVersion(library);
@@ -500,7 +522,8 @@ public class NativeLibs
     private async Task<bool> BuildLocally(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        // TODO: this step needs to be updated to compile all at once
+        // TODO: this step needs to be updated to compile all at once, also then allows version numbers to match
+        // which currently has a check against this in NativeConstants
 
         if (platform != PlatformUtilities.GetCurrentPlatform())
         {
@@ -555,7 +578,7 @@ public class NativeLibs
         // ReSharper disable StringLiteralTypo
         startInfo.ArgumentList.Add("-DCMAKE_EXPORT_COMPILE_COMMANDS=ON");
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=Debug");
         }
@@ -649,11 +672,11 @@ public class NativeLibs
             ColourConsole.WriteWarningLine("TODO: Windows Jolt build with MSVC only supports Release mode, " +
                 "building Thrive in release mode as well, there won't be debug symbols");
 
-            startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "Release");
+            startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "Release");
         }
         else
         {
-            startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "RelWithDebInfo");
+            startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "RelWithDebInfo");
         }
 
         startInfo.ArgumentList.Add("--target");
@@ -697,10 +720,10 @@ public class NativeLibs
                 if (file.Contains(name) || file.Contains(nameSecondary))
                 {
                     // Don't delete unrelated type
-                    if (!options.DebugLibrary && file.Contains("debug"))
+                    if (options.DebugLibrary != true && file.Contains("debug"))
                         continue;
 
-                    if (options.DebugLibrary && file.Contains("release"))
+                    if (options.DebugLibrary == true && file.Contains("release"))
                         continue;
 
                     File.Delete(file);
@@ -774,7 +797,7 @@ public class NativeLibs
         // ReSharper disable StringLiteralTypo
         var buildType = "Distribution";
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
         {
             ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
             buildType = "Debug";
@@ -902,9 +925,9 @@ public class NativeLibs
         ColourConsole.WriteSuccessLine("Build inside container succeeded");
         var libraries = options.Libraries ?? DefaultLibraries;
 
-        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
+        var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
-        if (!options.DebugLibrary)
+        if (options.DebugLibrary != true)
         {
             ColourConsole.WriteInfoLine(
                 "Extracting symbols (requires compiled Breakpad on the host) and stripping binaries");
@@ -956,7 +979,7 @@ public class NativeLibs
 
                 ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
 
-                if (!options.DebugLibrary)
+                if (options.DebugLibrary != true)
                 {
                     await BinaryHelpers.Strip(target, cancellationToken);
 
@@ -1030,7 +1053,7 @@ public class NativeLibs
     {
         var version = NativeConstants.GetLibraryVersion(library);
 
-        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
+        var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
         bool uploaded = false;
 
@@ -1344,7 +1367,7 @@ public class NativeLibs
     {
         var version = NativeConstants.GetLibraryVersion(library);
 
-        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
+        var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
         foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
@@ -1514,7 +1537,7 @@ public class NativeLibs
         PrecompiledTag tags)
     {
         var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
-            options.DebugLibrary ? "debug" : "release");
+            options.DebugLibrary == true ? "debug" : "release");
 
         if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
@@ -1527,7 +1550,7 @@ public class NativeLibs
 
     private string GetNativeBuildFolder()
     {
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
             return "build-debug";
 
         return "build";

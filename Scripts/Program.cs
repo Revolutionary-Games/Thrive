@@ -306,9 +306,8 @@ public class Program
             /// </summary>
             CheckDistributable,
 
-            // TODO: maybe remove this operation entirely (should also update documentation)
             /// <summary>
-            ///   Installs a library to work with Godot editor
+            ///   Installs a library to work with Godot editor (only needed for specific libraries)
             /// </summary>
             Install,
 
@@ -346,11 +345,15 @@ public class Program
             get
             {
                 yield return new Example("download all available libraries",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Fetch }, Url = string.Empty });
-                yield return new Example("compile libraries locally",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Build }, Url = string.Empty });
+                    new NativeLibOptions { Operations = [OperationMode.Fetch], Url = string.Empty });
+                yield return new Example("compile and install libraries locally",
+                    new NativeLibOptions
+                        { Operations = [OperationMode.Build, OperationMode.Install], Url = string.Empty });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Package }, Url = string.Empty });
+                    new NativeLibOptions { Operations = [OperationMode.Package], Url = string.Empty });
+                yield return new Example("build only release mode libraries",
+                    new NativeLibOptions
+                        { Operations = [OperationMode.Build], Url = string.Empty, DebugLibrary = false });
             }
         }
 
@@ -361,9 +364,9 @@ public class Program
             HelpText = "Libraries to work on, default is all.")]
         public IList<NativeConstants.Library>? Libraries { get; set; } = new List<NativeConstants.Library>();
 
-        [Option('d', "debug", Required = false, Default = false,
-            HelpText = "Set to work on debug versions of the libraries")]
-        public bool DebugLibrary { get; set; }
+        [Option('d', "debug", Required = false, Default = null,
+            HelpText = "Set to false or true to only use debug mode or disable it. Default is to do both.")]
+        public bool? DebugLibrary { get; set; }
 
         [Option("disable-avx", Required = false, Default = false,
             HelpText = "Disable building locally with AVX (container builds always make both variants)")]
