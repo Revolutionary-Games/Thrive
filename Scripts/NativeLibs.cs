@@ -52,14 +52,18 @@ public class NativeLibs
 
     private readonly Lazy<Task<long>> thriveNativePrecompiledId;
     private readonly Lazy<Task<long>> earlyCheckPrecompiledId;
+    private readonly Lazy<Task<long>> thriveExtensionPrecompiledId;
 
     private readonly HashSet<string> scriptsAPIFileCreated = new();
+
+    private bool checkSymbolUpload;
 
     public NativeLibs(Program.NativeLibOptions options)
     {
         this.options = options;
         thriveNativePrecompiledId = new Lazy<Task<long>>(GetThriveNativeLibraryId);
         earlyCheckPrecompiledId = new Lazy<Task<long>>(GetEarlyCheckLibraryId);
+        thriveExtensionPrecompiledId = new Lazy<Task<long>>(GetThriveExtensionLibraryId);
 
         if (options.Libraries is { Count: < 1 })
         {
@@ -128,7 +132,9 @@ public class NativeLibs
 
             first = false;
 
-            if (originalDebug == null)
+            // Do both debug and release mode operations. Symbol upload always checks everything at once so it isn't
+            // duplicated
+            if (originalDebug == null && operation != Program.NativeLibOptions.OperationMode.Symbols)
             {
                 ColourConsole.WriteDebugLine("Running debug variant of operation");
 
@@ -142,6 +148,22 @@ public class NativeLibs
 
             if (!await RunOperation(operation, cancellationToken))
                 return false;
+        }
+
+        if (checkSymbolUpload)
+        {
+            ColourConsole.WriteInfoLine("Looking for symbols to upload after operations finished");
+
+            if (!await UploadMissingSymbolsToServer(cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to upload symbols");
+                return false;
+            }
+        }
+        else if (options.Operations.Contains(Program.NativeLibOptions.OperationMode.Upload))
+        {
+            ColourConsole.WriteNormalLine(
+                "Nothing uploaded so skipping symbols upload (it can be ran manually separately)");
         }
 
         return true;
@@ -262,15 +284,16 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Upload:
                 if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
                 {
-                    ColourConsole.WriteNormalLine("Checking for potential symbols to upload after library upload");
-                    return await UploadMissingSymbolsToServer(cancellationToken);
+                    ColourConsole.WriteNormalLine("Will check for potential symbols to upload after library upload");
+                    checkSymbolUpload = true;
+                    return true;
                 }
 
                 ColourConsole.WriteNormalLine("Skipping symbol upload check as the check upload operation " +
                     "didn't return true");
 
-                // Check and upload step failed / or didn't upload anything
-                return false;
+                // TODO: detect failures separately
+                return true;
 
             case Program.NativeLibOptions.OperationMode.Symbols:
                 ColourConsole.WriteNormalLine("Checking for any symbols missing from the server");
@@ -1124,11 +1147,6 @@ public class NativeLibs
                 return false;
             }
 
-            if ((tag & PrecompiledTag.Debug) != 0)
-            {
-                ColourConsole.WriteNormalLine("Uploading a debug version of the library");
-            }
-
             var result = await UploadLocalLibrary(library, platform, version, tag, file, cancellationToken);
 
             if (result == false)
@@ -1214,6 +1232,13 @@ public class NativeLibs
                 return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
             }
 
+            case NativeConstants.Library.ThriveExtension:
+            {
+                var nativeId = await thriveExtensionPrecompiledId.Value;
+
+                return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
+            }
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);
         }
@@ -1245,6 +1270,21 @@ public class NativeLibs
             throw new NullDecodedJsonException();
 
         ColourConsole.WriteDebugLine($"Determined that Early Check's precompiled ID is {data.Id}");
+
+        return data.Id;
+    }
+
+    private async Task<long> GetThriveExtensionLibraryId()
+    {
+        using var httpClient = GetDevCenterClient();
+
+        var data = await httpClient.GetFromJsonAsync<PrecompiledObjectDTO>(
+            "api/v1/PrecompiledObject/byName/ThriveExtension");
+
+        if (data == null)
+            throw new NullDecodedJsonException();
+
+        ColourConsole.WriteDebugLine($"Determined that ThriveExtension's precompiled ID is {data.Id}");
 
         return data.Id;
     }
