@@ -41,6 +41,8 @@ public static class NativeInterop
 
     private static int version = -1;
 
+    private static bool printedDistributableWarning;
+
 #if DEBUG
     private static bool printedSteamLibName;
 #endif
@@ -551,7 +553,12 @@ public static class NativeInterop
         if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
                 NativeConstants.GetLibraryVersion(library), true, GetTag(true)), out loaded))
         {
-            GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+            if (!printedDistributableWarning)
+            {
+                GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+                printedDistributableWarning = true;
+            }
+
             return loaded;
         }
 #endif
