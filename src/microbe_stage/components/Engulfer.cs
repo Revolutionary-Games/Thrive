@@ -33,7 +33,7 @@ public struct Engulfer
     public float EngulfingSize;
 
     /// <summary>
-    ///   The amount of space all of the currently engulfed objects occupy in the cytoplasm. This is used to
+    ///   The amount of space all the currently engulfed objects occupy in the cytoplasm. This is used to
     ///   determine whether a cell can ingest any more objects or not due to being full. Also contains the size of
     ///   objects being currently pulled in.
     /// </summary>
@@ -199,6 +199,12 @@ public static class EngulferHelpers
         return nearestPoint;
     }
 
+    /// <summary>
+    ///   Request ejection of an engulfable
+    /// </summary>
+    /// <returns>
+    ///   True when ejection has started, false if already was in progress, or it is impossible to eject
+    /// </returns>
     public static bool EjectEngulfable(this ref Engulfer engulfer, ref Engulfable engulfable)
     {
         // Cannot start ejecting a thing that is not in a valid state for that
@@ -213,7 +219,7 @@ public static class EngulferHelpers
             case PhagocytosisPhase.Exocytosis:
             case PhagocytosisPhase.Ejection:
                 // Already requested / happening
-                return true;
+                return false;
         }
 
         engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;
