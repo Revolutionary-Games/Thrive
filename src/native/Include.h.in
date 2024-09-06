@@ -16,14 +16,14 @@
 #define THRIVE_EXTENSION_VERSION @THRIVE_EXTENSION_VERSION@
 // clang-format on
 
-#ifdef WIN32
+#ifdef _WIN32
 #define API_EXPORT __declspec(dllexport)
 #define API_IMPORT __declspec(dllimport)
 #else
 #define API_EXPORT __attribute__((visibility("default")))
 // TODO: is the following necessary?
 #define API_IMPORT __attribute__((visibility("default")))
-#endif // WIN32
+#endif // _WIN32
 
 #ifdef THRIVE_NATIVE_BUILD
 #define THRIVE_NATIVE_API API_EXPORT
@@ -54,7 +54,7 @@
 
 #cmakedefine THRIVE_DISTRIBUTION
 
-#ifdef WIN32
+#ifdef _MSC_VER
 #define FORCE_INLINE __forceinline
 #else
 #define FORCE_INLINE __attribute__((always_inline)) inline
