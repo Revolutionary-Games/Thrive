@@ -5,6 +5,10 @@
 namespace Thrive
 {
 
+constexpr int INIT_MAGIC = 765442;
+
+int InitValueLocation = -1;
+
 ThriveConfig::~ThriveConfig()
 {
     if (initialized)
@@ -59,6 +63,8 @@ ThriveConfig* ThriveConfig::InitializeImplementation(NativeLibIntercommunication
 
     // Init succeeded
     initialized = true;
+    InitValueLocation = INIT_MAGIC;
+
     return this;
 }
 
@@ -97,6 +103,14 @@ bool ThriveConfig::Shutdown() noexcept
 // ------------------------------------ //
 int ThriveConfig::GetVersion() const noexcept
 {
+    // Detect library load conflicts between what Godot loaded and what is used through C# interop
+    if (InitValueLocation != INIT_MAGIC)
+    {
+        ERR_PRINT(
+            "Unexpected value in init data location. Has this library been loaded twice from conflicting places?");
+        return -1;
+    }
+
     return THRIVE_EXTENSION_VERSION;
 }
 
