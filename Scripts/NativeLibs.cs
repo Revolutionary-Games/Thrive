@@ -419,7 +419,7 @@ public class NativeLibs
         var tag = PrecompiledTag.None;
 
         // Allows different name when we are fudging the name a bit
-        var targetTags = PrecompiledTag.None;
+        PrecompiledTag targetTags;
 
         // The extension library defaults to installing without AVX
         // Due to the "if" above this is always true
@@ -433,8 +433,10 @@ public class NativeLibs
         {
             target = ExtensionInstallFolderDebug;
             tag |= PrecompiledTag.Debug;
-            targetTags = PrecompiledTag.Debug;
         }
+
+        // Currently always use the same name as the original file
+        targetTags = tag;
 
         Directory.CreateDirectory(target);
 

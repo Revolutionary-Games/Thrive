@@ -117,6 +117,8 @@ public class NativeConstants
             case Library.EarlyCheck:
                 switch (platform)
                 {
+                    // TODO: if this is started to be used again, this probably needs AVX handling as well (and should
+                    // always use the non-avx variant)
                     case PackagePlatform.Linux:
                         return "libearly_checks.so";
                     case PackagePlatform.Windows:
