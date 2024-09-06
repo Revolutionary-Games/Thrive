@@ -311,8 +311,8 @@ public class MembraneShapeGenerator
 
         int layerCount = MembraneVerticalResolution * 2 + 1;
 
-        // This is actually a triangle list, but the index buffer is used to build
-        // the indices (to emulate a triangle fan)
+        // The index list is actually a triangle list (each three consequtive indexes building a triangle)
+        // with the size of indexSize
         var bufferSize = layerCount * vertexCount + 2;
         var indexSize = (vertexCount * 2 + (layerCount - 1) * vertexCount * 2) * 3;
 
