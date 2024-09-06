@@ -16,6 +16,7 @@ uniform float dissolveValue : hint_range(0, 1);
 uniform float healthFraction : hint_range(0, 1) = 0.5f;
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
+
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
