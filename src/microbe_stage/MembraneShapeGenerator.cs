@@ -155,14 +155,14 @@ public class MembraneShapeGenerator
     private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs,
         Vector3[] normals)
     {
-        for (int layer = 0; layer < layerCount; layer++)
+        for (int layer = 0; layer < layerCount; ++layer)
         {
-            for (int i = 0; i < vertexCount; i++)
+            for (int i = 0; i < vertexCount; ++i)
             {
                 int id = i + layer * vertexCount;
                 float turnFraction = 2.0f * MathF.PI * i / vertexCount;
 
-                float y = 0.9f * Mathf.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
+                float y = 0.9f * MathF.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
                 (float sin, float cos) = MathF.SinCos(turnFraction);
 
                 Vector2 direction = 0.98f * (1.0f - y) * new Vector2(sin, cos) / 2.0f + new Vector2(0.5f, 0.5f);
@@ -220,9 +220,9 @@ public class MembraneShapeGenerator
         // - same point on the layer higher
         // - next point on the layer higher
         // If the point is on the highest layer (aka the top layer), it doesn't connect with anything
-        for (int layer = 0; layer < layerCount - 1; layer++)
+        for (int layer = 0; layer < layerCount - 1; ++layer)
         {
-            for (int i = 0; i < vertexCount - 1; i++)
+            for (int i = 0; i < vertexCount - 1; ++i)
             {
                 indices[writeIndex] = i + layer * vertexCount;
                 indices[writeIndex + 1] = i + 1 + (layer + 1) * vertexCount;
@@ -237,7 +237,7 @@ public class MembraneShapeGenerator
         }
 
         // Final side face
-        for (int layer = 0; layer < layerCount - 1; layer++)
+        for (int layer = 0; layer < layerCount - 1; ++layer)
         {
             indices[writeIndex] = (vertexCount - 1) + layer * vertexCount;
             indices[writeIndex + 1] = (layer + 1) * vertexCount;
@@ -254,7 +254,7 @@ public class MembraneShapeGenerator
         int topLayerIdStart = (layerCount - 1) * vertexCount;
 
         // Top face triangles
-        for (int i = 0; i < vertexCount; i++)
+        for (int i = 0; i < vertexCount; ++i)
         {
             if (i == 0)
             {
@@ -273,7 +273,7 @@ public class MembraneShapeGenerator
         }
 
         // Bottom face triangles. Same as top, but with reversed index order and different layer
-        for (int i = 0; i < vertexCount; i++)
+        for (int i = 0; i < vertexCount; ++i)
         {
             if (i == 0)
             {
@@ -335,7 +335,7 @@ public class MembraneShapeGenerator
         float roundingMinimum = 1.0f;
 
         // Place prism points, already with squishification
-        for (int layer = 0; layer < layerCount; layer++)
+        for (int layer = 0; layer < layerCount; ++layer)
         {
             float widthModifier = 1.0f - (MathF.Pow(sideRounding * MathF.Abs(layer - MembraneVerticalResolution)
                 / MembraneVerticalResolution + 1.0f, smoothingPower) - roundingMinimum) / roundingMaximum;
@@ -343,7 +343,7 @@ public class MembraneShapeGenerator
             float vertical = height * (layer - MembraneVerticalResolution) / MembraneVerticalResolution;
 
             // Iterate through outline points
-            for (int i = 0; i < vertexCount; i++)
+            for (int i = 0; i < vertexCount; ++i)
             {
                 Vector3 point = new Vector3(vertices2D[i].X, 0.0f, vertices2D[i].Y);
 
