@@ -50,6 +50,7 @@ void fragment(){
         float(-0.482 + clamp(dissolveValue, 0, 1));
 
     vec3 adjusted_view = VIEW;
+    // Make the camera seem higher than it actually is.
     // Not an absolutely necessary step, but it makes fresnel look better
     adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
 
