@@ -220,7 +220,7 @@ public static class SpawnHelpers
         var entity = worldSimulation.CreateEntityDeferred(entityCreator);
 
         entity.Set(new WorldPosition(location,
-            new Quaternion(rotationAxis.Normalized(), 2 * Mathf.Pi * (float)random.NextDouble())));
+            new Quaternion(rotationAxis.Normalized(), 2 * MathF.PI * (float)random.NextDouble())));
 
         // TODO: redo chunk visuals with the loadable visual definitions
         // entity.Set(new PredefinedVisuals
@@ -791,7 +791,7 @@ public static class SpawnHelpers
 
         var currentPoint = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
-        for (int i = 0; i < clumpSize; i++)
+        for (int i = 0; i < clumpSize; ++i)
         {
             result.Add(initialLocation + currentPoint);
 
@@ -1050,7 +1050,7 @@ public static class SpawnHelpers
     {
         return new Quaternion(
             new Vector3(random.NextSingle() + 0.01f, random.NextSingle(), random.NextSingle()).Normalized(),
-            random.NextSingle() * Mathf.Pi + 0.01f);
+            random.NextSingle() * MathF.PI + 0.01f);
     }
 
     private static void SetProjectileComponents(ref EntityRecord entity, Vector3 location, Vector3 direction,

@@ -132,9 +132,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 
             ref var engulfable = ref engulfedObject.Get<Engulfable>();
 
-            // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
-            // is overloaded
-            if (engulfer.UsedEngulfingCapacity > engulfer.EngulfStorageSize)
+            var currentEngulfableSize = engulfable.AdjustedEngulfSize;
+
+            // Expel this engulfed object if the cell loses some of its size and its ingestion capacity is overloaded
+            if (usedCapacity + currentEngulfableSize - MathUtils.EPSILON > engulfer.EngulfStorageSize)
             {
                 if (engulfer.EjectEngulfable(ref engulfable))
                 {
@@ -142,9 +143,8 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                         new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
                 }
 
-                // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
-                // accidentally eject *everything* if we go slightly over the limit
-                engulfer.UsedEngulfingCapacity -= engulfable.AdjustedEngulfSize;
+                // As ejecting is delayed, we need to temporarily not count this in the used capacity otherwise we may
+                // accidentally eject way too much stuff
                 continue;
             }
 
@@ -154,7 +154,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             {
                 // Still need to consider the size of this thing for the engulf storage, otherwise cells can start
                 // pulling in too much
-                usedCapacity += engulfable.AdjustedEngulfSize;
+                usedCapacity += currentEngulfableSize;
 
                 if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
                 {
@@ -187,6 +187,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                         entity.SendNoticeIfPossible(new LocalizedString("NOTICE_ENGULF_MISSING_ENZYME",
                             engulfable.RequisiteEnzymeToDigest!.Name));
                     }
+
+                    // Count the size still in this case as otherwise there's a one frame flicker of the matter
+                    // storage bar if engulfing just something that cannot be digested
+                    usedCapacity += currentEngulfableSize;
 
                     continue;
                 }
@@ -253,7 +257,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 var efficiency =
                     MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme]);
 
-                var taken = Mathf.Min(totalAvailable, amount);
+                var taken = MathF.Min(totalAvailable, amount);
 
                 // Toxin damage
                 if (compound == oxytoxy && taken > 0)

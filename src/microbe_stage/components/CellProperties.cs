@@ -430,19 +430,19 @@ public static class CellPropertiesHelpers
 
         // Find the direction the microbe is facing
         var yAxis = Transform.Basis.y;
-        var microbeAngle = Mathf.Atan2(yAxis.x, yAxis.y);
+        var microbeAngle = MathF.Atan2(yAxis.x, yAxis.y);
         if (microbeAngle < 0)
         {
-            microbeAngle += 2 * Mathf.Pi;
+            microbeAngle += 2 * MathF.PI;
         }
 
-        microbeAngle = microbeAngle * 180 / Mathf.Pi;
+        microbeAngle = microbeAngle * 180 / MathF.PI;
 
         // Take the microbe angle into account so we get world relative degrees
         var finalAngle = (angle + microbeAngle) % 360;
 
-        var s = Mathf.Sin(finalAngle / 180 * Mathf.Pi);
-        var c = Mathf.Cos(finalAngle / 180 * Mathf.Pi);
+        var s = MathF.Sin(finalAngle / 180 * MathF.PI);
+        var c = MathF.Cos(finalAngle / 180 * MathF.PI);
 
         var ejectionDirection = new Vector3(-membraneCoords.X * c + membraneCoords.Z * s, 0,
             membraneCoords.X * s + membraneCoords.Z * c);
@@ -586,13 +586,13 @@ public static class CellPropertiesHelpers
     /// <param name="delta">The difference between the cell middle and the external organelle position</param>
     private static float GetExternalOrganelleAngle(Vector3 delta)
     {
-        float angle = Mathf.Atan2(-delta.Z, delta.X);
+        float angle = MathF.Atan2(-delta.Z, delta.X);
         if (angle < 0)
         {
-            angle += 2 * Mathf.Pi;
+            angle += 2 * MathF.PI;
         }
 
-        angle = (angle * 180 / Mathf.Pi - 90) % 360;
+        angle = (angle * 180 / MathF.PI - 90) % 360;
         return angle;
     }
 }

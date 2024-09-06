@@ -102,7 +102,7 @@ public static class MicrobeInternalCalculations
         compoundBag.ClearSpecificCapacities();
 
         int count = organelles.Count;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
@@ -262,7 +262,7 @@ public static class MicrobeInternalCalculations
         var movement = Constants.BASE_MOVEMENT_FORCE;
 
         // Extra movement from organelles
-        movement += Mathf.Clamp(hexCount - Constants.BASE_MOVEMENT_EXTRA_HEX_START, 0,
+        movement += Math.Clamp(hexCount - Constants.BASE_MOVEMENT_EXTRA_HEX_START, 0,
                 Constants.BASE_MOVEMENT_EXTRA_HEX_END - Constants.BASE_MOVEMENT_EXTRA_HEX_START) *
             Constants.BASE_MOVEMENT_PER_HEX;
 
@@ -373,7 +373,7 @@ public static class MicrobeInternalCalculations
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
 
-        return Mathf.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
+        return Math.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
 
     /// <summary>

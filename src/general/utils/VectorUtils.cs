@@ -12,6 +12,6 @@ public static class VectorUtils
 
     public static Vector2I RoundedInt(this in Vector2 vector2)
     {
-        return new Vector2I(Mathf.RoundToInt(vector2.X), Mathf.RoundToInt(vector2.Y));
+        return new Vector2I(MathUtils.RoundToInt(vector2.X), MathUtils.RoundToInt(vector2.Y));
     }
 }

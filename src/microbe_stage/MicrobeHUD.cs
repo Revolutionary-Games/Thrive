@@ -308,7 +308,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             // Show the digestion progress to the player
             hp = 1 - stage.Player.Get<Engulfable>().DigestedAmount;
             maxHP = Constants.FULLY_DIGESTED_LIMIT;
-            hpText = percentageValue.FormatSafe(Mathf.Round((1 - hp) * 100));
+            hpText = percentageValue.FormatSafe(MathF.Round((1 - hp) * 100));
             playerWasDigested = true;
             FlashHealthBar(new Color(0.96f, 0.5f, 0.27f), delta);
         }

@@ -115,7 +115,7 @@ public struct Hex : IEquatable<Hex>
     public static Vector3 AxialToCartesian(Hex hex)
     {
         float x = hex.Q * Constants.DEFAULT_HEX_SIZE * 3.0f / 2.0f;
-        float z = Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3) * (hex.R + hex.Q / 2.0f);
+        float z = Constants.DEFAULT_HEX_SIZE * MathF.Sqrt(3) * (hex.R + hex.Q / 2.0f);
         return new Vector3(x, 0, z);
     }
 
@@ -127,17 +127,17 @@ public struct Hex : IEquatable<Hex>
     {
         // Getting the cube coordinates.
         float cx = pos.X * (2.0f / 3.0f) / Constants.DEFAULT_HEX_SIZE;
-        float cy = pos.Z / (Constants.DEFAULT_HEX_SIZE * Mathf.Sqrt(3)) - cx / 2.0f;
+        float cy = pos.Z / (Constants.DEFAULT_HEX_SIZE * MathF.Sqrt(3)) - cx / 2.0f;
         float cz = -(cx + cy);
 
         // Rounding the result.
-        float rx = Mathf.Round(cx);
-        float ry = Mathf.Round(cy);
-        float rz = Mathf.Round(cz);
+        float rx = MathF.Round(cx);
+        float ry = MathF.Round(cy);
+        float rz = MathF.Round(cz);
 
-        float xDiff = Mathf.Abs(rx - cx);
-        float yDiff = Mathf.Abs(ry - cy);
-        float zDiff = Mathf.Abs(rz - cz);
+        float xDiff = MathF.Abs(rx - cx);
+        float yDiff = MathF.Abs(ry - cy);
+        float zDiff = MathF.Abs(rz - cz);
 
         if (xDiff > yDiff && xDiff > zDiff)
         {
@@ -176,13 +176,13 @@ public struct Hex : IEquatable<Hex>
     /// </summary>
     public static Vector3I CubeHexRound(Vector3 pos)
     {
-        float rx = Mathf.Round(pos.X);
-        float ry = Mathf.Round(pos.Y);
-        float rz = Mathf.Round(pos.Z);
+        float rx = MathF.Round(pos.X);
+        float ry = MathF.Round(pos.Y);
+        float rz = MathF.Round(pos.Z);
 
-        float xDiff = Mathf.Abs(rx - pos.X);
-        float yDiff = Mathf.Abs(ry - pos.Y);
-        float zDiff = Mathf.Abs(rz - pos.Z);
+        float xDiff = MathF.Abs(rx - pos.X);
+        float yDiff = MathF.Abs(ry - pos.Y);
+        float zDiff = MathF.Abs(rz - pos.Z);
 
         if (xDiff > yDiff && xDiff > zDiff)
         {
@@ -215,7 +215,7 @@ public struct Hex : IEquatable<Hex>
     {
         Hex result = original;
 
-        for (int i = 0; i < n % 6; i++)
+        for (int i = 0; i < n % 6; ++i)
         {
             result = RotateAxial(result);
         }

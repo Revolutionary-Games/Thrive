@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 
 /// <summary>
 ///   Highlights a target Control by blanking out other areas of the screen
@@ -65,7 +66,7 @@ public partial class ControlHighlight : Control
             var nonCoveredArea = TargetControl!.GetGlobalRect();
 
             leftPlane.GlobalPosition = new Vector2(0, 0);
-            leftPlane.Size = new Vector2(Mathf.Ceil(nonCoveredArea.Position.X), screenHeight);
+            leftPlane.Size = new Vector2(MathF.Ceiling(nonCoveredArea.Position.X), screenHeight);
 
             var rightWidth = screenWidth - nonCoveredArea.End.X;
             rightPlane.GlobalPosition = new Vector2(screenWidth - rightWidth, 0);

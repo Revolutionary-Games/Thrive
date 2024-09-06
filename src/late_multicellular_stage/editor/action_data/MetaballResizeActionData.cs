@@ -1,5 +1,4 @@
 ﻿using System;
-using Godot;
 
 public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
     where TMetaball : Metaball
@@ -17,7 +16,7 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
 
     protected override int CalculateCostInternal()
     {
-        if (Mathf.Abs(OldSize - NewSize) < MathUtils.EPSILON)
+        if (MathF.Abs(OldSize - NewSize) < MathUtils.EPSILON)
             return 0;
 
         return Constants.METABALL_RESIZE_COST;
@@ -30,8 +29,8 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
             resizeActionData.ResizedMetaball.Equals(ResizedMetaball))
         {
             // If this metaball got resized to the old size
-            if (Mathf.Abs(OldSize - resizeActionData.NewSize) < MathUtils.EPSILON &&
-                Mathf.Abs(NewSize - resizeActionData.OldSize) < MathUtils.EPSILON)
+            if (MathF.Abs(OldSize - resizeActionData.NewSize) < MathUtils.EPSILON &&
+                MathF.Abs(NewSize - resizeActionData.OldSize) < MathUtils.EPSILON)
                 return ActionInterferenceMode.CancelsOut;
 
             // Multiple resizes in a row is just one resize
@@ -52,7 +51,7 @@ public class MetaballResizeActionData<TMetaball> : EditorCombinableActionData
     {
         if (other is MetaballResizeActionData<TMetaball> resizeActionData)
         {
-            if (Mathf.Abs(OldSize - resizeActionData.OldSize) < MathUtils.EPSILON)
+            if (MathF.Abs(OldSize - resizeActionData.OldSize) < MathUtils.EPSILON)
             {
                 return new MetaballResizeActionData<TMetaball>(ResizedMetaball, OldSize, resizeActionData.NewSize);
             }

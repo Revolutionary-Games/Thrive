@@ -480,9 +480,9 @@ public partial class InputEventItem : MarginContainer
 
         // Check if the input is already defined for this action
         // This code works by finding a pair
-        for (var i = 0; i < associatedAction.Inputs.Count; i++)
+        for (var i = 0; i < associatedAction.Inputs.Count; ++i)
         {
-            for (var x = i + 1; x < associatedAction.Inputs.Count; x++)
+            for (var x = i + 1; x < associatedAction.Inputs.Count; ++x)
             {
                 // Pair found (input already defined)
                 if (!associatedAction.Inputs[i].Equals(associatedAction.Inputs[x]))

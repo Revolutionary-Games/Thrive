@@ -522,7 +522,7 @@ public partial class PatchMapDrawer : Control
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, 1));
 
         // 3-segment line, U shape
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= 3; ++i)
         {
             intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 50);
             intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 50);

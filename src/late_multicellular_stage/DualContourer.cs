@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
-using Godot.Collections;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Generates meshes from mathematical functions defined in 3D space. Uses Dual contouring for this.
@@ -25,7 +26,7 @@ public class DualContourer
 
     public IMeshGeneratingFunction MathFunction;
 
-    private static readonly System.Collections.Generic.Dictionary<int, Vector3I[]> LookupTableInt = new();
+    private static readonly Dictionary<int, Vector3I[]> LookupTableInt = new();
 
     public DualContourer(IMeshGeneratingFunction mathFunction)
     {
@@ -41,8 +42,8 @@ public class DualContourer
         // TODO: when this feature is polished up the amount of allocations done in this method should be attempted
         // to be reduced whenever possible (probably with persistent data structures that are cleared before each use)
 
-        var placedPoints =
-            new System.Collections.Generic.Dictionary<Vector3I, int>(); // int is point's index in points[]
+        // int is point's index in points[]
+        var placedPoints = new Dictionary<Vector3I, int>();
 
         Vector3I gridFrom = new Vector3I((int)(UnitsFrom.X * PointsPerUnit), (int)(UnitsFrom.Y * PointsPerUnit),
             (int)(UnitsFrom.Z * PointsPerUnit));
@@ -233,7 +234,7 @@ public class DualContourer
 
         int availableThreads = TaskExecutor.Instance.ParallelTasks;
 
-        int threadsPerEdge = Mathf.Clamp(Mathf.CeilToInt(2.0f * availableThreads / 8.0f), 2, 3);
+        int threadsPerEdge = Math.Clamp((int)MathF.Ceiling(2.0f * availableThreads / 8.0f), 2, 3);
 
         if (availableThreads > 27)
             threadsPerEdge = 4;
@@ -283,7 +284,7 @@ public class DualContourer
 
     private void SetColours(List<Vector3> points, Color[] colours)
     {
-        for (int i = 0; i < colours.Length; i++)
+        for (int i = 0; i < colours.Length; ++i)
         {
             colours[i] = MathFunction.GetColour(points[i]);
         }
@@ -371,7 +372,7 @@ public class DualContourer
         for (int i = 0; i < count; i += step + 1)
         {
             int from = i;
-            int to = Mathf.Clamp(i + step, i, count - 1);
+            int to = Math.Clamp(i + step, i, count - 1);
 
             // TODO: try to avoid lambda allocations that capture many variables
             var task = new Task(() => AdjustVerticesInRange(from, to, points, changeClamp, meshNormals));
@@ -402,9 +403,9 @@ public class DualContourer
             Vector3 change = (normal / instantaneousSpeed) * ((MathFunction.SurfaceValue - functionAtPoint)
                 / instantaneousSpeed);
 
-            change.X = Mathf.Clamp(change.X, -maxToleratedChange, maxToleratedChange);
-            change.Y = Mathf.Clamp(change.Y, -maxToleratedChange, maxToleratedChange);
-            change.Z = Mathf.Clamp(change.Z, -maxToleratedChange, maxToleratedChange);
+            change.X = Math.Clamp(change.X, -maxToleratedChange, maxToleratedChange);
+            change.Y = Math.Clamp(change.Y, -maxToleratedChange, maxToleratedChange);
+            change.Z = Math.Clamp(change.Z, -maxToleratedChange, maxToleratedChange);
 
             points[i] = point + change;
 
@@ -416,7 +417,7 @@ public class DualContourer
     }
 
     private void PlaceTriangles(Vector3I gridPos, Vector3I[] trisToPlace, List<Vector3> points, List<int> tris,
-        System.Collections.Generic.Dictionary<Vector3I, int> placedPoints)
+        Dictionary<Vector3I, int> placedPoints)
     {
         if (!placedPoints.TryGetValue(gridPos, out var originIndex))
         {

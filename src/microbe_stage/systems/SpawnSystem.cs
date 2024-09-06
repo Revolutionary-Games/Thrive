@@ -416,27 +416,27 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
     private void SpawnAllTypes(ref float spawnsLeftThisFrame)
     {
-        var playerCoordinatePoint = new Tuple<int, int>(Mathf.RoundToInt(playerPosition.X /
-            Constants.SPAWN_SECTOR_SIZE), Mathf.RoundToInt(playerPosition.Z / Constants.SPAWN_SECTOR_SIZE));
+        var playerCoordinatePoint = new Tuple<int, int>(MathUtils.RoundToInt(playerPosition.X /
+            Constants.SPAWN_SECTOR_SIZE), MathUtils.RoundToInt(playerPosition.Z / Constants.SPAWN_SECTOR_SIZE));
 
         // Spawn for all sectors immediately outside a 3x3 box around the player
         var sectorsToSpawn = new List<Vector2I>(12);
-        for (int y = -1; y <= 1; y++)
+        for (int y = -1; y <= 1; ++y)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 - 2, playerCoordinatePoint.Item2 + y));
         }
 
-        for (int x = -1; x <= 1; x++)
+        for (int x = -1; x <= 1; ++x)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + 2, playerCoordinatePoint.Item2 + x));
         }
 
-        for (int y = -1; y <= 1; y++)
+        for (int y = -1; y <= 1; ++y)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + y, playerCoordinatePoint.Item2 - 2));
         }
 
-        for (int x = -1; x <= 1; x++)
+        for (int x = -1; x <= 1; ++x)
         {
             sectorsToSpawn.Add(new Vector2I(playerCoordinatePoint.Item1 + x, playerCoordinatePoint.Item2 + 2));
         }
@@ -495,7 +495,7 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
 
     private void SpawnMicrobesAroundPlayer(Vector3 playerLocation, ref float spawnsLeftThisFrame)
     {
-        var angle = random.NextSingle() * 2 * Mathf.Pi;
+        var angle = random.NextSingle() * 2 * MathF.PI;
 
         float spawns = 0.0f;
         foreach (var spawnType in spawnTypes)
@@ -503,8 +503,8 @@ public sealed class SpawnSystem : ISystem<float>, ISpawnSystem
             if (!SpawnsBlocked(spawnType) && spawnType is MicrobeSpawner)
             {
                 spawns += SpawnWithSpawner(spawnType,
-                    playerLocation + new Vector3(Mathf.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
-                        Mathf.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
+                    playerLocation + new Vector3(MathF.Cos(angle) * Constants.SPAWN_SECTOR_SIZE * 2, 0,
+                        MathF.Sin(angle) * Constants.SPAWN_SECTOR_SIZE * 2), ref spawnsLeftThisFrame);
             }
         }
 

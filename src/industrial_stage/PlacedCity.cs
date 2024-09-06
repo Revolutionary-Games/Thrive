@@ -238,7 +238,7 @@ public partial class PlacedCity : Node3D, IEntityWithNameLabel
     {
         // Base food growing
         // TODO: convert this to come from the buildings
-        return Mathf.Log(Population) * 10 + 4;
+        return MathF.Log(Population) * 10 + 4;
     }
 
     public float CalculateFoodConsumption()

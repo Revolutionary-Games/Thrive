@@ -444,7 +444,7 @@ public partial class EvolutionaryTree : Control
 
                 // Update size factor
                 sizeFactor =
-                    Mathf.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
+                    Math.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
                         SIZE_FACTOR_MIN, SIZE_FACTOR_MAX);
 
                 // Update drag offset so that the mouseTreePosition stays the same
@@ -557,13 +557,13 @@ public partial class EvolutionaryTree : Control
                 tree.DrawString(bodyItalicFont.Font,
                     new Vector2(lastNode.Position.X + sizeFactor * TreeNodeSize.X + speciesNameOffset,
                         lastNode.Center.Y), speciesNames[pair.Key], HorizontalAlignment.Left, -1,
-                    Mathf.RoundToInt(size), Colors.DarkRed);
+                    MathUtils.RoundToInt(size), Colors.DarkRed);
             }
             else
             {
                 tree.DrawString(bodyItalicFont.Font,
                     new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.Y),
-                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, Mathf.RoundToInt(size));
+                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, MathUtils.RoundToInt(size));
             }
         }
     }
