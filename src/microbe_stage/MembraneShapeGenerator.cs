@@ -338,24 +338,21 @@ public class MembraneShapeGenerator
 
         float height = Constants.MEMBRANE_HEIGHT;
 
-        if (membraneType.CellWall)
-        {
-            height += 0.1f;
-        }
-
         // Place prism points, already with squishification
         for (int layer = 0; layer < layerCount; layer++)
         {
+            float widthModifier = 1.0f - (MathF.Pow(sideRounding * MathF.Abs(layer - MembraneVerticalResolution)
+                    / MembraneVerticalResolution + 1.0f, smoothingPower) - roundingMinimum) / roundingMaximum;
+
+            float vertical = height * (layer - MembraneVerticalResolution) / MembraneVerticalResolution;
+
             // Iterate through outline points
             for (int i = 0; i < vertexCount; i++)
             {
                 Vector3 point = new Vector3(vertices2D[i].X, 0.0f, vertices2D[i].Y);
 
-                float vertical = height * (layer - MembraneVerticalResolution) / MembraneVerticalResolution;
-
                 Vector3 offsetFromCenter = point - center;
-                offsetFromCenter *= 1.0f - (MathF.Pow(sideRounding * MathF.Abs(layer - MembraneVerticalResolution)
-                    / MembraneVerticalResolution + 1.0f, smoothingPower) - roundingMinimum) / roundingMaximum;
+                offsetFromCenter *= widthModifier;
 
                 point = new Vector3(center.X + offsetFromCenter.X, vertical, center.Z + offsetFromCenter.Z);
 

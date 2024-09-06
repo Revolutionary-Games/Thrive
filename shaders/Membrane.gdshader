@@ -62,6 +62,5 @@ void fragment(){
 
     ALBEDO = final.xyz;
     ALPHA = fresnel(3.0, normals, adjusted_view);
-    // DEPTH = 0.0f;
     ROUGHNESS = 0.7;
 }
