@@ -96,8 +96,8 @@ public class NativeLibs
         else if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Build))
         {
             // Other platforms have cross compile but build defaults to just current platform
-            ColourConsole.WriteWarningLine("Due to performing a build, automatically configuring platforms to be " +
-                "just the current");
+            ColourConsole.WriteWarningLine("Due to performing a non-container build, automatically configuring " +
+                "platforms to be just the current");
             platforms = new List<PackagePlatform> { PlatformUtilities.GetCurrentPlatform() };
         }
         else
@@ -444,25 +444,28 @@ public class NativeLibs
 
         ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
         var libraryVersion = NativeConstants.GetLibraryVersion(library);
-        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
-            false, tag);
+        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false, tag);
         var originalLinkTo = linkTo;
+
+        ColourConsole.WriteDebugLine($"Primary wanted source for library: {linkTo}");
 
         if (!File.Exists(linkTo))
         {
             // Fall back to distributable version
-            ColourConsole.WriteNormalLine("Falling back to attempting distributable version");
+            ColourConsole.WriteNormalLine("Falling back to attempting other variants of library");
 
-            linkTo = TryToFindInstallSource(
-                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
-
-                // Using AVX variant is fine locally
-                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
-                    tag | PrecompiledTag.WithoutAvx),
-                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+            // Using a different AVX variant is fine locally, then try the original tag but distributable version
+            linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
+                    false,
                     tag | PrecompiledTag.WithoutAvx),
                 NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
                     tag & ~PrecompiledTag.WithoutAvx),
+
+                // Fallback to distributables after checking local variants all first
+                NativeConstants
+                    .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                    tag | PrecompiledTag.WithoutAvx),
                 NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
                     tag & ~PrecompiledTag.WithoutAvx));
 
@@ -482,6 +485,8 @@ public class NativeLibs
 
         CreateLinkTo(linkFile, linkTo);
 
+        ColourConsole.WriteNormalLine($"Installed library from: {linkTo}");
+
         ColourConsole.WriteSuccessLine($"Successfully installed {library} to editor for {platform}");
         return Task.FromResult(true);
     }
@@ -490,8 +495,8 @@ public class NativeLibs
     {
         foreach (var item in toCheck)
         {
+            ColourConsole.WriteDebugLine($"Checking library at: {item}");
             if (File.Exists(item))
-
                 return item;
         }
 
