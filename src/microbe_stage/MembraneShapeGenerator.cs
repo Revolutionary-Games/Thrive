@@ -162,7 +162,7 @@ public class MembraneShapeGenerator
                 int id = i + layer * vertexCount;
                 float turnFraction = 2.0f * MathF.PI * i / vertexCount;
 
-                float y = 0.9f * Mathf.Abs(layer - MembraneVerticalResolution) / (float)MembraneVerticalResolution;
+                float y = 0.9f * Mathf.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
 
                 (float sin, float cos) = MathF.SinCos(turnFraction);
 
