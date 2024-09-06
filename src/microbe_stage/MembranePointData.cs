@@ -16,6 +16,9 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
     private float radius;
 
+    private float height;
+
+    private bool heightCalculated;
     private bool radiusCalculated;
     private bool disposed;
 
@@ -105,6 +108,20 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
         }
     }
 
+    /// <summary>
+    ///   Membrane's height. Should be used as a multiplier for a constant value
+    /// </summary>
+    public float Height
+    {
+        get
+        {
+            if (!heightCalculated)
+                CalculateHeight();
+
+            return height;
+        }
+    }
+
     public bool Disposed => disposed;
 
     public bool MatchesCacheParameters(ICacheableData cacheData)
@@ -148,6 +165,13 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
 
         radius = Mathf.Sqrt(distanceSquared);
         radiusCalculated = true;
+    }
+
+    private void CalculateHeight()
+    {
+        // Note: at 10 hexes, the value should be at least 1.75, so that nucleus can't be partly outside of membrane
+        height = Mathf.Clamp(HexPositionCount / 8.0f + 0.55f, 1.0f, 3.0f);
+        heightCalculated = true;
     }
 
     private void ReleaseSharedData()
