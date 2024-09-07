@@ -62,7 +62,7 @@ void fragment(){
     + normalmap.y * BINORMAL;
     
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
-    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.8));
+    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 1.0));
 
     ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, adjusted_normals, adjusted_view);
