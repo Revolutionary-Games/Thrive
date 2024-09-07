@@ -50,20 +50,20 @@ void fragment(){
         float(-0.482 + clamp(dissolveValue, 0, 1));
 
     vec3 adjusted_view = VIEW;
-    // Make the camera seem higher than it actually is.
+    // Move fresnel's center closer to membrane's top
     // Not an absolutely necessary step, but it makes fresnel look better
     adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
 
     normalmap = normalmap * 2.0 - 1.0;
 
-    vec3 normals = normalmap.z * NORMAL
+    vec3 adjusted_normals = normalmap.z * NORMAL
     + normalmap.x * TANGENT
     + normalmap.y * BINORMAL;
     
-    // Mix basic normals with detail normals in some proportion
-    normals = normalize(mix(NORMAL, normals, 1.0));
+    // Mix base normals with detail normals in some proportion (0.0 - 1.0)
+    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 1.0));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, normals, adjusted_view);
+    ALPHA = fresnel(3.0, adjusted_normals, adjusted_view);
     ROUGHNESS = 0.7;
 }
