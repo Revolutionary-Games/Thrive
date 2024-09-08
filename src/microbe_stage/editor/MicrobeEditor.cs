@@ -20,8 +20,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     [Export]
     public NodePath CellEditorTabPath = null!;
 
-    private Patch? patchToUseForReport;
-
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -56,6 +54,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     [JsonIgnore]
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
+
+    [JsonIgnore]
+    public Patch? TargetPatch => patchMapTab.TargetPatch;
 
     [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
@@ -105,8 +106,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        patchToUseForReport = patch;
-
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
 
@@ -154,7 +153,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
         }
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
@@ -180,8 +179,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             editorComponent.Init(this, fresh);
         }
-
-        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEnterEditor()
@@ -234,7 +231,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
     }
 
     protected override void ElapseEditorEntryTime()
@@ -295,8 +292,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             {
                 reportTab.Show();
                 SetEditorObjectVisibility(false);
-
-                reportTab.UpdatePatchDetailsIfNeeded(patchToUseForReport ?? patchMapTab.CurrentPatch);
+                reportTab.UpdatePatchDetailsIfNeeded(SelectedPatch ?? CurrentPatch);
                 break;
             }
 
@@ -357,10 +353,5 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
         cellEditorTab.UnlockAllOrganelles();
-    }
-
-    private void OnSelectPatchForReportTab(Patch patch)
-    {
-        patchToUseForReport = patch;
     }
 }

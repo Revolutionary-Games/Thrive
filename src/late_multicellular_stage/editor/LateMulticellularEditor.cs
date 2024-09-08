@@ -105,6 +105,9 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
     [JsonIgnore]
+    public Patch? TargetPatch => patchMapTab.TargetPatch;
+
+    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     [JsonIgnore]
@@ -135,8 +138,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     public void OnCurrentPatchUpdated(Patch patch)
     {
         cellEditorTab.OnCurrentPatchUpdated(patch);
-
-        reportTab.UpdatePatchDetails(patch);
 
         UpdateBackgrounds(patch);
     }
@@ -236,7 +237,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
         }
 
         UpdateBackgrounds(CurrentPatch);
@@ -256,8 +257,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
         {
             editorComponent.Init(this, fresh);
         }
-
-        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)
@@ -293,7 +292,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
     }
 
     protected override void OnUndoPerformed()
@@ -354,6 +353,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
             {
                 reportTab.Show();
                 SetEditorObjectVisibility(false);
+                reportTab.UpdatePatchDetailsIfNeeded(SelectedPatch ?? CurrentPatch);
                 break;
             }
 
@@ -457,11 +457,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
         }
 
         base.Dispose(disposing);
-    }
-
-    private void OnSelectPatchForReportTab(Patch patch)
-    {
-        reportTab.UpdatePatchDetails(patch, patch);
     }
 
     private void UpdateBackgrounds(Patch patch)

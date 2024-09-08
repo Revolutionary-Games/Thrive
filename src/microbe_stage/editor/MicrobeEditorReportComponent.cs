@@ -134,11 +134,13 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public void UpdateReportTabPatchSelector()
     {
-        UpdateReportTabPatchName(Editor.CurrentPatch);
+        var patchSelected = currentlyDisplayedPatch ?? (Editor.TargetPatch ?? Editor.CurrentPatch);
+
+        UpdateReportTabPatchName(patchSelected);
 
         reportTabPatchSelector.Clear();
 
-        foreach (var patch in Editor.CurrentPatch.GetClosestConnectedPatches())
+        foreach (var patch in patchSelected.GetClosestConnectedPatches())
         {
             if (patch.Visibility != MapElementVisibility.Shown)
                 continue;
@@ -146,7 +148,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             reportTabPatchSelector.AddItem(patch.Name.ToString(), patch.ID);
         }
 
-        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(Editor.CurrentPatch.ID));
+        reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchSelected.ID));
     }
 
     public void UpdatePatchDetailsIfNeeded(Patch selectedPatch)
@@ -224,12 +226,14 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     protected override void OnTranslationsChanged()
     {
+        var patchToDisplay = currentlyDisplayedPatch ?? (Editor.TargetPatch ?? Editor.CurrentPatch);
+
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
         UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
-        UpdateTimeline(Editor.SelectedPatch);
+        UpdateTimeline(patchToDisplay);
         UpdateReportTabPatchSelector();
-        UpdateReportTabStatistics(Editor.CurrentPatch);
+        UpdateReportTabStatistics(patchToDisplay);
     }
 
     protected override void RegisterTooltips()

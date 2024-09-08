@@ -5,6 +5,8 @@ public interface IEditorReportData : IEditor
 {
     public Patch CurrentPatch { get; }
 
+    public Patch? TargetPatch { get; }
+
     public Patch? SelectedPatch { get; }
 
     public void SendAutoEvoResultsToReportComponent();
