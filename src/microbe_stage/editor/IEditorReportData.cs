@@ -4,13 +4,13 @@
 public interface IEditorReportData : IEditor
 {
     /// <summary>
-    ///   Returns the patch the player is currently in
+    ///   Returns the patch the player is currently in. If the player wants to move, returns the same
+    ///   as <see cref="TargetPatch"/>
     /// </summary>
     public Patch CurrentPatch { get; }
 
     /// <summary>
-    ///   Returns the patch the player wants to move after editing. If the player doesn't want to move, returns
-    ///   the same as <see cref="CurrentPatch"/>
+    ///   Returns the patch the player wants to move after editing
     /// </summary>
     public Patch? TargetPatch { get; }
 
