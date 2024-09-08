@@ -204,7 +204,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
@@ -267,7 +267,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
     }
 
     protected override void OnUndoPerformed()

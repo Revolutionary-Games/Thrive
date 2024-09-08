@@ -237,7 +237,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
         }
 
         UpdateBackgrounds(CurrentPatch);
@@ -292,7 +292,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.TargetPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
     }
 
     protected override void OnUndoPerformed()
