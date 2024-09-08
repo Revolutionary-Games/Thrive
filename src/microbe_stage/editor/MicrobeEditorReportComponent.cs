@@ -86,6 +86,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
 
+    private Patch? currentlyDisplayedPatch;
+
     public enum ReportSubtab
     {
         AutoEvo,
@@ -147,8 +149,18 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(Editor.CurrentPatch.ID));
     }
 
+    public void UpdatePatchDetailsIfNeeded(Patch selectedPatch)
+    {
+        if (currentlyDisplayedPatch == null || currentlyDisplayedPatch != selectedPatch)
+        {
+            UpdatePatchDetails(selectedPatch);
+        }
+    }
+
     public void UpdatePatchDetails(Patch currentOrSelectedPatch, Patch? selectedPatch = null)
     {
+        currentlyDisplayedPatch = currentOrSelectedPatch;
+
         selectedPatch ??= currentOrSelectedPatch;
 
         UpdateReportTabStatistics(currentOrSelectedPatch);

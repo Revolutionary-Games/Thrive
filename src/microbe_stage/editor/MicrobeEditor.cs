@@ -20,6 +20,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     [Export]
     public NodePath CellEditorTabPath = null!;
 
+    private Patch? patchToUseForReport;
+
 #pragma warning disable CA2213
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -103,7 +105,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         cellEditorTab.OnCurrentPatchUpdated(patch);
 
-        reportTab.UpdatePatchDetails(patch);
+        patchToUseForReport = patch;
 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
@@ -293,6 +295,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             {
                 reportTab.Show();
                 SetEditorObjectVisibility(false);
+
+                reportTab.UpdatePatchDetailsIfNeeded(patchToUseForReport ?? patchMapTab.CurrentPatch);
                 break;
             }
 
@@ -357,6 +361,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     private void OnSelectPatchForReportTab(Patch patch)
     {
-        reportTab.UpdatePatchDetails(patch, patch);
+        patchToUseForReport = patch;
     }
 }
