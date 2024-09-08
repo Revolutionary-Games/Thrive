@@ -134,7 +134,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public void UpdateReportTabPatchSelector()
     {
-        var patchSelected = currentlyDisplayedPatch ?? (Editor.TargetPatch ?? Editor.CurrentPatch);
+        var patchSelected = currentlyDisplayedPatch ?? Editor.CurrentPatch;
 
         UpdateReportTabPatchName(patchSelected);
 
@@ -226,7 +226,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     protected override void OnTranslationsChanged()
     {
-        var patchToDisplay = currentlyDisplayedPatch ?? (Editor.TargetPatch ?? Editor.CurrentPatch);
+        var patchToDisplay = currentlyDisplayedPatch ?? Editor.CurrentPatch;
 
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
