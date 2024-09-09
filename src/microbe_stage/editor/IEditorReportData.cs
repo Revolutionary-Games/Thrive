@@ -15,7 +15,7 @@ public interface IEditorReportData : IEditor
     public Patch? TargetPatch { get; }
 
     /// <summary>
-    ///   Returns the patch the player selected in the patch map
+    ///   Returns the patch the player selected in the patch map (for displaying in the GUI)
     /// </summary>
     public Patch? SelectedPatch { get; }
 
