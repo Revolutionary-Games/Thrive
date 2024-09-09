@@ -155,17 +155,18 @@ public class MembraneShapeGenerator
     private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs,
         Vector3[] normals)
     {
+        float uvAngleModifier = 2.0f * MathF.PI / vertexCount;
+
         for (int layer = 0; layer < layerCount; ++layer)
         {
             for (int i = 0; i < vertexCount; ++i)
             {
                 int id = i + layer * vertexCount;
-                float turnFraction = 2.0f * MathF.PI * i / vertexCount;
 
                 float y = 0.9f * MathF.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
-                (float sin, float cos) = MathF.SinCos(turnFraction);
+                (float sin, float cos) = MathF.SinCos(uvAngleModifier * i);
 
-                Vector2 direction = 0.98f * (1.0f - y) * new Vector2(sin, cos) / 2.0f + new Vector2(0.5f, 0.5f);
+                Vector2 direction = (1.0f - y) * new Vector2(sin, cos) * 0.49f + new Vector2(0.5f, 0.5f);
 
                 uvs[id] = direction;
 
@@ -356,9 +357,12 @@ public class MembraneShapeGenerator
             }
         }
 
+        // Top vertex
         vertices[vertices.Length - 1] = new Vector3(center.X,
-            vertices[(layerCount - 1) * vertexCount].Y, center.Z); // Top vertex
-        vertices[vertices.Length - 2] = new Vector3(center.X, vertices[0].Y, center.Z); // Bottom vertex
+            vertices[(layerCount - 1) * vertexCount].Y, center.Z);
+
+        // Bottom vertex
+        vertices[vertices.Length - 2] = new Vector3(center.X, vertices[0].Y, center.Z);
 
         // Index mapping to build all triangles
         var indices = new int[indexSize];
