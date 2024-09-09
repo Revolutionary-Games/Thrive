@@ -11,7 +11,9 @@ project(Thrive)
 
 option(THRIVE_AVX "Create faster code that needs AVX2" ON)
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
-option(USE_OBJECT_POOLS "Use object pools instead of direct memory allocation" ON)
+option(USE_OBJECT_POOLS
+  "Use object pools instead of direct memory allocation (can be turned off for memory debugging)"
+  ON)
 option(LOCK_FREE_COLLISION_RECORDING "Use lock-free collision data recording" ON)
 option(USE_SMALL_VECTOR_POOLS "Use pools for small list allocations in physics" OFF)
 option(USE_LOCK_FREE_QUEUE "Use lock-free data structures" ON)
