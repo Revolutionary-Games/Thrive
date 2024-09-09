@@ -38,7 +38,7 @@ void vertex(){
 
 void fragment(){
     vec4 normal = texture(texture, UV);
-    vec4 final = normal * tint;
+    vec4 final = normal * mix(vec4(1.0), tint, 0.4);
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
 

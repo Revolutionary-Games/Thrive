@@ -300,9 +300,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
         organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
-        // To make organelles' colour dependent on membrane's colour:
-        // var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
-        var organelleColour = Colors.White;
+        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
 
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
