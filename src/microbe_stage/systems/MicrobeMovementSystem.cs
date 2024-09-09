@@ -90,19 +90,19 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         var unsignedTurnAngle = Math.Abs(turnAngle);
 
         // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
-        var blendFactor = Mathf.Pi / 4.0f * Mathf.Min(unsignedTurnAngle *
+        var blendFactor = MathF.PI / 4.0f * MathF.Min(unsignedTurnAngle *
             (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
 
         // Simplify turns to 90 degrees to keep consistent turning speed
         if (turnAngle > 0.0f)
         {
             lookVector = (position.Rotation
-                * new Vector3(-Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
+                * new Vector3(-MathF.Sin(blendFactor), 0, -MathF.Cos(blendFactor))).Normalized();
         }
         else if (turnAngle < 0.0f)
         {
             lookVector = (position.Rotation
-                * new Vector3(Mathf.Sin(blendFactor), 0, -Mathf.Cos(blendFactor))).Normalized();
+                * new Vector3(MathF.Sin(blendFactor), 0, -MathF.Cos(blendFactor))).Normalized();
         }
         else if (lookVectorLength > MathUtils.EPSILON)
         {
@@ -195,10 +195,17 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
                 strain.IsUnderStrain = false;
             }
 
-            // Remove ATP due to strain even if not moving
-            // This is calculated similarly to the regular movement cost for consistency
-            var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
-            compounds.TakeCompound(atp, strainCost);
+            // Remove ATP due to strain even if not moving (but only if strain is active, because otherwise this would
+            // take the movement cost even while not moving meaning the editor ATP balance bar would be totally
+            // inaccurate)
+            if (strainMultiplier > 1)
+            {
+                // This is calculated similarly to the regular movement cost for consistency
+                // TODO: is it fine for this to be so punishing? By taking the base movement cost here even though
+                // the cell is not moving (this could take just the portion of strain multiplier that is above 1)
+                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
+                compounds.TakeCompound(atp, strainCost);
+            }
 
             // Slime jets work even when not holding down any movement keys
             var jetMovement = CalculateMovementFromSlimeJets(ref organelles);

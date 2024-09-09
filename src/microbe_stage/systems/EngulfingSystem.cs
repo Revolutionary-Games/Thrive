@@ -19,7 +19,7 @@ using World = DefaultEcs.World;
 /// <remarks>
 ///   <para>
 ///     In an optimal ECS design this would be a much more general system, but due to being ported from the old
-///     microbe code, this is heavily dependent on microbes being the engulfers. If this was done with a brand new
+///     microbe code, this is heavily dependent on microbes being the engulfers. If this was done with a brand-new
 ///     design this code wouldn't be this good to have so many assumptions about the types of engulfers.
 ///   </para>
 /// </remarks>
@@ -286,13 +286,13 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                     engulfer.EngulfedObjects.RemoveAt(i);
                 }
 
-                var currentEndosomeScale = Vector3.One * Mathf.Epsilon;
+                var currentEndosomeScale = Vector3.One * MathUtils.EPSILON;
                 var endosome = GetEndosomeIfExists(entity, engulfedEntity);
 
                 if (endosome != null)
                     currentEndosomeScale = endosome.Scale;
 
-                transportData.TargetValuesToLerp = (null, null, Vector3.One * Mathf.Epsilon);
+                transportData.TargetValuesToLerp = (null, null, Vector3.One * MathUtils.EPSILON);
                 StartBulkTransport(ref engulfable, ref engulfedEntity.Get<AttachedToEntity>(), 1.5f,
                     currentEndosomeScale, false);
             }
@@ -652,7 +652,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         // calculated accordingly to hopefully minimize any part of the object sticking out the membrane.
         // Note: extremely long and thin objects might still stick out
 
-        var targetRadiusNormalized = Mathf.Clamp(targetRadius / radius, 0.0f, 1.0f);
+        var targetRadiusNormalized = Math.Clamp(targetRadius / radius, 0.0f, 1.0f);
 
         // This needs to convert the relative vector from world space to engulfer local space as this is used
         // as the attached component position, so it is applied relative to the engulfer and its rotation
@@ -714,7 +714,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         // In the case of flat mesh (like membrane) we don't want the endosome to end up completely flat
         // as it can cause unwanted visual glitch
-        if (boundingBoxSize.Y < Mathf.Epsilon)
+        if (boundingBoxSize.Y < MathUtils.EPSILON)
             boundingBoxSize = new Vector3(boundingBoxSize.X, 0.1f, boundingBoxSize.Z);
 
         return ingestionPoint;
@@ -744,7 +744,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private static Vector3 CalculateInitialEndosomeScale()
     {
         // TODO check what the initial scale of the endosome should be?
-        var initialEndosomeScale = Vector3.One * Mathf.Epsilon;
+        var initialEndosomeScale = Vector3.One * MathUtils.EPSILON;
         return initialEndosomeScale;
     }
 
@@ -1450,7 +1450,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         }
 
         // Animate object move to the nearest point of the membrane
-        var targetEndosomeScale = Vector3.One * Mathf.Epsilon;
+        var targetEndosomeScale = Vector3.One * MathUtils.EPSILON;
 
         var endosome = GetEndosomeIfExists(entity, engulfedObject);
 
@@ -1751,7 +1751,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
             var fraction = animation.AnimationTimeElapsed / animation.LerpDuration;
 
             // Ease out
-            fraction = Mathf.Sin(fraction * Mathf.Pi * 0.5f);
+            fraction = MathF.Sin(fraction * MathF.PI * 0.5f);
 
             if (animation.TargetValuesToLerp.Position.HasValue)
             {

@@ -165,9 +165,13 @@ public class MicrobeSpecies : Species, ICellDefinition
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
         // which could basically make them die instantly in certain situations)
         var simulationParameters = SimulationParameters.Instance;
+
+        // TODO: improve this depending on the default patch: https://github.com/Revolutionary-Games/Thrive/issues/5446
         var biomeConditions = simulationParameters.GetBiome("default").Conditions;
+
+        // False is passed here until we can make the initial compounds patch specific
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
-            biomeConditions, CompoundAmountType.Biome);
+            biomeConditions, CompoundAmountType.Biome, false);
 
         var glucose = simulationParameters.GetCompound("glucose");
         var atp = simulationParameters.GetCompound("atp");
@@ -278,6 +282,11 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public override object Clone()
     {
+        return Clone(true);
+    }
+
+    public MicrobeSpecies Clone(bool cloneOrganelles)
+    {
         var result = new MicrobeSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
@@ -286,15 +295,9 @@ public class MicrobeSpecies : Species, ICellDefinition
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-
-        var organelles = Organelles.Organelles;
-        var organelleCount = organelles.Count;
-
-        for (int i = 0; i < organelleCount; ++i)
+        if (cloneOrganelles)
         {
-            result.Organelles.AddFast((OrganelleTemplate)organelles[i].Clone(), workMemory1, workMemory2);
+            result.Organelles = Organelles.Clone();
         }
 
         return result;

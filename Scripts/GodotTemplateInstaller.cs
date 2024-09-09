@@ -19,7 +19,7 @@ public class GodotTemplateInstaller
         var targetPath = ThriveProperties.GetGodotTemplateInstallPath(GodotVersion.GODOT_VERSION_FULL);
 
         var downloadUrl =
-            $"https://downloads.tuxfamily.org/godotengine/{GodotVersion.GODOT_VERSION}/mono/Godot_v" +
+            $"https://github.com/godotengine/godot/releases/download/{GodotVersion.GODOT_VERSION}-stable/Godot_v" +
             $"{GodotVersion.GODOT_VERSION}-stable_mono_export_templates.tpz";
 
         ColourConsole.WriteInfoLine($"Installing templates to {targetPath} from {downloadUrl}");
@@ -32,6 +32,11 @@ public class GodotTemplateInstaller
             await Download(downloadUrl, tempFile, cancellationToken);
 
             ExtractTemplates(tempFile, targetPath);
+        }
+        catch (Exception e)
+        {
+            ColourConsole.WriteErrorLine($"Error downloading or extracting templates: {e}");
+            return false;
         }
         finally
         {

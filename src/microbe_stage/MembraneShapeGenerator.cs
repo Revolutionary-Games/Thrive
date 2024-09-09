@@ -58,14 +58,14 @@ public class MembraneShapeGenerator
         for (int i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
-            if (Mathf.Abs(pos.X) + 1 > cellDimensions)
+            if (MathF.Abs(pos.X) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.X) + 1;
+                cellDimensions = (int)MathF.Abs(pos.X) + 1;
             }
 
-            if (Mathf.Abs(pos.Y) + 1 > cellDimensions)
+            if (MathF.Abs(pos.Y) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.Y) + 1;
+                cellDimensions = (int)MathF.Abs(pos.Y) + 1;
             }
         }
 
@@ -149,7 +149,7 @@ public class MembraneShapeGenerator
     {
         // common variables
         float height = 0.1f;
-        float multiplier = 2.0f * Mathf.Pi;
+        float multiplier = 2.0f * MathF.PI;
         var center = new Vector2(0.5f, 0.5f);
 
         // cell walls need obvious inner/outer membranes (we can worry
@@ -163,7 +163,7 @@ public class MembraneShapeGenerator
         uvs[writeIndex] = center;
         ++writeIndex;
 
-        for (int i = 0, end = vertexCount; i < end + 1; i++)
+        for (int i = 0, end = vertexCount; i < end + 1; ++i)
         {
             // Finds the UV coordinates be projecting onto a plane and
             // stretching to fit a circle.
@@ -174,7 +174,7 @@ public class MembraneShapeGenerator
             vertices[writeIndex] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
 
             uvs[writeIndex] = center +
-                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
+                new Vector2(MathF.Cos(currentRadians), MathF.Sin(currentRadians)) / 2;
 
             ++writeIndex;
         }
@@ -399,13 +399,13 @@ public class MembraneShapeGenerator
             }
         }
 
-        float waveFrequency = 2.0f * Mathf.Pi * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
+        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
 
         float heightMultiplier = membraneType.CellWall ?
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
 
-        float waveHeight = Mathf.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
+        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
             * heightMultiplier;
 
         // Make the membrane wavier
@@ -418,7 +418,7 @@ public class MembraneShapeGenerator
             // Turn 90 degrees
             direction = new Vector2(-direction.Y, direction.X);
 
-            var movement = direction * Mathf.Sin(waveFrequency * i) * waveHeight;
+            var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
 
             vertices2D[i] = point + movement;
         }

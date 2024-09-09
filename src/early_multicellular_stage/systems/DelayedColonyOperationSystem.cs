@@ -54,7 +54,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         {
             GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
                 "a valid value");
-            bodyPlanIndex = Mathf.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
+            bodyPlanIndex = Math.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
         }
 
         var attachPosition = new AttachedToEntity

@@ -242,7 +242,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
 
-        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
+        float localGrabRadiusSquared = MathF.Pow(radius / resolution, 2);
 
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
@@ -259,20 +259,20 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             // For simplicity all points within a bounding box around the
             // relative origin point is calculated and that is restricted by
             // checking if the point is within the circle before grabbing
-            int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
-            int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
+            int xEnd = (int)MathF.Round(cloudRelativeX + localGrabRadius);
+            int yEnd = (int)MathF.Round(cloudRelativeY + localGrabRadius);
 
             // No lock needed here now as AbsorbCompounds now uses atomic reads and updates
-            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
+            for (int x = (int)MathF.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
+                for (int y = (int)MathF.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
                         continue;
 
                     // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                    if (MathF.Pow(x - cloudRelativeX, 2) + MathF.Pow(y - cloudRelativeY, 2) >
                         localGrabRadiusSquared)
                     {
                         // Not in it

@@ -146,7 +146,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
                 distanceSquared = currentDistance;
         }
 
-        radius = Mathf.Sqrt(distanceSquared);
+        radius = MathF.Sqrt(distanceSquared);
         radiusCalculated = true;
     }
 

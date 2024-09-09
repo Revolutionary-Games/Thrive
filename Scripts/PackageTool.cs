@@ -26,6 +26,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private const string STEAM_README_TEMPLATE = "doc/steam_license_readme.txt";
 
+    private const string MONO_IDENTIFIER = ".mono.";
+
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
 
     private static readonly IReadOnlyList<PackagePlatform> ThrivePlatforms = new List<PackagePlatform>
@@ -102,9 +104,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         new("assets/misc/thrive_logo_big.png", "Thrive.png", PackagePlatform.Linux),
     };
 
+    private static bool checkedGodot;
+
     private string thriveVersion;
 
-    private bool checkedGodot;
     private bool steamMode;
 
     private IDehydrateCache? cacheForNextMetaToWrite;
@@ -113,14 +116,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (options.Dehydrated)
         {
-            DefaultPlatforms = new[] { PackagePlatform.Linux, PackagePlatform.Windows };
+            DefaultPlatforms = [PackagePlatform.Linux, PackagePlatform.Windows];
         }
         else
         {
-            // For now our mac builds kind of need to be done on a mac so this reflects that
+            // For now our mac builds kind of need to be done on a Mac so this reflects that
             if (OperatingSystem.IsMacOS())
             {
-                DefaultPlatforms = new[] { PackagePlatform.Mac };
+                DefaultPlatforms = [PackagePlatform.Mac];
             }
             else
             {
@@ -163,9 +166,87 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
     }
 
+    public static async Task<bool> CheckGodotIsAvailable(CancellationToken cancellationToken,
+        string requiredVersion = GodotVersion.GODOT_VERSION)
+    {
+        if (checkedGodot)
+            return true;
+
+        var godot = ExecutableFinder.Which("godot");
+
+        if (godot == null)
+        {
+            ExecutableFinder.PrintPathInfo(Console.Out);
+            ColourConsole.WriteErrorLine("Godot not found in PATH with name \"godot\" please make it available");
+            return false;
+        }
+
+        // Version check
+        var startInfo = new ProcessStartInfo(godot);
+        startInfo.ArgumentList.Add("--version");
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        // Seems like Godot sometimes gives 255 for the version reading
+        if (result.ExitCode != 0 && result.ExitCode != 255)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Running godot for version check failed (exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        var match = GodotVersionRegex.Match(result.FullOutput);
+
+        if (!match.Success)
+        {
+            ColourConsole.WriteErrorLine(
+                "Godot is installed but it is either not the mono version or the version could not be detected " +
+                $"for some reason from: {result.FullOutput}");
+            return false;
+        }
+
+        var version = match.Groups[1].Value;
+
+        if (version != requiredVersion)
+        {
+            ColourConsole.WriteErrorLine($"Godot is available but it is the wrong version (installed) {version} != " +
+                $"{requiredVersion} (required)");
+            return false;
+        }
+
+        if (!result.FullOutput.Contains(MONO_IDENTIFIER))
+        {
+            ColourConsole.WriteErrorLine(
+                "Godot is available but it doesn't seem like it is the .NET (mono) version. Check output: " +
+                result.FullOutput);
+            return false;
+        }
+
+        checkedGodot = true;
+        return true;
+    }
+
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
-        // For now, by default disable Steam mode to make the script easier to use
+        // Make sure Godot Editor is configured with right native libraries as it exports them itself
+        ColourConsole.WriteInfoLine("Making sure GDExtension is installed in Godot as distributable version");
+
+        var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
+        {
+            DebugLibrary = false,
+            DisableColour = options.DisableColour,
+            Verbose = options.Verbose,
+            PrepareGodotAPI = true,
+        });
+
+        if (!await nativeLibraryTool.InstallEditorLibrariesBeforeRelease())
+        {
+            ColourConsole.WriteErrorLine(
+                "Failed to prepare editor libraries. Please run the native 'Fetch' tool first.");
+            return false;
+        }
+
+        // By default, disable Steam mode to make the script easier to use
         options.Steam ??= false;
 
         if (options.Steam != null)
@@ -176,6 +257,22 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         else
         {
             steamMode = await SteamBuild.IsSteamBuildEnabled(cancellationToken);
+        }
+
+        // Make sure Thrive has been compiled as this seems to be able to cause an issue where the back button from
+        // new game settings doesn't work
+        ColourConsole.WriteNormalLine("Making sure Thrive C# code is compiled");
+
+        var startInfo = new ProcessStartInfo("dotnet");
+        startInfo.ArgumentList.Add("build");
+        startInfo.ArgumentList.Add(SteamBuild.THRIVE_CSPROJ);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteWarningLine("Building Thrive with dotnet failed");
+            return false;
         }
 
         var currentCommit = await GitRunHelpers.GetCurrentCommit("./", cancellationToken);
@@ -222,6 +319,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         await BuildInfoWriter.WriteBuildInfo(currentCommit, currentBranch, options.Dehydrated, cancellationToken);
 
+        ColourConsole.WriteSuccessLine("Pre-build operations succeeded");
         return true;
     }
 
@@ -240,7 +338,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     protected override async Task<bool> PrepareToExport(PackagePlatform platform, CancellationToken cancellationToken)
     {
-        // TODO: mac steam support
+        // TODO: Mac steam support
         if (options.Steam != null && platform is not PackagePlatform.Mac and not PackagePlatform.Web)
         {
             if (!await SteamBuild.SetBuildMode(options.Steam.Value, true, cancellationToken,
@@ -390,6 +488,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             DebugLibrary = false,
             DisableColour = options.DisableColour,
             Verbose = options.Verbose,
+            PrepareGodotAPI = true,
+
+            // Only the ThriveNative library is needed for manual copy (extension is copied by Godot)
+            Libraries = [NativeConstants.Library.ThriveNative],
         });
 
         ColourConsole.WriteNormalLine("Copying native libraries (hopefully they were downloaded / compiled already)");
@@ -607,58 +709,6 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         ColourConsole.WriteWarningLine(STEAM_BUILD_MESSAGE);
         AddReprintMessage(STEAM_BUILD_MESSAGE);
-    }
-
-    private async Task<bool> CheckGodotIsAvailable(CancellationToken cancellationToken,
-        string requiredVersion = GodotVersion.GODOT_VERSION)
-    {
-        if (checkedGodot)
-            return true;
-
-        var godot = ExecutableFinder.Which("godot");
-
-        if (godot == null)
-        {
-            ExecutableFinder.PrintPathInfo(Console.Out);
-            ColourConsole.WriteErrorLine("Godot not found in PATH with name \"godot\" please make it available");
-            return false;
-        }
-
-        // Version check
-        var startInfo = new ProcessStartInfo(godot);
-        startInfo.ArgumentList.Add("--version");
-
-        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
-
-        // Seems like Godot sometimes gives 255 for the version reading
-        if (result.ExitCode != 0 && result.ExitCode != 255)
-        {
-            ColourConsole.WriteErrorLine(
-                $"Running godot for version check failed (exit: {result.ExitCode}): {result.FullOutput}");
-            return false;
-        }
-
-        var match = GodotVersionRegex.Match(result.FullOutput);
-
-        if (!match.Success)
-        {
-            ColourConsole.WriteErrorLine(
-                "Godot is installed but it is either not the mono version or the version could not be detected " +
-                $"for some reason from: {result.FullOutput}");
-            return false;
-        }
-
-        var version = match.Groups[1].Value;
-
-        if (version != requiredVersion)
-        {
-            ColourConsole.WriteErrorLine($"Godot is available but it is the wrong version (installed) {version} != " +
-                $"{requiredVersion} (required)");
-            return false;
-        }
-
-        checkedGodot = true;
-        return true;
     }
 
     private async Task CreateDynamicallyGeneratedFiles(CancellationToken cancellationToken)

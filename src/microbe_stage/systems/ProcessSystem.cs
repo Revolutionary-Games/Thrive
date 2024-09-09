@@ -266,11 +266,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <remarks>
     ///   <para>
     ///     Assumes that all processes run at maximum speed but only if input compounds are present in
-    ///     <see cref="biome"/>
+    ///     <see cref="biome"/> when <see cref="requireInputCompoundsInBiome"/> is true. If false processes can be
+    ///     assumed to run at normal speed even without the input compounds being present in the given biome.
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType)
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        bool requireInputCompoundsInBiome)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -286,7 +288,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var process in organelle.RunnableProcesses)
             {
-                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
+                var speedAdjusted =
+                    CalculateProcessMaximumSpeed(process, biome, amountType, requireInputCompoundsInBiome);
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -306,9 +309,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType)
+        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        bool requireInputCompoundsInBiome)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType);
+        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
+            requireInputCompoundsInBiome);
     }
 
     /// <summary>
@@ -436,14 +441,18 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 processData = CalculateProcessMaximumSpeed(process, biome, amountType, true);
             }
 
-            if (processData.WritableInputs.TryGetValue(ATP, out var amount) && amount > 0)
+            var amount = processData.ATPConsumption;
+
+            if (amount > 0)
             {
                 processATPConsumption += amount;
 
                 result?.AddConsumption(organelle.Definition.InternalName, amount);
             }
 
-            if (processData.WritableOutputs.TryGetValue(ATP, out amount) && amount > 0)
+            amount = processData.ATPProduction;
+
+            if (amount > 0)
             {
                 result?.AddProduction(organelle.Definition.InternalName, amount);
 
@@ -552,7 +561,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             // Normal, cloud input
 
-            result.WritableInputs.Add(entry.Key, entry.Value * speedFactor);
+            var adjustedValue = entry.Value * speedFactor;
+            result.WritableInputs.Add(entry.Key, adjustedValue);
+
+            if (entry.Key == ATP)
+                result.ATPConsumption += adjustedValue;
         }
 
         foreach (var entry in process.Process.Outputs)
@@ -563,6 +576,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             if (amount <= 0)
                 result.WritableLimitingCompounds.Add(entry.Key);
+
+            if (entry.Key == ATP)
+                result.ATPProduction += amount;
         }
 
         result.CurrentSpeed = speedFactor;
@@ -578,7 +594,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         // Assume thermosynthetic processes are most efficient at 100°C and drop off linearly to zero
         var optimal = Constants.OPTIMAL_THERMOPLAST_TEMPERATURE;
-        return Mathf.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
+        return Math.Clamp(temperature / optimal, 0, 2 - temperature / optimal);
     }
 
     /// <summary>

@@ -35,6 +35,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(Engulfer))]
+[ReadsComponent(typeof(StrainAffected))]
 [ReadsComponent(typeof(Engulfable))]
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
@@ -217,12 +218,19 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         if (health.Dead)
             return;
 
+        var strain = 0.0f;
+
+        if (entity.Has<StrainAffected>())
+        {
+            strain = entity.Get<StrainAffected>().CurrentStrain;
+        }
+
         // This shouldn't be needed thanks to the check that this doesn't run on attached entities
         // ref var engulfable = ref entity.Get<Engulfable>();
         // if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
         //     return;
 
-        AIThink(GetNextAIRandom(), in entity, ref ai, ref health);
+        AIThink(GetNextAIRandom(), in entity, ref ai, ref health, strain);
     }
 
     protected override void PostUpdate(float state)
@@ -246,7 +254,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     /// <summary>
     ///   Main AI think function for cells
     /// </summary>
-    private void AIThink(Random random, in Entity entity, ref MicrobeAI ai, ref Health health)
+    private void AIThink(Random random, in Entity entity, ref MicrobeAI ai, ref Health health, float strain)
     {
         ref var absorber = ref entity.Get<CompoundAbsorber>();
 
@@ -255,7 +263,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         ai.PreviouslyAbsorbedCompounds ??= new Dictionary<Compound, float>(absorber.TotalAbsorbedCompounds);
 
-        ChooseActions(in entity, ref ai, ref absorber, ref health, random);
+        ChooseActions(in entity, ref ai, ref absorber, ref health, strain, random);
 
         // Store the absorbed compounds for run and rumble
         ai.PreviouslyAbsorbedCompounds!.Clear();
@@ -270,7 +278,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void ChooseActions(in Entity entity, ref MicrobeAI ai, ref CompoundAbsorber absorber,
-        ref Health health, Random random)
+        ref Health health, float strain, Random random)
     {
         // Fetch all the components that are usually needed
         ref var position = ref entity.Get<WorldPosition>();
@@ -318,7 +326,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR)
         {
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity, predator.Value,
-                speciesFocus, speciesActivity, speciesAggression, speciesFear, random);
+                speciesFocus, speciesActivity, speciesAggression, speciesFear, strain, random);
             return;
         }
 
@@ -331,17 +339,25 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
-        if (ai.ATPThreshold > 0.0f)
+        if (ai.ATPThreshold > MathUtils.EPSILON)
         {
             if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
             {
+                bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
                 {
-                    if (IsVitalCompound(compound.Key, compounds) && compound.Value > 0.0f)
+                    if (IsVitalCompound(compound.Key, compounds) && compound.Value <= MathUtils.EPSILON)
                     {
-                        control.SetMoveSpeed(0.0f);
-                        return;
+                        outOfSomething = true;
+                        break;
                     }
+                }
+
+                // If we have enough of everything that makes atp, wait a bit to generate some more
+                if (!outOfSomething)
+                {
+                    control.SetMoveSpeed(0.0f);
+                    return;
                 }
             }
 
@@ -475,7 +491,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 10.0f * engulfer.EngulfingSize;
 
             EngagePrey(ref ai, ref control, ref organelles, ref position, compounds, entity, prey, engulfPrey,
-                speciesAggression, speciesFocus, speciesActivity, random);
+                speciesAggression, speciesFocus, speciesActivity, strain, random);
             return;
         }
 
@@ -570,7 +586,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                     var rivalDistance = (rival.Position - chosenChunk.Value.Position).LengthSquared();
                     if (rivalDistance < 500.0f && rivalDistance < bestFoundChunkDistance)
                     {
-                        rivals++;
+                        ++rivals;
                     }
                 }
             }
@@ -766,7 +782,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
         ref OrganelleContainer organelles, CompoundBag ourCompounds, in Entity entity, Vector3 predatorLocation,
-        float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear, Random random)
+        float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear, float strain,
+        Random random)
     {
         control.SetStateColonyAware(entity, MicrobeState.Normal);
 
@@ -788,8 +805,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 ai.MoveWithRandomTurn(2.5f, 3.0f, position.Position, ref control, speciesActivity, random);
             }
 
-            // Sprint until full strain
-            control.Sprinting = true;
+            // Sprint until full strain if there isn't too much strain already
+            if (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.75)
+                control.Sprinting = true;
         }
 
         // If prey is confident enough, it will try and launch toxin at the predator
@@ -808,8 +826,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private void EngagePrey(ref MicrobeAI ai, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref WorldPosition position, CompoundBag ourCompounds, in Entity entity, Vector3 target, bool engulf,
-        float speciesAggression,
-        float speciesFocus, float speciesActivity, Random random)
+        float speciesAggression, float speciesFocus, float speciesActivity, float strain, Random random)
     {
         control.SetStateColonyAware(entity, engulf ? MicrobeState.Engulf : MicrobeState.Normal);
         ai.TargetPosition = target;
@@ -828,7 +845,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             control.SetMoveSpeedTowardsPoint(ref position, target, Constants.AI_BASE_MOVEMENT);
 
-            control.Sprinting = true;
+            if (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.5)
+                control.Sprinting = true;
         }
 
         // Predators can use slime jets as an ambush mechanism
@@ -921,7 +939,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // Used to get newly spawned microbes to move.
         if (control.MovementDirection.Length() == 0)
         {
-            ai.MoveWithRandomTurn(0, Mathf.Pi, position.Position, ref control, speciesActivity, random);
+            ai.MoveWithRandomTurn(0, MathF.PI, position.Position, ref control, speciesActivity, random);
             return;
         }
 

@@ -936,7 +936,7 @@ public partial class PhysicsTest : Node
 
         private void SetLookDirection()
         {
-            lookDirection = new Quaternion(Vector3.Up, random.NextSingle() * 2 * Mathf.Pi);
+            lookDirection = new Quaternion(Vector3.Up, random.NextSingle() * 2 * MathF.PI);
         }
     }
 }

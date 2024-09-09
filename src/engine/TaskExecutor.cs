@@ -125,7 +125,7 @@ public class TaskExecutor : IParallelRunner
             if (usedNativeTaskCount == value)
                 return;
 
-            usedNativeTaskCount = Mathf.Clamp(value, 1, MaximumThreadCount);
+            usedNativeTaskCount = Math.Clamp(value, 1, MaximumThreadCount);
 
             NativeInterop.NotifyWantedThreadCountChanged(usedNativeTaskCount);
         }
@@ -174,7 +174,7 @@ public class TaskExecutor : IParallelRunner
         if (managedCount <= 6)
             return 3;
 
-        int targetTaskCount = Mathf.Clamp((int)Math.Round(managedCount * 0.5f), 2, CPUCount);
+        int targetTaskCount = Math.Clamp((int)Math.Round(managedCount * 0.5f), 2, CPUCount);
 
         // Cap the maximum threads as there isn't that much benefit from too many threads
         // And in fact in the benchmark these hurt the first part score
@@ -332,7 +332,7 @@ public class TaskExecutor : IParallelRunner
 
         if (settings.UseManualThreadCount.Value)
         {
-            ParallelTasks = Mathf.Clamp(settings.ThreadCount.Value, MinimumThreadCount, MaximumThreadCount);
+            ParallelTasks = Math.Clamp(settings.ThreadCount.Value, MinimumThreadCount, MaximumThreadCount);
         }
         else
         {

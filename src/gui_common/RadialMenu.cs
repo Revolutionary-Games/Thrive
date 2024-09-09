@@ -162,8 +162,8 @@ public partial class RadialMenu : CenterContainer
         var smallCirclePoints = 60;
         var largeCirclePoints = 80;
 
-        DrawArc(center, RadialCircleStart, 0, Mathf.Pi * 2, smallCirclePoints, CircleColour, 2, true);
-        DrawArc(center, circleEnd, 0, Mathf.Pi * 2, largeCirclePoints, CircleColour, 2, true);
+        DrawArc(center, RadialCircleStart, 0, MathF.PI * 2, smallCirclePoints, CircleColour, 2, true);
+        DrawArc(center, circleEnd, 0, MathF.PI * 2, largeCirclePoints, CircleColour, 2, true);
 
         // Draw lines between items
         var anglePerItem = CalculateAnglePerItem();
@@ -362,11 +362,11 @@ public partial class RadialMenu : CenterContainer
         var mouseAngle = mouseDirection.Angle();
 
         // In the indicator rotation coordinates the mouse is a quarter circle off
-        indicator.Rotation = mouseAngle + Mathf.Pi * 0.5f;
+        indicator.Rotation = mouseAngle + MathF.PI * 0.5f;
 
         // Set indicator position based on the mouse angle. Thanks to this re-calculating the value from scratch the
         // use of GetTransform above doesn't cause an error that would otherwise start to accumulate.
-        indicator.Position = new Vector2(Mathf.Cos(mouseAngle), Mathf.Sin(mouseAngle)) *
+        indicator.Position = new Vector2(MathF.Cos(mouseAngle), MathF.Sin(mouseAngle)) *
             RadialCircleStart + pivotOffset + center;
 
         UpdateHoveredFromAngle(mouseAngle);
@@ -378,7 +378,7 @@ public partial class RadialMenu : CenterContainer
     /// <param name="selectionAngle">The angle towards which the user is pointing</param>
     private void UpdateHoveredFromAngle(float selectionAngle)
     {
-        float fullCircle = Mathf.Pi * 2;
+        float fullCircle = MathF.PI * 2;
         var anglePerItem = CalculateAnglePerItem();
 
         selectionAngle -= (float)FirstItemAngle;

@@ -17,10 +17,12 @@
 namespace Thrive
 {
 /// \brief Handles multithreaded execution of native module code
-class TaskSystem : public JPH::JobSystemWithBarrier,
-                   public NonCopyable
+class TaskSystem final : public JPH::JobSystemWithBarrier,
+                         public NonCopyable
 {
 public:
+    JPH_OVERRIDE_NEW_DELETE;
+
     using SimpleCallable = void (*)();
 
 private:
@@ -134,14 +136,8 @@ public:
 
     // Jolt task interface
 
-    JobHandle CreateJob(const char* inName, JPH::ColorArg inColor, const JobFunction& inJobFunction,
+    virtual JobHandle CreateJob(const char* inName, JPH::ColorArg inColor, const JobFunction& inJobFunction,
         uint32_t inNumDependencies) override;
-
-    void FreeJob(Job* inJob) override;
-
-    void QueueJob(Job* inJob) override;
-
-    void QueueJobs(Job** inJobs, uint32_t inNumJobs) override;
 
     void SetThreads(int count) noexcept;
 
@@ -153,13 +149,20 @@ public:
     /// \brief The number of physics tasks done in parallel
     ///
     /// TODO: determine if it would be good to limit the max physics threads (maybe 16?)
-    [[nodiscard]] int GetMaxConcurrency() const override
+    [[nodiscard]] virtual int GetMaxConcurrency() const override
     {
         return GetThreads();
     }
 
     /// \brief Shuts down all threads and doesn't allow starting more
     void Shutdown();
+
+protected:
+    virtual void FreeJob(Job* inJob) override;
+
+    virtual void QueueJob(Job* inJob) override;
+
+    virtual void QueueJobs(Job** inJobs, uint32_t inNumJobs) override;
 
 private:
 #ifdef USE_LOCK_FREE_QUEUE

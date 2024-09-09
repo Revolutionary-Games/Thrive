@@ -492,3 +492,72 @@
     - Updated YamlDotNet from 15.1.6 to 15.3.0 
     - Updated Jolt Physics Engine version
     - Updated translations
+
+0.7.0:
+  IntroductionText: |
+    This release marks the completion of the 0.6.x roadmap. Next up we'll be working through the items on the 0.7.x roadmap. For this release the major features are a new auto-evo algorithm based on miches that should generate much better AI species, and there's now a convolution surface algorithm which gives macroscopic creatures a "skin" in the prototypes. There's also a lot of smaller new features and tweaks to the microbe stage as usual. The last roadmap items to be completed where engulfing balancing and fixing as well as allowing continuing as a related species in easy mode.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.7.0
+  PatchNotes:
+    - Added a completely new auto-evo algorithm based on a miche algorithm. This should massively improve the species auto-evo generates.
+    - Added convolution surfaces to add "skin" to macroscopic creatures to no longer display them just as a collection of metaballs
+    - Added sprinting ability to get a quick burst of speed
+    - Updated the compound cloud visuals with a new shader for more textured look
+    - Added new environmental chunks that emit phosphate
+    - Added feature to command the player species to migrate to new patches without the player having to move themselves
+    - Added mucocyst upgrade for slime jet which turns it into a defensive shield
+    - Added option to switch to a different species on extinction in easy mode instead of getting a game over
+    - Added a red screen flash as indicator for the player taking damage
+    - Added customization of toxin toxicity, which allows selecting between more damage per single shot or faster fire-rate
+    - Increased toxin initial velocity a bit
+    - Made cell turning speed ramp up much much faster when not pointing at the cursor. This makes the strategy of needing to overshoot the  cursor past the direction you want to point at for maximum turning speed unnecessary.
+    - Microbe AI can now move sideways when trying to reach chunks or other cells
+    - Fixed eukaryotic engulfing size multiplier to be 2 instead of 1.5
+    - Prokaryotes now drop smaller cell chunks that are easier to eat
+    - Buffed dropped cell chunks to have 3x more compounds in them
+    - Added a cap to how many chunks a dying cell can drop to prevent absolutely massive cells causing issues
+    - Entering engulf mode without ATP is now possible at the cost of a little bit of health
+    - Added pilus damage cooldown on ejecting something to prevent ejected cells from immediately dealing massive amounts of pilus damage
+    - Increased maximum chunk count a bit to hopefully help with visual despawning
+    - Added buttons to the process panel to toggle individual processes on or off
+    - Cell colony members now forward messages to the HUD, which for example, allows indigestibility messages to be forwarded to provide info to the player as to why they can't eat something while in a colony
+    - There's now a few second cooldown before health regenerates after taking damage
+    - Added experimental siderophore feature that reworks iron gameplay to make it require shooting projectiles at big iron chunks to break off small chunks to then eat them
+    - Added a basic process panel view to the editor
+    - Added slider to resize metaball to be placed in the macroscopic editor
+    - Added simple X-axis symmetry mode to the macroscopic editor
+    - The prototype rocket launch animation now approximates an orbit entering manoeuvre instead of going straight up
+    - Tweaked when the low performance warning is triggered
+    - Fixed a bug where engulfed objects can get stuck in an incorrect state (entities in incorrect state are now force ejected)
+    - Fixed bug with the events timeline clearing wrong parts of the timeline after 20 generations
+    - Fixed organelle icons being cutoff in the Thriveopedia
+    - Fixed species preview tooltips not working in auto-evo explorer
+    - Fixed species preview tooltips not working in the timeline tab
+    - Fixed input keybindings menu not showing modifier keys along with graphical key representations
+    - Fixed slight visual artifacts with mixing clouds near the screen edges
+    - Fixed mouse hover panel checked world position under the cursor not taking our distortion shader into account (chromatic aberration option)
+    - Fixed various aspects of main menu 3D backgrounds 2 and 3
+    - Fixed multiple places in the editor where too long translations caused issues
+    - Fixed one 3D background having a particle emitter set to update at a limited framerate
+    - Fixed not being able to rebind inputs to CTRL, Shift, and ALT
+    - Fixed bug with rebound keys not displaying in key prompts correctly
+    - Fixed species colour not applying to all strands of cilia
+    - Fixed editor timeline global and local buttons being pressable at once
+    - Fixed word wrap not being enabled for auto-evo prediction panel, which caused issues with too wide GUI controls in some languages
+    - Fixed radial selection menu text being offcenter
+    - Fixed bug with editor button staying active while going to a later stage
+    - Thrive now prints the time when the game is started to log files
+    - Reduced memory allocations in microbe mutation generation
+    - Added a shader for iron chunk depletion and slightly updated the iron visuals in general (this is unused currently but is planned to be used in the future)
+    - Removed old auto-evo configuration options that are no longer used
+    - Made key prompts queue a refresh on data change instead of loading an updated icon immediately
+    - Wrote code documentation for BiomeCompoundProperties
+    - Added backend support for LAWK-locked organelles to be handled by the endosymbiosis system
+    - Updated some of the code README file badges
+    - Updated YamlDotNet from 15.3.0 to 16.0.0
+    - Updated code checking tools version
+    - Fixed our shader code check not working properly after the Godot 4 upgrade
+    - Removed old mutation code that the new auto-evo no longer uses
+    - Improved our threaded run generation script error messages
+    - Added TODO comments to a few places we could use graphics pooling as new graphics instance creation is one of the heaviest parts of the game in terms of performance currently
+    - Added more instructions regarding gettext to our setup instructions
+    - Updated translations

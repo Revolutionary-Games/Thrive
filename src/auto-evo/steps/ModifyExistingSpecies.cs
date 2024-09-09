@@ -419,7 +419,7 @@ public class ModifyExistingSpecies : IRunStep
         {
             var inputSpecies = viableVariants;
 
-            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; i++)
+            for (int i = 0; i < Constants.AUTO_EVO_MAX_MUTATION_RECURSIONS; ++i)
             {
                 temporaryMutations2.Clear();
 
@@ -494,9 +494,9 @@ public class ModifyExistingSpecies : IRunStep
             var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
             var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
 
-            variant.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0, 1),
-                Mathf.Clamp((float)(oldColour.G + greenShift), 0, 1),
-                Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
+            variant.Colour = new Color(Math.Clamp((float)(oldColour.R + redShift), 0, 1),
+                Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
+                Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
         return lastGeneratedMutations;

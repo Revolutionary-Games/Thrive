@@ -79,9 +79,9 @@ public static class CommonMutationFunctions
             var greenShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
             var blueShift = (random.NextDouble() - 0.5f) * Constants.AUTO_EVO_COLOR_CHANGE_MAX_STEP;
 
-            mutated.Colour = new Color(Mathf.Clamp((float)(oldColour.R + redShift), 0, 1),
-                Mathf.Clamp((float)(oldColour.G + greenShift), 0, 1),
-                Mathf.Clamp((float)(oldColour.B + blueShift), 0, 1));
+            mutated.Colour = new Color(Math.Clamp((float)(oldColour.R + redShift), 0, 1),
+                Math.Clamp((float)(oldColour.G + greenShift), 0, 1),
+                Math.Clamp((float)(oldColour.B + blueShift), 0, 1));
         }
 
         // Override the default species starting name to have more variability in the names
@@ -94,7 +94,7 @@ public static class CommonMutationFunctions
         return mutated;
     }
 
-    public static void AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
+    public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
         List<Hex> workMemory1, List<Hex> workMemory2, Random random)
     {
         var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory2,
@@ -102,7 +102,7 @@ public static class CommonMutationFunctions
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
-            return;
+            return false;
 
         newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
 
@@ -111,6 +111,8 @@ public static class CommonMutationFunctions
         {
             newSpecies.IsBacteria = false;
         }
+
+        return true;
     }
 
     public static void AttachIslandHexes(OrganelleLayout<OrganelleTemplate> organelles, MutationWorkMemory workMemory)

@@ -303,7 +303,7 @@ public partial class MicheTree : Control
 
                 // Update size factor
                 sizeFactor =
-                    Mathf.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
+                    Math.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
                         SIZE_FACTOR_MIN, SIZE_FACTOR_MAX);
 
                 // Update drag offset so that the mouseTreePosition stays the same
@@ -397,7 +397,7 @@ public partial class MicheTree : Control
         var lineWidth = sizeFactor * TREE_LINE_THICKNESS;
         var halfLineWidth = lineWidth / 2;
 
-        if (Mathf.Abs(to.X - from.X) < MathUtils.EPSILON)
+        if (MathF.Abs(to.X - from.X) < MathUtils.EPSILON)
         {
             tree.DrawLine(from, to, Colors.DarkCyan, lineWidth);
         }

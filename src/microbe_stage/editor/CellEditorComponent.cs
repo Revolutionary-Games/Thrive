@@ -1508,7 +1508,7 @@ public partial class CellEditorComponent :
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
                 // Get the min z-axis (highest point in the editor)
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
             }
         }
 
@@ -1735,7 +1735,7 @@ public partial class CellEditorComponent :
         List<(Hex Hex, int Orientation)> hexes, List<OrganelleTemplate> organelles)
     {
         var organellePositions = new List<(Hex Hex, OrganelleTemplate? Organelle, int Orientation, bool Occupied)>();
-        for (var i = 0; i < hexes.Count; i++)
+        for (var i = 0; i < hexes.Count; ++i)
         {
             var (hex, orientation) = hexes[i];
             var organelle = organelles[i];
@@ -1936,8 +1936,7 @@ public partial class CellEditorComponent :
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                compoundBalanceData =
-                    ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType);
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
                 compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
@@ -2233,7 +2232,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in placeablePartSelectionElements.Values)
         {
-            selection.Selected = selection.Name == selectedOrganelle;
+            selection.Selected = selection.Name.ToString() == selectedOrganelle;
         }
     }
 
@@ -2242,7 +2241,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in membraneSelectionElements.Values)
         {
-            selection.Selected = selection.Name == membrane;
+            selection.Selected = selection.Name.ToString() == membrane;
         }
     }
 

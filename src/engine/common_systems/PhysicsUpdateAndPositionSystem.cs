@@ -1,10 +1,10 @@
 ﻿namespace Systems;
 
+using System;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using DefaultEcs.Threading;
-using Godot;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -65,7 +65,7 @@ public sealed class PhysicsUpdateAndPositionSystem : AEntitySetSystem<float>
         if (EnforceYPosition && (physics.AxisLock & Physics.AxisLockType.YAxis) != 0)
         {
             // Apply fixing to Y-position if drifted too far
-            var driftAmount = Mathf.Abs(position.Position.Y);
+            var driftAmount = MathF.Abs(position.Position.Y);
 
             if (driftAmount > Constants.PHYSICS_ALLOWED_Y_AXIS_DRIFT)
             {
