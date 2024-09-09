@@ -9,6 +9,7 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
+#include "core/IntercommunicationManager.hpp"
 #include "core/TaskSystem.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
@@ -75,6 +76,15 @@ void ShutdownThriveLibrary()
     Thrive::TaskSystem::Get().Shutdown();
 
     SetLogForwardingCallback(nullptr);
+}
+
+NativeLibIntercommunicationOpaque* GetIntercommunicationBridge()
+{
+    Thrive::TaskSystem::AssertIsMainThread();
+
+    // Const is cast away here as the C interface cannot specify it. The documentation says not to modify the object
+    return const_cast<NativeLibIntercommunicationOpaque*>(reinterpret_cast<const NativeLibIntercommunicationOpaque*>(
+        &Thrive::IntercommunicationManager::Get().GetIntercommunicationObject()));
 }
 
 // ------------------------------------ //
@@ -420,8 +430,7 @@ void PhysicsBodyClearAndSetSingleIgnore(PhysicalWorld* physicalWorld, PhysicsBod
 int32_t* PhysicsBodyEnableCollisionRecording(
     PhysicalWorld* physicalWorld, PhysicsBody* body, char* collisionRecordingTarget, int32_t maxRecordedCollisions)
 {
-    return const_cast<int32_t*>(
-        reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+    return const_cast<int32_t*>(reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
             ->EnableCollisionRecording(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
                 reinterpret_cast<Thrive::Physics::CollisionRecordListType>(collisionRecordingTarget),
                 maxRecordedCollisions));

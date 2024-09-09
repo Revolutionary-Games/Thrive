@@ -14,7 +14,8 @@ using Godot;
 using SharedBase.Utilities;
 
 /// <summary>
-///   Calling interface from C# to the native code side of things for the native module
+///   Calling interface from C# to the native code side of things for the native module. For the GDExtension stuff see
+///   <see cref="ExtensionInterop"/>
 /// </summary>
 public static class NativeInterop
 {
@@ -37,6 +38,10 @@ public static class NativeInterop
 
     private static bool printedDistributableNotice;
     private static bool printedErrorAboutExecutablePath;
+
+    private static int version = -1;
+
+    private static bool printedDistributableWarning;
 
 #if DEBUG
     private static bool printedSteamLibName;
@@ -114,7 +119,7 @@ public static class NativeInterop
             throw new InvalidOperationException("Native library is detected as incompatible");
         }
 
-        int version = NativeMethods.CheckAPIVersion();
+        version = NativeMethods.CheckAPIVersion();
 
         if (version != NativeConstants.Version)
         {
@@ -226,6 +231,23 @@ public static class NativeInterop
     public static void DisableAvx()
     {
         disableAvx = true;
+    }
+
+    /// <summary>
+    ///   Gets the intercommunication interface for the native libraries
+    /// </summary>
+    /// <returns>IntPtr put into the variant on success, 0 on failure</returns>
+    public static Variant GetIntercommunication(out int libraryVersion)
+    {
+        libraryVersion = version;
+
+        if (!nativeLoadSucceeded)
+        {
+            GD.PrintErr("Native load hasn't succeeded, cannot get intercommunication");
+            return Variant.CreateFrom(0);
+        }
+
+        return NativeMethods.GetIntercommunicationBridge().ToInt64();
     }
 
     public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
@@ -490,6 +512,33 @@ public static class NativeInterop
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
 
+        if (library == NativeConstants.Library.ThriveExtension)
+        {
+            // Special GDExtension handling, we assume Godot has already loaded it
+
+            var modules = Process.GetCurrentProcess().Modules;
+            var count = modules.Count;
+
+            for (var i = 0; i < count; ++i)
+            {
+                var module = modules[i];
+
+                if (module.ModuleName.Contains("thrive_extension"))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Trying to use already loaded module path: {module.FileName}");
+#endif
+
+                    return NativeLibrary.Load(module.FileName);
+                }
+            }
+
+            GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
+                "will likely fail");
+
+            return NativeLibrary.Load(libraryName, assembly, searchPath);
+        }
+
         var currentPlatform = PlatformUtilities.GetCurrentPlatform();
 
         // TODO: add a flag / some kind of option to skip loading the debug library
@@ -504,7 +553,12 @@ public static class NativeInterop
         if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
                 NativeConstants.GetLibraryVersion(library), true, GetTag(true)), out loaded))
         {
-            GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+            if (!printedDistributableWarning)
+            {
+                GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+                printedDistributableWarning = true;
+            }
+
             return loaded;
         }
 #endif
@@ -697,6 +751,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr GetIntercommunicationBridge();
 
     [DllImport("early_checks")]
     internal static extern CPUCheckResult CheckRequiredCPUFeatures();

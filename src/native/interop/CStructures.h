@@ -10,6 +10,7 @@ extern "C"
     typedef struct PhysicalWorld PhysicalWorld;
     typedef struct PhysicsBody PhysicsBody;
     typedef struct PhysicsShape PhysicsShape;
+    typedef struct ThriveConfig ThriveConfig;
 
     typedef struct JVec3
     {
@@ -32,15 +33,18 @@ extern "C"
     } JColour;
 
     // See the C++ side for the layout of the contained members
-    typedef struct PhysicsCollision{
+    typedef struct PhysicsCollision
+    {
         char CollisionData[PHYSICS_COLLISION_DATA_SIZE];
     } PhysicsCollision;
 
-    typedef struct PhysicsRayWithUserData{
+    typedef struct PhysicsRayWithUserData
+    {
         char RayData[PHYSICS_RAY_DATA_SIZE];
     } PhysicsRayWithUserData;
 
     BEGIN_PACKED_STRUCT;
+
     typedef struct PACKED_STRUCT SubShapeDefinition
     {
         JQuat Rotation;
@@ -51,7 +55,13 @@ extern "C"
 
     END_PACKED_STRUCT;
 
-    static const inline JQuat QuatIdentity = JQuat{0, 0, 0, 1};
+    static inline const JQuat QuatIdentity = JQuat{0, 0, 0, 1};
+
+    /// Opaque type for passing through info on Thrive::NativeLibIntercommunication instances on the C# side
+    typedef struct NativeLibIntercommunicationOpaque
+    {
+        void* Pointers;
+    } NativeLibIntercommunicationOpaque;
 }
 
 #pragma clang diagnostic pop

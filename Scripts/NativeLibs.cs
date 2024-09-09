@@ -30,12 +30,19 @@ public class NativeLibs
     private const string BuilderImageNameCross = "localhost/thrive/native-builder-cross:latest";
     private const string FolderToWriteDistributableBuildIn = "build/distributable_build";
 
+    private const string APIFolderName = "api";
+    private const string GodotAPIFileName = "extension_api.json";
+    private const string APIInContainer = "/godot-api";
+
+    private const string ExtensionInstallFolder = "lib";
+    private const string ExtensionInstallFolderDebug = "lib/debug";
+
     /// <summary>
     ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
     ///   library as a pure C# solution is used instead.
     /// </summary>
-    private static readonly IList<NativeConstants.Library> DefaultLibraries = new[]
-        { NativeConstants.Library.ThriveNative };
+    private static readonly IList<NativeConstants.Library> DefaultLibraries =
+        [NativeConstants.Library.ThriveNative, NativeConstants.Library.ThriveExtension];
 
     private readonly Program.NativeLibOptions options;
 
@@ -45,12 +52,18 @@ public class NativeLibs
 
     private readonly Lazy<Task<long>> thriveNativePrecompiledId;
     private readonly Lazy<Task<long>> earlyCheckPrecompiledId;
+    private readonly Lazy<Task<long>> thriveExtensionPrecompiledId;
+
+    private readonly HashSet<string> scriptsAPIFileCreated = new();
+
+    private bool checkSymbolUpload;
 
     public NativeLibs(Program.NativeLibOptions options)
     {
         this.options = options;
         thriveNativePrecompiledId = new Lazy<Task<long>>(GetThriveNativeLibraryId);
         earlyCheckPrecompiledId = new Lazy<Task<long>>(GetEarlyCheckLibraryId);
+        thriveExtensionPrecompiledId = new Lazy<Task<long>>(GetThriveExtensionLibraryId);
 
         if (options.Libraries is { Count: < 1 })
         {
@@ -66,10 +79,9 @@ public class NativeLibs
             }
         }
 
-        if (options.DebugLibrary)
+        if (!options.PrepareGodotAPI)
         {
-            ColourConsole.WriteNormalLine("Using debug versions of libraries (these are not always " +
-                "available for download)");
+            ColourConsole.WriteNormalLine("Not preparing Godot API files, assuming they are there already");
         }
 
         // Explicitly selected platforms override defaults
@@ -80,24 +92,21 @@ public class NativeLibs
         }
 
         // Set sensible default platform definitions
-        if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Install))
+        if (OperatingSystem.IsMacOS())
         {
-            // Install is just for current platform as it doesn't make sense to try to make the editor work on other
-            // platforms on one computer
-            platforms = new List<PackagePlatform> { PlatformUtilities.GetCurrentPlatform() };
-        }
-        else if (OperatingSystem.IsMacOS())
-        {
-            // Mac stuff only can be done on a mac
+            // Mac stuff only can be done on a Mac
             platforms = new List<PackagePlatform> { PackagePlatform.Mac };
         }
         else if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Build))
         {
             // Other platforms have cross compile but build defaults to just current platform
+            ColourConsole.WriteWarningLine("Due to performing a non-container build, automatically configuring " +
+                "platforms to be just the current");
             platforms = new List<PackagePlatform> { PlatformUtilities.GetCurrentPlatform() };
         }
         else
         {
+            // Default platforms for non-Mac usage
             platforms = new List<PackagePlatform> { PackagePlatform.Linux, PackagePlatform.Windows };
         }
     }
@@ -109,10 +118,52 @@ public class NativeLibs
 
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(NativeConstants.LibraryFolder);
 
+        var originalDebug = options.DebugLibrary;
+
+        bool first = true;
+
         foreach (var operation in options.Operations)
         {
+            if (!first)
+            {
+                // Give a little bit of more breathing room in the output
+                ColourConsole.WriteNormalLine(string.Empty);
+            }
+
+            first = false;
+
+            // Do both debug and release mode operations. Symbol upload always checks everything at once so it isn't
+            // duplicated
+            if (originalDebug == null && operation != Program.NativeLibOptions.OperationMode.Symbols)
+            {
+                ColourConsole.WriteDebugLine("Running debug variant of operation");
+
+                options.DebugLibrary = true;
+                if (!await RunOperation(operation, cancellationToken))
+                    return false;
+
+                ColourConsole.WriteDebugLine("Running release variant of operation");
+                options.DebugLibrary = false;
+            }
+
             if (!await RunOperation(operation, cancellationToken))
                 return false;
+        }
+
+        if (checkSymbolUpload)
+        {
+            ColourConsole.WriteInfoLine("Looking for symbols to upload after operations finished");
+
+            if (!await UploadMissingSymbolsToServer(cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to upload symbols");
+                return false;
+            }
+        }
+        else if (options.Operations.Contains(Program.NativeLibOptions.OperationMode.Upload))
+        {
+            ColourConsole.WriteNormalLine(
+                "Nothing uploaded so skipping symbols upload (it can be ran manually separately)");
         }
 
         return true;
@@ -124,7 +175,7 @@ public class NativeLibs
     /// <param name="releaseFolder">The root of the release folder (with Thrive.pck and other files)</param>
     /// <param name="platform">The platform this release is for</param>
     /// <param name="useDistributableLibraries">
-    ///   If true then only distributable libraries (with symbols extracted and stripped) are used. Otherwise normally
+    ///   If true then only distributable libraries (with symbols extracted and stripped) are used. Otherwise, normally
     ///   built local libraries can be used.
     /// </param>
     public bool CopyToThriveRelease(string releaseFolder, PackagePlatform platform, bool useDistributableLibraries)
@@ -165,11 +216,30 @@ public class NativeLibs
         return true;
     }
 
+    public async Task<bool> InstallEditorLibrariesBeforeRelease()
+    {
+        if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Linux, true,
+                false))
+        {
+            return false;
+        }
+
+        if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Windows,
+                true,
+                false))
+        {
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Editor libraries installed");
+        return true;
+    }
+
     private PrecompiledTag GetTag(bool localBuild)
     {
         var tag = PrecompiledTag.None;
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
             tag |= PrecompiledTag.Debug;
 
         if (localBuild && options.DisableLocalAvx)
@@ -182,6 +252,7 @@ public class NativeLibs
         CancellationToken cancellationToken)
     {
         ColourConsole.WriteNormalLine($"Performing operation {operation}");
+        ColourConsole.WriteDebugLine($"Debug mode is: {options.DebugLibrary}");
 
         switch (operation)
         {
@@ -213,15 +284,16 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Upload:
                 if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
                 {
-                    ColourConsole.WriteNormalLine("Checking for potential symbols to upload after library upload");
-                    return await UploadMissingSymbolsToServer(cancellationToken);
+                    ColourConsole.WriteNormalLine("Will check for potential symbols to upload after library upload");
+                    checkSymbolUpload = true;
+                    return true;
                 }
 
                 ColourConsole.WriteNormalLine("Skipping symbol upload check as the check upload operation " +
                     "didn't return true");
 
-                // Check and upload step failed / or didn't upload anything
-                return false;
+                // TODO: detect failures separately
+                return true;
 
             case Program.NativeLibOptions.OperationMode.Symbols:
                 ColourConsole.WriteNormalLine("Checking for any symbols missing from the server");
@@ -300,7 +372,7 @@ public class NativeLibs
         foreach (var platform in platforms)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+            ColourConsole.WriteNormalLine($"Operating on {library} for {platform}");
 
             if (!await operation.Invoke(library, platform, cancellationToken))
             {
@@ -380,10 +452,118 @@ public class NativeLibs
     private Task<bool> InstallLibraryForEditor(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        ColourConsole.WriteWarningLine("This is a deprecated operation. Godot 4 now allows directly loading " +
-            "the library from its storage path so no install operation is required.");
+        if (library != NativeConstants.Library.ThriveExtension)
+        {
+            ColourConsole.WriteNormalLine($"Skipping install for a library ({library}) that doesn't need installing");
+            return Task.FromResult(true);
+        }
+
+        return PerformLibraryInstallForEditor(library, platform, false, true);
+    }
+
+    private Task<bool> PerformLibraryInstallForEditor(NativeConstants.Library library, PackagePlatform platform,
+        bool releaseMode, bool moreVerbose)
+    {
+        var tag = PrecompiledTag.None;
+
+        // Allows different name when we are fudging the name a bit
+        PrecompiledTag targetTags;
+
+        // The extension library defaults to installing without AVX
+        // Due to the "if" above this is always true
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+        if (library == NativeConstants.Library.ThriveExtension)
+            tag = PrecompiledTag.WithoutAvx;
+
+        var target = ExtensionInstallFolder;
+
+        if (options.DebugLibrary == true)
+        {
+            target = ExtensionInstallFolderDebug;
+            tag |= PrecompiledTag.Debug;
+        }
+
+        // Currently always use the same name as the original file
+        targetTags = tag;
+
+        Directory.CreateDirectory(target);
+
+        ColourConsole.WriteInfoLine($"Installing library {library} to {target} for {platform}");
+
+        ColourConsole.WriteDebugLine("Trying to install locally compiled version first");
+        var libraryVersion = NativeConstants.GetLibraryVersion(library);
+        var linkTo = NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, releaseMode, tag);
+        var originalLinkTo = linkTo;
+
+        ColourConsole.WriteDebugLine($"Primary wanted source for library: {linkTo}");
+
+        if (!File.Exists(linkTo))
+        {
+            // Fall back to distributable version
+            if (moreVerbose)
+                ColourConsole.WriteNormalLine("Falling back to attempting other variants of library");
+
+            if (!releaseMode)
+            {
+                // Using a different AVX variant is fine locally, then try the original tag but distributable version
+                linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
+                        false,
+                        tag | PrecompiledTag.WithoutAvx),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
+                        tag & ~PrecompiledTag.WithoutAvx),
+
+                    // Fallback to distributables after checking local variants all first
+                    NativeConstants
+                        .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                        tag | PrecompiledTag.WithoutAvx),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                        tag & ~PrecompiledTag.WithoutAvx));
+            }
+            else
+            {
+                linkTo = TryToFindInstallSource(
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false, tag));
+            }
+
+            if (linkTo == null)
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected library doesn't exist (please 'Fetch' or 'Build' first): {originalLinkTo}");
+                ColourConsole.WriteNormalLine("Distributable version also didn't exist");
+                return Task.FromResult(false);
+            }
+
+            if (moreVerbose)
+                ColourConsole.WriteSuccessLine("A suitable version of library detected");
+            ColourConsole.WriteDebugLine($"Using library from: {linkTo}");
+        }
+
+        var linkFile = Path.Join(target, NativeConstants.GetLibraryDllName(library, platform, targetTags));
+
+        CreateLinkTo(linkFile, linkTo);
+
+        ColourConsole.WriteNormalLine($"Installed library from: {linkTo}");
+
+        if (moreVerbose)
+        {
+            ColourConsole.WriteSuccessLine($"Successfully installed {library} to editor for {platform}");
+        }
 
         return Task.FromResult(true);
+    }
+
+    private string? TryToFindInstallSource(params string[] toCheck)
+    {
+        foreach (var item in toCheck)
+        {
+            ColourConsole.WriteDebugLine($"Checking library at: {item}");
+            if (File.Exists(item))
+                return item;
+        }
+
+        return null;
     }
 
     private bool CopyLibraryFiles(NativeConstants.Library library, PackagePlatform platform,
@@ -412,6 +592,9 @@ public class NativeLibs
     private async Task<bool> BuildLocally(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
+        // TODO: this step needs to be updated to compile all at once, also then allows version numbers to match
+        // which currently has a check against this in NativeConstants
+
         if (platform != PlatformUtilities.GetCurrentPlatform())
         {
             ColourConsole.WriteErrorLine("Building for non-current platform without podman is not supported");
@@ -440,6 +623,20 @@ public class NativeLibs
         // Ensure Godot doesn't try to import anything funny from the build folder
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(buildFolder);
 
+        var apiFolder = Path.Join(buildFolder, APIFolderName);
+        Directory.CreateDirectory(apiFolder);
+
+        if (!scriptsAPIFileCreated.Contains(apiFolder))
+        {
+            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("API file could not be created");
+                return false;
+            }
+
+            scriptsAPIFileCreated.Add(apiFolder);
+        }
+
         var installPath =
             Path.GetFullPath(GetLocalCMakeInstallTarget(platform, NativeConstants.GetLibraryVersion(library)));
 
@@ -451,7 +648,7 @@ public class NativeLibs
         // ReSharper disable StringLiteralTypo
         startInfo.ArgumentList.Add("-DCMAKE_EXPORT_COMPILE_COMMANDS=ON");
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
         {
             startInfo.ArgumentList.Add("-DCMAKE_BUILD_TYPE=Debug");
         }
@@ -545,11 +742,11 @@ public class NativeLibs
             ColourConsole.WriteWarningLine("TODO: Windows Jolt build with MSVC only supports Release mode, " +
                 "building Thrive in release mode as well, there won't be debug symbols");
 
-            startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "Release");
+            startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "Release");
         }
         else
         {
-            startInfo.ArgumentList.Add(options.DebugLibrary ? "Debug" : "RelWithDebInfo");
+            startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "RelWithDebInfo");
         }
 
         startInfo.ArgumentList.Add("--target");
@@ -593,10 +790,10 @@ public class NativeLibs
                 if (file.Contains(name) || file.Contains(nameSecondary))
                 {
                     // Don't delete unrelated type
-                    if (!options.DebugLibrary && file.Contains("debug"))
+                    if (options.DebugLibrary != true && file.Contains("debug"))
                         continue;
 
-                    if (options.DebugLibrary && file.Contains("release"))
+                    if (options.DebugLibrary == true && file.Contains("release"))
                         continue;
 
                     File.Delete(file);
@@ -621,6 +818,21 @@ public class NativeLibs
 
         Directory.CreateDirectory(compileInstallFolder);
 
+        var apiFolder = Path.GetFullPath("Scripts/GodotAPIData");
+        Directory.CreateDirectory(apiFolder);
+
+        // Only create the API file once as it is only needed to be created once as the location is re-used
+        if (!scriptsAPIFileCreated.Contains(apiFolder))
+        {
+            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("API file could not be created");
+                return false;
+            }
+
+            scriptsAPIFileCreated.Add(apiFolder);
+        }
+
         var thriveContainerFolder = "/thrive";
 
         var startInfo = new ProcessStartInfo("podman");
@@ -631,6 +843,8 @@ public class NativeLibs
 
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(".")}:{thriveContainerFolder}:ro,z");
         startInfo.ArgumentList.Add($"--volume={Path.GetFullPath(compileInstallFolder)}:/install-target:rw,z");
+
+        startInfo.ArgumentList.Add($"--volume={apiFolder}:{APIInContainer}:ro,z");
 
         if (options.Verbose)
         {
@@ -653,7 +867,7 @@ public class NativeLibs
         // ReSharper disable StringLiteralTypo
         var buildType = "Distribution";
 
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
         {
             ColourConsole.WriteDebugLine("Creating a debug version of the distributable");
             buildType = "Debug";
@@ -666,6 +880,8 @@ public class NativeLibs
         shCommandBuilder.Append($"-DCMAKE_BUILD_TYPE={buildType} ");
 
         shCommandBuilder.Append("-DTHRIVE_AVX=ON ");
+
+        shCommandBuilder.Append($"-DTHRIVE_GODOT_API_FILE={APIInContainer} ");
 
         // We explicitly enable LTO with compiler flags when we want as CMake when testing LTO seems to ignore a bunch
         // of flags
@@ -779,9 +995,9 @@ public class NativeLibs
         ColourConsole.WriteSuccessLine("Build inside container succeeded");
         var libraries = options.Libraries ?? DefaultLibraries;
 
-        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
+        var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
-        if (!options.DebugLibrary)
+        if (options.DebugLibrary != true)
         {
             ColourConsole.WriteInfoLine(
                 "Extracting symbols (requires compiled Breakpad on the host) and stripping binaries");
@@ -833,7 +1049,7 @@ public class NativeLibs
 
                 ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
 
-                if (!options.DebugLibrary)
+                if (options.DebugLibrary != true)
                 {
                     await BinaryHelpers.Strip(target, cancellationToken);
 
@@ -853,12 +1069,61 @@ public class NativeLibs
         return true;
     }
 
+    private async Task<bool> CreateGodotAPIFileInFolder(string folder, CancellationToken cancellationToken)
+    {
+        if (!options.PrepareGodotAPI)
+            return true;
+
+        ColourConsole.WriteInfoLine("Preparing Godot API file");
+
+        if (!await PackageTool.CheckGodotIsAvailable(cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Cannot generate Godot API file due to Godot being missing");
+            return false;
+        }
+
+        if (!Directory.Exists(folder))
+            throw new ArgumentException("Folder doesn't exist (must exist before calling this)", nameof(folder));
+
+        var startInfo = new ProcessStartInfo("godot")
+        {
+            WorkingDirectory = folder,
+        };
+
+        startInfo.ArgumentList.Add("--headless");
+
+        startInfo.ArgumentList.Add("--dump-extension-api");
+
+        // ReSharper disable once StringLiteralTypo
+        startInfo.ArgumentList.Add("--dump-gdextension-interface");
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine(
+                $"Failed to generate Godot API file (exit: {result.ExitCode}). Output: {result.FullOutput}");
+
+            return false;
+        }
+
+        if (!File.Exists(Path.Combine(folder, GodotAPIFileName)))
+        {
+            ColourConsole.WriteErrorLine($"Expected Godot API file not created in {folder}");
+            return false;
+        }
+
+        ColourConsole.WriteNormalLine("Created Godot API file");
+
+        return true;
+    }
+
     private async Task<bool?> CheckAndUpload(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
         var version = NativeConstants.GetLibraryVersion(library);
 
-        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
+        var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
         bool uploaded = false;
 
@@ -880,11 +1145,6 @@ public class NativeLibs
 
                 // Explicit fail to stop trying
                 return false;
-            }
-
-            if ((tag & PrecompiledTag.Debug) != 0)
-            {
-                ColourConsole.WriteNormalLine("Uploading a debug version of the library");
             }
 
             var result = await UploadLocalLibrary(library, platform, version, tag, file, cancellationToken);
@@ -972,6 +1232,13 @@ public class NativeLibs
                 return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
             }
 
+            case NativeConstants.Library.ThriveExtension:
+            {
+                var nativeId = await thriveExtensionPrecompiledId.Value;
+
+                return new Uri(new Uri(options.Url), $"api/v1/PrecompiledObject/{nativeId}/versions/");
+            }
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(library), library, null);
         }
@@ -1003,6 +1270,21 @@ public class NativeLibs
             throw new NullDecodedJsonException();
 
         ColourConsole.WriteDebugLine($"Determined that Early Check's precompiled ID is {data.Id}");
+
+        return data.Id;
+    }
+
+    private async Task<long> GetThriveExtensionLibraryId()
+    {
+        using var httpClient = GetDevCenterClient();
+
+        var data = await httpClient.GetFromJsonAsync<PrecompiledObjectDTO>(
+            "api/v1/PrecompiledObject/byName/ThriveExtension");
+
+        if (data == null)
+            throw new NullDecodedJsonException();
+
+        ColourConsole.WriteDebugLine($"Determined that ThriveExtension's precompiled ID is {data.Id}");
 
         return data.Id;
     }
@@ -1172,7 +1454,7 @@ public class NativeLibs
     {
         var version = NativeConstants.GetLibraryVersion(library);
 
-        var baseTag = options.DebugLibrary ? PrecompiledTag.Debug : PrecompiledTag.None;
+        var baseTag = options.DebugLibrary == true ? PrecompiledTag.Debug : PrecompiledTag.None;
 
         foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
@@ -1342,7 +1624,7 @@ public class NativeLibs
         PrecompiledTag tags)
     {
         var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
-            options.DebugLibrary ? "debug" : "release");
+            options.DebugLibrary == true ? "debug" : "release");
 
         if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {
@@ -1355,7 +1637,7 @@ public class NativeLibs
 
     private string GetNativeBuildFolder()
     {
-        if (options.DebugLibrary)
+        if (options.DebugLibrary == true)
             return "build-debug";
 
         return "build";
