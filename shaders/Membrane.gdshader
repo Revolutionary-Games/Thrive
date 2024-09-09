@@ -58,8 +58,8 @@ void fragment(){
     normalmap = normalmap * 2.0 - 1.0;
 
     vec3 adjusted_normals = normalmap.z * NORMAL
-    + normalmap.x * TANGENT
-    + normalmap.y * BINORMAL;
+        + normalmap.x * TANGENT
+        + normalmap.y * BINORMAL;
     
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
     adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 1.0));
