@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 14:07+0200\n"
+"POT-Creation-Date: 2024-09-09 14:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,9 +62,9 @@ msgstr ""
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:436
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:431
 #: ../src/general/base_stage/EditorBase.cs:723
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:511
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:506
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:54
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
@@ -274,7 +274,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:439
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:455
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:482
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:486
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:246
@@ -353,9 +353,9 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:258
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:283
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:257
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:282
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:212
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
@@ -364,9 +364,9 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:259
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:284
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:214
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:258
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:283
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:213
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -1028,7 +1028,7 @@ msgstr ""
 msgid "COMPLETE_ACTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:443
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:459
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:491
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:495
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
@@ -1843,7 +1843,7 @@ msgstr ""
 msgid "DISCARD_CHANGES"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:792
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:793
 msgid "DISCARD_MIGRATION"
 msgstr ""
 
@@ -2366,13 +2366,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:452
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:463
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:468
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:479
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:451
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:464
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:467
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:480
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
@@ -3153,7 +3153,7 @@ msgstr ""
 msgid "JUNE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:791
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:792
 msgid "KEEP_MIGRATION"
 msgstr ""
 
@@ -3665,7 +3665,7 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:93
+#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:96
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -3674,11 +3674,11 @@ msgstr ""
 msgid "LOADING_GAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:64
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:67
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:116
+#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:119
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -3815,7 +3815,7 @@ msgid "MEDIASTOP"
 msgstr ""
 
 #: ../src/auto-evo/EvolutionaryTree.cs:410
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:166
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:180
 #: ../src/microbe_stage/editor/TimelineTab.cs:260
 msgid "MEGA_YEARS"
 msgstr ""
@@ -4101,31 +4101,31 @@ msgstr ""
 msgid "MIGRATE"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:659
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:660
 msgid "MIGRATION_FAILED_TO_ADD"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:814
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:815
 msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:819
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:820
 msgid "MIGRATION_STATUS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:772
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:773
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:790
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:791
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:781
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:782
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:763
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:764
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:514
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr ""
@@ -5050,7 +5050,7 @@ msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:315
-msgid "OTHER"
+msgid "OTHER_COMPOUNDS"
 msgstr ""
 
 #: ../src/modding/NewModGUI.tscn:72
@@ -5259,8 +5259,8 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:244
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:263
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:289
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:179
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:398
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:193
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:414
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:422
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:498
@@ -5962,7 +5962,7 @@ msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:136
-#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:319
+#: ../src/microbe_stage/editor/PatchMapEditorComponent.cs:325
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.cs:146
 #: ../src/thriveopedia/pages/ThriveopediaPatchMapPage.tscn:82
 msgid "SEED_LABEL"
@@ -6285,7 +6285,7 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:441
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:457
 msgid "SPECIES_LIST"
 msgstr ""
 
@@ -6311,7 +6311,7 @@ msgstr ""
 msgid "SPECIES_TO_FIND"
 msgstr ""
 
-#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:428
+#: ../src/microbe_stage/gui/PatchDetailsPanel.cs:429
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
@@ -6695,7 +6695,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:223
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:1441
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:286
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:302
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:469
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:168
 msgid "TEMPERATURE"
@@ -6756,7 +6756,7 @@ msgstr ""
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:182
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:196
 msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 msgstr ""
 
@@ -6877,7 +6877,7 @@ msgstr ""
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:173
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:187
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
@@ -8950,11 +8950,11 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:436
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:437
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:438
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:440
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:443
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:452
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:453
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:454
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:456
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:459
 msgid "YEARS"
 msgstr ""
 
