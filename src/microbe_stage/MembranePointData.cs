@@ -109,7 +109,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     }
 
     /// <summary>
-    ///   Membrane's height. Should be used as a multiplier for a constant value
+    ///   Membrane's height.
     /// </summary>
     public float Height
     {
@@ -170,7 +170,7 @@ public sealed class MembranePointData : IMembraneDataSource, ICacheableData
     private void CalculateHeight()
     {
         // Note: at 10 hexes, the value should be at least 1.75, so that nucleus can't be partly outside of membrane
-        height = Math.Clamp(HexPositionCount / 8.0f + 0.55f, 1.0f, 2.0f);
+        height = Constants.MEMBRANE_HEIGHT_MULTIPLIER * Math.Clamp(HexPositionCount / 8.0f + 0.55f, 1.0f, 2.0f);
         heightCalculated = true;
     }
 

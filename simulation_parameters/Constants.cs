@@ -168,7 +168,7 @@ public static class Constants
 
     public const int MEMBRANE_RESOLUTION = 10;
     public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
-    public const float MEMBRANE_HEIGHT = 0.5f;
+    public const float MEMBRANE_HEIGHT_MULTIPLIER = 1.0f;
 
     public const float MEMBRANE_SMOOTHING_POWER = 3.0f;
     public const float MEMBRANE_SIDE_ROUNDING = 20.0f;
