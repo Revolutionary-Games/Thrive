@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://oslha78a5bb"]
+[gd_scene load_steps=16 format=3 uid="uid://oslha78a5bb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
 [ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="2"]
@@ -11,6 +11,25 @@
 
 [sub_resource type="StyleBoxFlat" id="2"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o7tsu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4b2g1"]
+
+[sub_resource type="Sky" id="Sky_qh5uq"]
+sky_material = SubResource("ProceduralSkyMaterial_4b2g1")
+
+[sub_resource type="Environment" id="Environment_quowb"]
+background_mode = 2
+background_energy_multiplier = 2.0
+sky = SubResource("Sky_qh5uq")
+ambient_light_color = Color(1, 1, 1, 1)
+adjustment_enabled = true
+adjustment_contrast = 1.1
+
+[sub_resource type="World3D" id="World3D_cpjvi"]
+environment = SubResource("Environment_quowb")
+camera_attributes = SubResource("CameraAttributesPractical_o7tsu")
 
 [sub_resource type="StyleBoxFlat" id="6"]
 content_margin_left = 3.0
@@ -61,7 +80,10 @@ stretch = true
 script = ExtResource("10")
 
 [node name="ModelViewer" type="SubViewport" parent="Overlay/SubViewportContainer" index="0"]
+own_world_3d = true
+world_3d = SubResource("World3D_cpjvi")
 handle_input_locally = false
+msaa_3d = 1
 size = Vector2i(1280, 720)
 render_target_update_mode = 0
 
