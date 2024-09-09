@@ -87,11 +87,14 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label oxygenLabel = null!;
     private Label nitrogenLabel = null!;
     private Label co2Label = null!;
+    private Label otherCompoundLabel = null!;
     private Label hydrogenSulfideLabel = null!;
     private Label ammoniaLabel = null!;
     private Label glucoseLabel = null!;
     private Label phosphateLabel = null!;
     private Label ironLabel = null!;
+
+    private Control otherCompoundBase = null!;
 
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
@@ -250,6 +253,7 @@ public partial class PatchDetailsPanel : PanelContainer
 
         // oxygenSituation = oxygenBase.GetNode<TextureRect>(situation);
 
+        // TODO: remove these useless null sets in this method (I have no clue why these were added -hhyyrylainen)
         nitrogenLabel = null!;
         var nitrogenBase = atmosphereContainer.GetItem<Control>("Nitrogen");
         nitrogenLabel = nitrogenBase.GetNode<Label>(labelPath);
@@ -261,6 +265,9 @@ public partial class PatchDetailsPanel : PanelContainer
         co2Label = co2Base.GetNode<Label>(labelPath);
 
         // co2Situation = co2Base.GetNode<TextureRect>(situation);
+
+        otherCompoundBase = atmosphereContainer.GetItem<Control>("Other");
+        otherCompoundLabel = otherCompoundBase.GetNode<Label>(labelPath);
 
         // Compounds list
         hydrogenSulfideLabel = null!;
@@ -383,27 +390,37 @@ public partial class PatchDetailsPanel : PanelContainer
             percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
 
+        var otherAmount = CalculateUnaccountedForCompoundPercentage();
+
+        otherCompoundLabel.Text = percentageFormat.FormatSafe(otherAmount,
+            Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS);
+
+        // Hide the other compounds label when it wouldn't show anything
+        if (otherAmount <= 0.001f)
+        {
+            otherCompoundBase.Visible = false;
+        }
+        else
+        {
+            otherCompoundBase.Visible = true;
+        }
+
         // Compounds
         hydrogenSulfideLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, ironCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
 
@@ -818,6 +835,24 @@ public partial class PatchDetailsPanel : PanelContainer
 
         currentlyEditedMigration.Amount = population;
         UpdateMigrationStatusText();
+    }
+
+    private float CalculateUnaccountedForCompoundPercentage()
+    {
+        if (SelectedPatch == null)
+            return 0;
+
+        // Calculate the compounds with their own display line in sequence so that it is easy to add new values here
+        float totalCompounds = 0;
+
+        totalCompounds += GetCompoundAmount(SelectedPatch, carbondioxideCompound);
+
+        totalCompounds += GetCompoundAmount(SelectedPatch, nitrogenCompound);
+
+        totalCompounds += GetCompoundAmount(SelectedPatch, oxygenCompound);
+
+        // The multiply and divide by 10 here is to adjust how many decimals the Floor call keeps
+        return MathF.Floor(10 * (100.0f - totalCompounds)) / 10;
     }
 
     public class Migration

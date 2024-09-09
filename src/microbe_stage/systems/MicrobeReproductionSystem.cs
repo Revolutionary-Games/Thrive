@@ -385,6 +385,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         bool reproductionStageComplete;
 
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+        // TODO: this lock somehow locks up the game waiting for this (at least with a debugger attached sometimes)
         lock (compoundWorkData)
         {
             reproductionStageComplete = ProcessBaseReproductionCost(
