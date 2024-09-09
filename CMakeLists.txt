@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.10)
 
 project(Thrive)
 
+# If you want to get compile commands run cmake with
+# "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+
 # Options
 # Building either the faster variant with AVX or without for older CPU support
 
