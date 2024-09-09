@@ -10,31 +10,20 @@ project(Thrive)
 # Building either the faster variant with AVX or without for older CPU support
 
 option(THRIVE_AVX "Create faster code that needs AVX2" ON)
-
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
-
 option(USE_OBJECT_POOLS "Use object pools instead of direct memory allocation" ON)
-
 option(LOCK_FREE_COLLISION_RECORDING "Use lock-free collision data recording" ON)
-
 option(USE_SMALL_VECTOR_POOLS "Use pools for small list allocations in physics" OFF)
-
 option(USE_LOCK_FREE_QUEUE "Use lock-free data structures" ON)
-
 option(THRIVE_DISTRIBUTION "Build native libs for Thrive distribution" OFF)
 
 # This is disabled for now as this is not available when cross compiling to
 # Windows
 option(USE_ATOMIC_COLLISION_WRITE "Use atomic write to collision data" OFF)
-
 option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
-
 option(NULL_HAS_UNUSUAL_REPRESENTATION "Assume null doesn't equal numeric 0" OFF)
-
 set(CMAKE_CXX_STANDARD 20)
-
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Use static runtime library for all configurations
@@ -47,9 +36,7 @@ endif()
 
 # Set output directories
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # AVX support
