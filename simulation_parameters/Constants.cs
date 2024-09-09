@@ -1002,6 +1002,8 @@ public static class Constants
     public const float MIN_OPACITY_CHITIN = 0.4f;
     public const float MAX_OPACITY_CHITIN = 1.2f;
 
+    public const float ORGANELLE_TINT_STRENGTH = 0.1f;
+
     // Min Opacity Mutation
     public const float MIN_OPACITY_MUTATION = -0.01f;
     public const float MAX_OPACITY_MUTATION = 0.01f;
