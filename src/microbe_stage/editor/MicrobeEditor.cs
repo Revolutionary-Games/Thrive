@@ -56,6 +56,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
     [JsonIgnore]
+    public Patch? TargetPatch => patchMapTab.TargetPatch;
+
+    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     protected override string MusicCategory => "MicrobeEditor";
@@ -102,8 +105,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public void OnCurrentPatchUpdated(Patch patch)
     {
         cellEditorTab.OnCurrentPatchUpdated(patch);
-
-        reportTab.UpdatePatchDetails(patch);
 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
@@ -152,7 +153,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
         }
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
@@ -178,8 +179,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             editorComponent.Init(this, fresh);
         }
-
-        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEnterEditor()
@@ -232,7 +231,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
     }
 
     protected override void ElapseEditorEntryTime()
@@ -293,6 +292,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             {
                 reportTab.Show();
                 SetEditorObjectVisibility(false);
+                reportTab.UpdatePatchDetailsIfNeeded(SelectedPatch ?? CurrentPatch);
                 break;
             }
 
@@ -353,10 +353,5 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
         cellEditorTab.UnlockAllOrganelles();
-    }
-
-    private void OnSelectPatchForReportTab(Patch patch)
-    {
-        reportTab.UpdatePatchDetails(patch, patch);
     }
 }
