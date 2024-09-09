@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" path="res://src/general/OrbitCamera.tscn" id="6"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/SlideScreen.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="8"]
-[ext_resource type="PackedScene" path="res://src/gui_common/TopLevelContainer.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://cba187yaeukt3" path="res://src/gui_common/TopLevelContainer.tscn" id="9"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/CrossFadableGalleryViewport.cs" id="10"]
 
 [sub_resource type="StyleBoxFlat" id="2"]
@@ -24,7 +24,6 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [node name="SlideScreen" instance=ExtResource("9")]
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -54,6 +53,7 @@ theme_override_styles/panel = SubResource("2")
 
 [node name="SlideableTextureRect" parent="Overlay" index="0" instance=ExtResource("8")]
 layout_mode = 2
+stretch_mode = 5
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Overlay" index="1"]
 layout_mode = 2

@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://dt2b7uvqkvrng"]
 
-[ext_resource type="PackedScene" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://c4i1ie8aqbswd" path="res://src/gui_common/art_gallery/GalleryCard.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://oslha78a5bb" path="res://src/gui_common/art_gallery/SlideScreen.tscn" id="3"]
 [ext_resource type="PackedScene" path="res://src/gui_common/art_gallery/GalleryCardModel.tscn" id="4"]
-[ext_resource type="PackedScene" path="res://src/gui_common/art_gallery/GalleryCardAudio.tscn" id="6"]
+[ext_resource type="PackedScene" uid="uid://cyky307bhys7i" path="res://src/gui_common/art_gallery/GalleryCardAudio.tscn" id="6"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/GalleryViewer.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://c4sg6uyc17d4s" path="res://src/gui_common/art_gallery/GalleryDetailsTooltip.tscn" id="8"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="8_3eot7"]
@@ -12,12 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="11"]
 
 [node name="GalleryViewer" instance=ExtResource("2")]
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
 offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7")
 GalleryGridPath = NodePath("MarginContainer/VBoxContainer/HBoxContainer2/ScrollContainer/GridContainer")
 TabButtonsPath = NodePath("MarginContainer/VBoxContainer/TabButtons")
@@ -106,8 +107,6 @@ NodeToGiveFocusTo = NodePath("../CloseButton")
 
 [node name="SlideScreen" parent="." index="1" instance=ExtResource("3")]
 layout_mode = 1
-grow_horizontal = 2
-grow_vertical = 2
 
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/OptionButton" to="." method="OnCategorySelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/CloseButton" to="." method="OnCloseButtonPressed"]
