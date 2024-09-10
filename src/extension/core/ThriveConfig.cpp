@@ -1,6 +1,9 @@
 // ------------------------------------ //
 #include "ThriveConfig.hpp"
 
+#include <godot_cpp/core/class_db.hpp>
+#include <godot_cpp/variant/utility_functions.hpp>
+
 // ------------------------------------ //
 namespace Thrive
 {
@@ -55,16 +58,18 @@ ThriveConfig* ThriveConfig::InitializeImplementation(NativeLibIntercommunication
         return nullptr;
     }
 
-    if (false)
+    // This is kept for when there's more complex initialization
+    /*if (false)
     {
         ERR_PRINT("ThriveConfig object initialization failed");
         return nullptr;
-    }
+    }*/
 
     // Init succeeded
     initialized = true;
     InitValueLocation = INIT_MAGIC;
 
+    godot::UtilityFunctions::print("Thrive GDExtension initialized successfully");
     return this;
 }
 
@@ -77,7 +82,7 @@ godot::Variant ThriveConfig::Initialize(const godot::Variant& intercommunication
     }
 
     const auto convertedIntercommunication =
-        reinterpret_cast<NativeLibIntercommunication*>((int64_t)intercommunication);
+        reinterpret_cast<NativeLibIntercommunication*>(static_cast<int64_t>(intercommunication));
 
     if (convertedIntercommunication == nullptr)
     {
