@@ -739,10 +739,18 @@ public class NativeLibs
 
         if (OperatingSystem.IsWindows())
         {
-            ColourConsole.WriteWarningLine("TODO: Windows Jolt build with MSVC only supports Release mode, " +
-                "building Thrive in release mode as well, there won't be debug symbols");
+            if (options.DebugLibrary == true)
+            {
+                startInfo.ArgumentList.Add("Debug");
+            }
+            else
+            {
+                // TODO: improve this
+                ColourConsole.WriteWarningLine("TODO: Windows Jolt build with MSVC only supports Release mode, " +
+                    "building Thrive in release mode as well, there won't be debug symbols");
 
-            startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "Release");
+                startInfo.ArgumentList.Add("Release");
+            }
         }
         else
         {
@@ -755,7 +763,10 @@ public class NativeLibs
         startInfo.ArgumentList.Add("-j");
 
         // TODO: add option to not use all cores
-        startInfo.ArgumentList.Add(Environment.ProcessorCount.ToString());
+        var cores = Environment.ProcessorCount;
+        startInfo.ArgumentList.Add(cores.ToString());
+
+        ColourConsole.WriteDebugLine($"Building using {cores} CPU cores");
 
         result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
 

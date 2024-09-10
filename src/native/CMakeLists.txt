@@ -44,53 +44,48 @@ add_library(thrive_native SHARED
 target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 
 if(MSVC)
-  target_compile_options(thrive_native PRIVATE 
-    /W4 /wd4068 /wd4710 /wd4711 
-  )
+  target_compile_options(thrive_native PRIVATE /W4 /wd4068 /wd4710 /wd4711
+    /wd4714)
+
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE /WX)
   endif()
+
+  # TODO debug symbols in release for MSVC (and Distribution mode)
+
 else()
-  target_compile_options(thrive_native PRIVATE 
-    -Wall -Wextra -Wpedantic -Wno-unknown-pragmas
-  )
+  target_compile_options(thrive_native PRIVATE -Wall -Wextra -Wpedantic
+    -Wno-unknown-pragmas)
+
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE -Werror)
   endif()
+
+  target_compile_options(thrive_native PRIVATE
+    $<$<OR:$<CONFIG:Release>,$<CONFIG:Distribution>>:-DNDEBUG -O3>)
 endif()
 
-target_compile_options(thrive_native PRIVATE 
-  $<$<OR:$<CONFIG:Release>,$<CONFIG:Distribution>>:-DNDEBUG -O3>
-)
+target_link_libraries(thrive_native PRIVATE Jolt PUBLIC Boost::intrusive
+  Boost::circular_buffer Boost::pool)
 
-target_link_libraries(thrive_native 
-  PRIVATE Jolt
-  PUBLIC Boost::intrusive Boost::circular_buffer Boost::pool
-)
+target_include_directories(thrive_native PUBLIC ${CMAKE_CURRENT_LIST_DIR}
+  ../../third_party/concurrentqueue)
 
-target_include_directories(thrive_native 
-  PUBLIC 
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../third_party/concurrentqueue
-)
-
-target_precompile_headers(thrive_native 
-  PUBLIC 
-    "${PROJECT_BINARY_DIR}/Include.h"
-    "core/ForwardDefinitions.hpp"
-    "core/RefCounted.hpp"
-  PRIVATE 
-    "../../third_party/JoltPhysics/Jolt/Jolt.h"
-)
+# TODO: the one private precompiled header will probably cause issues with
+# other libraries linking to this
+target_precompile_headers(thrive_native PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
+  "core/ForwardDefinitions.hpp" "core/RefCounted.hpp"
+  PRIVATE "../../third_party/JoltPhysics/Jolt/Jolt.h")
 
 set_target_properties(thrive_native PROPERTIES
   CXX_STANDARD 20
   CXX_STANDARD_REQUIRED ON
-  CXX_EXTENSIONS OFF
-)
+  CXX_EXTENSIONS OFF)
 
 if(THRIVE_LTO)
+  # TODO: figure out why msys2 fails with this or disable this by default there
   set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+  message(STATUS "LTO is on for ThriveNative")
 endif()
 
 install(TARGETS thrive_native)

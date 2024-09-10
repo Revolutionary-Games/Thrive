@@ -18,6 +18,7 @@ public:
     // Static access to this class to access configuration data. Invalid if this hasn't been initialized by the C#
     // code yet.
 
+public:
     ThriveConfig() = default;
     ~ThriveConfig() override;
 
@@ -34,7 +35,7 @@ public:
 
     // ------------------------------------ //
     // C# interop methods
-    int GetVersion() const noexcept;
+    [[nodiscard]] int GetVersion() const noexcept;
 
 protected:
     static void _bind_methods();
