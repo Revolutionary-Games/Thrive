@@ -134,7 +134,7 @@ public class MembraneShapeGenerator
         // That would reduce the load on the main thread when generating the final visual mesh, though the membrane
         // properties are also used in non-graphical context (species speed) so that'd result in quite a bit of
         // unnecessary computations
-        var mesh = BuildMesh(shapeData.Vertices2D, shapeData.VertexCount, out var surfaceIndex, shapeData.Height);
+        var mesh = BuildMesh(shapeData.Vertices2D, shapeData.VertexCount, shapeData.Height, out var surfaceIndex);
 
         return (mesh, surfaceIndex);
     }
@@ -296,7 +296,7 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Creates the actual mesh object.
     /// </summary>
-    private static ArrayMesh BuildMesh(Vector2[] vertices2D, int vertexCount, out int surfaceIndex, float height)
+    private static ArrayMesh BuildMesh(Vector2[] vertices2D, int vertexCount, float height, out int surfaceIndex)
     {
         // Average of all outline points
         Vector3 center = Vector3.Zero;
