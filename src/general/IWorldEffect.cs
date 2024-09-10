@@ -184,12 +184,18 @@ public class GlucoseReductionEffect : IWorldEffect
 
     private void HandlePatchCompoundDiffusion()
     {
+        var temperature = SimulationParameters.Instance.GetCompound("temperature");
+        var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+
         foreach (var patch in targetWorld.Map.Patches)
         {
             foreach (var adjacent in patch.Value.Adjacent)
             {
                 foreach (var compound in patch.Value.Biome.Compounds)
                 {
+                    if (compound.Key == sunlight || compound.Key == temperature)
+                        return;
+
                     var newConditions = compound.Value;
 
                     var fractionDensity =
