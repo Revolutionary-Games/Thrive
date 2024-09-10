@@ -8,7 +8,6 @@ project(Thrive)
 
 # Options
 # Building either the faster variant with AVX or without for older CPU support
-
 option(THRIVE_AVX "Create faster code that needs AVX2" ON)
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
 option(USE_OBJECT_POOLS
@@ -23,23 +22,22 @@ option(THRIVE_DISTRIBUTION "Build native libs for Thrive distribution" OFF)
 # Windows
 option(USE_ATOMIC_COLLISION_WRITE "Use atomic write to collision data" OFF)
 option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
-option(NULL_HAS_UNUSUAL_REPRESENTATION "Assume null doesn't equal numeric 0" OFF)
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+option(THRIVE_GODOT_API_FILE "Set to override folder Godot API file is looked for in" "")
 
-# Use static runtime library for all configurations
+# Set the runtime library to static for all configurations
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-# Also use a lib prefix on windows for consistency
-if(WIN32)
-  set(CMAKE_SHARED_LIBRARY_PREFIX_CXX "lib")
-endif()
+# Force all targets to use the static runtime
+add_compile_options(
+  $<$<CONFIG:>:/MT>
+  $<$<CONFIG:Debug>:/MTd>
+  $<$<CONFIG:Release>:/MT>
+)
 
 # Set output directories
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 # AVX support
 if(NOT THRIVE_AVX)
