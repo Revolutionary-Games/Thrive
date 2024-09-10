@@ -5,55 +5,59 @@
 # libraries are not included and need to be separately downloaded
 # (for example from our official Thrive git repository)
 
-add_library(thrive_extension SHARED
-  "${PROJECT_BINARY_DIR}/Include.h"
-  core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
-  core/ThriveConfig.cpp core/ThriveConfig.hpp
-  interop/ExtensionInterop.cpp interop/ExtensionInterop.h
+# Use the absolute path
+set(EXTENSION_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+file(GLOB_RECURSE EXTENSION_SOURCES 
+    ${EXTENSION_DIR}/*.cpp
+    ${EXTENSION_DIR}/*.hpp
 )
 
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  target_compile_options(thrive_extension PRIVATE /W4 /wd4068)
 
-  if(WARNINGS_AS_ERRORS)
-    target_compile_options(thrive_extension PRIVATE /WX)
-  endif()
+message(STATUS "Extension directory: ${EXTENSION_DIR}")
+message(STATUS "Extension sources: ${EXTENSION_SOURCES}")
 
-  # TODO debug symbols in release for MSVC (and Distribution mode)
-
-else()
-  target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
-
-  if(WARNINGS_AS_ERRORS)
-    target_compile_options(thrive_extension PRIVATE -Werror)
-  endif()
-
-  target_compile_options(thrive_extension PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
-    $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
+if(NOT EXTENSION_SOURCES)
+    message(FATAL_ERROR "No .cpp or .hpp files found in ${EXTENSION_DIR} or its subdirectories. Please ensure your source files are in this directory tree.")
 endif()
 
-target_compile_definitions(thrive_extension PRIVATE thrive_extension_BUILD)
+add_library(thrive_extension SHARED ${EXTENSION_SOURCES})
 
-target_link_libraries(thrive_extension PRIVATE godot-cpp)
+target_include_directories(thrive_extension PRIVATE
+  ${CMAKE_CURRENT_SOURCE_DIR}
+  ${CMAKE_CURRENT_SOURCE_DIR}/../native
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../third_party/godot-cpp/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/../../third_party/godot-cpp/gen/include
+  ${GODOT_GDEXTENSION_DIR}
+)
 
-target_include_directories(thrive_extension PUBLIC ${CMAKE_CURRENT_LIST_DIR}
-  ${CMAKE_CURRENT_LIST_DIR}/../native)
+target_link_libraries(thrive_extension
+  PRIVATE
+    thrive_native
+    godot-cpp
+)
 
-target_precompile_headers(thrive_extension PUBLIC "${PROJECT_BINARY_DIR}/Include.h"
-  PRIVATE "../../third_party/godot-cpp/include/godot_cpp/classes/ref.hpp"
-  "${GODOT_GDEXTENSION_DIR}/gdextension_interface.h"
+target_compile_definitions(thrive_extension PRIVATE 
+  THRIVE_EXTENSION_VERSION=${THRIVE_EXTENSION_VERSION}
+  THRIVE_LIBRARY_VERSION=${NATIVE_LIBRARY_VERSION}
 )
 
 set_target_properties(thrive_extension PROPERTIES
   CXX_STANDARD 20
-  CXX_EXTENSIONS OFF)
+  CXX_STANDARD_REQUIRED ON
+  CXX_EXTENSIONS OFF
+  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
+)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND WIN32)
-  message(STATUS "Disabling LTO for thrive_extension with Clang as that results in link failures")
-  target_compile_options(thrive_extension PRIVATE "-fno-lto")
-else()
+if(THRIVE_LTO)
   message(STATUS "Enabling LTO for thrive_extension")
   set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
+endif()
+
+if(MSVC)
+  target_compile_options(thrive_extension PRIVATE /W4 /WX /wd4068)
+else()
+  target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Werror -Wno-unknown-pragmas)
 endif()
 
 install(TARGETS thrive_extension)
