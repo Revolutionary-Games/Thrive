@@ -46,8 +46,6 @@ target_compile_definitions(thrive_native PRIVATE THRIVE_NATIVE_BUILD)
 if(MSVC)
   target_compile_options(thrive_native PRIVATE 
     /W4 /wd4068 /wd4710 /wd4711 
-    $<$<CONFIG:Debug>:/MTd>
-    $<$<NOT:$<CONFIG:Debug>>:/MT>
   )
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE /WX)
@@ -55,24 +53,20 @@ if(MSVC)
 else()
   target_compile_options(thrive_native PRIVATE 
     -Wall -Wextra -Wpedantic -Wno-unknown-pragmas
-    $<$<CONFIG:Release>:-O3>
-    $<$<CONFIG:Distribution>:-O3>
   )
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_native PRIVATE -Werror)
   endif()
 endif()
 
+target_compile_options(thrive_native PRIVATE 
+  $<$<OR:$<CONFIG:Release>,$<CONFIG:Distribution>>:-DNDEBUG -O3>
+)
+
 target_link_libraries(thrive_native 
   PRIVATE Jolt
   PUBLIC Boost::intrusive Boost::circular_buffer Boost::pool
 )
-
-if(MSVC)
-  target_link_libraries(thrive_native PRIVATE
-    debug libcmtd optimized libcmt
-  )
-endif()
 
 target_include_directories(thrive_native 
   PUBLIC 
@@ -93,17 +87,10 @@ set_target_properties(thrive_native PROPERTIES
   CXX_STANDARD 20
   CXX_STANDARD_REQUIRED ON
   CXX_EXTENSIONS OFF
-  MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>"
 )
 
 if(THRIVE_LTO)
   set_target_properties(thrive_native PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
-endif()
-
-if(MSVC)
-  set_target_properties(thrive_native PROPERTIES 
-    LINK_FLAGS "/NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:libcmtd.lib"
-  )
 endif()
 
 install(TARGETS thrive_native)
