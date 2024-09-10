@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-06 15:01+0300\n"
-"PO-Revision-Date: 2024-08-23 11:12+0000\n"
-"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
+"POT-Creation-Date: 2024-09-09 14:59+0300\n"
+"PO-Revision-Date: 2024-09-08 07:30+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -332,7 +332,7 @@ msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Считать, словно сейчас день"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr "Если этот флажок установлен, числа, вычисляемые в этой панели, вычисляются так, как если бы процессы происходили днём"
+msgstr "Если этот флажок установлен, значения в этой панели вычисляются так, как если бы процессы происходили днём"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Включить стоимость передвижения"
@@ -752,7 +752,7 @@ msgid "COMPOUNDS_COLON"
 msgstr "Соединения:"
 
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "(заполняет хранилище за {0} сек)"
+msgstr "(заполняет хранилище за {0} сек.)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "(заполняет хранилище за {0} секунд, что дольше, чем использование дневного света -- {1} сек)"
@@ -1399,9 +1399,8 @@ msgstr "Отменить и продолжить"
 msgid "DISCARD_CHANGES"
 msgstr "Отменить изменения"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "Отменить и продолжить"
+msgstr "Отменить Миграцию"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Отсоединённые Клетки"
@@ -2175,9 +2174,8 @@ msgstr "ID не является действительным номером"
 msgid "ID_NUMBER"
 msgstr "Номер ID"
 
-#, fuzzy
 msgid "IMAGE_FILE_TYPES"
-msgstr "Типы Мембран"
+msgstr "Поддерживаемые файлы изображений"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включить прототипы поздних стадий игры"
@@ -2378,9 +2376,8 @@ msgstr "Июль"
 msgid "JUNE"
 msgstr "Июнь"
 
-#, fuzzy
 msgid "KEEP_MIGRATION"
-msgstr "Аэробное дыхание"
+msgstr "Продолжить Миграцию"
 
 msgid "KEY_BACK"
 msgstr "Назад"
@@ -3241,13 +3238,13 @@ msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr "Только одно перемещение может быть выполнено за сеанс редактирования. Вы можете просмотреть перемещение в очереди ниже и сохранить или удалить его, чтобы создать новое"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "Выбери сколько популяции должно будет мигрировать из основной точки в цель"
+msgstr "Выберите, сколько популяции должно будет мигрировать из основной точки в цель"
 
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr "Выбери биом в котором есть твой вид. Этот биом станет основой для миграции твоего вида"
 
 msgid "MIGRATION_TOOLTIP"
-msgstr "Вид мигрирует сам по-себе в определенный биом"
+msgstr "Мигрировать в другой биом, не покидая текущего"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Млн"
@@ -3909,6 +3906,10 @@ msgstr "Множитель стоимости осморегуляции"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(стоимость осморегуляции вида игрока)"
+
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Соединения"
 
 msgid "OUR_WIKI"
 msgstr "наша Wiki"
@@ -4952,7 +4953,7 @@ msgid "STORE_LOGGED_IN_AS"
 msgstr "Авторизован как: {0}"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Видимость Полоски Усталости"
 
 msgid "STRATEGY_STAGES"
 msgstr "Стадии Стратегии"
@@ -5839,7 +5840,7 @@ msgid "VISIBLE"
 msgstr "Видимый"
 
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
-msgstr ""
+msgstr "Видна при почти полном заполнении"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr "Видимость в нулевом состоянии"
@@ -6886,6 +6887,7 @@ msgstr "Название предмета:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Загрузка предмета в Мастерскую Steam прошла успешно"
 
+#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Загрузка элемента в Мастерскую Steam прошла успешно, но вам необходимо принять [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]условия обслуживания[/url][/color] Мастерской прежде чем он станет видимым"
 

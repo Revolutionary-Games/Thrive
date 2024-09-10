@@ -278,15 +278,10 @@ public class BiomeConditions : ICloneable
             }
         }
 
-        if (sumOfGasses > 0)
+        if (sumOfGasses > 1)
         {
-            // Make sure gasses add up to 100% to make sure they make sense. 0.005 is here to allow being off by up to
-            // half a percent
-            if (Math.Abs(sumOfGasses - 1) >= 0.005f)
-            {
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Gas compounds should add up to 1 to have 100% of air composition covered");
-            }
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Gas compounds shouldn't together be over 100%");
         }
 
         foreach (var chunk in Chunks)

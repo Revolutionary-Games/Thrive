@@ -57,8 +57,14 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
+    /// <summary>
+    ///   Returns the patch where the player wants to move after editing
+    /// </summary>
     [JsonIgnore]
-    public Patch? SelectedPatch => targetPatch;
+    public Patch? TargetPatch => targetPatch;
+
+    [JsonIgnore]
+    public Patch? SelectedPatch => mapDrawer.SelectedPatch;
 
     /// <summary>
     ///   Called when the selected patch changes
