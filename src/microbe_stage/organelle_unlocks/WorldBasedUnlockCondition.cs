@@ -3,6 +3,7 @@
 using System;
 using System.Globalization;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   An unlock condition that relies on world data to track progress

@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Serializes registry types as strings or objects (for supported types)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 using Xoshiro.PRNG64;
 
 public class NameGenerator : IRegistryType

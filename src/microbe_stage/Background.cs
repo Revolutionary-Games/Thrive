@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Background in the microbe stage, needs to have 4 layers (textures)

@@ -5,6 +5,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 using UnlockConstraints;
 
 /// <summary>

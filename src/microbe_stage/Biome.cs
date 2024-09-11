@@ -2,6 +2,7 @@
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Base microbe biome with some parameters that are used for a Patch.

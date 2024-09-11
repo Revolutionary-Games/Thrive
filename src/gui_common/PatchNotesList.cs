@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Godot;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Shows the game patch notes (optionally with the full history)

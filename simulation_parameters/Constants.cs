@@ -1357,8 +1357,6 @@ public static class Constants
     public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
     public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
-    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
-
     public const string PHYSICS_DUMP_PATH = LOGS_FOLDER + "/physics_dump.bin";
 
     public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
