@@ -254,11 +254,40 @@ public partial class PatchNotesList : VBoxContainer
 
         var subHeadingFontPath = SubHeadingFont.Font.ResourcePath;
 
+        int itemsLeft = showAll ? int.MaxValue : Constants.MAX_RECENT_VERSIONS_TO_SHOW;
+
         // This could use the same approach as ThriveFeedDisplayer to build only one object per frame, but
         // as this is usually empty or just shows the latest patch notes, that wouldn't help in the common case at all
         foreach (var (version, versionPatchNotes) in notes)
         {
             Container itemContainer;
+
+            // When showing too many things, show instead text that not all are shown and then quit the loop
+            if (--itemsLeft <= 0)
+            {
+                itemContainer = new VBoxContainer();
+
+                itemContainer.AddChild(new Control
+                {
+                    CustomMinimumSize = new Vector2(1, 3),
+                });
+
+                itemContainer.AddChild(new Label
+                {
+                    Text = TranslationServer.Translate("TOO_MANY_RECENT_VERSIONS_TO_SHOW"),
+                    AutowrapMode = TextServer.AutowrapMode.WordSmart,
+                    CustomMinimumSize = new Vector2(100, 0),
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                });
+
+                itemContainer.AddChild(new Control
+                {
+                    CustomMinimumSize = new Vector2(1, 3),
+                });
+
+                AddChild(itemContainer);
+                break;
+            }
 
             if (StyleWithBackground)
             {
