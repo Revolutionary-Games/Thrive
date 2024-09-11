@@ -1,22 +1,16 @@
 ﻿namespace ThriveScriptsShared;
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-public class TranslationsInfo : IRegistryType
+public class TranslationsInfo(Dictionary<string, float> translationProgress) : IRegistryType
 {
     [JsonProperty]
-    public Dictionary<string, float> TranslationProgress { get; private set; }
+    public Dictionary<string, float> TranslationProgress { get; private set; } = translationProgress;
 
     /// <summary>
     ///   Unused
     /// </summary>
     public string InternalName { get; set; } = null!;
-
-    public TranslationsInfo(Dictionary<string, float> translationProgress)
-    {
-        TranslationProgress = translationProgress;
-    }
 
     public virtual void Check(string name)
     {
