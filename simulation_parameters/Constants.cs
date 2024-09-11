@@ -167,6 +167,11 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
+    public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
+    public const float MEMBRANE_HEIGHT_MULTIPLIER = 1.0f;
+
+    public const float MEMBRANE_SMOOTHING_POWER = 3.0f;
+    public const float MEMBRANE_SIDE_ROUNDING = 20.0f;
 
     public const float MEMBRANE_ROOM_FOR_ORGANELLES = 1.9f;
     public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;
@@ -997,6 +1002,8 @@ public static class Constants
     public const float MIN_OPACITY_CHITIN = 0.4f;
     public const float MAX_OPACITY_CHITIN = 1.2f;
 
+    public const float ORGANELLE_TINT_STRENGTH = 0.1f;
+
     // Min Opacity Mutation
     public const float MIN_OPACITY_MUTATION = -0.01f;
     public const float MAX_OPACITY_MUTATION = 0.01f;
@@ -1469,6 +1476,8 @@ public static class Constants
     public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
+
+    public const int MEMBRANE_RENDER_PRIORITY = 20;
 
     /// <summary>
     ///   Minimum hex distance before the same render priority.
