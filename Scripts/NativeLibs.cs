@@ -274,7 +274,7 @@ public class NativeLibs
             case Program.NativeLibOptions.OperationMode.Package:
                 if (!OperatingSystem.IsMacOS())
                 {
-                    ColourConsole.WriteInfoLine("Making distributable package and symbols for Linux and Windows");
+                    ColourConsole.WriteInfoLine("Making distributable package and symbols for non-mac platforms");
 
                     return await OperateOnAllPlatforms(BuildPackageWithPodman, cancellationToken);
                 }
@@ -418,7 +418,7 @@ public class NativeLibs
         foreach (var platform in platforms)
         {
             cancellationToken.ThrowIfCancellationRequested();
-            ColourConsole.WriteDebugLine($"Operating on platform: {platform}");
+            ColourConsole.WriteNormalLine($"Performing operation for platform: {platform}");
 
             if (!await operation.Invoke(platform, cancellationToken))
             {
