@@ -706,7 +706,8 @@ public partial class PhysicsTest : Node
             physicalWorld.SetDamping(body, MicrobeDamping);
 
             // Add an initial impulse
-            physicalWorld.GiveImpulse(body, new Vector3(random.NextSingle(), random.NextSingle(), random.NextSingle()));
+            physicalWorld.GiveImpulse(body, new Vector3(random.NextSingle(), random.NextSingle(), random.NextSingle()),
+                true);
 
             microbeAnalogueBodies.Add(body);
             testMicrobesToProcess.Add(new TestMicrobeAnalogue(body, random.Next()));
