@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition of a bio process that cells can do in the form of a TweakedProcess.

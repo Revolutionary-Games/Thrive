@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using ThriveScriptsShared;
+
+/// <summary>
 ///   Allows cell to store more stuff
 /// </summary>
 public class StorageComponent : EmptyOrganelleComponent

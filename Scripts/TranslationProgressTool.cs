@@ -3,23 +3,20 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 using Karambolo.PO;
 using ScriptsBase.Checks;
 using ScriptsBase.Utilities;
+using ThriveScriptsShared;
 
 public static class TranslationProgressTool
 {
-    // TODO: share this constant with Thrive once a common module is created
-    public const string TRANSLATIONS_PROGRESS_FILE = "simulation_parameters/common/translations_info.json";
-
     public static async Task<bool> Run(CancellationToken cancellationToken)
     {
         var parser = LocalizationCheckBase.CreateParser();
 
-        var progressValues = new Dictionary<string, double>();
+        var progressValues = new Dictionary<string, float>();
 
         foreach (var file in Directory.EnumerateFiles("locale", "*.po", SearchOption.AllDirectories))
         {
@@ -39,16 +36,18 @@ public static class TranslationProgressTool
 
             ColourConsole.WriteNormalLine($"Progress of {file}: {progress * 100}%");
 
-            progressValues[name] = progress;
+            progressValues[name] = (float)progress;
         }
 
         // Sort for consistent order in file
-        var objectToWrite = new TranslationInfo(
-            progressValues.OrderBy(p => p.Key).ToDictionary(p => p.Key, p => p.Value));
+        var objectToWrite =
+            new TranslationsInfo(progressValues.OrderBy(p => p.Key).ToDictionary(p => p.Key, p => p.Value));
 
-        await JsonWriteHelper.WriteJsonWithBom(TRANSLATIONS_PROGRESS_FILE, objectToWrite, cancellationToken);
+        await JsonWriteHelper.WriteJsonWithBom(ThriveScriptConstants.TRANSLATIONS_PROGRESS_FILE, objectToWrite,
+            cancellationToken);
 
-        ColourConsole.WriteSuccessLine($"Updated translations progress at {TRANSLATIONS_PROGRESS_FILE}");
+        ColourConsole.WriteSuccessLine(
+            $"Updated translations progress at {ThriveScriptConstants.TRANSLATIONS_PROGRESS_FILE}");
 
         return true;
     }
@@ -113,16 +112,5 @@ public static class TranslationProgressTool
             return 0;
 
         return (total - unTranslatedOrFuzzy) / (double)total;
-    }
-
-    private class TranslationInfo
-    {
-        public TranslationInfo(Dictionary<string, double> translationProgress)
-        {
-            TranslationProgress = translationProgress;
-        }
-
-        [JsonInclude]
-        public Dictionary<string, double> TranslationProgress { get; private set; }
     }
 }

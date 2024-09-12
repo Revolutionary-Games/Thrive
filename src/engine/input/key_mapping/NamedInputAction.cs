@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   A godot input action name with an associated user readable name

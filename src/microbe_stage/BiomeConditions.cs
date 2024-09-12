@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome

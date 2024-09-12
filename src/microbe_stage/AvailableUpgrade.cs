@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   General data about an available upgrade that is either present or not (some more in-depth upgrades have their

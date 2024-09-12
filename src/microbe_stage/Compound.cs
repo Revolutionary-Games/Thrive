@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Godot;
 using Saving.Serializers;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition of a compound in the game. For all other simulation

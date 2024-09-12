@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using ThriveScriptsShared;
+
+/// <summary>
 ///   Game difficulty data
 /// </summary>
 [SupportsCustomizedRegistryType(typeof(CustomDifficulty))]
