@@ -111,11 +111,11 @@ public partial class SimulationParameters : Node
         {
             var deserializers = new JsonConverter[]
             {
+                new DirectTypeLoadOverride(typeof(CompoundDefinition), null),
                 new DirectTypeLoadOverride(typeof(Enzyme), null),
                 new DirectTypeLoadOverride(typeof(Biome), null),
             };
 
-            // Compounds are used by later stuff so it has to be in here when it otherwise wouldn't need to be here
             compounds = LoadRegistry<CompoundDefinition>("res://simulation_parameters/microbe_stage/compounds.json",
                 deserializers);
 
