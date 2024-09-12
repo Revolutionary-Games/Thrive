@@ -530,7 +530,7 @@ public partial class MicrobeBenchmark : Node
         cloudSystem!.AddCloud(Compound.Glucose, GLUCOSE_CLOUD_AMOUNT, position);
 
         // And a bit of phosphate or ammonia
-        cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? Compound.Phosphates : Compound.Ammonia,
+        cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? Compound.Phosphate : Compound.Ammonia,
             AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
     }
 

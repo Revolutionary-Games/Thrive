@@ -366,7 +366,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         ammoniaBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Ammonia),
             0, 1);
         phosphateBar = CompoundProgressBar.Create(barScene,
-            simulationParameters.GetCompoundDefinition(Compound.Phosphates), 0, 1);
+            simulationParameters.GetCompoundDefinition(Compound.Phosphate), 0, 1);
         hydrogenSulfideBar = CompoundProgressBar.Create(barScene,
             simulationParameters.GetCompoundDefinition(Compound.Hydrogensulfide), 0, 1);
         ironBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Iron), 0, 1);
@@ -378,7 +378,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         compoundBars.Add((Compound.Ammonia, ammoniaBar));
 
         compoundsPanel.AddPrimaryBar(phosphateBar);
-        compoundBars.Add((Compound.Phosphates, phosphateBar));
+        compoundBars.Add((Compound.Phosphate, phosphateBar));
 
         compoundsPanel.AddPrimaryBar(hydrogenSulfideBar);
         compoundBars.Add((Compound.Hydrogensulfide, hydrogenSulfideBar));
@@ -930,7 +930,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         try
         {
-            fractionOfPhosphates = gatheredCompounds[Compound.Phosphates] / totalNeededCompounds[Compound.Phosphates];
+            fractionOfPhosphates = gatheredCompounds[Compound.Phosphate] / totalNeededCompounds[Compound.Phosphate];
         }
         catch (Exception e)
         {

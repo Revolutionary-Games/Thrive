@@ -396,7 +396,7 @@ public partial class PatchDetailsPanel : PanelContainer
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Glucose),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Phosphates),
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Phosphate),
                 Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
             Math.Round(GetCompoundAmount(SelectedPatch, Compound.Iron),
@@ -552,13 +552,13 @@ public partial class PatchDetailsPanel : PanelContainer
             ammoniaSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Phosphates);
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Phosphate);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Phosphates))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Phosphate))
         {
             phosphateSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Phosphates))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Phosphate))
         {
             phosphateSituation.Texture = decreaseIcon;
         }
