@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://begbjuynar75j"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_5l116"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/FlagellumUpgradeGUI.cs" id="2_f2xv7"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_pr3nu"]
+
+[node name="VacuoleUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("lengthSlider")]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -880.0
+offset_bottom = -650.0
+theme = ExtResource("1_5l116")
+script = ExtResource("2_f2xv7")
+lengthSlider = NodePath("HSlider")
+
+[node name="Description" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "FLAGELLUM_LENGTH_DESCRIPTION"
+label_settings = ExtResource("3_pr3nu")
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 2
+tooltip_text = "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+min_value = -1.0
+max_value = 1.0
+step = 0.05
+scrollable = false
+tick_count = 7

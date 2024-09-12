@@ -2305,6 +2305,18 @@ public partial class CellEditorComponent :
                 organelleModel.Visible = !MicrobePreviewMode;
 
                 UpdateOrganellePlaceHolderScene(organelleModel, modelInfo, Hex.GetRenderPriority(organelle.Position));
+
+                if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+                {
+                    var flagellumLength = flagellumUpgrades.LengthFraction;
+
+                    if (organelleModel != null)
+                    {
+                        //organelleModel.Position = new Vector3(0, 0, Constants.FLAGELLA_UPGRADE_VISUAL_OFFSET * flagellumLength);
+                        organelleModel.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH *
+                            flagellumLength + Constants.FLAGELLA_MIN_VISUAL_LENGTH);
+                    }
+                }
             }
         }
 
