@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Godot;
 using JetBrains.Annotations;
 using Newtonsoft.Json;
 
@@ -102,6 +103,12 @@ public class CompoundBag : ICompoundStorage
         if (capacityToAdd < 0)
             throw new ArgumentException("Capacity to set can't be negative", nameof(capacityToAdd));
 
+        if (compound == Compound.Invalid)
+        {
+            GD.PrintErr("Cannot add compound capacity of invalid type to bag");
+            return;
+        }
+
         compoundCapacities ??= new Dictionary<Compound, float>();
 
         if (!compoundCapacities.TryGetValue(compound, out var existing))
@@ -149,6 +156,12 @@ public class CompoundBag : ICompoundStorage
         if (amount <= 0.0f)
             return amount;
 
+        if (compound == Compound.Invalid)
+        {
+            GD.PrintErr("Cannot add compound amount of invalid type to bag");
+            return 0;
+        }
+
         float existingAmount = GetCompoundAmount(compound);
 
         float newAmount = Math.Min(existingAmount + amount, GetCapacityForCompound(compound));
@@ -181,6 +194,12 @@ public class CompoundBag : ICompoundStorage
 
     public void SetUseful(Compound compound)
     {
+        if (compound == Compound.Invalid)
+        {
+            GD.PrintErr("Cannot set invalid compound type as useful in bag");
+            return;
+        }
+
         usefulCompounds.Add(compound);
     }
 
@@ -195,12 +214,14 @@ public class CompoundBag : ICompoundStorage
 
     public bool IsUseful(Compound compound)
     {
-        if (compound.IsAlwaysUseful)
+        if (IsSpecificallySetUseful(compound))
         {
             return true;
         }
 
-        return IsSpecificallySetUseful(compound);
+        // Now that compound is just an index, this needs to look up the actual data so this isn't as efficient as
+        // before
+        return SimulationParameters.GetCompound(compound).IsAlwaysUseful;
     }
 
     public bool IsSpecificallySetUseful(Compound compound)
