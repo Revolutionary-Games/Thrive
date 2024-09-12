@@ -27,7 +27,7 @@ public enum Compound : ushort
     ATP = 1,
 
     Ammonia = 2,
-    Phosphate = 3,
+    Phosphates = 3,
     Hydrogensulfide = 4,
     Glucose = 5,
     Oxytoxy = 6,

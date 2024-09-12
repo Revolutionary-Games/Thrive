@@ -792,7 +792,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(Compound.Phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
         }
 
         patchManager.CurrentGame = CurrentGame;
