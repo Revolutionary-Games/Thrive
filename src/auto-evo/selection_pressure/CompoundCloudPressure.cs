@@ -11,6 +11,7 @@ public class CompoundCloudPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     private readonly Compound compound;
+    private readonly CompoundDefinition compoundDefinition;
     private readonly bool isDayNightCycleEnabled;
 
     public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
@@ -19,7 +20,9 @@ public class CompoundCloudPressure : SelectionPressure
             new ChangeMembraneType("single"),
         ])
     {
-        if (!compound.IsCloud)
+        compoundDefinition = SimulationParameters.GetCompound(compound);
+
+        if (!compoundDefinition.IsCloud)
             throw new ArgumentException("Given compound to cloud pressure is not of cloud type");
 
         this.compound = compound;
@@ -64,11 +67,12 @@ public class CompoundCloudPressure : SelectionPressure
 
     public override LocalizedString GetDescription()
     {
-        return new LocalizedString("COMPOUND_FOOD_SOURCE", new LocalizedString(compound.GetUntranslatedName()));
+        return new LocalizedString("COMPOUND_FOOD_SOURCE",
+            new LocalizedString(compoundDefinition.GetUntranslatedName()));
     }
 
     public override string ToString()
     {
-        return $"{Name} ({compound.Name})";
+        return $"{Name} ({compoundDefinition.Name})";
     }
 }

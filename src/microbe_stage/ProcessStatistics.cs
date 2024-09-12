@@ -127,16 +127,16 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     public string Name => Process.Name;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-        LatestSnapshot?.Inputs.Where(p => !p.Key.IsEnvironmental) ??
+        LatestSnapshot?.Inputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key)) ??
         throw new InvalidOperationException("No snapshot set");
 
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
-        LatestSnapshot?.Inputs.Where(p => p.Key.IsEnvironmental) ??
+        LatestSnapshot?.Inputs.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key)) ??
         throw new InvalidOperationException("No snapshot set");
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         precomputedEnvironmentInputs ??= Process.Inputs
-            .Where(p => p.Key.IsEnvironmental)
+            .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key))
             .ToDictionary(p => p.Key, p => p.Value);
 
     public IReadOnlyDictionary<Compound, float> Outputs =>
@@ -382,10 +382,10 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public string Name => owner.Name;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-        WritableInputs.Where(p => !p.Key.IsEnvironmental);
+        WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));
 
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
-        WritableInputs.Where(p => p.Key.IsEnvironmental);
+        WritableInputs.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key));
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         owner.FullSpeedRequiredEnvironmentalInputs;

@@ -72,7 +72,8 @@ public partial class CompoundStorageStatistics : VBoxContainer
                         compoundControl.ValueColour = CompoundAmount.Colour.Red;
 
                         storageWarningBuilder.Append(new LocalizedString("COMPOUND_STORAGE_NOT_ENOUGH_SPACE",
-                            entry.Key.InternalName, Math.Round(lastingTime, 1),
+                            SimulationParameters.GetCompound(entry.Key).InternalName,
+                            Math.Round(lastingTime, 1),
                             Math.Round(nightDuration)));
                         storageWarningBuilder.Append(' ');
                     }
@@ -88,7 +89,8 @@ public partial class CompoundStorageStatistics : VBoxContainer
                             entry.Value.Balance, nightDuration, fillTimeWarning, out var generated, out var required))
                     {
                         storageWarningBuilder.Append(new LocalizedString(
-                            "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY", entry.Key.InternalName,
+                            "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY",
+                            SimulationParameters.GetCompound(entry.Key).InternalName,
                             Math.Round(generated, 1),
                             Math.Round(required, 1)));
                         storageWarningBuilder.Append(' ');

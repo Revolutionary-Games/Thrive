@@ -435,7 +435,7 @@ public class OrganelleDefinition : IRegistryType
                     "InitialComposition has negative or really small value");
             }
 
-            if (!entry.Key.IsCloud)
+            if (!SimulationParameters.Instance.GetCompoundDefinition(entry.Key).IsCloud)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "InitialComposition has a compound that can't be a cloud");

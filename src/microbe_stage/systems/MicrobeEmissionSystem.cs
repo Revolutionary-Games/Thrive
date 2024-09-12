@@ -107,17 +107,17 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
 
         // Fire queued agents
-        if (control.QueuedToxinToEmit != null)
+        if (control.QueuedToxinToEmit != Compound.Invalid)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
                 control.QueuedToxinToEmit, compounds, engulfed, false);
-            control.QueuedToxinToEmit = null;
+            control.QueuedToxinToEmit = Compound.Invalid;
         }
 
         if (control.QueuedSiderophoreToEmit)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                null, null, engulfed, true);
+                Compound.Invalid, null, engulfed, true);
             control.QueuedSiderophoreToEmit = false;
         }
 
@@ -152,7 +152,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     /// </summary>
     private void EmitProjectile(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position,
-        Compound? agentType, CompoundBag? compounds, bool engulfed, bool siderophore)
+        Compound agentType, CompoundBag? compounds, bool engulfed, bool siderophore)
     {
         if (engulfed)
             return;
@@ -199,7 +199,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             if (organelles.AgentVacuoleCount < 1)
                 return;
 
-            if (compounds == null || agentType == null)
+            if (compounds == null || agentType == Compound.Invalid)
                 return;
 
             float amountAvailable = compounds.GetCompoundAmount(agentType);

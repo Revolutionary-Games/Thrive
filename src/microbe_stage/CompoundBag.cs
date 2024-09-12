@@ -224,6 +224,15 @@ public class CompoundBag : ICompoundStorage
         return SimulationParameters.GetCompound(compound).IsAlwaysUseful;
     }
 
+    public bool IsUseful(CompoundDefinition compound)
+    {
+        // This variant checks always useful first as the data is immediately available
+        if (compound.IsAlwaysUseful)
+            return true;
+
+        return IsSpecificallySetUseful(compound.ID);
+    }
+
     public bool IsSpecificallySetUseful(Compound compound)
     {
         return usefulCompounds.Contains(compound);

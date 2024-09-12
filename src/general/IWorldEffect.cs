@@ -34,7 +34,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
-        var glucose = SimulationParameters.Instance.GetCompound("glucose");
+        var glucoseDefinition = SimulationParameters.GetCompound(Compound.Glucose);
 
         var totalAmount = 0.0f;
         var totalChunkAmount = 0.0f;
@@ -46,35 +46,38 @@ public class GlucoseReductionEffect : IWorldEffect
         {
             var patch = targetWorld.Map.Patches[key];
 
-            if (!patch.Biome.ChangeableCompounds.TryGetValue(glucose, out BiomeCompoundProperties glucoseValue))
+            if (!patch.Biome.ChangeableCompounds.TryGetValue(Compound.Glucose,
+                    out BiomeCompoundProperties glucoseValue))
+            {
                 return;
+            }
 
             totalAmount += glucoseValue.Amount;
             initialTotalDensity += glucoseValue.Density;
-            totalChunkAmount += patch.GetTotalChunkCompoundAmount(glucose);
+            totalChunkAmount += patch.GetTotalChunkCompoundAmount(Compound.Glucose);
 
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
             {
                 var initialGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
-                    patch.GetTotalChunkCompoundAmount(glucose), 3);
+                    patch.GetTotalChunkCompoundAmount(Compound.Glucose), 3);
 
                 glucoseValue.Density = Math.Max(glucoseValue.Density * targetWorld.WorldSettings.GlucoseDecay,
                     Constants.GLUCOSE_MIN);
 
-                patch.Biome.ModifyLongTermCondition(glucose, glucoseValue);
+                patch.Biome.ModifyLongTermCondition(Compound.Glucose, glucoseValue);
 
                 var finalGlucose = Math.Round(glucoseValue.Density * glucoseValue.Amount +
-                    patch.GetTotalChunkCompoundAmount(glucose), 3);
+                    patch.GetTotalChunkCompoundAmount(Compound.Glucose), 3);
 
                 var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
                 patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucose.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
+                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
                     "glucoseDown.png");
             }
 
-            finalTotalDensity += patch.Biome.ChangeableCompounds[glucose].Density;
+            finalTotalDensity += patch.Biome.ChangeableCompounds[Compound.Glucose].Density;
         }
 
         var initialTotalGlucose = Math.Round(initialTotalDensity * totalAmount + totalChunkAmount, 3);
@@ -94,7 +97,7 @@ public class GlucoseReductionEffect : IWorldEffect
         else if (globalReduction > 0)
         {
             targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                    glucose.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
+                    glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
                 "glucoseDown.png");
         }
     }

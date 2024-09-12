@@ -167,9 +167,9 @@ public partial class AutoEvoExploringTool
         var header = new List<string> { "Name", "Generation", "Type" };
 
         foreach (var compound in world.GameProperties.GameWorld.Map.Patches.First().Value.Biome.Compounds.Keys
-                     .Select(c => c.Name).OrderBy(s => s))
+                     .Select(c => SimulationParameters.GetCompound(c).Name).OrderBy(s => s))
         {
-            header.AddRange(new[] { compound + " Amount", compound + " Ambient", compound + " Density" });
+            header.AddRange([compound + " Amount", compound + " Ambient", compound + " Density"]);
         }
 
         file.StoreCsvLine(header.ToArray());
@@ -183,14 +183,14 @@ public partial class AutoEvoExploringTool
 
                 var snapshot = world.PatchHistoryList[generation][patch.ID];
 
-                foreach (var pair in snapshot.Biome.CurrentCompoundAmounts.OrderBy(p => p.Key.Name))
+                foreach (var pair in snapshot.Biome.CurrentCompoundAmounts.OrderBy(p =>
+                             SimulationParameters.GetCompound(p.Key).Name))
                 {
-                    data.AddRange(new[]
-                    {
+                    data.AddRange([
                         pair.Value.Amount.ToString(CultureInfo.InvariantCulture),
                         pair.Value.Ambient.ToString(CultureInfo.InvariantCulture),
                         pair.Value.Density.ToString(CultureInfo.InvariantCulture),
-                    });
+                    ]);
                 }
 
                 file.StoreCsvLine(data.ToArray());

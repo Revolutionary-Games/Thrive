@@ -57,7 +57,7 @@ public partial class SimulationParameters : Node
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
 
-    private List<Compound>? cachedCloudCompounds;
+    private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -363,7 +363,7 @@ public partial class SimulationParameters : Node
     ///   simulated "clouds" for microbes to hoover up)
     /// </summary>
     /// <returns>A readonly list with all the cloud compounds</returns>
-    public IReadOnlyList<Compound> GetCloudCompounds()
+    public IReadOnlyList<CompoundDefinition> GetCloudCompounds()
     {
         return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
@@ -816,9 +816,9 @@ public partial class SimulationParameters : Node
         visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.Identifier, t => t.Value);
     }
 
-    private List<Compound> ComputeCloudCompounds()
+    private List<CompoundDefinition> ComputeCloudCompounds()
     {
-        return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value.ID).ToList();
+        return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
     }
 
     private List<Enzyme> ComputeHydrolyticEnzymes()

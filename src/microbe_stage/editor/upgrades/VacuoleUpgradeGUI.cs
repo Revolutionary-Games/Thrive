@@ -26,9 +26,7 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private VBoxContainer compoundSelection = null!;
 #pragma warning restore CA2213
 
-    private Compound mucilage = null!;
-
-    private List<Compound>? shownChoices;
+    private List<CompoundDefinition>? shownChoices;
 
     public override void _Ready()
     {
@@ -38,14 +36,12 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         compoundSelection = GetNode<VBoxContainer>(CompoundSelectionPath);
 
         compounds.Clear();
-
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)
     {
         shownChoices = SimulationParameters.Instance.GetAllCompounds().Values
-            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.InternalName == mucilage.InternalName)).ToList();
+            .Where(c => !c.IsEnvironmental && (!c.IsAgent || c.ID == Compound.Mucilage)).ToList();
 
         foreach (var compound in shownChoices)
             compounds.AddItem(compound.Name);
@@ -60,7 +56,7 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         // Apply current upgrade values or defaults
         if (organelle.Upgrades?.CustomUpgradeData is StorageComponentUpgrades configuration)
         {
-            Compound? specialization = shownChoices.Find(c => c == configuration.SpecializedFor);
+            CompoundDefinition? specialization = shownChoices.Find(c => c.ID == configuration.SpecializedFor);
             isSpecializedCheckbox.ButtonPressed = specialization != null;
 
             compounds.Selected = specialization != null ?
@@ -88,8 +84,9 @@ public partial class VacuoleUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         if (compounds.Selected == -1)
             compounds.Selected = 0;
 
-        organelleUpgrades.CustomUpgradeData = new StorageComponentUpgrades(
-            isSpecializedCheckbox.ButtonPressed ? shownChoices[compounds.Selected] : null);
+        organelleUpgrades.CustomUpgradeData = new StorageComponentUpgrades(isSpecializedCheckbox.ButtonPressed ?
+            shownChoices[compounds.Selected].ID :
+            Compound.Invalid);
 
         return true;
     }

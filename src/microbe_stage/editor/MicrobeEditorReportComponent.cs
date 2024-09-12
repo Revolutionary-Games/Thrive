@@ -301,17 +301,21 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         temperatureChart.AddDataSet(Localization.Translate("TEMPERATURE"), temperatureData);
 
+        var simulationParameters = SimulationParameters.Instance;
+
         foreach (var snapshot in patch.History)
         {
             foreach (var entry in snapshot.Biome.CombinedCompounds)
             {
+                var compound = simulationParameters.GetCompoundDefinition(entry.Key);
+
                 var dataset = new LineChartData
                 {
-                    Icon = entry.Key.LoadedIcon,
-                    Colour = entry.Key.Colour,
+                    Icon = compound.LoadedIcon,
+                    Colour = compound.Colour,
                 };
 
-                GetChartForCompound(entry.Key.InternalName)?.AddDataSet(entry.Key.Name, dataset);
+                GetChartForCompound(compound.InternalName)?.AddDataSet(compound.Name, dataset);
             }
 
             foreach (var entry in snapshot.SpeciesInPatch)
@@ -338,13 +342,15 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
             foreach (var entry in combinedCompounds)
             {
-                var dataset = GetChartForCompound(entry.Key.InternalName)?.GetDataSet(entry.Key.Name);
+                var compound = simulationParameters.GetCompoundDefinition(entry.Key);
+
+                var dataset = GetChartForCompound(compound.InternalName)?.GetDataSet(compound.Name);
 
                 if (dataset == null)
                     continue;
 
                 var dataPoint = DataPoint.GetDataPoint(snapshot.TimePeriod,
-                    Math.Round(patch.GetCompoundAmountInSnapshotForDisplay(snapshot, entry.Key.InternalName), 3));
+                    Math.Round(patch.GetCompoundAmountInSnapshotForDisplay(snapshot, compound.ID), 3));
                 dataPoint.MarkerColour = dataset.Colour;
 
                 dataset.AddPoint(dataPoint);

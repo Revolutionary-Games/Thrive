@@ -73,7 +73,7 @@ public static class MicrobeInternalCalculations
 
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
-            if (specificCapacity.Compound == null)
+            if (specificCapacity.Compound == Compound.Invalid)
                 continue;
 
             // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
@@ -107,7 +107,7 @@ public static class MicrobeInternalCalculations
             var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
-            if (specificCapacity.Compound == null)
+            if (specificCapacity.Compound == Compound.Invalid)
                 continue;
 
             compoundBag.AddSpecificCapacityForCompound(specificCapacity.Compound, specificCapacity.Capacity);
@@ -117,7 +117,7 @@ public static class MicrobeInternalCalculations
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.SpecializedFor != null)
+            storage.SpecializedFor != Compound.Invalid)
         {
             return 0;
         }
@@ -128,14 +128,14 @@ public static class MicrobeInternalCalculations
         return definition.Components.Storage!.Capacity;
     }
 
-    public static (Compound? Compound, float Capacity)
+    public static (Compound Compound, float Capacity)
         GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
     {
         if (definition.Components.Storage == null)
-            return (null, 0);
+            return (Compound.Invalid, 0);
 
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.SpecializedFor != null)
+            storage.SpecializedFor != Compound.Invalid)
         {
             var specialization = storage.SpecializedFor;
             var capacity = definition.Components.Storage!.Capacity;
@@ -143,7 +143,7 @@ public static class MicrobeInternalCalculations
             return (specialization, extraCapacity);
         }
 
-        return (null, 0);
+        return (Compound.Invalid, 0);
     }
 
     public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)

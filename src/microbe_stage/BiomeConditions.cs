@@ -273,7 +273,7 @@ public class BiomeConditions : ICloneable
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
             }
 
-            if (compound.Value.Ambient > 0 && compound.Key.IsGas)
+            if (compound.Value.Ambient > 0 && SimulationParameters.Instance.GetCompoundDefinition(compound.Key).IsGas)
             {
                 sumOfGasses += compound.Value.Ambient;
             }

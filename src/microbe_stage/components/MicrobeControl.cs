@@ -22,10 +22,10 @@ public struct MicrobeControl
     public Vector3 MovementDirection;
 
     /// <summary>
-    ///   If not null this microbe will fire the specified toxin on next update. This is done to allow
-    ///   multithreaded AI to decide to fire a toxin.
+    ///   If not <see cref="Compound.Invalid"/> this microbe will fire the specified toxin on next update.
+    ///   This is done to allow multithreaded AI to decide to fire a toxin.
     /// </summary>
-    public Compound? QueuedToxinToEmit;
+    public Compound QueuedToxinToEmit;
 
     /// <summary>
     ///   If true, microbe will fire iron breakdown substance on next update.
@@ -99,7 +99,7 @@ public struct MicrobeControl
     {
         LookAtPoint = startingPosition + new Vector3(0, 0, -1);
         MovementDirection = new Vector3(0, 0, 0);
-        QueuedToxinToEmit = null;
+        QueuedToxinToEmit = Compound.Invalid;
         QueuedSiderophoreToEmit = false;
         SlimeSecretionCooldown = 0;
         QueuedSlimeSecretionTime = 0;
@@ -191,13 +191,14 @@ public static class MicrobeControlHelpers
     ///   Queues a toxin emit if possible. Only one can be queued at a time.
     /// </summary>
     public static bool EmitToxin(this ref MicrobeControl control, ref OrganelleContainer organelles,
-        CompoundBag availableCompounds, in Entity entity, Compound? agentType = null)
+        CompoundBag availableCompounds, in Entity entity, Compound agentType = Compound.Invalid)
     {
         // Disallow toxins when engulfed
         if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
             return false;
 
-        agentType ??= SimulationParameters.Instance.GetCompound("oxytoxy");
+        if (agentType == Compound.Invalid)
+            agentType = Compound.Oxytoxy;
 
         if (entity.Has<MicrobeColony>())
         {
@@ -325,9 +326,10 @@ public static class MicrobeControlHelpers
 
     public static void SetMucocystState(this ref MicrobeControl control,
         ref OrganelleContainer organelleInfo, ref CompoundStorage availableCompounds, in Entity entity, bool state,
-        Compound? mucilageCompound = null)
+        Compound mucilageCompound = Compound.Invalid)
     {
-        mucilageCompound ??= SimulationParameters.Instance.GetCompound("mucilage");
+        if (mucilageCompound == Compound.Invalid)
+            mucilageCompound = Compound.Mucilage;
 
         if (entity.Has<MicrobeColony>())
         {
