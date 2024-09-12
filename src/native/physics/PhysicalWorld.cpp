@@ -629,71 +629,151 @@ void PhysicalWorld::ReadBodyVelocity(
     }
 }
 
-void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
+void PhysicalWorld::GiveImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool activate)
 {
-    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded()) [[unlikely]]
     {
-        LOG_ERROR("Couldn't lock body for giving impulse");
-        return;
+        JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+        if (!lock.Succeeded()) [[unlikely]]
+        {
+            LOG_ERROR("Couldn't lock body for giving impulse");
+            return;
+        }
+
+        JPH::Body& body = lock.GetBody();
+        body.AddImpulse(impulse);
+
+        if (activate)
+        {
+            // Reset activation variable to false if activation is not actually required
+            if (body.IsActive() || body.GetLinearVelocity().IsNearZero(BodyActivationMovementThreshold))
+            {
+                activate = false;
+            }
+        }
     }
 
-    JPH::Body& body = lock.GetBody();
-    body.AddImpulse(impulse);
+    if (activate)
+    {
+        // This locks again why the above block exists to scope the lock
+        physicsSystem->GetBodyInterface().ActivateBody(bodyId);
+    }
 }
 
-void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
+void PhysicalWorld::SetVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool activate)
 {
-    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded()) [[unlikely]]
     {
-        LOG_ERROR("Couldn't lock body for setting velocity");
-        return;
+        JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+        if (!lock.Succeeded()) [[unlikely]]
+        {
+            LOG_ERROR("Couldn't lock body for setting velocity");
+            return;
+        }
+
+        JPH::Body& body = lock.GetBody();
+        body.SetLinearVelocityClamped(velocity);
+
+        if (activate)
+        {
+            if (body.IsActive() || velocity.IsNearZero(BodyActivationMovementThreshold))
+            {
+                activate = false;
+            }
+        }
     }
 
-    JPH::Body& body = lock.GetBody();
-    body.SetLinearVelocityClamped(velocity);
+    if (activate)
+    {
+        physicsSystem->GetBodyInterface().ActivateBody(bodyId);
+    }
 }
 
-void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity)
+void PhysicalWorld::SetAngularVelocity(JPH::BodyID bodyId, JPH::Vec3Arg velocity, bool activate)
 {
-    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded()) [[unlikely]]
     {
-        LOG_ERROR("Couldn't lock body for setting angular velocity");
-        return;
+        JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+        if (!lock.Succeeded()) [[unlikely]]
+        {
+            LOG_ERROR("Couldn't lock body for setting angular velocity");
+            return;
+        }
+
+        JPH::Body& body = lock.GetBody();
+        body.SetAngularVelocityClamped(velocity);
+
+        if (activate)
+        {
+            if (body.IsActive() || velocity.IsNearZero(BodyActivationMovementThreshold))
+            {
+                activate = false;
+            }
+        }
     }
 
-    JPH::Body& body = lock.GetBody();
-    body.SetAngularVelocityClamped(velocity);
+    if (activate)
+    {
+        physicsSystem->GetBodyInterface().ActivateBody(bodyId);
+    }
 }
 
-void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse)
+void PhysicalWorld::GiveAngularImpulse(JPH::BodyID bodyId, JPH::Vec3Arg impulse, bool activate)
 {
-    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded()) [[unlikely]]
     {
-        LOG_ERROR("Couldn't lock body for giving angular impulse");
-        return;
+        JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+        if (!lock.Succeeded()) [[unlikely]]
+        {
+            LOG_ERROR("Couldn't lock body for giving angular impulse");
+            return;
+        }
+
+        JPH::Body& body = lock.GetBody();
+        body.AddAngularImpulse(impulse);
+
+        if (activate)
+        {
+            if (body.IsActive() || body.GetAngularVelocity().IsNearZero(BodyActivationMovementThreshold))
+            {
+                activate = false;
+            }
+        }
     }
 
-    JPH::Body& body = lock.GetBody();
-    body.AddAngularImpulse(impulse);
+    if (activate)
+    {
+        physicsSystem->GetBodyInterface().ActivateBody(bodyId);
+    }
 }
 
 void PhysicalWorld::SetVelocityAndAngularVelocity(
-    JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity)
+    JPH::BodyID bodyId, JPH::Vec3Arg velocity, JPH::Vec3Arg angularVelocity, bool activate)
 {
-    JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
-    if (!lock.Succeeded()) [[unlikely]]
     {
-        LOG_ERROR("Couldn't lock body for setting velocity and angular velocity");
-        return;
+        JPH::BodyLockWrite lock(physicsSystem->GetBodyLockInterface(), bodyId);
+        if (!lock.Succeeded()) [[unlikely]]
+        {
+            LOG_ERROR("Couldn't lock body for setting velocity and angular velocity");
+            return;
+        }
+
+        JPH::Body& body = lock.GetBody();
+        body.SetLinearVelocityClamped(velocity);
+        body.SetAngularVelocityClamped(angularVelocity);
+
+        if (activate)
+        {
+            // Activate if either linear or angular velocity is enough
+            if (body.IsActive() ||
+                (body.GetLinearVelocity().IsNearZero(BodyActivationMovementThreshold) &&
+                    body.GetAngularVelocity().IsNearZero(BodyActivationMovementThreshold)))
+            {
+                activate = false;
+            }
+        }
     }
 
-    JPH::Body& body = lock.GetBody();
-    body.SetLinearVelocityClamped(velocity);
-    body.SetAngularVelocityClamped(angularVelocity);
+    if (activate)
+    {
+        physicsSystem->GetBodyInterface().ActivateBody(bodyId);
+    }
 }
 
 void PhysicalWorld::SetBodyControl(

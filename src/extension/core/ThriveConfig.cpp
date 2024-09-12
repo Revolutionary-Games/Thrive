@@ -41,10 +41,14 @@ bool ThriveConfig::ReportOtherVersions(int csharpVersion, int nativeLibraryVersi
 
     if (nativeLibraryVersion != THRIVE_LIBRARY_VERSION)
     {
-        ERR_PRINT("This Thrive GDExtension version was compiled against Thrive native version " +
-            godot::String::num_int64(THRIVE_LIBRARY_VERSION) +
-            " but it is now tried to be used with version: " + godot::String::num_int64(nativeLibraryVersion));
-        return false;
+        // We'll try to be forward compatible, so just check if the native library is too old
+        if (nativeLibraryVersion < THRIVE_LIBRARY_VERSION)
+        {
+            ERR_PRINT("This Thrive GDExtension version was compiled against Thrive native version " +
+                godot::String::num_int64(THRIVE_LIBRARY_VERSION) +
+                " but it is now tried to be used with version: " + godot::String::num_int64(nativeLibraryVersion));
+            return false;
+        }
     }
 
     return true;

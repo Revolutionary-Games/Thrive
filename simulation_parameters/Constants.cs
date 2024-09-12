@@ -325,8 +325,8 @@ public static class Constants
     public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
 
     /// <summary>
-    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
-    ///   heavier than normal microbes, as such this is set pretty high.
+    ///   Multiplier for how much individual cells in a colony contribute to the entity limit. Actually colonies seem
+    ///   quite a bit heavier than normal microbes, as such this is set pretty high.
     /// </summary>
     public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
@@ -341,7 +341,7 @@ public static class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 5.25f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 1200;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;

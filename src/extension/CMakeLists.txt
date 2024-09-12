@@ -48,10 +48,7 @@ set_target_properties(thrive_extension PROPERTIES
   CXX_STANDARD_REQUIRED ON
   CXX_EXTENSIONS OFF)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND WIN32)
-  message(STATUS "Disabling LTO for thrive_extension with Clang as that results in link failures")
-  target_compile_options(thrive_extension PRIVATE "-fno-lto")
-else()
+if(THRIVE_LTO)
   message(STATUS "Enabling LTO for thrive_extension")
   set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
 endif()
