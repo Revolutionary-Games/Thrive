@@ -21,6 +21,13 @@ public class CompoundConverter : JsonConverter
         if (value is not Compound compound)
             throw new JsonException($"This converter only supports compound types (got: {value.GetType()})");
 
+        // Invalid value is converted to null when written to a save
+        if (compound == Compound.Invalid)
+        {
+            writer.WriteNull();
+            return;
+        }
+
         var compoundDefinition = SimulationParameters.GetCompound(compound);
         writer.WriteValue(compoundDefinition.InternalName);
     }
@@ -28,6 +35,7 @@ public class CompoundConverter : JsonConverter
     public override object ReadJson(JsonReader reader, Type objectType, object? existingValue,
         JsonSerializer serializer)
     {
+        // Null values are the way invalid values are represented (basically unset)
         if (reader.TokenType == JsonToken.Null)
             return Compound.Invalid;
 
