@@ -1,5 +1,7 @@
 ﻿namespace UnlockConstraints;
 
+using ThriveScriptsShared;
+
 public interface IUnlockCondition
 {
     /// <summary>

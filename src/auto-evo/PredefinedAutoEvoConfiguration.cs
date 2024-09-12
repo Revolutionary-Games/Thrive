@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Settings for auto-evo that are loaded from the configuration JSON

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   A group of controls. Controls are shown by group in the key rebind menu

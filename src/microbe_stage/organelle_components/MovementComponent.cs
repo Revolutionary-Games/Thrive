@@ -1,6 +1,7 @@
 ﻿using Components;
 using DefaultEcs;
 using Godot;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Flagellum for making cells move faster. TODO: rename this to FlagellumComponent (this is named like this due to

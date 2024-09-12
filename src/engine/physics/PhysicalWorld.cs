@@ -233,14 +233,15 @@ public class PhysicalWorld : IDisposable
         return (velocity, angularVelocity);
     }
 
-    public void GiveImpulse(NativePhysicsBody body, Vector3 impulse)
+    public void GiveImpulse(NativePhysicsBody body, Vector3 impulse, bool autoActivate)
     {
-        NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse));
+        NativeMethods.GiveImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(impulse), autoActivate);
     }
 
-    public void GiveAngularImpulse(NativePhysicsBody body, Vector3 angularImpulse)
+    public void GiveAngularImpulse(NativePhysicsBody body, Vector3 angularImpulse, bool autoActivate)
     {
-        NativeMethods.GiveAngularImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(angularImpulse));
+        NativeMethods.GiveAngularImpulse(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(angularImpulse),
+            autoActivate);
     }
 
     /// <summary>
@@ -301,11 +302,12 @@ public class PhysicalWorld : IDisposable
     /// <summary>
     ///   Sets velocity for a body
     /// </summary>
-    public void SetBodyVelocity(NativePhysicsBody body, Vector3 velocity, Vector3 angularVelocity)
+    public void SetBodyVelocity(NativePhysicsBody body, Vector3 velocity, Vector3 angularVelocity,
+        bool autoActivate = true)
     {
         NativeMethods.SetBodyVelocityAndAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
             new JVecF3(velocity),
-            new JVecF3(angularVelocity));
+            new JVecF3(angularVelocity), autoActivate);
     }
 
     /// <summary>
@@ -313,15 +315,16 @@ public class PhysicalWorld : IDisposable
     ///   to be changed as it is much less efficient to use this and <see cref="SetOnlyBodyAngularVelocity"/> than
     ///   calling the combined method <see cref="SetBodyVelocity"/>
     /// </summary>
-    public void SetOnlyBodyVelocity(NativePhysicsBody body, Vector3 velocity)
+    public void SetOnlyBodyVelocity(NativePhysicsBody body, Vector3 velocity, bool autoActivate = true)
     {
-        NativeMethods.SetBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(velocity));
+        NativeMethods.SetBodyVelocity(AccessWorldInternal(), body.AccessBodyInternal(), new JVecF3(velocity),
+            autoActivate);
     }
 
-    public void SetOnlyBodyAngularVelocity(NativePhysicsBody body, Vector3 angularVelocity)
+    public void SetOnlyBodyAngularVelocity(NativePhysicsBody body, Vector3 angularVelocity, bool autoActivate = true)
     {
         NativeMethods.SetBodyAngularVelocity(AccessWorldInternal(), body.AccessBodyInternal(),
-            new JVecF3(angularVelocity));
+            new JVecF3(angularVelocity), autoActivate);
     }
 
     public void SetBodyAllowSleep(NativePhysicsBody body, bool allowSleep)
@@ -639,10 +642,10 @@ internal static partial class NativeMethods
         [Out] out JVecF3 angularVelocity);
 
     [DllImport("thrive_native")]
-    internal static extern void GiveImpulse(IntPtr world, IntPtr body, JVecF3 impulse);
+    internal static extern void GiveImpulse(IntPtr world, IntPtr body, JVecF3 impulse, bool autoActivate);
 
     [DllImport("thrive_native")]
-    internal static extern void GiveAngularImpulse(IntPtr world, IntPtr body, JVecF3 angularImpulse);
+    internal static extern void GiveAngularImpulse(IntPtr world, IntPtr body, JVecF3 angularImpulse, bool autoActivate);
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyControl(IntPtr world, IntPtr body, JVecF3 movementImpulse,
@@ -659,14 +662,15 @@ internal static partial class NativeMethods
         bool activate = true);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyVelocity(IntPtr world, IntPtr body, JVecF3 velocity);
+    internal static extern void SetBodyVelocity(IntPtr world, IntPtr body, JVecF3 velocity, bool autoActivate);
 
     [DllImport("thrive_native")]
-    internal static extern void SetBodyAngularVelocity(IntPtr world, IntPtr body, JVecF3 angularVelocity);
+    internal static extern void SetBodyAngularVelocity(IntPtr world, IntPtr body, JVecF3 angularVelocity,
+        bool autoActivate);
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyVelocityAndAngularVelocity(IntPtr world, IntPtr body, JVecF3 velocity,
-        JVecF3 angularVelocity);
+        JVecF3 angularVelocity, bool autoActivate);
 
     [DllImport("thrive_native")]
     internal static extern void SetBodyAllowSleep(IntPtr world, IntPtr body, bool allowSleep);

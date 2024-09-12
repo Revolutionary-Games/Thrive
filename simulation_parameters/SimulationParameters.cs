@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 using FileAccess = Godot.FileAccess;
@@ -31,7 +32,7 @@ public partial class SimulationParameters : Node
     private PredefinedAutoEvoConfiguration autoEvoConfiguration = null!;
     private List<NamedInputGroup> inputGroups = null!;
     private Dictionary<string, Gallery> gallery = null!;
-    private TranslationsInfo translationsInfo = null!;
+    private TranslationInfoLocaleChecking translationsInfo = null!;
     private GameCredits gameCredits = null!;
     private GameWiki gameWiki = null!;
     private DayNightConfiguration lightCycle = null!;
@@ -126,7 +127,7 @@ public partial class SimulationParameters : Node
         gallery = LoadRegistry<Gallery>("res://simulation_parameters/common/gallery.json");
 
         translationsInfo =
-            LoadDirectObject<TranslationsInfo>("res://simulation_parameters/common/translations_info.json");
+            LoadDirectObject<TranslationInfoLocaleChecking>(ThriveScriptConstants.TRANSLATIONS_PROGRESS_RES);
 
         gameCredits =
             LoadDirectObject<GameCredits>("res://simulation_parameters/common/credits.json");
@@ -182,9 +183,9 @@ public partial class SimulationParameters : Node
             LoadRegistry<VisualResourceData>("res://simulation_parameters/common/visual_resources.json");
 
         // Build info is only loaded if the file is present
-        if (FileAccess.FileExists(Constants.BUILD_INFO_FILE))
+        if (FileAccess.FileExists(ThriveScriptConstants.BUILD_INFO_RES))
         {
-            buildInfo = LoadDirectObject<BuildInfo>(Constants.BUILD_INFO_FILE);
+            buildInfo = LoadDirectObject<BuildInfo>(ThriveScriptConstants.BUILD_INFO_RES);
         }
 
         // ReSharper disable HeuristicUnreachableCode

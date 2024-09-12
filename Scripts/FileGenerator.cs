@@ -14,6 +14,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
+using ThriveScriptsShared;
 
 public class FileGenerator
 {

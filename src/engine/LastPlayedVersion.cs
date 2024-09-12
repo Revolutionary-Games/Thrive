@@ -42,7 +42,7 @@ public static class LastPlayedVersion
 
         if (file == null)
         {
-            // File doesn't exist or we can't read it, no last played version
+            // File doesn't exist, or we can't read it, so there is no last played version
             return null;
         }
 

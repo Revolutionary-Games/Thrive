@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Defines properties of a membrane type

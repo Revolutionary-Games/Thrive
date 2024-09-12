@@ -15,7 +15,7 @@
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
     <DefaultItemExcludes>
-      $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
+      $(DefaultItemExcludes);Scripts\**\*;ThriveScriptsShared\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
@@ -83,6 +83,7 @@
     <ProjectReference Include="RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj" />
     <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />
+    <ProjectReference Include="ThriveScriptsShared\ThriveScriptsShared.csproj" />
   </ItemGroup>
   <!-- StyleCop Analyzers configuration -->
   <PropertyGroup>

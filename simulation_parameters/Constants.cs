@@ -335,8 +335,8 @@ public static class Constants
     public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
 
     /// <summary>
-    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
-    ///   heavier than normal microbes, as such this is set pretty high.
+    ///   Multiplier for how much individual cells in a colony contribute to the entity limit. Actually colonies seem
+    ///   quite a bit heavier than normal microbes, as such this is set pretty high.
     /// </summary>
     public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
@@ -351,7 +351,7 @@ public static class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 5.25f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 1200;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -1367,8 +1367,6 @@ public static class Constants
     public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
     public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
-    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
-
     public const string PHYSICS_DUMP_PATH = LOGS_FOLDER + "/physics_dump.bin";
 
     public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
@@ -1666,6 +1664,8 @@ public static class Constants
 
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
+
+    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
 
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";
