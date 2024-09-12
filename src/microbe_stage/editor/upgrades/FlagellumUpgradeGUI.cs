@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Upgrade GUI for the vacuole that allows specializing it

@@ -139,7 +139,8 @@ public class MovementComponent : IOrganelleComponent
         var newAnimationSpeed = 2.3f;
         lastUsed = true;
 
-        var requiredEnergy = (Constants.FLAGELLA_ENERGY_COST + Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE * flagellumLength) * elapsed;
+        var requiredEnergy = (Constants.FLAGELLA_ENERGY_COST + Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE * flagellumLength)
+            * elapsed;
 
         var availableEnergy = compounds.TakeCompound(atp, requiredEnergy);
 
@@ -156,7 +157,8 @@ public class MovementComponent : IOrganelleComponent
         SetSpeedFactor(newAnimationSpeed);
 
         if (isBacteria)
-            return (Constants.FLAGELLA_BASE_FORCE + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength) * forceMagnitude;
+            return (Constants.FLAGELLA_BASE_FORCE + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength)
+                * forceMagnitude;
 
         return (Constants.FLAGELLA_BASE_FORCE * forceMagnitude * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER
             + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength) * forceMagnitude;

@@ -376,13 +376,10 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             if (placedOrganelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
             {
                 var flagellumLength = flagellumUpgrades.LengthFraction;
-
-                if (graphics != null)
-                {
-                    graphics.Position = new Vector3(0, 0, Constants.FLAGELLA_UPGRADE_VISUAL_OFFSET * flagellumLength);
-                    graphics.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                        + Constants.FLAGELLA_MIN_VISUAL_LENGTH);
-                }
+                
+                graphics.Position = new Vector3(0, 0, Constants.FLAGELLA_UPGRADE_VISUAL_OFFSET * flagellumLength);
+                graphics.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                    + Constants.FLAGELLA_MIN_VISUAL_LENGTH);
             }
         }
 

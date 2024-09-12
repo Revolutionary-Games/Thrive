@@ -192,7 +192,16 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // Take special cell components that take energy into account
             if (includeMovementCost && organelle.Definition.HasMovementComponent)
             {
-                var amount = Constants.FLAGELLA_ENERGY_COST;
+                var amount = 0.0f;
+
+                if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+                {
+                    amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction * Constants.FLAGELLA_MAX_UPGRADE_FORCE;
+                }
+                else
+                {
+                    amount = Constants.FLAGELLA_ENERGY_COST;
+                }
 
                 var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
                 if (organelleDirection.Dot(onlyMovementInDirection) > 0)

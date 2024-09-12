@@ -2310,12 +2310,8 @@ public partial class CellEditorComponent :
                 {
                     var flagellumLength = flagellumUpgrades.LengthFraction;
 
-                    if (organelleModel != null)
-                    {
-                        //organelleModel.Position = new Vector3(0, 0, Constants.FLAGELLA_UPGRADE_VISUAL_OFFSET * flagellumLength);
-                        organelleModel.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH *
-                            flagellumLength + Constants.FLAGELLA_MIN_VISUAL_LENGTH);
-                    }
+                    organelleModel.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH *
+                        flagellumLength + Constants.FLAGELLA_MIN_VISUAL_LENGTH);
                 }
             }
         }
