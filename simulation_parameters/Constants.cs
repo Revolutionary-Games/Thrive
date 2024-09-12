@@ -219,11 +219,11 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 35.0f;
+    public const float FLAGELLA_BASE_FORCE = 20.0f;
 
-    public const float FLAGELLA_MAX_UPGRADE_FORCE = 25.0f;
+    public const float FLAGELLA_MAX_UPGRADE_FORCE = 15.0f;
 
-    public const float FLAGELLA_MAX_UPGRADE_ATP_USAGE = 0.2f;
+    public const float FLAGELLA_MAX_UPGRADE_ATP_USAGE = 2f;
 
     public const float FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH = 0.5f;
 

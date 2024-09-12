@@ -196,7 +196,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
                 {
-                    amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction * Constants.FLAGELLA_MAX_UPGRADE_FORCE;
+                    amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
+                        * Constants.FLAGELLA_MAX_UPGRADE_FORCE;
                 }
                 else
                 {
