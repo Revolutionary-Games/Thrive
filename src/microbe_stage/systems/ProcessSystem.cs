@@ -744,6 +744,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // Set used compounds to be useful, we don't want to purge those
             bag.SetUseful(entry.Key);
 
+            // TODO: would there be a more performant way to check if compound is environmental?
+            // Maybe by modifying the process inputs and outputs to use CompoundDefinition rather than plain compound?
             if (!simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
