@@ -101,6 +101,9 @@ public class DualContourer
             AdjustVertices(points, 0.25f, normals);
         }
 
+        // Subdivision can be used multiple times, but the triangle count increases exponentially in this way
+        CatmullClarkSubdivision(points, ref triIndices, ref normals);
+
         var colors = new Color[points.Count];
 
         SetColours(points, colors);
@@ -448,6 +451,243 @@ public class DualContourer
                 tris.Add(index);
             }
         }
+    }
+
+    /// <summary>
+    ///   Subdivides given data using Catmull-Clark algorithm.
+    /// </summary>
+    private void CatmullClarkSubdivision(List<Vector3> newPoints, ref List<int> triIndices, ref Vector3[] normals)
+    {
+        var sw = new Stopwatch();
+        sw.Start();
+
+        int triIndexCount = triIndices.Count;
+        int originalPointCount = newPoints.Count;
+
+        // newPoints has the following structure:
+        // Original points go first, count = points.Count
+        // Face centers go next, count = triIndices.Count / 3. Their order is defined by tri order in triIndices
+        // Edge centers go last. Order is defined by point order in triIndices.
+        // So, if a triangle is defined as (A, B, C), then the edge order is as follows: AB, BC, CA.
+        // TODO: once this works, expand points instead of creating a new List
+        List<Vector3> newNormals = new List<Vector3>(normals);
+
+        // Key is two edge points' indices in points list.
+        // Value is triangle index in triIndices list.
+        // Ints in tuple should be arranged in increasing order
+        Dictionary<(int, int), int[]> edgeTriangles = new Dictionary<(int, int), int[]>();
+
+        // Step one: add face centers, calculate faces adjacent to each edge
+        for (int i = 0; i < triIndexCount; i += 3)
+        {
+            int newID = newPoints.Count;
+            newPoints.Add((newPoints[triIndices[i]] + newPoints[triIndices[i + 1]] + newPoints[triIndices[i + 2]]) / 3.0f);
+            newNormals.Add((normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]]).Normalized());
+
+            for (int j = i; j < i + 3; j++)
+            {
+                int startID = triIndices[j];
+                int endID;
+
+                if (j == i + 2)
+                {
+                    endID = triIndices[j - 2];
+                }
+                else
+                {
+                    endID = triIndices[j + 1];
+                }
+
+                // Triangles' indices need to go in a clockwise order to render right face out.
+                // Due to this, there needs to be an "objective" direction of each edge, based on which triangles
+                // will determine if they are 'left-handed' or 'right-handed', which will then determine vertex order
+                // for final triangle placement.
+                // In this case, the "objective" direction is determined by vertices' IDs going in an increasing order.
+                // If the current triangle's vertices on this edge go in the "objective" direction,
+                // it is right-handed, otherwise it's left-handed
+                bool isLeftHanded = false;
+
+                // Vertices' IDs should go in an increasing order
+                if (startID > endID)
+                {
+                    (startID, endID) = (endID, startID);
+                    isLeftHanded = true;
+                }
+
+                if (!edgeTriangles.ContainsKey((startID, endID)))
+                {
+                    if (isLeftHanded)
+                    {
+                        edgeTriangles.Add((startID, endID), new int[] { newID, -1 });
+                    }
+                    else
+                    {
+                        edgeTriangles.Add((startID, endID), new int[] { -1, newID });
+                    }
+                }
+                else
+                {
+                    var tris = edgeTriangles[(startID, endID)];
+
+                    // Dual Contouring has cases in which one edge might be shared between not 2, but 4 faces.
+                    if (tris.Length == 4)
+                    {
+                        if (isLeftHanded)
+                        {
+                            tris[2] = newID;
+                        }
+                        else
+                        {
+                            tris[3] = newID;
+                        }
+                    }
+                    else
+                    {
+                        if (isLeftHanded)
+                        {
+                            if (tris[0] != -1)
+                            {
+                                tris = new int[] { tris[0], tris[1], newID, -1 };
+                                edgeTriangles[(startID, endID)] = tris;
+                            }
+                            else
+                            {
+                                tris[0] = newID;
+                            }
+                        }
+                        else
+                        {
+                            if (tris[1] != -1)
+                            {
+                                tris = new int[] { tris[0], tris[1], -1, newID };
+                                edgeTriangles[(startID, endID)] = tris;
+                            }
+                            else
+                            {
+                                tris[1] = newID;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // [0;2]
+        int triangleNumber = 0;
+
+        List<int> newTriIndices = new List<int>();
+
+        (int, Vector3)[] originalPointsAdjacencies = new (int, Vector3)[originalPointCount];
+
+        // Ints in tuple should be arranged in increasing order
+        Dictionary<(int, int), bool> calculatedEdges = new Dictionary<(int, int), bool>();
+
+        // Step two: calculate edge centers, place triangles
+        for (int i = 0; i < triIndexCount; i++)
+        {
+            int startID = triIndices[i];
+            int endID;
+
+            if (triangleNumber == 2)
+            {
+                endID = triIndices[i - 2];
+                triangleNumber = 0;
+            }
+            else
+            {
+                endID = triIndices[i + 1];
+                triangleNumber++;
+            }
+
+            if (startID > endID)
+            {
+                (startID, endID) = (endID, startID);
+            }
+
+            if (calculatedEdges.ContainsKey((startID, endID)))
+                continue;
+
+            edgeTriangles.TryGetValue((startID, endID), out var faces);
+
+            if (faces == null)
+            {
+                GD.PrintErr("Error when subdividing: edge-adjacent faces not found");
+                continue;
+            }
+
+            if (faces.Length == 4)
+            {
+                SubdivideEdge(startID, endID, faces[0], faces[1], newPoints, newTriIndices, newNormals,
+                    originalPointsAdjacencies);
+
+                SubdivideEdge(startID, endID, faces[2], faces[3], newPoints, newTriIndices, newNormals,
+                    originalPointsAdjacencies);
+            }
+            else
+            {
+                SubdivideEdge(startID, endID, faces[0], faces[1], newPoints, newTriIndices, newNormals,
+                    originalPointsAdjacencies);
+            }
+
+            calculatedEdges.Add((startID, endID), true);
+        }
+
+        // Find original points' barycentric coordinates
+        for (int i = 0; i < originalPointCount; i++)
+        {
+            newPoints[i] = (originalPointsAdjacencies[i].Item2 + newPoints[i]) / (originalPointsAdjacencies[i].Item1 + 1);
+        }
+
+        triIndices = newTriIndices;
+        normals = newNormals.ToArray();
+
+        sw.Stop();
+        GD.Print($"Subdivided a mesh in {sw.Elapsed}");
+    }
+
+    private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
+        List<int> newTriIndices, List<Vector3> newNormals, (int, Vector3)[] originalPointsAdjacencies)
+    {
+        if (face1ID == -1 || face2ID == -1)
+        {
+            GD.PrintErr("Error when subdividing: a face has wrong id");
+            return;
+        }
+
+        Vector3 firstFaceCenter = newPoints[face1ID];
+        Vector3 secondFaceCenter = newPoints[face2ID];
+
+        Vector3 edgeCenter = (newPoints[startID] + newPoints[endID] + firstFaceCenter + secondFaceCenter) / 4.0f;
+
+        originalPointsAdjacencies[startID].Item1 += 2;
+        originalPointsAdjacencies[startID].Item2 += edgeCenter * 2.0f;
+
+        originalPointsAdjacencies[endID].Item1 += 2;
+        originalPointsAdjacencies[endID].Item2 += edgeCenter * 2.0f;
+
+        int newPointID = newPoints.Count;
+        newPoints.Add(edgeCenter);
+
+        newNormals.Add((newNormals[startID] + newNormals[endID] + newNormals[face1ID] + newNormals[face2ID])
+            .Normalized());
+
+        // Left-handed triangles
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(face1ID);
+        newTriIndices.Add(endID);
+
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(startID);
+        newTriIndices.Add(face1ID);
+
+        // Right-handed triangles
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(face2ID);
+        newTriIndices.Add(startID);
+
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(endID);
+        newTriIndices.Add(face2ID);
     }
 
     private struct Cube
