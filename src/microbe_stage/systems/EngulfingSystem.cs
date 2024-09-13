@@ -1633,6 +1633,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         var transport = engulfable.BulkTransport;
         if (transport != null)
         {
+            // Reset state before storing it for future use
             transport.Interpolate = false;
             transport.DigestionEjectionStarted = false;
 
