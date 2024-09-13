@@ -769,6 +769,11 @@ public partial class SimulationParameters : Node
             entry.Value.Resolve(this);
         }
 
+        foreach (var entry in bioProcesses)
+        {
+            entry.Value.Resolve(this);
+        }
+
         foreach (var entry in backgrounds)
         {
             entry.Value.Resolve(this);

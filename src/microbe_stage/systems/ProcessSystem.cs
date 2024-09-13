@@ -486,15 +486,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             foreach (var input in process.Process.Inputs)
             {
+                var inputCompound = input.Key.ID;
+
                 // TODO: maybe this check should be expanded to consider any input compounds that the cell can produce
                 // *itself* that way this will consider non-directly used compounds and calculate the speed correctly.
                 // Without this any compounds cells usually produce will need to be skipped here similarly to ATP.
-                if (input.Key == ATP)
+                if (inputCompound == ATP)
                     continue;
 
                 // Quickly check all inputs to see if they are in the patch
                 var inPatch = false;
-                if (biome.AverageCompounds.TryGetValue(input.Key, out var neededCompound))
+                if (biome.AverageCompounds.TryGetValue(inputCompound, out var neededCompound))
                 {
                     if (neededCompound.Ambient > 0 || neededCompound.Amount > 0)
                     {
@@ -506,7 +508,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 {
                     foreach (var chunk in biome.Chunks.Values)
                     {
-                        if (chunk.Density > 0 && chunk.Compounds?.TryGetValue(input.Key, out var chunkCompound) == true)
+                        if (chunk.Density > 0 &&
+                            chunk.Compounds?.TryGetValue(inputCompound, out var chunkCompound) == true)
                         {
                             if (chunkCompound.Amount > 0)
                             {
@@ -522,31 +525,31 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
-        var simulationParameters = SimulationParameters.Instance;
-
         // Environmental inputs need to be processed first
         foreach (var input in process.Process.Inputs)
         {
-            if (!simulationParameters.GetCompoundDefinition(input.Key).IsEnvironmental)
+            if (!input.Key.IsEnvironmental)
                 continue;
 
-            // Environmental compound that can limit the rate
-            var availableInEnvironment = GetAmbientInBiome(input.Key, biome, pointInTimeType);
+            var inputCompound = input.Key.ID;
 
-            var availableRate = input.Key == Temperature ?
+            // Environmental compound that can limit the rate
+            var availableInEnvironment = GetAmbientInBiome(inputCompound, biome, pointInTimeType);
+
+            var availableRate = inputCompound == Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
                 availableInEnvironment / input.Value;
 
-            result.AvailableAmounts[input.Key] = availableInEnvironment;
+            result.AvailableAmounts[inputCompound] = availableInEnvironment;
 
             efficiency *= availableInEnvironment;
 
             // More than needed environment value boosts the effectiveness
-            result.AvailableRates[input.Key] = availableRate;
+            result.AvailableRates[inputCompound] = availableRate;
 
             speedFactor *= availableRate;
 
-            result.WritableInputs[input.Key] = input.Value;
+            result.WritableInputs[inputCompound] = input.Value;
         }
 
         result.Efficiency = efficiency;
@@ -558,15 +561,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // So that the speed factor is available here
         foreach (var entry in process.Process.Inputs)
         {
-            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
+            if (entry.Key.IsEnvironmental)
                 continue;
 
             // Normal, cloud input
 
-            var adjustedValue = entry.Value * speedFactor;
-            result.WritableInputs.Add(entry.Key, adjustedValue);
+            var inputCompound = entry.Key.ID;
 
-            if (entry.Key == ATP)
+            var adjustedValue = entry.Value * speedFactor;
+            result.WritableInputs.Add(inputCompound, adjustedValue);
+
+            if (inputCompound == ATP)
                 result.ATPConsumption += adjustedValue;
         }
 
@@ -574,12 +579,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var amount = entry.Value * speedFactor;
 
-            result.WritableOutputs[entry.Key] = amount;
+            var outputCompound = entry.Key.ID;
+
+            result.WritableOutputs[outputCompound] = amount;
 
             if (amount <= 0)
-                result.WritableLimitingCompounds.Add(entry.Key);
+                result.WritableLimitingCompounds.Add(outputCompound);
 
-            if (entry.Key == ATP)
+            if (outputCompound == ATP)
                 result.ATPProduction += amount;
         }
 
@@ -735,33 +742,33 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // fraction of the speed to allow the cell to still function well
         float spaceConstraintModifier = 1.0f;
 
-        var simulationParameters = SimulationParameters.Instance;
-
         // First check the environmental compounds so that we can build the right environment modifier for accurate
         // check of normal compound input amounts
         foreach (var entry in processData.Inputs)
         {
+            var inputCompound = entry.Key.ID;
+
             // Set used compounds to be useful, we don't want to purge those
-            bag.SetUseful(entry.Key);
+            bag.SetUseful(inputCompound);
 
             // TODO: would there be a more performant way to check if compound is environmental?
             // Maybe by modifying the process inputs and outputs to use CompoundDefinition rather than plain compound?
-            if (!simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
+            if (!entry.Key.IsEnvironmental)
                 continue;
 
             // Processing runs on the current game time following values
-            var ambient = GetAmbient(entry.Key, CompoundAmountType.Current);
+            var ambient = GetAmbient(inputCompound, CompoundAmountType.Current);
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, entry.Value * inverseDelta);
-            currentProcessStatistics?.AddInputAmount(entry.Key, ambient);
+            currentProcessStatistics?.AddInputAmount(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
-            environmentModifier *= entry.Key == Temperature ?
+            environmentModifier *= inputCompound == Temperature ?
                 CalculateTemperatureEffect(ambient) :
                 ambient / entry.Value;
 
             if (environmentModifier <= MathUtils.EPSILON)
-                currentProcessStatistics?.AddLimitingFactor(entry.Key);
+                currentProcessStatistics?.AddLimitingFactor(inputCompound);
         }
 
         if (environmentModifier <= MathUtils.EPSILON)
@@ -779,20 +786,22 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Compute spaceConstraintModifier before updating the final use and input amounts
         foreach (var entry in processData.Inputs)
         {
-            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
+            if (entry.Key.IsEnvironmental)
                 continue;
+
+            var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
 
             // currentProcessStatistics?.AddInputAmount(entry.Key, 0);
             // We don't multiply by delta here because we report the per-second values anyway. In the actual
             // process output numbers (computed after testing the speed), we need to multiply by inverse delta
-            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved);
+            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved);
 
             inputRemoved = inputRemoved * delta * spaceConstraintModifier;
 
             // If not enough we can't run the process unless we can lower spaceConstraintModifier enough
-            var availableAmount = bag.GetCompoundAmount(entry.Key);
+            var availableAmount = bag.GetCompoundAmount(inputCompound);
             if (availableAmount < inputRemoved)
             {
                 bool canRun = false;
@@ -815,7 +824,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 if (!canRun)
                 {
                     canDoProcess = false;
-                    currentProcessStatistics?.AddLimitingFactor(entry.Key);
+                    currentProcessStatistics?.AddLimitingFactor(inputCompound);
                 }
             }
         }
@@ -824,22 +833,24 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         foreach (var entry in processData.Outputs)
         {
+            var outputCompound = entry.Key.ID;
+
             // For now lets assume compounds we produce are also useful
-            bag.SetUseful(entry.Key);
+            bag.SetUseful(outputCompound);
 
             var outputAdded = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
 
             // currentProcessStatistics?.AddOutputAmount(entry.Key, 0);
-            currentProcessStatistics?.AddOutputAmount(entry.Key, outputAdded);
+            currentProcessStatistics?.AddOutputAmount(outputCompound, outputAdded);
 
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
             // if environmental right now this isn't released anywhere
-            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
+            if (entry.Key.IsEnvironmental)
                 continue;
 
             // If no space we can't do the process, if we can't adjust the space constraint modifier enough
-            var remainingSpace = bag.GetCapacityForCompound(entry.Key) - bag.GetCompoundAmount(entry.Key);
+            var remainingSpace = bag.GetCapacityForCompound(outputCompound) - bag.GetCompoundAmount(outputCompound);
             if (outputAdded > remainingSpace)
             {
                 bool canRun = false;
@@ -861,11 +872,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 if (!canRun)
                 {
                     canDoProcess = false;
-                    currentProcessStatistics?.AddCapacityProblem(entry.Key);
+                    currentProcessStatistics?.AddCapacityProblem(outputCompound);
                 }
             }
 
-            if (entry.Key == ATP)
+            if (outputCompound == ATP)
                 isATPProducer = true;
         }
 
@@ -905,29 +916,33 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Consume inputs
         foreach (var entry in processData.Inputs)
         {
-            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
+            if (entry.Key.IsEnvironmental)
                 continue;
+
+            var inputCompound = entry.Key.ID;
 
             var inputRemoved = entry.Value * totalModifier;
 
-            currentProcessStatistics?.AddInputAmount(entry.Key, inputRemoved * inverseDelta);
+            currentProcessStatistics?.AddInputAmount(inputCompound, inputRemoved * inverseDelta);
 
             // This should always succeed (due to the earlier check) so it is always assumed here that this
             // succeeded. Caveat: see: BioProcesses.ATPProductionSpeedModifier
-            bag.TakeCompound(entry.Key, inputRemoved);
+            bag.TakeCompound(inputCompound, inputRemoved);
         }
 
         // Add outputs
         foreach (var entry in processData.Outputs)
         {
-            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
+            if (entry.Key.IsEnvironmental)
                 continue;
+
+            var outputCompound = entry.Key.ID;
 
             var outputGenerated = entry.Value * totalModifier;
 
-            currentProcessStatistics?.AddOutputAmount(entry.Key, outputGenerated * inverseDelta);
+            currentProcessStatistics?.AddOutputAmount(outputCompound, outputGenerated * inverseDelta);
 
-            bag.AddCompound(entry.Key, outputGenerated);
+            bag.AddCompound(outputCompound, outputGenerated);
         }
     }
 }

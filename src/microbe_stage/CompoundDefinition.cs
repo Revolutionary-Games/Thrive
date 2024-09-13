@@ -10,7 +10,7 @@ using ThriveScriptsShared;
 ///   contains the actual properties and configuration related to the compound type.
 ///   For all other simulation parameters that refer to a compound, there must be an existing entry of this type.
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(CompoundStringConverter)}")]
+[TypeConverter($"Saving.Serializers.{nameof(CompoundDefinitionStringConverter)}")]
 public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
 {
     /// <summary>
