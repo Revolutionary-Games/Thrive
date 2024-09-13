@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-11 14:44+0300\n"
-"PO-Revision-Date: 2024-09-08 07:30+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2024-09-13 13:45+0300\n"
+"PO-Revision-Date: 2024-09-13 06:16+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1949,6 +1949,8 @@ msgstr "თამაშის დიზაინის გუნდი"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
+"აჩვენებს ჯამურ წინასწარ გაანგარიშებულ ენერგიას, რომელიც თქვენმა სახეობამ ყველა ბიომაში და შედეგად მიღებულ პოპულაციაში (ფრჩხილებში).\n"
+"წინა ენერგია: {0}"
 
 msgid "GENERAL"
 msgstr "ზოგადი"
@@ -2082,9 +2084,8 @@ msgstr "ID არაწორი რიცხვია"
 msgid "ID_NUMBER"
 msgstr "ID ნომერი"
 
-#, fuzzy
 msgid "IMAGE_FILE_TYPES"
-msgstr "მემბრანის ტიპები"
+msgstr "მხარდაჭერილი გამოსახულების ფაილები"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "შემდეგი ფაზის პროტოტიპების ჩასმა"
@@ -2926,7 +2927,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
+msgstr "იმისათვის, რომ გამრავლდეთ, თქვენი თითოეული ორგანელა ორად უნდა გაჰყოთ. ორგანელებს სჭირდებათ [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound] და დრო, რომ შუაზე გაიყონ."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
@@ -3651,9 +3652,8 @@ msgstr "ოსმორეგულაციის ფასის კოეფ�
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(მოთამაშის სახეობის ოსმორეგულაციის ფასი)"
 
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
-msgstr "ნაერთები"
+msgstr "სხვები"
 
 msgid "OUR_WIKI"
 msgstr "ჩვენი ვიკი"
@@ -3812,9 +3812,8 @@ msgstr "წარმადობა"
 msgid "PERFORM_UNBINDING"
 msgstr "მიმაგრების მოხსნა"
 
-#, fuzzy
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "{0} ათასი"
+msgstr "/წმ"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/წმ"
@@ -5015,7 +5014,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "ცული"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "არ ვაჩვენებ ყველა ბოლო ვერსიას, რადგან მათი რაოდენობა დიდია"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "მოგროვებული ენერგია:"
@@ -6220,6 +6219,9 @@ msgstr "ცვლილებების გარეშე."
 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
+"[b]ბაქტერიული თერმოსინთეზი[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"ქმნის ენერგიას პასიურად გარემოს [thrive:compound type=\"temperature\"][/thrive:compound]-დან. [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]-ის [b]თერმოსინთეზის[/b] უფრო სუსტი ფორმა."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -6335,9 +6337,8 @@ msgstr "ნივთის დასახელება:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "ელემენტის ატვირთვა Steam Workshop-ზე წარმატებით დასრულდა"
 
-#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "Steam Workshop-ზე ელემენტის ატვირთვა წარმატებულია, მაგრამ, სანამ ის გამოჩნდება, Workshop-ის [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]გამოყენების პირობებს[/url][/color] უნდა დათანხმოთ"
+msgstr "Steam Workshop-ზე ელემენტის ატვირთვა წარმატებულია, მაგრამ, სანამ ის გამოჩნდება, Workshop-ის [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]გამოყენების პირობებს[/url][/color] უნდა დაეთანხმოთ"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "ამ ელემენტის გადაცემით თქვენ ეთანხმებით Steam Workshop-ის [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]გამოყენების პირობებს[/url][/color]"

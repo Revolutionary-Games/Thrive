@@ -53,4 +53,16 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     /// </summary>
     /// <returns>True if matches, false if this info is for some other process type</returns>
     public bool MatchesUnderlyingProcess(BioProcess process);
+
+    /// <summary>
+    ///   A helper for the various process things to filter in / our environmental compounds. This is probably maybe
+    ///   not-optimal now with this new approach where compounds are ID numbers and not references to all of their
+    ///   data.
+    /// </summary>
+    /// <param name="compoundId">Compound type to check</param>
+    /// <returns>True if environmental</returns>
+    protected static bool IsEnvironmental(Compound compoundId)
+    {
+        return SimulationParameters.GetCompound(compoundId).IsEnvironmental;
+    }
 }

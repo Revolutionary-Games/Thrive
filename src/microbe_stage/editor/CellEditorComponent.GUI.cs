@@ -235,6 +235,8 @@ public partial class CellEditorComponent
 
         bool first = true;
 
+        var simulationParameters = SimulationParameters.Instance;
+
         foreach (var entry in storage)
         {
             if (!first)
@@ -242,7 +244,7 @@ public partial class CellEditorComponent
 
             first = false;
 
-            description.Append(entry.Key.Name);
+            description.Append(simulationParameters.GetCompoundDefinition(entry.Key).Name);
             description.Append(": ");
             description.Append(entry.Value);
         }

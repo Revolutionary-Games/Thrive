@@ -30,13 +30,15 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     public Vector4[,] OldDensity = null!;
 
     [JsonProperty]
-    public Compound?[] Compounds = null!;
+    public Compound[] Compounds = null!;
 
     // TODO: give each cloud (compound type) a viscosity value in the JSON file and use it instead.
     private const float VISCOSITY = 0.0525f;
 
     private readonly StringName brightnessParameterName = new("BrightnessMultiplier");
     private readonly StringName uvOffsetParameterName = new("UVOffset");
+
+    private CompoundDefinition?[] compoundDefinitions = null!;
 
     private Image? image;
     private ImageTexture texture = null!;
@@ -87,27 +89,50 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
     }
 
     /// <summary>
-    ///   Initializes this cloud. cloud2 onwards can be null
+    ///   Initializes this cloud. cloud2 onwards can be <see cref="Compound.Invalid"/>
     /// </summary>
-    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound? cloud2,
-        Compound? cloud3, Compound? cloud4)
+    public void Init(FluidCurrentsSystem turbulenceSource, int renderPriority, Compound cloud1, Compound cloud2,
+        Compound cloud3, Compound cloud4)
     {
-        fluidSystem = turbulenceSource;
-        Compounds = new Compound?[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
+        if (cloud1 == Compound.Invalid)
+            throw new ArgumentException("First cloud type must be a valid compound");
 
-        decayRates = new Vector4(cloud1.DecayRate, cloud2?.DecayRate ?? 1.0f,
-            cloud3?.DecayRate ?? 1.0f, cloud4?.DecayRate ?? 1.0f);
+        fluidSystem = turbulenceSource;
+
+        // This is defined with the full syntax to ensure this size ends up always at 4
+        Compounds = new Compound[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
+
+        var simulationParameters = SimulationParameters.Instance;
+
+        CompoundDefinition cloud1Definition = simulationParameters.GetCompoundDefinition(cloud1);
+        CompoundDefinition? cloud2Definition = null;
+        CompoundDefinition? cloud3Definition = null;
+        CompoundDefinition? cloud4Definition = null;
+
+        if (cloud2 != Compound.Invalid)
+            cloud2Definition = simulationParameters.GetCompoundDefinition(cloud2);
+
+        if (cloud3 != Compound.Invalid)
+            cloud3Definition = simulationParameters.GetCompoundDefinition(cloud3);
+
+        if (cloud4 != Compound.Invalid)
+            cloud4Definition = simulationParameters.GetCompoundDefinition(cloud4);
+
+        compoundDefinitions = [cloud1Definition, cloud2Definition, cloud3Definition, cloud4Definition];
+
+        decayRates = new Vector4(cloud1Definition.DecayRate, cloud2Definition?.DecayRate ?? 1.0f,
+            cloud3Definition?.DecayRate ?? 1.0f, cloud4Definition?.DecayRate ?? 1.0f);
 
         // Setup colours
         var material = (ShaderMaterial)Material;
 
-        material.SetShaderParameter("colour1", cloud1.Colour);
+        material.SetShaderParameter("colour1", cloud1Definition.Colour);
 
         var blank = new Color(0, 0, 0, 0);
 
-        material.SetShaderParameter("colour2", cloud2?.Colour ?? blank);
-        material.SetShaderParameter("colour3", cloud3?.Colour ?? blank);
-        material.SetShaderParameter("colour4", cloud4?.Colour ?? blank);
+        material.SetShaderParameter("colour2", cloud2Definition?.Colour ?? blank);
+        material.SetShaderParameter("colour3", cloud3Definition?.Colour ?? blank);
+        material.SetShaderParameter("colour4", cloud4Definition?.Colour ?? blank);
 
         // CompoundCloudPlanes need different render priorities to avoid the flickering effect
         // Which result from intersecting meshes.
@@ -625,10 +650,10 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             var compound = Compounds[i];
-            if (compound == null)
+            if (compound == Compound.Invalid)
                 break;
 
-            if (!compound.IsAbsorbable && onlyAbsorbable)
+            if (onlyAbsorbable && !compoundDefinitions[i]!.IsAbsorbable)
                 continue;
 
             float amount = HackyAddress(ref Density[x, y], i);
@@ -707,11 +732,11 @@ public partial class CompoundCloudPlane : CsgMesh3D, ISaveLoadedTracked
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; ++i)
         {
             var compound = Compounds[i];
-            if (compound == null)
+            if (compound == Compound.Invalid)
                 break;
 
             // Skip if compound is non-useful or disallowed to be absorbed
-            if (!compound.IsAbsorbable || !storage.IsUseful(compound))
+            if (!compoundDefinitions[i]!.IsAbsorbable || !storage.IsUseful(compound))
                 continue;
 
             // Loop here to retry in case we read stale data

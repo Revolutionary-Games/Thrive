@@ -12,15 +12,15 @@ using ThriveScriptsShared;
 public class RegistryTypeStringConverter : TypeConverter
 {
     /// <summary>
-    ///   All of the supported registry types by this converter.
+    ///   All the supported registry types by this converter.
     ///   New entries need to be added when this converter is added as a class attribute
     /// </summary>
     protected static readonly Dictionary<string, SupportedRegistryType> SupportedRegistryTypes =
         new()
         {
             {
-                "compound",
-                new SupportedRegistryType(typeof(Compound), "compound",
+                "compoundDefinition",
+                new SupportedRegistryType(typeof(CompoundDefinition), "compoundDefinition",
                     n => SimulationParameters.Instance.GetCompound(n))
             },
             {
@@ -186,11 +186,11 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 }
 
 /// <summary>
-///   Specific converter for <see cref="Compound"/>
+///   Specific converter for <see cref="CompoundDefinition"/>
 /// </summary>
-public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<Compound>
+public class CompoundDefinitionStringConverter : RegistryTypeStringSingleTypeConverter<CompoundDefinition>
 {
-    protected override string TypeName => "compound";
+    protected override string TypeName => "compoundDefinition";
 }
 
 /// <summary>

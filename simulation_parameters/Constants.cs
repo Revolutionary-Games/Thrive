@@ -985,7 +985,7 @@ public static class Constants
     public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
     public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
     public const float CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL = 0.25f;
-    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+    public const Compound CHEMORECEPTOR_DEFAULT_COMPOUND = Compound.Glucose;
 
     /// <summary>
     ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds

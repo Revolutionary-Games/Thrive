@@ -12,7 +12,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public AvoidPredationSelectionPressure(Species predator, float weight) : base(weight, [
-        AddOrganelleAnywhere.ThatCreateCompound("oxytoxy"),
+        AddOrganelleAnywhere.ThatCreateCompound(Compound.Oxytoxy),
         new AddOrganelleAnywhere(organelle => organelle.HasPilusComponent,
             CommonMutationFunctions.Direction.Front),
         new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,

@@ -44,14 +44,11 @@ using World = DefaultEcs.World;
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {
     private readonly PhysicalWorld physicalWorld;
-    private readonly Compound atp;
 
     public MicrobeMovementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) : base(world,
         runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
         this.physicalWorld = physicalWorld;
-
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -204,7 +201,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
                 // TODO: is it fine for this to be so punishing? By taking the base movement cost here even though
                 // the cell is not moving (this could take just the portion of strain multiplier that is above 1)
                 var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
-                compounds.TakeCompound(atp, strainCost);
+                compounds.TakeCompound(Compound.ATP, strainCost);
             }
 
             // Slime jets work even when not holding down any movement keys
@@ -257,7 +254,7 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // movement cost
         var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
-        var got = compounds.TakeCompound(atp, cost);
+        var got = compounds.TakeCompound(Compound.ATP, cost);
 
         // Halve base movement speed if out of ATP
         if (got < cost)

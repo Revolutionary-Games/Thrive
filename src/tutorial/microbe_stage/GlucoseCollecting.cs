@@ -9,8 +9,6 @@ using Newtonsoft.Json;
 /// </summary>
 public class GlucoseCollecting : TutorialPhase
 {
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-
     [JsonProperty]
     private Vector3? glucosePosition;
 
@@ -58,7 +56,7 @@ public class GlucoseCollecting : TutorialPhase
                 var compounds = ((CompoundBagEventArgs)args).Compounds;
 
                 if (!HasBeenShown && !CanTrigger &&
-                    compounds.GetCompoundAmount(glucose) < compounds.GetCapacityForCompound(glucose) -
+                    compounds.GetCompoundAmount(Compound.Glucose) < compounds.GetCapacityForCompound(Compound.Glucose) -
                     Constants.GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE)
                 {
                     CanTrigger = true;
@@ -94,7 +92,7 @@ public class GlucoseCollecting : TutorialPhase
 
                 var compounds = ((CompoundEventArgs)args).Compounds;
 
-                if (compounds.TryGetValue(glucose, out var amount) &&
+                if (compounds.TryGetValue(Compound.Glucose, out var amount) &&
                     amount >= Constants.GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE)
                 {
                     // Tutorial is now complete

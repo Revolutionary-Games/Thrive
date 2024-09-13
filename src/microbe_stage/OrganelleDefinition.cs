@@ -435,7 +435,7 @@ public class OrganelleDefinition : IRegistryType
                     "InitialComposition has negative or really small value");
             }
 
-            if (!entry.Key.IsCloud)
+            if (!SimulationParameters.Instance.GetCompoundDefinition(entry.Key).IsCloud)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "InitialComposition has a compound that can't be a cloud");
@@ -556,8 +556,6 @@ public class OrganelleDefinition : IRegistryType
         // Resolve process names
         if (Processes != null)
         {
-            var oxygen = parameters.GetCompound("oxygen");
-
             foreach (var process in Processes)
             {
                 var resolvedProcess = new TweakedProcess(parameters.GetBioProcess(process.Key),
@@ -569,7 +567,7 @@ public class OrganelleDefinition : IRegistryType
                         "Process speed value should be above 0");
                 }
 
-                if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess, oxygen))
+                if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess))
                     IsOxygenMetabolism = true;
 
                 RunnableProcesses.Add(resolvedProcess);
@@ -721,11 +719,11 @@ public class OrganelleDefinition : IRegistryType
         return false;
     }
 
-    private bool ProcessUsesOxygen(TweakedProcess resolvedProcess, Compound oxygen)
+    private bool ProcessUsesOxygen(TweakedProcess resolvedProcess)
     {
         foreach (var processInput in resolvedProcess.Process.Inputs)
         {
-            if (processInput.Key == oxygen)
+            if (processInput.Key.ID == Compound.Oxygen)
                 return true;
         }
 

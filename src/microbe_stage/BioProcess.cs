@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using ThriveScriptsShared;
 
 /// <summary>
@@ -15,36 +16,45 @@ public class BioProcess : IRegistryType
     /// <summary>
     ///   Inputs the process needs. The keys are compound names and values are amounts
     /// </summary>
-    public Dictionary<Compound, float> Inputs = null!;
+    [JsonIgnore]
+    public Dictionary<CompoundDefinition, float> Inputs = new();
 
-    public Dictionary<Compound, float> Outputs = null!;
+    [JsonIgnore]
+    public Dictionary<CompoundDefinition, float> Outputs = new();
 
     /// <summary>
     ///   True when this is a metabolism process
     /// </summary>
     public bool IsMetabolismProcess;
 
-#pragma warning disable 169,649 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection (and JSON)
     private string? untranslatedName;
+
+    // To make JSON loading work, we need to use temporary data holders
+    [JsonProperty(nameof(Inputs))]
+    private Dictionary<Compound, float>? inputsRaw;
+
+    [JsonProperty(nameof(Outputs))]
+    private Dictionary<Compound, float>? outputsRaw;
 #pragma warning restore 169,649
 
     public string InternalName { get; set; } = null!;
 
     public void Check(string name)
     {
-        if (Inputs == null || Outputs == null)
+        if (inputsRaw == null || outputsRaw == null)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Empty inputs or outputs");
         }
 
-        if (Inputs.Count == 0 && Outputs.Count == 0)
+        if (inputsRaw.Count == 0 && outputsRaw.Count == 0)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Process has no inputs AND no outputs");
         }
 
-        foreach (var input in Inputs)
+        foreach (var input in inputsRaw)
         {
             if (input.Value <= 0)
             {
@@ -53,7 +63,7 @@ public class BioProcess : IRegistryType
             }
         }
 
-        foreach (var output in Outputs)
+        foreach (var output in outputsRaw)
         {
             if (output.Value <= 0)
             {
@@ -63,6 +73,20 @@ public class BioProcess : IRegistryType
         }
 
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
+    }
+
+    public void Resolve(SimulationParameters simulationParameters)
+    {
+        // Resolve inputs and outputs
+        foreach (var entry in inputsRaw!)
+        {
+            Inputs[simulationParameters.GetCompoundDefinition(entry.Key)] = entry.Value;
+        }
+
+        foreach (var entry in outputsRaw!)
+        {
+            Outputs[simulationParameters.GetCompoundDefinition(entry.Key)] = entry.Value;
+        }
     }
 
     public void ApplyTranslations()
