@@ -475,7 +475,7 @@ public class DualContourer
         // Key is two edge points' indices in points list.
         // Value is triangle index in triIndices list.
         // Ints in tuple should be arranged in increasing order
-        Dictionary<(int, int), int[]> edgeTriangles = new Dictionary<(int, int), int[]>();
+        Dictionary<(int StartID, int EndID), int[]> edgeTriangles = new Dictionary<(int, int), int[]>();
 
         // Step one: add face centers, calculate faces adjacent to each edge
         for (int i = 0; i < triIndexCount; i += 3)
@@ -514,61 +514,7 @@ public class DualContourer
                     isLeftHanded = true;
                 }
 
-                if (!edgeTriangles.ContainsKey((startID, endID)))
-                {
-                    if (isLeftHanded)
-                    {
-                        edgeTriangles.Add((startID, endID), new int[] { newID, -1 });
-                    }
-                    else
-                    {
-                        edgeTriangles.Add((startID, endID), new int[] { -1, newID });
-                    }
-                }
-                else
-                {
-                    var tris = edgeTriangles[(startID, endID)];
-
-                    // Dual Contouring has cases in which one edge might be shared between not 2, but 4 faces.
-                    if (tris.Length == 4)
-                    {
-                        if (isLeftHanded)
-                        {
-                            tris[2] = newID;
-                        }
-                        else
-                        {
-                            tris[3] = newID;
-                        }
-                    }
-                    else
-                    {
-                        if (isLeftHanded)
-                        {
-                            if (tris[0] != -1)
-                            {
-                                tris = new int[] { tris[0], tris[1], newID, -1 };
-                                edgeTriangles[(startID, endID)] = tris;
-                            }
-                            else
-                            {
-                                tris[0] = newID;
-                            }
-                        }
-                        else
-                        {
-                            if (tris[1] != -1)
-                            {
-                                tris = new int[] { tris[0], tris[1], -1, newID };
-                                edgeTriangles[(startID, endID)] = tris;
-                            }
-                            else
-                            {
-                                tris[1] = newID;
-                            }
-                        }
-                    }
-                }
+                AssignFaceEdges(startID, endID, isLeftHanded, newID, edgeTriangles);
             }
         }
 
@@ -577,10 +523,10 @@ public class DualContourer
 
         List<int> newTriIndices = new List<int>();
 
-        (float, Vector3)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
+        (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
 
         // Ints in tuple should be arranged in increasing order
-        Dictionary<(int, int), bool> calculatedEdges = new Dictionary<(int, int), bool>();
+        Dictionary<(int StartID, int EndID), bool> calculatedEdges = new Dictionary<(int, int), bool>();
 
         // Step two: calculate edge centers, place triangles
         for (int i = 0; i < triIndexCount; i++)
@@ -633,10 +579,10 @@ public class DualContourer
         }
 
         // Find original points' barycentric coordinates.
-        // This isn't an entirely canonical function for Catmull-Clark subdivision, but it's faster
+        // This isn't a canonical function of Catmull-Clark subdivision, but it's faster
         for (int i = 0; i < originalPointCount; i++)
         {
-            newPoints[i] = (originalPointsAdjacencies[i].Item2 + newPoints[i] * 6.0f) / (originalPointsAdjacencies[i].Item1 + 6.0f);
+            newPoints[i] = (originalPointsAdjacencies[i].PointSum + newPoints[i] * 6.0f) / (originalPointsAdjacencies[i].Divisor + 6.0f);
         }
 
         triIndices = newTriIndices;
@@ -644,6 +590,69 @@ public class DualContourer
 
         sw.Stop();
         GD.Print($"Subdivided a mesh in {sw.Elapsed}");
+    }
+
+    /// <summary>
+    ///   Assign a face to an adjacent edge (defined by startID, endID)
+    /// </summary>
+    private void AssignFaceEdges(int startID, int endID, bool isLeftHanded, int faceID,
+        Dictionary<(int StartID, int EndID), int[]> edgeTriangles)
+    {
+        if (!edgeTriangles.ContainsKey((startID, endID)))
+        {
+            if (isLeftHanded)
+            {
+                edgeTriangles.Add((startID, endID), new int[] { faceID, -1 });
+            }
+            else
+            {
+                edgeTriangles.Add((startID, endID), new int[] { -1, faceID });
+            }
+        }
+        else
+        {
+            var tris = edgeTriangles[(startID, endID)];
+
+            // Dual Contouring has cases in which one edge might be shared between not 2, but 4 faces.
+            if (tris.Length == 4)
+            {
+                if (isLeftHanded)
+                {
+                    tris[2] = faceID;
+                }
+                else
+                {
+                    tris[3] = faceID;
+                }
+            }
+            else
+            {
+                if (isLeftHanded)
+                {
+                    if (tris[0] != -1)
+                    {
+                        tris = new int[] { tris[0], tris[1], faceID, -1 };
+                        edgeTriangles[(startID, endID)] = tris;
+                    }
+                    else
+                    {
+                        tris[0] = faceID;
+                    }
+                }
+                else
+                {
+                    if (tris[1] != -1)
+                    {
+                        tris = new int[] { tris[0], tris[1], -1, faceID };
+                        edgeTriangles[(startID, endID)] = tris;
+                    }
+                    else
+                    {
+                        tris[1] = faceID;
+                    }
+                }
+            }
+        }
     }
 
     private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
