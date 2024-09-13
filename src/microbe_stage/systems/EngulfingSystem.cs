@@ -276,6 +276,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                     engulfable.BulkTransport = transportData;
                 }
 
+                transportData.DigestionEjectionStarted = true;
+
                 if (!engulfedEntity.Has<AttachedToEntity>())
                 {
                     GD.PrintErr("Engulfable is in Digested state but it has no attached component");
@@ -288,9 +290,19 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 if (endosome != null)
                     currentEndosomeScale = endosome.Scale;
 
+                // TODO: maybe would be better to set the target scale down to like 0.01 to make it also disappear
+                // as right now it just pops out of existence
                 transportData.TargetValuesToLerp = (null, null, Vector3.One * MathUtils.EPSILON);
                 StartBulkTransport(ref engulfable, ref engulfedEntity.Get<AttachedToEntity>(), 1.5f,
-                    currentEndosomeScale, false);
+                    currentEndosomeScale);
+
+#if DEBUG
+                if (transportData.Interpolate != true)
+                {
+                    GD.PrintErr("Didn't properly start eject digested entity");
+                    Debugger.Break();
+                }
+#endif
             }
 
             if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
