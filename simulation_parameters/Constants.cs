@@ -223,13 +223,13 @@ public static class Constants
 
     public const float FLAGELLA_MAX_UPGRADE_FORCE = 15.0f;
 
-    public const float FLAGELLA_MAX_UPGRADE_ATP_USAGE = 2f;
+    public const float FLAGELLA_MAX_UPGRADE_ATP_USAGE = 4.0f;
 
     public const float FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH = 0.5f;
 
     public const float FLAGELLA_MIN_VISUAL_LENGTH = 0.75f;
 
-    public const float FLAGELLA_UPGRADE_VISUAL_OFFSET = -0.05f;
+    public const float FLAGELLA_UPGRADE_VISUAL_OFFSET = -0.25f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that

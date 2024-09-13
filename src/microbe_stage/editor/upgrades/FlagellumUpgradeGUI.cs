@@ -1,7 +1,7 @@
 ﻿using Godot;
 
 /// <summary>
-///   Upgrade GUI for the vacuole that allows specializing it
+///   Upgrade GUI for the flagellum that allows changing its length
 /// </summary>
 public partial class FlagellumUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 {

@@ -140,8 +140,7 @@ public class MovementComponent : IOrganelleComponent
         lastUsed = true;
 
         var requiredEnergy = (Constants.FLAGELLA_ENERGY_COST + Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE
-            * flagellumLength)
-            * elapsed;
+            * flagellumLength) * elapsed;
 
         var availableEnergy = compounds.TakeCompound(atp, requiredEnergy);
 
