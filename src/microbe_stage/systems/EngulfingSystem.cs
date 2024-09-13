@@ -290,11 +290,23 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 if (endosome != null)
                     currentEndosomeScale = endosome.Scale;
 
-                // TODO: maybe would be better to set the target scale down to like 0.01 to make it also disappear
-                // as right now it just pops out of existence
-                transportData.TargetValuesToLerp = (null, null, Vector3.One * MathUtils.EPSILON);
-                StartBulkTransport(ref engulfable, ref engulfedEntity.Get<AttachedToEntity>(), 1.5f,
-                    currentEndosomeScale);
+                var currentScale = Vector3.One;
+
+                if (engulfedEntity.Has<SpatialInstance>())
+                {
+                    currentScale = engulfedEntity.Get<SpatialInstance>().VisualScale;
+                }
+
+                // As the eaten thing would just pop out of existence otherwise, this uses a scale to shrink it down
+                var targetScale = Vector3.One * 0.05f;
+
+                // Custom start animation to be able to set the original scale
+                transportData.TargetValuesToLerp = (null, targetScale, Vector3.One * MathUtils.EPSILON);
+                transportData.InitialValuesToLerp =
+                    (engulfedEntity.Get<AttachedToEntity>().RelativePosition, currentScale, currentEndosomeScale);
+                transportData.AnimationTimeElapsed = 0;
+                transportData.LerpDuration = 1.5f;
+                transportData.Interpolate = true;
 
 #if DEBUG
                 if (transportData.Interpolate != true)
@@ -366,7 +378,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                             break;
                         }
 
-                        // Preserve any previous animation properties that may have been setup by exocytosis
+                        // Preserve any previous animation properties that may have been set up by exocytosis
                         // request
                         transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Position,
                             engulfable.OriginalScale, transportData.TargetValuesToLerp.EndosomeScale);
