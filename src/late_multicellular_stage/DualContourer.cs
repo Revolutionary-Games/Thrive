@@ -577,7 +577,7 @@ public class DualContourer
 
         List<int> newTriIndices = new List<int>();
 
-        (int, Vector3)[] originalPointsAdjacencies = new (int, Vector3)[originalPointCount];
+        (float, Vector3)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
 
         // Ints in tuple should be arranged in increasing order
         Dictionary<(int, int), bool> calculatedEdges = new Dictionary<(int, int), bool>();
@@ -632,10 +632,11 @@ public class DualContourer
             calculatedEdges.Add((startID, endID), true);
         }
 
-        // Find original points' barycentric coordinates
+        // Find original points' barycentric coordinates.
+        // This isn't an entirely canonical function for Catmull-Clark subdivision, but it's faster
         for (int i = 0; i < originalPointCount; i++)
         {
-            newPoints[i] = (originalPointsAdjacencies[i].Item2 + newPoints[i]) / (originalPointsAdjacencies[i].Item1 + 1);
+            newPoints[i] = (originalPointsAdjacencies[i].Item2 + newPoints[i] * 6.0f) / (originalPointsAdjacencies[i].Item1 + 6.0f);
         }
 
         triIndices = newTriIndices;
@@ -646,7 +647,7 @@ public class DualContourer
     }
 
     private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
-        List<int> newTriIndices, List<Vector3> newNormals, (int, Vector3)[] originalPointsAdjacencies)
+        List<int> newTriIndices, List<Vector3> newNormals, (float, Vector3)[] originalPointsAdjacencies)
     {
         if (face1ID == -1 || face2ID == -1)
         {
@@ -659,11 +660,11 @@ public class DualContourer
 
         Vector3 edgeCenter = (newPoints[startID] + newPoints[endID] + firstFaceCenter + secondFaceCenter) / 4.0f;
 
-        originalPointsAdjacencies[startID].Item1 += 2;
-        originalPointsAdjacencies[startID].Item2 += edgeCenter * 2.0f;
+        originalPointsAdjacencies[startID].Item1 += 1f;
+        originalPointsAdjacencies[startID].Item2 += edgeCenter;
 
-        originalPointsAdjacencies[endID].Item1 += 2;
-        originalPointsAdjacencies[endID].Item2 += edgeCenter * 2.0f;
+        originalPointsAdjacencies[endID].Item1 += 1f;
+        originalPointsAdjacencies[endID].Item2 += edgeCenter;
 
         int newPointID = newPoints.Count;
         newPoints.Add(edgeCenter);
