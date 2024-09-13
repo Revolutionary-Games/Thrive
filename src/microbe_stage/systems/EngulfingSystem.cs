@@ -304,8 +304,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 }
 #endif
             }
-
-            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
+            else if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
             {
                 if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
                 {
