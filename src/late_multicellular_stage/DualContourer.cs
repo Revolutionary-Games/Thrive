@@ -481,10 +481,12 @@ public class DualContourer
         for (int i = 0; i < triIndexCount; i += 3)
         {
             int newID = newPoints.Count;
-            newPoints.Add((newPoints[triIndices[i]] + newPoints[triIndices[i + 1]] + newPoints[triIndices[i + 2]]) / 3.0f);
-            newNormals.Add((normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]]).Normalized());
+            newPoints.Add((newPoints[triIndices[i]] + newPoints[triIndices[i + 1]] + newPoints[triIndices[i + 2]])
+                / 3.0f);
+            newNormals.Add((normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]])
+                .Normalized());
 
-            for (int j = i; j < i + 3; j++)
+            for (int j = i; j < i + 3; ++j)
             {
                 int startID = triIndices[j];
                 int endID;
@@ -529,7 +531,7 @@ public class DualContourer
         Dictionary<(int StartID, int EndID), bool> calculatedEdges = new Dictionary<(int, int), bool>();
 
         // Step two: calculate edge centers, place triangles
-        for (int i = 0; i < triIndexCount; i++)
+        for (int i = 0; i < triIndexCount; ++i)
         {
             int startID = triIndices[i];
             int endID;
@@ -542,7 +544,7 @@ public class DualContourer
             else
             {
                 endID = triIndices[i + 1];
-                triangleNumber++;
+                ++triangleNumber;
             }
 
             if (startID > endID)
@@ -580,9 +582,10 @@ public class DualContourer
 
         // Find original points' barycentric coordinates.
         // This isn't a canonical function of Catmull-Clark subdivision, but it's faster
-        for (int i = 0; i < originalPointCount; i++)
+        for (int i = 0; i < originalPointCount; ++i)
         {
-            newPoints[i] = (originalPointsAdjacencies[i].PointSum + newPoints[i] * 6.0f) / (originalPointsAdjacencies[i].Divisor + 6.0f);
+            newPoints[i] = (originalPointsAdjacencies[i].PointSum + newPoints[i] * 6.0f)
+                / (originalPointsAdjacencies[i].Divisor + 6.0f);
         }
 
         triIndices = newTriIndices;
@@ -669,10 +672,10 @@ public class DualContourer
 
         Vector3 edgeCenter = (newPoints[startID] + newPoints[endID] + firstFaceCenter + secondFaceCenter) / 4.0f;
 
-        originalPointsAdjacencies[startID].Item1 += 1f;
+        originalPointsAdjacencies[startID].Item1 += 1.0f;
         originalPointsAdjacencies[startID].Item2 += edgeCenter;
 
-        originalPointsAdjacencies[endID].Item1 += 1f;
+        originalPointsAdjacencies[endID].Item1 += 1.0f;
         originalPointsAdjacencies[endID].Item2 += edgeCenter;
 
         int newPointID = newPoints.Count;
