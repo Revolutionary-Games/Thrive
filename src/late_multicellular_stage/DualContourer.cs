@@ -472,8 +472,8 @@ public class DualContourer
         // TODO: once this works, expand points instead of creating a new List
         var newNormals = new List<Vector3>(normals);
 
-        // Key is two edge points' indices in points list.
-        // Value is triangle index in triIndices list.
+        // Key is edge points' indices in points list.
+        // Value is triangle index in triIndices list, where the triangle is adjacent to the edge.
         // Ints in tuple should be arranged in increasing order
         var edgeTriangles = new Dictionary<(int StartID, int EndID), int[]>();
 
