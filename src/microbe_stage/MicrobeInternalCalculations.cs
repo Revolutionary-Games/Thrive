@@ -531,7 +531,7 @@ public static class MicrobeInternalCalculations
         {
             foreach (var input in usedProcess.Inputs)
             {
-                if (biomeConditions.IsVaryingCompound(input.Key))
+                if (biomeConditions.IsVaryingCompound(input.Key.ID))
                     return true;
             }
         }
@@ -627,7 +627,7 @@ public static class MicrobeInternalCalculations
 
                 foreach (var processInput in process.Process.Inputs)
                 {
-                    if (processInput.Key == compound)
+                    if (processInput.Key.ID == compound)
                     {
                         usesInput = true;
                         break;
@@ -639,7 +639,7 @@ public static class MicrobeInternalCalculations
 
                 foreach (var processOutput in process.Process.Outputs)
                 {
-                    result.Add(processOutput.Key);
+                    result.Add(processOutput.Key.ID);
                 }
             }
         }

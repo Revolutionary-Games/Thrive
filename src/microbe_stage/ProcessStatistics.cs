@@ -136,8 +136,8 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         precomputedEnvironmentInputs ??= Process.Inputs
-            .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key))
-            .ToDictionary(p => p.Key, p => p.Value);
+            .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key.ID))
+            .ToDictionary(p => p.Key.ID, p => p.Value);
 
     public IReadOnlyDictionary<Compound, float> Outputs =>
         LatestSnapshot?.Outputs ?? throw new InvalidOperationException("No snapshot set");

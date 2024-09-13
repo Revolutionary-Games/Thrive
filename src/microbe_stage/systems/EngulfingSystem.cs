@@ -70,8 +70,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
 
-    private readonly Compound atp;
-
     private readonly XoShiRo128plus random = new();
 
     /// <summary>
@@ -115,8 +113,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
         endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
-
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     public static bool AddAlreadyEngulfedObject(ref Engulfer engulfer, in Entity engulferEntity,
@@ -849,7 +845,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
             }
 
-            var outOfATP = compounds.TakeCompound(atp, cost) < cost - 0.001f;
+            var outOfATP = compounds.TakeCompound(Compound.ATP, cost) < cost - 0.001f;
 
             if (engulfed || outOfATP)
             {

@@ -47,13 +47,6 @@ using World = DefaultEcs.World;
 [RuntimeCost(9)]
 public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLocationData
 {
-    private readonly Compound atp;
-    private readonly Compound glucose;
-    private readonly Compound iron;
-    private readonly Compound oxytoxy;
-    private readonly Compound ammonia;
-    private readonly Compound phosphates;
-
     private readonly IReadonlyCompoundClouds clouds;
     private readonly IDaylightInfo lightInfo;
 
@@ -114,14 +107,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // also aren't eaten already
         chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundStorage>()
             .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
-
-        var simulationParameters = SimulationParameters.Instance;
-        atp = simulationParameters.GetCompound("atp");
-        glucose = simulationParameters.GetCompound("glucose");
-        iron = simulationParameters.GetCompound("iron");
-        oxytoxy = simulationParameters.GetCompound("oxytoxy");
-        ammonia = simulationParameters.GetCompound("ammonia");
-        phosphates = simulationParameters.GetCompound("phosphates");
     }
 
     public void OverrideAIRandomSeed(long seed)
@@ -333,7 +318,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         control.Sprinting = false;
 
         // If this microbe is out of ATP, pick an amount of time to rest
-        if (compounds.GetCompoundAmount(atp) < 1.0f)
+        if (compounds.GetCompoundAmount(Compound.ATP) < 1.0f)
         {
             // Keep the maximum at 95% full, as there is flickering when near full
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
@@ -341,7 +326,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         if (ai.ATPThreshold > MathUtils.EPSILON)
         {
-            if (compounds.GetCompoundAmount(atp) < compounds.GetCapacityForCompound(atp) * ai.ATPThreshold)
+            if (compounds.GetCompoundAmount(Compound.ATP) <
+                compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
             {
                 bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
@@ -555,7 +541,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                         if (ironEater)
                         {
                             // TODO: this should have a more robust check (than just pure size)
-                            if (p.Key == iron && chunk.EngulfSize > 50)
+                            if (p.Key == Compound.Iron && chunk.EngulfSize > 50)
                             {
                                 isBigIron = true;
                             }
@@ -1044,7 +1030,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             foreach (var compound in usefulCompounds)
             {
-                if (compound == ammonia || compound == phosphates)
+                if (compound is Compound.Ammonia or Compound.Phosphates)
                     continue;
 
                 var compoundPriority = 1 - storedCompounds.GetCompoundAmount(compound) /
@@ -1068,8 +1054,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private bool IsVitalCompound(Compound compound, CompoundBag compounds)
     {
         // TODO: looking for mucilage should be prevented
-        return compounds.IsUseful(compound) &&
-            (compound == glucose || compound == iron);
+        return compounds.IsUseful(compound) && compound is Compound.Glucose or Compound.Iron;
     }
 
     private void SetEngulfIfClose(ref MicrobeControl control, ref Engulfer engulfer, ref WorldPosition position,
@@ -1109,7 +1094,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                         .AngleTo((control.LookAtPoint - position.Position).Normalized()) <
                     0.1f + speciesActivity / (Constants.AI_BASE_TOXIN_SHOOT_ANGLE_PRECISION * speciesFocus))
                 {
-                    control.QueuedToxinToEmit = oxytoxy;
+                    control.QueuedToxinToEmit = Compound.Oxytoxy;
                 }
             }
         }
@@ -1138,13 +1123,13 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private bool CanShootToxin(CompoundBag compounds, float speciesFocus)
     {
-        return compounds.GetCompoundAmount(oxytoxy) >=
+        return compounds.GetCompoundAmount(Compound.Oxytoxy) >=
             Constants.MAXIMUM_AGENT_EMISSION_AMOUNT * speciesFocus / Constants.MAX_SPECIES_FOCUS;
     }
 
     private void CleanMicrobeCache()
     {
-        // Skip when cache hasn't been updated in the meantime, this avoid unnecessarily clearing out a bunch of
+        // Skip when cache hasn't been updated in the meantime, this avoids unnecessarily clearing out a bunch of
         // data from the cache as after we clear the lists, the lists won't be filled again until the cache is
         // rebuild
         if (!microbeCacheBuilt)

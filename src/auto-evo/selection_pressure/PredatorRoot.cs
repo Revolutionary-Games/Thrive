@@ -8,11 +8,11 @@ public class PredatorRoot : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
+    private readonly CompoundDefinition glucose = SimulationParameters.GetCompound(Compound.Glucose);
 
     public PredatorRoot(float weight) : base(weight, [
-        AddOrganelleAnywhere.ThatConvertBetweenCompounds("glucose", "atp"),
+        AddOrganelleAnywhere.ThatConvertBetweenCompounds(Compound.Glucose, Compound.ATP),
     ])
     {
     }

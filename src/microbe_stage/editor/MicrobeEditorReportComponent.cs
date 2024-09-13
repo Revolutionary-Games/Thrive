@@ -334,11 +334,10 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         for (int i = patch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = patch.History.ElementAt(i);
-            var temperature = SimulationParameters.Instance.GetCompound("temperature");
             var combinedCompounds = snapshot.Biome.CombinedCompounds;
 
             temperatureData.AddPoint(DataPoint.GetDataPoint(snapshot.TimePeriod,
-                combinedCompounds[temperature].Ambient, markerColour: temperatureData.Colour));
+                combinedCompounds[Compound.Temperature].Ambient, markerColour: temperatureData.Colour));
 
             foreach (var entry in combinedCompounds)
             {

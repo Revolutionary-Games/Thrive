@@ -23,8 +23,6 @@ public class Patch
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Compound sunlight;
-
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
@@ -49,8 +47,6 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
-
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -66,8 +62,6 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
-
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     [JsonProperty]
@@ -470,17 +464,17 @@ public class Patch
 
     public void UpdateAverageSunlight(float multiplier)
     {
-        Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
+        Biome.AverageCompounds[Compound.Sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[Compound.Sunlight].Ambient * multiplier,
         };
     }
 
     public void UpdateCurrentSunlight(float multiplier)
     {
-        Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
+        Biome.CurrentCompoundAmounts[Compound.Sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[Compound.Sunlight].Ambient * multiplier,
         };
     }
 

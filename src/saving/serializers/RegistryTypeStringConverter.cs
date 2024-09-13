@@ -19,7 +19,7 @@ public class RegistryTypeStringConverter : TypeConverter
         new()
         {
             {
-                "compound",
+                "compoundDefinition",
                 new SupportedRegistryType(typeof(CompoundDefinition), "compoundDefinition",
                     n => SimulationParameters.Instance.GetCompound(n))
             },
@@ -188,7 +188,7 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 /// <summary>
 ///   Specific converter for <see cref="CompoundDefinition"/>
 /// </summary>
-public class CompoundStringConverter : RegistryTypeStringSingleTypeConverter<CompoundDefinition>
+public class CompoundDefinitionStringConverter : RegistryTypeStringSingleTypeConverter<CompoundDefinition>
 {
     protected override string TypeName => "compoundDefinition";
 }

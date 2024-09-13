@@ -168,8 +168,6 @@ public partial class CellEditorComponent :
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
 #pragma warning disable CA2213
 
     // Light level controls

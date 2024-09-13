@@ -22,8 +22,6 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
     private readonly ChunkConfiguration smallIronChunkCache = SimulationParameters.Instance.GetBiome("default")
         .Conditions.Chunks["ironSmallChunk"];
 
-    private readonly Compound iron = SimulationParameters.Instance.GetCompound("iron");
-
     private readonly IWorldSimulation worldSimulation;
 
     public SiderophoreSystem(World world, IParallelRunner runner, IWorldSimulation worldSimulation) :
@@ -86,7 +84,7 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
 
         ref var compounds = ref target.Get<CompoundStorage>();
 
-        if (!compounds.Compounds.Compounds.TryGetValue(iron, out var existingIron))
+        if (!compounds.Compounds.Compounds.TryGetValue(Compound.Iron, out var existingIron))
             return false;
 
         var efficiency = projectile.Amount;
@@ -104,17 +102,17 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         smallIronChunk.Size = Math.Min(size, remainingIron);
 
         // Chunk spawn reads the data and copies it, so we can use one dictionary here, but in case this system is
-        // multithreaded in teh future, there's a lock here
+        // multithreaded in the future, there's a lock here
         lock (smallIronChunk.Compounds!)
         {
             // This update is probably safe as long as 2 threads don't exactly at the same time process a chunk
             // collision with siderophore, but this lock should make this much less likely problem
-            compounds.Compounds.Compounds[iron] = remainingIron;
+            compounds.Compounds.Compounds[Compound.Iron] = remainingIron;
 
             smallIronChunk.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>
             {
                 {
-                    iron, new ChunkConfiguration.ChunkCompound
+                    Compound.Iron, new ChunkConfiguration.ChunkCompound
                     {
                         Amount = smallIronChunk.Size,
                     }
@@ -125,6 +123,8 @@ public sealed class SiderophoreSystem : AEntitySetSystem<float>
         }
 
         // TODO: New effect for siderophore collision with iron chunk
+        // The world simulation is just coincidentally used inside the lock, this doesn't have to be inside the lock
+        // ReSharper disable once InconsistentlySynchronizedField
         SpawnHelpers.SpawnCellBurstEffect(worldSimulation, firstEntityPosition, efficiency - 2);
 
         return true;
