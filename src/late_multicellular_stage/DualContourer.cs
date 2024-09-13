@@ -470,12 +470,12 @@ public class DualContourer
         // Edge centers go last. Order is defined by point order in triIndices.
         // So, if a triangle is defined as (A, B, C), then the edge order is as follows: AB, BC, CA.
         // TODO: once this works, expand points instead of creating a new List
-        List<Vector3> newNormals = new List<Vector3>(normals);
+        var newNormals = new List<Vector3>(normals);
 
         // Key is two edge points' indices in points list.
         // Value is triangle index in triIndices list.
         // Ints in tuple should be arranged in increasing order
-        Dictionary<(int StartID, int EndID), int[]> edgeTriangles = new Dictionary<(int, int), int[]>();
+        var edgeTriangles = new Dictionary<(int StartID, int EndID), int[]>();
 
         // Step one: add face centers, calculate faces adjacent to each edge
         for (int i = 0; i < triIndexCount; i += 3)
@@ -520,40 +520,15 @@ public class DualContourer
             }
         }
 
-        // [0;2]
-        int triangleNumber = 0;
-
         List<int> newTriIndices = new List<int>();
 
         (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
 
-        // Ints in tuple should be arranged in increasing order
-        Dictionary<(int StartID, int EndID), bool> calculatedEdges = new Dictionary<(int, int), bool>();
-
         // Step two: calculate edge centers, place triangles
-        for (int i = 0; i < triIndexCount; ++i)
+        foreach (var edge in edgeTriangles)
         {
-            int startID = triIndices[i];
-            int endID;
-
-            if (triangleNumber == 2)
-            {
-                endID = triIndices[i - 2];
-                triangleNumber = 0;
-            }
-            else
-            {
-                endID = triIndices[i + 1];
-                ++triangleNumber;
-            }
-
-            if (startID > endID)
-            {
-                (startID, endID) = (endID, startID);
-            }
-
-            if (calculatedEdges.ContainsKey((startID, endID)))
-                continue;
+            var startID = edge.Key.StartID;
+            var endID = edge.Key.EndID;
 
             edgeTriangles.TryGetValue((startID, endID), out var faces);
 
@@ -576,8 +551,6 @@ public class DualContourer
                 SubdivideEdge(startID, endID, faces[0], faces[1], newPoints, newTriIndices, newNormals,
                     originalPointsAdjacencies);
             }
-
-            calculatedEdges.Add((startID, endID), true);
         }
 
         // Find original points' barycentric coordinates.
@@ -596,7 +569,7 @@ public class DualContourer
     }
 
     /// <summary>
-    ///   Assign a face to an adjacent edge (defined by startID, endID)
+    ///   Assign a face to an adjacent edge (defined by startID, endID).
     /// </summary>
     private void AssignFaceEdges(int startID, int endID, bool isLeftHanded, int faceID,
         Dictionary<(int StartID, int EndID), int[]> edgeTriangles)
