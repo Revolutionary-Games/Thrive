@@ -336,7 +336,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
             scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
                 + Constants.FLAGELLA_MIN_VISUAL_LENGTH;
-
         }
 
         var scale = CalculateTransformScale();
