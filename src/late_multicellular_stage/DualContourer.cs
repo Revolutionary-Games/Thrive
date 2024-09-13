@@ -101,7 +101,7 @@ public class DualContourer
             AdjustVertices(points, 0.25f, normals);
         }
 
-        // Subdivision can be used multiple times, but the triangle count increases exponentially in this way
+        // Subdivision can be used multiple times, but triangle count increases exponentially
         CatmullClarkSubdivision(points, ref triIndices, ref normals);
 
         var colors = new Color[points.Count];
