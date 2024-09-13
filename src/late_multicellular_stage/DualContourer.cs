@@ -520,7 +520,7 @@ public class DualContourer
             }
         }
 
-        List<int> newTriIndices = new List<int>();
+        var newTriIndices = new List<int>();
 
         (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
 
@@ -578,11 +578,11 @@ public class DualContourer
         {
             if (isLeftHanded)
             {
-                edgeTriangles.Add((startID, endID), new int[] { faceID, -1 });
+                edgeTriangles.Add((startID, endID), new[] { faceID, -1 });
             }
             else
             {
-                edgeTriangles.Add((startID, endID), new int[] { -1, faceID });
+                edgeTriangles.Add((startID, endID), new[] { -1, faceID });
             }
         }
         else
@@ -607,7 +607,7 @@ public class DualContourer
                 {
                     if (tris[0] != -1)
                     {
-                        tris = new int[] { tris[0], tris[1], faceID, -1 };
+                        tris = new[] { tris[0], tris[1], faceID, -1 };
                         edgeTriangles[(startID, endID)] = tris;
                     }
                     else
@@ -619,7 +619,7 @@ public class DualContourer
                 {
                     if (tris[1] != -1)
                     {
-                        tris = new int[] { tris[0], tris[1], -1, faceID };
+                        tris = new[] { tris[0], tris[1], -1, faceID };
                         edgeTriangles[(startID, endID)] = tris;
                     }
                     else
