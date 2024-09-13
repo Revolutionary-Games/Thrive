@@ -297,9 +297,12 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                     GD.PrintErr("Failed to unbind microbe from colony on death");
                 }
             }
-
-            // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
-            // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+            else
+            {
+                // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
+                // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+                return true;
+            }
         }
 
         if (entity.Has<MicrobeColony>())
