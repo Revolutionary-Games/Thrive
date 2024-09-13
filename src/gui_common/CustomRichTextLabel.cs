@@ -489,7 +489,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                     break;
                 }
 
-                var compound = simulationParameters.GetCompound(internalName);
+                var compound = simulationParameters.GetCompoundDefinition(internalName);
 
                 // Just use the compound's default readable name if input text is not specified
                 if (string.IsNullOrEmpty(input))

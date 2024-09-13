@@ -19,8 +19,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [Export]
     public NodePath? GuidanceLinePath;
 
-    private Compound glucose = null!;
-    private Compound phosphate = null!;
     private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
@@ -148,8 +146,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         ResolveNodeReferences();
 
         var simulationParameters = SimulationParameters.Instance;
-        glucose = simulationParameters.GetCompound("glucose");
-        phosphate = simulationParameters.GetCompound("phosphates");
         cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
         tutorialGUI.Visible = true;
@@ -275,7 +271,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position, glucose)),
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
+                            Compound.Glucose)),
                         this);
                 }
 
@@ -622,7 +619,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Add a cloud of glucose if difficulty settings call for it
         if (GameWorld.WorldSettings.FreeGlucoseCloud)
         {
-            Clouds.AddCloud(glucose, 200000.0f, Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
+            Clouds.AddCloud(Compound.Glucose, 200000.0f,
+                Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
         }
 
         // Check win conditions
@@ -794,7 +792,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
         }
 
         patchManager.CurrentGame = CurrentGame;

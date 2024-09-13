@@ -127,7 +127,7 @@ public class PatchCompound : WorldBasedUnlockCondition
     public int? Max;
 
     [JsonProperty]
-    public Compound? Compound;
+    public Compound Compound;
 
     public override bool Satisfied(IUnlockStateDataSource data)
     {
@@ -135,7 +135,7 @@ public class PatchCompound : WorldBasedUnlockCondition
             return false;
 
         // TODO: is it correct that this uses display adjusted values?
-        var current = worldArgs.CurrentPatch.GetCompoundAmountForDisplay(Compound!, CompoundAmountType.Biome);
+        var current = worldArgs.CurrentPatch.GetCompoundAmountForDisplay(Compound, CompoundAmountType.Biome);
 
         var minSatisfied = !Min.HasValue || current >= Min;
         var maxSatisfied = !Max.HasValue || current <= Max;
@@ -144,16 +144,16 @@ public class PatchCompound : WorldBasedUnlockCondition
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
-        var compoundName = Compound!.InternalName;
+        var compoundDefinition = SimulationParameters.GetCompound(Compound);
 
         // These are objects to allow LocalizedString and pure string parameters used in the final localized string
         // which anyway takes plain objects as the format parameters
         object? formattedMin;
         object? formattedMax;
 
-        switch (compoundName)
+        switch (Compound)
         {
-            case "sunlight":
+            case Compound.Sunlight:
                 formattedMin = Min.HasValue ?
                     new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Min), "lx") :
                     null;
@@ -161,15 +161,15 @@ public class PatchCompound : WorldBasedUnlockCondition
                     new LocalizedString("VALUE_WITH_UNIT", new LocalizedString("PERCENTAGE_VALUE", Max), "lx") :
                     null;
                 break;
-            case "temperature":
+            case Compound.Temperature:
                 // TODO: automatically handle any compounds with unit set?
-                var unit = Compound.Unit ?? "MISSING CONFIGURED UNIT";
+                var unit = compoundDefinition.Unit ?? "MISSING CONFIGURED UNIT";
                 formattedMin = Min.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Min / 100, unit) : null;
                 formattedMax = Max.HasValue ? new LocalizedString("VALUE_WITH_UNIT", Max / 100, unit) : null;
                 break;
-            case "oxygen":
-            case "carbondioxide":
-            case "nitrogen":
+            case Compound.Oxygen:
+            case Compound.Carbondioxide:
+            case Compound.Nitrogen:
                 formattedMin = Min.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Min) : null;
                 formattedMax = Max.HasValue ? new LocalizedString("PERCENTAGE_VALUE", Max) : null;
                 break;
@@ -178,6 +178,8 @@ public class PatchCompound : WorldBasedUnlockCondition
                 formattedMax = Max?.ToString(CultureInfo.CurrentCulture);
                 break;
         }
+
+        var compoundName = compoundDefinition.InternalName;
 
         if (formattedMin != null && formattedMax != null)
         {
@@ -196,10 +198,10 @@ public class PatchCompound : WorldBasedUnlockCondition
 
     public override void Check(string name)
     {
-        if (Compound == null)
+        if (Compound == Compound.Invalid)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Compound is null");
+                "Compound is not set");
         }
 
         if (Min == null && Max == null)

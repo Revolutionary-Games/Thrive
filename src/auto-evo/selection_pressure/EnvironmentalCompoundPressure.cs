@@ -15,6 +15,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     private readonly Compound createdCompound;
     private readonly Compound compound;
+    private readonly CompoundDefinition compoundDefinition;
     private readonly float energyMultiplier;
 
     public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
@@ -23,7 +24,9 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             AddOrganelleAnywhere.ThatUseCompound(compound),
         ])
     {
-        if (compound.IsCloud)
+        compoundDefinition = SimulationParameters.GetCompound(compound);
+
+        if (compoundDefinition.IsCloud)
             throw new ArgumentException("Given compound to environmental pressure is a cloud type");
 
         if (createdCompound != atp && createdCompound != glucose)
@@ -64,11 +67,11 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     public override LocalizedString GetDescription()
     {
         return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE",
-            new LocalizedString(compound.GetUntranslatedName()));
+            new LocalizedString(compoundDefinition.GetUntranslatedName()));
     }
 
     public override string ToString()
     {
-        return $"{Name} ({compound.Name})";
+        return $"{Name} ({compoundDefinition.Name})";
     }
 }

@@ -11,6 +11,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
+    private CompoundDefinition? fromDefinition;
+
     public CompoundConversionEfficiencyPressure(Compound compound, Compound outCompound, float weight) :
         base(weight, [
             AddOrganelleAnywhere.ThatConvertBetweenCompounds(compound, outCompound),
@@ -38,6 +40,7 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
 
     public override string ToString()
     {
-        return $"{Name} ({FromCompound.Name})";
+        fromDefinition ??= SimulationParameters.GetCompound(FromCompound);
+        return $"{Name} ({fromDefinition.Name})";
     }
 }

@@ -211,7 +211,7 @@ public partial class GUICommon : Node
     /// </summary>
     public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
     {
-        return CreateIcon(SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon!, sizeX, sizeY);
+        return CreateIcon(SimulationParameters.Instance.GetCompoundDefinition(compoundName).LoadedIcon!, sizeX, sizeY);
     }
 
     /// <summary>

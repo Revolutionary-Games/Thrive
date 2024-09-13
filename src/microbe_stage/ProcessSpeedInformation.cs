@@ -27,10 +27,10 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
     public Dictionary<Compound, float> AvailableRates { get; } = new();
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
-        WritableInputs.Where(p => !p.Key.IsEnvironmental);
+        WritableInputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key));
 
     public IEnumerable<KeyValuePair<Compound, float>> EnvironmentalInputs =>
-        AvailableAmounts.Where(p => p.Key.IsEnvironmental);
+        AvailableAmounts.Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key));
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
         WritableFullSpeedRequiredEnvironmentalInputs;
@@ -74,7 +74,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
             foreach (var input in WritableInputs)
             {
-                if (input.Key.IsEnvironmental)
+                if (IProcessDisplayInfo.IsEnvironmental(input.Key))
                     continue;
 
                 workMemory.Add(input.Key, input.Value * modifier);
@@ -92,7 +92,7 @@ public class ProcessSpeedInformation : IProcessDisplayInfo
 
             foreach (var output in WritableOutputs)
             {
-                if (output.Key.IsEnvironmental)
+                if (IProcessDisplayInfo.IsEnvironmental(output.Key))
                     continue;
 
                 workMemory.Add(output.Key, output.Value * modifier);

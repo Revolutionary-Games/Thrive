@@ -522,10 +522,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
+        var simulationParameters = SimulationParameters.Instance;
+
         // Environmental inputs need to be processed first
         foreach (var input in process.Process.Inputs)
         {
-            if (!input.Key.IsEnvironmental)
+            if (!simulationParameters.GetCompoundDefinition(input.Key).IsEnvironmental)
                 continue;
 
             // Environmental compound that can limit the rate
@@ -556,7 +558,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // So that the speed factor is available here
         foreach (var entry in process.Process.Inputs)
         {
-            if (entry.Key.IsEnvironmental)
+            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
             // Normal, cloud input
@@ -733,6 +735,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // fraction of the speed to allow the cell to still function well
         float spaceConstraintModifier = 1.0f;
 
+        var simulationParameters = SimulationParameters.Instance;
+
         // First check the environmental compounds so that we can build the right environment modifier for accurate
         // check of normal compound input amounts
         foreach (var entry in processData.Inputs)
@@ -740,7 +744,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // Set used compounds to be useful, we don't want to purge those
             bag.SetUseful(entry.Key);
 
-            if (!entry.Key.IsEnvironmental)
+            // TODO: would there be a more performant way to check if compound is environmental?
+            // Maybe by modifying the process inputs and outputs to use CompoundDefinition rather than plain compound?
+            if (!simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
             // Processing runs on the current game time following values
@@ -773,7 +779,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Compute spaceConstraintModifier before updating the final use and input amounts
         foreach (var entry in processData.Inputs)
         {
-            if (entry.Key.IsEnvironmental)
+            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
             var inputRemoved = entry.Value * process.Rate * environmentModifier * process.SpeedMultiplier;
@@ -829,7 +835,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             outputAdded = outputAdded * delta * spaceConstraintModifier;
 
             // if environmental right now this isn't released anywhere
-            if (entry.Key.IsEnvironmental)
+            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
             // If no space we can't do the process, if we can't adjust the space constraint modifier enough
@@ -899,7 +905,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Consume inputs
         foreach (var entry in processData.Inputs)
         {
-            if (entry.Key.IsEnvironmental)
+            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
             var inputRemoved = entry.Value * totalModifier;
@@ -914,7 +920,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // Add outputs
         foreach (var entry in processData.Outputs)
         {
-            if (entry.Key.IsEnvironmental)
+            if (simulationParameters.GetCompoundDefinition(entry.Key).IsEnvironmental)
                 continue;
 
             var outputGenerated = entry.Value * totalModifier;

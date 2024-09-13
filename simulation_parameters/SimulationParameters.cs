@@ -20,11 +20,17 @@ public partial class SimulationParameters : Node
 
     private static SimulationParameters? instance;
 
+    /// <summary>
+    ///   Holds direct addressing for compound data by index of <see cref="Compound"/>. For access by name see
+    ///   <see cref="compounds"/>. This is a plain list to make it a very cheap operation to get the compound data.
+    /// </summary>
+    private readonly List<CompoundDefinition> compoundDefinitions = [];
+
     private Dictionary<string, MembraneType> membranes = null!;
     private Dictionary<string, Background> backgrounds = null!;
     private Dictionary<string, Biome> biomes = null!;
     private Dictionary<string, BioProcess> bioProcesses = null!;
-    private Dictionary<string, Compound> compounds = null!;
+    private Dictionary<string, CompoundDefinition> compounds = null!;
     private Dictionary<string, OrganelleDefinition> organelles = null!;
     private Dictionary<string, Enzyme> enzymes = null!;
     private Dictionary<string, MusicCategory> musicCategories = null!;
@@ -51,7 +57,7 @@ public partial class SimulationParameters : Node
     private Dictionary<string, VisualResourceData> visualResources = null!;
     private Dictionary<VisualResourceIdentifier, VisualResourceData> visualResourceByIdentifier = null!;
 
-    private List<Compound>? cachedCloudCompounds;
+    private List<CompoundDefinition>? cachedCloudCompounds;
     private List<Enzyme>? cachedDigestiveEnzymes;
 
     public static SimulationParameters Instance => instance ?? throw new InstanceNotLoadedYetException();
@@ -62,6 +68,23 @@ public partial class SimulationParameters : Node
 
     public NameGenerator NameGenerator { get; private set; } = null!;
     public PatchMapNameGenerator PatchMapNameGenerator { get; private set; } = null!;
+
+    public static CompoundDefinition GetCompound(Compound compoundId)
+    {
+#if DEBUG
+        try
+        {
+#endif
+
+            return instance!.GetCompoundDefinition(compoundId);
+#if DEBUG
+        }
+        catch (NullReferenceException e)
+        {
+            throw new InstanceNotLoadedYetException(e);
+        }
+#endif
+    }
 
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
@@ -82,27 +105,31 @@ public partial class SimulationParameters : Node
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 
-        // Loading compounds and enzymes needs a custom JSON deserializer that can load their respective objects, but
-        // the loader can't always be active because that breaks saving
+        // Loading specific registry types need a custom JSON deserializer that can load their respective objects, but
+        // the loader can't always be active because that breaks saving (as when saving we want to serialize as
+        // identifiers)
         {
             var deserializers = new JsonConverter[]
             {
-                new DirectTypeLoadOverride(typeof(Compound), null),
+                new DirectTypeLoadOverride(typeof(CompoundDefinition), null),
                 new DirectTypeLoadOverride(typeof(Enzyme), null),
                 new DirectTypeLoadOverride(typeof(Biome), null),
             };
 
-            compounds = LoadRegistry<Compound>("res://simulation_parameters/microbe_stage/compounds.json",
+            compounds = LoadRegistry<CompoundDefinition>("res://simulation_parameters/microbe_stage/compounds.json",
                 deserializers);
+
+            PostProcessCompounds();
+
             enzymes = LoadRegistry<Enzyme>("res://simulation_parameters/microbe_stage/enzymes.json", deserializers);
             biomes = LoadRegistry<Biome>("res://simulation_parameters/microbe_stage/biomes.json", deserializers);
 
             // These later things already depend on the earlier things so another phase of direct loaders are needed
 
-            deserializers = new JsonConverter[]
-            {
+            deserializers =
+            [
                 new DirectTypeLoadOverride(typeof(OrganelleDefinition), null),
-            };
+            ];
 
             organelles = LoadRegistry<OrganelleDefinition>("res://simulation_parameters/microbe_stage/organelles.json",
                 deserializers);
@@ -154,27 +181,27 @@ public partial class SimulationParameters : Node
 
         worldResources =
             LoadRegistry<WorldResource>("res://simulation_parameters/awakening_stage/world_resources.json",
-                new JsonConverter[] { new DirectTypeLoadOverride(typeof(WorldResource), null) });
+                [new DirectTypeLoadOverride(typeof(WorldResource), null)]);
 
         equipment =
             LoadRegistry<EquipmentDefinition>("res://simulation_parameters/awakening_stage/equipment.json",
-                new JsonConverter[] { new DirectTypeLoadOverride(typeof(EquipmentDefinition), null) });
+                [new DirectTypeLoadOverride(typeof(EquipmentDefinition), null)]);
 
         craftingRecipes =
             LoadRegistry<CraftingRecipe>("res://simulation_parameters/awakening_stage/crafting_recipes.json",
-                new JsonConverter[] { new DirectTypeLoadOverride(typeof(CraftingRecipe), null) });
+                [new DirectTypeLoadOverride(typeof(CraftingRecipe), null)]);
 
         structures =
             LoadRegistry<StructureDefinition>("res://simulation_parameters/awakening_stage/structures.json",
-                new JsonConverter[] { new DirectTypeLoadOverride(typeof(StructureDefinition), null) });
+                [new DirectTypeLoadOverride(typeof(StructureDefinition), null)]);
 
         unitTypes =
             LoadRegistry<UnitType>("res://simulation_parameters/industrial_stage/units.json",
-                new JsonConverter[] { new DirectTypeLoadOverride(typeof(UnitType), null) });
+                [new DirectTypeLoadOverride(typeof(UnitType), null)]);
 
         spaceStructures =
             LoadRegistry<SpaceStructureDefinition>("res://simulation_parameters/space_stage/space_structures.json",
-                new JsonConverter[] { new DirectTypeLoadOverride(typeof(SpaceStructureDefinition), null) });
+                [new DirectTypeLoadOverride(typeof(SpaceStructureDefinition), null)]);
 
         technologies =
             LoadRegistry<Technology>("res://simulation_parameters/awakening_stage/technologies.json");
@@ -268,10 +295,45 @@ public partial class SimulationParameters : Node
 
     public Compound GetCompound(string name)
     {
+        return compounds[name].ID;
+    }
+
+    public CompoundDefinition GetCompoundDefinition(Compound compoundId)
+    {
+        if (compoundId == 0)
+        {
+            throw new ArgumentException("Cannot get compound definition for invalid compound (0)");
+        }
+
+        var index = (int)compoundId;
+
+        try
+        {
+            return compoundDefinitions[index];
+        }
+        catch (Exception e)
+        {
+            throw new ArgumentException("Compound definition index is out of range", e);
+        }
+    }
+
+    public CompoundDefinition GetCompoundDefinition(string name)
+    {
         return compounds[name];
     }
 
-    public Dictionary<string, Compound> GetAllCompounds()
+    public CompoundDefinition GetCompoundCaseInsensitive(string name)
+    {
+        foreach (var entry in compounds)
+        {
+            if (StringComparer.OrdinalIgnoreCase.Compare(entry.Key, name) == 0)
+                return entry.Value;
+        }
+
+        throw new KeyNotFoundException("Compound definition not found: " + name);
+    }
+
+    public Dictionary<string, CompoundDefinition> GetAllCompounds()
     {
         return compounds;
     }
@@ -301,7 +363,7 @@ public partial class SimulationParameters : Node
     ///   simulated "clouds" for microbes to hoover up)
     /// </summary>
     /// <returns>A readonly list with all the cloud compounds</returns>
-    public IReadOnlyList<Compound> GetCloudCompounds()
+    public IReadOnlyList<CompoundDefinition> GetCloudCompounds()
     {
         return cachedCloudCompounds ??= ComputeCloudCompounds();
     }
@@ -397,7 +459,7 @@ public partial class SimulationParameters : Node
     }
 
     /// <summary>
-    ///   Returns all of the known patch notes data
+    ///   Returns all the known patch notes data
     /// </summary>
     /// <returns>Enumerable of the patch notes, this needs to be ordered from the oldest to the newest</returns>
     public IEnumerable<KeyValuePair<string, VersionPatchNotes>> GetPatchNotes()
@@ -631,6 +693,26 @@ public partial class SimulationParameters : Node
         return result;
     }
 
+    private void PostProcessCompounds()
+    {
+        compoundDefinitions.Clear();
+
+        // Fetch inbuilt compounds
+
+        // Invalid compound is added to make indexing math simpler
+        compoundDefinitions.Add(null!);
+
+        for (Compound i = Compound.ATP; i <= Compound.LastInbuiltCompound; ++i)
+        {
+            // Initialize and assign the compound
+            var relatedDefinition = GetCompoundCaseInsensitive(Enum.GetName(i) ??
+                throw new Exception("Inbuilt compound fetch name getting failed"));
+            relatedDefinition.ID = i;
+
+            compoundDefinitions.Add(relatedDefinition);
+        }
+    }
+
     private void CheckForInvalidValues()
     {
         CheckRegistryType(membranes);
@@ -734,7 +816,7 @@ public partial class SimulationParameters : Node
         visualResourceByIdentifier = visualResources.ToDictionary(t => t.Value.Identifier, t => t.Value);
     }
 
-    private List<Compound> ComputeCloudCompounds()
+    private List<CompoundDefinition> ComputeCloudCompounds()
     {
         return compounds.Where(p => p.Value.IsCloud).Select(p => p.Value).ToList();
     }

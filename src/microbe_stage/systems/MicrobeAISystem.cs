@@ -545,7 +545,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             foreach (var p in chunk.Compounds.Compounds)
             {
-                if (ourCompounds.IsUseful(p.Key) && p.Key.Digestible)
+                if (ourCompounds.IsUseful(p.Key) && SimulationParameters.GetCompound(p.Key).Digestible)
                 {
                     if (chosenChunk == null)
                     {

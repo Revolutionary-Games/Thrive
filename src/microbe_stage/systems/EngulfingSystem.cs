@@ -1878,13 +1878,16 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
         if (engulfableEntity.Has<CompoundStorage>())
         {
+            // TODO: check if this code is bad now because it is not as easy to access the digestible property of a
+            // compound (this doesn't use a local reference to the simulation parameters as that would cause a lambda
+            // capture)
             engulfable.InitialTotalEngulfableCompounds = engulfableEntity.Get<CompoundStorage>().Compounds
-                .Where(c => c.Key.Digestible)
+                .Where(c => SimulationParameters.GetCompound(c.Key).Digestible)
                 .Sum(c => c.Value);
 
 #if DEBUG
             foreach (var entry in engulfableEntity.Get<CompoundStorage>().Compounds
-                         .Where(c => c.Key.Digestible))
+                         .Where(c => SimulationParameters.GetCompound(c.Key).Digestible))
             {
                 if (entry.Value < 0)
                     throw new Exception("Negative stored compound amount in engulfed cell");

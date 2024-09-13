@@ -53,7 +53,8 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         this.compoundCloudSystem = compoundCloudSystem;
         var simulationParameters = SimulationParameters.Instance;
         oxytoxy = simulationParameters.GetCompound("oxytoxy");
-        digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).ToList();
+        digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).Select(c => c.ID)
+            .ToList();
         lipase = simulationParameters.GetEnzyme("lipase");
     }
 
