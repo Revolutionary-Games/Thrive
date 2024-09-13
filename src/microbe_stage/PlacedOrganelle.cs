@@ -350,11 +350,9 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
             return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
                 externalPosition + orientation * Definition.ModelOffset);
         }
-        else
-        {
-            return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),
-                externalPosition + orientation * Definition.ModelOffset);
-        }
+
+        return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),
+            externalPosition + orientation * Definition.ModelOffset);
     }
 
     /// <summary>
