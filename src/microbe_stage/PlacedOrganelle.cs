@@ -348,12 +348,12 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         if (scaleZ == 0.0f)
         {
             return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
-            externalPosition + orientation * Definition.ModelOffset);
+                externalPosition + orientation * Definition.ModelOffset);
         }
         else
         {
             return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),
-            externalPosition + orientation * Definition.ModelOffset);
+                externalPosition + orientation * Definition.ModelOffset);
         }
     }
 
