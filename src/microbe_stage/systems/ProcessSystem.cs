@@ -32,9 +32,6 @@ using World = DefaultEcs.World;
 [RuntimeCost(55)]
 public sealed class ProcessSystem : AEntitySetSystem<float>
 {
-    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
-    private static readonly Compound Temperature = SimulationParameters.Instance.GetCompound("temperature");
-
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
@@ -352,12 +349,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 useRatio = false;
 
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                if (speedAdjusted.Outputs.ContainsKey(ATP) && consumptionProductionRatio < 1.0f)
+                if (speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f)
                     useRatio = true;
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
-                    if (input.Key == ATP)
+                    if (input.Key == Compound.ATP)
                         continue;
 
                     float amount = input.Value;
@@ -371,7 +368,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 foreach (var output in speedAdjusted.Outputs)
                 {
-                    if (output.Key == ATP)
+                    if (output.Key == Compound.ATP)
                         continue;
 
                     float amount = output.Value;
@@ -491,7 +488,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 // TODO: maybe this check should be expanded to consider any input compounds that the cell can produce
                 // *itself* that way this will consider non-directly used compounds and calculate the speed correctly.
                 // Without this any compounds cells usually produce will need to be skipped here similarly to ATP.
-                if (inputCompound == ATP)
+                if (inputCompound == Compound.ATP)
                     continue;
 
                 // Quickly check all inputs to see if they are in the patch
@@ -536,7 +533,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // Environmental compound that can limit the rate
             var availableInEnvironment = GetAmbientInBiome(inputCompound, biome, pointInTimeType);
 
-            var availableRate = inputCompound == Temperature ?
+            var availableRate = inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
                 availableInEnvironment / input.Value;
 
@@ -571,7 +568,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             var adjustedValue = entry.Value * speedFactor;
             result.WritableInputs.Add(inputCompound, adjustedValue);
 
-            if (inputCompound == ATP)
+            if (inputCompound == Compound.ATP)
                 result.ATPConsumption += adjustedValue;
         }
 
@@ -586,7 +583,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             if (amount <= 0)
                 result.WritableLimitingCompounds.Add(outputCompound);
 
-            if (outputCompound == ATP)
+            if (outputCompound == Compound.ATP)
                 result.ATPProduction += amount;
         }
 
@@ -763,7 +760,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             currentProcessStatistics?.AddInputAmount(inputCompound, ambient);
 
             // do environmental modifier here, and save it for later
-            environmentModifier *= inputCompound == Temperature ?
+            environmentModifier *= inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(ambient) :
                 ambient / entry.Value;
 
@@ -876,7 +873,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
             }
 
-            if (outputCompound == ATP)
+            if (outputCompound == Compound.ATP)
                 isATPProducer = true;
         }
 

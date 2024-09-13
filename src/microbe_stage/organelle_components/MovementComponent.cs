@@ -9,8 +9,6 @@ using ThriveScriptsShared;
 /// </summary>
 public class MovementComponent : IOrganelleComponent
 {
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
     private readonly float momentum;
 
     private PlacedOrganelle parentOrganelle = null!;
@@ -128,7 +126,7 @@ public class MovementComponent : IOrganelleComponent
 
         var requiredEnergy = Constants.FLAGELLA_ENERGY_COST * elapsed;
 
-        var availableEnergy = compounds.TakeCompound(atp, requiredEnergy);
+        var availableEnergy = compounds.TakeCompound(Compound.ATP, requiredEnergy);
 
         if (availableEnergy < requiredEnergy)
         {

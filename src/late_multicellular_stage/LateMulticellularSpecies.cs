@@ -232,20 +232,20 @@ public class LateMulticellularSpecies : Species
         InitialCompounds.Clear();
 
         // TODO: modify these numbers based on the scale and metaball count or something more accurate
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("atp"), 180);
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("glucose"), 90);
+        InitialCompounds.Add(Compound.ATP, 180);
+        InitialCompounds.Add(Compound.Glucose, 90);
     }
 
     private void SetInitialCompoundsForIron()
     {
         SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("iron"), 90);
+        InitialCompounds.Add(Compound.Iron, 90);
     }
 
     private void SetInitialCompoundsForChemo()
     {
         SetInitialCompoundsForDefault();
-        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 90);
+        InitialCompounds.Add(Compound.Hydrogensulfide, 90);
     }
 
     private void CalculateBrainPower()

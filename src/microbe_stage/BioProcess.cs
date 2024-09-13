@@ -27,9 +27,8 @@ public class BioProcess : IRegistryType
     /// </summary>
     public bool IsMetabolismProcess;
 
-#pragma warning disable 169,649 // Used through reflection
+#pragma warning disable 169,649 // Used through reflection (and JSON)
     private string? untranslatedName;
-#pragma warning restore 169,649
 
     // To make JSON loading work, we need to use temporary data holders
     [JsonProperty(nameof(Inputs))]
@@ -37,6 +36,7 @@ public class BioProcess : IRegistryType
 
     [JsonProperty(nameof(Outputs))]
     private Dictionary<Compound, float>? outputsRaw;
+#pragma warning restore 169,649
 
     public string InternalName { get; set; } = null!;
 
