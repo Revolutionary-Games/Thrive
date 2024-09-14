@@ -655,10 +655,9 @@ public class DualContourer
         public int Face0ID;
         public int Face1ID;
 
-        public bool HasFourFaces;
-
         public int Face2ID;
         public int Face3ID;
+        public bool HasFourFaces;
 
         public EdgeData(int faceID, bool isFaceLeftHanded)
         {
