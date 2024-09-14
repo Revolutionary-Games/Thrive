@@ -467,7 +467,7 @@ public class DualContourer
         // Key is edge points' indices in points list.
         // Value is triangle index in triIndices list, where the triangle is adjacent to the edge.
         // Ints in tuple should be arranged in increasing order
-        var edgeTriangles = new Dictionary<(int StartID, int EndID), int[]>();
+        var edgeTriangles = new Dictionary<(int StartID, int EndID), EdgeData>();
 
         // New points are added to the points List multiple times in this algoritm.
         // Ultimately, its point order is as follows:
@@ -514,7 +514,19 @@ public class DualContourer
                     isLeftHanded = true;
                 }
 
-                AssignFaceEdges(startID, endID, isLeftHanded, newID, edgeTriangles, ref edgesWithFourFaces);
+                if (!edgeTriangles.ContainsKey((startID, endID)))
+                {
+                    edgeTriangles.Add((startID, endID), new EdgeData(newID, isLeftHanded));
+                }
+                else
+                {
+                    edgeTriangles[(startID, endID)] = edgeTriangles[(startID, endID)].AddFace(newID, isLeftHanded, out bool increasedFaceCount);
+
+                    if (increasedFaceCount)
+                    {
+                        ++edgesWithFourFaces;
+                    }
+                }
             }
         }
 
@@ -544,7 +556,7 @@ public class DualContourer
             ++edgeID;
 
             // Edges with four faces create two points when subdivided.
-            if (edge.Value.Length == 4)
+            if (edge.Value.HasFourFaces)
             {
                 newNormals[edgeID] = (normals[edge.Key.StartID] + normals[edge.Key.EndID]).Normalized();
                 ++edgeID;
@@ -562,23 +574,21 @@ public class DualContourer
             var startID = edge.Key.StartID;
             var endID = edge.Key.EndID;
 
-            edgeTriangles.TryGetValue((startID, endID), out var faces);
-
-            if (faces == null)
+            if (!edgeTriangles.TryGetValue((startID, endID), out var faces))
             {
                 GD.PrintErr("Error when subdividing: edge-adjacent faces not found");
                 continue;
             }
 
-            if (faces.Length == 4)
+            if (faces.HasFourFaces)
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices, originalPointsAdjacencies);
 
-                SubdivideEdge(startID, endID, faces[2], faces[3], points, triIndices, originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces.Face2ID, faces.Face3ID, points, triIndices, originalPointsAdjacencies);
             }
             else
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices, originalPointsAdjacencies);
             }
         }
 
@@ -592,71 +602,6 @@ public class DualContourer
 
         sw.Stop();
         GD.Print($"Subdivided a mesh in {sw.Elapsed}");
-    }
-
-    /// <summary>
-    ///   Assign a face to an adjacent edge (defined by startID, endID).
-    /// </summary>
-    private void AssignFaceEdges(int startID, int endID, bool isLeftHanded, int faceID,
-        Dictionary<(int StartID, int EndID), int[]> edgeTriangles, ref int edgesWithFourFaces)
-    {
-        if (!edgeTriangles.ContainsKey((startID, endID)))
-        {
-            if (isLeftHanded)
-            {
-                edgeTriangles.Add((startID, endID), new[] { faceID, -1 });
-            }
-            else
-            {
-                edgeTriangles.Add((startID, endID), new[] { -1, faceID });
-            }
-        }
-        else
-        {
-            var tris = edgeTriangles[(startID, endID)];
-
-            // Dual Contouring has cases in which one edge might be shared between not 2, but 4 faces.
-            if (tris.Length == 4)
-            {
-                if (isLeftHanded)
-                {
-                    tris[2] = faceID;
-                }
-                else
-                {
-                    tris[3] = faceID;
-                }
-            }
-            else
-            {
-                if (isLeftHanded)
-                {
-                    if (tris[0] != -1)
-                    {
-                        tris = new[] { tris[0], tris[1], faceID, -1 };
-                        edgeTriangles[(startID, endID)] = tris;
-                        ++edgesWithFourFaces;
-                    }
-                    else
-                    {
-                        tris[0] = faceID;
-                    }
-                }
-                else
-                {
-                    if (tris[1] != -1)
-                    {
-                        tris = new[] { tris[0], tris[1], -1, faceID };
-                        edgeTriangles[(startID, endID)] = tris;
-                        ++edgesWithFourFaces;
-                    }
-                    else
-                    {
-                        tris[1] = faceID;
-                    }
-                }
-            }
-        }
     }
 
     private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
@@ -699,6 +644,87 @@ public class DualContourer
         newTriIndices.Add(newPointID);
         newTriIndices.Add(endID);
         newTriIndices.Add(face2ID);
+    }
+
+    private struct EdgeData
+    {
+        public int Face0ID;
+        public int Face1ID;
+
+        public bool HasFourFaces;
+
+        public int Face2ID;
+        public int Face3ID;
+
+        public EdgeData(int faceID, bool isFaceLeftHanded)
+        {
+            if (isFaceLeftHanded)
+            {
+                Face0ID = faceID;
+                Face1ID = -1;
+            }
+            else
+            {
+                Face0ID = -1;
+                Face1ID = faceID;
+            }
+
+            Face2ID = -1;
+            Face3ID = -1;
+
+            HasFourFaces = false;
+        }
+
+        public EdgeData AddFace(int faceID, bool isFaceLeftHanded, out bool increasedFaceCount)
+        {
+            EdgeData edge = this;
+
+            increasedFaceCount = false;
+
+            // Dual Contouring has cases in which one edge might be shared between not 2, but 4 faces.
+            if (edge.HasFourFaces)
+            {
+                if (isFaceLeftHanded)
+                {
+                    edge.Face2ID = faceID;
+                }
+                else
+                {
+                    edge.Face3ID = faceID;
+                }
+            }
+            else
+            {
+                if (isFaceLeftHanded)
+                {
+                    if (Face0ID != -1)
+                    {
+                        edge.HasFourFaces = true;
+                        edge.Face2ID = faceID;
+                        increasedFaceCount = true;
+                    }
+                    else
+                    {
+                        edge.Face0ID = faceID;
+                    }
+                }
+                else
+                {
+                    if (Face1ID != -1)
+                    {
+                        edge.HasFourFaces = true;
+                        edge.Face3ID = faceID;
+                        increasedFaceCount = true;
+                    }
+                    else
+                    {
+                        edge.Face1ID = faceID;
+                    }
+                }
+            }
+
+            return edge;
+        }
     }
 
     private struct Cube
