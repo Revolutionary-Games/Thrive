@@ -513,6 +513,7 @@ public class DualContourer
                     (startID, endID) = (endID, startID);
                     isLeftHanded = true;
                 }
+
                 AssignFaceEdges(startID, endID, isLeftHanded, newID, edgeTriangles, ref edgesWithFourFaces);
             }
         }
