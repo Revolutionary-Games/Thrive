@@ -461,30 +461,28 @@ public class DualContourer
         var sw = new Stopwatch();
         sw.Start();
 
-        int triIndexCount = triIndices.Count;
+        int originalTriIndexCount = triIndices.Count;
         int originalPointCount = points.Count;
-
-        // newPoints has the following structure:
-        // Original points go first, count = points.Count
-        // Face centers go next, count = triIndices.Count / 3. Their order is defined by tri order in triIndices
-        // Edge centers go last. Order is defined by point order in triIndices.
-        // So, if a triangle is defined as (A, B, C), then the edge order is as follows: AB, BC, CA.
-        // TODO: once this works, expand points instead of creating a new List
-        var newNormals = new List<Vector3>(normals);
 
         // Key is edge points' indices in points list.
         // Value is triangle index in triIndices list, where the triangle is adjacent to the edge.
         // Ints in tuple should be arranged in increasing order
         var edgeTriangles = new Dictionary<(int StartID, int EndID), int[]>();
 
+        // New points are added to the points List multiple times in this algoritm.
+        // Ultimately, its point order is as follows:
+        // 1. Original points in an unmodified order. Count = originalPointCount
+        // 2. Face points in the order of the original triIndices. Count = originalTriIndexCount / 3
+        // 3. Edge points in no particular order. Count = edgeTriangles.Count (after mesh edges being added to it).
+
+        int edgesWithFourFaces = 0;
+
         // Step one: add face centers, calculate faces adjacent to each edge
-        for (int i = 0; i < triIndexCount; i += 3)
+        for (int i = 0; i < originalTriIndexCount; i += 3)
         {
             int newID = points.Count;
             points.Add((points[triIndices[i]] + points[triIndices[i + 1]] + points[triIndices[i + 2]])
                 / 3.0f);
-            newNormals.Add((normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]])
-                .Normalized());
 
             for (int j = i; j < i + 3; ++j)
             {
@@ -516,15 +514,50 @@ public class DualContourer
                     isLeftHanded = true;
                 }
 
-                AssignFaceEdges(startID, endID, isLeftHanded, newID, edgeTriangles);
+                AssignFaceEdges(startID, endID, isLeftHanded, newID, edgeTriangles, ref edgesWithFourFaces);
             }
         }
 
+        // Step two: calculate normals for each point
+        var newNormals = new Vector3[originalPointCount + originalTriIndexCount / 3 + edgeTriangles.Count
+            + edgesWithFourFaces];
+
+        // Copy original points' normals
+        for (int i = 0; i < originalPointCount; ++i)
+        {
+            newNormals[i] = normals[i];
+        }
+
+        // Calculate faces' normals
+        for (int i = 0; i < originalTriIndexCount; i += 3)
+        {
+            int faceID = i / 3 + originalPointCount;
+            newNormals[faceID] = (normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]])
+                .Normalized();
+        }
+
+        // Calculate edges' normals
+        int edgeID = originalPointCount + originalTriIndexCount / 3;
+        foreach (var edge in edgeTriangles)
+        {
+            newNormals[edgeID] = (normals[edge.Key.StartID] + normals[edge.Key.EndID]).Normalized();
+            ++edgeID;
+
+            // Edges with four faces create two points when subdivided.
+            if (edge.Value.Length == 4)
+            {
+                newNormals[edgeID] = (normals[edge.Key.StartID] + normals[edge.Key.EndID]).Normalized();
+                ++edgeID;
+            }
+        }
+
+        normals = newNormals;
+
+        // Step three: calculate edge centers's positions, place triangles
         (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
 
         triIndices.Clear();
 
-        // Step two: calculate edge centers, place triangles
         foreach (var edge in edgeTriangles)
         {
             var startID = edge.Key.StartID;
@@ -540,16 +573,13 @@ public class DualContourer
 
             if (faces.Length == 4)
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, newNormals,
-                    originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, originalPointsAdjacencies);
 
-                SubdivideEdge(startID, endID, faces[2], faces[3], points, triIndices, newNormals,
-                    originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces[2], faces[3], points, triIndices, originalPointsAdjacencies);
             }
             else
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, newNormals,
-                    originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, originalPointsAdjacencies);
             }
         }
 
@@ -561,8 +591,6 @@ public class DualContourer
                 / (originalPointsAdjacencies[i].Divisor + 6.0f);
         }
 
-        normals = newNormals.ToArray();
-
         sw.Stop();
         GD.Print($"Subdivided a mesh in {sw.Elapsed}");
     }
@@ -571,7 +599,7 @@ public class DualContourer
     ///   Assign a face to an adjacent edge (defined by startID, endID).
     /// </summary>
     private void AssignFaceEdges(int startID, int endID, bool isLeftHanded, int faceID,
-        Dictionary<(int StartID, int EndID), int[]> edgeTriangles)
+        Dictionary<(int StartID, int EndID), int[]> edgeTriangles, ref int edgesWithFourFaces)
     {
         if (!edgeTriangles.ContainsKey((startID, endID)))
         {
@@ -608,6 +636,7 @@ public class DualContourer
                     {
                         tris = new[] { tris[0], tris[1], faceID, -1 };
                         edgeTriangles[(startID, endID)] = tris;
+                        ++edgesWithFourFaces;
                     }
                     else
                     {
@@ -620,6 +649,7 @@ public class DualContourer
                     {
                         tris = new[] { tris[0], tris[1], -1, faceID };
                         edgeTriangles[(startID, endID)] = tris;
+                        ++edgesWithFourFaces;
                     }
                     else
                     {
@@ -631,7 +661,7 @@ public class DualContourer
     }
 
     private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
-        List<int> newTriIndices, List<Vector3> newNormals, (float, Vector3)[] originalPointsAdjacencies)
+        List<int> newTriIndices, (float, Vector3)[] originalPointsAdjacencies)
     {
         if (face1ID == -1 || face2ID == -1)
         {
@@ -652,9 +682,6 @@ public class DualContourer
 
         int newPointID = newPoints.Count;
         newPoints.Add(edgeCenter);
-
-        newNormals.Add((newNormals[startID] + newNormals[endID] + newNormals[face1ID] + newNormals[face2ID])
-            .Normalized());
 
         // Left-handed triangles
         newTriIndices.Add(newPointID);
