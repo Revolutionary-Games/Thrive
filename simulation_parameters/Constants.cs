@@ -796,7 +796,7 @@ public static class Constants
     public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
     /// <summary>
-    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
+    ///   How much compounds in relation to real compound amount can be absorbed from digestible engulfed objects.
     /// </summary>
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 1.8f;
 
