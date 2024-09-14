@@ -793,12 +793,12 @@ public static class Constants
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.5f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
     /// <summary>
     ///   How much compounds a cell can absorb per second from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
+    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 1.8f;
 
     /// <summary>
     ///   How long can cell be in engulf mode after activating without ATP
