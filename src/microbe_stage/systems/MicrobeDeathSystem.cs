@@ -57,9 +57,6 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
     private readonly Random random = new();
 
-    private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-
     private GameWorld? gameWorld;
 
     public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
@@ -300,9 +297,12 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                     GD.PrintErr("Failed to unbind microbe from colony on death");
                 }
             }
-
-            // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
-            // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+            else
+            {
+                // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
+                // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+                return true;
+            }
         }
 
         if (entity.Has<MicrobeColony>())
@@ -450,9 +450,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         // To not completely deadlock in this there is a maximum limit
         int createdAgents = 0;
 
-        var amount = compounds.GetCompoundAmount(oxytoxy);
+        var amount = compounds.GetCompoundAmount(Compound.Oxytoxy);
 
-        var props = new AgentProperties(species, oxytoxy);
+        var props = new AgentProperties(species, Compound.Oxytoxy);
 
         while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
         {

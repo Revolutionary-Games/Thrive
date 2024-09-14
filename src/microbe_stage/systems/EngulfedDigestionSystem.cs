@@ -40,7 +40,6 @@ using World = DefaultEcs.World;
 public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
-    private readonly Compound oxytoxy;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
 
     private readonly Enzyme lipase;
@@ -52,7 +51,6 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
     {
         this.compoundCloudSystem = compoundCloudSystem;
         var simulationParameters = SimulationParameters.Instance;
-        oxytoxy = simulationParameters.GetCompound("oxytoxy");
         digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).Select(c => c.ID)
             .ToList();
         lipase = simulationParameters.GetEnzyme("lipase");
@@ -175,7 +173,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 {
                     usedEnzyme = engulfable.RequisiteEnzymeToDigest ?? lipase;
 
-                    // TODO: only call this once
+                    // TODO: only call this once (per engulfment action instead of per game update)
                     engulfable.OnReportBecomeIngestedIfCallbackRegistered(engulfedObject);
 
                     break;
@@ -261,7 +259,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 var taken = MathF.Min(totalAvailable, amount);
 
                 // Toxin damage
-                if (compound == oxytoxy && taken > 0)
+                if (compound == Compound.Oxytoxy && taken > 0)
                 {
                     ref var status = ref entity.Get<MicrobeStatus>();
 
@@ -320,7 +318,9 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 GD.PrintErr("Engulfing system hasn't initialized InitialTotalEngulfableCompounds");
             }
 
-            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
+            // If out of stuff to digest, or as a safety check the engulf size has gone to zero, consider digested
+            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
+                engulfable.AdjustedEngulfSize <= 0)
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 

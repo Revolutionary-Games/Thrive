@@ -18,8 +18,6 @@ using DefaultEcs.System;
 [RunsOnMainThread]
 public sealed class MucocystSystem : AEntitySetSystem<float>
 {
-    private readonly Compound mucilageCompound = SimulationParameters.Instance.GetCompound("mucilage");
-
     public MucocystSystem(World world) : base(world)
     {
     }
@@ -44,7 +42,7 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
             // Take mucilage as cost for keeping the mucocyst active
             var requiredMucilage = Constants.MUCOCYST_MUCILAGE_DRAIN * delta;
 
-            if (storage.Compounds.TakeCompound(mucilageCompound, requiredMucilage) < requiredMucilage)
+            if (storage.Compounds.TakeCompound(Compound.Mucilage, requiredMucilage) < requiredMucilage)
             {
                 // Not enough to keep using mucocyst
                 control.State = MicrobeState.Normal;

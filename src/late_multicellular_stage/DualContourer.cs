@@ -513,7 +513,6 @@ public class DualContourer
                     (startID, endID) = (endID, startID);
                     isLeftHanded = true;
                 }
-
                 AssignFaceEdges(startID, endID, isLeftHanded, newID, edgeTriangles, ref edgesWithFourFaces);
             }
         }
@@ -557,7 +556,6 @@ public class DualContourer
         (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
 
         triIndices.Clear();
-
         foreach (var edge in edgeTriangles)
         {
             var startID = edge.Key.StartID;

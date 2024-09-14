@@ -460,14 +460,13 @@ public partial class PatchDetailsPanel : PanelContainer
         if (SelectedPatch == null || CurrentPatch == null)
             return;
 
-        var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        var nextCompound = SelectedPatch.Biome.Compounds[temperature].Ambient;
+        var nextCompound = SelectedPatch.Biome.Compounds[Compound.Temperature].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.Compounds[temperature].Ambient)
+        if (nextCompound > CurrentPatch.Biome.Compounds[Compound.Temperature].Ambient)
         {
             temperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.Compounds[temperature].Ambient)
+        else if (nextCompound < CurrentPatch.Biome.Compounds[Compound.Temperature].Ambient)
         {
             temperatureSituation.Texture = decreaseIcon;
         }

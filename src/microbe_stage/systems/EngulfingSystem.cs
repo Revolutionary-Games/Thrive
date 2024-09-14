@@ -70,8 +70,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
     private readonly IWorldSimulation worldSimulation;
     private readonly ISpawnSystem spawnSystem;
 
-    private readonly Compound atp;
-
     private readonly XoShiRo128plus random = new();
 
     /// <summary>
@@ -115,8 +113,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         this.worldSimulation = worldSimulation;
         this.spawnSystem = spawnSystem;
         endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
-
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     public static bool AddAlreadyEngulfedObject(ref Engulfer engulfer, in Entity engulferEntity,
@@ -280,6 +276,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                     engulfable.BulkTransport = transportData;
                 }
 
+                transportData.DigestionEjectionStarted = true;
+
                 if (!engulfedEntity.Has<AttachedToEntity>())
                 {
                     GD.PrintErr("Engulfable is in Digested state but it has no attached component");
@@ -292,12 +290,33 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 if (endosome != null)
                     currentEndosomeScale = endosome.Scale;
 
-                transportData.TargetValuesToLerp = (null, null, Vector3.One * MathUtils.EPSILON);
-                StartBulkTransport(ref engulfable, ref engulfedEntity.Get<AttachedToEntity>(), 1.5f,
-                    currentEndosomeScale, false);
-            }
+                var currentScale = Vector3.One;
 
-            if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
+                if (engulfedEntity.Has<SpatialInstance>())
+                {
+                    currentScale = engulfedEntity.Get<SpatialInstance>().VisualScale;
+                }
+
+                // As the eaten thing would just pop out of existence otherwise, this uses a scale to shrink it down
+                var targetScale = Vector3.One * 0.05f;
+
+                // Custom start animation to be able to set the original scale
+                transportData.TargetValuesToLerp = (null, targetScale, Vector3.One * MathUtils.EPSILON);
+                transportData.InitialValuesToLerp =
+                    (engulfedEntity.Get<AttachedToEntity>().RelativePosition, currentScale, currentEndosomeScale);
+                transportData.AnimationTimeElapsed = 0;
+                transportData.LerpDuration = 1.5f;
+                transportData.Interpolate = true;
+
+#if DEBUG
+                if (transportData.Interpolate != true)
+                {
+                    GD.PrintErr("Didn't properly start eject digested entity");
+                    Debugger.Break();
+                }
+#endif
+            }
+            else if (engulfable.PhagocytosisStep == PhagocytosisPhase.None || engulfable.HostileEngulfer == default)
             {
                 if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
                 {
@@ -359,7 +378,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                             break;
                         }
 
-                        // Preserve any previous animation properties that may have been setup by exocytosis
+                        // Preserve any previous animation properties that may have been set up by exocytosis
                         // request
                         transportData.TargetValuesToLerp = (transportData.TargetValuesToLerp.Position,
                             engulfable.OriginalScale, transportData.TargetValuesToLerp.EndosomeScale);
@@ -849,7 +868,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
                 engulfed = entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
             }
 
-            var outOfATP = compounds.TakeCompound(atp, cost) < cost - 0.001f;
+            var outOfATP = compounds.TakeCompound(Compound.ATP, cost) < cost - 0.001f;
 
             if (engulfed || outOfATP)
             {
@@ -1637,6 +1656,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         var transport = engulfable.BulkTransport;
         if (transport != null)
         {
+            // Reset state before storing it for future use
             transport.Interpolate = false;
             transport.DigestionEjectionStarted = false;
 

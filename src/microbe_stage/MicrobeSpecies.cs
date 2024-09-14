@@ -173,8 +173,6 @@ public class MicrobeSpecies : Species, ICellDefinition
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
             biomeConditions, CompoundAmountType.Biome, false);
 
-        var glucose = simulationParameters.GetCompound("glucose");
-        var atp = simulationParameters.GetCompound("atp");
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
@@ -184,10 +182,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         foreach (var compoundBalance in compoundBalances)
         {
             // Skip ATP as we don't want to give any initial ATP
-            if (compoundBalance.Key == atp)
+            if (compoundBalance.Key == Compound.ATP)
                 continue;
 
-            if (compoundBalance.Key == glucose && giveBonusGlucose)
+            if (compoundBalance.Key == Compound.Glucose && giveBonusGlucose)
             {
                 InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
                 continue;
