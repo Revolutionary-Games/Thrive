@@ -520,7 +520,8 @@ public class DualContourer
                 }
                 else
                 {
-                    edgeTriangles[(startID, endID)] = edgeTriangles[(startID, endID)].AddFace(newID, isLeftHanded, out bool increasedFaceCount);
+                    edgeTriangles[(startID, endID)] = edgeTriangles[(startID, endID)].AddFace(newID, isLeftHanded,
+                        out bool increasedFaceCount);
 
                     if (increasedFaceCount)
                     {
@@ -582,13 +583,16 @@ public class DualContourer
 
             if (faces.HasFourFaces)
             {
-                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices, originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices,
+                    originalPointsAdjacencies);
 
-                SubdivideEdge(startID, endID, faces.Face2ID, faces.Face3ID, points, triIndices, originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces.Face2ID, faces.Face3ID, points, triIndices,
+                    originalPointsAdjacencies);
             }
             else
             {
-                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices, originalPointsAdjacencies);
+                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices,
+                    originalPointsAdjacencies);
             }
         }
 
