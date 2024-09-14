@@ -456,13 +456,13 @@ public class DualContourer
     /// <summary>
     ///   Subdivides given data using Catmull-Clark algorithm.
     /// </summary>
-    private void CatmullClarkSubdivision(List<Vector3> newPoints, ref List<int> triIndices, ref Vector3[] normals)
+    private void CatmullClarkSubdivision(List<Vector3> points, ref List<int> triIndices, ref Vector3[] normals)
     {
         var sw = new Stopwatch();
         sw.Start();
 
         int triIndexCount = triIndices.Count;
-        int originalPointCount = newPoints.Count;
+        int originalPointCount = points.Count;
 
         // newPoints has the following structure:
         // Original points go first, count = points.Count
@@ -480,8 +480,8 @@ public class DualContourer
         // Step one: add face centers, calculate faces adjacent to each edge
         for (int i = 0; i < triIndexCount; i += 3)
         {
-            int newID = newPoints.Count;
-            newPoints.Add((newPoints[triIndices[i]] + newPoints[triIndices[i + 1]] + newPoints[triIndices[i + 2]])
+            int newID = points.Count;
+            points.Add((points[triIndices[i]] + points[triIndices[i + 1]] + points[triIndices[i + 2]])
                 / 3.0f);
             newNormals.Add((normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]])
                 .Normalized());
@@ -540,15 +540,15 @@ public class DualContourer
 
             if (faces.Length == 4)
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], newPoints, newTriIndices, newNormals,
+                SubdivideEdge(startID, endID, faces[0], faces[1], points, newTriIndices, newNormals,
                     originalPointsAdjacencies);
 
-                SubdivideEdge(startID, endID, faces[2], faces[3], newPoints, newTriIndices, newNormals,
+                SubdivideEdge(startID, endID, faces[2], faces[3], points, newTriIndices, newNormals,
                     originalPointsAdjacencies);
             }
             else
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], newPoints, newTriIndices, newNormals,
+                SubdivideEdge(startID, endID, faces[0], faces[1], points, newTriIndices, newNormals,
                     originalPointsAdjacencies);
             }
         }
@@ -557,7 +557,7 @@ public class DualContourer
         // This isn't a canonical function of Catmull-Clark subdivision, but it's faster
         for (int i = 0; i < originalPointCount; ++i)
         {
-            newPoints[i] = (originalPointsAdjacencies[i].PointSum + newPoints[i] * 6.0f)
+            points[i] = (originalPointsAdjacencies[i].PointSum + points[i] * 6.0f)
                 / (originalPointsAdjacencies[i].Divisor + 6.0f);
         }
 
