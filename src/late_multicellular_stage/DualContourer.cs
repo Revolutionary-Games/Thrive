@@ -102,7 +102,7 @@ public class DualContourer
         }
 
         // Subdivision can be used multiple times, but triangle count increases exponentially
-        CatmullClarkSubdivision(points, ref triIndices, ref normals);
+        CatmullClarkSubdivision(points, triIndices, ref normals);
 
         var colors = new Color[points.Count];
 
@@ -454,9 +454,9 @@ public class DualContourer
     }
 
     /// <summary>
-    ///   Subdivides given data using Catmull-Clark algorithm.
+    ///   Subdivides given data using Catmull-Clark algorithm. Mutates given Lists, overwrites normals.
     /// </summary>
-    private void CatmullClarkSubdivision(List<Vector3> points, ref List<int> triIndices, ref Vector3[] normals)
+    private void CatmullClarkSubdivision(List<Vector3> points, List<int> triIndices, ref Vector3[] normals)
     {
         var sw = new Stopwatch();
         sw.Start();
@@ -520,9 +520,9 @@ public class DualContourer
             }
         }
 
-        var newTriIndices = new List<int>();
-
         (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
+
+        triIndices.Clear();
 
         // Step two: calculate edge centers, place triangles
         foreach (var edge in edgeTriangles)
@@ -540,15 +540,15 @@ public class DualContourer
 
             if (faces.Length == 4)
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], points, newTriIndices, newNormals,
+                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, newNormals,
                     originalPointsAdjacencies);
 
-                SubdivideEdge(startID, endID, faces[2], faces[3], points, newTriIndices, newNormals,
+                SubdivideEdge(startID, endID, faces[2], faces[3], points, triIndices, newNormals,
                     originalPointsAdjacencies);
             }
             else
             {
-                SubdivideEdge(startID, endID, faces[0], faces[1], points, newTriIndices, newNormals,
+                SubdivideEdge(startID, endID, faces[0], faces[1], points, triIndices, newNormals,
                     originalPointsAdjacencies);
             }
         }
@@ -561,7 +561,6 @@ public class DualContourer
                 / (originalPointsAdjacencies[i].Divisor + 6.0f);
         }
 
-        triIndices = newTriIndices;
         normals = newNormals.ToArray();
 
         sw.Stop();
