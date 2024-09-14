@@ -844,7 +844,7 @@ public static class Constants
 
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
 
-    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 2f;
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
