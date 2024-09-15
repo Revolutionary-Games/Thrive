@@ -50,11 +50,19 @@ LFS. Note that the GitHub option to download as .zip will not work
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
-On Linux use your package manager to install Git. On Mac install the
-package manager [homebrew](https://brew.sh/) if you don't already have
-it, and use it to install Git. On Mac and Linux Git LFS is likely available
-as a package named `git-lfs`. If it is not install it manually. After
-installing remember to run `git lfs install` in terminal.
+On Linux use your package manager to install Git. This can be done in the
+terminal - for instance, on Ubuntu, type: `sudo apt-get install git` . On
+Mac, install the package manager [homebrew](https://brew.sh/) if you don't
+already have it, and use it to install Git. On Mac and Linux Git LFS is
+likely available as a package named `git-lfs`. If it is not, install it
+manually. You can download Git LFS from https://git-lfs.com. After
+downloading the file, extract it wherever you want. In the terminal, change
+directory to the newly extracted folder (e.g. " cd ~/Games/git-lfs-3.4.1 ").
+You can then install it via the terminal - for instance on Ubuntu, type:
+`sudo bash ./install.sh`.
+OR, install Git LFS entirely by typing in the terminal - for instance on
+Ubuntu, type: `git lfs install`. 
+It should then say "Git LFS initialized."
 
 On Windows install Git with the official installer from:
 https://git-scm.com/download/win You can use this installer to also
@@ -467,8 +475,9 @@ In addition to the following optional downloads you need to have Godot
 in your PATH for the scripts to find it. To do this create a link /
 rename the Godot editor executable to just `godot` or `godot.exe` if
 you are on Windows. Then you need to either add the folder where that
-executable is to your system PATH or move the executable (along the
-other Godot resources it needs) to a path that is already in PATH.
+executable is to your system PATH or move the executable (along with the
+other Godot resources it needs, i.e. the entire GodotSharp folder) to a
+path that is already in PATH.
 
 ### 7zip and zip
 
@@ -550,6 +559,15 @@ is available through Homebrew.
 
 `msgmerge` is part of the gettext tools. So any errors with that
 missing are about these gettext tools.
+
+## Other tools
+Additional tools that may be required to run things properly on Linux
+are llvm and clang lld, which can be installed via the terminal -
+for example on Ubuntu, type:
+```sh
+sudo apt install llvm
+sudo apt install clang lld
+```
 
 ## Running the Format Checks
 
