@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -57,30 +58,31 @@ public class WikiUpdater
     /// </summary>
     public async Task<bool> Run(CancellationToken cancellationToken)
     {
+        // To avoid starvation of creating HttpClients, this script uses just one. This slightly reduces parallel
+        // operations but shouldn't be that much slower. Though that might not be a huge problem or concern with the
+        // current page count, this prevents hammering our wiki server super hard when this script runs.
+        using var client = HtmlReader.CreateClient();
+
         // Get root pages
-        var organellesRootTask = FetchRootPage(ORGANELLE_CATEGORY, "Organelles", cancellationToken);
-        var stagesRootTask = FetchRootPage(STAGES_CATEGORY, "Stages", cancellationToken);
-        var mechanicsRootTask = FetchRootPage(MECHANICS_CATEGORY, "Mechanics", cancellationToken);
-        var developmentRootTask = FetchRootPage(DEVELOPMENT_CATEGORY, "Development", cancellationToken);
+        var organellesRootRaw = await FetchRootPage(client, ORGANELLE_CATEGORY, "Organelles", cancellationToken);
+        var stagesRootRaw = await FetchRootPage(client, STAGES_CATEGORY, "Stages", cancellationToken);
+        var mechanicsRootRaw = await FetchRootPage(client, MECHANICS_CATEGORY, "Mechanics", cancellationToken);
+        var developmentRootRaw = await FetchRootPage(client, DEVELOPMENT_CATEGORY, "Development", cancellationToken);
 
         // Get pages in categories
-        var organellesTask = FetchPagesFromCategory(ORGANELLE_CATEGORY, "Organelle", cancellationToken);
-        var stagesTask = FetchPagesFromCategory(STAGES_CATEGORY, "Stage", cancellationToken);
-        var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechanic", cancellationToken);
-        var developmentPagesTask = FetchPagesFromCategory(DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
+        var organellesTask = FetchPagesFromCategory(client, ORGANELLE_CATEGORY, "Organelle", cancellationToken);
 
         // Load our local data while waiting for network things
         _ = compoundNames.Value;
 
-        var organellesRootRaw = await organellesRootTask;
-        var stagesRootRaw = await stagesRootTask;
-        var mechanicsRootRaw = await mechanicsRootTask;
-        var developmentRootRaw = await developmentRootTask;
-
         var organellesRaw = await organellesTask;
-        var stagesRaw = await stagesTask;
-        var mechanicsRaw = await mechanicsTask;
-        var developmentPagesRaw = await developmentPagesTask;
+
+        var stagesRaw = await FetchPagesFromCategory(client, STAGES_CATEGORY, "Stage", cancellationToken);
+
+        var mechanicsRaw = await FetchPagesFromCategory(client, MECHANICS_CATEGORY, "Mechanic", cancellationToken);
+
+        var developmentPagesRaw =
+            await FetchPagesFromCategory(client, DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
 
         ColourConsole.WriteSuccessLine("Fetched all wiki pages");
 
@@ -152,10 +154,13 @@ public class WikiUpdater
     ///   Fetches a page from the online wiki
     /// </summary>
     /// <returns>The HTML content of the page</returns>
-    private async Task<IHtmlElement> FetchRootPage(string url, string categoryName, CancellationToken cancellationToken)
+    private async Task<IHtmlElement> FetchRootPage(HttpClient client, string url, string categoryName,
+        CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine($"Fetching {categoryName.ToLowerInvariant()} root page");
-        var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+        var body = (await HtmlReader.RetrieveHtmlDocument(client, url, cancellationToken)).Body!;
+        ColourConsole.WriteDebugLine($"Fetched root page from: {url}");
+
         pageNames.Add(categoryName, $"{categoryName}Root");
         return body;
     }
@@ -164,7 +169,7 @@ public class WikiUpdater
     ///   Fetches all the pages from a category, ignores pages in the OnlyOnline category
     /// </summary>
     /// <returns>A list of all the pages' HTML content</returns>
-    private async Task<List<IHtmlElement>> FetchPagesFromCategory(string categoryUrl,
+    private async Task<List<IHtmlElement>> FetchPagesFromCategory(HttpClient client, string categoryUrl,
         string pageType, CancellationToken cancellationToken)
     {
         ColourConsole.WriteInfoLine($"Fetching {pageType} pages");
@@ -173,7 +178,8 @@ public class WikiUpdater
         var textInfo = CultureInfo.InvariantCulture.TextInfo;
 
         // Get the list of pages from the category page on the wiki
-        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(categoryUrl, cancellationToken)).Body!;
+        ColourConsole.WriteDebugLine($"Fetching category page: {categoryUrl}");
+        var categoryBody = (await HtmlReader.RetrieveHtmlDocument(client, categoryUrl, cancellationToken)).Body!;
         var pages = categoryBody.QuerySelectorAll(CATEGORY_PAGES_SELECTOR);
 
         foreach (var page in pages)
@@ -182,8 +188,9 @@ public class WikiUpdater
             var url = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
             ColourConsole.WriteInfoLine($"Found {pageType} {name}");
+            ColourConsole.WriteDebugLine($"Fetching page: {url}");
 
-            var body = (await HtmlReader.RetrieveHtmlDocument(url, cancellationToken)).Body!;
+            var body = (await HtmlReader.RetrieveHtmlDocument(client, url, cancellationToken)).Body!;
 
             // Ignore page if specified
             if (body.QuerySelector(IGNORE_PAGE_SELECTOR) != null)
@@ -358,8 +365,8 @@ public class WikiUpdater
                 continue;
 
             // Parse the HTML table to get keys and values
-            var value = row.Children.Where(e => e.LocalName == "td").First();
-            var translatedKey = row.Children.Where(e => e.LocalName == "th").First().TextContent.Trim();
+            var value = row.Children.First(e => e.LocalName == "td");
+            var translatedKey = row.Children.First(e => e.LocalName == "th").TextContent.Trim();
             var id = value.Id;
 
             if (id == null)
