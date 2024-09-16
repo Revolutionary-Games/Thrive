@@ -328,16 +328,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
     public Transform3D CalculateVisualsTransformExternal(Vector3 externalPosition, Quaternion orientation)
     {
-        float scaleZ = 0.0f;
-
-        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                + Constants.FLAGELLA_MIN_VISUAL_LENGTH;
-        }
-
         var scale = CalculateTransformScale();
 
         cachedExternalOrientation = orientation;
@@ -345,10 +335,15 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
         // TODO: check that the rotation of ModelOffset works correctly here (also in
         // CalculateVisualsTransformExternalCached)
-        if (scaleZ == 0.0f)
+
+        float scaleZ = scale;
+
+        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
         {
-            return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
-                externalPosition + orientation * Definition.ModelOffset);
+            var flagellumLength = flagellumUpgrades.LengthFraction;
+
+            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                + Constants.FLAGELLA_MIN_VISUAL_LENGTH;
         }
 
         return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),

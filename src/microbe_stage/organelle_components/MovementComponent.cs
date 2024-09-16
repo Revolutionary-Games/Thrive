@@ -38,7 +38,8 @@ public class MovementComponent : IOrganelleComponent
         }
         else
         {
-            flagellumLength = ((FlagellumUpgrades)configuration).LengthFraction;
+            if (configuration is FlagellumUpgrades flagellumUpgrades)
+                flagellumLength = flagellumUpgrades.LengthFraction;
         }
 
         // No longer can check for animation here as the organelle graphics are created later than this is attached to
@@ -154,14 +155,14 @@ public class MovementComponent : IOrganelleComponent
 
         SetSpeedFactor(newAnimationSpeed);
 
+        var baseForce = Constants.FLAGELLA_BASE_FORCE + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength;
+
         if (isBacteria)
         {
-            return (Constants.FLAGELLA_BASE_FORCE + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength)
-                * forceMagnitude;
+            return baseForce * forceMagnitude;
         }
 
-        return (Constants.FLAGELLA_BASE_FORCE * forceMagnitude * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER
-            + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength) * forceMagnitude;
+        return baseForce * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER * forceMagnitude;
     }
 }
 
