@@ -16,7 +16,6 @@ public class HtmlReader
         client.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue("ThriveScripts",
             Assembly.GetExecutingAssembly().GetName().Version?.ToString()));
 
-
         return client;
     }
 
