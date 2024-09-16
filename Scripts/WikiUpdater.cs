@@ -4,7 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,6 +13,7 @@ using AngleSharp.Html.Dom;
 using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
+using SharedBase.Utilities;
 
 public class WikiUpdater
 {
@@ -22,6 +23,7 @@ public class WikiUpdater
     private const string DEVELOPMENT_CATEGORY = "https://wiki.revolutionarygamesstudio.com/wiki/Category:Development";
 
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
+    private const string COMPOUND_DEFINITIONS = "simulation_parameters/microbe_stage/compounds.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
 
@@ -30,29 +32,10 @@ public class WikiUpdater
     private const string IGNORE_PAGE_SELECTOR = "[href=\"/wiki/Category:Only_Online\"]";
 
     /// <summary>
-    ///   List of compound names, used to differentate between using the thrive:compound and
+    ///   List of compound names, used to differentiate between using the thrive:compound and
     ///   thrive:icon bbcode tags
     /// </summary>
-    private readonly string[] compoundNames =
-    {
-        "glucose",
-        "ammonia",
-        "phosphates",
-        "iron",
-        "hydrogensulfide",
-
-        "oxytoxy",
-        "mucilage",
-
-        "atp",
-
-        "oxygen",
-        "nitrogen",
-        "carbondioxide",
-
-        "sunlight",
-        "temperature",
-    };
+    private readonly Lazy<string[]> compoundNames = new(LoadCompoundNames);
 
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
@@ -85,6 +68,9 @@ public class WikiUpdater
         var stagesTask = FetchPagesFromCategory(STAGES_CATEGORY, "Stage", cancellationToken);
         var mechanicsTask = FetchPagesFromCategory(MECHANICS_CATEGORY, "Mechanic", cancellationToken);
         var developmentPagesTask = FetchPagesFromCategory(DEVELOPMENT_CATEGORY, "Development Page", cancellationToken);
+
+        // Load our local data while waiting for network things
+        _ = compoundNames.Value;
 
         var organellesRootRaw = await organellesRootTask;
         var stagesRootRaw = await stagesRootTask;
@@ -149,6 +135,17 @@ public class WikiUpdater
         ColourConsole.WriteSuccessLine("Successfully updated English translations for wiki content");
 
         return true;
+    }
+
+    private static string[] LoadCompoundNames()
+    {
+        // We only care about the keys here
+        var data = JsonSerializer.Deserialize<Dictionary<string, dynamic>>(File.OpenRead(COMPOUND_DEFINITIONS));
+
+        if (data == null)
+            throw new NullDecodedJsonException();
+
+        return data.Keys.ToArray();
     }
 
     /// <summary>
@@ -242,7 +239,7 @@ public class WikiUpdater
         var untranslatedSections = sections.Select(s => UntranslateSection(s, translationKey)).ToList();
 
         var untranslatedPage = new GameWiki.Page($"WIKI_PAGE_{translationKey}", fullPageName, url,
-            untranslatedSections, restrictedToStages: restrictedToStages );
+            untranslatedSections, restrictedToStages: restrictedToStages);
         var translatedPage = new GameWiki.Page(categoryName, fullPageName, url, sections,
             restrictedToStages: restrictedToStages);
 
@@ -395,6 +392,7 @@ public class WikiUpdater
 
     /// <summary>
     ///   Converts a list of space separated stage names (excluding the word 'stage') into a list of stages.
+    /// </summary>
     private Stage[] StageStringToEnumValues(string rawStageStrings)
     {
         var strings = rawStageStrings.ToLowerInvariant().Split(" ");
@@ -455,8 +453,7 @@ public class WikiUpdater
                     break;
                 case "H3":
                     var headline = child.Children
-                        .Where(c => c.ClassList.Contains("mw-headline"))
-                        .First();
+                        .First(c => c.ClassList.Contains("mw-headline"));
 
                     text = $"[b][u]{headline.TextContent}[/u][/b]\n\n";
                     break;
@@ -572,7 +569,7 @@ public class WikiUpdater
     /// </summary>
     private string ConvertImageToBbcode(IHtmlImageElement image, StringBuilder bbcode)
     {
-        if (compoundNames.Contains(image.AlternativeText))
+        if (compoundNames.Value.Contains(image.AlternativeText))
         {
             // In-game compound BBCode already has bold text label, so remove the extra one
             RemoveLastBoldText(bbcode);
@@ -726,7 +723,7 @@ public class WikiUpdater
             }
         }
 
-        writer.Dispose();
+        await writer.DisposeAsync();
         File.Move(TEMP_TRANSLATION_FILE, ENGLISH_TRANSLATION_FILE, true);
     }
 
