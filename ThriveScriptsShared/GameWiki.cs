@@ -47,20 +47,6 @@ public class GameWiki : IRegistryType
 
     public class Page
     {
-        public string Name { get; set; } = null!;
-
-        public string InternalName { get; set; } = null!;
-
-        public string Url { get; set; } = null!;
-
-        public List<Section> Sections { get; set; } = null!;
-
-        public List<InfoboxField> InfoboxData { get; set; } = new();
-
-        public string? NoticeSceneName { get; set; }
-
-        public Stage[]? RestrictedToStages { get; set; }
-
         public Page(string name, string internalName, string url, List<Section> sections,
             List<InfoboxField>? infoboxData = null, string? noticeSceneName = null,
             Stage[]? restrictedToStages = null)
@@ -72,8 +58,21 @@ public class GameWiki : IRegistryType
             InfoboxData = infoboxData ?? new List<InfoboxField>();
             NoticeSceneName = noticeSceneName;
             RestrictedToStages = restrictedToStages;
-
         }
+
+        public string Name { get; set; }
+
+        public string InternalName { get; set; }
+
+        public string Url { get; set; }
+
+        public List<Section> Sections { get; set; }
+
+        public List<InfoboxField> InfoboxData { get; set; }
+
+        public string? NoticeSceneName { get; set; }
+
+        public Stage[]? RestrictedToStages { get; set; }
 
         public void Check(string name)
         {
@@ -118,7 +117,7 @@ public class GameWiki : IRegistryType
 
             public string? SectionHeading { get; set; }
 
-            public string SectionBody { get; set; } = null!;
+            public string SectionBody { get; set; }
         }
     }
 
@@ -130,9 +129,8 @@ public class GameWiki : IRegistryType
             DisplayedValue = displayedValue;
         }
 
+        public string Name { get; set; }
 
-        public string Name { get; set; } = null!;
-
-        public string DisplayedValue { get; set; } = null!;
+        public string DisplayedValue { get; set; }
     }
 }
