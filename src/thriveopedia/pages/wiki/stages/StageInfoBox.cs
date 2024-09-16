@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Wiki-style info box for a stage.
