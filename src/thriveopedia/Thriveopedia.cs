@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using Godot;
 
 /// <summary>
@@ -69,7 +68,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private ThriveopediaHomePage homePage = null!;
 
     /// <summary>
-    ///   The stage dropdown is stored here so it can be used as a parent.
+    ///   The stage dropdown is stored here so it can be used as a parent for the stage specific items when they are
+    ///   added to the page tree.
     /// </summary>
     private TreeItem stageDropdown = null!;
 #pragma warning restore CA2213
@@ -90,6 +90,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   Flag indicating whether the Thriveopedia has created all wiki pages, since we need to generate them if not.
     /// </summary>
     private bool hasGeneratedWiki;
+
+    /// <summary>
+    ///   The currently selected stage to view
+    /// </summary>
+    private Stage currentSelectedStage;
 
     [Signal]
     public delegate void OnThriveopediaClosedEventHandler();
@@ -196,6 +201,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             {
                 AddPage("WikiRoot");
                 AddStageDropdown();
+
                 foreach (var page in ThriveopediaWikiPage.GenerateAllWikiPages())
                     AddPage(page.Name, page);
 
@@ -269,16 +275,17 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     }
 
     /// <summary>
-    ///   Gets an existing page by name, or null if no page exists with that name.
+    ///   Gets an existing page by name.
     /// </summary>
     /// <param name="name">The name of the desired page</param>
     /// <returns>The Thriveopedia page with the given name</returns>
+    /// <exception cref="KeyNotFoundException">If no page with the given name exists</exception>
     public IThriveopediaPage GetPage(string name)
     {
         var page = allPages.Keys.FirstOrDefault(p => p.PageName == name);
 
         if (page == null)
-            throw new InvalidOperationException($"No page with name {name} found");
+            throw new KeyNotFoundException($"No page with name {name} found");
 
         return page;
     }
@@ -357,7 +364,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         treeItem.Collapsed = page.StartsCollapsed;
         allPages.Add(page, treeItem);
 
-        // Stage pages should not be visible in the tree as they are handeled by the selection dropdown
+        // Stage pages should not be visible in the tree as they are handled by the selection dropdown
         // However, the TreeItem is still created to avoid problems with allPages
         if (page is ThriveopediaStagePage)
             treeItem.Visible = false;
@@ -368,6 +375,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     private void AddStageDropdown()
     {
         // Makes use of a basically undocumented Godot feature to add a dropdown menu to the tree
+        // TODO: it would be a lot nicer to only use documented features as when this blows up we are not going to
+        // have a fun time
 
         var root = allPages[GetPage("WikiRoot")];
 
@@ -375,7 +384,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         treeItem.SetCellMode(0, TreeItem.TreeCellMode.Range);
         treeItem.SetEditable(0, true);
 
-        Stage[] allStages = (Stage[])typeof(Stage).GetEnumValues();
+        Stage[] allStages = Enum.GetValues<Stage>();
         var optionsText = new LocalizedStringBuilder();
 
         for (int i = 0; i < allStages.Length; ++i)
@@ -398,19 +407,21 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         // Triggers when the stage dropdown has been edited
         var item = pageTree.GetEdited();
 
-        ThriveopediaManager.CurrentSelectedStage = item != null ? (Stage)item.GetRange(0) : Stage.MicrobeStage;
+        currentSelectedStage = item != null ? (Stage)item.GetRange(0) : Stage.MicrobeStage;
 
         foreach (var treeItem in allPages.Values)
         {
-            IThriveopediaPage page;
-
-            var pair = allPages.FirstOrDefault(x => x.Value == treeItem);
+            IThriveopediaPage? page = null;
 
             // Skip over any TreeItems that are not in the list of pages
-            if (pair.Equals(default(KeyValuePair<IThriveopediaPage, TreeItem>)))
-                continue;
-
-            page = pair.Key;
+            foreach (var existingPage in allPages)
+            {
+                if (existingPage.Value == treeItem)
+                {
+                    page = existingPage.Key;
+                    break;
+                }
+            }
 
             if (page is ThriveopediaWikiPage wikiPage)
             {
@@ -419,7 +430,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 if (restrictedTo == null)
                     continue;
 
-                treeItem.Visible = restrictedTo.Contains(ThriveopediaManager.CurrentSelectedStage);
+                treeItem.Visible = restrictedTo.Contains(currentSelectedStage);
 
                 wikiPage.VisibleInTree = treeItem.Visible;
             }
@@ -441,10 +452,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OpenCurrentStagePage()
     {
-        var pageName = ThriveopediaManager.CurrentSelectedStage.ToString()
-            .ToLowerInvariant()
-            .Replace("stage", "_stage")
-            .Replace("ascension", "ascension_stage");
+        var pageName = currentSelectedStage.ToString().ToLowerInvariant()
+            .Replace("stage", "_stage");
 
         ThriveopediaManager.OpenPage(pageName);
     }
@@ -502,14 +511,16 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
             return;
         }
 
-        try
+        foreach (var page in allPages)
         {
-            var name = allPages.First(p => p.Value == selected).Key.PageName;
-            ChangePage(name);
+            if (page.Value == selected)
+            {
+                ChangePage(page.Key.PageName);
+                return;
+            }
         }
-        catch (InvalidOperationException)
-        {
-        }
+
+        GD.PrintErr("Failed to find selected page to activate");
     }
 
     /// <summary>

@@ -7,32 +7,25 @@ using Godot;
 /// </summary>
 public partial class StageInfoBox : PanelContainer
 {
-    [Export]
-    public NodePath? NameLabelPath;
-
-    [Export]
-    public NodePath GameplayTypePath = null!;
-
-    [Export]
-    public NodePath PreviousStagePath = null!;
-
-    [Export]
-    public NodePath NextStagePath = null!;
-
-    [Export]
-    public NodePath EditorsPath = null!;
-
-    [Export]
-    public NodePath InternalNameLabelPath = null!;
-
     private GameWiki.Page page = null!;
 
 #pragma warning disable CA2213
+    [Export]
     private Label nameLabel = null!;
+
+    [Export]
     private Label gameplayType = null!;
+
+    [Export]
     private Label previousStage = null!;
+
+    [Export]
     private Label nextStage = null!;
+
+    [Export]
     private Label editors = null!;
+
+    [Export]
     private Label internalNameLabel = null!;
 #pragma warning restore CA2213
 
@@ -46,48 +39,16 @@ public partial class StageInfoBox : PanelContainer
         }
     }
 
-    public override void _Ready()
-    {
-        base._Ready();
-
-        nameLabel = GetNode<Label>(NameLabelPath);
-        gameplayType = GetNode<Label>(GameplayTypePath);
-        previousStage = GetNode<Label>(PreviousStagePath);
-        nextStage = GetNode<Label>(NextStagePath);
-        editors = GetNode<Label>(EditorsPath);
-        internalNameLabel = GetNode<Label>(InternalNameLabelPath);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NameLabelPath != null)
-            {
-                NameLabelPath.Dispose();
-                GameplayTypePath.Dispose();
-                PreviousStagePath.Dispose();
-                NextStagePath.Dispose();
-                EditorsPath.Dispose();
-                InternalNameLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Sets all text values in the table.
     /// </summary>
     private void UpdateValues()
     {
-        Dictionary<string, string> infoboxData = Page.InfoboxData.ToDictionary(f => f.Name, f => f.DisplayedValue);
-
         nameLabel.Text = Page.Name;
-        gameplayType.Text = infoboxData["INFO_BOX_GAMEPLAY_TYPE"];
-        previousStage.Text = infoboxData["INFO_BOX_PREVIOUS_STAGE"];
-        nextStage.Text = infoboxData["INFO_BOX_NEXT_STAGE"];
-        editors.Text = infoboxData["INFO_BOX_EDITORS"];
+        gameplayType.Text = Page.GetInfoBoxData("INFO_BOX_GAMEPLAY_TYPE");
+        previousStage.Text = Page.GetInfoBoxData("INFO_BOX_PREVIOUS_STAGE");
+        nextStage.Text = Page.GetInfoBoxData("INFO_BOX_NEXT_STAGE");
+        editors.Text = Page.GetInfoBoxData("INFO_BOX_EDITORS");
         internalNameLabel.Text = Page.InternalName;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -15,11 +16,6 @@ public class ThriveopediaManager
     public delegate void OnPageOpened(string pageName);
 
     public static ThriveopediaManager Instance => ManagerInstance;
-
-    /// <summary>
-    ///   The currently selected stage to view. Should be the same across all active thriveopedias.
-    /// </summary>
-    public static Stage CurrentSelectedStage { get; set; }
 
     /// <summary>
     ///   Action to open the Thriveopedia in the current game context, e.g. from the main menu or from the pause menu.
@@ -43,7 +39,13 @@ public class ThriveopediaManager
 
     public static IThriveopediaPage GetPage(string pageName)
     {
-        return Instance.activeThriveopedias[0].GetPage(pageName);
+        foreach (var thriveopedia in Instance.activeThriveopedias)
+        {
+            // TODO: allow GetPage to return null to be able to support more thriveopedia?
+            return thriveopedia.GetPage(pageName);
+        }
+
+        throw new InvalidOperationException("No active Thriveopedias to get a page from");
     }
 
     public static Species? GetActiveSpeciesData(uint speciesId)

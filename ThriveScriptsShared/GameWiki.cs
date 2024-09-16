@@ -107,6 +107,17 @@ public class GameWiki : IRegistryType
             }
         }
 
+        public string GetInfoBoxData(string key)
+        {
+            foreach (var infoboxField in InfoboxData)
+            {
+                if (infoboxField.Name == key)
+                    return infoboxField.DisplayedValue;
+            }
+
+            throw new KeyNotFoundException("Infobox field by name not found: " + key);
+        }
+
         public class Section
         {
             public Section(string? sectionHeading, string sectionBody)

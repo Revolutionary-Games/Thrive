@@ -8,20 +8,27 @@ using Godot;
 [GodotAbstract]
 public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 {
-    [Export]
-    public NodePath? MainArticlePath;
-
-    [Export]
-    public NodePath NoticeContainerPath = null!;
-
 #pragma warning disable CA2213
     protected PackedScene pageSectionScene = null!;
-    protected VBoxContainer mainArticle = null!;
+
+    [Export]
+    private VBoxContainer mainArticle = null!;
+
+    [Export]
+    private Container noticeContainer = null!;
+
 #pragma warning restore CA2213
 
     protected ThriveopediaWikiPage()
     {
     }
+
+    /// <summary>
+    ///   Emitted when the stage that is actively selected in the Thriveopedia changes. This is here in the base class
+    ///   as this is used by various derived classes to react to the stage change.
+    /// </summary>
+    [Signal]
+    public delegate void OnStageChangedEventHandler();
 
     public bool VisibleInTree { get; set; } = true;
 
@@ -89,7 +96,6 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
     {
         base._Ready();
 
-        mainArticle = GetNode<VBoxContainer>(MainArticlePath);
         pageSectionScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/WikiPageSection.tscn");
 
         foreach (var section in PageContent.Sections)
@@ -98,6 +104,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
     public virtual void OnSelectedStageChanged()
     {
+        EmitSignal(SignalName.OnStageChanged);
     }
 
     /// <summary>
@@ -114,21 +121,6 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         mainArticle.AddChild(section);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MainArticlePath != null)
-            {
-                MainArticlePath.Dispose();
-                pageSectionScene.Dispose();
-                NoticeContainerPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     /// <summary>
     ///   Loads a page scene and populates it with content
     /// </summary>
@@ -136,7 +128,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
         where T : ThriveopediaWikiPage
     {
         var pageScene = GD.Load<PackedScene>(scenePath);
-        var pageInstance = (T)pageScene.Instantiate();
+        var pageInstance = pageScene.Instantiate<T>();
         pageInstance.PageContent = page;
         pageList.Add(pageInstance);
     }
@@ -160,7 +152,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
 
         foreach (var page in pages)
         {
-            var pageInstance = (T)pageScene.Instantiate();
+            var pageInstance = pageScene.Instantiate<T>();
             pageInstance.PageContent = page;
 
             if (page.NoticeSceneName != null)
@@ -168,7 +160,7 @@ public partial class ThriveopediaWikiPage : ThriveopediaPage, IThriveopediaPage
                 var noticePath = $"res://src/thriveopedia/pages/notices/{page.NoticeSceneName}.tscn";
                 var noticeScene = GD.Load<PackedScene>(noticePath);
                 var noticeInstance = noticeScene.Instantiate();
-                var container = pageInstance.GetNode(pageInstance.NoticeContainerPath);
+                var container = pageInstance.noticeContainer;
                 container.AddChild(noticeInstance);
             }
 

@@ -13,7 +13,7 @@ public partial class MechanicSubcategory : VBoxContainer
 
     public override void _Ready()
     {
-        ParentPage.Connect(ThriveopediaMechanicsRootPage.SignalName.OnStageChanged,
+        ParentPage.Connect(ThriveopediaWikiPage.SignalName.OnStageChanged,
             new Callable(this, nameof(OnSelectedStageChanged)));
     }
 

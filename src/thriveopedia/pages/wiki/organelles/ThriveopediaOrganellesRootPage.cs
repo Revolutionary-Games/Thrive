@@ -38,7 +38,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
         foreach (var organelle in wiki.Organelles)
         {
-            var button = (IconPageLinkButton)linkButtonScene.Instantiate();
+            var button = linkButtonScene.Instantiate<IconPageLinkButton>();
             var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
             button.IconPath = organelleDefinition.IconPath!;
             button.DisplayName = organelleDefinition.Name;
@@ -49,11 +49,13 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     public override void OnSelectedStageChanged()
     {
-        foreach (var obj in organelleListContainer.GetChildren())
+        foreach (var node in organelleListContainer.GetChildren())
         {
-            if (obj is IconPageLinkButton button)
+            if (node is IconPageLinkButton button)
             {
                 var page = (ThriveopediaWikiPage)ThriveopediaManager.GetPage(button.PageName);
+
+                // TODO: should this property be in the base page interface to avoid having the cast above?
                 button.Visible = page.VisibleInTree;
             }
         }

@@ -16,11 +16,8 @@ public partial class TextPageLinkButton : Button
 
     public override void _Ready()
     {
-        if (ParentPage is ThriveopediaMechanicsRootPage root)
-        {
-            root.Connect(ThriveopediaMechanicsRootPage.SignalName.OnStageChanged,
-                new Callable(this, nameof(OnSelectedStageChanged)));
-        }
+        ParentPage.Connect(ThriveopediaWikiPage.SignalName.OnStageChanged,
+            new Callable(this, nameof(OnSelectedStageChanged)));
     }
 
     public override void _Pressed()

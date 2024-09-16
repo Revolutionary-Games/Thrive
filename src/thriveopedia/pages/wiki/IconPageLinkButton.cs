@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Button which links to a Thriveopedia page and uses an icon. Added automatically via code.
