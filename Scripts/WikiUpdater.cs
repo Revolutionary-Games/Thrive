@@ -33,6 +33,24 @@ public class WikiUpdater
     private const string IGNORE_PAGE_SELECTOR = "[href=\"/wiki/Category:Only_Online\"]";
 
     /// <summary>
+    ///   Simple translation keys we can use from elsewhere that still have good context in them for use in info box
+    ///   values.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: could automatically populate this terms list from messages.pot
+    ///   </para>
+    /// </remarks>
+    private static readonly string[] SimpleFieldValues =
+    [
+        "NONE", "ASCENSION", "CHEMOSYNTHESIS", "SPACE_STAGE", "SOCIETY_STAGE", "AWAKENING_STAGE", "AWARE_STAGE",
+        "INDUSTRIAL_STAGE", "MICROBE_STAGE", "MULTICELLULAR_STAGE", "MICROBE_EDITOR", "MUCILAGE_SYNTHESIS",
+        "PHOTOSYNTHESIS", "RUSTICYANIN", "NATION_EDITOR", "OXYTOXY_SYNTHESIS", "PHOTOSYNTHESIS", "PROTEIN_RESPIRATION",
+        "GLYCOLYSIS", "INJECTISOME_PILUS", "LIPASE", "IRON_CHEMOLITHOAUTOTROPHY", "THERMOSYNTHESIS",
+        "AEROBIC_NITROGEN_FIXATION", "AEROBIC_RESPIRATION", "CYTOPLASM_GLYCOLYSIS", "BACTERIAL_THERMOSYNTHESIS",
+    ];
+
+    /// <summary>
     ///   List of compound names, used to differentiate between using the thrive:compound and
     ///   thrive:icon bbcode tags
     /// </summary>
@@ -345,7 +363,7 @@ public class WikiUpdater
     /// </summary>
     /// <param name="body">The body of the page</param>
     /// <param name="internalName">Internal name of the page</param>
-    /// <returns>A tuple containing the translated and untranlsated versions of the detected fields</returns>
+    /// <returns>A tuple containing the translated and untranslated versions of the detected fields</returns>
     /// <exception cref="InvalidOperationException">Thrown when an infobox is not found</exception>
     private (List<GameWiki.InfoboxField> Untranslated, List<GameWiki.InfoboxField> Translated)
         GetInfoBoxFields(IHtmlElement body, string internalName)
@@ -378,17 +396,25 @@ public class WikiUpdater
                 continue;
 
             // Format the found content for use in translation files
-            var untranlsatedKey = id.Replace("#", string.Empty).ToUpperInvariant().Replace("-", "_");
+            var untranslatedKey = id.Replace("#", string.Empty).ToUpperInvariant().Replace("-", "_");
             var untranslatedValue = textContent.ToUpperInvariant()
                 .Replace(", ", "_COMMA_")
                 .Replace(' ', '_')
                 .Replace("(", "_BRACKET_")
                 .Replace("__", "_");
 
-            // Remove any leftorver characters that are not supposed to be present in translation keys
-            var validUntraslatedValue = Regex.Replace(untranslatedValue, "[^A-Z0-9_]", string.Empty);
+            // Remove any leftover characters that are not supposed to be present in translation keys
+            var validUntranslatedValue = Regex.Replace(untranslatedValue, "[^A-Z0-9_]", string.Empty);
 
-            untranslated.Add(new GameWiki.InfoboxField(untranlsatedKey, validUntraslatedValue));
+            // Add a prefix to not pollute other translation keys with random stuff (but not numbers as they'll get
+            // translation-extracted otherwise). And it is not a known simple value that can be let through.
+            if (!string.IsNullOrWhiteSpace(validUntranslatedValue) && Regex.IsMatch(validUntranslatedValue, "[A-Z]")
+                && !SimpleFieldValues.Contains(validUntranslatedValue))
+            {
+                validUntranslatedValue = "WIKI_" + validUntranslatedValue;
+            }
+
+            untranslated.Add(new GameWiki.InfoboxField(untranslatedKey, validUntranslatedValue));
             translated.Add(new GameWiki.InfoboxField(translatedKey, textContent));
         }
 

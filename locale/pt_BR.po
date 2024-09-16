@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 19:21+0300\n"
+"POT-Creation-Date: 2024-09-16 20:19+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -19,27 +19,8 @@ msgstr ""
 "X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
-msgid "2D"
-msgstr ""
-
-msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Estilo de movimento bidimensional:"
-
-msgid "3D"
-msgstr ""
-
-msgid "3D_COMMA_SANDBOX"
-msgstr ""
-
-#, fuzzy
-msgid "3D_COMMA_STRATEGY"
-msgstr "Editor Comum e Estágios Estratégicos"
-
-msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -49,10 +30,6 @@ msgstr "Movimento 3D"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Estilo de movimento tridimensional:"
-
-#, fuzzy
-msgid "8_BRACKET_16"
-msgstr "Girar à esquerda"
 
 msgid "ABILITIES"
 msgstr "Habilidades"
@@ -364,9 +341,6 @@ msgstr "Barra Invertida"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
-
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termossíntese"
@@ -470,9 +444,6 @@ msgstr "Vacúolo Bioluminescente"
 
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
-
-msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurônio"
@@ -669,9 +640,6 @@ msgstr "O nome do arquivo ({0}) já existe. Sobrescrever?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração cromática:"
-
-msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e a intensidade de [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2164,10 +2132,6 @@ msgstr "As concentrações de glicose caíram drasticamente!"
 
 msgid "GLYCOLYSIS"
 msgstr "Glicólise"
-
-#, fuzzy
-msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Anaeróbica de Nitrogênio"
 
 msgid "GODMODE"
 msgstr "Modo Deus"
@@ -3813,15 +3777,8 @@ msgstr "O Plastídeo de Fixação de Nitrogênio é uma proteína capaz de usar 
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
-msgid "NO"
-msgstr "Nenhum"
-
 msgid "NONE"
 msgstr "Nenhum"
-
-msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -4130,10 +4087,6 @@ msgstr "Oxitoxina"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Síntese de Oxitoxina"
 
-#, fuzzy
-msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntese de Oxitoxina"
-
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -4402,9 +4355,6 @@ msgstr "Respiração Aeróbica"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasma"
-
-msgid "PULLING_CILIA"
-msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programação"
@@ -5255,9 +5205,6 @@ msgstr "Capturar tela"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Tipo do Alvo:"
-
-msgid "TBA"
-msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Ascensão"
@@ -6164,6 +6111,32 @@ msgid "WIKI"
 msgstr "nossa Wiki"
 
 #, fuzzy
+msgid "WIKI_2D"
+msgstr "nossa Wiki"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D"
+msgstr "nossa Wiki"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Editor Comum e Estágios Estratégicos"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Editor Comum e Estágios Estratégicos"
+
+#, fuzzy
+msgid "WIKI_8_BRACKET_16"
+msgstr "Girar à esquerda"
+
+#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Desenvolvedores Atuais"
 
@@ -6260,6 +6233,10 @@ msgid "WIKI_AXON_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Síntese de Oxitoxina"
+
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
 
@@ -6322,6 +6299,9 @@ msgstr "Vacúolo Bioluminescente"
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Vacúolo Bioluminescente"
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -6450,6 +6430,10 @@ msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos foto
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "O cloroplasto é uma estrutura de membrana dupla contendo pigmentos fotossensíveis. É um procarionte que foi assimilado pelo seu hospedeiro eucariótico. Os pigmentos no cloroplasto conseguem usar a energia da luz para produzir glicose da água e gás carbônico em um processo chamado Fotossíntese. Esses pigmentos também são o que os dá uma cor característica. A proporção de sua produção de glicose aumenta com a concentração de dióxido de carbono, e intensidade da luz."
+
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Síntese de Oxitoxina"
 
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
@@ -6594,6 +6578,10 @@ msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Fixação Anaeróbica de Nitrogênio"
 
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
@@ -7014,6 +7002,13 @@ msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase é uma enzima que consegue usar nitrogênio gasoso e energia celular na forma de ATP para sintetizar amônia, um nutriente essencial para o crescimento das células. Esse processo é chamado de Fixação de Nitrogênio. Como a nitrogenase é suspensa diretamente no citoplasma, os fluidos em volta realizam a Fermentação."
 
+#, fuzzy
+msgid "WIKI_NO"
+msgstr "nossa Wiki"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
@@ -7074,6 +7069,10 @@ msgstr "Um metabolossomo modificado responsável pela produção de uma forma pr
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Um metabolossomo modificado responsável pela produção de uma forma primitiva do agente tóxico Oxitoxina."
+
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Síntese de Oxitoxina"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -7311,6 +7310,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Cílios"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplasma"
 
@@ -7472,6 +7475,10 @@ msgstr "Estágio Espacial"
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr "Axônio"
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "nossa Wiki"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -7644,6 +7651,10 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "nossa Wiki"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Você vai prosperar?"
 
@@ -7717,10 +7728,6 @@ msgid "YEARS"
 msgstr "anos"
 
 #, fuzzy
-msgid "YES"
-msgstr "anos"
-
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr "A ser implementado."
 
@@ -7740,6 +7747,98 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Glicólise do Citoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixação Anaeróbica de Nitrogênio"
+
+#, fuzzy
+#~ msgid "WIKI_ASCENSION"
+#~ msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Estágio Desperto"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Estágio Ciente"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Quimiossíntese"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Glicólise"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Estágio Industrial"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Quimiolitoautotrofia Férrica"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Lipase"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Editor de Micróbios"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Estágio Microbial"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Síntese de mucilagem"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Estágio Multicelular"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "Síntese de Oxitoxina"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Fotossíntese"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Rusticianina"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Estágio Social"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Estágio Espacial"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Termossíntese"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Nenhum"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "anos"
 
 #, fuzzy
 #~ msgid "STAGES_BUTTON"

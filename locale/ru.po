@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 19:21+0300\n"
+"POT-Creation-Date: 2024-09-16 20:19+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -19,27 +19,8 @@ msgstr ""
 "X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
-msgid "2D"
-msgstr ""
-
-msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D стиль движения:"
-
-msgid "3D"
-msgstr ""
-
-msgid "3D_COMMA_SANDBOX"
-msgstr ""
-
-#, fuzzy
-msgid "3D_COMMA_STRATEGY"
-msgstr "Не готово"
-
-msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Редактор"
@@ -49,10 +30,6 @@ msgstr "3D Перемещение"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D стиль движения:"
-
-#, fuzzy
-msgid "8_BRACKET_16"
-msgstr "Поворот влево"
 
 msgid "ABILITIES"
 msgstr "Способности"
@@ -363,9 +340,6 @@ msgstr "Обратный Слэш"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
-
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Термосинтез"
@@ -468,9 +442,6 @@ msgstr "Биолюминесцентная вакуоль"
 
 msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
-
-msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -667,9 +638,6 @@ msgstr "Выбранное имя файла ({0}) уже существует. 
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматическая аберрация:"
-
-msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Производит [thrive:compound type=\"glucose\"][/thrive:compound]. Скорость повышается с увеличением концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2135,10 +2103,6 @@ msgstr "Концентрация глюкозы резко упала!"
 
 msgid "GLYCOLYSIS"
 msgstr "Гликолиз"
-
-#, fuzzy
-msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Анаэробная азотфиксация"
 
 msgid "GODMODE"
 msgstr "Режим Бога"
@@ -3749,15 +3713,8 @@ msgstr "Азотфиксирующий пластид — белок, спосо
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
-msgid "NO"
-msgstr "Отсутствует"
-
 msgid "NONE"
 msgstr "Отсутствует"
-
-msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
 
 msgid "NORMAL"
 msgstr "Обычная"
@@ -4063,10 +4020,6 @@ msgstr "ОксиТоксин НТ"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синтез ОксиТоксина"
 
-#, fuzzy
-msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Синтез ОксиТоксина"
-
 msgid "PAGEDOWN"
 msgstr "PageDown"
 
@@ -4332,9 +4285,6 @@ msgstr "Аэробное дыхание"
 
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
-
-msgid "PULLING_CILIA"
-msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Программирование"
@@ -5175,9 +5125,6 @@ msgstr "Сделать снимок экрана"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Тип цели:"
-
-msgid "TBA"
-msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Вознесение"
@@ -6033,6 +5980,32 @@ msgid "WIKI"
 msgstr "наша Wiki"
 
 #, fuzzy
+msgid "WIKI_2D"
+msgstr "наша Wiki"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D"
+msgstr "наша Wiki"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_8_BRACKET_16"
+msgstr "Поворот влево"
+
+#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Текущие Разработчики"
 
@@ -6132,6 +6105,10 @@ msgstr "Добавление [b]Аксонов[/b] необходимо для �
 msgid "WIKI_AXON_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
+#, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
+
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr "Не готово"
 
@@ -6179,6 +6156,9 @@ msgstr "Не готово"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Не готово"
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "Эффекты отсутствуют."
@@ -6285,6 +6265,10 @@ msgstr "Не готово"
 
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Никаких улучшений."
+
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
 
 #, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
@@ -6442,6 +6426,10 @@ msgstr "Не готово"
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Никаких улучшений."
+
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Анаэробная азотфиксация"
 
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
@@ -6867,6 +6855,13 @@ msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "TBA"
 
 #, fuzzy
+msgid "WIKI_NO"
+msgstr "наша Wiki"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr "TBA"
 
@@ -6931,6 +6926,10 @@ msgstr "Модифицированная метаболосома, ответс�
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Модифицированная метаболосома, ответственная за выработку примитивной формы токсичного агента ОксиТоксин."
+
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез ОксиТоксина"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -7170,6 +7169,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Реснички"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Протоплазма"
 
@@ -7326,6 +7329,10 @@ msgstr "Стадия Космоса"
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr "Аксон"
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "наша Wiki"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -7495,6 +7502,10 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "наша Wiki"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Будете ли вы процветать?"
 
@@ -7568,10 +7579,6 @@ msgid "YEARS"
 msgstr "лет"
 
 #, fuzzy
-msgid "YES"
-msgstr "лет"
-
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr "Будет реализовано."
 
@@ -7591,6 +7598,98 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Цитоплазматический гликолиз"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Анаэробная азотфиксация"
+
+#, fuzzy
+#~ msgid "WIKI_ASCENSION"
+#~ msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Стадия пробуждения"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Стадия Сознания"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Хемосинтез"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Гликолиз"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Индустриальная стадия"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Железная хемолитоавтотрофия"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Липаза"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Одноклеточный редактор"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Одноклеточная стадия"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Синтез слизи"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Многоклеточная стадия"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "Синтез ОксиТоксина"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Фотосинтез"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Рустицианин"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Стадия Общества"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Стадия Космоса"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Термосинтез"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Отсутствует"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "лет"
 
 #, fuzzy
 #~ msgid "STAGES_BUTTON"

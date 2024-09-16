@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 19:21+0300\n"
+"POT-Creation-Date: 2024-09-16 20:19+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -19,27 +19,8 @@ msgstr ""
 "X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
-msgid "2D"
-msgstr ""
-
-msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "Стиль 2D-пересування:"
-
-msgid "3D"
-msgstr ""
-
-msgid "3D_COMMA_SANDBOX"
-msgstr ""
-
-#, fuzzy
-msgid "3D_COMMA_STRATEGY"
-msgstr "Загальний редактор та стратегічні стадії"
-
-msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D-редактор"
@@ -49,9 +30,6 @@ msgstr "3D-пересування"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "Стиль 3D-пересування:"
-
-msgid "8_BRACKET_16"
-msgstr ""
 
 msgid "ABILITIES"
 msgstr "Здібності"
@@ -362,9 +340,6 @@ msgstr "Слеш назад"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
-
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Термосинтез"
@@ -467,9 +442,6 @@ msgstr "Біолюмінесцентна вакуоля"
 
 msgid "BIOME_LABEL"
 msgstr "Біом: {0}"
-
-msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -666,9 +638,6 @@ msgstr "Обране файлове ім'я ({0}) уже існує. Переп�
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберація:"
-
-msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2141,10 +2110,6 @@ msgstr "Концентрація глюкози раптово впала!"
 
 msgid "GLYCOLYSIS"
 msgstr "Гліколіз"
-
-#, fuzzy
-msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Анаеробна азотфіксація"
 
 msgid "GODMODE"
 msgstr "Режим Бога"
@@ -3769,15 +3734,8 @@ msgstr "Азотфіксувальні пластиди – це білки, щ�
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-#, fuzzy
-msgid "NO"
-msgstr "Нічого"
-
 msgid "NONE"
 msgstr "Нічого"
-
-msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
 
 msgid "NORMAL"
 msgstr "Звичайна"
@@ -4086,10 +4044,6 @@ msgstr "Окситоксин"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синтез окситоксину"
 
-#, fuzzy
-msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Синтез окситоксину"
-
 msgid "PAGEDOWN"
 msgstr "Сторінку Вниз"
 
@@ -4356,9 +4310,6 @@ msgstr "Аеробне Дихання"
 
 msgid "PROTOPLASM"
 msgstr "Протоплазма"
-
-msgid "PULLING_CILIA"
-msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Програмування"
@@ -5206,9 +5157,6 @@ msgstr "Зробити знімок екрана"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Тип цілі:"
-
-msgid "TBA"
-msgstr ""
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Піднесення"
@@ -6064,6 +6012,31 @@ msgid "WIKI"
 msgstr "Наша Wiki"
 
 #, fuzzy
+msgid "WIKI_2D"
+msgstr "Наша Wiki"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D"
+msgstr "Наша Wiki"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Загальний редактор та стратегічні стадії"
+
+msgid "WIKI_8_BRACKET_16"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Поточні розробники"
 
@@ -6174,6 +6147,10 @@ msgstr "Додавання [b]Аксонів[/b] є критичним для д
 msgid "WIKI_AXON_UPGRADES"
 msgstr "Покращень немає."
 
+#, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез окситоксину"
+
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "Клітини зі [b]зв'язувальними агентами[/b] (або колонії, що містять клітини зі [b]Зв'язувальними агентами[/b]) можуть уходити до зв'язувального режиму. У цьому режимі кожна клітина споживає додаткові [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound]. Зв'язувальний режим клітини дезактивується при контакті з клітиною того ж виду, приєднуючи клітини до колонії. Зв'язувальний режим також можна дезактивувати вручну.\n"
@@ -6243,6 +6220,9 @@ msgstr "Біолюмінесцентна вакуоля"
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Біолюмінесцентна вакуоля"
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -6371,6 +6351,10 @@ msgstr "Хлоропласти– це двохмембранна структу
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Хлоропласти– це двохмембранна структура,що містить фотосинтезуючі пігменти складені разом в мембраних мішечках. Це прокаріот поглинутий для використання його в еукаріотичному хазяїні. Пігменти в хлоропластах використовують енергію світла для продукування [thrive:compound type=\"glucose\"][/thrive:compound] із води та газоподібного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процесі, що називається [b]фотосинтез[/b]. Ці пігменти також надають відповідний колір. Кількість продукованої [thrive:compound type=\"glucose\"][/thrive:compound] залежить від концентрації вуглекислого газу та інтенсивності [thrive:compound type=\"sunlight\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез окситоксину"
 
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Кожен гекс [b]Війок[/b] підвищує швидкість обертання клітини, споживаючи [thrive:compound type=\"atp\"][/thrive:compound] в обмін на додаткову мобільність. Точне покращення залежить від розташування органели: ті, що розташовані більш далеко від центру клітини виявляють більший момент інерції, надаючи більше підвищення швидкості обертання."
@@ -6515,6 +6499,10 @@ msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Анаеробна азотфіксація"
 
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
@@ -6935,6 +6923,13 @@ msgstr "Нітрогеназа– це білок, що використовує
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
 
+#, fuzzy
+msgid "WIKI_NO"
+msgstr "Наша Wiki"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
@@ -6995,6 +6990,10 @@ msgstr "Модифікована метаболосома відповідає �
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Синтез окситоксину"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -7232,6 +7231,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Загальний редактор та стратегічні стадії"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Протоплазма"
 
@@ -7388,6 +7391,10 @@ msgstr "Космічна стадія"
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr "Аксон"
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "Наша Wiki"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -7556,6 +7563,10 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "Наша Wiki"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Ти процвітатимеш?"
 
@@ -7629,10 +7640,6 @@ msgid "YEARS"
 msgstr "роки"
 
 #, fuzzy
-msgid "YES"
-msgstr "роки"
-
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr "Буде реалізовано."
 
@@ -7652,6 +7659,98 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Цитоплазматичний Гліколіз"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Анаеробна азотфіксація"
+
+#, fuzzy
+#~ msgid "WIKI_ASCENSION"
+#~ msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Стадія пробудження"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Стадія свідомості"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Хемосинтез"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Гліколіз"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Індустріальна стадія"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Хемолітоавтотрофія заліза"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Ліпаза"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Мікробний редактор"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Мікробна стадія"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Синтез слизу"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "Нервові тканини між нейронами, що доступні зі Стадії Багатоклітинності. Потрібні для підвищення сили мозку організму і прогресування до майбутніх стадій."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "Синтез окситоксину"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Фотосинтез"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Рустіціанін"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Стадія суспільства"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Космічна стадія"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Термосинтез"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Нічого"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "роки"
 
 #, fuzzy
 #~ msgid "STAGES_BUTTON"

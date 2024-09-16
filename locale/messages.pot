@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 19:21+0300\n"
+"POT-Creation-Date: 2024-09-16 20:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,34 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
-#: ../simulation_parameters/common/wiki.json:2280
-msgid "2D"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2335
-msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
 #: ../src/general/OptionsMenu.tscn:1273
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2386
-#: ../simulation_parameters/common/wiki.json:2437
-msgid "3D"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2641
-msgid "3D_COMMA_SANDBOX"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2488
-#: ../simulation_parameters/common/wiki.json:2539
-msgid "3D_COMMA_STRATEGY"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2590
-msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:238
@@ -57,10 +31,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:1299
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2221
-msgid "8_BRACKET_16"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:37
@@ -464,10 +434,6 @@ msgstr ""
 msgid "BACKSPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:467
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:1968
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr ""
@@ -631,10 +597,6 @@ msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:340
 msgid "BIOME_LABEL"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2347
-msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
 #: ../src/general/GameProperties.cs:159
@@ -926,10 +888,6 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:393
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2047
-msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:305
@@ -2812,10 +2770,6 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:1573
 #: ../simulation_parameters/microbe_stage/bio_processes.json:14
 msgid "GLYCOLYSIS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:1178
-msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:41
@@ -5080,47 +5034,6 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:90
-#: ../simulation_parameters/common/wiki.json:329
-#: ../simulation_parameters/common/wiki.json:384
-#: ../simulation_parameters/common/wiki.json:408
-#: ../simulation_parameters/common/wiki.json:463
-#: ../simulation_parameters/common/wiki.json:487
-#: ../simulation_parameters/common/wiki.json:566
-#: ../simulation_parameters/common/wiki.json:645
-#: ../simulation_parameters/common/wiki.json:700
-#: ../simulation_parameters/common/wiki.json:724
-#: ../simulation_parameters/common/wiki.json:779
-#: ../simulation_parameters/common/wiki.json:803
-#: ../simulation_parameters/common/wiki.json:882
-#: ../simulation_parameters/common/wiki.json:937
-#: ../simulation_parameters/common/wiki.json:961
-#: ../simulation_parameters/common/wiki.json:1040
-#: ../simulation_parameters/common/wiki.json:1119
-#: ../simulation_parameters/common/wiki.json:1174
-#: ../simulation_parameters/common/wiki.json:1198
-#: ../simulation_parameters/common/wiki.json:1277
-#: ../simulation_parameters/common/wiki.json:1332
-#: ../simulation_parameters/common/wiki.json:1411
-#: ../simulation_parameters/common/wiki.json:1435
-#: ../simulation_parameters/common/wiki.json:1490
-#: ../simulation_parameters/common/wiki.json:1514
-#: ../simulation_parameters/common/wiki.json:1569
-#: ../simulation_parameters/common/wiki.json:1593
-#: ../simulation_parameters/common/wiki.json:1648
-#: ../simulation_parameters/common/wiki.json:1672
-#: ../simulation_parameters/common/wiki.json:1806
-#: ../simulation_parameters/common/wiki.json:1830
-#: ../simulation_parameters/common/wiki.json:1909
-#: ../simulation_parameters/common/wiki.json:1964
-#: ../simulation_parameters/common/wiki.json:1988
-#: ../simulation_parameters/common/wiki.json:2043
-#: ../simulation_parameters/common/wiki.json:2067
-#: ../simulation_parameters/common/wiki.json:2146
-#: ../simulation_parameters/common/wiki.json:2225
-msgid "NO"
-msgstr ""
-
 #: ../simulation_parameters/common/wiki.json:70
 #: ../simulation_parameters/common/wiki.json:74
 #: ../simulation_parameters/common/wiki.json:94
@@ -5188,10 +5101,6 @@ msgstr ""
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:209
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:218
 msgid "NONE"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2649
-msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
@@ -5633,10 +5542,6 @@ msgstr ""
 msgid "OXYTOXY_SYNTHESIS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1415
-msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
-
 #: ../src/engine/input/key_mapping/KeyNames.cs:161
 msgid "PAGEDOWN"
 msgstr ""
@@ -6009,10 +5914,6 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:160
 msgid "PROTOPLASM"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:649
-msgid "PULLING_CILIA"
 msgstr ""
 
 #: ../src/gui_common/CreditsScroll.cs:533
@@ -7185,13 +7086,6 @@ msgstr ""
 msgid "TARGET_TYPE_COLON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2398
-#: ../simulation_parameters/common/wiki.json:2449
-#: ../simulation_parameters/common/wiki.json:2602
-#: ../simulation_parameters/common/wiki.json:2653
-msgid "TBA"
-msgstr ""
-
 #: ../simulation_parameters/awakening_stage/technologies.json:52
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
@@ -8189,6 +8083,36 @@ msgstr ""
 msgid "WIKI"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:2280
+msgid "WIKI_2D"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2335
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2386
+#: ../simulation_parameters/common/wiki.json:2437
+msgid "WIKI_3D"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2641
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2488
+#: ../simulation_parameters/common/wiki.json:2539
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2590
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2221
+msgid "WIKI_8_BRACKET_16"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:2635
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr ""
@@ -8293,6 +8217,10 @@ msgstr ""
 msgid "WIKI_AXON_UPGRADES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:467
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:125
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
@@ -8355,6 +8283,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:208
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2347
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:283
@@ -8483,6 +8415,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:524
 msgid "WIKI_CHLOROPLAST_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2047
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:599
@@ -8651,6 +8587,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:761
 msgid "WIKI_FLAGELLUM_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1178
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2273
@@ -9269,6 +9209,51 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:90
+#: ../simulation_parameters/common/wiki.json:329
+#: ../simulation_parameters/common/wiki.json:384
+#: ../simulation_parameters/common/wiki.json:408
+#: ../simulation_parameters/common/wiki.json:463
+#: ../simulation_parameters/common/wiki.json:487
+#: ../simulation_parameters/common/wiki.json:566
+#: ../simulation_parameters/common/wiki.json:645
+#: ../simulation_parameters/common/wiki.json:700
+#: ../simulation_parameters/common/wiki.json:724
+#: ../simulation_parameters/common/wiki.json:779
+#: ../simulation_parameters/common/wiki.json:803
+#: ../simulation_parameters/common/wiki.json:882
+#: ../simulation_parameters/common/wiki.json:937
+#: ../simulation_parameters/common/wiki.json:961
+#: ../simulation_parameters/common/wiki.json:1040
+#: ../simulation_parameters/common/wiki.json:1119
+#: ../simulation_parameters/common/wiki.json:1174
+#: ../simulation_parameters/common/wiki.json:1198
+#: ../simulation_parameters/common/wiki.json:1277
+#: ../simulation_parameters/common/wiki.json:1332
+#: ../simulation_parameters/common/wiki.json:1411
+#: ../simulation_parameters/common/wiki.json:1435
+#: ../simulation_parameters/common/wiki.json:1490
+#: ../simulation_parameters/common/wiki.json:1514
+#: ../simulation_parameters/common/wiki.json:1569
+#: ../simulation_parameters/common/wiki.json:1593
+#: ../simulation_parameters/common/wiki.json:1648
+#: ../simulation_parameters/common/wiki.json:1672
+#: ../simulation_parameters/common/wiki.json:1806
+#: ../simulation_parameters/common/wiki.json:1830
+#: ../simulation_parameters/common/wiki.json:1909
+#: ../simulation_parameters/common/wiki.json:1964
+#: ../simulation_parameters/common/wiki.json:1988
+#: ../simulation_parameters/common/wiki.json:2043
+#: ../simulation_parameters/common/wiki.json:2067
+#: ../simulation_parameters/common/wiki.json:2146
+#: ../simulation_parameters/common/wiki.json:2225
+msgid "WIKI_NO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2649
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
 #: ../simulation_parameters/common/wiki.json:1310
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
@@ -9335,6 +9320,10 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1393
 msgid "WIKI_OXYTOXISOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1415
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2609
@@ -9585,6 +9574,10 @@ msgstr ""
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:649
+msgid "WIKI_PULLING_CILIA"
+msgstr ""
+
 #: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.tscn:107
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr ""
@@ -9751,6 +9744,13 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2243
 msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2398
+#: ../simulation_parameters/common/wiki.json:2449
+#: ../simulation_parameters/common/wiki.json:2602
+#: ../simulation_parameters/common/wiki.json:2653
+msgid "WIKI_TBA"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1863
@@ -9929,6 +9929,26 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+#: ../simulation_parameters/common/wiki.json:66
+#: ../simulation_parameters/common/wiki.json:147
+#: ../simulation_parameters/common/wiki.json:171
+#: ../simulation_parameters/common/wiki.json:226
+#: ../simulation_parameters/common/wiki.json:305
+#: ../simulation_parameters/common/wiki.json:542
+#: ../simulation_parameters/common/wiki.json:621
+#: ../simulation_parameters/common/wiki.json:858
+#: ../simulation_parameters/common/wiki.json:1016
+#: ../simulation_parameters/common/wiki.json:1095
+#: ../simulation_parameters/common/wiki.json:1253
+#: ../simulation_parameters/common/wiki.json:1356
+#: ../simulation_parameters/common/wiki.json:1727
+#: ../simulation_parameters/common/wiki.json:1751
+#: ../simulation_parameters/common/wiki.json:1885
+#: ../simulation_parameters/common/wiki.json:2122
+#: ../simulation_parameters/common/wiki.json:2201
+msgid "WIKI_YES"
+msgstr ""
+
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:93
 msgid "WILL_YOU_THRIVE"
 msgstr ""
@@ -10024,26 +10044,6 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:461
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:464
 msgid "YEARS"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:66
-#: ../simulation_parameters/common/wiki.json:147
-#: ../simulation_parameters/common/wiki.json:171
-#: ../simulation_parameters/common/wiki.json:226
-#: ../simulation_parameters/common/wiki.json:305
-#: ../simulation_parameters/common/wiki.json:542
-#: ../simulation_parameters/common/wiki.json:621
-#: ../simulation_parameters/common/wiki.json:858
-#: ../simulation_parameters/common/wiki.json:1016
-#: ../simulation_parameters/common/wiki.json:1095
-#: ../simulation_parameters/common/wiki.json:1253
-#: ../simulation_parameters/common/wiki.json:1356
-#: ../simulation_parameters/common/wiki.json:1727
-#: ../simulation_parameters/common/wiki.json:1751
-#: ../simulation_parameters/common/wiki.json:1885
-#: ../simulation_parameters/common/wiki.json:2122
-#: ../simulation_parameters/common/wiki.json:2201
-msgid "YES"
 msgstr ""
 
 #: ../src/thriveopedia/pages/notices/YetToBeImplementedNotice.tscn:50

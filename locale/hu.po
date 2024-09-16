@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 19:21+0300\n"
+"POT-Creation-Date: 2024-09-16 20:19+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -19,27 +19,8 @@ msgstr ""
 "X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.1\n"
 
-msgid "2D"
-msgstr ""
-
-msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D mozgás stílus:"
-
-msgid "3D"
-msgstr ""
-
-msgid "3D_COMMA_SANDBOX"
-msgstr ""
-
-#, fuzzy
-msgid "3D_COMMA_STRATEGY"
-msgstr "Kloroplasztisz"
-
-msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Szerkesztő"
@@ -49,9 +30,6 @@ msgstr "3D Mozgás"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D mozgás stílus:"
-
-msgid "8_BRACKET_16"
-msgstr ""
 
 msgid "ABILITIES"
 msgstr "Képességek"
@@ -366,9 +344,6 @@ msgstr "fordított perjel"
 msgid "BACKSPACE"
 msgstr "Törlés"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
-
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termoszintézis"
@@ -474,9 +449,6 @@ msgstr "Foszforeszkáló vakuólum"
 
 msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
-
-msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
@@ -682,9 +654,6 @@ msgstr "A kiválasztott fájl neve ({0}) már létezik. Lecseréled?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Kromatikus aberráció:"
-
-msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. A folyamat gyorsasága a [thrive:compound type=\"carbondioxide\"] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától függ."
@@ -2248,10 +2217,6 @@ msgstr "A glükóz koncentrációk drasztikusan csökkentek!"
 
 msgid "GLYCOLYSIS"
 msgstr "Glikolízis"
-
-#, fuzzy
-msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Anaerob Nitrifikáció"
 
 msgid "GODMODE"
 msgstr "Isten mód"
@@ -3952,15 +3917,8 @@ msgstr ""
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
-#, fuzzy
-msgid "NO"
-msgstr "Semmi"
-
 msgid "NONE"
 msgstr "Semmi"
-
-msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
 
 msgid "NORMAL"
 msgstr "Normál"
@@ -4288,10 +4246,6 @@ msgstr "OxyToxy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxy szintézis"
 
-#, fuzzy
-msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "OxyToxy szintézis"
-
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -4568,9 +4522,6 @@ msgstr "Aerob légzés"
 
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
-
-msgid "PULLING_CILIA"
-msgstr ""
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull requestek / Programozás"
@@ -5481,9 +5432,6 @@ msgstr "Képernyőkép készítése"
 msgid "TARGET_TYPE_COLON"
 msgstr "Típus:"
 
-msgid "TBA"
-msgstr ""
-
 msgid "TECHNOLOGY_ASCENSION"
 msgstr ""
 
@@ -6379,6 +6327,31 @@ msgid "WIKI"
 msgstr "Wikipédiánk"
 
 #, fuzzy
+msgid "WIKI_2D"
+msgstr "Wikipédiánk"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D"
+msgstr "Wikipédiánk"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Kloroplasztisz"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Kloroplasztisz"
+
+msgid "WIKI_8_BRACKET_16"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Jelenlegi fejlesztők"
 
@@ -6474,6 +6447,10 @@ msgid "WIKI_AXON_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxy szintézis"
+
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
@@ -6536,6 +6513,9 @@ msgstr "Foszforeszkáló vakuólum"
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Foszforeszkáló vakuólum"
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -6657,6 +6637,10 @@ msgstr "Kloroplasztisz"
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Kloroplasztisz"
+
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxy szintézis"
 
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
@@ -6799,6 +6783,10 @@ msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob Nitrifikáció"
 
 #, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
@@ -7198,6 +7186,13 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
+#, fuzzy
+msgid "WIKI_NO"
+msgstr "Wikipédiánk"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
@@ -7256,6 +7251,10 @@ msgstr "Oxytoxyszóma"
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Oxytoxyszóma"
+
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxy szintézis"
 
 #, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
@@ -7493,6 +7492,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Felkelési fázis"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Protoplazma"
 
@@ -7649,6 +7652,10 @@ msgstr "Sejtfázis"
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr "Sejtszervecskék"
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "Wikipédiánk"
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
@@ -7819,6 +7826,10 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "Wikipédiánk"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Túl fogsz élni?"
 
@@ -7894,10 +7905,6 @@ msgid "YEARS"
 msgstr "évek"
 
 #, fuzzy
-msgid "YES"
-msgstr "évek"
-
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr "Fejlesztés alatt."
 
@@ -7917,6 +7924,98 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Citoplazma glikolízis"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob Nitrifikáció"
+
+#, fuzzy
+#~ msgid "WIKI_ASCENSION"
+#~ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Felkelési fázis"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Tudatos fázis"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Kemoszintézis"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Glikolízis"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Kötőszövet"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Vas oxidálása"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Lipáz"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Sejtszerkesztő"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Sejtfázis"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Nyálka szintézis"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Többsejtes fázis"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "OxyToxy szintézis"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Fotoszintézis"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Rusticyanin"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Sejtfázis"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Sejtfázis"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Termoszintézis"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Semmi"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "évek"
 
 #, fuzzy
 #~ msgid "STAGES_BUTTON"

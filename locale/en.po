@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 19:21+0300\n"
+"POT-Creation-Date: 2024-09-16 20:19+0300\n"
 "PO-Revision-Date: 2024-09-16 18:17+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -19,26 +19,8 @@ msgstr ""
 "X-Generator: Poedit 3.5\n"
 "Generated-By: Babel 2.8.0\n"
 
-msgid "2D"
-msgstr "2D"
-
-msgid "2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr "2D (early), 3D (late)"
-
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D movement style:"
-
-msgid "3D"
-msgstr "3D"
-
-msgid "3D_COMMA_SANDBOX"
-msgstr "3D, Sandbox"
-
-msgid "3D_COMMA_STRATEGY"
-msgstr "3D, Strategy"
-
-msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "3D, Strategy, Space"
 
 msgid "3D_EDITOR"
 msgstr "3D Editor"
@@ -48,9 +30,6 @@ msgstr "3D Movement"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr "3D movement style:"
-
-msgid "8_BRACKET_16"
-msgstr "8 (16)"
 
 msgid "ABILITIES"
 msgstr "Abilities"
@@ -358,9 +337,6 @@ msgstr "Backslash"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Bacterial Chemosynthesis, Glycolysis"
-
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Bacterial Thermosynthesis"
 
@@ -462,9 +438,6 @@ msgstr "Bioluminescent Vacuole"
 
 msgid "BIOME_LABEL"
 msgstr "Biome: {0}"
-
-msgid "BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr "Body Plan Editor, Cell Editor"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
@@ -660,9 +633,6 @@ msgstr "The chosen filename ({0}) already exists. Overwrite?"
 
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatic aberration:"
-
-msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Chromatophore Photosynthesis, Glycolysis"
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produces [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"carbondioxide\"][/thrive:compound] and intensity of [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -2124,9 +2094,6 @@ msgstr "Glucose concentrations have drastically dropped!"
 
 msgid "GLYCOLYSIS"
 msgstr "Glycolysis"
-
-msgid "GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "Glycolysis, Anaerobic Nitrogen Fixation"
 
 msgid "GODMODE"
 msgstr "Godmode"
@@ -3726,14 +3693,8 @@ msgstr "The Nitrogen-Fixing Plastid is a protein able to use gaseous [thrive:com
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
-msgid "NO"
-msgstr "No"
-
 msgid "NONE"
 msgstr "None"
-
-msgid "NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr "None, This is the last stage"
 
 msgid "NORMAL"
 msgstr "Normal"
@@ -4036,9 +3997,6 @@ msgstr "OxyToxy NT"
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Oxytoxy Synthesis"
 
-msgid "OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "OxyToxy Synthesis, Glycolysis"
-
 msgid "PAGEDOWN"
 msgstr "Page Down"
 
@@ -4302,9 +4260,6 @@ msgstr "Protein Respiration"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasm"
-
-msgid "PULLING_CILIA"
-msgstr "Pulling Cilia"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr "Pull Requests / Programming"
@@ -5145,9 +5100,6 @@ msgstr "Take a screenshot"
 
 msgid "TARGET_TYPE_COLON"
 msgstr "Target Type:"
-
-msgid "TBA"
-msgstr "TBA"
 
 msgid "TECHNOLOGY_ASCENSION"
 msgstr "Ascension"
@@ -5999,8 +5951,29 @@ msgstr "Wheel up"
 msgid "WIKI"
 msgstr "Wiki"
 
+msgid "WIKI_2D"
+msgstr "2D"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr "2D (early), 3D (late)"
+
+msgid "WIKI_3D"
+msgstr "3D"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr "3D, Sandbox"
+
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "3D, Strategy"
+
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "3D, Strategy, Space"
+
+msgid "WIKI_8_BRACKET_16"
+msgstr "8 (16)"
+
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "Work has not yet started on Ascenscion."
+msgstr "Work has not yet started on Ascension."
 
 msgid "WIKI_ASCENSION_FEATURES"
 msgstr "Coming soon."
@@ -6095,6 +6068,9 @@ msgstr "Adding [b]Axons[/b] is essential for reaching future stages. We recommen
 msgid "WIKI_AXON_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Bacterial Chemosynthesis, Glycolysis"
+
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 "Cells with [b]Binding Agents[/b] (or colonies containing cells with [b]Binding Agents[/b]) may enter binding mode. While in binding mode, each cell consumes an extra [b]+2[/b] [thrive:compound type=\"atp\"][/thrive:compound]. Binding mode deactivates on contact with a cell of the same species, joining the cells into a colony. Binding mode can also be deactivated manually.\n"
@@ -6168,6 +6144,9 @@ msgstr "Not available in the game. To be implemented."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "No upgrades. To be implemented."
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr "Body Plan Editor, Cell Editor"
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "No effects."
@@ -6309,6 +6288,9 @@ msgstr ""
 
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Chromatophore Photosynthesis, Glycolysis"
 
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Each hex of [b]Cilia[/b] increases a cell's rotation speed, consuming [thrive:compound type=\"atp\"][/thrive:compound] in exchange for extra mobility. The exact improvement depends on the organelle's placement – those placed further away from the centre of a cell exert a greater moment of inertia, hence larger increase in rotation speed."
@@ -6639,6 +6621,9 @@ msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Glycolysis, Anaerobic Nitrogen Fixation"
 
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Appendices"
@@ -7135,6 +7120,12 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_NO"
+msgstr "No"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr "None, This is the last stage"
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 "Once a cell evolves a [b]Nucleus[/b], it gains the ability to evolve many other organelles that were previously locked.\n"
@@ -7223,6 +7214,9 @@ msgstr ""
 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxy Synthesis, Glycolysis"
 
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Ascension"
@@ -7441,6 +7435,9 @@ msgstr ""
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_PULLING_CILIA"
+msgstr "Pulling Cilia"
+
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Reproduction"
 
@@ -7644,6 +7641,9 @@ msgstr ""
 "\n"
 "You start the game as a single celled organism, later developing organs and tissues, then becoming sapient and building a society leading to a conquest of space."
 
+msgid "WIKI_TBA"
+msgstr "TBA"
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "No effects."
 
@@ -7845,6 +7845,9 @@ msgstr "While extra storage is useful in any situation, a [b]Vacuole[/b] is espe
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_YES"
+msgstr "Yes"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Will you thrive?"
 
@@ -7915,9 +7918,6 @@ msgstr "Xbox Series X"
 
 msgid "YEARS"
 msgstr "years"
-
-msgid "YES"
-msgstr "Yes"
 
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr "The content of this page has not yet been fully implemented into the game and is likely to change."
