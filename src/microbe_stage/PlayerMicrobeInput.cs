@@ -18,8 +18,6 @@ public partial class PlayerMicrobeInput : NodeWithInput
 {
     private readonly MicrobeMovementEventArgs cachedEventArgs = new(true, Vector3.Zero);
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
     private bool autoMove;
 
 #pragma warning disable CA2213 // this is our parent object
@@ -212,7 +210,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
             // This uses forced entry to allow the player to engulf even if dying from no ATP
             control.EnterEngulfModeForcedState(ref player.Get<Health>(), ref player.Get<CompoundStorage>(), player,
-                atp);
+                Compound.ATP);
         }
     }
 
@@ -401,7 +399,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         if (Settings.Instance.CheatsEnabled)
         {
-            SpawnCheatCloud("glucose", delta);
+            SpawnCheatCloud(Compound.Glucose, delta);
         }
     }
 
@@ -410,7 +408,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         if (Settings.Instance.CheatsEnabled)
         {
-            SpawnCheatCloud("ammonia", delta);
+            SpawnCheatCloud(Compound.Ammonia, delta);
         }
     }
 
@@ -419,7 +417,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         if (Settings.Instance.CheatsEnabled)
         {
-            SpawnCheatCloud("phosphates", delta);
+            SpawnCheatCloud(Compound.Phosphates, delta);
         }
     }
 
@@ -431,7 +429,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    private void SpawnCheatCloud(string name, double delta)
+    private void SpawnCheatCloud(Compound compound, double delta)
     {
         float multiplier = 1.0f;
 
@@ -439,7 +437,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (stage.GameWorld.PlayerSpecies is not MicrobeSpecies)
             multiplier = 4;
 
-        stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier), stage.Camera.CursorWorldPos);
+        stage.Clouds.AddCloud(compound, (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier),
+            stage.Camera.CursorWorldPos);
     }
 }

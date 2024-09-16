@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bjl5o7oy7yr15"]
+[gd_scene load_steps=28 format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_lpicf"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bsk2vo17bhwbv" path="res://assets/textures/gui/bevel/ammonia.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://dv67e1fovg0r2" path="res://assets/textures/gui/bevel/hydrogensulfide.png" id="14"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="15_ng6rp"]
+[ext_resource type="Texture2D" uid="uid://b7log5abqgdv" path="res://assets/textures/gui/bevel/graphMarkerCircle.png" id="16_baud4"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="19_6m1o4"]
 [ext_resource type="Texture2D" uid="uid://dify8alf16jac" path="res://assets/textures/gui/bevel/phosphates.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://bjgfupcxx2nop" path="res://assets/textures/gui/bevel/Pressure.png" id="23"]
@@ -300,6 +301,36 @@ expand_mode = 1
 editor_description = "PLACEHOLDER"
 layout_mode = 2
 text = "CO₂"
+label_settings = ExtResource("15_ng6rp")
+
+[node name="Other" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="SpacerForAlignment" type="Control" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "OTHER_COMPOUNDS"
+texture = ExtResource("16_baud4")
+expand_mode = 3
+
+[node name="SpacerForAlignment2" type="Control" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+tooltip_text = "OTHER_COMPOUNDS"
+mouse_filter = 1
+text = "Other"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Compounds" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer" instance=ExtResource("7_np6c6")]

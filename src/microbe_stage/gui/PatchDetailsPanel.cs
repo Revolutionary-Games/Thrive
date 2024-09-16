@@ -87,11 +87,14 @@ public partial class PatchDetailsPanel : PanelContainer
     private Label oxygenLabel = null!;
     private Label nitrogenLabel = null!;
     private Label co2Label = null!;
+    private Label otherCompoundLabel = null!;
     private Label hydrogenSulfideLabel = null!;
     private Label ammoniaLabel = null!;
     private Label glucoseLabel = null!;
     private Label phosphateLabel = null!;
     private Label ironLabel = null!;
+
+    private Control otherCompoundBase = null!;
 
     private TextureRect temperatureSituation = null!;
     private TextureRect lightSituation = null!;
@@ -106,16 +109,6 @@ public partial class PatchDetailsPanel : PanelContainer
     private Texture2D increaseIcon = null!;
     private Texture2D decreaseIcon = null!;
 #pragma warning restore CA2213
-
-    private Compound ammoniaCompound = null!;
-    private Compound carbondioxideCompound = null!;
-    private Compound glucoseCompound = null!;
-    private Compound hydrogensulfideCompound = null!;
-    private Compound ironCompound = null!;
-    private Compound nitrogenCompound = null!;
-    private Compound oxygenCompound = null!;
-    private Compound phosphatesCompound = null!;
-    private Compound sunlightCompound = null!;
 
     private Migration? currentlyEditedMigration;
 
@@ -250,6 +243,7 @@ public partial class PatchDetailsPanel : PanelContainer
 
         // oxygenSituation = oxygenBase.GetNode<TextureRect>(situation);
 
+        // TODO: remove these useless null sets in this method (I have no clue why these were added -hhyyrylainen)
         nitrogenLabel = null!;
         var nitrogenBase = atmosphereContainer.GetItem<Control>("Nitrogen");
         nitrogenLabel = nitrogenBase.GetNode<Label>(labelPath);
@@ -261,6 +255,9 @@ public partial class PatchDetailsPanel : PanelContainer
         co2Label = co2Base.GetNode<Label>(labelPath);
 
         // co2Situation = co2Base.GetNode<TextureRect>(situation);
+
+        otherCompoundBase = atmosphereContainer.GetItem<Control>("Other");
+        otherCompoundLabel = otherCompoundBase.GetNode<Label>(labelPath);
 
         // Compounds list
         hydrogenSulfideLabel = null!;
@@ -290,17 +287,6 @@ public partial class PatchDetailsPanel : PanelContainer
 
         // Species list
         speciesInfoDisplay = speciesParentContainer.GetItem<CustomRichTextLabel>("SpeciesList");
-
-        // Get compound references
-        ammoniaCompound = SimulationParameters.Instance.GetCompound("ammonia");
-        carbondioxideCompound = SimulationParameters.Instance.GetCompound("carbondioxide");
-        glucoseCompound = SimulationParameters.Instance.GetCompound("glucose");
-        hydrogensulfideCompound = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-        ironCompound = SimulationParameters.Instance.GetCompound("iron");
-        nitrogenCompound = SimulationParameters.Instance.GetCompound("nitrogen");
-        oxygenCompound = SimulationParameters.Instance.GetCompound("oxygen");
-        phosphatesCompound = SimulationParameters.Instance.GetCompound("phosphates");
-        sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
 
         increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
         decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
@@ -361,49 +347,60 @@ public partial class PatchDetailsPanel : PanelContainer
         var unitFormat = Localization.Translate("VALUE_WITH_UNIT");
 
         // Atmospheric gasses
-        var temperature = SimulationParameters.Instance.GetCompound("temperature");
+        var temperature = SimulationParameters.Instance.GetCompoundDefinition(Compound.Temperature);
         temperatureLabel.Text =
-            unitFormat.FormatSafe(SelectedPatch.Biome.CurrentCompoundAmounts[temperature].Ambient, temperature.Unit);
+            unitFormat.FormatSafe(SelectedPatch.Biome.CurrentCompoundAmounts[Compound.Temperature].Ambient,
+                temperature.Unit);
         pressureLabel.Text = unitFormat.FormatSafe(20, "bar");
 
-        var maxLightLevel = GetCompoundAmount(SelectedPatch, sunlightCompound, CompoundAmountType.Biome);
+        var maxLightLevel = GetCompoundAmount(SelectedPatch, Compound.Sunlight, CompoundAmountType.Biome);
         lightLabel.Text =
             unitFormat.FormatSafe(percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch,
-                sunlightCompound))), "lx");
+                Compound.Sunlight))), "lx");
         lightMax.Text = Localization.Translate("LIGHT_LEVEL_LABEL_AT_NOON").FormatSafe(
             unitFormat.FormatSafe(percentageFormat.FormatSafe(maxLightLevel), "lx"));
         lightMax.Visible = maxLightLevel > 0;
 
-        oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, oxygenCompound),
+        oxygenLabel.Text = percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, Compound.Oxygen),
             Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         nitrogenLabel.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, nitrogenCompound),
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, Compound.Nitrogen),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
         co2Label.Text =
-            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, carbondioxideCompound),
+            percentageFormat.FormatSafe(Math.Round(GetCompoundAmount(SelectedPatch, Compound.Carbondioxide),
                 Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS));
+
+        var otherAmount = CalculateUnaccountedForCompoundPercentage();
+
+        otherCompoundLabel.Text = percentageFormat.FormatSafe(otherAmount,
+            Constants.ATMOSPHERIC_COMPOUND_DISPLAY_DECIMALS);
+
+        // Hide the other compounds label when it wouldn't show anything
+        if (otherAmount <= 0.001f)
+        {
+            otherCompoundBase.Visible = false;
+        }
+        else
+        {
+            otherCompoundBase.Visible = true;
+        }
 
         // Compounds
         hydrogenSulfideLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, hydrogensulfideCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Hydrogensulfide),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ammoniaLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ammoniaCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Ammonia),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         glucoseLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, glucoseCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Glucose),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         phosphateLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, phosphatesCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Phosphates),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
         ironLabel.Text =
-            Math.Round(GetCompoundAmount(SelectedPatch, ironCompound),
-                    Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS)
-                .ToString(CultureInfo.CurrentCulture);
+            Math.Round(GetCompoundAmount(SelectedPatch, Compound.Iron),
+                Constants.PATCH_CONDITIONS_COMPOUND_DISPLAY_DECIMALS).ToString(CultureInfo.CurrentCulture);
 
         var speciesList = new StringBuilder(100);
 
@@ -463,14 +460,13 @@ public partial class PatchDetailsPanel : PanelContainer
         if (SelectedPatch == null || CurrentPatch == null)
             return;
 
-        var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        var nextCompound = SelectedPatch.Biome.Compounds[temperature].Ambient;
+        var nextCompound = SelectedPatch.Biome.Compounds[Compound.Temperature].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.Compounds[temperature].Ambient)
+        if (nextCompound > CurrentPatch.Biome.Compounds[Compound.Temperature].Ambient)
         {
             temperatureSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.Compounds[temperature].Ambient)
+        else if (nextCompound < CurrentPatch.Biome.Compounds[Compound.Temperature].Ambient)
         {
             temperatureSituation.Texture = decreaseIcon;
         }
@@ -480,13 +476,13 @@ public partial class PatchDetailsPanel : PanelContainer
         }
 
         // We want to compare against the non-time of day adjusted light levels
-        nextCompound = SelectedPatch.Biome.Compounds[sunlightCompound].Ambient;
+        nextCompound = SelectedPatch.Biome.Compounds[Compound.Sunlight].Ambient;
 
-        if (nextCompound > CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
+        if (nextCompound > CurrentPatch.Biome.Compounds[Compound.Sunlight].Ambient)
         {
             lightSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < CurrentPatch.Biome.Compounds[sunlightCompound].Ambient)
+        else if (nextCompound < CurrentPatch.Biome.Compounds[Compound.Sunlight].Ambient)
         {
             lightSituation.Texture = decreaseIcon;
         }
@@ -495,13 +491,13 @@ public partial class PatchDetailsPanel : PanelContainer
             lightSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, hydrogensulfideCompound);
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Hydrogensulfide);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, hydrogensulfideCompound))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Hydrogensulfide))
         {
             hydrogenSulfideSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, hydrogensulfideCompound))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Hydrogensulfide))
         {
             hydrogenSulfideSituation.Texture = decreaseIcon;
         }
@@ -510,13 +506,13 @@ public partial class PatchDetailsPanel : PanelContainer
             hydrogenSulfideSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, glucoseCompound);
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Glucose);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, glucoseCompound))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Glucose))
         {
             glucoseSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, glucoseCompound))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Glucose))
         {
             glucoseSituation.Texture = decreaseIcon;
         }
@@ -525,13 +521,13 @@ public partial class PatchDetailsPanel : PanelContainer
             glucoseSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, ironCompound);
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Iron);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, ironCompound))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Iron))
         {
             ironSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, ironCompound))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Iron))
         {
             ironSituation.Texture = decreaseIcon;
         }
@@ -540,13 +536,13 @@ public partial class PatchDetailsPanel : PanelContainer
             ironSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, ammoniaCompound);
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Ammonia);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, ammoniaCompound))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Ammonia))
         {
             ammoniaSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, ammoniaCompound))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Ammonia))
         {
             ammoniaSituation.Texture = decreaseIcon;
         }
@@ -555,13 +551,13 @@ public partial class PatchDetailsPanel : PanelContainer
             ammoniaSituation.Texture = null;
         }
 
-        nextCompound = GetCompoundAmount(SelectedPatch, phosphatesCompound);
+        nextCompound = GetCompoundAmount(SelectedPatch, Compound.Phosphates);
 
-        if (nextCompound > GetCompoundAmount(CurrentPatch, phosphatesCompound))
+        if (nextCompound > GetCompoundAmount(CurrentPatch, Compound.Phosphates))
         {
             phosphateSituation.Texture = increaseIcon;
         }
-        else if (nextCompound < GetCompoundAmount(CurrentPatch, phosphatesCompound))
+        else if (nextCompound < GetCompoundAmount(CurrentPatch, Compound.Phosphates))
         {
             phosphateSituation.Texture = decreaseIcon;
         }
@@ -818,6 +814,24 @@ public partial class PatchDetailsPanel : PanelContainer
 
         currentlyEditedMigration.Amount = population;
         UpdateMigrationStatusText();
+    }
+
+    private float CalculateUnaccountedForCompoundPercentage()
+    {
+        if (SelectedPatch == null)
+            return 0;
+
+        // Calculate the compounds with their own display line in sequence so that it is easy to add new values here
+        float totalCompounds = 0;
+
+        totalCompounds += GetCompoundAmount(SelectedPatch, Compound.Carbondioxide);
+
+        totalCompounds += GetCompoundAmount(SelectedPatch, Compound.Nitrogen);
+
+        totalCompounds += GetCompoundAmount(SelectedPatch, Compound.Oxygen);
+
+        // The multiply and divide by 10 here is to adjust how many decimals the Floor call keeps
+        return MathF.Floor(10 * (100.0f - totalCompounds)) / 10;
     }
 
     public class Migration

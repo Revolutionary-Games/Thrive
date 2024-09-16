@@ -23,9 +23,6 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     [JsonProperty]
     private readonly List<IInteractableEntity> carriedObjects = new();
 
-    private Compound atp = null!;
-    private Compound glucose = null!;
-
     private StructureDefinition? buildingTypeToPlace;
 
     [JsonProperty]
@@ -162,9 +159,6 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     {
         base._Ready();
 
-        atp = SimulationParameters.Instance.GetCompound("atp");
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-
         metaballDisplayer = GetNode<MulticellularConvolutionDispayer>("MetaballDisplayer");
     }
 
@@ -275,8 +269,8 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
     public void SetInitialCompounds()
     {
-        compounds.AddCompound(atp, 50);
-        compounds.AddCompound(glucose, 50);
+        compounds.AddCompound(Compound.ATP, 50);
+        compounds.AddCompound(Compound.Glucose, 50);
     }
 
     public MulticellularCreature SpawnOffspring()

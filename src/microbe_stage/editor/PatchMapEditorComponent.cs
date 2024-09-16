@@ -40,8 +40,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
-    private Compound sunlight = null!;
-
     [JsonProperty]
     private FogOfWarMode fogOfWar;
 
@@ -57,8 +55,14 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
+    /// <summary>
+    ///   Returns the patch where the player wants to move after editing
+    /// </summary>
     [JsonIgnore]
-    public Patch? SelectedPatch => targetPatch;
+    public Patch? TargetPatch => targetPatch;
+
+    [JsonIgnore]
+    public Patch? SelectedPatch => mapDrawer.SelectedPatch;
 
     /// <summary>
     ///   Called when the selected patch changes
@@ -81,8 +85,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
         detailsPanel.OnMigrationAdded = ValidateMigration;
         detailsPanel.OnMigrationWizardStepChanged = OnMigrationProgress;
-
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
@@ -196,9 +198,9 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         base.OnLightLevelChanged(dayLightFraction);
 
-        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
         var templateMaxLightLevel =
-            Editor.CurrentPatch.GetCompoundAmountForDisplay(sunlight, CompoundAmountType.Template);
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
 
         // We don't want the light level in other patches be changed to zero if this callback is called while
         // we're on a patch that isn't affected by day/night effects
@@ -206,14 +208,14 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         {
             foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
             {
-                var targetMaxLightLevel = patch.Biome.GetCompound(sunlight, CompoundAmountType.Biome);
+                var targetMaxLightLevel = patch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome);
 
                 var lightLevelAmount = new BiomeCompoundProperties
                 {
                     Ambient = targetMaxLightLevel.Ambient * dayLightFraction,
                 };
 
-                patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
+                patch.Biome.CurrentCompoundAmounts[Compound.Sunlight] = lightLevelAmount;
             }
         }
 

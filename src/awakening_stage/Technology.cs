@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 public class Technology : IRegistryType
 {

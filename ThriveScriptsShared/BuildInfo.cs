@@ -1,4 +1,5 @@
-﻿using System;
+﻿namespace ThriveScriptsShared;
+
 using Newtonsoft.Json;
 
 /// <summary>

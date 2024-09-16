@@ -7,15 +7,14 @@ using Godot;
 /// </summary>
 public partial class MicrobeInspectInfo : PlayerInspectInfo
 {
-    protected readonly Dictionary<Compound, float> hoveredCompounds = new();
+    protected readonly Dictionary<CompoundDefinition, float> hoveredCompounds = new();
 
     /// <summary>
-    ///   Used to query the real hovered compound values.
-    ///   This is a member variable to reduce GC pressure.
+    ///   Used to query the real hovered compound values. This is a member variable to reduce GC pressure.
     /// </summary>
     private readonly Dictionary<Compound, float> currentHoveredCompounds = new();
 
-    private readonly Dictionary<Compound, double> compoundDelayTimer = new();
+    private readonly Dictionary<CompoundDefinition, double> compoundDelayTimer = new();
 
     private Vector3? lastCursorWorldPos;
 
@@ -27,7 +26,7 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
     /// <summary>
     ///   All compounds the user is hovering over with delay to reduce flickering.
     /// </summary>
-    public IReadOnlyDictionary<Compound, float> HoveredCompounds => hoveredCompounds;
+    public IReadOnlyDictionary<CompoundDefinition, float> HoveredCompounds => hoveredCompounds;
 
     public void Init(CompoundCloudSystem clouds, MicrobeCamera camera)
     {
@@ -53,7 +52,7 @@ public partial class MicrobeInspectInfo : PlayerInspectInfo
         foreach (var compound in SimulationParameters.Instance.GetCloudCompounds())
         {
             hoveredCompounds.TryGetValue(compound, out float oldAmount);
-            currentHoveredCompounds.TryGetValue(compound, out float newAmount);
+            currentHoveredCompounds.TryGetValue(compound.ID, out float newAmount);
 
             // Delay removing of label to reduce flickering.
             if (newAmount == 0.0f && oldAmount > 0.0f)

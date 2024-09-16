@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Base type for all resource gathering type components

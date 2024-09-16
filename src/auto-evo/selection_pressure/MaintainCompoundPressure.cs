@@ -10,14 +10,14 @@ public class MaintainCompoundPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Compound compound;
+    private readonly CompoundDefinition compound;
 
     public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
     ])
     {
-        this.compound = compound;
+        this.compound = SimulationParameters.GetCompound(compound);
     }
 
     public override LocalizedString Name => NameString;

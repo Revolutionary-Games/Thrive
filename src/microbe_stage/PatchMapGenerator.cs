@@ -353,12 +353,10 @@ public static class PatchMapGenerator
 
     private static void BuildPatchesInRegion(PatchRegion region, Random random)
     {
-        var sunlightCompound = SimulationParameters.Instance.GetCompound("sunlight");
-
         // For now minimum sunlight is always 0
         foreach (var regionPatch in region.Patches)
         {
-            regionPatch.Biome.MinimumCompounds[sunlightCompound] = new BiomeCompoundProperties
+            regionPatch.Biome.MinimumCompounds[Compound.Sunlight] = new BiomeCompoundProperties
             {
                 Ambient = 0,
             };
@@ -416,11 +414,11 @@ public static class PatchMapGenerator
                 seafloor.Depth[1] = deepestSeaPatch.Depth[1] + 10;
 
                 // Build seafloor light, using 0m -> 1, 200m -> 0.01, floor to 0.01
-                var sunlightProperty = seafloor.Biome.ChangeableCompounds[sunlightCompound];
+                var sunlightProperty = seafloor.Biome.ChangeableCompounds[Compound.Sunlight];
                 var sunlightAmount = (int)(MathF.Pow(0.977237220956f, seafloor.Depth[1]) * 100) / 100.0f;
                 sunlightProperty.Ambient = sunlightAmount;
 
-                seafloor.Biome.ChangeableCompounds[sunlightCompound] = sunlightProperty;
+                seafloor.Biome.ChangeableCompounds[Compound.Sunlight] = sunlightProperty;
 
                 // Average sunlight is updated later
 

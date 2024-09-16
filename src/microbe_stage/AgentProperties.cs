@@ -41,7 +41,8 @@ public class AgentProperties
     // ReSharper disable once ArrangeObjectCreationWhenTypeEvident
     [JsonIgnore]
     public LocalizedString Name =>
-        new LocalizedString("AGENT_NAME", new LocalizedString(Compound.GetUntranslatedName()));
+        new LocalizedString("AGENT_NAME",
+            new LocalizedString(SimulationParameters.GetCompound(Compound).GetUntranslatedName()));
 
     public void DealDamage(ref Health health, ref CellProperties hitCellProperties, float toxinAmount)
     {

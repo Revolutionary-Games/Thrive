@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace ThriveScriptsShared;
+
 using Newtonsoft.Json;
 using YamlDotNet.Serialization;
 
@@ -7,11 +7,6 @@ using YamlDotNet.Serialization;
 ///   Patch notes for a Thrive version. This doesn't contain the version number as this is meant to be stored in a
 ///   dictionary.
 /// </summary>
-/// <remarks>
-///   <para>
-///     TODO: merge this and the equivalent file in the Scripts folder once there's a common module for Thrive
-///   </para>
-/// </remarks>
 public class VersionPatchNotes : IRegistryType
 {
     [JsonConstructor]

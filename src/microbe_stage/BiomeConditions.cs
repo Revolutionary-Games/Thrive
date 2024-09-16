@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
@@ -272,21 +273,16 @@ public class BiomeConditions : ICloneable
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
             }
 
-            if (compound.Value.Ambient > 0 && compound.Key.IsGas)
+            if (compound.Value.Ambient > 0 && SimulationParameters.Instance.GetCompoundDefinition(compound.Key).IsGas)
             {
                 sumOfGasses += compound.Value.Ambient;
             }
         }
 
-        if (sumOfGasses > 0)
+        if (sumOfGasses > 1)
         {
-            // Make sure gasses add up to 100% to make sure they make sense. 0.005 is here to allow being off by up to
-            // half a percent
-            if (Math.Abs(sumOfGasses - 1) >= 0.005f)
-            {
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Gas compounds should add up to 1 to have 100% of air composition covered");
-            }
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Gas compounds shouldn't together be over 100%");
         }
 
         foreach (var chunk in Chunks)

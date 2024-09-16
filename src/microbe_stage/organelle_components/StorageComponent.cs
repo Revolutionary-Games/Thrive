@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using ThriveScriptsShared;
+
+/// <summary>
 ///   Allows cell to store more stuff
 /// </summary>
 public class StorageComponent : EmptyOrganelleComponent
@@ -33,12 +35,12 @@ public class StorageComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class StorageComponentUpgrades : IComponentSpecificUpgrades
 {
-    public StorageComponentUpgrades(Compound? specializedFor)
+    public StorageComponentUpgrades(Compound specializedFor)
     {
         SpecializedFor = specializedFor;
     }
 
-    public Compound? SpecializedFor { get; set; }
+    public Compound SpecializedFor { get; set; }
 
     public bool Equals(IComponentSpecificUpgrades? other)
     {

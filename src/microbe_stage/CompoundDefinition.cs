@@ -1,21 +1,29 @@
 ﻿using System;
 using System.ComponentModel;
 using Godot;
+using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 
 /// <summary>
-///   Definition of a compound in the game. For all other simulation
-///   parameters that refer to a compound, there must be an existing
-///   entry of this type
+///   Definition of a compound in the game. Type of compound is identified by <see cref="Compound"/> this class
+///   contains the actual properties and configuration related to the compound type.
+///   For all other simulation parameters that refer to a compound, there must be an existing entry of this type.
 /// </summary>
-[TypeConverter($"Saving.Serializers.{nameof(CompoundStringConverter)}")]
-public class Compound : IRegistryType, IEquatable<Compound>
+[TypeConverter($"Saving.Serializers.{nameof(CompoundDefinitionStringConverter)}")]
+public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
 {
     /// <summary>
     ///   Display name for the user to see
     /// </summary>
     [TranslateFrom(nameof(untranslatedName))]
     public string Name = null!;
+
+    /// <summary>
+    ///   The enum-based ID of this compound.
+    /// </summary>
+    [JsonIgnore]
+    public Compound ID;
 
     public float Volume;
 
@@ -95,6 +103,12 @@ public class Compound : IRegistryType, IEquatable<Compound>
                 "Compound has no name");
         }
 
+        if (ID == Compound.Invalid)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Compound has no ID, it didn't match any inbuilt enum values to be initialized");
+        }
+
         if (string.IsNullOrEmpty(IconPath))
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
@@ -156,7 +170,7 @@ public class Compound : IRegistryType, IEquatable<Compound>
         return untranslatedName ?? "error";
     }
 
-    public bool Equals(Compound? other)
+    public bool Equals(CompoundDefinition? other)
     {
         if (other == null)
             return false;
