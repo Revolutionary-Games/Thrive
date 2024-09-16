@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2022-07-27 06:44+0000\n"
 "Last-Translator: Matej Maceášik <m.maceasik@gmail.com>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1365,10 +1365,6 @@ msgid "DEVELOPERS"
 msgstr "Vývojári"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Vývojári"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Vývoj podporovaný štúdiom Revolutionary Games Studio ry"
 
@@ -1627,14 +1623,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Rýchlosť trávenia"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Chitín"
+msgid "EDITING_TITLE"
+msgstr "Chýba názov"
 
 msgid "EDITOR"
 msgstr "Editor"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "zmutoval"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1756,7 +1752,7 @@ msgid "ENVIRONMENT"
 msgstr "Životné prostredie"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Environmentálna retencia glukózy"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2143,7 +2139,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Dizajnéri"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Dizajnéri"
 
 #, fuzzy
@@ -2225,6 +2221,9 @@ msgstr "Hlasitosť GUI"
 
 msgid "HEALTH"
 msgstr "Zdravie"
+
+msgid "HELP"
+msgstr "Pomoc"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ako hrať hru"
@@ -3014,8 +3013,9 @@ msgstr "Nie je povolené zobraziť viac ako {0} dátových súborov!"
 msgid "MAY"
 msgstr "Máj"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Zahodiť a pokračovať"
 
 msgid "MEDIANEXT"
 msgstr "Ďalšia"
@@ -3975,6 +3975,10 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Zmeniť nastavenia"
 
 msgid "ORGANELLES"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
 msgstr "Organely"
 
 #, fuzzy
@@ -5034,9 +5038,6 @@ msgstr "Snímka obrazovky"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Pozastaviť hru"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5217,7 +5218,7 @@ msgstr "Slnečné žiarenie"
 msgid "SUPPORTER_PATRONS"
 msgstr "Podporovatelia"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5358,11 +5359,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Typ mapy"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Súčasní vývojári"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6339,6 +6340,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Cytoplazma"
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Zlúčeniny:"
 
@@ -6386,6 +6391,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Vývojári"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6594,6 +6607,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Umiestniť organelu"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organely"
 
@@ -6630,6 +6647,10 @@ msgstr "Metabolozómy"
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr "[b][u]{0}[/u][/b] vyhynul!"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr "Nitrogenáza"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
@@ -7085,6 +7106,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplazma"
 
@@ -7498,8 +7523,13 @@ msgstr "Priblížiť"
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
 
-#~ msgid "HELP"
-#~ msgstr "Pomoc"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Zahodiť a pokračovať"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Chitín"
 
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"

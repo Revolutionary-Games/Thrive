@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
-"PO-Revision-Date: 2024-09-11 14:45+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
+"PO-Revision-Date: 2024-09-16 18:17+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1365,9 +1365,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Developers"
 
-msgid "DEVELOPMENT"
-msgstr "Development"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Development Forum"
 
@@ -1629,13 +1626,13 @@ msgstr "(randomly spawned secrets in the game)"
 msgid "EDGE_PAN_SPEED"
 msgstr "Pan speed:"
 
-msgid "EDITING"
+msgid "EDITING_TITLE"
 msgstr "Editing"
 
 msgid "EDITOR"
 msgstr "Editor"
 
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "Editors And Mutations"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1750,7 +1747,7 @@ msgstr "Entity label"
 msgid "ENVIRONMENT"
 msgstr "Environment"
 
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Environmental Conditions"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2090,7 +2087,7 @@ msgstr "Gallery Viewer"
 msgid "GAME_DESIGN_TEAM"
 msgstr "Game Design Team"
 
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Game Systems"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2173,6 +2170,9 @@ msgstr "GUI volume"
 
 msgid "HEALTH"
 msgstr "Health"
+
+msgid "HELP"
+msgstr "Help"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "How to play the game"
@@ -2930,7 +2930,7 @@ msgstr "Not allowed to show more than {0} datasets!"
 msgid "MAY"
 msgstr "May"
 
-msgid "MECHANICS"
+msgid "MECHANICS_BUTTON"
 msgstr "Mechanics"
 
 msgid "MEDIANEXT"
@@ -3930,6 +3930,9 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Change your settings"
 
 msgid "ORGANELLES"
+msgstr "Organelles"
+
+msgid "ORGANELLES_BUTTON"
 msgstr "Organelles"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
@@ -4937,9 +4940,6 @@ msgstr "Sprint"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Toggle sprinting mode. When sprinting cells move faster but consume more ATP and as strain builds consumes even more ATP."
 
-msgid "STAGES"
-msgstr "Stages"
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pause menu"
 
@@ -5110,7 +5110,7 @@ msgstr "Sunlight"
 msgid "SUPPORTER_PATRONS"
 msgstr "Supporters"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr "Survival"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5247,10 +5247,10 @@ msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 msgid "THE_DISTURBANCE"
 msgstr "The Disturbance"
 
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "The Patch Map"
 
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "The World"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6342,6 +6342,9 @@ msgstr ""
 "\n"
 "For [b]25[/b] mutation points, modify [b]Cilia[/b] once placed to transform them into [b]Pulling Cilia[/b]. In addition to the regular effects of the organelle, [b]Pulling Cilia[/b] generate vortices to attract small cells and chunks such as floating organelles."
 
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Compounds"
+
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "For information regarding the behind the scenes and theory behind Compounds, go to [color=#3796e1][url=thriveopedia:CompoundSystemDevelopment]Compound System Development[/url][/color]."
 
@@ -6557,6 +6560,12 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "No upgrades."
+
+msgid "WIKI_DEVELOPMENT"
+msgstr "Development"
+
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Development Details"
 
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr "These are pages related to the development of Thrive and contain information on theory and implementations"
@@ -6797,6 +6806,9 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_MECHANICS"
+msgstr "Mechanics"
+
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 "These are various concepts shared by multiple stages or editors.\n"
@@ -6842,6 +6854,9 @@ msgstr "No upgrades."
 
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr "There are some tables and other things collected in the Microbe Stage Appendices"
+
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr "Microbe Stage"
 
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr ""
@@ -7426,6 +7441,9 @@ msgstr ""
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Reproduction"
+
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "To progress in Thrive, you need to evolve your species in [b]editors[/b] and prevent extinction. To do so, you need to [b]reproduce[/b]."
 
@@ -7920,6 +7938,15 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Stages"
+
+#~ msgid "EDITING"
+#~ msgstr "Editing"
+
+#~ msgid "STAGES"
+#~ msgstr "Stages"
 
 #~ msgid "OTHER"
 #~ msgstr "Other"

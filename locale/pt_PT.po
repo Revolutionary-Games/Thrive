@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1390,10 +1390,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Desenvolvedores"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Wiki de desenvolvimento"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Fórum de Desenvolvimento"
 
@@ -1654,14 +1650,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Velocidade de deslocação do eixo vertical:"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Quitina"
+msgid "EDITING_TITLE"
+msgstr "Falta um título"
 
 msgid "EDITOR"
 msgstr "Editor"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "tem uma mutação"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1793,7 +1789,7 @@ msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Retenção de glicose no ambiente"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2138,7 +2134,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Equipa de Desenho do Jogo"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Equipa de Desenho do Jogo"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2221,6 +2217,9 @@ msgstr "Volume da GUI"
 
 msgid "HEALTH"
 msgstr "Vida"
+
+msgid "HELP"
+msgstr "Ajuda"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
@@ -2998,8 +2997,9 @@ msgstr "Não é permitido mostrar mais de {0} conjuntos de dados!"
 msgid "MAY"
 msgstr "Maio"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Regredir"
 
 msgid "MEDIANEXT"
 msgstr "Seguinte"
@@ -4006,6 +4006,10 @@ msgstr "Mudar as definições"
 
 msgid "ORGANELLES"
 msgstr "Organelos"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Axónio"
 
 #, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
@@ -5046,9 +5050,6 @@ msgstr "Print Screen"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Visite a nossa pagina de Patreon"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pausa"
 
@@ -5224,7 +5225,7 @@ msgstr "Luz Solar"
 msgid "SUPPORTER_PATRONS"
 msgstr "Apoiantes"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5365,11 +5366,11 @@ msgid "THE_DISTURBANCE"
 msgstr "O Distúrbio"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mapa de Regiões"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Mundo"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6455,6 +6456,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que desempenha é a glicólise, a conversão de glicose em energia ATP. Para que células onde faltam organelos tenham metabolismos mais avançados, esta é a sua dependência para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Compostos:"
 
@@ -6503,6 +6508,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Sem melhorias."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Wiki de desenvolvimento"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Organelos"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6719,6 +6732,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Sem melhorias."
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Colocar organelo"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organelos"
 
@@ -6752,6 +6769,17 @@ msgstr "Sem melhorias."
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"\n"
+"Vida.\n"
+"\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"\n"
+"Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
 "\n"
@@ -7227,6 +7255,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Sem melhorias."
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasma"
 
@@ -7643,8 +7675,13 @@ msgstr "Ampliar"
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
-#~ msgid "HELP"
-#~ msgstr "Ajuda"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Regredir"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Quitina"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permite que espécies não migrem (caso nenhuma migração vantajosa seja encontrada)"

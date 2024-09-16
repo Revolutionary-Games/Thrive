@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1378,10 +1378,6 @@ msgid "DEVELOPERS"
 msgstr "Sviluppatori"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Sviluppatori"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Sviluppo sostenuto da Revolutionary Games Studio ry"
 
@@ -1648,14 +1644,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Velocità di digestione"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Chitina"
+msgid "EDITING_TITLE"
+msgstr "Il titolo è mancante"
 
 msgid "EDITOR"
 msgstr "Editor"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "ha subito una mutazione"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1790,7 +1786,7 @@ msgid "ENVIRONMENT"
 msgstr "Ambiente"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Ritenzione ambientale del glucosio"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2186,7 +2182,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Squadra Progettisti di Gioco"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Squadra Progettisti di Gioco"
 
 #, fuzzy
@@ -2272,6 +2268,9 @@ msgstr "Volume della GUI"
 
 msgid "HEALTH"
 msgstr "Salute"
+
+msgid "HELP"
+msgstr "Aiuto"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Come giocare"
@@ -3074,8 +3073,9 @@ msgstr "Impossibile mostrare più di {0} set di dati!"
 msgid "MAY"
 msgstr "Maggio"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
 
 msgid "MEDIANEXT"
 msgstr "⏭ Successivo (tasto multimediale)"
@@ -4149,6 +4149,10 @@ msgid "ORGANELLES"
 msgstr "Organuli"
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Organuli"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "(comincia ogni generazione vicino a una nuvola di glucosio)"
 
@@ -5217,9 +5221,6 @@ msgstr "Stamp [Print Screen]"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Metti in pausa il gioco"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menù di pausa"
 
@@ -5398,7 +5399,7 @@ msgstr "Luce solare"
 msgid "SUPPORTER_PATRONS"
 msgstr "Sostenitori"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5539,11 +5540,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mappa delle zone"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Mondo"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6660,6 +6661,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Le interiora gelatinose della cellula. Il citoplasma è la soluzione di ioni, proteine e altre sostanze disciolte nell'acqua al suo interno. Una delle sue funzioni è la [b]glicolisi[/b], cioè la conversione del [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Per le cellule prive di organuli (in favore di metabolismi più avanzati) questa è la fonte di energia. Il citoplasma è anche usato per immagazzinare molecole nella cellula e accrescere le sue dimensioni."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Composti:"
 
@@ -6709,6 +6714,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Sviluppatori"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Organuli"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6921,6 +6934,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Posiziona organulo"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organuli"
 
@@ -6958,6 +6975,17 @@ msgstr "I metabolosomi sono ammassi di proteine avvolti in involucri proteici. C
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Su di un distante pianeta alieno, eoni di attività vulcanica e impatti meteoritici hanno portato allo sviluppo di un nuovo fenomeno nell'universo.\n"
+"\n"
+"La vita.\n"
+"\n"
+"Semplici microbi risiedono nelle profondità marine. Sei l'Ultimo Antenato Comune Universale (UACU) su questo pianeta.\n"
+"\n"
+"Per sopravvivere in questo mondo ostile, avrai bisogno di competere con le altre specie di microbi, raccogliere ogni composto che troverai... ed evolvere."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Su di un distante pianeta alieno, eoni di attività vulcanica e impatti meteoritici hanno portato allo sviluppo di un nuovo fenomeno nell'universo.\n"
 "\n"
@@ -7442,6 +7470,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasma"
 
@@ -7861,8 +7893,13 @@ msgstr "Zoom avanti"
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
-#~ msgid "HELP"
-#~ msgstr "Aiuto"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai recuperarlo. Sei sicuro di volerlo fare?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Chitina"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permetti alle specie di non migrare (se nessuna migrazione ottimale è trovata)"

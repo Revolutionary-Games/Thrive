@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1440,10 +1440,6 @@ msgid "DEVELOPERS"
 msgstr "Vývojáři"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Vývojáři"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Vývoj podpořen týmem Revolutionary Games Studio"
 
@@ -1718,14 +1714,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Rychlost trávení"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Chitiny"
+msgid "EDITING_TITLE"
+msgstr "Chybí název"
 
 msgid "EDITOR"
 msgstr "Editor"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "zmutoval se"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1860,7 +1856,7 @@ msgid "ENVIRONMENT"
 msgstr "Životní prostředí"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Retence glukózy v prostředí"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2255,7 +2251,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Herní design"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Herní design"
 
 #, fuzzy
@@ -2340,6 +2336,9 @@ msgstr "Hlasitost GUI"
 
 msgid "HEALTH"
 msgstr "Zdraví"
+
+msgid "HELP"
+msgstr "Nápověda"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Nápověda"
@@ -3143,8 +3142,9 @@ msgstr "Není povoleno zobrazit více než {0} datových sad!"
 msgid "MAY"
 msgstr "Květen"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
 
 msgid "MEDIANEXT"
 msgstr "Další"
@@ -4203,6 +4203,10 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Změna nastavení"
 
 msgid "ORGANELLES"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
 msgstr "Organely"
 
 #, fuzzy
@@ -5270,9 +5274,6 @@ msgstr "PrntScr"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Navštivte náš Patreon"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu pozastavení"
 
@@ -5451,7 +5452,7 @@ msgstr "Sluneční svit"
 msgid "SUPPORTER_PATRONS"
 msgstr "Podporovatelé"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5592,11 +5593,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mapa lokací"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Současní vývojáři"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6714,6 +6715,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Mazlavé vnitřnosti buňky. Cytoplasma je základní směsice ionů, proteinů, a jiných látek rozpuštěných ve vodě, které vyplňují vnitřek buňky. Jedna z funkcí kterou provádí je [b]glykolýza[/b], konverze [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Spoléhají se na ni buňky, kterým chybí organely pro více pokročilý metabolismus, jako příjem energie. Je také používána pro růst velikosti a uschovávání molekul v buňce."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Sloučeniny:"
 
@@ -6763,6 +6768,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Vývojáři"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Organely"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6982,6 +6995,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Umístit organelu"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organely"
 
@@ -7019,6 +7036,17 @@ msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Ma
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
 "\n"
@@ -7503,6 +7531,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplazma"
 
@@ -7922,8 +7954,13 @@ msgstr "Přiblížit"
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
-#~ msgid "HELP"
-#~ msgstr "Nápověda"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale smazat?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Chitiny"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Dovolit druhům aby nemigroval (pokud není nalezena žádná dobrá migrace)"

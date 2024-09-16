@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-02-20 12:10+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1461,10 +1461,6 @@ msgid "DEVELOPERS"
 msgstr "Kehittäjät"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Kehittäjät"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Kehitystä tukee Revolutionary Games Studio ry"
 
@@ -1754,14 +1750,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Resurssien imeytymisen nopeus"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Kitiini"
+msgid "EDITING_TITLE"
+msgstr "Otsikko puuttuu"
 
 msgid "EDITOR"
 msgstr "Editori"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "on saanut mutaation"
 
 #, fuzzy
@@ -1901,7 +1897,7 @@ msgid "ENVIRONMENT"
 msgstr "Ympäristö"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Ympäristön glukoosin säilyminen"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2300,7 +2296,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Pelisuunnittelutiimi"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Pelisuunnittelutiimi"
 
 #, fuzzy
@@ -2385,6 +2381,9 @@ msgstr "Käyttöliittymä"
 
 msgid "HEALTH"
 msgstr "Terveys"
+
+msgid "HELP"
+msgstr "Apua"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Help"
@@ -3199,8 +3198,9 @@ msgstr "Ei ole lupaa näyttää enempää kuin {0} dataosaa!"
 msgid "MAY"
 msgstr "Toukokuu"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
 
 msgid "MEDIANEXT"
 msgstr "Seuraava kappale"
@@ -4263,6 +4263,10 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Help"
 
 msgid "ORGANELLES"
+msgstr "Soluelin"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
 msgstr "Soluelin"
 
 #, fuzzy
@@ -5380,9 +5384,6 @@ msgstr "Kopioi ruutu"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Laita peli tauolle"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pysäytysmenu"
 
@@ -5572,7 +5573,7 @@ msgstr "Auringonvalo"
 msgid "SUPPORTER_PATRONS"
 msgstr "Tukijat"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5718,11 +5719,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Aluekartta"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Maailma"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6860,6 +6861,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Solun täyttävä limainen aines. Solulima on sekoite ioneita, proteiineja ja muita ainesosia veteen liuotettuna ja täyttää solun sisäpuolen. Yksi sen tarkoituksista on suorittaa glykolyysi, eli glukoosin muuntaminen ATP-energianlähteeksi. Alkeelliset soluilla, joilla ei ole kehittyneempiä aineenvaihduntaan keskittyneitä soluelimiä, solulima on keskeinen energian tuotannon lähde. Solulima myös varastoi molekyylejä, eli esimerkiksi kerättäviä yhdisteitä ja kasvattaa solun kokoa."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Yhdisteet:"
 
@@ -6909,6 +6914,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Kehittäjät"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Soluelin"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -7126,6 +7139,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Lisää soluelin"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Soluelin"
 
@@ -7163,6 +7180,17 @@ msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimi
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
+"\n"
+"Elämä.\n"
+"\n"
+"Yksinkertaiset mikrobit lymyilevät syvällä meren uumenissa. Olet viimeinen universaali esivanhempi (LUCA) tällä planeetalla.\n"
+"\n"
+"Selviytyäkseksi tässä armottomassa ympäristössä, sinun täytyy etsiä ja kerätä yhdisteitä. Niiden avulla voit kehittyä sukupolvien saatossa ja kilpailla muiden lajien kanssa."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Kaukaisella planeetalla maailmankausien vulkaaninen aktiivisuus ja meteoriittien iskeymät ovat johtaneet uuden ilmiön kehittymisen maailmankaikkeudessa.\n"
 "\n"
@@ -7663,6 +7691,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasma"
 
@@ -8129,8 +8161,13 @@ msgstr "Zoomaa sisään"
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
-#~ msgid "HELP"
-#~ msgstr "Apua"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poistaa sen lopullisesti?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Kitiini"
 
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"

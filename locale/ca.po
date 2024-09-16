@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1393,10 +1393,6 @@ msgid "DEVELOPERS"
 msgstr "Desenvolupadors"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Desenvolupadors"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Desenvolupament a càrred de Revolutionary Games Studio ry"
 
@@ -1663,14 +1659,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Velocitat de Digestió"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Quitina"
+msgid "EDITING_TITLE"
+msgstr "Falta un nom"
 
 msgid "EDITOR"
 msgstr "Editor"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "ha mutat"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1805,7 +1801,7 @@ msgid "ENVIRONMENT"
 msgstr "Entorn"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Retenció ambiental de glucosa"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2203,7 +2199,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Equip de disseny del joc"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Equip de disseny del joc"
 
 #, fuzzy
@@ -2291,6 +2287,9 @@ msgstr "Volum del GUI"
 
 msgid "HEALTH"
 msgstr "Salut"
+
+msgid "HELP"
+msgstr "Ajuda"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Ajuda"
@@ -3093,8 +3092,9 @@ msgstr "No està permès mostrar més de {0} datasets!"
 msgid "MAY"
 msgstr "Maig"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
 
 msgid "MEDIANEXT"
 msgstr "Següent"
@@ -4177,6 +4177,10 @@ msgid "ORGANELLES"
 msgstr "Orgànuls"
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Orgànuls"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "(comença cada generació amb un núvol de glucosa gratuït proper)"
 
@@ -5253,9 +5257,6 @@ msgstr "Imprimir pantalla"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Pausar el joc"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menú de pausa"
 
@@ -5434,7 +5435,7 @@ msgstr "Llum solar"
 msgid "SUPPORTER_PATRONS"
 msgstr "Partidaris"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5575,11 +5576,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Mapa d'Indrets del món"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Món"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6694,6 +6695,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Compostos:"
 
@@ -6743,6 +6748,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Desenvolupadors"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Orgànuls"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6955,6 +6968,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Col·locar orgànul"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Orgànuls"
 
@@ -6992,6 +7009,19 @@ msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membr
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Fa molt de temps, en un planeta molt i molt llunyà...\n"
+"\n"
+"S'han esdevingut milions d'anys, eons sencers, d'activitat volcànica i d'impactes de meteorits. Aquesta activitat ha causat l'aparició d'un fenomen inaudit a l'univers.\n"
+"\n"
+"La vida.\n"
+"\n"
+"A les profunditats dels mars i oceans, són a punt d'aparèixer eixams de Microbis, sopes tupides d'organismes vius. De moment, però, en tot el planeta, només hi ha un sol organisme, una petita cèl·lula formada per una fina Membrana plena de Citoplasma i Material Genètic. Aquest primer organisme serà conegut com a 'darrer avantpassat universal comú'. Ets a punt de prendre el control d'aquesta minúscula cèl·lula, per tal de guiar-ne les accions i aconseguir que es pugui reproduir.\n"
+"\n"
+"Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Fa molt de temps, en un planeta molt i molt llunyà...\n"
 "\n"
@@ -7482,6 +7512,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "protoplasma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "protoplasma"
 
@@ -7901,8 +7935,13 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
-#~ msgid "HELP"
-#~ msgstr "Ajuda"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segur que el voleu eliminar permanentment?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Quitina"
 
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"

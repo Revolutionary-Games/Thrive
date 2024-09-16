@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -1434,10 +1434,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Ontwikkelaars"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Ontwikkelwiki"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Ontwikkelforum"
 
@@ -1703,14 +1699,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Schuifsnelheid:"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Chitine"
+msgid "EDITING_TITLE"
+msgstr "Titel mist"
 
 msgid "EDITOR"
 msgstr "Editor"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "is gemuteerd"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1842,7 +1838,7 @@ msgid "ENVIRONMENT"
 msgstr "Omgeving"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Retentie van glucose in de omgeving"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2194,7 +2190,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Ontwikkel Team"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Spel Ontwikkel Team"
 
 #, fuzzy
@@ -2277,6 +2273,9 @@ msgstr "Volume GUI"
 
 msgid "HEALTH"
 msgstr "Sterkte"
+
+msgid "HELP"
+msgstr "Hulp"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Hoe het spel te spelen"
@@ -3053,8 +3052,9 @@ msgstr "Het is niet toegestaan meer dan {0} datasets weer te geven!"
 msgid "MAY"
 msgstr "Mei"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Neerdalen"
 
 msgid "MEDIANEXT"
 msgstr "Volgende Media"
@@ -4093,6 +4093,10 @@ msgid "ORGANELLES"
 msgstr "Organellen"
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Axon"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "(WAARSCHUWING: fotosynthese wordt veel minder levensvatbaar)"
 
@@ -5122,9 +5126,6 @@ msgstr "Print-Screen"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Bezoek onze Patreonpagina"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pauzeermenu"
 
@@ -5298,7 +5299,7 @@ msgstr "Zonlicht"
 msgid "SUPPORTER_PATRONS"
 msgstr "Ondersteuners"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5436,11 +5437,11 @@ msgid "THE_DISTURBANCE"
 msgstr "De Verstoring"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Gebiedenkaart"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Wereld"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6551,6 +6552,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Verbindingen:"
 
@@ -6600,6 +6605,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Ontwikkelwiki"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Axon"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6820,6 +6833,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Plaats organellen"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Axon"
 
@@ -6857,6 +6874,17 @@ msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewi
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
 "\n"
@@ -7351,6 +7379,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasma"
 
@@ -7769,8 +7801,13 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
-#~ msgid "HELP"
-#~ msgstr "Hulp"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Neerdalen"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Chitine"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Sta soorten toe niet te migreren (als geen goede migratieplek kon worden gevonden)"

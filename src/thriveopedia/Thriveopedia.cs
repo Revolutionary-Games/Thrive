@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -282,12 +283,24 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     /// <exception cref="KeyNotFoundException">If no page with the given name exists</exception>
     public IThriveopediaPage GetPage(string name)
     {
-        var page = allPages.Keys.FirstOrDefault(p => p.PageName == name);
+        foreach (var page in allPages)
+        {
+            if (page.Key.PageName == name)
+                return page.Key;
+        }
 
-        if (page == null)
-            throw new KeyNotFoundException($"No page with name {name} found");
+#if DEBUG
+        GD.PrintErr($"Couldn't find page with name: {name}, existing pages:");
+        foreach (var page in allPages)
+        {
+            GD.Print(page.Key.PageName);
+        }
 
-        return page;
+        if (Debugger.IsAttached)
+            Debugger.Break();
+#endif
+
+        throw new KeyNotFoundException($"No page with name {name} found");
     }
 
     protected override void Dispose(bool disposing)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-06-07 07:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -1422,10 +1422,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "3차원 이동"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
@@ -1699,14 +1695,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "자원 흡수 속도"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "키틴질"
+msgid "EDITING_TITLE"
+msgstr "번영했습니다!"
 
 msgid "EDITOR"
 msgstr "편집기"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "변이함"
 
 #, fuzzy
@@ -1841,7 +1837,7 @@ msgid "ENVIRONMENT"
 msgstr "환경"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2213,8 +2209,9 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
-msgid "GAME_SYSTEMS"
-msgstr ""
+#, fuzzy
+msgid "GAME_SYSTEMS_TITLE"
+msgstr "세포 진행률"
 
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2298,6 +2295,9 @@ msgstr "GUI 음량"
 
 msgid "HEALTH"
 msgstr "생명력"
+
+msgid "HELP"
+msgstr "도움말"
 
 #, fuzzy
 msgid "HELP_BUTTON_TOOLTIP"
@@ -3122,8 +3122,9 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 msgid "MAY"
 msgstr ""
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
 msgid "MEDIANEXT"
 msgstr ""
@@ -4151,6 +4152,10 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ORGANELLES"
+msgstr "세포 기관"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
 msgstr "세포 기관"
 
 #, fuzzy
@@ -5272,9 +5277,6 @@ msgstr ""
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
-msgid "STAGES"
-msgstr ""
-
 #, fuzzy
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
@@ -5459,7 +5461,7 @@ msgstr "햇빛"
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5596,11 +5598,12 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "지역 지도"
 
-msgid "THE_WORLD"
-msgstr ""
+#, fuzzy
+msgid "THE_WORLD_TITLE"
+msgstr "번영했습니다!"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
@@ -6730,6 +6733,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "화합물:"
 
@@ -6779,6 +6786,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "3차원 이동"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "세포 기관"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6990,6 +7005,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "세포 기관 배치"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "세포 기관"
 
@@ -7027,6 +7046,17 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
+"\n"
+"생명.\n"
+"\n"
+"단순한 미생물이 바다 깊은 곳에 살고 있습니다. 당신은 이 행성에 남은 모든 생물의 마지막 공통 조상(LUCA) 입니다.\n"
+"\n"
+"이 거친 세계에서 살아남기 위해, 찾을 수 있는 화합물들을 모아 세대별로 진화하여 다른 미생물들과 경쟁해야 합니다."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "멀리 떨어진 외계 행성에서, 수 많은 화산 활동과 유성 충돌이 우주에서 새로운 현상을 만들어 냈습니다.\n"
 "\n"
@@ -7511,6 +7541,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "원형질"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "원형질"
 
@@ -7933,8 +7967,13 @@ msgstr "확대"
 msgid "ZOOM_OUT"
 msgstr "축소"
 
-#~ msgid "HELP"
-#~ msgstr "도움말"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "키틴질"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "종이 이주하지 않을 수 있도록 허용 (좋은 이주를 찾을 수 없는 경우)"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1436,10 +1436,6 @@ msgid "DEVELOPERS"
 msgstr "Arendajad"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Arendajad"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "Arendust toetab Revolutionary Games Studio ry"
 
@@ -1717,14 +1713,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Ressursi neeldumiskiirus"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Kitiin"
+msgid "EDITING_TITLE"
+msgstr "Pealkiri puudub"
 
 msgid "EDITOR"
 msgstr "Toimetaja"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "on muteerunud"
 
 #, fuzzy
@@ -1861,7 +1857,7 @@ msgid "ENVIRONMENT"
 msgstr "Keskkond"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2270,7 +2266,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Mängu disainimeeskond"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Mängu disainimeeskond"
 
 #, fuzzy
@@ -2360,6 +2356,9 @@ msgstr "GUI helitugevus"
 
 msgid "HEALTH"
 msgstr "Elu"
+
+msgid "HELP"
+msgstr "Abi"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Abi"
@@ -3185,8 +3184,9 @@ msgstr "Ei ole lubatud kuvada rohkem kui {0} andmekogumit!"
 msgid "MAY"
 msgstr "mai"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
 
 msgid "MEDIANEXT"
 msgstr "Meedia Järgmine"
@@ -4273,6 +4273,10 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Abi"
 
 msgid "ORGANELLES"
+msgstr "Organellid"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
 msgstr "Organellid"
 
 #, fuzzy
@@ -5376,9 +5380,6 @@ msgstr "Prindi ekraan"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Peata mäng"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Pausi menüü"
 
@@ -5568,7 +5569,7 @@ msgstr "Päikesevalgus"
 msgid "SUPPORTER_PATRONS"
 msgstr "Toetajad"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5713,11 +5714,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Plaastri kaart"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Praegused arendajad"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6860,6 +6861,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Ühendid:"
 
@@ -6909,6 +6914,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Arendajad"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Organellid"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -7128,6 +7141,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Asetage organell"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organellid"
 
@@ -7165,6 +7182,17 @@ msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad o
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
 "\n"
@@ -7669,6 +7697,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasma"
 
@@ -8131,8 +8163,13 @@ msgstr "Suurenda"
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
-#~ msgid "HELP"
-#~ msgstr "Abi"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, et soovite selle jäädavalt kustutada?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Kitiin"
 
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"

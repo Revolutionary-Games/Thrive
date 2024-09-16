@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1390,10 +1390,6 @@ msgid "DEVELOPERS"
 msgstr "Fejlesztők"
 
 #, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Fejlesztők"
-
-#, fuzzy
 msgid "DEVELOPMENT_FORUM"
 msgstr "A játékot a Revolutionary Games Studio ry fejleszti"
 
@@ -1664,14 +1660,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Kihalt fajok"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Kitin"
+msgid "EDITING_TITLE"
+msgstr "Nincs cím"
 
 msgid "EDITOR"
 msgstr "Szerkesztő"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "faj mutálódott"
 
 #, fuzzy
@@ -1806,7 +1802,7 @@ msgid "ENVIRONMENT"
 msgstr "Környezet"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Környezetben lévő glükóz mennyisége"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2215,7 +2211,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Játéktervező csapat"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Játéktervező csapat"
 
 #, fuzzy
@@ -2297,6 +2293,9 @@ msgstr "GUI hangerő"
 
 msgid "HEALTH"
 msgstr "Életerő"
+
+msgid "HELP"
+msgstr "Segítség"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Segítség"
@@ -3104,8 +3103,9 @@ msgstr "Nem engedélyezett {0}-nál/nél több adathalmaz mutatása!"
 msgid "MAY"
 msgstr "Május"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 
 msgid "MEDIANEXT"
 msgstr "Média következő"
@@ -4169,6 +4169,10 @@ msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr "Változtasd meg beállításaidat"
 
 msgid "ORGANELLES"
+msgstr "Sejtszervecskék"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
 msgstr "Sejtszervecskék"
 
 #, fuzzy
@@ -5256,9 +5260,6 @@ msgstr "Print Screen"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Játék szüneteltetése"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menü"
 
@@ -5441,7 +5442,7 @@ msgstr "Napfény"
 msgid "SUPPORTER_PATRONS"
 msgstr "Támogatók"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5583,11 +5584,11 @@ msgid "THE_DISTURBANCE"
 msgstr ""
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Patch térkép"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Jelenlegi fejlesztők"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6683,6 +6684,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Vegyületek:"
 
@@ -6732,6 +6737,14 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Fejlesztők"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Sejtszervecskék"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6949,6 +6962,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Sejtszervecske elhelyezése"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Sejtszervecskék"
 
@@ -6986,6 +7003,17 @@ msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. 
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
+"\n"
+"Élet.\n"
+"\n"
+"Egyszerű baktériumok jelentek meg az óceánok lenti régióiban. A játék elején a te fajod az utolsó univerzális közös ős (más néven LUCA) ezen a planétán.\n"
+"\n"
+"Ahhoz, hogy túléld ezt a kegyetlen világot, annyi vegyületet kell gyűjtened, amennyit csak találsz, és fejlesztened kell fajodat az evolúció során, hogy versenyképesek maradjanak a többi fajjal."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Egy távoli idegen bolygón az évmilliók óta tartó vulkanikus aktivitások és meteoresők miatt egy új csoda jött létre az univerzumban.\n"
 "\n"
@@ -7465,6 +7493,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplazma"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplazma"
 
@@ -7886,8 +7918,13 @@ msgstr "Közelítés"
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
-#~ msgid "HELP"
-#~ msgstr "Segítség"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Kitin"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Fajok migrációkihagyásának engedélyezése (ha a rendszer nem talált jó vándorlási utat)"

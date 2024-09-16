@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1372,10 +1372,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчики"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Wiki Разработчиков"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Форум Разработчиков"
 
@@ -1638,14 +1634,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Скорость Вращения:"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Хитин"
+msgid "EDITING_TITLE"
+msgstr "Название отсутствует"
 
 msgid "EDITOR"
 msgstr "Редактор"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "мутировал"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1761,7 +1757,7 @@ msgid "ENVIRONMENT"
 msgstr "Окружающая среда"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Сохранение природной глюкозы"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2102,7 +2098,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Команда Игрового Дизайна"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Команда Игрового Дизайна"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2186,6 +2182,9 @@ msgstr "Громкость пользовательского интерфейс
 
 msgid "HEALTH"
 msgstr "Здоровье"
+
+msgid "HELP"
+msgstr "Помощь"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Как играть в эту игру"
@@ -2947,8 +2946,9 @@ msgstr "Не разрешается показывать более {0} набо
 msgid "MAY"
 msgstr "Май"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Стать опущенным"
 
 msgid "MEDIANEXT"
 msgstr "MediaNext"
@@ -3955,6 +3955,10 @@ msgstr "Сменить настройки"
 
 msgid "ORGANELLES"
 msgstr "Органеллы"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Аксон"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Условия разблокировки проверяются только один раз за поколение при входе в редактор"
@@ -4966,9 +4970,6 @@ msgstr "Спринт"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Переключает режим спринтинга. Во время спринта клетки двигаются быстрее, но потребляют значительно больше АТФ."
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Меню паузы"
 
@@ -5139,7 +5140,7 @@ msgstr "Солнечный свет"
 msgid "SUPPORTER_PATRONS"
 msgstr "Поддержка"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5277,11 +5278,11 @@ msgid "THE_DISTURBANCE"
 msgstr "Беспорядок"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Карта Биомов"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Мир"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6315,6 +6316,13 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr "Не готово"
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+"Липкие внутренности клетки. Цитоплазма - простейшая помесь ионов, протеинов, да других веществ, растворённых в воде, что заполняют внутреннюю часть клетки.\n"
+"\n"
+"Одной из функцией, что выполняет цитоплазма - [b]гликолиз[/b], конвертация [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это то, на что клетки, что не обладают органеллами, и, соответственно, продвинутым метаболизмом полагаются в производстве энергии. Цитоплазма так же используется для хранения молекул в клетке и увеличения размеров клетки."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Соединения:"
 
@@ -6369,6 +6377,14 @@ msgstr "Не готово"
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Улучшения отсутствуют."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Wiki Разработчиков"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6605,6 +6621,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Разместить органеллу (или другую вещь)"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Аксон"
 
@@ -6647,6 +6667,17 @@ msgstr ""
 "Жизни.\n"
 "\n"
 "Простые микробы обитают в прибрежных тёплых озёрах . Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
 "\n"
 "Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
 
@@ -7139,6 +7170,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Протоплазма"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Протоплазма"
 
@@ -7557,8 +7592,13 @@ msgstr "Увеличить масштаб"
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
-#~ msgid "HELP"
-#~ msgstr "Помощь"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Стать опущенным"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Хитин"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Позволить видам не мигрировать (если не найдена хорошая миграция)"

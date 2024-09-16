@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1452,10 +1452,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Разработчици"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Частна Уикипедия"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Частен форум"
 
@@ -1724,14 +1720,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Хранителна скорост"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Хитинова"
+msgid "EDITING_TITLE"
+msgstr "Заглавието липсва"
 
 msgid "EDITOR"
 msgstr "Редактор"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "претърпяха мутация"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1865,7 +1861,7 @@ msgid "ENVIRONMENT"
 msgstr "Околна среда"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Задържане на глюкозата в околната среда"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2230,7 +2226,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Дизайнери"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Дизайнери"
 
 #, fuzzy
@@ -2314,6 +2310,9 @@ msgstr "Интерфейс"
 
 msgid "HEALTH"
 msgstr "Здраве"
+
+msgid "HELP"
+msgstr "Ръководство"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Отваряне на ръководството"
@@ -3105,8 +3104,9 @@ msgstr "Не е възможно показването на повече от {
 msgid "MAY"
 msgstr "Май"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
 
 msgid "MEDIANEXT"
 msgstr "Клавиш „Media Next“"
@@ -4149,6 +4149,10 @@ msgstr "Отваряне на настройките"
 
 msgid "ORGANELLES"
 msgstr "Органели"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
@@ -5204,9 +5208,6 @@ msgstr "Клавиш „Print Screen“"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Отваряне на страницата ни в „Patreon“"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Отваряне на менюто"
 
@@ -5383,7 +5384,7 @@ msgstr "Слънчева светлина"
 msgid "SUPPORTER_PATRONS"
 msgstr "Поддръжници"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5523,11 +5524,11 @@ msgid "THE_DISTURBANCE"
 msgstr "Смущението"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Карта"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Свят"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6636,6 +6637,10 @@ msgid "WIKI_CILIA_UPGRADES"
 msgstr "Подлежи на уточняване"
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Има химични съединения:"
 
@@ -6685,6 +6690,14 @@ msgstr "Подлежи на уточняване"
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Частна Уикипедия"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Аксон"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6909,6 +6922,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Добавяне на органел или друг обект"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Аксон"
 
@@ -6946,6 +6963,17 @@ msgstr "Метаболозомите са струпвания от протеи
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
+"\n"
+"Живот.\n"
+"\n"
+"Обикновени микроби обитават дълбините на океана. Вие сте последният универсален общ предшественик (ПУОП) на тази планета.\n"
+"\n"
+"За да оцелеете в този враждебен свят, трябва да се приспособите и да еволюирате Вашите създания."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "На далечна извънземна планета, след дълъг период на вулканична активност и метеоритни удари, се заражда нов феномен.\n"
 "\n"
@@ -7449,6 +7477,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Подлежи на уточняване"
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Подлежи на уточняване"
 
@@ -7863,8 +7895,13 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
-#~ msgid "HELP"
-#~ msgstr "Ръководство"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Изтриването не може да бъде отменено, сигурни ли сте, че искате да изтриете този запис?"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Хитинова"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Без преселване на създанията (ако няма подходящо преселване)"

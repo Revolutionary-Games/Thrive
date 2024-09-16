@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1385,10 +1385,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Développeurs"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Wiki de développement"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Forum de développement"
 
@@ -1654,14 +1650,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Vitesse d'absorption des ressources :"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Chitine"
+msgid "EDITING_TITLE"
+msgstr "Titre manquant"
 
 msgid "EDITOR"
 msgstr "Éditeur"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "a muté"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1786,7 +1782,7 @@ msgid "ENVIRONMENT"
 msgstr "Environnement"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Rétention environnementale de glucose"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2135,7 +2131,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Équipe conception du jeu"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Équipe conception du jeu"
 
 #, fuzzy
@@ -2220,6 +2216,9 @@ msgstr "Volume de l'interface"
 
 msgid "HEALTH"
 msgstr "Santé"
+
+msgid "HELP"
+msgstr "Aide"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Comment jouer au jeu"
@@ -2988,8 +2987,9 @@ msgstr "Il n'est pas permis d'afficher plus de {0} datasets !"
 msgid "MAY"
 msgstr "Mai"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Dévoluer"
 
 msgid "MEDIANEXT"
 msgstr "Média suivant"
@@ -4042,6 +4042,10 @@ msgid "ORGANELLES"
 msgstr "Organites"
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Axone"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Les conditions de déverrouillage ne sont vérifiées qu'une fois par génération lors de l'entrée dans l'éditeur"
 
@@ -5065,9 +5069,6 @@ msgstr "Impression écran"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Visitez notre page Patreon"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Menu de pause"
 
@@ -5243,7 +5244,7 @@ msgstr "Lumière du soleil"
 msgid "SUPPORTER_PATRONS"
 msgstr "Supporters"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5387,11 +5388,11 @@ msgid "THE_DISTURBANCE"
 msgstr "La Perturbation"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Carte des secteurs"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Monde"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6535,6 +6536,13 @@ msgstr ""
 "Pour [b]25[/b] points de mutation, modifiez les [b]cils[/b] déjà placés pour les transformer en [b]cils de traction[/b]. En plus des effets habituels de l'organite, les [b]cils de traction[/b] génèrent des tourbillons qui attirent les petites cellules et des fragments tels que les organites flottants."
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+"Les entrailles gluantes d'une cellule. Le [b]cytoplasme[/b] est le mélange de base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui constitue l'intérieur de la cellule.\n"
+"\n"
+"L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Composés :"
 
@@ -6599,6 +6607,21 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Wiki de développement"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr ""
+"Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
+"\n"
+"Chaque fois que vous vous reproduisez, vous pouvez ajouter, déplacer, modifier ou supprimer des organites à l'intérieur de votre cellule à l'aide de l'éditeur de microbes. Presque toutes ces actions coûtent des points de mutation. Les organites sont disposés dans une grille hexagonale, formant une forme contiguë enveloppée par la membrane cellulaire, et chaque organite a une empreinte hexagonale caractéristique. Les organites externes s'attachent à l'extérieur de la membrane, de sorte que pour la plupart d'entre eux, l'orientation du placement a de l'importance.\n"
+"\n"
+"Lorsque vous modifiez votre cellule, les autres espèces modifient également la disposition de leurs organites. Elles ont accès aux mêmes pouvoirs et capacités.\n"
+"\n"
+"Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6844,6 +6867,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Pas d'améliorations."
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Organites"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 "Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
@@ -6891,6 +6918,17 @@ msgstr "Pas d'améliorations."
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 "Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
 "\n"
@@ -7393,6 +7431,10 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasme"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasme"
 
@@ -7806,8 +7848,13 @@ msgstr "Zoomer"
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
-#~ msgid "HELP"
-#~ msgstr "Aide"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Dévoluer"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Chitine"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"

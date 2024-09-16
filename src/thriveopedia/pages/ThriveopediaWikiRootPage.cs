@@ -18,7 +18,11 @@ public partial class ThriveopediaWikiRootPage : ThriveopediaPage, IThriveopediaP
 
     public void OnStagesPressed()
     {
-        ThriveopediaManager.OpenPage("StagesRoot");
+        // TODO: fix this
+        // ThriveopediaManager.OpenPage("StagesRoot");
+
+        // For now opens the microbe stage page as a workaround
+        ThriveopediaManager.OpenPage("microbe_stage");
     }
 
     public void OnMechanicsPressed()

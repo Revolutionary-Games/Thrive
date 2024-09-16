@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-13 06:16+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1372,10 +1372,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "Oyun Geliştiricileri"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "Geliştirme Vikisi"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "Geliştirme Forumu"
 
@@ -1638,14 +1634,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "Kaydırma hızı:"
 
 #, fuzzy
-msgid "EDITING"
-msgstr "Kitin"
+msgid "EDITING_TITLE"
+msgstr "Başlık eksik"
 
 msgid "EDITOR"
 msgstr "Editör"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "mutasyona uğradı"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1761,7 +1757,7 @@ msgid "ENVIRONMENT"
 msgstr "Ortam"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "Çevresel glukoz tutulma payı"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2102,7 +2098,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "Oyun Tasarım Ekibi"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2186,6 +2182,9 @@ msgstr "Arayüz sesi"
 
 msgid "HEALTH"
 msgstr "Sağlık"
+
+msgid "HELP"
+msgstr "Yardım"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "Oyunun nasıl oynanacağını öğren"
@@ -2947,8 +2946,9 @@ msgstr "{0} veri kümesinden daha fazla gösterilemez!"
 msgid "MAY"
 msgstr "Mayıs"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Evrene İniş Yap"
 
 msgid "MEDIANEXT"
 msgstr "Media Next"
@@ -3950,6 +3950,10 @@ msgstr "Ayarlarını değiştir"
 
 msgid "ORGANELLES"
 msgstr "Organeller"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Akson"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Kilit açma koşulları, editöre girerken her kuşakta yalnızca bir kez kontrol edilir"
@@ -4959,9 +4963,6 @@ msgstr "Hızlan"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder. Ancak bu hücreler daha fazla ATP tüketir ve yorgunluk arttıkça ATP tüketimi daha da artar."
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "Ara menü"
 
@@ -5132,7 +5133,7 @@ msgstr "Güneş ışığı"
 msgid "SUPPORTER_PATRONS"
 msgstr "Destekçiler"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5270,11 +5271,11 @@ msgid "THE_DISTURBANCE"
 msgstr "Disturbance"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Arazi Haritası"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "Dünya"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6383,6 +6384,13 @@ msgstr ""
 "[b]Silleri[/b]; [b]Çeken Sillere[/b] dönüştürmek için, [b]25[/b] mutasyon puanıyla, onlarda yerleştirdiğiniz an değişiklik yapın. Bu organelin sıradan etkilerine ek olarak, [b]Çeken Siller[/b] küçük hücreleri ve yüzen organeller gibi parçaları kendine çekmek için gelgitler oluşturur."
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+"Bir hücrenin yapışkan iç kısmı. [b]Sitoplazma[/b], hücrenin içini dolduran iyonlar, proteinler ve suda çözünen diğer maddelerin ana karışımından oluşur.\n"
+"\n"
+"Yaptığı işlevlerden biri [b]Sitoplazma Glikolizi[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümüdür. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "Bileşikler:"
 
@@ -6447,6 +6455,21 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Geliştirme yok."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Geliştirme Vikisi"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr ""
+"Organeller, tek hücreli organizmaların \"organlarıdır\". Thrive'da organeller, hücrenizin yapı taşlarıdır ve hücrenin iç işleyişini ve yeteneklerini kontrol ederler.\n"
+"\n"
+"Her çoğaldığınızda, mikrop editörünü kullanarak hücrenizin içine organeller ekleyebilir, organelleri taşıyabilir veya kaldırabilirsiniz. Bu eylemlerin neredeyse tümü mutasyon puanına mal olur. Organeller, hücre zarına sarılmış bir şekilde altıgen bir ızgarada düzenlenir ve her organelin belirgin bir altıgen izi vardır. Dış organeller hücre zarının dışına tutunurlar. Bu yüzden birçoğu için yerleştirme yönü önemlidir.\n"
+"\n"
+"Hücrenizi düzenlerken, diğer türler de organel düzenlerini değiştirirler. Onların da aynı güçlere ve yeteneklere erişimi vardır.\n"
+"\n"
+"Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6708,6 +6731,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Organeller"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 "Organeller, tek hücreli organizmaların \"organlarıdır\". Thrive'da organeller, hücrenizin yapı taşlarıdır ve hücrenin iç işleyişini ve yeteneklerini kontrol ederler.\n"
@@ -6763,6 +6790,17 @@ msgstr ""
 "Hayat.\n"
 "\n"
 "Ilık ve sığ göletlerde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
+"\n"
+"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr ""
+"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"\n"
+"Hayat.\n"
+"\n"
+"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
 "\n"
 "Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
 
@@ -7286,6 +7324,13 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Geliştirme yok."
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr ""
+"Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
+"\n"
+"Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr ""
 "Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
@@ -7765,8 +7810,13 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
-#~ msgid "HELP"
-#~ msgstr "Yardım"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Evrene İniş Yap"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Kitin"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Windows'ta bilinmiyor"

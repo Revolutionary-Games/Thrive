@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"POT-Creation-Date: 2024-09-16 18:17+0300\n"
 "PO-Revision-Date: 2024-09-12 19:44+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1372,10 +1372,6 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr "開發人員"
 
-#, fuzzy
-msgid "DEVELOPMENT"
-msgstr "開發者 Wiki"
-
 msgid "DEVELOPMENT_FORUM"
 msgstr "開發論壇"
 
@@ -1638,14 +1634,14 @@ msgid "EDGE_PAN_SPEED"
 msgstr "平移速度："
 
 #, fuzzy
-msgid "EDITING"
-msgstr "幾丁質"
+msgid "EDITING_TITLE"
+msgstr "缺少標題"
 
 msgid "EDITOR"
 msgstr "編輯器"
 
 #, fuzzy
-msgid "EDITORS_AND_MUTATIONS"
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr "發生突變"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1761,7 +1757,7 @@ msgid "ENVIRONMENT"
 msgstr "環境"
 
 #, fuzzy
-msgid "ENVIRONMENTAL_CONDITIONS"
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr "環境葡萄糖保留度"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -2102,7 +2098,7 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "遊戲設計團隊"
 
 #, fuzzy
-msgid "GAME_SYSTEMS"
+msgid "GAME_SYSTEMS_TITLE"
 msgstr "遊戲設計團隊"
 
 msgid "GATHERED_ENERGY_TOOLTIP"
@@ -2186,6 +2182,9 @@ msgstr "GUI 音量"
 
 msgid "HEALTH"
 msgstr "生命值"
+
+msgid "HELP"
+msgstr "幫助"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr "如何遊玩"
@@ -2947,8 +2946,9 @@ msgstr "不允許顯示超過 {0} 個資料集！"
 msgid "MAY"
 msgstr "五月"
 
-msgid "MECHANICS"
-msgstr ""
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "下凡"
 
 msgid "MEDIANEXT"
 msgstr "Media Next"
@@ -3950,6 +3950,10 @@ msgstr "更改您的設定"
 
 msgid "ORGANELLES"
 msgstr "細胞器"
+
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "軸突"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "進入編輯器時，每代僅檢查一次解鎖條件"
@@ -4959,9 +4963,6 @@ msgstr "衝刺"
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr "切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多的 ATP，隨著壓力增加會消耗更多的 ATP。"
 
-msgid "STAGES"
-msgstr ""
-
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暫停選單"
 
@@ -5132,7 +5133,7 @@ msgstr "日光"
 msgid "SUPPORTER_PATRONS"
 msgstr "支持者"
 
-msgid "SURVIVAL"
+msgid "SURVIVAL_TITLE"
 msgstr ""
 
 msgid "SWITCH_TO_FRONT_CAMERA"
@@ -5270,11 +5271,11 @@ msgid "THE_DISTURBANCE"
 msgstr "干擾"
 
 #, fuzzy
-msgid "THE_PATCH_MAP"
+msgid "THE_PATCH_MAP_BUTTON"
 msgstr "區域地圖"
 
 #, fuzzy
-msgid "THE_WORLD"
+msgid "THE_WORLD_TITLE"
 msgstr "世界"
 
 msgid "THIS_IS_LOCAL_MOD"
@@ -6381,6 +6382,13 @@ msgstr ""
 "需要 [b]25[/b] 突變點數，修改[b]纖毛[/b]將其轉變為[b]捕食纖毛[/b]。除了細胞器的常規作用外，[b]捕食纖毛[/b]會產生漩渦來吸引小細胞和碎塊，例如漂浮的細胞器。"
 
 #, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+"細胞的黏稠內臟。[b]細胞質[/b]是溶解在水中的離子、蛋白質和其他物質的基本混合物，充滿在細胞內部。\n"
+"\n"
+"它其中一個功能是[b]細胞質糖解[/b]，將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。對於缺少細胞器而不能進行更高級代謝活動的細胞而言就是它們能量的來源。它也用於在細胞中儲存化合物並增加細胞的大小。"
+
+#, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "化合物："
 
@@ -6445,6 +6453,21 @@ msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "無升級。"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "開發者 Wiki"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr ""
+"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
+"\n"
+"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
+"\n"
+"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
+"\n"
+"從下面的清單中選擇一種細胞器以了解更多資訊。"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
@@ -6706,6 +6729,10 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "無升級。"
 
 #, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "細胞器"
+
+#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 "細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
@@ -6757,6 +6784,17 @@ msgstr "無升級。"
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr ""
 "在一顆遙遠的外星球上，經過數億年的化學演化，形成了自我複製的分子，導致了宇宙中一種新現象的發展。\n"
+"\n"
+"生命。\n"
+"\n"
+"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
+"\n"
+"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr ""
+"在一顆遙遠的外星球上，萬古的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
 "\n"
 "生命。\n"
 "\n"
@@ -7284,6 +7322,13 @@ msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "無升級。"
 
 #, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr ""
+"[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
+"\n"
+"視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr ""
 "[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
@@ -7763,8 +7808,13 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "縮小"
 
-#~ msgid "HELP"
-#~ msgstr "幫助"
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "下凡"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "幾丁質"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "在 Windows 上未知"
