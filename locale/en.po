@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-06-06 22:43+0200\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-11 14:45+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -63,6 +63,9 @@ msgstr "Aborted."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagic"
+
+msgid "ACCEPT"
+msgstr "Accept"
 
 msgid "ACTION_AWAKEN"
 msgstr "Awaken ({0:F1} / {1:F1})"
@@ -148,11 +151,11 @@ msgstr "(speed at which AI species mutate)"
 msgid "ALL"
 msgstr "All"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Allow species to not migrate (if no good migration is found)"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "Allow switching to related species on extinction"
 
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Allow species to not mutate (if no good mutation is found)"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "(allows continuing the game with a different species on extinction instead of getting a game over)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generic Statistics of All Worlds"
@@ -178,6 +181,9 @@ msgstr "You are already ascended"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "Always visible"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambiance volume"
@@ -433,6 +439,9 @@ msgstr "Best Patch:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Big Iron Chunk"
 
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Big Phosphate Chunk"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -447,18 +456,6 @@ msgstr "Press [thrive:input]g_toggle_binding[/thrive:input] to toggle binding mo
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind axes together"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Chance in each patch with few species (low biodiversity) to create a new species"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Chance to create a new species to increase biodiversity from a nearby patch"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Biodiversity-increasing species from nearby patch is given free population"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biodiversity-increasing species is mutated on creation"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescent Vacuole"
@@ -913,6 +910,12 @@ msgstr "Unit: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop content will be uploaded from folder: {0}"
 
+msgid "CONTINUE"
+msgstr "Continue"
+
+msgid "CONTINUE_AS_SPECIES"
+msgstr "[center]The game is not over yet, though. You can [b]continue[/b] by switching to play as the species {0} with a population of {1}.[/center]"
+
 msgid "CONTINUE_THRIVING"
 msgstr "Continue Thriving"
 
@@ -1284,6 +1287,9 @@ msgstr "Debug Panel"
 msgid "DECEMBER"
 msgstr "December"
 
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Decrease object size"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Default output device"
 
@@ -1440,6 +1446,9 @@ msgstr "Discard and continue"
 
 msgid "DISCARD_CHANGES"
 msgstr "Discard Changes"
+
+msgid "DISCARD_MIGRATION"
+msgstr "Discard Migration"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Disconnected Cells"
@@ -1726,6 +1735,9 @@ msgstr "Energy Sources:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Total energy gathered is {0} with individual cost of {1} resulting in unadjusted population of {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr "Damaged by entering engulf mode with no ATP"
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Enter Existing ID"
 
@@ -1821,6 +1833,12 @@ msgstr "Exit Editor"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Exit to Launcher"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "Experimental features"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(enable extra features that aren't polished enough to be in the game by default, if you play with these please share any feedback you have about these)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Export All Worlds"
@@ -2216,11 +2234,17 @@ msgstr "ID is not a valid number"
 msgid "ID_NUMBER"
 msgstr "ID Number"
 
+msgid "IMAGE_FILE_TYPES"
+msgstr "Supported Image Files"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Include later stage prototypes"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(some features may be unavailable once you reach the next stages)"
+
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Increase object size"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Industrial Stage"
@@ -2426,6 +2450,9 @@ msgstr "July"
 
 msgid "JUNE"
 msgstr "June"
+
+msgid "KEEP_MIGRATION"
+msgstr "Keep Migration"
 
 msgid "KEY_BACK"
 msgstr "Back"
@@ -2852,11 +2879,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Lock Day Night Cycle"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Consider patches with up to this many species having low biodiversity"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Low Performance Detected"
@@ -2890,9 +2914,6 @@ msgstr "Marine snow"
 
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Maximum species in a patch before forced extinctions"
 
 msgid "MAX_FPS"
 msgstr "Max FPS:"
@@ -2977,6 +2998,54 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr "Miche"
+
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "Avoid Predation Selection Pressure"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "Chunk Pressure"
+
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Compound Cloud Pressure"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Compound Conversion Efficiency Pressure"
+
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Selection Pressure[/b]\n"
+"  {0}\n"
+"[b]Energy[/b]\n"
+"  {1}\n"
+"[b]Occupant Scores[/b]\n"
+"  {2}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Environmental Compound Pressure"
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Maintain Compound Pressure"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr "Metabolic Stability Pressure"
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "No Operation Pressure"
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "Predation Effectiveness Pressure"
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Predator Root Pressure"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "Root Pressure"
+
+msgid "MICHE_TREE"
+msgstr "Miche Tree"
 
 msgid "MICROBE"
 msgstr "Microbe"
@@ -3222,6 +3291,33 @@ msgstr ""
 
 msgid "MIDDLE_MOUSE"
 msgstr "Middle mouse"
+
+msgid "MIGRATE"
+msgstr "Migrate"
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Error: failed to add migration, please check migration parameters"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "Going to migrate population from {0} to ..."
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "Going to migrate {2} units of population from {0} to {1}"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Select a destination patch for the migration that is connected to the source patch"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "Only one migration can be performed per editor session. You can view the queued migration below and keep it or cancel it to create a different migration"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "Select how much population to migrate from the source patch to the destination"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "Select a patch that has your species in it currently to act as the source for the migration"
+
+msgid "MIGRATION_TOOLTIP"
+msgstr "Migrate your species between patches without moving the patch you are in yourself"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
@@ -3488,6 +3584,9 @@ msgstr "Mucilage"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Mucilage Synthesis"
 
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Create a shield"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Multicellular Editor"
 
@@ -3582,9 +3681,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NEWS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Initial population for biodiversity-increasing species"
-
 msgid "NEW_GAME"
 msgstr "New Game"
 
@@ -3666,11 +3762,14 @@ msgstr "Current cell size too small to engulf target"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Not enough space in ingested matter storage to engulf target"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr "ATP production inhibited by toxin"
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Base movement speed decreased due to toxin"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor is now ready to be entered"
-
-msgid "NOT_FOUND_CHUNK"
-msgstr "Error: chunk not found"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Not started."
@@ -3736,6 +3835,9 @@ msgstr "x{0}"
 
 msgid "OCTOBER"
 msgstr "October"
+
+msgid "OFF"
+msgstr "Off"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Official Website"
@@ -3867,7 +3969,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organelle unlocks enabled"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "(Some organelles will have unlock conditions needed to place them)"
+msgstr "(some organelles will have unlock conditions needed to place them)"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "Organism Statistics"
@@ -3886,6 +3988,9 @@ msgstr "Osmoregulation cost multiplier"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cost of player species osmoregulation)"
+
+msgid "OTHER_COMPOUNDS"
+msgstr "Other"
 
 msgid "OUR_WIKI"
 msgstr "our Wiki"
@@ -3917,7 +4022,7 @@ msgid "OXYTOXISOME"
 msgstr "Oxytoxisome"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
@@ -3969,6 +4074,9 @@ msgstr "(passively gain reproduction compounds from the environment without havi
 
 msgid "PAST_DEVELOPERS"
 msgstr "Past Developers"
+
+msgid "PATCH_COLON"
+msgstr "Patch:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4046,6 +4154,9 @@ msgstr "Performance"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Perform unbinding"
+
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/second"
@@ -4180,12 +4291,6 @@ msgstr "Programming Team"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Project Management Team"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Protect just migrated populations from species cap"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Protect just created species from species cap"
-
 msgid "PROTEINS"
 msgstr "Proteins"
 
@@ -4251,9 +4356,6 @@ msgstr "Redo the last action"
 msgid "REFRESH"
 msgstr "Refresh"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Refund migrations in case of extinction in the target patch"
-
 msgid "REPORT"
 msgstr "Report"
 
@@ -4304,6 +4406,9 @@ msgstr "Reset to defaults?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Resistant to basic engulfment"
+
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Set size of the metaball to be placed. Alternatively can be changed with keyboard keybindings."
 
 msgid "RESOLUTION"
 msgstr "Resolution:"
@@ -4633,6 +4738,9 @@ msgstr "SFX volume"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Show on-screen damage effect"
+
 msgid "SHOW_HELP"
 msgstr "Show help"
 
@@ -4659,6 +4767,9 @@ msgstr "Enables / disables the unsaved progress warning popup for when the playe
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Show Thrive news feed (downloads from the internet)"
+
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Fire siderophore"
 
 msgid "SIGNALING_AGENT"
 msgstr "Signaling Agent"
@@ -4713,6 +4824,9 @@ msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:
 
 msgid "SMALL_IRON_CHUNK"
 msgstr "Small Iron Chunk"
+
+msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Small Phosphate Chunk"
 
 msgid "SOCIETY_STAGE"
 msgstr "Society Stage"
@@ -4802,12 +4916,6 @@ msgstr "Species Population"
 msgid "SPECIES_PRESENT"
 msgstr "Species Present"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Minimum population for species to split by multiple good found mutations"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Minimum population fraction of a species to allow split by mutations"
-
 msgid "SPECIES_TO_FIND"
 msgstr "Species to Find:"
 
@@ -4822,6 +4930,12 @@ msgstr "Speed:"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "spread to patches:"
+
+msgid "SPRINT"
+msgstr "Sprint"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Toggle sprinting mode. When sprinting cells move faster but consume more ATP and as strain builds consumes even more ATP."
 
 msgid "STAGES"
 msgstr "Stages"
@@ -4846,6 +4960,18 @@ msgstr "Start Research"
 
 msgid "STATISTICS"
 msgstr "Statistics"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP Production Penalty"
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Base Movement Reduction"
+
+msgid "STAT_DAMAGE"
+msgstr "Damage"
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr "Damage Scaling Per Oxygen-using Organelle"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam client library initialization failed"
@@ -4920,6 +5046,9 @@ msgstr "seconds of"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Logged in as: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "Strain bar visibility"
 
 msgid "STRATEGY_STAGES"
 msgstr "Strategy Stages"
@@ -5258,6 +5387,9 @@ msgstr "Toggle Inventory"
 msgid "TOGGLE_METRICS"
 msgstr "Toggle Metrics display"
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Toggle mucocyst shield"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Toggle navigation tree"
 
@@ -5273,14 +5405,70 @@ msgstr "Tools"
 msgid "TOOL_HAND_AXE"
 msgstr "Hand Axe"
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr "Not showing all recent versions as there are too many"
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Gathered Energy:"
 
 msgid "TOTAL_SAVES"
 msgstr "Total saves:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "Channel Inhibitor"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Inhibits ATP production of affected cell, which effectively prevents them from moving fast and can cause cells with not a lot of excess ATP production to die."
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Cytotoxin"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "A simple toxin that is reasonably effective against cells without specialized membranes."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "Fire Rate and Toxicity:"
+
+msgid "TOXIN_MACROLIDE"
+msgstr "Macrolide"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toxin that massively reduces base movement speed, making simple cells basically unable to move."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "Cyanide"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Cyanide targets oxygen metabolism processes and is very effective against cells with oxygen-based metabolism."
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toxin based on oxygen causing cellular damage. Less effective against species that utilize oxygen for metabolism."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "Fast-firing"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "Toxic"
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Toxin Effects on Target"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxin Resistance"
+
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Toxins can be customized to deal more damage but fire slower,\n"
+"or to fire much faster but with less damage per shot. \n"
+"The average toxicity of all toxin organelles is what determines total firing speed and damage modifier.\n"
+"The damage value displayed here is only fully accurate if this is the only toxic organelle.\n"
+"Or all organelles are modified to have the same toxicity value."
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "Toxin Type:"
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Different toxin types have various effects that are more effective against certain types of cells. For cells that have multiple different toxin types they are used in sequence rather than firing all at once."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5288,7 +5476,7 @@ msgstr ""
 "Vacuole"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released."
+msgstr "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of [thrive:compound type=\"oxytoxy\"][/thrive:compound]. More toxin vacuoles will increase the rate at which toxins can be released. Can be modified to switch the generated toxin type for other effects."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
@@ -5637,6 +5825,9 @@ msgstr "Pulling Cilia"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "When in engulf mode ([thrive:input]g_toggle_engulf[/thrive:input]) this type of cilia will cause vortices in the water that pull in nearby objects. Useful for capturing prey."
 
+msgid "UPGRADE_COST"
+msgstr "{0} ({1} MP)"
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "The default non-upgraded state"
 
@@ -5648,6 +5839,12 @@ msgstr "Injectisome Pilus"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Turns the pilus into an injectisome, dealing toxin damage when impaling other cells"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "Mucocyst"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Turns the slime jet into a mucocyst, which creates a protective sheath of slime around the cell. When activated, it gives temporary immunity to all damage sources."
 
 msgid "UPLOAD"
 msgstr "Upload"
@@ -5675,9 +5872,6 @@ msgstr "Automatically load Harmony patches from Assembly (doesn't require specif
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Biodiversity-increasing species creation steals population from existing species"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
@@ -5730,6 +5924,9 @@ msgstr "Viewer"
 msgid "VIEW_ALL"
 msgstr "View All"
 
+msgid "VIEW_CELL_PROCESSES"
+msgstr "View Cell Processes"
+
 msgid "VIEW_ONLINE"
 msgstr "View Online"
 
@@ -5750,6 +5947,12 @@ msgstr "VIP Supporters"
 
 msgid "VISIBLE"
 msgstr "Visible"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "Visible when almost full"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "Visible when above zero"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Suggest a Feature"
@@ -6788,9 +6991,9 @@ msgstr "No upgrades."
 
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
-"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:30px auto;\"><a href=\"/wiki/File:Multiperceptionconcept.jpg\" class=\"image\" title=\"Perception concept\"><img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Perception concept</p>			</div>		</div>[/indent]\n"
-"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:21px auto;\"><a href=\"/wiki/File:Multieditorconcept.jpeg\" class=\"image\" title=\"Editor concept\"><img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Editor concept</p>			</div>		</div>[/indent]\n"
-"[indent]—   <div style=\"width: 155px\">			<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:41px auto;\"><a href=\"/wiki/File:Multicolorconcept.png\" class=\"image\" title=\"Terrain color concept\"><img alt=\"Terrain color concept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\"></a></div></div>			<div class=\"gallerytext\"><p>Terrain color concept</p>			</div>		</div>[/indent]"
+"[indent]—   <div style=\"width: 155px\">\t\t\t<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:30px auto;\"><a href=\"/wiki/File:Multiperceptionconcept.jpg\" class=\"image\" title=\"Perception concept\"><img alt=\"Perception concept\" src=\"/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg\" decoding=\"async\" width=\"120\" height=\"90\" srcset=\"/images/thumb/7/75/Multiperceptionconcept.jpg/180px-Multiperceptionconcept.jpg 1.5x, /images/thumb/7/75/Multiperceptionconcept.jpg/240px-Multiperceptionconcept.jpg 2x\"></a></div></div>\t\t\t<div class=\"gallerytext\"><p>Perception concept</p>\t\t\t</div>\t\t</div>[/indent]\n"
+"[indent]—   <div style=\"width: 155px\">\t\t\t<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:21px auto;\"><a href=\"/wiki/File:Multieditorconcept.jpeg\" class=\"image\" title=\"Editor concept\"><img alt=\"Editor concept\" src=\"/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg\" decoding=\"async\" width=\"120\" height=\"108\" srcset=\"/images/thumb/9/9f/Multieditorconcept.jpeg/180px-Multieditorconcept.jpeg 1.5x, /images/thumb/9/9f/Multieditorconcept.jpeg/240px-Multieditorconcept.jpeg 2x\"></a></div></div>\t\t\t<div class=\"gallerytext\"><p>Editor concept</p>\t\t\t</div>\t\t</div>[/indent]\n"
+"[indent]—   <div style=\"width: 155px\">\t\t\t<div class=\"thumb\" style=\"width: 150px;\"><div style=\"margin:41px auto;\"><a href=\"/wiki/File:Multicolorconcept.png\" class=\"image\" title=\"Terrain color concept\"><img alt=\"Terrain color concept\" src=\"/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png\" decoding=\"async\" width=\"120\" height=\"68\" srcset=\"/images/thumb/9/92/Multicolorconcept.png/180px-Multicolorconcept.png 1.5x, /images/thumb/9/92/Multicolorconcept.png/240px-Multicolorconcept.png 2x\"></a></div></div>\t\t\t<div class=\"gallerytext\"><p>Terrain color concept</p>\t\t\t</div>\t\t</div>[/indent]"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prototype level of the development of the multicellular stage has started. Early multicellular is mostly playable. Later multicellular stage is more experimental prototype."
@@ -7655,7 +7858,7 @@ msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Item upload to the Steam Workshop has succeeded"
 
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "Item upload to the Steam Workshop has succeeded, but you need to accept the Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] before it is visible"
+msgstr "Item upload to the Steam Workshop has succeeded, but you need to accept the Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color] before it becomes visible"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "By submitting this item, you agree to Steam Workshop's [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]terms of service[/url][/color]"
@@ -7718,11 +7921,62 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
-#~ msgid "3D_STRATEGY_SPACE"
-#~ msgstr "3D, Strategy, Space"
+#~ msgid "OTHER"
+#~ msgstr "Other"
 
-#~ msgid "HELP"
-#~ msgstr "Help"
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Allow species to not migrate (if no good migration is found)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Allow species to not mutate (if no good mutation is found)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Chance in each patch with few species (low biodiversity) to create a new species"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Chance to create a new species to increase biodiversity from a nearby patch"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Biodiversity-increasing species from nearby patch is given free population"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Biodiversity-increasing species is mutated on creation"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Consider patches with up to this many species having low biodiversity"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Maximum species in a patch before forced extinctions"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Initial population for biodiversity-increasing species"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Protect just migrated populations from species cap"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Protect just created species from species cap"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Refund migrations in case of extinction in the target patch"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Minimum population for species to split by multiple good found mutations"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Minimum population fraction of a species to allow split by mutations"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Biodiversity-increasing species creation steals population from existing species"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Error: chunk not found"
+
+#~ msgid "DESTINATION_PATCH"
+#~ msgstr "Destination Patch"
+
+#~ msgid "SOURCE_PATCH"
+#~ msgstr "Source Patch"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"
@@ -7835,9 +8089,6 @@ msgstr "Zoom out"
 #~ msgid "STUFF_AT"
 #~ msgstr "Stuff at {0:F1}, {1:F1}:"
 
-#~ msgid "NOTICE_DAMAGED_BY_ENVIRONMENTAL_TOXIN"
-#~ msgstr "Damaged by environmental toxin"
-
 #~ msgid "PREDATORY_PILUS"
 #~ msgstr "Predatory Pilus"
 
@@ -7855,14 +8106,6 @@ msgstr "Zoom out"
 
 #~ msgid "AVERAGE"
 #~ msgstr "Average"
-
-#~ msgid "EXPERIMENTAL_LABEL"
-#~ msgstr "Experimental Settings"
-
-#~ msgid "EXPERIMENTAL_WARNING"
-#~ msgstr ""
-#~ "These settings are unpolished and unstable. They may affect your game in undesirable ways.\n"
-#~ "Use at your own risk."
 
 #~ msgid "STATISTICS_BUTTON_TOOLTIP"
 #~ msgstr "Insightful stats about the current game"
@@ -8300,9 +8543,6 @@ msgstr "Zoom out"
 
 #~ msgid "EDIAERESIS"
 #~ msgstr "Ë"
-
-#~ msgid "IGRAVE"
-#~ msgstr "Ì"
 
 #~ msgid "IACUTE"
 #~ msgstr "Í"

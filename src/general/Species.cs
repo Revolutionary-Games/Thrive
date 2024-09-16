@@ -119,13 +119,19 @@ public abstract class Species : ICloneable
     public string FormattedName => Genus + " " + Epithet;
 
     /// <summary>
-    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling. Player's species will be emphasized
-    ///   with bolding.
+    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for styling and hover-over tooltips. Player's
+    ///   species will be emphasized with bolding.
     /// </summary>
     [JsonIgnore]
     public string FormattedNameBbCode => PlayerSpecies ?
-        $"[url=species:{ID}][b][i]{FormattedName}[/i][/b][/url]" :
-        $"[url=species:{ID}][i]{FormattedName}[/i][/url]";
+        $"[b][i]{FormattedNameBbCodeUnstyled}[/i][/b]" :
+        $"[i]{FormattedNameBbCodeUnstyled}[/i]";
+
+    /// <summary>
+    ///   Returns <see cref="FormattedName"/> but includes bbcode tags for hover-over tooltips.
+    /// </summary>
+    [JsonIgnore]
+    public string FormattedNameBbCodeUnstyled => $"[url=species:{ID}]{FormattedName}[/url]";
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
@@ -287,6 +293,12 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    ///   Gets a species size factor used in parts of auto-evo
+    /// </summary>
+    /// <returns>Size factor of this species</returns>
+    public abstract float GetPredationTargetSizeFactor();
+
+    /// <summary>
     ///   Creates a cloned version of the species. This should only
     ///   really be used if you need to modify a species while
     ///   referring to the old data. In for example the Mutations
@@ -369,18 +381,15 @@ public abstract class Species : ICloneable
     {
         var result = new Dictionary<Compound, float>();
 
-        var simulationParameters = SimulationParameters.Instance;
-
         if (Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA > 0)
         {
-            result.Add(simulationParameters.GetCompound("ammonia"),
+            result.Add(Compound.Ammonia,
                 Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA);
         }
 
         if (Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES > 0)
         {
-            result.Add(simulationParameters.GetCompound("phosphates"),
-                Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
+            result.Add(Compound.Phosphates, Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
         }
 
         return result;

@@ -9,8 +9,8 @@ using Godot;
 /// </summary>
 public class ChemoreceptorComponent : IOrganelleComponent
 {
-    // Either target compound or species should be null
-    private Compound? targetCompound;
+    // Either target compound or species should be null (or invalid)
+    private Compound targetCompound;
     private Species? targetSpecies;
     private float searchRange;
     private float searchAmount;
@@ -31,14 +31,14 @@ public class ChemoreceptorComponent : IOrganelleComponent
 
         SetConfiguration((ChemoreceptorUpgrades)configuration);
 
-        if (targetCompound == null && targetSpecies == null)
+        if (targetCompound == Compound.Invalid && targetSpecies == null)
             GD.PrintErr("Chemoreceptor has no target compound or species, invalid configuration");
     }
 
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
         IWorldSimulation worldSimulation, float delta)
     {
-        if (targetCompound != null)
+        if (targetCompound != Compound.Invalid)
         {
             organelleContainer.ActiveCompoundDetections ??=
                 new HashSet<(Compound Compound, float Range, float MinAmount, Color Colour)>();
@@ -70,7 +70,7 @@ public class ChemoreceptorComponent : IOrganelleComponent
 
     private void SetDefaultConfiguration()
     {
-        targetCompound = SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
+        targetCompound = Constants.CHEMORECEPTOR_DEFAULT_COMPOUND;
         targetSpecies = null;
         searchRange = Constants.CHEMORECEPTOR_RANGE_DEFAULT;
         searchAmount = Constants.CHEMORECEPTOR_AMOUNT_DEFAULT;
@@ -93,7 +93,7 @@ public class ChemoreceptorComponentFactory : IOrganelleComponentFactory
 [JSONDynamicTypeAllowed]
 public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
 {
-    public ChemoreceptorUpgrades(Compound? targetCompound, Species? targetSpecies,
+    public ChemoreceptorUpgrades(Compound targetCompound, Species? targetSpecies,
         float searchRange, float searchAmount, Color lineColour)
     {
         TargetCompound = targetCompound;
@@ -103,7 +103,7 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
         LineColour = lineColour;
     }
 
-    public Compound? TargetCompound { get; set; }
+    public Compound TargetCompound { get; set; }
     public Species? TargetSpecies { get; set; }
     public float SearchRange { get; set; }
     public float SearchAmount { get; set; }

@@ -380,9 +380,9 @@ public partial class LineChart : VBoxContainer
             return;
         }
 
-        MinDisplayedDataSet = Mathf.Clamp(MinDisplayedDataSet, 0, MaxDisplayedDataSet);
+        MinDisplayedDataSet = Math.Clamp(MinDisplayedDataSet, 0, MaxDisplayedDataSet);
 
-        initialVisibleDataSets = Mathf.Clamp(initialVisibleDataSets, 0, MaxDisplayedDataSet);
+        initialVisibleDataSets = Math.Clamp(initialVisibleDataSets, 0, MaxDisplayedDataSet);
 
         // Start from 1 if defaultDataSet is specified as it's always visible
         var visibleDataSetCount = string.IsNullOrEmpty(defaultDataSet) ? 0 : 1;
@@ -413,7 +413,7 @@ public partial class LineChart : VBoxContainer
                 UpdateDataSetVisibility(data.Key, visible);
 
                 if (visible)
-                    visibleDataSetCount++;
+                    ++visibleDataSetCount;
             }
 
             // Initialize line
@@ -832,8 +832,8 @@ public partial class LineChart : VBoxContainer
         var font = GetThemeFont("font", "Label");
 
         // Values are rounded to make the font not be blurry
-        var position = new Vector2(Mathf.Round((drawArea.Size.X - font.GetStringSize(error).X) / 2),
-            Mathf.Round(drawArea.Size.Y / 2));
+        var position = new Vector2(MathF.Round((drawArea.Size.X - font.GetStringSize(error).X) / 2),
+            MathF.Round(drawArea.Size.Y / 2));
 
         drawArea.DrawString(font, position, error);
     }
@@ -934,7 +934,7 @@ public partial class LineChart : VBoxContainer
             return;
 
         // Populate the rows
-        for (int i = 0; i < XAxisTicks; i++)
+        for (int i = 0; i < XAxisTicks; ++i)
         {
             var label = new Label
             {

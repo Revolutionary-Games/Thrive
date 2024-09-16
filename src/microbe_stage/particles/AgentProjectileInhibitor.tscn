@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5qjxxm83qen0"]
+
+[ext_resource type="PackedScene" uid="uid://d0ag8a5ioxgkw" path="res://src/microbe_stage/particles/AgentProjectile.tscn" id="1_4fg0s"]
+[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="2_446r7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eqql3"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.153834, 0.257812, 0.156494, 1)
+albedo_texture = ExtResource("2_446r7")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ivrrl"]
+material = SubResource("StandardMaterial3D_eqql3")
+size = Vector2(5, 5)
+
+[node name="AgentProjectileInhibitor" instance=ExtResource("1_4fg0s")]
+draw_pass_1 = SubResource("PlaneMesh_ivrrl")

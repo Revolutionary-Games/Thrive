@@ -1,11 +1,11 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=2]
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://odxxeer7nkef"]
 
-[ext_resource path="res://assets/textures/background_particle_fuzzy.png" type="Texture2D" id=1]
+[ext_resource type="Texture2D" uid="uid://cai50f52nr8gw" path="res://assets/textures/background_particle_fuzzy.png" id="1"]
 
 [resource]
-flags_transparent = true
-flags_unshaded = true
+transparency = 1
+blend_mode = 1
+shading_mode = 0
 vertex_color_use_as_albedo = true
-params_blend_mode = 1
-albedo_color = Color( 0.780392, 0.0901961, 0.470588, 1 )
-albedo_texture = ExtResource( 1 )
+albedo_color = Color(0.780392, 0.0901961, 0.470588, 1)
+albedo_texture = ExtResource("1")

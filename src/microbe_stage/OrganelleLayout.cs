@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 /// <typeparam name="T">The type of organelle contained in this layout</typeparam>
 [UseThriveSerializer]
 public class OrganelleLayout<T> : HexLayout<T>
-    where T : class, IPositionedOrganelle
+    where T : class, IPositionedOrganelle, ICloneable
 {
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
@@ -42,11 +42,13 @@ public class OrganelleLayout<T> : HexLayout<T>
             Vector3 weightedSum = Vector3.Zero;
 
             // TODO: shouldn't this take multihex organelles into account?
-            foreach (var organelle in Organelles)
+            var organelleList = Organelles;
+            var listLength = organelleList.Count;
+            for (int i = 0; i < listLength; ++i)
             {
                 // totalMass += organelle.Definition.Mass;
                 ++count;
-                weightedSum += Hex.AxialToCartesian(organelle.Position) /* * organelle.Definition.Mass*/;
+                weightedSum += Hex.AxialToCartesian(organelleList[i].Position) /* * organelle.Definition.Mass*/;
             }
 
             if (count == 0)
@@ -171,11 +173,34 @@ public class OrganelleLayout<T> : HexLayout<T>
         }
     }
 
+    /// <summary>
+    ///   Deep clones this organelle layout as a new layout in a more efficient way than copying organelles from here
+    ///   to a new instance
+    /// </summary>
+    /// <returns>Cloned instance with deep copied organelle instances</returns>
+    public OrganelleLayout<T> Clone()
+    {
+        var result = new OrganelleLayout<T>();
+
+        foreach (var existingHex in existingHexes)
+        {
+            result.existingHexes.Add((T)existingHex.Clone());
+        }
+
+        return result;
+    }
+
     protected override void GetHexComponentPositions(T hex, List<Hex> result)
     {
         result.Clear();
 
-        result.AddRange(hex.Definition.GetRotatedHexes(hex.Orientation));
+        var rotated = hex.Definition.GetRotatedHexes(hex.Orientation);
+        var count = rotated.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            result.Add(rotated[i]);
+        }
     }
 
     /// <summary>

@@ -24,7 +24,7 @@ Prerequisites
 Godot mono version
 ------------------
 
-The currently used Godot version is __4.2.2 .NET__. The regular version
+The currently used Godot version is __4.3 .NET__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -50,11 +50,22 @@ LFS. Note that the GitHub option to download as .zip will not work
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
-On Linux use your package manager to install Git. On Mac install the
+On Linux use your package manager to install Git. This can be done in
+the terminal (if you don't know what is your distro's package manager,
+you can look that up with a search engine). On Mac, install the
 package manager [homebrew](https://brew.sh/) if you don't already have
-it, and use it to install Git. On Mac and Linux Git LFS is likely available
-as a package named `git-lfs`. If it is not install it manually. After
-installing remember to run `git lfs install` in terminal.
+it, and use it to install Git. On Mac and Linux Git LFS is likely
+available as a package named `git-lfs`. If it is not, install it
+manually. You can download Git LFS from
+[git-lfs.com](https://git-lfs.com). After downloading the file,
+extract it to wherever you want. In the terminal, change directory to
+the newly extracted folder (e.g. `cd git-lfs-3.4.1`) and then run the
+install script in the terminal with: `sudo ./install.sh`.
+
+After you have installed Git LFS, it must be initialized with the
+following command both on Linux and Mac: `git lfs install`. Running
+that command should then say "Git LFS initialized." If it doesn't then
+something went wrong with either Git or Git LFS installation.
 
 On Windows install Git with the official installer from:
 https://git-scm.com/download/win You can use this installer to also
@@ -338,8 +349,11 @@ the game can be ran.
 
 The easiest way to get these is to download precompiled ones by running:
 ```sh
-dotnet run --project Scripts -- native Fetch
+dotnet run --project Scripts -- native Fetch Install
 ```
+
+The debug variants are needed when running through Godot Editor for
+Thrive GDExtension to work.
 
 You can compile these libraries locally after installing C++
 development tools: cmake, and a compiler. On Linux clang is
@@ -351,24 +365,50 @@ technically clang should work (please send us a PR if you can tweak it
 to work). On Mac Xcode (or at least the command line tools for it)
 should be used.
 
-You can compile and install the native libraries for the Godot Editor
-in the Thrive folder with the following script:
+For the gdextension to be compiled, `godot` must be available in PATH
+to generate the required binding files. And when compiling outside the
+container Python and other [Godot build
+dependencies](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html#toc-devel-compiling)
+are required to be installed as well.
+
+
+On Linux installing LLVM tools may help working with the native
+libraries, the packages for these tools are usually called `llvm clang
+lld` and can be installed with your distro's package manager through
+the terminal.
+
+To compile inside a container the native libraries:
 ```sh
-dotnet run --project Scripts -- native Build
+dotnet run --project Scripts -- native Package
 ```
 
-Debug versions for easier native code development / more robust error
-condition checking can be built and installed by adding `-d` to the
-end of the previous command to specify debug versions of the libraries
-to be used. Sometimes debug versions of the libraries are available
-for download and in those cases `-d` can be added to the end of the
-`Fetch` command as well.
+For a non-container, local compile install the native libraries for the Godot Editor
+in the Thrive folder with the following script:
+```sh
+dotnet run --project Scripts -- native Build Install
+```
 
 Note that for release making you need the native libraries for all
-platforms:
+platforms, which if you can't build, you should download with:
 ```sh
 dotnet run --project Scripts -- native Fetch
 ```
+
+Once compiled or downloaded, you need to install the libraries for local Godot
+Editor use:
+```sh
+dotnet run --project Scripts -- native Install
+```
+
+The script automatically also handles debug versions of the
+libraries. If desired to only work on one variant of libraries the
+`--debug false` or `--debug true` parameter can be defined.
+
+Debug versions offer easier native code development / more robust
+error condition checking. And the GDExtension library is required in
+debug mode when running Thrive through Godot without exporting the
+game.
+
 
 ## Using Development Environments
 
@@ -444,8 +484,9 @@ In addition to the following optional downloads you need to have Godot
 in your PATH for the scripts to find it. To do this create a link /
 rename the Godot editor executable to just `godot` or `godot.exe` if
 you are on Windows. Then you need to either add the folder where that
-executable is to your system PATH or move the executable (along the
-other Godot resources it needs) to a path that is already in PATH.
+executable is to your system PATH or move the executable (along with
+the other Godot resources it needs, i.e. the entire `GodotSharp`
+folder) to a path that is already in PATH.
 
 ### 7zip and zip
 
@@ -524,6 +565,9 @@ find at least version `0.21`.
 
 On Linux use your package manager to install the `gettext` package. On Mac the same package
 is available through Homebrew.
+
+`msgmerge` is part of the gettext tools. So any errors with that
+missing are about these gettext tools.
 
 ## Running the Format Checks
 
@@ -646,6 +690,17 @@ Your locally cloned Thrive version may get messed up from time to time.
 
 You can find information about how to translate the game on the 
 [Working with translation page](working_with_translations.md).
+
+### Errors with running the translation extraction (`Failed to find translation tool 'msgmerge'`)
+
+These errors are related to the gettext tools, which must be installed
+and added to system PATH. So if you get this error double check that
+you have installed latest gettext version (some Windows sources for
+these tools have really old versions) and added the folder to
+PATH. After installing you need to restart the terminal / command
+prompt you are using to run the translation extraction as it will
+still be using the old PATH value. The easiest solution to that is to
+restart the terminal / command prompt so that it loads the new PATH.
 
 ### All files are marked as changed
 

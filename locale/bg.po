@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-08 07:30+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "Подлежи на уточняване"
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Микробен етап"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Триизмерен редактор"
@@ -66,6 +65,9 @@ msgstr "Прекратена."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Абисал"
+
+msgid "ACCEPT"
+msgstr ""
 
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -158,11 +160,13 @@ msgstr "(определя скоростта на мутация на Вашит
 msgid "ALL"
 msgstr "Всички"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Без преселване на създанията (ако няма подходящо преселване)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "Без мутации на създанията (ако няма подходяща мутация)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Обща статистика на всички светове"
@@ -188,6 +192,10 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Клавиш „Alt“"
+
+#, fuzzy
+msgid "ALWAYS_VISIBLE"
+msgstr "Видима"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Околна среда"
@@ -357,9 +365,8 @@ msgstr "Обратна наклонена черта"
 msgid "BACKSPACE"
 msgstr "Клавиш „Backspace“"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Окситоксиносинтеза"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -442,6 +449,10 @@ msgstr "Процъфтява:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Голям железен фрагмент"
 
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Голям железен фрагмент"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} млрд"
 
@@ -456,18 +467,6 @@ msgstr "Свързването е възможно само с индивиди 
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Свързване на осите"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Вероятност за създаване на нови създания в зони с ниско биоразнообразие"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Вероятност за създаване на нови създания, увеличаващи биоразнообразието, от съседна зона"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Създанията от съседна зона, увеличаващи биоразнообразието, получават допълнителна популация"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Създанията, увеличаващи биоразнообразието, претърпяват мутация при създаването си"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Биолуминесцентна вакуола"
@@ -677,9 +676,8 @@ msgstr "Наименованието „{0}“ вече съществува. П
 msgid "CHROMATIC_ABERRATION"
 msgstr "Хроматична аберация:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Окситоксиносинтеза"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Произвежда [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] и [thrive:compound type=\"sunlight\"]слънчева светлина[/thrive:compound] в околната среда."
@@ -947,6 +945,14 @@ msgstr "Тританопия (синьо и жълто)"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Съдържанието за работилницата ще бъде качено от следната папка: {0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Продължавайте да процъфтявате"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Избиране на създания"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Продължавайте да процъфтявате"
@@ -1369,6 +1375,10 @@ msgstr "Отстраняване на грешки"
 msgid "DECEMBER"
 msgstr "Декември"
 
+#, fuzzy
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Освобождаване на слуз"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "По подразбиране"
 
@@ -1524,6 +1534,10 @@ msgstr "Отхвърляне и продължаване"
 
 msgid "DISCARD_CHANGES"
 msgstr "Отхвърляне на промените"
+
+#, fuzzy
+msgid "DISCARD_MIGRATION"
+msgstr "Отхвърляне и продължаване"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Несвързани клетки"
@@ -1718,7 +1732,7 @@ msgstr "Редактор"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Митохондрия"
+msgstr "претърпяха мутация"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Отваряне на редактора"
@@ -1835,6 +1849,9 @@ msgstr "Източници на енергия:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Некоригираната популация на Вашите създания ({2}) се определя от общата усвоена енергийна стойност ({0}), разделена на индивидуалния разход ({1})"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Въвеждане на съществуващ идентификационен №"
 
@@ -1849,7 +1866,7 @@ msgstr "Околна среда"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Митохондрия"
+msgstr "Задържане на глюкозата в околната среда"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Задържане на глюкозата в околната среда"
@@ -1936,6 +1953,13 @@ msgstr "Преминаване към следващия раздел"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Стартираща програма"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(определя скоростта на мутация на Вашите съперници)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Експортиране"
@@ -2353,11 +2377,19 @@ msgstr "Идентификационният № не е валиден"
 msgid "ID_NUMBER"
 msgstr "Идентификационен №"
 
+#, fuzzy
+msgid "IMAGE_FILE_TYPES"
+msgstr "Видове"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Включване на следващите етапи на играта"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(следващите етапи на играта не са завършени и може да не функционират правилно)"
+
+#, fuzzy
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Създаване на нов"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Индустриализация"
@@ -2584,6 +2616,10 @@ msgstr "Юли"
 
 msgid "JUNE"
 msgstr "Юни"
+
+#, fuzzy
+msgid "KEEP_MIGRATION"
+msgstr "Аеробно дишане"
 
 msgid "KEY_BACK"
 msgstr "Клавиш „Back“"
@@ -3019,11 +3055,8 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "М"
 
 #, fuzzy
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Денонощен цикъл"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
@@ -3056,9 +3089,6 @@ msgstr "Морски сняг"
 
 msgid "MASTER_VOLUME"
 msgstr "Основен звук"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Максимален брой на създанията преди измиране в зоната"
 
 msgid "MAX_FPS"
 msgstr "Максимална ЧКС:"
@@ -3146,6 +3176,63 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} МиБ"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] се отделиха от [b][u]{1}[/u][/b] поради селекционен натиск"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Облаци"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Създания[/b]\n"
+"  {0}:{1}\n"
+"[b]Поколение[/b]\n"
+"  {2}\n"
+"[b]Популация[/b]\n"
+"  {3}\n"
+"[b]Цвят[/b]\n"
+"  #{4}\n"
+"[b]Поведение[/b]\n"
+"  {5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "{0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "Прочистване на възлите"
 
 msgid "MICROBE"
 msgstr "Микроб"
@@ -3393,6 +3480,44 @@ msgstr "  {0}: Среща се в {1} от създанията, средно п
 
 msgid "MIDDLE_MOUSE"
 msgstr "Среден бутон"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Количеството"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Създаването на модификацията е неуспешно"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Наблюдавайте нивото на здравето си, което се намира до нивото на [thrive:compound type=\"АТФ\"][/thrive:compound] (долу вдясно).\n"
+"Вашата клетка ще умре, ако изгуби всичките си точки здраве.\n"
+"Ако имате [thrive:compound type=\"АТФ\"][/thrive:compound], точките здраве се възстановяват.\n"
+"Събирайте [thrive:compound type=\"глюкоза\"][/thrive:compound] за да произвеждате [thrive:compound type=\"АТФ\"][/thrive:compound]."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} млн"
@@ -3665,6 +3790,10 @@ msgstr "Слуз"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Секреция"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Многоклетъчен редактор"
 
@@ -3762,9 +3891,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "НОВИНИ"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Начална популация на създанията, увеличаващи биоразнообразието"
-
 msgid "NEW_GAME"
 msgstr "Нова игра"
 
@@ -3847,11 +3973,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-msgid "NOTICE_READY_TO_EDIT"
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "Грешка: Фрагментът не е намерен"
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Базово движение"
+
+msgid "NOTICE_READY_TO_EDIT"
+msgstr ""
 
 msgid "NOT_STARTED_DOT"
 msgstr "Не е започната."
@@ -3917,6 +4047,9 @@ msgstr "{0} пъти"
 
 msgid "OCTOBER"
 msgstr "Октомври"
+
+msgid "OFF"
+msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Официален сайт"
@@ -4085,6 +4218,10 @@ msgstr "Осморегулационен разход"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(определя разхода на осморегулация на Вашите създания)"
 
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Химични съединения"
+
 msgid "OUR_WIKI"
 msgstr "нашата Уикипедия"
 
@@ -4115,6 +4252,7 @@ msgstr "Кислород"
 msgid "OXYTOXISOME"
 msgstr "Окситоксизома"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
 
@@ -4169,6 +4307,10 @@ msgstr "(създанията усвояват хранителните веще
 
 msgid "PAST_DEVELOPERS"
 msgstr "Бивши разработчици"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Процъфтява:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4251,6 +4393,10 @@ msgstr "Производителност"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Извършване на отделяне"
+
+#, fuzzy
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "{0} хил"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/в секунда"
@@ -4387,12 +4533,6 @@ msgstr "Програмисти"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Ръководители"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Защитаване на новите преселени популации от максималния брой на обектите"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Защитаване на новите създания от максималния брой на обектите"
-
 msgid "PROTEINS"
 msgstr "Протеини"
 
@@ -4459,9 +4599,6 @@ msgstr "Възстановяване на последното действие"
 msgid "REFRESH"
 msgstr "Опресняване"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Възстановяване на преселената популация при измиране в зоната за преселване"
-
 msgid "REPORT"
 msgstr "Отчет"
 
@@ -4513,6 +4650,10 @@ msgstr "Възстановяване на настройките по подра
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Предпазва от повечето ензими"
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Продължаване на играта"
 
 msgid "RESOLUTION"
 msgstr "Резолюция:"
@@ -4854,6 +4995,10 @@ msgstr "Ефекти"
 msgid "SHIFT"
 msgstr "Клавиш „Shift“"
 
+#, fuzzy
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Подлежи на уточняване"
+
 msgid "SHOW_HELP"
 msgstr "Отваряне на ръководството"
 
@@ -4881,6 +5026,10 @@ msgstr "Превключване на предупреждението при и
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Новини (от Интернет)"
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 msgid "SIGNALING_AGENT"
 msgstr "Сигнализиращ агент"
@@ -4935,6 +5084,10 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"mucilage\"]слуз[/thrive:compound]. Освобождава съхранената [thrive:compound type=\"mucilage\"]слуз[/thrive:compound] с натискане на [thrive:input]g_secrete_slime[/thrive:input], което увеличава скоростта на клетката и забавя нейните преследвачи."
 
 msgid "SMALL_IRON_CHUNK"
+msgstr "Малък железен фрагмент"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Малък железен фрагмент"
 
 msgid "SOCIETY_STAGE"
@@ -5027,12 +5180,6 @@ msgstr "Популация на създанията"
 msgid "SPECIES_PRESENT"
 msgstr "Настоящи създания"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Минимална популация за отделяне на създанията с няколко подходящи мутации"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Минимална част от популацията за отделяне на създанията с мутации"
-
 #, fuzzy
 msgid "SPECIES_TO_FIND"
 msgstr "Има създания:"
@@ -5048,6 +5195,14 @@ msgstr "Скорост:"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "текущо разпространение в зоните:"
+
+#, fuzzy
+msgid "SPRINT"
+msgstr "Клавиш „Print Screen“"
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Patreon“"
 
 msgid "STAGES"
 msgstr ""
@@ -5075,6 +5230,20 @@ msgstr "Изисква се рестартиране"
 
 msgid "STATISTICS"
 msgstr "Статистика"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ПРОИЗВОДСТВОТО НА АТФ Е НЕДОСТАТЪЧНО!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Базово движение"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Стартирането на „Steam“ е неуспешно"
@@ -5148,6 +5317,9 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Влезли сте като: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -5499,6 +5671,10 @@ msgstr "Свързване"
 msgid "TOGGLE_METRICS"
 msgstr "Превключване на показателите за производителност"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Превключване на резолюцията"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Превключване на навигацията"
 
@@ -5514,6 +5690,9 @@ msgstr "Инструменти"
 msgid "TOOL_HAND_AXE"
 msgstr "Ръчна брадва"
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Изминало време:"
@@ -5521,14 +5700,76 @@ msgstr "Изминало време:"
 msgid "TOTAL_SAVES"
 msgstr "Брой записи:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Зависи от включването на „Земеподобен живот“"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Токсична\n"
+"вакуола"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Токсична устойчивост"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Токсична устойчивост"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Вид:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсична\n"
 "вакуола"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
@@ -5901,6 +6142,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} МТ"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Позволява разграждането на повечето видове мембрани. Произвеждането на този ензим е възможно и без помощта на лизозомата, но добавянето му подобрява хранителната ефективност на клетката."
 
@@ -5914,6 +6159,14 @@ msgstr "Ресничките са подобни на камшичетата, н
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Ресничките са подобни на камшичетата, но те увеличават само скоростта на завъртане на клетките."
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} МТ"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"mucilage\"]слуз[/thrive:compound]. Освобождава съхранената [thrive:compound type=\"mucilage\"]слуз[/thrive:compound] с натискане на [thrive:input]g_secrete_slime[/thrive:input], което увеличава скоростта на клетката и забавя нейните преследвачи."
 
 msgid "UPLOAD"
 msgstr "Качване"
@@ -5941,9 +6194,6 @@ msgstr "Автоматично зареждане на „Harmony“ от „Ass
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Персонализирано потребителско име"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Създанията, увеличаващи биоразнообразието, използват популацията на техните съперници"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ръчно определяне на броя на фоновите нишки"
@@ -6000,6 +6250,10 @@ msgid "VIEW_ALL"
 msgstr "Всички версии"
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Всички версии"
 
@@ -6021,6 +6275,12 @@ msgstr "Значими поддръжници"
 
 msgid "VISIBLE"
 msgstr "Видима"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Предложения"
@@ -7535,6 +7795,7 @@ msgstr "Заглавие:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Качването на модификацията в „Steam Workshop“ е успешно"
 
+#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Качването на модификацията в „Steam Workshop“ е успешно, но трябва да приемете [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]условията за ползване[/url][/color], за да бъде видима"
 
@@ -7604,6 +7865,54 @@ msgstr "Отдалечаване"
 
 #~ msgid "HELP"
 #~ msgstr "Ръководство"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Без преселване на създанията (ако няма подходящо преселване)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Без мутации на създанията (ако няма подходяща мутация)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Вероятност за създаване на нови създания в зони с ниско биоразнообразие"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Вероятност за създаване на нови създания, увеличаващи биоразнообразието, от съседна зона"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Създанията от съседна зона, увеличаващи биоразнообразието, получават допълнителна популация"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Създанията, увеличаващи биоразнообразието, претърпяват мутация при създаването си"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Брой на създанията за създаване на зона с ниско биоразнообразие"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Максимален брой на създанията преди измиране в зоната"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Начална популация на създанията, увеличаващи биоразнообразието"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Защитаване на новите преселени популации от максималния брой на обектите"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Защитаване на новите създания от максималния брой на обектите"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Възстановяване на преселената популация при измиране в зоната за преселване"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Минимална популация за отделяне на създанията с няколко подходящи мутации"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Минимална част от популацията за отделяне на създанията с мутации"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Създанията, увеличаващи биоразнообразието, използват популацията на техните съперници"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Грешка: Фрагментът не е намерен"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Клавиш „Bassboost“"
@@ -7921,9 +8230,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "E_DOT"
 #~ msgstr "„Е“."
-
-#~ msgid "RATE"
-#~ msgstr "Количеството"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

@@ -58,10 +58,10 @@ public class WikiUpdater
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
     /// </summary>
     private readonly Regex[] whitelistedDomains =
-    {
+    [
         new(@".*\.wikipedia\.org\/.*"),
         new(@".*\.revolutionarygamesstudio\.com\/.*"),
-    };
+    ];
 
     /// <summary>
     ///   Mapping from English page names to internal page names, required for inter-page linking in game.

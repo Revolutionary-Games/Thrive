@@ -22,7 +22,17 @@ public struct OrganelleContainer
 
     public Dictionary<Enzyme, int>? AvailableEnzymes;
 
-    // The following few component vectors exist to allow access ti update the state of a few organelle components
+    /// <summary>
+    ///   Breakdown of available toxin types rather than just the overall count in <see cref="AgentVacuoleCount"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is nullable for now to avoid potential bugs when loading older saves.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<ToxinType, int>? AvailableToxinTypes;
+
+    // The following few component vectors exist to allow access to update the state of a few organelle components
     // from various systems to update the visuals state
 
     // TODO: maybe move these component caches to a separate component to reduce this component's size?
@@ -66,13 +76,37 @@ public struct OrganelleContainer
     public int AgentVacuoleCount;
 
     /// <summary>
+    ///   How good this microbe is at breaking down iron (score is sum of scores from all organelles)
+    /// </summary>
+    public int IronBreakdownEfficiency;
+
+    /// <summary>
+    ///   The slime jets with mucocyst
+    /// </summary>
+    public int MucocystCount;
+
+    /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
     ///   from messing with this value if we used the Capacity from the CompoundBag for the calculations that use
     ///   this.
     /// </summary>
     public float OrganellesCapacity;
 
+    /// <summary>
+    ///   To simplify toxin calculations toxicity is averaged over all the toxin vacuoles. The only alternative
+    ///   would be to track per type the toxicity and that would be quite a bit more difficult number to use, and
+    ///   would require a save upgrade step or a breakage point. For what are valid values here see:
+    ///   <see cref="ToxinUpgrades.Toxicity"/>
+    /// </summary>
+    public float AverageToxinToxicity;
+
     public int HexCount;
+
+    /// <summary>
+    ///   Count of how many oxygen-using parts this cell has. Used for example to adjust different toxin damage in
+    ///   relation to oxygen users.
+    /// </summary>
+    public int OxygenUsingOrganelles;
 
     /// <summary>
     ///   Lower values are faster rotation
@@ -414,8 +448,14 @@ public static class OrganelleContainerHelpers
 
     public static void CalculateOrganelleLayoutStatistics(this ref OrganelleContainer container)
     {
-        container.AvailableEnzymes?.Clear();
-        container.AvailableEnzymes ??= new Dictionary<Enzyme, int>();
+        if (container.AvailableEnzymes == null)
+        {
+            container.AvailableEnzymes = new Dictionary<Enzyme, int>();
+        }
+        else
+        {
+            container.AvailableEnzymes.Clear();
+        }
 
         // TODO: should the cached components (like slime jets) be cleared here? or is it better to keep the old
         // components around for a little bit?
@@ -426,13 +466,28 @@ public static class OrganelleContainerHelpers
         // Cells have a minimum of at least one unit of lipase enzyme
         container.AvailableEnzymes[Lipase.Value] = 1;
 
+        float rawToxicityValue = 0;
+
         container.AgentVacuoleCount = 0;
+        container.AverageToxinToxicity = 0;
+        container.IronBreakdownEfficiency = 0;
+        container.MucocystCount = 0;
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.OxygenUsingOrganelles = 0;
 
         if (container.Organelles == null)
             throw new InvalidOperationException("Organelle list needs to be initialized first");
+
+        if (container.AvailableToxinTypes == null)
+        {
+            container.AvailableToxinTypes = new Dictionary<ToxinType, int>();
+        }
+        else
+        {
+            container.AvailableToxinTypes.Clear();
+        }
 
         container.HexCount = container.Organelles.HexCount;
 
@@ -442,6 +497,10 @@ public static class OrganelleContainerHelpers
         for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
+            var organelleDefinition = organelle.Definition;
+
+            if (organelleDefinition.IsOxygenMetabolism)
+                ++container.OxygenUsingOrganelles;
 
             var components = organelle.Components;
             int componentCount = components.Count;
@@ -453,11 +512,29 @@ public static class OrganelleContainerHelpers
                 if (organelleComponent is AgentVacuoleComponent)
                 {
                     ++container.AgentVacuoleCount;
+
+                    // Keep track of specific toxin types
+                    var toxinType = organelle.Upgrades.GetToxinTypeFromUpgrades();
+
+                    container.AvailableToxinTypes.TryGetValue(toxinType, out var existing);
+                    container.AvailableToxinTypes[toxinType] = existing + 1;
+
+                    if (organelle.Upgrades?.CustomUpgradeData is ToxinUpgrades toxinUpgrades)
+                    {
+                        rawToxicityValue += toxinUpgrades.Toxicity;
+                    }
                 }
                 else if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    container.SlimeJets ??= new List<SlimeJetComponent>();
-                    container.SlimeJets.Add(slimeJetComponent);
+                    if (slimeJetComponent.IsMucocyst)
+                    {
+                        ++container.MucocystCount;
+                    }
+                    else
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
                 }
                 else if (organelleComponent is MovementComponent thrustComponent)
                 {
@@ -471,14 +548,16 @@ public static class OrganelleContainerHelpers
                 }
             }
 
-            if (organelle.Definition.HasSignalingFeature)
+            if (organelleDefinition.HasSignalingFeature)
                 container.HasSignalingAgent = true;
 
-            if (organelle.Definition.HasBindingFeature)
+            if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
 
+            container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
+
             container.OrganellesCapacity +=
-                MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelle.Definition,
+                MicrobeInternalCalculations.GetNominalCapacityForOrganelle(organelleDefinition,
                     organelle.Upgrades);
 
             var enzymes = organelle.GetEnzymes();
@@ -503,6 +582,8 @@ public static class OrganelleContainerHelpers
                 }
             }
         }
+
+        container.AverageToxinToxicity = rawToxicityValue / container.AgentVacuoleCount;
     }
 
     public static void UpdateEngulfingSizeData(this ref OrganelleContainer container,
@@ -560,8 +641,11 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    container.SlimeJets ??= new List<SlimeJetComponent>();
-                    container.SlimeJets.Add(slimeJetComponent);
+                    if (!slimeJetComponent.IsMucocyst)
+                    {
+                        container.SlimeJets ??= new List<SlimeJetComponent>();
+                        container.SlimeJets.Add(slimeJetComponent);
+                    }
                 }
                 else if (organelleComponent is MovementComponent thrustComponent)
                 {

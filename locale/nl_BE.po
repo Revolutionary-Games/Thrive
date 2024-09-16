@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-04-10 06:38+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-08 07:30+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "Algemene Bewerker En Strategiefasen"
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Microbestadium"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Bewerker"
@@ -66,6 +65,9 @@ msgstr "Gestopt."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abyssopelagisch"
+
+msgid "ACCEPT"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Ontwaak ({0:F1} / {1:F1})"
@@ -153,11 +155,17 @@ msgstr "(snelheid dat AI soorten muteren)"
 msgid "ALL"
 msgstr "Alle"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr ""
+"Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
+"Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
+"en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
 
 #, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
@@ -184,6 +192,10 @@ msgstr "Jij bent al verheven"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALWAYS_VISIBLE"
+msgstr "Zichtbaar"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Sfeer volume"
@@ -361,9 +373,8 @@ msgstr "Terug"
 msgid "BACKSPACE"
 msgstr "Terug"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "OxyToxy Synthese"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -448,6 +459,10 @@ msgstr "Beste Zone:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Groot Brok Ijzer"
 
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Groot Brok Ijzer"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -462,18 +477,6 @@ msgstr "Druk [thrive:input]g_toggle_binding[/thrive:input] om verbindingsmodus t
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Bind assen bij elkaar"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Kans in elk gebied met een paar soorten (lage biodiversiteit) om nieuwe soorten te maken"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Kans om een nieuwe soort te maken om de biodiversiteit te vergroten vanuit een naburig gebied"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Soort die de biodiversiteit vergroot van omliggende gebied krijgt gratis een bevolkingsaantal"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Soort die de Biodiversiteit vergroot is gemuteerd tijdens creatie"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminescente Vacuole"
@@ -685,9 +688,8 @@ msgstr "De gekozen bestandsnaam ({0}) bestaat al. Wil je dit overschrijven?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatische aberratie:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "OxyToxy Synthese"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produceert [thrive:compound type=\"glucose\"][/thrive:compound]. Snelheid schaalt met concentratie van [thrive:compound type=\"carbondioxide\"][/thrive:compound] en de intensiteit van [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -953,6 +955,14 @@ msgstr "Tritanope (Blauw-Geel)"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop inhoud zal geüpload worden van de map:{0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Begin met Thriving"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Kies een plek om de details hier te zien"
 
 #, fuzzy
 msgid "CONTINUE_THRIVING"
@@ -1327,6 +1337,10 @@ msgstr ""
 msgid "DECEMBER"
 msgstr "December"
 
+#, fuzzy
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Maak Nieuw"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Standaard uitvoer apparaat"
 
@@ -1488,6 +1502,10 @@ msgstr "Verwijderen en doorgaan"
 
 msgid "DISCARD_CHANGES"
 msgstr "Aanpassing verwijderen"
+
+#, fuzzy
+msgid "DISCARD_MIGRATION"
+msgstr "Verwijderen en doorgaan"
 
 #, fuzzy
 msgid "DISCONNECTED_CELLS"
@@ -1697,7 +1715,7 @@ msgstr "Editor"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Mitochondrium"
+msgstr "heeft een mutatie"
 
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1815,6 +1833,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Geef bestaand ID in"
 
@@ -1830,7 +1851,7 @@ msgstr "Omgeving"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitochondrium"
+msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -1926,6 +1947,13 @@ msgstr "Ga naar het volgende bewerkertabblad"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Launch E(toets)"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(snelheid dat AI soorten muteren)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -2375,11 +2403,19 @@ msgid "ID_NUMBER"
 msgstr "ID nummer"
 
 #, fuzzy
+msgid "IMAGE_FILE_TYPES"
+msgstr "Membraantypes"
+
+#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Organel plaatsen"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
+
+#, fuzzy
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Maak Nieuw"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -2606,6 +2642,10 @@ msgstr "Juli"
 
 msgid "JUNE"
 msgstr "Juni"
+
+#, fuzzy
+msgid "KEEP_MIGRATION"
+msgstr "Aërobe Ademhaling"
 
 msgid "KEY_BACK"
 msgstr "Terug"
@@ -3066,10 +3106,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr ""
-
-msgid "LOW_BIODIVERSITY_LIMIT"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -3107,10 +3144,6 @@ msgstr "Mariene sneeuw"
 
 msgid "MASTER_VOLUME"
 msgstr "Meester volume"
-
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "stierf uit op de planeet"
 
 msgid "MAX_FPS"
 msgstr "Max FPS:"
@@ -3181,6 +3214,51 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 msgid "MIB_VALUE"
+msgstr ""
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "ontstaan door verschillende selectiedruk"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Wolken met chemische stoffen"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr "{0} (x{1})"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TREE"
 msgstr ""
 
 #, fuzzy
@@ -3407,6 +3485,48 @@ msgstr ""
 
 msgid "MIDDLE_MOUSE"
 msgstr "Midden muis"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Beoordeel"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Mod creatie gefaald"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Houd je gezondheidsbalk naast de ATP-balk (rechtsonder) in de gaten.\n"
+"Je cel sterft als hij geen gezondheid meer heeft.\n"
+"Je regenereert gezondheid terwijl je ATP hebt.\n"
+"Zorg ervoor dat u voldoende glucose verzamelt om ATP te produceren."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr ""
+"Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
+"Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
+"en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de bewerker)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de bewerker)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
@@ -3677,6 +3797,10 @@ msgstr ""
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Chemosynthese"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Pauzeer het spel"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Meercellige bewerker"
 
@@ -3777,9 +3901,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NIEUWS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Startpopulatie voor soorten die de biodiversiteit vergroten"
-
 msgid "NEW_GAME"
 msgstr "Nieuw Spel"
 
@@ -3862,11 +3983,15 @@ msgstr "Grootte van huidige cel is te klein om doelwit op te slokken"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Niet genoeg plaats in opslag voor ingeslikte materie om doelwit op te slokken"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Basisbeweging"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Bewerker is nu klaar om er in te gaan"
-
-msgid "NOT_FOUND_CHUNK"
-msgstr "Fout: brokstuk niet gevonden"
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -3932,6 +4057,9 @@ msgstr "2x"
 
 msgid "OCTOBER"
 msgstr "Oktober"
+
+msgid "OFF"
+msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
@@ -4114,6 +4242,10 @@ msgstr "Osmoregulatiekosten"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Osmoregulatiekosten"
 
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Chemische verbindingen"
+
 msgid "OUR_WIKI"
 msgstr "onze Wiki"
 
@@ -4144,6 +4276,7 @@ msgstr "Zuurstof"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxisoom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Een gemodificeerd metabolosoom dat verantwoordelijk is voor de productie van een primitieve vorm van het giftige middel OxyToxy NT."
 
@@ -4203,6 +4336,10 @@ msgstr "{0} bevolking veranderd met {1} door: {2}"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eerdere ontwikkelaars"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Beste Zone:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4290,6 +4427,10 @@ msgstr "Prestaties"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Start ontbinden"
+
+#, fuzzy
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "{0} K"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/seconde"
@@ -4427,12 +4568,6 @@ msgstr "Programmeerteam"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Project Management Team"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr "Proteïnen"
 
@@ -4504,9 +4639,6 @@ msgstr "Voer de laatste actie opnieuw uit"
 msgid "REFRESH"
 msgstr "Vernieuwen"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
-
 msgid "REPORT"
 msgstr "Rapport"
 
@@ -4566,6 +4698,10 @@ msgstr "Standaardinstellingen herstellen?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Hervat het spel"
 
 msgid "RESOLUTION"
 msgstr "Resolutie:"
@@ -4926,6 +5062,10 @@ msgstr "Volume Geluidseffecten"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Het flagellum (meervoud: flagella) is een zweepachtige bundel van proteïne vezels, dat vasthangt aan het celmembraan, die ATP gebruikt om golven te vormen en zo de cel voort te stuwen in een bepaalde richting. De positie van het flagellum bepaalt de richting waarin het stuwkracht levert voor de cel. De stuwrichting is tegengesteld aan de richting waarin de flagellum wijst, bijvoorbeeld een flagellum die aan de linkerkant van een cel is geplaatst, geeft stuwkracht wanneer hij naar rechts beweegt."
+
 msgid "SHOW_HELP"
 msgstr "Laat hulp zien"
 
@@ -4957,6 +5097,10 @@ msgstr "Zet aan / uit de waarschuwing voor niet opgeslagen voortgang wanner de s
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 #, fuzzy
 msgid "SIGNALING_AGENT"
@@ -5018,6 +5162,10 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "SMALL_IRON_CHUNK"
+msgstr "Klein Brok Ijzer"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Klein Brok Ijzer"
 
 #, fuzzy
@@ -5105,12 +5253,6 @@ msgstr "Soortenpopulatie"
 msgid "SPECIES_PRESENT"
 msgstr "Soorten aanwezig"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
-
 #, fuzzy
 msgid "SPECIES_TO_FIND"
 msgstr "Soorten:"
@@ -5128,6 +5270,14 @@ msgstr "Snelheid:"
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "verspreid naar gebieden:"
+
+#, fuzzy
+msgid "SPRINT"
+msgstr "Print Screen(toets)"
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Pauzeer het spel"
 
 msgid "STAGES"
 msgstr ""
@@ -5155,6 +5305,20 @@ msgstr "Herstart vereist"
 
 msgid "STATISTICS"
 msgstr "Statistieken"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP PRODUCTIE TE LAAG!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Basisbeweging"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Initialisatie van Steam-clientbibliotheek mislukt"
@@ -5233,6 +5397,9 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ingelogd als : {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -5584,6 +5751,10 @@ msgstr "Schakel verbinden"
 msgid "TOGGLE_METRICS"
 msgstr "Schakel FPS weergave"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Volledig scherm schakelen"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -5599,20 +5770,93 @@ msgstr "Hulpmiddelen"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Verzamelde Energie:"
 
 msgid "TOTAL_SAVES"
 msgstr "Totaal aantal opgeslagen bestanden:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Zelfmoord"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxine\n"
+"Vacuole"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze zijn in staat om veel sneller glucose om te zetten in ATP dan cytoplasma, dit door middel van een proces genaamd aerobe respiratie. Het heeft echter wel zuurstof nodig om te functioneren en lagere zuurstofniveaus in de omgeving vertragen dus de ATP-productie. Omdat de metabolosomen direct in het cytoplasma zijn gesuspendeerd, voert de omringende vloeistof enige glycolyse uit."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Thrive Wiki In Het Spel"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toxine-resistentie"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
+"Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
+"en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "HP:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Agressieve microben zullen prooien over grotere afstanden achtervolgen\n"
+"en hebben meer kans om roofdieren te bestrijden wanneer ze worden aangevallen.\n"
+"Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
+"en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxine\n"
 "Vacuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
 
@@ -5996,6 +6240,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
 
@@ -6009,6 +6257,14 @@ msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel 
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Het kleverige binnenste van een cel. Het cytoplasma is het basismengsel van ionen, proteïnen en andere in water opgeloste stoffen die de binnenkant van de cel vullen. Een van de functies die het vervult is glycolyse, de omzetting van glucose in ATP-energie. Voor cellen zonder organellen die zorgen voor een geavanceerder metabolisme, is dit waar ze op vertrouwen voor energie. Het wordt ook gebruikt om moleculen in de cel op te slaan en om de cel te vergroten."
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} MP"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "UPLOAD"
 msgstr "Upload"
@@ -6038,9 +6294,6 @@ msgstr "Zelfmoord"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een gebruikersnaam naar keuze"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Handmatig aantal achtergrondthreads instellen"
@@ -6098,6 +6351,10 @@ msgid "VIEW_ALL"
 msgstr "Alles uitschakelen"
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Alles uitschakelen"
 
@@ -6121,6 +6378,12 @@ msgstr "VIP Ondersteuners"
 
 msgid "VISIBLE"
 msgstr "Zichtbaar"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Stel een Eigenschap Voor"
@@ -6663,7 +6926,7 @@ msgstr "Processen"
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "Effecten"
+msgstr "Upgrades"
 
 #, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
@@ -7628,6 +7891,7 @@ msgstr "Item titel:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Item uploaden naar de Steam Workshop is gelukt"
 
+#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Het uploaden van items naar de Steam Workshop is gelukt, maar je moet de Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]servicevoorwaarden[/url][/color] accepteren voor het zichtbaar is"
 
@@ -7696,6 +7960,31 @@ msgstr "Uitzoomen"
 
 #~ msgid "HELP"
 #~ msgstr "Help"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Sta soorten toe niet te muteren (als geen goede mutatie gevonden wordt)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Kans in elk gebied met een paar soorten (lage biodiversiteit) om nieuwe soorten te maken"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Kans om een nieuwe soort te maken om de biodiversiteit te vergroten vanuit een naburig gebied"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Soort die de biodiversiteit vergroot van omliggende gebied krijgt gratis een bevolkingsaantal"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Soort die de Biodiversiteit vergroot is gemuteerd tijdens creatie"
+
+#, fuzzy
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "stierf uit op de planeet"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Startpopulatie voor soorten die de biodiversiteit vergroten"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Fout: brokstuk niet gevonden"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost(toets)"
@@ -7968,9 +8257,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Beoordeel"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

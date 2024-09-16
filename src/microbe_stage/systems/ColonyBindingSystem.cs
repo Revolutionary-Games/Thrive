@@ -43,13 +43,11 @@ using World = DefaultEcs.World;
 public sealed class ColonyBindingSystem : AEntitySetSystem<float>
 {
     private readonly IWorldSimulation worldSimulation;
-    private readonly Compound atp;
 
     public ColonyBindingSystem(IWorldSimulation worldSimulation, World world, IParallelRunner parallelRunner) :
         base(world, parallelRunner)
     {
         this.worldSimulation = worldSimulation;
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -94,7 +92,7 @@ public sealed class ColonyBindingSystem : AEntitySetSystem<float>
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
 
-        if (compounds.TakeCompound(atp, cost) < cost - 0.001f)
+        if (compounds.TakeCompound(Compound.ATP, cost) < cost - 0.001f)
         {
             control.SetStateColonyAware(entity, MicrobeState.Normal);
             return;

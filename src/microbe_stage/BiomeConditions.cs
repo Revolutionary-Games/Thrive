@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
@@ -105,6 +106,8 @@ public class BiomeConditions : ICloneable
     /// <summary>
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
     ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must to be updated.
+    ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
+    ///   automatically.
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
@@ -166,6 +169,23 @@ public class BiomeConditions : ICloneable
             default:
                 throw new ArgumentOutOfRangeException(nameof(amountType), amountType, null);
         }
+    }
+
+    /// <summary>
+    ///   Modifies the long-term amount of a compound in this biome. This is preferable to directly modifying
+    ///   <see cref="ChangeableCompounds"/>. This is only usable for compounds that don't vary along an in-game day.
+    /// </summary>
+    /// <param name="compound">The compound to modify</param>
+    /// <param name="newValue">New value to set</param>
+    public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue)
+    {
+        ChangeableCompounds[compound] = newValue;
+
+        // Reset other related values
+        AverageCompounds[compound] = newValue;
+
+        // This is only fine to do on compounds that don't vary along a day
+        CurrentCompoundAmounts[compound] = newValue;
     }
 
     /// <summary>
@@ -253,21 +273,16 @@ public class BiomeConditions : ICloneable
                     $"(scale factor is {Constants.CLOUD_SPAWN_DENSITY_SCALE_FACTOR})");
             }
 
-            if (compound.Value.Ambient > 0 && compound.Key.IsGas)
+            if (compound.Value.Ambient > 0 && SimulationParameters.Instance.GetCompoundDefinition(compound.Key).IsGas)
             {
                 sumOfGasses += compound.Value.Ambient;
             }
         }
 
-        if (sumOfGasses > 0)
+        if (sumOfGasses > 1)
         {
-            // Make sure gasses add up to 100% to make sure they make sense. 0.005 is here to allow being off by up to
-            // half a percent
-            if (Math.Abs(sumOfGasses - 1) >= 0.005f)
-            {
-                throw new InvalidRegistryDataException(name, GetType().Name,
-                    "Gas compounds should add up to 1 to have 100% of air composition covered");
-            }
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Gas compounds shouldn't together be over 100%");
         }
 
         foreach (var chunk in Chunks)

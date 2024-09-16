@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
-using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -57,6 +56,9 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public Patch CurrentPatch => patchMapTab.CurrentPatch;
 
     [JsonIgnore]
+    public Patch? TargetPatch => patchMapTab.TargetPatch;
+
+    [JsonIgnore]
     public Patch? SelectedPatch => patchMapTab.SelectedPatch;
 
     protected override string MusicCategory => "MicrobeEditor";
@@ -103,8 +105,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     public void OnCurrentPatchUpdated(Patch patch)
     {
         cellEditorTab.OnCurrentPatchUpdated(patch);
-
-        reportTab.UpdatePatchDetails(patch);
 
         cellEditorTab.UpdateBackgroundImage(patch.BiomeTemplate);
     }
@@ -153,7 +153,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-            reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+            reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
         }
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
@@ -179,8 +179,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         {
             editorComponent.Init(this, fresh);
         }
-
-        patchMapTab.OnSelectedPatchChanged = OnSelectPatchForReportTab;
     }
 
     protected override void OnEnterEditor()
@@ -233,7 +231,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
         }
 
-        reportTab.UpdatePatchDetails(CurrentPatch, patchMapTab.SelectedPatch);
+        reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
     }
 
     protected override void ElapseEditorEntryTime()
@@ -294,6 +292,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             {
                 reportTab.Show();
                 SetEditorObjectVisibility(false);
+                reportTab.UpdatePatchDetailsIfNeeded(SelectedPatch ?? CurrentPatch);
                 break;
             }
 
@@ -322,19 +321,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
     {
         var species = (MicrobeSpecies?)CurrentGame.GameWorld.PlayerSpecies;
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
-
-#pragma warning disable 162
-
-        // Disabled warning as this is a tweak constant
-        // ReSharper disable ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
-        if (Constants.CREATE_COPY_OF_EDITED_SPECIES)
-        {
-            // Create a mutated version of the current species code to compete against the player
-            CreateMutatedSpeciesCopy(species);
-        }
-
-        // ReSharper restore ConditionIsAlwaysTrueOrFalse HeuristicUnreachableCode
-#pragma warning restore 162
 
         base.SetupEditedSpecies();
     }
@@ -367,25 +353,5 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         CurrentGame.GameWorld.UnlockProgress.UnlockAll = true;
         cellEditorTab.UnlockAllOrganelles();
-    }
-
-    private void OnSelectPatchForReportTab(Patch patch)
-    {
-        reportTab.UpdatePatchDetails(patch, patch);
-    }
-
-    private void CreateMutatedSpeciesCopy(Species species)
-    {
-        var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
-
-        var random = new XoShiRo128starstar();
-
-        var population = random.Next(Constants.INITIAL_SPLIT_POPULATION_MIN,
-            Constants.INITIAL_SPLIT_POPULATION_MAX + 1);
-
-        if (!CurrentGame.GameWorld.Map.CurrentPatch!.AddSpecies(newSpecies, population))
-        {
-            GD.PrintErr("Failed to create a mutated version of the edited species");
-        }
     }
 }

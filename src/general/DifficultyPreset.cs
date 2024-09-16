@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition for a difficulty preset
@@ -55,6 +56,9 @@ public class DifficultyPreset : IDifficulty, IRegistryType
 
     [JsonProperty]
     public bool PassiveReproduction { get; private set; }
+
+    [JsonProperty]
+    public bool SwitchSpeciesOnExtinction { get; private set; }
 
     [JsonProperty]
     public bool LimitGrowthRate

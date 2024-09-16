@@ -258,8 +258,9 @@ void TaskSystem::QueuedTask::MoveDataFromOther(QueuedTask&& other)
 
 TaskSystem::TaskSystem() :
 #ifdef USE_LOCK_FREE_QUEUE
-    // TODO: pick a reasonable queue size (right now assumed that all possible jobs are not queued at once)
-    taskQueue(JPH::cMaxPhysicsJobs / 2),
+    // Must have enough queue size to not deadlock when running with 32 threads (untested if this works with more than
+    // 32 threads, but hopefully this does)
+    taskQueue(JPH::cMaxPhysicsJobs),
 #endif
     queueLock(queueMutex)
 {
@@ -365,9 +366,13 @@ void TaskSystem::TryEnqueueTask(QueuedTask&& task)
 
                 std::this_thread::sleep_for(MicrosecondDuration(900));
             }
-            else
+            else if (retryCount > 65)
             {
                 std::this_thread::yield();
+            }
+            else
+            {
+                HYPER_THREAD_YIELD;
             }
         }
     }

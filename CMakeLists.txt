@@ -17,7 +17,8 @@ option(USE_OBJECT_POOLS
   ON)
 
 option(LOCK_FREE_COLLISION_RECORDING
-  "If on uses lock free collision data recording which is hopefully faster than with locks" ON)
+  "If on uses lock free collision data recording which is hopefully faster than with locks"
+  ON)
 
 option(USE_SMALL_VECTOR_POOLS
   "If on uses also pools for small list allocations in physics" OFF)
@@ -35,15 +36,19 @@ option(THRIVE_DISTRIBUTION
 # This is disabled for now as this is not available when cross compiling to
 # Windows
 option(USE_ATOMIC_COLLISION_WRITE
-  "If on uses atomic write to collision data that multiple threads might want
-  to read/write" OFF)
+  "If on uses atomic write to collision data that multiple threads might want to read/write"
+  OFF)
 
 option(WARNINGS_AS_ERRORS "When on treat compiler warnings as errors" ON)
 
 option(NULL_HAS_UNUSUAL_REPRESENTATION
   "When on it is not assumed that null equals numeric 0" OFF)
 
+# Extra CMake module load path if we ever need those for Thrive
 # set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake")
+
+option(THRIVE_GODOT_API_FILE "Set to override folder Godot API file is looked for in"
+  "")
 
 # Also use a lib prefix on windows for consistency
 if(WIN32)
@@ -56,30 +61,50 @@ if(NOT THRIVE_AVX)
   set(CMAKE_STATIC_LIBRARY_SUFFIX "_without_avx${CMAKE_STATIC_LIBRARY_SUFFIX}")
 endif()
 
-# static building
+# static building (on Linux)
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)
 
-# Jolt requires a "Distribution" build type
+# Configuration types. Jolt requires a "Distribution" build type
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution")
 
+# Set flags for Distribution configuration
+# These are based on relwithdebinfo as we want symbols for eventual crash reporting
+set(CMAKE_C_FLAGS_DISTRIBUTION "${CMAKE_C_FLAGS_RELWITHDEBINFO}" CACHE
+  STRING "Flags used by the C compiler during Distribution builds." FORCE)
+set(CMAKE_CXX_FLAGS_DISTRIBUTION "${CMAKE_CXX_FLAGS_RELWITHDEBINFO}" CACHE
+  STRING "Flags used by the CXX compiler during Distribution builds." FORCE)
+set(CMAKE_EXE_LINKER_FLAGS_DISTRIBUTION "${CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO}" CACHE
+  STRING "Flags used for linking binaries during Distribution builds." FORCE)
+set(CMAKE_SHARED_LINKER_FLAGS_DISTRIBUTION "${CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO}" CACHE
+  STRING "Flags used by the shared libraries linker during Distribution builds." FORCE)
+set(CMAKE_STATIC_LINKER_FLAGS_DISTRIBUTION "${CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO}" CACHE
+  STRING "Flags used by the static libraries linker during Distribution builds." FORCE)
+
+mark_as_advanced(
+  CMAKE_CXX_FLAGS_DISTRIBUTION
+  CMAKE_C_FLAGS_DISTRIBUTION
+  CMAKE_EXE_LINKER_FLAGS_DISTRIBUTION
+  CMAKE_SHARED_LINKER_FLAGS_DISTRIBUTION
+  CMAKE_STATIC_LINKER_FLAGS_DISTRIBUTION
+)
+
+# If wanted, and extra safety check before LTO enable
+# if(THRIVE_LTO)
+#   include(CheckIPOSupported)
+#   check_ipo_supported(RESULT supported OUTPUT error)
+#   if(supported)
+#     set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
+#   else()
+#     message(WARNING "LTO is not supported: ${error}")
+#   endif()
+# endif()
+
 # Common options
-if(CMAKE_BUILD_TYPE STREQUAL "")
+if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Release CACHE STRING
     "Set the build type, usually Debug or Distribution" FORCE)
 endif()
-
-# Make sure the distribution mode has some flags set as a workaround on some
-# systems
-set(CMAKE_SHARED_LINKER_FLAGS_DISTRIBUTION ${CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO})
-
-# A bit unneeded Jolt hack
-# # This and the following hack is required due to Jolt being very debug-y in
-# # release mode
-# elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
-# set(CMAKE_BUILD_TYPE Distribution)
-# elseif(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-# set(CMAKE_BUILD_TYPE Distribution)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
   set(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/debug")
@@ -88,7 +113,7 @@ else()
 endif()
 
 # Standard library and other linking flags
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if(CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
 
   set(CLANG_DEFAULT_CXX_STDLIB libc++)
   set(CLANG_DEFAULT_RTLIB compiler-rt)
@@ -122,6 +147,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 else()
 endif()
 
+# Make better loading Linux binaries
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 set(CMAKE_INSTALL_RPATH "$ORIGIN")
 
@@ -142,18 +168,43 @@ if(NOT EARLY_CHECK_LIBRARY_VERSION)
   message(FATAL_ERROR "Failed to parse native (early check) library version")
 endif()
 
+string(REGEX MATCH "ExtensionVersion = ([0-9]+);" _ "${versionFile}")
+set(THRIVE_EXTENSION_VERSION ${CMAKE_MATCH_1})
+
+if(NOT THRIVE_EXTENSION_VERSION)
+  message(FATAL_ERROR "Failed to parse Thrive GDExtensions library version")
+endif()
+
 message(STATUS "Configured native library version ${NATIVE_LIBRARY_VERSION}")
 
 # Configure include file
 configure_file("src/native/Include.h.in" "${PROJECT_BINARY_DIR}/Include.h")
 include_directories(${PROJECT_BINARY_DIR})
 
+# Configure gdextension stuff
+if(THRIVE_GODOT_API_FILE)
+  set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
+  include_directories("${THRIVE_GODOT_API_FILE}")
+  message(STATUS "Using custom location of Godot API file")
+else()
+  set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+  include_directories("${CMAKE_BINARY_DIR}/api")
+endif()
+
+# Float precision configuration for Godot
+set(FLOAT_PRECISION "single")
+
+# GODOT_CPP_SYSTEM_HEADERS
+# GODOT_CPP_WARNING_AS_ERROR
+
 # Add the subfolders that define the actual things to build
 add_subdirectory(third_party)
 
-if(THRIVE_AVX)
+if(NOT THRIVE_DISTRIBUTION OR (THRIVE_AVX AND THRIVE_DISTRIBUTION))
   # Early checks is not compiled in non-avx mode
   add_subdirectory(src/native/early_checks)
 endif()
 
 add_subdirectory(src/native)
+add_subdirectory(src/extension)
+

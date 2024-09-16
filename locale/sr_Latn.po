@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2022-03-21 22:25+0000\n"
-"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-06-07 07:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (latin) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
 "Language: sr_Latn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.2\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Zona: {0}"
+msgstr ""
 
 #, fuzzy
 msgid "3D_EDITOR"
@@ -70,6 +69,9 @@ msgstr "Prekinuto."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abisopelagik"
+
+msgid "ACCEPT"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr ""
@@ -165,12 +167,13 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "ALL"
 msgstr "Alt"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr ""
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "ima mutaciju"
 
 #, fuzzy
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "ima mutaciju"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
@@ -185,6 +188,9 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr ""
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Ambijenta jačina zvuka"
@@ -361,9 +367,8 @@ msgstr "Nazad"
 msgid "BACKSPACE"
 msgstr "Nazad"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Sinteza OksiToksi"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -448,6 +453,10 @@ msgstr "Vrste:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Veliki komad gvožđa"
 
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Veliki komad gvožđa"
+
 msgid "BILLION_ABBREVIATION"
 msgstr ""
 
@@ -466,18 +475,6 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -705,9 +702,8 @@ msgstr ""
 msgid "CHROMATIC_ABERRATION"
 msgstr "Hromatske aberacije:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Sinteza OksiToksi"
+msgstr ""
 
 #, fuzzy
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
@@ -970,6 +966,14 @@ msgstr ""
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Sačuvaj i nastavi"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Zatvoriti opcije?"
 
 msgid "CONTINUE_THRIVING"
 msgstr ""
@@ -1333,6 +1337,10 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
+#, fuzzy
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Napravite novi mikrob"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1480,6 +1488,10 @@ msgstr "Odbaci i nastavi"
 
 #, fuzzy
 msgid "DISCARD_CHANGES"
+msgstr "Odbaci i nastavi"
+
+#, fuzzy
+msgid "DISCARD_MIGRATION"
 msgstr "Odbaci i nastavi"
 
 #, fuzzy
@@ -1690,7 +1702,7 @@ msgstr "Urednik"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Mitohondrija"
+msgstr "ima mutaciju"
 
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1797,6 +1809,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr ""
 
@@ -1811,7 +1826,7 @@ msgstr "Životna sredina"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitohondrija"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -1898,6 +1913,13 @@ msgstr "Omogućite uređivač"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -2321,11 +2343,19 @@ msgid "ID_NUMBER"
 msgstr ""
 
 #, fuzzy
+msgid "IMAGE_FILE_TYPES"
+msgstr "Vrste Membrana"
+
+#, fuzzy
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Postavite organelu"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
+
+#, fuzzy
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Napravite novi mikrob"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -2550,6 +2580,10 @@ msgstr ""
 
 msgid "JUNE"
 msgstr ""
+
+#, fuzzy
+msgid "KEEP_MIGRATION"
+msgstr "Disanje"
 
 #, fuzzy
 msgid "KEY_BACK"
@@ -2995,10 +3029,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr ""
-
-msgid "LOW_BIODIVERSITY_LIMIT"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -3036,10 +3067,6 @@ msgstr "Morski sneg"
 
 msgid "MASTER_VOLUME"
 msgstr "Glavna jačina zvuka"
-
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "POPULACIJA:"
 
 msgid "MAX_FPS"
 msgstr "Maksimalni FPS:"
@@ -3112,6 +3139,51 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 msgid "MIB_VALUE"
+msgstr ""
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "se proširila na zone:"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Oblak jedinjenja"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr "Vrste:"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TREE"
 msgstr ""
 
 #, fuzzy
@@ -3304,6 +3376,39 @@ msgstr "Statistika Organizma"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Srednji miš"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Stopa"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Automatska-evolucija nije uspela"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "MILLION_ABBREVIATION"
 msgstr ""
@@ -3576,6 +3681,10 @@ msgid "MUCILAGE_SYNTHESIS"
 msgstr "Hemosinteza"
 
 #, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -3671,9 +3780,6 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
-
 msgid "NEW_GAME"
 msgstr "Nova igra"
 
@@ -3763,12 +3869,14 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-msgid "NOTICE_READY_TO_EDIT"
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
-#, fuzzy
-msgid "NOT_FOUND_CHUNK"
-msgstr "Veliki komad gvožđa"
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
+msgid "NOTICE_READY_TO_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -3841,6 +3949,9 @@ msgid "N_TIMES"
 msgstr "Desni miš"
 
 msgid "OCTOBER"
+msgstr ""
+
+msgid "OFF"
 msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
@@ -4006,6 +4117,10 @@ msgstr "Cena osmoregulacije"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "Cena osmoregulacije"
 
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Jedinjenje"
+
 msgid "OUR_WIKI"
 msgstr ""
 
@@ -4034,6 +4149,7 @@ msgstr "Kiseonik"
 msgid "OXYTOXISOME"
 msgstr "OksiToksizom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifikovani metabolosom odgovoran za proizvodnju primitivnog oblika toksičnog agensa OksiToksi NT."
 
@@ -4094,6 +4210,10 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "PAST_DEVELOPERS"
 msgstr ""
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Vrste:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4176,6 +4296,9 @@ msgid "PERFORMANCE"
 msgstr "Performanse"
 
 msgid "PERFORM_UNBINDING"
+msgstr ""
+
+msgid "PER_SECOND_ABBREVIATION"
 msgstr ""
 
 msgid "PER_SECOND_SLASH"
@@ -4316,12 +4439,6 @@ msgstr ""
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr "Proteini"
 
@@ -4391,9 +4508,6 @@ msgstr "Ponovi poslednju akciju"
 msgid "REFRESH"
 msgstr ""
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
-
 msgid "REPORT"
 msgstr "Izveštaj"
 
@@ -4454,6 +4568,10 @@ msgstr "Resetuj do početnog?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Nastaviti"
 
 msgid "RESOLUTION"
 msgstr "Rezolucija:"
@@ -4813,6 +4931,10 @@ msgstr "Tom od zvučnih efekata"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
+
 msgid "SHOW_HELP"
 msgstr "Pokažite pomoć"
 
@@ -4849,6 +4971,10 @@ msgstr ""
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "SIGNALING_AGENT"
@@ -4916,6 +5042,10 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 msgid "SMALL_IRON_CHUNK"
+msgstr "Mali gvozdeni komad"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Mali gvozdeni komad"
 
 #, fuzzy
@@ -5005,12 +5135,6 @@ msgstr ""
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
-
 #, fuzzy
 msgid "SPECIES_TO_FIND"
 msgstr "Vrste:"
@@ -5028,6 +5152,13 @@ msgstr "Brzina:"
 #, fuzzy
 msgid "SPREAD_TO_PATCHES"
 msgstr "se proširila na zone:"
+
+msgid "SPRINT"
+msgstr ""
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 msgid "STAGES"
 msgstr ""
@@ -5055,6 +5186,18 @@ msgstr ""
 
 msgid "STATISTICS"
 msgstr "Statistika"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
@@ -5132,6 +5275,9 @@ msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
+msgstr ""
+
+msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
 #, fuzzy
@@ -5475,6 +5621,9 @@ msgstr "Prebacite gutanje"
 msgid "TOGGLE_METRICS"
 msgstr "Prebacivanje FPS prikaza"
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr ""
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -5491,6 +5640,9 @@ msgstr "Alati"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Vrste:"
@@ -5498,14 +5650,76 @@ msgstr "Vrste:"
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Otrovna\n"
+"Vacuole"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Otpornost na toksine"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Otpornost na toksine"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Zdrav.:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Otrovna\n"
 "Vacuole"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
 
@@ -5781,6 +5995,9 @@ msgstr ""
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
+msgid "UPGRADE_COST"
+msgstr ""
+
 #, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
@@ -5794,6 +6011,13 @@ msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, prote
 
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr ""
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
 #, fuzzy
@@ -5826,9 +6050,6 @@ msgstr "Dodajte novo vezivanje tastera"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Koristite prilagođeno korisničko ime"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
@@ -5888,6 +6109,10 @@ msgid "VIEW_ALL"
 msgstr ""
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Vremenska linija"
 
@@ -5909,6 +6134,12 @@ msgid "VIP_PATRONS"
 msgstr ""
 
 msgid "VISIBLE"
+msgstr ""
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
@@ -6418,9 +6649,8 @@ msgstr "Nitrogenaza"
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
-#, fuzzy
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
@@ -6474,9 +6704,8 @@ msgstr ""
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr "Hemoplast"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
@@ -7488,6 +7717,18 @@ msgstr "Odzumirati"
 #~ msgstr "Pomoć"
 
 #, fuzzy
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "ima mutaciju"
+
+#, fuzzy
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "POPULACIJA:"
+
+#, fuzzy
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Veliki komad gvožđa"
+
+#, fuzzy
 #~ msgid "DIRECTIONL"
 #~ msgstr "Rezolucija:"
 
@@ -7679,9 +7920,6 @@ msgstr "Odzumirati"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Stopa"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

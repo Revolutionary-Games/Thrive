@@ -9,7 +9,7 @@ using Godot;
 public partial class HUDMessages : VBoxContainer
 {
     /// <summary>
-    ///   When this is true any new messages are added *above* existing messages. Otherwise new messages appear below
+    ///   When this is true any new messages are added *above* existing messages. Otherwise, new messages appear below
     ///   existing messages.
     /// </summary>
     [Export]
@@ -33,6 +33,14 @@ public partial class HUDMessages : VBoxContainer
     public float MidwayFadeValue = 0.65f;
 
     private readonly List<(IHUDMessage Message, Label Displayer)> hudMessages = new();
+
+    /*
+    /// <summary>
+    ///   Temporary memory used for some operations on <see cref="hudMessages"/>
+    /// </summary>
+    private readonly List<(IHUDMessage Message, Label Displayer)> tempMessages = new();*/
+
+    private readonly Stack<LabelSettings> freeToUseLabelSettings = new();
 
     private Color messageShadowColour = new(0, 0, 0, 0.7f);
     private Color baseMessageColour = new(1, 1, 1);
@@ -74,7 +82,8 @@ public partial class HUDMessages : VBoxContainer
 
             if (message.TimeRemaining < 0)
             {
-                displayer.QueueFree();
+                OnDestroyLabel(displayer);
+
                 clean = true;
                 continue;
             }
@@ -84,10 +93,8 @@ public partial class HUDMessages : VBoxContainer
             // Update fade
             // TODO: should different types of messages (more urgent?) have different colours
             var alpha = CalculateMessageAlpha(message.TimeRemaining, message.OriginalTimeRemaining);
-            displayer.SelfModulate = new Color(baseMessageColour, alpha);
-
-            displayer.AddThemeColorOverride("font_color_shadow",
-                new Color(messageShadowColour, messageShadowColour.A * alpha));
+            displayer.LabelSettings.FontColor = new Color(baseMessageColour, alpha);
+            displayer.LabelSettings.ShadowColor = new Color(messageShadowColour, messageShadowColour.A * alpha);
         }
 
         if (clean)
@@ -101,7 +108,7 @@ public partial class HUDMessages : VBoxContainer
         {
             if (existingMessage.IsSameMessage(message))
             {
-                // Limit to only combining with not super long lived messages. This ensures that all messages will
+                // Limit to only combining with not super long-lived messages. This ensures that all messages will
                 // eventually disappear
                 if (existingMessage.TotalDisplayedTime > MaxDisplayTimeBeforeForceFade)
                     continue;
@@ -124,15 +131,8 @@ public partial class HUDMessages : VBoxContainer
             AutowrapMode = TextServer.AutowrapMode.WordSmart,
             MouseFilter = MouseFilterEnum.Ignore,
             Text = TextForMessage(message),
+            LabelSettings = GetLabelSettings(),
         };
-
-        // Due to the colour animation this cannot use the font settings directly, so this needs to copy the relevant
-        // options
-        label.AddThemeFontOverride("font", MessageFontSettings.Font);
-        label.AddThemeFontSizeOverride("font_size", MessageFontSettings.FontSize);
-        label.AddThemeColorOverride("font_color_shadow", messageShadowColour);
-        label.AddThemeConstantOverride("shadow_offset_x", (int)MessageFontSettings.ShadowOffset.X);
-        label.AddThemeConstantOverride("shadow_offset_y", (int)MessageFontSettings.ShadowOffset.Y);
 
         AddChild(label);
 
@@ -149,9 +149,9 @@ public partial class HUDMessages : VBoxContainer
         // If there's too many messages, remove the one with the least time remaining
         while (hudMessages.Count > MaxShownMessages)
         {
-            var toRemove = hudMessages.OrderBy(m => m.Message.TimeRemaining).First();
+            var toRemove = hudMessages.MinBy(m => m.Message.TimeRemaining);
 
-            toRemove.Displayer.QueueFree();
+            OnDestroyLabel(toRemove.Displayer);
 
             if (!hudMessages.Remove(toRemove))
                 throw new Exception("Expected list item removal failed");
@@ -171,6 +171,21 @@ public partial class HUDMessages : VBoxContainer
         extraTime += extraDelta;
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            foreach (var labelSetting in freeToUseLabelSettings)
+            {
+                labelSetting.Dispose();
+            }
+
+            freeToUseLabelSettings.Clear();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private static float TimeToFadeFromDuration(DisplayDuration duration)
     {
         return duration switch
@@ -181,6 +196,29 @@ public partial class HUDMessages : VBoxContainer
             DisplayDuration.ExtraLong => 25,
             _ => throw new ArgumentOutOfRangeException(nameof(duration), duration, null),
         };
+    }
+
+    private void OnDestroyLabel(Label displayer)
+    {
+        // Store the label settings for later re-use
+        freeToUseLabelSettings.Push(displayer.LabelSettings);
+
+        displayer.Visible = false;
+
+        // Don't let the previous label remove the label settings
+        displayer.LabelSettings = null;
+        displayer.QueueFree();
+    }
+
+    private LabelSettings GetLabelSettings()
+    {
+        if (freeToUseLabelSettings.TryPop(out var result))
+            return result;
+
+        var settings = (LabelSettings)MessageFontSettings.Duplicate(false);
+        settings.FontColor = baseMessageColour;
+
+        return settings;
     }
 
     private string TextForMessage(IHUDMessage message)

@@ -17,6 +17,7 @@ public class CustomDifficulty : IDifficulty
     public float OsmoregulationMultiplier { get; set; }
     public bool FreeGlucoseCloud { get; set; }
     public bool PassiveReproduction { get; set; }
+    public bool SwitchSpeciesOnExtinction { get; set; }
 
     public bool LimitGrowthRate
     {

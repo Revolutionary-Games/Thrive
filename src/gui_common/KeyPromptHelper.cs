@@ -164,7 +164,12 @@ public static class KeyPromptHelper
                 {
                     if (action is InputEventKey key)
                     {
-                        return (GetPathForKeyboardKey(OS.GetKeycodeString(key.Keycode)), null);
+                        var potentialKey = GetPathForKeyboardKey(OS.GetKeycodeString(key.KeyCodeOrLabel()));
+
+                        // Skip keys we can't display (and either find a suitable key later or return the invalid
+                        // icon after this loop)
+                        if (potentialKey != null)
+                            return (potentialKey, null);
                     }
 
                     if (action is InputEventMouseButton button)
@@ -205,9 +210,9 @@ public static class KeyPromptHelper
     }
 
     /// <summary>
-    ///   Returns a key image for a keyboard key
+    ///   Returns a key image for a keyboard key (if exists)
     /// </summary>
-    public static string GetPathForKeyboardKey(string name)
+    public static string? GetPathForKeyboardKey(string name)
     {
         // Map some key names to match the icon set used key names
         switch (name)
@@ -218,7 +223,7 @@ public static class KeyPromptHelper
         }
 
         if (!AvailableKeys.Contains(name))
-            return GetPathForInvalidKey();
+            return null;
 
         return $"res://assets/textures/gui/xelu_prompts/Keyboard_Mouse/{Theme}/{name}_Key_{Theme}.png";
     }

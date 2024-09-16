@@ -160,7 +160,7 @@ public partial class LoadingScreen : Control
         // Spin the spinner
         totalElapsed += delta;
 
-        spinner.RotationDegrees = (int)(totalElapsed * SpinnerSpeed) % Mathf.Tau;
+        spinner.Rotation = (float)(totalElapsed * SpinnerSpeed) % MathF.Tau;
     }
 
     /// <summary>

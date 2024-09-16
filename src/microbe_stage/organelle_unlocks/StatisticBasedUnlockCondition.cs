@@ -3,6 +3,7 @@
 using System;
 using System.Linq;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   An unlock condition that relies on a certain <see cref="IStatistic"/> to track progress

@@ -19,4 +19,9 @@
     ///   The microbe is currently in engulf mode
     /// </summary>
     Engulf,
+
+    /// <summary>
+    ///   The microbe is currently shielded by mucocyst shield
+    /// </summary>
+    MucocystShield,
 }

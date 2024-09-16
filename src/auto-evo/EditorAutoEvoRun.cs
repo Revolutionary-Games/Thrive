@@ -6,7 +6,8 @@ using AutoEvo;
 /// </summary>
 public class EditorAutoEvoRun : AutoEvoRun
 {
-    public EditorAutoEvoRun(GameWorld world, Species originalEditedSpecies, Species modifiedProperties) : base(world)
+    public EditorAutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache, Species originalEditedSpecies,
+        Species modifiedProperties) : base(world, globalCache)
     {
         OriginalEditedSpecies = originalEditedSpecies;
         ModifiedProperties = modifiedProperties;
@@ -21,9 +22,16 @@ public class EditorAutoEvoRun : AutoEvoRun
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
+        var generateMicheCache = new SimulationCache(worldSettings);
+
+        foreach (var entry in map.Patches)
+        {
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
+        }
+
         steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,
-            new List<Species> { ModifiedProperties },
-            new List<Species> { OriginalEditedSpecies }, true) { CanRunConcurrently = false });
+            new Dictionary<Species, Species>
+                { { OriginalEditedSpecies, ModifiedProperties } }, true));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map,
             OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);

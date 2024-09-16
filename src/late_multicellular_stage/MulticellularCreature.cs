@@ -23,9 +23,6 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     [JsonProperty]
     private readonly List<IInteractableEntity> carriedObjects = new();
 
-    private Compound atp = null!;
-    private Compound glucose = null!;
-
     private StructureDefinition? buildingTypeToPlace;
 
     [JsonProperty]
@@ -35,7 +32,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     private ISpawnSystem? spawnSystem;
 
 #pragma warning disable CA2213
-    private MulticellularMetaballDisplayer metaballDisplayer = null!;
+    private MulticellularConvolutionDispayer metaballDisplayer = null!;
 
     private Node3D? buildingToPlaceGhost;
 #pragma warning restore CA2213
@@ -162,10 +159,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     {
         base._Ready();
 
-        atp = SimulationParameters.Instance.GetCompound("atp");
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-
-        metaballDisplayer = GetNode<MulticellularMetaballDisplayer>("MetaballDisplayer");
+        metaballDisplayer = GetNode<MulticellularConvolutionDispayer>("MetaballDisplayer");
     }
 
     /// <summary>
@@ -211,7 +205,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
                 // is locked
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 2 *
-                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
+                    (Math.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
         else
@@ -220,7 +214,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             {
                 // TODO: movement force calculation
                 ApplyCentralImpulse(Mass * MovementDirection * (float)delta * 15 *
-                    (Mathf.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
+                    (Math.Clamp(Species.MuscularPower, 0, 1 * Mass) + 1));
             }
         }
 
@@ -254,7 +248,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
         // Setup graphics
         // TODO: handle lateSpecies.Scale
-        metaballDisplayer.DisplayFromList(lateSpecies.BodyLayout);
+        metaballDisplayer.DisplayFromLayout(lateSpecies.BodyLayout);
     }
 
     /// <summary>
@@ -275,8 +269,8 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
     public void SetInitialCompounds()
     {
-        compounds.AddCompound(atp, 50);
-        compounds.AddCompound(glucose, 50);
+        compounds.AddCompound(Compound.ATP, 50);
+        compounds.AddCompound(Compound.Glucose, 50);
     }
 
     public MulticellularCreature SpawnOffspring()
@@ -367,7 +361,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             otherAudioPlayers.Add(player);
         }
 
-        player.VolumeDb = Mathf.LinearToDb(volume);
+        player.VolumeDb = MathF.LinearToDb(volume);
         player.Stream = sound;
         player.Play();*/
     }

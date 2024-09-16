@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
@@ -86,8 +85,26 @@ public class MicrobeSpecies : Species, ICellDefinition
     ///   match between these two.
     /// </summary>
     [JsonIgnore]
-    public float BaseHexSize => Organelles.Organelles.Sum(o => o.Definition.HexCount)
-        * (IsBacteria ? 0.5f : 1.0f);
+    public float BaseHexSize
+    {
+        get
+        {
+            var raw = 0.0f;
+
+            // Need to do the calculation this way to avoid extra memory allocations
+            var organelles = Organelles.Organelles;
+            int count = organelles.Count;
+            for (int i = 0; i < count; ++i)
+            {
+                raw += organelles[i].Definition.HexCount;
+            }
+
+            if (IsBacteria)
+                return raw * 0.5f;
+
+            return raw;
+        }
+    }
 
     /// <summary>
     ///   TODO: this should be removed as this is not accurate (only accurate if specialized storage vacuoles aren't
@@ -148,12 +165,14 @@ public class MicrobeSpecies : Species, ICellDefinition
         // balance where the generated glucose would offset things and spawn photosynthesizers with no glucose,
         // which could basically make them die instantly in certain situations)
         var simulationParameters = SimulationParameters.Instance;
-        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
-        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
-            biomeConditions, CompoundAmountType.Biome);
 
-        var glucose = simulationParameters.GetCompound("glucose");
-        var atp = simulationParameters.GetCompound("atp");
+        // TODO: improve this depending on the default patch: https://github.com/Revolutionary-Games/Thrive/issues/5446
+        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
+
+        // False is passed here until we can make the initial compounds patch specific
+        var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
+            biomeConditions, CompoundAmountType.Biome, false);
+
         bool giveBonusGlucose = Organelles.Count <= Constants.FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT && IsBacteria;
 
         var cachedCapacity = StorageCapacity;
@@ -163,10 +182,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         foreach (var compoundBalance in compoundBalances)
         {
             // Skip ATP as we don't want to give any initial ATP
-            if (compoundBalance.Key == atp)
+            if (compoundBalance.Key == Compound.ATP)
                 continue;
 
-            if (compoundBalance.Key == glucose && giveBonusGlucose)
+            if (compoundBalance.Key == Compound.Glucose && giveBonusGlucose)
             {
                 InitialCompounds.Add(compoundBalance.Key, cachedCapacity);
                 continue;
@@ -239,6 +258,11 @@ public class MicrobeSpecies : Species, ICellDefinition
         cachedFillTimes.Clear();
     }
 
+    public override float GetPredationTargetSizeFactor()
+    {
+        return Organelles.Count;
+    }
+
     public Vector3 CalculatePhotographDistance(IWorldSimulation worldSimulation)
     {
         return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
@@ -256,6 +280,11 @@ public class MicrobeSpecies : Species, ICellDefinition
 
     public override object Clone()
     {
+        return Clone(true);
+    }
+
+    public MicrobeSpecies Clone(bool cloneOrganelles)
+    {
         var result = new MicrobeSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
@@ -264,12 +293,9 @@ public class MicrobeSpecies : Species, ICellDefinition
         result.MembraneType = MembraneType;
         result.MembraneRigidity = MembraneRigidity;
 
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
-
-        foreach (var organelle in Organelles)
+        if (cloneOrganelles)
         {
-            result.Organelles.AddFast((OrganelleTemplate)organelle.Clone(), workMemory1, workMemory2);
+            result.Organelles = Organelles.Clone();
         }
 
         return result;

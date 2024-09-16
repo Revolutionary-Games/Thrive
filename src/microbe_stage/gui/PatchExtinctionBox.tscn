@@ -136,6 +136,7 @@ theme_override_constants/margin_bottom = 45
 
 [node name="PatchDetailsPanel" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer/MarginContainer2" instance=ExtResource("5")]
 layout_mode = 2
+MigrationManagerEnabled = false
 
 [node name="VSeparator2" type="VSeparator" parent="PanelContainer/MarginContainer/PatchExtinctionBoxMenu/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)

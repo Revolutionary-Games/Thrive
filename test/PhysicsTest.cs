@@ -582,14 +582,12 @@ public partial class PhysicsTest : Node
 
         physicalWorld.RemoveGravity();
 
-        var mutator = new Mutations(random);
-        var workMemory1 = new List<Hex>();
-        var workMemory2 = new List<Hex>();
+        var workMemory = new MutationWorkMemory();
 
         // Generate a random, pretty big microbe species to use for testing
         var microbeSpecies =
-            mutator.CreateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), 1, false, workMemory1,
-                workMemory2, 25);
+            CommonMutationFunctions.GenerateRandomSpecies(new MicrobeSpecies(1, string.Empty, string.Empty), workMemory,
+                random);
 
         testMicrobeOrganellePositions =
             microbeSpecies.Organelles.Select(o => new JVecF3(Hex.AxialToCartesian(o.Position))).ToArray();
@@ -708,7 +706,8 @@ public partial class PhysicsTest : Node
             physicalWorld.SetDamping(body, MicrobeDamping);
 
             // Add an initial impulse
-            physicalWorld.GiveImpulse(body, new Vector3(random.NextSingle(), random.NextSingle(), random.NextSingle()));
+            physicalWorld.GiveImpulse(body, new Vector3(random.NextSingle(), random.NextSingle(), random.NextSingle()),
+                true);
 
             microbeAnalogueBodies.Add(body);
             testMicrobesToProcess.Add(new TestMicrobeAnalogue(body, random.Next()));
@@ -938,7 +937,7 @@ public partial class PhysicsTest : Node
 
         private void SetLookDirection()
         {
-            lookDirection = new Quaternion(Vector3.Up, random.NextSingle() * 2 * Mathf.Pi);
+            lookDirection = new Quaternion(Vector3.Up, random.NextSingle() * 2 * MathF.PI);
         }
     }
 }

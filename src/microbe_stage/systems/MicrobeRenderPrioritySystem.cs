@@ -59,12 +59,13 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
 
         try
         {
-            // First material is always the membrane, which gets the base value. Organelles are rendered above it.
+            // First material is always the membrane, which gets the base value with an offset,
+            // so that organelles are rendered below it.
             var materialList = materials.Materials;
 
             if (materialList.Length > 0)
             {
-                materialList[0].RenderPriority = renderOrder.RenderPriority;
+                materialList[0].RenderPriority = renderOrder.RenderPriority + Constants.MEMBRANE_RENDER_PRIORITY;
             }
             else
             {
@@ -85,22 +86,31 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
                 int organelleRenderOrder =
                     renderOrder.RenderPriority + Hex.GetRenderPriority(placedOrganelle.Position);
 
-                if (placedOrganelle.OrganelleGraphics is OrganelleMeshWithChildren organelleMeshWithChildren)
+                if (!placedOrganelle.OrganelleGraphics.GetMaterial(tempMaterialsList,
+                        placedOrganelle.LoadedGraphicsSceneInfo.ModelPath))
                 {
-                    organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
+                    GD.PrintErr("Failed to get placed organelle materials for render priority update");
 
-                    foreach (var extraMaterial in tempMaterialsList)
-                    {
-                        // Sub-graphics have one less render priority
-                        extraMaterial.RenderPriority = organelleRenderOrder - 1;
-                    }
-
-                    tempMaterialsList.Clear();
+                    // It's fine to fall through here as the materials list will be empty if it was failed to fetch
                 }
 
-                var material =
-                    placedOrganelle.OrganelleGraphics.GetMaterial(placedOrganelle.LoadedGraphicsSceneInfo.ModelPath);
-                material.RenderPriority = organelleRenderOrder;
+                bool first = true;
+
+                foreach (var material in tempMaterialsList)
+                {
+                    if (first)
+                    {
+                        material.RenderPriority = organelleRenderOrder;
+                        first = false;
+                    }
+                    else
+                    {
+                        // Sub-graphics have one less render priority
+                        material.RenderPriority = organelleRenderOrder - 1;
+                    }
+                }
+
+                tempMaterialsList.Clear();
             }
         }
         catch (Exception e)

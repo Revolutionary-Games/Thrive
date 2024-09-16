@@ -13,6 +13,9 @@ using Godot;
 ///     To use this, simply add this inside any controller and adjust its size.
 ///     Don't put this under a draggable controller.
 ///   </para>
+///   <para>
+///     Combine this with MicheTree: https://github.com/Revolutionary-Games/Thrive/issues/5373
+///   </para>
 /// </remarks>
 public partial class EvolutionaryTree : Control
 {
@@ -221,7 +224,7 @@ public partial class EvolutionaryTree : Control
                 if (record.SplitFromID == null)
                 {
                     SetupTreeNode(record.Species,
-                        speciesNodes[speciesID].Last(), generation - 1, true);
+                        speciesNodes[speciesID].Last(), generation, true);
                 }
             }
             else if (record.SplitFromID != null)
@@ -230,7 +233,11 @@ public partial class EvolutionaryTree : Control
                 SetupTreeNode(record.Species, speciesNodes[splitFromID].Last(), generation);
 
                 speciesOrigin.Add(speciesID, (splitFromID, generation));
-                speciesNames.Add(speciesID, record.Species.FormattedName);
+
+                // If the player switches to a new species, that can cause that a species name already exists, so
+                // names are only added if not already there to prevent player set names from being overwritten
+                if (!speciesNames.ContainsKey(speciesID))
+                    speciesNames.Add(speciesID, record.Species.FormattedName);
             }
             else if (record.MutatedPropertiesID != null)
             {
@@ -437,7 +444,7 @@ public partial class EvolutionaryTree : Control
 
                 // Update size factor
                 sizeFactor =
-                    Mathf.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
+                    Math.Clamp(sizeFactor * (float)Math.Pow(ZOOM_FACTOR, buttonEvent.Factor * (zoomIn ? -1 : 1)),
                         SIZE_FACTOR_MIN, SIZE_FACTOR_MAX);
 
                 // Update drag offset so that the mouseTreePosition stays the same
@@ -550,13 +557,13 @@ public partial class EvolutionaryTree : Control
                 tree.DrawString(bodyItalicFont.Font,
                     new Vector2(lastNode.Position.X + sizeFactor * TreeNodeSize.X + speciesNameOffset,
                         lastNode.Center.Y), speciesNames[pair.Key], HorizontalAlignment.Left, -1,
-                    Mathf.RoundToInt(size), Colors.DarkRed);
+                    MathUtils.RoundToInt(size), Colors.DarkRed);
             }
             else
             {
                 tree.DrawString(bodyItalicFont.Font,
                     new Vector2(treeRightPosition + speciesNameOffset, pair.Value.First().Center.Y),
-                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, Mathf.RoundToInt(size));
+                    speciesNames[pair.Key], HorizontalAlignment.Left, -1, MathUtils.RoundToInt(size));
             }
         }
     }

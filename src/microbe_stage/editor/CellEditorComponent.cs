@@ -157,6 +157,15 @@ public partial class CellEditorComponent :
 
     private readonly List<Hex> hexTemporaryMemory2 = new();
 
+    private readonly List<Hex> islandResults = new();
+    private readonly HashSet<Hex> islandsWorkMemory1 = new();
+    private readonly List<Hex> islandsWorkMemory2 = new();
+    private readonly Queue<Hex> islandsWorkMemory3 = new();
+
+    private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
+
+    private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
+
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
 #pragma warning disable CA2213
@@ -262,6 +271,15 @@ public partial class CellEditorComponent :
     [Export]
     private CustomRichTextLabel notEnoughStorageWarning = null!;
 
+    [Export]
+    private Button processListButton = null!;
+
+    [Export]
+    private ProcessList processList = null!;
+
+    [Export]
+    private CustomWindow processListWindow = null!;
+
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
@@ -279,7 +297,6 @@ public partial class CellEditorComponent :
     private OrganelleDefinition nucleus = null!;
     private OrganelleDefinition bindingAgent = null!;
 
-    private Compound sunlight = null!;
     private OrganelleDefinition cytoplasm = null!;
 
     private EnergyBalanceInfo? energyBalanceInfo;
@@ -361,7 +378,7 @@ public partial class CellEditorComponent :
 
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
-    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild everytime when
+    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild every time when
     ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
     private bool microbeVisualizationOrganellePositionsAreDirty = true;
@@ -485,7 +502,9 @@ public partial class CellEditorComponent :
     public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
 
     [JsonIgnore]
-    public override bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
+    public override bool HasIslands =>
+        editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
+            islandsWorkMemory3) > 0;
 
     /// <summary>
     ///   Number of organelles in the microbe
@@ -577,13 +596,31 @@ public partial class CellEditorComponent :
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
     public static void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
-        LoadedSceneWithModelInfo displayScene, int renderPriority)
+        LoadedSceneWithModelInfo displayScene, int renderPriority, List<ShaderMaterial> temporaryDataHolder)
     {
         organelleModel.Scene = displayScene.LoadedScene;
-        var material = organelleModel.GetMaterial(displayScene.ModelPath);
-        if (material != null)
+
+        temporaryDataHolder.Clear();
+        if (!organelleModel.GetMaterial(temporaryDataHolder, displayScene.ModelPath))
         {
-            material.RenderPriority = renderPriority;
+            GD.PrintErr("Failed to get material for editor / display cell to update render priority");
+            return;
+        }
+
+        // To follow MicrobeRenderPrioritySystem this sets other than the first material to be -1 in priority
+        bool first = true;
+
+        foreach (var shaderMaterial in temporaryDataHolder)
+        {
+            if (first)
+            {
+                shaderMaterial.RenderPriority = renderPriority;
+                first = false;
+            }
+            else
+            {
+                shaderMaterial.RenderPriority = renderPriority - 1;
+            }
         }
     }
 
@@ -618,7 +655,6 @@ public partial class CellEditorComponent :
         undiscoveredOrganellesTooltipScene =
             GD.Load<PackedScene>("res://src/microbe_stage/organelle_unlocks/UndiscoveredOrganellesTooltip.tscn");
 
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         cytoplasm = SimulationParameters.Instance.GetOrganelleType("cytoplasm");
 
         SetupMicrobePartSelections();
@@ -1280,9 +1316,9 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float dayLightFraction)
     {
-        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
         var templateMaxLightLevel =
-            Editor.CurrentPatch.GetCompoundAmountForDisplay(sunlight, CompoundAmountType.Template);
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
 
         // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
         // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
@@ -1442,6 +1478,12 @@ public partial class CellEditorComponent :
             });
     }
 
+    protected void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel,
+        LoadedSceneWithModelInfo displayScene, int renderPriority)
+    {
+        UpdateOrganellePlaceHolderScene(organelleModel, displayScene, renderPriority, temporaryDisplayerFetchList);
+    }
+
     protected override float CalculateEditorArrowZPosition()
     {
         // The calculation falls back to 0 if there are no hexes found in the middle 3 rows
@@ -1462,7 +1504,7 @@ public partial class CellEditorComponent :
                 var cartesian = Hex.AxialToCartesian(absoluteHex);
 
                 // Get the min z-axis (highest point in the editor)
-                highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, cartesian.Z);
+                highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, cartesian.Z);
             }
         }
 
@@ -1689,7 +1731,7 @@ public partial class CellEditorComponent :
         List<(Hex Hex, int Orientation)> hexes, List<OrganelleTemplate> organelles)
     {
         var organellePositions = new List<(Hex Hex, OrganelleTemplate? Organelle, int Orientation, bool Occupied)>();
-        for (var i = 0; i < hexes.Count; i++)
+        for (var i = 0; i < hexes.Count; ++i)
         {
             var (hex, orientation) = hexes[i];
             var organelle = organelles[i];
@@ -1827,10 +1869,17 @@ public partial class CellEditorComponent :
             throw new InvalidOperationException("can't start auto-evo prediction without current cell properties"),
             hexTemporaryMemory, hexTemporaryMemory2);
 
+        // Need to copy player species property to have auto-evo treat the predicted population the same way as
+        // the player in a real run
+        if (Editor.EditedBaseSpecies.PlayerSpecies)
+        {
+            cachedAutoEvoPredictionSpecies.BecomePlayerSpecies();
+        }
+
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
-        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.EditedBaseSpecies,
-            cachedAutoEvoPredictionSpecies);
+        var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
+            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
         run.Start();
 
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
@@ -1839,7 +1888,7 @@ public partial class CellEditorComponent :
     /// <summary>
     ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
-    private void CalculateEnergyAndCompoundBalance(IReadOnlyCollection<OrganelleTemplate> organelles,
+    private void CalculateEnergyAndCompoundBalance(IReadOnlyList<OrganelleTemplate> organelles,
         MembraneType membrane, BiomeConditions? biome = null)
     {
         biome ??= Editor.CurrentPatch.Biome;
@@ -1869,10 +1918,13 @@ public partial class CellEditorComponent :
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
+
+        // Handle process list
+        HandleProcessList(energyBalance, biome);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
-        CompoundAmountType amountType, IReadOnlyCollection<OrganelleTemplate> organelles,
+        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles,
         BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
@@ -1880,8 +1932,7 @@ public partial class CellEditorComponent :
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                compoundBalanceData =
-                    ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType);
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
                 compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
@@ -1895,6 +1946,36 @@ public partial class CellEditorComponent :
         specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private void HandleProcessList(EnergyBalanceInfo energyBalance, BiomeConditions biome)
+    {
+        var processes = new List<TweakedProcess>();
+
+        // Empty list to later fill
+        var processStatistics = new List<ProcessSpeedInformation>();
+
+        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
+
+        float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
+
+        foreach (var process in processes)
+        {
+            var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current,
+                false);
+
+            // If produces more ATP than consumes, lower down production for inputs and for outputs,
+            // otherwise use maximum production values (this matches the equilibrium display mode and what happens
+            // in game once exiting the editor)
+            if (consumptionProductionRatio < 1.0f)
+            {
+                singleProcess.ScaleSpeed(consumptionProductionRatio, processSpeedWorkMemory);
+            }
+
+            processStatistics.Add(singleProcess);
+        }
+
+        processList.ProcessesToShow = processStatistics;
     }
 
     /// <summary>
@@ -2147,7 +2228,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in placeablePartSelectionElements.Values)
         {
-            selection.Selected = selection.Name == selectedOrganelle;
+            selection.Selected = selection.Name.ToString() == selectedOrganelle;
         }
     }
 
@@ -2156,7 +2237,7 @@ public partial class CellEditorComponent :
         // Update the icon highlightings
         foreach (var selection in membraneSelectionElements.Values)
         {
-            selection.Selected = selection.Name == membrane;
+            selection.Selected = selection.Name.ToString() == membrane;
         }
     }
 
@@ -2190,12 +2271,13 @@ public partial class CellEditorComponent :
     /// </summary>
     private void UpdateAlreadyPlacedVisuals()
     {
-        var islands = editedMicrobeOrganelles.GetIslandHexes();
+        editedMicrobeOrganelles.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
+            islandsWorkMemory3);
 
         // TODO: The code below is partly duplicate to CellHexPhotoBuilder. If this is changed that needs changes too.
         // Build the entities to show the current microbe
         UpdateAlreadyPlacedHexes(editedMicrobeOrganelles.Select(o => (o.Position, o.RotatedHexes,
-            Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islands, microbePreviewMode);
+            Editor.HexPlacedThisSession<OrganelleTemplate, CellType>(o))), islandResults, microbePreviewMode);
 
         int nextFreeOrganelle = 0;
 
@@ -2825,6 +2907,11 @@ public partial class CellEditorComponent :
 
         var organelle = GetOrganelleDefinition(ActiveActionName);
         componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
+    }
+
+    private void ToggleProcessList()
+    {
+        processListWindow.Visible = !processListWindow.Visible;
     }
 
     private class PendingAutoEvoPrediction

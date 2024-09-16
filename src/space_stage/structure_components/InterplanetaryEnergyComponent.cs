@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 public class InterplanetaryEnergyComponent : SpaceStructureComponent
 {

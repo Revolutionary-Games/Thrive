@@ -116,6 +116,20 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
+    [RunOnKeyDown("g_fire_siderophore")]
+    public void EmitSiderophore()
+    {
+        if (!stage.WorldSettings.ExperimentalFeatures)
+            return;
+
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.EmitSiderophore(ref stage.Player.Get<OrganelleContainer>(), stage.Player);
+    }
+
     [RunOnKeyDown("g_fire_toxin")]
     public void EmitToxin()
     {
@@ -124,6 +138,10 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
         ref var compoundStorage = ref stage.Player.Get<CompoundStorage>();
+
+        // Mucocyst being activated prevents most abilities
+        if (control.State == MicrobeState.MucocystShield)
+            return;
 
         control.EmitToxin(ref stage.Player.Get<OrganelleContainer>(), compoundStorage.Compounds, stage.Player);
     }
@@ -136,7 +154,32 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
+        // Mucocyst being activated prevents most abilities
+        if (control.State == MicrobeState.MucocystShield)
+            return;
+
         control.QueueSecreteSlime(ref stage.Player.Get<OrganelleContainer>(), stage.Player, (float)delta);
+    }
+
+    [RunOnKeyDown("g_toggle_mucocyst")]
+    public void ToggleMucocyst()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        var player = stage.Player;
+        ref var control = ref player.Get<MicrobeControl>();
+
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                false);
+        }
+        else
+        {
+            control.SetMucocystState(ref player.Get<OrganelleContainer>(), ref player.Get<CompoundStorage>(), player,
+                true);
+        }
     }
 
     [RunOnKeyDown("g_toggle_engulf")]
@@ -163,7 +206,11 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
         else if (cellProperties.CanEngulfInColony(stage.Player))
         {
-            control.SetStateColonyAware(stage.Player, MicrobeState.Engulf);
+            var player = stage.Player;
+
+            // This uses forced entry to allow the player to engulf even if dying from no ATP
+            control.EnterEngulfModeForcedState(ref player.Get<Health>(), ref player.Get<CompoundStorage>(), player,
+                Compound.ATP);
         }
     }
 
@@ -196,12 +243,14 @@ public partial class PlayerMicrobeInput : NodeWithInput
         // This doesn't check colony data as the player cell is always able to bind when in a colony so the state
         // should not be able to be out of sync
 
-        if (control.State == MicrobeState.Binding)
+        if (control.State is MicrobeState.Binding or MicrobeState.Unbinding)
         {
             control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
         }
-        else if (organelles.HasBindingAgent)
+        else if (organelles.HasBindingAgent && stage.GameWorld.PlayerSpecies is MicrobeSpecies)
         {
+            // Only microbe species can bind new members, multicellular ones cannot
+
             control.SetStateColonyAware(stage.Player, MicrobeState.Binding);
         }
     }
@@ -214,7 +263,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
 
         ref var control = ref stage.Player.Get<MicrobeControl>();
 
-        if (control.State == MicrobeState.Unbinding)
+        if (control.State is MicrobeState.Unbinding or MicrobeState.Binding)
         {
             stage.HUD.HintText = string.Empty;
             control.SetStateColonyAware(stage.Player, MicrobeState.Normal);
@@ -301,6 +350,41 @@ public partial class PlayerMicrobeInput : NodeWithInput
             stage.HUD.ApplySignalCommand(command, stage.Player);
     }
 
+    [RunOnKeyDown("g_sprint")]
+    public bool StartSprint()
+    {
+        if (!stage.HasPlayer)
+            return false;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.Sprinting = true;
+
+        // We need to not consume the input, otherwise the key up for this will not run
+        return false;
+    }
+
+    [RunOnKeyUp("g_sprint")]
+    public void EndSprint()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.Sprinting = false;
+    }
+
+    public void ToggleSprint()
+    {
+        if (!stage.HasPlayer)
+            return;
+
+        ref var control = ref stage.Player.Get<MicrobeControl>();
+
+        control.Sprinting = !control.Sprinting;
+    }
+
     [RunOnKeyDown("g_cheat_editor")]
     public void CheatEditor()
     {
@@ -315,7 +399,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         if (Settings.Instance.CheatsEnabled)
         {
-            SpawnCheatCloud("glucose", delta);
+            SpawnCheatCloud(Compound.Glucose, delta);
         }
     }
 
@@ -324,7 +408,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         if (Settings.Instance.CheatsEnabled)
         {
-            SpawnCheatCloud("ammonia", delta);
+            SpawnCheatCloud(Compound.Ammonia, delta);
         }
     }
 
@@ -333,7 +417,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
     {
         if (Settings.Instance.CheatsEnabled)
         {
-            SpawnCheatCloud("phosphates", delta);
+            SpawnCheatCloud(Compound.Phosphates, delta);
         }
     }
 
@@ -345,7 +429,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         }
     }
 
-    private void SpawnCheatCloud(string name, double delta)
+    private void SpawnCheatCloud(Compound compound, double delta)
     {
         float multiplier = 1.0f;
 
@@ -353,7 +437,7 @@ public partial class PlayerMicrobeInput : NodeWithInput
         if (stage.GameWorld.PlayerSpecies is not MicrobeSpecies)
             multiplier = 4;
 
-        stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier), stage.Camera.CursorWorldPos);
+        stage.Clouds.AddCloud(compound, (float)(Constants.CLOUD_CHEAT_DENSITY * delta * multiplier),
+            stage.Camera.CursorWorldPos);
     }
 }

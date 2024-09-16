@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-06-01 06:34+0000\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-12 19:44+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
+"Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "[b]纖毛[/b]對於大型細胞至關重要，尤其是那些依賴掠食的細胞。如果沒有它們，大型細胞有時會受到極其緩慢的轉動速度的困擾。我們建議在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後儘快添加[b]纖毛[/b]以抵消該關鍵細胞器的巨大尺寸，並且將它們放置在盡可能遠離細胞中心的位置，以最大限度地提高轉動能力。"
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "策略階段"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D 編輯器"
@@ -66,6 +65,9 @@ msgstr "已中止。"
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海帶"
+
+msgid "ACCEPT"
+msgstr "接受"
 
 msgid "ACTION_AWAKEN"
 msgstr "覺醒（{0:F1}／{1:F1}）"
@@ -153,11 +155,11 @@ msgstr "（AI 物種突變的速度）"
 msgid "ALL"
 msgstr "全部"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "允許物種不遷移（如果沒有發現良好的遷移情況）"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "允許在滅絕後切換到其他相關物種"
 
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "允許物種不突變（如果沒有合適的突變）"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "（允許在滅絕後以不同物種繼續進行遊戲，而非結束遊戲）"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "全世界的生物統計"
@@ -183,6 +185,9 @@ msgstr "您已經飛升了"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "總是可見"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "環境音量"
@@ -358,9 +363,8 @@ msgstr "\\"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "氧化毒素合成"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -441,6 +445,9 @@ msgstr "最佳區域："
 msgid "BIG_IRON_CHUNK"
 msgstr "大鐵塊"
 
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "大磷酸鹽塊"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0}E+9"
 
@@ -455,18 +462,6 @@ msgstr "按下[thrive:input]g_toggle_binding[/thrive:input]切換結合模式。
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "綁定座標軸"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "在每個物種較少（低生物多樣性）的區域有機會創造一個新物種"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "從鄰近區域創造新物種以增加生物多樣性的機率"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "從臨近區域來的增加生物多樣性的物種獲得額外的種群數量"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "增加生物多樣性的物種會在被創造時突變"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物發光液泡"
@@ -673,9 +668,8 @@ msgstr "目標檔案名稱（{0}）已存在。是否要覆蓋？"
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "氧化毒素合成"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "生產[thrive:compound type=\"glucose\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度和[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比。"
@@ -786,7 +780,7 @@ msgid "COMMUNITY_WIKI"
 msgstr "社群 Wiki"
 
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr "造訪我們的社群 wiki"
+msgstr "造訪我們的社群 Wiki"
 
 msgid "COMPILED_AT_COLON"
 msgstr "建置於："
@@ -922,6 +916,12 @@ msgstr "單位：{0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "工作坊內容將從以下資料夾上傳：{0}"
+
+msgid "CONTINUE"
+msgstr "繼續遊戲"
+
+msgid "CONTINUE_AS_SPECIES"
+msgstr "[center]遊戲尚未結束。您可以切換到種群數量為 {1} 的物種 {0} 並[b]繼續遊戲[/b]。[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "繼續遊戲"
@@ -1294,6 +1294,9 @@ msgstr "除錯面板"
 msgid "DECEMBER"
 msgstr "十二月"
 
+msgid "DECREASE_ITEM_SIZE"
+msgstr "縮小物件"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "預設輸出設備"
 
@@ -1386,7 +1389,7 @@ msgid "DEVELOPMENT_WIKI"
 msgstr "開發者 Wiki"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
-msgstr "查看我們的開發者 wiki"
+msgstr "查看我們的開發者 Wiki"
 
 msgid "DEVOURED"
 msgstr "被吞噬"
@@ -1451,6 +1454,9 @@ msgstr "放棄並繼續"
 
 msgid "DISCARD_CHANGES"
 msgstr "放棄變更"
+
+msgid "DISCARD_MIGRATION"
+msgstr "放棄遷移"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "未連接的細胞"
@@ -1640,7 +1646,7 @@ msgstr "編輯器"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "粒線體"
+msgstr "發生突變"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "進入編輯器並修改您的物種"
@@ -1739,6 +1745,9 @@ msgstr "能量來源："
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的總能量為 {0}，個體成本為 {1}，未修正前的種群數量為 {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr "因無 ATP 進入吞噬模式而受損"
+
 msgid "ENTER_EXISTING_ID"
 msgstr "輸入已有 ID"
 
@@ -1753,7 +1762,7 @@ msgstr "環境"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "粒線體"
+msgstr "環境葡萄糖保留度"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "環境葡萄糖保留度"
@@ -1835,6 +1844,12 @@ msgstr "退出編輯器"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至啟動器"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "實驗性功能"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "（啟用遊戲中尚未完善的額外功能，如果您使用這些功能，請分享您對這些功能的任何反饋）"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "匯出所有世界"
@@ -2232,11 +2247,17 @@ msgstr "ID 無效"
 msgid "ID_NUMBER"
 msgstr "ID 號碼"
 
+msgid "IMAGE_FILE_TYPES"
+msgstr "支援的圖像檔案"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "包括後期階段原型"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "（進入下一階段後，某些功能可能無法使用）"
+
+msgid "INCREASE_ITEM_SIZE"
+msgstr "放大物件"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "工業階段"
@@ -2446,6 +2467,9 @@ msgstr "七月"
 
 msgid "JUNE"
 msgstr "六月"
+
+msgid "KEEP_MIGRATION"
+msgstr "保留遷移"
 
 msgid "KEY_BACK"
 msgstr "Back"
@@ -2872,11 +2896,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "鎖定晝夜循環"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "將物種數少於此值的區塊視為低生物多樣性"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "偵測到性能低下"
@@ -2910,9 +2931,6 @@ msgstr "海洋雪"
 
 msgid "MASTER_VOLUME"
 msgstr "主音量"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "強制滅絕前區域的物種上限"
 
 msgid "MAX_FPS"
 msgstr "最大 FPS："
@@ -2997,6 +3015,54 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr "演化食源"
+
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "避免捕食選擇壓力"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "營養物碎塊壓強"
+
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "化合物雲壓力"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "化合物轉化效率壓力"
+
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]選擇壓力[/b]\n"
+"  {0}\n"
+"[b]能量[/b]\n"
+"  {1}\n"
+"[b]適應分數[/b]\n"
+"  {2}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "環境化合物壓力"
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "維持化合物壓力"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr "代謝穩定壓力"
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "無操作壓力"
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "捕食效率壓力"
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "掠食者根源壓力"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "根源壓力"
+
+msgid "MICHE_TREE"
+msgstr "演化食源樹狀圖"
 
 msgid "MICROBE"
 msgstr "微生物"
@@ -3242,6 +3308,33 @@ msgstr ""
 
 msgid "MIDDLE_MOUSE"
 msgstr "滑鼠中鍵"
+
+msgid "MIGRATE"
+msgstr "遷移"
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "錯誤：遷移失敗，請檢查遷移參數"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "將種群從 {0}遷移到…"
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "將 {2} 單位的種群從 {0}遷移到 {1}"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "選擇與來源區域相連的目標區域進行遷移"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "每次進入編輯器只能執行一次遷移。您可以查看下方已佇列的遷移並保留它或取消它以建立不同的遷移"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "選擇要從來源區域遷移到目標區域的種群數量"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "選擇目前包含您的物種的區域作為遷移來源"
+
+msgid "MIGRATION_TOOLTIP"
+msgstr "在區域之間遷移您的物種，而不移動您所在的區域"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0}E+6"
@@ -3508,6 +3601,9 @@ msgstr "黏液"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "黏液合成"
 
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "創造護盾"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "多細胞編輯器"
 
@@ -3603,9 +3699,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "新聞"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "生物多樣性物種的初始種群數量"
-
 msgid "NEW_GAME"
 msgstr "新遊戲"
 
@@ -3688,11 +3781,14 @@ msgstr "目前細胞大小不足以吞噬目標"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "沒有足夠的儲存空間以攝入被吞噬的目標"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr "ATP 生產受毒素抑制"
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "基礎移動速度因毒素而降低"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
-
-msgid "NOT_FOUND_CHUNK"
-msgstr "錯誤：找不到區塊"
 
 msgid "NOT_STARTED_DOT"
 msgstr "尚未開始。"
@@ -3758,6 +3854,9 @@ msgstr "x{0}"
 
 msgid "OCTOBER"
 msgstr "十月"
+
+msgid "OFF"
+msgstr "關"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "官方網站"
@@ -3889,7 +3988,7 @@ msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "啟用細胞器解鎖"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
-msgstr "（部分細胞器擁有放置它們所需的解鎖條件）"
+msgstr "（某些細胞器需要滿足特定解鎖條件才能放置）"
 
 msgid "ORGANISM_STATISTICS"
 msgstr "生物統計"
@@ -3908,6 +4007,9 @@ msgstr "滲透調節成本倍率"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "（玩家物種滲透調節的成本）"
+
+msgid "OTHER_COMPOUNDS"
+msgstr "其他"
 
 msgid "OUR_WIKI"
 msgstr "我們的 Wiki"
@@ -3940,7 +4042,7 @@ msgid "OXYTOXISOME"
 msgstr "氧化毒酶體"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "一種被修飾的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。"
+msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
@@ -3993,6 +4095,9 @@ msgstr "（被動地從環境中獲得繁殖所需的化合物）"
 
 msgid "PAST_DEVELOPERS"
 msgstr "過去的開發人員"
+
+msgid "PATCH_COLON"
+msgstr "區域："
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4070,6 +4175,9 @@ msgstr "性能"
 
 msgid "PERFORM_UNBINDING"
 msgstr "取消結合"
+
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/s"
@@ -4204,12 +4312,6 @@ msgstr "程式設計團隊"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "專案管理團隊"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "保護剛遷移的族群免受物種容量上限的影響"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "保護剛創造的物種免受物種容量上限的影響"
-
 msgid "PROTEINS"
 msgstr "蛋白質"
 
@@ -4276,9 +4378,6 @@ msgstr "重做上一個動作"
 msgid "REFRESH"
 msgstr "重新整理"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "在目標區域滅絕時，返還遷移花費"
-
 msgid "REPORT"
 msgstr "報告"
 
@@ -4329,6 +4428,9 @@ msgstr "重置為預設值？"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "抵抗基本吞噬"
+
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "設定要放置的元球大小。或者使用快捷鍵進行更改。"
 
 msgid "RESOLUTION"
 msgstr "解析度："
@@ -4658,6 +4760,9 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "在螢幕上顯示傷害效果"
+
 msgid "SHOW_HELP"
 msgstr "顯示幫助"
 
@@ -4684,6 +4789,9 @@ msgstr "當玩家嘗試退出遊戲時啟用／停用未儲存進度警告彈出
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "顯示 Thrive 新聞（從網路下載）"
+
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "發射嗜鐵素"
 
 msgid "SIGNALING_AGENT"
 msgstr "信號劑"
@@ -4738,6 +4846,9 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 
 msgid "SMALL_IRON_CHUNK"
 msgstr "小鐵塊"
+
+msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "小磷酸鹽塊"
 
 msgid "SOCIETY_STAGE"
 msgstr "社會階段"
@@ -4827,12 +4938,6 @@ msgstr "物種種群數量"
 msgid "SPECIES_PRESENT"
 msgstr "存在的物種"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "透過多個良好的突變來分支物種所需的最小種群數量"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "允許透過突變分支物種的最小種群數量比例"
-
 msgid "SPECIES_TO_FIND"
 msgstr "尋找物種："
 
@@ -4847,6 +4952,12 @@ msgstr "速度："
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "擴散到區域："
+
+msgid "SPRINT"
+msgstr "衝刺"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "切換衝刺模式。衝刺時細胞移動得更快，但會消耗更多的 ATP，隨著壓力增加會消耗更多的 ATP。"
 
 msgid "STAGES"
 msgstr ""
@@ -4871,6 +4982,18 @@ msgstr "開始研究"
 
 msgid "STATISTICS"
 msgstr "統計數據"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP 產量懲罰"
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "基礎移動降低"
+
+msgid "STAT_DAMAGE"
+msgstr "傷害"
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr "每個耗氧細胞器的損傷等級"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客戶端程式庫初始化失敗"
@@ -4945,6 +5068,9 @@ msgstr "秒數"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "登入身分：{0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "壓力值條可見性"
 
 msgid "STRATEGY_STAGES"
 msgstr "策略階段"
@@ -5285,6 +5411,9 @@ msgstr "切換物品欄"
 msgid "TOGGLE_METRICS"
 msgstr "切換指標顯示"
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "切換黏液囊護盾"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "切換導航樹"
 
@@ -5300,20 +5429,76 @@ msgstr "工具"
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr "未顯示所有最近版本，因為版本過多"
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "已收集能量："
 
 msgid "TOTAL_SAVES"
 msgstr "總存檔數："
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "通道抑制劑"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "抑制受影響細胞的 ATP 生產，有效防止它們快速移動，並可能導致 ATP 產量不高的細胞死亡。"
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "細胞毒素"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "一種簡單的毒素，對沒有特化細胞膜的細胞相當有效。"
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "射速與毒性："
+
+msgid "TOXIN_MACROLIDE"
+msgstr "巨環內酯"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "毒素會大幅降低基礎移動速度，使簡單的細胞基本上無法移動。"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "氰化物"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "氰化物針對氧代謝過程，對氧代謝細胞非常有效。"
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "基於氧的毒素會導致細胞損傷。對利用氧氣進行代謝的物種效果較差。"
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "射速"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "毒性"
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "毒素對目標的影響"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "毒素抗性"
+
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"毒素可以自訂以造成更多的傷害但發射速度更慢，\n"
+"或發射速度更快但每次射擊造成的傷害更少。\n"
+"所有毒素細胞器的平均毒性決定了總發射速度和傷害修正值。\n"
+"只有當毒素細胞器是唯一的時候，此處顯示的傷害值才完全準確。\n"
+"或者所有細胞器都被修改為具有相同的毒性。"
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "毒素類型："
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "不同類型的毒素具有不同的作用，對某些類型的細胞更有效。對於具有多種不同毒素類型的細胞，它們按順序使用，而不是一次全部發射。"
 
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。"
+msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound] 而經過修飾的液泡。更多的毒素液泡能增加釋放毒素的速度。可以修改以切換生成的毒素類型來獲得其他效果。"
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
@@ -5662,6 +5847,9 @@ msgstr "捕食纖毛"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "當處於吞噬模式（[thrive:input]g_toggle_engulf[/thrive:input]）時，這種類型的纖毛會在水中引起渦流，從而吸引附近的物體。對於捕捉獵物很有用。"
 
+msgid "UPGRADE_COST"
+msgstr "{0}（{1} 突變點數）"
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "預設未升級狀態"
 
@@ -5673,6 +5861,12 @@ msgstr "注射性菌毛"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "將菌毛變為毒刺，刺穿其他細胞時造成毒素損傷"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "黏液囊"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "將黏液射流變成黏液囊，在細胞周圍形成黏液保護膜。活化後，它可以暫時免疫所有傷害。"
 
 msgid "UPLOAD"
 msgstr "上傳"
@@ -5700,9 +5894,6 @@ msgstr "自動從 Assembly 載入 Harmony 補丁（不需要指定模組類別�
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自訂使用者名稱"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "在創造增加生物多樣性的物種時減少現有物種的數量"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設定後台執行緒數"
@@ -5755,6 +5946,9 @@ msgstr "檢視器"
 msgid "VIEW_ALL"
 msgstr "查看所有"
 
+msgid "VIEW_CELL_PROCESSES"
+msgstr "查看細胞代謝過程"
+
 msgid "VIEW_ONLINE"
 msgstr "在網路上查看"
 
@@ -5775,6 +5969,12 @@ msgstr "VIP 支持者"
 
 msgid "VISIBLE"
 msgstr "可見"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "幾乎滿時可見"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "大於零時可見"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "建議一項新功能"
@@ -5890,7 +6090,7 @@ msgstr "意識階段"
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr ""
-"進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮質體[/url][/color][/b]。\n"
+"進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮體[/url][/color][/b]。\n"
 "\n"
 "也會進行一些[b]糖解[/b]，消耗[thrive:compound type=\"glucose\"][/thrive:compound] 生產[thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -6380,7 +6580,7 @@ msgstr "代謝過程"
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "效果"
+msgstr "升級"
 
 #, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
@@ -7097,7 +7297,7 @@ msgid "WIKI_ROOT_BODY"
 msgstr ""
 "歡迎來到遊戲中的 Thrive 百科。在這裡您可以找到有關遊戲概念的詳細資訊，包括攻略到支撐遊戲機制的科學理論。\n"
 "\n"
-"本節中的大多數頁面都是根據[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]線上開發者 wiki[/url][/color] 上的英文內容自動生成並由社群翻譯的。如果您想協助撰寫和維護 wiki 內容，請考慮[color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]加入團隊[/url][/color]。\n"
+"本節中的大多數頁面都是根據[color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/]線上開發者 Wiki[/url][/color] 上的英文內容自動生成並由社群翻譯的。如果您想協助撰寫和維護 Wiki 內容，請考慮[color=#3796e1][url=https://revolutionarygamesstudio.com/get-involved/]加入團隊[/url][/color]。\n"
 "\n"
 "請參閱下方連結以了解一些主要的遊戲概念。"
 
@@ -7498,7 +7698,7 @@ msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "項目已成功上傳至 Steam 工作坊"
 
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "項目已成功上傳至 Steam 工作坊，但您需要在其可見之前先接受工作坊[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服務條款[/url][/color]"
+msgstr "項目已成功上傳至 Steam 工作坊，但您需要在其變得可見之前先接受工作坊[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服務條款[/url][/color]"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "提交此項目即表示您同意 Steam 工作坊的[color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]服務條款[/url][/color]"

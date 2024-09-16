@@ -91,7 +91,7 @@ public partial class DraggableScrollContainer : ScrollContainer
         base._Draw();
 
         content.PivotOffset = new Vector2(ScrollHorizontal, ScrollVertical) + GetRect().End * 0.5f;
-        contentScale = Mathf.Clamp(contentScale, MinZoom, MaxZoom);
+        contentScale = Math.Clamp(contentScale, MinZoom, MaxZoom);
         var pairValue = new Vector2(contentScale, contentScale);
 
         if (content.Scale != pairValue)

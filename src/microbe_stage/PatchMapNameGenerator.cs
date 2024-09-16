@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 using Xoshiro.PRNG32;
 
 public class PatchMapNameGenerator : IRegistryType
@@ -42,7 +43,7 @@ public class PatchMapNameGenerator : IRegistryType
         int suffixIndex;
 
         // Construct the word with syllables
-        for (int i = 0; i < nameLength; i++)
+        for (int i = 0; i < nameLength; ++i)
         {
             int syllablesIndex = random.Next(0, syllables.Count);
 

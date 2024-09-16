@@ -15,6 +15,9 @@ public partial class ChemicalEquation : VBoxContainer
     private Label? title;
 
     [Export]
+    private CheckButton? toggleProcess;
+
+    [Export]
     private TextureRect? spinner;
 
     [Export]
@@ -37,6 +40,11 @@ public partial class ChemicalEquation : VBoxContainer
 
     private IProcessDisplayInfo? equationFromProcess;
     private bool showSpinner;
+    private bool showToggle;
+
+    // TODO: if some people prefer this on, add a GUI option to default this value as on
+    private bool showFullSecondText;
+
     private Color defaultTitleColour = Colors.White;
 
     /// <summary>
@@ -50,6 +58,11 @@ public partial class ChemicalEquation : VBoxContainer
     ///   If true, a plus sign will be used before the output amounts.
     /// </summary>
     private bool hasNoInputs;
+
+    private bool lastToggle = true;
+
+    [Signal]
+    public delegate void ToggleProcessPressedEventHandler(ChemicalEquation thisEquation);
 
     public IProcessDisplayInfo? EquationFromProcess
     {
@@ -77,10 +90,49 @@ public partial class ChemicalEquation : VBoxContainer
         }
     }
 
+    public bool ShowToggle
+    {
+        get => showToggle;
+        set
+        {
+            showToggle = value;
+            UpdateHeader();
+        }
+    }
+
+    public bool ProcessEnabled
+    {
+        get => lastToggle;
+        set
+        {
+            if (value == lastToggle)
+                return;
+
+            lastToggle = value;
+            ApplyProcessToggleValue();
+        }
+    }
+
     /// <summary>
     ///   If true then "/ second" is shown after the process inputs and outputs
     /// </summary>
     public bool ShowPerSecondLabel { get; set; } = true;
+
+    /// <summary>
+    ///   Only if this is true the text "/ second" is shown fully, instead of being abbreviated to " / s"
+    /// </summary>
+    public bool ShowFullSecondText
+    {
+        get => showFullSecondText;
+        set
+        {
+            if (value == showFullSecondText)
+                return;
+
+            showFullSecondText = value;
+            UpdateSecondLabel();
+        }
+    }
 
     /// <summary>
     ///   If true this will automatically check the set process for changes
@@ -97,6 +149,7 @@ public partial class ChemicalEquation : VBoxContainer
     public override void _Ready()
     {
         UpdateEquation();
+        ApplyProcessToggleValue();
     }
 
     public override void _EnterTree()
@@ -129,11 +182,20 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void OnTranslationsChanged()
     {
-        if (perSecondLabel != null)
-            perSecondLabel.Text = Localization.Translate("PER_SECOND_SLASH");
+        UpdateSecondLabel();
 
         if (environmentSeparator != null)
             environmentSeparator.Text = GetEnvironmentLabelText();
+    }
+
+    private void UpdateSecondLabel()
+    {
+        if (perSecondLabel != null)
+        {
+            perSecondLabel.Text = showFullSecondText ?
+                Localization.Translate("PER_SECOND_SLASH") :
+                Localization.Translate("PER_SECOND_ABBREVIATION");
+        }
     }
 
     private void UpdateEquation()
@@ -172,7 +234,12 @@ public partial class ChemicalEquation : VBoxContainer
 
         if (perSecondLabel == null && ShowPerSecondLabel)
         {
-            perSecondLabel = new Label { Text = Localization.Translate("PER_SECOND_SLASH") };
+            perSecondLabel = new Label
+            {
+                Text = showFullSecondText ?
+                    Localization.Translate("PER_SECOND_SLASH") :
+                    Localization.Translate("PER_SECOND_ABBREVIATION"),
+            };
             firstLineContainer.AddChild(perSecondLabel);
         }
 
@@ -184,6 +251,9 @@ public partial class ChemicalEquation : VBoxContainer
     {
         if (spinner != null)
             spinner.Visible = ShowSpinner;
+
+        if (toggleProcess != null)
+            toggleProcess.Visible = ShowToggle;
 
         if (title == null || EquationFromProcess == null)
             return;
@@ -301,5 +371,18 @@ public partial class ChemicalEquation : VBoxContainer
     private string GetEnvironmentLabelText()
     {
         return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
+    }
+
+    private void ToggleButtonPressed(bool toggled)
+    {
+        ProcessEnabled = toggled;
+
+        EmitSignal(SignalName.ToggleProcessPressed, this);
+    }
+
+    private void ApplyProcessToggleValue()
+    {
+        if (toggleProcess != null)
+            toggleProcess.ButtonPressed = ProcessEnabled;
     }
 }

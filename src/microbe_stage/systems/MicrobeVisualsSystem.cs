@@ -156,6 +156,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
         if (cellProperties.CreatedMembrane == null)
         {
+            // TODO: pooling for membrane instances?
             var membrane = membraneScene.Value.Instantiate<Membrane>() ??
                 throw new Exception("Invalid membrane scene");
 
@@ -285,12 +286,23 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         cellProperties.ApplyMembraneWigglyness(membrane);
     }
 
+    /// <summary>
+    ///   Creates visuals for organelles in a container
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: could try pooling some microbe visuals if possible (would be relatively hard to detect when ones are
+    ///     unused as this system doesn't handle deleting the visuals after use)
+    ///   </para>
+    /// </remarks>
     private void CreateOrganelleVisuals(Node3D parentNode, ref OrganelleContainer organelleContainer,
         ref CellProperties cellProperties)
     {
         organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
-        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
+        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour)
+            * Constants.ORGANELLE_TINT_STRENGTH
+            + Colors.White * (1.0f - Constants.ORGANELLE_TINT_STRENGTH);
 
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {
@@ -346,14 +358,13 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
             // Materials need to be always fully fetched again to make sure we don't forget any active ones
             int start = tempMaterialsList.Count;
-            if (graphics is OrganelleMeshWithChildren organelleMeshWithChildren)
-            {
-                organelleMeshWithChildren.GetChildrenMaterials(tempMaterialsList);
-            }
 
             // Use the model data from when the graphics were loaded for consistency
-            var material = graphics.GetMaterial(placedOrganelle.LoadedGraphicsSceneInfo.ModelPath);
-            tempMaterialsList.Add(material);
+            if (!graphics.GetMaterial(tempMaterialsList, placedOrganelle.LoadedGraphicsSceneInfo.ModelPath))
+            {
+                GD.PrintErr("Failed to fetch organelle materials for created: ",
+                    placedOrganelle.Definition.InternalName);
+            }
 
             // Apply tint (again) to make sure it is up-to-date
             int count = tempMaterialsList.Count;

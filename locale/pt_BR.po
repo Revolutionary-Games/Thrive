@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-03-21 09:43+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-08 07:30+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "Editor Comum e Estágios Estratégicos"
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Estágios de Estratégia"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -66,6 +65,9 @@ msgstr "Abortado."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelágico"
+
+msgid "ACCEPT"
+msgstr "Aceitar"
 
 msgid "ACTION_AWAKEN"
 msgstr "Despertar ({0:F1} / {1:F1})"
@@ -153,11 +155,11 @@ msgstr "(velocidade que a IA se muta)"
 msgid "ALL"
 msgstr "Tudo"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Permitir que a espécie não migre"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "Permitir a troca para uma espécie relacionada quando extinto"
 
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Permitir que a espécie não mute"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "(permite continuar o jogo com uma outra espécie ao invés de terminar o jogo ao ser extinto)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estatísticas Gerais de Todos os Mundos"
@@ -183,6 +185,9 @@ msgstr "Você já está ascendido"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "Sempre visível"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Volume do ambiente"
@@ -359,26 +364,24 @@ msgstr "Barra Invertida"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntese de Oxitoxina"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termossíntese"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Calcular como se fosse dia"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "Ao marcar a opção, os números calculados neste painel serão calculados como se fosse sempre dia"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Incluir o custo de movimento"
 
-#, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Abrir as configurações avançadas"
+msgstr "Quando a opção é marcada, os valores mostrados são calculados com base no pressuposto de que a célula está constantemente em movimento"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilidade"
@@ -444,6 +447,9 @@ msgstr "Melhor Região:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Pedaço de ferro grande"
 
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Pedaço de fosfato grande"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Bi"
 
@@ -458,18 +464,6 @@ msgstr "Aperte [thrive:input]g_toggle_binding[/thrive:input] para ativar o modo 
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Unir eixos"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Probabilidade da criação de uma nova espécie em regiões com poucas espécies (biodiversidade baixa)"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Probabilidade da criação de uma nova espécie para aumentar a biodiversidade de uma região próxima"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "População grátis é dada às espécies que aumentam a biodiversidade de uma região próxima"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Espécies que aumentam a biodiversidade são mutadas na criação"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Vacúolo Bioluminescente"
@@ -676,9 +670,8 @@ msgstr "O nome do arquivo ({0}) já existe. Sobrescrever?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberração cromática:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntese de Oxitoxina"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e a intensidade de [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -794,20 +787,18 @@ msgstr "Visite a nossa wiki comunitária"
 msgid "COMPILED_AT_COLON"
 msgstr "Compilado em:"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Compilado em:"
+msgstr "Terminar"
 
 msgid "COMPOUNDS"
 msgstr "Compostos"
 
 #, fuzzy
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "Composto:"
+msgstr "Saldo em equilíbrio"
 
-#, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "Composto:"
+msgstr "Saldo em velocidade máxima"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder compostos"
@@ -815,24 +806,24 @@ msgstr "Mostrar/esconder compostos"
 msgid "COMPOUNDS_COLON"
 msgstr "Compostos:"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr "Compostos"
+msgstr "(preenche o armazenamento em {0} s)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
-msgstr "Compostos"
+msgstr "(preenche o armazenamento em {0} s, que é mais tempo que a luz utilizável de {1} s)"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "Mostrar/esconder compostos"
+msgstr ""
+"Modo para calcular o saldo de compostos; por exemplo, a opção “velocidade máxima” calcula pressupondo que todos os processos ocorram em velocidade máxima\n"
+"enquanto que a opção “equilíbrio” calcula com os processos ocorrendo rápido o suficiente para ter um saldo de ATP não negativo"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Compostos"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "Mostrar/esconder compostos"
+msgstr ""
+"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
+"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal"
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
@@ -849,24 +840,24 @@ msgstr "As concentrações de {0} diminuíram em {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "consumo de {0}"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
-msgstr "Compostos"
+msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Apenas {1} [thrive:compound type=\"{0}\"][/thrive:compound] consegue ser gerado durante o dia, mas necessita-se de {2} para sobreviver à noite."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "consumo de {0}"
+msgstr "Não há armazenamento suficiente para [thrive:compound type=\"{0}\"][/thrive:compound], visto que a noite dura {2} s, enquanto a célula consegue manter somente {1} s de compostos."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr "Compostos"
+msgstr "Capacidade de Armazenamento"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr "Compostos"
+msgstr ""
+"Essa seção exibe quanto tempo a célula demora para usar cada composto a partir do armazenamento máximo.\n"
+"Esses números são sempre calculados como se fosse noite e podem ser usados para verificar se a célula tem\n"
+"armazenamento suficiente para sobreviver a noite inteira. Ao desligar o custo de movimento, é calculado a quantidade\n"
+"mínima para sobreviver quando se fica imóvel a noite inteira para conservar energia."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto:"
@@ -929,6 +920,12 @@ msgstr "Unidade: {0}"
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "O conteúdo da Oficina será atualizado da pasta: {0}"
 
+msgid "CONTINUE"
+msgstr "Continuar"
+
+msgid "CONTINUE_AS_SPECIES"
+msgstr "[center]No entanto, o jogo ainda não acabou. Você pode [b]continuar jogando[/b] como a espécie {0} com {1} indivíduos.[/center]"
+
 msgid "CONTINUE_THRIVING"
 msgstr "Continuar a prosperar"
 
@@ -944,17 +941,14 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Prosseguir para o protótipo do estágio?"
 
-#, fuzzy
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr "Zonas mortas do controle"
+msgstr "Qualquer Dispositivo"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_L2"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "L2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Gatilho Esquerdo"
 
 #, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_X"
@@ -964,21 +958,17 @@ msgstr "Visualizador dos eixos do controle:"
 msgid "CONTROLLER_AXIS_LEFT_Y"
 msgstr "Visualizador dos eixos do controle:"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Direção Negativa"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr "Sensibilidade do controle"
+msgstr "Direção Positiva"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_R2"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "R2"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr "Visualizador dos eixos do controle:"
+msgstr "Gatilho Direito"
 
 #, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_X"
@@ -991,20 +981,17 @@ msgstr "Visualizador dos eixos do controle:"
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr "Visualizador dos eixos do controle:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Direcional para Baixo"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Direcional Para a Esquerda"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "Botão Direcional Para a Direita"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr "Zonas mortas do controle"
+msgstr "Botão Direcional Para Cima"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
@@ -1050,33 +1037,28 @@ msgstr "Zona morta:"
 msgid "CONTROLLER_BUTTON_PS_CROSS"
 msgstr "Zona morta:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr "Zonas mortas do controle"
+msgstr "L1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr "Zonas mortas do controle"
+msgstr "L3"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
 msgstr "Zona morta:"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr "Zonas mortas do controle"
+msgstr "R1"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr "Zonas mortas do controle"
+msgstr "R3"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
 msgstr "Zonas mortas do controle"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr "Tipos de prompts de botões do controle:"
+msgstr "Botão com Logo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
@@ -1095,19 +1077,16 @@ msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr "Tipos de prompts de botões do controle:"
 
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Touch Pad"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_UNKNOWN"
-msgstr "Zona morta:"
+msgstr "Botão Direcional"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr "Zona morta:"
+msgstr "A"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr "Zona morta:"
+msgstr "B"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
 msgstr ""
@@ -1119,13 +1098,11 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_START"
 msgstr "Sensibilidade do controle"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr "Zona morta:"
+msgstr "X"
 
-#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr "Zona morta:"
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr "Zonas mortas do controle"
@@ -1144,9 +1121,8 @@ msgstr "Tipos de prompts de botões do controle:"
 msgid "CONTROLLER_SENSITIVITY"
 msgstr "Sensibilidade do controle"
 
-#, fuzzy
 msgid "CONTROLLER_UNKNOWN_AXIS"
-msgstr "Zonas mortas do controle"
+msgstr "Eixo Desconhecido"
 
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copiar erro para a Área de Transferência"
@@ -1160,9 +1136,8 @@ msgstr "Protanopia (Vermelho-Verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopia (Azul-Amarelo)"
 
-#, fuzzy
 msgid "CPU_THREADS"
-msgstr "Tarefas:"
+msgstr "Threads"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Limpar entradas selecionadas"
@@ -1312,9 +1287,8 @@ msgstr "(duração do dia no jogo em segundos)"
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr "Ativar o ciclo dia/noite"
 
-#, fuzzy
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
-msgstr "(AVISO: a fotossíntese se tornará menos viável)"
+msgstr "(a fotossíntese deixa de ser efetiva durante a noite)"
 
 msgid "DEADZONE_CALIBRATION_FINISHED"
 msgstr "A calibração das zonas mortas foi concluída. Elas estão sendo mostradas abaixo."
@@ -1344,6 +1318,9 @@ msgstr "Painel de depuração"
 
 msgid "DECEMBER"
 msgstr "Dezembro"
+
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Diminuir o tamanho do objeto"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Serviço padrão de saída"
@@ -1503,6 +1480,10 @@ msgstr "Descartar e continuar"
 msgid "DISCARD_CHANGES"
 msgstr "Descartar Mudanças"
 
+#, fuzzy
+msgid "DISCARD_MIGRATION"
+msgstr "Descartar e continuar"
+
 msgid "DISCONNECTED_CELLS"
 msgstr "Células Desconectadas"
 
@@ -1553,13 +1534,11 @@ msgstr "Exibir barra de habilidades"
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "OpenGL"
 
-#, fuzzy
 msgid "DISPLAY_DRIVER_VULKAN"
-msgstr "Exibir nomes dos botões de seleções de partes"
+msgstr "Vulkan"
 
 msgid "DISPLAY_PART_NAMES"
 msgstr "Exibir nomes dos botões de seleções de partes"
@@ -1693,7 +1672,7 @@ msgstr "Editor"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Mitocôndria"
+msgstr "teve uma mutação"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Abre o editor e modifica a sua espécie"
@@ -1730,64 +1709,50 @@ msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Habilitar efeitos de luz na interface"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "O processo de endossimbiose está completo, termine-o no editor"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "O alvo da endossimbiose foi transformado em uma organela temporária, o que fará com que a endossimbiose avance se você conseguir entrar no editor"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Um endossimbionte já está presente. Entre no editor para avançar o processo de endossimbiose"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
-msgstr "Múltiplas Organelas"
+msgstr "Organelas disponíveis para transformar-se"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endossimbiose"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
-msgstr "Desconectar todos"
+msgstr "Cancelar o processo de endossimbiose. Essa ação anula todo o processo atual neste endossimbionte!"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_COMPLETE_TOOLTIP"
-msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+msgstr "Finalizar este processo de endossimbiose e colocar como organela"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_EXPLANATION"
-msgstr ""
-"Micróbios agressivos perseguirão sua presa por mais tempo\n"
-"e são mais propensos a lutar com predadores quando atacados.\n"
-"Entretanto, os micróbios mais pacíficos não vão perseguir outros por tanto tempo\n"
-"e são menos inclinados a usar toxinas contra predadores."
+msgstr "Endossimbiose é um processo que transforma outra espécie em um endossimbionte (uma espécie que vive dentro de outra em uma relação simbiótica). Isso desbloqueia a organela criada e dá uma cópia gratuita dessa organela. Candidatos viáveis para virar organelas são exibidos abaixo após serem fagocitados. O tempo que o processo leva depende do quão adequado o candidato é para a endossimbiose (exibido abaixo de cada organela candidata)."
 
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Nenhuma espécie adequada para a endossimbiose foi fagocitada ainda"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
-msgstr "Organelas Desconectadas"
+msgstr "Esta espécie não pode ser transformada em uma organela válida"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr ""
-"Isso mostra quantos pop-ups foram dispensados permanentemente pelo usuário.\n"
-"Se alguns dos pop-ups que necessita foram dispensados, o botão junto a isso pode ser usado para fazer todos os pop-ups reaparecerem."
+msgstr "Para avançar um processo de endossimbiose, a espécie alvo deve ser fagocitada para torná-la em uma organela temporária (somente uma pode estar presente de cada vez). O progresso é salvo assim que você entrar no editor com a organela temporária presente."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Procariontes podem ter no máximo um endossimbionte"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "Transforma [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] em [thrive:compound type=\"glucose\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound]. Também transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Entre no editor com esta espécie como uma organela temporária para avançar"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
-msgstr "Abre o editor e modifica a sua espécie"
+msgstr "Começar a endossimbiose para esta espécie (disponível assim que o tipo de organela for selecionado)"
 
-#, fuzzy
 msgid "ENDOSYMBIOSIS_TITLE"
-msgstr "Falta um título"
+msgstr "Endossimbiose"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}: -{1} ATP"
@@ -1807,6 +1772,9 @@ msgstr "Fontes de Energia:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "A energia total coletada é {0}, a um custo de {1} por indivíduo, resultando em uma população (não ajustada) de {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr "Ferido por tentar fagocitar sem ATP"
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Insira ID Existente"
 
@@ -1821,7 +1789,7 @@ msgstr "Ambiente"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitocôndria"
+msgstr "Retenção da glicose ambiental"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retenção da glicose ambiental"
@@ -1898,12 +1866,17 @@ msgstr "Construções"
 msgid "EXIT"
 msgstr "Sair"
 
-#, fuzzy
 msgid "EXIT_EDITOR"
-msgstr "Ir para a próxima aba do editor"
+msgstr "Sair do Editor"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Sair para o Lançador"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "Recursos experimentais"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(ativa recursos adicionais que não estão maduros o suficiente para serem incluídos no jogo padrão. Se você jogar com eles, diga-nos o que achou)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportar Todos os Mundos"
@@ -1990,13 +1963,11 @@ msgstr "Publicado em {0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "Esse item foi truncado por ser muito longo, leia o original para obter todo o conteúdo. {0}"
 
-#, fuzzy
 msgid "FERROPLAST"
-msgstr "Termoplasto"
+msgstr "Ferroplasto"
 
-#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "O termoplasto é uma estrutura de membrana dupla contendo pigmentos termossensíveis. É um procarionte que foi assimilado para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem usar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbônico em um processo chamado Termossíntese. A proporção da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+msgstr "O ferroplasto é uma estrutura de membrana dupla cheia de proteínas e enzimas. É um procarionte que foi assimilado para uso de seu hospedeiro eucariótico. É capaz de oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico a outra com uma eficiência bem maior do que pode ser conseguido com a rusticianina. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá utilizar. Contudo, o ferroplasto precisa de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound] para funcionar, e níveis maiores de qualquer um desses no ambiente diminuirá a taxa da produção de [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
@@ -2305,11 +2276,19 @@ msgstr "O ID não é um número válido"
 msgid "ID_NUMBER"
 msgstr "Número de ID"
 
+#, fuzzy
+msgid "IMAGE_FILE_TYPES"
+msgstr "Tipos de Membranas"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Incluir protótipos dos estágios seguintes"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(alguns recursos podem não estar disponíveis quando você alcançar os próximos estágios)"
+
+#, fuzzy
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Criar Novo"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Estágio Industrial"
@@ -2519,6 +2498,10 @@ msgstr "Julho"
 
 msgid "JUNE"
 msgstr "Junho"
+
+#, fuzzy
+msgid "KEEP_MIGRATION"
+msgstr "Respiração Aeróbica"
 
 msgid "KEY_BACK"
 msgstr "Voltar"
@@ -2952,11 +2935,9 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+#, fuzzy
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Desativar o Ciclo Dia/Noite"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Baixo Desempenho Detectado"
@@ -2990,9 +2971,6 @@ msgstr "Neve marinha"
 
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Máximo de espécies na região"
 
 msgid "MAX_FPS"
 msgstr "FPS máximo:"
@@ -3080,6 +3058,63 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "A nova espécie, [b][u]{0}[/u][/b], ramificou-se de [b][u]{1}[/u][/b] devido a diferentes pressões seletivas"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Nuvens de compostos"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Espécie[/b]\n"
+"  {0}:{1}\n"
+"[b]Geração[/b]\n"
+"  {2}\n"
+"[b]População[/b]\n"
+"  {3}\n"
+"[b]Coloração[/b]\n"
+"  #{4}\n"
+"[b]Comportamento[/b]\n"
+"  {5}\n"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Predação de {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "Despejar SceneTree"
 
 msgid "MICROBE"
 msgstr "Micróbio"
@@ -3321,6 +3356,49 @@ msgstr ""
 
 msgid "MIDDLE_MOUSE"
 msgstr "Botão do meio do mouse"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Proporção"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "A Criação do Mod Falhou"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Fique de olho na sua barra de saúde próximo a barra de ATP (canto inferior direito).\n"
+"Sua célula morre quando não tem mais saúde.\n"
+"Você regenera saúde enquanto você tem ATP.\n"
+"Certifique-se de conseguir glicose suficiente para produzir ATP."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr ""
+"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
+"\n"
+"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
+"\n"
+"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(custo das organelas, membranas e outros itens do editor)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(custo das organelas, membranas e outros itens do editor)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mi"
@@ -3588,6 +3666,10 @@ msgstr "Mucilagem"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Síntese de mucilagem"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicelular"
 
@@ -3686,9 +3768,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "NOTÍCIAS"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "População inicial para espécies que aumentam a biodiversidade"
-
 msgid "NEW_GAME"
 msgstr "Novo Jogo"
 
@@ -3771,11 +3850,15 @@ msgstr "A célula é muito pequena para fagocitar o alvo"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Não há espaço suficiente para fagocitar o alvo"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr ""
+
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Movimento Base"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
-
-msgid "NOT_FOUND_CHUNK"
-msgstr "Erro: pedaço não encontrado"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Não começou."
@@ -3839,6 +3922,9 @@ msgstr "x{0}"
 
 msgid "OCTOBER"
 msgstr "Outubro"
+
+msgid "OFF"
+msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Site oficial"
@@ -3971,6 +4057,7 @@ msgstr "{0} organela"
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Desbloqueio de organelas ativado"
 
+#, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr "(Algumas organelas terão condições de desbloqueio para poder as colocar)"
 
@@ -3991,6 +4078,10 @@ msgstr "Multiplicador do custo da osmorregulação"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(custo da osmorregulação da espécie do jogador)"
+
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Compostos"
 
 msgid "OUR_WIKI"
 msgstr "nossa Wiki"
@@ -4022,6 +4113,7 @@ msgstr "Oxigênio"
 msgid "OXYTOXISOME"
 msgstr "Oxitoxissoma"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Um metabolossomo modificado responsável pela produção de uma forma primitiva do agente tóxico Oxitoxina."
 
@@ -4076,6 +4168,10 @@ msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem te
 
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolvedores Antigos"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Melhor Região:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4155,6 +4251,10 @@ msgstr "Desempenho"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Desconectar"
+
+#, fuzzy
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "{0} K"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/segundo"
@@ -4289,12 +4389,6 @@ msgstr "Equipe de Programação"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Equipe de Gestão do Projeto"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Teto de proteção de espécies recém-migradas"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Teto de proteção de espécies criadas de outras espécies"
-
 msgid "PROTEINS"
 msgstr "Proteínas"
 
@@ -4321,7 +4415,7 @@ msgid "QUIT"
 msgstr "Sair"
 
 msgid "QUIT_BUTTON_TOOLTIP"
-msgstr "Sai do jogo"
+msgstr "Sair do jogo"
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
@@ -4360,9 +4454,6 @@ msgstr "Refazer a ultima ação"
 
 msgid "REFRESH"
 msgstr "Atualizar"
-
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Reembolsar migrações em caso de extinção"
 
 msgid "REPORT"
 msgstr "Relatório"
@@ -4414,6 +4505,10 @@ msgstr "Redefinir para as configurações padrão?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Resistente à fagocitose básica"
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Retomar o jogo"
 
 msgid "RESOLUTION"
 msgstr "Resolução:"
@@ -4523,7 +4618,7 @@ msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rusticianina é uma proteína que consegue usar o gás carbônico e oxigênio para oxidar ferro de um estado físico para outro. O processo, chamado Quimiossíntese litoautotrófica, libera energia que a célula pode coletar."
+msgstr "Rusticianina é uma proteína que consegue usar o [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound] para oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico para outro. Esse processo, chamado de [b]respiração de ferro[/b], libera energia que a célula poderá usar."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
@@ -4743,6 +4838,10 @@ msgstr "Volume dos efeitos sonoros"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
+
 msgid "SHOW_HELP"
 msgstr "Mostrar ajuda"
 
@@ -4769,6 +4868,10 @@ msgstr "Mostra/Esconde o aviso de quando o jogador tenta sair do jogo."
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Mostrar o feed de notícias de Thrive (baixadas pela internet)"
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
 
 msgid "SIGNALING_AGENT"
 msgstr "Agente de Sinalização"
@@ -4822,6 +4925,10 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
 
 msgid "SMALL_IRON_CHUNK"
+msgstr "Pedaço de ferro pequeno"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Pedaço de ferro pequeno"
 
 msgid "SOCIETY_STAGE"
@@ -4912,12 +5019,6 @@ msgstr "População da espécie"
 msgid "SPECIES_PRESENT"
 msgstr "Espécies Presentes"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "População mínima para que uma espécie se divida se há mutações boas o suficiente"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "População mínima para que uma fração de uma espécie possa dividir por mutações"
-
 msgid "SPECIES_TO_FIND"
 msgstr "Espécies a Encontrar:"
 
@@ -4932,6 +5033,14 @@ msgstr "Velocidade:"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "espalhou para as regiões:"
+
+#, fuzzy
+msgid "SPRINT"
+msgstr "Capturar Tela"
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Visite a nossa página no Patreon"
 
 msgid "STAGES"
 msgstr ""
@@ -4957,6 +5066,20 @@ msgstr "Começar Pesquisa"
 
 msgid "STATISTICS"
 msgstr "Estatísticas"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "PRODUÇÃO DE ATP MUITO BAIXA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Movimento Base"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inicialização da biblioteca do cliente Steam falhou"
@@ -5031,6 +5154,9 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Entrou como: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr ""
 
 msgid "STRATEGY_STAGES"
 msgstr "Estágios de Estratégia"
@@ -5373,6 +5499,10 @@ msgstr "Ativar Inventário"
 msgid "TOGGLE_METRICS"
 msgstr "Exibir métricas"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Tela cheia"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Ativar a barra lateral"
 
@@ -5388,20 +5518,95 @@ msgstr "Ferramentas"
 msgid "TOOL_HAND_AXE"
 msgstr "Machado de Mão"
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Energia Acumulada:"
 
 msgid "TOTAL_SAVES"
 msgstr "Salvamentos totais:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Dispara um projétil de toxina que danifica outras células"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Vacúolo de\n"
+"Toxinas"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Wiki Interna do Thrive"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistência a Toxinas"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
+"\n"
+"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
+"\n"
+"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Tipo:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Descender removerá seu status de ascensão e o retornará ao Estágio Microbial. A partir daí, você poderá jogar novamente no salvamento atual.\n"
+"\n"
+"Você receberá um benefício de descensão para o novo jogo. Em uma versão futura você poderá escolher o benefício, mas por enquanto será sempre uma redução de 20% na osmorregulação.\n"
+"\n"
+"Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacúolo de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
 
@@ -5771,6 +5976,10 @@ msgstr "Cílios Atrativos"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
 
+#, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} PM"
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "A variante padrão não atualizada"
 
@@ -5784,6 +5993,14 @@ msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]),
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Ao tentar fagocitar algo ([thrive:input]g_toggle_engulf[/thrive:input]), esse tipo de cílios causa vórtices na água que puxam objetos próximos para si. É útil para capturar presas."
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} PM"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"mucilage\"][/thrive:compound]. Aperte [thrive:input]g_secrete_slime[/thrive:input] para expelir a [thrive:compound type=\"mucilage\"][/thrive:compound], aumentando a velocidade da célula e diminuindo a de predadores."
 
 msgid "UPLOAD"
 msgstr "Carregar"
@@ -5811,9 +6028,6 @@ msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso es
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar um nome personalizado"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Espécies criadas para aumentar a biodiversidade tomam parte da população de espécies existentes"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Definir número de tarefas de fundo manualmente"
@@ -5870,6 +6084,10 @@ msgid "VIEW_ALL"
 msgstr "Ver Tudo"
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Aumenta a velocidade de rotação das células maiores."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Ver Tudo"
 
@@ -5891,6 +6109,12 @@ msgstr "Apoiadores VIP"
 
 msgid "VISIBLE"
 msgstr "Visível"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Sugerir um recurso"
@@ -6426,7 +6650,7 @@ msgstr "Processos"
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "Efeitos"
+msgstr "Melhorias"
 
 #, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
@@ -7418,6 +7642,7 @@ msgstr "Título do Item:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Item carregado com sucesso para a Oficina Steam"
 
+#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Item foi carregado com sucesso para a Oficina Steam, mas é preciso aceitar os [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]termos de serviço[/url][/color] da Oficina antes de ficar visível"
 
@@ -7486,6 +7711,54 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "HELP"
 #~ msgstr "Ajuda"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Permitir que a espécie não migre"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Permitir que a espécie não mute"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Probabilidade da criação de uma nova espécie em regiões com poucas espécies (biodiversidade baixa)"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Probabilidade da criação de uma nova espécie para aumentar a biodiversidade de uma região próxima"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "População grátis é dada às espécies que aumentam a biodiversidade de uma região próxima"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Espécies que aumentam a biodiversidade são mutadas na criação"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Regiões com a seguinte quantidade de espécies serão consideradas como tendo baixa biodiversidade"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Máximo de espécies na região"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "População inicial para espécies que aumentam a biodiversidade"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Teto de proteção de espécies recém-migradas"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Teto de proteção de espécies criadas de outras espécies"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Reembolsar migrações em caso de extinção"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "População mínima para que uma espécie se divida se há mutações boas o suficiente"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "População mínima para que uma fração de uma espécie possa dividir por mutações"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Espécies criadas para aumentar a biodiversidade tomam parte da população de espécies existentes"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Erro: pedaço não encontrado"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Ampliação de grave"
@@ -7790,9 +8063,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Proporção"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

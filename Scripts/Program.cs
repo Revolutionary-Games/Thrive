@@ -16,16 +16,14 @@ public class Program
     {
         RunFolderChecker.EnsureRightRunningFolder("Thrive.sln");
 
-        // This has too many verbs now so some more manual work is required here as this has ran out of the template
+        // This has too many verbs now so some more manual work is required here as this has run out of the template
         // arguments available from the library
         var parserResult = CommandLineHelpers.CreateParser()
-            .ParseArguments(args, [
-                typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions), typeof(ChangesOptions),
-                typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions), typeof(UploadOptions),
-                typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
+            .ParseArguments(args, typeof(CheckOptions), typeof(NativeLibOptions), typeof(TestOptions),
+                typeof(ChangesOptions), typeof(LocalizationOptions), typeof(CleanupOptions), typeof(PackageOptions),
+                typeof(UploadOptions), typeof(ContainerOptions), typeof(SteamOptions), typeof(GodotTemplateOptions),
                 typeof(TranslationProgressOptions), typeof(CreditsOptions), typeof(WikiOptions),
-                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions),
-            ]);
+                typeof(GeneratorOptions), typeof(GodotProjectValidMakerOptions));
 
         int result;
         if (parserResult is Parsed<object> parsed)
@@ -308,9 +306,8 @@ public class Program
             /// </summary>
             CheckDistributable,
 
-            // TODO: maybe remove this operation entirely (should also update documentation)
             /// <summary>
-            ///   Installs a library to work with Godot editor
+            ///   Installs a library to work with Godot editor (only needed for specific libraries)
             /// </summary>
             Install,
 
@@ -348,11 +345,15 @@ public class Program
             get
             {
                 yield return new Example("download all available libraries",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Fetch } });
-                yield return new Example("compile libraries locally",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Build } });
+                    new NativeLibOptions { Operations = [OperationMode.Fetch], Url = string.Empty });
+                yield return new Example("compile and install libraries locally",
+                    new NativeLibOptions
+                        { Operations = [OperationMode.Build, OperationMode.Install], Url = string.Empty });
                 yield return new Example("prepare library versions for distribution or uploading with podman",
-                    new NativeLibOptions { Operations = new[] { OperationMode.Package } });
+                    new NativeLibOptions { Operations = [OperationMode.Package], Url = string.Empty });
+                yield return new Example("build only release mode libraries",
+                    new NativeLibOptions
+                        { Operations = [OperationMode.Build], Url = string.Empty, DebugLibrary = false });
             }
         }
 
@@ -363,9 +364,9 @@ public class Program
             HelpText = "Libraries to work on, default is all.")]
         public IList<NativeConstants.Library>? Libraries { get; set; } = new List<NativeConstants.Library>();
 
-        [Option('d', "debug", Required = false, Default = false,
-            HelpText = "Set to work on debug versions of the libraries")]
-        public bool DebugLibrary { get; set; }
+        [Option('d', "debug", Required = false, Default = null,
+            HelpText = "Set to false or true to only use debug mode or disable it. Default is to do both.")]
+        public bool? DebugLibrary { get; set; }
 
         [Option("disable-avx", Required = false, Default = false,
             HelpText = "Disable building locally with AVX (container builds always make both variants)")]
@@ -390,6 +391,10 @@ public class Program
         [Option('s', "symbolic-links", Required = false, Default = false,
             HelpText = "If specified prefer to use symlinks even on Windows")]
         public bool UseSymlinks { get; set; }
+
+        [Option("prepare-api-file", Required = false, Default = true,
+            HelpText = "Can be set to false to skip preparing Godot API files")]
+        public bool PrepareGodotAPI { get; set; }
     }
 
     [Verb("test", HelpText = "Run tests using 'dotnet' command")]

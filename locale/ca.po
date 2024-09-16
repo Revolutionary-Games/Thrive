@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-08 07:30+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "El Quimioplast és una estructura de doble membrana que conté proteïnes que transformen Àcid Sulfhídric, Aigua i Diòxid de Carboni en Glucosa, mitjançant un procés anomenat Quimiosíntesi de l'Àcid Sulfhídric. La velocitat de producció de Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni."
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Estadi de Microbi"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "Editor 3D"
@@ -67,6 +66,9 @@ msgstr "Avortat."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Zona abissal"
+
+msgid "ACCEPT"
+msgstr ""
 
 #, fuzzy
 msgid "ACTION_AWAKEN"
@@ -164,12 +166,16 @@ msgid "ALL"
 msgstr "Tot"
 
 #, fuzzy
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "ha mutat"
 
 #, fuzzy
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "ha mutat"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadístiques Generals de tots els mons"
@@ -183,6 +189,10 @@ msgstr ""
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALWAYS_VISIBLE"
+msgstr "Visible"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Volum de l'ambient"
@@ -355,9 +365,8 @@ msgstr "Enrere"
 msgid "BACKSPACE"
 msgstr "Enrere"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntesi de les toxines OxyToxy"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -445,6 +454,10 @@ msgstr "Millor Medi:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Gran tros de Ferro"
 
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Gran tros de Ferro"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -458,18 +471,6 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -680,9 +681,8 @@ msgstr "El nom de l'arxiu ({0}) ja existeix. Voleu sobreescriure?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Aberració cromàtica:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Síntesi de les toxines OxyToxy"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produeix [thrive:compound type=\"glucose\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"carbondioxide\"][/thrive:compound] i a la intensitat de [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -936,6 +936,14 @@ msgstr "Tritanopia (Blau-Groc)"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "El contingut Workshop es pujarà des de la carpeta: {0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Començar a prosperar"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Selecciona un Indret per a veure'n els detalls"
 
 #, fuzzy
 msgid "CONTINUE_THRIVING"
@@ -1303,6 +1311,10 @@ msgstr "Tauler de Depuració"
 msgid "DECEMBER"
 msgstr "Desembre"
 
+#, fuzzy
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Secretar mucílag"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Aparell d'output per defecte"
 
@@ -1457,6 +1469,10 @@ msgstr "Descartar i continuar"
 
 msgid "DISCARD_CHANGES"
 msgstr "Descartar Canvis"
+
+#, fuzzy
+msgid "DISCARD_MIGRATION"
+msgstr "Descartar i continuar"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Cèl·lules Desconnectades"
@@ -1655,7 +1671,7 @@ msgstr "Editor"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Mitocondri"
+msgstr "ha mutat"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrar a l'editor i modificar la teva espècie"
@@ -1773,6 +1789,9 @@ msgstr "Fonts d'energia:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "L'energia total recol·lectada és {0} amb un cost individual de {1} resultant en una població no ajustada de {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Introduïr ID Existent"
 
@@ -1787,7 +1806,7 @@ msgstr "Entorn"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitocondri"
+msgstr "Retenció ambiental de glucosa"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retenció ambiental de glucosa"
@@ -1876,6 +1895,13 @@ msgstr "Anar a la següent pestanya de l'editor"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Llançar E"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -2330,11 +2356,19 @@ msgstr "L'ID no és un número vàlid"
 msgid "ID_NUMBER"
 msgstr "Nombre d'ID"
 
+#, fuzzy
+msgid "IMAGE_FILE_TYPES"
+msgstr "Tipus de Membrana"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Inclou prototips d'estadis tardans"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(algunes característiques poden no estar disponibles un cop assoleixis els propers estadis)"
+
+#, fuzzy
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Crear Nou"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -2566,6 +2600,10 @@ msgstr "Juliol"
 
 msgid "JUNE"
 msgstr "Juny"
+
+#, fuzzy
+msgid "KEEP_MIGRATION"
+msgstr "Respiració aeròbica"
 
 msgid "KEY_BACK"
 msgstr "Enrere"
@@ -3005,10 +3043,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr ""
-
-msgid "LOW_BIODIVERSITY_LIMIT"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
@@ -3042,10 +3077,6 @@ msgstr "Neu marina"
 
 msgid "MASTER_VOLUME"
 msgstr "Volum General"
-
-#, fuzzy
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "s'ha extingit de l'ecosistema"
 
 msgid "MAX_FPS"
 msgstr "Màxims FPS:"
@@ -3133,6 +3164,62 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] s'ha dividit de [b][u]{1}[/u][/b] com a noves espècies degut a diferents pressions selectives"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Núvols de Compostos"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Espècies[/b]\n"
+"  {0}:{1}\n"
+"[b]Generació[/b]\n"
+"  {2}\n"
+"[b]Població[/b]\n"
+"  {3}\n"
+"[b]Color[/b]\n"
+"  #{4}\n"
+"[b]Comportament[/b]\n"
+"  {5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Predació de {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TREE"
+msgstr ""
 
 #, fuzzy
 msgid "MICROBE"
@@ -3384,6 +3471,48 @@ msgstr "Estadístiques de la Cèl·lula"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Clic del mig del ratolí"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "La velocitat"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Creació de Mod Fallida"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Estigues atent a la barra de salut, que hi ha al costat de la barra d'ATP (a la part inferior dreta de la pantalla).\n"
+"Si la teva cèl·lula es queda sense energia, es morirà.\n"
+"Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
+"Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Pausar el joc"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
@@ -3679,6 +3808,10 @@ msgstr "Mucílag"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Síntesi de mucílag"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Pausar el joc"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicel·lular"
 
@@ -3778,9 +3911,6 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
-
 msgid "NEW_GAME"
 msgstr "Nova partida"
 
@@ -3863,11 +3993,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-msgid "NOTICE_READY_TO_EDIT"
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "Error: tros no trobat"
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Capacitat de moviment"
+
+msgid "NOTICE_READY_TO_EDIT"
+msgstr ""
 
 #, fuzzy
 msgid "NOT_STARTED_DOT"
@@ -3937,6 +4071,9 @@ msgstr "2x"
 
 msgid "OCTOBER"
 msgstr "Octubre"
+
+msgid "OFF"
+msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
@@ -4106,6 +4243,10 @@ msgstr "Multiplicador del cost d'osmoregulació"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cost d'osmoregulació de l'espècie del jugador)"
 
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Compostos"
+
 msgid "OUR_WIKI"
 msgstr "la nostra Wiki"
 
@@ -4135,6 +4276,7 @@ msgstr "Oxigen"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxysoma"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
@@ -4194,6 +4336,10 @@ msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Desenvolupadors passats"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Millor Medi:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4279,6 +4425,10 @@ msgstr "Rendiment"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Dur a terme la desunió"
+
+#, fuzzy
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "{0} K"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/segon"
@@ -4411,12 +4561,6 @@ msgstr "Equip de programació"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Equip de Gestió del Projecte"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr "Proteïnes"
 
@@ -4486,9 +4630,6 @@ msgstr "Refer la darrera acció"
 msgid "REFRESH"
 msgstr "Refrescar"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
-
 msgid "REPORT"
 msgstr "Informe"
 
@@ -4543,6 +4684,10 @@ msgstr "Resetejar als valors per defecte?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Reprendre el joc"
 
 msgid "RESOLUTION"
 msgstr "Resolució:"
@@ -4892,6 +5037,10 @@ msgstr "Volum SFX"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
+
 msgid "SHOW_HELP"
 msgstr "Mostrar tauler d'ajuda"
 
@@ -4920,6 +5069,10 @@ msgstr "Habilitar / deshabilitar la finestreta d'avís de progrés no guardat qu
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Pausar el joc"
 
 msgid "SIGNALING_AGENT"
 msgstr "Agent de Senyalització"
@@ -4976,6 +5129,10 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 
 msgid "SMALL_IRON_CHUNK"
+msgstr "Petit tros de Ferro"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Petit tros de Ferro"
 
 #, fuzzy
@@ -5072,12 +5229,6 @@ msgstr "Població de les Espècies"
 msgid "SPECIES_PRESENT"
 msgstr "Espècies presents"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
-
 #, fuzzy
 msgid "SPECIES_TO_FIND"
 msgstr "Espècies:"
@@ -5093,6 +5244,14 @@ msgstr "Velocitat:"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "s'ha escampat a les zones:"
+
+#, fuzzy
+msgid "SPRINT"
+msgstr "Imprimir pantalla"
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Pausar el joc"
 
 msgid "STAGES"
 msgstr ""
@@ -5120,6 +5279,20 @@ msgstr "Cal reiniciar"
 
 msgid "STATISTICS"
 msgstr "Estadístiques"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "LA PRODUCCIÓ D'ATP ÉS MASSA BAIXA!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Capacitat de moviment"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Error en la inicialització de la llibreria de client d'Steam"
@@ -5195,6 +5368,9 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Registrat com a: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -5538,6 +5714,10 @@ msgstr "Activar el mode d'unió"
 msgid "TOGGLE_METRICS"
 msgstr "Activar pestanya d'estadístiques"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Activar pantalla completa"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -5553,6 +5733,9 @@ msgstr "Eines"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Artista:"
@@ -5560,14 +5743,84 @@ msgstr "Artista:"
 msgid "TOTAL_SAVES"
 msgstr "Nombre total d'arxius guardats:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Algunes opcions poden ser desactivades si només LAWK està activat"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxina\n"
+"Vacúol"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Resistència a les Toxines"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Resistència a les Toxines"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Tipus:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Els microbis agressius perseguiran les preses a més distància\n"
+"i és més probable que s'enfrontin a depredadors quan siguin atacats.\n"
+"Els microbis pacífics desistiran de perseguir les seves preses abans\n"
+"i és menys probable que facin servir toxines contra depredadors."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxina\n"
 "Vacúol"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
@@ -5938,6 +6191,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Els filaments de cilis són similars als flagels, però en comptes de proporcional una força d'impuls direccional, proporcional una força rotacional per ajudar les cèl·lules a rotar."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "La lipasa permet a la cèl·lula digerir la major part de membranes. La teva cèl·lula ja produeix una certa quantitat d'aquest enzim sense lisosoma, però seleccionant aquest tipus n'augmentaràs l'efectivitat."
 
@@ -5951,6 +6208,14 @@ msgstr "Els filaments de cilis són similars als flagels, però en comptes de pr
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Els filaments de cilis són similars als flagels, però en comptes de proporcional una força d'impuls direccional, proporcional una força rotacional per ajudar les cèl·lules a rotar."
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} MP"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 
 msgid "UPLOAD"
 msgstr "Pujar"
@@ -5978,9 +6243,6 @@ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no re
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manualment establir nombre de fils del fons"
@@ -6040,6 +6302,10 @@ msgid "VIEW_ALL"
 msgstr "Inhabilitar Tot"
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Augmenta la velocitat de gir de grans cèl·lules."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Inhabilitar Tot"
 
@@ -6062,6 +6328,12 @@ msgstr "Partidaris VIP"
 
 msgid "VISIBLE"
 msgstr "Visible"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
@@ -6562,9 +6834,8 @@ msgstr "Nitrogenasa"
 msgid "WIKI_HEADING_FEATURES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
-#, fuzzy
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
@@ -6592,7 +6863,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+msgstr "Pressiona la tecla [thrive:input]g_toggle_binding[/thrive:input] per entrar al mode d'unió. Quan siguis en aquest mode, et pots unir a altres cèl·lules de la teva espècie entrant-hi en contacte. Per abandonar una colònia, pressiona la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
 #, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
@@ -6616,9 +6887,8 @@ msgstr ""
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr "Quimioreceptor"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
@@ -7563,6 +7833,7 @@ msgstr "Títol de l'Element:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "La càrrega de l'element a l'Steam Workshop ha estat un èxit"
 
+#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Càrrega de l'element al Workshop d'Steam ha estat un èxit, però has d'acceptar els termes de servei [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]del Workshop[/url][/color] abans que sigui visible"
 
@@ -7632,6 +7903,21 @@ msgstr "Zoom enfora"
 
 #~ msgid "HELP"
 #~ msgstr "Ajuda"
+
+#, fuzzy
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Part de [b][u]{0}[/u][/b] població ha migrat a {1}"
+
+#, fuzzy
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "ha mutat"
+
+#, fuzzy
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "s'ha extingit de l'ecosistema"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Error: tros no trobat"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Tecla Bassboost"
@@ -7918,9 +8204,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "E_DOT"
 #~ msgstr "la tecla E."
-
-#~ msgid "RATE"
-#~ msgstr "La velocitat"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

@@ -16,6 +16,11 @@ using World = DefaultEcs.World;
 ///     The only write this does to <see cref="MicrobeControl"/> is ensuring the movement direction is normalized.
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     Once save compatibility is broken after 0.6.7 add with temporary effects amd strain affected
+///   </para>
+/// </remarks>
 [With(typeof(MicrobeControl))]
 [With(typeof(OrganelleContainer))]
 [With(typeof(CellProperties))]
@@ -23,10 +28,15 @@ using World = DefaultEcs.World;
 [With(typeof(Physics))]
 [With(typeof(WorldPosition))]
 [With(typeof(Health))]
+
+// [With(typeof(MicrobeTemporaryEffects))]
+// [With(typeof(StrainAffected))]
 [ReadsComponent(typeof(CellProperties))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(MicrobeColony))]
+[ReadsComponent(typeof(MicrobeTemporaryEffects))]
+[WritesToComponent(typeof(StrainAffected))]
 [RunsAfter(typeof(PhysicsBodyCreationSystem))]
 [RunsAfter(typeof(PhysicsBodyDisablingSystem))]
 [RunsBefore(typeof(PhysicsBodyControlSystem))]
@@ -34,14 +44,11 @@ using World = DefaultEcs.World;
 public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 {
     private readonly PhysicalWorld physicalWorld;
-    private readonly Compound atp;
 
     public MicrobeMovementSystem(PhysicalWorld physicalWorld, World world, IParallelRunner runner) : base(world,
         runner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
     {
         this.physicalWorld = physicalWorld;
-
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -74,13 +81,30 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         var lookVector = control.LookAtPoint - position.Position;
         lookVector.Y = 0;
+        var lookVectorLength = lookVector.Length();
 
-        var length = lookVector.Length();
+        var turnAngle = (position.Rotation * Vector3.Forward).SignedAngleTo(lookVector, Vector3.Up);
+        var unsignedTurnAngle = Math.Abs(turnAngle);
 
-        if (length > MathUtils.EPSILON)
+        // Linear function reaching 1 at CELL_TURN_INFLECTION_RADIANS
+        var blendFactor = MathF.PI / 4.0f * MathF.Min(unsignedTurnAngle *
+            (1.0f / Constants.CELL_TURN_INFLECTION_RADIANS), 1.0f);
+
+        // Simplify turns to 90 degrees to keep consistent turning speed
+        if (turnAngle > 0.0f)
+        {
+            lookVector = (position.Rotation
+                * new Vector3(-MathF.Sin(blendFactor), 0, -MathF.Cos(blendFactor))).Normalized();
+        }
+        else if (turnAngle < 0.0f)
+        {
+            lookVector = (position.Rotation
+                * new Vector3(MathF.Sin(blendFactor), 0, -MathF.Cos(blendFactor))).Normalized();
+        }
+        else if (lookVectorLength > MathUtils.EPSILON)
         {
             // Normalize vector when it has a length
-            lookVector /= length;
+            lookVector /= lookVectorLength;
         }
         else
         {
@@ -121,6 +145,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
             CalculateMovementForce(entity, ref control, ref cellProperties, ref position, ref organelles, compounds,
                 delta);
 
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            rotationSpeed /= Constants.MUCOCYST_SPEED_MULTIPLIER;
+            movementImpulse *= Constants.MUCOCYST_SPEED_MULTIPLIER;
+        }
+
         physicalWorld.ApplyBodyMicrobeControl(physics.Body!, movementImpulse, wantedRotation, rotationSpeed);
     }
 
@@ -147,8 +177,33 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         ref CellProperties cellProperties, ref WorldPosition position,
         ref OrganelleContainer organelles, CompoundBag compounds, float delta)
     {
+        // TODO: switch to always reading strain affected once old save compatibility is removed
+        // ref var strain = ref entity.Get<StrainAffected>();
+
+        float strainMultiplier = 1;
+
         if (control.MovementDirection == Vector3.Zero)
         {
+            if (entity.Has<StrainAffected>())
+            {
+                // TODO: move this variable up in the future
+                ref var strain = ref entity.Get<StrainAffected>();
+                strainMultiplier = GetStrainAtpMultiplier(ref strain);
+                strain.IsUnderStrain = false;
+            }
+
+            // Remove ATP due to strain even if not moving (but only if strain is active, because otherwise this would
+            // take the movement cost even while not moving meaning the editor ATP balance bar would be totally
+            // inaccurate)
+            if (strainMultiplier > 1)
+            {
+                // This is calculated similarly to the regular movement cost for consistency
+                // TODO: is it fine for this to be so punishing? By taking the base movement cost here even though
+                // the cell is not moving (this could take just the portion of strain multiplier that is above 1)
+                var strainCost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * delta * strainMultiplier;
+                compounds.TakeCompound(Compound.ATP, strainCost);
+            }
+
             // Slime jets work even when not holding down any movement keys
             var jetMovement = CalculateMovementFromSlimeJets(ref organelles);
 
@@ -175,17 +230,57 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         float force = MicrobeInternalCalculations.CalculateBaseMovement(cellProperties.MembraneType,
             cellProperties.MembraneRigidity, organelles.HexCount, cellProperties.IsBacteria);
 
+        bool usesSprintingForce = false;
+
+        if (entity.Has<StrainAffected>())
+        {
+            // TODO: move this variable up in the future
+            ref var strain = ref entity.Get<StrainAffected>();
+            strainMultiplier = GetStrainAtpMultiplier(ref strain);
+
+            // TODO: move this if down in the future (once save compatibility is broken next time)
+            if (control.Sprinting)
+            {
+                strain.IsUnderStrain = true;
+                usesSprintingForce = true;
+            }
+            else
+            {
+                strain.IsUnderStrain = false;
+            }
+        }
+
         // Length is multiplied here so that cells that set very slow movement speed don't need to pay the entire
         // movement cost
-        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta;
+        var cost = Constants.BASE_MOVEMENT_ATP_COST * organelles.HexCount * length * delta * strainMultiplier;
 
-        var got = compounds.TakeCompound(atp, cost);
+        var got = compounds.TakeCompound(Compound.ATP, cost);
 
         // Halve base movement speed if out of ATP
         if (got < cost)
         {
             // Not enough ATP to move at full speed
             force *= 0.5f;
+
+            // Force out of sprint if not enough ATP
+            if (usesSprintingForce)
+            {
+                control.Sprinting = false;
+
+                // Under strain will reset on the next update to false
+            }
+        }
+
+        // TODO: this if check can be removed (can be assumed to be present) once save compatibility is next broken
+        if (entity.Has<MicrobeTemporaryEffects>())
+        {
+            ref var temporaryEffects = ref entity.Get<MicrobeTemporaryEffects>();
+
+            // Apply base movement debuff if cell is currently affected by one
+            if (temporaryEffects.SpeedDebuffDuration > 0)
+            {
+                force *= 1 - Constants.MACROLIDE_BASE_MOVEMENT_DEBUFF;
+            }
         }
 
         // Speed from flagella (these also take ATP otherwise they won't work)
@@ -200,6 +295,19 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
 
         force *= cellProperties.MembraneType.MovementFactor -
             cellProperties.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_BASE_MOBILITY_MODIFIER;
+
+        if (usesSprintingForce)
+        {
+            force *= Constants.SPRINTING_FORCE_MULTIPLIER;
+
+            // TODO: put this code back once strain is guaranteed
+            // strain.IsUnderStrain = true;
+        }
+
+        /*else
+        {
+            strain.IsUnderStrain = false;
+        }*/
 
         bool hasColony = entity.Has<MicrobeColony>();
 
@@ -252,6 +360,12 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
         // MovementDirection is proportional to the current cell rotation, so we need to rotate the movement
         // vector to work correctly
         return position.Rotation * movementVector;
+    }
+
+    private float GetStrainAtpMultiplier(ref StrainAffected strain)
+    {
+        var strainFraction = strain.CalculateStrainFraction();
+        return strainFraction * Constants.STRAIN_TO_ATP_USAGE_COEFFICIENT + 1.0f;
     }
 
     private Vector3 CalculateMovementFromSlimeJets(ref OrganelleContainer organelles)

@@ -117,7 +117,7 @@ public static class EngulfableHelpers
 
     /// <summary>
     ///   Calculates additional digestible compounds to be made available when entity is engulfed. Note that only
-    ///   <see cref="Compound.Digestible"/> compounds may be returned as the result.
+    ///   <see cref="CompoundDefinition.Digestible"/> compounds may be returned as the result.
     /// </summary>
     /// <returns>
     ///   The extra compounds to add (this also shouldn't have any 0 values in it for clarity). Or null if there
@@ -253,6 +253,8 @@ public static class EngulfableHelpers
         if (entity.Has<Health>())
             alreadyDeathProcessed = entity.Get<Health>().DeathProcessed;
 
+        bool hasCellProperties = entity.Has<CellProperties>();
+
         if (engulfable.DigestedAmount >= Constants.PARTIALLY_DIGESTED_THRESHOLD && !alreadyDeathProcessed)
         {
             if (entity.Has<Health>() && entity.Has<OrganelleContainer>())
@@ -293,9 +295,16 @@ public static class EngulfableHelpers
 
                     var recorder = worldSimulation.StartRecordingEntityCommands();
 
+                    // In case there is no cell properties, this defaults to false in order to behave like the old
+                    // version of corpse chunk spawning
+                    var isBacteria = false;
+
+                    if (hasCellProperties)
+                        isBacteria = entity.Get<CellProperties>().IsBacteria;
+
                     MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
                         entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
-                        position.Position, new XoShiRo128starstar(), customizeCallback, null);
+                        position.Position, new XoShiRo128starstar(), customizeCallback, isBacteria);
 
                     SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
@@ -310,7 +319,7 @@ public static class EngulfableHelpers
         // bonus. That is now gone as this feature didn't really do anything anymore due to the new engulf
         // mechanics which are extremely hard to escape.
 
-        if (entity.Has<CellProperties>())
+        if (hasCellProperties)
         {
             if (alreadyDeathProcessed)
             {
@@ -366,11 +375,9 @@ public static class EngulfableHelpers
     }
 
     public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,
-        CompoundBag compoundCapacityInfo, Compound? glucose = null)
+        CompoundBag compoundCapacityInfo)
     {
-        glucose ??= SimulationParameters.Instance.GetCompound("glucose");
-
-        result.TryGetValue(glucose, out float existingGlucose);
+        result.TryGetValue(Compound.Glucose, out float existingGlucose);
 
         if (existingGlucose < 0)
         {
@@ -378,7 +385,7 @@ public static class EngulfableHelpers
             existingGlucose = 0;
         }
 
-        result[glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(glucose) *
+        result[Compound.Glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(Compound.Glucose) *
             Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 
@@ -395,7 +402,7 @@ public static class EngulfableHelpers
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                if (!entry.Key.Digestible)
+                if (!SimulationParameters.GetCompound(entry.Key).Digestible)
                     continue;
 
                 result.TryGetValue(entry.Key, out float existing);

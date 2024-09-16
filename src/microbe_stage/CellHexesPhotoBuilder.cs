@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -6,6 +7,8 @@ using Godot;
 /// </summary>
 public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 {
+    private readonly List<ShaderMaterial> usedMaterials = new();
+
     private float radius;
     private bool radiusDirty;
     private MicrobeSpecies? species;
@@ -87,7 +90,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
             CellEditorComponent.UpdateOrganelleDisplayerTransform(organelleModel, organelle);
 
             CellEditorComponent.UpdateOrganellePlaceHolderScene(organelleModel,
-                sceneWithModelInfo, Hex.GetRenderPriority(organelle.Position));
+                sceneWithModelInfo, Hex.GetRenderPriority(organelle.Position), usedMaterials);
         }
     }
 
@@ -107,7 +110,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
             foreach (var hex in organelle.RotatedHexes)
             {
                 var pos = Hex.AxialToCartesian(hex + position);
-                farthest = Mathf.Max(farthest, pos.DistanceTo(Vector3.Zero));
+                farthest = MathF.Max(farthest, pos.DistanceTo(Vector3.Zero));
             }
         }
 

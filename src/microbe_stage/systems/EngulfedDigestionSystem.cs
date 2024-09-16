@@ -40,7 +40,6 @@ using World = DefaultEcs.World;
 public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
-    private readonly Compound oxytoxy;
     private readonly IReadOnlyList<Compound> digestibleCompounds;
 
     private readonly Enzyme lipase;
@@ -52,8 +51,8 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
     {
         this.compoundCloudSystem = compoundCloudSystem;
         var simulationParameters = SimulationParameters.Instance;
-        oxytoxy = simulationParameters.GetCompound("oxytoxy");
-        digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).ToList();
+        digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).Select(c => c.ID)
+            .ToList();
         lipase = simulationParameters.GetEnzyme("lipase");
     }
 
@@ -75,7 +74,15 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         ref var engulfer = ref entity.Get<Engulfer>();
 
         if (engulfer.EngulfedObjects == null || engulfer.EngulfedObjects.Count < 1)
+        {
+            // When something ejects its last engulfed object, the used engulfing size needs to be still updated
+
+            // TODO: determine if it is faster to always write this value or compare first
+            if (engulfer.UsedEngulfingCapacity > 0)
+                engulfer.UsedEngulfingCapacity = 0;
+
             return;
+        }
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
         var compounds = entity.Get<CompoundStorage>().Compounds;
@@ -94,6 +101,9 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             return;
 
         var engulferIsPlayer = entity.Has<PlayerMarker>();
+
+        // TODO: if the entity is a colony with the player being the lead cell should that situation set
+        // engulferIsPlayer?
 
         float usedCapacity = 0;
 
@@ -121,9 +131,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
 
             ref var engulfable = ref engulfedObject.Get<Engulfable>();
 
-            // Expel this engulfed object if the cell loses some of its size and its ingestion capacity
-            // is overloaded
-            if (engulfer.UsedEngulfingCapacity > engulfer.EngulfStorageSize)
+            var currentEngulfableSize = engulfable.AdjustedEngulfSize;
+
+            // Expel this engulfed object if the cell loses some of its size and its ingestion capacity is overloaded
+            if (usedCapacity + currentEngulfableSize - MathUtils.EPSILON > engulfer.EngulfStorageSize)
             {
                 if (engulfer.EjectEngulfable(ref engulfable))
                 {
@@ -131,9 +142,8 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                         new SimpleHUDMessage(Localization.Translate("NOTICE_ENGULF_STORAGE_FULL")));
                 }
 
-                // As ejecting is delayed, we need to temporarily adjust the size here so that we don't
-                // accidentally eject *everything* if we go slightly over the limit
-                engulfer.UsedEngulfingCapacity -= engulfable.AdjustedEngulfSize;
+                // As ejecting is delayed, we need to temporarily not count this in the used capacity otherwise we may
+                // accidentally eject way too much stuff
                 continue;
             }
 
@@ -143,7 +153,13 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
             {
                 // Still need to consider the size of this thing for the engulf storage, otherwise cells can start
                 // pulling in too much
-                usedCapacity += engulfable.AdjustedEngulfSize;
+                usedCapacity += currentEngulfableSize;
+
+                if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
+                {
+                    GD.PrintErr("Engulfed object is in engulfed list while being not in engulfed state");
+                }
+
                 continue;
             }
 
@@ -157,7 +173,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 {
                     usedEnzyme = engulfable.RequisiteEnzymeToDigest ?? lipase;
 
-                    // TODO: only call this once
+                    // TODO: only call this once (per engulfment action instead of per game update)
                     engulfable.OnReportBecomeIngestedIfCallbackRegistered(engulfedObject);
 
                     break;
@@ -170,6 +186,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                         entity.SendNoticeIfPossible(new LocalizedString("NOTICE_ENGULF_MISSING_ENZYME",
                             engulfable.RequisiteEnzymeToDigest!.Name));
                     }
+
+                    // Count the size still in this case as otherwise there's a one frame flicker of the matter
+                    // storage bar if engulfing just something that cannot be digested
+                    usedCapacity += currentEngulfableSize;
 
                     continue;
                 }
@@ -236,10 +256,10 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 var efficiency =
                     MicrobeInternalCalculations.CalculateDigestionEfficiency(organelles.AvailableEnzymes[usedEnzyme]);
 
-                var taken = Mathf.Min(totalAvailable, amount);
+                var taken = MathF.Min(totalAvailable, amount);
 
                 // Toxin damage
-                if (compound == oxytoxy && taken > 0)
+                if (compound == Compound.Oxytoxy && taken > 0)
                 {
                     ref var status = ref entity.Get<MicrobeStatus>();
 
@@ -298,7 +318,9 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
                 GD.PrintErr("Engulfing system hasn't initialized InitialTotalEngulfableCompounds");
             }
 
-            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT)
+            // If out of stuff to digest, or as a safety check the engulf size has gone to zero, consider digested
+            if (totalAmountLeft <= 0 || engulfable.DigestedAmount >= Constants.FULLY_DIGESTED_LIMIT ||
+                engulfable.AdjustedEngulfSize <= 0)
             {
                 engulfable.PhagocytosisStep = PhagocytosisPhase.Digested;
 

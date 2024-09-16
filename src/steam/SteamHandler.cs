@@ -16,9 +16,12 @@ public partial class SteamHandler : Node, ISteamSignalReceiver
     /// <summary>
     ///   All valid tags. Need to be the same as: https://partner.steamgames.com/apps/workshoptags/1779200
     /// </summary>
-    public static readonly string[] ValidTags = { "graphics", "gameplay", "microbe" };
+    public static readonly string[] ValidTags = ["graphics", "gameplay", "microbe"];
 
-    public static readonly string[] RecommendedFileEndings = { ".jpg", ".png", ".gif" };
+    /// <summary>
+    ///   Recommended image file types for workshop items
+    /// </summary>
+    public static readonly string[] RecommendedFileEndings = [".jpg", ".png", ".gif"];
 
     private static SteamHandler? instance;
 

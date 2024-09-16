@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ThriveScriptsShared;
 
 public class AssetCategory : IRegistryType
 {

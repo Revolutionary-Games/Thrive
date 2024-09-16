@@ -5,6 +5,7 @@ uniform float MAX_DIST_PX;
 uniform sampler2D screenTexture : hint_screen_texture, filter_linear_mipmap;
 
 // Shader adapted from: https://www.shadertoy.com/view/XssGz8
+// If changed, BarrelDistortion() in ScreenUtils should be updated to match
 
 float remap(float t, float a, float b) 
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -85,7 +84,7 @@ public class DayNightCycle : IDaylightInfo
     public static float CalculateDayTimeMultiplier(float daytimeFraction)
     {
         // This converts the fraction in daytimeFraction to the power of two needed for DayLightFraction
-        return Mathf.Pow(2, 2 / daytimeFraction);
+        return MathF.Pow(2, 2 / daytimeFraction);
     }
 
     public static float CalculateAverageSunlight(float daytimeMultiplier,
@@ -143,7 +142,7 @@ public class DayNightCycle : IDaylightInfo
     /// <param name="daytimeMultiplier">Converted daylight fraction to usable form</param>
     private static float CalculatePointwiseSunlight(float x, float daytimeMultiplier)
     {
-        return Math.Max(1 - daytimeMultiplier * Mathf.Pow(x - 0.5f, 2), 0);
+        return Math.Max(1 - daytimeMultiplier * MathF.Pow(x - 0.5f, 2), 0);
     }
 
     /// <summary>
@@ -156,7 +155,7 @@ public class DayNightCycle : IDaylightInfo
         // [0, 1] and hence has length 1, we just return the integral. The current function is only non-zero in the
         // interval [0.5 - 1 / squareRoot(daytimeMultiplier), 0.5 + 1 / squareRoot(daytimeMultiplier)], so we can
         // reduce to only integrating over this interval.
-        var daytimeMultiplierRootReciprocal = 1.0f / Mathf.Sqrt(daytimeMultiplier);
+        var daytimeMultiplierRootReciprocal = 1.0f / MathF.Sqrt(daytimeMultiplier);
         var start = 0.5f - daytimeMultiplierRootReciprocal;
         var end = 0.5f + daytimeMultiplierRootReciprocal;
         return IntegratePointwiseSunlight(end, daytimeMultiplier) -
@@ -175,6 +174,6 @@ public class DayNightCycle : IDaylightInfo
     /// <param name="daytimeMultiplier">Converted daylight fraction to usable form</param>
     private static float IntegratePointwiseSunlight(float x, float daytimeMultiplier)
     {
-        return x - daytimeMultiplier * (Mathf.Pow(x, 3) / 3 - Mathf.Pow(x, 2) / 2 + 0.25f * x);
+        return x - daytimeMultiplier * (MathF.Pow(x, 3) / 3 - MathF.Pow(x, 2) / 2 + 0.25f * x);
     }
 }

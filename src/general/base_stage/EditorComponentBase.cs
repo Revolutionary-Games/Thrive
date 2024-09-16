@@ -36,7 +36,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     public Func<List<EditorUserOverride>?, bool>? OnFinish { get; set; }
 
     /// <summary>
-    ///   Sub editor components don't require all functionality, so they override this to disable some initialization
+    ///   Sub-editor components don't require all functionality, so they override this to disable some initialization
     ///   logic
     /// </summary>
     [JsonIgnore]

@@ -10,7 +10,7 @@ create an issue about it.
 
 ## Github Issues
 
-Issues on our Github are not meant for general feedback. We only
+Issues on our GitHub are not meant for general feedback. We only
 accept bug reports about something not working. Team members after
 consulting other team members are allowed to create issues about new
 or improved features. If someone else creates such an issue, that
@@ -113,10 +113,20 @@ sporadically fail without you being at fault. If you are unsure if
 that's the case (even after using the code checks locally), you can
 ask someone from the team to look at the situation.
 
-To view CI build logs and other information, press the "details" button on Github in the 
+To view CI build logs and other information, press the "details" button on GitHub in the 
 checks section.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/viewing_ci_results.png" alt="rider godot plugin">
+
+When the CI checks fail please try to correct as many issues at once
+before pushing new commits as each new push triggers check jobs, which
+will take a while if there are many of them (as we don't have infinite
+number of CI runners). If there is a need to iterate a lot on fixing
+the problems it is also preferable to run the checks locally before
+pushing changes to make sure the checks are going to
+pass. Instructions for running the checks locally are in the setup
+instructions document
+[here](doc/setup_instructions.md#running-the-format-checks).
 
 When updating Godot import settings (meaning changing the settings for
 an existing asset, if you just added a new one, you don't need to do

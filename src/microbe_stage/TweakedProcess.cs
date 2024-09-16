@@ -1,20 +1,23 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This is a struct as this just packs one float and a single object reference in here. This allows much tighter
+///     This is a struct as this just packs a few floats and a single object reference in here. This allows much tighter
 ///     data packing when this is used in lists.
 ///   </para>
 /// </remarks>
-public struct TweakedProcess
+public struct TweakedProcess : IEquatable<TweakedProcess>
 {
     [JsonProperty]
     public readonly BioProcess Process;
 
     public float Rate;
+
+    public float SpeedMultiplier = 1;
 
     [JsonConstructor]
     public TweakedProcess(BioProcess process, float rate = 1.0f)
@@ -43,6 +46,9 @@ public struct TweakedProcess
 
     public bool Equals(TweakedProcess other)
     {
+        if (Process != other.Process)
+            return false;
+
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         return Rate == other.Rate && ReferenceEquals(Process, other.Process);
     }

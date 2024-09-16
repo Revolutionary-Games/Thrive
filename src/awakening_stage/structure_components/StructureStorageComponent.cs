@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Resource storage capacity in a structure (as compared to storage in a cell)

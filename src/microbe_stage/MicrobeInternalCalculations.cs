@@ -6,24 +6,32 @@ using Systems;
 
 public static class MicrobeInternalCalculations
 {
-    public static Vector3 MaximumSpeedDirection(IEnumerable<OrganelleTemplate> organelles)
+    public static Vector3 MaximumSpeedDirection(IReadOnlyList<OrganelleTemplate> organelles)
     {
         Vector3 maximumMovementDirection = Vector3.Zero;
 
-        var movementOrganelles = organelles.Where(o => o.Definition.HasMovementComponent)
-            .ToList();
+        var organelleCount = organelles.Count;
 
-        foreach (var organelle in movementOrganelles)
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
             maximumMovementDirection += GetOrganelleDirection(organelle);
         }
 
         // After calculating the sum of all organelle directions we subtract the movement components which
-        // are symmetric and we choose the one who would benefit the max-speed the most.
-        foreach (var organelle in movementOrganelles)
+        // are symmetric, and we choose the one who would benefit the max-speed the most.
+        for (int i = 0; i < organelleCount; ++i)
         {
-            maximumMovementDirection = ChooseFromSymmetricFlagella(movementOrganelles,
-                organelle, maximumMovementDirection);
+            var organelle = organelles[i];
+
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
+            maximumMovementDirection = ChooseFromSymmetricFlagella(organelles, organelle, maximumMovementDirection);
         }
 
         // If the flagella are positioned symmetrically we assume the forward position as default
@@ -43,24 +51,29 @@ public static class MicrobeInternalCalculations
         return organelles.Sum(o => GetNominalCapacityForOrganelle(o.Definition, o.Upgrades));
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(
-        IReadOnlyCollection<OrganelleTemplate> organelles, out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
+        out float nominalCapacity)
     {
         var totalNominalCap = 0.0f;
 
-        foreach (var organelle in organelles)
+        int count = organelles.Count;
+
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
             totalNominalCap += GetNominalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
         }
 
         var capacities = new Dictionary<Compound, float>();
 
         // Update the variant of this logic in UpdateSpecificCapacities if changes are made
-        foreach (var organelle in organelles)
+        for (int i = 0; i < count; ++i)
         {
+            var organelle = organelles[i];
+
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
-            if (specificCapacity.Compound == null)
+            if (specificCapacity.Compound == Compound.Invalid)
                 continue;
 
             // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
@@ -89,12 +102,12 @@ public static class MicrobeInternalCalculations
         compoundBag.ClearSpecificCapacities();
 
         int count = organelles.Count;
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; ++i)
         {
             var organelle = organelles[i];
             var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
 
-            if (specificCapacity.Compound == null)
+            if (specificCapacity.Compound == Compound.Invalid)
                 continue;
 
             compoundBag.AddSpecificCapacityForCompound(specificCapacity.Compound, specificCapacity.Capacity);
@@ -104,7 +117,7 @@ public static class MicrobeInternalCalculations
     public static float GetNominalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
     {
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.SpecializedFor != null)
+            storage.SpecializedFor != Compound.Invalid)
         {
             return 0;
         }
@@ -115,14 +128,14 @@ public static class MicrobeInternalCalculations
         return definition.Components.Storage!.Capacity;
     }
 
-    public static (Compound? Compound, float Capacity)
+    public static (Compound Compound, float Capacity)
         GetAdditionalCapacityForOrganelle(OrganelleDefinition definition, OrganelleUpgrades? upgrades)
     {
         if (definition.Components.Storage == null)
-            return (null, 0);
+            return (Compound.Invalid, 0);
 
         if (upgrades?.CustomUpgradeData is StorageComponentUpgrades storage &&
-            storage.SpecializedFor != null)
+            storage.SpecializedFor != Compound.Invalid)
         {
             var specialization = storage.SpecializedFor;
             var capacity = definition.Components.Storage!.Capacity;
@@ -130,7 +143,7 @@ public static class MicrobeInternalCalculations
             return (specialization, extraCapacity);
         }
 
-        return (null, 0);
+        return (Compound.Invalid, 0);
     }
 
     public static float CalculateCapacity(IEnumerable<OrganelleTemplate> organelles)
@@ -141,14 +154,24 @@ public static class MicrobeInternalCalculations
 
     // TODO: maybe this should return a ValueTask as this is getting pretty computation intensive
     public static float CalculateSpeed(IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType,
-        float membraneRigidity, bool isBacteria)
+        float membraneRigidity, bool isBacteria, bool useEstimate = false)
     {
+        float shapeMass = 0;
+
         // This is pretty expensive as we need to generate the membrane shape and *then* the collision shape to figure
         // out the mass. We rely on the caches working extra hard here to ensure reasonable performance.
-        var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+        // This is why Auto-Evo just estimates the value of the output instead
+        if (!useEstimate)
+        {
+            var averageDensity = CalculateAverageDensity(organelles);
 
-        var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
-            CalculateAverageDensity(organelles), isBacteria);
+            var membraneShape = MembraneComputationHelpers.GetOrComputeMembraneShape(organelles, membraneType);
+
+            var shape = PhysicsShape.GetOrCreateMicrobeShape(membraneShape.Vertices2D, membraneShape.VertexCount,
+                averageDensity, isBacteria);
+
+            shapeMass = shape.GetMass();
+        }
 
         float organelleMovementForce = 0;
 
@@ -164,10 +187,18 @@ public static class MicrobeInternalCalculations
         float rightDirectionFactor;
         float leftDirectionFactor;
 
+        float massEstimate = 0;
+
         // TODO: balance the calculation in regards to the new flagella force and the base movement force
 
-        foreach (var organelle in organelles)
+        int totalHexes = 0;
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+            totalHexes += organelle.Definition.HexCount;
+
             if (organelle.Definition.HasMovementComponent)
             {
                 Vector3 organelleDirection = GetOrganelleDirection(organelle);
@@ -191,7 +222,13 @@ public static class MicrobeInternalCalculations
                 rightwardDirectionMovementForce += MovementForce(movementConstant, rightDirectionFactor);
                 leftwardDirectionMovementForce += MovementForce(movementConstant, leftDirectionFactor);
             }
+
+            massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
         }
+
+        // If this estimate could be made more accurate without additional computation that would be great
+        // but it is close enough for now
+        massEstimate *= 1.4f;
 
         var maximumMovementDirection = MaximumSpeedDirection(organelles);
 
@@ -210,11 +247,11 @@ public static class MicrobeInternalCalculations
         organelleMovementForce += MovementForce(rightwardDirectionMovementForce, rightDirectionFactor);
         organelleMovementForce += MovementForce(leftwardDirectionMovementForce, leftDirectionFactor);
 
-        float baseMovementForce =
-            CalculateBaseMovement(membraneType, membraneRigidity, organelles.Sum(o => o.Definition.HexCount),
-                isBacteria);
+        float baseMovementForce = CalculateBaseMovement(membraneType, membraneRigidity, totalHexes, isBacteria);
 
-        float finalSpeed = (baseMovementForce + organelleMovementForce) / shape.GetMass();
+        var finalMass = useEstimate ? massEstimate : shapeMass;
+
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / finalMass;
 
         return finalSpeed;
     }
@@ -225,7 +262,7 @@ public static class MicrobeInternalCalculations
         var movement = Constants.BASE_MOVEMENT_FORCE;
 
         // Extra movement from organelles
-        movement += Mathf.Clamp(hexCount - Constants.BASE_MOVEMENT_EXTRA_HEX_START, 0,
+        movement += Math.Clamp(hexCount - Constants.BASE_MOVEMENT_EXTRA_HEX_START, 0,
                 Constants.BASE_MOVEMENT_EXTRA_HEX_END - Constants.BASE_MOVEMENT_EXTRA_HEX_START) *
             Constants.BASE_MOVEMENT_PER_HEX;
 
@@ -336,7 +373,7 @@ public static class MicrobeInternalCalculations
         var absorption = Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD;
         var buff = absorption * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION * enzymeCount;
 
-        return Mathf.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
+        return Math.Clamp(absorption + buff, 0.0f, Constants.ENZYME_DIGESTION_EFFICIENCY_MAXIMUM);
     }
 
     /// <summary>
@@ -422,7 +459,7 @@ public static class MicrobeInternalCalculations
     ///   that compound is
     /// </returns>
     public static Dictionary<Compound, (float TimeToFill, float Storage)> CalculateDayVaryingCompoundsFillTimes(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
@@ -494,7 +531,7 @@ public static class MicrobeInternalCalculations
         {
             foreach (var input in usedProcess.Inputs)
             {
-                if (biomeConditions.IsVaryingCompound(input.Key))
+                if (biomeConditions.IsVaryingCompound(input.Key.ID))
                     return true;
             }
         }
@@ -510,7 +547,7 @@ public static class MicrobeInternalCalculations
     ///   should be present
     /// </returns>
     public static (bool CanSurvive, Dictionary<Compound, float> RequiredStorage) CalculateNightStorageRequirements(
-        IReadOnlyCollection<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
+        IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings,
         ref Dictionary<Compound, CompoundBalance>? dayCompoundBalances)
     {
@@ -590,7 +627,7 @@ public static class MicrobeInternalCalculations
 
                 foreach (var processInput in process.Process.Inputs)
                 {
-                    if (processInput.Key == compound)
+                    if (processInput.Key.ID == compound)
                     {
                         usesInput = true;
                         break;
@@ -602,7 +639,7 @@ public static class MicrobeInternalCalculations
 
                 foreach (var processOutput in process.Process.Outputs)
                 {
-                    result.Add(processOutput.Key);
+                    result.Add(processOutput.Key.ID);
                 }
             }
         }
@@ -611,7 +648,7 @@ public static class MicrobeInternalCalculations
     }
 
     public static void CalculatePossibleEndosymbiontsFromSpecies(MicrobeSpecies species,
-        List<(OrganelleDefinition Organelle, int Cost)> result)
+        List<(OrganelleDefinition Organelle, int Cost)> result, bool lawk)
     {
         var organelles = species.Organelles.Organelles;
 
@@ -620,9 +657,12 @@ public static class MicrobeInternalCalculations
         {
             var organelle = organelles[i];
 
-            // Skip things that don't give anything from endosymbiosis
+            // Skip things that don't give anything from endosymbiosis or don't suit LAWK
             var resultType = organelle.Definition.EndosymbiosisUnlocks;
             if (resultType == null)
+                continue;
+
+            if (!resultType.LAWK && lawk)
                 continue;
 
             // Handle each resulting organelle type just once
@@ -725,11 +765,17 @@ public static class MicrobeInternalCalculations
     ///     Here we only discard if the flagella we input is the "bad" one
     ///   </para>
     /// </remarks>
-    private static Vector3 ChooseFromSymmetricFlagella(IEnumerable<OrganelleTemplate> organelles,
+    private static Vector3 ChooseFromSymmetricFlagella(IReadOnlyList<OrganelleTemplate> organelles,
         OrganelleTemplate testedOrganelle, Vector3 maximumMovementDirection)
     {
-        foreach (var organelle in organelles)
+        int organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
         {
+            var organelle = organelles[i];
+            if (!organelle.Definition.HasMovementComponent)
+                continue;
+
             if (organelle != testedOrganelle &&
                 organelle.Position + testedOrganelle.Position == new Hex(0, 0))
             {

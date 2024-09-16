@@ -33,7 +33,7 @@ public struct Engulfer
     public float EngulfingSize;
 
     /// <summary>
-    ///   The amount of space all of the currently engulfed objects occupy in the cytoplasm. This is used to
+    ///   The amount of space all the currently engulfed objects occupy in the cytoplasm. This is used to
     ///   determine whether a cell can ingest any more objects or not due to being full. Also contains the size of
     ///   objects being currently pulled in.
     /// </summary>
@@ -85,6 +85,7 @@ public static class EngulferHelpers
         {
             ref var engulfable = ref target.Get<Engulfable>();
 
+            // Cannot engulf something that is already engulfed
             if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
                 return EngulfCheckResult.NotInEngulfMode;
 
@@ -97,18 +98,12 @@ public static class EngulferHelpers
                 return EngulfCheckResult.CannotCannibalize;
 
             // Needs to be big enough to engulf
-            if (engulfer.EngulfingSize < engulfable.AdjustedEngulfSize * Constants.ENGULF_SIZE_RATIO_REQ)
+            var targetSize = engulfable.AdjustedEngulfSize;
+            if (engulfer.EngulfingSize < targetSize * Constants.ENGULF_SIZE_RATIO_REQ)
                 return EngulfCheckResult.TargetTooBig;
 
             // Limit amount of things that can be engulfed at once
-            if (engulfer.UsedEngulfingCapacity >= engulfer.EngulfStorageSize ||
-                engulfer.UsedEngulfingCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
-            {
-                return EngulfCheckResult.IngestedMatterFull;
-            }
-
-            // Too many things attempted to be pulled in at once
-            if (engulfer.UsedEngulfingCapacity + engulfable.AdjustedEngulfSize >= engulfer.EngulfStorageSize)
+            if (engulfer.UsedEngulfingCapacity + targetSize >= engulfer.EngulfStorageSize)
             {
                 return EngulfCheckResult.IngestedMatterFull;
             }
@@ -204,6 +199,12 @@ public static class EngulferHelpers
         return nearestPoint;
     }
 
+    /// <summary>
+    ///   Request ejection of an engulfable
+    /// </summary>
+    /// <returns>
+    ///   True when ejection has started, false if already was in progress, or it is impossible to eject
+    /// </returns>
     public static bool EjectEngulfable(this ref Engulfer engulfer, ref Engulfable engulfable)
     {
         // Cannot start ejecting a thing that is not in a valid state for that
@@ -218,7 +219,7 @@ public static class EngulferHelpers
             case PhagocytosisPhase.Exocytosis:
             case PhagocytosisPhase.Ejection:
                 // Already requested / happening
-                return true;
+                return false;
         }
 
         engulfable.PhagocytosisStep = PhagocytosisPhase.RequestExocytosis;

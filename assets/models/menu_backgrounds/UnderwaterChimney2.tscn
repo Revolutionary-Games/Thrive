@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://q16rprhnmgsk"]
+
+[ext_resource type="PackedScene" uid="uid://pq1toawsn8x4" path="res://assets/models/menu_backgrounds/UnderwaterChimney2.glb" id="1"]
+[ext_resource type="Material" uid="uid://duah88wal4nnk" path="res://assets/models/menu_backgrounds/UnderWaterChimney2_Mat.material" id="2_1gwf1"]
+
+[node name="UnderwaterChimney2" instance=ExtResource("1")]
+
+[node name="ChimneySmall" parent="UnderwaterChimney22" index="0"]
+material_override = ExtResource("2_1gwf1")

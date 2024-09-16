@@ -19,8 +19,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     [Export]
     public NodePath? GuidanceLinePath;
 
-    private Compound glucose = null!;
-    private Compound phosphate = null!;
     private OrganelleDefinition cytoplasm = null!;
 
     // This is no longer saved with child properties as it gets really complicated trying to load data into this from
@@ -135,7 +133,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         GameWorld.Map.CurrentPatch?.Name ?? throw new InvalidOperationException("no current patch");
 
     /// <summary>
-    ///   This gets called the first time the stage scene is put into an active scene tree.
+    ///   This method gets called the first time the stage scene is put into an active scene tree.
     ///   So returning from the editor doesn't cause this to re-run.
     /// </summary>
     public override void _Ready()
@@ -148,8 +146,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         ResolveNodeReferences();
 
         var simulationParameters = SimulationParameters.Instance;
-        glucose = simulationParameters.GetCompound("glucose");
-        phosphate = simulationParameters.GetCompound("phosphates");
         cytoplasm = simulationParameters.GetOrganelleType("cytoplasm");
 
         tutorialGUI.Visible = true;
@@ -275,7 +271,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 if (TutorialState.WantsNearbyCompoundInfo())
                 {
                     TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
-                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position, glucose)),
+                        new EntityPositionEventArgs(Clouds.FindCompoundNearPoint(playerPosition.Position,
+                            Compound.Glucose)),
                         this);
                 }
 
@@ -486,11 +483,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         previousSpecies.Obsolete = true;
 
         // Log becoming multicellular in the timeline
-        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
-            true, "multicellularTimelineMembraneTouch.png");
+        GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR",
+            previousSpecies.FormattedNameBbCodeUnstyled), true, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
-            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedName),
+            new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedNameBbCodeUnstyled),
             true, "multicellularTimelineMembraneTouch.png");
 
         if (WorldSimulation.Processing)
@@ -622,7 +619,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Add a cloud of glucose if difficulty settings call for it
         if (GameWorld.WorldSettings.FreeGlucoseCloud)
         {
-            Clouds.AddCloud(glucose, 200000.0f, Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
+            Clouds.AddCloud(Compound.Glucose, 200000.0f,
+                Player.Get<WorldPosition>().Position + new Vector3(0.0f, 0.0f, -25.0f));
         }
 
         // Check win conditions
@@ -706,9 +704,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // Show day/night cycle tutorial when entering a patch with sunlight
             if (GameWorld.WorldSettings.DayNightCycleEnabled)
             {
-                var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-                var patchSunlight = GameWorld.Map.CurrentPatch!.Biome.GetCompound(sunlight, CompoundAmountType.Biome)
-                    .Ambient;
+                var patchSunlight = GameWorld.Map.CurrentPatch!.Biome
+                    .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
 
                 if (patchSunlight > Constants.DAY_NIGHT_TUTORIAL_LIGHT_MIN)
                 {
@@ -724,6 +721,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             ref var health = ref Player.Get<Health>();
 
+            // Kill the player even if invulnerable
+            health.Invulnerable = false;
+
             // This doesn't use the microbe damage calculation as this damage can't be resisted
             health.DealDamage(9999.0f, "suicide");
 
@@ -736,7 +736,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 {
                     GD.Print("Forcing player digestion to progress much faster");
 
-                    // Seems like there's no really good way to force digestion to complete immediately, so instead we
+                    // Seems like there's no very good way to force digestion to complete immediately, so instead we
                     // clear everything here to force the digestion to complete immediately
                     engulfable.AdditionalEngulfableCompounds?.Clear();
 
@@ -791,7 +791,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // If this is a new game, place some phosphates as a learning tool
         if (!IsLoadedFromSave)
         {
-            Clouds.AddCloud(phosphate, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
+            Clouds.AddCloud(Compound.Phosphates, 50000.0f, new Vector3(50.0f, 0.0f, 0.0f));
         }
 
         patchManager.CurrentGame = CurrentGame;
@@ -957,6 +957,18 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         UpdatePatchLightLevelSettings();
     }
 
+    protected override void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
+    {
+        base.OnGameContinuedAsSpecies(newPlayerSpecies, inPatch);
+
+        // Update spawners if staying in the same patch as otherwise they wouldn't be updated and would spawn the
+        // obsolete species
+        if (inPatch == GameWorld.Map.CurrentPatch)
+        {
+            patchManager.UpdateSpawners(inPatch, this);
+        }
+    }
+
     protected override void OnLightLevelUpdate()
     {
         if (GameWorld.Map.CurrentPatch == null)
@@ -973,9 +985,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
             // This might need to be refactored for efficiency but, it works for now
-            var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
             var lightLevel =
-                GameWorld.Map.CurrentPatch!.Biome.GetCompound(sunlight, CompoundAmountType.Current).Ambient *
+                GameWorld.Map.CurrentPatch!.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
                 GameWorld.LightCycle.DayLightFraction;
 
             // Normalise by maximum light level in the patch
@@ -1011,10 +1022,10 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // This wasn't updated to check if the patch has day / night cycle as it might be plausible in the future
         // that other compounds than sunlight are varying so in those cases stage visuals should probably not update
-        var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-        maxLightLevel = GameWorld.Map.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        maxLightLevel = GameWorld.Map.CurrentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome)
+            .Ambient;
         templateMaxLightLevel = GameWorld.Map.CurrentPatch.BiomeTemplate.Conditions
-            .GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+            .GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
     }
 
     private void SaveGame(string name)

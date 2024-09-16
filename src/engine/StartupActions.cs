@@ -23,9 +23,31 @@ public partial class StartupActions : Node
             return;
         }
 
+        if (!ExtensionInterop.IsExtensionAvailable())
+        {
+            GD.PrintErr("Thrive GDExtension is not available. Loading game libraries has gone very wrong!");
+            GD.PrintErr("Please verify game files if you have downloaded Thrive. If you are developing Thrive " +
+                "please use the install option of the native library scripts.");
+            preventStartup = true;
+            SceneManager.NotifyEarlyQuit();
+            return;
+        }
+
         // Print game version
         // TODO: for devbuilds it would be nice to print the hash here
         GD.Print("This is Thrive version: ", Constants.VersionFull, " (see below for more build info)");
+
+        // Need to print the starting time to make it absolutely clear which Thrive startup the log is related to for
+        // when technical players might read the log files
+        try
+        {
+            GD.Print("Thrive is starting at: " + DateTime.Now.ToLocalTime().ToString("F") +
+                " (log file name may say something else but this is the correct time)");
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Couldn't determine Thrive startup time: ", e);
+        }
 
         // Add unhandled exception logger if debugger is not attached
         if (!Debugger.IsAttached)
@@ -159,6 +181,39 @@ public partial class StartupActions : Node
         if (loadNative)
         {
             NativeInterop.Init(Settings.Instance);
+
+            GD.Print("Starting load of Thrive GDExtension");
+
+            int loadedVersion;
+
+            try
+            {
+                if (!ExtensionInterop.LoadExtension())
+                {
+                    throw new Exception("Load or init call returned false");
+                }
+
+                loadedVersion = ExtensionInterop.GetVersion();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Thrive GDExtension failed to load: ", e.Message);
+                GD.PrintErr("Please verify all files are up to date (and see above for more errors)");
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+                return;
+            }
+
+            GD.Print("Thrive extension load succeeded, version: ", loadedVersion);
+
+            if (loadedVersion != NativeConstants.ExtensionVersion)
+            {
+                GD.PrintErr("Thrive extension start failed, unexpected version. Version should be: ",
+                    NativeConstants.ExtensionVersion);
+
+                preventStartup = true;
+                SceneManager.NotifyEarlyQuit();
+            }
         }
     }
 

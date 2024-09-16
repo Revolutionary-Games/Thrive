@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
 "PO-Revision-Date: 2023-09-10 12:18+0000\n"
 "Last-Translator: Mahbeer Alam Sarker <mahbeeralamsarker@gmail.com>\n"
 "Language-Team: Bengali <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bn/>\n"
@@ -63,6 +63,9 @@ msgstr "সমাপ্ত করা হয়েছে।"
 
 msgid "ABYSSOPELAGIC"
 msgstr ""
+
+msgid "ACCEPT"
+msgstr "গ্রহণ"
 
 msgid "ACTION_AWAKEN"
 msgstr ""
@@ -150,11 +153,13 @@ msgstr "(এআই প্রজাতির পরিবর্তনের গ�
 msgid "ALL"
 msgstr "সকল"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "প্রজাতিগুলিকে স্থানান্তরিত হওয়া নিষিদ্ধ করুন (যদি কোন ভাল স্থানান্তর না পাওয়া যায়)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "প্রজাতিকে মিউটেশন করা নিষিদ্ধ করুন (যদি কোন ভাল মিউটেশন পাওয়া না যায়)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
@@ -166,6 +171,9 @@ msgid "ALREADY_ASCENDED"
 msgstr ""
 
 msgid "ALT"
+msgstr ""
+
+msgid "ALWAYS_VISIBLE"
 msgstr ""
 
 msgid "AMBIANCE_VOLUME"
@@ -412,6 +420,9 @@ msgstr ""
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr ""
+
 msgid "BILLION_ABBREVIATION"
 msgstr ""
 
@@ -425,18 +436,6 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr ""
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr ""
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
 msgstr ""
 
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -868,6 +867,12 @@ msgstr ""
 msgid "CONTENT_UPLOADED_FROM"
 msgstr ""
 
+msgid "CONTINUE"
+msgstr ""
+
+msgid "CONTINUE_AS_SPECIES"
+msgstr ""
+
 msgid "CONTINUE_THRIVING"
 msgstr ""
 
@@ -1210,6 +1215,9 @@ msgstr ""
 msgid "DECEMBER"
 msgstr ""
 
+msgid "DECREASE_ITEM_SIZE"
+msgstr ""
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1344,6 +1352,9 @@ msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
 msgid "DISCARD_CHANGES"
+msgstr ""
+
+msgid "DISCARD_MIGRATION"
 msgstr ""
 
 msgid "DISCONNECTED_CELLS"
@@ -1628,6 +1639,9 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr ""
 
@@ -1720,6 +1734,13 @@ msgstr ""
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -2105,10 +2126,16 @@ msgstr ""
 msgid "ID_NUMBER"
 msgstr ""
 
+msgid "IMAGE_FILE_TYPES"
+msgstr ""
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr ""
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
+msgstr ""
+
+msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
 msgid "INDUSTRIAL_STAGE"
@@ -2310,6 +2337,9 @@ msgid "JULY"
 msgstr ""
 
 msgid "JUNE"
+msgstr ""
+
+msgid "KEEP_MIGRATION"
 msgstr ""
 
 msgid "KEY_BACK"
@@ -2726,10 +2756,7 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr ""
-
-msgid "LOW_BIODIVERSITY_LIMIT"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
 msgid "LOW_MENU_PERFORMANCE"
@@ -2760,9 +2787,6 @@ msgid "MARINE_SNOW"
 msgstr ""
 
 msgid "MASTER_VOLUME"
-msgstr ""
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
 msgstr ""
 
 msgid "MAX_FPS"
@@ -2832,6 +2856,48 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 msgid "MIB_VALUE"
+msgstr ""
+
+msgid "MICHE"
+msgstr ""
+
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr ""
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr ""
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+msgid "MICHE_TREE"
 msgstr ""
 
 msgid "MICROBE"
@@ -2953,6 +3019,37 @@ msgstr ""
 
 msgid "MIDDLE_MOUSE"
 msgstr ""
+
+msgid "MIGRATE"
+msgstr ""
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr ""
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
 
 msgid "MILLION_ABBREVIATION"
 msgstr ""
@@ -3206,6 +3303,10 @@ msgstr ""
 msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -3293,9 +3394,6 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr ""
-
 msgid "NEW_GAME"
 msgstr ""
 
@@ -3377,10 +3475,13 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-msgid "NOTICE_READY_TO_EDIT"
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
-msgid "NOT_FOUND_CHUNK"
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
+msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
 msgid "NOT_STARTED_DOT"
@@ -3444,6 +3545,9 @@ msgid "N_TIMES"
 msgstr ""
 
 msgid "OCTOBER"
+msgstr ""
+
+msgid "OFF"
 msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
@@ -3592,6 +3696,9 @@ msgstr ""
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr ""
 
+msgid "OTHER_COMPOUNDS"
+msgstr ""
+
 msgid "OUR_WIKI"
 msgstr ""
 
@@ -3673,6 +3780,10 @@ msgstr ""
 msgid "PAST_DEVELOPERS"
 msgstr ""
 
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "এজেন্টসমুূহ:"
+
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
 
@@ -3751,6 +3862,9 @@ msgid "PERFORMANCE"
 msgstr ""
 
 msgid "PERFORM_UNBINDING"
+msgstr ""
+
+msgid "PER_SECOND_ABBREVIATION"
 msgstr ""
 
 msgid "PER_SECOND_SLASH"
@@ -3879,12 +3993,6 @@ msgstr ""
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr ""
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr ""
-
 msgid "PROTEINS"
 msgstr ""
 
@@ -3948,9 +4056,6 @@ msgstr ""
 msgid "REFRESH"
 msgstr ""
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr ""
-
 msgid "REPORT"
 msgstr ""
 
@@ -4001,6 +4106,10 @@ msgstr ""
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "জাগ্রত পর্যায়ে চলে যাওয়া। আপনার পর্যাপ্ত মস্তিষ্কের শক্তি (অ্যাক্সন সহ টিস্যু টাইপ) থাকলে উপলব্ধ।"
 
 msgid "RESOLUTION"
 msgstr ""
@@ -4314,6 +4423,9 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr ""
+
 msgid "SHOW_HELP"
 msgstr ""
 
@@ -4340,6 +4452,10 @@ msgstr ""
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
 
 msgid "SIGNALING_AGENT"
 msgstr ""
@@ -4393,6 +4509,9 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "SMALL_IRON_CHUNK"
+msgstr ""
+
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
 msgid "SOCIETY_STAGE"
@@ -4473,12 +4592,6 @@ msgstr ""
 msgid "SPECIES_PRESENT"
 msgstr ""
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr ""
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr ""
-
 msgid "SPECIES_TO_FIND"
 msgstr ""
 
@@ -4493,6 +4606,13 @@ msgstr ""
 
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
+
+msgid "SPRINT"
+msgstr ""
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
 
 msgid "STAGES"
 msgstr ""
@@ -4516,6 +4636,18 @@ msgid "START_RESEARCH"
 msgstr ""
 
 msgid "STATISTICS"
+msgstr ""
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr ""
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr ""
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
 msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
@@ -4588,6 +4720,9 @@ msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
 msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
+msgstr ""
+
+msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
 msgid "STRATEGY_STAGES"
@@ -4779,9 +4914,8 @@ msgstr ""
 msgid "THE_DISTURBANCE"
 msgstr ""
 
-#, fuzzy
 msgid "THE_PATCH_MAP"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 msgid "THE_WORLD"
 msgstr ""
@@ -4910,6 +5044,9 @@ msgstr ""
 msgid "TOGGLE_METRICS"
 msgstr ""
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr ""
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -4925,14 +5062,68 @@ msgstr ""
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
 
 msgid "TOTAL_SAVES"
 msgstr ""
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "একটি নতুন কী বাইন্ডিং যোগ করুন"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr ""
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr ""
+
 msgid "TOXIN_RESISTANCE"
 msgstr ""
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
+
+msgid "TOXIN_TYPE_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "(এআই প্রজাতির পরিবর্তনের গতি)"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5169,6 +5360,9 @@ msgstr ""
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
+msgid "UPGRADE_COST"
+msgstr ""
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr ""
 
@@ -5179,6 +5373,12 @@ msgid "UPGRADE_PILUS_INJECTISOME"
 msgstr ""
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
+msgstr ""
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr ""
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
 msgstr ""
 
 msgid "UPLOAD"
@@ -5206,9 +5406,6 @@ msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
 msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
@@ -5262,6 +5459,9 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
+msgid "VIEW_CELL_PROCESSES"
+msgstr ""
+
 msgid "VIEW_ONLINE"
 msgstr ""
 
@@ -5281,6 +5481,12 @@ msgid "VIP_PATRONS"
 msgstr ""
 
 msgid "VISIBLE"
+msgstr ""
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
@@ -6138,9 +6344,8 @@ msgstr ""
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_PAGE_THE_PATCH_MAP"
-msgstr "সবাত নাইট্রোজেন ফিক্সেশন"
+msgstr ""
 
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr ""
@@ -6543,3 +6748,9 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "প্রজাতিগুলিকে স্থানান্তরিত হওয়া নিষিদ্ধ করুন (যদি কোন ভাল স্থানান্তর না পাওয়া যায়)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "প্রজাতিকে মিউটেশন করা নিষিদ্ধ করুন (যদি কোন ভাল মিউটেশন পাওয়া না যায়)"

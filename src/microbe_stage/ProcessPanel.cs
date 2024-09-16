@@ -21,6 +21,9 @@ public partial class ProcessPanel : CustomWindow
     private Container closeButtonContainer = null!;
 #pragma warning restore CA2213
 
+    [Signal]
+    public delegate void ToggleProcessPressedEventHandler(ChemicalEquation equation);
+
     public ProcessStatistics? ShownData { get; set; }
 
     public override void _Ready()
@@ -59,5 +62,10 @@ public partial class ProcessPanel : CustomWindow
         }
 
         base.Dispose(disposing);
+    }
+
+    private void ToggleProcessToggled(ChemicalEquation equation)
+    {
+        EmitSignal(SignalName.ToggleProcessPressed, equation);
     }
 }

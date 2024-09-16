@@ -1,23 +1,14 @@
-[gd_scene load_steps=15 format=3 uid="uid://dokew8lhrri5"]
+[gd_scene load_steps=12 format=3 uid="uid://dokew8lhrri5"]
 
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="1_dp368"]
-[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="2_dlilh"]
-[ext_resource type="Texture2D" uid="uid://bu4uvavl0ieg2" path="res://assets/textures/iron_01.png" id="3_82po1"]
-[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4_cxsih"]
 [ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="5_bu7wc"]
 [ext_resource type="Material" uid="uid://dcd6x2v3mfqfn" path="res://assets/models/menu_backgrounds/CometFireStart.tres" id="6_h1j6i"]
 [ext_resource type="Material" uid="uid://d1e2we22pcrbu" path="res://assets/models/menu_backgrounds/CometFireEnd.tres" id="7_71lin"]
 
-[sub_resource type="ShaderMaterial" id="16"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("2_dlilh")
-shader_parameter/dissolveValue = 0.0
-shader_parameter/outlineWidth = 0.005
-shader_parameter/growColor = Color(0.282353, 0.282353, 0.282353, 1)
-shader_parameter/albedoTexture = ExtResource("3_82po1")
-shader_parameter/normalTexture = ExtResource("5_bu7wc")
-shader_parameter/dissolveTexture = ExtResource("4_cxsih")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_26xqx"]
+roughness = 0.72
+normal_enabled = true
+normal_texture = ExtResource("5_bu7wc")
 
 [sub_resource type="QuadMesh" id="7"]
 size = Vector2(0.133, 0.271)
@@ -48,8 +39,8 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 transform = Transform3D(1.19735, 0.106705, -0.897193, -0.168807, 1.48969, -0.0481104, 0.887606, 0.139372, 1.20114, 0, 0, 0)
 
 [node name="Rock" parent="." instance=ExtResource("1_dp368")]
-transform = Transform3D(0.0124346, -0.000969096, -0.0995848, -0.00183892, 0.139983, -0.00081735, 0.136422, 0.00197525, 0.00906596, 0.0193676, 0.0642799, -0.211988)
-material_override = SubResource("16")
+transform = Transform3D(-0.0011855, -0.0133449, -0.0995409, -0.0121901, 0.13882, -0.00941794, 0.136451, 0.0122857, -0.00170615, 0.0802385, 0.0707815, -0.22425)
+material_override = SubResource("StandardMaterial3D_26xqx")
 skeleton = NodePath("")
 
 [node name="FireStart" type="CPUParticles3D" parent="."]

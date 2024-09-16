@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-06-02 17:09+0000\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-06-19 00:11+0000\n"
 "Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "[b]纤毛[/b]对于大型细胞至关重要，尤其是那些依赖掠食的细胞。 如果没有它们，大型细胞有时会受到极其缓慢的转动速度的困扰。 我们建议在演化[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]后尽快添加[b]纤毛[/b]以抵消该关键细胞器的巨大尺寸，并且将它们放置在尽可能远离细胞中心的位置，以最大限度地提高转动能力。"
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "策略游戏阶段"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D编辑器"
@@ -62,10 +61,13 @@ msgid "ABORT"
 msgstr "中止"
 
 msgid "ABORTED_DOT"
-msgstr "中止。"
+msgstr "已中止。"
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海带"
+
+msgid "ACCEPT"
+msgstr "接受"
 
 msgid "ACTION_AWAKEN"
 msgstr "觉醒 ({0:F1} / {1:F1})"
@@ -80,13 +82,13 @@ msgid "ACTION_DELETE"
 msgstr "删除"
 
 msgid "ACTION_DOUBLE_POPULATION"
-msgstr "使人口加倍"
+msgstr "使种群数量加倍"
 
 msgid "ACTION_DUPLICATE_UNITS"
 msgstr "复制单位"
 
 msgid "ACTION_HALF_POPULATION"
-msgstr "使人口减半"
+msgstr "使种群数量减半"
 
 msgid "ACTION_TELEPORT"
 msgstr "传送"
@@ -153,11 +155,11 @@ msgstr "（AI物种突变的速度）"
 msgid "ALL"
 msgstr "全部"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "允许物种不迁移（如果没有发现良好的迁移情况）"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "允许在灭绝后切换到其他相关物种"
 
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "允许物种不变异（如果没有发现好的变异）"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "(使您能够在本物种灭绝后以另一个不同的物种继续游戏而不是直接结束游戏）"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "所有世界的生物数据"
@@ -183,6 +185,9 @@ msgstr "你已经飞升了"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "总是可见"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "环境声效"
@@ -294,7 +299,7 @@ msgid "AUTO"
 msgstr "自动"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
-msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的人口。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
+msgstr "这个板块显示了auto-evo预测工作所依据的数字。一个物种能够捕获的总能量以及该物种个体的成本决定最终的种群数量。Auto-evo使用一个简化的现实模型，根据物种能够采集的能量来计算其表现如何。对于每个食物来源，它显示了该物种从其获得的能量以及该食物来源能提供的总能量。物种从总能量中获得的量基于与总适应性相比的适应性的大小。适应性是衡量该物种对该食物来源的利用程度的指标。"
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "{0}在{2}中的种群数量变化了{1}，原因：{3}"
@@ -358,9 +363,8 @@ msgstr "反斜杠"
 msgid "BACKSPACE"
 msgstr "退格键"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "氧化毒素合成"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -400,7 +404,7 @@ msgid "BECOME_MULTICELLULAR"
 msgstr "成为多细胞（{0}/{1}）"
 
 msgid "BEGIN_THRIVING"
-msgstr "开始游戏"
+msgstr "开启繁荣之路"
 
 msgid "BEHAVIOUR"
 msgstr "行为"
@@ -441,6 +445,9 @@ msgstr "最繁荣的地区："
 msgid "BIG_IRON_CHUNK"
 msgstr "大铁块"
 
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "大磷酸盐块"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} *10⁹"
 
@@ -455,18 +462,6 @@ msgstr "按[thrive:input]g_toggle_binding[/thrive:input]来切换连接模式。
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "将坐标轴绑定在一起"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "在每个物种较少（生物多样性低）的地区中创造一个新的物种的几率"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "从临近地区创造一个新的物种来增加生物多样性的几率"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "从临近地区来的增加生物多样性的物种获得额外的种群数量"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "增加生物多样性的物种会在创造时被变异"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "生物发光液泡"
@@ -673,9 +668,8 @@ msgstr "目标文件名{0}已存在。确定要覆盖吗？"
 msgid "CHROMATIC_ABERRATION"
 msgstr "色差："
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "氧化毒素合成"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与[thrive:compound type=\"sunlight\"][/thrive:compound]强度成正比。"
@@ -696,7 +690,7 @@ msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr "增加大体型细胞的转向速度。"
 
 msgid "CITY_SHORT_STATISTICS"
-msgstr "人口：{0} 食物：{1} 科学：{2}"
+msgstr "种群数量：{0} 食物：{1} 科学：{2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
@@ -798,7 +792,7 @@ msgid "COMPOUNDS"
 msgstr "化合物"
 
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr "静态平衡"
+msgstr "刚好平衡"
 
 msgid "COMPOUNDS_AT_MAX_SPEED"
 msgstr "最大速率时平衡"
@@ -815,9 +809,10 @@ msgstr "（在 {0} 秒内填满储存空间）"
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr "（在 {0} 秒内填满储存空间，比有效日光时间长{1} 秒）"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
-msgstr "显示/隐藏化合物"
+msgstr ""
+"用于计算化合物收支的模式，比如说最大速度模式下会假设所有代谢过程以最大速率进行\n"
+"而刚好平衡模式下假设代谢以刚好使ATP净收入非负的速度进行。"
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "化合物收支"
@@ -846,19 +841,20 @@ msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（无法熬过{0}秒长的夜晚）"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "您在白天只能生产{1} [thrive:compound type=\"{0}\"][/thrive:compound]，但为了撑过夜晚您至少需要{2}。"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "{0}消耗"
+msgstr "您的[thrive:compound type=\"{0}\"][/thrive:compound]储存空间不足：现有储存空间只够您用{1}秒，但夜晚有{2}秒长。"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr "化合物收支"
+msgstr "储存空间"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr "化合物收支"
+msgstr ""
+"该区域显示了您的储存空间如果被充满够您的细胞用多久。\n"
+"这些数据总是按夜晚计算，并可用于检查您的细胞是否有足够大的储存空间\n"
+"来挺过一整个晚上。关闭移动消耗选项后即可查看挺过夜晚所需的最低数值\n"
+"也就是一整晚不移动的情况下所需的数值。"
 
 msgid "COMPOUND_TO_FIND"
 msgstr "寻找的化合物："
@@ -920,6 +916,12 @@ msgstr "单位：{0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "文件夹{0}的内容将会上传到创意工坊"
+
+msgid "CONTINUE"
+msgstr "继续游戏"
+
+msgid "CONTINUE_AS_SPECIES"
+msgstr "[center]游戏还未结束， 您可以通过转变到物种 {0}，种群数量为 {1} 以[b]继续游戏[/b]。[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "继续游戏"
@@ -1292,6 +1294,9 @@ msgstr "调试菜单"
 msgid "DECEMBER"
 msgstr "十二月"
 
+msgid "DECREASE_ITEM_SIZE"
+msgstr "减小物体"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "默认输出设备"
 
@@ -1449,6 +1454,10 @@ msgstr "放弃更改并继续"
 
 msgid "DISCARD_CHANGES"
 msgstr "放弃更变"
+
+#, fuzzy
+msgid "DISCARD_MIGRATION"
+msgstr "放弃更改并继续"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "未连接的细胞"
@@ -1638,7 +1647,7 @@ msgstr "编辑器"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "线粒体"
+msgstr "发生变异"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
@@ -1681,7 +1690,7 @@ msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr "将内共生的目标转化为一个临时的细胞器，如果您成功存活到进入编辑器，内共生进度将会增加"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "内共生形态已经存在，进入编辑器以推进内共生进度"
 
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "该物种可以转化成的细胞器"
@@ -1737,6 +1746,9 @@ msgstr "能量来源："
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "收集的总能量为{0}，每个体的成本为{1}，在修正前的种群数量为{2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr "因在无ATP的情况下进入吞噬模式而受损"
+
 msgid "ENTER_EXISTING_ID"
 msgstr "输入已有的编号"
 
@@ -1751,7 +1763,7 @@ msgstr "环境"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "线粒体"
+msgstr "环境葡萄糖保留"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "环境葡萄糖保留"
@@ -1833,6 +1845,12 @@ msgstr "退出编辑器"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "退出至启动器"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "实验性功能"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "（启用游戏中尚未完善的额外功能，如果您使用这些功能，请与我们分享您对这些功能的任何反馈）"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "导出所有世界"
@@ -1919,17 +1937,14 @@ msgstr "发表于{0}"
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr "本篇因篇幅过长而被删节，详情请阅读原文。 {0}"
 
-#, fuzzy
 msgid "FERROPLAST"
-msgstr "热能体"
+msgstr "铁化能质体"
 
-#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "它是一种双层膜结构，包含在膜囊中堆叠在一起的热敏色素。它是一种被其真核宿主同化的原核生物。热能体中的色素可以通过[b]热合成[/b]用温差把水和二氧化碳合成成葡萄糖。合成葡萄糖的速率跟二氧化碳的浓度与环境温度成正比。"
+msgstr "一个以金属为原料的“动力工厂”。铁化能质体是一种充满了蛋白质与酶的双层膜结构，起源于一种被其真核宿主吸收利用了原核生物。它能够将[thrive:compound type=\"iron\"][/thrive:compound] 从一种化学状态氧化到另一种，且效率远高于铁硫菌蓝蛋白。此過程这一过程称为[b]铁呼吸[/b]，释放并供给细胞能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 才能发挥作用，并且其中任何一样环境的浓度较低都会降低其[thrive:compound type=\"atp\"][/thrive:compound] 的生产速率。"
 
-#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "产出[thrive:compound type=\"glucose\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度与环境温度成正比。"
+msgstr "利用[thrive:compound type=\"iron\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]。合成速率与环境[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按类别过滤项目："
@@ -2233,11 +2248,17 @@ msgstr "ID无效"
 msgid "ID_NUMBER"
 msgstr "编号"
 
+msgid "IMAGE_FILE_TYPES"
+msgstr "支持的图片文件"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "包含测试阶段"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "（当你进入测试阶段，一些功能可能无法使用）"
+
+msgid "INCREASE_ITEM_SIZE"
+msgstr "放大物体"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "工业阶段"
@@ -2447,6 +2468,9 @@ msgstr "七月"
 
 msgid "JUNE"
 msgstr "六月"
+
+msgid "KEEP_MIGRATION"
+msgstr "保留更改并继续"
 
 msgid "KEY_BACK"
 msgstr "后退"
@@ -2873,11 +2897,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "锁定昼夜循环"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "将物种数量小于此的区块认为是生物多样性低"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "性能过低"
@@ -2911,9 +2932,6 @@ msgstr "海洋雪"
 
 msgid "MASTER_VOLUME"
 msgstr "主音量"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "在启用强制灭绝之前一个地区所能容纳的最大物种数量"
 
 msgid "MAX_FPS"
 msgstr "最高FPS："
@@ -2999,6 +3017,55 @@ msgstr ""
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
+msgid "MICHE"
+msgstr "生态导向源"
+
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "避免自然捕食选择的压力"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "营养物碎块压力"
+
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "化合物云压力"
+
+#, fuzzy
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "化合物转化效率压强"
+
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]自然选择压力[/b]\n"
+"  {0}\n"
+"[b]能量[/b]\n"
+"  {1}\n"
+"[b]适应分数[/b]\n"
+"  {2}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "环境化合物压强"
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "维持化合物压强"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr "代谢稳定压力"
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "无操作压力"
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "捕食效率压力"
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "掠食者根部压力"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "根部压力"
+
+msgid "MICHE_TREE"
+msgstr "生态导向源树状图"
+
 msgid "MICROBE"
 msgstr "微生物"
 
@@ -3065,6 +3132,8 @@ msgstr ""
 "溶酶体：含有消化酶。酶可以增加消化的速度和效率。\n"
 "\n"
 "化学质体：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
+"\n"
+"铁化能质体：将[thrive:compound type=\"iron\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]，比铁硫菌蓝蛋白更高效\n"
 "\n"
 "固氮质体：用大气中的氧气，氮和[thrive:compound type=\"atp\"][/thrive:compound]生产[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
 "\n"
@@ -3241,6 +3310,33 @@ msgstr ""
 
 msgid "MIDDLE_MOUSE"
 msgstr "鼠标中键"
+
+msgid "MIGRATE"
+msgstr "迁移"
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "错误：迁移失败，请检查迁移参数"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "将种群从{0}迁移到..."
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "将{2}单位的种群从{0}迁移到{1}"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "选择与目标区域相连的来源区域进行迁移"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "每次进入编辑器都只能执行一次迁移。您可以查看下方已排列的迁移并选择保留还是取消它以建立不同的迁移"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "选择要从来源区域迁移到目标区域的种群数量"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "选择目前包含您的物种的区域作为迁移来源"
+
+msgid "MIGRATION_TOOLTIP"
+msgstr "在区域之间迁移您的物种而不移动您当前操纵的个体所在的区域"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0}*10⁶"
@@ -3507,6 +3603,9 @@ msgstr "黏液"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "黏液合成"
 
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "创造护盾"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "多细胞编辑器"
 
@@ -3602,9 +3701,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "新闻"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "增加生物多样性物种的初始种群数量"
-
 msgid "NEW_GAME"
 msgstr "新游戏"
 
@@ -3687,11 +3783,14 @@ msgstr "目前细胞大小不足以吞噬目标"
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "没有足够存储空间以摄入被吞噬的目标"
 
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr "ATP 生产受毒素抑制"
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "基础运动速度因毒素而降低"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
-
-msgid "NOT_FOUND_CHUNK"
-msgstr "错误：区块未找到"
 
 msgid "NOT_STARTED_DOT"
 msgstr "未开始。"
@@ -3757,6 +3856,9 @@ msgstr "x{0}"
 
 msgid "OCTOBER"
 msgstr "十月"
+
+msgid "OFF"
+msgstr "关"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "官方网站"
@@ -3908,6 +4010,10 @@ msgstr "渗透调节消耗系数"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "（调节玩家物种渗透调节的消耗）"
 
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "化合物"
+
 msgid "OUR_WIKI"
 msgstr "我们的Wiki"
 
@@ -3939,7 +4045,7 @@ msgid "OXYTOXISOME"
 msgstr "毒素体"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "修改版的代谢体，用来产出一种原始的有毒物质：氧化毒素。"
+msgstr "修改版的代谢体，用来产出一种原始的有毒物质：[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以切换以修改生成的毒素类型来获得其他效果。"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
@@ -3992,6 +4098,9 @@ msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 msgid "PAST_DEVELOPERS"
 msgstr "过去的开发人员"
+
+msgid "PATCH_COLON"
+msgstr "区域："
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4069,6 +4178,9 @@ msgstr "性能"
 
 msgid "PERFORM_UNBINDING"
 msgstr "取消连接"
+
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "/s"
 
 msgid "PER_SECOND_SLASH"
 msgstr "每秒"
@@ -4203,12 +4315,6 @@ msgstr "程序员团队"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "项目管理团队"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "保护刚刚迁移的生物不受物种上限的影响"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "保护刚刚创造的物种不受物种上限的影响"
-
 msgid "PROTEINS"
 msgstr "蛋白质"
 
@@ -4275,9 +4381,6 @@ msgstr "重做上一个动作"
 msgid "REFRESH"
 msgstr "刷新"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "在目标地区灭绝的情况下，退还迁移的费用"
-
 msgid "REPORT"
 msgstr "报告"
 
@@ -4328,6 +4431,10 @@ msgstr "重置为默认值？"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "不会被没有对应酶的细胞吞噬并消化"
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "返回游戏"
 
 msgid "RESOLUTION"
 msgstr "分辨率："
@@ -4657,6 +4764,9 @@ msgstr "音效音量"
 msgid "SHIFT"
 msgstr "Shift"
 
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "在屏幕上显示伤害效果"
+
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
@@ -4683,6 +4793,9 @@ msgstr "当玩家试图退出游戏时，启用/禁用未保存的进度警告�
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "显示 Thrive 新闻（联机下载）"
+
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "发射嗜铁素"
 
 msgid "SIGNALING_AGENT"
 msgstr "信号剂"
@@ -4737,6 +4850,9 @@ msgstr "将 [thrive:compound type=\"glucose\"][/thrive:compound] 转化为 [thri
 
 msgid "SMALL_IRON_CHUNK"
 msgstr "小铁块"
+
+msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "小磷酸盐碎块"
 
 msgid "SOCIETY_STAGE"
 msgstr "社会阶段"
@@ -4826,12 +4942,6 @@ msgstr "该物种的种群数量"
 msgid "SPECIES_PRESENT"
 msgstr "存在的物种"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "通过多个良好的突变来分裂物种所需的最小种群数量"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "允许通过突变分裂的物种的所需最小种群数量比例"
-
 msgid "SPECIES_TO_FIND"
 msgstr "寻找的物种："
 
@@ -4847,15 +4957,20 @@ msgstr "速度："
 msgid "SPREAD_TO_PATCHES"
 msgstr "传播到的地区："
 
+msgid "SPRINT"
+msgstr "冲刺"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "切换到冲刺模式。冲刺时细胞移动得更快，但会消耗更多ATP，且随着压力增加ATP消耗会变得更多."
+
 msgid "STAGES"
 msgstr ""
 
 msgid "STAGE_MENU_BUTTON_TOOLTIP"
 msgstr "暂停菜单"
 
-#, fuzzy
 msgid "START"
-msgstr "启动中"
+msgstr "开始"
 
 msgid "STARTING"
 msgstr "启动中"
@@ -4871,6 +4986,18 @@ msgstr "开始研究"
 
 msgid "STATISTICS"
 msgstr "统计数据"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP 产量惩罚"
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "基础移动降低"
+
+msgid "STAT_DAMAGE"
+msgstr "伤害"
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr "每个耗氧细胞器的损伤等级"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam 客户端库初始化失败"
@@ -4941,10 +5068,13 @@ msgid "STORAGE_COLON"
 msgstr "存储："
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "秒"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "已登录为：{0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "压力值可见性"
 
 msgid "STRATEGY_STAGES"
 msgstr "策略游戏阶段"
@@ -5285,6 +5415,9 @@ msgstr "打开物品栏"
 msgid "TOGGLE_METRICS"
 msgstr "切换参数显示"
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "切换黏液囊护盾"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "打开导航树状图"
 
@@ -5300,20 +5433,76 @@ msgstr "工具"
 msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "收集到的能量："
 
 msgid "TOTAL_SAVES"
 msgstr "存档数："
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "通道抑制剂"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "抑制受影响细胞的 ATP 产生，有效地阻止它们快速移动，并可能导致没有太多过量 ATP 产生的细胞死亡。"
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "细胞毒素"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "一种简单的毒素，对没有特殊细胞壁的细胞效果不错。"
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "射速与毒性："
+
+msgid "TOXIN_MACROLIDE"
+msgstr "大环内酯物"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "这种毒素会急剧降低细胞的基础移动速度，让简单的细胞基本上无法移动。"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "氰化物"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "氰化物会攻击有氧气参与的代谢过程，因此对使用这些代谢过程的细胞非常有效。"
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "这种毒素利用氧气的氧化性对细胞造成伤害，因此对将氧气用于代谢过程的种族效果会大打折扣。"
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "高射速"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "毒性强"
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "对目标的毒性效果"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "毒抗"
+
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"毒素可以自定义以造成更多伤害，但发射速度更慢、\n"
+"或发射速度更快，但每发伤害更低。\n"
+"所有毒素细胞器的平均毒性决定了总发射速度和伤害修正值。\n"
+"只有毒素细胞器唯一时，此处显示的伤害值才是完全准确的。\n"
+"或者所有细胞器都被修改为具有相同的毒性值。"
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "毒素类型："
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "不同种类的毒素的效果不同，有些对特定种类的细胞会有奇效。当一个细胞有多种毒素时，它们会被依序发射而不是被同时发射。"
 
 msgid "TOXIN_VACUOLE"
 msgstr "毒素液泡"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "毒素液泡是一种专门用于产出，存储和分泌氧化毒素的液泡。更多毒素液泡可以加快释放毒素的速度。"
+msgstr "毒素液泡是一种专门用于产出，存储和分泌[thrive:compound type=\"oxytoxy\"][/thrive:compound]的液泡。更多毒素液泡可以加快释放毒素的速度。可以修改其产生的毒素种类以产生不同效果。"
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
@@ -5362,7 +5551,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
-"这个面板显示对你未来种群数量的预测。[b]auto-evo[/b]的人口模拟提供了这些数字。\n"
+"这个面板显示对你未来种群数量的预测。[b]auto-evo[/b]的种群数量模拟提供了这些数字。\n"
 "\n"
 "它们不会考虑你的个人表现。所以在你在当前的地区中进入编辑器时的实际表现会更好。\n"
 "\n"
@@ -5662,6 +5851,9 @@ msgstr "捕食纤毛"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "当处于胞吞模式时（[thrive:input]g_toggle_engulf[/thrive:input]），这种类型的纤毛会在水中产生涡流，将附近的物体拉近来捕猎。"
 
+msgid "UPGRADE_COST"
+msgstr "{0} ({1} 变异点)"
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "默认状态"
 
@@ -5673,6 +5865,12 @@ msgstr "毒刺"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "将掠食性菌毛变为一根毒刺，在刺中其他细胞时造成毒素伤害"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "黏液囊"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "将黏液射流变为黏液囊，在细胞周围形成黏液保护膜。激活后它可以暂时免疫所有伤害."
 
 msgid "UPLOAD"
 msgstr "上传"
@@ -5700,9 +5898,6 @@ msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "增加生物多样性的物种在生成时从现有的物种中减少对应的种群数量"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
@@ -5755,6 +5950,9 @@ msgstr "查看器"
 msgid "VIEW_ALL"
 msgstr "查看所有"
 
+msgid "VIEW_CELL_PROCESSES"
+msgstr "查看细胞代谢过程"
+
 msgid "VIEW_ONLINE"
 msgstr "在互联网上查看"
 
@@ -5775,6 +5973,12 @@ msgstr "VIP 支持者"
 
 msgid "VISIBLE"
 msgstr "可见"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "几乎满时可见"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "大于零时可见"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "提出功能建议"
@@ -6380,7 +6584,7 @@ msgstr "代谢过程"
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "影响与效果"
+msgstr "可用升级"
 
 #, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
@@ -7037,7 +7241,7 @@ msgstr ""
 
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
-"带有[b]掠食性菌毛[/b]的细胞能成为高效的掠食者，可以伤害任何细胞，甚至是那些具有抗毒素或抗吞噬膜的细胞。 但必须小心放置它们，并且需要战斗技巧。\n"
+"带有[b]掠食性菌毛[/b]的细胞能成为高效的掠食者并可以伤害任何细胞，甚至是那些具有抗毒素或抗吞噬细胞膜的细胞。 但必须小心放置它们，并且需要战斗技巧。\n"
 "\n"
 "[b]掠食性菌毛[/b]也可以对别的猎食者有强大的吓阻作用。 尖刺球不太可能被视为一顿简单的饭菜。"
 
@@ -7566,6 +7770,9 @@ msgstr "缩小"
 #~ msgid "HELP"
 #~ msgstr "帮助"
 
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "错误：区块未找到"
+
 #~ msgid "BASSBOOST"
 #~ msgstr "低音增强"
 
@@ -7861,9 +8068,6 @@ msgstr "缩小"
 
 #~ msgid "E_DOT"
 #~ msgstr "释放毒素。"
-
-#~ msgid "RATE"
-#~ msgstr "速率"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

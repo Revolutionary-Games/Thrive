@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgryi0yvh11d8"]
+[gd_scene load_steps=22 format=3 uid="uid://cgryi0yvh11d8"]
 
 [ext_resource type="Script" path="res://src/auto-evo/AutoEvoExploringTool.cs" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="2"]
@@ -10,10 +10,13 @@
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_crtm0"]
 [ext_resource type="Script" path="res://src/gui_common/CustomDropDown.cs" id="12"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" id="13"]
-[ext_resource type="PackedScene" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
-[ext_resource type="PackedScene" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://cjbhth6wlc08l" path="res://src/auto-evo/EvolutionaryTree.tscn" id="14"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="16"]
+[ext_resource type="PackedScene" uid="uid://clhnq4g06pd62" path="res://src/auto-evo/MicheTree.tscn" id="16_hpnq1"]
 [ext_resource type="PackedScene" uid="uid://bjl5o7oy7yr15" path="res://src/microbe_stage/gui/PatchDetailsPanel.tscn" id="17"]
+[ext_resource type="PackedScene" uid="uid://b1boea8qjx6xx" path="res://src/gui_common/SpeciesDetailsPanel.tscn" id="17_rkk82"]
 [ext_resource type="Texture2D" uid="uid://b84h4mjojeb7q" path="res://assets/textures/gui/bevel/plusButton.png" id="18"]
+[ext_resource type="PackedScene" uid="uid://cikd2ef2usr1y" path="res://src/gui_common/MicheDetailsPanel.tscn" id="18_qhnwh"]
 [ext_resource type="Texture2D" uid="uid://bwcvbcn15kctq" path="res://assets/textures/gui/bevel/plusButtonHover.png" id="19"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="20"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="21"]
@@ -29,29 +32,15 @@ SpeciesSelectPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSpl
 MapPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/PatchMap")
 ReportPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report")
 ViewerPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer")
+MichePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche")
 AllWorldsStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/AllWorldsStatPanel/MarginContainer/VBoxContainer/AllWorldsStatLabel")
 WorldsListMenuPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/WorldsListMenu")
 NewWorldButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton")
 CurrentWorldStatisticsLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/PanelContainer2/MarginContainer/HBoxContainer/VBoxContainer/CurrentWorldStatLabel")
 WorldExportButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton")
-AllowSpeciesToNotMutatePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate")
-AllowSpeciesToNotMigratePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate")
-BiodiversityAttemptFillChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance")
-BiodiversityFromNeighbourPatchChancePath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance/BiodiversityFromNeighbourPatchChance")
-BiodiversityNearbyPatchIsFreePopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityNearbyPatchIsFreePopulation")
-BiodiversitySplitIsMutatedPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversitySplitIsMutated")
-LowBiodiversityLimitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit/LowBiodiversityLimit")
-MaximumSpeciesInPatchPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch/MaximumSpeciesInPatch")
 MoveAttemptsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MoveAttemptsPerSpecies/MoveAttemptsPerSpecies")
 MutationsPerSpeciesPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies/MutationsPerSpecies")
-NewBiodiversityIncreasingSpeciesPopulationPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation/NewBiodiversityIncreasingSpeciesPopulation")
-ProtectMigrationsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/ProtectMigrationsFromSpeciesCap")
-ProtectNewCellsFromSpeciesCapPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/ProtectNewCellsFromSpeciesCap")
-RefundMigrationsInExtinctionsPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/RefundMigrationsInExtinctions")
 StrictNicheCompetitionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/StrictNicheCompetition")
-SpeciesSplitByMutationThresholdPopulationAmountPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount/SpeciesSplitByMutationThresholdPopulationAmount")
-SpeciesSplitByMutationThresholdPopulationFractionPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction/SpeciesSplitByMutationThresholdPopulationFraction")
-UseBiodiversityForceSplitPath = NodePath("GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/UseBiodiversityForceSplit")
 RunStatusLabelPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStatusLabel")
 FinishXGenerationsSpinBoxPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerationsSpin")
 FinishXGenerationsButtonPath = NodePath("GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer3/FinishXGenerations")
@@ -68,6 +57,10 @@ ResultsLabelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Report/Results
 SpeciesListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer/SpeciesListMenu")
 EvolutionaryTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree")
 SpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
+PatchListMenuPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer/PatchListMenu")
+MicheTreePath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree")
+MicheDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/MicheDetailsPanel")
+MicheSpeciesDetailsPanelPath = NodePath("GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer/SpeciesDetailsPanel")
 ExitConfirmationDialogPath = NodePath("ExitConfirmationDialog")
 ExportSuccessNotificationDialogPath = NodePath("ExportSuccessNotificationDialog")
 
@@ -128,6 +121,12 @@ layout_mode = 2
 toggle_mode = true
 button_group = SubResource("ButtonGroup_cxjso")
 text = "VIEWER"
+
+[node name="MicheButton" type="Button" parent="GUI/VBoxContainer/TabButtons"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_cxjso")
+text = "MICHE"
 
 [node name="WorldEditor" type="HBoxContainer" parent="GUI/VBoxContainer"]
 layout_mode = 2
@@ -363,78 +362,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="AllowSpeciesToNotMutate" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "ALLOW_SPECIES_TO_NOT_MUTATE"
-
-[node name="AllowSpeciesToNotMigrate" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "ALLOW_SPECIES_TO_NOT_MIGRATE"
-
-[node name="BiodiversityAttemptFillChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-label_settings = ExtResource("11_crtm0")
-
-[node name="BiodiversityAttemptFillChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-
-[node name="BiodiversityFromNeighbourPatchChance" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-label_settings = ExtResource("11_crtm0")
-
-[node name="BiodiversityFromNeighbourPatchChance" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityFromNeighbourPatchChance"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-
-[node name="BiodiversityNearbyPatchIsFreePopulation" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-
-[node name="BiodiversitySplitIsMutated" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "BIODIVERSITY_SPLIT_IS_MUTATED"
-
-[node name="LowBiodiversityLimit" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "LOW_BIODIVERSITY_LIMIT"
-label_settings = ExtResource("11_crtm0")
-
-[node name="LowBiodiversityLimit" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/LowBiodiversityLimit"]
-layout_mode = 2
-
-[node name="MaximumSpeciesInPatch" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MAXIMUM_SPECIES_IN_PATCH"
-label_settings = ExtResource("11_crtm0")
-
-[node name="MaximumSpeciesInPatch" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MaximumSpeciesInPatch"]
-layout_mode = 2
-
 [node name="MoveAttemptsPerSpecies" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
 
@@ -459,70 +386,10 @@ label_settings = ExtResource("11_crtm0")
 [node name="MutationsPerSpecies" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/MutationsPerSpecies"]
 layout_mode = 2
 
-[node name="NewBiodiversityIncreasingSpeciesPopulation" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-label_settings = ExtResource("11_crtm0")
-
-[node name="NewBiodiversityIncreasingSpeciesPopulation" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/NewBiodiversityIncreasingSpeciesPopulation"]
-layout_mode = 2
-max_value = 1000.0
-step = 10.0
-
-[node name="ProtectMigrationsFromSpeciesCap" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-
-[node name="ProtectNewCellsFromSpeciesCap" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-
-[node name="RefundMigrationsInExtinctions" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-
 [node name="StrictNicheCompetition" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "STRICT_NICHE_COMPETITION"
-
-[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-label_settings = ExtResource("11_crtm0")
-
-[node name="SpeciesSplitByMutationThresholdPopulationAmount" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationAmount"]
-layout_mode = 2
-max_value = 1000.0
-step = 10.0
-
-[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="HBoxContainer" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-label_settings = ExtResource("11_crtm0")
-
-[node name="SpeciesSplitByMutationThresholdPopulationFraction" type="SpinBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/SpeciesSplitByMutationThresholdPopulationFraction"]
-layout_mode = 2
-
-[node name="UseBiodiversityForceSplit" type="CheckBox" parent="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "USE_BIODIVERSITY_FORCE_SPLIT"
 
 [node name="HistoryReportSplit" type="VBoxContainer" parent="GUI/VBoxContainer"]
 visible = false
@@ -554,6 +421,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "GENERATIONS"
 label_settings = ExtResource("5_6c001")
+vertical_alignment = 1
 
 [node name="HistoryListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/GenerationPanel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -581,6 +449,7 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "SPECIES"
 label_settings = ExtResource("5_6c001")
+vertical_alignment = 1
 
 [node name="SpeciesListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/UpperSplit/SpeciesSelectPanel/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -625,6 +494,7 @@ DrawDefaultMapIfEmpty = false
 [node name="PatchDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer" instance=ExtResource("17")]
 layout_mode = 2
 MoveToPatchButtonVisible = false
+MigrationManagerEnabled = false
 
 [node name="Report" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
 visible = false
@@ -718,6 +588,95 @@ theme_override_constants/margin_bottom = 10
 [node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("9")]
 layout_mode = 2
 
+[node name="Miche" type="Control" parent="GUI/VBoxContainer/HistoryReportSplit"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "MICHE_TREE"
+label_settings = ExtResource("5_6c001")
+
+[node name="MicheTree" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("16_hpnq1")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer"]
+layout_mode = 2
+
+[node name="PatchSelectPanel" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "PATCH_COLON"
+label_settings = ExtResource("5_6c001")
+vertical_alignment = 1
+
+[node name="PatchListMenu" type="MenuButton" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PatchSelectPanel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+focus_mode = 2
+text = "SELECT_A_PATCH"
+flat = false
+script = ExtResource("12")
+
+[node name="PanelContainer2" type="PanelContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="SpeciesDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("17_rkk82")]
+visible = false
+layout_mode = 2
+
+[node name="MicheDetailsPanel" parent="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/VBoxContainer/PanelContainer2/MarginContainer" instance=ExtResource("18_qhnwh")]
+layout_mode = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="GUI/VBoxContainer"]
 layout_mode = 2
 
@@ -745,6 +704,7 @@ Movable = false
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MapButton" to="." method="ChangeTab" binds= ["Map"]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ReportButton" to="." method="ChangeTab" binds= ["Report"]]
 [connection signal="pressed" from="GUI/VBoxContainer/TabButtons/ViewerButton" to="." method="ChangeTab" binds= ["Viewer"]]
+[connection signal="pressed" from="GUI/VBoxContainer/TabButtons/MicheButton" to="." method="ChangeTab" binds= ["Miche"]]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/NewWorldButton" to="." method="InitNewWorld"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunStep" to="." method="OnRunOneStepButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/RunGeneration" to="." method="OnFinishOneGenerationButtonPressed"]
@@ -756,10 +716,8 @@ Movable = false
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Abort" to="." method="OnAbortButtonPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/PlayWithThis" to="." method="PlayWithCurrentSettingPressed"]
 [connection signal="pressed" from="GUI/VBoxContainer/WorldEditor/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WorldExportButton" to="." method="ExportWorlds"]
-[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMutate" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="toggled" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/AllowSpeciesToNotMigrate" to="." method="UpdateAutoEvoConfiguration"]
-[connection signal="value_changed" from="GUI/VBoxContainer/ConfigEditor/PanelContainer/MarginContainer/ScrollContainer/ConfigEditorContainer/BiodiversityAttemptFillChance/BiodiversityAttemptFillChance" to="." method="UpdateAutoEvoConfiguration"]
 [connection signal="OnCurrentPatchCentered" from="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer/PatchMapDrawer" to="GUI/VBoxContainer/HistoryReportSplit/PatchMap/HBoxContainer/PatchMap/MarginContainer/DraggableScrollContainer" method="CenterTo"]
 [connection signal="SpeciesSelected" from="GUI/VBoxContainer/HistoryReportSplit/Viewer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/EvolutionaryTree" to="." method="EvolutionaryTreeNodeSelected"]
+[connection signal="MicheSelected" from="GUI/VBoxContainer/HistoryReportSplit/Miche/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/MicheTree" to="." method="MicheTreeNodeSelected"]
 [connection signal="pressed" from="GUI/VBoxContainer/HBoxContainer/BackButton" to="." method="OnBackButtonPressed"]
 [connection signal="Confirmed" from="ExitConfirmationDialog" to="." method="ConfirmExit"]

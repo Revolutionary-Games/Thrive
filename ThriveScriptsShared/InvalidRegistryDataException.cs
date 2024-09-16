@@ -1,4 +1,4 @@
-﻿using System;
+﻿namespace ThriveScriptsShared;
 
 /// <summary>
 ///   Thrown when a SimulationParameters registry contained type has invalid data

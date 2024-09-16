@@ -192,6 +192,10 @@ public partial class NewGameSettings : ControlWithInput
     private Label fogOfWarModeDescription = null!;
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
+
+    [Export]
+    private Button switchSpeciesOnExtinctionButton = null!;
+
     private Button limitGrowthRateButton = null!;
     private Button organelleUnlocksEnabled = null!;
 
@@ -213,6 +217,9 @@ public partial class NewGameSettings : ControlWithInput
 
     // Other
     private Container checkOptionsMenuAdviceContainer = null!;
+
+    [Export]
+    private CheckBox experimentalFeatures = null!;
 #pragma warning restore CA2213
 
     private SelectedOptionsTab selectedOptionsTab;
@@ -397,6 +404,7 @@ public partial class NewGameSettings : ControlWithInput
         fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
         freeGlucoseCloudButton.ButtonPressed = difficulty.FreeGlucoseCloud;
         passiveReproductionButton.ButtonPressed = difficulty.PassiveReproduction;
+        switchSpeciesOnExtinctionButton.ButtonPressed = difficulty.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = difficulty.LimitGrowthRate;
         organelleUnlocksEnabled.ButtonPressed = difficulty.OrganelleUnlocksEnabled;
 
@@ -406,6 +414,7 @@ public partial class NewGameSettings : ControlWithInput
         lifeOriginButton.Selected = (int)settings.Origin;
 
         lawkButton.ButtonPressed = settings.LAWK;
+        experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
         dayNightCycleButton.ButtonPressed = settings.DayNightCycleEnabled;
         dayLength.Value = settings.DayLength;
 
@@ -589,6 +598,7 @@ public partial class NewGameSettings : ControlWithInput
                 FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
                 PassiveReproduction = passiveReproductionButton.ButtonPressed,
+                SwitchSpeciesOnExtinction = switchSpeciesOnExtinctionButton.ButtonPressed,
                 LimitGrowthRate = limitGrowthRateButton.ButtonPressed,
                 OrganelleUnlocksEnabled = organelleUnlocksEnabled.ButtonPressed,
             };
@@ -602,6 +612,7 @@ public partial class NewGameSettings : ControlWithInput
 
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.ButtonPressed;
+        settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
         settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
@@ -724,6 +735,7 @@ public partial class NewGameSettings : ControlWithInput
         fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
         freeGlucoseCloudButton.ButtonPressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.ButtonPressed = preset.PassiveReproduction;
+        switchSpeciesOnExtinctionButton.ButtonPressed = preset.SwitchSpeciesOnExtinction;
         limitGrowthRateButton.ButtonPressed = preset.LimitGrowthRate;
         organelleUnlocksEnabled.ButtonPressed = preset.OrganelleUnlocksEnabled;
 
@@ -766,6 +778,9 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (passiveReproductionButton.ButtonPressed != preset.PassiveReproduction)
+                continue;
+
+            if (switchSpeciesOnExtinctionButton.ButtonPressed != preset.SwitchSpeciesOnExtinction)
                 continue;
 
             if (limitGrowthRateButton.ButtonPressed != preset.LimitGrowthRate)
@@ -867,6 +882,12 @@ public partial class NewGameSettings : ControlWithInput
     }
 
     private void OnPassiveReproductionToggled(bool pressed)
+    {
+        _ = pressed;
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnSwapOnExtinctionToggled(bool pressed)
     {
         _ = pressed;
         UpdateSelectedDifficultyPresetControl();

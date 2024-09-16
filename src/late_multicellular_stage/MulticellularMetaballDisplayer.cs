@@ -74,7 +74,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromList(IReadOnlyCollection<MulticellularMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyCollection<MulticellularMetaball> layout)
     {
         var mesh = Multimesh;
 

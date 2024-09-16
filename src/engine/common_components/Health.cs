@@ -22,6 +22,11 @@ public struct Health
     public float CurrentHealth;
     public float MaxHealth;
 
+    /// <summary>
+    ///   Time until can regen again;
+    /// </summary>
+    public float HealthRegenCooldown;
+
     // TODO: an invulnerability duration to automatically turn of invulnerability? (needed to reimplement pilus
     // damage cooldown)
 
@@ -86,6 +91,12 @@ public static class HealthHelpers
 
         // This should result in at least reasonable health even if thread race conditions hit here
         health.CurrentHealth = Math.Max(0, health.CurrentHealth - damage);
+
+        // TODO: should there be a minimum damage, like 0.01 after which the cooldown is only triggered?
+        // Only trigger cooldown once enough damage is taken to make sure really small trickle damage doesn't cause
+        // the health regen to stop for apparently no reason
+        if (damage > Constants.HEALTH_REGEN_STOP_DAMAGE_THRESHOLD)
+            health.HealthRegenCooldown = Constants.HEALTH_REGENERATION_COOLDOWN;
 
         var damageEvent = new DamageEventNotice(damageSource, damage);
         var damageList = health.RecentDamageReceived;
@@ -207,6 +218,14 @@ public static class HealthHelpers
         health.MaxHealth = newMaxHealth;
 
         health.CurrentHealth = health.MaxHealth * currentFraction;
+    }
+
+    public static bool GetMicrobeInvulnerabilityState(bool isPlayer, bool isMucocystActive)
+    {
+        if (isPlayer && CheatManager.GodMode)
+            return true;
+
+        return isMucocystActive;
     }
 }
 

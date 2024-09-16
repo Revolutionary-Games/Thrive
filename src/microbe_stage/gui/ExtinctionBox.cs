@@ -14,12 +14,38 @@ public partial class ExtinctionBox : CustomWindow
 #pragma warning disable CA2213
     private Control extinctionMenu = null!;
     private Control loadMenu = null!;
+
+    [Export]
+    private CustomRichTextLabel continueText = null!;
+
+    [Export]
+    private Button? continueButton;
 #pragma warning restore CA2213
+
+    private Species? speciesToContinueAs;
+
+    [Signal]
+    public delegate void ContinueSelectedEventHandler(uint species);
+
+    public Species? ShowContinueAs
+    {
+        get => speciesToContinueAs;
+        set
+        {
+            if (speciesToContinueAs == value)
+                return;
+
+            speciesToContinueAs = value;
+            UpdateContinueOption();
+        }
+    }
 
     public override void _Ready()
     {
         extinctionMenu = GetNode<Control>(ExtinctionMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
+
+        UpdateContinueOption();
     }
 
     public override void _EnterTree()
@@ -95,5 +121,56 @@ public partial class ExtinctionBox : CustomWindow
     private void OnSwitchToMenu()
     {
         SceneManager.Instance.ReturnToMenu();
+    }
+
+    private void OnContinue()
+    {
+        if (ShowContinueAs == null)
+        {
+            GD.PrintErr("Species to continue as not set");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        GD.Print("Attempting to continue game as species: ", ShowContinueAs.ID);
+
+        if (continueButton != null)
+        {
+            continueButton.Disabled = true;
+        }
+        else
+        {
+            GD.PrintErr("Cannot disable continue button as it doesn't exist");
+        }
+
+        // Play an animation to hide potential patch switch
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.4f, () =>
+        {
+            EmitSignal(SignalName.ContinueSelected, ShowContinueAs.ID);
+
+            // And fade in after triggering the continue option
+            TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeIn, 0.4f);
+        });
+    }
+
+    private void UpdateContinueOption()
+    {
+        if (continueButton == null)
+            return;
+
+        if (ShowContinueAs != null)
+        {
+            continueButton.Visible = true;
+            continueText.ExtendedBbcode = Localization.Translate("CONTINUE_AS_SPECIES")
+                .FormatSafe(ShowContinueAs.FormattedNameBbCode,
+                    StringUtils.ThreeDigitFormat(ShowContinueAs.Population));
+            continueText.Visible = true;
+        }
+        else
+        {
+            continueButton.Visible = false;
+            continueText.Visible = false;
+        }
     }
 }

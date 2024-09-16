@@ -57,9 +57,6 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
     private readonly Random random = new();
 
-    private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-
     private GameWorld? gameWorld;
 
     public MicrobeDeathSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world,
@@ -78,7 +75,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
     public static void SpawnCorpseChunks(ref OrganelleContainer organelleContainer, CompoundBag compounds,
         ISpawnSystem spawnSystem, IWorldSimulation worldSimulation, EntityCommandRecorder recorder,
-        Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, Compound? glucose)
+        Vector3 basePosition, Random random, CustomizeSpawnedChunk? customizeCallback, bool isBacteria)
     {
         if (organelleContainer.Organelles == null)
             throw new InvalidOperationException("Organelles can't be null when determining chunks to drop");
@@ -88,10 +85,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
-            var amount = compounds.GetCompoundAmount(type) *
-                Constants.COMPOUND_RELEASE_FRACTION;
+            var amount = compounds.GetCompoundAmount(type.ID) * Constants.COMPOUND_RELEASE_FRACTION;
 
-            compoundsToRelease[type] = amount;
+            compoundsToRelease[type.ID] = amount;
         }
 
         // Eject some part of the build cost of all the organelles
@@ -111,11 +107,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             }
         }
 
-        EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds, glucose);
-
-        // Queues either 1 corpse chunk or a factor of the hexes
-        // TODO: should there be a max amount (maybe like 20?)
-        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
+        EngulfableHelpers.CalculateBonusDigestibleGlucose(compoundsToRelease, compounds);
 
         // An enumerator to step through all available organelles in a random order when making chunks
         // TODO: fix the closure allocation here
@@ -132,21 +124,47 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         var chunkName = Localization.Translate("CHUNK_CELL_CORPSE_PART");
 
+        // Queues either 1 corpse chunk or a factor of the hexes
+        int chunksToSpawn = Math.Max(1, organelleContainer.HexCount / Constants.CORPSE_CHUNK_DIVISOR);
+
+        // Apply a soft cap to the number of chunks
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER)
+        {
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER +
+                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER) / 2;
+        }
+
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER)
+        {
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER +
+                (chunksToSpawn - Constants.CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER) / 3;
+        }
+
+        // And then a hard maximum limit to not cause massive performance problems if there are for some reason huge
+        // cells that die
+        if (chunksToSpawn > Constants.CORPSE_CHUNK_AMOUNT_CAP)
+            chunksToSpawn = Constants.CORPSE_CHUNK_AMOUNT_CAP;
+
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = organelleContainer.HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISOR;
+            float amount = organelleContainer.HexCount * Constants.CORPSE_CHUNK_AMOUNT_MULTIPLIER;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
 
+            var chunkScale = 1.0f;
+
+            if (isBacteria)
+                chunkScale = 0.5f;
+
             var chunkType = new ChunkConfiguration
             {
-                ChunkScale = 1.0f,
+                ChunkScale = chunkScale,
                 Dissolves = true,
                 PhysicsDensity = 1200.0f,
-                Radius = 1.0f,
-                Size = 3.0f,
+                Radius = chunkScale,
+                Size = 3 * chunkScale,
                 VentAmount = 0.4f,
 
                 // Add compounds
@@ -279,9 +297,12 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
                     GD.PrintErr("Failed to unbind microbe from colony on death");
                 }
             }
-
-            // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
-            // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+            else
+            {
+                // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
+                // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
+                return true;
+            }
         }
 
         if (entity.Has<MicrobeColony>())
@@ -410,9 +431,11 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             ReleaseAllAgents(ref position, entity, compounds, species, commandRecorder);
         }
 
+        var isBacteria = cellProperties.IsBacteria;
+
         // Eject compounds and build costs as corpse chunks of the cell
         SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
-            position.Position, random, null, glucose);
+            position.Position, random, null, isBacteria);
 
         ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
         soundPlayer.StopAllSounds();
@@ -427,9 +450,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         // To not completely deadlock in this there is a maximum limit
         int createdAgents = 0;
 
-        var amount = compounds.GetCompoundAmount(oxytoxy);
+        var amount = compounds.GetCompoundAmount(Compound.Oxytoxy);
 
-        var props = new AgentProperties(species, oxytoxy);
+        var props = new AgentProperties(species, Compound.Oxytoxy);
 
         while (amount > Constants.MAXIMUM_AGENT_EMISSION_AMOUNT)
         {

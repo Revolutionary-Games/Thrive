@@ -11,25 +11,22 @@ public class CalculatePopulation : IRunStep
     private readonly IAutoEvoConfiguration configuration;
     private readonly PatchMap map;
     private readonly WorldGenerationSettings worldSettings;
-    private readonly List<Species>? extraSpecies;
-    private readonly List<Species>? excludedSpecies;
+    private readonly Dictionary<Species, Species>? replaceSpecies;
     private readonly bool collectEnergyInfo;
 
     public CalculatePopulation(IAutoEvoConfiguration configuration, WorldGenerationSettings worldSettings,
-        PatchMap map, List<Species>? extraSpecies = null, List<Species>? excludedSpecies = null,
-        bool collectEnergyInfo = false)
+        PatchMap map, Dictionary<Species, Species>? replaceSpecies = null, bool collectEnergyInfo = false)
     {
         this.configuration = configuration;
         this.worldSettings = worldSettings;
         this.map = map;
-        this.extraSpecies = extraSpecies;
-        this.excludedSpecies = excludedSpecies;
+        this.replaceSpecies = replaceSpecies;
         this.collectEnergyInfo = collectEnergyInfo;
     }
 
     public int TotalSteps => 1;
 
-    public bool CanRunConcurrently { get; set; } = true;
+    public bool CanRunConcurrently => false;
 
     public bool RunStep(RunResults results)
     {
@@ -42,17 +39,19 @@ public class CalculatePopulation : IRunStep
 
         // ReSharper restore RedundantArgumentDefaultValue
 
-        if (extraSpecies != null)
-            config.ExtraSpecies = extraSpecies;
-
-        if (excludedSpecies != null)
-            config.ExcludedSpecies = excludedSpecies;
+        if (replaceSpecies != null)
+        {
+            foreach (var entry in replaceSpecies)
+            {
+                config.ReplacedSpecies.Add(entry.Key, entry.Value);
+            }
+        }
 
         // Directly feed the population results to the main results object
 
         // TODO: allow passing in a random seed
 
-        PopulationSimulation.Simulate(config, null, new XoShiRo256starstar());
+        MichePopulation.Simulate(config, null, new XoShiRo256starstar());
 
         return true;
     }

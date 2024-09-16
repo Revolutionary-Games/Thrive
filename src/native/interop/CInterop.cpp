@@ -9,6 +9,7 @@
 #include "Jolt/Jolt.h"
 #include "Jolt/RegisterTypes.h"
 
+#include "core/IntercommunicationManager.hpp"
 #include "core/TaskSystem.hpp"
 #include "physics/DebugDrawForwarder.hpp"
 #include "physics/PhysicalWorld.hpp"
@@ -75,6 +76,15 @@ void ShutdownThriveLibrary()
     Thrive::TaskSystem::Get().Shutdown();
 
     SetLogForwardingCallback(nullptr);
+}
+
+NativeLibIntercommunicationOpaque* GetIntercommunicationBridge()
+{
+    Thrive::TaskSystem::AssertIsMainThread();
+
+    // Const is cast away here as the C interface cannot specify it. The documentation says not to modify the object
+    return const_cast<NativeLibIntercommunicationOpaque*>(reinterpret_cast<const NativeLibIntercommunicationOpaque*>(
+        &Thrive::IntercommunicationManager::Get().GetIntercommunicationObject()));
 }
 
 // ------------------------------------ //
@@ -271,17 +281,18 @@ void ReadPhysicsBodyVelocity(
 
 #pragma clang diagnostic pop
 
-void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse)
+void GiveImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse, bool autoActivate)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse));
+        ->GiveImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(impulse),
+            autoActivate);
 }
 
-void GiveAngularImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse)
+void GiveAngularImpulse(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse, bool autoActivate)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->GiveAngularImpulse(
-            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(angularImpulse));
+        ->GiveAngularImpulse(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            Thrive::Vec3FromCAPI(angularImpulse), autoActivate);
 }
 
 void SetBodyControl(
@@ -324,25 +335,26 @@ void SetBodyPositionAndRotation(
             Thrive::DVec3FromCAPI(position), Thrive::QuatFromCAPI(rotation), activate);
 }
 
-void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity)
+void SetBodyVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, bool autoActivate)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->SetVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(velocity));
+        ->SetVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(velocity),
+            autoActivate);
 }
 
-void SetBodyAngularVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity)
+void SetBodyAngularVelocity(PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity, bool autoActivate)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
-        ->SetAngularVelocity(
-            reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(), Thrive::Vec3FromCAPI(angularVelocity));
+        ->SetAngularVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
+            Thrive::Vec3FromCAPI(angularVelocity), autoActivate);
 }
 
 void SetBodyVelocityAndAngularVelocity(
-    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity)
+    PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity, bool autoActivate)
 {
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->SetVelocityAndAngularVelocity(reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->GetId(),
-            Thrive::Vec3FromCAPI(velocity), Thrive::Vec3FromCAPI(angularVelocity));
+            Thrive::Vec3FromCAPI(velocity), Thrive::Vec3FromCAPI(angularVelocity), autoActivate);
 }
 
 void SetBodyAllowSleep(PhysicalWorld* physicalWorld, PhysicsBody* body, bool allowSleep)
@@ -420,8 +432,7 @@ void PhysicsBodyClearAndSetSingleIgnore(PhysicalWorld* physicalWorld, PhysicsBod
 int32_t* PhysicsBodyEnableCollisionRecording(
     PhysicalWorld* physicalWorld, PhysicsBody* body, char* collisionRecordingTarget, int32_t maxRecordedCollisions)
 {
-    return const_cast<int32_t*>(
-        reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
+    return const_cast<int32_t*>(reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
             ->EnableCollisionRecording(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
                 reinterpret_cast<Thrive::Physics::CollisionRecordListType>(collisionRecordingTarget),
                 maxRecordedCollisions));

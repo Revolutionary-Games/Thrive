@@ -69,18 +69,23 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
     private MicrobeMovementSystem microbeMovementSystem = null!;
+    private StrainSystem strainSystem = null!;
     private MicrobeShaderSystem microbeShaderSystem = null!;
+    private MicrobeTemporaryEffectsSystem microbeTemporaryEffectsSystem = null!;
     private MicrobeVisualsSystem microbeVisualsSystem = null!;
     private OrganelleComponentFetchSystem organelleComponentFetchSystem = null!;
     private OrganelleTickSystem organelleTickSystem = null!;
     private OsmoregulationAndHealingSystem osmoregulationAndHealingSystem = null!;
     private PilusDamageSystem pilusDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
+    private MucocystSystem mucocystSystem = null!;
+
     private MicrobePhysicsCreationAndSizeSystem microbePhysicsCreationAndSizeSystem = null!;
     private MicrobeRenderPrioritySystem microbeRenderPrioritySystem = null!;
     private MicrobeReproductionSystem microbeReproductionSystem = null!;
     private TintColourApplyingSystem tintColourApplyingSystem = null!;
     private ToxinCollisionSystem toxinCollisionSystem = null!;
+    private SiderophoreSystem siderophoreSystem = null!;
     private UnneededCompoundVentingSystem unneededCompoundVentingSystem = null!;
 
     // Multicellular systems
@@ -197,6 +202,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfedDigestionSystem = new EngulfedDigestionSystem(cloudSystem, EntitySystem, parallelRunner);
         engulfedHandlingSystem = new EngulfedHandlingSystem(this, SpawnSystem, EntitySystem, couldParallelize);
 
+        strainSystem = new StrainSystem(EntitySystem, couldParallelize);
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
         microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem, parallelRunner);
@@ -207,6 +213,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, couldParallelize);
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, couldParallelize);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
+        microbeTemporaryEffectsSystem = new MicrobeTemporaryEffectsSystem(EntitySystem, parallelRunner);
 
         microbeVisualsSystem = new MicrobeVisualsSystem(EntitySystem);
         organelleComponentFetchSystem = new OrganelleComponentFetchSystem(EntitySystem, couldParallelize);
@@ -214,11 +221,14 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
+        mucocystSystem = new MucocystSystem(EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
         microbeRenderPrioritySystem = new MicrobeRenderPrioritySystem(EntitySystem);
         tintColourApplyingSystem = new TintColourApplyingSystem(EntitySystem);
 
         toxinCollisionSystem = new ToxinCollisionSystem(EntitySystem, couldParallelize);
+        siderophoreSystem = new SiderophoreSystem(EntitySystem, couldParallelize, this);
+
         unneededCompoundVentingSystem = new UnneededCompoundVentingSystem(cloudSystem, EntitySystem, parallelRunner);
 
         // Systems stored in properties
@@ -443,18 +453,22 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbeFlashingSystem.Dispose();
                 microbeMovementSoundSystem.Dispose();
                 microbeMovementSystem.Dispose();
+                strainSystem.Dispose();
                 microbeShaderSystem.Dispose();
+                microbeTemporaryEffectsSystem.Dispose();
                 microbeVisualsSystem.Dispose();
                 organelleComponentFetchSystem.Dispose();
                 organelleTickSystem.Dispose();
                 osmoregulationAndHealingSystem.Dispose();
                 pilusDamageSystem.Dispose();
                 slimeSlowdownSystem.Dispose();
+                mucocystSystem.Dispose();
                 microbePhysicsCreationAndSizeSystem.Dispose();
                 microbeRenderPrioritySystem.Dispose();
                 microbeReproductionSystem.Dispose();
                 tintColourApplyingSystem.Dispose();
                 toxinCollisionSystem.Dispose();
+                siderophoreSystem.Dispose();
                 unneededCompoundVentingSystem.Dispose();
                 delayedColonyOperationSystem.Dispose();
                 multicellularGrowthSystem.Dispose();

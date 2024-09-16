@@ -7,8 +7,15 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Microbe movement tutorial with key prompts around the cell
 /// </summary>
+#pragma warning disable CA1001 // just has some StringNames that aren't critical to Dispose
 public class MicrobeMovement : TutorialPhase
+#pragma warning restore CA1001
 {
+    private readonly StringName moveForward = new("g_move_forward");
+    private readonly StringName moveLeft = new("g_move_left");
+    private readonly StringName moveRight = new("g_move_right");
+    private readonly StringName moveBackwards = new("g_move_backwards");
+
     [JsonProperty]
     private float keyPromptRotation;
 
@@ -79,7 +86,7 @@ public class MicrobeMovement : TutorialPhase
                     else
                     {
                         var rotationDegrees = -((RotationEventArgs)args).RotationInRadians.Y;
-                        var lerped = Mathf.LerpAngle(keyPromptRotation, rotationDegrees, 0.1f);
+                        var lerped = Mathf.LerpAngle(keyPromptRotation, rotationDegrees, 0.14f);
                         keyPromptRotation = lerped;
                     }
 
@@ -120,22 +127,22 @@ public class MicrobeMovement : TutorialPhase
     {
         // This does not use the input system because when OnProcess is called in a tutorial is complicated, so
         // when this code is triggered would be different using the input system
-        if (Input.IsActionPressed("g_move_forward"))
+        if (Input.IsActionPressed(moveForward))
         {
             moveForwardTime += delta;
         }
 
-        if (Input.IsActionPressed("g_move_left"))
+        if (Input.IsActionPressed(moveLeft))
         {
             moveLeftTime += delta;
         }
 
-        if (Input.IsActionPressed("g_move_right"))
+        if (Input.IsActionPressed(moveRight))
         {
             moveRightTime += delta;
         }
 
-        if (Input.IsActionPressed("g_move_backwards"))
+        if (Input.IsActionPressed(moveBackwards))
         {
             moveBackwardsTime += delta;
         }

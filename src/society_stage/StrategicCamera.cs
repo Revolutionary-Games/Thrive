@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -118,7 +119,7 @@ public partial class StrategicCamera : Camera3D
         if (!Current || !AllowPlayerInput)
             return false;
 
-        ZoomLevel = Mathf.Clamp(ZoomLevel + ZoomSpeed * value, MinZoomLevel, MaxZoomLevel);
+        ZoomLevel = Math.Clamp(ZoomLevel + ZoomSpeed * value, MinZoomLevel, MaxZoomLevel);
         return true;
     }
 

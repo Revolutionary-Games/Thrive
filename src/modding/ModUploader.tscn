@@ -188,7 +188,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 expand_mode = 1
-stretch_mode = 6
+stretch_mode = 5
 
 [node name="Browse" type="Button" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor/HBoxContainer2"]
 layout_mode = 2
@@ -200,9 +200,11 @@ custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 
 [node name="ContentLocation" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 text = "CONTENT_UPLOADED_FROM"
 label_settings = ExtResource("4_77d33")
+autowrap_mode = 1
 
 [node name="Spacer6" type="Control" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer/DetailsEditor"]
 custom_minimum_size = Vector2(0, 4)
@@ -239,14 +241,15 @@ mouse_filter = 2
 
 [node name="PreviewSelector" type="FileDialog" parent="."]
 title = "SELECT_PREVIEW_IMAGE"
+ok_button_text = "Open"
 mode_overrides_title = false
+file_mode = 0
 access = 2
+use_native_dialog = true
 
 [node name="UploadSuccess" parent="." instance=ExtResource("5")]
 custom_minimum_size = Vector2(450, 50)
-anchors_preset = 0
 WindowTitle = "UPLOAD_SUCCEEDED"
-Exclusive = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UploadSuccess"]
 layout_mode = 0

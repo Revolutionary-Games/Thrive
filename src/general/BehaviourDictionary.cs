@@ -129,16 +129,16 @@ public class BehaviourDictionary : IReadOnlyDictionary<BehaviouralValueType, flo
     public void Mutate(Random random)
     {
         // Variables used in AI to determine general behaviour mutate these
-        Aggression = (Aggression + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_AGGRESSION);
-        Fear = (Fear + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
-        Activity = (Activity + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
-        Focus = (Focus + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
-        Opportunism = (Opportunism + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
-            Constants.MAX_SPECIES_PERSONALITY_MUTATION)).Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
+        Aggression = Math.Clamp(Aggression + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION), 0.0f, Constants.MAX_SPECIES_AGGRESSION);
+        Fear = Math.Clamp(Fear + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION), 0.0f, Constants.MAX_SPECIES_FEAR);
+        Activity = Math.Clamp(Activity + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION), 0.0f, Constants.MAX_SPECIES_ACTIVITY);
+        Focus = Math.Clamp(Focus + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION), 0.0f, Constants.MAX_SPECIES_FOCUS);
+        Opportunism = Math.Clamp(Opportunism + random.Next(Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION), 0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
     }
 
     public bool TryGetValue(BehaviouralValueType key, out float value)

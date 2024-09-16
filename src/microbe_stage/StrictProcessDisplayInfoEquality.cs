@@ -41,12 +41,12 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
 
         if (ReferenceEquals(our.Inputs, null) != ReferenceEquals(theirs.Inputs, null))
             return false;
-        if (our.Inputs != null && !our.Inputs.SequenceEqual(theirs.Inputs!))
+        if (our.Inputs != null && !our.Inputs.DictionaryEquals(theirs.Inputs!))
             return false;
 
         if (ReferenceEquals(our.EnvironmentalInputs, null) != ReferenceEquals(theirs.EnvironmentalInputs, null))
             return false;
-        if (our.EnvironmentalInputs != null && !our.EnvironmentalInputs.SequenceEqual(theirs.EnvironmentalInputs!))
+        if (our.EnvironmentalInputs != null && !our.EnvironmentalInputs.DictionaryEquals(theirs.EnvironmentalInputs!))
             return false;
 
         if (ReferenceEquals(our.FullSpeedRequiredEnvironmentalInputs, null) !=
@@ -56,14 +56,14 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         }
 
         if (our.FullSpeedRequiredEnvironmentalInputs != null &&
-            !our.FullSpeedRequiredEnvironmentalInputs.SequenceEqual(theirs.FullSpeedRequiredEnvironmentalInputs!))
+            !our.FullSpeedRequiredEnvironmentalInputs.DictionaryEquals(theirs.FullSpeedRequiredEnvironmentalInputs!))
         {
             return false;
         }
 
         if (ReferenceEquals(our.Outputs, null) != ReferenceEquals(theirs.Outputs, null))
             return false;
-        if (our.Outputs != null && !our.Outputs.SequenceEqual(theirs.Outputs!))
+        if (our.Outputs != null && !our.Outputs.DictionaryEquals(theirs.Outputs!))
             return false;
 
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))

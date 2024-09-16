@@ -92,20 +92,6 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     protected readonly List<Compound> allAgents = new();
 
-    protected Compound ammonia = null!;
-    protected Compound atp = null!;
-    protected Compound carbondioxide = null!;
-    protected Compound glucose = null!;
-    protected Compound hydrogensulfide = null!;
-    protected Compound iron = null!;
-    protected Compound nitrogen = null!;
-    protected Compound oxygen = null!;
-    protected Compound oxytoxy = null!;
-    protected Compound mucilage = null!;
-    protected Compound phosphates = null!;
-    protected Compound sunlight = null!;
-    protected Compound temperature = null!;
-
 #pragma warning disable CA2213
     protected MouseHoverPanel mouseHoverPanel = null!;
 
@@ -117,6 +103,9 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [Export]
     protected EditorEntryButton editorButton = null!;
+
+    [Export]
+    protected ActionButton mucocystHotkey = null!;
 
     protected ActionButton engulfHotkey = null!;
     protected ActionButton secreteSlimeHotkey = null!;
@@ -172,8 +161,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private readonly Dictionary<Compound, float> gatheredCompounds = new();
     private readonly Dictionary<Compound, float> totalNeededCompounds = new();
 
+    private readonly StringName barFillName = new("fill");
+
     // This block of controls is split from the reset as some controls are protected and these are private
 #pragma warning disable CA2213
+    [Export]
+    private ActionButton sprintHotkey = null!;
+
+    [Export]
+    private ProgressBar strainBar = null!;
+
+    [Export]
+    private Control damageScreenEffect = null!;
 
     private HBoxContainer hotBar = null!;
     private ActionButton fireToxinHotkey = null!;
@@ -181,7 +180,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private CustomWindow? extinctionBox;
     private PatchExtinctionBox? patchExtinctionBox;
     private ProcessPanel processPanel = null!;
+
+    private ShaderMaterial damageShaderMaterial = null!;
 #pragma warning restore CA2213
+
+    private StringName fadeParameterName = new("fade");
+
+    [Export]
+    private StyleBoxFlat? strainBarRedFill;
 
     // Used for save load to apply these properties
     private bool temporaryEnvironmentCompressed;
@@ -197,6 +203,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
     [JsonProperty]
     private Color healthBarFlashColour = new(0, 0, 0, 0);
+
+    private float lastHealth;
+    private float damageEffectCurrentValue;
+
+    private bool strainIsRed;
 
     protected CreatureStageHUDBase()
     {
@@ -300,28 +311,21 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         SetEditorButtonFlashEffect(Settings.Instance.GUILightEffectsEnabled);
         Settings.Instance.GUILightEffectsEnabled.OnChanged += SetEditorButtonFlashEffect;
 
-        ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-        atp = SimulationParameters.Instance.GetCompound("atp");
-        carbondioxide = SimulationParameters.Instance.GetCompound("carbondioxide");
-        glucose = SimulationParameters.Instance.GetCompound("glucose");
-        hydrogensulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-        iron = SimulationParameters.Instance.GetCompound("iron");
-        nitrogen = SimulationParameters.Instance.GetCompound("nitrogen");
-        oxygen = SimulationParameters.Instance.GetCompound("oxygen");
-        oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
-        phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-        temperature = SimulationParameters.Instance.GetCompound("temperature");
+        damageShaderMaterial = (ShaderMaterial)damageScreenEffect.Material;
 
         // Setup bars. In the future it'd be nice to set up bars as needed for the player for allowing easily adding
         // new compound types
         var barScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/CompoundProgressBar.tscn");
 
+        var simulationParameters = SimulationParameters.Instance;
+
         // Environment bars
-        oxygenBar = CompoundProgressBar.CreatePercentageDisplay(barScene, oxygen, 0, true);
-        co2Bar = CompoundProgressBar.CreatePercentageDisplay(barScene, carbondioxide, 0, true);
-        nitrogenBar = CompoundProgressBar.CreatePercentageDisplay(barScene, nitrogen, 0, true);
+        oxygenBar = CompoundProgressBar.CreatePercentageDisplay(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Oxygen), 0, true);
+        co2Bar = CompoundProgressBar.CreatePercentageDisplay(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Carbondioxide), 0, true);
+        nitrogenBar = CompoundProgressBar.CreatePercentageDisplay(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Nitrogen), 0, true);
 
         // Is it a good idea to show the chemical formulas like this (with subscripts)?
 
@@ -334,11 +338,14 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         co2Bar.DisplayedName = new LocalizedString(co2NotTranslated);
         nitrogenBar.DisplayedName = new LocalizedString(nitrogenNotTranslated);
 
-        temperatureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene, temperature, 0,
-            temperature.Unit ?? throw new Exception("Temperature unit not set"));
+        temperatureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Temperature), 0,
+            SimulationParameters.GetCompound(Compound.Temperature).Unit ??
+            throw new Exception("Temperature unit not set"));
         temperatureBar.DisplayedName = new LocalizedString("TEMPERATURE_SHORT");
 
-        sunlightBar = CompoundProgressBar.CreatePercentageDisplay(barScene, sunlight, 0, true);
+        sunlightBar = CompoundProgressBar.CreatePercentageDisplay(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Sunlight), 0, true);
         sunlightBar.DisplayedName = new LocalizedString("LIGHT");
 
         // TODO: set value from patch
@@ -354,36 +361,42 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         environmentPanel.AddPrimaryBar(pressureBar);
 
         // Compound bars
-        glucoseBar = CompoundProgressBar.Create(barScene, glucose, 0, 1);
-        ammoniaBar = CompoundProgressBar.Create(barScene, ammonia, 0, 1);
-        phosphateBar = CompoundProgressBar.Create(barScene, phosphates, 0, 1);
-        hydrogenSulfideBar = CompoundProgressBar.Create(barScene, hydrogensulfide, 0, 1);
-        ironBar = CompoundProgressBar.Create(barScene, iron, 0, 1);
+        glucoseBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Glucose),
+            0, 1);
+        ammoniaBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Ammonia),
+            0, 1);
+        phosphateBar = CompoundProgressBar.Create(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Phosphates), 0, 1);
+        hydrogenSulfideBar = CompoundProgressBar.Create(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Hydrogensulfide), 0, 1);
+        ironBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Iron), 0, 1);
 
         compoundsPanel.AddPrimaryBar(glucoseBar);
-        compoundBars.Add((glucose, glucoseBar));
+        compoundBars.Add((Compound.Glucose, glucoseBar));
 
         compoundsPanel.AddPrimaryBar(ammoniaBar);
-        compoundBars.Add((ammonia, ammoniaBar));
+        compoundBars.Add((Compound.Ammonia, ammoniaBar));
 
         compoundsPanel.AddPrimaryBar(phosphateBar);
-        compoundBars.Add((phosphates, phosphateBar));
+        compoundBars.Add((Compound.Phosphates, phosphateBar));
 
         compoundsPanel.AddPrimaryBar(hydrogenSulfideBar);
-        compoundBars.Add((hydrogensulfide, hydrogenSulfideBar));
+        compoundBars.Add((Compound.Hydrogensulfide, hydrogenSulfideBar));
 
         compoundsPanel.AddPrimaryBar(ironBar);
-        compoundBars.Add((iron, ironBar));
+        compoundBars.Add((Compound.Iron, ironBar));
 
         // Agent bars
-        oxytoxyBar = CompoundProgressBar.Create(barScene, oxytoxy, 0, 1);
-        mucilageBar = CompoundProgressBar.Create(barScene, mucilage, 0, 1);
+        oxytoxyBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Oxytoxy),
+            0, 1);
+        mucilageBar = CompoundProgressBar.Create(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Mucilage), 0, 1);
 
         compoundsPanel.AddAgentBar(oxytoxyBar);
-        compoundBars.Add((oxytoxy, oxytoxyBar));
+        compoundBars.Add((Compound.Oxytoxy, oxytoxyBar));
 
         compoundsPanel.AddAgentBar(mucilageBar);
-        compoundBars.Add((mucilage, mucilageBar));
+        compoundBars.Add((Compound.Mucilage, mucilageBar));
 
         // Fossilization setup
         fossilisationButtonLayer = GetNode<Control>(FossilisationButtonLayerPath);
@@ -393,8 +406,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         fossilisationButtonLayer.Visible = false;
 
         // TODO: move these to be gotten as a method in SimulationParameters (similarly to `GetCloudCompounds()`)
-        allAgents.Add(oxytoxy);
-        allAgents.Add(mucilage);
+        allAgents.Add(Compound.Oxytoxy);
+        allAgents.Add(Compound.Mucilage);
     }
 
     public void Init(TStage containedInStage)
@@ -415,6 +428,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             UpdateCompoundBars(convertedDelta);
             UpdateReproductionProgress();
             UpdateAbilitiesHotBar();
+            UpdateStrain();
         }
 
         UpdateATP(convertedDelta);
@@ -534,7 +548,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         winExtinctBoxHolder.Show();
 
-        extinctionBox = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
+        var box = ExtinctionBoxScene.Instantiate<ExtinctionBox>();
+
+        Species? continueAs = null;
+
+        if (stage!.GameWorld.WorldSettings.SwitchSpeciesOnExtinction)
+        {
+            continueAs = GetPotentialSpeciesToContinueAs();
+
+            if (continueAs == null)
+                GD.Print("No species to continue as found");
+        }
+
+        box.ShowContinueAs = continueAs;
+        box.Connect(ExtinctionBox.SignalName.ContinueSelected, new Callable(this, nameof(ContinueAsSpecies)));
+
+        extinctionBox = box;
         winExtinctBoxHolder.AddChild(extinctionBox);
         extinctionBox.Show();
     }
@@ -564,17 +593,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         winExtinctBoxHolder.Hide();
         patchExtinctionBox?.Hide();
+
+        // Allow extinction box to show again / stop showing it so that it doesn't mess with patch extinction box if
+        // the player continued the game after extinction.
+        extinctionBox?.QueueFree();
+        extinctionBox = null;
     }
 
     public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
-        oxygenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[oxygen].Ambient);
-        co2Bar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[carbondioxide].Ambient);
-        nitrogenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[nitrogen].Ambient);
+        oxygenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Oxygen].Ambient);
+        co2Bar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Carbondioxide].Ambient);
+        nitrogenBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Nitrogen].Ambient);
 
-        sunlightBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[sunlight].Ambient);
+        sunlightBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Sunlight].Ambient);
 
-        temperatureBar.CurrentValue = biome.CurrentCompoundAmounts[temperature].Ambient;
+        temperatureBar.CurrentValue = biome.CurrentCompoundAmounts[Compound.Temperature].Ambient;
 
         // TODO: pressure?
         // pressureBar.CurrentValue = ?
@@ -601,7 +635,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     /// <summary>
-    ///   Opens the dialog to a fossilise the species selected with a given fossilisation button.
+    ///   Opens the dialog to fossilise the species selected with a given fossilisation button.
     /// </summary>
     /// <param name="button">The button attached to the organism to fossilise</param>
     public void ShowFossilisationDialog(FossilisationButton button)
@@ -662,12 +696,118 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // TODO: skip updating the label if value has not changed to save on memory allocations
         healthBar.MaxValue = maxHP;
         GUICommon.SmoothlyUpdateBar(healthBar, hp, delta);
-        var hpText = StringUtils.FormatNumber(Mathf.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
+        var hpText = StringUtils.FormatNumber(MathF.Round(hp)) + " / " + StringUtils.FormatNumber(maxHP);
         hpLabel.Text = hpText;
         hpLabel.TooltipText = hpText;
+
+        if (Settings.Instance.ScreenDamageEffect.Value)
+        {
+            // Process damage flash effect
+            if (damageEffectCurrentValue > 0)
+            {
+                damageEffectCurrentValue -= delta * Constants.SCREEN_DAMAGE_FLASH_DECAY_SPEED;
+
+                damageScreenEffect.Visible = true;
+                damageShaderMaterial.SetShaderParameter(fadeParameterName, damageEffectCurrentValue);
+            }
+            else
+            {
+                damageScreenEffect.Visible = false;
+            }
+
+            // Start damage flash if player has taken enough damage
+            if (hp < lastHealth && lastHealth - hp > Constants.SCREEN_DAMAGE_FLASH_THRESHOLD)
+                damageEffectCurrentValue = 1;
+        }
+        else if (damageEffectCurrentValue > 0)
+        {
+            // Disable effect if user turned off the setting while flashing
+            damageEffectCurrentValue = 0;
+            damageScreenEffect.Visible = false;
+        }
+
+        lastHealth = hp;
     }
 
     protected virtual void ReadPlayerHitpoints(out float hp, out float maxHP)
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected void UpdateStrain()
+    {
+        var readStrainFraction = ReadPlayerStrainFraction();
+
+        // Skip the rest of the method if player does not have strain
+        if (readStrainFraction == null)
+            return;
+
+        var strainFraction = readStrainFraction.Value;
+
+        strainBar.Value = strainFraction;
+
+        var strainState = !CanSprint();
+
+        if (strainState != strainIsRed)
+        {
+            strainIsRed = strainState;
+
+            if (strainIsRed)
+            {
+                strainBar.AddThemeStyleboxOverride(barFillName, strainBarRedFill);
+            }
+            else
+            {
+                strainBar.RemoveThemeStyleboxOverride(barFillName);
+            }
+        }
+
+        switch (Settings.Instance.StrainBarVisibilityMode.Value)
+        {
+            case Settings.StrainBarVisibility.Off:
+                strainBar.Hide();
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenCloseToFull:
+                if (strainFraction >= 0.8f)
+                {
+                    strainBar.Show();
+                }
+                else
+                {
+                    strainBar.Hide();
+                }
+
+                break;
+            case Settings.StrainBarVisibility.VisibleWhenOverZero:
+                if (strainFraction > 0.0f)
+                {
+                    strainBar.Show();
+                }
+                else
+                {
+                    strainBar.Hide();
+                }
+
+                break;
+            case Settings.StrainBarVisibility.AlwaysVisible:
+                strainBar.Show();
+                break;
+        }
+    }
+
+    /// <summary>
+    ///   Gets the current amount of strain affecting the player
+    /// </summary>
+    /// <returns>
+    ///   Null if the player is missing <see cref="StrainAffected"/>,
+    ///   else the player's strain fraction
+    /// </returns>
+    protected virtual float? ReadPlayerStrainFraction()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual bool CanSprint()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
@@ -781,7 +921,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         try
         {
-            fractionOfAmmonia = gatheredCompounds[ammonia] / totalNeededCompounds[ammonia];
+            fractionOfAmmonia = gatheredCompounds[Compound.Ammonia] / totalNeededCompounds[Compound.Ammonia];
         }
         catch (Exception e)
         {
@@ -790,7 +930,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         try
         {
-            fractionOfPhosphates = gatheredCompounds[phosphates] / totalNeededCompounds[phosphates];
+            fractionOfPhosphates = gatheredCompounds[Compound.Phosphates] / totalNeededCompounds[Compound.Phosphates];
         }
         catch (Exception e)
         {
@@ -815,8 +955,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             var compounds = GetPlayerStorage();
 
-            atpAmount = compounds.GetCompoundAmount(atp);
-            maxATP = compounds.GetCapacityForCompound(atp);
+            atpAmount = compounds.GetCompoundAmount(Compound.ATP);
+            maxATP = compounds.GetCapacityForCompound(Compound.ATP);
         }
 
         atpBar.MaxValue = maxATP * 10.0f;
@@ -867,19 +1007,32 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     }
 
     protected void UpdateBaseAbilitiesBar(bool showEngulf, bool showToxin, bool showSlime,
-        bool showingSignaling, bool engulfOn, bool showEject)
+        bool showingSignaling, bool showMucocyst, bool showSprint, bool engulfOn, bool showEject, bool mucocystOn,
+        bool isSprinting)
     {
         engulfHotkey.Visible = showEngulf;
         fireToxinHotkey.Visible = showToxin;
         secreteSlimeHotkey.Visible = showSlime;
         signalingAgentsHotkey.Visible = showingSignaling;
         ejectEngulfedHotkey.Visible = showEject;
+        mucocystHotkey.Visible = showMucocyst;
+        sprintHotkey.Visible = showSprint;
 
+        sprintHotkey.ButtonPressed = isSprinting;
         engulfHotkey.ButtonPressed = engulfOn;
-        fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionName);
-        secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionName);
-        signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionName);
-        ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionName);
+        mucocystHotkey.ButtonPressed = mucocystOn;
+
+        if (fireToxinHotkey.ActionNameAsStringName != null)
+            fireToxinHotkey.ButtonPressed = Input.IsActionPressed(fireToxinHotkey.ActionNameAsStringName);
+
+        if (secreteSlimeHotkey.ActionNameAsStringName != null)
+            secreteSlimeHotkey.ButtonPressed = Input.IsActionPressed(secreteSlimeHotkey.ActionNameAsStringName);
+
+        if (signalingAgentsHotkey.ActionNameAsStringName != null)
+            signalingAgentsHotkey.ButtonPressed = Input.IsActionPressed(signalingAgentsHotkey.ActionNameAsStringName);
+
+        if (ejectEngulfedHotkey.ActionNameAsStringName != null)
+            ejectEngulfedHotkey.ButtonPressed = Input.IsActionPressed(ejectEngulfedHotkey.ActionNameAsStringName);
     }
 
     /// <summary>
@@ -910,6 +1063,22 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 bar.Hide();
             }
         }
+    }
+
+    protected virtual Species? GetPotentialSpeciesToContinueAs()
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("No stage to get available species through");
+            return null;
+        }
+
+        var currentPlayer = stage.GameWorld.PlayerSpecies;
+
+        // TODO: if we want to allow going back stages, this will need to be adjusted
+        var mustBeSameStage = (Species species) => currentPlayer.GetType() == species.GetType();
+
+        return stage.GameWorld.GetClosestRelatedSpecies(currentPlayer, true, mustBeSameStage);
     }
 
     protected void OpenMenu()
@@ -967,6 +1136,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
                 FossilisationButtonLayerPath.Dispose();
                 FossilisationDialogPath.Dispose();
             }
+
+            fadeParameterName.Dispose();
+
+            strainBarRedFill?.Dispose();
+
+            barFillName.Dispose();
         }
 
         base.Dispose(disposing);
@@ -1035,5 +1210,18 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         {
             button.UpdatePosition();
         }
+    }
+
+    private void ContinueAsSpecies(uint id)
+    {
+        var species = stage?.GameWorld.GetSpecies(id);
+
+        if (species == null)
+        {
+            GD.PrintErr("Couldn't find species to continue as");
+            return;
+        }
+
+        stage!.ContinueGameAsSpecies(species);
     }
 }

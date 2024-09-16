@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project Sdk="Godot.NET.Sdk/4.2.2">
+<Project Sdk="Godot.NET.Sdk/4.3.0">
   <PropertyGroup>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,13 +9,13 @@
     <LangVersion>12.0</LangVersion>
     <Nullable>enable</Nullable>
     <Company>Revolutionary Games Studio</Company>
-    <Version>0.6.7.0</Version>
+    <Version>0.7.1.0</Version>
     <InformationalVersion>-alpha</InformationalVersion>
   </PropertyGroup>
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
     <DefaultItemExcludes>
-      $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*;ThriveScriptsShared\**\*
+      $(DefaultItemExcludes);Scripts\**\*;ThriveScriptsShared\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
@@ -34,14 +34,14 @@
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.1.2" />
     <PackageReference Include="DefaultEcs" Version="0.17.2" />
-    <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+    <PackageReference Include="JetBrains.Annotations" Version="2024.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Numerics.Vectors" Version="4.5.0" />
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
-    <PackageReference Include="YamlDotNet" Version="15.1.6" />
+    <PackageReference Include="YamlDotNet" Version="16.1.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>

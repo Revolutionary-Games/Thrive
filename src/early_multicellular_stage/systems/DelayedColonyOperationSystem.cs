@@ -54,7 +54,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
         {
             GD.PrintErr($"Correcting incorrect body plan index for delay attached cell from {bodyPlanIndex} to " +
                 "a valid value");
-            bodyPlanIndex = Mathf.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
+            bodyPlanIndex = Math.Clamp(bodyPlanIndex, 0, species.Cells.Count - 1);
         }
 
         var attachPosition = new AttachedToEntity
@@ -81,6 +81,16 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
 
         // Ensure no physics is created before the attach-operation completes
         member.Set(PhysicsHelpers.CreatePhysicsForMicrobe(true));
+
+        if (colonyEntity.Has<MicrobeEventCallbacks>())
+        {
+            ref var originalEvents = ref colonyEntity.Get<MicrobeEventCallbacks>();
+
+            if (!originalEvents.IsTemporary)
+            {
+                member.Set(originalEvents.CloneEventCallbacksForColonyMember());
+            }
+        }
     }
 
     protected override void Update(float delta, in Entity entity)

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-06-01 06:34+0000\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-13 06:16+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -38,12 +38,11 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "[b]Siller[/b], özellikle avcılığa dayanan, büyük hücreler için önemlidir. Onlar olmadan büyük hücreler, bazen acı verici biçimde yavaş dönme hızından dolayı kısıtlanır. Bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, bu önemli organelin muazzam büyüklüğüne karşı koymak için, en kısa zamanda [b]Siller[/b] eklemenizi tavsiye ediyoruz. Ayrıca, dönme kuvvetini en üst düzeye çıkarmak için, bu organeli bir hücrenin merkezinden olabildiğince en uzağa yerleştirmenizi öneririz."
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Strateji Evreleri"
+msgstr ""
 
 msgid "3D_EDITOR"
-msgstr "3D Düzenleyici"
+msgstr "3D Editör"
 
 msgid "3D_MOVEMENT"
 msgstr "3D Hareket"
@@ -67,11 +66,14 @@ msgstr "Durduruldu."
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
 
+msgid "ACCEPT"
+msgstr "Kabul et"
+
 msgid "ACTION_AWAKEN"
 msgstr "Uyandır ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Uyanış Evresi'ne Geç. Yeterli zihin gücüne sahip olduğunuzda açılır (aksonlu doku türü)."
+msgstr "Uyanış Evresi'ne geç. Yeterli zihin gücüne sahip olduğunuzda açılır (aksonlu doku türü)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Başka bir eylem devam ettiğinden, mevcut işlem engellendi"
@@ -103,7 +105,7 @@ msgstr ""
 "Durağan mikroplar, hareketsizdirler ve hareket etmeden önce ortamın değişmesini beklerler."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Ek doğrulamalar bir sorun algıladı: {0}"
+msgstr "Ek doğrulamalar bir sorun tespit etti: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Yeni bir tuş ataması yap"
@@ -126,13 +128,13 @@ msgid "AEROBIC_RESPIRATION"
 msgstr "Oksijenli Solunum"
 
 msgid "AGENTS"
-msgstr "Ajanlar"
+msgstr "Aracılar"
 
 msgid "AGENTS_COLON"
-msgstr "Ajanlar:"
+msgstr "Aracılar:"
 
 msgid "AGENT_NAME"
-msgstr "{0} Ajan"
+msgstr "{0} Aracı"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
@@ -153,11 +155,11 @@ msgstr "(AI türlerinin mutasyona uğrama hızı)"
 msgid "ALL"
 msgstr "Tümü"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Türün göç etmesine izin verme (eğer göç edilecek bir yer bulunamazsa)"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+msgstr "Soy tükendiğinde, akraba bir türe geçiş yapılmasına izin ver"
 
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-msgstr "Türün mutasyona uğramasına izin verme (eğer iyi bir mutasyon bulunamazsa)"
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr "(soy tükendiğinde, oyunun bitmesi yerine, oyuna başka bir tür ile devam edilmesine izin verir)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Tüm Dünyaların Genel İstatistikleri"
@@ -183,6 +185,9 @@ msgstr "Evreni zaten tırmandınız"
 
 msgid "ALT"
 msgstr "Alt"
+
+msgid "ALWAYS_VISIBLE"
+msgstr "Her zaman görünür"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Ortam sesi"
@@ -358,9 +363,8 @@ msgstr "Ters Eğik Çizgi"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "OksiToksi Sentezi"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -441,6 +445,9 @@ msgstr "En İyi Arazi:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Büyük Demir Parçası"
 
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Büyük Fosfat Parçası"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} Mr"
 
@@ -448,25 +455,13 @@ msgid "BINDING_AGENT"
 msgstr "Bağlayıcı Ajan"
 
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Diğer hücrelerle bağ kurmayı sağlar. Bu organeli eklemek, çok hücrelilikte ilk adımdır. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken düzenleyiciye giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr "Diğer hücrelerle bağ kurmayı sağlar. Bu organeli eklemek, çok hücreliğe ilk adımı sağlar. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Bağ kurma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] tuşuna basın. Bağ kurma modundayken, kendi türünüze ait diğer hücrelere yaklaşarak onları koloninize ekleyebilirsiniz. Bir koloniden ayrılmak için [thrive:input]g_unbind_all[/thrive:input] tuşuna basın. Diğer hücrelere bağlıyken düzenleyiciye giremezsiniz."
+msgstr "Bağ kurma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] tuşuna basın. Bağ kurma modundayken, kendi türünüze ait diğer hücrelere yaklaşarak onları koloninize ekleyebilirsiniz. Bir koloniden ayrılmak için [thrive:input]g_unbind_all[/thrive:input] tuşuna basın. Diğer hücrelere bağlıyken editöre giremezsiniz."
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Eksenleri birbirine bağla"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Çok az türe (düşük biyoçeşitlilik) sahip her arazide yeni bir tür oluşturma olasılığı"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Yakınlardaki bir arazideki biyoçeşitliliği arttırmak için yeni bir tür oluşturma olasılığı"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Yakınlardaki arazide biyoçeşitliliği arttıran türe bedava popülasyon verilsin"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Biyoçeşitliliği arttıran tür, oluşum ile mutasyona uğrasın"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Biyolüminesan Koful"
@@ -610,7 +605,7 @@ msgid "CHEAT_MENU"
 msgstr "Hile menüsü"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
-msgstr "Hücre işleyişini göster / gizle"
+msgstr "Hücre işlemlerini göster / gizle"
 
 msgid "CHEMOPLAST"
 msgstr "Kemoplast"
@@ -673,9 +668,8 @@ msgstr "Seçili dosya adı ({0}) zaten mevcut. Üzerine yazılsın mı?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Renk sapması:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "OksiToksi Sentezi"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ve [thrive:compound type=\"sunlight\"]güneş ışığı[/thrive:compound] şiddeti ile doğru orantılıdır."
@@ -780,7 +774,7 @@ msgid "COMMUNITY_FORUM"
 msgstr "Topluluk Forumu"
 
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Topluluk forumumuzda Thrive topluluğuna katılın"
+msgstr "Topluluk forumumuzda Thrive topluluğuna katıl"
 
 msgid "COMMUNITY_WIKI"
 msgstr "Topluluk Vikisi"
@@ -922,6 +916,12 @@ msgstr "Birim: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Atölye içeriği bu klasörden karşıya yüklenecek: {0}"
+
+msgid "CONTINUE"
+msgstr "Devam Et"
+
+msgid "CONTINUE_AS_SPECIES"
+msgstr "[center]Ama oyun henüz bitmedi. {1} popülasyonu olan {0} türüne geçiş yaparak oyuna [b]devam edebilirsiniz[/b].[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "İlerlemeye Devam Et"
@@ -1084,7 +1084,7 @@ msgstr "Kontrol Cihazı Ölü Bölgeleri"
 
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölgesi büyüklükleri, hareketin giriş olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
+"Bu araç, kontrol cihazının eksen ölü bölgelerinin yapılandırılmasını sağlar. Ölü bölge büyüklükleri, hareketin girdi olarak algılanmasından önce bir kontrol çubuğunun (veya benzeri bir butonun) ne kadar hareket ettirilmesi gerektiğini denetler.\n"
 "Kalibrasyona başlamadan önce, lütfen bütün kontrol cihazı çubuklarını oynatın ve bırakın. Ayrıca kontrol cihazında, bunun benzeri bir işlev gören butonlara (örneğin tetik tuşları) da basın ve onları bırakın."
 
 msgid "CONTROLLER_DEADZONE_COLON"
@@ -1187,7 +1187,7 @@ msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr "Yeni Doku Türü Oluştur"
 
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
-msgstr "Mevcut dokuları kopyalayarak ve onlara yeni bir isim vererek yeni doku türleri oluşturabilirsiniz. Doku türlerinde, farklı görevlerde özelleştirmek amacıyla, hücre düzenleyicisi aracılığıyla değişiklik yapılabilir."
+msgstr "Mevcut dokuları kopyalayarak ve onlara yeni bir isim vererek yeni doku türleri oluşturabilirsiniz. Doku türlerinde, farklı görevlerde özelleştirmek amacıyla, hücre editörü aracılığıyla değişiklik yapılabilir."
 
 msgid "CREATING_DOT_DOT_DOT"
 msgstr "Oluşturuluyor..."
@@ -1294,6 +1294,9 @@ msgstr "Hata Ayıklama Paneli"
 msgid "DECEMBER"
 msgstr "Aralık"
 
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Nesne büyüklüğünü azalt"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Varsayılan çıkış aygıtı"
 
@@ -1371,19 +1374,19 @@ msgstr "Oyun Geliştiricileri"
 
 #, fuzzy
 msgid "DEVELOPMENT"
-msgstr "Gelişme Vikisi"
+msgstr "Geliştirme Vikisi"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr "Gelişme Forumu"
+msgstr "Geliştirme Forumu"
 
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
-msgstr "Gelişme forumumuzda gelişim güncellemelerini inceleyin"
+msgstr "Geliştirme forumumuzda geliştirme güncellemelerini inceleyin"
 
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr "Oyunun Geliştirilmesi Revolutionary Games Studio Tarafından Desteklenmiştir"
 
 msgid "DEVELOPMENT_WIKI"
-msgstr "Gelişme Vikisi"
+msgstr "Geliştirme Vikisi"
 
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr "Geliştirici vikimizi ziyaret edin"
@@ -1403,10 +1406,10 @@ msgstr ""
 "Mutasyon maliyet çarpanı: {1}\n"
 "AI mutasyon hızı: {2}\n"
 "Bileşik bulutu sıklığı: {3}\n"
-"Oyuncu ölümü popülasyon cezası: {4}\n"
+"Oyuncu ölümünden kaynaklanan popülasyon kaybı: {4}\n"
 "Çevresel glukoz tutulma payı: {5}\n"
 "Ozmoregülasyon maliyet çarpanı: {6}\n"
-"Düzenleyiciden ayrıldığında bedava glukoz bulutu: {7}\n"
+"Editörden ayrıldığında bedava glukoz bulutu: {7}\n"
 "Üreme gelişimini pasif olarak gerçekleştir: {8}\n"
 "Büyümeyi sağlayan bileşiklerin kullanımını sınırlandır: {9}"
 
@@ -1451,6 +1454,9 @@ msgstr "Yoksay ve devam et"
 
 msgid "DISCARD_CHANGES"
 msgstr "Değişiklikleri Yoksay"
+
+msgid "DISCARD_MIGRATION"
+msgstr "Göçü İptal Et"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Bağlı Olmayan Hücreler"
@@ -1636,18 +1642,18 @@ msgid "EDITING"
 msgstr "Kitin"
 
 msgid "EDITOR"
-msgstr "Düzenleyici"
+msgstr "Editör"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Mitokondri"
+msgstr "mutasyona uğradı"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
-msgstr "Düzenleyiciye gir ve türünde değişiklik yap"
+msgstr "Editöre gir ve türünde değişiklik yap"
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"[b]Mikrop Düzenleyicisi'ne[/b] hoş geldiniz.\n"
+"[b]Mikrop Editörü'ne[/b] hoş geldiniz.\n"
 "\n"
 "Burada, geçmiş kuşaklardan beri neler olduğunu inceleyebilir ve sonrasında türünüzde değişiklikler yapabilirsiniz.\n"
 "\n"
@@ -1671,19 +1677,19 @@ msgid "ENABLE_ALL_COMPATIBLE"
 msgstr "Bütün Uyumlu Modları Etkinleştir"
 
 msgid "ENABLE_EDITOR"
-msgstr "Düzenleyiciyi aç"
+msgstr "Editörü aç"
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Arayüz ışık efektlerini etkinleştir"
 
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr "Endosimbiyoz işlemi zaten tamamlandı, bu işlemi düzenleyicide bitirin"
+msgstr "Endosimbiyoz işlemi zaten tamamlandı, bu işlemi editörde bitirin"
 
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr "Endosimbiyoz hedefi geçici bir organele dönüştürüldü; eğer düzenleyiciye ulaşırsanız, bu işlem endosimbiyozu ilerletecek"
+msgstr "Endosimbiyoz hedefi geçici bir organele dönüştürüldü; eğer editöre ulaşırsanız, bu işlem endosimbiyozu ilerletecek"
 
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr "Endosimbiyont türü zaten mevcut, endosimbiyoz işlemini ilerletmek için düzenleyiciye girin"
+msgstr "Endosimbiyont türü zaten mevcut, endosimbiyoz işlemini ilerletmek için editöre girin"
 
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "Dönüşülebilecek mevcut organeller"
@@ -1707,13 +1713,13 @@ msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
 msgstr "Bu tür, geçerli herhangi bir organele dönüştürülemez"
 
 msgid "ENDOSYMBIOSIS_PROGRESSING_EXPLANATION"
-msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile düzenleyiciye ulaştığınızda, ardından ilerlemeniz kaydedilir."
+msgstr "Endosimbiyoz işlemini ilerletmek için hedef türün geçici bir organele dönüşmek üzere yutulması gerekir (tek seferde, yalnızca bir tane bulunabilir). Mevcut geçici organel ile editöre ulaştığınızda, ardından ilerlemeniz kaydedilir."
 
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
 msgstr "Prokaryotlar en fazla bir endosimbiyonta sahip olabilir"
 
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
-msgstr "İlerlemek için geçici bir organel gibi çalışacak bu tür ile, düzenleyiciye erişene dek, hayatta kal"
+msgstr "İlerlemek için geçici bir organel gibi çalışacak bu tür ile, editöre erişene dek, hayatta kal"
 
 msgid "ENDOSYMBIOSIS_START_TOOLTIP"
 msgstr "Bu tür için endosimbiyozu başlat (hedef organel türü seçildiğinde kullanılabilir)"
@@ -1739,6 +1745,9 @@ msgstr "Enerji Kaynakları:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Birey başına {1} maliyet ile kazanılan toplam enerji miktarı {0}; {2} dengelenmemiş popülasyonla sonuçlanmakta"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr "ATP olmadan yutma moduna girildiği için hasar alınıyor"
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Mevcut ID'yi Gir"
 
@@ -1753,7 +1762,7 @@ msgstr "Ortam"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitokondri"
+msgstr "Çevresel glukoz tutulma payı"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Çevresel glukoz tutulma payı"
@@ -1831,10 +1840,16 @@ msgid "EXIT"
 msgstr "Çık"
 
 msgid "EXIT_EDITOR"
-msgstr "Düzenleyiciden Çık"
+msgstr "Editörden Çık"
 
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Çık ve Başlatıcıya Dön"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr "Deneysel özellikler"
+
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(oyunda varsayılan olarak bulunmak üzere yeterince düzenlenmemiş ek özellikleri etkinleştir; eğer bu özellikler ile oyunu oynarsanız, lütfen bize bunlarla ilgili geri bildirimlerinizi paylaşın)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Tüm Dünyaları Dışa Aktar"
@@ -2030,7 +2045,7 @@ msgid "FOSSILISATION"
 msgstr "Fosilleşme"
 
 msgid "FOSSILISATION_EXPLANATION"
-msgstr "Müzeye kaydetmek için bu türü fosilleştirin. Thriveopedi'den müzeye erişebilirsiniz veya serbest yapım düzenleyicisinde fosilleşmiş türü yükleyebilirsiniz."
+msgstr "Müzeye kaydetmek için bu türü fosilleştirin. Thriveopedi'den müzeye erişebilirsiniz veya serbest yapım editöründe fosilleşmiş türü yükleyebilirsiniz."
 
 msgid "FOSSILISATION_FAILED"
 msgstr "Fosilleştirme Başarısız"
@@ -2069,7 +2084,7 @@ msgid "FREEBUILDING"
 msgstr "Serbest yapım modu"
 
 msgid "FREE_GLUCOSE_CLOUD"
-msgstr "Düzenleyiciden ayrıldığında bedava glukoz bulutu"
+msgstr "Editörden ayrıldığında bedava glukoz bulutu"
 
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr "(her kuşağa, yakınlardaki serbest bir glukoz bulutuyla başla)"
@@ -2158,9 +2173,9 @@ msgstr "Arayüz"
 
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
-"Arayüzde ışık yanıp sönme efektlerini etkinleştirir (örn. düzenleyici butonunun yanıp sönmesi).\n"
+"Arayüzde ışık yanıp sönme efektlerini etkinleştirir (örn. editör butonunun yanıp sönmesi).\n"
 "\n"
-"Eğer düzenleyici butonundaki bazı parçaların kaybolması gibi hatalar deneyimlerseniz,\n"
+"Eğer editör butonundaki bazı parçaların kaybolması gibi hatalar deneyimlerseniz,\n"
 "bu ayarı kapatarak problemin çözülüp çözülmediğine bakabilirsiniz."
 
 msgid "GUI_TAB_NAVIGATION"
@@ -2232,11 +2247,17 @@ msgstr "ID geçerli bir sayı değil"
 msgid "ID_NUMBER"
 msgstr "ID Numarası"
 
+msgid "IMAGE_FILE_TYPES"
+msgstr "Desteklenen Resim Dosyaları"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Sonraki evre prototiplerini dahil et"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)"
+
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Nesne büyüklüğünü arttır"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi"
@@ -2446,6 +2467,9 @@ msgstr "Temmuz"
 
 msgid "JUNE"
 msgstr "Haziran"
+
+msgid "KEEP_MIGRATION"
+msgstr "Göçü Sürdür"
 
 msgid "KEY_BACK"
 msgstr "Geri"
@@ -2822,19 +2846,19 @@ msgid "LOADING_DOT_DOT_DOT"
 msgstr "Yükleniyor..."
 
 msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "İlk Çok Hücreli Düzenleyicisi Yükleniyor"
+msgstr "İlk Çok Hücreli Editörü Yükleniyor"
 
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
 
 msgid "LOADING_MICROBE_EDITOR"
-msgstr "Mikrop Düzenleyicisi Yükleniyor"
+msgstr "Mikrop Editörü Yükleniyor"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr "Çok Hücreli Düzenleyicisi Yükleniyor"
+msgstr "Çok Hücreli Editörü Yükleniyor"
 
 msgid "LOADING_TIP"
-msgstr "Yaptığınız bir hatayı düzeltmek için düzenleyicideki geri al butonuna basın"
+msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
 
 msgid "LOAD_FINISHED"
 msgstr "Yükleme bitti"
@@ -2872,11 +2896,8 @@ msgstr ""
 msgid "LOCAL_INITIAL_LETTER"
 msgstr "Y"
 
-msgid "LOCK_DAY_NIGHT_CYCYLE"
-msgstr "Gece Gündüz Döngüsünü Durdur"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Düşük biyoçeşitliliğe sahip bu kadar tür içeren arazileri göz önünde bulundur"
+msgid "LOCK_DAY_NIGHT_CYCLE"
+msgstr "Gece Gündüz Döngüsünü Kilitle"
 
 msgid "LOW_MENU_PERFORMANCE"
 msgstr "Düşük Performans Algılandı"
@@ -2910,9 +2931,6 @@ msgstr "Deniz karı"
 
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Zorunlu soy tükenmeleri öncesi bir arazideki maksimum tür sayısı"
 
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
@@ -2998,6 +3016,54 @@ msgstr ""
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
 
+msgid "MICHE"
+msgstr "Miche"
+
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "Yırtıcı Seçilim Baskısını Önle"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr "Parça Baskısı"
+
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Bileşik Bulutu Baskısı"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr "Bileşik Dönüştürme Verimliliği Baskısı"
+
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Seçilim Baskısı[/b]\n"
+"  {0}\n"
+"[b]Enerji[/b]\n"
+"  {1}\n"
+"[b]Yerleşimci Skorları[/b]\n"
+"  {2}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr "Çevresel Bileşik Baskısı"
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr "Bileşik Baskısını Sürdür"
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr "Metabolik Kararlılık Baskısı"
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr "İşlem Baskısı Yok"
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr "Yırtıcı Etkinlik Baskısı"
+
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Yırtıcı Kök Baskısı"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr "Kök Baskı"
+
+msgid "MICHE_TREE"
+msgstr "Miche Ağacı"
+
 msgid "MICROBE"
 msgstr "Mikrop"
 
@@ -3008,7 +3074,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr "Mikrop Performansı"
 
 msgid "MICROBE_EDITOR"
-msgstr "Mikrop Düzenleyicisi"
+msgstr "Mikrop Editörü"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
@@ -3073,19 +3139,19 @@ msgstr ""
 "\n"
 "Toksin Kofulları: Toksinler üretir ([thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] olarak adlandırılır) ve mevcut OksiToksi miktarına bağlı olarak zarar veren bu toksinleri salmana izin verir\n"
 "\n"
-"Sinyal Verici Ajan: Belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar"
+"Sinyal Veren Aracı: Belli hücrenin, diğer hücrelerin karşılık verebildiği kimyasallar üretmesini sağlar"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr "Her kuşak başına, harcanacak 100 mutasyon puanınız (MP) vardır ve her bir değişiklik (veya mutasyon) belirli miktarda MP'ye mal olur. Organel eklemek ve kaldırmak MP'ye mal olur. Ancak mevcut mutasyon sürecinde yerleştirilen organellerin kaldırılması, o organelin değeri kadar MP'yi size geri iade eder. Bir organelin üzerine sağ tıklayarak ve açılan menüden uygun eylemi seçerek taşıyabilir veya tamamen kaldırabilirsiniz. [thrive:input]e_rotate_left[/thrive:input] ve [thrive:input]e_rotate_right[/thrive:input] tuşları ile organellerinizi döndürebilirsiniz."
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Hücreniz her çoğaldığında, Mikrop Düzenleyicisi'ne giriş yaparsınız. Burada, türünüzün başarısını arttırmak için türünüzde (organelleri ekleyerek, taşıyarak veya kaldırarak) değişiklikler yapabilirsiniz. Mikrop Evresi'nde düzenleyiciye yapılan her ziyaret, [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
+msgstr "Hücreniz her çoğaldığında, Mikrop Editörü'ne giriş yaparsınız. Burada, türünüzün başarısını arttırmak için türünüzde (organelleri ekleyerek, taşıyarak veya kaldırarak) değişiklikler yapabilirsiniz. Mikrop Evresi'nde editöre yapılan her ziyaret, [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
 
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr "Mikrop Serbest Yapım Düzenleyicisi"
+msgstr "Serbest Mikrop Yapım Editörü"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} adet"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3158,10 +3224,10 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr "Ama eğer 300 popülasyon ile yirmi kuşak boyunca hayatta kalırsanız, mevcut oyunu kazanmış sayılırsınız. Kazandıktan sonra karşınıza bir pencere çıkar, sonrasında oyunu dilediğiniz kadar oynamaya devam edebilirsiniz."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Dikkatli olun çünkü rakipleriniz sizinle birlikte gelişiyorlar. Düzenleyiciye her girdiğinizde onlar da evrimleşirler."
+msgstr "Dikkatli olun çünkü rakipleriniz sizinle birlikte gelişiyorlar. Editöre her girdiğinizde onlar da evrimleşirler."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi kurmalarına olanak tanır. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girin. Yalnızca kendi türünüze ait hücrelere bağlanabilirsiniz. Koloni içindeyken, hücrenizi bölemez ve düzenleyiciye giremezsiniz. Düzenleyiciye girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
+msgstr "Bağlayıcı ajan, hücrenizin ve özdeş türlerinin emdikleri ve ürettikleri bileşikleri birbirleriyle paylaştığı bir hücre kolonisi kurmalarına olanak tanır. [thrive:input]g_toggle_binding[/thrive:input] tuşuna basarak bağlanma moduna girin. Yalnızca kendi türünüze ait hücrelere bağlanabilirsiniz. Koloni içindeyken, hücrenizi bölemez ve editöre giremezsiniz. Editöre girmek için, ilk önce, yeterli bileşik toplamalı ve [thrive:input]g_unbind_all[/thrive:input] tuşuna basarak koloniden ayrılmalısınız. Büyük hücre kolonileri, çok hücreliliğe doğru giden bir yoldur."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_15"
 msgstr "Özellikle selüloz ve kitin hücre duvarları, onları parçalayabilen gerekli enzimler olmadan sindirilemez."
@@ -3173,7 +3239,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr "Hücreniz enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] kullanır, eğer bu kaynak tükenirse hücreniz ölür."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Düzenleyiciyi açmak ve hücrenizi çoğaltmak için hücrenizin yeterince uzun süre hayatta kalması gerekir. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmek hücrenin büyümesini hızlandırır."
+msgstr "Editörü açmak ve hücrenizi çoğaltmak için hücrenizin yeterince uzun süre hayatta kalması gerekir. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) biriktirmek hücrenin büyümesini hızlandırır."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr "Ayrıca, sizden küçük hücreleri, bakterileri, demir parçalarını ve hücre parçalarını [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak yutabilirsiniz. Bu eylem, fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve hücrenizi yavaşlatır. Yutmayı sona erdirmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna ikinci kez basmayı unutmayın."
@@ -3182,7 +3248,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr "Ozmoregülasyon, [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur. Yani hücreniz ne kadar büyükse, hücreniz durağan haldeyken [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaybını önlemek için o kadar çok mitokondriye, metabolozoma veya rustisyanine (veya glikoliz yapan sitoplazmaya) ihtiyacınız var."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Düzenleyicide, çok çeşitli oyun tarzlarına imkan veren, türünüzü evrimleştirmeniz için birçok organel vardır."
+msgstr "Editörde, çok çeşitli oyun tarzlarına imkan veren, türünüzü evrimleştirmeniz için birçok organel vardır."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
 msgstr "Eğer popülasyonunuz sıfıra düşerse nesliniz tükenir."
@@ -3238,10 +3304,37 @@ msgstr ""
 "\n"
 "Bileşikler topladıkça, hücreniz bazılarını çoğalmak için kullanır.\n"
 "\n"
-"Yeterli bileşik ile, organeller bölünmeye ve ikiye katlanmaya başlar. Bütün organeller bölündüğünde, hücreniz çoğalabilir ve düzenleyiciye girebilir."
+"Yeterli bileşik ile, organeller bölünmeye ve ikiye katlanmaya başlar. Bütün organeller bölündüğünde, hücreniz çoğalabilir ve editöre girebilir."
 
 msgid "MIDDLE_MOUSE"
 msgstr "Orta fare tuşu"
+
+msgid "MIGRATE"
+msgstr "Göç et"
+
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Hata: Göç eklenemedi, lütfen göç parametrelerini inceleyin"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr "Popülasyon, {0} arazisinden ... arazisine taşınacak"
+
+msgid "MIGRATION_STATUS_TEXT"
+msgstr "{2} birim popülasyon, {0} arazisinden {1} arazisine taşınacak"
+
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr "Göç için kaynak araziye bağlı, varılacak bir arazi seçin"
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr "Her editör sürecinde yalnızca bir göç yapılabilir. Sırada bekleyen göçleri aşağıdan inceleyebilir, bu göçleri tutabilir ya da farklı bir göç oluşturmak için iptal edebilirsiniz"
+
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "Kaynak araziden varılacak yere ne kadar popülasyonun göç edeceğini seçin"
+
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "Göç için kaynak görevi görmesi için şu an türünüzün olduğu bir araziyi seçin"
+
+msgid "MIGRATION_TOOLTIP"
+msgstr "Kendi bulunduğunuz araziden ayrılmadan, türünüzü bir araziden başka bir araziye taşıyın"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mn"
@@ -3508,11 +3601,14 @@ msgstr "Müsilaj"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Müsilaj sentezi"
 
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Kalkan oluştur"
+
 msgid "MULTICELLULAR_EDITOR"
-msgstr "Çok Hücreli Düzenleyicisi"
+msgstr "Çok Hücreli Editörü"
 
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
-msgstr "Çok Hücreli Serbest Yapım Düzenleyicisi"
+msgstr "Serbest Çok Hücreli Yapım Editörü"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
@@ -3537,7 +3633,7 @@ msgstr "(etkinleştirildiğinde, temel oyun mantık güncellemelerini çalışt�
 
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
-"Müzeye hoş geldiniz! Burada, tüm oynadığınız oyunlardan fosilleştirmiş olduğunuz birçok türü hayranlıkla inceleyebilirsiniz. Hatta, serbest yapım düzenleyicisinde açarak, seçtiğiniz bir türü oynayabilirsiniz.\n"
+"Müzeye hoş geldiniz! Burada, tüm oynadığınız oyunlardan fosilleştirmiş olduğunuz birçok türü hayranlıkla inceleyebilirsiniz. Hatta, serbest yapım editöründe açarak, seçtiğiniz bir türü oynayabilirsiniz.\n"
 "\n"
 "Oyun esnasında bir türü fosilleştirmek için duraklatma butonuna basın. Sonra, ekran üzerindeki bir mikrobu seçin."
 
@@ -3554,7 +3650,7 @@ msgid "MUTATION_COST_MULTIPLIER"
 msgstr "Mutasyon maliyet çarpanı"
 
 msgid "MUTATION_COST_MULTIPLIER_EXPLANATION"
-msgstr "(organellerin, hücre zarlarının ve diğer öğelerin düzenleyicideki maliyeti)"
+msgstr "(organellerin, hücre zarlarının ve diğer öğelerin editördeki maliyeti)"
 
 msgid "MUTATION_POINTS"
 msgstr "Mutasyon Puanı"
@@ -3576,7 +3672,7 @@ msgstr "{0} (Y)"
 
 #, fuzzy
 msgid "NATION_EDITOR"
-msgstr "Düzenleyiciyi aç"
+msgstr "Editörü aç"
 
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
@@ -3603,9 +3699,6 @@ msgstr ""
 msgid "NEWS"
 msgstr "HABERLER"
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Biyoçeşitliliği artıran türler için başlangıç popülasyonu"
-
 msgid "NEW_GAME"
 msgstr "Yeni Oyun"
 
@@ -3628,7 +3721,7 @@ msgid "NEXT_CAPITAL"
 msgstr "SONRAKİ"
 
 msgid "NEXT_EDITOR_TAB"
-msgstr "Sonraki düzenleyici sekmesine git"
+msgstr "Sonraki editör sekmesine git"
 
 msgid "NITROGEN"
 msgstr "Azot"
@@ -3686,13 +3779,16 @@ msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr "Mevcut hücre büyüklüğü, hedefi yutmak için çok küçük"
 
 msgid "NOTICE_ENGULF_STORAGE_FULL"
-msgstr "İçeri alınan maddelere ait depoda, hedefi yutmak için yeterli alan yok"
+msgstr "Yutulan madde deposunda hedef maddeyi yutacak yeterli alan yok"
+
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
+msgstr "ATP üretimi, toksin tarafından engellendi"
+
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Temel hareket hızı toksin nedeniyle azaldı"
 
 msgid "NOTICE_READY_TO_EDIT"
-msgstr "Düzenleyici, şimdi girilmek için hazır"
-
-msgid "NOT_FOUND_CHUNK"
-msgstr "Hata: Parça bulunamadı"
+msgstr "Editör, şimdi girilmek için hazır"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Başlatılmadı."
@@ -3758,6 +3854,9 @@ msgstr "x{0}"
 
 msgid "OCTOBER"
 msgstr "Ekim"
+
+msgid "OFF"
+msgstr "Kapalı"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Resmi Web Sitesi"
@@ -3853,7 +3952,7 @@ msgid "ORGANELLES"
 msgstr "Organeller"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "Kilit açma koşulları, düzenleyiciye girerken her kuşakta yalnızca bir kez kontrol edilir"
+msgstr "Kilit açma koşulları, editöre girerken her kuşakta yalnızca bir kez kontrol edilir"
 
 msgid "ORGANELLE_AXON"
 msgstr "Akson"
@@ -3909,6 +4008,9 @@ msgstr "Ozmoregülasyon maliyet çarpanı"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(oyuncu türünün ozmoregülasyon maliyeti)"
 
+msgid "OTHER_COMPOUNDS"
+msgstr "Diğer"
+
 msgid "OUR_WIKI"
 msgstr "Vikimiz"
 
@@ -3940,7 +4042,7 @@ msgid "OXYTOXISOME"
 msgstr "Oksitoksizom"
 
 msgid "OXYTOXISOME_DESC"
-msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur."
+msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur. Diğer etkiler için, üretilen toksin türünü değiştirmek amacıyla, üzerinde değişiklik yapılabilir."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
@@ -3989,15 +4091,18 @@ msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr "Üreme işlemini pasif olarak gerçekleştir"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
-msgstr "(üreme bileşiklerini hiçbir şey yapmadan, pasif olarak, ortamdan al)"
+msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
 
 msgid "PAST_DEVELOPERS"
 msgstr "Eski Oyun Geliştiricileri"
 
+msgid "PATCH_COLON"
+msgstr "Arazi:"
+
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
-"Türünüz bu araziden yok oldu.\n"
-"Ama henüz hiçbir şey bitmiş değil, oynamaya devam etmek için başka bir arazi seçebilirsiniz!"
+"Türünüz bu arazide soyu tükendi.\n"
+"Ama henüz her şeyin sonu değil, oyuna devam etmek için yeni bir arazi seçebilirsiniz!"
 
 msgid "PATCH_EXTINCTION_CAPITAL"
 msgstr "ARAZİDEN YOK OLDUN"
@@ -4012,7 +4117,7 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "En son Thrive'ın {0} sürümünü oynadınız, o zamandan beri bir yeni sürüm mevcut"
+msgstr "En son Thrive'ın {0} sürümünü oynadınız, bu sürümden itibaren yeni bir sürüm mevcut"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "En son Thrive'i {0} oynadınız, o zamandan beri {1} yeni sürüm yayınlandı"
@@ -4071,6 +4176,9 @@ msgstr "Performans"
 msgid "PERFORM_UNBINDING"
 msgstr "Bağ koparmayı gerçekleştir"
 
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "/s"
+
 msgid "PER_SECOND_SLASH"
 msgstr "/saniye"
 
@@ -4110,7 +4218,7 @@ msgid "PLAYER"
 msgstr "Oyuncu"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY"
-msgstr "Oyuncu ölümünden gelen popülasyon cezası"
+msgstr "Oyuncu ölümünden kaynaklanan popülasyon kaybı"
 
 msgid "PLAYER_DEATH_POPULATION_PENALTY_EXPLANATION"
 msgstr "(her oyuncu ölümü için oyuncu türünün popülasyonunda azalma katsayısı)"
@@ -4196,19 +4304,13 @@ msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr "@"
 
 msgid "PROCESS_PANEL_TITLE"
-msgstr "Hücre İşleyişi"
+msgstr "Hücre İşlemleri"
 
 msgid "PROGRAMMING_TEAM"
 msgstr "Programlama Ekibi"
 
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Proje Yönetim Ekibi"
-
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Yeni göç etmiş popülasyonları tür sınırından koru"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Yeni oluşturulan türleri tür sınırından koru"
 
 msgid "PROTEINS"
 msgstr "Proteinler"
@@ -4276,9 +4378,6 @@ msgstr "Son eylemi tekrarla"
 msgid "REFRESH"
 msgstr "Yenile"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Soy tükenmesi durumunda, hedef arazideki göçleri iade et"
-
 msgid "REPORT"
 msgstr "Rapor"
 
@@ -4329,6 +4428,9 @@ msgstr "Varsayılanlara sıfırlansın mı?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "Temel yutmaya karşı dirençli"
+
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Yerleştirilecek damla formunun büyüklüğünü ayarlayın. Alternatif olarak, klavye kısayolları ile değiştirilebilir."
 
 msgid "RESOLUTION"
 msgstr "Çözünürlük:"
@@ -4620,7 +4722,7 @@ msgid "SELECT_A_TECHNOLOGY"
 msgstr "Teknoloji Ağından bir teknoloji seç"
 
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
-msgstr "Burayı düzenlemek için düzenleyici sekmesinden bir hücre türü seçin"
+msgstr "Burayı düzenlemek için editör sekmesinden bir hücre türü seçin"
 
 msgid "SELECT_ENZYME"
 msgstr "Enzim Seç:"
@@ -4638,7 +4740,7 @@ msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr "Yerleştirilecek Yapıyı Seç"
 
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
-msgstr "Burayı düzenlemek için düzenleyici sekmesinden bir doku türü seçin"
+msgstr "Burayı düzenlemek için editör sekmesinden bir doku türü seçin"
 
 msgid "SELECT_VACUOLE_COMPOUND_COLON"
 msgstr "Kofulun depolayacağı bileşiği seçin:"
@@ -4657,6 +4759,9 @@ msgstr "Ses efektleri"
 
 msgid "SHIFT"
 msgstr "Shift"
+
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Ekran üzerindeki hasar efektini göster"
 
 msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
@@ -4684,6 +4789,9 @@ msgstr "Oyuncu oyundan çıkmayı denediğinde, kaydedilmemiş ilerlemeler uyar�
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr "Thrive haber akışını göster (internetten indirilir)"
+
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Sideroforu ateş et"
 
 msgid "SIGNALING_AGENT"
 msgstr "Sinyal Verici Ajan"
@@ -4738,6 +4846,9 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 
 msgid "SMALL_IRON_CHUNK"
 msgstr "Küçük Demir Parçası"
+
+msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Küçük Fosfat Parçası"
 
 msgid "SOCIETY_STAGE"
 msgstr "Topluluk Evresi"
@@ -4827,12 +4938,6 @@ msgstr "Tür Popülasyonu"
 msgid "SPECIES_PRESENT"
 msgstr "Mevcut Türler"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Birden fazla iyi mutasyon ile ayrılan türler için minimum popülasyon"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Mutasyon ile ayrılması sağlanan bir türün minimum popülasyon bölümü"
-
 msgid "SPECIES_TO_FIND"
 msgstr "Bulunacak Türler:"
 
@@ -4847,6 +4952,12 @@ msgstr "Hız:"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "yayıldığı araziler:"
+
+msgid "SPRINT"
+msgstr "Hızlan"
+
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Hızlanma modunu aç. Hızlanırken, hücreler daha hızlı hareket eder. Ancak bu hücreler daha fazla ATP tüketir ve yorgunluk arttıkça ATP tüketimi daha da artar."
 
 msgid "STAGES"
 msgstr ""
@@ -4871,6 +4982,18 @@ msgstr "Araştırmaya Başla"
 
 msgid "STATISTICS"
 msgstr "İstatistikler"
+
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "ATP Üretimi Kaybı"
+
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Temel Harekette Azalma"
+
+msgid "STAT_DAMAGE"
+msgstr "Hasar"
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr "Oksijen Kullanan Organel Başına Hasar Artışı"
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Steam istemci kütüphanesi başlatma başarısız"
@@ -4897,7 +5020,7 @@ msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr "Dosya bulunamadı"
 
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
-msgstr "Steam hesabınız şu anda içerik yüklemekten kısıtlandı. Lütfen Steam destek ile görüşün."
+msgstr "Steam hesabınız şu anda içerik yüklemeye kısıtlı. Lütfen Steam destek ile görüşün."
 
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr "Steam'e geçersiz parametre verildi"
@@ -4945,6 +5068,9 @@ msgstr "saniye hızda"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "{0} olarak giriş yapıldı"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr "Yorgunluk çubuğu görünürlüğü"
 
 msgid "STRATEGY_STAGES"
 msgstr "Strateji Evreleri"
@@ -5285,6 +5411,9 @@ msgstr "Envanteri Aç"
 msgid "TOGGLE_METRICS"
 msgstr "Ölçümler göstergesini aç"
 
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Mukosist kalkanını aç"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr "Navigasyon ağacını aç"
 
@@ -5300,14 +5429,70 @@ msgstr "Araçlar"
 msgid "TOOL_HAND_AXE"
 msgstr "El Baltası"
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr "Çok fazla sürüm olduğundan bütün son sürümler gösterilemiyor"
+
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Kazanılan Enerji:"
 
 msgid "TOTAL_SAVES"
 msgstr "Toplam kaydetme:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr "Kanal İnhibitörü"
+
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Etkilenen hücrenin ATP üretimini durdurur. Böylece, hücrelerin hızlı hareket etmesini etkili bir şekilde önler ve fazla ATP üretimi olmayan hücrelerin ölmesine neden olabilir."
+
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Sitotoksin"
+
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Özelleşmiş hücre zarı olmayan hücrelere karşı oldukça etkili basit bir toksindir."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr "Ateş Hızı ve Zehirlilik:"
+
+msgid "TOXIN_MACROLIDE"
+msgstr "Makrolid"
+
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Basit hücreleri esasında hareketsiz hale getiren, temel hareket hızını büyük ölçüde azaltan bir toksindir."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr "Siyanür"
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Siyanür, oksijen metabolizmasındaki işlemleri hedef alır ve oksijen bazlı metabolizmaya sahip hücrelere karşı çok etkilidir."
+
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Hücresel hasara yol açan, oksijene dayalı bir toksindir. Oksijeni metabolizmada kullanan türlere karşı daha az etkilidir."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr "Hızlı ateş"
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr "Zehirli"
+
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Hedef Üzerindeki Toksin Etkileri"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Toksin Direnci"
+
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Toksinler, daha fazla hasar vermek ama daha yavaş ateş edilmek ya da daha\n"
+"hızlı ateş edilmek ama atış başına daha az hasar vermek üzere özelleştirilebilir.\n"
+"Bütün toksin organellerinin ortalama zehirliliği, toplam ateş etme hızını ve hasar çarpanını belirler.\n"
+"Burada gösterilen hasar değeri yalnızca bir zehirli organel olduğunda ya da bütün zehirli organellerde\n"
+"aynı zehirlilik değerine sahip olacak şekilde değişiklik yapılması durumunda tamamen doğrudur."
+
+msgid "TOXIN_TYPE_COLON"
+msgstr "Toksin Türü:"
+
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr "Farklı toksin türleri, belirli hücre türlerine karşı daha etkili olan, çeşitli etkilere sahiptir. Birden fazla farklı toksin türüne sahip olan hücrelerde, bu toksinler aynı anda ateşlenmek yerine sırayla kullanılır."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
@@ -5315,7 +5500,7 @@ msgstr ""
 "Kofulu"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
-msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır."
+msgstr "Toksin kofulu, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'lerin[/thrive:compound] özel üretimi, depolanması ve salgılanması için özelleşmiş bir kofuldur. Daha fazla toksin kofulu, salınabilecek toksin oranını arttırır. Diğer etkiler için, üretilen toksin türünü değiştirmek amacıyla, üzerinde değişiklik yapılabilir."
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır. [thrive:input]g_fire_toxin[/thrive:input] tuşuna basıldığında toksin salabilir. [thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] miktarı düşük olduğunda, ateş etmek mümkün ancak toksinler daha düşük hasara neden olur."
@@ -5347,9 +5532,9 @@ msgstr ""
 "\n"
 "Tek hücreli aşamada türünüze rehberlik ederek başarıya ulaştınız.\n"
 "\n"
-"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve düzenleyiciye girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve editöre girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
 "\n"
-"Ancak, artık düzenleyicide koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
+"Ancak, artık editörde koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
 "\n"
 "Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsanız, ufak bir tomurcuğu kontrol etmeye başlarsınız ve hücre düzeninin geri kalanını büyütmeniz gerekir."
 
@@ -5366,7 +5551,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Bu panel, sizin gelecekte kazanacağınız toplam tahmini enerjiyi gösterir. Bu rakamlar, [b]oto-evrimin[/b] simülasyonundan gelir.\n"
 "\n"
-"Bu tahminler, sizin bireysel performansınızı hesaba katmaz. Böylece düzenleyiciye girdiğinizde, bulunduğunuz arazide daha iyi performans sergileyebilirsiniz.\n"
+"Bu tahminler, sizin bireysel performansınızı hesaba katmaz. Böylece editöre girdiğinizde, bulunduğunuz arazide daha iyi performans sergileyebilirsiniz.\n"
 "\n"
 "Ama doğrudan dahil olmasanız bile, bu değeri yukarıda tutmaya çalışmalısınız.\n"
 "\n"
@@ -5374,7 +5559,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
-"Bu hücre düzenleyicisi. Burada [b]mutasyon puanları[/b] (MP) [thrive:icon]MP[/thrive:icon] harcayarak türünüzü evrimleştirebilirsiniz. Her kuşak için en fazla [b]100 MP[/b] [thrive:icon]MP[/thrive:icon] harcayabilirsiniz, bu yüzden kalanları biriktirmenize gerek yoktur.\n"
+"Bu hücre editörü. Burada [b]mutasyon puanları[/b] (MP) [thrive:icon]MP[/thrive:icon] harcayarak türünüzü evrimleştirebilirsiniz. Her kuşak için en fazla [b]100 MP[/b] [thrive:icon]MP[/thrive:icon] harcayabilirsiniz, bu yüzden kalanları biriktirmenize gerek yoktur.\n"
 "\n"
 "Ekranın ortasındaki altıgen sizin [b]hücreniz[/b]. Hücreniz bir tek sitoplazma parçasından oluşmaktadır.\n"
 "\n"
@@ -5430,8 +5615,8 @@ msgid "TUTORIAL_MICROBE_EDITOR_NO_CHANGES_MADE"
 msgstr ""
 "Türünüzde herhangi bir değişiklik yapmadınız.\n"
 "\n"
-"Düzenleyiciden ayrıldığınızda, [u]bir sonraki sefer çoğalana dek türünüzü düzenleyemeyeceksiniz[/u].\n"
-"Oyunda ilerlemek için evrimleşmeniz ve uyum sağlamanız gerekir. Bu yüzden türünüzü, çoğu düzenleyici sürecinde, düzenlemeniz tavsiye edilir."
+"Editörden ayrıldığınızda, [u]bir sonraki sefer çoğalana dek türünüzü düzenleyemeyeceksiniz[/u].\n"
+"Oyunda ilerlemek için evrimleşmeniz ve uyum sağlamanız gerekir. Bu yüzden türünüzü, çoğu editör sürecinde, düzenlemeniz tavsiye edilir."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
 msgstr ""
@@ -5445,11 +5630,11 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"Eğer [u]organeller mevcut düzenleyici sürecinde yerleştirilmediyse[/u], onları kaldırmak [b]MP'ye[/b] [thrive:icon]MP[/thrive:icon] mal olur. Çünkü bu, türünüzde mutasyona neden olur.\n"
+"Eğer [u]organeller mevcut editör sürecinde yerleştirilmediyse[/u], onları kaldırmak [b]MP'ye[/b] [thrive:icon]MP[/thrive:icon] mal olur. Çünkü bu, türünüzde mutasyona neden olur.\n"
 "\n"
 "[b]Organel menüsünü[/b] göstermek için organellere sağ tıklayabilir ve organelleri kaldırmak için silme seçeneğini seçebilirsiniz.\n"
 "\n"
-"Eğer düzenleyicide herhangi bir yanlışlık yaparsanız, yaptığınız değişikliği geri alabilirsiniz.\n"
+"Eğer editörde herhangi bir yanlışlık yaparsanız, yaptığınız değişikliği geri alabilirsiniz.\n"
 "\n"
 "Devam etmek için geri al butonuna basın."
 
@@ -5636,10 +5821,10 @@ msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH"
-msgstr "Organizma, {2} kuşak boyunca, en az {1} adet {0} organeli içermeli (şu anda {3})"
+msgstr "Organizma, {2} kuşak boyunca, en az {1} adet {0} organeli içermeli (Şu anda {3}. kuşakta)"
 
 msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
-msgstr "Organizma, üst üste {2} kuşak boyunca, en az {1} adet {0} organeli içermeli (şu anda {3})"
+msgstr "Organizma, üst üste {2} kuşak boyunca, en az {1} adet {0} organeli içermeli (Şu anda {3}. kuşakta)"
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
 msgstr "{0} biyomunda çoğalmalı"
@@ -5664,6 +5849,9 @@ msgstr "Çeken Siller"
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Yutma modunda ([thrive:input]g_toggle_engulf[/thrive:input]), bu sil türü suda girdaplara yol açarak yakınındaki nesneleri üzerine çeker. Av yakalamak için kullanışlıdır."
 
+msgid "UPGRADE_COST"
+msgstr "{0} ({1} MP)"
+
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Varsayılan yükseltilmemiş durum"
 
@@ -5675,6 +5863,12 @@ msgstr "İnjektozom Pilus"
 
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Pilusu bir injektozoma dönüştürür, diğer hücrelere saplandığında toksin hasarı verir"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "Mukosist"
+
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Balçık fışkırtıcıyı, hücrenin etrafında koruyucu bir balçık kılıfı oluşturan mukosiste dönüştürür. Mukosist etkinleştirildiğinde, bütün hasar kaynaklarına karşı geçici bir bağışıklık kazandırır."
 
 msgid "UPLOAD"
 msgstr "Karşıya Yükle"
@@ -5702,9 +5896,6 @@ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı 
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Biyoçeşitliliği arttıran tür oluşumu mevcut türlerden popülasyon çalsın"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
@@ -5757,6 +5948,9 @@ msgstr "Görüntüleyici"
 msgid "VIEW_ALL"
 msgstr "Tümünü Görüntüle"
 
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Hücre İşlemlerini İncele"
+
 msgid "VIEW_ONLINE"
 msgstr "Online Olarak Görüntüle"
 
@@ -5777,6 +5971,12 @@ msgstr "VIP Destekçiler"
 
 msgid "VISIBLE"
 msgstr "Görünür"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr "Neredeyse dolduğunda görünür"
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr "Sıfırın üstündeyken görünür"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Bir Özellik Öner"
@@ -5857,7 +6057,7 @@ msgstr ""
 "Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
-"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olmak.[/indent]"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
@@ -5866,7 +6066,7 @@ msgstr "Uyanış Evresi"
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr ""
-"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Düzenleyiciye girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Editöre girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
 "\n"
 "Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
 
@@ -5943,7 +6143,7 @@ msgstr ""
 
 msgid "WIKI_BINDING_AGENT_INTRO"
 msgstr ""
-"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Düzenleyiciye girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Editöre girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
 "\n"
 "Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
 
@@ -5971,9 +6171,9 @@ msgstr ""
 "\n"
 "Ancak, bağ kurulacak müttefik hücreleri bulmak zor olabilir. O yüzden, müttefikleri konumunuza çağırmak için bir [b][color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Verici Ajan[/url][/color][/b] kullanmak faydalı olabilir.\n"
 "\n"
-"Hücreler, bir koloni içindeyken bölünemez. Bu yüzden, düzenleyiciye girmeden önce bağınızı koparmalısınız.\n"
+"Hücreler, bir koloni içindeyken bölünemez. Bu yüzden, editöre girmeden önce bağınızı koparmalısınız.\n"
 "\n"
-"Bir koloni sonsuza kadar çoğalabilse de, sonraki evreye girmek için yalnızca 5 hücreye ihtiyacınız vardır. Gözünüz, ortam arayüzündeki düzenleyici butonunun üstündeki çok hücreli ol butonunun üzerinde olsun."
+"Bir koloni sonsuza kadar çoğalabilse de, sonraki evreye girmek için yalnızca 5 hücreye ihtiyacınız vardır. Gözünüz, ortam arayüzündeki editör butonunun üstündeki çok hücreli ol butonunun üzerinde olsun."
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr "Geliştirme yok."
@@ -6382,7 +6582,7 @@ msgstr "İşlemler"
 
 #, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "Etkiler"
+msgstr "Geliştirmeler"
 
 #, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
@@ -6434,7 +6634,7 @@ msgstr ""
 "Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
 "[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
-"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] dengesine sahip olmak.[/indent]"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
@@ -6443,7 +6643,7 @@ msgstr "Sanayi Evresi"
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Düzenleyiciye girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Editöre girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
 "\n"
 "Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
 
@@ -6568,7 +6768,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
-msgstr "Mikrop Düzenleyicisi"
+msgstr "Mikrop Editörü"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
@@ -6643,9 +6843,9 @@ msgstr ""
 "\n"
 "Tek hücreli aşamada türünüze rehberlik ederek başarıya ulaştınız.\n"
 "\n"
-"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve düzenleyiciye girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve editöre girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
 "\n"
-"Ancak, artık düzenleyicide koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
+"Ancak, artık editörde koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
 "\n"
 "Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsanız, ufak bir tomurcuğu kontrol etmeye başlarsınız ve hücre düzeninin geri kalanını büyütmeniz gerekir."
 
@@ -7464,7 +7664,7 @@ msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr "Ek depo her durumda faydalı olsa da, bir[b]Koful[/b] özellikle [b]Fotosentez[/b] kullanan organizmalar ([b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidli[/url][/color][/b] veya [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlı[/url][/color][/b] hücreler) için yararlıdır. Eğer gece gündüz döngüsü oyun ayarlarından etkinleştirildiyse, fotosentetik hücreler, gece hayatta kalmak için gereken [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] depolamak için yeterli alana sahip olmalıdır."
+msgstr "Fazladan depolama her durumda faydalı olsa da, bir[b]Koful[/b] özellikle [b]Fotosentez[/b] kullanan organizmalar ([b][color=#3796e1][url=thriveopedia:chromatophore]Tilakoidli[/url][/color][/b] veya [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlı[/url][/color][/b] hücreler) için daha da yararlıdır. Eğer gece gündüz döngüsü oyun ayarlarından etkinleştirildiyse, fotosentetik hücreler, gece hayatta kalmak için gereken [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] depolamak için yeterli alana sahip olmalıdır."
 
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "Geliştirme yok."
@@ -7473,10 +7673,10 @@ msgid "WILL_YOU_THRIVE"
 msgstr "Başaracak mısınız?"
 
 msgid "WIN_BOX_TITLE"
-msgstr "BAŞARDIN!"
+msgstr "GELİŞTİN VE BAŞARDIN!"
 
 msgid "WIN_TEXT"
-msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! İsterseniz, bu mesaj gittikten sonra da oynamaya devam edebilirsiniz veya yeni bir konumda, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
+msgstr "Tebrikler, Thrive'ın bu sürümünde kazanmayı başardınız! Dilerseniz, bu mesaj gittikten sonra da oynamaya devam edebilir veya yeni bir dünyada, yeni bir oyun başlatabilirsiniz. Ayrıca bir hücre kolonisi kurmak ve sonraki oyun prototiplerini denemek için bağlayıcı ajanlar ekleyebilirsiniz."
 
 msgid "WORKSHOP_ITEM_CHANGE_NOTES"
 msgstr "Öğe Değişiklik Notları"
@@ -7488,7 +7688,7 @@ msgid "WORKSHOP_ITEM_DESCRIPTION"
 msgstr "Öğe Açıklaması:"
 
 msgid "WORKSHOP_ITEM_PREVIEW"
-msgstr "Öğe Resim Önizlemesi:"
+msgstr "Öğe Önizleme Görseli:"
 
 msgid "WORKSHOP_ITEM_TAGS"
 msgstr "Öğe Etiketleri (virgülle \",\" ayrılmış):"
@@ -7500,7 +7700,7 @@ msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Öğe, Steam Atölyesi'ne başarıyla yüklendi"
 
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "Öğe, Steam Atölyesi'ne başarıyla yüklendi ancak gösterilmeden önce Atölye [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul etmeniz gerekir"
+msgstr "Öğe, Steam Atölyesi'ne başarıyla yüklendi ancak görülür hale gelmesi için önce Atölye [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul etmeniz gerekir"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "Bu öğeyi göndererek Steam Atölyesi'nin [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]hizmet koşullarını[/url][/color] kabul edersiniz"
@@ -7553,11 +7753,11 @@ msgstr "YouTube kanalımızı ziyaret edin"
 
 msgid "YOU_CAN_MAKE_PULL_REQUEST"
 msgstr ""
-"Thrive, açık kaynak kodlu bir projedir.\n"
+"Thrive, açık kaynaklı bir projedir.\n"
 "Oyun ekibine başvurmaksızın, bir çekme isteği göndererek oyuna katkıda bulunabilirsiniz."
 
 msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
-msgstr "Gelecekte Thrive'ın geliştirilmesine yardımcı olmak için oyunu Patreon üzerinden destekleyebilirsiniz."
+msgstr "Thrive'ın gelecekte de geliştirilmesine yardımcı olmak için oyunu Patreon üzerinden destekleyebilirsiniz."
 
 msgid "ZOOM_IN"
 msgstr "Yakınlaştır"
@@ -7930,10 +8130,6 @@ msgstr "Uzaklaştır"
 #~ msgid "E_DOT"
 #~ msgstr "E."
 
-#, fuzzy
-#~ msgid "RATE"
-#~ msgstr "Oran"
-
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""
 #~ "Biyolüminesant\n"
@@ -8055,3 +8251,7 @@ msgstr "Uzaklaştır"
 
 #~ msgid "TOTAL_TIME_USED_COLON"
 #~ msgstr "Toplam geçen süre:"
+
+#, fuzzy
+#~ msgid "RATE"
+#~ msgstr "Oran"

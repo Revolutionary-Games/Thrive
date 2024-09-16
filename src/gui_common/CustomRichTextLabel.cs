@@ -489,7 +489,7 @@ public partial class CustomRichTextLabel : RichTextLabel
                     break;
                 }
 
-                var compound = simulationParameters.GetCompound(internalName);
+                var compound = simulationParameters.GetCompoundDefinition(internalName);
 
                 // Just use the compound's default readable name if input text is not specified
                 if (string.IsNullOrEmpty(input))
@@ -502,8 +502,7 @@ public partial class CustomRichTextLabel : RichTextLabel
 
             case ThriveBbCode.Input:
             {
-                // TODO: cache for valid input actions: https://github.com/Revolutionary-Games/Thrive/issues/4983
-                if (!InputMap.HasAction(input))
+                if (!InputManager.IsValidInputAction(input))
                 {
                     GD.PrintErr($"Input action: \"{input}\" doesn't exist, referenced in bbcode");
                     break;

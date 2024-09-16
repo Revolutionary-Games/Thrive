@@ -106,12 +106,10 @@ public partial class MetaballBodyEditorComponent :
 
     private CustomConfirmationDialog cannotReduceBrainPowerPopup = null!;
 
-    private PackedScene metaballDisplayerScene = null!;
-#pragma warning restore CA2213
+    private PackedScene visualMetaballDisplayerScene = null!;
 
-    // TODO: add way to control the size of the placed metaball
-    [JsonProperty]
-    private float metaballSize = 1.0f;
+    private PackedScene structuralMetaballDisplayerScene = null!;
+#pragma warning restore CA2213
 
     [JsonProperty]
     private string newName = "unset";
@@ -239,7 +237,7 @@ public partial class MetaballBodyEditorComponent :
         }
 
         // Show the ball that is about to be placed
-        if (activeActionName != null && Editor.ShowHover)
+        if (activeActionName != null && Editor.ShowHover && !PreviewMode)
         {
             GetMouseMetaball(out var position, out var parentMetaball);
 
@@ -260,7 +258,7 @@ public partial class MetaballBodyEditorComponent :
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(position, parentMetaball,
+            RunWithSymmetry(metaballSize, position, parentMetaball,
                 (finalPosition, finalParent) => RenderHighlightedMetaball(finalPosition, finalParent, cellType),
                 effectiveSymmetry);
         }
@@ -363,6 +361,9 @@ public partial class MetaballBodyEditorComponent :
         if (!Visible)
             return false;
 
+        if (PreviewMode)
+            return false;
+
         // Can't open popup menu while moving something
         if (MovingPlacedMetaball != null)
         {
@@ -441,7 +442,9 @@ public partial class MetaballBodyEditorComponent :
     {
         base.LoadScenes();
 
-        metaballDisplayerScene =
+        visualMetaballDisplayerScene =
+            GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularConvolutionDisplayer.tscn");
+        structuralMetaballDisplayerScene =
             GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn");
     }
 
@@ -450,17 +453,28 @@ public partial class MetaballBodyEditorComponent :
         return new MetaballLayout<MulticellularMetaball>(OnMetaballAdded, OnMetaballRemoved);
     }
 
-    protected override IMetaballDisplayer<MulticellularMetaball> CreateMetaballDisplayer()
+    protected override IMetaballDisplayer<MulticellularMetaball> CreateVisualMetaballDisplayer()
     {
-        var displayer = metaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
+        var displayer = visualMetaballDisplayerScene.Instantiate<MulticellularConvolutionDispayer>();
+        Editor.RootOfDynamicallySpawned.AddChild(displayer);
+        return displayer;
+    }
+
+    protected override IMetaballDisplayer<MulticellularMetaball> CreateStructuralMetaballDisplayer()
+    {
+        var displayer = structuralMetaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }
 
     protected override void PerformActiveAction()
     {
-        bool added =
-            AddMetaball(CellTypeFromName(activeActionName ?? throw new InvalidOperationException("no action active")));
+        var metaball = new MulticellularMetaball(CellTypeFromName(
+            activeActionName ?? throw new InvalidOperationException("no action active")));
+
+        metaball.Size = metaballSize;
+
+        bool added = AddMetaball(metaball);
 
         if (added)
         {
@@ -521,7 +535,7 @@ public partial class MetaballBodyEditorComponent :
                 continue;
 
             // Get the min z-axis (highest point in the editor)
-            highestPointInMiddleRows = Mathf.Min(highestPointInMiddleRows, metaball.Position.Z);
+            highestPointInMiddleRows = MathF.Min(highestPointInMiddleRows, metaball.Position.Z);
         }
 
         return highestPointInMiddleRows;
@@ -628,7 +642,7 @@ public partial class MetaballBodyEditorComponent :
     ///   Places a cell of the specified type under the cursor and also applies symmetry to place multiple
     /// </summary>
     /// <returns>True when at least one metaball got placed</returns>
-    private bool AddMetaball(CellType cellType)
+    private bool AddMetaball(MulticellularMetaball metaball)
     {
         GetMouseMetaball(out var position, out var parentMetaball);
 
@@ -637,7 +651,7 @@ public partial class MetaballBodyEditorComponent :
         // For symmetrically placed cells keep track of where we already placed something
         var usedPositions = new HashSet<Vector3>();
 
-        RunWithSymmetry(position, parentMetaball,
+        RunWithSymmetry(metaball.Size, position, parentMetaball,
             (symmetryPosition, symmetryParent) =>
             {
                 if (symmetryParent == null)
@@ -649,7 +663,8 @@ public partial class MetaballBodyEditorComponent :
                     return;
                 }
 
-                var placed = CreatePlaceActionIfPossible(cellType, symmetryPosition, metaballSize, symmetryParent);
+                var placed = CreatePlaceActionIfPossible(metaball.CellType, symmetryPosition, metaball.Size,
+                    symmetryParent);
 
                 if (placed != null)
                 {
@@ -725,7 +740,8 @@ public partial class MetaballBodyEditorComponent :
         var cellPositions =
             new List<
                 (Vector3 Position, MulticellularMetaball Metaball, MulticellularMetaball? Parent, bool Occupied)>();
-        for (var i = 0; i < metaballPositions.Count; i++)
+
+        for (var i = 0; i < metaballPositions.Count; ++i)
         {
             var (hex, orientation) = metaballPositions[i];
             var cell = metaballs[i];
@@ -959,17 +975,6 @@ public partial class MetaballBodyEditorComponent :
         UpdateArrow();
     }
 
-    /// <summary>
-    ///   This updates the metaball displayer that is used to show the currently placed metaballs in the edited layout
-    /// </summary>
-    private void UpdateAlreadyPlacedVisuals()
-    {
-        if (alreadyPlacedVisuals == null)
-            throw new InvalidOperationException("Editor component not initialized");
-
-        alreadyPlacedVisuals.DisplayFromList(editedMetaballs);
-    }
-
     private void OnSpeciesNameChanged(string newText)
     {
         newName = newText;
@@ -1125,6 +1130,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 
@@ -1132,6 +1138,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 reproductionTab.Show();
                 reproductionTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 
@@ -1139,6 +1146,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
+                PreviewMode = false;
                 break;
             }
 
@@ -1146,6 +1154,7 @@ public partial class MetaballBodyEditorComponent :
             {
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
+                PreviewMode = true;
                 break;
             }
 

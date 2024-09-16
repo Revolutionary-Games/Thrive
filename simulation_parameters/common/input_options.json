@@ -49,12 +49,20 @@
         "Name": "TOGGLE_ENGULF"
       },
       {
+        "InputName": "g_sprint",
+        "Name": "SPRINT"
+      },
+      {
         "InputName": "g_eject_engulfed",
         "Name": "EJECT_ENGULFED"
       },
       {
         "InputName": "g_pack_commands",
         "Name": "HOLD_PACK_COMMANDS_MENU"
+      },
+      {
+        "InputName": "g_toggle_mucocyst",
+        "Name": "TOGGLE_MUCOCYST_DEFENCE"
       },
       {
         "InputName": "g_toggle_binding",
@@ -244,6 +252,14 @@
       {
         "InputName": "e_camera_top",
         "Name": "SWITCH_TO_TOP_CAMERA"
+      },
+      {
+        "InputName": "e_increase_size",
+        "Name": "INCREASE_ITEM_SIZE"
+      },
+      {
+        "InputName": "e_decrease_size",
+        "Name": "DECREASE_ITEM_SIZE"
       }
     ]
   },

@@ -105,13 +105,13 @@ public partial class OrganelleUpgradeGUI : Control
         generalUpgradeSelectorButtons.Clear();
         ReleaseTooltips();
 
-        if (availableGeneralUpgrades.Count > 0)
+        if (availableGeneralUpgrades.Count > 0 && !organelle.Definition.UpgraderSkipDefaultControls)
         {
             var tooltipGroup = GetTooltipGroup();
 
             var oldUpgrade = organelle.Upgrades ?? new OrganelleUpgrades();
 
-            // Setup the buttons for each of the available upgrades
+            // Set up the buttons for each of the available upgrades
             foreach (var availableUpgrade in availableGeneralUpgrades)
             {
                 var upgrade = availableUpgrade.Value;
@@ -177,7 +177,7 @@ public partial class OrganelleUpgradeGUI : Control
         popup.PopupCenteredShrink();
 
         scrollContainer.ScrollVertical = 0;
-        upgrader?.OnStartFor(organelle, currentGame);
+        upgrader?.OnStartFor(organelle, currentGame, costMultiplier);
         storedEditor = editorComponent;
     }
 

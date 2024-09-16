@@ -20,6 +20,12 @@ public class RunOnKeyAttribute : InputAttribute
     protected object[]? cachedMethodCallParameters;
 
     /// <summary>
+    ///   Cached name for unused axis. This seems like it doesn't affect hot reload thankfully.
+    ///   Due to concerns about preventing Godot hot reload this was not initially cached but now is.
+    /// </summary>
+    private static readonly StringName UnusedAxisName = new("unused");
+
+    /// <summary>
     ///   Priming comes to effect when an input gets pressed for less than one frame
     ///   (when the release input gets detected before OnProcess could be called)
     /// </summary>
@@ -34,7 +40,7 @@ public class RunOnKeyAttribute : InputAttribute
     {
         if (inputName.StartsWith(CAPTURED_MOUSE_AS_AXIS_PREFIX))
         {
-            InputName = new StringName("unused");
+            InputName = UnusedAxisName;
 
             // TODO: maybe split this actively
             MultiPartInputName = CAPTURED_MOUSE_AS_AXIS_PREFIX;

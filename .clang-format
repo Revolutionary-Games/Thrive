@@ -64,7 +64,7 @@ EmptyLineBeforeAccessModifier: LogicalBlock
 FixNamespaceComments: true
 IncludeBlocks: Regroup
 IncludeCategories:
-  - Regex: "(<|\")(Jolt|boost)\/.*"
+  - Regex: "(<|\")(Jolt|boost|godot_cpp)\/.*"
     Priority: 2
   - Regex: "<.*>"
     Priority: 1

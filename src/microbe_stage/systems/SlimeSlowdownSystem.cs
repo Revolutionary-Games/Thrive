@@ -21,14 +21,10 @@ public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
 {
     private readonly IReadonlyCompoundClouds compoundCloudSystem;
 
-    private readonly Compound mucilage;
-
     public SlimeSlowdownSystem(IReadonlyCompoundClouds compoundCloudSystem, World world, IParallelRunner runner) :
         base(world, runner)
     {
         this.compoundCloudSystem = compoundCloudSystem;
-
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -46,7 +42,7 @@ public sealed class SlimeSlowdownSystem : AEntitySetSystem<float>
 
         ref var position = ref entity.Get<WorldPosition>();
 
-        control.SlowedBySlime = compoundCloudSystem.AmountAvailable(mucilage, position.Position, 1.0f) >
+        control.SlowedBySlime = compoundCloudSystem.AmountAvailable(Compound.Mucilage, position.Position, 1.0f) >
             Constants.COMPOUND_DENSITY_CATEGORY_FAIR_AMOUNT;
     }
 }

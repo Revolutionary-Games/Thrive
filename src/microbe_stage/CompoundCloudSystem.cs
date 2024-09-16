@@ -92,7 +92,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
 
                 --renderPriority;
@@ -106,23 +106,21 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         for (int i = 0; i < clouds.Count; ++i)
         {
-            Compound cloud1;
-            Compound? cloud2 = null;
-            Compound? cloud3 = null;
-            Compound? cloud4 = null;
-
             int startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
 
-            cloud1 = allCloudCompounds[startOffset + 0];
+            var cloud1 = allCloudCompounds[startOffset + 0].ID;
+            var cloud2 = Compound.Invalid;
+            var cloud3 = Compound.Invalid;
+            var cloud4 = Compound.Invalid;
 
             if (startOffset + 1 < allCloudCompounds.Count)
-                cloud2 = allCloudCompounds[startOffset + 1];
+                cloud2 = allCloudCompounds[startOffset + 1].ID;
 
             if (startOffset + 2 < allCloudCompounds.Count)
-                cloud3 = allCloudCompounds[startOffset + 2];
+                cloud3 = allCloudCompounds[startOffset + 2].ID;
 
             if (startOffset + 3 < allCloudCompounds.Count)
-                cloud4 = allCloudCompounds[startOffset + 3];
+                cloud4 = allCloudCompounds[startOffset + 3].ID;
 
             clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
@@ -242,7 +240,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
 
-        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
+        float localGrabRadiusSquared = MathF.Pow(radius / resolution, 2);
 
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)
@@ -259,20 +257,20 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             // For simplicity all points within a bounding box around the
             // relative origin point is calculated and that is restricted by
             // checking if the point is within the circle before grabbing
-            int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
-            int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
+            int xEnd = (int)MathF.Round(cloudRelativeX + localGrabRadius);
+            int yEnd = (int)MathF.Round(cloudRelativeY + localGrabRadius);
 
             // No lock needed here now as AbsorbCompounds now uses atomic reads and updates
-            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
+            for (int x = (int)MathF.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
             {
-                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
+                for (int y = (int)MathF.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
                         continue;
 
                     // Circle check
-                    if (Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2) >
+                    if (MathF.Pow(x - cloudRelativeX, 2) + MathF.Pow(y - cloudRelativeY, 2) >
                         localGrabRadiusSquared)
                     {
                         // Not in it

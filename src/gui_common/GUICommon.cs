@@ -137,7 +137,7 @@ public partial class GUICommon : Node
     /// </summary>
     public void PlayCustomSound(AudioStream sound, float volume = 1.0f)
     {
-        volume = Mathf.Clamp(volume, 0.0f, 1.0f);
+        volume = Math.Clamp(volume, 0.0f, 1.0f);
 
         // Find a player not in use or create a new one if none are available.
         var player = AudioSources.Find(p => !p.Playing);
@@ -211,7 +211,7 @@ public partial class GUICommon : Node
     /// </summary>
     public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
     {
-        return CreateIcon(SimulationParameters.Instance.GetCompound(compoundName).LoadedIcon!, sizeX, sizeY);
+        return CreateIcon(SimulationParameters.Instance.GetCompoundDefinition(compoundName).LoadedIcon!, sizeX, sizeY);
     }
 
     /// <summary>

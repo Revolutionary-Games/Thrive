@@ -19,6 +19,7 @@ public class RemoveInvalidMigrations : IRunStep
         foreach (var species in speciesToCheck)
         {
             results.RemoveMigrationsForSplitPatches(species);
+            results.RemoveDuplicateTargetPatchMigrations(species);
         }
 
         return true;

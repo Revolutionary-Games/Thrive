@@ -17,11 +17,13 @@ compoundListContainer = NodePath("VBoxContainer")
 modeSelector = NodePath("CompoundBalanceMode")
 
 [node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 tooltip_text = "COMPOUND_BALANCE_TOOLTIP"
 mouse_filter = 0
 text = "COMPOUND_BALANCE_TITLE"
 label_settings = ExtResource("2_uuwk2")
+autowrap_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -32,11 +34,13 @@ theme = SubResource("1")
 [node name="CompoundBalanceMode" type="OptionButton" parent="."]
 layout_mode = 2
 tooltip_text = "COMPOUND_BALANCE_MODE_TOOLTIP"
-item_count = 2
+text_overrun_behavior = 4
+clip_text = true
 selected = 0
+fit_to_longest_item = false
+item_count = 2
 popup/item_0/text = "COMPOUNDS_AT_EQUILIBRIUM"
 popup/item_0/id = 1
 popup/item_1/text = "COMPOUNDS_AT_MAX_SPEED"
-popup/item_1/id = 0
 
 [connection signal="item_selected" from="CompoundBalanceMode" to="." method="OnBalanceModeChanged"]

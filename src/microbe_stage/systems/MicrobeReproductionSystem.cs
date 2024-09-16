@@ -45,6 +45,7 @@ using World = DefaultEcs.World;
 [ReadsComponent(typeof(MicrobeColony))]
 [ReadsComponent(typeof(WorldPosition))]
 [ReadsComponent(typeof(SoundEffectPlayer))]
+[ReadsComponent(typeof(MicrobeControl))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
 [RunsAfter(typeof(ProcessSystem))]
 [RuntimeCost(14)]
@@ -225,6 +226,13 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             return;
         }
 
+        if (entity.Has<MicrobeControl>())
+        {
+            // Microbe reproduction is stopped when mucocyst is active
+            if (entity.Get<MicrobeControl>().State == MicrobeState.MucocystShield)
+                return;
+        }
+
         ref var status = ref entity.Get<MicrobeStatus>();
 
         status.ConsumeReproductionCompoundsReverse = !status.ConsumeReproductionCompoundsReverse;
@@ -310,7 +318,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         if (amountAvailable > MathUtils.EPSILON)
         {
             // We can take some
-            var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+            var amountToTake = MathF.Min(allowedUseAmount, amountAvailable);
 
             usedAmount += compounds.TakeCompound(compound, amountToTake);
         }
@@ -377,6 +385,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         bool reproductionStageComplete;
 
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
+        // TODO: this lock somehow locks up the game waiting for this (at least with a debugger attached sometimes)
         lock (compoundWorkData)
         {
             reproductionStageComplete = ProcessBaseReproductionCost(

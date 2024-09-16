@@ -97,6 +97,22 @@ public class PatchManager : IChildPropertiesLoadCallback
         processSystem.SetBiome(currentPatch.Biome);
 
         // Apply spawn system settings
+        UpdateSpawners(currentPatch, spawnEnvironment);
+
+        // Change the lighting
+        UpdateLight(currentPatch.BiomeTemplate);
+        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
+
+        UpdateAllPatchLightLevels();
+
+        return patchIsChanged;
+    }
+
+    /// <summary>
+    ///   Updates spawn system settings for current patch
+    /// </summary>
+    public void UpdateSpawners(Patch currentPatch, IMicrobeSpawnEnvironment spawnEnvironment)
+    {
         UnmarkAllSpawners();
 
         // Cloud spawners should be added first due to the way the
@@ -106,14 +122,6 @@ public class PatchManager : IChildPropertiesLoadCallback
         HandleCellSpawns(currentPatch, spawnEnvironment);
 
         RemoveNonMarkedSpawners();
-
-        // Change the lighting
-        UpdateLight(currentPatch.BiomeTemplate);
-        compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
-
-        UpdateAllPatchLightLevels();
-
-        return patchIsChanged;
     }
 
     public void UpdatePatchBiome(Patch currentPatch)
@@ -192,8 +200,10 @@ public class PatchManager : IChildPropertiesLoadCallback
             var amount = entry.Value.Amount * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
                 Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
 
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
-                () => new CreatedSpawner(entry.Key.InternalName,
+            var spawnerName = Enum.GetName(entry.Key) ?? throw new Exception("Enum value to string failed");
+
+            HandleSpawnHelper(cloudSpawners, spawnerName, density,
+                () => new CreatedSpawner(spawnerName,
                     Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount),
                     Constants.CLOUD_SPAWN_RADIUS));
         }
@@ -223,7 +233,7 @@ public class PatchManager : IChildPropertiesLoadCallback
                 continue;
             }
 
-            var density = Mathf.Max(Mathf.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
+            var density = MathF.Max(MathF.Log(population / Constants.MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER) *
                 Constants.MICROBE_SPAWN_DENSITY_SCALE_FACTOR, 0.0f);
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);

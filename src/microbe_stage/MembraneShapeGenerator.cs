@@ -23,6 +23,11 @@ public class MembraneShapeGenerator
     private static readonly int MembraneResolution = Constants.MEMBRANE_RESOLUTION;
 
     /// <summary>
+    ///   Half the amount of points on the membrane prism's side. Total amount is equal to verticalResolution * 2 + 1.
+    /// </summary>
+    private static readonly int MembraneVerticalResolution = Constants.MEMBRANE_VERTICAL_RESOLUTION;
+
+    /// <summary>
     ///   Stores the generated 2-Dimensional membrane. Needed as easily resizable target work area. Data is copied
     ///   from here to <see cref="MembranePointData"/> for actual usage (and checks like containing points)
     /// </summary>
@@ -58,14 +63,14 @@ public class MembraneShapeGenerator
         for (int i = 0; i < hexCount; ++i)
         {
             var pos = hexPositions[i];
-            if (Mathf.Abs(pos.X) + 1 > cellDimensions)
+            if (MathF.Abs(pos.X) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.X) + 1;
+                cellDimensions = (int)MathF.Abs(pos.X) + 1;
             }
 
-            if (Mathf.Abs(pos.Y) + 1 > cellDimensions)
+            if (MathF.Abs(pos.Y) + 1 > cellDimensions)
             {
-                cellDimensions = (int)Mathf.Abs(pos.Y) + 1;
+                cellDimensions = (int)MathF.Abs(pos.Y) + 1;
             }
         }
 
@@ -129,7 +134,7 @@ public class MembraneShapeGenerator
         // That would reduce the load on the main thread when generating the final visual mesh, though the membrane
         // properties are also used in non-graphical context (species speed) so that'd result in quite a bit of
         // unnecessary computations
-        var mesh = BuildMesh(shapeData.Vertices2D, shapeData.VertexCount, shapeData.Type, out var surfaceIndex);
+        var mesh = BuildMesh(shapeData.Vertices2D, shapeData.VertexCount, shapeData.Height, out var surfaceIndex);
 
         return (mesh, surfaceIndex);
     }
@@ -144,42 +149,43 @@ public class MembraneShapeGenerator
         return (mesh, surfaceIndex);
     }
 
-    private static int InitializeCorrectMembrane(Vector2[] vertices2D, int vertexCount, int writeIndex,
-        Vector3[] vertices, Vector2[] uvs, MembraneType membraneType)
+    /// <summary>
+    ///   Takes a mesh with placed vertices and places UVs and normals on it
+    /// </summary>
+    private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs,
+        Vector3[] normals)
     {
-        // common variables
-        float height = 0.1f;
-        float multiplier = 2.0f * Mathf.Pi;
-        var center = new Vector2(0.5f, 0.5f);
+        float uvAngleModifier = 2.0f * MathF.PI / vertexCount;
 
-        // cell walls need obvious inner/outer membranes (we can worry
-        // about chitin later)
-        if (membraneType.CellWall)
+        for (int layer = 0; layer < layerCount; ++layer)
         {
-            height = 0.05f;
+            for (int i = 0; i < vertexCount; ++i)
+            {
+                int id = i + layer * vertexCount;
+
+                float y = 0.9f * MathF.Abs(layer - MembraneVerticalResolution) / MembraneVerticalResolution;
+                (float sin, float cos) = MathF.SinCos(uvAngleModifier * i);
+
+                Vector2 direction = (1.0f - y) * new Vector2(sin, cos) * 0.49f + new Vector2(0.5f, 0.5f);
+
+                uvs[id] = direction;
+
+                // Find normals
+                Vector3 previous = i == 0 ? vertices[id + vertexCount - 1] : vertices[id - 1];
+                Vector3 next = i == vertexCount - 1 ? vertices[id - i] : vertices[id + 1];
+
+                Vector3 down = layer == 0 ? vertices[vertices.Length - 2] : vertices[id - vertexCount];
+                Vector3 up = layer == layerCount - 1 ? vertices[vertices.Length - 1] : vertices[id + vertexCount];
+
+                normals[id] = (next - previous).Cross(up - down).Normalized();
+            }
         }
 
-        vertices[writeIndex] = new Vector3(0, height / 2, 0);
-        uvs[writeIndex] = center;
-        ++writeIndex;
+        uvs[uvs.Length - 2] = new Vector2(0.5f, 0.5f);
+        uvs[uvs.Length - 1] = new Vector2(0.5f, 0.5f);
 
-        for (int i = 0, end = vertexCount; i < end + 1; i++)
-        {
-            // Finds the UV coordinates be projecting onto a plane and
-            // stretching to fit a circle.
-
-            float currentRadians = multiplier * i / end;
-
-            var sourceVertex = vertices2D[i % end];
-            vertices[writeIndex] = new Vector3(sourceVertex.X, height / 2, sourceVertex.Y);
-
-            uvs[writeIndex] = center +
-                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
-
-            ++writeIndex;
-        }
-
-        return writeIndex;
+        normals[normals.Length - 2] = new Vector3(0.0f, -1.0f, 0.0f);
+        normals[normals.Length - 1] = new Vector3(0.0f, 1.0f, 0.0f);
     }
 
     /// <summary>
@@ -205,44 +211,165 @@ public class MembraneShapeGenerator
         return closest;
     }
 
+    private static void PlaceTriangles(int vertexCount, int layerCount, int[] indices)
+    {
+        int writeIndex = 0;
+
+        // To form side faces,
+        // each point in the points[,] list forms a face with:
+        // - the next point on the same layer
+        // - same point on the layer higher
+        // - next point on the layer higher
+        // If the point is on the highest layer (aka the top layer), it doesn't connect with anything
+        for (int layer = 0; layer < layerCount - 1; ++layer)
+        {
+            for (int i = 0; i < vertexCount - 1; ++i)
+            {
+                indices[writeIndex] = i + layer * vertexCount;
+                indices[writeIndex + 1] = i + 1 + (layer + 1) * vertexCount;
+                indices[writeIndex + 2] = i + 1 + layer * vertexCount;
+
+                indices[writeIndex + 3] = i + layer * vertexCount;
+                indices[writeIndex + 4] = i + (layer + 1) * vertexCount;
+                indices[writeIndex + 5] = i + 1 + (layer + 1) * vertexCount;
+
+                writeIndex += 6;
+            }
+        }
+
+        // Final side face
+        for (int layer = 0; layer < layerCount - 1; ++layer)
+        {
+            indices[writeIndex] = (vertexCount - 1) + layer * vertexCount;
+            indices[writeIndex + 1] = (layer + 1) * vertexCount;
+            indices[writeIndex + 2] = layer * vertexCount;
+
+            indices[writeIndex + 3] = (vertexCount - 1) + layer * vertexCount;
+            indices[writeIndex + 4] = (vertexCount - 1) + (layer + 1) * vertexCount;
+            indices[writeIndex + 5] = (layer + 1) * vertexCount;
+            writeIndex += 6;
+        }
+
+        int bottomPeakID = layerCount * vertexCount;
+        int topPeakID = layerCount * vertexCount + 1;
+        int topLayerIdStart = (layerCount - 1) * vertexCount;
+
+        // Top face triangles
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            if (i == 0)
+            {
+                indices[writeIndex] = topPeakID;
+                indices[writeIndex + 1] = topLayerIdStart;
+                indices[writeIndex + 2] = topLayerIdStart + vertexCount - 1;
+            }
+            else
+            {
+                indices[writeIndex] = topPeakID;
+                indices[writeIndex + 1] = topLayerIdStart + i;
+                indices[writeIndex + 2] = topLayerIdStart + i - 1;
+            }
+
+            writeIndex += 3;
+        }
+
+        // Bottom face triangles. Same as top, but with reversed index order and different layer
+        for (int i = 0; i < vertexCount; ++i)
+        {
+            if (i == 0)
+            {
+                indices[writeIndex] = bottomPeakID;
+                indices[writeIndex + 1] = vertexCount - 1;
+                indices[writeIndex + 2] = 0;
+            }
+            else
+            {
+                indices[writeIndex] = bottomPeakID;
+                indices[writeIndex + 1] = i - 1;
+                indices[writeIndex + 2] = i;
+            }
+
+            writeIndex += 3;
+        }
+    }
+
     /// <summary>
     ///   Creates the actual mesh object.
     /// </summary>
-    private static ArrayMesh BuildMesh(Vector2[] vertices2D, int vertexCount, MembraneType membraneType,
-        out int surfaceIndex)
+    private static ArrayMesh BuildMesh(Vector2[] vertices2D, int vertexCount, float height, out int surfaceIndex)
     {
-        // This is actually a triangle list, but the index buffer is used to build
-        // the indices (to emulate a triangle fan)
-        var bufferSize = vertexCount + 2;
-        var indexSize = vertexCount * 3;
+        // Average of all outline points
+        Vector3 center = Vector3.Zero;
+
+        foreach (var point in vertices2D)
+        {
+            center += new Vector3(point.X, 0.0f, point.Y);
+        }
+
+        center /= vertexCount;
+
+        int layerCount = MembraneVerticalResolution * 2 + 1;
+
+        // The index list is actually a triangle list (each three consequtive indexes building a triangle)
+        // with the size of indexSize
+        var bufferSize = layerCount * vertexCount + 2;
+        var indexSize = (vertexCount * 2 + (layerCount - 1) * vertexCount * 2) * 3;
 
         var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
 
         // Build vertex, index, and uv lists
 
-        // Index mapping to build all triangles
-        var indices = new int[indexSize];
-        int currentVertexIndex = 1;
-
-        for (int i = 0; i < indexSize; i += 3)
-        {
-            indices[i] = 0;
-            indices[i + 1] = currentVertexIndex + 1;
-            indices[i + 2] = currentVertexIndex;
-
-            ++currentVertexIndex;
-        }
-
         // Write mesh data //
+        // for a point in points[,] array, on the layer of l and with original id of i,
+        // id is equal to i + l * count, where count is the amount of points on one layer
+        // (= amount of the outline points).
+        // Last two vertices are reserved for the topmost and the bottommost vertices of the mesh, respectively
         var vertices = new Vector3[bufferSize];
         var uvs = new Vector2[bufferSize];
+        var normals = new Vector3[bufferSize];
 
-        int writeIndex = 0;
-        writeIndex = InitializeCorrectMembrane(vertices2D, vertexCount, writeIndex, vertices, uvs, membraneType);
+        const float sideRounding = Constants.MEMBRANE_SIDE_ROUNDING;
+        const float smoothingPower = Constants.MEMBRANE_SMOOTHING_POWER;
 
-        if (writeIndex != bufferSize)
-            throw new Exception("Membrane buffer write ended up at wrong index");
+        float roundingMaximum = MathF.Pow(1.0f + sideRounding * 1.05f, smoothingPower);
+        float roundingMinimum = 1.0f;
+
+        // Place prism points, already with squishification
+        for (int layer = 0; layer < layerCount; ++layer)
+        {
+            float widthModifier = 1.0f - (MathF.Pow(sideRounding * MathF.Abs(layer - MembraneVerticalResolution)
+                / MembraneVerticalResolution + 1.0f, smoothingPower) - roundingMinimum) / roundingMaximum;
+
+            float vertical = height * (layer - MembraneVerticalResolution) / MembraneVerticalResolution;
+
+            // Iterate through outline points
+            for (int i = 0; i < vertexCount; ++i)
+            {
+                Vector3 point = new Vector3(vertices2D[i].X, 0.0f, vertices2D[i].Y);
+
+                Vector3 offsetFromCenter = point - center;
+                offsetFromCenter *= widthModifier;
+
+                point = new Vector3(center.X + offsetFromCenter.X, vertical, center.Z + offsetFromCenter.Z);
+
+                vertices[i + layer * vertexCount] = point;
+            }
+        }
+
+        // Top vertex
+        vertices[vertices.Length - 1] = new Vector3(center.X,
+            vertices[(layerCount - 1) * vertexCount].Y, center.Z);
+
+        // Bottom vertex
+        vertices[vertices.Length - 2] = new Vector3(center.X, vertices[0].Y, center.Z);
+
+        // Index mapping to build all triangles
+        var indices = new int[indexSize];
+
+        PlaceTriangles(vertexCount, layerCount, indices);
+
+        FinishMesh(vertexCount, layerCount, vertices, uvs, normals);
 
         // Godot might do this automatically
         // // Set the bounds to get frustum culling and LOD to work correctly.
@@ -253,6 +380,7 @@ public class MembraneShapeGenerator
 
         arrays[(int)Mesh.ArrayType.Vertex] = vertices;
         arrays[(int)Mesh.ArrayType.Index] = indices;
+        arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.TexUV] = uvs;
 
         // Create the mesh
@@ -399,13 +527,13 @@ public class MembraneShapeGenerator
             }
         }
 
-        float waveFrequency = 2.0f * Mathf.Pi * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
+        float waveFrequency = 2.0f * MathF.PI * Constants.MEMBRANE_NUMBER_OF_WAVES / vertices2D.Count;
 
         float heightMultiplier = membraneType.CellWall ?
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER_CELL_WALL :
             Constants.MEMBRANE_WAVE_HEIGHT_MULTIPLIER;
 
-        float waveHeight = Mathf.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
+        float waveHeight = MathF.Pow(circumference, Constants.MEMBRANE_WAVE_HEIGHT_DEPENDENCE_ON_SIZE)
             * heightMultiplier;
 
         // Make the membrane wavier
@@ -418,7 +546,7 @@ public class MembraneShapeGenerator
             // Turn 90 degrees
             direction = new Vector2(-direction.Y, direction.X);
 
-            var movement = direction * Mathf.Sin(waveFrequency * i) * waveHeight;
+            var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
 
             vertices2D[i] = point + movement;
         }

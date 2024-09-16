@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using Thread = System.Threading.Thread;
 public class AutoEvoRun
 {
     protected readonly IAutoEvoConfiguration configuration;
+    protected readonly AutoEvoGlobalCache globalCache;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
@@ -42,10 +44,11 @@ public class AutoEvoRun
 
     private int completeSteps;
 
-    public AutoEvoRun(GameWorld world)
+    public AutoEvoRun(GameWorld world, AutoEvoGlobalCache globalCache)
     {
         Parameters = new RunParameters(world);
         configuration = world.WorldSettings.AutoEvoConfiguration;
+        this.globalCache = globalCache;
     }
 
     private enum RunStage
@@ -164,6 +167,16 @@ public class AutoEvoRun
     }
 
     protected RunParameters Parameters { get; }
+
+    public static AutoEvoGlobalCache GetGlobalCache(AutoEvoRun? autoEvoRun, WorldGenerationSettings worldSettings)
+    {
+        if (autoEvoRun != null)
+        {
+            return autoEvoRun.globalCache;
+        }
+
+        return new AutoEvoGlobalCache(worldSettings);
+    }
 
     /// <summary>
     ///   Starts this run if not started already
@@ -346,7 +359,7 @@ public class AutoEvoRun
 
             combinedExternalEffects.TryGetValue(key, out var existingEffectAmount);
 
-            // We can ignore coefficients because we trust that CalculateFinalExternalEffectSizes has been called first
+            // We can ignore coefficients because we trust that CalculateFinalExternalEffectSizes has been called first,
             // and so we also don't need to
 
             combinedExternalEffects[key] = existingEffectAmount + entry.Constant;
@@ -357,7 +370,7 @@ public class AutoEvoRun
         foreach (var entry in combinedExternalEffects)
         {
             builder.Append(new LocalizedString("AUTO-EVO_POPULATION_CHANGED_2",
-                entry.Key.Species.FormattedName, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
+                entry.Key.Species.FormattedNameBbCode, entry.Value, entry.Key.Patch.Name, entry.Key.Event));
 
             builder.Append('\n');
         }
@@ -370,94 +383,50 @@ public class AutoEvoRun
     /// </summary>
     protected virtual void GatherInfo(Queue<IRunStep> steps)
     {
-        // TODO: allow passing in a seed
         var random = new XoShiRo256starstar();
-
-        var alreadyHandledSpecies = new HashSet<Species>();
 
         var map = Parameters.World.Map;
         var worldSettings = Parameters.World.WorldSettings;
 
         var autoEvoConfiguration = configuration;
 
+        var allSpecies = new HashSet<Species>();
+
+        var generateMicheCache = new SimulationCache(worldSettings);
+
         foreach (var entry in map.Patches)
         {
-            // TODO: No one should be allowed to update the SpeciesInPatch.
-            // If this happens, the root cause must be addressed.
+            steps.Enqueue(new GenerateMiche(entry.Value, generateMicheCache, globalCache));
 
-            // Iterate over a copy to be secure from changes to the dictionary.
-            var speciesInPatchCopy = entry.Value.SpeciesInPatch.ToList();
-            foreach (var speciesEntry in speciesInPatchCopy)
+            foreach (var species in entry.Value.SpeciesInPatch)
             {
-                // Trying to find where a null comes from https://github.com/Revolutionary-Games/Thrive/issues/3004
-                if (speciesEntry.Key == null)
-                    throw new Exception("Species key in a patch is null");
-
-                if (alreadyHandledSpecies.Contains(speciesEntry.Key))
-                    continue;
-
-                alreadyHandledSpecies.Add(speciesEntry.Key);
-
-                // The player species doesn't get random mutations. And also doesn't spread automatically
-                if (speciesEntry.Key.PlayerSpecies)
-                {
-                }
-                else
-                {
-                    steps.Enqueue(new FindBestMutation(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random, autoEvoConfiguration.MutationsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMutate,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationFraction,
-                        autoEvoConfiguration.SpeciesSplitByMutationThresholdPopulationAmount));
-
-                    steps.Enqueue(new FindBestMigration(autoEvoConfiguration, worldSettings, map, speciesEntry.Key,
-                        random, autoEvoConfiguration.MoveAttemptsPerSpecies,
-                        autoEvoConfiguration.AllowSpeciesToNotMigrate));
-                }
-            }
-
-            // Verify the length.
-            if (speciesInPatchCopy.Count != entry.Value.SpeciesInPatch.Count)
-            {
-                GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
-            }
-            else
-            {
-                // Check that each entry is still the same.
-                foreach (var speciesEntry in speciesInPatchCopy)
-                {
-                    if (!entry.Value.SpeciesInPatch.TryGetValue(speciesEntry.Key, out long value)
-                        || speciesEntry.Value != value)
-                    {
-                        GD.PrintErr("Auto-evo: Issue #1880 occured (Collection was modified).");
-                        break;
-                    }
-                }
-            }
-
-            if (entry.Value.SpeciesInPatch.Count < autoEvoConfiguration.LowBiodiversityLimit &&
-                random.NextDouble() < autoEvoConfiguration.BiodiversityAttemptFillChance)
-            {
-                steps.Enqueue(new IncreaseBiodiversity(autoEvoConfiguration, worldSettings, map, entry.Value, random));
+                allSpecies.Add(species.Key);
             }
         }
 
-        // The new populations don't depend on the mutations, this is so that when
-        // the player edits their species the other species they are competing
-        // against are the same (so we can show some performance predictions in the
-        // editor and suggested changes)
-        // Concurrent run is false here just to be safe, and as this is a single step this doesn't matter much
-        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, null, true)
-            { CanRunConcurrently = false });
+        foreach (var entry in map.Patches)
+        {
+            steps.Enqueue(new ModifyExistingSpecies(entry.Value, new SimulationCache(worldSettings), worldSettings,
+                random));
+        }
 
-        // Due to species splitting migrations may end up being invalid
-        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
-        // numbers
-        steps.Enqueue(new RemoveInvalidMigrations(alreadyHandledSpecies));
+        foreach (var species in allSpecies)
+        {
+            steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
+        }
+
+        // The new populations don't depend on the mutations, but will take into account changes in the miche tree.
+        // This is so that when the player edits their species the other species they are competing
+        // against are the same (so we can show some performance predictions in the editor and suggested changes)
+        steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, true));
+
+        steps.Enqueue(new RegisterNewSpecies(Parameters.World, allSpecies));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
 
-        steps.Enqueue(new ForceExtinction(map.Patches.Values.ToList(), autoEvoConfiguration));
+        // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
+        // numbers?
+        steps.Enqueue(new RemoveInvalidMigrations(allSpecies));
     }
 
     /// <summary>
@@ -508,6 +477,37 @@ public class AutoEvoRun
     }
 
     /// <summary>
+    ///   Single step run wrapper that handles checking timing if needed
+    /// </summary>
+    /// <returns>Returns true when step is complete and can be discarded</returns>
+    [SuppressMessage("ReSharper", "HeuristicUnreachableCode", Justification = "False positive due to Constant bool")]
+    private static bool RunSingleStep(IRunStep step, RunResults results)
+    {
+        DateTime startTime;
+
+#pragma warning disable CS0162 // Unreachable code detected
+        if (Constants.AUTO_EVO_TRACK_STEP_TIME)
+            startTime = DateTime.Now;
+
+        var result = step.RunStep(results);
+
+        if (Constants.AUTO_EVO_TRACK_STEP_TIME)
+        {
+            var duration = DateTime.Now - startTime;
+
+            if (duration > TimeSpan.FromSeconds(Constants.AUTO_EVO_SINGLE_STEP_WARNING_TIME))
+            {
+                GD.PrintErr($"Single auto-evo step {step.GetType().Name} took too long! Steps should be " +
+                    "split into sub-steps that don't take more than " +
+                    $"{Constants.AUTO_EVO_SINGLE_STEP_WARNING_TIME} seconds, but this step took: {duration}");
+            }
+        }
+#pragma warning restore CS0162 // Unreachable code detected
+
+        return result;
+    }
+
+    /// <summary>
     ///   Run this instance. Should only be called in a background thread
     /// </summary>
     private void Run()
@@ -548,6 +548,7 @@ public class AutoEvoRun
         switch (state)
         {
             case RunStage.GatheringInfo:
+            {
                 GatherInfo(runSteps);
 
                 // +2 is for this step and the result apply step
@@ -556,7 +557,10 @@ public class AutoEvoRun
                 Interlocked.Increment(ref completeSteps);
                 state = RunStage.Stepping;
                 return false;
+            }
+
             case RunStage.Stepping:
+            {
                 if (runSteps.Count < 1)
                 {
                     // All steps complete
@@ -600,11 +604,15 @@ public class AutoEvoRun
                 }
 
                 return false;
+            }
+
             case RunStage.Ended:
+            {
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
                 Interlocked.Increment(ref completeSteps);
                 return true;
+            }
         }
 
         throw new InvalidOperationException("run stage enum value not handled");
@@ -612,7 +620,7 @@ public class AutoEvoRun
 
     private void NormalRunPartOfNextStep()
     {
-        if (runSteps.Peek().RunStep(results))
+        if (RunSingleStep(runSteps.Peek(), results))
             runSteps.Dequeue();
 
         Interlocked.Increment(ref completeSteps);
@@ -627,7 +635,7 @@ public class AutoEvoRun
         {
             ++steps;
 
-            if (step.RunStep(results))
+            if (RunSingleStep(step, results))
                 break;
         }
 

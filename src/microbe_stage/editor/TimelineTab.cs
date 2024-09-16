@@ -110,7 +110,7 @@ public partial class TimelineTab : PanelContainer
             globalEventsContainer.FreeChildren();
             cachedGlobalTimelineElements = new List<TimelineSection>();
 
-            foreach (var entry in editor.CurrentGame.GameWorld.EventsLog)
+            foreach (var entry in editor.CurrentGame.GameWorld.EventsLog.OrderBy(s => s.Key))
             {
                 var section = new TimelineSection(customRichTextLabelScene, eventHighlightStyleBox,
                     (entry.Key, entry.Value))
@@ -164,7 +164,7 @@ public partial class TimelineTab : PanelContainer
             anchorRect = last?.HeaderGlobalRect ?? new Rect2(Vector2.Zero, Vector2.Zero);
         }
 
-        var diff = Mathf.Max(Mathf.Min(anchorRect.Position.Y, scrollRect.Position.Y), anchorRect.Position.Y +
+        var diff = MathF.Max(MathF.Min(anchorRect.Position.Y, scrollRect.Position.Y), anchorRect.Position.Y +
             anchorRect.Size.Y - scrollRect.Size.Y + (scrollRect.Size.Y - anchorRect.Size.Y));
 
         scrollContainer.ScrollVertical += (int)(diff - scrollRect.Position.Y);

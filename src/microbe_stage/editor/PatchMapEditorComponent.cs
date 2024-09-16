@@ -18,15 +18,6 @@ using Newtonsoft.Json;
 public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEditor>
     where TEditor : IEditorWithPatches
 {
-    [Export]
-    public NodePath? MapDrawerPath;
-
-    [Export]
-    public NodePath PatchDetailsPanelPath = null!;
-
-    [Export]
-    public NodePath SeedLabelPath = null!;
-
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
@@ -37,15 +28,22 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     protected Patch playerPatchOnEntry = null!;
 
 #pragma warning disable CA2213
+    [Export]
     protected PatchMapDrawer mapDrawer = null!;
+
+    [Export]
+    [AssignOnlyChildItemsOnDeserialize]
+    [JsonProperty]
     protected PatchDetailsPanel detailsPanel = null!;
+
+    [Export]
     private Label seedLabel = null!;
 #pragma warning restore CA2213
 
-    private Compound sunlight = null!;
-
     [JsonProperty]
     private FogOfWarMode fogOfWar;
+
+    private bool enabledMigrationPatchFilter;
 
     protected PatchMapEditorComponent()
     {
@@ -57,8 +55,14 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
+    /// <summary>
+    ///   Returns the patch where the player wants to move after editing
+    /// </summary>
     [JsonIgnore]
-    public Patch? SelectedPatch => targetPatch;
+    public Patch? TargetPatch => targetPatch;
+
+    [JsonIgnore]
+    public Patch? SelectedPatch => mapDrawer.SelectedPatch;
 
     /// <summary>
     ///   Called when the selected patch changes
@@ -70,10 +74,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         base._Ready();
 
-        mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
-        detailsPanel = GetNode<PatchDetailsPanel>(PatchDetailsPanelPath);
-        seedLabel = GetNode<Label>(SeedLabelPath);
-
         mapDrawer.OnSelectedPatchChanged = _ =>
         {
             UpdateShownPatchDetails();
@@ -83,13 +83,15 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         };
 
         detailsPanel.OnMoveToPatchClicked = SetPlayerPatch;
-
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        detailsPanel.OnMigrationAdded = ValidateMigration;
+        detailsPanel.OnMigrationWizardStepChanged = OnMigrationProgress;
     }
 
     public override void Init(TEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
+
+        detailsPanel.SpeciesToUseForMigrations = Editor.CurrentGame.GameWorld.PlayerSpecies;
 
         fogOfWar = Editor.CurrentGame.FreeBuild ?
             FogOfWarMode.Ignored :
@@ -142,6 +144,34 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
             // TODO: Log player species' migration
             targetPatch.AddSpecies(Editor.EditedBaseSpecies, 0);
         }
+
+        // Migrations
+        foreach (var migration in detailsPanel.Migrations)
+        {
+            if (migration.Amount <= 0 || migration.DestinationPatch == null || migration.SourcePatch == null)
+            {
+                GD.PrintErr("Not applying an invalid migration");
+                continue;
+            }
+
+            var playerSpecies = Editor.CurrentGame.GameWorld.PlayerSpecies;
+
+            var sourcePreviousPopulation = migration.SourcePatch.GetSpeciesSimulationPopulation(playerSpecies);
+
+            // Max is used here to ensure no negative population ends up being set
+            migration.SourcePatch.UpdateSpeciesSimulationPopulation(playerSpecies,
+                Math.Max(sourcePreviousPopulation - migration.Amount, 0));
+
+            if (migration.DestinationPatch.FindSpeciesByID(playerSpecies.ID) != null)
+            {
+                migration.DestinationPatch.UpdateSpeciesSimulationPopulation(playerSpecies,
+                    migration.DestinationPatch.GetSpeciesSimulationPopulation(playerSpecies) + migration.Amount);
+            }
+            else
+            {
+                migration.DestinationPatch.AddSpecies(playerSpecies, migration.Amount);
+            }
+        }
     }
 
     public override void OnMutationPointsChanged(int mutationPoints)
@@ -168,9 +198,9 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         base.OnLightLevelChanged(dayLightFraction);
 
-        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(sunlight, CompoundAmountType.Biome).Ambient;
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
         var templateMaxLightLevel =
-            Editor.CurrentPatch.GetCompoundAmountForDisplay(sunlight, CompoundAmountType.Template);
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
 
         // We don't want the light level in other patches be changed to zero if this callback is called while
         // we're on a patch that isn't affected by day/night effects
@@ -178,14 +208,14 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         {
             foreach (var patch in Editor.CurrentGame.GameWorld.Map.Patches.Values)
             {
-                var targetMaxLightLevel = patch.Biome.GetCompound(sunlight, CompoundAmountType.Biome);
+                var targetMaxLightLevel = patch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome);
 
                 var lightLevelAmount = new BiomeCompoundProperties
                 {
                     Ambient = targetMaxLightLevel.Ambient * dayLightFraction,
                 };
 
-                patch.Biome.CurrentCompoundAmounts[sunlight] = lightLevelAmount;
+                patch.Biome.CurrentCompoundAmounts[Compound.Sunlight] = lightLevelAmount;
             }
         }
 
@@ -210,21 +240,6 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     {
         UpdateShownPatchDetails();
         UpdateSeedLabel();
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (MapDrawerPath != null)
-            {
-                MapDrawerPath.Dispose();
-                PatchDetailsPanelPath.Dispose();
-                SeedLabelPath.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     /// <summary>
@@ -316,5 +331,98 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
     private void MoveToPatchClicked()
     {
         SetPlayerPatch(mapDrawer.SelectedPatch);
+    }
+
+    private void ValidateMigration(PatchDetailsPanel.Migration migration)
+    {
+        if (migration.SourcePatch == null || migration.Amount <= 0)
+        {
+            GD.PrintErr("Trying to check validity of migration without source patch or migration population amount");
+            return;
+        }
+
+        // Cannot move more population than there exists in the patch
+        if (migration.SourcePatch.GetSpeciesSimulationPopulation(Editor.CurrentGame.GameWorld.PlayerSpecies) <
+            migration.Amount || migration.Amount < 0)
+        {
+            detailsPanel.Migrations.Remove(migration);
+        }
+    }
+
+    private void OnMigrationProgress(PatchDetailsPanel.MigrationWizardStep step)
+    {
+        if (mapDrawer.Map == null)
+        {
+            GD.PrintErr("Map not set when setting up a migration");
+            return;
+        }
+
+        switch (step)
+        {
+            case PatchDetailsPanel.MigrationWizardStep.SelectSourcePatch:
+            {
+                // Deselect current patch to allow picking it again (if the player wants it to be the start position)
+                mapDrawer.SelectedPatch = null;
+
+                // Enable filter to show only valid patches for move
+
+                mapDrawer.ApplyPatchNodeEnabledStatus(p =>
+                    p.GetSpeciesSimulationPopulation(Editor.EditedBaseSpecies) > 0);
+                enabledMigrationPatchFilter = true;
+
+                break;
+            }
+
+            case PatchDetailsPanel.MigrationWizardStep.SelectDestinationPatch:
+            {
+                // Enable filter to show just patches next to the source one
+                var nextTo = detailsPanel.CurrentMigrationSourcePatch;
+                if (nextTo == null)
+                {
+                    GD.PrintErr("No current migration source patch set");
+                }
+                else
+                {
+                    // Reset selected patch to make the map behave better for this case
+                    mapDrawer.SelectedPatch = null;
+
+                    // Apply the filter
+                    // TODO: should this allow selecting undiscovered patches? The player species being present in a
+                    // patch doesn't reveal the patch so it is a bit weird to need to use a bunch of free moves to
+                    // reveal patches (this kind of feels like an exploit and someone might report it as a bug).
+                    mapDrawer.ApplyPatchNodeEnabledStatus(p =>
+                        p != nextTo && p.Adjacent.Contains(nextTo) && p.Visibility == MapElementVisibility.Shown);
+                    enabledMigrationPatchFilter = true;
+                }
+
+                break;
+            }
+
+            case PatchDetailsPanel.MigrationWizardStep.SelectPopulationAmount:
+            {
+                // At this step selecting any patches is not necessary or useful, so all patches are disabled for
+                // selection here for clarity
+
+                mapDrawer.SelectedPatch = null;
+                mapDrawer.ApplyPatchNodeEnabledStatus(false);
+                enabledMigrationPatchFilter = true;
+
+                break;
+            }
+
+            default:
+            {
+                // Otherwise reset the filter
+                if (enabledMigrationPatchFilter)
+                {
+                    mapDrawer.ApplyPatchNodeEnabledStatus(true);
+                    enabledMigrationPatchFilter = false;
+                }
+
+                break;
+            }
+        }
+
+        // When selecting a source patch, only show valid targets
     }
 }

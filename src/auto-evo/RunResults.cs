@@ -31,6 +31,10 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </remarks>
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
+    private readonly List<PossibleSpecies> modifiedSpecies = new();
+
+    private readonly Dictionary<Patch, Miche> micheByPatch = new();
+
     public enum NewSpeciesType
     {
         /// <summary>
@@ -67,11 +71,28 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 r.Value.SplitFrom?.ID));
     }
 
-    public void AddMutationResultForSpecies(Species species, Species? mutated)
+    public void AddNewMicheForPatch(Patch patch, Miche miche)
+    {
+        micheByPatch[patch] = miche;
+    }
+
+    public void AddMutationResultForSpecies(Species species, Species? mutated,
+        KeyValuePair<Patch, long> populationBoostInPatches)
     {
         MakeSureResultExistsForSpecies(species);
 
         results[species].MutatedProperties = mutated;
+
+        results[species].NewPopulationInPatches.TryGetValue(populationBoostInPatches.Key, out var existing);
+        results[species].NewPopulationInPatches[populationBoostInPatches.Key] =
+            existing + populationBoostInPatches.Value;
+
+        // This code is kept in case the population increase is changed to allow multiple items
+        /*foreach (var population in populationBoostInPatches)
+        {
+            results[species].NewPopulationInPatches.TryGetValue(population.Key, out var existing);
+            results[species].NewPopulationInPatches[population.Key] = existing + population.Value;
+        }*/
     }
 
     public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
@@ -113,8 +134,63 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         if (result.SplitOffPatches == null)
             return;
 
-        result.SpreadToPatches.RemoveAll(s =>
-            result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
+        lock (result.SpreadToPatches)
+        {
+            result.SpreadToPatches.RemoveAll(s =>
+                result.SplitOffPatches.Contains(s.From) || result.SplitOffPatches.Contains(s.To));
+        }
+    }
+
+    /// <summary>
+    ///   Makes sure that the species doesn't attempt to migrate to one patch from multiple source patches as this is
+    ///   currently not supported by <see cref="GetMigrationsTo"/>
+    /// </summary>
+    public void RemoveDuplicateTargetPatchMigrations(Species species)
+    {
+        SpeciesResult? result;
+
+        lock (results)
+        {
+            if (!results.TryGetValue(species, out result))
+                return;
+        }
+
+        lock (result.SpreadToPatches)
+        {
+            var spreads = result.SpreadToPatches;
+            int migrationCount = spreads.Count;
+
+            for (int i = 1; i < migrationCount; ++i)
+            {
+                for (int j = 0; j < i; ++j)
+                {
+                    // Remove later migrations that target the same patch as an earlier one
+                    if (spreads[i].To != spreads[j].To)
+                        continue;
+
+                    // Debugging code which can be enabled to track how much pruning happens
+                    /*GD.Print($"Removed Patch migration to {spreads[i].To} from {spreads[j].From} for " +
+                        $"species {species} as this is a duplicate migration target");*/
+
+                    spreads.RemoveAt(i);
+
+                    --i;
+                    --migrationCount;
+                    break;
+                }
+            }
+        }
+    }
+
+    public List<PossibleSpecies> GetPossibleSpeciesList()
+    {
+        return modifiedSpecies;
+    }
+
+    public void AddPossibleMutation(Species species, KeyValuePair<Patch, long> initialPopulationInPatches,
+        NewSpeciesType addType, Species parentSpecies)
+    {
+        modifiedSpecies.Add(new PossibleSpecies(species, initialPopulationInPatches, addType, parentSpecies));
     }
 
     public void AddNewSpecies(Species species, IEnumerable<KeyValuePair<Patch, long>> initialPopulationInPatches,
@@ -131,19 +207,16 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
-    public void AddSplitResultForSpecies(Species species, Species splitSpecies, List<Patch> patchesToConvert)
+    public void AddNewSpecies(Species species, KeyValuePair<Patch, long> initialPopulationInPatch,
+        NewSpeciesType addType, Species parentSpecies)
     {
-        if (patchesToConvert == null || patchesToConvert.Count < 1)
-            throw new ArgumentException("split patches is missing", nameof(patchesToConvert));
-
         MakeSureResultExistsForSpecies(species);
-        MakeSureResultExistsForSpecies(splitSpecies);
 
-        results[species].SplitOff = splitSpecies;
-        results[species].SplitOffPatches = patchesToConvert;
+        results[species].NewlyCreated = addType;
+        results[species].SplitFrom = parentSpecies;
 
-        results[splitSpecies].NewlyCreated = NewSpeciesType.SplitDueToMutation;
-        results[splitSpecies].SplitFrom = species;
+        results[species].NewPopulationInPatches[initialPopulationInPatch.Key] =
+            Math.Max(initialPopulationInPatch.Value, 0);
     }
 
     public void KillSpeciesInPatch(Species species, Patch patch, bool refundMigrations = false)
@@ -171,27 +244,24 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
-    public void AddTrackedEnergyForSpecies(MicrobeSpecies species, Patch patch, FoodSource niche,
-        float speciesFitness, float speciesEnergy, float totalFitness)
+    public void AddTrackedEnergyForSpecies(Species species, Patch patch, SelectionPressure pressure,
+        float speciesFitness, float totalFitness, float speciesEnergy)
     {
-        if (niche == null)
-            throw new ArgumentException("niche is missing", nameof(niche));
-
         MakeSureResultExistsForSpecies(species);
 
         var dataReceiver = results[species].GetEnergyResults(patch);
 
-        var nicheDescription = niche.GetDescription();
+        var nicheDescription = pressure.GetDescription();
         dataReceiver.PerNicheEnergy[nicheDescription] = new SpeciesPatchEnergyResults.NicheInfo
         {
             CurrentSpeciesFitness = speciesFitness,
             CurrentSpeciesEnergy = speciesEnergy,
             TotalFitness = totalFitness,
-            TotalAvailableEnergy = niche.TotalEnergyAvailable(),
+            TotalAvailableEnergy = pressure.GetEnergy(patch),
         };
     }
 
-    public void AddTrackedEnergyConsumptionForSpecies(MicrobeSpecies species, Patch patch,
+    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch,
         long unadjustedPopulation, float totalEnergy, float individualCost)
     {
         MakeSureResultExistsForSpecies(species);
@@ -298,9 +368,9 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     {
                         var patch = world.Map.GetPatch(populationEntry.Key.ID);
 
-                        if (patch.AddSpecies(entry.Key, populationEntry.Value) != true)
+                        if (!patch.AddSpecies(entry.Key, populationEntry.Value))
                         {
-                            GD.PrintErr("RunResults has new species with invalid patch or it was failed to be added");
+                            GD.PrintErr("RunResults has new species that already exists in patch");
                         }
                     }
                 }
@@ -363,6 +433,27 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
 
         world.Map.DiscardGameplayPopulations();
+    }
+
+    public Miche GetMicheForPatch(Patch patch)
+    {
+        if (!micheByPatch.TryGetValue(patch, out var miche))
+            throw new ArgumentException("Miche not found for " + patch.Name + " in MicheByPatch");
+
+        return miche;
+    }
+
+    /// <summary>
+    ///   Returns the miche by patch dictionary
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This should not be used in AutoEvo code, prefer <see cref="GetMicheForPatch"/>.
+    ///   </para>
+    /// </remarks>
+    public Dictionary<Patch, Miche> InspectPatchMicheData()
+    {
+        return micheByPatch;
     }
 
     /// <summary>
@@ -552,7 +643,14 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             {
                 // Theoretically, nothing prevents migration from several patches, so no continue.
                 if (migration.To == patch)
-                    migrationsToPatch.Add(resultEntry.Key, migration);
+                {
+                    // TODO: should this support the species migrating from multiple patches to the target patch
+                    if (!migrationsToPatch.TryAdd(resultEntry.Key, migration))
+                    {
+                        GD.PrintErr("Species tried to migrate to a target patch from multiple patches at once, " +
+                            "this is currently unsupported, losing this migration");
+                    }
+                }
             }
         }
 
@@ -901,7 +999,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 {
                     // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
                     LogEventGloballyAndLocally(world, patch,
-                        new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedName),
+                        new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedNameBbCodeUnstyled),
                         species.PlayerSpecies, "extinction.png");
 
                     continue;
@@ -912,20 +1010,20 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     if (finalPatchPopulation > previousPatchPopulation)
                     {
                         patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                species.FormattedName, finalPatchPopulation),
+                                species.FormattedNameBbCodeUnstyled, finalPatchPopulation),
                             species.PlayerSpecies, "popUp.png");
                     }
                     else
                     {
                         patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                species.FormattedName, finalPatchPopulation),
+                                species.FormattedNameBbCodeUnstyled, finalPatchPopulation),
                             species.PlayerSpecies, "popDown.png");
                     }
                 }
                 else
                 {
-                    patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL", species.FormattedName),
-                        species.PlayerSpecies, "extinctionLocal.png");
+                    patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL",
+                        species.FormattedNameBbCodeUnstyled), species.PlayerSpecies, "extinctionLocal.png");
                 }
 
                 if (globalPopulation != previousGlobalPopulation)
@@ -933,13 +1031,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     if (globalPopulation > previousGlobalPopulation)
                     {
                         world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_INCREASE",
-                                species.FormattedName, globalPopulation),
+                                species.FormattedNameBbCodeUnstyled, globalPopulation),
                             species.PlayerSpecies, "popUp.png");
                     }
                     else
                     {
                         world.LogEvent(new LocalizedString("TIMELINE_SPECIES_POPULATION_DECREASE",
-                                species.FormattedName, globalPopulation),
+                                species.FormattedNameBbCodeUnstyled, globalPopulation),
                             species.PlayerSpecies, "popDown.png");
                     }
                 }
@@ -950,19 +1048,19 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 // Log to destination patch
                 // TODO: these events need to dynamically reveal their names in the event log once the player
                 // discovers them
-                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM", migration.Key.FormattedName,
-                        migration.Value.From.VisibleName),
+                patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_FROM",
+                        migration.Key.FormattedNameBbCodeUnstyled, migration.Value.From.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
 
                 // Log to game world
                 world.LogEvent(new LocalizedString("GLOBAL_TIMELINE_SPECIES_MIGRATED_TO",
-                        migration.Key.FormattedName, migration.Value.To.VisibleName,
+                        migration.Key.FormattedNameBbCodeUnstyled, migration.Value.To.VisibleName,
                         migration.Value.From.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
 
                 // Log to origin patch
                 migration.Value.From.LogEvent(new LocalizedString("TIMELINE_SPECIES_MIGRATED_TO",
-                        migration.Key.FormattedName, migration.Value.To.VisibleName),
+                        migration.Key.FormattedNameBbCodeUnstyled, migration.Value.To.VisibleName),
                     migration.Key.PlayerSpecies, "newSpecies.png");
             }
 
@@ -981,13 +1079,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                     {
                         case NewSpeciesType.FillNiche:
                             LogEventGloballyAndLocally(world, patch, new LocalizedString("TIMELINE_NICHE_FILL",
-                                    newSpeciesEntry.FormattedName, speciesResult.SplitFrom.FormattedName),
-                                false, "newSpecies.png");
+                                newSpeciesEntry.FormattedNameBbCodeUnstyled,
+                                speciesResult.SplitFrom.FormattedNameBbCodeUnstyled), false, "newSpecies.png");
                             break;
                         case NewSpeciesType.SplitDueToMutation:
                             LogEventGloballyAndLocally(world, patch, new LocalizedString(
-                                    "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedName,
-                                    speciesResult.SplitFrom.FormattedName),
+                                    "TIMELINE_SELECTION_PRESSURE_SPLIT", newSpeciesEntry.FormattedNameBbCodeUnstyled,
+                                    speciesResult.SplitFrom.FormattedNameBbCodeUnstyled),
                                 false, "newSpecies.png");
                             break;
                         default:
@@ -1098,6 +1196,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return result.MutatedProperties != null || result.SplitFrom != null || result.Species.PlayerSpecies;
     }
 
+    /// <summary>
+    ///   A species that may come into existence due to auto-evo simulation, but it isn't guaranteed yet. These are
+    ///   resolved by <see cref="RegisterNewSpecies"/>
+    /// </summary>
+    public record struct PossibleSpecies(Species Species, KeyValuePair<Patch, long>
+        InitialPopulationInPatches, NewSpeciesType AddType, Species ParentSpecies);
+
     public class SpeciesResult
     {
         public Species Species;
@@ -1128,6 +1233,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         /// </summary>
         public NewSpeciesType? NewlyCreated;
 
+        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES:
         /// <summary>
         ///   If set, the specified species split off from this species taking all the population listed in
         ///   <see cref="SplitOffPatches"/>

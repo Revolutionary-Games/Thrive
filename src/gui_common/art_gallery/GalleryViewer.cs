@@ -401,7 +401,7 @@ public partial class GalleryViewer : CustomWindow
 
     private void OnGallerySelected(Button button)
     {
-        var selected = button.Name;
+        var selected = button.Name.ToString();
 
         var gallery = SimulationParameters.Instance.GetGallery(selected);
         assetsCategoryDropdown.Clear();
@@ -463,7 +463,7 @@ public partial class GalleryViewer : CustomWindow
 
         slideScreen.CurrentSlideIndex = CurrentCards.IndexOf((GalleryCard)playback);
         StopAllPlayback(playback);
-        activeAudioPlayers++;
+        ++activeAudioPlayers;
     }
 
     private void OnPlaybackStopped(object? sender, EventArgs args)

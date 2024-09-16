@@ -234,6 +234,49 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         SpawnPlayer();
     }
 
+    public void ContinueGameAsSpecies(Species species)
+    {
+        if (CurrentGame == null)
+            throw new InvalidOperationException("Trying to continue game but game is not set");
+
+        GD.Print("Continuing the game as: ", species.FormattedIdentifier);
+
+        CurrentGame.GameWorld.ReplacePlayerSpeciesWith(species);
+
+        // Find a patch to resume playing in
+        var patch = CurrentGame.GameWorld.Map.FindBestPatchForSpecies(species);
+
+        if (patch == null)
+        {
+            GD.PrintErr("Species selected to continue as has no population in any patch");
+            return;
+        }
+
+        // Stop being in game over state
+        BaseHUD.HidePatchExtinctionBox();
+        gameOver = false;
+        playerExtinctInCurrentPatch = false;
+
+        // Allow derived classes to customize things
+        OnGameContinuedAsSpecies(species, patch);
+
+        // Switch to the new patch to continue playing
+        if (CurrentGame.GameWorld.Map.CurrentPatch != patch)
+        {
+            CurrentGame.GameWorld.Map.CurrentPatch = patch;
+            UpdatePatchSettings();
+        }
+
+        // And spawn the player to continue
+        SpawnPlayer();
+
+        // Auto-evo needs to be re-done as player species is different
+        CurrentGame.GameWorld.ResetAutoEvoRun();
+
+        // Stop the extinction music
+        StartMusic();
+    }
+
     protected override void SetupStage()
     {
         EnsureWorldSimulationIsCreated();
@@ -372,6 +415,15 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
         playerExtinctInCurrentPatch = true;
 
         BaseHUD.ShowPatchExtinctionBox();
+    }
+
+    /// <summary>
+    ///   Called when the player has picked a new species to play as. Called before the new player is spawned.
+    /// </summary>
+    /// <param name="newPlayerSpecies">New player species</param>
+    /// <param name="inPatch">Patch in which the game is continuing (the patch hasn't been switched to yet)</param>
+    protected virtual void OnGameContinuedAsSpecies(Species newPlayerSpecies, Patch inPatch)
+    {
     }
 
     protected override void Dispose(bool disposing)

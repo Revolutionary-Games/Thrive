@@ -79,6 +79,29 @@ public partial class DebugOverlays
         }
     }
 
+    /// <summary>
+    ///   Total Nodes that are orphaned due to them being in various caches for re-use. Note that this is a pretty
+    ///   expensive method as in many places this needs to also count child nodes of the cached items.
+    /// </summary>
+    /// <returns>Number of orphaned Nodes in caches</returns>
+    public static int GetOrphanedCacheItems()
+    {
+        return GetToolTipCacheSize() + GetDataPointCacheSize();
+    }
+
+    public static int GetToolTipCacheSize()
+    {
+        return ToolTipHelper.GetDefaultToolTipCacheSize();
+    }
+
+    public static int GetDataPointCacheSize()
+    {
+        return DataPoint.GetDataPointCacheSize();
+    }
+
+    // TODO: a way for editors to report the orphaned nodes present in the stage that is detached
+    // See: https://github.com/Revolutionary-Games/Thrive/issues/3799
+
     public void ReportEntities(float totalWeight, int rawCount)
     {
         entityWeight = totalWeight;
@@ -154,6 +177,14 @@ public partial class DebugOverlays
         var customPhysicsAverage = customPhysics.Sum(s => s.AveragePhysicsTime);
         _ = customPhysicsAverage;
 
+        long orphaned = (long)Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount);
+
+        int intentionallyOrphaned = GetOrphanedCacheItems();
+
+        // Don't show intentionally orphaned nodes in the orphaned count
+        if (orphaned >= intentionallyOrphaned)
+            orphaned -= intentionallyOrphaned;
+
         metricsText.Text =
             new LocalizedString("METRICS_CONTENT", Performance.GetMonitor(Performance.Monitor.TimeProcess),
                     Math.Round(Performance.GetMonitor(Performance.Monitor.TimePhysicsProcess) + customPhysicsTime, 10),
@@ -165,7 +196,7 @@ public partial class DebugOverlays
                     Performance.GetMonitor(Performance.Monitor.RenderTotalObjectsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalDrawCallsInFrame),
                     Performance.GetMonitor(Performance.Monitor.RenderTotalPrimitivesInFrame),
-                    Performance.GetMonitor(Performance.Monitor.ObjectOrphanNodeCount),
+                    orphaned,
                     Math.Round(Performance.GetMonitor(Performance.Monitor.AudioOutputLatency) * 1000, 3), threads,
                     processorTime)
                 .ToString();

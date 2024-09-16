@@ -9,7 +9,7 @@ using Systems;
 ///   An organelle that has been placed in a simulated microbe. Very different from <see cref="OrganelleTemplate"/> and
 ///   <see cref="OrganelleDefinition"/>.
 /// </summary>
-public class PlacedOrganelle : IPositionedOrganelle
+public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 {
     private readonly List<Compound> tempCompoundsToProcess = new();
 
@@ -129,28 +129,6 @@ public class PlacedOrganelle : IPositionedOrganelle
     public OrganelleUpgrades? Upgrades { get; private set; }
 
     /// <summary>
-    ///   Computes the total storage capacity of this organelle
-    /// </summary>
-    [JsonIgnore]
-    public float StorageCapacity
-    {
-        get
-        {
-            float value = 0.0f;
-
-            foreach (var component in Components)
-            {
-                if (component is StorageComponent storage)
-                {
-                    value += storage.Capacity;
-                }
-            }
-
-            return value;
-        }
-    }
-
-    /// <summary>
     ///   Can be set by organelle components to override the enzymes returned by <see cref="GetEnzymes"/>. This is
     ///   not saved right now as this is only used by <see cref="LysosomeComponent"/> which will re-add when the
     ///   component is re-initialized.
@@ -182,21 +160,6 @@ public class PlacedOrganelle : IPositionedOrganelle
     }
 
     // TODO: remove if this stays unused
-    /// <summary>
-    ///   Checks if this organelle has the specified component type
-    /// </summary>
-    public bool HasComponent<T>()
-        where T : class
-    {
-        foreach (var component in Components)
-        {
-            // TODO: determine if is T or as T is better
-            if (component is T)
-                return true;
-        }
-
-        return false;
-    }
 
     /// <summary>
     ///   Gives organelles more compounds to grow (or takes free compounds).
@@ -396,7 +359,7 @@ public class PlacedOrganelle : IPositionedOrganelle
     {
         // The shape needs to be rotated 90 degrees to point forward for (so that the pilus is not a vertical column
         // but is instead a stabby thing)
-        var extraRotation = new Quaternion(new Vector3(1, 0, 0), Mathf.Pi * 0.5f);
+        var extraRotation = new Quaternion(new Vector3(1, 0, 0), MathF.PI * 0.5f);
 
         // Maybe should have a variable for physics shape offset if different organelles need different things
         var offset = new Vector3(0, 0, -1.0f);
@@ -411,6 +374,22 @@ public class PlacedOrganelle : IPositionedOrganelle
         }
 
         return (externalPosition + orientation * offset, orientation * extraRotation);
+    }
+
+    /// <summary>
+    ///   Clones this organelle, but doesn't preserve visual and graphics state. The new instance can be added to a
+    ///   different microbe to finish initializing it.
+    /// </summary>
+    /// <returns>A cloned instance based on the same core data but no full runtime state</returns>
+    public object Clone()
+    {
+        return new PlacedOrganelle(Definition, Position, Orientation, compoundsLeft.CloneShallow(),
+            (OrganelleUpgrades?)Upgrades?.Clone())
+        {
+            WasSplit = WasSplit,
+            IsDuplicate = IsDuplicate,
+            SisterOrganelle = SisterOrganelle,
+        };
     }
 
     private void InitializeComponents()
@@ -478,7 +457,7 @@ public class PlacedOrganelle : IPositionedOrganelle
         if (amountAvailable > MathUtils.EPSILON)
         {
             // We can take some
-            var amountToTake = Mathf.Min(allowedUseAmount, amountAvailable);
+            var amountToTake = MathF.Min(allowedUseAmount, amountAvailable);
 
             usedAmount += compounds.TakeCompound(compoundType, amountToTake);
         }

@@ -10,6 +10,9 @@ public class SpecifiedInputKey : ICloneable
 {
     private StringBuilder? toStringBuilder;
 
+    private StringName? marginLeftName;
+    private StringName? marginTopName;
+
     [JsonConstructor]
     public SpecifiedInputKey()
     {
@@ -85,10 +88,10 @@ public class SpecifiedInputKey : ICloneable
     /// <returns>The packed value</returns>
     public static ulong PackAxisWithDirection(int axis, float value, int device)
     {
-        // For direction we just need to preserve the sign
+        // For the direction we just need to preserve the sign
         ulong result = value < 0 ? 1U : 0U;
 
-        // For axis we preserve the sign with one bit
+        // For the axis we preserve the sign with one bit
         if (axis < 0)
         {
             result |= (0x1 << 1) | ((ulong)(axis * -1) << 2);
@@ -98,7 +101,7 @@ public class SpecifiedInputKey : ICloneable
             result |= (ulong)axis << 2;
         }
 
-        // For device we also preserve a sign bit
+        // For the device we also preserve a sign bit
         if (device < 0)
         {
             result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
@@ -140,8 +143,8 @@ public class SpecifiedInputKey : ICloneable
     /// <summary>
     ///   Packs a code along with a device identifier
     /// </summary>
-    /// <param name="code">The input code to pack, needs to be 31 bytes or less</param>
-    /// <param name="device">The device, needs to be 32 bytes or less</param>
+    /// <param name="code">The input code to pack, needs to be 31 bytes or fewer</param>
+    /// <param name="device">The device, needs to be 32 bytes or fewer</param>
     /// <returns>The packed value</returns>
     public static ulong PackCodeWithDevice(long code, int device)
     {
@@ -152,7 +155,7 @@ public class SpecifiedInputKey : ICloneable
 
         ulong result;
 
-        // For code we preserve the sign with one bit
+        // For the code we preserve the sign with one bit
         if (code < 0)
         {
             result = 0x1 | ((ulong)(code * -1) << 1);
@@ -162,7 +165,7 @@ public class SpecifiedInputKey : ICloneable
             result = (ulong)code << 1;
         }
 
-        // For device we also preserve a sign bit
+        // For the device we also preserve a sign bit
         if (device < 0)
         {
             result = (result & 0xffffffffL) | (0x1L << 32) | ((ulong)(device * -1) << 33);
@@ -194,9 +197,53 @@ public class SpecifiedInputKey : ICloneable
         return ((JoyButton)code, device);
     }
 
-    public Control GenerateGraphicalRepresentation()
+    public Control GenerateGraphicalRepresentation(LabelSettings labelSettings)
     {
         var container = new HBoxContainer();
+
+        // Add extra modifiers in front of the main graphical representation
+        if (Shift || Control || Alt)
+        {
+            if (Type is InputType.ControllerAxis or InputType.ControllerButton)
+            {
+                GD.PrintErr("Generated a graphical representation for a controller input with a modifier, " +
+                    "this is likely very wrong");
+            }
+
+            if (toStringBuilder == null)
+            {
+                toStringBuilder = new StringBuilder();
+            }
+            else
+            {
+                toStringBuilder.Clear();
+            }
+
+            AppendModifierText(toStringBuilder);
+
+            // Re-use StringNames if this single object is converted to a graphical representation multiple times
+            // TODO: could optimally push these even to a higher level code (or maybe make these static?) to reduce
+            // further how many times these are used
+            marginLeftName ??= new StringName("margin_left");
+            marginTopName ??= new StringName("margin_top");
+
+            var labelPositioner = new MarginContainer
+            {
+                MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+            };
+            labelPositioner.AddThemeConstantOverride(marginLeftName, 6);
+            labelPositioner.AddThemeConstantOverride(marginTopName, 2);
+
+            labelPositioner.AddChild(new Label
+            {
+                Text = toStringBuilder.ToString(),
+                LabelSettings = labelSettings,
+                VerticalAlignment = VerticalAlignment.Center,
+                MouseFilter = Godot.Control.MouseFilterEnum.Ignore,
+            });
+
+            container.AddChild(labelPositioner);
+        }
 
         switch (Type)
         {
@@ -351,7 +398,7 @@ public class SpecifiedInputKey : ICloneable
     /// <summary>
     ///   Creates a string for the button to show.
     /// </summary>
-    /// <returns>A human readable string.</returns>
+    /// <returns>A human-readable string.</returns>
     public override string ToString()
     {
         if (toStringBuilder == null)
@@ -363,23 +410,7 @@ public class SpecifiedInputKey : ICloneable
             toStringBuilder.Clear();
         }
 
-        if (Control)
-        {
-            toStringBuilder.Append(Localization.Translate("CTRL"));
-            toStringBuilder.Append('+');
-        }
-
-        if (Alt)
-        {
-            toStringBuilder.Append(Localization.Translate("ALT"));
-            toStringBuilder.Append('+');
-        }
-
-        if (Shift)
-        {
-            toStringBuilder.Append(Localization.Translate("SHIFT"));
-            toStringBuilder.Append('+');
-        }
+        AppendModifierText(toStringBuilder);
 
         if (Type is InputType.Key or InputType.KeyLabel or InputType.PhysicalKey)
         {
@@ -494,6 +525,27 @@ public class SpecifiedInputKey : ICloneable
 
             default:
                 throw new ArgumentException("Unknown type of event to convert to input key");
+        }
+    }
+
+    private void AppendModifierText(StringBuilder stringBuilder)
+    {
+        if (Control)
+        {
+            stringBuilder.Append(Localization.Translate("CTRL"));
+            stringBuilder.Append('+');
+        }
+
+        if (Alt)
+        {
+            stringBuilder.Append(Localization.Translate("ALT"));
+            stringBuilder.Append('+');
+        }
+
+        if (Shift)
+        {
+            stringBuilder.Append(Localization.Translate("SHIFT"));
+            stringBuilder.Append('+');
         }
     }
 

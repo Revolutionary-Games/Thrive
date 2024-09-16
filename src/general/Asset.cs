@@ -2,6 +2,7 @@
 using System.Text;
 using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   A general game asset such as models, sounds etc.

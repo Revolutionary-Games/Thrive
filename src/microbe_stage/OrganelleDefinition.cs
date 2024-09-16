@@ -5,10 +5,11 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 using UnlockConstraints;
 
 /// <summary>
-///   Definition for a type of an organelle. This is not a placed organelle in a microbe
+///   Definition for a type of organelle. This is not a placed organelle in a microbe
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -56,15 +57,9 @@ public class OrganelleDefinition : IRegistryType
     public float RelativeDensityVolume = 1;
 
     /// <summary>
-    ///   The (relative) chance this organelle is placed in an eukaryote when applying mutations or generating random
-    ///   species (to do roulette selection).
+    ///   Controls if Auto-Evo can place this organelle as a mutation
     /// </summary>
-    public float ChanceToCreate;
-
-    /// <summary>
-    ///   Same as <see cref="ChanceToCreate"/> but for prokaryotes (bacteria)
-    /// </summary>
-    public float ProkaryoteChance;
+    public bool AutoEvoCanPlace = true;
 
     /// <summary>
     ///   If set to true this part is unimplemented and isn't loadable (and not all properties are required)
@@ -81,6 +76,11 @@ public class OrganelleDefinition : IRegistryType
     ///   Controls the order of editor organelle selection buttons within a single section. Smaller values are first
     /// </summary>
     public int EditorButtonOrder;
+
+    /// <summary>
+    ///   How good organelle is at breaking down iron using siderophore
+    /// </summary>
+    public int IronBreakdownEfficiency;
 
     public OrganelleComponentFactoryInfo Components = new();
 
@@ -157,6 +157,12 @@ public class OrganelleDefinition : IRegistryType
     ///   Path to a scene that is used to modify / upgrade the organelle. If not set the organelle is not modifiable.
     /// </summary>
     public string? UpgradeGUI;
+
+    /// <summary>
+    ///   If set to true then <see cref="AvailableUpgrades"/> won't be displayed by the default upgrader control, but
+    ///   everything must be handled by <see cref="UpgradeGUI"/>.
+    /// </summary>
+    public bool UpgraderSkipDefaultControls;
 
     /// <summary>
     ///   The upgrades that are available for this organelle type
@@ -264,6 +270,12 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasSignalingFeature { get; private set; }
 
+    /// <summary>
+    ///   True when this organelle is one that uses oxygen as a process input (and is metabolism related). This is
+    ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
+    /// </summary>
+    public bool IsOxygenMetabolism { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
@@ -352,10 +364,13 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     The <see cref="PlacedOrganelle.HasComponent{T}"/> method checks for the actual component class this checks
-    ///     for the *factory* class. For performance reasons a few components are available as direct boolean
-    ///     properties, if a component you want to check for has such a boolean defined for it, use those instead of
-    ///     this general interface.
+    ///     This checks for the *factory* class. For performance reasons a few components are available as direct
+    ///     boolean properties, if a component you want to check for has such a boolean defined for it, use those
+    ///     instead of this general interface.
+    ///   </para>
+    ///   <para>
+    ///     It used to be the case that there was a variant on <see cref="PlacedOrganelle"/> checking the actual
+    ///     component type, but that was phased out due to runtime performance concerns.
     ///   </para>
     /// </remarks>
     public bool HasComponentFactory<T>()
@@ -407,12 +422,6 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name, "Density is unset or unrealistically low");
         }
 
-        if (ProkaryoteChance != 0 && RequiresNucleus)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Prokaryote chance is non-zero but player requires a nucleus to place this");
-        }
-
         if (InitialComposition == null || InitialComposition.Count < 1)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "InitialComposition is not set");
@@ -426,7 +435,7 @@ public class OrganelleDefinition : IRegistryType
                     "InitialComposition has negative or really small value");
             }
 
-            if (!entry.Key.IsCloud)
+            if (!SimulationParameters.Instance.GetCompoundDefinition(entry.Key).IsCloud)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
                     "InitialComposition has a compound that can't be a cloud");
@@ -482,8 +491,13 @@ public class OrganelleDefinition : IRegistryType
         // Fail with multiple default upgrades
         if (AvailableUpgrades.Values.Count(u => u.IsDefault) > 1)
         {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Multiple default upgrades specified");
+        }
+
+        if (UpgraderSkipDefaultControls && string.IsNullOrEmpty(UpgradeGUI))
+        {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Multiple default upgrades specified");
+                "Upgrader scene is required when default upgrade controls are suppressed");
         }
 
         // Check unlock conditions
@@ -511,6 +525,8 @@ public class OrganelleDefinition : IRegistryType
     public void Resolve(SimulationParameters parameters)
     {
         CalculateModelOffset();
+
+        IsOxygenMetabolism = false;
 
         RunnableProcesses = new List<TweakedProcess>();
 
@@ -542,8 +558,19 @@ public class OrganelleDefinition : IRegistryType
         {
             foreach (var process in Processes)
             {
-                RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
-                    process.Value));
+                var resolvedProcess = new TweakedProcess(parameters.GetBioProcess(process.Key),
+                    process.Value);
+
+                if (process.Value <= 0)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Process speed value should be above 0");
+                }
+
+                if (resolvedProcess.Process.IsMetabolismProcess && ProcessUsesOxygen(resolvedProcess))
+                    IsOxygenMetabolism = true;
+
+                RunnableProcesses.Add(resolvedProcess);
             }
         }
 
@@ -688,6 +715,17 @@ public class OrganelleDefinition : IRegistryType
         }
 
         upgradeScene = default(LoadedSceneWithModelInfo);
+
+        return false;
+    }
+
+    private bool ProcessUsesOxygen(TweakedProcess resolvedProcess)
+    {
+        foreach (var processInput in resolvedProcess.Process.Inputs)
+        {
+            if (processInput.Key.ID == Compound.Oxygen)
+                return true;
+        }
 
         return false;
     }

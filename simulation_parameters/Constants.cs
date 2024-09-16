@@ -167,6 +167,11 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
+    public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
+    public const float MEMBRANE_HEIGHT_MULTIPLIER = 1.0f;
+
+    public const float MEMBRANE_SMOOTHING_POWER = 3.0f;
+    public const float MEMBRANE_SIDE_ROUNDING = 20.0f;
 
     public const float MEMBRANE_ROOM_FOR_ORGANELLES = 1.9f;
     public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;
@@ -185,11 +190,36 @@ public static class Constants
     /// </remarks>
     public const float BASE_MOVEMENT_ATP_COST = 1.0f;
 
+    public const float BASE_MOVEMENT_FORCE = 900.0f;
+
+    public const float MAX_STRAIN_PER_ENTITY = 400.0f;
+    public const float MIN_STRAIN_SPRINT_REGAIN = 200.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PER_SECOND = 30.0f;
+
+    public const float PASSIVE_STRAIN_DECREASE_PRE_COOLDOWN_MULTIPLIER = 0.3f;
+
+    /// <summary>
+    ///   This is multiplied by the strain fraction to get the ATP usage multiplier
+    /// </summary>
+    public const float STRAIN_TO_ATP_USAGE_COEFFICIENT = 1.5f;
+
+    /// <summary>
+    ///   How much strain does not affect ATP usage at first
+    /// </summary>
+    public const float CANCELED_STRAIN = 10.0f;
+
+    public const float STRAIN_DECREASE_COOLDOWN_SECONDS = 0.5f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_SECOND = 72.0f;
+
+    public const float SPRINTING_STRAIN_INCREASE_PER_HEX = 0.15f;
+
+    public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
+
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 35.0f;
-
-    public const float BASE_MOVEMENT_FORCE = 900.0f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
@@ -223,11 +253,13 @@ public static class Constants
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster
     public const float CELL_MAX_ROTATION = 8.0f;
-    public const float CELL_MIN_ROTATION = 0.1f;
-    public const float CELL_ROTATION_INFLECTION_INERTIA = 25000000.0f;
+    public const float CELL_MIN_ROTATION = 0.10f;
+
+    public const float CELL_ROTATION_INFLECTION_INERTIA = 250000000.0f;
     public const float CELL_ROTATION_RADIUS_FACTOR = 150.0f;
-    public const float CILIA_ROTATION_FACTOR = 32000000.0f;
+    public const float CILIA_ROTATION_FACTOR = 120000000.0f;
     public const float CILIA_RADIUS_FACTOR_MULTIPLIER = 8000000.0f;
+    public const float CELL_TURN_INFLECTION_RADIANS = 0.4f;
 
     // TODO: remove if these stay unused
     // // These speed values are also reversed like the above
@@ -293,8 +325,8 @@ public static class Constants
     public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
 
     /// <summary>
-    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
-    ///   heavier than normal microbes, as such this is set pretty high.
+    ///   Multiplier for how much individual cells in a colony contribute to the entity limit. Actually colonies seem
+    ///   quite a bit heavier than normal microbes, as such this is set pretty high.
     /// </summary>
     public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
@@ -309,7 +341,7 @@ public static class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 5.25f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 1200;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -348,11 +380,6 @@ public static class Constants
     public const int INITIAL_SPLIT_POPULATION_MIN = 600;
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
 
-    /// <summary>
-    ///   If true a mutated copy of the (player) species is created when entering the editor
-    /// </summary>
-    public const bool CREATE_COPY_OF_EDITED_SPECIES = false;
-
     public const string MICROBE_MOVEMENT_SOUND = "res://assets/sounds/soundeffects/microbe-movement-ambience.ogg";
     public const string MICROBE_ENGULFING_MODE_SOUND = "res://assets/sounds/soundeffects/engulfment.ogg";
     public const string MICROBE_BINDING_MODE_SOUND = "res://assets/sounds/soundeffects/binding.ogg";
@@ -389,9 +416,33 @@ public static class Constants
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
-    public const float AGENT_EMISSION_VELOCITY = 16.0f;
+    public const float AGENT_EMISSION_VELOCITY = 18.5f;
 
     public const float OXYTOXY_DAMAGE = 15.0f;
+
+    public const float CYTOTOXIN_DAMAGE = 12.0f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE = 14.0f;
+
+    public const float CHANNEL_INHIBITOR_ATP_DEBUFF = 0.5f;
+    public const float CHANNEL_INHIBITOR_DEBUFF_DURATION = 15;
+
+    public const float MACROLIDE_BASE_MOVEMENT_DEBUFF = 0.8f;
+    public const float MACROLIDE_DEBUFF_DURATION = 5;
+
+    public const float TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH = 0.5f;
+
+    /// <summary>
+    ///   Each oxygen using organelle in a cell increases damage caused by oxygen-inhibiting toxin by this amount,
+    ///   up to a cap.
+    /// </summary>
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYGEN_INHIBITOR_DAMAGE_BUFF_MAX = 0.5f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_PER_ORGANELLE = 0.05f;
+
+    public const float OXYTOXY_DAMAGE_DEBUFF_MAX = 0.75f;
 
     /// <summary>
     ///   How much a cell's speed is slowed when travelling through slime
@@ -412,6 +463,18 @@ public static class Constants
     ///   Length in seconds for slime secretion cooldown
     /// </summary>
     public const float MUCILAGE_COOLDOWN_TIMER = 1.5f;
+
+    /// <summary>
+    ///   How many times cell gets slowed down with mucocyst (slime jet upgrade) on
+    /// </summary>
+    public const float MUCOCYST_SPEED_MULTIPLIER = 0.01f;
+
+    public const float MUCOCYST_MINIMUM_MUCILAGE = 0.2f;
+
+    /// <summary>
+    ///   How much mucocyst (slime jet upgrade) drains mucilage per second
+    /// </summary>
+    public const float MUCOCYST_MUCILAGE_DRAIN = 0.5f;
 
     public const float TOXIN_PROJECTILE_PHYSICS_SIZE = 1;
 
@@ -519,10 +582,11 @@ public static class Constants
     public const float DEFAULT_MICROBE_VENT_THRESHOLD = 2.0f;
 
     /// <summary>
-    ///   If more chunks exist at once than this, then some are forced to despawn immediately. This value is lowered
-    ///   as spawned and microbe corpse chunks have now their individual limits (so the real limit is double this)
+    ///   If more chunks exist at once than this, then some are forced to despawn immediately. In reality the effective
+    ///   value is higher as spawned and microbe corpse chunks have now their individual limits (so the real limit is
+    ///   double this)
     /// </summary>
-    public const int FLOATING_CHUNK_MAX_COUNT = 35;
+    public const int FLOATING_CHUNK_MAX_COUNT = 50;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 5000.0f;
 
@@ -547,7 +611,7 @@ public static class Constants
     public const float INTERACTION_DEFAULT_VISIBILITY_DISTANCE = 20.0f;
     public const float INTERACTION_DEFAULT_INTERACT_DISTANCE = 8.5f;
 
-    public const float INTERACTION_MAX_ANGLE_TO_VIEW = Mathf.Pi;
+    public const float INTERACTION_MAX_ANGLE_TO_VIEW = MathF.PI;
 
     public const float WORLD_PROGRESS_BAR_FULL_UPDATE_INTERVAL = 0.1f;
     public const float WORLD_PROGRESS_BAR_MAX_DISTANCE = 15.0f;
@@ -571,9 +635,30 @@ public static class Constants
     public const int MAX_DAMAGE_EVENTS = 1000;
 
     /// <summary>
+    ///   The maximum amount of ATP for a cell to take damage from lack of ATP. This used to be a hard-coded zero
+    ///   but while under strain, ATP never reached that low, so an extra margin for ATP damage was added.
+    /// </summary>
+    public const float ATP_DAMAGE_THRESHOLD = 0.05f;
+
+    /// <summary>
     ///   Amount of health per second regenerated
     /// </summary>
     public const float HEALTH_REGENERATION_RATE = 1.5f;
+
+    /// <summary>
+    ///   Time until cell can regenerate after taking damage;
+    /// </summary>
+    public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
+
+    /// <summary>
+    ///   This much damage has to be dealt in a single instance to prevent health regen. This is pretty high to avoid
+    ///   small trickle damage the player can't notice from preventing health regen.
+    /// </summary>
+    public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
+
+    public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
+
+    public const float SCREEN_DAMAGE_FLASH_DECAY_SPEED = 1.0f;
 
     /// <summary>
     ///   Cells need at least this much ATP to regenerate health passively. This is now less than one to allow cells
@@ -678,7 +763,7 @@ public static class Constants
     /// </summary>
     public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
-    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 1.5f;
+    public const float EUKARYOTIC_ENGULF_SIZE_MULTIPLIER = 2.0f;
 
     /// <summary>
     ///   The duration for which an engulfable object can't be engulfed after being expelled.
@@ -716,6 +801,22 @@ public static class Constants
     public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
 
     /// <summary>
+    ///   How long can cell be in engulf mode after activating without ATP
+    /// </summary>
+    public const float ENGULF_NO_ATP_TIME = 3.0f;
+
+    /// <summary>
+    ///   How much cell is damaged from engulfing while without ATP
+    /// </summary>
+    public const float ENGULF_NO_ATP_DAMAGE = 10.0f;
+
+    /// <summary>
+    ///   If cell has less than this ATP, then it triggers forced mode enter and takes damage.
+    ///   <see cref="Components.MicrobeControlHelpers.EnterEngulfModeForcedState"/>
+    /// </summary>
+    public const float ENGULF_NO_ATP_TRIGGER_THRESHOLD = 0.7f;
+
+    /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell
     /// </summary>
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
@@ -740,6 +841,8 @@ public static class Constants
     ///   The maximum cap for efficiency of digestion.
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
+
+    public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
 
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.25f;
 
@@ -834,12 +937,19 @@ public static class Constants
     public const int METABALL_MOVE_COST = 3;
     public const int METABALL_RESIZE_COST = 3;
 
+    public const float METABALL_MIN_SIZE = 0.4f;
+    public const float METABALL_SIZE_STEP = 0.1f;
+    public const float METABALL_MAX_SIZE = 5.0f;
+
     public const float DIVIDE_EXTRA_DAUGHTER_OFFSET = 3.0f;
 
     // Corpse info
     public const float CORPSE_COMPOUND_COMPENSATION = 85.0f;
     public const int CORPSE_CHUNK_DIVISOR = 3;
-    public const float CORPSE_CHUNK_AMOUNT_DIVISOR = 3.0f;
+    public const float CORPSE_CHUNK_AMOUNT_MULTIPLIER = 1.0f;
+    public const int CORPSE_CHUNK_AMOUNT_CAP = 20;
+    public const int CORPSE_CHUNK_AMOUNT_DIMINISH_AFTER = 8;
+    public const int CORPSE_CHUNK_AMOUNT_DIMINISH_MORE_AFTER = 16;
     public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
     public const string DEFAULT_CHUNK_MODEL_NAME = "cytoplasm";
 
@@ -865,7 +975,7 @@ public static class Constants
     public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
     public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
     public const float CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL = 0.25f;
-    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+    public const Compound CHEMORECEPTOR_DEFAULT_COMPOUND = Compound.Glucose;
 
     /// <summary>
     ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
@@ -892,11 +1002,15 @@ public static class Constants
     public const float MIN_OPACITY_CHITIN = 0.4f;
     public const float MAX_OPACITY_CHITIN = 1.2f;
 
+    public const float ORGANELLE_TINT_STRENGTH = 0.1f;
+
     // Min Opacity Mutation
     public const float MIN_OPACITY_MUTATION = -0.01f;
     public const float MAX_OPACITY_MUTATION = 0.01f;
 
     // Mutation Variables
+    public const int MAX_VARIANTS_PER_MUTATION = 50;
+    public const int MAX_VARIANTS_IN_MUTATIONS = 100;
     public const float MUTATION_BACTERIA_TO_EUKARYOTE = 0.01f;
     public const float MUTATION_CREATION_RATE = 0.25f;
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
@@ -975,32 +1089,22 @@ public static class Constants
     public const int DIFFERENCES_FOR_GENUS_SPLIT = 1;
 
     /// <summary>
-    ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
-    ///   etc. for which is the most beneficial
-    /// </summary>
-    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 15;
-
-    /// <summary>
     ///   Populations of species that are under this will be killed off by auto-evo
     /// </summary>
-    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 30;
 
     // Auto evo population algorithm tweak variables
     // TODO: move all of these into auto-evo_parameters.json
-    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 200;
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 300;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
     public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
-    public const float AUTO_EVO_ATP_USE_SCORE_MULTIPLIER = 0.0033f;
-    public const float AUTO_EVO_GLUCOSE_USE_SCORE_MULTIPLIER = 20;
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
     public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
-    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.1f;
-    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.4f;
-    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 150000;
-    public const float AUTO_EVO_THERMOSYNTHESIS_ENERGY_AMOUNT = 500;
+    public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
     public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 2400;
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
@@ -1011,16 +1115,22 @@ public static class Constants
 
     public const float AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE = 2.5f;
 
-    public const int AUTO_EVO_MINIMUM_SPECIES_SIZE_BEFORE_SPLIT = 80;
-    public const bool AUTO_EVO_ALLOW_SPECIES_SPLIT_ON_NO_MUTATION = true;
+    public const double AUTO_EVO_COLOR_CHANGE_MAX_STEP = 0.5f;
 
-    public const double AUTO_EVO_COMPOUND_RATIO_POWER_BIAS = 1;
-    public const double AUTO_EVO_ABSOLUTE_PRODUCTION_POWER_BIAS = 0.5;
+    public const float AUTO_EVO_MUTATION_RIGIDITY_STEP = 0.35f;
+    public const int AUTO_EVO_MAX_MUTATION_RECURSIONS = 3;
+
+    public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
+    public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
     /// <summary>
     ///   How much auto-evo affects the player species compared to the normal amount
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
+
+    public const bool AUTO_EVO_TRACK_STEP_TIME = false;
+
+    public const float AUTO_EVO_SINGLE_STEP_WARNING_TIME = 0.4f;
 
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
     public const float GLUCOSE_MIN = 0.0f;
@@ -1048,7 +1158,7 @@ public static class Constants
     public const int MAX_DESPAWNS_PER_FRAME = 4;
 
     /// <summary>
-    ///   Multiplier for how much organelles inside spawned cells contribute to the entity count.
+    ///   Multiplier for how many organelles inside spawned cells contribute to the entity count.
     /// </summary>
     public const float ORGANELLE_ENTITY_WEIGHT = 0.1f;
 
@@ -1140,7 +1250,7 @@ public static class Constants
     public const int SUBMENU_CANCEL_PRIORITY = -1;
 
     /// <summary>
-    ///   Popups have a highest priority to ensure they can react first.
+    ///   Popups have the highest priority to ensure they can react first.
     /// </summary>
     public const int POPUP_CANCEL_PRIORITY = int.MaxValue;
 
@@ -1148,6 +1258,17 @@ public static class Constants
     public const int CUSTOM_FOCUS_DRAWER_RADIUS_POINTS = 12;
     public const int CUSTOM_FOCUS_DRAWER_WIDTH = 3;
     public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
+
+    /// <summary>
+    ///   Performance in FPS below this value triggers the main menu low performance warning (if 3D backgrounds are
+    ///   enabled)
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_FPS = 28.5f;
+
+    /// <summary>
+    ///   How many seconds until low performance warning can be triggered after the main menu is started
+    /// </summary>
+    public const float MAIN_MENU_LOW_PERFORMANCE_CHECK_AFTER = 28.5f;
 
     /// <summary>
     ///   Maximum amount of snapshots to store in patch history.
@@ -1235,8 +1356,6 @@ public static class Constants
 
     public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
     public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
-
-    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
 
     public const string PHYSICS_DUMP_PATH = LOGS_FOLDER + "/physics_dump.bin";
 
@@ -1356,6 +1475,8 @@ public static class Constants
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
 
+    public const int MEMBRANE_RENDER_PRIORITY = 20;
+
     /// <summary>
     ///   Minimum hex distance before the same render priority.
     /// </summary>
@@ -1385,11 +1506,11 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
-    // Min/max values for each customisable difficulty option
+    // Min/max values for each customizable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
     public const float MAX_MP_MULTIPLIER = 2;
-    public const float MIN_AI_MUTATION_RATE = 0.5f;
-    public const float MAX_AI_MUTATION_RATE = 5;
+    public const float MIN_AI_MUTATION_RATE = 0.7f;
+    public const float MAX_AI_MUTATION_RATE = 3;
     public const float MIN_COMPOUND_DENSITY = 0.2f;
     public const float MAX_COMPOUND_DENSITY = 2;
     public const float MIN_PLAYER_DEATH_POPULATION_PENALTY = 1;
@@ -1418,6 +1539,8 @@ public static class Constants
     ///   meshes to get a smaller bounding box working
     /// </summary>
     public const float DEBUG_DRAW_MAX_DISTANCE_ORIGIN = 1000000000;
+
+    public const int CREATURE_MESH_RESOLUTION = 3;
 
     /// <summary>
     ///   Extra time passed to <see cref="HUDMessages"/> when exiting the editor. Needs to be close to (or higher)
@@ -1504,6 +1627,12 @@ public static class Constants
 
     public const float CONTROLLER_AXIS_REBIND_REQUIRED_STRENGTH = 0.5f;
 
+    /// <summary>
+    ///   Used to allow bindings like CTRL+A to happen while also allowing CTRL to be bound by itself if no further
+    ///   keys are pressed for this amount of time.
+    /// </summary>
+    public const float MODIFIER_KEY_REBIND_DELAY = 0.5f;
+
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
     /// <summary>
@@ -1525,6 +1654,8 @@ public static class Constants
 
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
+
+    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
 
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";

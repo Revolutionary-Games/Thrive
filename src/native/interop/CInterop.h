@@ -30,6 +30,10 @@ extern "C"
     /// other calls to the library have been performed
     [[maybe_unused]] THRIVE_NATIVE_API void ShutdownThriveLibrary();
 
+    /// \brief Gets the intercommunication bridge for the other native modules to use. Return value should be treated
+    /// as read only.
+    [[maybe_unused]] THRIVE_NATIVE_API NativeLibIntercommunicationOpaque* GetIntercommunicationBridge();
+
     // ------------------------------------ //
     // Logging
 
@@ -80,10 +84,10 @@ extern "C"
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3* velocityReceiver, JVecF3* angularVelocityReceiver);
 
     [[maybe_unused]] THRIVE_NATIVE_API void GiveImpulse(
-        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse);
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 impulse, bool autoActivate);
 
     [[maybe_unused]] THRIVE_NATIVE_API void GiveAngularImpulse(
-        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse);
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularImpulse, bool autoActivate);
 
     [[maybe_unused]] THRIVE_NATIVE_API void ApplyBodyControl(PhysicalWorld* physicalWorld, PhysicsBody* body,
         JVecF3 movementImpulse, JQuat targetRotation, float rotationRate);
@@ -99,13 +103,13 @@ extern "C"
         PhysicalWorld* physicalWorld, PhysicsBody* body, JVec3 position, JQuat rotation, bool activate = true);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocity(
-        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity);
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, bool autoActivate);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyAngularVelocity(
-        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity);
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 angularVelocity, bool autoActivate);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyVelocityAndAngularVelocity(
-        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity);
+        PhysicalWorld* physicalWorld, PhysicsBody* body, JVecF3 velocity, JVecF3 angularVelocity, bool autoActivate);
 
     [[maybe_unused]] THRIVE_NATIVE_API void SetBodyAllowSleep(
         PhysicalWorld* physicalWorld, PhysicsBody* body, bool allowSleep);

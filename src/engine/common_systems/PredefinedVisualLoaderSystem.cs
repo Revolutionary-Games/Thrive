@@ -17,6 +17,11 @@ using World = DefaultEcs.World;
 ///     something this has runtime cost of 1 even though 0.25-0.5 would be more suitable based on raw numbers.
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     TODO: could pool some visuals to decrease the performance hit spawning a bunch of stuff causes
+///   </para>
+/// </remarks>
 [With(typeof(PredefinedVisuals))]
 [With(typeof(SpatialInstance))]
 [RuntimeCost]
@@ -76,7 +81,7 @@ public sealed class PredefinedVisualLoaderSystem : AEntitySetSystem<float>
 
             if (scene == null)
             {
-                // Try to fallback to an error scene
+                // Try to fall back to an error scene
                 errorScene ??= LoadVisual(simulationParameters.GetErrorVisual());
                 scene = errorScene;
             }

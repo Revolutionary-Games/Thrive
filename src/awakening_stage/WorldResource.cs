@@ -3,6 +3,7 @@ using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   A defined world resource

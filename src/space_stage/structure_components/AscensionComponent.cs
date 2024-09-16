@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 public class AscensionComponent : SpaceStructureComponent
 {

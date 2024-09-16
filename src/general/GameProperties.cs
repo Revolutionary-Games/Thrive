@@ -430,7 +430,7 @@ public class GameProperties
             {
                 var finalPos = direction * distance;
                 var template = new CellTemplate(type,
-                    new Hex(Mathf.RoundToInt(finalPos.X), Mathf.RoundToInt(finalPos.Y)), 0);
+                    new Hex(MathUtils.RoundToInt(finalPos.X), MathUtils.RoundToInt(finalPos.Y)), 0);
 
                 if (species.Cells.CanPlace(template, workMemory1, workMemory2))
                 {
@@ -507,7 +507,7 @@ public class GameProperties
     private void ApplyDescensionPerks()
     {
         // TODO: implement the other perks
-        float osmoregulationMultiplier = Mathf.Pow(0.8f, AscensionCounter);
+        float osmoregulationMultiplier = MathF.Pow(0.8f, AscensionCounter);
 
         // Need to ensure the world has a custom difficulty we can modify here
         var modifiedDifficulty = GameWorld.WorldSettings.Difficulty.Clone();

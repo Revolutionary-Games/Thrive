@@ -14,10 +14,13 @@ using Godot;
 using SharedBase.Utilities;
 
 /// <summary>
-///   Calling interface from C# to the native code side of things for the native module
+///   Calling interface from C# to the native code side of things for the native module. For the GDExtension stuff see
+///   <see cref="ExtensionInterop"/>
 /// </summary>
 public static class NativeInterop
 {
+    private const string GODOT_INTERNAL_PATH_LIKELY_MARKER = "data_Thrive_";
+
     // Need these delegate holders to keep delegates alive
     private static readonly NativeMethods.OnLogMessage LogMessageCallback = ForwardMessage;
 
@@ -34,6 +37,11 @@ public static class NativeInterop
     private static bool cpuIsInsufficient;
 
     private static bool printedDistributableNotice;
+    private static bool printedErrorAboutExecutablePath;
+
+    private static int version = -1;
+
+    private static bool printedDistributableWarning;
 
 #if DEBUG
     private static bool printedSteamLibName;
@@ -111,7 +119,7 @@ public static class NativeInterop
             throw new InvalidOperationException("Native library is detected as incompatible");
         }
 
-        int version = NativeMethods.CheckAPIVersion();
+        version = NativeMethods.CheckAPIVersion();
 
         if (version != NativeConstants.Version)
         {
@@ -223,6 +231,23 @@ public static class NativeInterop
     public static void DisableAvx()
     {
         disableAvx = true;
+    }
+
+    /// <summary>
+    ///   Gets the intercommunication interface for the native libraries
+    /// </summary>
+    /// <returns>IntPtr put into the variant on success, 0 on failure</returns>
+    public static Variant GetIntercommunication(out int libraryVersion)
+    {
+        libraryVersion = version;
+
+        if (!nativeLoadSucceeded)
+        {
+            GD.PrintErr("Native load hasn't succeeded, cannot get intercommunication");
+            return Variant.CreateFrom(0);
+        }
+
+        return NativeMethods.GetIntercommunicationBridge().ToInt64();
     }
 
     public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
@@ -472,6 +497,9 @@ public static class NativeInterop
             if (LookForLibraryUpInFolders(steamName, out loaded))
                 return loaded;
 
+            if (LoadLibraryIfExists(Path.Join(GetExecutableFolder(), steamName), out loaded))
+                return loaded;
+
             GD.PrintErr("Steam API library seems to be missing");
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
@@ -481,6 +509,33 @@ public static class NativeInterop
 #if DEBUG
             GD.Print("Loading non-thrive library: ", libraryName);
 #endif
+            return NativeLibrary.Load(libraryName, assembly, searchPath);
+        }
+
+        if (library == NativeConstants.Library.ThriveExtension)
+        {
+            // Special GDExtension handling, we assume Godot has already loaded it
+
+            var modules = Process.GetCurrentProcess().Modules;
+            var count = modules.Count;
+
+            for (var i = 0; i < count; ++i)
+            {
+                var module = modules[i];
+
+                if (module.ModuleName.Contains("thrive_extension"))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Trying to use already loaded module path: {module.FileName}");
+#endif
+
+                    return NativeLibrary.Load(module.FileName);
+                }
+            }
+
+            GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
+                "will likely fail");
+
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
 
@@ -498,7 +553,12 @@ public static class NativeInterop
         if (LoadLibraryIfExists(NativeConstants.GetPathToLibraryDll(library, currentPlatform,
                 NativeConstants.GetLibraryVersion(library), true, GetTag(true)), out loaded))
         {
-            GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+            if (!printedDistributableWarning)
+            {
+                GD.Print("Loaded a distributable debug library, this is not optimal but likely works");
+                printedDistributableWarning = true;
+            }
+
             return loaded;
         }
 #endif
@@ -537,15 +597,68 @@ public static class NativeInterop
         return NativeLibrary.Load(libraryName, assembly, searchPath);
     }
 
+    /// <summary>
+    ///   Tries to get a sensible executable folder. Due to Godot this may not always work but this tries to be right
+    /// </summary>
+    /// <returns>Executable path or empty string</returns>
+    private static string GetExecutableFolder()
+    {
+        try
+        {
+            var location = AppDomain.CurrentDomain.BaseDirectory;
+
+            if (location == null)
+            {
+                throw new Exception("Entry assembly location is empty");
+            }
+
+            if (location.StartsWith("file://"))
+            {
+                location = location.Substring("file://".Length);
+            }
+
+            // Remove one folder level if this is likely an internal Godot path (when packaged)
+            if (location.Contains(GODOT_INTERNAL_PATH_LIKELY_MARKER))
+                return Path.Join(location, "..");
+
+            return location;
+        }
+        catch (Exception e)
+        {
+            // Cannot detect
+            if (!printedErrorAboutExecutablePath)
+            {
+                GD.PrintErr("Cannot determine current location of the running executable: ", e);
+                printedErrorAboutExecutablePath = true;
+            }
+
+            return string.Empty;
+        }
+    }
+
     private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)
     {
-        if (File.Exists(libraryPath))
-        {
-#if DEBUG_LIBRARY_LOAD
-            GD.Print("Loading library: ", libraryPath);
-#endif
+        var executableFolder = GetExecutableFolder();
 
-            var full = Path.GetFullPath(libraryPath);
+        var executableRelative = Path.Join(executableFolder, libraryPath);
+
+        if (File.Exists(libraryPath) || File.Exists(executableRelative))
+        {
+            string full;
+            if (File.Exists(libraryPath))
+            {
+#if DEBUG_LIBRARY_LOAD
+                GD.Print("Loading library: ", libraryPath);
+#endif
+                full = Path.GetFullPath(libraryPath);
+            }
+            else
+            {
+#if DEBUG_LIBRARY_LOAD
+                GD.Print("Loading library relative to executable: ", executableRelative);
+#endif
+                full = Path.GetFullPath(executableRelative);
+            }
 
             loaded = NativeLibrary.Load(full);
             return true;
@@ -553,6 +666,7 @@ public static class NativeInterop
 
 #if DEBUG_LIBRARY_LOAD
         GD.Print("Candidate library path doesn't exist: ", libraryPath);
+        GD.Print("Executable relative variant: ", executableRelative);
 #endif
 
         loaded = IntPtr.Zero;
@@ -637,6 +751,9 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern void ShutdownThriveLibrary();
+
+    [DllImport("thrive_native")]
+    internal static extern IntPtr GetIntercommunicationBridge();
 
     [DllImport("early_checks")]
     internal static extern CPUCheckResult CheckRequiredCPUFeatures();

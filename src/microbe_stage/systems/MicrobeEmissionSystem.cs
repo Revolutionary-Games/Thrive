@@ -38,16 +38,44 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     private readonly IWorldSimulation worldSimulation;
     private readonly CompoundCloudSystem clouds;
 
-    private readonly Compound mucilage;
-
     public MicrobeEmissionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem, World world,
         IParallelRunner parallelRunner) :
         base(world, parallelRunner)
     {
         this.worldSimulation = worldSimulation;
         clouds = cloudSystem;
+    }
 
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+    public static float ToxinAmountMultiplierFromToxicity(float toxicity, ToxinType type)
+    {
+        // Scale toxin damage from a low-damage high-firerate, to low-firerate high-damage
+
+        float strengthModifier = Constants.TOXIN_TOXICITY_DAMAGE_MODIFIER_STRENGTH;
+
+        // Some toxin types are way too strong with the default modifier, so decrease their effects further
+        if (type == ToxinType.ChannelInhibitor)
+        {
+            strengthModifier *= 0.8f;
+        }
+        else if (type == ToxinType.Macrolide)
+        {
+            strengthModifier *= 0.25f;
+        }
+
+        if (toxicity < 0)
+        {
+            // Low-damage
+            return 0.89f * (1 - Math.Abs(toxicity) * strengthModifier) + 0.1f;
+        }
+
+        if (toxicity > 0)
+        {
+            // High-damage
+            return 0.99f * (toxicity * strengthModifier) + 1.0f;
+        }
+
+        // No modification from default
+        return 1;
     }
 
     protected override void Update(float delta, in Entity entity)
@@ -75,11 +103,18 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
 
         // Fire queued agents
-        if (control.QueuedToxinToEmit != null)
+        if (control.QueuedToxinToEmit != Compound.Invalid)
         {
-            EmitToxin(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                control.QueuedToxinToEmit, compounds, engulfed);
-            control.QueuedToxinToEmit = null;
+            EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
+                control.QueuedToxinToEmit, compounds, engulfed, false);
+            control.QueuedToxinToEmit = Compound.Invalid;
+        }
+
+        if (control.QueuedSiderophoreToEmit)
+        {
+            EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
+                Compound.Invalid, null, engulfed, true);
+            control.QueuedSiderophoreToEmit = false;
         }
 
         // This method itself checks for the preconditions on emitting slime
@@ -109,11 +144,11 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
-    ///   Tries to fire a toxin if possible
+    ///   Tries to fire a toxin/siderophore if possible
     /// </summary>
-    private void EmitToxin(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
+    private void EmitProjectile(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position,
-        Compound agentType, CompoundBag compounds, bool engulfed)
+        Compound agentType, CompoundBag? compounds, bool engulfed, bool siderophore)
     {
         if (engulfed)
             return;
@@ -121,27 +156,9 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         if (control.AgentEmissionCooldown > 0)
             return;
 
-        // Only shoot if you have an agent vacuole.
-        if (organelles.AgentVacuoleCount < 1)
-            return;
-
         // Can't shoot if membrane is not ready
         if (!cellProperties.IsMembraneReady())
             return;
-
-        float amountAvailable = compounds.GetCompoundAmount(agentType);
-
-        // Emit as much as you have, but don't start the cooldown if that's zero
-        float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
-        if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
-            return;
-
-        // TODO: the above part is already implemented as extension for PlayerMicrobeInput
-
-        compounds.TakeCompound(agentType, amountEmitted);
-
-        // The cooldown time is inversely proportional to the amount of agent vacuoles.
-        control.AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / organelles.AgentVacuoleCount;
 
         float ejectionDistance = cellProperties.CreatedMembrane!.EncompassingCircleRadius +
             Constants.AGENT_EMISSION_DISTANCE_OFFSET;
@@ -156,20 +173,122 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         var emissionPosition = position.Position + (direction * ejectionDistance);
 
-        var agent = SpawnHelpers.SpawnAgentProjectile(worldSimulation,
-            new AgentProperties(entity.Get<SpeciesMember>().Species, agentType), amountEmitted,
-            Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, amountEmitted, entity);
-
-        ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
-
-        if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
+        if (siderophore)
         {
-            soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
+            // Only shoot if you have any iron organelles
+            if (organelles.IronBreakdownEfficiency < 1)
+                return;
+
+            // The cooldown time is inversely proportional to the power of iron agents in total
+            control.AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN * 5 / organelles.IronBreakdownEfficiency;
+
+            SpawnHelpers.SpawnIronProjectile(worldSimulation, organelles.IronBreakdownEfficiency,
+                Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, organelles.IronBreakdownEfficiency,
+                entity);
+
+            // TODO: a separate siderophore sound effect?
+            soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
         else
         {
-            soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+            // Only shoot if you have an agent vacuole.
+            if (organelles.AgentVacuoleCount < 1)
+                return;
+
+            if (compounds == null || agentType == Compound.Invalid)
+                return;
+
+            float amountAvailable = compounds.GetCompoundAmount(agentType);
+
+            var selectedToxinType = ToxinType.Oxytoxy;
+
+            // Pick the next toxin type to fire, but only if the data is present (for example loading an earlier save
+            // wouldn't have this data set). This uses a round-robin algorithm to pick the next toxin type.
+            if (organelles.AvailableToxinTypes != null)
+            {
+                var totalToxins = organelles.AvailableToxinTypes.Count;
+
+                // TODO: should there be a shortcut path for cases where there is just one toxin type?
+
+                if (totalToxins != 0)
+                {
+                    var selectedRange = control.FiredToxinCount % totalToxins;
+
+                    int typeCounter = 0;
+
+                    foreach (var toxinType in organelles.AvailableToxinTypes)
+                    {
+                        if (typeCounter > selectedRange)
+                            break;
+
+                        selectedToxinType = toxinType.Key;
+                        ++typeCounter;
+                    }
+                }
+                else
+                {
+                    GD.PrintErr("Cell has total count of toxin types 0 with agent vacuoles above 0");
+                }
+
+                // TODO: this needs changing if fire/toxicity is customizable per agent type (and separate compounds
+                // aren't used per agent type)
+
+                // Emit as much as you have, but don't start if there's way too little toxin
+                float amountEmitted = Math.Min(amountAvailable, Constants.MAXIMUM_AGENT_EMISSION_AMOUNT);
+                if (amountEmitted < Constants.MINIMUM_AGENT_EMISSION_AMOUNT)
+                    return;
+
+                compounds.TakeCompound(agentType, amountEmitted);
+
+                // Adjust amount based on toxicity to make the shot more or less effective
+                var damagingToxinAmount = amountEmitted *
+                    ToxinAmountMultiplierFromToxicity(organelles.AverageToxinToxicity, selectedToxinType);
+
+                var agent = SpawnHelpers.SpawnAgentProjectile(worldSimulation,
+                    new AgentProperties(entity.Get<SpeciesMember>().Species, agentType, selectedToxinType),
+                    damagingToxinAmount, Constants.EMITTED_AGENT_LIFETIME, emissionPosition, direction, amountEmitted,
+                    entity);
+
+                ModLoader.ModInterface.TriggerOnToxinEmitted(agent);
+
+                ++control.FiredToxinCount;
+
+                if (amountEmitted < Constants.MAXIMUM_AGENT_EMISSION_AMOUNT / 2)
+                {
+                    soundEffectPlayer
+                        .PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin-low.ogg");
+                }
+                else
+                {
+                    soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
+                }
+            }
+
+            // TODO: some of the checks above part are already implemented as extension for PlayerMicrobeInput
+            // (so could share a bit of code for checking if ready to shoot yet)
+
+            // The cooldown time is inversely proportional to the amount of agent vacuoles.
+            control.AgentEmissionCooldown =
+                ToxinCooldownWithToxicity(organelles.AgentVacuoleCount, organelles.AverageToxinToxicity);
         }
+    }
+
+    private float ToxinCooldownWithToxicity(int vacuoleCount, float toxicity)
+    {
+        if (toxicity < 0)
+        {
+            // High-firerate
+            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * (1.0f - (0.5f * Math.Abs(toxicity)));
+        }
+
+        if (toxicity > 0)
+        {
+            // Low-firerate
+            return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount * (1 + toxicity);
+        }
+
+        // No modification from default
+        return Constants.AGENT_EMISSION_COOLDOWN / vacuoleCount;
     }
 
     private void HandleSlimeSecretion(in Entity entity, ref MicrobeControl control,
@@ -188,7 +307,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty.
         // Scaling by slime jet count ensures we aren't producing mucilage fast enough to beat this check.
-        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT * jetCount)
+        if (compounds.GetCompoundAmount(Compound.Mucilage) < Constants.MUCILAGE_MIN_TO_VENT * jetCount)
             control.SlimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
 
         // Don't emit slime when engulfed
@@ -210,12 +329,12 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
                 // Secrete the slime
                 float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
-                    compounds.GetCompoundAmount(mucilage));
+                    compounds.GetCompoundAmount(Compound.Mucilage));
 
                 var direction = jet.GetDirection();
 
                 // Eject mucilage at the maximum rate in the opposite direction to this organelle's rotation
-                slimeToSecrete = cellProperties.EjectCompound(ref worldPosition, compounds, clouds, mucilage,
+                slimeToSecrete = cellProperties.EjectCompound(ref worldPosition, compounds, clouds, Compound.Mucilage,
                     slimeToSecrete, -direction, 2);
 
                 // Queue movement force to be used by the movement system based on the amount of slime ejected

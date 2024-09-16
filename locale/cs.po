@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-22 13:23+0200\n"
-"PO-Revision-Date: 2024-03-14 12:20+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-09-16 15:39+0300\n"
+"PO-Revision-Date: 2024-09-08 07:30+0000\n"
+"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.5.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D"
@@ -38,9 +38,8 @@ msgstr ""
 msgid "3D_COMMA_STRATEGY"
 msgstr "Společné fáze editoru a strategie"
 
-#, fuzzy
 msgid "3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Mikrobiální Období"
+msgstr ""
 
 msgid "3D_EDITOR"
 msgstr "3D Editor"
@@ -66,6 +65,9 @@ msgstr "Přerušeno."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
+
+msgid "ACCEPT"
+msgstr ""
 
 msgid "ACTION_AWAKEN"
 msgstr "Probudit se ({0:F1}/{1:F1})"
@@ -154,11 +156,17 @@ msgstr "(rychlost mutací AI druhů)"
 msgid "ALL"
 msgstr "Vše"
 
-msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-msgstr "Dovolit druhům aby nemigroval (pokud není nalezena žádná dobrá migrace)"
-
-msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
+
+#, fuzzy
+msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Obecné statistiky všech světů"
@@ -172,6 +180,10 @@ msgstr "Jste již povzneseni"
 
 msgid "ALT"
 msgstr "Alt"
+
+#, fuzzy
+msgid "ALWAYS_VISIBLE"
+msgstr "Viditelné"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Hlasitost prostředí"
@@ -351,9 +363,8 @@ msgstr "Lomítko"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Syntéza OxyToxynů"
+msgstr ""
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
@@ -436,6 +447,10 @@ msgstr "Nejlepší oblast:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Velký kus železa"
 
+#, fuzzy
+msgid "BIG_PHOSPHATE_CHUNK"
+msgstr "Velký kus železa"
+
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
@@ -450,18 +465,6 @@ msgstr "Stiskněte [thrive:input]g_toggle_binding[/thrive:input] pro zapnutí sp
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Svázat osy k sobě"
-
-msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
-msgstr "Šance v každém prostředí s nízkým počtem druhů (nízká biodiverzita) k vytvoření nového živočicha"
-
-msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
-msgstr "Šance vytvoření nového druhu ke zvýšení biodiverzity ze sousedícího prostředí"
-
-msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
-msgstr "Druhy zvyšující biodiverzitu ze sousedícího prostředí dostávají bonusovou populaci"
-
-msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
-msgstr "Druhy zvyšující biodiverzitu se mutují při vytvoření"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Bioluminiscenční vakuola"
@@ -669,9 +672,8 @@ msgstr "Soubor se jménem ({0}) již existuje. Přejete si jej nahradit?"
 msgid "CHROMATIC_ABERRATION"
 msgstr "Chromatická aberace:"
 
-#, fuzzy
 msgid "CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "Syntéza OxyToxynů"
+msgstr ""
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "Produkuje [thrive:compound type=\"glucose\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a intenzitě [thrive:compound type=\"sunlight\"][/thrive:compound]."
@@ -922,6 +924,14 @@ msgstr "Jednotka: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "Workshop obsah bude nahrán ze složky: {0}"
+
+#, fuzzy
+msgid "CONTINUE"
+msgstr "Pokračuj v prosperitě"
+
+#, fuzzy
+msgid "CONTINUE_AS_SPECIES"
+msgstr "Vyberte druh"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Pokračuj v prosperitě"
@@ -1349,6 +1359,10 @@ msgstr "Debugovací Panel"
 msgid "DECEMBER"
 msgstr "Prosinec"
 
+#, fuzzy
+msgid "DECREASE_ITEM_SIZE"
+msgstr "Vyměšuj sliz"
+
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr "Výchozí výstupní zařízení"
 
@@ -1511,6 +1525,10 @@ msgstr "Zahodit a pokračovat"
 
 msgid "DISCARD_CHANGES"
 msgstr "Zahodit změny"
+
+#, fuzzy
+msgid "DISCARD_MIGRATION"
+msgstr "Zahodit a pokračovat"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "Odpojené buňky"
@@ -1708,7 +1726,7 @@ msgstr "Editor"
 
 #, fuzzy
 msgid "EDITORS_AND_MUTATIONS"
-msgstr "Mitochondrie"
+msgstr "zmutoval se"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Vstupte do editoru a upravte svůj druh"
@@ -1826,6 +1844,9 @@ msgstr "Zdroje energie:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
+msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
+msgstr ""
+
 msgid "ENTER_EXISTING_ID"
 msgstr "Zadejte existující ID"
 
@@ -1840,7 +1861,7 @@ msgstr "Životní prostředí"
 
 #, fuzzy
 msgid "ENVIRONMENTAL_CONDITIONS"
-msgstr "Mitochondrie"
+msgstr "Retence glukózy v prostředí"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Retence glukózy v prostředí"
@@ -1927,6 +1948,13 @@ msgstr "Přejít do následující záložky editoru"
 #, fuzzy
 msgid "EXIT_TO_LAUNCHER"
 msgstr "Spustit E"
+
+msgid "EXPERIMENTAL_FEATURES"
+msgstr ""
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(rychlost mutací AI druhů)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Exportovat všechny světy"
@@ -2378,11 +2406,19 @@ msgstr "ID není platné číslo"
 msgid "ID_NUMBER"
 msgstr "ID číslo"
 
+#, fuzzy
+msgid "IMAGE_FILE_TYPES"
+msgstr "Typy membrán"
+
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "Zahrnout prototypy pozdějších období"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do dalších období)"
+
+#, fuzzy
+msgid "INCREASE_ITEM_SIZE"
+msgstr "Vytvořit nový"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -2615,6 +2651,10 @@ msgstr "Červenec"
 
 msgid "JUNE"
 msgstr "Červen"
+
+#, fuzzy
+msgid "KEEP_MIGRATION"
+msgstr "Aerobní dýchání"
 
 msgid "KEY_BACK"
 msgstr "Zpět"
@@ -3053,11 +3093,8 @@ msgid "LOCAL_INITIAL_LETTER"
 msgstr "L"
 
 #, fuzzy
-msgid "LOCK_DAY_NIGHT_CYCYLE"
+msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr "Povolení cyklu den/noc"
-
-msgid "LOW_BIODIVERSITY_LIMIT"
-msgstr "Prostředí s tolikato druhy mají nízkou biodiverzitu"
 
 #, fuzzy
 msgid "LOW_MENU_PERFORMANCE"
@@ -3090,9 +3127,6 @@ msgstr "Mořský sníh"
 
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
-
-msgid "MAXIMUM_SPECIES_IN_PATCH"
-msgstr "Maximální počet druhů v daném prostředí před nuceným vyhynutím"
 
 msgid "MAX_FPS"
 msgstr "Maximální FPS:"
@@ -3180,6 +3214,63 @@ msgstr ""
 
 msgid "MIB_VALUE"
 msgstr "{0} MiB"
+
+msgid "MICHE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
+msgstr "[b][u]{0}[/u][/b] se oddělil od [b][u]{1}[/u][/b] jako nový druh kvůli jiných selekčních tlaků"
+
+msgid "MICHE_CHUNK_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
+msgstr "Mračna sloučenin"
+
+msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_DETAIL_TEXT"
+msgstr ""
+"[b]Živočich[/b]\n"
+"{0}:{1}\n"
+"[b]Generace[/b]\n"
+"{2}\n"
+"[b]Populace[/b]\n"
+"{3}\n"
+"[b]Barva[/b]\n"
+"#{4}\n"
+"[b]Chování[/b]\n"
+"{5}"
+
+msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
+msgstr ""
+
+msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
+msgstr ""
+
+msgid "MICHE_NO_OP_PRESSURE"
+msgstr ""
+
+msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_PREDATOR_ROOT_PRESSURE"
+msgstr "Predace {0}"
+
+msgid "MICHE_ROOT_PRESSURE"
+msgstr ""
+
+#, fuzzy
+msgid "MICHE_TREE"
+msgstr "Vyhoď SceneTree"
 
 #, fuzzy
 msgid "MICROBE"
@@ -3413,6 +3504,48 @@ msgstr "Statistika organizmu"
 
 msgid "MIDDLE_MOUSE"
 msgstr "Tlačítko kolečka myši"
+
+#, fuzzy
+msgid "MIGRATE"
+msgstr "Tempo"
+
+#, fuzzy
+msgid "MIGRATION_FAILED_TO_ADD"
+msgstr "Vytvoření módu se nezdařilo"
+
+msgid "MIGRATION_STATUS_DESTINATION_NOT_SELECTED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STATUS_TEXT"
+msgstr ""
+"Dávej pozor na svou zdravotní lištu vedle lišty ATP (vpravo dole).\n"
+"Tvá buňka zemře, pokud jí dojde zdraví.\n"
+"Regenerace zdraví probíhá za předpokladu, že máš dostatek ATP.\n"
+"Nezapomeň shromáždit dostatek glukózy k produkci ATP."
+
+#, fuzzy
+msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
+msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
+msgstr ""
+
+#, fuzzy
+msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
+msgstr "(cena organel, membrán a jiných věcí v editoru)"
+
+#, fuzzy
+msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
+msgstr "(cena organel, membrán a jiných věcí v editoru)"
+
+#, fuzzy
+msgid "MIGRATION_TOOLTIP"
+msgstr "Navštivte náš Patreon"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} M"
@@ -3707,6 +3840,10 @@ msgstr "Sliz"
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Syntéza slizů"
 
+#, fuzzy
+msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr "Navštivte náš Patreon"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mnohobuněčný Editor"
 
@@ -3805,9 +3942,6 @@ msgstr ""
 msgid "NEWS"
 msgstr ""
 
-msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
-msgstr "Počáteční populace pro druhy zvyšující biodiverzitu"
-
 msgid "NEW_GAME"
 msgstr "Nová hra"
 
@@ -3890,11 +4024,15 @@ msgstr ""
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
-msgid "NOTICE_READY_TO_EDIT"
+msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
-msgid "NOT_FOUND_CHUNK"
-msgstr "Chyby: kus nebyl nalezen"
+#, fuzzy
+msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr "Základní pohyb"
+
+msgid "NOTICE_READY_TO_EDIT"
+msgstr ""
 
 msgid "NOT_STARTED_DOT"
 msgstr "Nebylo začato."
@@ -3963,6 +4101,9 @@ msgstr "2x"
 
 msgid "OCTOBER"
 msgstr "Říjen"
+
+msgid "OFF"
+msgstr ""
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Oficiální stránka"
@@ -4131,6 +4272,10 @@ msgstr "Násobitel ceny osmoregulace"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(cena osmoregulace hráčova druhu)"
 
+#, fuzzy
+msgid "OTHER_COMPOUNDS"
+msgstr "Sloučeniny"
+
 msgid "OUR_WIKI"
 msgstr "naše Wiki"
 
@@ -4160,6 +4305,7 @@ msgstr "Kyslík"
 msgid "OXYTOXISOME"
 msgstr "Oxytoxizom"
 
+#, fuzzy
 msgid "OXYTOXISOME_DESC"
 msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
@@ -4217,6 +4363,10 @@ msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho ani
 
 msgid "PAST_DEVELOPERS"
 msgstr "Bývalí vývojáři"
+
+#, fuzzy
+msgid "PATCH_COLON"
+msgstr "Nejlepší oblast:"
 
 msgid "PATCH_EXTINCTION_BOX_TEXT"
 msgstr ""
@@ -4300,6 +4450,10 @@ msgstr "Výkon"
 
 msgid "PERFORM_UNBINDING"
 msgstr "Rozpojit"
+
+#, fuzzy
+msgid "PER_SECOND_ABBREVIATION"
+msgstr "{0} k"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/sekund"
@@ -4432,12 +4586,6 @@ msgstr "Programátoři"
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr "Projektoví manažeři"
 
-msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
-msgstr "Ochrana limitu počtu druhů pro druhy, které právě migrovaly"
-
-msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
-msgstr "Ochrana limitu počtu druhů pro druhy, které byly právě vytvořeny"
-
 msgid "PROTEINS"
 msgstr "Bílkoviny"
 
@@ -4504,9 +4652,6 @@ msgstr "Zopakovat poslední akci zpět"
 msgid "REFRESH"
 msgstr "Obnovit"
 
-msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
-msgstr "Náhrada migrací v případě vyhynutí v cíleném prostředí"
-
 msgid "REPORT"
 msgstr "Zpráva"
 
@@ -4560,6 +4705,10 @@ msgstr "Obnovit výchozí nastavení?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
+
+#, fuzzy
+msgid "RESIZE_METABALL_TOOLTIP"
+msgstr "Pokračovat"
 
 msgid "RESOLUTION"
 msgstr "Rozlišení:"
@@ -4906,6 +5055,10 @@ msgstr "Hlasitost SFX"
 msgid "SHIFT"
 msgstr "Shift"
 
+#, fuzzy
+msgid "SHOW_DAMAGE_EFFECT"
+msgstr "Bičík (množné číslo bičíky) je svazek proteinových vláken, který vychází z buněčné membrány a může se pomocí ATP vlnit a pohánět buňku v určitém směru. Pozice bičíku určuje směr, ve kterém je rychlost buňky ovlivněna. Například bičík umístěný na levé straně buňky zvýší její rychlost pohybu doprava."
+
 msgid "SHOW_HELP"
 msgstr "Zobrazit nápovědu"
 
@@ -4934,6 +5087,10 @@ msgstr "Povoluje / zakazuje vyskakovací okno s upozorněním na neuložený pos
 
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
+
+#, fuzzy
+msgid "SIDEROPHORE_ACTION_TOOLTIP"
+msgstr "Navštivte náš Patreon"
 
 msgid "SIGNALING_AGENT"
 msgstr "Signalizující Prvek"
@@ -4990,6 +5147,10 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr "Zvyšuje rychlost otáčení velkých buněk."
 
 msgid "SMALL_IRON_CHUNK"
+msgstr "Malý kus železa"
+
+#, fuzzy
+msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Malý kus železa"
 
 #, fuzzy
@@ -5085,12 +5246,6 @@ msgstr "Populace druhů"
 msgid "SPECIES_PRESENT"
 msgstr "Přítomné druhy"
 
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
-msgstr "Minimální populace druhu pro rozdělení skrze nalezení několika dobrých mutací"
-
-msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
-msgstr "Minimální podíl populace druhu pro dovolení rozdělení skrze mutace"
-
 #, fuzzy
 msgid "SPECIES_TO_FIND"
 msgstr "Druh:"
@@ -5106,6 +5261,14 @@ msgstr "Rychlost:"
 
 msgid "SPREAD_TO_PATCHES"
 msgstr "rozšířen do prostředí:"
+
+#, fuzzy
+msgid "SPRINT"
+msgstr "PrntScr"
+
+#, fuzzy
+msgid "SPRINT_ACTION_TOOLTIP"
+msgstr "Navštivte náš Patreon"
 
 msgid "STAGES"
 msgstr ""
@@ -5133,6 +5296,20 @@ msgstr "Požadovaný restart"
 
 msgid "STATISTICS"
 msgstr "Statistiky"
+
+#, fuzzy
+msgid "STAT_ATP_PRODUCTION_REDUCTION"
+msgstr "VÝROBA ATP JE PŘÍLIŠ NÍZKÁ!"
+
+#, fuzzy
+msgid "STAT_BASE_MOVEMENT_REDUCTION"
+msgstr "Základní pohyb"
+
+msgid "STAT_DAMAGE"
+msgstr ""
+
+msgid "STAT_DAMAGE_PER_OXYGEN"
+msgstr ""
 
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr "Inicializace knihovny klienta služby Steam se nezdařila"
@@ -5208,6 +5385,9 @@ msgstr ""
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Přihlášen jako: {0}"
+
+msgid "STRAIN_BAR_VISIBILITY"
+msgstr ""
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -5551,6 +5731,10 @@ msgstr "Přepnout spojování"
 msgid "TOGGLE_METRICS"
 msgstr "Přepnutí displaye metrik"
 
+#, fuzzy
+msgid "TOGGLE_MUCOCYST_DEFENCE"
+msgstr "Přepínání na celou obrazovku"
+
 msgid "TOGGLE_NAVIGATION_TREE"
 msgstr ""
 
@@ -5566,6 +5750,9 @@ msgstr "Nástroje"
 msgid "TOOL_HAND_AXE"
 msgstr ""
 
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr ""
+
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Status:"
@@ -5573,14 +5760,84 @@ msgstr "Status:"
 msgid "TOTAL_SAVES"
 msgstr "Celkem uloženo:"
 
+msgid "TOXIN_CHANNEL_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN"
+msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
+
+#, fuzzy
+msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE"
+msgstr ""
+"Toxinová\n"
+"Vakuola"
+
+#, fuzzy
+msgid "TOXIN_MACROLIDE_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
+msgstr "Metabolosomy jsou shluky proteinů zabalené v proteinovém plášti. Mají schopnost změnit [thrive:compound type=\"glucose\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound] daleko rychleji než cytoplasma skrze proces nazývaný [b]Buněčné dýchání[/b]. Potřebuje na to ale [thrive:compound type=\"oxygen\"][/thrive:compound] aby fungovalo, a nízký objem [thrive:compound type=\"oxygen\"][/thrive:compound] v prostředí zpomalí schopnost produkovat [thrive:compound type=\"atp\"][/thrive:compound]. Jelikož jsou metabolosomy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "TOXIN_OXYTOXY_DESCRIPTION"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
+msgid "TOXIN_PREFER_FIRE_RATE"
+msgstr ""
+
+msgid "TOXIN_PREFER_TOXICITY"
+msgstr ""
+
+#, fuzzy
+msgid "TOXIN_PROPERTIES_HEADING"
+msgstr "Rezistence vůči toxinům"
+
 msgid "TOXIN_RESISTANCE"
 msgstr "Rezistence vůči toxinům"
+
+#, fuzzy
+msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
+
+#, fuzzy
+msgid "TOXIN_TYPE_COLON"
+msgstr "Typ:"
+
+#, fuzzy
+msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
+msgstr ""
+"Agresivní mikrobi budou pronásledovat kořist na větší vzdálenosti\n"
+"a při napadení predátory jsou náchylnější k boji.\n"
+"Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
+"a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxinová\n"
 "Vakuola"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
@@ -5953,6 +6210,10 @@ msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síly poskytují sílu rotační, která pomáhá buňkám se otáčet."
 
 #, fuzzy
+msgid "UPGRADE_COST"
+msgstr "{0} MP"
+
+#, fuzzy
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr "Lipáza umožňuje buňce rozkládat většinu typů membrán. Vaše buňka již produkuje nějaké množství tohoto enzymu bez lysozomu, ale vybráním tohoto typu zvýšíte efektivitu."
 
@@ -5966,6 +6227,14 @@ msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síl
 #, fuzzy
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr "Řasy jsou podobné bičíkům, ale místo poskytování tlačící síly poskytují sílu rotační, která pomáhá buňkám se otáčet."
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST"
+msgstr "{0} MP"
+
+#, fuzzy
+msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
+msgstr "Zvyšuje rychlost otáčení velkých buněk."
 
 msgid "UPLOAD"
 msgstr "Nahrát"
@@ -5993,9 +6262,6 @@ msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikov
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij vlastní jméno"
-
-msgid "USE_BIODIVERSITY_FORCE_SPLIT"
-msgstr "Druhy zvyšující biodiverzitu kradou populaci existujícím druhům"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
@@ -6054,6 +6320,10 @@ msgid "VIEW_ALL"
 msgstr "Zakázat vše"
 
 #, fuzzy
+msgid "VIEW_CELL_PROCESSES"
+msgstr "Zvyšuje rychlost otáčení velkých buněk."
+
+#, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Zakázat vše"
 
@@ -6076,6 +6346,12 @@ msgstr "VIP Podporovatelé"
 
 msgid "VISIBLE"
 msgstr "Viditelné"
+
+msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
+msgstr ""
+
+msgid "VISIBLE_WHEN_OVER_ZERO"
+msgstr ""
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
@@ -7578,6 +7854,7 @@ msgstr "Název položky:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "Nahrání položky do služby Steam Workshop se podařilo"
 
+#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr "Nahrání předmětu do služby Steam Workshop se podařilo, ale je nutné přijmout Workshop [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]podmínky služby[/url][/color] předtím, než je viditelný"
 
@@ -7647,6 +7924,54 @@ msgstr "Oddálit"
 
 #~ msgid "HELP"
 #~ msgstr "Nápověda"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
+#~ msgstr "Dovolit druhům aby nemigroval (pokud není nalezena žádná dobrá migrace)"
+
+#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
+#~ msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
+
+#~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
+#~ msgstr "Šance v každém prostředí s nízkým počtem druhů (nízká biodiverzita) k vytvoření nového živočicha"
+
+#~ msgid "BIODIVERSITY_FROM_NEIGHBOUR_PATCH_CHANCE"
+#~ msgstr "Šance vytvoření nového druhu ke zvýšení biodiverzity ze sousedícího prostředí"
+
+#~ msgid "BIODIVERSITY_NEARBY_PATCH_IS_FREE_POPULATION"
+#~ msgstr "Druhy zvyšující biodiverzitu ze sousedícího prostředí dostávají bonusovou populaci"
+
+#~ msgid "BIODIVERSITY_SPLIT_IS_MUTATED"
+#~ msgstr "Druhy zvyšující biodiverzitu se mutují při vytvoření"
+
+#~ msgid "LOW_BIODIVERSITY_LIMIT"
+#~ msgstr "Prostředí s tolikato druhy mají nízkou biodiverzitu"
+
+#~ msgid "MAXIMUM_SPECIES_IN_PATCH"
+#~ msgstr "Maximální počet druhů v daném prostředí před nuceným vyhynutím"
+
+#~ msgid "NEW_BIODIVERSITY_INCREASING_SPECIES_POPULATION"
+#~ msgstr "Počáteční populace pro druhy zvyšující biodiverzitu"
+
+#~ msgid "PROTECT_MIGRATIONS_FROM_SPECIES_CAP"
+#~ msgstr "Ochrana limitu počtu druhů pro druhy, které právě migrovaly"
+
+#~ msgid "PROTECT_NEW_CELLS_FROM_SPECIES_CAP"
+#~ msgstr "Ochrana limitu počtu druhů pro druhy, které byly právě vytvořeny"
+
+#~ msgid "REFUND_MIGRATIONS_IN_EXTINCTIONS"
+#~ msgstr "Náhrada migrací v případě vyhynutí v cíleném prostředí"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_AMOUNT"
+#~ msgstr "Minimální populace druhu pro rozdělení skrze nalezení několika dobrých mutací"
+
+#~ msgid "SPECIES_SPLIT_BY_MUTATION_THRESHOLD_POPULATION_FRACTION"
+#~ msgstr "Minimální podíl populace druhu pro dovolení rozdělení skrze mutace"
+
+#~ msgid "USE_BIODIVERSITY_FORCE_SPLIT"
+#~ msgstr "Druhy zvyšující biodiverzitu kradou populaci existujícím druhům"
+
+#~ msgid "NOT_FOUND_CHUNK"
+#~ msgstr "Chyby: kus nebyl nalezen"
 
 #~ msgid "BASSBOOST"
 #~ msgstr "Bassboost"
@@ -7931,9 +8256,6 @@ msgstr "Oddálit"
 
 #~ msgid "E_DOT"
 #~ msgstr "E."
-
-#~ msgid "RATE"
-#~ msgstr "Tempo"
 
 #~ msgid "BIOLUMESCENT_VACUOLE"
 #~ msgstr ""

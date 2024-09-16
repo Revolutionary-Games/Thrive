@@ -11,6 +11,8 @@ using SharedBase.Models;
 
 public static class SteamBuild
 {
+    public const string THRIVE_CSPROJ = "Thrive.csproj";
+
     private const string IGNORE_STEAM_CLIENT_MARKER = @"<Compile Remove=""src\steam\SteamClient.cs""";
     private const string STEAM_CLIENT_INSERT_ENABLE = "Steam build needs to";
     private const string DISABLE_STEAM_LINE = "    " + IGNORE_STEAM_CLIENT_MARKER + " />";
@@ -19,8 +21,6 @@ public static class SteamBuild
     private const string STEAM_ENABLED_COMMENT = "<!-- Steam build enabled -->";
 
     private const string STEAMWORKS_REFERENCE_START = @"<Reference Include=""Steamworks.NET"">";
-
-    private const string THRIVE_CSPROJ = "Thrive.csproj";
 
     public enum SteamPlatform
     {

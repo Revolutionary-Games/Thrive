@@ -50,6 +50,9 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 #pragma warning restore CA2213
 
     [JsonProperty]
+    protected float metaballSize = 1.0f;
+
+    [JsonProperty]
     protected string? activeActionName;
 
     /// <summary>
@@ -69,7 +72,17 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected List<TMetaball> hoverMetaballData = new();
 
-    protected IMetaballDisplayer<TMetaball>? alreadyPlacedVisuals;
+    /// <summary>
+    ///   Displays structure of metaballs in the editor
+    /// </summary>
+    protected IMetaballDisplayer<TMetaball>? structuralMetaballDisplayer;
+
+    /// <summary>
+    ///   Displays shape of the metaballs the way it would actually look in game. Used in preview mode.
+    ///   Should display metaballs using the convolution displayer.
+    /// </summary>
+    protected IMetaballDisplayer<TMetaball>? visualMetaballDisplayer;
+
     protected IMetaballDisplayer<TMetaball>? hoverMetaballDisplayer;
 
     private const float DefaultHoverAlpha = 0.8f;
@@ -88,10 +101,15 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     // Another section of Godot objects here as these are private (and not protected like the above set)
 #pragma warning disable CA2213
+    [Export]
+    private HSlider? metaballResizeScroll;
+
     private CustomConfirmationDialog islandPopup = null!;
 #pragma warning restore CA2213
 
     private HexEditorSymmetry symmetry = HexEditorSymmetry.None;
+
+    private bool previewMode;
 
     private IEnumerable<(Vector3 Position, TMetaball? Parent)>? mouseHoverPositions;
 
@@ -106,12 +124,28 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     public HexEditorSymmetry Symmetry
     {
         get => symmetry;
+        set => symmetry = value;
+    }
+
+    /// <summary>
+    ///   If this is enabled, the creature will be shown as it would actually look in game. Editing metaballs is
+    ///   disabled during preview (except for undo/redo).
+    /// </summary>
+    [JsonProperty]
+    public bool PreviewMode
+    {
+        get => previewMode;
         set
         {
-            symmetry = value;
+            bool updateNeeded = previewMode != value;
 
-            if (symmetry != HexEditorSymmetry.None)
-                throw new NotSupportedException("Symmetry editing not implemented yet");
+            previewMode = value;
+
+            if (updateNeeded)
+                UpdateAlreadyPlacedVisuals();
+
+            if (hoverMetaballDisplayer != null)
+                hoverMetaballDisplayer.Visible = !PreviewMode;
         }
     }
 
@@ -231,6 +265,17 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         hoverMetaballsChanged = true;
         hoverMetaballData.Clear();
+
+        if (metaballResizeScroll != null)
+        {
+            metaballResizeScroll.Value = metaballSize;
+            metaballResizeScroll.MinValue = Constants.METABALL_MIN_SIZE;
+            metaballResizeScroll.MaxValue = Constants.METABALL_MAX_SIZE;
+
+            // Allow GUI to have smaller step but not bigger
+            if (metaballResizeScroll.Step > Constants.METABALL_SIZE_STEP)
+                metaballResizeScroll.Step = Constants.METABALL_SIZE_STEP;
+        }
     }
 
     public override void _Process(double delta)
@@ -251,7 +296,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
             while (hoverMetaballData.Count > usedHoverMetaballIndex)
                 hoverMetaballData.RemoveAt(hoverMetaballData.Count - 1);
 
-            hoverMetaballDisplayer.DisplayFromList(hoverMetaballData);
+            hoverMetaballDisplayer.DisplayFromLayout(hoverMetaballData);
 
             hoverMetaballsChanged = false;
         }
@@ -275,10 +320,15 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     {
         SetEditorWorldGuideObjectVisibility(shown);
 
-        if (alreadyPlacedVisuals != null)
+        if (structuralMetaballDisplayer != null)
         {
-            alreadyPlacedVisuals.Visible = shown;
-            hoverMetaballDisplayer!.Visible = shown;
+            structuralMetaballDisplayer.Visible = shown && !PreviewMode;
+            hoverMetaballDisplayer!.Visible = shown && !PreviewMode;
+        }
+
+        if (visualMetaballDisplayer != null)
+        {
+            visualMetaballDisplayer.Visible = shown && PreviewMode;
         }
     }
 
@@ -394,7 +444,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         var actions = new List<TAction>();
         int alreadyDeleted = 0;
 
-        RunWithSymmetry(basePosition, baseMetaball, (_, metaball) =>
+        RunWithSymmetry(0, basePosition, baseMetaball, (_, metaball) =>
         {
             if (metaball == null)
                 return;
@@ -423,6 +473,30 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
         if (metaball != null)
             RemoveAtPosition(position, metaball);
+    }
+
+    [RunOnKeyDown("e_increase_size", Priority = 1)]
+    public void IncreaseMetaballSize()
+    {
+        metaballSize += Constants.METABALL_SIZE_STEP;
+
+        if (metaballSize > Constants.METABALL_MAX_SIZE)
+            metaballSize = Constants.METABALL_MAX_SIZE;
+
+        if (metaballResizeScroll != null)
+            metaballResizeScroll.Value = metaballSize;
+    }
+
+    [RunOnKeyDown("e_decrease_size", Priority = 1)]
+    public void DecreaseMetaballSize()
+    {
+        metaballSize -= Constants.METABALL_SIZE_STEP;
+
+        if (metaballSize < Constants.METABALL_MIN_SIZE)
+            metaballSize = Constants.METABALL_MIN_SIZE;
+
+        if (metaballResizeScroll != null)
+            metaballResizeScroll.Value = metaballSize;
     }
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
@@ -523,15 +597,21 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
-    protected virtual IMetaballDisplayer<TMetaball> CreateMetaballDisplayer()
+    protected virtual IMetaballDisplayer<TMetaball> CreateVisualMetaballDisplayer()
+    {
+        throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    protected virtual IMetaballDisplayer<TMetaball> CreateStructuralMetaballDisplayer()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }
 
     protected virtual void LoadMetaballDisplayers()
     {
-        alreadyPlacedVisuals = CreateMetaballDisplayer();
-        hoverMetaballDisplayer = CreateMetaballDisplayer();
+        visualMetaballDisplayer = CreateVisualMetaballDisplayer();
+        structuralMetaballDisplayer = CreateStructuralMetaballDisplayer();
+        hoverMetaballDisplayer = CreateStructuralMetaballDisplayer();
         hoverMetaballDisplayer.OverrideColourAlpha = DefaultHoverAlpha;
     }
 
@@ -574,7 +654,14 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
 
     protected void OnSymmetryPressed()
     {
-        throw new NotImplementedException("symmetry not implemented");
+        if (symmetry == HexEditorSymmetry.XAxisSymmetry)
+        {
+            ResetSymmetryButton();
+        }
+        else if (symmetry == HexEditorSymmetry.None)
+        {
+            symmetry = HexEditorSymmetry.XAxisSymmetry;
+        }
 
         /*
         if (symmetry == HexEditorSymmetry.SixWaySymmetry)
@@ -592,11 +679,10 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         else if (symmetry == HexEditorSymmetry.FourWaySymmetry)
         {
             symmetry = HexEditorSymmetry.SixWaySymmetry;
-        }
+        }*/
 
         Symmetry = symmetry;
         UpdateSymmetryIcon();
-        */
     }
 
     // LineLengthCheckDisable is needed here as our XML indent check doesn't support splitting tags on multiple lines
@@ -699,17 +785,13 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// <summary>
     ///   Runs given callback for all symmetry positions
     /// </summary>
+    /// <param name="diameter">Diameter of placed metaball</param>
     /// <param name="position">The base position</param>
     /// <param name="parent">The base parent</param>
     /// <param name="callback">The callback that is called based on symmetry, parameters are: q, r, rotation</param>
     /// <param name="overrideSymmetry">If set, overrides the current symmetry</param>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this is not implemented currently and just returns the given primary position
-    ///   </para>
-    /// </remarks>
-    protected void RunWithSymmetry(Vector3 position, TMetaball? parent, Action<Vector3, TMetaball?> callback,
-        HexEditorSymmetry? overrideSymmetry = null)
+    protected void RunWithSymmetry(float diameter, Vector3 position, TMetaball? parent,
+        Action<Vector3, TMetaball?> callback, HexEditorSymmetry? overrideSymmetry = null)
     {
         overrideSymmetry ??= Symmetry;
 
@@ -721,8 +803,41 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
                 break;
             }
 
+            case HexEditorSymmetry.XAxisSymmetry:
+            {
+                var symmetryPosition = position * new Vector3(-1, 1, 1);
+
+                if (position.DistanceTo(symmetryPosition) < diameter / 2)
+                {
+                    // If too close with the symmetry position, run as if symmetry was turned off to not have
+                    // overlapping metaballs
+                    callback(position, parent);
+                }
+                else
+                {
+                    callback(position, parent);
+
+                    if (parent != null)
+                    {
+                        // Resolve symmetry position's parent if there was a parent for the primary position
+                        var symmetryParent = editedMetaballs.GetClosestMetaballToPosition(
+                            parent.Position * new Vector3(-1, 1, 1));
+
+                        // TODO: should this verify that the parent is close enough to the actual position to use?
+
+                        callback(symmetryPosition, symmetryParent);
+                    }
+                    else
+                    {
+                        callback(symmetryPosition, null);
+                    }
+                }
+
+                break;
+            }
+
             default:
-                throw new NotSupportedException("symmetry editing not implemented yet");
+                throw new NotSupportedException("Other symmetry modes are not implemented");
         }
     }
 
@@ -773,6 +888,32 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         bool forceHide = false)
     {
         throw new NotImplementedException();
+    }
+
+    /// <summary>
+    ///   This updates the metaball displayer that is used to show the currently placed metaballs in the edited layout
+    /// </summary>
+    protected void UpdateAlreadyPlacedVisuals()
+    {
+        if (visualMetaballDisplayer == null || structuralMetaballDisplayer == null)
+            throw new InvalidOperationException("Editor component not initialized");
+
+        // If not currently visible at all, don't update visibility, it'll be updated once this tab becomes active
+        // again
+        if (visualMetaballDisplayer.Visible || structuralMetaballDisplayer.Visible)
+        {
+            visualMetaballDisplayer.Visible = PreviewMode;
+            structuralMetaballDisplayer.Visible = !PreviewMode;
+        }
+
+        if (PreviewMode)
+        {
+            visualMetaballDisplayer.DisplayFromLayout(editedMetaballs);
+        }
+        else
+        {
+            structuralMetaballDisplayer.DisplayFromLayout(editedMetaballs);
+        }
     }
 
     protected virtual void PerformActiveAction()
@@ -853,5 +994,10 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     private void UpdateSymmetryIcon()
     {
         componentBottomLeftButtons.SetSymmetry(symmetry);
+    }
+
+    private void OnResizeMetaballSliderDragged(float value)
+    {
+        metaballSize = value;
     }
 }

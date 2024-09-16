@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Music category to be loaded from json

@@ -15,6 +15,8 @@ using Godot;
 [GodotAutoload]
 public partial class InputManager : Node
 {
+    private static readonly Dictionary<string, bool> CheckedInputActionNames = new();
+
     private static InputManager? staticInstance;
 
     private readonly List<WeakReference> destroyedListeners = new();
@@ -222,6 +224,23 @@ public partial class InputManager : Node
 
         // Everything that isn't a controller is currently a keyboard
         return ActiveInputMethod.Keyboard;
+    }
+
+    /// <summary>
+    ///   Checks if something is a valid Thrive input action name. This is preferable to <c>InputMap.HasAction</c> as
+    ///   this caches the results.
+    /// </summary>
+    /// <param name="potentialActionName">Action name to check, for example <c>"g_move_forward"</c></param>
+    /// <returns>True if valid</returns>
+    public static bool IsValidInputAction(string potentialActionName)
+    {
+        if (CheckedInputActionNames.TryGetValue(potentialActionName, out var result))
+            return result;
+
+        result = InputMap.HasAction(potentialActionName);
+        CheckedInputActionNames[potentialActionName] = result;
+
+        return result;
     }
 
     public override void _Ready()

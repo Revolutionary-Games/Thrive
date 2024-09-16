@@ -19,7 +19,6 @@ using DefaultEcs.Threading;
 [With(typeof(OrganelleContainer))]
 [With(typeof(CellProperties))]
 [With(typeof(MicrobeStatus))]
-[With(typeof(MicrobeControl))]
 [With(typeof(CompoundStorage))]
 [With(typeof(Engulfable))]
 [With(typeof(SpeciesMember))]
@@ -36,14 +35,11 @@ using DefaultEcs.Threading;
 [RuntimeCost(4)]
 public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 {
-    private readonly Compound atp;
-
     private GameWorld? gameWorld;
 
     public OsmoregulationAndHealingSystem(World world, IParallelRunner parallelRunner) :
         base(world, parallelRunner)
     {
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     public void SetWorld(GameWorld world)
@@ -62,7 +58,6 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     protected override void Update(float delta, in Entity entity)
     {
         ref var status = ref entity.Get<MicrobeStatus>();
-        ref var control = ref entity.Get<MicrobeControl>();
         ref var health = ref entity.Get<Health>();
         ref var cellProperties = ref entity.Get<CellProperties>();
 
@@ -78,17 +73,8 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 
         HandleOsmoregulationDamage(entity, ref status, ref health, ref cellProperties, compounds, delta);
 
-        // Take extra ATP if in engulf mode (and disable engulf mode if out of ATP)
-        if (control.State == MicrobeState.Engulf)
-        {
-            var cost = Constants.ENGULFING_ATP_COST_PER_SECOND * delta;
-
-            if (compounds.TakeCompound(atp, cost) < cost)
-            {
-                // Ran out of ATP, disable engulf
-                control.SetStateColonyAware(entity, MicrobeState.Normal);
-            }
-        }
+        // There used to be engulfing mode ATP handling here, but it is now in EngulfingSystem as it makes more
+        // sense to be in there
     }
 
     private void HandleOsmoregulationDamage(in Entity entity, ref MicrobeStatus status, ref Health health,
@@ -141,7 +127,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         if (entity.Get<SpeciesMember>().Species.PlayerSpecies)
             osmoregulationCost *= gameWorld!.WorldSettings.OsmoregulationMultiplier;
 
-        compounds.TakeCompound(atp, osmoregulationCost);
+        compounds.TakeCompound(Compound.ATP, osmoregulationCost);
     }
 
     /// <summary>
@@ -149,7 +135,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     /// </summary>
     private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties)
     {
-        if (compounds.GetCompoundAmount(atp) > 0)
+        if (compounds.GetCompoundAmount(Compound.ATP) > Constants.ATP_DAMAGE_THRESHOLD)
             return;
 
         health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
@@ -161,16 +147,23 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     /// </summary>
     private void HandleHitpointsRegeneration(ref Health health, CompoundBag compounds, float delta)
     {
-        if (health.CurrentHealth >= health.MaxHealth)
-            return;
-
-        if (compounds.GetCompoundAmount(atp) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
-            return;
-
-        health.CurrentHealth += Constants.HEALTH_REGENERATION_RATE * delta;
-        if (health.CurrentHealth > health.MaxHealth)
+        if (health.HealthRegenCooldown > 0)
         {
-            health.CurrentHealth = health.MaxHealth;
+            health.HealthRegenCooldown -= delta;
+        }
+        else
+        {
+            if (health.CurrentHealth >= health.MaxHealth)
+                return;
+
+            if (compounds.GetCompoundAmount(Compound.ATP) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
+                return;
+
+            health.CurrentHealth += Constants.HEALTH_REGENERATION_RATE * delta;
+            if (health.CurrentHealth > health.MaxHealth)
+            {
+                health.CurrentHealth = health.MaxHealth;
+            }
         }
     }
 }
