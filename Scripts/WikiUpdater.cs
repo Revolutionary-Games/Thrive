@@ -303,7 +303,8 @@ public class WikiUpdater
                 if (string.IsNullOrEmpty(stagesRaw))
                 {
                     throw new InvalidOperationException(
-                        $"Page with internal name {internalName} marked as restriced to stages but has no specified stages");
+                        $"Page with internal name {internalName} marked as restricted to stages " +
+                        "but has no specified stages");
                 }
 
                 restrictedToStages = StageStringToEnumValues(stagesRaw);
@@ -400,7 +401,7 @@ public class WikiUpdater
 
         var stages = new Stage[strings.Length];
 
-        for (int i = 0; i < strings.Length; i++)
+        for (int i = 0; i < strings.Length; ++i)
         {
             stages[i] = strings[i] switch
             {
@@ -619,7 +620,7 @@ public class WikiUpdater
             var untranslatedInfobox = untranslatedPage.InfoboxData;
             var translatedInfobox = translatedPage.InfoboxData;
 
-            for (int i = 0; i < untranslatedInfobox.Count; i++)
+            for (int i = 0; i < untranslatedInfobox.Count; ++i)
             {
                 // Skip adding translations for numbers or "-"
                 if (Regex.IsMatch(translatedInfobox[i].DisplayedValue, "^[0-9,. -]*$"))

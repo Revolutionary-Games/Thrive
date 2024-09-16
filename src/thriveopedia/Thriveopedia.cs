@@ -67,14 +67,14 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     ///   The home page for the Thriveopedia. Keep a special reference so we can return to it easily.
     /// </summary>
     private ThriveopediaHomePage homePage = null!;
-#pragma warning restore CA2213
-
-    private bool treeCollapsed;
 
     /// <summary>
     ///   The stage dropdown is stored here so it can be used as a parent.
     /// </summary>
     private TreeItem stageDropdown = null!;
+#pragma warning restore CA2213
+
+    private bool treeCollapsed;
 
     /// <summary>
     ///   Details for the game currently in progress. Null if opened from the main menu.
@@ -378,7 +378,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
         Stage[] allStages = (Stage[])typeof(Stage).GetEnumValues();
         var optionsText = new LocalizedStringBuilder();
 
-        for (int i = 0; i < allStages.Length; i++)
+        for (int i = 0; i < allStages.Length; ++i)
         {
             if (i != 0)
                 optionsText.Append(',');
@@ -419,8 +419,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 if (restrictedTo == null)
                     continue;
 
-                treeItem.Visible = restrictedTo.Contains(
-                    ThriveopediaManager.CurrentSelectedStage);
+                treeItem.Visible = restrictedTo.Contains(ThriveopediaManager.CurrentSelectedStage);
 
                 wikiPage.VisibleInTree = treeItem.Visible;
             }
