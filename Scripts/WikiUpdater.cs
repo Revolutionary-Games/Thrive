@@ -11,10 +11,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using Karambolo.PO;
 using Scripts;
+using ScriptsBase.Checks;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
+using ThriveScriptsShared;
 
 public class WikiUpdater
 {
@@ -26,6 +29,7 @@ public class WikiUpdater
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string COMPOUND_DEFINITIONS = "simulation_parameters/microbe_stage/compounds.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
+    private const string TRANSLATION_TEMPLATE_FILE = "locale/messages.pot";
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
 
     private const string INFO_BOX_SELECTOR = ".wikitable > tbody";
@@ -33,21 +37,12 @@ public class WikiUpdater
     private const string IGNORE_PAGE_SELECTOR = "[href=\"/wiki/Category:Only_Online\"]";
 
     /// <summary>
-    ///   Simple translation keys we can use from elsewhere that still have good context in them for use in info box
-    ///   values.
+    ///   Simple text keys we always want to extract without the wiki prefix as these are seemingly general enough to
+    ///   not warrant hiding them behind the "WIKI_" key prefix
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: could automatically populate this terms list from messages.pot
-    ///   </para>
-    /// </remarks>
     private static readonly string[] SimpleFieldValues =
     [
-        "NONE", "ASCENSION", "CHEMOSYNTHESIS", "SPACE_STAGE", "SOCIETY_STAGE", "AWAKENING_STAGE", "AWARE_STAGE",
-        "INDUSTRIAL_STAGE", "MICROBE_STAGE", "MULTICELLULAR_STAGE", "MICROBE_EDITOR", "MUCILAGE_SYNTHESIS",
-        "PHOTOSYNTHESIS", "RUSTICYANIN", "NATION_EDITOR", "OXYTOXY_SYNTHESIS", "PHOTOSYNTHESIS", "PROTEIN_RESPIRATION",
-        "GLYCOLYSIS", "INJECTISOME_PILUS", "LIPASE", "IRON_CHEMOLITHOAUTOTROPHY", "THERMOSYNTHESIS",
-        "AEROBIC_NITROGEN_FIXATION", "AEROBIC_RESPIRATION", "CYTOPLASM_GLYCOLYSIS", "BACTERIAL_THERMOSYNTHESIS",
+        "AEROBIC_NITROGEN_FIXATION", "AEROBIC_RESPIRATION", "BACTERIAL_THERMOSYNTHESIS", "CHEMOSYNTHESIS",
     ];
 
     /// <summary>
@@ -55,6 +50,12 @@ public class WikiUpdater
     ///   thrive:icon bbcode tags
     /// </summary>
     private readonly Lazy<string[]> compoundNames = new(LoadCompoundNames);
+
+    /// <summary>
+    ///   List of existing translation keys used by the game. Used to check when a wiki translation key can be a lot
+    ///   simpler as it can reuse text from the game.
+    /// </summary>
+    private readonly Lazy<HashSet<string>> gameTranslationKeys = new(LoadGameTranslationKeys);
 
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
@@ -92,6 +93,7 @@ public class WikiUpdater
 
         // Load our local data while waiting for network things
         _ = compoundNames.Value;
+        _ = gameTranslationKeys.Value;
 
         var organellesRaw = await organellesTask;
 
@@ -166,6 +168,58 @@ public class WikiUpdater
             throw new NullDecodedJsonException();
 
         return data.Keys.ToArray();
+    }
+
+    private static HashSet<string> LoadGameTranslationKeys()
+    {
+        // We only care about the keys here
+
+        using var reader = File.OpenText(TRANSLATION_TEMPLATE_FILE);
+
+        var parser = LocalizationCheckBase.CreateParser();
+
+        var parseResult = parser.Parse(reader);
+
+        if (!parseResult.Success)
+        {
+            throw new Exception("PO parsing failed on template file");
+        }
+
+        var data = parseResult.Catalog;
+
+        var result = new HashSet<string>();
+
+        foreach (var entry in data)
+        {
+            bool goodReference = false;
+
+            // Only take keys that have a reference line that doesn't refer to the wiki
+            foreach (var poComment in entry.Comments)
+            {
+                if (poComment is POReferenceComment referenceComment)
+                {
+                    foreach (var reference in referenceComment.References)
+                    {
+                        if (!reference.FilePath.Contains("wiki.json"))
+                        {
+                            goodReference = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (goodReference)
+                    break;
+            }
+
+            if (goodReference)
+                result.Add(entry.Key.Id);
+        }
+
+        if (result.Count < 100)
+            throw new Exception("Something went wrong with game translation key checking");
+
+        return result;
     }
 
     /// <summary>
@@ -406,12 +460,16 @@ public class WikiUpdater
             // Remove any leftover characters that are not supposed to be present in translation keys
             var validUntranslatedValue = Regex.Replace(untranslatedValue, "[^A-Z0-9_]", string.Empty);
 
-            // Add a prefix to not pollute other translation keys with random stuff (but not numbers as they'll get
-            // translation-extracted otherwise). And it is not a known simple value that can be let through.
-            if (!string.IsNullOrWhiteSpace(validUntranslatedValue) && Regex.IsMatch(validUntranslatedValue, "[A-Z]")
-                && !SimpleFieldValues.Contains(validUntranslatedValue))
+            // Add a prefix to not pollute other translation keys with random stuff
+            // Except for stuff that should be ignored by later translation checks or if something is specifically
+            // deemed a good key, or it is already in use with the game
+            if (!string.IsNullOrWhiteSpace(validUntranslatedValue) && Regex.IsMatch(validUntranslatedValue, "[A-Z]"))
             {
-                validUntranslatedValue = "WIKI_" + validUntranslatedValue;
+                if (!gameTranslationKeys.Value.Contains(validUntranslatedValue) &&
+                    !SimpleFieldValues.Contains(validUntranslatedValue))
+                {
+                    validUntranslatedValue = "WIKI_" + validUntranslatedValue;
+                }
             }
 
             untranslated.Add(new GameWiki.InfoboxField(untranslatedKey, validUntranslatedValue));
@@ -478,6 +536,8 @@ public class WikiUpdater
                     break;
                 case "UL":
 
+                    // TODO: switch to the Godot 4 way to handle this:
+                    // https://github.com/Revolutionary-Games/Thrive/issues/5511
                     // Godot 3 does not support lists in BBCode, so use custom formatting
                     text = child.Children
                         .Where(c => c.TagName == "LI")
@@ -522,37 +582,53 @@ public class WikiUpdater
     {
         var bbcode = new StringBuilder();
 
+        ConvertParagraphToBbcode(paragraph, bbcode);
+        return bbcode.ToString();
+    }
+
+    private void ConvertParagraphToBbcode(INode paragraph, StringBuilder result)
+    {
         var children = paragraph.ChildNodes;
         foreach (var child in children)
         {
-            if (child is IHtmlAnchorElement link)
+            switch (child)
             {
-                bbcode.Append(ConvertLinkToBbcode(link));
-            }
-            else if (child is IHtmlImageElement image)
-            {
-                bbcode.Append(ConvertImageToBbcode(image, bbcode));
-            }
-            else if (child is IElement element)
-            {
-                if (element.TagName == "B" && element.Children.Length > 0)
-                {
-                    // Deal with items inside bold tags, e.g. links
-                    bbcode.Append("[b]");
-                    bbcode.Append(ConvertParagraphToBbcode(element));
-                    bbcode.Append("[/b]");
-                    continue;
-                }
+                // Handle wrapped items
+                case IHtmlDivElement or IHtmlSpanElement or IHtmlParagraphElement:
+                    foreach (var recursiveChild in child.ChildNodes)
+                    {
+                        // Ignore recursive children with just whitespace to avoid a ton of undesired whitespace
+                        if (recursiveChild is IText textChild && string.IsNullOrWhiteSpace(textChild.Text))
+                        {
+                            // But keep one whitespace character in case there wouldn't be any separation otherwise
+                            if (result.Length > 0 && !char.IsWhiteSpace(result[^1]))
+                                result.Append(' ');
+                        }
 
-                bbcode.Append(ConvertTextToBbcode(element.OuterHtml));
-            }
-            else
-            {
-                bbcode.Append(ConvertTextToBbcode(child.TextContent));
+                        ConvertParagraphToBbcode(recursiveChild, result);
+                    }
+
+                    break;
+                case IHtmlAnchorElement link:
+                    result.Append(ConvertLinkToBbcode(link));
+                    break;
+                case IHtmlImageElement image:
+                    result.Append(ConvertImageToBbcode(image, result));
+                    break;
+                case IElement { TagName: "B", Children.Length: > 0 } element:
+                    // Deal with items inside bold tags, e.g. links
+                    result.Append("[b]");
+                    result.Append(ConvertParagraphToBbcode(element));
+                    result.Append("[/b]");
+                    continue;
+                case IElement element:
+                    result.Append(ConvertTextToBbcode(element.OuterHtml));
+                    break;
+                default:
+                    result.Append(ConvertTextToBbcode(child.TextContent));
+                    break;
             }
         }
-
-        return bbcode.ToString();
     }
 
     /// <summary>
@@ -609,7 +685,23 @@ public class WikiUpdater
             return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
         }
 
-        return $"[thrive:icon]{image.AlternativeText}[/thrive:icon]";
+        if (IsThriveIcon(image.AlternativeText))
+        {
+            return $"[thrive:icon]{image.AlternativeText}[/thrive:icon]";
+        }
+
+        // Images that aren't Thrive icons are for now converted into links rather than trying to refer to icons that
+        // do not exist
+        return $"[color=#3796e1][url={image.Source}]{ConvertTextToBbcode(image.AlternativeText ?? "link to image")}" +
+            "[/url][/color]";
+    }
+
+    private bool IsThriveIcon(string? iconName)
+    {
+        if (string.IsNullOrEmpty(iconName))
+            return false;
+
+        return EmbeddedThriveIconExtensions.TryGetIcon(iconName, out _);
     }
 
     /// <summary>
@@ -625,6 +717,10 @@ public class WikiUpdater
             .Replace("</i>", "[/i]")
             .Replace("<u>", "[u]")
             .Replace("</u>", "[/u]")
+            .Replace("<code>", "[code]")
+            .Replace("</code>", "[/code]")
+            .Replace("<pre>", "[code]")
+            .Replace("</pre>", "[/code]")
             .Replace("<br>", "\n")
             .Replace("\"", "\\\"");
     }

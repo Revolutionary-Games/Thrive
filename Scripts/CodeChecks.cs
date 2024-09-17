@@ -58,7 +58,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 
         FilePathsToAlwaysIgnore.Add(new Regex("/?third_party/", RegexOptions.IgnoreCase));
         FilePathsToAlwaysIgnore.Add(new Regex(@"mono_crash\..+"));
-        FilePathsToAlwaysIgnore.Add(new Regex("RevolutionaryGamesCommon/"));
+        FilePathsToAlwaysIgnore.Add(new Regex(@"RevolutionaryGamesCommon\/"));
 
         // Downloaded json files
         FilePathsToAlwaysIgnore.Add(new Regex(@"patrons\.json"));
@@ -66,29 +66,35 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
 
         // Generated json files that are intentionally minimized
         FilePathsToAlwaysIgnore.Add(new Regex(@"older_patch_notes\.json$"));
+        FilePathsToAlwaysIgnore.Add(new Regex(@"extension_api\.json$"));
 
         // We ignore the .godot folder as it has godot temporary data and a bunch of files that don't conform to any
         // styles
         FilePathsToAlwaysIgnore.Add(new Regex(@"\.godot\/"));
+
+        FilePathsToAlwaysIgnore.Add(new Regex(@"Scripts\/GodotAPIData"));
     }
 
     protected override Dictionary<string, CodeCheck> ValidChecks { get; }
 
-    protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards => new[]
-    {
+    protected override IEnumerable<string> ExtraIgnoredJetbrainsInspectWildcards =>
+    [
         "third_party/**",
         "RevolutionaryGamesCommon/**",
         "src/native/**.cpp",
         "src/native/**.hpp",
         "third_party/**.hpp",
-    };
+        "Scripts/GodotAPIData/*",
+    ];
 
-    protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards => new[]
-    {
+    protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards =>
+    [
         "third_party/boost/**",
         "third_party/concurrentqueue/**",
         "third_party/JoltPhysics/**",
-    };
+        "third_party/godot-cpp/**",
+        "Scripts/GodotAPIData/*",
+    ];
 
     protected override string MainSolutionFile => "Thrive.sln";
 }

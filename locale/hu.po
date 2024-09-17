@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 20:19+0300\n"
+"POT-Creation-Date: 2024-09-17 13:19+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -217,10 +217,6 @@ msgstr "A rajzot {0} készítette"
 
 msgid "ART_GALLERY"
 msgstr "Rajz galéria"
-
-#, fuzzy
-msgid "ASCENSION"
-msgstr "Verzió:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulálok!"
@@ -2412,9 +2408,6 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Segítség"
 
-msgid "INJECTISOME_PILUS"
-msgstr ""
-
 msgid "INPUTS"
 msgstr "Bemenet"
 
@@ -3846,10 +3839,6 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
-msgid "NATION_EDITOR"
-msgstr "Szerkesztő engedélyezése"
-
-#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Észlelhető szálak:"
 
@@ -4515,10 +4504,6 @@ msgstr "Projekt Menedzsment Csapat"
 
 msgid "PROTEINS"
 msgstr "Proteinek"
-
-#, fuzzy
-msgid "PROTEIN_RESPIRATION"
-msgstr "Aerob légzés"
 
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
@@ -6337,8 +6322,9 @@ msgstr ""
 msgid "WIKI_3D"
 msgstr "Wikipédiánk"
 
+#, fuzzy
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "Kloroplasztisz"
 
 #, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
@@ -6352,6 +6338,10 @@ msgid "WIKI_8_BRACKET_16"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
+
+#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Jelenlegi fejlesztők"
 
@@ -6363,8 +6353,9 @@ msgstr "Külső effektek:"
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
+#, fuzzy
 msgid "WIKI_ASCENSION_OVERVIEW"
-msgstr ""
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
@@ -6398,8 +6389,9 @@ msgstr "Felkelési fázis"
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
@@ -6425,26 +6417,33 @@ msgstr "Tudatos fázis"
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Külső effektek:"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
+#, fuzzy
 msgid "WIKI_AXON_PROCESSES"
-msgstr ""
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #, fuzzy
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
@@ -6525,24 +6524,29 @@ msgstr "Kemoplasztisz"
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "Kemoplasztisz"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-ot alakít át [thrive:compound type=\"glucose\"][/thrive:compound]-zá. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
-msgstr ""
+msgstr "Termoplasztisz"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr ""
+msgstr "Termoplasztisz"
 
 #, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
@@ -6624,11 +6628,13 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hat
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
@@ -6642,30 +6648,37 @@ msgstr "Kloroplasztisz"
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "OxyToxy szintézis"
 
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
-msgstr ""
+msgstr "Kloroplasztisz"
 
+#, fuzzy
 msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+msgstr "Kloroplasztisz"
 
 #, fuzzy
 msgid "WIKI_COMPOUNDS_BUTTON"
@@ -6679,20 +6692,25 @@ msgstr "Vegyületek:"
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
-msgstr ""
+msgstr "Végtelen vegyületek"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
-msgstr ""
+msgstr "Vegyületek:"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "Vegyületek:"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
-msgstr ""
+msgstr "Vegyületek:"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
-msgstr ""
+msgstr "Vegyületek:"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -6710,17 +6728,21 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Kloroplasztisz"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Kloroplasztisz"
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT"
@@ -6734,18 +6756,21 @@ msgstr "Sejtszervecskék"
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr "Sejtszervecskék"
 
+#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Mitokondrium"
 
 #, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
 msgstr "Mitokondrium"
 
+#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Mitokondrium"
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "Mitokondrium"
 
 #, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
@@ -6755,34 +6780,41 @@ msgstr "Mitokondrium"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt az ok miatt: {2}"
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
-msgstr ""
+msgstr "Mitokondrium"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
-msgstr ""
+msgstr "Növeli a sejt sebességét, viszont [thrive:compound type=\"atp\"][/thrive:compound]-t használ."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Ostor"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr ""
+msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
 msgstr "Növeli a sejt sebességét, viszont [thrive:compound type=\"atp\"][/thrive:compound]-t használ."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Ostor"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Ostor"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Növeli a sejt sebességét, viszont [thrive:compound type=\"atp\"][/thrive:compound]-t használ."
 
 #, fuzzy
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
@@ -6812,8 +6844,9 @@ msgstr "Felkelési fázis"
 msgid "WIKI_HEADING_EDITOR"
 msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Felkelési fázis"
 
 #, fuzzy
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
@@ -6835,18 +6868,21 @@ msgstr "Felkelési fázis"
 msgid "WIKI_HEADING_GDD"
 msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Felkelési fázis"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Mitokondrium"
 
 #, fuzzy
 msgid "WIKI_HEADING_OVERVIEW"
@@ -6860,17 +6896,21 @@ msgstr "Felkelési fázis"
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "Fizikai körülmények"
 
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
@@ -6896,8 +6936,9 @@ msgstr "Végtelen vegyületek"
 msgid "WIKI_HEADING_UI"
 msgstr "Felkelési fázis"
 
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Felkelési fázis"
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
@@ -6911,8 +6952,9 @@ msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lép�
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr "Kötőszövet"
 
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
-msgstr ""
+msgstr "Kötőszövet"
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
@@ -6922,8 +6964,12 @@ msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Kötőszövet"
 
-msgid "WIKI_LYSOSOME_EFFECTS"
+msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr "Oxytoxyszóma"
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -6937,17 +6983,21 @@ msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. 
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Oxytoxyszóma"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Oxytoxyszóma"
 
 #, fuzzy
 msgid "WIKI_MECHANICS"
@@ -7057,11 +7107,13 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thri
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr ""
+msgstr "Mitokondrium"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
@@ -7099,29 +7151,41 @@ msgstr "Többsejtes fázis"
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Többsejtes fázis"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Ragadozói pilus"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
-msgstr ""
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Szerkesztő engedélyezése"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -7171,8 +7235,9 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
@@ -7193,30 +7258,41 @@ msgstr "Wikipédiánk"
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr "Az eukarióta sejtek legmeghatározóbb jellemzője. A sejtmaghoz még hozzá tartozik az endoplazmatikus membránrendszer és a golgi-készülék is."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
-msgstr ""
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
+"Méreganyag\n"
+"Vakuólum"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
+"Méreganyag\n"
+"Vakuólum"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -7238,11 +7314,13 @@ msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:c
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -7268,8 +7346,9 @@ msgstr "Felkelési fázis"
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "Tudatos fázis"
 
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "Rusticyanin"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -7295,15 +7374,17 @@ msgstr "Kemoszintetizáló fehérjék"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Kloroplasztisz"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "Felkelési fázis"
 
 #, fuzzy
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "Citoplazma"
 
+#, fuzzy
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "Vegyületek:"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
@@ -7377,8 +7458,9 @@ msgstr "Sejtszervecske elhelyezése"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxytoxyszóma"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplazma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
@@ -7440,29 +7522,41 @@ msgstr ""
 "Méreganyag\n"
 "Vakuólum"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a [thrive:compound type=\"sunlight\"][/thrive:compound] intenzitásától."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Kloroplasztisz"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Kloroplasztisz"
+
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Aerob légzés"
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -7472,24 +7566,29 @@ msgstr "Protoplazma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Kloroplasztisz"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
@@ -7503,8 +7602,9 @@ msgstr "Protoplazma"
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplazma"
 
+#, fuzzy
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Protoplazma"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -7528,8 +7628,9 @@ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségéve
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr "[thrive:compound type=\"iron\"][/thrive:compound]-at alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé. Hatékonysága függ az [thrive:compound type=\"carbondioxide\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
@@ -7591,20 +7692,25 @@ msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
@@ -7626,8 +7732,9 @@ msgstr "Sejtfázis"
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "Sejtfázis"
 
+#, fuzzy
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
@@ -7673,11 +7780,13 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hat
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hatékonysága függ a [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentrációjától és a hőmérséklettől."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
 #, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
@@ -7719,8 +7828,9 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
-msgstr ""
+msgstr "Termoplasztisz"
 
 #, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
@@ -7730,8 +7840,9 @@ msgstr "Termoplasztisz"
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr "Termoplasztisz"
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
-msgstr ""
+msgstr "Termoplasztisz"
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
@@ -7745,11 +7856,13 @@ msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai.
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "A thilakoidok fehérjék és fényérzékeny pigmentek csoportosulásai. Ezek a pigmentek képesek a fény energiáját felhasználni glükóz előállítására vízből, és szén-dioxid gázból. Ezt a folyamatot hívjuk fotoszintézisnek. E pigmentek adják ráadásul saját maguk jellegzetes színét. A glükóz előállításának intenzitása a fény intenzitásától, és a szén-dioxid koncentrációjától függ. Mivel a thilakoidok a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
@@ -7783,11 +7896,13 @@ msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:c
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "Foszforeszkáló vakuólum"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Foszforeszkáló vakuólum"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
@@ -7801,30 +7916,45 @@ msgstr ""
 "Méreganyag\n"
 "Vakuólum"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
+"Méreganyag\n"
+"Vakuólum"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr ""
+"Méreganyag\n"
+"Vakuólum"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
 #, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
+"Méreganyag\n"
+"Vakuólum"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
+"Méreganyag\n"
+"Vakuólum"
 
 #, fuzzy
 msgid "WIKI_YES"
@@ -7926,6 +8056,14 @@ msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
 #, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Kemoszintézis"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "Verzió:"
+
+#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Citoplazma glikolízis"
 
@@ -7934,20 +8072,12 @@ msgstr "Távolodás"
 #~ msgstr "Anaerob Nitrifikáció"
 
 #, fuzzy
-#~ msgid "WIKI_ASCENSION"
-#~ msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
-
-#, fuzzy
 #~ msgid "WIKI_AWAKENING_STAGE"
 #~ msgstr "Felkelési fázis"
 
 #, fuzzy
 #~ msgid "WIKI_AWARE_STAGE"
 #~ msgstr "Tudatos fázis"
-
-#, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Kemoszintézis"
 
 #, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
