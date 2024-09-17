@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 13:45+0300\n"
-"PO-Revision-Date: 2024-09-08 07:30+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2024-09-17 15:30+0300\n"
+"PO-Revision-Date: 2024-09-17 07:03+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -93,8 +93,16 @@ msgstr "Avancée"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Ouvrir la vue de configuration avancée"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Fixation anaérobique d'azote"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fixation aérobique d'azote"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Respiration aérobie"
 
 msgid "AGENTS"
 msgstr "Agents"
@@ -329,6 +337,10 @@ msgstr "Barre oblique inversée"
 
 msgid "BACKSPACE"
 msgstr "Retour arrière"
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Thermosynthèse"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Calculer comme si c'était le jour"
@@ -581,6 +593,10 @@ msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréceptio
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Le chimiorécepteur permet de détecter les composés de plus loin. Modifier une fois placé pour choisir le type de composé détecté et la couleur de la ligne de guidage."
+
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Chimiosynthèse"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Protéines chimiosynthétiques"
@@ -1597,8 +1613,16 @@ msgstr "(secrets apparaissant au hasard dans le jeu)"
 msgid "EDGE_PAN_SPEED"
 msgstr "Vitesse d'absorption des ressources :"
 
+#, fuzzy
+msgid "EDITING_TITLE"
+msgstr "Titre manquant"
+
 msgid "EDITOR"
 msgstr "Éditeur"
+
+#, fuzzy
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
+msgstr "a muté"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "Entrer dans l'éditeur et modifier votre espèce"
@@ -1720,6 +1744,10 @@ msgstr "Étiquette de l'entité"
 
 msgid "ENVIRONMENT"
 msgstr "Environnement"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
+msgstr "Rétention environnementale de glucose"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "Rétention environnementale de glucose"
@@ -2067,6 +2095,10 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Équipe conception du jeu"
 
 #, fuzzy
+msgid "GAME_SYSTEMS_TITLE"
+msgstr "Équipe conception du jeu"
+
+#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 "Indique l’estimation de l'énergie totale collectée par votre espèce dans toutes les zones et la population résultante (entre parenthèses).\n"
@@ -2236,7 +2268,15 @@ msgstr "PM illimités"
 msgid "INFO_BOX_COST"
 msgstr "Coût de base (PM)"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Coût de base (PM)"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr "Enzymes"
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr "Enzymes"
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2245,8 +2285,16 @@ msgstr "Nom interne"
 msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Stockage"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Processus"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processus"
@@ -2895,6 +2943,10 @@ msgstr "Il n'est pas permis d'afficher plus de {0} datasets !"
 
 msgid "MAY"
 msgstr "Mai"
+
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Dévoluer"
 
 msgid "MEDIANEXT"
 msgstr "Média suivant"
@@ -3579,6 +3631,7 @@ msgstr "{0} PM"
 msgid "MUCILAGE"
 msgstr "Mucilage"
 
+#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Synthèse de mucilage"
 
@@ -3936,6 +3989,10 @@ msgid "ORGANELLES"
 msgstr "Organites"
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Axone"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Les conditions de déverrouillage ne sont vérifiées qu'une fois par génération lors de l'entrée dans l'éditeur"
 
@@ -4002,6 +4059,10 @@ msgstr "Composés"
 msgid "OUR_WIKI"
 msgstr "notre Wiki"
 
+#, fuzzy
+msgid "OUTDATED_NOTICE"
+msgstr "Non commencé."
+
 msgid "OUTREACH_TEAM"
 msgstr "Équipe chargée des Relations Publiques"
 
@@ -4034,6 +4095,7 @@ msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:c
 msgid "OXYTOXY_NT"
 msgstr "NeuroToxyOxy"
 
+#, fuzzy
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Synthèse d'OxyToxy"
 
@@ -5119,6 +5181,9 @@ msgstr "Lumière du soleil"
 msgid "SUPPORTER_PATRONS"
 msgstr "Supporters"
 
+msgid "SURVIVAL_TITLE"
+msgstr ""
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Passer en camera frontale"
 
@@ -5255,6 +5320,14 @@ msgstr "La quantité de glucose a été réduite à {0} de sa valeur précédent
 
 msgid "THE_DISTURBANCE"
 msgstr "La Perturbation"
+
+#, fuzzy
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr "Carte des secteurs"
+
+#, fuzzy
+msgid "THE_WORLD_TITLE"
+msgstr "Monde"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "Cette modification est installée localement"
@@ -6037,6 +6110,118 @@ msgstr "Molette avant"
 msgid "WIKI"
 msgstr "Wiki"
 
+#, fuzzy
+msgid "WIKI_2D"
+msgstr "Wiki"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D"
+msgstr "Wiki"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Les [b]cils[/b] sont essentiels pour les grandes cellules, en particulier celles qui dépendent de la prédation. Sans eux, les grandes cellules sont limitées par des vitesses de rotation souvent très lentes. Nous recommandons d'ajouter des [b]cils[/b] dès que possible après avoir développé un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour compenser la taille énorme de cet organite crucial, et nous recommandons de les placer aussi loin que possible du centre de la cellule pour maximiser la force de rotation."
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Les [b]cils[/b] sont essentiels pour les grandes cellules, en particulier celles qui dépendent de la prédation. Sans eux, les grandes cellules sont limitées par des vitesses de rotation souvent très lentes. Nous recommandons d'ajouter des [b]cils[/b] dès que possible après avoir développé un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour compenser la taille énorme de cet organite crucial, et nous recommandons de les placer aussi loin que possible du centre de la cellule pour maximiser la force de rotation."
+
+#, fuzzy
+msgid "WIKI_8_BRACKET_16"
+msgstr "Tourner à gauche"
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
+
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Développeurs actuels"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr ""
+"Pour chaque cellule d'un organisme multicellulaire qui contient un [b]axone[/b], la puissance cérébrale de cet organisme augmentera proportionnellement au volume de cette cellule. Les cellules dotées d'[b]axones[/b] sont considérées comme possédant un tissu cérébral.\n"
+"\n"
+"Lorsque la puissance cérébrale dépasse [b]+0.5[/b], le joueur entre dans la Phase Consciente. Lorsque la puissance cérébrale dépasse [b]+5.0[/b], le joueur entre dans la Phase d'Éveil."
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Félicitations !"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
+"\n"
+"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]chacune[/i] des conditions suivantes devra être vérifiée [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
+"[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+"Permet à une cellule de se réunir avec d'autres cellules de son espèce pour former une colonie cellulaire. Une fois liées dans une colonie, les cellules se déplacent comme une seule et même entité et partagent leurs composés. Les cellules doivent se détacher d'une colonie avant d'entrer dans l'éditeur et de se diviser.\n"
+"\n"
+"La formation de colonies cellulaires est la première étape vers la multicellularité, et les [b]agents liants[/b] sont donc essentiels pour passer à la phase suivante."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Phase d’éveil"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Phase consciente"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Phase consciente"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogénase"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Phase consciente"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 "Pour chaque cellule d'un organisme multicellulaire qui contient un [b]axone[/b], la puissance cérébrale de cet organisme augmentera proportionnellement au volume de cette cellule. Les cellules dotées d'[b]axones[/b] sont considérées comme possédant un tissu cérébral.\n"
@@ -6063,6 +6248,10 @@ msgstr "L'ajout d'[b]axones[/b] est essentiel pour atteindre les étapes suivant
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Synthèse d'OxyToxy"
 
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
@@ -6137,6 +6326,9 @@ msgstr "Pas disponible dans le jeu. Doit être implémenté."
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations. Doit être implémenté."
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "Pas d'effets."
@@ -6281,6 +6473,10 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Synthèse d'OxyToxy"
+
 msgid "WIKI_CILIA_EFFECTS"
 msgstr "Chaque hexagone de [b]cils[/b] augmente la vitesse de rotation d'une cellule, et consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound] en échange d'une mobilité accrue. Cette amélioration dépend de l'emplacement de l'organite - plus il est éloigné du centre de la cellule, plus son moment d'inertie est élevé, et plus sa vitesse de rotation est grande."
 
@@ -6297,6 +6493,7 @@ msgstr "Pas de processus."
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]cils[/b]."
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "À l'instar des [b][color=#3796e1][url=thriveopedia:flagellum]flagelles[/url][/color][/b], les [b]cils[/b] sont de fins poils qui fournissent une poussée directionnelle, avec toutefois des configurations différentes et d'autres avantages. De nombreux organismes utilisent les [b]cils[/b] à des fins sensorielles et ils peuvent également pousser et tirer des nutriments des organismes de plus grande taille.\n"
@@ -6313,6 +6510,39 @@ msgstr ""
 "[b]Cils de traction[/b]\n"
 "\n"
 "Pour [b]25[/b] points de mutation, modifiez les [b]cils[/b] déjà placés pour les transformer en [b]cils de traction[/b]. En plus des effets habituels de l'organite, les [b]cils de traction[/b] génèrent des tourbillons qui attirent les petites cellules et des fragments tels que les organites flottants."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+"Les entrailles gluantes d'une cellule. Le [b]cytoplasme[/b] est le mélange de base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui constitue l'intérieur de la cellule.\n"
+"\n"
+"L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Composés :"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+"Les entrailles gluantes d'une cellule. Le [b]cytoplasme[/b] est le mélange de base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui constitue l'intérieur de la cellule.\n"
+"\n"
+"L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr ""
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "N'importe quel organite peut remplacer le [b]cytoplasme[/b] sans coût supplémentaire en points de mutation (en dehors du coût de l'organite en question)."
@@ -6354,6 +6584,56 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Wiki de développement"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr ""
+"Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
+"\n"
+"Chaque fois que vous vous reproduisez, vous pouvez ajouter, déplacer, modifier ou supprimer des organites à l'intérieur de votre cellule à l'aide de l'éditeur de microbes. Presque toutes ces actions coûtent des points de mutation. Les organites sont disposés dans une grille hexagonale, formant une forme contiguë enveloppée par la membrane cellulaire, et chaque organite a une empreinte hexagonale caractéristique. Les organites externes s'attachent à l'extérieur de la membrane, de sorte que pour la plupart d'entre eux, l'orientation du placement a de l'importance.\n"
+"\n"
+"Lorsque vous modifiez votre cellule, les autres espèces modifient également la disposition de leurs organites. Elles ont accès aux mêmes pouvoirs et capacités.\n"
+"\n"
+"Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr ""
+"Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
+"\n"
+"Chaque fois que vous vous reproduisez, vous pouvez ajouter, déplacer, modifier ou supprimer des organites à l'intérieur de votre cellule à l'aide de l'éditeur de microbes. Presque toutes ces actions coûtent des points de mutation. Les organites sont disposés dans une grille hexagonale, formant une forme contiguë enveloppée par la membrane cellulaire, et chaque organite a une empreinte hexagonale caractéristique. Les organites externes s'attachent à l'extérieur de la membrane, de sorte que pour la plupart d'entre eux, l'orientation du placement a de l'importance.\n"
+"\n"
+"Lorsque vous modifiez votre cellule, les autres espèces modifient également la disposition de leurs organites. Elles ont accès aux mêmes pouvoirs et capacités.\n"
+"\n"
+"Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respiration aérobie[/b], ou la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] en utilisant de l'[thrive:compound type=\"oxygène\"][/thrive:compound]. Les [b]mitochondries[/b] remplissent cette fonction plus efficacement que d'autres organites tels que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]."
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respiration aérobie[/b], ou la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] en utilisant de l'[thrive:compound type=\"oxygène\"][/thrive:compound]. Les [b]mitochondries[/b] remplissent cette fonction plus efficacement que d'autres organites tels que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]."
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "(proportion de glucose retenue dans l'environnement à chaque génération)"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orientation. Il fournit également une petite poussée dans les directions proches du sens opposé (plus précisément, les directions pour lesquelles la composante du vecteur opposé est positive). Lorsqu'un [b]flagelle[/b] est actif, il consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6384,14 +6664,89 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Fixation anaérobique d'azote"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Processus"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Conditions"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Conditions"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Effets"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Processus"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Modifications"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Processus"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Modifications"
 
+#, fuzzy
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "Modifications"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Processus"
+
+#, fuzzy
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Conditions physiques"
+
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "Processus"
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Conditions"
@@ -6402,8 +6757,64 @@ msgstr "Contexte scientifique"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Stratégie"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "Stratégie"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Modifications"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Effets"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Améliorations"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Améliorations"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
+"\n"
+"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]chacune[/i] des conditions suivantes devra être vérifiée [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
+"[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+"Permet à une cellule de se réunir avec d'autres cellules de son espèce pour former une colonie cellulaire. Une fois liées dans une colonie, les cellules se déplacent comme une seule et même entité et partagent leurs composés. Les cellules doivent se détacher d'une colonie avant d'entrer dans l'éditeur et de se diviser.\n"
+"\n"
+"La formation de colonies cellulaires est la première étape vers la multicellularité, et les [b]agents liants[/b] sont donc essentiels pour passer à la phase suivante."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "Phase industrielle"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Phase industrielle"
+
+msgid "WIKI_INJECTISOME_PILUS"
+msgstr ""
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6437,6 +6848,21 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Organites"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr ""
+"Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
+"\n"
+"Chaque fois que vous vous reproduisez, vous pouvez ajouter, déplacer, modifier ou supprimer des organites à l'intérieur de votre cellule à l'aide de l'éditeur de microbes. Presque toutes ces actions coûtent des points de mutation. Les organites sont disposés dans une grille hexagonale, formant une forme contiguë enveloppée par la membrane cellulaire, et chaque organite a une empreinte hexagonale caractéristique. Les organites externes s'attachent à l'extérieur de la membrane, de sorte que pour la plupart d'entre eux, l'orientation du placement a de l'importance.\n"
+"\n"
+"Lorsque vous modifiez votre cellule, les autres espèces modifient également la disposition de leurs organites. Elles ont accès aux mêmes pouvoirs et capacités.\n"
+"\n"
+"Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Pas d'effets."
@@ -6473,6 +6899,58 @@ msgstr ""
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Éditeur de microbe"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Phase microbienne"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
+"\n"
+"La vie.\n"
+"\n"
+"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
+"\n"
+"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -6507,6 +6985,43 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Bienvenue au début de la phase multicellulaire !\n"
+"\n"
+"Vous avez réussi à guider votre espèce à travers la phase unicellulaire.\n"
+"\n"
+"Le gameplay suit les mécanismes de base de la phase microbienne. Vous devez toujours faire croître votre organisme pour vous reproduire et atteindre l'éditeur.\n"
+"\n"
+"Cependant, vous pouvez maintenant concevoir la disposition des cellules de votre colonie dans l'éditeur et vous pouvez spécialiser vos cellules pour divers rôles. N'oubliez pas que les membres de la colonie ne peuvent pas partager l'[thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Si vous utilisez la reproduction par bourgeonnement (la méthode par défaut), vous commencez par contrôler un petit bourgeon et devez faire croître le reste de la disposition des cellules."
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Phase multicellulaire"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Phase multicellulaire"
+
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
@@ -6530,6 +7045,10 @@ msgstr ""
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "Pas d'améliorations"
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Activer l'éditeur"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Pas d'effets."
@@ -6586,6 +7105,13 @@ msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound 
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_NO"
+msgstr "Wiki"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
@@ -6604,6 +7130,7 @@ msgstr "Pas de modifications."
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "Pas de processus."
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr "Pas de conditions."
 
@@ -6663,6 +7190,22 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Synthèse d'OxyToxy"
+
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Axone"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Phase d’éveil"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Phase consciente"
+
 msgid "WIKI_PAGE_AXON"
 msgstr "Axone"
 
@@ -6688,20 +7231,55 @@ msgstr "Chloroplaste"
 msgid "WIKI_PAGE_CILIA"
 msgstr "Cils"
 
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplasme"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasme"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Organites"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondrie"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
 
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Phase industrielle"
+
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosome"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Organites"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Métabolosomes"
 
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogénase"
+
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrie"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Phase multicellulaire"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6729,6 +7307,10 @@ msgstr "Pilus perforant"
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasme"
 
+#, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasme"
+
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rusticyanine"
 
@@ -6739,12 +7321,28 @@ msgstr "Agent de signalisation"
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Propulseur gélatineux"
 
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Propulseur gélatineux"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Organites"
+
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Thermoplaste"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Thermosynthase"
+
+#, fuzzy
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "Thermoplaste"
 
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "Thylakoïdes"
@@ -6805,6 +7403,10 @@ msgstr ""
 "\n"
 "Pour [b]25[/b] points de mutation, modifiez les [b]Pili Perforants[/b] déjà placés pour les transformer en [b]Pili Injectisome[/b]. Lorsque ces derniers heurtent des cellules ennemies, ils infligent également des dégâts de toxine. Les types de membranes qui réduisent les dégâts des toxines réduisent également les dégâts des [b]Pili Injectisome/b]."
 
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Respiration aérobie"
+
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -6830,6 +7432,21 @@ msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
+
+#, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Cils"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasme"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasme"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6928,6 +7545,67 @@ msgstr ""
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Pas d'améliorations."
 
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Phase sociétale"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Phase sociétale"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Propulseur gélatineux"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Phase spatiale"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogénase"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Phase spatiale"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr ""
+"Les organites sont les \"organes\" des organismes unicellulaires. Dans Thrive, ils sont les éléments constitutifs de votre cellule, contrôlant ses fonctions et processus internes.\n"
+"\n"
+"Chaque fois que vous vous reproduisez, vous pouvez ajouter, déplacer, modifier ou supprimer des organites à l'intérieur de votre cellule à l'aide de l'éditeur de microbes. Presque toutes ces actions coûtent des points de mutation. Les organites sont disposés dans une grille hexagonale, formant une forme contiguë enveloppée par la membrane cellulaire, et chaque organite a une empreinte hexagonale caractéristique. Les organites externes s'attachent à l'extérieur de la membrane, de sorte que pour la plupart d'entre eux, l'orientation du placement a de l'importance.\n"
+"\n"
+"Lorsque vous modifiez votre cellule, les autres espèces modifient également la disposition de leurs organites. Elles ont accès aux mêmes pouvoirs et capacités.\n"
+"\n"
+"Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "Wiki"
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -6982,6 +7660,20 @@ msgstr "La thermosynthase est une protéine qui utilise la convection thermique 
 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Pas d'améliorations."
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr "Pas d'améliorations."
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr ""
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Pas d'effets spéciaux."
@@ -7066,6 +7758,10 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "Wiki"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Allez-vous prospérer ?"
 
@@ -7100,9 +7796,8 @@ msgstr "Titre de l'objet :"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "La mise en ligne sur l'atelier Steam a été réalisée avec succès"
 
-#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "La mise en ligne sur le Workshop Steam a fonctionné, mais vous devez accepter son [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]contrat de licence[/url][/color] avant que cela ne soit visible"
+msgstr "La mise en ligne sur le Workshop Steam a fonctionné, mais vous devez accepter son [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]contrat de licence[/url][/color] avant que cela ne devienne visible"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "En proposant cet objet, vous acceptez le [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]contrat de licence[/url][/color] du Workshop Steam"
@@ -7142,6 +7837,10 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "années"
 
+#, fuzzy
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr "Doit être implémenté."
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Visitez notre chaîne YouTube"
 
@@ -7158,6 +7857,106 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "Version :"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Glycolyse cytoplasmique"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fixation anaérobique d'azote"
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Phase d’éveil"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Phase consciente"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Chimiosynthèse"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Glycolyse"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Phase industrielle"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Chimiolithoautotrophe ferrique"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Lipase"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Éditeur de microbe"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Phase microbienne"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Synthèse de mucilage"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Phase multicellulaire"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "Synthèse d'OxyToxy"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Photosynthèse"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Rusticyanine"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Phase sociétale"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Phase spatiale"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Thermosynthèse"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Aucun(e)"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "années"
+
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Dévoluer"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Chitine"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
@@ -7380,9 +8179,6 @@ msgstr "Dézoomer"
 #~ msgid "TYPE"
 #~ msgstr "Type :"
 
-#~ msgid "VERSION"
-#~ msgstr "Version :"
-
 #~ msgid "EDITOR_TUTORIAL_PATCH_TEXT"
 #~ msgstr ""
 #~ "C'est la carte des parcelles.\n"
@@ -7543,10 +8339,6 @@ msgstr "Dézoomer"
 #~ msgstr "ATP"
 
 #, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Tourner à gauche"
-
-#, fuzzy
 #~ msgid "BRACKETRIGHT"
 #~ msgstr "Tourner à droite"
 
@@ -7614,3 +8406,10 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "OPEN_DETAILS"
 #~ msgstr "Ouvrir le dossier des Logs"
+
+#~ msgid "VERSION"
+#~ msgstr "Version :"
+
+#, fuzzy
+#~ msgid "BRACKETLEFT"
+#~ msgstr "Tourner à gauche"

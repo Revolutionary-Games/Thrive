@@ -26,7 +26,7 @@ public class DualContourer
 
     public IMeshGeneratingFunction MathFunction;
 
-    private static readonly Dictionary<int, Vector3I[]> LookupTableInt = new();
+    private static readonly Dictionary<int, Vector3I[]> LookupTable = new();
 
     public DualContourer(IMeshGeneratingFunction mathFunction)
     {
@@ -101,6 +101,9 @@ public class DualContourer
             AdjustVertices(points, 0.25f, normals);
         }
 
+        // Subdivision can be used multiple times, but triangle count increases exponentially
+        CatmullClarkSubdivision(points, triIndices, ref normals);
+
         var colors = new Color[points.Count];
 
         SetColours(points, colors);
@@ -127,7 +130,7 @@ public class DualContourer
 
     private static void CalculateLookupTableIfNeeded()
     {
-        if (LookupTableInt.Count > 0)
+        if (LookupTable.Count > 0)
             return;
 
         // Doesn't add triangles that go to negative x, y, or z to prevent triangles overlapping
@@ -214,7 +217,7 @@ public class DualContourer
                 }
             }
 
-            LookupTableInt.Add(i, tris.ToArray());
+            LookupTable.Add(i, tris.ToArray());
         }
     }
 
@@ -326,7 +329,7 @@ public class DualContourer
             shapePoints[x + 1, y + 1, z],
             shapePoints[x + 1, y + 1, z + 1]);
 
-        LookupTableInt.TryGetValue(id, out var result);
+        LookupTable.TryGetValue(id, out var result);
 
         return result;
     }
@@ -447,6 +450,283 @@ public class DualContourer
                 placedPoints.Add(point, index);
                 tris.Add(index);
             }
+        }
+    }
+
+    /// <summary>
+    ///   Subdivides given data using Catmull-Clark algorithm. Mutates given Lists, overwrites normals.
+    /// </summary>
+    private void CatmullClarkSubdivision(List<Vector3> points, List<int> triIndices, ref Vector3[] normals)
+    {
+        var sw = new Stopwatch();
+        sw.Start();
+
+        int originalTriIndexCount = triIndices.Count;
+        int originalPointCount = points.Count;
+
+        // Key is edge points' indices in points list.
+        // Value is triangle index in triIndices list, where the triangle is adjacent to the edge.
+        // Ints in tuple should be arranged in increasing order
+        var edgeTriangles = new Dictionary<(int StartID, int EndID), EdgeData>();
+
+        // New points are added to the points List multiple times in this algoritm.
+        // Ultimately, its point order is as follows:
+        // 1. Original points in an unmodified order. Count = originalPointCount
+        // 2. Face points in the order of the original triIndices. Count = originalTriIndexCount / 3
+        // 3. Edge points in no particular order. Count = edgeTriangles.Count (after mesh edges being added to it).
+
+        int edgesWithFourFaces = 0;
+
+        // Step one: add face centers, calculate faces adjacent to each edge
+        for (int i = 0; i < originalTriIndexCount; i += 3)
+        {
+            int newID = points.Count;
+            points.Add((points[triIndices[i]] + points[triIndices[i + 1]] + points[triIndices[i + 2]])
+                / 3.0f);
+
+            for (int j = i; j < i + 3; ++j)
+            {
+                int startID = triIndices[j];
+                int endID;
+
+                if (j == i + 2)
+                {
+                    endID = triIndices[j - 2];
+                }
+                else
+                {
+                    endID = triIndices[j + 1];
+                }
+
+                // Triangles' indices need to go in a clockwise order to render right face out.
+                // Due to this, there needs to be an "objective" direction of each edge, based on which triangles
+                // will determine if they are 'left-handed' or 'right-handed', which will then determine vertex order
+                // for final triangle placement.
+                // In this case, the "objective" direction is determined by vertices' IDs going in an increasing order.
+                // If the current triangle's vertices on this edge go in the "objective" direction,
+                // it is right-handed, otherwise it's left-handed
+                bool isLeftHanded = false;
+
+                // Vertices' IDs should go in an increasing order
+                if (startID > endID)
+                {
+                    (startID, endID) = (endID, startID);
+                    isLeftHanded = true;
+                }
+
+                if (!edgeTriangles.ContainsKey((startID, endID)))
+                {
+                    edgeTriangles.Add((startID, endID), new EdgeData(newID, isLeftHanded));
+                }
+                else
+                {
+                    edgeTriangles[(startID, endID)] = edgeTriangles[(startID, endID)].AddFace(newID, isLeftHanded,
+                        out bool increasedFaceCount);
+
+                    if (increasedFaceCount)
+                    {
+                        ++edgesWithFourFaces;
+                    }
+                }
+            }
+        }
+
+        // Step two: calculate normals for each point
+        var newNormals = new Vector3[originalPointCount + originalTriIndexCount / 3 + edgeTriangles.Count
+            + edgesWithFourFaces];
+
+        // Copy original points' normals
+        for (int i = 0; i < originalPointCount; ++i)
+        {
+            newNormals[i] = normals[i];
+        }
+
+        // Calculate faces' normals
+        for (int i = 0; i < originalTriIndexCount; i += 3)
+        {
+            int faceID = i / 3 + originalPointCount;
+            newNormals[faceID] = (normals[triIndices[i]] + normals[triIndices[i + 1]] + normals[triIndices[i + 2]])
+                .Normalized();
+        }
+
+        // Calculate edges' normals
+        int edgeID = originalPointCount + originalTriIndexCount / 3;
+        foreach (var edge in edgeTriangles)
+        {
+            newNormals[edgeID] = (normals[edge.Key.StartID] + normals[edge.Key.EndID]).Normalized();
+            ++edgeID;
+
+            // Edges with four faces create two points when subdivided.
+            if (edge.Value.HasFourFaces)
+            {
+                newNormals[edgeID] = (normals[edge.Key.StartID] + normals[edge.Key.EndID]).Normalized();
+                ++edgeID;
+            }
+        }
+
+        normals = newNormals;
+
+        // Step three: calculate edge centers's positions, place triangles
+        (float Divisor, Vector3 PointSum)[] originalPointsAdjacencies = new (float, Vector3)[originalPointCount];
+
+        triIndices.Clear();
+        foreach (var edge in edgeTriangles)
+        {
+            var startID = edge.Key.StartID;
+            var endID = edge.Key.EndID;
+
+            if (!edgeTriangles.TryGetValue((startID, endID), out var faces))
+            {
+                GD.PrintErr("Error when subdividing: edge-adjacent faces not found");
+                continue;
+            }
+
+            if (faces.HasFourFaces)
+            {
+                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices,
+                    originalPointsAdjacencies);
+
+                SubdivideEdge(startID, endID, faces.Face2ID, faces.Face3ID, points, triIndices,
+                    originalPointsAdjacencies);
+            }
+            else
+            {
+                SubdivideEdge(startID, endID, faces.Face0ID, faces.Face1ID, points, triIndices,
+                    originalPointsAdjacencies);
+            }
+        }
+
+        // Find original points' barycentric coordinates.
+        // This isn't a canonical function of Catmull-Clark subdivision, but it's faster
+        for (int i = 0; i < originalPointCount; ++i)
+        {
+            points[i] = (originalPointsAdjacencies[i].PointSum + points[i] * 6.0f)
+                / (originalPointsAdjacencies[i].Divisor + 6.0f);
+        }
+
+        sw.Stop();
+        GD.Print($"Subdivided a mesh in {sw.Elapsed}");
+    }
+
+    private void SubdivideEdge(int startID, int endID, int face1ID, int face2ID, List<Vector3> newPoints,
+        List<int> newTriIndices, (float, Vector3)[] originalPointsAdjacencies)
+    {
+        if (face1ID == -1 || face2ID == -1)
+        {
+            GD.PrintErr("Error when subdividing: a face has wrong id");
+            return;
+        }
+
+        Vector3 firstFaceCenter = newPoints[face1ID];
+        Vector3 secondFaceCenter = newPoints[face2ID];
+
+        Vector3 edgeCenter = (newPoints[startID] + newPoints[endID] + firstFaceCenter + secondFaceCenter) / 4.0f;
+
+        originalPointsAdjacencies[startID].Item1 += 1.0f;
+        originalPointsAdjacencies[startID].Item2 += edgeCenter;
+
+        originalPointsAdjacencies[endID].Item1 += 1.0f;
+        originalPointsAdjacencies[endID].Item2 += edgeCenter;
+
+        int newPointID = newPoints.Count;
+        newPoints.Add(edgeCenter);
+
+        // Left-handed triangles
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(face1ID);
+        newTriIndices.Add(endID);
+
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(startID);
+        newTriIndices.Add(face1ID);
+
+        // Right-handed triangles
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(face2ID);
+        newTriIndices.Add(startID);
+
+        newTriIndices.Add(newPointID);
+        newTriIndices.Add(endID);
+        newTriIndices.Add(face2ID);
+    }
+
+    private struct EdgeData
+    {
+        public int Face0ID;
+        public int Face1ID;
+
+        public int Face2ID;
+        public int Face3ID;
+        public bool HasFourFaces;
+
+        public EdgeData(int faceID, bool isFaceLeftHanded)
+        {
+            if (isFaceLeftHanded)
+            {
+                Face0ID = faceID;
+                Face1ID = -1;
+            }
+            else
+            {
+                Face0ID = -1;
+                Face1ID = faceID;
+            }
+
+            Face2ID = -1;
+            Face3ID = -1;
+
+            HasFourFaces = false;
+        }
+
+        public EdgeData AddFace(int faceID, bool isFaceLeftHanded, out bool increasedFaceCount)
+        {
+            EdgeData edge = this;
+
+            increasedFaceCount = false;
+
+            // Dual Contouring has cases in which one edge might be shared between not 2, but 4 faces.
+            if (edge.HasFourFaces)
+            {
+                if (isFaceLeftHanded)
+                {
+                    edge.Face2ID = faceID;
+                }
+                else
+                {
+                    edge.Face3ID = faceID;
+                }
+            }
+            else
+            {
+                if (isFaceLeftHanded)
+                {
+                    if (Face0ID != -1)
+                    {
+                        edge.HasFourFaces = true;
+                        edge.Face2ID = faceID;
+                        increasedFaceCount = true;
+                    }
+                    else
+                    {
+                        edge.Face0ID = faceID;
+                    }
+                }
+                else
+                {
+                    if (Face1ID != -1)
+                    {
+                        edge.HasFourFaces = true;
+                        edge.Face3ID = faceID;
+                        increasedFaceCount = true;
+                    }
+                    else
+                    {
+                        edge.Face1ID = faceID;
+                    }
+                }
+            }
+
+            return edge;
         }
     }
 

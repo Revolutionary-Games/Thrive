@@ -65,6 +65,6 @@ void fragment(){
     adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 1.0));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjusted_normals, adjusted_view);
+    ALPHA = fresnel(3.0, adjusted_normals, adjusted_view) * round(cutoff);
     ROUGHNESS = 0.7;
 }

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp8h2xyvs6xf7"]
+
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellePage.cs" id="2"]
+[ext_resource type="PackedScene" uid="uid://difkxs0cysyce" path="res://src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn" id="8"]
+
+[node name="ThriveopediaPage" node_paths=PackedStringArray("mainArticle", "noticeContainer") instance=ExtResource("1")]
+script = ExtResource("2")
+InfoBoxPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OrganelleDetails/OrganelleInfoBox")
+mainArticle = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/MainArticle")
+noticeContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Notices")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="MainArticle" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="1"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="OrganelleDetails" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="2"]
+layout_mode = 2
+
+[node name="OrganelleInfoBox" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/OrganelleDetails" index="0" instance=ExtResource("8")]
+layout_mode = 2
+
+[node name="Spacer2" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer" index="3"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2

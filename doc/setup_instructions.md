@@ -50,11 +50,22 @@ LFS. Note that the GitHub option to download as .zip will not work
 
 You need at least Git LFS version 2.8.0, old versions do not work.
 
-On Linux use your package manager to install Git. On Mac install the
+On Linux use your package manager to install Git. This can be done in
+the terminal (if you don't know what is your distro's package manager,
+you can look that up with a search engine). On Mac, install the
 package manager [homebrew](https://brew.sh/) if you don't already have
-it, and use it to install Git. On Mac and Linux Git LFS is likely available
-as a package named `git-lfs`. If it is not install it manually. After
-installing remember to run `git lfs install` in terminal.
+it, and use it to install Git. On Mac and Linux Git LFS is likely
+available as a package named `git-lfs`. If it is not, install it
+manually. You can download Git LFS from
+[git-lfs.com](https://git-lfs.com). After downloading the file,
+extract it to wherever you want. In the terminal, change directory to
+the newly extracted folder (e.g. `cd git-lfs-3.4.1`) and then run the
+install script in the terminal with: `sudo ./install.sh`.
+
+After you have installed Git LFS, it must be initialized with the
+following command both on Linux and Mac: `git lfs install`. Running
+that command should then say "Git LFS initialized." If it doesn't then
+something went wrong with either Git or Git LFS installation.
 
 On Windows install Git with the official installer from:
 https://git-scm.com/download/win You can use this installer to also
@@ -360,6 +371,12 @@ container Python and other [Godot build
 dependencies](https://docs.godotengine.org/en/stable/contributing/development/compiling/index.html#toc-devel-compiling)
 are required to be installed as well.
 
+
+On Linux installing LLVM tools may help working with the native
+libraries, the packages for these tools are usually called `llvm clang
+lld` and can be installed with your distro's package manager through
+the terminal.
+
 To compile inside a container the native libraries:
 ```sh
 dotnet run --project Scripts -- native Package
@@ -467,8 +484,9 @@ In addition to the following optional downloads you need to have Godot
 in your PATH for the scripts to find it. To do this create a link /
 rename the Godot editor executable to just `godot` or `godot.exe` if
 you are on Windows. Then you need to either add the folder where that
-executable is to your system PATH or move the executable (along the
-other Godot resources it needs) to a path that is already in PATH.
+executable is to your system PATH or move the executable (along with
+the other Godot resources it needs, i.e. the entire `GodotSharp`
+folder) to a path that is already in PATH.
 
 ### 7zip and zip
 

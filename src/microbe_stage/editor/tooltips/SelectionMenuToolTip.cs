@@ -455,6 +455,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     private void DummyKeepTranslations()
     {
-        TranslationServer.Translate("NO_ORGANELLE_PROCESSES");
+        Localization.Translate("NO_ORGANELLE_PROCESSES");
     }
 }
