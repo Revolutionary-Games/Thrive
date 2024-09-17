@@ -673,7 +673,8 @@ public partial class CustomRichTextLabel : RichTextLabel
                         output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0);
                         break;
                     default:
-                        throw new ArgumentOutOfRangeException(nameof(icon), "Unhandled icon type for rich text label display");
+                        throw new ArgumentOutOfRangeException(nameof(icon),
+                            "Unhandled icon type for rich text label display");
                 }
 
                 break;
