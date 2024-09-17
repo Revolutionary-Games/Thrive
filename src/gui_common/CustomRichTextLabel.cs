@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   For extra functionality added on top of normal RichTextLabel. Includes custom bbcode parser.
@@ -645,49 +646,34 @@ public partial class CustomRichTextLabel : RichTextLabel
             {
                 // TODO: allow overriding size or width (Constant handling has parsing for custom format)
 
-                switch (input)
+                if (!EmbeddedThriveIconExtensions.TryGetIcon(input, out var icon))
                 {
-                    case "ConditionInsufficient":
-                    {
+                    GD.PrintErr($"Icon: \"{input}\" doesn't exist, referenced in bbcode");
+                    break;
+                }
+
+                switch (icon)
+                {
+                    case EmbeddedThriveIcon.ConditionInsufficient:
                         output = GetResizedImage(GUICommon.Instance.RequirementInsufficientIconPath, 20, 0);
                         break;
-                    }
-
-                    case "ConditionFulfilled":
-                    {
+                    case EmbeddedThriveIcon.ConditionFulfilled:
                         output = GetResizedImage(GUICommon.Instance.RequirementFulfilledIconPath, 20, 0);
                         break;
-                    }
-
-                    case "StorageIcon":
-                    {
+                    case EmbeddedThriveIcon.StorageIcon:
                         output = GetResizedImage("res://assets/textures/gui/bevel/StorageIcon.png", 20, 0);
                         break;
-                    }
-
-                    case "OsmoIcon":
-                    {
+                    case EmbeddedThriveIcon.OsmoIcon:
                         output = GetResizedImage("res://assets/textures/gui/bevel/osmoregulationIcon.png", 20, 0);
                         break;
-                    }
-
-                    case "MovementIcon":
-                    {
+                    case EmbeddedThriveIcon.MovementIcon:
                         output = GetResizedImage("res://assets/textures/gui/bevel/SpeedIcon.png", 20, 0);
                         break;
-                    }
-
-                    case "MP":
-                    {
+                    case EmbeddedThriveIcon.MP:
                         output = GetResizedImage("res://assets/textures/gui/bevel/MP.png", 20, 0);
                         break;
-                    }
-
                     default:
-                    {
-                        GD.PrintErr($"Icon: \"{input}\" doesn't exist, referenced in bbcode");
-                        break;
-                    }
+                        throw new ArgumentOutOfRangeException(nameof(icon), "Unhandled icon type for rich text label display");
                 }
 
                 break;
