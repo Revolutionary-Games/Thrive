@@ -20,6 +20,10 @@ public partial class FlagellumUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         {
             lengthSlider.Value = flagellumUpgrades.LengthFraction;
         }
+        else
+        {
+            lengthSlider.Value = 0;
+        }
     }
 
     public bool ApplyChanges(ICellEditorComponent editorComponent, OrganelleUpgrades organelleUpgrades)
