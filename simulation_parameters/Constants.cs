@@ -793,12 +793,12 @@ public static class Constants
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.5f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
     /// <summary>
-    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
+    ///   How much compounds in relation to real compound amount can be absorbed from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
+    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.5f;
 
     /// <summary>
     ///   How long can cell be in engulf mode after activating without ATP
@@ -844,7 +844,7 @@ public static class Constants
 
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
 
-    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.25f;
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
