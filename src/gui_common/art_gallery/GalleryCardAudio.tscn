@@ -21,6 +21,9 @@ theme_override_constants/margin_top = 35
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 35
 
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" index="0"]
+stretch_mode = 5
+
 [node name="PlaybackControls" parent="MarginContainer/VBoxContainer/MarginContainer" index="1" instance=ExtResource("1")]
 layout_mode = 2
 
