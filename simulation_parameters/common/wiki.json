@@ -1,4 +1,5 @@
 ﻿{
+  "InternalName": null,
   "OrganellesRoot": {
     "Name": "WIKI_PAGE_ORGANELLES_ROOT",
     "InternalName": "OrganellesRoot",
@@ -8,6 +9,12 @@
         "SectionHeading": null,
         "SectionBody": "WIKI_ORGANELLES_ROOT_INTRO"
       }
+    ],
+    "InfoboxData": [],
+    "NoticeSceneName": null,
+    "RestrictedToStages": [
+      0,
+      1
     ]
   },
   "Organelles": [
@@ -48,6 +55,48 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_AXON_SCIENTIFIC_BACKGROUND"
         }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "100"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": [
+        1
       ]
     },
     {
@@ -87,7 +136,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "55"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_BIOLUMINESCENT_VACUOLE",
@@ -126,7 +215,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": ""
+        }
+      ],
+      "NoticeSceneName": "YetToBeImplementedNotice",
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_CHEMOPLAST",
@@ -165,7 +294,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "CHEMOSYNTHESIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_CHEMORECEPTOR",
@@ -204,7 +373,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS",
@@ -243,7 +452,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_CHEMOSYNTHESIZING_PROTEINS_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_CHLOROPLAST",
@@ -282,7 +531,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "50"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "PHOTOSYNTHESIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "3"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "3"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "15"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_CILIA",
@@ -321,7 +610,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "40"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "WIKI_PULLING_CILIA"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_CYTOPLASM",
@@ -360,7 +689,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "22"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "CYTOPLASM_GLYCOLYSIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_FLAGELLUM",
@@ -399,7 +768,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "55"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_LYSOSOME",
@@ -438,7 +847,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "LIPASE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_METABOLOSOMES",
@@ -477,7 +926,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "PROTEIN_RESPIRATION"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_MITOCHONDRION",
@@ -516,7 +1005,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "AEROBIC_RESPIRATION"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_MYOFIBRIL",
@@ -555,7 +1084,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "50"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "5"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "5"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_NITROGENASE",
@@ -594,7 +1163,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "55"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_NITROGEN-FIXING_PLASTID",
@@ -633,7 +1242,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "50"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "AEROBIC_NITROGEN_FIXATION"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_NUCLEUS",
@@ -672,7 +1321,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "70"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "10"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "10"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "4"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_OXYTOXISOME",
@@ -711,7 +1400,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "55"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_PERFORATOR_PILUS",
@@ -750,7 +1479,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "30"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "INJECTISOME_PILUS"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_PROTOPLASM",
@@ -789,7 +1558,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": ""
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "GLYCOLYSIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "15"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_RUSTICYANIN",
@@ -828,7 +1637,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "IRON_CHEMOLITHOAUTOTROPHY"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "RUSTICYANIN"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_SIGNALING_AGENT",
@@ -867,7 +1716,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "45"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "0"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_SLIME_JET",
@@ -906,7 +1795,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "60"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "MUCILAGE_SYNTHESIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_THERMOPLAST",
@@ -945,7 +1874,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "55"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "THERMOSYNTHESIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "2"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_THERMOSYNTHASE",
@@ -984,7 +1953,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "50"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "BACTERIAL_THERMOSYNTHESIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_THYLAKOIDS",
@@ -1023,7 +2032,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "50"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "05"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_TOXIN_VACUOLE",
@@ -1062,7 +2111,47 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
         }
-      ]
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "55"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "OXYTOXY_SYNTHESIS"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     },
     {
       "Name": "WIKI_PAGE_VACUOLE",
@@ -1101,7 +2190,651 @@
           "SectionHeading": "WIKI_HEADING_SCIENTIFIC_BACKGROUND",
           "SectionBody": "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
         }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_COST",
+          "DisplayedValue": "50"
+        },
+        {
+          "Name": "INFO_BOX_REQUIRES_NUCLEUS",
+          "DisplayedValue": "WIKI_YES"
+        },
+        {
+          "Name": "INFO_BOX_PROCESSES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_ENZYMES",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_SIZE",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_OSMOREGULATION_COST",
+          "DisplayedValue": "1"
+        },
+        {
+          "Name": "INFO_BOX_STORAGE",
+          "DisplayedValue": "WIKI_8_BRACKET_16"
+        },
+        {
+          "Name": "INFO_BOX_UNIQUE",
+          "DisplayedValue": "WIKI_NO"
+        },
+        {
+          "Name": "INFO_BOX_UPGRADES",
+          "DisplayedValue": "NONE"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    }
+  ],
+  "StagesRoot": {
+    "Name": "WIKI_PAGE_STAGES_ROOT",
+    "InternalName": "StagesRoot",
+    "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Category:Stages",
+    "Sections": [
+      {
+        "SectionHeading": null,
+        "SectionBody": "WIKI_STAGES_ROOT_INTRO"
+      }
+    ],
+    "InfoboxData": [],
+    "NoticeSceneName": null,
+    "RestrictedToStages": null
+  },
+  "Stages": [
+    {
+      "Name": "WIKI_PAGE_MICROBE_STAGE",
+      "InternalName": "microbe_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Microbe_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_MICROBE_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_GAMEPLAY",
+          "SectionBody": "WIKI_MICROBE_STAGE_GAMEPLAY"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_EDITOR",
+          "SectionBody": "WIKI_MICROBE_STAGE_EDITOR"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_GDD",
+          "SectionBody": "WIKI_MICROBE_STAGE_GDD"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_APPENDICES",
+          "SectionBody": "WIKI_MICROBE_STAGE_APPENDICES"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_2D"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "NONE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "MULTICELLULAR_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "MICROBE_EDITOR"
+        }
+      ],
+      "NoticeSceneName": "OutdatedNotice",
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_MULTICELLULAR_STAGE",
+      "InternalName": "multicellular_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Multicellular_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CONCEPT_ART",
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "MICROBE_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "AWARE_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_AWARE_STAGE",
+      "InternalName": "aware_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Aware_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_AWARE_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_AWARE_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_AWARE_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_AWARE_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_AWARE_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "MULTICELLULAR_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "AWAKENING_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "WIKI_TBA"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_AWAKENING_STAGE",
+      "InternalName": "awakening_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Awakening_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_AWAKENING_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_AWAKENING_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_AWAKENING_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_AWAKENING_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_AWAKENING_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "AWARE_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "SOCIETY_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "WIKI_TBA"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_SOCIETY_STAGE",
+      "InternalName": "society_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Society_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_SOCIETY_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_SOCIETY_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_SOCIETY_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_SOCIETY_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_SOCIETY_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D_COMMA_STRATEGY"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "AWAKENING_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "INDUSTRIAL_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "NATION_EDITOR"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_INDUSTRIAL_STAGE",
+      "InternalName": "industrial_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Industrial_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_INDUSTRIAL_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_INDUSTRIAL_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_INDUSTRIAL_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D_COMMA_STRATEGY"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "SOCIETY_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "SPACE_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "NATION_EDITOR"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_SPACE_STAGE",
+      "InternalName": "space_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Space_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_SPACE_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_SPACE_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_SPACE_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_SPACE_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_SPACE_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "INDUSTRIAL_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "ASCENSION"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "WIKI_TBA"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_ASCENSION",
+      "InternalName": "ascension_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Ascension",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_ASCENSION_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_ASCENSION_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_ASCENSION_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_ASCENSION_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_ASCENSION_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D_COMMA_SANDBOX"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "SPACE_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "WIKI_TBA"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    }
+  ],
+  "MechanicsRoot": {
+    "Name": "WIKI_PAGE_MECHANICS_ROOT",
+    "InternalName": "MechanicsRoot",
+    "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Category:Mechanics",
+    "Sections": [
+      {
+        "SectionHeading": null,
+        "SectionBody": "WIKI_MECHANICS_ROOT_INTRO"
+      }
+    ],
+    "InfoboxData": [],
+    "NoticeSceneName": null,
+    "RestrictedToStages": null
+  },
+  "Mechanics": [
+    {
+      "Name": "WIKI_PAGE_EDITORS_AND_MUTATIONS",
+      "InternalName": "EditorsAndMutations",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Editors_And_Mutations",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS",
+          "SectionBody": "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS",
+          "SectionBody": "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+        }
+      ],
+      "InfoboxData": [],
+      "NoticeSceneName": null,
+      "RestrictedToStages": [
+        0,
+        1,
+        2,
+        3
       ]
+    },
+    {
+      "Name": "WIKI_PAGE_COMPOUNDS",
+      "InternalName": "Compounds",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Compounds",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_COMPOUNDS_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TYPES_OF_COMPOUNDS",
+          "SectionBody": "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_DEVELOPMENT",
+          "SectionBody": "WIKI_COMPOUNDS_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_THE_PATCH_MAP",
+      "InternalName": "ThePatchMap",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/The_Patch_Map",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_THE_PATCH_MAP_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_THE_PATCH_MAP",
+          "SectionBody": "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FOG_OF_WAR",
+          "SectionBody": "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_PATCHES",
+          "SectionBody": "WIKI_THE_PATCH_MAP_PATCHES"
+        }
+      ],
+      "InfoboxData": [],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_REPRODUCTION",
+      "InternalName": "Reproduction",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Reproduction",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_REPRODUCTION_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE",
+          "SectionBody": "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+        }
+      ],
+      "InfoboxData": [],
+      "NoticeSceneName": null,
+      "RestrictedToStages": [
+        0,
+        1
+      ]
+    },
+    {
+      "Name": "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS",
+      "InternalName": "EnvironmentalConditions",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Environmental_Conditions",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_PHYSICAL_CONDITIONS",
+          "SectionBody": "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_ENVIRONMENTAL_GASSES",
+          "SectionBody": "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_THE_DAY/NIGHT_CYCLE",
+          "SectionBody": "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+        }
+      ],
+      "InfoboxData": [],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    }
+  ],
+  "DevelopmentRoot": {
+    "Name": "WIKI_PAGE_DEVELOPMENT_ROOT",
+    "InternalName": "DevelopmentRoot",
+    "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Category:Development",
+    "Sections": [
+      {
+        "SectionHeading": null,
+        "SectionBody": "WIKI_DEVELOPMENT_ROOT_INTRO"
+      }
+    ],
+    "InfoboxData": [],
+    "NoticeSceneName": null,
+    "RestrictedToStages": null
+  },
+  "DevelopmentPages": [
+    {
+      "Name": "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT",
+      "InternalName": "CompoundSystemDevelopment",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Compound_System_Development",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_MICROBE_STAGE",
+          "SectionBody": "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_COMPOUNDS_LIST",
+          "SectionBody": "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+        }
+      ],
+      "InfoboxData": [],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
     }
   ]
 }
