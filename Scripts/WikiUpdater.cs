@@ -15,6 +15,7 @@ using Scripts;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
+using ThriveScriptsShared;
 
 public class WikiUpdater
 {
@@ -478,6 +479,8 @@ public class WikiUpdater
                     break;
                 case "UL":
 
+                    // TODO: switch to the Godot 4 way to handle this:
+                    // https://github.com/Revolutionary-Games/Thrive/issues/5511
                     // Godot 3 does not support lists in BBCode, so use custom formatting
                     text = child.Children
                         .Where(c => c.TagName == "LI")
@@ -522,37 +525,53 @@ public class WikiUpdater
     {
         var bbcode = new StringBuilder();
 
+        ConvertParagraphToBbcode(paragraph, bbcode);
+        return bbcode.ToString();
+    }
+
+    private void ConvertParagraphToBbcode(INode paragraph, StringBuilder result)
+    {
         var children = paragraph.ChildNodes;
         foreach (var child in children)
         {
-            if (child is IHtmlAnchorElement link)
+            switch (child)
             {
-                bbcode.Append(ConvertLinkToBbcode(link));
-            }
-            else if (child is IHtmlImageElement image)
-            {
-                bbcode.Append(ConvertImageToBbcode(image, bbcode));
-            }
-            else if (child is IElement element)
-            {
-                if (element.TagName == "B" && element.Children.Length > 0)
-                {
-                    // Deal with items inside bold tags, e.g. links
-                    bbcode.Append("[b]");
-                    bbcode.Append(ConvertParagraphToBbcode(element));
-                    bbcode.Append("[/b]");
-                    continue;
-                }
+                // Handle wrapped items
+                case IHtmlDivElement or IHtmlSpanElement or IHtmlParagraphElement:
+                    foreach (var recursiveChild in child.ChildNodes)
+                    {
+                        // Ignore recursive children with just whitespace to avoid a ton of undesired whitespace
+                        if (recursiveChild is IText textChild && string.IsNullOrWhiteSpace(textChild.Text))
+                        {
+                            // But keep one whitespace character in case there wouldn't be any separation otherwise
+                            if (result.Length > 0 && !char.IsWhiteSpace(result[^1]))
+                                result.Append(' ');
+                        }
 
-                bbcode.Append(ConvertTextToBbcode(element.OuterHtml));
-            }
-            else
-            {
-                bbcode.Append(ConvertTextToBbcode(child.TextContent));
+                        ConvertParagraphToBbcode(recursiveChild, result);
+                    }
+
+                    break;
+                case IHtmlAnchorElement link:
+                    result.Append(ConvertLinkToBbcode(link));
+                    break;
+                case IHtmlImageElement image:
+                    result.Append(ConvertImageToBbcode(image, result));
+                    break;
+                case IElement { TagName: "B", Children.Length: > 0 } element:
+                    // Deal with items inside bold tags, e.g. links
+                    result.Append("[b]");
+                    result.Append(ConvertParagraphToBbcode(element));
+                    result.Append("[/b]");
+                    continue;
+                case IElement element:
+                    result.Append(ConvertTextToBbcode(element.OuterHtml));
+                    break;
+                default:
+                    result.Append(ConvertTextToBbcode(child.TextContent));
+                    break;
             }
         }
-
-        return bbcode.ToString();
     }
 
     /// <summary>
@@ -609,7 +628,23 @@ public class WikiUpdater
             return $"[thrive:compound type=\\\"{image.AlternativeText}\\\"][/thrive:compound]";
         }
 
-        return $"[thrive:icon]{image.AlternativeText}[/thrive:icon]";
+        if (IsThriveIcon(image.AlternativeText))
+        {
+            return $"[thrive:icon]{image.AlternativeText}[/thrive:icon]";
+        }
+
+        // Images that aren't Thrive icons are for now converted into links rather than trying to refer to icons that
+        // do not exist
+        return $"[color=#3796e1][url={image.Source}]{ConvertTextToBbcode(image.AlternativeText ?? "link to image")}" +
+            "[/url][/color]";
+    }
+
+    private bool IsThriveIcon(string? iconName)
+    {
+        if (string.IsNullOrEmpty(iconName))
+            return false;
+
+        return EmbeddedThriveIconExtensions.TryGetIcon(iconName, out _);
     }
 
     /// <summary>
