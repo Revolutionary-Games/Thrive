@@ -11,7 +11,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
+using Karambolo.PO;
 using Scripts;
+using ScriptsBase.Checks;
 using ScriptsBase.Models;
 using ScriptsBase.Utilities;
 using SharedBase.Utilities;
@@ -27,6 +29,7 @@ public class WikiUpdater
     private const string WIKI_FILE = "simulation_parameters/common/wiki.json";
     private const string COMPOUND_DEFINITIONS = "simulation_parameters/microbe_stage/compounds.json";
     private const string ENGLISH_TRANSLATION_FILE = "locale/en.po";
+    private const string TRANSLATION_TEMPLATE_FILE = "locale/messages.pot";
     private const string TEMP_TRANSLATION_FILE = "en.po.temp_wiki";
 
     private const string INFO_BOX_SELECTOR = ".wikitable > tbody";
@@ -34,21 +37,12 @@ public class WikiUpdater
     private const string IGNORE_PAGE_SELECTOR = "[href=\"/wiki/Category:Only_Online\"]";
 
     /// <summary>
-    ///   Simple translation keys we can use from elsewhere that still have good context in them for use in info box
-    ///   values.
+    ///   Simple text keys we always want to extract without the wiki prefix as these are seemingly general enough to
+    ///   not warrant hiding them behind the "WIKI_" key prefix
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: could automatically populate this terms list from messages.pot
-    ///   </para>
-    /// </remarks>
     private static readonly string[] SimpleFieldValues =
     [
-        "NONE", "ASCENSION", "CHEMOSYNTHESIS", "SPACE_STAGE", "SOCIETY_STAGE", "AWAKENING_STAGE", "AWARE_STAGE",
-        "INDUSTRIAL_STAGE", "MICROBE_STAGE", "MULTICELLULAR_STAGE", "MICROBE_EDITOR", "MUCILAGE_SYNTHESIS",
-        "PHOTOSYNTHESIS", "RUSTICYANIN", "NATION_EDITOR", "OXYTOXY_SYNTHESIS", "PHOTOSYNTHESIS", "PROTEIN_RESPIRATION",
-        "GLYCOLYSIS", "INJECTISOME_PILUS", "LIPASE", "IRON_CHEMOLITHOAUTOTROPHY", "THERMOSYNTHESIS",
-        "AEROBIC_NITROGEN_FIXATION", "AEROBIC_RESPIRATION", "CYTOPLASM_GLYCOLYSIS", "BACTERIAL_THERMOSYNTHESIS",
+        "AEROBIC_NITROGEN_FIXATION", "AEROBIC_RESPIRATION", "BACTERIAL_THERMOSYNTHESIS", "CHEMOSYNTHESIS",
     ];
 
     /// <summary>
@@ -56,6 +50,12 @@ public class WikiUpdater
     ///   thrive:icon bbcode tags
     /// </summary>
     private readonly Lazy<string[]> compoundNames = new(LoadCompoundNames);
+
+    /// <summary>
+    ///   List of existing translation keys used by the game. Used to check when a wiki translation key can be a lot
+    ///   simpler as it can reuse text from the game.
+    /// </summary>
+    private readonly Lazy<HashSet<string>> gameTranslationKeys = new(LoadGameTranslationKeys);
 
     /// <summary>
     ///   List of regexes for domains we're allowing Thriveopedia content to link to.
@@ -93,6 +93,7 @@ public class WikiUpdater
 
         // Load our local data while waiting for network things
         _ = compoundNames.Value;
+        _ = gameTranslationKeys.Value;
 
         var organellesRaw = await organellesTask;
 
@@ -167,6 +168,58 @@ public class WikiUpdater
             throw new NullDecodedJsonException();
 
         return data.Keys.ToArray();
+    }
+
+    private static HashSet<string> LoadGameTranslationKeys()
+    {
+        // We only care about the keys here
+
+        using var reader = File.OpenText(TRANSLATION_TEMPLATE_FILE);
+
+        var parser = LocalizationCheckBase.CreateParser();
+
+        var parseResult = parser.Parse(reader);
+
+        if (!parseResult.Success)
+        {
+            throw new Exception("PO parsing failed on template file");
+        }
+
+        var data = parseResult.Catalog;
+
+        var result = new HashSet<string>();
+
+        foreach (var entry in data)
+        {
+            bool goodReference = false;
+
+            // Only take keys that have a reference line that doesn't refer to the wiki
+            foreach (var poComment in entry.Comments)
+            {
+                if (poComment is POReferenceComment referenceComment)
+                {
+                    foreach (var reference in referenceComment.References)
+                    {
+                        if (!reference.FilePath.Contains("wiki.json"))
+                        {
+                            goodReference = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (goodReference)
+                    break;
+            }
+
+            if (goodReference)
+                result.Add(entry.Key.Id);
+        }
+
+        if (result.Count < 100)
+            throw new Exception("Something went wrong with game translation key checking");
+
+        return result;
     }
 
     /// <summary>
@@ -407,12 +460,16 @@ public class WikiUpdater
             // Remove any leftover characters that are not supposed to be present in translation keys
             var validUntranslatedValue = Regex.Replace(untranslatedValue, "[^A-Z0-9_]", string.Empty);
 
-            // Add a prefix to not pollute other translation keys with random stuff (but not numbers as they'll get
-            // translation-extracted otherwise). And it is not a known simple value that can be let through.
-            if (!string.IsNullOrWhiteSpace(validUntranslatedValue) && Regex.IsMatch(validUntranslatedValue, "[A-Z]")
-                && !SimpleFieldValues.Contains(validUntranslatedValue))
+            // Add a prefix to not pollute other translation keys with random stuff
+            // Except for stuff that should be ignored by later translation checks or if something is specifically
+            // deemed a good key, or it is already in use with the game
+            if (!string.IsNullOrWhiteSpace(validUntranslatedValue) && Regex.IsMatch(validUntranslatedValue, "[A-Z]"))
             {
-                validUntranslatedValue = "WIKI_" + validUntranslatedValue;
+                if (!gameTranslationKeys.Value.Contains(validUntranslatedValue) &&
+                    !SimpleFieldValues.Contains(validUntranslatedValue))
+                {
+                    validUntranslatedValue = "WIKI_" + validUntranslatedValue;
+                }
             }
 
             untranslated.Add(new GameWiki.InfoboxField(untranslatedKey, validUntranslatedValue));
