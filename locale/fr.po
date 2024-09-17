@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 20:19+0300\n"
+"POT-Creation-Date: 2024-09-17 13:19+0300\n"
 "PO-Revision-Date: 2024-09-08 07:30+0000\n"
 "Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -215,10 +215,6 @@ msgstr "Œuvre de {0}"
 
 msgid "ART_GALLERY"
 msgstr "Galerie d'art"
-
-#, fuzzy
-msgid "ASCENSION"
-msgstr "Version :"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Félicitations !"
@@ -2324,9 +2320,6 @@ msgstr "Matière ingérée"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Créer un nouveau monde"
 
-msgid "INJECTISOME_PILUS"
-msgstr ""
-
 msgid "INPUTS"
 msgstr "Entrées"
 
@@ -3720,10 +3713,6 @@ msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
 #, fuzzy
-msgid "NATION_EDITOR"
-msgstr "Activer l'éditeur"
-
-#, fuzzy
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr "Threads actuels :"
 
@@ -4367,10 +4356,6 @@ msgstr "Équipe de gestion du projet"
 
 msgid "PROTEINS"
 msgstr "Protéines"
-
-#, fuzzy
-msgid "PROTEIN_RESPIRATION"
-msgstr "Respiration aérobie"
 
 msgid "PROTOPLASM"
 msgstr "Protoplasme"
@@ -6134,8 +6119,9 @@ msgstr ""
 msgid "WIKI_3D"
 msgstr "Wiki"
 
+#, fuzzy
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "Les [b]cils[/b] sont essentiels pour les grandes cellules, en particulier celles qui dépendent de la prédation. Sans eux, les grandes cellules sont limitées par des vitesses de rotation souvent très lentes. Nous recommandons d'ajouter des [b]cils[/b] dès que possible après avoir développé un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour compenser la taille énorme de cet organite crucial, et nous recommandons de les placer aussi loin que possible du centre de la cellule pour maximiser la force de rotation."
 
 #, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
@@ -6148,6 +6134,10 @@ msgstr "Les [b]cils[/b] sont essentiels pour les grandes cellules, en particulie
 #, fuzzy
 msgid "WIKI_8_BRACKET_16"
 msgstr "Tourner à gauche"
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
@@ -6164,8 +6154,9 @@ msgstr ""
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
 
+#, fuzzy
 msgid "WIKI_ASCENSION_OVERVIEW"
-msgstr ""
+msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
@@ -6208,8 +6199,15 @@ msgstr "Phase d’éveil"
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Phase d’éveil"
 
+#, fuzzy
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
+"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
+"\n"
+"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]chacune[/i] des conditions suivantes devra être vérifiée [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
+"[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
@@ -6537,20 +6535,25 @@ msgstr ""
 "\n"
 "L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
-msgstr ""
+msgstr "Effets"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
-msgstr ""
+msgstr "Composés :"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "Composés :"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
-msgstr ""
+msgstr "Composés :"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
-msgstr ""
+msgstr "Composés :"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "N'importe quel organite peut remplacer le [b]cytoplasme[/b] sans coût supplémentaire en points de mutation (en dehors du coût de l'organite en question)."
@@ -6618,18 +6621,21 @@ msgstr ""
 "\n"
 "Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
+#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Modifications"
 
 #, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
 msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respiration aérobie[/b], ou la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] en utilisant de l'[thrive:compound type=\"oxygène\"][/thrive:compound]. Les [b]mitochondries[/b] remplissent cette fonction plus efficacement que d'autres organites tels que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]."
 
+#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Modifications"
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respiration aérobie[/b], ou la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] en utilisant de l'[thrive:compound type=\"oxygène\"][/thrive:compound]. Les [b]mitochondries[/b] remplissent cette fonction plus efficacement que d'autres organites tels que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]."
 
 #, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
@@ -6639,8 +6645,9 @@ msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respi
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
 msgstr "(proportion de glucose retenue dans l'environnement à chaque génération)"
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
-msgstr ""
+msgstr "Le moteur de la cellule. Les [b]mitochondries[/b] réalisent la [b]respiration aérobie[/b], ou la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound] en utilisant de l'[thrive:compound type=\"oxygène\"][/thrive:compound]. Les [b]mitochondries[/b] remplissent cette fonction plus efficacement que d'autres organites tels que les [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b]."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orientation. Il fournit également une petite poussée dans les directions proches du sens opposé (plus précisément, les directions pour lesquelles la composante du vecteur opposé est positive). Lorsqu'un [b]flagelle[/b] est actif, il consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound]."
@@ -6666,8 +6673,9 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Le flagelle (pluriel : flagelle) est un faisceau de fibres protéiques en forme de fouet s’étendant de la membrane de la cellule qui utilisent l’ATP pour onduler et propulser la cellule dans une direction. La position du flagelle détermine la direction dans laquelle il fournit la poussée pour le mouvement de la cellule. La direction de poussée est opposée à la direction vers laquelle pointe le flagelle, par exemple un flagelle placé sur le côté gauche d’une cellule fournit une poussée lors du déplacement vers la droite."
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -6753,8 +6761,9 @@ msgstr "Conditions physiques"
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "Processus"
 
+#, fuzzy
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Processus"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Conditions"
@@ -6821,8 +6830,12 @@ msgstr "Phase industrielle"
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Phase industrielle"
 
-msgid "WIKI_LYSOSOME_EFFECTS"
+msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_LYSOSOME_EFFECTS"
+msgstr "Un métabolosome responsable de la production d'une forme primitive de l'agent toxique OxyToxy NT."
 
 #, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
@@ -6848,8 +6861,12 @@ msgstr ""
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
+"Les toxines sont une arme précieuse dans le combat cellulaire. Elles sont actuellement la seule méthode d'attaque à distance dans le jeu, l'engloutissement et les [b][color=#3796e1][url=thriveopedia:pilus]pili perforants[/url][/color][/b] s'apparentant davantage à des armes de mêlée.\n"
+"\n"
+"L'[b]oxytoxisome[/b] et son homologue eucaryote, la [b][color=#3796e1][url=thriveopedia:oxytoxy]vacuole à toxines[/color][/b], sont également utiles à des fins défensives. Une cellule qui engloutit une autre cellule possédant l'un ou l'autre de ces organites subit des dommages au fur et à mesure de la digestion de sa proie, ce qui peut avoir un effet dissuasif sur les prédateurs plus importants."
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -7027,11 +7044,13 @@ msgstr "Phase multicellulaire"
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Phase multicellulaire"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Pas de processus."
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Pas de processus."
 
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr "Pas de modifications."
@@ -7045,11 +7064,16 @@ msgstr "Seulement disponible à partir de la phase multicellulaire."
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Pas d'améliorations"
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "Pas d'améliorations"
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Activer l'éditeur"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Pas d'effets."
@@ -7093,8 +7117,9 @@ msgstr "Pas de modifications."
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
@@ -7113,8 +7138,9 @@ msgstr "Wiki"
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Pas d'effets."
 
 #, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
@@ -7235,8 +7261,9 @@ msgstr "Cils"
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "Cytoplasme"
 
+#, fuzzy
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "Composés :"
 
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasme"
@@ -7403,6 +7430,10 @@ msgstr ""
 "\n"
 "Pour [b]25[/b] points de mutation, modifiez les [b]Pili Perforants[/b] déjà placés pour les transformer en [b]Pili Injectisome[/b]. Lorsque ces derniers heurtent des cellules ennemies, ils infligent également des dégâts de toxine. Les types de membranes qui réduisent les dégâts des toxines réduisent également les dégâts des [b]Pili Injectisome/b]."
 
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Respiration aérobie"
+
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -7417,14 +7448,27 @@ msgstr "Pas de modifications."
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Pas de conditions."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
+"Sur le plan biologique, le [b]cytoplasme[/b] n'est pas un organite ; c'est la combinaison de tous les constituants d'une cellule autres que le noyau et la membrane. Dans Thrive, le [b]cytoplasme[/b] est considéré comme un organite à part entière, qui se présente comme un espace vide contribuant néanmoins à la forme et à la taille d'une cellule. Dans les deux cas, le [b]cytoplasme[/b] peut être considéré comme le contenu de la membrane, le liquide organique à travers lequel flottent les autres composants de la cellule.\n"
+"\n"
+"Le principal composant du [b]cytoplasme[/b] est le cytosol. Le cytosol contient des fluides qui distribuent les nutriments dans la cellule, à peu près comme le sang dans les organismes macroscopiques, et le cytosquelette, qui maintient la structure de la cellule. De nombreux processus métaboliques ont lieu dans le cytosol, tels que ceux impliqués dans l'osmorégulation et la communication interne par le biais de signaux chimiques.\n"
+"\n"
+"Pour en savoir plus, consultez la [color=#3796e1][url=https://fr.wikipedia.org/wiki/Cytoplasme]page Wikipédia[/url][/color] de cet organite."
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
+"Si vous parvenez à collecter des [thrive:compound type=\"glucose\"][/thrive:compound] sur les nuages environnants, chaque hexagone de [b]cytoplasme[/b] produira naturellement de l'énergie (sous la forme de [thrive:compound type=\"atp\"][/thrive:compound]). Cet organite est donc un choix fiable pour produire facilement de l'énergie dans la plupart des environnements. D'ailleurs, la cellule de départ (LUCA) est un simple hexagone de [b]cytoplasme[/b].\n"
+"\n"
+"Il existe cependant des méthodes plus performantes pour générer de l'[thrive:compound type=\"atp\"][/thrive:compound]. Au fil du jeu, il est conseillé d'investir dans des organites plus spécialisés en fonction des conditions environnementales, d'autant plus que les concentrations en [thrive:compound type=\"glucose\"][/thrive:compound] diminuent avec le temps. Par exemple [b][color=#3796e1][url=thriveopedia:metabolosome]métabolosomes[/url][/color][/b] est efficace si la zone est riche en [thrive:compound type=\"oxygen\"][/thrive : compound], et [b][color=#3796e1][url=thriveopedia:thermosynthase]thermosynthèse[/url][/color][/b] est efficace dans les zones où la [thrive:compound type=\"temperature\"][/thrive:compound] est élevée.\n"
+"\n"
+"L'ajout d'hexagones de [b]cytoplasme[/b] est également l'un des moyens les plus efficaces d'augmenter la taille d'une cellule. Augmenter la taille de la cellule, c'est augmenter sa santé et empêcher les petites cellules de l'engloutir, au détriment de sa vitesse et de sa manœuvrabilité."
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -7441,8 +7485,9 @@ msgstr "Protoplasme"
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr "Protoplasme"
 
+#, fuzzy
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Protoplasme"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -7535,14 +7580,22 @@ msgstr "Pas de conditions."
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "De nombreux organismes produisent des substances polysaccharidiques gluantes, et le mucilage est l'un de ces polysaccharides. Si de nombreuses espèces utilisent la bave pour se déplacer, certains types de bactéries éjectent ces substances à haute pression dans leur sillage. Ces jets de bave agissent comme des moteurs de fusée, poussant les cellules en avant à une vitesse incroyable. La bave est également utilisée pour faire obstacle aux prédateurs, en les piégeant dans une substance que seuls les organismes dotés de jets peuvent diriger."
 
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
+"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
+"\n"
+"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]chacune[/i] des conditions suivantes devra être vérifiée [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
+"[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
@@ -7564,8 +7617,15 @@ msgstr "Phase sociétale"
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "Phase sociétale"
 
+#, fuzzy
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
+"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
+"\n"
+"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]chacune[/i] des conditions suivantes devra être vérifiée [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
+"[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
@@ -7616,8 +7676,9 @@ msgstr "Pas de modifications."
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir former des [b]chimioplastes[/b]."
 
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
@@ -7657,8 +7718,9 @@ msgstr "La thermosynthase est une protéine qui utilise la convection thermique 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
-msgstr ""
+msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 #, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
@@ -7668,8 +7730,9 @@ msgstr "Le thermoplaste est une structure à double membrane contenant des pigme
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
-msgstr ""
+msgstr "Pas d'améliorations."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Pas d'effets spéciaux."
@@ -7681,11 +7744,13 @@ msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibl
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr "Pas de modifications"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Pas d'améliorations."
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Seulement disponible à partir de la phase multicellulaire."
 
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
@@ -7742,14 +7807,16 @@ msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spé
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr "Pas de processus"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spécifiquement produire, contenir et sécréter des toxines oxytoxy. La vitesse de production et sécrétion augmente proportionellement au nombre de vacuoles à toxines."
 
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations."
@@ -7856,6 +7923,14 @@ msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
 #, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Chimiosynthèse"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "Version :"
+
+#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Glycolyse cytoplasmique"
 
@@ -7864,20 +7939,12 @@ msgstr "Dézoomer"
 #~ msgstr "Fixation anaérobique d'azote"
 
 #, fuzzy
-#~ msgid "WIKI_ASCENSION"
-#~ msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
-
-#, fuzzy
 #~ msgid "WIKI_AWAKENING_STAGE"
 #~ msgstr "Phase d’éveil"
 
 #, fuzzy
 #~ msgid "WIKI_AWARE_STAGE"
 #~ msgstr "Phase consciente"
-
-#, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Chimiosynthèse"
 
 #, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"

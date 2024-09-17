@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-16 20:19+0300\n"
+"POT-Creation-Date: 2024-09-17 13:19+0300\n"
 "PO-Revision-Date: 2024-09-13 06:16+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -213,10 +213,6 @@ msgstr "Resmi yapan: {0}"
 
 msgid "ART_GALLERY"
 msgstr "Sanat Galerisi"
-
-#, fuzzy
-msgid "ASCENSION"
-msgstr "Sürüm:"
 
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Tebrikler!"
@@ -2286,9 +2282,6 @@ msgstr "İçeri Alınmış Madde"
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr "Yeni bir dünya oluştur"
 
-msgid "INJECTISOME_PILUS"
-msgstr ""
-
 msgid "INPUTS"
 msgstr "Kontroller"
 
@@ -3634,10 +3627,6 @@ msgstr "{0} (GÜÇ: {1})"
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr "{0} (Y)"
 
-#, fuzzy
-msgid "NATION_EDITOR"
-msgstr "Editörü aç"
-
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 "Yerel iş parçacıkları, yönetilen iş parçacıklarından farklı görevler için kullanılır.\n"
@@ -4271,10 +4260,6 @@ msgstr "Proje Yönetim Ekibi"
 
 msgid "PROTEINS"
 msgstr "Proteinler"
-
-#, fuzzy
-msgid "PROTEIN_RESPIRATION"
-msgstr "Oksijenli Solunum"
 
 msgid "PROTOPLASM"
 msgstr "Protoplazma"
@@ -5982,8 +5967,9 @@ msgstr ""
 msgid "WIKI_3D"
 msgstr "Viki"
 
+#, fuzzy
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "[b]Siller[/b], özellikle avcılığa dayanan, büyük hücreler için önemlidir. Onlar olmadan büyük hücreler, bazen acı verici biçimde yavaş dönme hızından dolayı kısıtlanır. Bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, bu önemli organelin muazzam büyüklüğüne karşı koymak için, en kısa zamanda [b]Siller[/b] eklemenizi tavsiye ediyoruz. Ayrıca, dönme kuvvetini en üst düzeye çıkarmak için, bu organeli bir hücrenin merkezinden olabildiğince en uzağa yerleştirmenizi öneririz."
 
 #, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
@@ -5996,6 +5982,10 @@ msgstr "[b]Siller[/b], özellikle avcılığa dayanan, büyük hücreler için �
 #, fuzzy
 msgid "WIKI_8_BRACKET_16"
 msgstr "Sola döndür"
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "Nöronlar arasındaki sinir lifleridir ve Çok Hücreli Evresi'nde mevcuttur. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemede gereklidir."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
@@ -6012,8 +6002,9 @@ msgstr ""
 msgid "WIKI_ASCENSION_INTRO"
 msgstr "Nöronlar arasındaki sinir lifleridir ve Çok Hücreli Evresi'nde mevcuttur. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemede gereklidir."
 
+#, fuzzy
 msgid "WIKI_ASCENSION_OVERVIEW"
-msgstr ""
+msgstr "Nöronlar arasındaki sinir lifleridir ve Çok Hücreli Evresi'nde mevcuttur. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemede gereklidir."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
@@ -6056,8 +6047,15 @@ msgstr "Uyanış Evresi"
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Uyanış Evresi"
 
+#, fuzzy
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
+"Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
@@ -6385,20 +6383,25 @@ msgstr ""
 "\n"
 "Yaptığı işlevlerden biri [b]Sitoplazma Glikolizi[/b], yani [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşümüdür. Gelişmiş metabolizmaya dayalı organellerden yoksun hücreler, enerji almak için sitoplazmaya bağlı kalır. Sitoplazma ayrıca hücrede moleküller depolamak için ve hücrenin büyüklüğünü arttırmak için kullanılır."
 
+#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
-msgstr ""
+msgstr "Etkiler"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
-msgstr ""
+msgstr "Bileşikler:"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "Bileşikler:"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
-msgstr ""
+msgstr "Bileşikler:"
 
+#, fuzzy
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
-msgstr ""
+msgstr "Bileşikler:"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan [b]Sitoplazmanın[/b] yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
@@ -6466,18 +6469,21 @@ msgstr ""
 "\n"
 "Daha fazla şey öğrenmek için aşağıdaki listeden bir organel seçin."
 
+#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Değişiklikler"
 
 #, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
 msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
 
+#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Değişiklikler"
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
 
 #, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
@@ -6487,8 +6493,9 @@ msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"o
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
 msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
 
+#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
-msgstr ""
+msgstr "Hücrenin güç merkezidir. [b]Mitokondri[/b], [thrive:compound type=\"oxygen\"]oksijeni[/thrive:compound] kullanarak [thrive:compound type=\"glucose\"]glukozun[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülmesini sağlayan [b]Oksijenli Solunumu[/b] gerçekleştirir. [b]Mitokondri[/b] bu işlevi [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi organellerden daha verimli bir şekilde gerçekleştirir."
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Her [b]Kamçı[/b], bulunduğu yönün tersine doğru yönlü itiş sağlar. Bu organel ayrıca yönün tam tersine yakın doğrultulara doğru kısmi olarak itiş sağlar (daha kesin olmak gerekirse, vektörün tam tersi bileşeni pozitif olan doğrultular). Bir [b]Kamçı[/b] etkin olduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir."
@@ -6602,8 +6609,9 @@ msgstr "Fiziksel Koşullar"
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "İşlemler"
 
+#, fuzzy
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "İşlemler"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "Gereksinimler"
@@ -6669,6 +6677,9 @@ msgstr "Sanayi Evresi"
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Sanayi Evresi"
+
+msgid "WIKI_INJECTISOME_PILUS"
+msgstr ""
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6919,6 +6930,10 @@ msgstr "Çok hücreli organizmanızda, birkaç hücre türüne bir [b]Miyofibril
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "Geliştirme yok"
 
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Editörü aç"
+
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "Etki yok."
 
@@ -7129,8 +7144,9 @@ msgstr "Siller"
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr "Sitoplazma"
 
+#, fuzzy
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "Bileşikler:"
 
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Sitoplazma"
@@ -7286,6 +7302,10 @@ msgstr ""
 "\n"
 "[b]Delici Pilusları[/b]; [b]İnjektozom Piluslara[/b] dönüştürmek için, [b]25[/b] mutasyon puanıyla, onlarda yerleştirdiğiniz an değişiklik yapın. Bu organel düşman hücrelere çarptığında, ayrıca, toksin hasarı verir. Toksinlerden gelen hasarı azaltan hücre zarı türleri, ayrıca, [b]İnjektozom Piluslardan[/b] gelen hasarı azaltır."
 
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Oksijenli Solunum"
+
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Etki yok."
 
@@ -7340,8 +7360,12 @@ msgstr ""
 "\n"
 "Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
 
+#, fuzzy
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
+"Oyuncu olmayan türler için depoyu arttırmak amacıyla tasarlanmış, [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmanın[/url][/color][/b] önemli ölçüde gelişmiş bir biçimidir. Oyuncu hücrelere eklenemez ama oyuncunun ortamdan fosilleştirdiği hücrelerde mevcut olabilir.\n"
+"\n"
+"Görsel olarak [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmaya[/url][/color][/b] benzer ve bu organelin birçok özelliğini alır."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -7456,8 +7480,15 @@ msgstr ""
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
+"Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
@@ -7482,8 +7513,15 @@ msgstr "Topluluk Evresi"
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "Topluluk Evresi"
 
+#, fuzzy
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
+"Bir hücre, [b]Bağlayıcı Ajanları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En az [b]5[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   En az [b]+15[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarına sahip olmak.[/indent]"
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
@@ -7599,8 +7637,12 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
+"Ortamdaki [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] değişimini kullanarak enerjiyi [thrive:compound type=\"atp\"]ATP[/thrive:compound] şeklinde alır. Daha verimsiz olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazın[/url][/color][/b] ökaryotik formudur.\n"
+"\n"
+"Gerçek hayatta bulunmayan kuramsal bir organeldir. BH (Bildiğimiz Hayat) seçeneği etkin olan oyunlarda mevcut değildir."
 
 #, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
@@ -7613,8 +7655,9 @@ msgstr ""
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr "Geliştirme yok."
 
+#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
-msgstr ""
+msgstr "Geliştirme yok."
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Özel etki yok."
@@ -7818,6 +7861,14 @@ msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
 #, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Kemosentez"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "Sürüm:"
+
+#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Sitoplazma Glikolizi"
 
@@ -7826,20 +7877,12 @@ msgstr "Uzaklaştır"
 #~ msgstr "Oksijensiz Azot Fiksasyonu"
 
 #, fuzzy
-#~ msgid "WIKI_ASCENSION"
-#~ msgstr "Nöronlar arasındaki sinir lifleridir ve Çok Hücreli Evresi'nde mevcuttur. Bu organel, bir organizmanın zihin gücünü arttırmada ve sonraki evrelere ilerlemede gereklidir."
-
-#, fuzzy
 #~ msgid "WIKI_AWAKENING_STAGE"
 #~ msgstr "Uyanış Evresi"
 
 #, fuzzy
 #~ msgid "WIKI_AWARE_STAGE"
 #~ msgstr "Farkındalık Evresi"
-
-#, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Kemosentez"
 
 #, fuzzy
 #~ msgid "WIKI_GLYCOLYSIS"
