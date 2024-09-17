@@ -4,8 +4,8 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using AngleSharp;
 using AngleSharp.Html.Dom;
-using AngleSharp.Html.Parser;
 
 public class HtmlReader
 {
@@ -25,24 +25,30 @@ public class HtmlReader
         HttpResponseMessage response;
         try
         {
-            response = await client.GetAsync(url, cancellationToken);
+            response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             response.EnsureSuccessStatusCode();
         }
         catch (Exception)
         {
             // This retries once on failure in case we hit a temporary failure or rate limit
-            response = await client.GetAsync(url, cancellationToken);
+            response = await client.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
         }
 
         response.EnsureSuccessStatusCode();
 
-        var parser = new HtmlParser();
+        // Need to set up some config to ensure right relative URLs are generated
+        var config = Configuration.Default.WithDefaultLoader();
+        var browsingContext = BrowsingContext.New(config);
 
-        var document = await parser.ParseDocumentAsync(await response.Content.ReadAsStreamAsync(cancellationToken));
+        var document = await browsingContext.OpenAsync(action =>
+        {
+            action.Address(url);
+            action.Content(response.Content.ReadAsStream());
+        }, cancellationToken);
 
-        if (document.Body == null)
-            throw new Exception("Parsed document has no body");
+        if (document.Body == null || document is not IHtmlDocument htmlDocument)
+            throw new Exception("Parsed document has no body (or not HTML document)");
 
-        return document;
+        return htmlDocument;
     }
 }
