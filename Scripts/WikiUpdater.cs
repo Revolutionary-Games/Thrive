@@ -625,6 +625,10 @@ public class WikiUpdater
             .Replace("</i>", "[/i]")
             .Replace("<u>", "[u]")
             .Replace("</u>", "[/u]")
+            .Replace("<code>", "[code]")
+            .Replace("</code>", "[/code]")
+            .Replace("<pre>", "[code]")
+            .Replace("</pre>", "[/code]")
             .Replace("<br>", "\n")
             .Replace("\"", "\\\"");
     }
