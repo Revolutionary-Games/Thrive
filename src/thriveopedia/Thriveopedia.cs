@@ -618,21 +618,43 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
-        pageTree.Clear();
-        pageTree.CreateItem();
+        stageDropdown.Visible = false;
 
-        // Need to copy to new list as loop modifies the list
-        var pageList = allPages.Keys.ToList();
-        foreach (var page in pageList)
+        foreach (var page in allPages)
         {
-            var children = GetAllChildren(page);
+            page.Value.Visible = page.Key.TranslatedPageName.ToLower().Contains(newText.ToLower());
 
-            if (page.TranslatedPageName.ToLower().Contains(newText.ToLower()) ||
-                children.Any(c => c.TranslatedPageName.ToLower().Contains(newText.ToLower())))
+            if (page.Key is ThriveopediaStagePage)
             {
-                // We can assume a page is always before its children in the list of all pages
-                allPages[page] = CreateTreeItem(page, page.ParentPageName);
+                page.Value.Visible = false;
+
+                if (!stageDropdown.Visible)
+                {
+                    stageDropdown.Visible = true;
+                    SetParentPagesVisibility(stageDropdown, true);
+                }
             }
+
+            if (page.Value.Visible)
+                SetParentPagesVisibility(page.Value, true);
+        }
+    }
+
+    /// <summary>
+    ///   Recursively sets visibility of parent pages
+    /// </summary>
+    private void SetParentPagesVisibility(TreeItem item, bool visible)
+    {
+        var parent = item.GetParent();
+
+        if (parent == null)
+        {
+            return;
+        }
+        else
+        {
+            parent.Visible = visible;
+            SetParentPagesVisibility(parent, visible);
         }
     }
 
