@@ -622,11 +622,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         foreach (var page in allPages)
         {
-            page.Value.Visible = page.Key.TranslatedPageName.ToLower().Contains(newText.ToLower());
+            var visible = page.Key.TranslatedPageName.ToLower().Contains(newText.ToLower());
 
-            if (page.Key is ThriveopediaStagePage)
+            if (visible && page.Key is ThriveopediaStagePage)
             {
-                page.Value.Visible = false;
+                visible = false;
 
                 if (!stageDropdown.Visible)
                 {
@@ -635,8 +635,11 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
                 }
             }
 
-            if (page.Value.Visible)
+            page.Value.Visible = visible;
+            if (visible)
+            {
                 SetParentPagesVisibility(page.Value, true);
+            }
         }
     }
 
