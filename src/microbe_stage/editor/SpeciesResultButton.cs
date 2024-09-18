@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 /// <summary>
@@ -40,11 +39,13 @@ public partial class SpeciesResultButton : Button
 
     public override void _Ready()
     {
+        // Ensure minimum size is set
+        CustomMinimumSize = _GetMinimumSize();
     }
 
     public override Vector2 _GetMinimumSize()
     {
-        return buttonContentContainer._GetMinimumSize();
+        return buttonContentContainer.CustomMinimumSize;
     }
 
     public void DisplaySpecies(Species species)
@@ -54,6 +55,31 @@ public partial class SpeciesResultButton : Button
         // TODO: underline when showing the species?
         nameLabel.Text = species.FormattedName;
 
-        throw new NotImplementedException();
+        // TODO: showing the indicators
+    }
+
+    public void DisplayPopulation(long newPopulation, long oldPopulation)
+    {
+        partialExtinctionIndicator.Visible = newPopulation < 1;
+
+        resultPatchPopulation.Text = newPopulation.ToString();
+
+        var difference = newPopulation - oldPopulation;
+        resultPatchPopulationDifference.Text = difference.ToString();
+
+        // TODO: change text colour
+    }
+
+    public void HideGlobalPopulation()
+    {
+        globalPopulationContainer.Visible = false;
+    }
+
+    private void OnContentSizeChanged()
+    {
+        var newMinSize = _GetMinimumSize();
+
+        if (newMinSize != CustomMinimumSize)
+            CustomMinimumSize = newMinSize;
     }
 }

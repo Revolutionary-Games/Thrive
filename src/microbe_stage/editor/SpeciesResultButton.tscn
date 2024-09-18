@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cb4c53m56cis8" path="res://assets/textures/gui/bevel/plus.png" id="6_ocuw2"]
 [ext_resource type="Texture2D" uid="uid://c7p7qgm0w77eo" path="res://assets/textures/gui/bevel/MPNoCircleLight.png" id="9_u0rre"]
 
-[node name="SpeciesResultButton" type="Button"]
+[node name="SpeciesResultButton" type="Button" node_paths=PackedStringArray("nameLabel", "preview", "newIndicator", "partialExtinctionIndicator", "mutatedIndicator", "resultPatchPopulation", "resultPatchPopulationDifference", "globalPopulationLabel", "globalPopulationContainer", "buttonContentContainer")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,6 +18,16 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_q5xho")
 script = ExtResource("2_f6kus")
+nameLabel = NodePath("VBoxContainer/MainContent/Name")
+preview = NodePath("VBoxContainer/MainContent/PhotographablePreview")
+newIndicator = NodePath("VBoxContainer/OverlayContent/NewIndicator")
+partialExtinctionIndicator = NodePath("VBoxContainer/MainContent/PhotographablePreview/PartiallyExtinctIndicator")
+mutatedIndicator = NodePath("VBoxContainer/OverlayContent/MutatedIndicator")
+resultPatchPopulation = NodePath("VBoxContainer/MainContent/PopulationLine/Population")
+resultPatchPopulationDifference = NodePath("VBoxContainer/MainContent/PopulationLine/PopChange")
+globalPopulationLabel = NodePath("VBoxContainer/MainContent/GlobalPopLine/GlobalPopulation")
+globalPopulationContainer = NodePath("VBoxContainer/MainContent/GlobalPopLine")
+buttonContentContainer = NodePath("VBoxContainer")
 
 [node name="VBoxContainer" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(64, 92)
@@ -126,3 +136,5 @@ mouse_filter = 0
 texture = ExtResource("9_u0rre")
 expand_mode = 1
 stretch_mode = 5
+
+[connection signal="minimum_size_changed" from="VBoxContainer" to="." method="OnContentSizeChanged"]
