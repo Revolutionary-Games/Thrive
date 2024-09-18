@@ -679,29 +679,51 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     }
 
     /// <summary>
-    ///   Makes summary text
+    ///   Stores previous populations for species in this results object
     /// </summary>
-    /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
-    /// <param name="playerReadable">If true ids are removed from the output</param>
-    /// <param name="effects">
-    ///   If not null these effects are applied to the population numbers.
-    ///   Must be final effects with <see cref="ExternalEffect.Coefficient"/> set to 1 created by
-    ///   <see cref="AutoEvoRun.CalculateAndApplyFinalExternalEffectSizes"/>
-    /// </param>
-    /// <returns>The generated summary text</returns>
-    public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
-        bool playerReadable = false, List<ExternalEffect>? effects = null)
+    /// <param name="gameWorldMap">Map to read old populations from</param>
+    public void StorePreviousPopulations(PatchMap gameWorldMap)
     {
-        if (previousPopulations != null && previousPopulations.CurrentPatch == null)
-            throw new ArgumentException("When previous populations is set, it must have current patch set");
+        if (gameWorldMap.CurrentPatch == null)
+            GD.PrintErr("Store previous populations for auto-evo given a map with no current patch set");
 
+        foreach (var result in results)
+        {
+            foreach (var patch in gameWorldMap.Patches.Values)
+            {
+                var population = patch.GetSpeciesSimulationPopulation(result.Key);
+                if (population > 0)
+                    result.Value.OldPopulationInPatches[patch] = population;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Makes summary text. To show previous populations <see cref="StorePreviousPopulations"/> must be called
+    /// </summary>
+    /// <param name="playerReadable">If true ids are removed from the output</param>
+    /// <remarks>
+    ///   <para>
+    ///     This method no longer takes external effects as parameters as it is assumed that
+    ///     <see cref="AutoEvoRun.CalculateAndApplyFinalExternalEffectSizes"/> has been called.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The generated summary text</returns>
+    public LocalizedStringBuilder MakeSummary(bool playerReadable = false)
+    {
         const bool resolveMigrations = true;
         const bool resolveSplits = true;
 
         var builder = new LocalizedStringBuilder(500);
 
+        // TODO: the new old populations code uses patch references directly rather than using IDs to compare them
+        // so this is now only partially anymore setup to deal with patch object inequality with the results. Probably
+        // should remove the ID comparisons entirely as the old species population needs custom dictionary looping to
+        // lookup things by ID.
+
         LocalizedStringBuilder PatchString(Patch patch)
         {
+            // TODO: avoid this temporary string builder creation here
             var builder2 = new LocalizedStringBuilder(80);
 
             // Patch visibility is ignored if the output is not read by the player
@@ -741,13 +763,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 builder.Append(new LocalizedString("WENT_EXTINCT_IN", patchName));
             }
 
-            if (previousPopulations != null)
-            {
-                builder.Append(' ');
-                builder.Append(new LocalizedString("PREVIOUS_COLON"));
-                builder.Append(' ');
-                builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesSimulationPopulation(species));
-            }
+            builder.Append(' ');
+            builder.Append(new LocalizedString("PREVIOUS_COLON"));
+            builder.Append(' ');
+            results[species].OldPopulationInPatches.TryGetValue(patch, out var oldPopulation);
+            builder.Append(oldPopulation);
 
             builder.Append('\n');
         }
@@ -895,8 +915,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 }
                 else
                 {
-                    if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
-                            .GetSpeciesSimulationPopulation(entry.Species) > 0)
+                    if (entry.OldPopulationInPatches.TryGetValue(patchPopulation.Key, out var old) && old > 0)
                     {
                         include = true;
                     }
@@ -1219,6 +1238,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         public Dictionary<Patch, long> NewPopulationInPatches = new();
 
         /// <summary>
+        ///   Previous population numbers that are stored for more advanced result views
+        /// </summary>
+        public Dictionary<Patch, long> OldPopulationInPatches = new();
+
+        /// <summary>
         ///   null means no changes
         /// </summary>
         public Species? MutatedProperties;
@@ -1233,7 +1257,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         /// </summary>
         public NewSpeciesType? NewlyCreated;
 
-        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES:
+        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES (check, might already work):
         /// <summary>
         ///   If set, the specified species split off from this species taking all the population listed in
         ///   <see cref="SplitOffPatches"/>
