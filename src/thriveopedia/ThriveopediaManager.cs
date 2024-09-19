@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -34,6 +35,17 @@ public class ThriveopediaManager
         }
 
         Instance.OnPageOpenedHandler(pageName);
+    }
+
+    public static IThriveopediaPage GetPage(string pageName)
+    {
+        foreach (var thriveopedia in Instance.activeThriveopedias)
+        {
+            // TODO: allow GetPage to return null to be able to support more thriveopedia?
+            return thriveopedia.GetPage(pageName);
+        }
+
+        throw new InvalidOperationException("No active Thriveopedias to get a page from");
     }
 
     public static Species? GetActiveSpeciesData(uint speciesId)

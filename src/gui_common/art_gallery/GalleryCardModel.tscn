@@ -5,3 +5,6 @@
 
 [node name="GalleryCardModel" instance=ExtResource("1")]
 script = ExtResource("2")
+
+[node name="TextureRect" parent="MarginContainer/VBoxContainer/MarginContainer/PreviewMargin" index="0"]
+stretch_mode = 5
