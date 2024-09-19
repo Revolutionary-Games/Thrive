@@ -237,8 +237,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         }
         else if (autoEvoExternal != null)
         {
-            // TODO: test this
-            GD.PrintErr("Hit this test place");
+            // This condition should never happen, but I'll leave this print here in case anyone ever hits this and
+            // sends us a bug report -hhyyrylainen
+            GD.PrintErr("Somehow auto-evo results are null but external effects text exists");
+            reportTab.DisplayAutoEvoFailure("Only external effects is set but auto-evo results are missing");
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
