@@ -535,6 +535,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         return OnFinishEditing(userOverrides);
     }
 
+    public void OpenSpeciesInfoFor(Species species)
+    {
+        pauseMenu.OpenToSpeciesPage(species);
+    }
+
     protected virtual void ResolveDerivedTypeNodeReferences()
     {
         throw new GodotAbstractMethodNotOverriddenException();

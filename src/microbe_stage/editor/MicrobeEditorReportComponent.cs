@@ -342,7 +342,18 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         graphicalResultsContainer.FreeChildren();
         autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, patchSelected, true, speciesResultButtonScene,
-            autoEvoReportSegmentTitleFont);
+            autoEvoReportSegmentTitleFont, new Callable(this, nameof(ShowExtraInfoOnSpecies)));
+    }
+
+    private void ShowExtraInfoOnSpecies(uint id)
+    {
+        if (!Editor.CurrentGame.GameWorld.TryGetSpecies(id, out var species))
+        {
+            GD.PrintErr("Species not found for displaying extra info");
+            return;
+        }
+
+        Editor.OpenSpeciesInfoFor(species);
     }
 
     private void UpdateReportTabStatistics(Patch patch)

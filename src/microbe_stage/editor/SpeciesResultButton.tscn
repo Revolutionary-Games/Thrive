@@ -157,4 +157,5 @@ stretch_mode = 5
 
 [connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
 [connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
+[connection signal="pressed" from="." to="." method="OnPressed"]
 [connection signal="resized" from="VBoxContainer/MainContent" to="." method="OnContentSizeChanged"]

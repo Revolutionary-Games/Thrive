@@ -984,8 +984,11 @@ public class RunResults
     ///   Scene to display the results with, has to be <see cref="SpeciesResultButton"/>
     /// </param>
     /// <param name="titleFonts">Font settings for the titles between sections, if null no titles are added</param>
+    /// <param name="selectionCallback">
+    ///   Callback that takes a single <c>uint SpeciesID</c> parameter for when a species button is clicked
+    /// </param>
     public void MakeGraphicalSummary(Container guiTarget, Patch forPatch, bool showGlobalResults,
-        PackedScene speciesResultScene, LabelSettings? titleFonts)
+        PackedScene speciesResultScene, LabelSettings? titleFonts, Callable? selectionCallback)
     {
         bool IsRelevantForResults(Patch patch, SpeciesResult result)
         {
@@ -1045,6 +1048,9 @@ public class RunResults
             // TODO: add this
             // resultDisplay.DisplayGlobalPopulation()
             resultDisplay.HideGlobalPopulation();
+
+            if (selectionCallback != null)
+                resultDisplay.Connect(SpeciesResultButton.SignalName.SpeciesSelected, selectionCallback.Value);
 
             container.AddChild(resultDisplay);
         }
@@ -1112,6 +1118,9 @@ public class RunResults
 
             // Definitely don't want to show the extra global population line here
             resultDisplay.HideGlobalPopulation();
+
+            if (selectionCallback != null)
+                resultDisplay.Connect(SpeciesResultButton.SignalName.SpeciesSelected, selectionCallback.Value);
 
             container.AddChild(resultDisplay);
         }

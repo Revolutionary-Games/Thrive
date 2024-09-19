@@ -46,6 +46,9 @@ public partial class SpeciesResultButton : Button
 
     private Species? shownForSpecies;
 
+    [Signal]
+    public delegate void SpeciesSelectedEventHandler(uint id);
+
     public override void _Ready()
     {
         // Ensure minimum size is set
@@ -103,6 +106,15 @@ public partial class SpeciesResultButton : Button
     public void HideGlobalPopulation()
     {
         globalPopulationContainer.Visible = false;
+    }
+
+    private void OnPressed()
+    {
+        if (shownForSpecies == null)
+            return;
+
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(SignalName.SpeciesSelected, shownForSpecies.ID);
     }
 
     private void OnContentSizeChanged()
