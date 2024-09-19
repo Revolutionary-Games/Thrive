@@ -565,7 +565,7 @@ public class GameWorld : ISaveLoadable
                     // current ones. And the Species objects wouldn't be in this world.
                     if (TryGetSpecies(recordSpecies.Key, out var candidateSpecies))
                     {
-                        speciesDistance[candidateSpecies!] = 1;
+                        speciesDistance[candidateSpecies] = 1;
                     }
                 }
 
@@ -584,7 +584,7 @@ public class GameWorld : ISaveLoadable
                     {
                         // Distance is one more than the existing calculated distance that this current species is
                         // related to
-                        speciesDistance[candidateSpecies!] = existingDistance.Value + 1;
+                        speciesDistance[candidateSpecies] = existingDistance.Value + 1;
                     }
 
                     break;

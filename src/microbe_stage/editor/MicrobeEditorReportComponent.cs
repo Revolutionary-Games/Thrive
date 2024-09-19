@@ -184,7 +184,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
 
-        CreateGraphicalReportForPatch();
+        // This can be called during initialization, when it is not yet possible to display the report content
+        if (autoEvoResults != null)
+            CreateGraphicalReportForPatch(selectedPatch);
     }
 
     public void UpdateTimeIndicator(double value)
@@ -220,7 +222,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         autoEvoResults = results;
 
-        CreateGraphicalReportForPatch();
+        CreateGraphicalReportForPatch(currentlyDisplayedPatch ?? Editor.CurrentPatch);
     }
 
     public void DisplayAutoEvoFailure(string extra)
@@ -277,7 +279,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         UpdateTimeline(patchToDisplay);
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics(patchToDisplay);
-        CreateGraphicalReportForPatch();
+        CreateGraphicalReportForPatch(patchToDisplay);
     }
 
     protected override void RegisterTooltips()
@@ -330,7 +332,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     /// <summary>
     ///   Generates a new graphics-based representation of the auto-evo report
     /// </summary>
-    private void CreateGraphicalReportForPatch()
+    private void CreateGraphicalReportForPatch(Patch selectedPatch)
     {
         if (autoEvoResults == null)
         {
@@ -338,10 +340,10 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             return;
         }
 
-        var patchSelected = currentlyDisplayedPatch ?? Editor.CurrentPatch;
+        // var selectedPatch = currentlyDisplayedPatch ?? Editor.CurrentPatch;
 
         graphicalResultsContainer.FreeChildren();
-        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, patchSelected, true, speciesResultButtonScene,
+        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, selectedPatch, true, speciesResultButtonScene,
             autoEvoReportSegmentTitleFont, new Callable(this, nameof(ShowExtraInfoOnSpecies)));
     }
 
@@ -602,6 +604,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         UpdateReportTabStatistics(patch);
         UpdateTimeline(patch);
         UpdateReportTabPatchName(patch);
+
+        if (autoEvoResults != null)
+            CreateGraphicalReportForPatch(patch);
     }
 
     /// <summary>

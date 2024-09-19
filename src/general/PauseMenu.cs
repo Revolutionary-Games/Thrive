@@ -556,6 +556,4 @@ public partial class PauseMenu : TopLevelContainer
         Paused = false;
         MouseUnCaptureActive = false;
     }
-
-
 }
