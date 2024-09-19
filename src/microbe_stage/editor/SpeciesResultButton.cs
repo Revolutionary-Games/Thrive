@@ -44,6 +44,8 @@ public partial class SpeciesResultButton : Button
     private LabelSettings negativePopulationChangeSettings = null!;
 #pragma warning restore CA2213
 
+    private Species? shownForSpecies;
+
     public override void _Ready()
     {
         // Ensure minimum size is set
@@ -57,10 +59,11 @@ public partial class SpeciesResultButton : Button
 
     public void DisplaySpecies(RunResults.SpeciesResult speciesResult, bool showNewGloballyIndicator)
     {
-        preview.PreviewSpecies = speciesResult.Species;
+        shownForSpecies = speciesResult.Species;
+        preview.PreviewSpecies = shownForSpecies;
 
         // TODO: underline when showing the player species?
-        nameLabel.Text = speciesResult.Species.FormattedName;
+        nameLabel.Text = shownForSpecies.FormattedName;
 
         // Show the right indicators
         mutatedIndicator.Visible = speciesResult.MutatedProperties != null;
@@ -108,5 +111,25 @@ public partial class SpeciesResultButton : Button
 
         if (newMinSize != CustomMinimumSize)
             CustomMinimumSize = newMinSize;
+    }
+
+    private void OnMouseEnter()
+    {
+        var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");
+        if (tooltip != null && shownForSpecies != null)
+        {
+            tooltip.PreviewSpecies = shownForSpecies;
+            ToolTipManager.Instance.MainToolTip = tooltip;
+            ToolTipManager.Instance.Display = true;
+        }
+    }
+
+    private void OnMouseExit()
+    {
+        var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");
+        if (tooltip != null && ToolTipManager.Instance.MainToolTip == tooltip)
+        {
+            ToolTipManager.Instance.Display = false;
+        }
     }
 }

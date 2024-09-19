@@ -154,4 +154,6 @@ texture = ExtResource("9_u0rre")
 expand_mode = 1
 stretch_mode = 5
 
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
 [connection signal="resized" from="VBoxContainer/MainContent" to="." method="OnContentSizeChanged"]
