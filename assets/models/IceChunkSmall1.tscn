@@ -9,13 +9,14 @@ render_priority = 18
 transparency = 4
 blend_mode = 1
 cull_mode = 2
+albedo_color = Color(0.862745, 1, 1, 0.92549)
 albedo_texture = ExtResource("2_ayeji")
 metallic = 0.6
 metallic_specular = 0.78
 roughness = 0.6
 emission_enabled = true
 emission = Color(0.321569, 0.321569, 0.435294, 1)
-emission_energy_multiplier = 0.7
+emission_energy_multiplier = 0.5
 normal_enabled = true
 normal_texture = ExtResource("2_ruhxd")
 
