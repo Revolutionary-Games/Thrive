@@ -47,6 +47,7 @@ layout_mode = 2
 
 [node name="PhotographablePreview" parent="VBoxContainer/MainContent" instance=ExtResource("3_uyudq")]
 layout_mode = 2
+mouse_filter = 2
 script = ExtResource("4_6vevb")
 
 [node name="PartiallyExtinctIndicator" type="TextureRect" parent="VBoxContainer/MainContent/PhotographablePreview"]

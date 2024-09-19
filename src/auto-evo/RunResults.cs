@@ -987,6 +987,53 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return builder;
     }
 
+    /// <summary>
+    ///   Makes a graphical variant of the summary report for a single patch
+    /// </summary>
+    /// <param name="guiTarget">
+    ///   Where to put the graphical controls (TODO: could reuse instances where possible)
+    /// </param>
+    /// <param name="forPatch">The patch the results are for</param>
+    /// <param name="speciesResultScene">
+    ///   Scene to display the results with, has to be <see cref="SpeciesResultButton"/>
+    /// </param>
+    public void MakeGraphicalSummary(Container guiTarget, Patch forPatch, PackedScene speciesResultScene)
+    {
+        bool IsRelevantForResults(Patch patch, RunResults.SpeciesResult result)
+        {
+            if (result.NewPopulationInPatches.TryGetValue(patch, out var population) && population > 0)
+                return true;
+
+            if (result.OldPopulationInPatches.TryGetValue(patch, out population) && population > 0)
+                return true;
+
+            return false;
+        }
+
+        foreach (var entry in
+                 results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
+                     .ThenBy(s => s.Species.FormattedName))
+        {
+            if (!IsRelevantForResults(forPatch, entry))
+                continue;
+
+            var resultDisplay = speciesResultScene.Instantiate<SpeciesResultButton>();
+
+            resultDisplay.DisplaySpecies(entry.Species);
+
+            entry.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation);
+            entry.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation);
+
+            resultDisplay.DisplayPopulation(newPopulation, oldPopulation);
+
+            // TODO: add this
+            // resultDisplay.DisplayGlobalPopulation()
+            resultDisplay.HideGlobalPopulation();
+
+            guiTarget.AddChild(resultDisplay);
+        }
+    }
+
     public void LogResultsToTimeline(GameWorld world, List<ExternalEffect>? effects = null)
     {
         if (world.Map.CurrentPatch == null)
