@@ -994,12 +994,15 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     ///   Where to put the graphical controls (TODO: could reuse instances where possible)
     /// </param>
     /// <param name="forPatch">The patch the results are for</param>
+    /// <param name="showGlobalResults">If true then global results are added after the patch results</param>
     /// <param name="speciesResultScene">
     ///   Scene to display the results with, has to be <see cref="SpeciesResultButton"/>
     /// </param>
-    public void MakeGraphicalSummary(Container guiTarget, Patch forPatch, PackedScene speciesResultScene)
+    /// <param name="titleFonts">Font settings for the titles between sections, if null no titles are added</param>
+    public void MakeGraphicalSummary(Container guiTarget, Patch forPatch, bool showGlobalResults,
+        PackedScene speciesResultScene, LabelSettings? titleFonts)
     {
-        bool IsRelevantForResults(Patch patch, RunResults.SpeciesResult result)
+        bool IsRelevantForResults(Patch patch, SpeciesResult result)
         {
             if (result.NewPopulationInPatches.TryGetValue(patch, out var population) && population > 0)
                 return true;
@@ -1010,6 +1013,34 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
             return false;
         }
 
+        // Patch specific results
+        if (titleFonts != null)
+        {
+            var patchHeading = new HBoxContainer();
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            // Applying the translation here means  that this method needs to be re-called when translations change, which
+            // should be setup currently
+            patchHeading.AddChild(new Label
+            {
+                Text = Localization.Translate("AUTO_EVO_RESULTS_PATCH_TITLE"),
+                LabelSettings = titleFonts,
+            });
+
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            guiTarget.AddChild(patchHeading);
+        }
+
+        // Results after the heading are contained in a HFlow to automatically split into lines
+        var container = new HFlowContainer();
+
         foreach (var entry in
                  results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
                      .ThenBy(s => s.Species.FormattedName))
@@ -1019,19 +1050,88 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
 
             var resultDisplay = speciesResultScene.Instantiate<SpeciesResultButton>();
 
-            resultDisplay.DisplaySpecies(entry.Species);
+            resultDisplay.DisplaySpecies(entry, false);
 
             entry.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation);
             entry.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation);
 
-            resultDisplay.DisplayPopulation(newPopulation, oldPopulation);
+            resultDisplay.DisplayPopulation(newPopulation, oldPopulation, true);
 
             // TODO: add this
             // resultDisplay.DisplayGlobalPopulation()
             resultDisplay.HideGlobalPopulation();
 
-            guiTarget.AddChild(resultDisplay);
+            container.AddChild(resultDisplay);
         }
+
+        guiTarget.AddChild(container);
+
+        // Global results
+        if (!showGlobalResults)
+            return;
+
+        // Heading again
+        if (titleFonts != null)
+        {
+            var patchHeading = new HBoxContainer();
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            patchHeading.AddChild(new Label
+            {
+                Text = Localization.Translate("AUTO_EVO_RESULTS_GLOBAL_TITLE"),
+                LabelSettings = titleFonts,
+            });
+
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            guiTarget.AddChild(patchHeading);
+        }
+
+        // And then the results
+        container = new HFlowContainer();
+
+        foreach (var entry in
+                 results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
+                     .ThenBy(s => s.Species.FormattedName))
+        {
+            // If the global populations are shown by the above loop, then this should skip the reverse of
+            // IsRelevantForResults
+
+            var resultDisplay = speciesResultScene.Instantiate<SpeciesResultButton>();
+
+            resultDisplay.DisplaySpecies(entry, true);
+
+            // Calculate global old and new populations to show
+            long totalOldPopulation = 0;
+            long totalNewPopulation = 0;
+
+            foreach (var populationEntry in entry.OldPopulationInPatches)
+            {
+                if (populationEntry.Value > 0)
+                    totalOldPopulation += populationEntry.Value;
+            }
+
+            foreach (var populationEntry in entry.NewPopulationInPatches)
+            {
+                if (populationEntry.Value > 0)
+                    totalNewPopulation += populationEntry.Value;
+            }
+
+            resultDisplay.DisplayPopulation(totalNewPopulation, totalOldPopulation, false);
+
+            // Definitely don't want to show the extra global population line here
+            resultDisplay.HideGlobalPopulation();
+
+            container.AddChild(resultDisplay);
+        }
+
+        guiTarget.AddChild(container);
     }
 
     public void LogResultsToTimeline(GameWorld world, List<ExternalEffect>? effects = null)

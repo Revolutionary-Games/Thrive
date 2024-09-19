@@ -35,9 +35,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     public NodePath GlucoseReductionLabelPath = null!;
 
     [Export]
-    public NodePath AutoEvoLabelPath = null!;
-
-    [Export]
     public NodePath ExternalEffectsLabelPath = null!;
 
     [Export]
@@ -57,7 +54,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     private Label timeIndicator = null!;
     private Label glucoseReductionLabel = null!;
-    private CustomRichTextLabel autoEvoLabel = null!;
     private CustomRichTextLabel externalEffectsLabel = null!;
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
@@ -79,6 +75,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     [Export]
     private Container graphicalResultsContainer = null!;
+
+    [Export]
+    private LabelSettings autoEvoReportSegmentTitleFont = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
@@ -119,7 +118,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = physicalConditionsChartContainer.GetItem<Container>("LegendContainer")
@@ -212,16 +210,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             .FormatSafe(percentage);
     }
 
-    public void UpdateAutoEvoResults(string results, string external)
-    {
-        autoEvoLabel.ExtendedBbcode = results;
-        externalEffectsLabel.ExtendedBbcode = external;
-    }
-
     public void UpdateAutoEvoResults(RunResults results, string external)
     {
         noAutoEvoResultData.Visible = false;
-        autoEvoLabel.Visible = false;
         graphicalResultsContainer.Visible = true;
 
         // TODO: should this also have some graphical representation?
@@ -232,13 +223,26 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         CreateGraphicalReportForPatch();
     }
 
+    public void DisplayAutoEvoFailure(string extra)
+    {
+        graphicalResultsContainer.QueueFreeChildren();
+        graphicalResultsContainer.AddChild(new Label
+        {
+            Text = Localization.Translate("AUTO_EVO_FAILED"),
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            CustomMinimumSize = new Vector2(200, 15),
+            AutowrapMode = TextServer.AutowrapMode.WordSmart,
+        });
+
+        externalEffectsLabel.ExtendedBbcode = Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + extra;
+    }
+
     public void ShowErrorAboutOldSave()
     {
         GD.PrintErr("There is no existing full auto-evo results data to show new auto-evo report with");
         noAutoEvoResultData.Visible = true;
         graphicalResultsContainer.Visible = false;
 
-        autoEvoLabel.Visible = false;
         externalEffectsLabel.Visible = false;
     }
 
@@ -273,6 +277,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         UpdateTimeline(patchToDisplay);
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics(patchToDisplay);
+        CreateGraphicalReportForPatch();
     }
 
     protected override void RegisterTooltips()
@@ -301,7 +306,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 TimelineEventsContainerPath.Dispose();
                 TimeIndicatorPath.Dispose();
                 GlucoseReductionLabelPath.Dispose();
-                AutoEvoLabelPath.Dispose();
                 ExternalEffectsLabelPath.Dispose();
                 ReportTabPatchNamePath.Dispose();
                 ReportTabPatchSelectorPath.Dispose();
@@ -337,7 +341,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         var patchSelected = currentlyDisplayedPatch ?? Editor.CurrentPatch;
 
         graphicalResultsContainer.FreeChildren();
-        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, patchSelected, speciesResultButtonScene);
+        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, patchSelected, true, speciesResultButtonScene,
+            autoEvoReportSegmentTitleFont);
     }
 
     private void UpdateReportTabStatistics(Patch patch)

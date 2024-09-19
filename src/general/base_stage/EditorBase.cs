@@ -60,9 +60,6 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected bool ready;
 
     [JsonProperty]
-    protected LocalizedStringBuilder? autoEvoSummary;
-
-    [JsonProperty]
     protected AutoEvo.RunResults? autoEvoResults;
 
     [JsonProperty]
@@ -706,14 +703,12 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             run.Results.StorePreviousPopulations(CurrentGame.GameWorld.Map);
 
             // Generate text parts of the report
-            autoEvoSummary = run.Results.MakeSummary(true);
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
             run.Results.LogResultsToTimeline(CurrentGame.GameWorld, run.ExternalEffects);
         }
         else
         {
-            autoEvoSummary = null;
             autoEvoExternal = null;
             autoEvoResults = null;
         }

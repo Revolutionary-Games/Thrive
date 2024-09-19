@@ -1,3 +1,4 @@
+using AutoEvo;
 using Godot;
 
 /// <summary>
@@ -34,7 +35,13 @@ public partial class SpeciesResultButton : Button
     private Container globalPopulationContainer = null!;
 
     [Export]
-    private Control buttonContentContainer = null!;
+    private Control mainContentContainer = null!;
+
+    [Export]
+    private LabelSettings positivePopulationChangeSettings = null!;
+
+    [Export]
+    private LabelSettings negativePopulationChangeSettings = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
@@ -45,29 +52,49 @@ public partial class SpeciesResultButton : Button
 
     public override Vector2 _GetMinimumSize()
     {
-        return buttonContentContainer.CustomMinimumSize;
+        return mainContentContainer.GetMinimumSize();
     }
 
-    public void DisplaySpecies(Species species)
+    public void DisplaySpecies(RunResults.SpeciesResult speciesResult, bool showNewGloballyIndicator)
     {
-        preview.PreviewSpecies = species;
+        preview.PreviewSpecies = speciesResult.Species;
 
-        // TODO: underline when showing the species?
-        nameLabel.Text = species.FormattedName;
+        // TODO: underline when showing the player species?
+        nameLabel.Text = speciesResult.Species.FormattedName;
 
-        // TODO: showing the indicators
+        // Show the right indicators
+        mutatedIndicator.Visible = speciesResult.MutatedProperties != null;
+
+        if (showNewGloballyIndicator)
+        {
+            newIndicator.Visible = speciesResult.NewlyCreated != null;
+        }
     }
 
-    public void DisplayPopulation(long newPopulation, long oldPopulation)
+    public void DisplayPopulation(long newPopulation, long oldPopulation, bool showNewInPatchIndicator)
     {
         partialExtinctionIndicator.Visible = newPopulation < 1;
 
         resultPatchPopulation.Text = newPopulation.ToString();
 
         var difference = newPopulation - oldPopulation;
-        resultPatchPopulationDifference.Text = difference.ToString();
 
-        // TODO: change text colour
+        if (difference < 0)
+        {
+            resultPatchPopulationDifference.Text = difference.ToString();
+            resultPatchPopulationDifference.LabelSettings = negativePopulationChangeSettings;
+        }
+        else
+        {
+            resultPatchPopulationDifference.Text = $"+{difference}";
+            resultPatchPopulationDifference.LabelSettings = positivePopulationChangeSettings;
+        }
+
+        if (showNewInPatchIndicator)
+        {
+            // New when gets population in this patch that previously didn't have population
+            newIndicator.Visible = oldPopulation < 1;
+        }
     }
 
     public void HideGlobalPopulation()
