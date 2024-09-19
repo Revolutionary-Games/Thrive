@@ -945,7 +945,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (micheData.Pressure.GetType() == typeof(NoOpPressure))
         {
             if (micheData.Occupant == null)
+            {
+                // No species selected so reset the display panel to not make the GUI as confusing
+                micheSpeciesDetailsPanel.Visible = false;
+                micheDetailsPanel.Visible = false;
                 return;
+            }
 
             micheSpeciesDetailsPanel.Visible = true;
             micheDetailsPanel.Visible = false;
