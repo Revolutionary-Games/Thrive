@@ -167,6 +167,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         if (currentlyDisplayedPatch == null || currentlyDisplayedPatch != selectedPatch)
         {
             UpdatePatchDetails(selectedPatch);
+
+            // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
+            // component when initializing the editor (but only after displaying them once)
+            if (autoEvoResults != null)
+                CreateGraphicalReportForPatch(selectedPatch);
         }
     }
 
@@ -183,10 +188,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         UpdateReportTabPatchName(currentOrSelectedPatch);
 
         UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
-
-        // This can be called during initialization, when it is not yet possible to display the report content
-        if (autoEvoResults != null)
-            CreateGraphicalReportForPatch(selectedPatch);
     }
 
     public void UpdateTimeIndicator(double value)
@@ -279,7 +280,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         UpdateTimeline(patchToDisplay);
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics(patchToDisplay);
-        CreateGraphicalReportForPatch(patchToDisplay);
     }
 
     protected override void RegisterTooltips()
