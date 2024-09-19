@@ -1,12 +1,11 @@
 ﻿namespace AutoEvo;
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Container for results before they are applied.
@@ -16,7 +15,7 @@ using JetBrains.Annotations;
 ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
 ///   </para>
 /// </remarks>
-public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
+public class RunResults
 {
     /// <summary>
     ///   The per-species results
@@ -29,8 +28,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     ///     this is one.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
+    // The following variables are not shared as they are just temporary data during running, and not required
+    // afterwards when loading from a save
     private readonly List<PossibleSpecies> modifiedSpecies = new();
 
     private readonly Dictionary<Patch, Miche> micheByPatch = new();
@@ -58,17 +60,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
             HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
             r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
-    }
-
-    /// <summary>
-    ///   Per-species results with all species data. All species are cloned.
-    /// </summary>
-    /// <returns>The per-species results with all species cloned</returns>
-    public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
-    {
-        return results.ToDictionary(r => r.Key.ID,
-            r => new SpeciesRecordFull((Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID,
-                r.Value.SplitFrom?.ID));
     }
 
     public void AddNewMicheForPatch(Patch patch, Miche miche)
@@ -102,16 +93,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         results[species].NewPopulationInPatches[patch] = Math.Max(newPopulation, 0);
     }
 
-    public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount)
-    {
-        if (populationAmount <= 0)
-            throw new ArgumentException("Invalid population migration amount");
-
-        AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
-    }
-
     public void AddMigrationResultForSpecies(Species species, SpeciesMigration migration)
     {
+        if (migration.Population < 0)
+            throw new ArgumentException("Population to migrate cannot be negative");
+
         MakeSureResultExistsForSpecies(species);
 
         results[species].SpreadToPatches.Add(migration);
@@ -1264,27 +1250,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     }
 
     /// <summary>
-    ///   Call this only when auto-evo has finished. Calling at runtime will result in
-    ///   incorrect result and random CollectionModifiedException.
-    /// </summary>
-    [MustDisposeResource]
-    public IEnumerator GetEnumerator()
-    {
-        return results.GetEnumerator();
-    }
-
-    /// <summary>
-    ///   Call this only when auto-evo has finished. Calling at runtime will result in
-    ///   incorrect result and random CollectionModifiedException.
-    /// </summary>
-    [MustDisposeResource]
-    IEnumerator<KeyValuePair<Species, SpeciesResult>> IEnumerable<KeyValuePair<Species, SpeciesResult>>.
-        GetEnumerator()
-    {
-        return results.GetEnumerator();
-    }
-
-    /// <summary>
     ///   Returns the results for a given species for use by auto-evo internally
     /// </summary>
     /// <remarks>
@@ -1454,7 +1419,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </summary>
     public class SpeciesPatchEnergyResults
     {
-        public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
+        public readonly Dictionary<LocalizedString, NicheInfo> PerNicheEnergy = new();
 
         public long UnadjustedPopulation;
 
