@@ -78,6 +78,7 @@ horizontal_alignment = 1
 
 [node name="PopulationLine" type="HBoxContainer" parent="VBoxContainer/MainContent"]
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="Population" type="Label" parent="VBoxContainer/MainContent/PopulationLine"]
 layout_mode = 2
