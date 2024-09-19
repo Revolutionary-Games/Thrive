@@ -247,14 +247,13 @@ public class RunResults
         };
     }
 
-    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch,
-        long unadjustedPopulation, float totalEnergy, float individualCost)
+    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch, float totalEnergy,
+        float individualCost)
     {
         MakeSureResultExistsForSpecies(species);
 
         var dataReceiver = results[species].GetEnergyResults(patch);
 
-        dataReceiver.UnadjustedPopulation = unadjustedPopulation;
         dataReceiver.TotalEnergyGathered = totalEnergy;
         dataReceiver.IndividualCost = individualCost;
     }
@@ -1421,11 +1420,16 @@ public class RunResults
     {
         public readonly Dictionary<LocalizedString, NicheInfo> PerNicheEnergy = new();
 
-        public long UnadjustedPopulation;
-
         public float TotalEnergyGathered;
 
         public float IndividualCost;
+
+        /// <summary>
+        ///   Unadjusted population based the energy sources. Doesn't take
+        ///   <see cref="Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION"/> into account.
+        /// </summary>
+        [JsonIgnore]
+        public long UnadjustedPopulation => (long)MathF.Floor(TotalEnergyGathered / IndividualCost);
 
         public class NicheInfo
         {
