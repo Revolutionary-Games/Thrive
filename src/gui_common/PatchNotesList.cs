@@ -274,7 +274,7 @@ public partial class PatchNotesList : VBoxContainer
 
                 itemContainer.AddChild(new Label
                 {
-                    Text = TranslationServer.Translate("TOO_MANY_RECENT_VERSIONS_TO_SHOW"),
+                    Text = Localization.Translate("TOO_MANY_RECENT_VERSIONS_TO_SHOW"),
                     AutowrapMode = TextServer.AutowrapMode.WordSmart,
                     CustomMinimumSize = new Vector2(100, 0),
                     HorizontalAlignment = HorizontalAlignment.Center,

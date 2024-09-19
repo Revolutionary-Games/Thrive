@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 13:45+0300\n"
-"PO-Revision-Date: 2024-02-21 15:28+0000\n"
-"Last-Translator: Gabriel Glavica <gabriel.glavicacretni@gmail.com>\n"
+"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"PO-Revision-Date: 2024-09-17 07:03+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.10.3\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -93,8 +93,16 @@ msgstr "Napreduj"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobna fiksacija dušika"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerobna fiksacija dušika"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Anaerobna fiksacija dušika"
 
 msgid "AGENTS"
 msgstr ""
@@ -318,6 +326,10 @@ msgstr ""
 
 msgid "BACKSPACE"
 msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Sinteza OksiToksina"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
@@ -570,6 +582,10 @@ msgstr ""
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Sinteza OksiToksina"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr ""
@@ -1491,7 +1507,13 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
+msgid "EDITING_TITLE"
+msgstr ""
+
 msgid "EDITOR"
+msgstr ""
+
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr ""
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1607,6 +1629,9 @@ msgid "ENTITY_LABEL"
 msgstr ""
 
 msgid "ENVIRONMENT"
+msgstr ""
+
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
 msgstr ""
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
@@ -1942,6 +1967,9 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
+msgid "GAME_SYSTEMS_TITLE"
+msgstr ""
+
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 
@@ -2107,7 +2135,14 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Uređivač mikroba"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2116,7 +2151,14 @@ msgstr ""
 msgid "INFO_BOX_MASS"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Stadij mikroba"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr ""
+
+msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_PROCESSES"
@@ -2745,6 +2787,9 @@ msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
 msgid "MAY"
+msgstr ""
+
+msgid "MECHANICS_BUTTON"
 msgstr ""
 
 msgid "MEDIANEXT"
@@ -3720,6 +3765,10 @@ msgstr ""
 msgid "ORGANELLES"
 msgstr ""
 
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Višestanični stadij"
+
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -3785,6 +3834,9 @@ msgstr ""
 msgid "OUR_WIKI"
 msgstr ""
 
+msgid "OUTDATED_NOTICE"
+msgstr ""
+
 msgid "OUTREACH_TEAM"
 msgstr ""
 
@@ -3815,6 +3867,7 @@ msgstr ""
 msgid "OXYTOXY_NT"
 msgstr "OksiToksi NT"
 
+#, fuzzy
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Sinteza OksiToksina"
 
@@ -4858,6 +4911,9 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
+msgid "SURVIVAL_TITLE"
+msgstr ""
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
@@ -4980,6 +5036,13 @@ msgstr ""
 
 msgid "THE_DISTURBANCE"
 msgstr ""
+
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "THE_WORLD_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
@@ -5651,6 +5714,90 @@ msgstr ""
 msgid "WIKI"
 msgstr ""
 
+msgid "WIKI_2D"
+msgstr ""
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+msgid "WIKI_3D"
+msgstr ""
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr ""
+
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
+
+msgid "WIKI_8_BRACKET_16"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "Čestitamo!"
+
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr ""
+
+msgid "WIKI_ASCENSION_INTRO"
+msgstr ""
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Čestitamo!"
+
+msgid "WIKI_ASCENSION_UI"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr ""
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Stadij mikroba"
+
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Stadij mikroba"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
@@ -5674,6 +5821,10 @@ msgstr ""
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Sinteza OksiToksina"
 
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
@@ -5721,6 +5872,9 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
+msgstr ""
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -5819,6 +5973,10 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Sinteza OksiToksina"
+
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
 
@@ -5841,6 +5999,30 @@ msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CILIA_UPGRADES"
+msgstr ""
+
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr ""
+
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5867,6 +6049,37 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "3D kretanje"
+
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr ""
+
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr ""
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr ""
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -5891,13 +6104,74 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerobna fiksacija dušika"
+
+msgid "WIKI_HEADING_APPENDICES"
+msgstr ""
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Koncepti"
+
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "3D uređivač"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+msgid "WIKI_HEADING_FEATURES"
+msgstr ""
+
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr ""
+
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr ""
+
+msgid "WIKI_HEADING_GDD"
+msgstr ""
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Stadij mikroba"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_HEADING_PATCHES"
+msgstr ""
+
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr ""
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -5909,7 +6183,43 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr ""
+
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr ""
+
+msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_EFFECTS"
@@ -5936,6 +6246,12 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
+msgid "WIKI_MECHANICS"
+msgstr ""
+
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr ""
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr ""
 
@@ -5959,6 +6275,66 @@ msgstr ""
 
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Uređivač mikroba"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
+"[b]Stadij[/b]\n"
+"  Mikrob\n"
+"[b]Tip membrane[/b]\n"
+"  {0}\n"
+"[b]Krutost membrane[/b]\n"
+"  {1}\n"
+"[b]Osnovna brzina[/b]\n"
+"  {2}\n"
+"[b]Osnovna brzina rotacije[/b]\n"
+"  {3}\n"
+"[b]Osnova veličina, u ćelijama[/b]\n"
+"  {4}"
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr ""
@@ -5984,6 +6360,34 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Višestanični stadij"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Višestanični stadij"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Višestanični stadij"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Višestanični stadij"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Višestanični stadij"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Višestanični stadij"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Višestanični stadij"
+
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
@@ -6007,6 +6411,10 @@ msgstr ""
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "3D uređivač"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr ""
@@ -6054,6 +6462,12 @@ msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr ""
+
+msgid "WIKI_NO"
+msgstr ""
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 msgid "WIKI_NUCLEUS_EFFECTS"
@@ -6107,6 +6521,20 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Sinteza OksiToksina"
+
+msgid "WIKI_PAGE_ASCENSION"
+msgstr ""
+
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Stadij mikroba"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6131,20 +6559,49 @@ msgstr ""
 msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
 msgid "WIKI_PAGE_CYTOPLASM"
+msgstr ""
+
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr ""
+
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr ""
+
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr ""
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr ""
 
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr ""
+
 msgid "WIKI_PAGE_LYSOSOME"
+msgstr ""
+
+msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr ""
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Stadij mikroba"
+
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Višestanični stadij"
 
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr ""
@@ -6170,6 +6627,9 @@ msgstr ""
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr ""
 
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr ""
+
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr ""
 
@@ -6179,10 +6639,24 @@ msgstr ""
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Stadij mikroba"
+
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr ""
+
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr ""
 
 msgid "WIKI_PAGE_THERMOSYNTHASE"
+msgstr ""
+
+msgid "WIKI_PAGE_THE_PATCH_MAP"
 msgstr ""
 
 msgid "WIKI_PAGE_THYLAKOIDS"
@@ -6218,6 +6692,10 @@ msgstr ""
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Anaerobna fiksacija dušika"
+
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr ""
 
@@ -6240,6 +6718,18 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+msgid "WIKI_PULLING_CILIA"
+msgstr ""
+
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr ""
+
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr ""
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -6320,6 +6810,57 @@ msgstr ""
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Stadij mikroba"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Stadij mikroba"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Stadij mikroba"
+
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Stadij mikroba"
+
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr ""
+
+msgid "WIKI_TBA"
+msgstr ""
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
@@ -6366,6 +6907,18 @@ msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
@@ -6440,6 +6993,9 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+msgid "WIKI_YES"
+msgstr ""
+
 msgid "WILL_YOU_THRIVE"
 msgstr ""
 
@@ -6509,6 +7065,9 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr ""
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
@@ -6523,6 +7082,62 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerobna fiksacija dušika"
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Uređivač mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Višestanični stadij"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Višestanični stadij"
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "Sinteza OksiToksina"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Sinteza OksiToksina"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Stadij mikroba"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Sinteza OksiToksina"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Dopusti vrstama da ne migriraju (ako nema dobrog mjesta za migraciju)"

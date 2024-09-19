@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-13 13:45+0300\n"
-"PO-Revision-Date: 2024-07-08 09:22+0000\n"
-"Last-Translator: Mikael L <mikael_throt@hotmail.com>\n"
+"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"PO-Revision-Date: 2024-09-17 07:03+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -96,8 +96,16 @@ msgstr "Avancerad"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Öppna vyn för avancerade inställningar"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob kvävefixering"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerob kvävefixering"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Anding"
 
 msgid "AGENTS"
 msgstr "Medel"
@@ -341,6 +349,10 @@ msgstr "Omvänt snedstreck"
 
 msgid "BACKSPACE"
 msgstr "Backa"
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Termosyntes"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
@@ -615,6 +627,10 @@ msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som k
 #, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Kemosyntes"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Kemosyntesiserande proteiner"
@@ -1661,8 +1677,16 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr "UTROTNING"
 
+#, fuzzy
+msgid "EDITING_TITLE"
+msgstr "DU HAR FRODATS!"
+
 msgid "EDITOR"
 msgstr "Cellredigerare"
+
+#, fuzzy
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
+msgstr "har muterat"
 
 #, fuzzy
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1791,6 +1815,10 @@ msgstr "Omgivning: {0}"
 
 msgid "ENVIRONMENT"
 msgstr "Miljö"
+
+#, fuzzy
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -2183,6 +2211,10 @@ msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
 
 #, fuzzy
+msgid "GAME_SYSTEMS_TITLE"
+msgstr "Spel Design"
+
+#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Självmord"
 
@@ -2361,8 +2393,16 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr "DU HAR FRODATS!"
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "DU HAR FRODATS!"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "Osmoreguleringskost"
 
 #, fuzzy
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2372,8 +2412,16 @@ msgid "INFO_BOX_MASS"
 msgstr ""
 
 #, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "DU HAR FRODATS!"
+
+#, fuzzy
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Osmoreguleringskost"
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Placera organell"
 
 #, fuzzy
 msgid "INFO_BOX_PROCESSES"
@@ -3065,6 +3113,10 @@ msgstr "Det är inte tillåtet att visa fler än {0} datauppsättningar!"
 msgid "MAY"
 msgstr "Maj"
 
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Skriv över aktuell sparfil:"
+
 msgid "MEDIANEXT"
 msgstr "Media Nästa"
 
@@ -3713,6 +3765,7 @@ msgstr "{0} MP"
 msgid "MUCILAGE"
 msgstr "Mucilage"
 
+#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "Mucilagesyntes"
 
@@ -4076,6 +4129,10 @@ msgid "ORGANELLES"
 msgstr "Organeller"
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Organeller"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 "Aggressiva mikrober jagar byte över större avstånd\n"
@@ -4160,6 +4217,10 @@ msgstr "Föreningar"
 msgid "OUR_WIKI"
 msgstr ""
 
+#, fuzzy
+msgid "OUTDATED_NOTICE"
+msgstr "Avbruten."
+
 msgid "OUTREACH_TEAM"
 msgstr ""
 
@@ -4194,6 +4255,7 @@ msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan
 msgid "OXYTOXY_NT"
 msgstr "OxyToxy"
 
+#, fuzzy
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "OxyToxySyntes"
 
@@ -5366,6 +5428,9 @@ msgstr "Solljus"
 msgid "SUPPORTER_PATRONS"
 msgstr "Supportrar"
 
+msgid "SURVIVAL_TITLE"
+msgstr ""
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Växla till frontkamera"
 
@@ -5502,6 +5567,14 @@ msgstr "Mängden glukos har minskats med {0} av den tidigare mängden."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
+
+#, fuzzy
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr "Grotta"
+
+#, fuzzy
+msgid "THE_WORLD_TITLE"
+msgstr "Nuvarande utvecklare"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
@@ -6269,6 +6342,104 @@ msgstr "Skrolla up"
 msgid "WIKI"
 msgstr ""
 
+msgid "WIKI_2D"
+msgstr ""
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+msgid "WIKI_3D"
+msgstr ""
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
+msgid "WIKI_8_BRACKET_16"
+msgstr "Snurra vänster"
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Externa effekter:"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Grattis!"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Uppvaknandestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Bindemedel"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Uppvaknandestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Uppvaknandestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Uppvaknandestadiet"
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Mikrob Stadiet"
+
 #, fuzzy
 msgid "WIKI_AXON_EFFECTS"
 msgstr "Externa effekter:"
@@ -6294,6 +6465,10 @@ msgstr ""
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxySyntes"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -6358,6 +6533,9 @@ msgstr "Bioluminescerande vakuol"
 #, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Bioluminescerande vakuol"
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -6486,6 +6664,10 @@ msgstr "Kloroplast"
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Kloroplast"
 
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxySyntes"
+
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
 
@@ -6509,6 +6691,33 @@ msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CILIA_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Föreningar:"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 #, fuzzy
@@ -6539,6 +6748,42 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Utvecklare"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Organeller"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Organeller"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitochondria"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -6565,13 +6810,83 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob kvävefixering"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Kemoreceptor"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "Nuvarande utvecklare"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Ledande Utvecklare"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Bindemedel"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Kör auto-evo under spelgång"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Bindemedel"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Mikrob Stadiet"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Fysisk Mående"
+
 msgid "WIKI_HEADING_PROCESSES"
+msgstr ""
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_HEADING_REQUIREMENTS"
@@ -6583,7 +6898,49 @@ msgstr ""
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
 msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "Bindemedel"
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "Fortsätt till Industristadiet?"
+
+msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_EFFECTS"
@@ -6612,6 +6969,14 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Placera organell"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Organeller"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6646,6 +7011,42 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"[b]Stadie[/b]\n"
+"  Mikrob\n"
+"[b]Membrantyp[/b]\n"
+"  {0}\n"
+"[b]Membranstelhet[/b]\n"
+"  {1}\n"
+"[b]Grundhastighet[/b]\n"
+"  {2}\n"
+"[b]Grunrotationshastighet[/b]\n"
+"  {3}\n"
+"[b]Grundhexstorlek[/b]\n"
+"  {4}"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobredigerare"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Mitochondria"
 
@@ -6675,6 +7076,34 @@ msgstr "Mitochondria"
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitochondria"
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Flercelligt Stadie"
+
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
@@ -6699,6 +7128,10 @@ msgstr ""
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Aktivera Cellredigeraren"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6763,6 +7196,12 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
+msgid "WIKI_NO"
+msgstr ""
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
@@ -6823,6 +7262,22 @@ msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv for
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "En modifieerad metabolosom ansvarig för produktionen of en primitiv form av den giftiga agenten OxyToxy NT."
 
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "OxyToxySyntes"
+
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rosticyanin"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Uppvaknandestadiet"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Mikrob Stadiet"
+
 msgid "WIKI_PAGE_AXON"
 msgstr ""
 
@@ -6854,24 +7309,59 @@ msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Cytoplasma"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Cytoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Placera organell"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitochondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagell"
 
 #, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "Bindemedel"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Placera organell"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomer"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Kvävegenas"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Flercelligt Stadie"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6905,6 +7395,10 @@ msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "Protoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "Protoplasma"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "Rosticyanin"
 
@@ -6917,12 +7411,28 @@ msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Slemmstråle"
 
 #, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Slemmstråle"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Placera organell"
+
+#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Termoplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Termosyntes"
+
+#, fuzzy
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "Termoplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
@@ -6965,6 +7475,10 @@ msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Anding"
+
+#, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "Protoplasma"
 
@@ -6989,6 +7503,20 @@ msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
+msgstr ""
+
+msgid "WIKI_PULLING_CILIA"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasma"
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
 msgid "WIKI_ROOT_BODY"
@@ -7088,6 +7616,59 @@ msgstr ""
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Mikrob Stadiet"
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Slemmstråle"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Organeller"
+
+msgid "WIKI_TBA"
+msgstr ""
+
 #, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
@@ -7150,6 +7731,20 @@ msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänslig
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
@@ -7242,6 +7837,10 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "Placera organell"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "Kommer du thrivas?"
 
@@ -7318,6 +7917,10 @@ msgid "YEARS"
 msgstr "år"
 
 #, fuzzy
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr "Ej implementerat än."
+
+#, fuzzy
 msgid "YOUTUBE_TOOLTIP"
 msgstr "Fortsätt"
 
@@ -7334,6 +7937,106 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Cytoplasm Glycolys"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob kvävefixering"
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Uppvaknandestadiet"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Mikrob Stadiet"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Kemosyntes"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Glykolys"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "Fortsätt till Industristadiet?"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Järnkemolitoautotrofi"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "Lipas"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Mikrobredigerare"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Mikrob Stadiet"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Mucilagesyntes"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Flercelligt Stadie"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "Rusticyanin är ett protein som kan använda gasformig koldioxid och syre för att oxidera järn från ett kemiskt tillstånd till ett annat. Denna process, kallad Iron Respiration, frigör energi som cellen sedan kan skörda."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "OxyToxySyntes"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Fotosyntes"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Rosticyanin"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Mikrob Stadiet"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Mikrob Stadiet"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Termosyntes"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Ingen"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "år"
+
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "Skriv över aktuell sparfil:"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Kitin"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Tillåt arter att inte migrera (om ingen bra migration hittas)"
@@ -7429,10 +8132,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "ENABLED"
 #~ msgstr "Aktivera Cellredigeraren"
-
-#, fuzzy
-#~ msgid "PATCH_MAP_TYPE"
-#~ msgstr "Grotta"
 
 #, fuzzy
 #~ msgid "LOOKING_AT"
@@ -7617,10 +8316,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "AT"
 #~ msgstr "ATP"
-
-#, fuzzy
-#~ msgid "BRACKETLEFT"
-#~ msgstr "Snurra vänster"
 
 #, fuzzy
 #~ msgid "BRACKETRIGHT"

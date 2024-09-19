@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq72dw3dd0b2s"]
+
+[ext_resource type="PackedScene" uid="uid://cckki1kx0cnol" path="res://src/thriveopedia/ThriveopediaPage.tscn" id="1"]
+[ext_resource type="Script" path="res://src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.cs" id="2"]
+
+[node name="ThriveopediaPage" node_paths=PackedStringArray("mainArticle", "noticeContainer") instance=ExtResource("1")]
+script = ExtResource("2")
+OrganelleListContainerPath = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/HFlowContainer")
+mainArticle = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer")
+noticeContainer = NodePath("MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Notices")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="1"]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20

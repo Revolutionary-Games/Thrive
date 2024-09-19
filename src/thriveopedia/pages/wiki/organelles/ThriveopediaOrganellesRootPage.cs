@@ -18,7 +18,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
     public override string TranslatedPageName => Localization.Translate("ORGANELLES");
 
-    public override string ParentPageName => "WikiRoot";
+    public override string ParentPageName => "CurrentStage";
 
     public override bool StartsCollapsed => true;
 
@@ -27,7 +27,7 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
         base._Ready();
 
         organelleListContainer = GetNode<HFlowContainer>(OrganelleListContainerPath);
-        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/OrganelleLinkButton.tscn");
+        linkButtonScene = GD.Load<PackedScene>("res://src/thriveopedia/pages/wiki/IconPageLinkButton.tscn");
     }
 
     public override void OnThriveopediaOpened()
@@ -38,10 +38,26 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
         foreach (var organelle in wiki.Organelles)
         {
-            var button = linkButtonScene.Instantiate<OrganelleLinkButton>();
-            button.Organelle = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
-            button.OpenLink = () => ThriveopediaManager.OpenPage(organelle.InternalName);
+            var button = linkButtonScene.Instantiate<IconPageLinkButton>();
+            var organelleDefinition = SimulationParameters.Instance.GetOrganelleType(organelle.InternalName);
+            button.IconPath = organelleDefinition.IconPath!;
+            button.DisplayName = organelleDefinition.Name;
+            button.PageName = organelle.InternalName;
             organelleListContainer.AddChild(button);
+        }
+    }
+
+    public override void OnSelectedStageChanged()
+    {
+        foreach (var node in organelleListContainer.GetChildren())
+        {
+            if (node is IconPageLinkButton button)
+            {
+                var page = (ThriveopediaWikiPage)ThriveopediaManager.GetPage(button.PageName);
+
+                // TODO: should this property be in the base page interface to avoid having the cast above?
+                button.Visible = page.VisibleInTree;
+            }
         }
     }
 
