@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c46w6nmb14i0m" path="res://assets/models/menu_backgrounds/Menu_Vent_particles.tscn" id="4_hjk10"]
 [ext_resource type="PackedScene" uid="uid://dc8lgeaqscprc" path="res://assets/models/IronRock2.tscn" id="6"]
 [ext_resource type="PackedScene" uid="uid://c5ttb5il1h1ix" path="res://assets/models/IronRock1.tscn" id="7"]
-[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="8_x71gj"]
+[ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="8_x71gj"]
 [ext_resource type="Texture2D" uid="uid://xqbmpxl56ysw" path="res://assets/textures/menu_backgrounds/UnderwaterSoil_Normal.png" id="8_xuumh"]
 [ext_resource type="Material" uid="uid://cun7s26mej10d" path="res://assets/models/menu_backgrounds/UnderwaterSoil_Mat2.material" id="9_m5dda"]
 [ext_resource type="PackedScene" uid="uid://h6dsvt4v07um" path="res://assets/models/menu_backgrounds/UnderwaterRock.tscn" id="10_aaijv"]
@@ -144,8 +144,6 @@ size = Vector2(2, 2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kxbxl"]
 transparency = 1
 cull_mode = 2
-vertex_color_use_as_albedo = true
-vertex_color_is_srgb = true
 albedo_color = Color(0.588235, 0.717647, 0.760784, 0.909804)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.0
@@ -161,7 +159,6 @@ subsurf_scatter_strength = 0.08
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_duajj"]
 resource_name = "UnderwaterSoil_Mat"
 cull_mode = 2
-vertex_color_use_as_albedo = true
 albedo_color = Color(0.820842, 0.879052, 0.878769, 1)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.18
@@ -172,7 +169,6 @@ normal_texture = ExtResource("8_xuumh")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qb0v"]
 resource_name = "UnderwaterSoil_Mat"
 cull_mode = 2
-vertex_color_use_as_albedo = true
 albedo_color = Color(0.67466, 0.798159, 0.726167, 0.823529)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.18
@@ -184,7 +180,6 @@ normal_texture = ExtResource("8_xuumh")
 resource_name = "UnderwaterSoil_Mat"
 transparency = 1
 cull_mode = 2
-vertex_color_use_as_albedo = true
 albedo_color = Color(0.686275, 0.686275, 0.686275, 0.886275)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.18
@@ -195,7 +190,6 @@ normal_texture = ExtResource("8_xuumh")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a10jh"]
 resource_name = "UnderwaterSoil_Mat"
 cull_mode = 2
-vertex_color_use_as_albedo = true
 albedo_color = Color(0.847475, 0.847474, 0.847474, 1)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.18
@@ -203,10 +197,8 @@ normal_enabled = true
 normal_scale = 1.77
 normal_texture = ExtResource("8_xuumh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_43xtl"]
-resource_local_to_scene = true
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cncpf"]
 cull_mode = 2
-vertex_color_use_as_albedo = true
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
 albedo_texture = ExtResource("10_uhuxw")
 metallic_specular = 0.18
@@ -428,4 +420,4 @@ material_override = SubResource("StandardMaterial3D_a10jh")
 
 [node name="iron22" parent="." instance=ExtResource("6")]
 transform = Transform3D(-0.0125223, 2.60165, 0.0173912, 0.707826, 0.0426514, -1.13572, -0.775451, -0.00308044, -1.03696, -13.7744, -0.214223, 2.02327)
-material_override = SubResource("StandardMaterial3D_43xtl")
+material_override = SubResource("StandardMaterial3D_cncpf")

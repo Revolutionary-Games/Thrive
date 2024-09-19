@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dvp0yex8rwygn" path="res://assets/textures/Crystal_rough_emit.png" id="4_7gni5"]
 [ext_resource type="ArrayMesh" uid="uid://33tvx663lr0x" path="res://assets/models/PhosphateChunkApatiteLargeCrystal.mesh" id="5_cdma8"]
 [ext_resource type="Texture2D" uid="uid://ppco0jrr2v0q" path="res://assets/textures/Crystal_normal.png" id="7_1vk26"]
+[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="7_j80xn"]
 [ext_resource type="ArrayMesh" uid="uid://bxhmnyjk1vfrh" path="res://assets/models/PhosphateChunkApatiteLargeRock.mesh" id="8_7qf82"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ha8r3"]
@@ -31,52 +32,10 @@ shader_parameter/albedoTexture = ExtResource("3_hcl7f")
 shader_parameter/roughnessTexture = ExtResource("4_7gni5")
 shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 
-[sub_resource type="Shader" id="Shader_ixbn6"]
-code = "shader_type spatial;
-render_mode depth_prepass_alpha;
-
-uniform sampler2D fullTexture : source_color;
-uniform sampler2D depletedTexture : source_color;
-uniform sampler2D normalTexture;
-uniform float roughness = 0.85;
-
-// Increase to fade the iron out of the rock
-uniform float depletion : hint_range(0, 1);
-
-uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1);
-uniform float outlineWidth;
-uniform vec4 growColor : source_color;
-
-void fragment() {
-    vec4 fullTex = texture(fullTexture, UV);
-    vec4 depletedTex = texture(depletedTexture, UV);
-    vec3 mixcolor = (fullTex.rgb * (1.f - depletion)) + (depletedTex.rgb * depletion);
-
-    float metal = clamp(mixcolor.r - mixcolor.b, 0, 1);
-
-    vec4 normalMap = texture(normalTexture, UV);
-
-    // Handle dissolve animation
-    vec4 dissolveTex = texture(dissolveTexture, UV);
-    float cutoff = dot(dissolveTex.rgb, vec3(0.29, 0.29, 0.29)) -
-        float(-0.55 + clamp(dissolveValue, 0, 1));
-    vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
-        growColor.rgb;
-
-    ALBEDO = mixcolor;
-    NORMAL_MAP = normalMap.xyz;
-    METALLIC = clamp((2.5f * metal) + 0.2, 0, 1);
-    ROUGHNESS = clamp((0.5 + roughness/2.0f) - (metal * 1.5f), 0, 1);
-    ALPHA = round(cutoff) * fullTex.a;
-    EMISSION = dissolveOutline;
-}
-"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsbfc"]
 resource_local_to_scene = true
 render_priority = 17
-shader = SubResource("Shader_ixbn6")
+shader = ExtResource("7_j80xn")
 shader_parameter/roughness = 1.2
 shader_parameter/depletion = null
 shader_parameter/dissolveValue = 0.0

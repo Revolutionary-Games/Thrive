@@ -1,23 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://dtmtjvcktr5c2"]
+[gd_scene load_steps=7 format=3 uid="uid://dtmtjvcktr5c2"]
 
-[ext_resource type="Shader" path="res://shaders/IceChunk.gdshader" id="1_4x7rl"]
+[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_ah4jf"]
 [ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_vhfcg"]
-[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="3_luewn"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_fe0k2"]
+[ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="4_mcoj5"]
 [ext_resource type="ArrayMesh" uid="uid://bf3qbqdatru24" path="res://assets/models/IceChunkSnowflake.mesh" id="4_tpouo"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bk0sm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yag2"]
 resource_local_to_scene = true
-render_priority = 17
-shader = ExtResource("1_4x7rl")
-shader_parameter/albedo = Color(0.878431, 1, 1, 0.94902)
+render_priority = 18
+shader = ExtResource("1_ah4jf")
+shader_parameter/albedo = Color(0.878431, 1, 1, 0.988235)
+shader_parameter/useNormal = true
 shader_parameter/roughness = 0.6
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.783
 shader_parameter/metallic = 0.6
-shader_parameter/emission = Color(0.32007, 0.3199, 0.435532, 0.933333)
+shader_parameter/metallicTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/emission = Color(0.301341, 0.301345, 0.32086, 0.933333)
 shader_parameter/emissionEnergy = 1.5
+shader_parameter/clearcoat = 0.21
+shader_parameter/clearcoatRoughness = 0.1
+shader_parameter/dissolveValue = null
+shader_parameter/outlineWidth = null
+shader_parameter/growColor = null
 shader_parameter/albedoTexture = ExtResource("2_vhfcg")
-shader_parameter/normalTexture = ExtResource("3_luewn")
+shader_parameter/normalTexture = ExtResource("4_mcoj5")
+shader_parameter/roughnessTexture = ExtResource("2_vhfcg")
+shader_parameter/dissolveTexture = ExtResource("3_fe0k2")
 
-[node name="IceShardSnowflake" type="MeshInstance3D"]
-material_override = SubResource("ShaderMaterial_bk0sm")
+[node name="IceChunkSnowflake" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_5yag2")
 mesh = ExtResource("4_tpouo")

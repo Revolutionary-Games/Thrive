@@ -1,23 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsida34nrjiis"]
+[gd_scene load_steps=5 format=3 uid="uid://bsida34nrjiis"]
 
-[ext_resource type="Shader" path="res://shaders/IceChunk.gdshader" id="1_vw18f"]
 [ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_2cj74"]
-[ext_resource type="Texture2D" uid="uid://baspk56xmmc0k" path="res://assets/textures/iron_bump.png" id="4_7g628"]
+[ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="2_uf5cd"]
 [ext_resource type="ArrayMesh" uid="uid://diixv1g5ao2sm" path="res://assets/models/IceChunkSmall2.mesh" id="5_6q7e3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wdpla"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("1_vw18f")
-shader_parameter/albedo = Color(0.909804, 1, 1, 1)
-shader_parameter/roughness = 0.7
-shader_parameter/specular = 0.766
-shader_parameter/metallic = 0.45
-shader_parameter/emission = Color(0.286275, 0.286275, 0.333333, 1)
-shader_parameter/emissionEnergy = 1.5
-shader_parameter/albedoTexture = ExtResource("2_2cj74")
-shader_parameter/normalTexture = ExtResource("4_7g628")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rktnq"]
+render_priority = 18
+transparency = 4
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.772549)
+albedo_texture = ExtResource("2_2cj74")
+metallic = 0.8
+metallic_specular = 0.78
+roughness = 0.6
+emission_enabled = true
+emission = Color(0.321569, 0.321569, 0.435294, 1)
+emission_energy_multiplier = 0.1
+normal_enabled = true
+normal_texture = ExtResource("2_uf5cd")
 
-[node name="iceshardSmall1" type="MeshInstance3D"]
-material_override = SubResource("ShaderMaterial_wdpla")
+[node name="IceChunkSmall" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_rktnq")
 mesh = ExtResource("5_6q7e3")
