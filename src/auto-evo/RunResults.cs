@@ -1418,6 +1418,7 @@ public class RunResults
     /// </summary>
     public class SpeciesPatchEnergyResults
     {
+        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<LocalizedString, NicheInfo>))]
         public readonly Dictionary<LocalizedString, NicheInfo> PerNicheEnergy = new();
 
         public float TotalEnergyGathered;
