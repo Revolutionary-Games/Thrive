@@ -696,6 +696,9 @@ public class RunResults
     /// <returns>The generated summary text</returns>
     public LocalizedStringBuilder MakeSummary(bool playerReadable = false)
     {
+        // Splits have to be calculated here as this uses the results population numbers which aren't adjusted when
+        // applying the results. So if this didn't want to have to resolve those, we'd need to adjust the result data
+        // when applying the results to have the most up-to-date data available directly here.
         const bool resolveMigrations = true;
         const bool resolveSplits = true;
 
@@ -973,7 +976,7 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Makes a graphical variant of the summary report for a single patch
+    ///   Makes a graphical variant of the summary report for a single patch (and also optionally global results)
     /// </summary>
     /// <param name="guiTarget">
     ///   Where to put the graphical controls (TODO: could reuse instances where possible)
@@ -990,6 +993,11 @@ public class RunResults
     public void MakeGraphicalSummary(Container guiTarget, Patch forPatch, bool showGlobalResults,
         PackedScene speciesResultScene, LabelSettings? titleFonts, Callable? selectionCallback)
     {
+        // As this reads data from the results and not an up-to-date map, this doesn't have all population effects
+        // resolved by default, so we need to do those here
+        const bool resolveMigrations = true;
+        const bool resolveSplits = true;
+
         bool IsRelevantForResults(Patch patch, SpeciesResult result)
         {
             if (result.NewPopulationInPatches.TryGetValue(patch, out var population) && population > 0)
@@ -997,6 +1005,15 @@ public class RunResults
 
             if (result.OldPopulationInPatches.TryGetValue(patch, out population) && population > 0)
                 return true;
+
+            if (resolveMigrations)
+            {
+                foreach (var spreadEntry in result.SpreadToPatches)
+                {
+                    if (spreadEntry.To == forPatch && spreadEntry.Population != 0)
+                        return true;
+                }
+            }
 
             return false;
         }
@@ -1041,11 +1058,47 @@ public class RunResults
             resultDisplay.DisplaySpecies(entry, false);
 
             entry.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation);
+
             entry.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation);
+
+            if (resolveMigrations)
+            {
+                newPopulation += CountSpeciesSpreadPopulation(entry.Species, forPatch);
+            }
+
+            if (resolveSplits)
+            {
+                if (entry.SplitOffPatches?.Contains(forPatch) == true)
+                {
+                    // All population splits off
+                    newPopulation = 0;
+                }
+
+                if (entry.SplitFrom != null)
+                {
+                    var splitFrom = results[entry.SplitFrom];
+
+                    // Get population from where this split-off
+                    if (splitFrom.SplitOff == entry.Species)
+                    {
+                        if (splitFrom.SplitOffPatches == null)
+                            throw new Exception("Split off patches is null for a split species");
+
+                        foreach (var patchPopulation in splitFrom.SplitOffPatches)
+                        {
+                            if (patchPopulation == forPatch)
+                            {
+                                newPopulation += splitFrom.NewPopulationInPatches[patchPopulation];
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
 
             resultDisplay.DisplayPopulation(newPopulation, oldPopulation, true);
 
-            // TODO: add this
+            // TODO: add this if desired
             // resultDisplay.DisplayGlobalPopulation()
             resultDisplay.HideGlobalPopulation();
 
@@ -1112,6 +1165,38 @@ public class RunResults
             {
                 if (populationEntry.Value > 0)
                     totalNewPopulation += populationEntry.Value;
+            }
+
+            // For global populations migrations just move stuff around, so it doesn't matter here
+
+            // But splits do matter
+            if (resolveSplits)
+            {
+                if (entry.SplitOffPatches != null)
+                {
+                    foreach (var splitOffPatch in entry.SplitOffPatches)
+                    {
+                        if (entry.NewPopulationInPatches.TryGetValue(splitOffPatch, out var adjustment))
+                            totalNewPopulation -= adjustment;
+                    }
+                }
+
+                if (entry.SplitFrom != null)
+                {
+                    var splitFrom = results[entry.SplitFrom];
+
+                    // Get population from where this split-off
+                    if (splitFrom.SplitOff == entry.Species)
+                    {
+                        if (splitFrom.SplitOffPatches == null)
+                            throw new Exception("Split off patches is null for a split species");
+
+                        foreach (var patchPopulation in splitFrom.SplitOffPatches)
+                        {
+                            totalNewPopulation += splitFrom.NewPopulationInPatches[patchPopulation];
+                        }
+                    }
+                }
             }
 
             resultDisplay.DisplayPopulation(totalNewPopulation, totalOldPopulation, false);
@@ -1304,8 +1389,7 @@ public class RunResults
         }
     }
 
-    private long CountSpeciesSpreadPopulation(Species species,
-        Patch targetPatch)
+    private long CountSpeciesSpreadPopulation(Species species, Patch targetPatch)
     {
         long totalPopulation = 0;
 
