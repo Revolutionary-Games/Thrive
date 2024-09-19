@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://c7p7qgm0w77eo" path="res://assets/textures/gui/bevel/MPNoCircleLight.png" id="9_u0rre"]
 
 [node name="SpeciesResultButton" type="Button" node_paths=PackedStringArray("nameLabel", "preview", "newIndicator", "partialExtinctionIndicator", "mutatedIndicator", "resultPatchPopulation", "resultPatchPopulationDifference", "globalPopulationLabel", "globalPopulationContainer", "mainContentContainer")]
-custom_minimum_size = Vector2(64, 92)
+custom_minimum_size = Vector2(110, 92)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
