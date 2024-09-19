@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-19 11:13+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -302,7 +302,18 @@ msgstr "Outil d'exploration Auto-Évo"
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-Évo n'a pas pu se lancer"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Résultats de l'Auto-Évo :"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Résultats de l'Auto-Évo :"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Résultats de l'Auto-Évo :"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2122,6 +2133,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Population totale :"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Une partie de la population de [b][u]{0}[/u][/b] a migré vers {1} depuis {2}"
 
@@ -2255,6 +2270,14 @@ msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les pha
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Créer un nouveau"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Espèces éteintes"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Phase industrielle"
@@ -7961,9 +7984,6 @@ msgstr "Dézoomer"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
 
@@ -8047,9 +8067,6 @@ msgstr "Dézoomer"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Population totale :"
 
 #, fuzzy
 #~ msgid "QUESTION"

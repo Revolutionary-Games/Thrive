@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-19 11:13+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -310,7 +310,18 @@ msgstr "status:"
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo kunde inte köras"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Auto-evo resultat:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Auto-evo resultat:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Auto-evo resultat:"
 
 #, fuzzy
@@ -2238,6 +2249,10 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "En del av [u]{0}[/u] befolkningen har migrerat till {1} från {2}"
 
@@ -2373,6 +2388,14 @@ msgstr ""
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Skapa Ny Sparfil"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "UTROTNING"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -8032,9 +8055,6 @@ msgstr "Zooma ut"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Tillåt arter att inte migrera (om ingen bra migration hittas)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Tillåt att arter inte muteras (om inga bra mutationer hittas)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Sannolikhet i varje område med få arter (låg biodiversitet) att skapa en ny art"
 
@@ -8107,10 +8127,6 @@ msgstr "Zooma ut"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 #~ msgid "QUESTION"

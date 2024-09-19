@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-19 11:13+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -302,7 +302,18 @@ msgstr "Еволюционен редактор"
 msgid "AUTO_EVO_FAILED"
 msgstr "Автоматичната еволюция не успя да стартира"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Резултати от автоматичната еволюция:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Резултати от автоматичната еволюция:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Резултати от автоматичната еволюция:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2215,6 +2226,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "С"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Обща популация:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Част от популацията на [b][u]{0}[/u][/b] се пресели в {1} от {2}"
 
@@ -2349,6 +2364,14 @@ msgstr "(следващите етапи на играта не са завър�
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Създаване на нов"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Изчезнали създания"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Без мутации на създанията (ако няма подходяща мутация)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Индустриализация"
@@ -8007,9 +8030,6 @@ msgstr "Отдалечаване"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Без преселване на създанията (ако няма подходящо преселване)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Без мутации на създанията (ако няма подходяща мутация)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Вероятност за създаване на нови създания в зони с ниско биоразнообразие"
 
@@ -8093,9 +8113,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16 пъти"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Обща популация:"
 
 #~ msgid "QUESTION"
 #~ msgstr "?"
