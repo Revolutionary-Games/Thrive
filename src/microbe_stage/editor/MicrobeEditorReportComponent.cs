@@ -340,8 +340,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             return;
         }
 
-        // var selectedPatch = currentlyDisplayedPatch ?? Editor.CurrentPatch;
-
         graphicalResultsContainer.FreeChildren();
         autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, selectedPatch, true, speciesResultButtonScene,
             autoEvoReportSegmentTitleFont, new Callable(this, nameof(ShowExtraInfoOnSpecies)));

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -60,7 +61,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected bool ready;
 
     [JsonProperty]
-    protected AutoEvo.RunResults? autoEvoResults;
+    protected RunResults? autoEvoResults;
 
     [JsonProperty]
     protected LocalizedStringBuilder? autoEvoExternal;

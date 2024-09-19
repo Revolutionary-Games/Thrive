@@ -1010,8 +1010,8 @@ public class RunResults
                 SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
             });
 
-            // Applying the translation here means  that this method needs to be re-called when translations change, which
-            // should be setup currently
+            // Applying the translation here means  that this method needs to be re-called when translations change,
+            // which should be set up currently
             patchHeading.AddChild(new Label
             {
                 Text = Localization.Translate("AUTO_EVO_RESULTS_PATCH_TITLE"),
