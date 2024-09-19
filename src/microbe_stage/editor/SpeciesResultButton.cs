@@ -113,6 +113,10 @@ public partial class SpeciesResultButton : Button
         if (shownForSpecies == null)
             return;
 
+        // Hide tooltip to not cause it to stay on screen. This kind of seems like an engine bug with the mouse exit
+        // not triggering
+        OnMouseExit();
+
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.SpeciesSelected, shownForSpecies.ID);
     }
