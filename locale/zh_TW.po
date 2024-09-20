@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-18 08:49+0300\n"
-"PO-Revision-Date: 2024-09-20 01:07+0000\n"
+"PO-Revision-Date: 2024-09-20 07:51+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -3269,7 +3269,7 @@ msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr "選擇與來源區域相連的目標區域進行遷移"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr "每次進入編輯器只能執行一次遷移。您可以查看下方已佇列的遷移並保留它或取消它以建立不同的遷移"
+msgstr "每次編輯器會話只能執行一次遷移。您可以查看下方已佇列的遷移並保留它或取消它以建立不同的遷移"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr "選擇要從來源區域遷移到目標區域的種群數量"
@@ -5544,7 +5544,7 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_REMOVE_ORGANELLE_TEXT"
 msgstr ""
-"刪除細胞器也算是一種突變，因此會消耗[b]突變點數[/b] [thrive:icon]MP[/thrive:icon]，[u]除非這些細胞器是在本次編輯器中添加的[/u]。\n"
+"刪除細胞器也算是一種突變，因此會消耗[b]突變點數[/b] [thrive:icon]MP[/thrive:icon]，[u]除非這些細胞器是在當次編輯器會話中添加的[/u]。\n"
 "\n"
 "您可以右鍵單擊細胞器以顯示[b]細胞器選單[/b]並選擇刪除選項將其移除。\n"
 "\n"
@@ -6369,48 +6369,32 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT"
-msgstr "開發者 Wiki"
+msgstr "開發"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
-msgstr ""
-"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
-"\n"
-"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
-"\n"
-"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
-"\n"
-"從下面的清單中選擇一種細胞器以了解更多資訊。"
+msgstr "開發詳情"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
-msgstr ""
-"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
-"\n"
-"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
-"\n"
-"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
-"\n"
-"從下面的清單中選擇一種細胞器以了解更多資訊。"
+msgstr "這些是與 Thrive 開發相關的頁面，包含有關理論和實現的資訊"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "每當您在 Thrive 中進入一次[b]編輯器[/b]，您就前進了一個[b]世代[/b]。然後，您可以查看統計數據、更改位置或對您的物種進行其他更改。這稱為[b]編輯器會話[/b]。"
 
-#, fuzzy
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
-msgstr "細胞的發電廠。[b]粒線體[/b]進行[b]有氧呼吸[/b]，使用[thrive:compound type=\"oxygen\"][/thrive:compound] 將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。[b]粒線體[/b]能比其他細胞器（例如[b][color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color][/b]）更有效地執行此功能。"
+msgstr "Thrive 的主要遊戲內容圍繞著[color=#3796e1][url=thriveopedia:Reproduction]繁殖[/url][/color]和編輯您的物種。每次繁殖時，您都可以根據您的階段存取各種[b]編輯器[/b]。您將能夠對您的物種進行改變或[b]突變[/b]。"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
+"您對您的物種所做的每次修改都是[b]突變[/b]。這包括放置細胞器、升級它們[u]甚至是移除它們[/u]。\n"
+"\n"
+"您對您的物種所做的每次突變都會花費您的[b]突變點數[/b] [thrive:icon]MP[/thrive:icon]，或稱為 [b]MP[/b]。每次編輯器會話始終只能獲得 [b]100[/b] 突變點數。 [u]它們不會結轉或累積[/u]。"
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
-msgstr ""
+msgstr "這些是[color=#3796e1][url=thriveopedia:Compounds]化合物[/url][/color]，僅以百分比形式存在於環境中。同樣，它們會改變某些[b]代謝過程[/b]進行的[b]速率[/b]。它們影響大多數細胞器。"
 
-#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
-msgstr "細胞的發電廠。[b]粒線體[/b]進行[b]有氧呼吸[/b]，使用[thrive:compound type=\"oxygen\"][/thrive:compound] 將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。[b]粒線體[/b]能比其他細胞器（例如[b][color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color][/b]）更有效地執行此功能。"
+msgstr "Thrive 中有許多[b]環境條件[/b]。這些會影響某些細胞器的代謝過程，例如[thrive:compound type=\"sunlight\"][/thrive:compound] 影響[color=#3796e1][url=thriveopedia:chloroplast]葉綠體[/url][/color]中的[b]光合作用[/b]。"
 
 #, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
