@@ -879,8 +879,13 @@ public class RunResults
 
                 if (resolveMigrations)
                 {
-                    adjustedPopulation +=
-                        CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
+                    adjustedPopulation += CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
+
+                    // It is valid to add migrations that try to move more population than there is in total in the
+                    // patch. The actual results apply clamp the values to real populations, but that haven't been done
+                    // here so we need to clamp things to not be negative here as it would look pretty wierd.
+                    if (adjustedPopulation < 0)
+                        adjustedPopulation = 0;
                 }
 
                 if (resolveSplits)
@@ -1064,6 +1069,11 @@ public class RunResults
             if (resolveMigrations)
             {
                 newPopulation += CountSpeciesSpreadPopulation(entry.Species, forPatch);
+
+                // Make sure big migrations don't cause negative population. See the relevant part in MakeSummary
+                // for more details.
+                if (newPopulation < 0)
+                    newPopulation = 0;
             }
 
             if (resolveSplits)
