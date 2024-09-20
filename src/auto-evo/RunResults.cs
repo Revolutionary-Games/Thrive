@@ -1,12 +1,11 @@
 ﻿namespace AutoEvo;
 
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Container for results before they are applied.
@@ -16,7 +15,7 @@ using JetBrains.Annotations;
 ///     This is needed as earlier parts of an auto-evo run may not affect the latter parts
 ///   </para>
 /// </remarks>
-public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesResult>>
+public class RunResults
 {
     /// <summary>
     ///   The per-species results
@@ -29,8 +28,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     ///     this is one.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     private readonly ConcurrentDictionary<Species, SpeciesResult> results = new();
 
+    // The following variables are not shared as they are just temporary data during running, and not required
+    // afterwards when loading from a save
     private readonly List<PossibleSpecies> modifiedSpecies = new();
 
     private readonly Dictionary<Patch, Miche> micheByPatch = new();
@@ -58,17 +60,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         return results.ToDictionary(r => r.Key.ID, r => new SpeciesRecordLite(
             HasSpeciesChanged(r.Value) ? (Species)r.Key.Clone() : null, r.Key.Population,
             r.Value.MutatedProperties?.ID, r.Value.SplitFrom?.ID));
-    }
-
-    /// <summary>
-    ///   Per-species results with all species data. All species are cloned.
-    /// </summary>
-    /// <returns>The per-species results with all species cloned</returns>
-    public Dictionary<uint, SpeciesRecordFull> GetFullSpeciesRecords()
-    {
-        return results.ToDictionary(r => r.Key.ID,
-            r => new SpeciesRecordFull((Species)r.Key.Clone(), r.Key.Population, r.Value.MutatedProperties?.ID,
-                r.Value.SplitFrom?.ID));
     }
 
     public void AddNewMicheForPatch(Patch patch, Miche miche)
@@ -102,16 +93,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         results[species].NewPopulationInPatches[patch] = Math.Max(newPopulation, 0);
     }
 
-    public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount)
-    {
-        if (populationAmount <= 0)
-            throw new ArgumentException("Invalid population migration amount");
-
-        AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
-    }
-
     public void AddMigrationResultForSpecies(Species species, SpeciesMigration migration)
     {
+        if (migration.Population < 0)
+            throw new ArgumentException("Population to migrate cannot be negative");
+
         MakeSureResultExistsForSpecies(species);
 
         results[species].SpreadToPatches.Add(migration);
@@ -261,14 +247,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         };
     }
 
-    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch,
-        long unadjustedPopulation, float totalEnergy, float individualCost)
+    public void AddTrackedEnergyConsumptionForSpecies(Species species, Patch patch, float totalEnergy,
+        float individualCost)
     {
         MakeSureResultExistsForSpecies(species);
 
         var dataReceiver = results[species].GetEnergyResults(patch);
 
-        dataReceiver.UnadjustedPopulation = unadjustedPopulation;
         dataReceiver.TotalEnergyGathered = totalEnergy;
         dataReceiver.IndividualCost = individualCost;
     }
@@ -679,29 +664,54 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     }
 
     /// <summary>
-    ///   Makes summary text
+    ///   Stores previous populations for species in this results object
     /// </summary>
-    /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
-    /// <param name="playerReadable">If true ids are removed from the output</param>
-    /// <param name="effects">
-    ///   If not null these effects are applied to the population numbers.
-    ///   Must be final effects with <see cref="ExternalEffect.Coefficient"/> set to 1 created by
-    ///   <see cref="AutoEvoRun.CalculateAndApplyFinalExternalEffectSizes"/>
-    /// </param>
-    /// <returns>The generated summary text</returns>
-    public LocalizedStringBuilder MakeSummary(PatchMap? previousPopulations = null,
-        bool playerReadable = false, List<ExternalEffect>? effects = null)
+    /// <param name="gameWorldMap">Map to read old populations from</param>
+    public void StorePreviousPopulations(PatchMap gameWorldMap)
     {
-        if (previousPopulations != null && previousPopulations.CurrentPatch == null)
-            throw new ArgumentException("When previous populations is set, it must have current patch set");
+        if (gameWorldMap.CurrentPatch == null)
+            GD.PrintErr("Store previous populations for auto-evo given a map with no current patch set");
 
+        foreach (var result in results)
+        {
+            foreach (var patch in gameWorldMap.Patches.Values)
+            {
+                var population = patch.GetSpeciesSimulationPopulation(result.Key);
+                if (population > 0)
+                    result.Value.OldPopulationInPatches[patch] = population;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Makes summary text. To show previous populations <see cref="StorePreviousPopulations"/> must be called
+    /// </summary>
+    /// <param name="playerReadable">If true ids are removed from the output</param>
+    /// <remarks>
+    ///   <para>
+    ///     This method no longer takes external effects as parameters as it is assumed that
+    ///     <see cref="AutoEvoRun.CalculateAndApplyFinalExternalEffectSizes"/> has been called.
+    ///   </para>
+    /// </remarks>
+    /// <returns>The generated summary text</returns>
+    public LocalizedStringBuilder MakeSummary(bool playerReadable = false)
+    {
+        // Splits have to be calculated here as this uses the results population numbers which aren't adjusted when
+        // applying the results. So if this didn't want to have to resolve those, we'd need to adjust the result data
+        // when applying the results to have the most up-to-date data available directly here.
         const bool resolveMigrations = true;
         const bool resolveSplits = true;
 
         var builder = new LocalizedStringBuilder(500);
 
+        // TODO: the new old populations code uses patch references directly rather than using IDs to compare them
+        // so this is now only partially anymore setup to deal with patch object inequality with the results. Probably
+        // should remove the ID comparisons entirely as the old species population needs custom dictionary looping to
+        // lookup things by ID.
+
         LocalizedStringBuilder PatchString(Patch patch)
         {
+            // TODO: avoid this temporary string builder creation here
             var builder2 = new LocalizedStringBuilder(80);
 
             // Patch visibility is ignored if the output is not read by the player
@@ -741,13 +751,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 builder.Append(new LocalizedString("WENT_EXTINCT_IN", patchName));
             }
 
-            if (previousPopulations != null)
-            {
-                builder.Append(' ');
-                builder.Append(new LocalizedString("PREVIOUS_COLON"));
-                builder.Append(' ');
-                builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesSimulationPopulation(species));
-            }
+            builder.Append(' ');
+            builder.Append(new LocalizedString("PREVIOUS_COLON"));
+            builder.Append(' ');
+            results[species].OldPopulationInPatches.TryGetValue(patch, out var oldPopulation);
+            builder.Append(oldPopulation);
 
             builder.Append('\n');
         }
@@ -871,8 +879,13 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
 
                 if (resolveMigrations)
                 {
-                    adjustedPopulation +=
-                        CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
+                    adjustedPopulation += CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
+
+                    // It is valid to add migrations that try to move more population than there is in total in the
+                    // patch. The actual results apply clamp the values to real populations, but that haven't been done
+                    // here so we need to clamp things to not be negative here as it would look pretty wierd.
+                    if (adjustedPopulation < 0)
+                        adjustedPopulation = 0;
                 }
 
                 if (resolveSplits)
@@ -895,8 +908,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
                 }
                 else
                 {
-                    if (previousPopulations?.GetPatch(patchPopulation.Key.ID)
-                            .GetSpeciesSimulationPopulation(entry.Species) > 0)
+                    if (entry.OldPopulationInPatches.TryGetValue(patchPopulation.Key, out var old) && old > 0)
                     {
                         include = true;
                     }
@@ -966,6 +978,249 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
 
         return builder;
+    }
+
+    /// <summary>
+    ///   Makes a graphical variant of the summary report for a single patch (and also optionally global results)
+    /// </summary>
+    /// <param name="guiTarget">
+    ///   Where to put the graphical controls (TODO: could reuse instances where possible)
+    /// </param>
+    /// <param name="forPatch">The patch the results are for</param>
+    /// <param name="showGlobalResults">If true then global results are added after the patch results</param>
+    /// <param name="speciesResultScene">
+    ///   Scene to display the results with, has to be <see cref="SpeciesResultButton"/>
+    /// </param>
+    /// <param name="titleFonts">Font settings for the titles between sections, if null no titles are added</param>
+    /// <param name="selectionCallback">
+    ///   Callback that takes a single <c>uint SpeciesID</c> parameter for when a species button is clicked
+    /// </param>
+    public void MakeGraphicalSummary(Container guiTarget, Patch forPatch, bool showGlobalResults,
+        PackedScene speciesResultScene, LabelSettings? titleFonts, Callable? selectionCallback)
+    {
+        // As this reads data from the results and not an up-to-date map, this doesn't have all population effects
+        // resolved by default, so we need to do those here
+        const bool resolveMigrations = true;
+        const bool resolveSplits = true;
+
+        bool IsRelevantForResults(Patch patch, SpeciesResult result)
+        {
+            if (result.NewPopulationInPatches.TryGetValue(patch, out var population) && population > 0)
+                return true;
+
+            if (result.OldPopulationInPatches.TryGetValue(patch, out population) && population > 0)
+                return true;
+
+            if (resolveMigrations)
+            {
+                foreach (var spreadEntry in result.SpreadToPatches)
+                {
+                    if (spreadEntry.To == forPatch && spreadEntry.Population != 0)
+                        return true;
+                }
+            }
+
+            return false;
+        }
+
+        // Patch specific results
+        if (titleFonts != null)
+        {
+            var patchHeading = new HBoxContainer();
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            // Applying the translation here means  that this method needs to be re-called when translations change,
+            // which should be set up currently
+            patchHeading.AddChild(new Label
+            {
+                Text = Localization.Translate("AUTO_EVO_RESULTS_PATCH_TITLE"),
+                LabelSettings = titleFonts,
+            });
+
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            guiTarget.AddChild(patchHeading);
+        }
+
+        // Results after the heading are contained in a HFlow to automatically split into lines
+        var container = new HFlowContainer();
+
+        foreach (var entry in
+                 results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
+                     .ThenBy(s => s.Species.FormattedName))
+        {
+            if (!IsRelevantForResults(forPatch, entry))
+                continue;
+
+            var resultDisplay = speciesResultScene.Instantiate<SpeciesResultButton>();
+
+            resultDisplay.DisplaySpecies(entry, false);
+
+            entry.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation);
+
+            entry.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation);
+
+            if (resolveMigrations)
+            {
+                newPopulation += CountSpeciesSpreadPopulation(entry.Species, forPatch);
+
+                // Make sure big migrations don't cause negative population. See the relevant part in MakeSummary
+                // for more details.
+                if (newPopulation < 0)
+                    newPopulation = 0;
+            }
+
+            if (resolveSplits)
+            {
+                if (entry.SplitOffPatches?.Contains(forPatch) == true)
+                {
+                    // All population splits off
+                    newPopulation = 0;
+                }
+
+                if (entry.SplitFrom != null)
+                {
+                    var splitFrom = results[entry.SplitFrom];
+
+                    // Get population from where this split-off
+                    if (splitFrom.SplitOff == entry.Species)
+                    {
+                        if (splitFrom.SplitOffPatches == null)
+                            throw new Exception("Split off patches is null for a split species");
+
+                        foreach (var patchPopulation in splitFrom.SplitOffPatches)
+                        {
+                            if (patchPopulation == forPatch)
+                            {
+                                newPopulation += splitFrom.NewPopulationInPatches[patchPopulation];
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            resultDisplay.DisplayPopulation(newPopulation, oldPopulation, true);
+
+            // TODO: add this if desired
+            // resultDisplay.DisplayGlobalPopulation()
+            resultDisplay.HideGlobalPopulation();
+
+            if (selectionCallback != null)
+                resultDisplay.Connect(SpeciesResultButton.SignalName.SpeciesSelected, selectionCallback.Value);
+
+            container.AddChild(resultDisplay);
+        }
+
+        guiTarget.AddChild(container);
+
+        // Global results
+        if (!showGlobalResults)
+            return;
+
+        // Heading again
+        if (titleFonts != null)
+        {
+            var patchHeading = new HBoxContainer();
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            patchHeading.AddChild(new Label
+            {
+                Text = Localization.Translate("AUTO_EVO_RESULTS_GLOBAL_TITLE"),
+                LabelSettings = titleFonts,
+            });
+
+            patchHeading.AddChild(new HSeparator
+            {
+                SizeFlagsHorizontal = Control.SizeFlags.ExpandFill,
+            });
+
+            guiTarget.AddChild(patchHeading);
+        }
+
+        // And then the results
+        container = new HFlowContainer();
+
+        foreach (var entry in
+                 results.Values.OrderByDescending(s => s.Species.PlayerSpecies)
+                     .ThenBy(s => s.Species.FormattedName))
+        {
+            // If the global populations are shown by the above loop, then this should skip the reverse of
+            // IsRelevantForResults
+
+            var resultDisplay = speciesResultScene.Instantiate<SpeciesResultButton>();
+
+            resultDisplay.DisplaySpecies(entry, true);
+
+            // Calculate global old and new populations to show
+            long totalOldPopulation = 0;
+            long totalNewPopulation = 0;
+
+            foreach (var populationEntry in entry.OldPopulationInPatches)
+            {
+                if (populationEntry.Value > 0)
+                    totalOldPopulation += populationEntry.Value;
+            }
+
+            foreach (var populationEntry in entry.NewPopulationInPatches)
+            {
+                if (populationEntry.Value > 0)
+                    totalNewPopulation += populationEntry.Value;
+            }
+
+            // For global populations migrations just move stuff around, so it doesn't matter here
+
+            // But splits do matter
+            if (resolveSplits)
+            {
+                if (entry.SplitOffPatches != null)
+                {
+                    foreach (var splitOffPatch in entry.SplitOffPatches)
+                    {
+                        if (entry.NewPopulationInPatches.TryGetValue(splitOffPatch, out var adjustment))
+                            totalNewPopulation -= adjustment;
+                    }
+                }
+
+                if (entry.SplitFrom != null)
+                {
+                    var splitFrom = results[entry.SplitFrom];
+
+                    // Get population from where this split-off
+                    if (splitFrom.SplitOff == entry.Species)
+                    {
+                        if (splitFrom.SplitOffPatches == null)
+                            throw new Exception("Split off patches is null for a split species");
+
+                        foreach (var patchPopulation in splitFrom.SplitOffPatches)
+                        {
+                            totalNewPopulation += splitFrom.NewPopulationInPatches[patchPopulation];
+                        }
+                    }
+                }
+            }
+
+            resultDisplay.DisplayPopulation(totalNewPopulation, totalOldPopulation, false);
+
+            // Definitely don't want to show the extra global population line here
+            resultDisplay.HideGlobalPopulation();
+
+            if (selectionCallback != null)
+                resultDisplay.Connect(SpeciesResultButton.SignalName.SpeciesSelected, selectionCallback.Value);
+
+            container.AddChild(resultDisplay);
+        }
+
+        guiTarget.AddChild(container);
     }
 
     public void LogResultsToTimeline(GameWorld world, List<ExternalEffect>? effects = null)
@@ -1098,27 +1353,6 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     }
 
     /// <summary>
-    ///   Call this only when auto-evo has finished. Calling at runtime will result in
-    ///   incorrect result and random CollectionModifiedException.
-    /// </summary>
-    [MustDisposeResource]
-    public IEnumerator GetEnumerator()
-    {
-        return results.GetEnumerator();
-    }
-
-    /// <summary>
-    ///   Call this only when auto-evo has finished. Calling at runtime will result in
-    ///   incorrect result and random CollectionModifiedException.
-    /// </summary>
-    [MustDisposeResource]
-    IEnumerator<KeyValuePair<Species, SpeciesResult>> IEnumerable<KeyValuePair<Species, SpeciesResult>>.
-        GetEnumerator()
-    {
-        return results.GetEnumerator();
-    }
-
-    /// <summary>
     ///   Returns the results for a given species for use by auto-evo internally
     /// </summary>
     /// <remarks>
@@ -1165,8 +1399,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         }
     }
 
-    private long CountSpeciesSpreadPopulation(Species species,
-        Patch targetPatch)
+    private long CountSpeciesSpreadPopulation(Species species, Patch targetPatch)
     {
         long totalPopulation = 0;
 
@@ -1219,6 +1452,11 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         public Dictionary<Patch, long> NewPopulationInPatches = new();
 
         /// <summary>
+        ///   Previous population numbers that are stored for more advanced result views
+        /// </summary>
+        public Dictionary<Patch, long> OldPopulationInPatches = new();
+
+        /// <summary>
         ///   null means no changes
         /// </summary>
         public Species? MutatedProperties;
@@ -1233,7 +1471,7 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
         /// </summary>
         public NewSpeciesType? NewlyCreated;
 
-        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES:
+        // TODO: NEW AUTO-EVO NEEDS TO BE FIXED TO USE THE FOLLOWING TO VARIABLES (check, might already work):
         /// <summary>
         ///   If set, the specified species split off from this species taking all the population listed in
         ///   <see cref="SplitOffPatches"/>
@@ -1283,13 +1521,19 @@ public class RunResults : IEnumerable<KeyValuePair<Species, RunResults.SpeciesRe
     /// </summary>
     public class SpeciesPatchEnergyResults
     {
-        public readonly Dictionary<IFormattable, NicheInfo> PerNicheEnergy = new();
-
-        public long UnadjustedPopulation;
+        [JsonConverter(typeof(DictionaryWithJSONKeysConverter<LocalizedString, NicheInfo>))]
+        public readonly Dictionary<LocalizedString, NicheInfo> PerNicheEnergy = new();
 
         public float TotalEnergyGathered;
 
         public float IndividualCost;
+
+        /// <summary>
+        ///   Unadjusted population based the energy sources. Doesn't take
+        ///   <see cref="Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION"/> into account.
+        /// </summary>
+        [JsonIgnore]
+        public long UnadjustedPopulation => (long)MathF.Floor(TotalEnergyGathered / IndividualCost);
 
         public class NicheInfo
         {

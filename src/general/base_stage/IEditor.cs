@@ -103,4 +103,10 @@ public interface IEditor : ISaveLoadedTracked
     /// </param>
     /// <returns>True if editing was able to finish now, false if still some component is not ready to exit</returns>
     public bool RequestFinishEditingWithOverride(List<EditorUserOverride> userOverrides);
+
+    /// <summary>
+    ///   Request that GUI for showing extra info about a species is opened
+    /// </summary>
+    /// <param name="species">The species to open info for</param>
+    public void OpenSpeciesInfoFor(Species species);
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -34,9 +35,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     public NodePath GlucoseReductionLabelPath = null!;
 
     [Export]
-    public NodePath AutoEvoLabelPath = null!;
-
-    [Export]
     public NodePath ExternalEffectsLabelPath = null!;
 
     [Export]
@@ -56,7 +54,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     private Label timeIndicator = null!;
     private Label glucoseReductionLabel = null!;
-    private CustomRichTextLabel autoEvoLabel = null!;
     private CustomRichTextLabel externalEffectsLabel = null!;
     private Label reportTabPatchName = null!;
     private OptionButton reportTabPatchSelector = null!;
@@ -73,6 +70,15 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [Export]
     private CollapsibleList compoundsChartContainer = null!;
 
+    [Export]
+    private Control noAutoEvoResultData = null!;
+
+    [Export]
+    private Container graphicalResultsContainer = null!;
+
+    [Export]
+    private LabelSettings autoEvoReportSegmentTitleFont = null!;
+
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
     private LineChart sunlightChart = null!;
@@ -81,12 +87,16 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private LineChart speciesPopulationChart = null!;
 
     private Texture2D temperatureIcon = null!;
+
+    private PackedScene speciesResultButtonScene = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
 
     private Patch? currentlyDisplayedPatch;
+
+    private RunResults? autoEvoResults;
 
     public enum ReportSubtab
     {
@@ -108,7 +118,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
         timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        autoEvoLabel = GetNode<CustomRichTextLabel>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = physicalConditionsChartContainer.GetItem<Container>("LegendContainer")
@@ -122,6 +131,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
         temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.png");
+
+        speciesResultButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/SpeciesResultButton.tscn");
 
         ApplyReportSubtab();
         RegisterTooltips();
@@ -156,6 +167,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         if (currentlyDisplayedPatch == null || currentlyDisplayedPatch != selectedPatch)
         {
             UpdatePatchDetails(selectedPatch);
+
+            // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
+            // component when initializing the editor (but only after displaying them once)
+            if (autoEvoResults != null)
+                CreateGraphicalReportForPatch(selectedPatch);
         }
     }
 
@@ -197,10 +213,40 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             .FormatSafe(percentage);
     }
 
-    public void UpdateAutoEvoResults(string results, string external)
+    public void UpdateAutoEvoResults(RunResults results, string external)
     {
-        autoEvoLabel.ExtendedBbcode = results;
+        noAutoEvoResultData.Visible = false;
+        graphicalResultsContainer.Visible = true;
+
+        // TODO: should this also have some graphical representation?
         externalEffectsLabel.ExtendedBbcode = external;
+
+        autoEvoResults = results;
+
+        CreateGraphicalReportForPatch(currentlyDisplayedPatch ?? Editor.CurrentPatch);
+    }
+
+    public void DisplayAutoEvoFailure(string extra)
+    {
+        graphicalResultsContainer.QueueFreeChildren();
+        graphicalResultsContainer.AddChild(new Label
+        {
+            Text = Localization.Translate("AUTO_EVO_FAILED"),
+            SizeFlagsHorizontal = SizeFlags.ExpandFill,
+            CustomMinimumSize = new Vector2(200, 15),
+            AutowrapMode = TextServer.AutowrapMode.WordSmart,
+        });
+
+        externalEffectsLabel.ExtendedBbcode = Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + extra;
+    }
+
+    public void ShowErrorAboutOldSave()
+    {
+        GD.PrintErr("There is no existing full auto-evo results data to show new auto-evo report with");
+        noAutoEvoResultData.Visible = true;
+        graphicalResultsContainer.Visible = false;
+
+        externalEffectsLabel.Visible = false;
     }
 
     public override void OnInsufficientMP(bool playSound = true)
@@ -262,7 +308,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 TimelineEventsContainerPath.Dispose();
                 TimeIndicatorPath.Dispose();
                 GlucoseReductionLabelPath.Dispose();
-                AutoEvoLabelPath.Dispose();
                 ExternalEffectsLabelPath.Dispose();
                 ReportTabPatchNamePath.Dispose();
                 ReportTabPatchSelectorPath.Dispose();
@@ -282,6 +327,33 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private void UpdateReportTabPatchName(Patch patch)
     {
         reportTabPatchName.Text = patch.Name.ToString();
+    }
+
+    /// <summary>
+    ///   Generates a new graphics-based representation of the auto-evo report
+    /// </summary>
+    private void CreateGraphicalReportForPatch(Patch selectedPatch)
+    {
+        if (autoEvoResults == null)
+        {
+            GD.PrintErr("No auto-evo results data passed to the report component");
+            return;
+        }
+
+        graphicalResultsContainer.FreeChildren();
+        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, selectedPatch, true, speciesResultButtonScene,
+            autoEvoReportSegmentTitleFont, new Callable(this, nameof(ShowExtraInfoOnSpecies)));
+    }
+
+    private void ShowExtraInfoOnSpecies(uint id)
+    {
+        if (!Editor.CurrentGame.GameWorld.TryGetSpecies(id, out var species))
+        {
+            GD.PrintErr("Species not found for displaying extra info");
+            return;
+        }
+
+        Editor.OpenSpeciesInfoFor(species);
     }
 
     private void UpdateReportTabStatistics(Patch patch)
@@ -530,6 +602,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         UpdateReportTabStatistics(patch);
         UpdateTimeline(patch);
         UpdateReportTabPatchName(patch);
+
+        if (autoEvoResults != null)
+            CreateGraphicalReportForPatch(patch);
     }
 
     /// <summary>

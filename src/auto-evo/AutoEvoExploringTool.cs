@@ -711,7 +711,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Make summary, this must be called before results are applied so that summary is correct
         results.RegisterNewSpeciesForSummary(gameWorld);
-        world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true));
+        results.StorePreviousPopulations(gameWorld.Map);
+        world.RunResultsList.Add(results.MakeSummary(true));
 
         // Apply the results
         gameWorld.OnTimePassed(1);

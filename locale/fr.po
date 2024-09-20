@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
-"PO-Revision-Date: 2024-09-17 07:03+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
+"PO-Revision-Date: 2024-09-20 01:07+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -302,7 +302,18 @@ msgstr "Outil d'exploration Auto-Évo"
 msgid "AUTO_EVO_FAILED"
 msgstr "L'Auto-Évo n'a pas pu se lancer"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Résultats de l'Auto-Évo :"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Résultats de l'Auto-Évo :"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Résultats de l'Auto-Évo :"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2122,6 +2133,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Population totale :"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Une partie de la population de [b][u]{0}[/u][/b] a migré vers {1} depuis {2}"
 
@@ -2262,6 +2277,14 @@ msgstr "(certaines fonctionnalités peuvent être indisponibles une fois les pha
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Créer un nouveau"
 
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Espèces éteintes"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
+
 msgid "INDUSTRIAL_STAGE"
 msgstr "Phase industrielle"
 
@@ -2274,9 +2297,8 @@ msgstr "PM illimités"
 msgid "INFO_BOX_COST"
 msgstr "Coût de base (PM)"
 
-#, fuzzy
 msgid "INFO_BOX_EDITORS"
-msgstr "Coût de base (PM)"
+msgstr "Éditeurs"
 
 msgid "INFO_BOX_ENZYMES"
 msgstr "Enzymes"
@@ -2291,16 +2313,14 @@ msgstr "Nom interne"
 msgid "INFO_BOX_MASS"
 msgstr "Masse"
 
-#, fuzzy
 msgid "INFO_BOX_NEXT_STAGE"
-msgstr "Stockage"
+msgstr "Phase suivante"
 
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "Coût en osmorégulation"
 
-#, fuzzy
 msgid "INFO_BOX_PREVIOUS_STAGE"
-msgstr "Processus"
+msgstr "Phase précédente"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "Processus"
@@ -3911,8 +3931,8 @@ msgstr "OK"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
-"Cette sauvegarde provient d'un version antérieure de Thrive et pourrait être incompatible.\n"
-"Comme Thrive est actuellement en developpement précoce, la compatibilité des sauvegardes n'est pas une priorité.\n"
+"Cette sauvegarde provient d'une ancienne version de Thrive et pourrait être incompatible.\n"
+"Comme Thrive est actuellement en développement précoce, la compatibilité des sauvegardes n'est pas une priorité.\n"
 "Vous pouvez signaler les problèmes rencontrés, mais ils n'ont pas la plus haute priorité actuellement.\n"
 "Voulez-vous essayer de charger la sauvegarde malgré tout ?"
 
@@ -6153,12 +6173,8 @@ msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'é
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Développeurs actuels"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr ""
-"Pour chaque cellule d'un organisme multicellulaire qui contient un [b]axone[/b], la puissance cérébrale de cet organisme augmentera proportionnellement au volume de cette cellule. Les cellules dotées d'[b]axones[/b] sont considérées comme possédant un tissu cérébral.\n"
-"\n"
-"Lorsque la puissance cérébrale dépasse [b]+0.5[/b], le joueur entre dans la Phase Consciente. Lorsque la puissance cérébrale dépasse [b]+5.0[/b], le joueur entre dans la Phase d'Éveil."
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
@@ -6171,23 +6187,14 @@ msgstr ""
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "Félicitations !"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_UI"
-msgstr "Des fibres nerveuses reliant les neurones, disponibles à partir de l'étape multicellulaire. Ils sont nécessaires pour augmenter la puissance cérébrale d'un organisme et lui permettre de passer aux phases suivantes."
+msgstr "Prochainement."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
-"Une cellule doit avoir un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] pour pouvoir développer des [b]agents liants[/b].\n"
-"\n"
-"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]chacune[/i] des conditions suivantes devra être vérifiée [i]pour la cellule du joueur[/i] :\n"
-"\n"
-"[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
-"[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
+msgstr "Les travaux sur la phase d’éveil n'ont pas encore commencé."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
-msgstr "Phase d’éveil"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
@@ -6196,24 +6203,21 @@ msgstr ""
 "\n"
 "La formation de colonies cellulaires est la première étape vers la multicellularité, et les [b]agents liants[/b] sont donc essentiels pour passer à la phase suivante."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
-msgstr "Phase d’éveil"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr "Phase d’éveil"
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
-msgstr "Phase d’éveil"
+msgstr "Prochainement."
 
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
-msgstr "Phase consciente"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_INTRO"
@@ -6227,9 +6231,8 @@ msgstr "Phase consciente"
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr "Nitrogénase"
 
-#, fuzzy
 msgid "WIKI_AWARE_STAGE_UI"
-msgstr "Phase consciente"
+msgstr "Prochainement."
 
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
@@ -6689,9 +6692,8 @@ msgstr "Processus"
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "Stratégie"
 
-#, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
-msgstr "Conditions"
+msgstr "Développement actuel"
 
 #, fuzzy
 msgid "WIKI_HEADING_DEVELOPMENT"
@@ -6708,13 +6710,11 @@ msgstr "Effets"
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
 msgstr "Processus"
 
-#, fuzzy
 msgid "WIKI_HEADING_FEATURES"
-msgstr "Effets"
+msgstr "Fonctionnalités"
 
-#, fuzzy
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr "Effets"
+msgstr "Brouillard de guerre"
 
 #, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
@@ -6728,9 +6728,8 @@ msgstr "Améliorations"
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr "Modifications"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
-msgstr "Processus"
+msgstr "Phase microbienne"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Modifications"
@@ -6799,9 +6798,8 @@ msgstr ""
 "[indent]—   Contient un [b][color=#3796e1][url=thriveopedia:nucleus]noyau[/url][/color][/b] depuis au moins [b]5[/b] générations.[/indent]\n"
 "[indent]—   A une balance de [thrive:compound type=\"atp\"][/thrive:compound] d'au moins [b]+15[/b].[/indent]"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
-msgstr "Phase industrielle"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
@@ -6818,9 +6816,8 @@ msgstr "Phase industrielle"
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "Phase industrielle"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
-msgstr "Phase industrielle"
+msgstr "Prochainement."
 
 msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
@@ -6919,16 +6916,8 @@ msgstr ""
 "\n"
 "Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_BUTTON"
-msgstr ""
-"Sur une planète distante et étrangère, des éternités d'activité volcanique et d'impacts de météores ont abouti au développement d'un nouveau phénomène dans l'univers.\n"
-"\n"
-"La vie.\n"
-"\n"
-"Simple microbe résidant dans les régions abyssales de l'océan, vous êtes le dernier ancêtre commun de tous les êtres vivants (LUCA) de cette planète.\n"
-"\n"
-"Pour survivre dans ce monde hostile, vous aurez besoin de collecter tous les composés que vous pourrez trouver et d'évoluer au cours de vos générations, dans une féroce compétition avec les autres espèces de microbes, qui peupleront bientôt ces océans..."
+msgstr "Phase microbienne"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
@@ -7027,9 +7016,8 @@ msgstr "Phase multicellulaire"
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr "Phase multicellulaire"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
-msgstr "Phase multicellulaire"
+msgstr "Rien n'a été discuté."
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
@@ -7114,9 +7102,8 @@ msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound 
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_NO"
-msgstr "Wiki"
+msgstr "Non"
 
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
@@ -7207,11 +7194,9 @@ msgstr "Synthèse d'OxyToxy"
 msgid "WIKI_PAGE_ASCENSION"
 msgstr "Axone"
 
-#, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr "Phase d’éveil"
 
-#, fuzzy
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "Phase consciente"
 
@@ -7265,7 +7250,6 @@ msgstr "Mitochondrie"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
 
-#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Phase industrielle"
 
@@ -7279,14 +7263,12 @@ msgstr "Organites"
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Métabolosomes"
 
-#, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
-msgstr "Nitrogénase"
+msgstr "Phase microbienne"
 
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitochondrie"
 
-#, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "Phase multicellulaire"
 
@@ -7330,17 +7312,14 @@ msgstr "Agent de signalisation"
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "Propulseur gélatineux"
 
-#, fuzzy
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr "Phase sociétale"
 
-#, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
-msgstr "Propulseur gélatineux"
+msgstr "Phase spatiale"
 
-#, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
-msgstr "Organites"
+msgstr "Phases"
 
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "Thermoplaste"
@@ -7557,9 +7536,8 @@ msgstr "Pas d'améliorations."
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
-msgstr "Phase sociétale"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
@@ -7573,16 +7551,14 @@ msgstr "Phase sociétale"
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr "Phase sociétale"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_UI"
-msgstr "Phase sociétale"
+msgstr "Prochainement."
 
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Les travaux sur la phase spatiale n'ont pas encore commencé."
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
-msgstr "Propulseur gélatineux"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
@@ -7596,9 +7572,8 @@ msgstr "Phase spatiale"
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr "Nitrogénase"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
-msgstr "Phase spatiale"
+msgstr "Prochainement."
 
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
@@ -7611,9 +7586,8 @@ msgstr ""
 "\n"
 "Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
-#, fuzzy
 msgid "WIKI_TBA"
-msgstr "Wiki"
+msgstr "À venir"
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "Pas d'effets."
@@ -7767,9 +7741,8 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "Pas d'améliorations."
 
-#, fuzzy
 msgid "WIKI_YES"
-msgstr "Wiki"
+msgstr "Oui"
 
 msgid "WILL_YOU_THRIVE"
 msgstr "Allez-vous prospérer ?"
@@ -7970,9 +7943,6 @@ msgstr "Dézoomer"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permet aux espèces de ne pas migrer (si aucune bonne migration n'est trouvée)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Permet aux espèces de ne pas muter (si aucune bonne mutation n'est trouvée)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Probabilité pour chaque secteur avec peu d'espèces (faible biodiversité) de créer une nouvelle espèce"
 
@@ -8056,9 +8026,6 @@ msgstr "Dézoomer"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Population totale :"
 
 #, fuzzy
 #~ msgid "QUESTION"

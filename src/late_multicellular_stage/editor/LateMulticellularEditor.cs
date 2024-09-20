@@ -121,7 +121,13 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
     public void SendAutoEvoResultsToReportComponent()
     {
-        reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
+        if (autoEvoResults == null)
+        {
+            GD.PrintErr("Unexpectedly missing auto-evo results");
+            return;
+        }
+
+        reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error");
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -279,17 +285,16 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
-                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.DisplayAutoEvoFailure(run.Status);
         }
 
         base.OnEditorReady();
 
         reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-        if (autoEvoSummary != null && autoEvoExternal != null)
+        if (autoEvoResults != null && autoEvoExternal != null)
         {
-            reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
+            reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal.ToString());
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);

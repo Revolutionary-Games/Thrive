@@ -1,0 +1,161 @@
+[gd_scene load_steps=12 format=3 uid="uid://c0i1up4lcts8j"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_q5xho"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/SpeciesResultButton.cs" id="2_f6kus"]
+[ext_resource type="LabelSettings" uid="uid://cw40l6f6fo8ml" path="res://src/gui_common/fonts/Body-Regular-Small-Green.tres" id="3_46m0d"]
+[ext_resource type="PackedScene" uid="uid://b5cbn7afnas1x" path="res://src/gui_common/PhotographablePreview.tscn" id="3_uyudq"]
+[ext_resource type="Script" path="res://src/gui_common/SpeciesPreview.cs" id="4_6vevb"]
+[ext_resource type="LabelSettings" uid="uid://das77igcbl0vy" path="res://src/gui_common/fonts/Body-Italic-Small.tres" id="4_48wtx"]
+[ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="4_e7xr2"]
+[ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="5_fiy0i"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_gtjva"]
+[ext_resource type="Texture2D" uid="uid://cb4c53m56cis8" path="res://assets/textures/gui/bevel/plus.png" id="6_ocuw2"]
+[ext_resource type="Texture2D" uid="uid://c7p7qgm0w77eo" path="res://assets/textures/gui/bevel/MPNoCircleLight.png" id="9_u0rre"]
+
+[node name="SpeciesResultButton" type="Button" node_paths=PackedStringArray("nameLabel", "preview", "newIndicator", "partialExtinctionIndicator", "mutatedIndicator", "resultPatchPopulation", "resultPatchPopulationDifference", "globalPopulationLabel", "globalPopulationContainer", "mainContentContainer")]
+custom_minimum_size = Vector2(110, 92)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_q5xho")
+script = ExtResource("2_f6kus")
+nameLabel = NodePath("VBoxContainer/MainContent/Name")
+preview = NodePath("VBoxContainer/MainContent/PhotographablePreview")
+newIndicator = NodePath("OverlayContent/NewIndicator")
+partialExtinctionIndicator = NodePath("VBoxContainer/MainContent/PhotographablePreview/PartiallyExtinctIndicator")
+mutatedIndicator = NodePath("OverlayContent/MutatedIndicator")
+resultPatchPopulation = NodePath("VBoxContainer/MainContent/PopulationLine/Population")
+resultPatchPopulationDifference = NodePath("VBoxContainer/MainContent/PopulationLine/PopChange")
+globalPopulationLabel = NodePath("VBoxContainer/MainContent/GlobalPopLine/GlobalPopulation")
+globalPopulationContainer = NodePath("VBoxContainer/MainContent/GlobalPopLine")
+mainContentContainer = NodePath("VBoxContainer")
+positivePopulationChangeSettings = ExtResource("3_46m0d")
+negativePopulationChangeSettings = ExtResource("4_e7xr2")
+
+[node name="VBoxContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 2
+
+[node name="MainContent" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PhotographablePreview" parent="VBoxContainer/MainContent" instance=ExtResource("3_uyudq")]
+layout_mode = 2
+mouse_filter = 2
+script = ExtResource("4_6vevb")
+
+[node name="PartiallyExtinctIndicator" type="TextureRect" parent="VBoxContainer/MainContent/PhotographablePreview"]
+modulate = Color(1, 0.187455, 0, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_fiy0i")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="VBoxContainer/MainContent"]
+editor_description = "PLACEHOLDER"
+clip_contents = true
+layout_mode = 2
+text = "Species Name"
+label_settings = ExtResource("4_48wtx")
+horizontal_alignment = 1
+
+[node name="PopulationLine" type="HBoxContainer" parent="VBoxContainer/MainContent"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="Population" type="Label" parent="VBoxContainer/MainContent/PopulationLine"]
+layout_mode = 2
+text = "123"
+label_settings = ExtResource("5_gtjva")
+
+[node name="ParenthesesOpen" type="Label" parent="VBoxContainer/MainContent/PopulationLine"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "("
+label_settings = ExtResource("5_gtjva")
+
+[node name="PopChange" type="Label" parent="VBoxContainer/MainContent/PopulationLine"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "+42"
+label_settings = ExtResource("5_gtjva")
+
+[node name="ParenthesesCloses" type="Label" parent="VBoxContainer/MainContent/PopulationLine"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = ")"
+label_settings = ExtResource("5_gtjva")
+
+[node name="GlobalPopLine" type="HBoxContainer" parent="VBoxContainer/MainContent"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MainContent/GlobalPopLine"]
+layout_mode = 2
+text = "GLOBAL_POPULATION_COLON"
+label_settings = ExtResource("5_gtjva")
+
+[node name="GlobalPopulation" type="Label" parent="VBoxContainer/MainContent/GlobalPopLine"]
+layout_mode = 2
+text = "1230"
+label_settings = ExtResource("5_gtjva")
+
+[node name="OverlayContent" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="NewIndicator" type="TextureRect" parent="OverlayContent"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -18.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 18.0
+grow_horizontal = 0
+tooltip_text = "INDICATOR_SPECIES_IS_NEW"
+mouse_filter = 0
+texture = ExtResource("6_ocuw2")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MutatedIndicator" type="TextureRect" parent="OverlayContent"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 18.0
+offset_bottom = 18.0
+tooltip_text = "INDICATOR_SPECIES_MUTATED"
+mouse_filter = 0
+texture = ExtResource("9_u0rre")
+expand_mode = 1
+stretch_mode = 5
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
+[connection signal="pressed" from="." to="." method="OnPressed"]
+[connection signal="resized" from="VBoxContainer/MainContent" to="." method="OnContentSizeChanged"]

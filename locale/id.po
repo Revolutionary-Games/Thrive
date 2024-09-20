@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -317,7 +317,18 @@ msgstr "Alat Penjelajah Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo gagal bekerja"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Hasil auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Hasil auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Hasil auto-evo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2236,6 +2247,10 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Sebagian dari populasi [b][u]{0}[/u][/b] telah bermigrasi ke {1} dari {2}"
 
@@ -2382,6 +2397,14 @@ msgstr ""
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Buat Save Baru"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "KEPUNAHAN"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -8118,9 +8141,6 @@ msgstr "Perkecil"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Izinkan spesies untuk tidak bermigrasi (jika tidak ada migrasi cocok yang ditemukan)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Izinkan spesies untuk tidak bermutasi (jika tidak ada mutasi cocok yang ditemukan)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Peluang di setiap daerah yang memiliki sedikit jumlah spesies (biodiversitas rendah) untuk membuat spesies baru"
 
@@ -8198,10 +8218,6 @@ msgstr "Perkecil"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Tidak diketahui di Windows"
-
-#, fuzzy
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
 #~ msgid "QUESTION"
