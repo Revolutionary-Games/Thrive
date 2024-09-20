@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Esperanto <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/eo/>\n"
@@ -296,7 +296,18 @@ msgstr "Lanĉa stato:"
 msgid "AUTO_EVO_FAILED"
 msgstr "Aŭtomata evolucio malsukcesis"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Resultoj de aŭtomata evoluo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Resultoj de aŭtomata evoluo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Resultoj de aŭtomata evoluo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2222,6 +2233,10 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2338,6 +2353,12 @@ msgstr "Glacia ero"
 msgid "ICESHELF"
 msgstr "Glacia breto"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2358,6 +2379,14 @@ msgstr ""
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Kreu Novan Konservadon"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "FORMORTADO"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -5157,6 +5186,9 @@ msgstr "Malgranda Fera Peco"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Malgranda Fera Peco"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -8314,9 +8346,6 @@ msgstr "Malzomu"
 #~ msgid "EDITING"
 #~ msgstr "itino"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Permesu al specioj ne mutacii (se ne bona mutacio trovitas)"
-
 #, fuzzy
 #~ msgid "MAXIMUM_SPECIES_IN_PATCH"
 #~ msgstr "formortis de la planedo"
@@ -8337,10 +8366,6 @@ msgstr "Malzomu"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Nekonata musbutono"
-
-#, fuzzy
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "{0} loĝantaro ŝanĝiĝis per {1} pro: {2}"
 
 #, fuzzy
 #~ msgid "QUESTION"

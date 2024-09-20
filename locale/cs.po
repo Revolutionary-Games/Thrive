@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -298,7 +298,18 @@ msgstr "Nástroj Průzkumu Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "Nezdařilo se spustit Auto-evo"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Výsledky Auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Výsledky Auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Výsledky Auto-evo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2240,6 +2251,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Celková populace:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Část populace [b][u]{0}[/u][/b] migrovala z {2} do {1}"
 
@@ -2359,6 +2374,12 @@ msgstr "Ledový střep"
 msgid "ICESHELF"
 msgstr "Šelfový ledovec"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID není platné číslo"
 
@@ -2378,6 +2399,14 @@ msgstr "(některé funkce možná nebudou přístupné jakmile se dostanete do d
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Vytvořit nový"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Vyhynulé druhy"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -5093,6 +5122,9 @@ msgstr "Malý kus železa"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Malý kus železa"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -8066,9 +8098,6 @@ msgstr "Oddálit"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Dovolit druhům aby nemigroval (pokud není nalezena žádná dobrá migrace)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Šance v každém prostředí s nízkým počtem druhů (nízká biodiverzita) k vytvoření nového živočicha"
 
@@ -8152,9 +8181,6 @@ msgstr "Oddálit"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Celková populace:"
 
 #, fuzzy
 #~ msgid "QUESTION"

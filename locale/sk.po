@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -290,8 +290,19 @@ msgstr "Nástroj prieskumu Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "Automatickú evolúciu sa nepodarilo spustiť"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 #, fuzzy
 msgid "AUTO_EVO_RESULTS"
+msgstr "Výsledok automatickej evolúcie:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Výsledok automatickej evolúcie:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Výsledok automatickej evolúcie:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2131,6 +2142,10 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Celková populácia:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Časť populácie [b][u]{0}[/u][/b] z {2} migrovala do {1}"
 
@@ -2243,6 +2258,12 @@ msgstr "Ľadový črep"
 msgid "ICESHELF"
 msgstr "Šelfový ľadovec"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID nie je platné číslo"
 
@@ -2263,6 +2284,14 @@ msgstr "(akonáhle sa dostaneš do ďalšej fázy, niektoré funkcie môžu byť
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Vytvoriť nový"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Vyhynuté druhy"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "zmutoval"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -4866,6 +4895,9 @@ msgstr "Malý kus železa"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Malý kus železa"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -7636,10 +7668,6 @@ msgstr "Oddialiť"
 #~ msgstr "Časť populácie [b][u]{0}[/u][/b] migrovala do {1}"
 
 #, fuzzy
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "zmutoval"
-
-#, fuzzy
 #~ msgid "MAXIMUM_SPECIES_IN_PATCH"
 #~ msgstr "vyhynul v tejto oblasti"
 
@@ -7684,9 +7712,6 @@ msgstr "Oddialiť"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Celková populácia:"
 
 #, fuzzy
 #~ msgid "QUESTION"

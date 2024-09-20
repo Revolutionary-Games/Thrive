@@ -711,7 +711,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         // Make summary, this must be called before results are applied so that summary is correct
         results.RegisterNewSpeciesForSummary(gameWorld);
-        world.RunResultsList.Add(results.MakeSummary(gameWorld.Map, true));
+        results.StorePreviousPopulations(gameWorld.Map);
+        world.RunResultsList.Add(results.MakeSummary(true));
 
         // Apply the results
         gameWorld.OnTimePassed(1);
@@ -944,7 +945,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         if (micheData.Pressure.GetType() == typeof(NoOpPressure))
         {
             if (micheData.Occupant == null)
+            {
+                // No species selected so reset the display panel to not make the GUI as confusing
+                micheSpeciesDetailsPanel.Visible = false;
+                micheDetailsPanel.Visible = false;
                 return;
+            }
 
             micheSpeciesDetailsPanel.Visible = true;
             micheDetailsPanel.Visible = false;

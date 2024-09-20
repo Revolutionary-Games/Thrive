@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -303,7 +303,18 @@ msgstr "Ferramenta de exploração da Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "A auto-evo falhou"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Resultados da auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Resultados da auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Resultados da auto-evo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2123,6 +2134,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "População:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Parte da população de [b][u]{0}[/u][/b] migrou de {2} para {1}"
 
@@ -2236,6 +2251,12 @@ msgstr "Fragmento de Gelo"
 msgid "ICESHELF"
 msgstr "Plataforma de Gelo"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "O ID não é um número válido"
 
@@ -2256,6 +2277,14 @@ msgstr "(algumas funcionalidades podem ficar indisponíveis ao atingir as fases 
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Criar Novo"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Espécies Extintas"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Permite que espécies não sofram mutações (caso nenhuma mutação vantajosa seja encontrada)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -4872,6 +4901,9 @@ msgstr "Pequeno Pedaço de Ferro"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Pequeno Pedaço de Ferro"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -7785,9 +7817,6 @@ msgstr "Reduzir"
 
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permite que espécies não migrem (caso nenhuma migração vantajosa seja encontrada)"
-
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Permite que espécies não sofram mutações (caso nenhuma mutação vantajosa seja encontrada)"
 
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Chance em cada região com poucas espécies (baixa biodiversidade) de criar uma nova espécie"

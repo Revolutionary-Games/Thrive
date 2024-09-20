@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -301,7 +301,18 @@ msgstr "Automātiska-Evo Pareģošana"
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Auto-evo rezultāti:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Auto-evo rezultāti:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Auto-evo rezultāti:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2188,6 +2199,10 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Kopējā Populācija:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2301,6 +2316,12 @@ msgstr "Ledus lauska"
 msgid "ICESHELF"
 msgstr "Šelfa ledājs"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2321,6 +2342,14 @@ msgstr ""
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Izveidot Jaunu"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Izmirusi suga"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Satur mutāciju"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -5049,6 +5078,9 @@ msgstr "Mazs dzelzs gabals"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Mazs dzelzs gabals"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -7965,10 +7997,6 @@ msgstr "Attālināt"
 #~ msgstr "Ļaut sugai nemigrēt (ja labas migrācija nav atrasta)"
 
 #, fuzzy
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Satur mutāciju"
-
-#, fuzzy
 #~ msgid "MAXIMUM_SPECIES_IN_PATCH"
 #~ msgstr "Izmira no plankuma"
 
@@ -7996,9 +8024,6 @@ msgstr "Attālināt"
 
 #~ msgid "TREBLEDOWN"
 #~ msgstr "Treble Down (taustiņš)"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Kopējā Populācija:"
 
 #, fuzzy
 #~ msgid "QUESTION"
