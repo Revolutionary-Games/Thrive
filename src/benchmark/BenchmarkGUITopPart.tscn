@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqeojm252hm5x"]
+
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="1_6jibk"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="2_6w2hi"]
+
+[node name="BenchmarkGUITopPart" type="VBoxContainer"]
+
+[node name="FPS" type="Label" parent="."]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "FPS: 0"
+label_settings = ExtResource("1_6jibk")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "BENCHMARK_PHASE"
+label_settings = ExtResource("2_6w2hi")
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Phase" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("2_6w2hi")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3

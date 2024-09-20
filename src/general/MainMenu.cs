@@ -1147,6 +1147,16 @@ public partial class MainMenu : NodeWithInput
             () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/MicrobeBenchmark.tscn"); }, false);
     }
 
+    private void CloudBenchmarkPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        microbeBenchmarkButton.Disabled = true;
+
+        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f,
+            () => { SceneManager.Instance.SwitchToScene("res://src/benchmark/microbe/CloudBenchmark.tscn"); }, false);
+    }
+
     private void OnNewGameIntroVideoStarted()
     {
         if (created3DBackground != null)
