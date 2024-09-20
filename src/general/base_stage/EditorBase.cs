@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using AutoEvo;
 using Godot;
 using Newtonsoft.Json;
 
@@ -60,7 +61,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     protected bool ready;
 
     [JsonProperty]
-    protected LocalizedStringBuilder? autoEvoSummary;
+    protected RunResults? autoEvoResults;
 
     [JsonProperty]
     protected LocalizedStringBuilder? autoEvoExternal;
@@ -535,6 +536,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         return OnFinishEditing(userOverrides);
     }
 
+    public void OpenSpeciesInfoFor(Species species)
+    {
+        pauseMenu.OpenToSpeciesPage(species);
+    }
+
     protected virtual void ResolveDerivedTypeNodeReferences()
     {
         throw new GodotAbstractMethodNotOverriddenException();
@@ -697,15 +703,20 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
             run.CalculateAndApplyFinalExternalEffectSizes();
 
             run.Results.RegisterNewSpeciesForSummary(CurrentGame.GameWorld);
-            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
+
+            // Store results for more advanced visualizations
+            autoEvoResults = run.Results;
+            run.Results.StorePreviousPopulations(CurrentGame.GameWorld.Map);
+
+            // Generate text parts of the report
             autoEvoExternal = run.MakeSummaryOfExternalEffects();
 
             run.Results.LogResultsToTimeline(CurrentGame.GameWorld, run.ExternalEffects);
         }
         else
         {
-            autoEvoSummary = null;
             autoEvoExternal = null;
+            autoEvoResults = null;
         }
 
         ApplyAutoEvoResults();

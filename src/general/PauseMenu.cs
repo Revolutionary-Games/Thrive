@@ -284,6 +284,17 @@ public partial class PauseMenu : TopLevelContainer
         ThriveopediaManager.OpenPage("MechanicsRoot");
     }
 
+    public void OpenToSpeciesPage(Species species)
+    {
+        Open();
+        OpenThriveopediaPressed();
+
+        // TODO: implement species specific pages: https://github.com/Revolutionary-Games/Thrive/issues/4043
+        _ = species;
+        GD.PrintErr("TODO: implement per-species pages in the Thriveopedia");
+        ThriveopediaManager.OpenPage("EvolutionaryTree");
+    }
+
     public void SetNewSaveName(string name)
     {
         saveMenu.SetSaveName(name, true);

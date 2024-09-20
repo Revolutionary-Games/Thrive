@@ -92,7 +92,13 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     public void SendAutoEvoResultsToReportComponent()
     {
-        reportTab.UpdateAutoEvoResults(autoEvoSummary?.ToString() ?? "error", autoEvoExternal?.ToString() ?? "error");
+        if (autoEvoResults == null)
+        {
+            reportTab.ShowErrorAboutOldSave();
+            return;
+        }
+
+        reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal?.ToString() ?? "error");
     }
 
     public override void SetEditorObjectVisibility(bool shown)
@@ -209,8 +215,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         if (run.Results == null)
         {
-            reportTab.UpdateAutoEvoResults(Localization.Translate("AUTO_EVO_FAILED"),
-                Localization.Translate("AUTO_EVO_RUN_STATUS") + " " + run.Status);
+            reportTab.DisplayAutoEvoFailure(run.Status);
         }
         else
         {
@@ -226,9 +231,16 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-        if (autoEvoSummary != null && autoEvoExternal != null)
+        if (autoEvoResults != null && autoEvoExternal != null)
         {
-            reportTab.UpdateAutoEvoResults(autoEvoSummary.ToString(), autoEvoExternal.ToString());
+            reportTab.UpdateAutoEvoResults(autoEvoResults, autoEvoExternal.ToString());
+        }
+        else if (autoEvoExternal != null)
+        {
+            // This condition should never happen, but I'll leave this print here in case anyone ever hits this and
+            // sends us a bug report -hhyyrylainen
+            GD.PrintErr("Somehow auto-evo results are null but external effects text exists");
+            reportTab.DisplayAutoEvoFailure("Only external effects is set but auto-evo results are missing");
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);

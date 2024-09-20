@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 15:30+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -293,7 +293,18 @@ msgstr "כלים חקר של מפתח-אוטומטי"
 msgid "AUTO_EVO_FAILED"
 msgstr "המפתח האוטומטי נכשל"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "תוצאות מפתח אוטומטי:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "תוצאות מפתח אוטומטי:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "תוצאות מפתח אוטומטי:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2200,6 +2211,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "ג"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "כלל האוכלוסיה:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "חלק מאוכלוסיית [b][u]{0}[/u][/b] נדדה מ{1} ל{2}"
 
@@ -2317,6 +2332,12 @@ msgstr "רסיסי קרח"
 msgid "ICESHELF"
 msgstr "מדף קרח"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "מספר ID אינו חוקי"
 
@@ -2336,6 +2357,14 @@ msgstr "(חלק מהאפשריות יכולים להיות לא זמינים כ�
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "יוצר חדש"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "מינים נכחדים"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "מאפשר למינים לא לפתח מוטציות (אם לא ניתן למצוא מוטציות טובות)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -5036,6 +5065,9 @@ msgstr "גוש ברזל קטן"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "גוש ברזל קטן"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -8006,9 +8038,6 @@ msgstr "זום החוצה"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "מאפשר למינים לא לנדוד (אם לא נמצא מקום טוב לנדוד לו)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "מאפשר למינים לא לפתח מוטציות (אם לא ניתן למצוא מוטציות טובות)"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "הסיכוי לכל אזור אם מעט מינים (מגוון ביולוגי נמוך) ליצור מינים חדשים"
 
@@ -8092,9 +8121,6 @@ msgstr "זום החוצה"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "כלל האוכלוסיה:"
 
 #, fuzzy
 #~ msgid "QUESTION"

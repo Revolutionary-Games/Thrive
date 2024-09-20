@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-17 15:30+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -304,7 +304,18 @@ msgstr "Auto-Evo felfedező eszköz"
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo futtatása sikertelen"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Auto-Evo eredmények:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Auto-Evo eredmények:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Auto-Evo eredmények:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2202,6 +2213,10 @@ msgstr ""
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Teljes populáció:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[u]{0}[/u] populációjának egy része ide innen: {2}, ide: {1} vándorolt"
 
@@ -2316,6 +2331,12 @@ msgstr "Jégdarab"
 msgid "ICESHELF"
 msgstr "Selfjég"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2335,6 +2356,14 @@ msgstr "(egyes opciók lehet, hogy elérhetetlenek lesznek a többi fázis elér
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Új létrehozása"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Kihalt fajok"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált megfelelő mutációt)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -5078,6 +5107,9 @@ msgstr "Kis vasdarab"
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Kis vasdarab"
+
+msgid "SNOWFLAKE"
+msgstr ""
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -8030,9 +8062,6 @@ msgstr "Távolodás"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Fajok migrációkihagyásának engedélyezése (ha a rendszer nem talált jó vándorlási utat)"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Fajok mutációkihagyásának engedélyezése (ha a rendszer nem talált megfelelő mutációt)"
-
 #, fuzzy
 #~ msgid "MAXIMUM_SPECIES_IN_PATCH"
 #~ msgstr "kihalt a bolygón"
@@ -8078,9 +8107,6 @@ msgstr "Távolodás"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Teljes populáció:"
 
 #, fuzzy
 #~ msgid "QUESTION"

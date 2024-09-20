@@ -2074,7 +2074,7 @@
               "IsParticles": true
             }
           ],
-          "Density": 0.00005,
+          "Density": 0.00003,
           "Dissolves": false,
           "Radius": 2,
           "ChunkScale": 1,
@@ -2084,6 +2084,104 @@
           "DeleteOnTouch": true,
           "Compounds": {},
           "DamageType": "toxin"
+        },
+        "iceShard": {
+          "Name": "ICESHARD",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/Iceshard1.tscn",
+              "ConvexShapePath": "res://assets/models/Iceshard1.shape"
+            }
+          ],
+          "Density": 0.00006,
+          "Dissolves": true,
+          "Radius": 1,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 500,
+          "Damages": 10,
+          "DeleteOnTouch": true,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceChunkSmall": {
+          "Name": "ICE_CHUNK_SMALL",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSmall1.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkSmall2.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSmall2.shape",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00008,
+          "Dissolves": false,
+          "Radius": 2,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1000,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceChunkBig": {
+          "Name": "ICE_CHUNK_BIG",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge1.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge1.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge2.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge2.shape",
+              "MissingDefaultShaderSupport": true
+            },
+            {
+              "ScenePath": "res://assets/models/IceChunkLarge3.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkLarge3.shape",
+              "MissingDefaultShaderSupport": true
+            }
+          ],
+          "Density": 0.00003,
+          "Dissolves": false,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1200,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {},
+          "DamageType": "ice"
+        },
+        "iceSnowflake": {
+          "Name": "SNOWFLAKE",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IceChunkSnowflake.tscn",
+              "ConvexShapePath": "res://assets/models/IceChunkSnowflake.shape"
+            }
+          ],
+          "Density": 0.000001,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 1500,
+          "VentAmount": 0.01,
+          "Damages": 30,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 0.6
+            }
+          },
+          "DamageType": "ice"
         },
         "ironSmallChunk": {
           "Name": "SMALL_IRON_CHUNK",
@@ -2105,7 +2203,7 @@
               "ConvexShapePath": "res://assets/models/Iron4.shape"
             }
           ],
-          "Density": 0.0001,
+          "Density": 0.00007,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
@@ -2121,26 +2219,6 @@
           },
           "DissolverEnzyme": "rusticyanin"
         },
-        "iceShard": {
-          "Name": "ICESHARD",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/Iceshard1.tscn",
-              "ConvexShapePath": "res://assets/models/Iceshard1.shape",
-              "MissingDefaultShaderSupport": true
-            }
-          ],
-          "Density": 0.0001,
-          "Dissolves": false,
-          "Radius": 1,
-          "ChunkScale": 1,
-          "PhysicsDensity": 4000,
-          "Size": 1000,
-          "Damages": 30,
-          "DeleteOnTouch": false,
-          "Compounds": {},
-          "DamageType": "ice"
-        },
         "ironBigChunk": {
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
@@ -2153,7 +2231,7 @@
               "ConvexShapePath": "res://assets/models/IronRockLarge2.shape"
             }
           ],
-          "Density": 0.00002,
+          "Density": 0.000015,
           "Dissolves": true,
           "Radius": 10,
           "ChunkScale": 1,
