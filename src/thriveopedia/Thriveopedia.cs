@@ -626,6 +626,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
             if (visible && page.Key is ThriveopediaStagePage)
             {
+                // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
                 visible = false;
 
                 if (!stageDropdown.Visible)
