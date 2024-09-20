@@ -29,7 +29,7 @@ public partial class PhotographablePreview : Control
     [Export]
     private TextureRect textureRect = null!;
 
-    private Texture2D loadingTexture = null!;
+    private Texture2D? loadingTexture;
 
     // TODO: conclude if we should dispose this or if caching might in the future share these
     private Image? finishedImage;
@@ -45,10 +45,11 @@ public partial class PhotographablePreview : Control
     {
         base._Ready();
 
-        loadingTexture = textureRect.Texture;
+        InitLoadingTexture();
 
         // This is to prevent the loading texture from shown before the first photograph is added.
-        textureRect.Texture = null;
+        if (task == null)
+            textureRect.Texture = null;
     }
 
     public override void _Process(double delta)
@@ -84,6 +85,9 @@ public partial class PhotographablePreview : Control
 
     protected void UpdatePreview()
     {
+        // Make sure calling this before _Ready (for example when setting up before adding to the scene tree) works
+        InitLoadingTexture();
+
         textureRect.Texture = loadingTexture;
         task = SetupImageTask();
 
@@ -111,5 +115,10 @@ public partial class PhotographablePreview : Control
     protected virtual ImageTask? SetupImageTask()
     {
         throw new GodotAbstractMethodNotOverriddenException();
+    }
+
+    private void InitLoadingTexture()
+    {
+        loadingTexture ??= textureRect.Texture;
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-18 08:49+0300\n"
+"POT-Creation-Date: 2024-09-19 11:13+0300\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -300,7 +300,18 @@ msgstr "Інструменти дослідження Авто-ево"
 msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Результати Авто-ево:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Результати Авто-ево:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Результати Авто-ево:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -2095,6 +2106,10 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Загальна популяція:"
+
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "Частина популяції [b][u]{0}[/u][/b] мігрувала до {1} з {2}"
 
@@ -2226,6 +2241,14 @@ msgstr "(деякі функції можуть бути недоступні к
 #, fuzzy
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Створити новий"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "Вимерлі види"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Дозволити виду не мутувати"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Індустріальна стадія"
@@ -7765,9 +7788,6 @@ msgstr "Віддалитись"
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Дозволити виду не мігрувати"
 
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Дозволити виду не мутувати"
-
 #~ msgid "BIODIVERSITY_ATTEMPT_FILL_CHANCE"
 #~ msgstr "Спроби біорізноманіття досягати достатньої кількості змін"
 
@@ -7851,9 +7871,6 @@ msgstr "Віддалитись"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16х"
-
-#~ msgid "TOTAL_POPULATION_COLON"
-#~ msgstr "Загальна популяція:"
 
 #, fuzzy
 #~ msgid "QUESTION"
