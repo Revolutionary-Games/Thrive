@@ -6,18 +6,18 @@
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_s44il"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_5gxef"]
 
-[node name="MicrobeBenchmark" type="Node"]
+[node name="MicrobeBenchmark" type="Node" node_paths=PackedStringArray("microbesCountLabel", "worldRoot", "dynamicRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
 script = ExtResource("2")
-GUIContainerPath = NodePath("GUIContainer")
-FPSLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/FPS")
-PhaseLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Phase")
-MicrobesCountLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Microbes")
-BenchmarkResultsTextPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/Results")
-BenchmarkFinishedTextPath = NodePath("GUIContainer/VBoxContainer/FinishedText")
-CopyResultsButtonPath = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
-WorldRootPath = NodePath("WorldRoot")
-DynamicRootPath = NodePath("WorldRoot/DynamicRoot")
-BenchmarkCameraPath = NodePath("WorldRoot/MicrobeCamera")
+microbesCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Microbes")
+worldRoot = NodePath("WorldRoot")
+dynamicRoot = NodePath("WorldRoot/DynamicRoot")
+benchmarkCamera = NodePath("WorldRoot/MicrobeCamera")
+guiContainer = NodePath("GUIContainer")
+fpsLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/FPS")
+phaseLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Phase")
+benchmarkResultText = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/Results")
+benchmarkFinishedText = NodePath("GUIContainer/VBoxContainer/FinishedText")
+copyResultsButton = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
 
 [node name="WorldRoot" type="Node3D" parent="."]
 
@@ -31,10 +31,10 @@ MinCameraHeight = 80.0
 transform = Transform3D(0.613214, 0.692812, -0.379447, -0.74027, 0.67164, 0.0299817, 0.275624, 0.262509, 0.924727, 0, 0, 0)
 
 [node name="GUIContainer" parent="." instance=ExtResource("4")]
-layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -94.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
