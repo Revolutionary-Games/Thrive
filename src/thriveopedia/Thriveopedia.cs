@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -622,7 +623,8 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
         foreach (var page in allPages)
         {
-            var visible = page.Key.TranslatedPageName.ToLower().Contains(newText.ToLower());
+            var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
+                .Contains(newText.ToLower(CultureInfo.CurrentCulture));
 
             if (visible && page.Key is ThriveopediaStagePage)
             {
@@ -651,11 +653,7 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     {
         var parent = item.GetParent();
 
-        if (parent == null)
-        {
-            return;
-        }
-        else
+        if (parent != null)
         {
             parent.Visible = visible;
             SetParentPagesVisibility(parent, visible);
