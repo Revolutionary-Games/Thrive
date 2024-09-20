@@ -621,10 +621,12 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
     {
         stageDropdown.Visible = false;
 
+        var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
+
         foreach (var page in allPages)
         {
             var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
-                .Contains(newText.ToLower(CultureInfo.CurrentCulture));
+                .Contains(newTextLowercase);
 
             if (visible && page.Key is ThriveopediaStagePage)
             {
