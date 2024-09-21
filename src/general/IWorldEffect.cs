@@ -51,7 +51,6 @@ public class GlucoseReductionEffect : IWorldEffect
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
-
             var totalAdded = new Dictionary<Compound, float>();
 
             var patch = patchKeyValue.Value;
@@ -125,7 +124,8 @@ public class GlucoseReductionEffect : IWorldEffect
                             // Outputs
                             foreach (var output in bioProcess.Outputs)
                             {
-                                if (output.Key.IsAgent || output.Key.ID == Compound.ATP || output.Key.ID == Compound.Temperature)
+                                if (output.Key.IsAgent || output.Key.ID == Compound.ATP
+                                    || output.Key.ID == Compound.Temperature)
                                     continue;
 
                                 float add;
@@ -184,16 +184,13 @@ public class GlucoseReductionEffect : IWorldEffect
 
     private void HandlePatchCompoundDiffusion()
     {
-        var temperature = SimulationParameters.Instance.GetCompound("temperature");
-        var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-
         foreach (var patch in targetWorld.Map.Patches)
         {
             foreach (var adjacent in patch.Value.Adjacent)
             {
                 foreach (var compound in patch.Value.Biome.Compounds)
                 {
-                    if (compound.Key == sunlight || compound.Key == temperature)
+                    if (compound.Key == Compound.Sunlight || compound.Key == Compound.Temperature)
                         return;
 
                     var newConditions = compound.Value;
