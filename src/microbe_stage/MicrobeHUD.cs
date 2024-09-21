@@ -27,7 +27,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private const string AGENTS_CATEGORY = "agents";
 
     private readonly Dictionary<(string Category, LocalizedString Name), int> hoveredEntities = new();
-    private readonly Dictionary<Compound, InspectedEntityLabel> hoveredCompoundControls = new();
+    private readonly Dictionary<CompoundDefinition, InspectedEntityLabel> hoveredCompoundControls = new();
 
     [Export]
     private ActionButton bindingModeHotkey = null!;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Help texts from json.

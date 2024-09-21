@@ -17,7 +17,8 @@ public partial class CompoundAmount : HBoxContainer
     private Label? extraDescriptionLabel;
 #pragma warning restore CA2213
 
-    private Compound? compound;
+    private Compound compound = Compound.Invalid;
+    private CompoundDefinition? compoundDefinition;
 
     private int decimals = 3;
     private float amount = float.NegativeInfinity;
@@ -40,13 +41,14 @@ public partial class CompoundAmount : HBoxContainer
     {
         set
         {
-            if (value == null)
+            if (value == Compound.Invalid)
                 throw new ArgumentNullException();
 
             if (compound == value)
                 return;
 
             compound = value;
+            compoundDefinition = SimulationParameters.GetCompound(compound);
 
             if (icon != null)
             {
@@ -177,7 +179,7 @@ public partial class CompoundAmount : HBoxContainer
     {
         base._Ready();
 
-        if (compound == null)
+        if (compound == Compound.Invalid || compoundDefinition == null)
             throw new InvalidOperationException($"Need to set {nameof(Compound)}");
 
         UpdateLabel();
@@ -235,9 +237,10 @@ public partial class CompoundAmount : HBoxContainer
         }
 
         string numberPart;
-        if (!string.IsNullOrEmpty(compound!.Unit))
+        if (!string.IsNullOrEmpty(compoundDefinition!.Unit))
         {
-            numberPart = Localization.Translate("VALUE_WITH_UNIT").FormatSafe(Math.Round(amount), compound.Unit);
+            numberPart = Localization.Translate("VALUE_WITH_UNIT")
+                .FormatSafe(Math.Round(amount), compoundDefinition.Unit);
         }
         else if (UsePercentageDisplay)
         {
@@ -350,7 +353,7 @@ public partial class CompoundAmount : HBoxContainer
     {
         icon?.Free();
 
-        icon = GUICommon.Instance.CreateCompoundIcon(compound!.InternalName);
+        icon = GUICommon.Instance.CreateCompoundIcon(compoundDefinition!.InternalName);
         icon.SizeFlagsVertical = SizeFlags.ShrinkCenter;
         AddChild(icon);
 
@@ -361,7 +364,7 @@ public partial class CompoundAmount : HBoxContainer
     private void UpdateTooltip()
     {
         if (icon != null)
-            icon.TooltipText = compound!.Name;
+            icon.TooltipText = compoundDefinition!.Name;
     }
 
     private void OnTranslationsChanged()

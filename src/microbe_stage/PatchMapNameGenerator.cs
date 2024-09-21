@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 using Xoshiro.PRNG32;
 
 public class PatchMapNameGenerator : IRegistryType

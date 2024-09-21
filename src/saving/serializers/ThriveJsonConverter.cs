@@ -47,6 +47,7 @@ public class ThriveJsonConverter : IDisposable
             new NodePathConverter(),
 
             new CompoundCloudPlaneConverter(context),
+            new CompoundConverter(),
 
             new CallbackConverter(),
 

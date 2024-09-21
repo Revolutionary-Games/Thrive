@@ -38,16 +38,12 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     private readonly IWorldSimulation worldSimulation;
     private readonly CompoundCloudSystem clouds;
 
-    private readonly Compound mucilage;
-
     public MicrobeEmissionSystem(IWorldSimulation worldSimulation, CompoundCloudSystem cloudSystem, World world,
         IParallelRunner parallelRunner) :
         base(world, parallelRunner)
     {
         this.worldSimulation = worldSimulation;
         clouds = cloudSystem;
-
-        mucilage = SimulationParameters.Instance.GetCompound("mucilage");
     }
 
     public static float ToxinAmountMultiplierFromToxicity(float toxicity, ToxinType type)
@@ -107,17 +103,17 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None;
 
         // Fire queued agents
-        if (control.QueuedToxinToEmit != null)
+        if (control.QueuedToxinToEmit != Compound.Invalid)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
                 control.QueuedToxinToEmit, compounds, engulfed, false);
-            control.QueuedToxinToEmit = null;
+            control.QueuedToxinToEmit = Compound.Invalid;
         }
 
         if (control.QueuedSiderophoreToEmit)
         {
             EmitProjectile(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer, ref position,
-                null, null, engulfed, true);
+                Compound.Invalid, null, engulfed, true);
             control.QueuedSiderophoreToEmit = false;
         }
 
@@ -152,7 +148,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     /// </summary>
     private void EmitProjectile(in Entity entity, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref CellProperties cellProperties, ref SoundEffectPlayer soundEffectPlayer, ref WorldPosition position,
-        Compound? agentType, CompoundBag? compounds, bool engulfed, bool siderophore)
+        Compound agentType, CompoundBag? compounds, bool engulfed, bool siderophore)
     {
         if (engulfed)
             return;
@@ -199,7 +195,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             if (organelles.AgentVacuoleCount < 1)
                 return;
 
-            if (compounds == null || agentType == null)
+            if (compounds == null || agentType == Compound.Invalid)
                 return;
 
             float amountAvailable = compounds.GetCompoundAmount(agentType);
@@ -311,7 +307,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         // Start a cooldown timer if we're out of mucilage to prevent visible trails or puffs when empty.
         // Scaling by slime jet count ensures we aren't producing mucilage fast enough to beat this check.
-        if (compounds.GetCompoundAmount(mucilage) < Constants.MUCILAGE_MIN_TO_VENT * jetCount)
+        if (compounds.GetCompoundAmount(Compound.Mucilage) < Constants.MUCILAGE_MIN_TO_VENT * jetCount)
             control.SlimeSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
 
         // Don't emit slime when engulfed
@@ -333,12 +329,12 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
                 // Secrete the slime
                 float slimeToSecrete = Math.Min(Constants.COMPOUNDS_TO_VENT_PER_SECOND * delta,
-                    compounds.GetCompoundAmount(mucilage));
+                    compounds.GetCompoundAmount(Compound.Mucilage));
 
                 var direction = jet.GetDirection();
 
                 // Eject mucilage at the maximum rate in the opposite direction to this organelle's rotation
-                slimeToSecrete = cellProperties.EjectCompound(ref worldPosition, compounds, clouds, mucilage,
+                slimeToSecrete = cellProperties.EjectCompound(ref worldPosition, compounds, clouds, Compound.Mucilage,
                     slimeToSecrete, -direction, 2);
 
                 // Queue movement force to be used by the movement system based on the amount of slime ejected

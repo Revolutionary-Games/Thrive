@@ -38,7 +38,7 @@ public class GlucoseReductionEffect : IWorldEffect
         ApplyCompoundsAddition();
         HandlePatchCompoundDiffusion();
     }
-
+    
     private void ApplyCompoundsAddition()
     {
         var atp = SimulationParameters.Instance.GetCompound("atp");
@@ -51,6 +51,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
+
             var totalAdded = new Dictionary<Compound, float>();
 
             var patch = patchKeyValue.Value;
@@ -61,7 +62,6 @@ public class GlucoseReductionEffect : IWorldEffect
                 {
                     var add = -species.Value * modifier * reproductionCompound.Value *
                         patch.Biome.AverageCompounds[reproductionCompound.Key].Density;
-
                     if (totalAdded.ContainsKey(reproductionCompound.Key))
                     {
                         totalAdded[reproductionCompound.Key] += add;

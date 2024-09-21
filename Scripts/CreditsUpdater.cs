@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
@@ -98,10 +99,10 @@ public static class CreditsUpdater
 
         var translators = ProcessTranslators(rawTranslators);
 
-        var developersTask = FetchWikiDevelopers(cancellationToken);
-        var donationsTask = FetchWikiDonations(cancellationToken);
+        using var client = HtmlReader.CreateClient();
 
-        var developers = await developersTask;
+        var developers = await FetchWikiDevelopers(client, cancellationToken);
+        var donationsTask = FetchWikiDonations(client, cancellationToken);
         var donations = PruneOldDonations(await donationsTask);
 
         var credits = new Credits(developers, donations, translators, patrons);
@@ -177,9 +178,10 @@ public static class CreditsUpdater
         return people.OrderByDescending(p => p.Value).ThenBy(p => p.Key).Select(p => p.Key).ToList();
     }
 
-    private static async Task<Credits.GameDevelopers> FetchWikiDevelopers(CancellationToken cancellationToken)
+    private static async Task<Credits.GameDevelopers> FetchWikiDevelopers(HttpClient client,
+        CancellationToken cancellationToken)
     {
-        var document = await HtmlReader.RetrieveHtmlDocument(DEVELOPERS_PAGE, cancellationToken);
+        var document = await HtmlReader.RetrieveHtmlDocument(client, DEVELOPERS_PAGE, cancellationToken);
 
         var result = new Credits.GameDevelopers();
 
@@ -242,10 +244,10 @@ public static class CreditsUpdater
     ///   Fetches the donations from the wiki page
     /// </summary>
     /// <returns>A map of year -> (month -> [list of people])</returns>
-    private static async Task<Dictionary<int, Dictionary<string, List<string>>>> FetchWikiDonations(
+    private static async Task<Dictionary<int, Dictionary<string, List<string>>>> FetchWikiDonations(HttpClient client,
         CancellationToken cancellationToken)
     {
-        var document = await HtmlReader.RetrieveHtmlDocument(DONATIONS_PAGE, cancellationToken);
+        var document = await HtmlReader.RetrieveHtmlDocument(client, DONATIONS_PAGE, cancellationToken);
 
         var result = new Dictionary<int, Dictionary<string, List<string>>>();
 

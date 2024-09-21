@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition for a difficulty preset

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-09 14:59+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2023-03-10 06:53+0000\n"
 "Last-Translator: Jonas Lindberg <eksno@pm.me>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -97,8 +97,16 @@ msgstr "Avansert"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Åpne visning for avansert oppsett"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob Nitrogenfiksering"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "AGENTS"
 msgstr "Agenter"
@@ -292,7 +300,16 @@ msgstr ""
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr ""
+
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr ""
+
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -328,6 +345,10 @@ msgstr ""
 
 msgid "BACKSPACE"
 msgstr ""
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Mikrobestadiet"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
@@ -581,6 +602,10 @@ msgstr ""
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "AI mutasjonshastighet"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr ""
@@ -1523,7 +1548,14 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
+#, fuzzy
+msgid "EDITING_TITLE"
+msgstr "\"{0}\" - {1}"
+
 msgid "EDITOR"
+msgstr ""
+
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr ""
 
 msgid "EDITOR_BUTTON_TOOLTIP"
@@ -1642,6 +1674,10 @@ msgstr ""
 
 msgid "ENVIRONMENT"
 msgstr ""
+
+#, fuzzy
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -1976,6 +2012,9 @@ msgstr ""
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
+msgid "GAME_SYSTEMS_TITLE"
+msgstr ""
+
 #, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
@@ -1998,6 +2037,10 @@ msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
@@ -2107,6 +2150,12 @@ msgstr ""
 msgid "ICESHELF"
 msgstr ""
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2125,6 +2174,13 @@ msgstr ""
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr ""
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "Tillat arter å ikke mutere (hvis ingen god mutasjon er funnet)"
+
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -2137,7 +2193,14 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Mikrobe Redigerer"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2146,7 +2209,14 @@ msgstr ""
 msgid "INFO_BOX_MASS"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Mikrobestadiet"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
+msgstr ""
+
+msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr ""
 
 msgid "INFO_BOX_PROCESSES"
@@ -2786,6 +2856,9 @@ msgid "MAX_VISIBLE_DATASET_WARNING"
 msgstr ""
 
 msgid "MAY"
+msgstr ""
+
+msgid "MECHANICS_BUTTON"
 msgstr ""
 
 msgid "MEDIANEXT"
@@ -3620,6 +3693,10 @@ msgstr ""
 msgid "ORGANELLES"
 msgstr ""
 
+#, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Flercellestadiet"
+
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -3683,6 +3760,9 @@ msgid "OTHER_COMPOUNDS"
 msgstr ""
 
 msgid "OUR_WIKI"
+msgstr ""
+
+msgid "OUTDATED_NOTICE"
 msgstr ""
 
 msgid "OUTREACH_TEAM"
@@ -4481,6 +4561,9 @@ msgstr ""
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
+msgid "SNOWFLAKE"
+msgstr ""
+
 #, fuzzy
 msgid "SOCIETY_STAGE"
 msgstr "Mikrobestadiet"
@@ -4753,6 +4836,9 @@ msgstr ""
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
+msgid "SURVIVAL_TITLE"
+msgstr ""
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
@@ -4876,6 +4962,13 @@ msgstr ""
 
 msgid "THE_DISTURBANCE"
 msgstr ""
+
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr ""
+
+#, fuzzy
+msgid "THE_WORLD_TITLE"
+msgstr "\"{0}\" - {1}"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
@@ -5018,6 +5111,9 @@ msgid "TOOLS"
 msgstr ""
 
 msgid "TOOL_HAND_AXE"
+msgstr ""
+
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -5493,17 +5589,118 @@ msgstr ""
 msgid "WIKI"
 msgstr ""
 
+msgid "WIKI_2D"
+msgstr ""
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+msgid "WIKI_3D"
+msgstr ""
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr ""
+
+msgid "WIKI_8_BRACKET_16"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "AI mutasjonshastighet"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "AI mutasjonshastighet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Mikrobestadiet"
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_AXON_PROCESSES"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_AXON_REQUIREMENTS"
 msgstr ""
@@ -5511,23 +5708,30 @@ msgstr ""
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_AXON_UPGRADES"
+msgstr ""
+
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_INTRO"
-msgstr ""
+msgstr "(hastighet som AI muterer med)"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_PROCESSES"
-msgstr ""
+msgstr "(hastighet som AI muterer med)"
 
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
@@ -5535,8 +5739,9 @@ msgstr ""
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
-msgstr ""
+msgstr "(hastighet som AI muterer med)"
 
 msgid "WIKI_BINDING_AGENT_UPGRADES"
 msgstr ""
@@ -5544,11 +5749,13 @@ msgstr ""
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr ""
@@ -5565,14 +5772,19 @@ msgstr ""
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr ""
 
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr ""
+
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_CHEMOPLAST_PROCESSES"
 msgstr ""
@@ -5583,8 +5795,9 @@ msgstr ""
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_CHEMOPLAST_UPGRADES"
 msgstr ""
@@ -5592,11 +5805,13 @@ msgstr ""
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
 msgstr ""
@@ -5607,8 +5822,9 @@ msgstr ""
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
 msgstr ""
@@ -5616,11 +5832,13 @@ msgstr ""
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_INTRO"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_PROCESSES"
 msgstr ""
@@ -5640,11 +5858,13 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_CHLOROPLAST_PROCESSES"
 msgstr ""
@@ -5655,23 +5875,31 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr ""
 
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr ""
@@ -5679,20 +5907,51 @@ msgstr ""
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
+msgstr "AI mutasjonshastighet"
+
+#, fuzzy
+msgid "WIKI_CILIA_UPGRADES"
+msgstr "AI mutasjonshastighet"
+
+msgid "WIKI_COMPOUNDS_BUTTON"
 msgstr ""
 
-msgid "WIKI_CILIA_UPGRADES"
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "3D Bevegelse"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr ""
@@ -5703,23 +5962,63 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "3D Bevegelse"
+
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr ""
+
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr ""
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr "Anaerob Nitrogenfiksering"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
 msgstr ""
@@ -5727,41 +6026,168 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Flercellestadiet"
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Konseptkunst"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Konseptkunst"
+
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "3D Bevegelse"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "3D Redigerer"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_HEADING_FEATURES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "Konseptkunst"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Konseptkunst"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
+msgstr "3D Redigerer"
+
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
 
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Konseptkunst"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "3D Redigerer"
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Konseptkunst"
 
+#, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "Konseptkunst"
+
+msgid "WIKI_HEADING_TRANSITIONS"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "3D Redigerer"
+
+msgid "WIKI_HEADING_UI"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "(hastighet som AI muterer med)"
+
+msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr ""
@@ -5772,20 +6198,29 @@ msgstr ""
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+msgid "WIKI_MECHANICS"
+msgstr ""
+
+msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
@@ -5802,14 +6237,40 @@ msgstr ""
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr "Mikrobestadiet"
+
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
@@ -5820,20 +6281,51 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Flercellestadiet"
+
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "(hastighet som AI muterer med)"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr ""
@@ -5844,69 +6336,97 @@ msgstr ""
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "(hastighet som AI muterer med)"
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "3D Redigerer"
+
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "Anaerob Nitrogenfiksering"
+
+msgid "WIKI_NO"
 msgstr ""
 
-msgid "WIKI_NITROGENASE_UPGRADES"
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr ""
@@ -5917,8 +6437,9 @@ msgstr ""
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
@@ -5926,17 +6447,21 @@ msgstr ""
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_EFFECTS"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
@@ -5944,108 +6469,207 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "AI mutasjonshastighet"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
+#, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
-msgstr ""
+msgstr "ATP Produksjon"
 
+#, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
+#, fuzzy
 msgid "WIKI_PAGE_CHLOROPLAST"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "AI mutasjonshastighet"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "ATP Produksjon"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
+msgstr "AI mutasjonshastighet"
+
+msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
+#, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Flercellestadiet"
+
+#, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 #, fuzzy
 msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
 msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_PAGE_OXYTOXISOME"
-msgstr ""
+msgstr "ATP Produksjon"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "ATP Produksjon"
 
+#, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
-msgstr ""
+msgstr "ATP Produksjon"
 
+#, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "ATP Produksjon"
+
+#, fuzzy
 msgid "WIKI_PAGE_RUSTICYANIN"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_PAGE_SIGNALING_AGENT"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_PAGE_THERMOPLAST"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
-msgstr ""
+msgstr "Aerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_PAGE_VACUOLE"
-msgstr ""
+msgstr "AI mutasjonshastighet"
 
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
@@ -6062,14 +6686,20 @@ msgstr ""
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Generelt"
+
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr ""
@@ -6080,11 +6710,27 @@ msgstr ""
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
+
+msgid "WIKI_PULLING_CILIA"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr "ATP PRODUKSJON FOR LAV!"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6092,38 +6738,48 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_EFFECTS"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_INTRO"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_UPGRADES"
-msgstr ""
+msgstr "ATP PRODUKSJON FOR LAV!"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_INTRO"
-msgstr ""
+msgstr "(hastighet som AI muterer med)"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr ""
@@ -6134,20 +6790,24 @@ msgstr ""
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_EFFECTS"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr ""
@@ -6158,20 +6818,79 @@ msgstr ""
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SLIME_JET_UPGRADES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
-msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "AI mutasjonshastighet"
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
@@ -6191,11 +6910,13 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
@@ -6212,14 +6933,29 @@ msgstr ""
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr ""
 
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr ""
+
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
@@ -6239,11 +6975,13 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr ""
@@ -6254,23 +6992,28 @@ msgstr ""
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
-msgstr ""
+msgstr "Mikrobestadiet"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
@@ -6278,11 +7021,16 @@ msgstr ""
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
-msgstr ""
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "AI mutasjonshastighet"
 
 msgid "WILL_YOU_THRIVE"
 msgstr ""
@@ -6353,6 +7101,9 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr ""
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
@@ -6368,11 +7119,20 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "AI mutasjonshastighet"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Mikrobe Redigerer"
+
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Tillat arter å ikke migrere (hvis ingen god migrasjon er funnet)"
-
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "Tillat arter å ikke mutere (hvis ingen god mutasjon er funnet)"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

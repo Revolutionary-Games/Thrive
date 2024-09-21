@@ -172,12 +172,12 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     {
         // TODO: reproduction process for multicellular
         gatheredCompounds.Clear();
-        gatheredCompounds[ammonia] = 1;
-        gatheredCompounds[phosphates] = 1;
+        gatheredCompounds[Compound.Ammonia] = 1;
+        gatheredCompounds[Compound.Phosphates] = 1;
 
         totalNeededCompounds.Clear();
-        totalNeededCompounds[ammonia] = 1;
-        totalNeededCompounds[phosphates] = 1;
+        totalNeededCompounds[Compound.Ammonia] = 1;
+        totalNeededCompounds[Compound.Phosphates] = 1;
     }
 
     protected override ICompoundStorage GetPlayerStorage()

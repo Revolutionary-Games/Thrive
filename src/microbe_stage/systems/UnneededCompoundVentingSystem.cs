@@ -25,7 +25,7 @@ using World = DefaultEcs.World;
 public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
 {
     private readonly CompoundCloudSystem compoundCloudSystem;
-    private readonly IReadOnlyList<Compound> ventableCompounds;
+    private readonly IReadOnlyList<CompoundDefinition> ventableCompounds;
 
     public UnneededCompoundVentingSystem(CompoundCloudSystem compoundCloudSystem, World world,
         IParallelRunner parallelRunner) : base(world, parallelRunner, Constants.SYSTEM_HIGHER_ENTITIES_PER_THREAD)
@@ -59,7 +59,7 @@ public sealed class UnneededCompoundVentingSystem : AEntitySetSystem<float>
         // Manual loop here to avoid enumerator allocations
         for (int i = 0; i < count; ++i)
         {
-            var type = ventableCompounds[i];
+            var type = ventableCompounds[i].ID;
 
             var capacity = compounds.GetCapacityForCompound(type);
 

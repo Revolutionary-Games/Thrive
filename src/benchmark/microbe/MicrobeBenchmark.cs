@@ -124,10 +124,6 @@ public partial class MicrobeBenchmark : Node
     /// </summary>
     private IMicrobeSpawnEnvironment dummyEnvironment = null!;
 
-    private Compound glucose = null!;
-    private Compound ammonia = null!;
-    private Compound phosphates = null!;
-
     private GameWorld? world;
     private GameProperties? gameProperties;
 
@@ -183,12 +179,6 @@ public partial class MicrobeBenchmark : Node
         guiContainer.Visible = true;
         benchmarkFinishedText.Visible = false;
         copyResultsButton.Visible = false;
-
-        var simulationParameters = SimulationParameters.Instance;
-
-        glucose = simulationParameters.GetCompound("glucose");
-        ammonia = simulationParameters.GetCompound("ammonia");
-        phosphates = simulationParameters.GetCompound("phosphates");
 
         dummyEnvironment = new DummyMicrobeSpawnEnvironment();
 
@@ -537,10 +527,11 @@ public partial class MicrobeBenchmark : Node
         ++spawnCounter;
 
         // Spawning also gives a glucose cloud to ensure the spawned microbe doesn't instantly just die
-        cloudSystem!.AddCloud(glucose, GLUCOSE_CLOUD_AMOUNT, position);
+        cloudSystem!.AddCloud(Compound.Glucose, GLUCOSE_CLOUD_AMOUNT, position);
 
         // And a bit of phosphate or ammonia
-        cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? phosphates : ammonia, AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
+        cloudSystem!.AddCloud(random.Next(0, 2) == 1 ? Compound.Phosphates : Compound.Ammonia,
+            AMMONIA_PHOSPHATE_CLOUD_AMOUNT, position);
     }
 
     private void CheckSpawnedMicrobes()

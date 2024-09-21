@@ -32,7 +32,7 @@ public class RunOnAxisGroupAttribute : InputAttribute
     private object[]? callParameters;
 
     /// <summary>
-    ///   Should the method be invoked when all of the inputs are in their idle states
+    ///   Should the method be invoked when all the inputs are in their idle states
     /// </summary>
     public bool InvokeAlsoWithNoInput { get; set; }
 

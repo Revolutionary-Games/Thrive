@@ -5,6 +5,7 @@ using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   An archetype of an unit the player has. These define the fundamental thing that something is but the plan is to

@@ -15,4 +15,23 @@ public partial class ThriveopediaWikiRootPage : ThriveopediaPage, IThriveopediaP
     {
         ThriveopediaManager.OpenPage("OrganellesRoot");
     }
+
+    public void OnStagesPressed()
+    {
+        // TODO: fix this
+        // ThriveopediaManager.OpenPage("StagesRoot");
+
+        // For now opens the microbe stage page as a workaround
+        ThriveopediaManager.OpenPage("microbe_stage");
+    }
+
+    public void OnMechanicsPressed()
+    {
+        ThriveopediaManager.OpenPage("MechanicsRoot");
+    }
+
+    public void OnDevelopmentPressed()
+    {
+        ThriveopediaManager.OpenPage("DevelopmentRoot");
+    }
 }

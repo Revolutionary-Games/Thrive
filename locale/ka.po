@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-09 14:59+0300\n"
-"PO-Revision-Date: 2024-09-08 07:30+0000\n"
-"Last-Translator: Teashrock <kajitsu22@gmail.com>\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
+"PO-Revision-Date: 2024-09-20 01:07+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.9.1\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -93,8 +93,14 @@ msgstr "დამატებით"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "დამატებითი მორგების ხედის გახსნა"
 
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "აერობული აზოტის ფიქსაცია"
+
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "აერობული აზოტის ფიქსაცია"
+
+msgid "AEROBIC_RESPIRATION"
+msgstr "აერობული სუნთქვა"
 
 msgid "AGENTS"
 msgstr "ქიმიური აგენტები"
@@ -290,7 +296,18 @@ msgstr "ავტოევოს შესწავლის ხელსაწ�
 msgid "AUTO_EVO_FAILED"
 msgstr "ავტოევოს გაშვება ჩავარდა"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "ავტოევოს შედეგები:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "ავტოევოს შედეგები:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "ავტოევოს შედეგები:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -325,6 +342,9 @@ msgstr "უკუღმა დახრილი ხაზი"
 
 msgid "BACKSPACE"
 msgstr "Backspace"
+
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "ბაქტერიული თერმოსინთეზი"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "გამოთვლა, თითქოს დღეა"
@@ -577,6 +597,9 @@ msgstr ""
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "ქემორეცეპტორი საშუალებას გაძლევთ, იპოვოთ ნაერთები კიდევ უფრო შორიდან. ჩასმის შემდეგ შეცვალეთ ნაერთის ტიპის და გიდის ხაზის ფერის შესაცვლელად."
+
+msgid "CHEMOSYNTHESIS"
+msgstr "ქემოსინთეზი"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "ქემოსინთეზის უნარის მქონე ცილები"
@@ -1509,8 +1532,14 @@ msgstr "(შემთხვევით აღმოჩენილი საი
 msgid "EDGE_PAN_SPEED"
 msgstr "ბრუნვის სიჩქარე:"
 
+msgid "EDITING_TITLE"
+msgstr "ჩასწორება"
+
 msgid "EDITOR"
 msgstr "რედაქტორი"
+
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
+msgstr "მუტაციები და რედაქტორები"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "შედით რედაქტორში და შეცვალეთ თქვენი სახეობები"
@@ -1616,6 +1645,9 @@ msgstr "ობიექტის ჭდე"
 
 msgid "ENVIRONMENT"
 msgstr "გარემო"
+
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
+msgstr "გარემოს პირობები"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr "ბუნებრივი გლუკოზის შეკავება"
@@ -1947,8 +1979,13 @@ msgstr "გალერეის დათვალიერება"
 msgid "GAME_DESIGN_TEAM"
 msgstr "თამაშის დიზაინის გუნდი"
 
+msgid "GAME_SYSTEMS_TITLE"
+msgstr "თამაშის სისტემები"
+
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
+"აჩვენებს ჯამურ წინასწარ გაანგარიშებულ ენერგიას, რომელიც თქვენმა სახეობამ ყველა ბიომაში და შედეგად მიღებულ პოპულაციაში (ფრჩხილებში).\n"
+"წინა ენერგია: {0}"
 
 msgid "GENERAL"
 msgstr "ზოგადი"
@@ -1967,6 +2004,10 @@ msgstr "GLES3"
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "გ"
+
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "პოპულაცია:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b]-ის პოპულაცის ნაწილი მიგრირებულია {1}-ზე {2}-დან"
@@ -2076,15 +2117,22 @@ msgstr "ყინულის ნამსხვრევი"
 msgid "ICESHELF"
 msgstr "შელფური მყინვარი"
 
+#, fuzzy
+msgid "ICE_CHUNK_BIG"
+msgstr "ნაგლეჯის წნევა"
+
+#, fuzzy
+msgid "ICE_CHUNK_SMALL"
+msgstr "ნაგლეჯის წნევა"
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID არაწორი რიცხვია"
 
 msgid "ID_NUMBER"
 msgstr "ID ნომერი"
 
-#, fuzzy
 msgid "IMAGE_FILE_TYPES"
-msgstr "მემბრანის ტიპები"
+msgstr "მხარდაჭერილი გამოსახულების ფაილები"
 
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr "შემდეგი ფაზის პროტოტიპების ჩასმა"
@@ -2094,6 +2142,26 @@ msgstr "(ზოგიერთი ფუნქცია, შეიძლებ�
 
 msgid "INCREASE_ITEM_SIZE"
 msgstr "ობიექტის ზომის გაზრდა"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr "გადაშენებული სახეობები"
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr ""
+"[b]ფაზა[/b]\n"
+"  მიკრობი\n"
+"[b]მემბრანის ტიპი[/b]\n"
+"  {0}\n"
+"[b]მემბრანის გამძლეობა[/b]\n"
+"  {1}\n"
+"[b]საბაზისო სიჩქარე[/b]\n"
+"  {2}\n"
+"[b]ბრუნვის საბაზისო სიჩქარე[/b]\n"
+"  {3}\n"
+"[b]ექვსკუთხედის საბაზისო ზომა[/b]\n"
+"  {4}"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "ინდუსტრიული ფაზა"
@@ -2107,8 +2175,14 @@ msgstr "უსასრულო მქ"
 msgid "INFO_BOX_COST"
 msgstr "საბაზისო ფასი (მქ)"
 
+msgid "INFO_BOX_EDITORS"
+msgstr "რედაქტორები"
+
 msgid "INFO_BOX_ENZYMES"
 msgstr "ფერმენტები"
+
+msgid "INFO_BOX_GAMEPLAY_TYPE"
+msgstr "თამაშის მიმდინარეობის ტიპი"
 
 msgid "INFO_BOX_INTERNAL_NAME"
 msgstr "შიდა სახელი"
@@ -2116,8 +2190,14 @@ msgstr "შიდა სახელი"
 msgid "INFO_BOX_MASS"
 msgstr "მასა"
 
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "შემდეგი ფაზა"
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr "ოსმორეგულაციის ფასი"
+
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "წინა ფაზა"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr "პროცესები"
@@ -2748,6 +2828,9 @@ msgstr "დაუშვებელია {0}-ზე მეტი მონა�
 msgid "MAY"
 msgstr "მაისი"
 
+msgid "MECHANICS_BUTTON"
+msgstr "მექანიკა"
+
 msgid "MEDIANEXT"
 msgstr "MediaNext"
 
@@ -2926,7 +3009,7 @@ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
+msgstr "იმისათვის, რომ გამრავლდეთ, თქვენი თითოეული ორგანელა ორად უნდა გაჰყოთ. ორგანელებს სჭირდებათ [thrive:compound type=\"ammonia\"][/thrive:compound], [thrive:compound type=\"phosphates\"][/thrive:compound] და დრო, რომ შუაზე გაიყონ."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
@@ -3594,6 +3677,9 @@ msgstr "თქვენი პარამეტრების შეცვლ�
 msgid "ORGANELLES"
 msgstr "ორგანელები"
 
+msgid "ORGANELLES_BUTTON"
+msgstr "ორგანელები"
+
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "განბლოკვის პირობები მოწმდება, მხოლოდ, ერთხელ თითოეული თაობისთვის, როცა რედაქტორში შედიხართ"
 
@@ -3651,12 +3737,14 @@ msgstr "ოსმორეგულაციის ფასის კოეფ�
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(მოთამაშის სახეობის ოსმორეგულაციის ფასი)"
 
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
-msgstr "ნაერთები"
+msgstr "სხვები"
 
 msgid "OUR_WIKI"
 msgstr "ჩვენი ვიკი"
+
+msgid "OUTDATED_NOTICE"
+msgstr "ეს გვერდი მოძველებულ ინფორმაციას შეიცავს. ეს ხდება ხშირად, როცა გეგმები იცვლება მას შემდეგ, რაც რამეს დაწერენ."
 
 msgid "OUTREACH_TEAM"
 msgstr "აგიტაციის გუნდი"
@@ -3812,9 +3900,8 @@ msgstr "წარმადობა"
 msgid "PERFORM_UNBINDING"
 msgstr "მიმაგრების მოხსნა"
 
-#, fuzzy
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "{0} ათასი"
+msgstr "/წმ"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/წმ"
@@ -4468,6 +4555,9 @@ msgstr "რკინის პატარა ნაჭერი"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "პატარა ფოსფატის ნაგლეჯი"
 
+msgid "SNOWFLAKE"
+msgstr ""
+
 msgid "SOCIETY_STAGE"
 msgstr "საზოგადოების ფაზა"
 
@@ -4745,6 +4835,9 @@ msgstr "მზის სინათლე"
 msgid "SUPPORTER_PATRONS"
 msgstr "მხარდამმჭერები"
 
+msgid "SURVIVAL_TITLE"
+msgstr "გადარჩენა"
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "გადართვა წინა კამერის ხედზე"
 
@@ -4870,6 +4963,12 @@ msgstr "გლუკოზის რაოდენობა წინა რა
 
 msgid "THE_DISTURBANCE"
 msgstr "უწესრიგობა"
+
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr "ბიომების რუკა"
+
+msgid "THE_WORLD_TITLE"
+msgstr "სამყარო"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr "ეს ლოკალურად დაყენებული მოდია"
@@ -5013,6 +5112,9 @@ msgstr "ხელსაწყოები"
 
 msgid "TOOL_HAND_AXE"
 msgstr "ცული"
+
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
+msgstr "არ ვაჩვენებ ყველა ბოლო ვერსიას, რადგან მათი რაოდენობა დიდია"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "მოგროვებული ენერგია:"
@@ -5504,6 +5606,84 @@ msgstr "ბორბალი ზემოთ"
 msgid "WIKI"
 msgstr "ვიკი"
 
+msgid "WIKI_2D"
+msgstr "2D"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr "2D (ადრე), 3D (გვიან)"
+
+msgid "WIKI_3D"
+msgstr "3D"
+
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr "3D, სენდბოქსი"
+
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "3D, სტრატეგია"
+
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "3D, სტრატეგია, კოსმოსი"
+
+msgid "WIKI_8_BRACKET_16"
+msgstr "8 (16)"
+
+msgid "WIKI_ASCENSION"
+msgstr "აღმავალი"
+
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr "მუშაობა აღზევებაზე ჯერ არ დაწყებულა."
+
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "სულ მალე."
+
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "უფრო ზუსტად: ეს ენდგეიმია, სადაც შეგიძლიათ, გალაქტიკა მეტაფიზიკური სხეულივით გაადიდოთ და ის ფორმა მისცეთ, რომელიც გსურთ. ეს გრძელი გზა იყო და თქვენ მას იმსახურებთ."
+
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_ASCENSION_UI"
+msgstr "სულ მალე."
+
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr "გამოღვიძების ფაზაზე მუშაობა ჯერ არ დაწყებულა."
+
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "სულ მალე."
+
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "სულ მალე."
+
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "სულ მალე."
+
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "სულ მალე."
+
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "სულ მალე."
+
 msgid "WIKI_AXON_EFFECTS"
 msgstr ""
 
@@ -5527,6 +5707,9 @@ msgstr ""
 
 msgid "WIKI_AXON_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
+
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "ბაქტერიული ქემოსინთეზი, გლიკოლიზი"
 
 msgid "WIKI_BINDING_AGENT_EFFECTS"
 msgstr ""
@@ -5575,6 +5758,9 @@ msgstr "თამაშში ხელმისაწვდომი არა�
 
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე. განხორციელებული არაა."
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+msgstr "სხეულის გეგმის რედაქტორი, უჯრედის რედაქტორი"
 
 msgid "WIKI_CHEMOPLAST_EFFECTS"
 msgstr "ეფექტების გარეშე."
@@ -5672,6 +5858,9 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "ქემატოფორის ფოტოსინთეზი, გლიკოლიზი"
+
 msgid "WIKI_CILIA_EFFECTS"
 msgstr ""
 
@@ -5694,6 +5883,30 @@ msgid "WIKI_CILIA_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CILIA_UPGRADES"
+msgstr ""
+
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "ნაერთები"
+
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "იმისათვის, რომ გაიგოთ, რა ხდება თქვენს ზურგს უკან და გაიგოთ მეტი თეორია ნაერთების შესახებ, გადადით ბმულზე [color=#3796e1][url=thriveopedia:CompoundSystemDevelopment]ნაერთების სისტემის განვითარება[/url][/color]."
+
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr ""
+
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
@@ -5720,6 +5933,36 @@ msgstr ""
 msgid "WIKI_CYTOPLASM_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_DEVELOPMENT"
+msgstr "განვითარება"
+
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "განვითარების დეტალები"
+
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "ეს გვერდებია, რომელის Thrive-ის პროგრამისტებისთვისაა და თეორიისა და განხორციელების შესახებ ინფორმაციას შეიცავს"
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr ""
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr ""
+
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr ""
+
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr ""
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -5744,14 +5987,71 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "გლიკოლიზი, ანაერობული აზოტის ფიქსაცია"
+
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "გამონაზარდები"
+
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "ნაერთების სია"
+
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "ცნების ნახატი"
+
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr "მიმდინარე განვითარება"
+
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "განვითარება"
+
+msgid "WIKI_HEADING_EDITOR"
+msgstr "რედაქტორი"
+
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "ეფექტები"
+
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "გარემოს აირები"
+
+msgid "WIKI_HEADING_FEATURES"
+msgstr "თვისებები"
+
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "ომის ბურუსი"
+
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "თამაშის სტრატეგია"
+
+msgid "WIKI_HEADING_GDD"
+msgstr "GDD"
+
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "თაობები და რედაქტორის სესიები"
+
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "მიკრობის ფაზა"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "მოდიფიკაციები"
 
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "მუტაციები და მუტაციის წერტილები"
+
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "გადახედვა"
+
+msgid "WIKI_HEADING_PATCHES"
+msgstr "პაჩები"
+
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr "ფიზიკური პირობები"
+
 msgid "WIKI_HEADING_PROCESSES"
 msgstr "პროცესები"
+
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr "რეპროდუქცია მიკრობულ ფაზაში"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "მოთხოვნები"
@@ -5762,8 +6062,44 @@ msgstr "სამეცნიერო ფონი"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "სტრატეგია"
 
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "დღეღამის ციკლი"
+
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "ბიომების რუკა"
+
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "გადასვლები"
+
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "ნაერთის ტიპები"
+
+msgid "WIKI_HEADING_UI"
+msgstr "ინტერფეისი"
+
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "გაუმჯობესებები"
+
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr "სულ მალე."
+
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr "სულ მალე."
+
+msgid "WIKI_INJECTISOME_PILUS"
+msgstr "ინჟექტორი პილუსი"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -5789,6 +6125,12 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_MECHANICS"
+msgstr "მექანიკა"
+
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr ""
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "ეფექტების გარეშე."
 
@@ -5812,6 +6154,24 @@ msgstr ""
 
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
+
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr "არსებობს ზოგიერთი ცხრილი და სხვა ნივთები, რომლებიც მიკრობული ფაზის მინაწერშია მოგროვებული"
+
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr "მიკრობის ფაზა"
+
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr ""
+
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr ""
+
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "არსებობს ცალკე თამაშის დიზაინის დოკუმენტი მიკრობული ფაზისთვის, რომელიც მეტ დეტალს შეიცავს: მიკრობული ფაზის GDD"
+
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr ""
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "ეფექტების გარეშე."
@@ -5837,6 +6197,30 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr ""
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]აღქმის ცნება[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]რედაქტორის ცნება[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]რელიეფის ფონის აცნება[/url][/color] \t\t\t[/indent]"
+
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "მრავალუჯრედიანი ბაზის განვითარების პროტოტიპის დონე დაწყებულია. ადრეული მრავალუჯრედიანობის თამაში თითქმის შეუძლებელია, როცა გვიანი მრავალუჯრედიანობას ფრო მეტი ექსპერიმენტული ფუნქცია გააჩნია."
+
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr ""
+
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "არაფერი განხილულა."
+
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
@@ -5860,6 +6244,9 @@ msgstr ""
 
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე"
+
+msgid "WIKI_NATION_EDITOR"
+msgstr "ნაციის რედაქტორი"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "ეფექტების გარეშე."
@@ -5909,6 +6296,12 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_NO"
+msgstr "არა"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr "არა, ეს ბოლო ფაზაა"
+
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
@@ -5922,7 +6315,7 @@ msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "პროცესების გარეშე."
 
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr "მოთხოვნების გარეშე."
+msgstr "მოთხოვნების გარეშე დამატებითი სივრცის გარდა, რომ ჩავეტიოთ."
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "ჯერ უცნობია"
@@ -5960,6 +6353,18 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "ოქსიტოქსინის სინთეზი, გლიკოლიზი"
+
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "აღმავალი"
+
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "გამოღვიძების ფაზა"
+
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "გააზრებული ფაზა"
+
 msgid "WIKI_PAGE_AXON"
 msgstr "აქსონი"
 
@@ -5984,20 +6389,47 @@ msgstr "ქლოროპლასტი"
 msgid "WIKI_PAGE_CILIA"
 msgstr "წამწამი"
 
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "ნაერთები"
+
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
+msgstr "ნაერთების სისტემის განვითარება"
+
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "ციტოპლაზმა"
+
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "განვითარება"
+
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "მუტაციები და რედაქტორები"
+
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "გარემოს პირობები"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "შოლტი"
 
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr "ინდუსტრიული ფაზა"
+
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "ლიზოსომა"
+
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "მექანიკა"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "მეტაბოლოზომები"
 
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "მიკრობის ფაზა"
+
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "მიტოქონდრია"
+
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "მრავალუჯრედიანი ფაზა"
 
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "მიოფიბრილი"
@@ -6023,6 +6455,9 @@ msgstr "ბურღისებრი პილუსი"
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "პროტოპლაზმა"
 
+msgid "WIKI_PAGE_REPRODUCTION"
+msgstr "რეპროდუქცია"
+
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "რუსტიციანინი"
 
@@ -6032,11 +6467,23 @@ msgstr "სიგნალის ნივთიერება"
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "ლორწოს ნაკადი"
 
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "საზოგადოების ფაზა"
+
+msgid "WIKI_PAGE_SPACE_STAGE"
+msgstr "კოსმოსური ფაზა"
+
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "ფაზები"
+
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "თერმოპლასტი"
 
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "თერმოსინთაზა"
+
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "ბიომების რუკა"
 
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "თილაკოკოიდები"
@@ -6071,6 +6518,9 @@ msgstr ""
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "ცილით სუნთქვა"
+
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "ეფექტების გარეშე."
 
@@ -6097,6 +6547,18 @@ msgstr ""
 
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
+
+msgid "WIKI_PULLING_CILIA"
+msgstr "წამწამის გამოქაჩვა"
+
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "რეპროდუქცია"
+
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr ""
+
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr ""
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6179,6 +6641,48 @@ msgstr ""
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "სულ მალე."
+
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "სულ მალე."
+
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr "კოსმოსის ფაზაზე მუშაობა ჯერ არ დაწყებულა."
+
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "სულ მალე."
+
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr ""
+
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr ""
+
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr ""
+
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "სულ მალე."
+
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr ""
+
+msgid "WIKI_TBA"
+msgstr "მზად არაა"
+
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "ეფექტების გარეშე."
 
@@ -6217,6 +6721,9 @@ msgstr "ცვლილებების გარეშე."
 
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
+"[b]ბაქტერიული თერმოსინთეზი[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"ქმნის ენერგიას პასიურად გარემოს [thrive:compound type=\"temperature\"][/thrive:compound]-დან. [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]-ის [b]თერმოსინთეზის[/b] უფრო სუსტი ფორმა."
 
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
@@ -6229,6 +6736,18 @@ msgstr ""
 
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
+
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr ""
+
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr ""
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "სპეციალური ეფექტების გარეშე."
@@ -6302,6 +6821,9 @@ msgstr ""
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
+msgid "WIKI_YES"
+msgstr "დიახ"
+
 msgid "WILL_YOU_THRIVE"
 msgstr "აყვავდებით?"
 
@@ -6332,9 +6854,8 @@ msgstr "ნივთის დასახელება:"
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr "ელემენტის ატვირთვა Steam Workshop-ზე წარმატებით დასრულდა"
 
-#, fuzzy
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
-msgstr "Steam Workshop-ზე ელემენტის ატვირთვა წარმატებულია, მაგრამ, სანამ ის გამოჩნდება, Workshop-ის [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]გამოყენების პირობებს[/url][/color] უნდა დათანხმოთ"
+msgstr "Steam Workshop-ზე ელემენტის ატვირთვა წარმატებულია, მაგრამ, სანამ ის გამოჩნდება, Workshop-ის [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]გამოყენების პირობებს[/url][/color] უნდა დაეთანხმოთ"
 
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr "ამ ელემენტის გადაცემით თქვენ ეთანხმებით Steam Workshop-ის [color=#3796e1][url=https://steamcommunity.com/sharedfiles/workshoplegalagreement]გამოყენების პირობებს[/url][/color]"
@@ -6374,6 +6895,9 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "წელი"
 
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr "ამ გვერდის შემცველობა სრულად განხორციელებული არაა თამაშში და ალბათ შეიცვლება."
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს YouTube-ის არხს"
 
@@ -6390,3 +6914,103 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "აღმასვლა"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "ციტოპლაზმური გლიკოლიზი"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "ანაერობული აზოტის ფიქსაცია"
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "გამოღვიძების ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "გამაზრებელი ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "ქემოსინთეზი"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "გლიკოლიზი"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr "ინდუსტრიული ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "რკინის ქემოლითოავტოტროფია"
+
+#, fuzzy
+#~ msgid "WIKI_LIPASE"
+#~ msgstr "ლიპაზა"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "მიკრობის რედაქტორი"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "მიკრობის ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "ლორწოს სინთეზი"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "მრავალუჯრედიანი ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_NONE"
+#~ msgstr "ნერვული ბოჭკოები ნეირონებს შორის. ხელმისაწვდომია მრავალუჯრედიანი ფაზიდან. აუცილებელია ორგანიზმის ტვინის სიმძლავრის გასაზრდელად და გასავითარებლად მომავალ ფაზებში."
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "ოქსიტოქსინის სინთეზი"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "ფოტოსინთეზი"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "რუსტიციანინი"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "საზოგადოების ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "კოსმოსური ფაზა"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "თერმოსინთეზი"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "არცერთი"
+
+#, fuzzy
+#~ msgid "YES"
+#~ msgstr "წელი"
+
+#, fuzzy
+#~ msgid "STAGES_BUTTON"
+#~ msgstr "დაშვება"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "ხიტინი"

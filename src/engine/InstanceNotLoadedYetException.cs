@@ -10,4 +10,10 @@ public class InstanceNotLoadedYetException : InvalidOperationException
         $"Instance not loaded yet, called from:\n{Environment.StackTrace}\nend of not loaded yet stacktrace")
     {
     }
+
+    public InstanceNotLoadedYetException(Exception innerException) : base(
+        $"Instance not loaded yet, called from:\n{Environment.StackTrace}\nend of not loaded yet stacktrace",
+        innerException)
+    {
+    }
 }

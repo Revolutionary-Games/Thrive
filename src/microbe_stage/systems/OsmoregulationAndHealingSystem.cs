@@ -35,14 +35,11 @@ using DefaultEcs.Threading;
 [RuntimeCost(4)]
 public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
 {
-    private readonly Compound atp;
-
     private GameWorld? gameWorld;
 
     public OsmoregulationAndHealingSystem(World world, IParallelRunner parallelRunner) :
         base(world, parallelRunner)
     {
-        atp = SimulationParameters.Instance.GetCompound("atp");
     }
 
     public void SetWorld(GameWorld world)
@@ -130,7 +127,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
         if (entity.Get<SpeciesMember>().Species.PlayerSpecies)
             osmoregulationCost *= gameWorld!.WorldSettings.OsmoregulationMultiplier;
 
-        compounds.TakeCompound(atp, osmoregulationCost);
+        compounds.TakeCompound(Compound.ATP, osmoregulationCost);
     }
 
     /// <summary>
@@ -138,7 +135,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
     /// </summary>
     private void ApplyATPDamage(CompoundBag compounds, ref Health health, ref CellProperties cellProperties)
     {
-        if (compounds.GetCompoundAmount(atp) > Constants.ATP_DAMAGE_THRESHOLD)
+        if (compounds.GetCompoundAmount(Compound.ATP) > Constants.ATP_DAMAGE_THRESHOLD)
             return;
 
         health.DealMicrobeDamage(ref cellProperties, health.MaxHealth * Constants.NO_ATP_DAMAGE_FRACTION,
@@ -159,7 +156,7 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             if (health.CurrentHealth >= health.MaxHealth)
                 return;
 
-            if (compounds.GetCompoundAmount(atp) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
+            if (compounds.GetCompoundAmount(Compound.ATP) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
                 return;
 
             health.CurrentHealth += Constants.HEALTH_REGENERATION_RATE * delta;

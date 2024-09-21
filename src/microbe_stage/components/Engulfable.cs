@@ -117,7 +117,7 @@ public static class EngulfableHelpers
 
     /// <summary>
     ///   Calculates additional digestible compounds to be made available when entity is engulfed. Note that only
-    ///   <see cref="Compound.Digestible"/> compounds may be returned as the result.
+    ///   <see cref="CompoundDefinition.Digestible"/> compounds may be returned as the result.
     /// </summary>
     /// <returns>
     ///   The extra compounds to add (this also shouldn't have any 0 values in it for clarity). Or null if there
@@ -304,7 +304,7 @@ public static class EngulfableHelpers
 
                     MicrobeDeathSystem.SpawnCorpseChunks(ref organelleContainer,
                         entity.Get<CompoundStorage>().Compounds, spawnSystem, worldSimulation, recorder,
-                        position.Position, new XoShiRo128starstar(), customizeCallback, null, isBacteria);
+                        position.Position, new XoShiRo128starstar(), customizeCallback, isBacteria);
 
                     SpawnHelpers.FinalizeEntitySpawn(recorder, worldSimulation);
 
@@ -375,11 +375,9 @@ public static class EngulfableHelpers
     }
 
     public static void CalculateBonusDigestibleGlucose(Dictionary<Compound, float> result,
-        CompoundBag compoundCapacityInfo, Compound? glucose = null)
+        CompoundBag compoundCapacityInfo)
     {
-        glucose ??= SimulationParameters.Instance.GetCompound("glucose");
-
-        result.TryGetValue(glucose, out float existingGlucose);
+        result.TryGetValue(Compound.Glucose, out float existingGlucose);
 
         if (existingGlucose < 0)
         {
@@ -387,7 +385,7 @@ public static class EngulfableHelpers
             existingGlucose = 0;
         }
 
-        result[glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(glucose) *
+        result[Compound.Glucose] = existingGlucose + compoundCapacityInfo.GetCapacityForCompound(Compound.Glucose) *
             Constants.ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER;
     }
 
@@ -404,7 +402,7 @@ public static class EngulfableHelpers
         {
             foreach (var entry in organelle.Definition.InitialComposition)
             {
-                if (!entry.Key.Digestible)
+                if (!SimulationParameters.GetCompound(entry.Key).Digestible)
                     continue;
 
                 result.TryGetValue(entry.Key, out float existing);

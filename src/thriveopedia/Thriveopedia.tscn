@@ -341,6 +341,7 @@ custom_minimum_size = Vector2(213, 300)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer"]
 libraries = {
@@ -363,3 +364,4 @@ layout_mode = 2
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/CloseButton" to="." method="OnClosePressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/SearchInput" to="." method="OnSearchUpdated"]
 [connection signal="cell_selected" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnPageSelectedFromPageTree"]
+[connection signal="item_edited" from="MarginContainer/VBoxContainer/HBoxContainer3/MarginContainer2/MarginContainer/VBoxContainer/PageTree" to="." method="OnSelectedStageUpdated" binds= [true]]

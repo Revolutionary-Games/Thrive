@@ -47,7 +47,7 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     private TweakedColourPicker colourSelector = null!;
 #pragma warning restore CA2213
 
-    private IReadOnlyList<Compound>? shownCompoundChoices;
+    private IReadOnlyList<CompoundDefinition>? shownCompoundChoices;
     private IReadOnlyList<Species>? shownSpeciesChoices;
 
     private enum TargetType
@@ -106,8 +106,8 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
         else
         {
             var defaultCompound =
-                SimulationParameters.Instance.GetCompound(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND_NAME);
-            var defaultConfiguration = new ChemoreceptorUpgrades(defaultCompound, null,
+                SimulationParameters.Instance.GetCompoundDefinition(Constants.CHEMORECEPTOR_DEFAULT_COMPOUND);
+            var defaultConfiguration = new ChemoreceptorUpgrades(defaultCompound.ID, null,
                 Constants.CHEMORECEPTOR_RANGE_DEFAULT, Constants.CHEMORECEPTOR_AMOUNT_DEFAULT, defaultCompound.Colour);
             LoadConfiguration(defaultConfiguration, shownCompoundChoices, shownSpeciesChoices);
         }
@@ -130,12 +130,12 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
             speciesSelector.Selected = 0;
 
         // Only one type of object can be detected
-        Compound? compoundChoice = null;
+        Compound compoundChoice = Compound.Invalid;
         Species? speciesChoice = null;
 
         if (targetTypeSelector.Selected == (int)TargetType.Compound)
         {
-            compoundChoice = shownCompoundChoices[compoundsSelector.Selected];
+            compoundChoice = shownCompoundChoices[compoundsSelector.Selected].ID;
         }
         else if (targetTypeSelector.Selected == (int)TargetType.Species)
         {
@@ -212,13 +212,13 @@ public partial class ChemoreceptorUpgradeGUI : VBoxContainer, IOrganelleUpgrader
     ///   Sets the GUI up to reflect an existing configuration
     /// </summary>
     private void LoadConfiguration(ChemoreceptorUpgrades configuration,
-        IReadOnlyList<Compound> shownCompoundChoices, IReadOnlyList<Species> shownSpeciesChoices)
+        IReadOnlyList<CompoundDefinition> shownCompoundChoices, IReadOnlyList<Species> shownSpeciesChoices)
     {
-        if (configuration.TargetCompound != null)
+        if (configuration.TargetCompound != Compound.Invalid)
         {
             TypeChanged((int)TargetType.Compound);
             targetTypeSelector.Selected = (int)TargetType.Compound;
-            compoundsSelector.Selected = shownCompoundChoices.FindIndex(c => c == configuration.TargetCompound);
+            compoundsSelector.Selected = shownCompoundChoices.FindIndex(c => c.ID == configuration.TargetCompound);
         }
         else if (configuration.TargetSpecies != null)
         {

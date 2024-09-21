@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-09 14:59+0300\n"
+"POT-Creation-Date: 2024-09-20 10:56+0300\n"
 "PO-Revision-Date: 2024-06-22 23:22+0000\n"
 "Last-Translator: Paz <pazpiderit@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -93,7 +93,15 @@ msgstr "Avanzado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir el modo de vista avanzado (Topo deja de ponerte la gorra)"
 
+#, fuzzy
+msgid "AEROBIC_NITROGEN_FIXATION"
+msgstr "Fijación aeróbica de nitrógeno"
+
 msgid "AEROBIC_NITROGEN_FIXING"
+msgstr "Fijación aeróbica de nitrógeno"
+
+#, fuzzy
+msgid "AEROBIC_RESPIRATION"
 msgstr "Fijación aeróbica de nitrógeno"
 
 msgid "AGENTS"
@@ -284,7 +292,18 @@ msgstr ""
 msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo ya no funca"
 
+msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
+msgstr ""
+
 msgid "AUTO_EVO_RESULTS"
+msgstr "Resultado del Auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
+msgstr "Resultado del Auto-evo:"
+
+#, fuzzy
+msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Resultado del Auto-evo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
@@ -319,6 +338,10 @@ msgstr "Barra inversa ( / )"
 
 msgid "BACKSPACE"
 msgstr "Retroceso"
+
+#, fuzzy
+msgid "BACTERIAL_THERMOSYNTHESIS"
+msgstr "Fotosíntesis"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
@@ -575,6 +598,10 @@ msgstr ""
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CHEMOSYNTHESIS"
+msgstr "Fotosíntesis"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "Proteínas de quimiosíntesis"
@@ -1564,8 +1591,16 @@ msgstr ""
 msgid "EDGE_PAN_SPEED"
 msgstr "población:"
 
+#, fuzzy
+msgid "EDITING_TITLE"
+msgstr "\" {0} \" - {1}"
+
 msgid "EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "EDITORS_AND_MUTATIONS_BUTTON"
+msgstr "posee una mutación"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr ""
@@ -1681,6 +1716,10 @@ msgstr ""
 
 msgid "ENVIRONMENT"
 msgstr ""
+
+#, fuzzy
+msgid "ENVIRONMENTAL_CONDITIONS_BUTTON"
+msgstr "Mitocondria"
 
 msgid "ENVIRONMENTAL_GLUCOSE_RETENTION"
 msgstr ""
@@ -2038,6 +2077,10 @@ msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
 #, fuzzy
+msgid "GAME_SYSTEMS_TITLE"
+msgstr "\" {0} \" - {1}"
+
+#, fuzzy
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr "Activar/Desactivar engullir"
 
@@ -2058,6 +2101,10 @@ msgstr ""
 
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
+
+#, fuzzy
+msgid "GLOBAL_POPULATION_COLON"
+msgstr "población:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
@@ -2112,8 +2159,9 @@ msgstr "Volumen de la interfaz"
 msgid "HEALTH"
 msgstr ""
 
+#, fuzzy
 msgid "HELP"
-msgstr ""
+msgstr "tecla \"Help\" (f1 normalmente)"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
@@ -2173,6 +2221,12 @@ msgstr "Estalactita"
 msgid "ICESHELF"
 msgstr "Tierra del fuego"
 
+msgid "ICE_CHUNK_BIG"
+msgstr ""
+
+msgid "ICE_CHUNK_SMALL"
+msgstr ""
+
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr ""
 
@@ -2192,6 +2246,13 @@ msgstr ""
 msgid "INCREASE_ITEM_SIZE"
 msgstr ""
 
+msgid "INDICATOR_SPECIES_IS_NEW"
+msgstr ""
+
+#, fuzzy
+msgid "INDICATOR_SPECIES_MUTATED"
+msgstr "No mutar (Solo si no hay buenas mutaciones)"
+
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -2204,7 +2265,14 @@ msgstr ""
 msgid "INFO_BOX_COST"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_EDITORS"
+msgstr "Habilitar el editor"
+
 msgid "INFO_BOX_ENZYMES"
+msgstr ""
+
+msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
 
 msgid "INFO_BOX_INTERNAL_NAME"
@@ -2213,8 +2281,16 @@ msgstr ""
 msgid "INFO_BOX_MASS"
 msgstr ""
 
+#, fuzzy
+msgid "INFO_BOX_NEXT_STAGE"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr ""
+
+#, fuzzy
+msgid "INFO_BOX_PREVIOUS_STAGE"
+msgstr "Núcleo"
 
 msgid "INFO_BOX_PROCESSES"
 msgstr ""
@@ -2873,6 +2949,10 @@ msgstr ""
 
 msgid "MAY"
 msgstr ""
+
+#, fuzzy
+msgid "MECHANICS_BUTTON"
+msgstr "Pili de depredador"
 
 msgid "MEDIANEXT"
 msgstr ""
@@ -3891,6 +3971,10 @@ msgid "ORGANELLES"
 msgstr ""
 
 #, fuzzy
+msgid "ORGANELLES_BUTTON"
+msgstr "Pili de depredador"
+
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "población:"
 
@@ -3963,6 +4047,10 @@ msgstr "Nubes de componentes"
 
 msgid "OUR_WIKI"
 msgstr ""
+
+#, fuzzy
+msgid "OUTDATED_NOTICE"
+msgstr "Abortado."
 
 msgid "OUTREACH_TEAM"
 msgstr ""
@@ -4812,6 +4900,9 @@ msgstr "Pedacito de hierro"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Pedacito de hierro"
 
+msgid "SNOWFLAKE"
+msgstr ""
+
 #, fuzzy
 msgid "SOCIETY_STAGE"
 msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
@@ -5094,6 +5185,9 @@ msgstr "Luz solar"
 msgid "SUPPORTER_PATRONS"
 msgstr ""
 
+msgid "SURVIVAL_TITLE"
+msgstr ""
+
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr ""
 
@@ -5219,6 +5313,14 @@ msgstr ""
 
 msgid "THE_DISTURBANCE"
 msgstr ""
+
+#, fuzzy
+msgid "THE_PATCH_MAP_BUTTON"
+msgstr "Quimioplastia"
+
+#, fuzzy
+msgid "THE_WORLD_TITLE"
+msgstr "\" {0} \" - {1}"
 
 msgid "THIS_IS_LOCAL_MOD"
 msgstr ""
@@ -5381,6 +5483,9 @@ msgid "TOOLS"
 msgstr "Herramientas"
 
 msgid "TOOL_HAND_AXE"
+msgstr ""
+
+msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
 #, fuzzy
@@ -5946,29 +6051,155 @@ msgstr ""
 msgid "WIKI"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_2D"
+msgstr "Poner organela"
+
+msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_3D"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_SANDBOX"
+msgstr "Cloroplasto"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY"
+msgstr "Cloroplasto"
+
+#, fuzzy
+msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
+msgstr "Cloroplasto"
+
+msgid "WIKI_8_BRACKET_16"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_ASCENSION"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_FEATURES"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_INTRO"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_OVERVIEW"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_TRANSITIONS"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_ASCENSION_UI"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_FEATURES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_INTRO"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWAKENING_STAGE_UI"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_FEATURES"
+msgstr "Despierto"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_INTRO"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_OVERVIEW"
+msgstr "Despierto"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_AWARE_STAGE_UI"
+msgstr "Despierto"
+
+#, fuzzy
 msgid "WIKI_AXON_EFFECTS"
-msgstr ""
+msgstr "Tilacoides"
 
+#, fuzzy
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Rusticianina"
 
+#, fuzzy
 msgid "WIKI_AXON_MODIFICATIONS"
 msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
 
+#, fuzzy
 msgid "WIKI_AXON_PROCESSES"
-msgstr ""
+msgstr "Mitocondria"
 
+#, fuzzy
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Recién levantado"
 
+#, fuzzy
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Fotosíntesis"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_EFFECTS"
@@ -5994,11 +6225,15 @@ msgstr ""
 "Agente de \n"
 "vinculación"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_REQUIREMENTS"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
+#, fuzzy
 msgid "WIKI_BINDING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Plástido fijador de nitrógeno"
 
 #, fuzzy
 msgid "WIKI_BINDING_AGENT_STRATEGY"
@@ -6012,28 +6247,53 @@ msgstr ""
 "Agente de \n"
 "vinculación"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_EFFECTS"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_INTRO"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_MODIFICATIONS"
 msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_PROCESSES"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_REQUIREMENTS"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_STRATEGY"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
+msgstr ""
+"Vacuola de\n"
+"Toxinas"
+
+msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
 #, fuzzy
@@ -6044,47 +6304,61 @@ msgstr "Quimioplastia"
 msgid "WIKI_CHEMOPLAST_INTRO"
 msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_PROCESSES"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHEMOPLAST_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_EFFECTS"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_INTRO"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_PROCESSES"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHEMORECEPTOR_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
 
 #, fuzzy
 msgid "WIKI_CHEMOSYNTHESIZING_PROTEINS_EFFECTS"
@@ -6126,17 +6400,21 @@ msgstr "Cloroplasto"
 msgid "WIKI_CHLOROPLAST_INTRO"
 msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_PROCESSES"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CHLOROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_CHLOROPLAST_STRATEGY"
@@ -6146,125 +6424,386 @@ msgstr "Cloroplasto"
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr "Cloroplasto"
 
+#, fuzzy
+msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Fotosíntesis"
+
+#, fuzzy
 msgid "WIKI_CILIA_EFFECTS"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Citoplasma"
 
+#, fuzzy
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
+#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CILIA_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CILIA_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
+msgid "WIKI_COMPOUNDS_BUTTON"
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_DEVELOPMENT"
+msgstr "Movimiento 3D"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_INTRO"
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
+msgstr "Poner organela"
+
+#, fuzzy
 msgid "WIKI_CYTOPLASM_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_CYTOPLASM_INTRO"
 msgstr "Citoplasma"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_PROCESSES"
-msgstr ""
+msgstr "Citoplasma"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Citoplasma"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
+msgid "WIKI_DEVELOPMENT"
+msgstr "Movimiento 3D"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
+msgstr "Pili de depredador"
+
+#, fuzzy
+msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
+msgstr "Pili de depredador"
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
+msgstr "Mitocondria"
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
-msgstr ""
+msgstr "Flagelo"
 
 #, fuzzy
 msgid "WIKI_FLAGELLUM_INTRO"
 msgstr "Flagelo"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_PROCESSES"
-msgstr ""
+msgstr "Flagelo"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_REQUIREMENTS"
-msgstr ""
+msgstr "Flagelo"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_STRATEGY"
-msgstr ""
+msgstr "Flagelo"
 
+#, fuzzy
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Flagelo"
 
+#, fuzzy
+msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
+msgstr "Fijación aeróbica de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_HEADING_APPENDICES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_CONCEPT_ART"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_HEADING_DEVELOPMENT"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_EDITOR"
+msgstr "Recién levantado"
+
+#, fuzzy
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Recién levantado"
 
+#, fuzzy
+msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_HEADING_FEATURES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_FOG_OF_WAR"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_GAMEPLAY"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_GDD"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE"
+msgstr "Recién levantado"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
 
+#, fuzzy
+msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_HEADING_OVERVIEW"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_PATCHES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
+msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
+
+#, fuzzy
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Recién levantado"
 
+#, fuzzy
+msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr "Recién levantado"
+
+#, fuzzy
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Recién levantado"
 
+#, fuzzy
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "Recién levantado"
 
+#, fuzzy
+msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_THE_PATCH_MAP"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_TRANSITIONS"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_HEADING_UI"
+msgstr "Recién levantado"
+
+#, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
+msgstr ""
+"Hay un conflicto con el control {0}\n"
+"Queres quitarlo de la esa tecla de {1}?"
+
+#, fuzzy
+msgid "WIKI_INDUSTRIAL_STAGE_UI"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_EFFECTS"
-msgstr ""
+msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_INTRO"
-msgstr ""
+msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_PROCESSES"
-msgstr ""
+msgstr "Metabolismo"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_STRATEGY"
-msgstr ""
+msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_LYSOSOME_UPGRADES"
-msgstr ""
+msgstr "Oxitocina"
+
+#, fuzzy
+msgid "WIKI_MECHANICS"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MECHANICS_ROOT_INTRO"
+msgstr "Pili de depredador"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -6274,18 +6813,21 @@ msgstr "Metabolismo"
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr "Metabolismo"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
-msgstr ""
+msgstr "Metabolismo"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr "Metabolismo"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
-msgstr ""
+msgstr "Metabolismo"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_STRATEGY"
@@ -6296,6 +6838,41 @@ msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "Metabolismo"
 
 #, fuzzy
+msgid "WIKI_MICROBE_STAGE_APPENDICES"
+msgstr ""
+"Estructuras Procarioticas\n"
+"\n"
+"Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+"\n"
+"Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+"\n"
+"Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+"\n"
+"Rusticianina: Convierte el hierro en ATP.\n"
+"\n"
+"Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_BUTTON"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_EDITOR"
+msgstr "Habilitar el editor"
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_GDD"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_MICROBE_STAGE_INTRO"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Mitocondria"
 
@@ -6303,18 +6880,21 @@ msgstr "Mitocondria"
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr "Mitocondria"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
-msgstr ""
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr "Mitocondria"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
-msgstr ""
+msgstr "Mitocondria"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_MITOCHONDRION_STRATEGY"
@@ -6324,29 +6904,69 @@ msgstr "Mitocondria"
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "Mitocondria"
 
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_MULTICELLULAR_STAGE_UI"
+msgstr "Poner organela"
+
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_EFFECTS"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_INTRO"
-msgstr ""
+msgstr "Pili de depredador"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_PROCESSES"
-msgstr ""
+msgstr "Mitocondria"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_STRATEGY"
-msgstr ""
+msgstr "Mitocondria"
 
+#, fuzzy
 msgid "WIKI_MYOFIBRIL_UPGRADES"
-msgstr ""
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_NATION_EDITOR"
+msgstr "Habilitar el editor"
 
 #, fuzzy
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
@@ -6388,17 +7008,21 @@ msgstr "Nitrogenasa"
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr "Nitrogenasa"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
-msgstr ""
+msgstr "Nitrogenasa"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
@@ -6408,29 +7032,52 @@ msgstr "Nitrogenasa"
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenasa"
 
+#, fuzzy
+msgid "WIKI_NO"
+msgstr "Rusticianina"
+
+msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
+msgstr ""
+
+#, fuzzy
 msgid "WIKI_NUCLEUS_EFFECTS"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_INTRO"
-msgstr ""
+msgstr "Citoplasma"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
 #, fuzzy
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
@@ -6444,17 +7091,21 @@ msgstr "Oxitocina"
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
-msgstr ""
+msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_PROCESSES"
-msgstr ""
+msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
-msgstr ""
+msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
@@ -6464,8 +7115,25 @@ msgstr "Oxitocina"
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "Oxitocina"
 
+#, fuzzy
+msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
+msgstr "Fotosíntesis"
+
+#, fuzzy
+msgid "WIKI_PAGE_ASCENSION"
+msgstr "Rusticianina"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWAKENING_STAGE"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_PAGE_AWARE_STAGE"
+msgstr "Despierto"
+
+#, fuzzy
 msgid "WIKI_PAGE_AXON"
-msgstr ""
+msgstr "Rusticianina"
 
 #, fuzzy
 msgid "WIKI_PAGE_BINDING_AGENT"
@@ -6473,15 +7141,19 @@ msgstr ""
 "Agente de \n"
 "vinculación"
 
+#, fuzzy
 msgid "WIKI_PAGE_BIOLUMINESCENT_VACUOLE"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
 #, fuzzy
 msgid "WIKI_PAGE_CHEMOPLAST"
 msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_PAGE_CHEMORECEPTOR"
-msgstr ""
+msgstr "Quimioplastia"
 
 #, fuzzy
 msgid "WIKI_PAGE_CHEMOSYNTHESIZING_PROTEINS"
@@ -6491,28 +7163,69 @@ msgstr "Proteínas de quimiosíntesis"
 msgid "WIKI_PAGE_CHLOROPLAST"
 msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_PAGE_CILIA"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUNDS"
+msgstr "Citoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
 #, fuzzy
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "Citoplasma"
 
 #, fuzzy
+msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
+msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
+msgstr "Mitocondria"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
+
+#, fuzzy
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgstr ""
+"Agente de \n"
+"vinculación"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oxitocina"
 
 #, fuzzy
+msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Poner organela"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolismo"
 
 #, fuzzy
+msgid "WIKI_PAGE_MICROBE_STAGE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+msgstr "Poner organela"
 
 #, fuzzy
 msgid "WIKI_PAGE_MYOFIBRIL"
@@ -6538,11 +7251,16 @@ msgstr "Poner organela"
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr "Oxitocina"
 
+#, fuzzy
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
-msgstr ""
+msgstr "Protoplasma"
 
 #, fuzzy
 msgid "WIKI_PAGE_PROTOPLASM"
+msgstr "Protoplasma"
+
+#, fuzzy
+msgid "WIKI_PAGE_REPRODUCTION"
 msgstr "Protoplasma"
 
 #, fuzzy
@@ -6555,15 +7273,37 @@ msgstr ""
 "Agente de \n"
 "vinculación"
 
+#, fuzzy
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
-msgid "WIKI_PAGE_THERMOPLAST"
+#, fuzzy
+msgid "WIKI_PAGE_SOCIETY_STAGE"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_PAGE_STAGES_ROOT"
+msgstr "Poner organela"
+
+#, fuzzy
+msgid "WIKI_PAGE_THERMOPLAST"
+msgstr "Quimioplastia"
 
 #, fuzzy
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "Fotosíntesis"
+
+#, fuzzy
+msgid "WIKI_PAGE_THE_PATCH_MAP"
+msgstr "Quimioplastia"
 
 #, fuzzy
 msgid "WIKI_PAGE_THYLAKOIDS"
@@ -6581,29 +7321,41 @@ msgstr ""
 "Vacuola de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
-msgstr ""
+msgstr "Metabolismo"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
+
+#, fuzzy
+msgid "WIKI_PROTEIN_RESPIRATION"
+msgstr "Aberración cromática:"
 
 #, fuzzy
 msgid "WIKI_PROTOPLASM_EFFECTS"
@@ -6613,23 +7365,45 @@ msgstr "Protoplasma"
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_PROCESSES"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Protoplasma"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_PROTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
+
+#, fuzzy
+msgid "WIKI_PULLING_CILIA"
+msgstr "Recién levantado"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_BUTTON"
+msgstr "Protoplasma"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_INTRO"
+msgstr "Protoplasma"
+
+#, fuzzy
+msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
+msgstr "Protoplasma"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -6645,17 +7419,21 @@ msgstr "Rusticianina"
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr "Rusticianina"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
-msgstr ""
+msgstr "Rusticianina"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_PROCESSES"
-msgstr ""
+msgstr "Rusticianina"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
-msgstr ""
+msgstr "Rusticianina"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
@@ -6695,8 +7473,9 @@ msgstr ""
 "Agente de \n"
 "vinculación"
 
+#, fuzzy
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Plástido fijador de nitrógeno"
 
 #, fuzzy
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
@@ -6726,41 +7505,115 @@ msgstr "población:"
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_STRATEGY"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_SLIME_JET_UPGRADES"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_FEATURES"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_INTRO"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SOCIETY_STAGE_UI"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Agente de \n"
+"vinculación"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_FEATURES"
+msgstr "Núcleo"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_INTRO"
+msgstr "población:"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_OVERVIEW"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_SPACE_STAGE_UI"
+msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+msgid "WIKI_STAGES_ROOT_INTRO"
+msgstr "Pili de depredador"
+
+#, fuzzy
+msgid "WIKI_TBA"
+msgstr "Oxitocina"
+
+#, fuzzy
 msgid "WIKI_THERMOPLAST_EFFECTS"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_INTRO"
-msgstr ""
+msgstr "Quimioplastia"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_PROCESSES"
-msgstr ""
+msgstr "Fotosíntesis"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_STRATEGY"
-msgstr ""
+msgstr "Cloroplasto"
 
+#, fuzzy
 msgid "WIKI_THERMOPLAST_UPGRADES"
-msgstr ""
+msgstr "Cloroplasto"
 
 #, fuzzy
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
@@ -6795,6 +7648,22 @@ msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr "población:"
 
 #, fuzzy
+msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
+msgstr "Quimioplastia"
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_INTRO"
+msgstr "Quimioplastia"
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_PATCHES"
+msgstr "Quimioplastia"
+
+#, fuzzy
+msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
+msgstr "Quimioplastia"
+
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "Tilacoides"
 
@@ -6802,23 +7671,29 @@ msgstr "Tilacoides"
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr "Tilacoides"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_PROCESSES"
-msgstr ""
+msgstr "Tilacoides"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
-msgstr ""
+msgstr "Tilacoides"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_STRATEGY"
-msgstr ""
+msgstr "Tilacoides"
 
+#, fuzzy
 msgid "WIKI_THYLAKOIDS_UPGRADES"
-msgstr ""
+msgstr "Tilacoides"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
@@ -6832,8 +7707,11 @@ msgstr ""
 "Vacuola de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
@@ -6841,11 +7719,15 @@ msgstr ""
 "Vacuola de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
 #, fuzzy
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
@@ -6859,29 +7741,53 @@ msgstr ""
 "Vacuola de\n"
 "Toxinas"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_INTRO"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_MODIFICATIONS"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
+"Agente de \n"
+"vinculación"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "población:"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
 
+#, fuzzy
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
+"Vacuola de\n"
+"Toxinas"
+
+#, fuzzy
+msgid "WIKI_YES"
+msgstr "Poner organela"
 
 msgid "WILL_YOU_THRIVE"
 msgstr ""
@@ -6952,6 +7858,9 @@ msgstr ""
 msgid "YEARS"
 msgstr ""
 
+msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
+msgstr ""
+
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 
@@ -6967,11 +7876,94 @@ msgstr "Acercar la pantalla"
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
 
+#, fuzzy
+#~ msgid "WIKI_CHEMOSYNTHESIS"
+#~ msgstr "Fotosíntesis"
+
+#, fuzzy
+#~ msgid "ASCENSION"
+#~ msgstr "Rusticianina"
+
+#, fuzzy
+#~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
+#~ msgstr "Citoplasma"
+
+#, fuzzy
+#~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"
+#~ msgstr "Fijación aeróbica de nitrógeno"
+
+#, fuzzy
+#~ msgid "WIKI_AWAKENING_STAGE"
+#~ msgstr "Recién levantado"
+
+#, fuzzy
+#~ msgid "WIKI_AWARE_STAGE"
+#~ msgstr "Despierto"
+
+#, fuzzy
+#~ msgid "WIKI_GLYCOLYSIS"
+#~ msgstr "Nivel de Glucósis"
+
+#, fuzzy
+#~ msgid "WIKI_INDUSTRIAL_STAGE"
+#~ msgstr ""
+#~ "Agente de \n"
+#~ "vinculación"
+
+#, fuzzy
+#~ msgid "WIKI_IRON_CHEMOLITHOAUTOTROPHY"
+#~ msgstr "Quimioplastia"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_EDITOR"
+#~ msgstr "Habilitar el editor"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+#~ msgid "WIKI_MUCILAGE_SYNTHESIS"
+#~ msgstr "Fotosíntesis"
+
+#, fuzzy
+#~ msgid "WIKI_MULTICELLULAR_STAGE"
+#~ msgstr "Poner organela"
+
+#, fuzzy
+#~ msgid "WIKI_OXYTOXY_SYNTHESIS"
+#~ msgstr "Fotosíntesis"
+
+#, fuzzy
+#~ msgid "WIKI_PHOTOSYNTHESIS"
+#~ msgstr "Fotosíntesis"
+
+#, fuzzy
+#~ msgid "WIKI_RUSTICYANIN"
+#~ msgstr "Rusticianina"
+
+#, fuzzy
+#~ msgid "WIKI_SOCIETY_STAGE"
+#~ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+#~ msgid "WIKI_SPACE_STAGE"
+#~ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Fotosíntesis"
+
+#, fuzzy
+#~ msgid "NO"
+#~ msgstr "Ninguno (no activado)"
+
+#, fuzzy
+#~ msgid "EDITING"
+#~ msgstr "Quitina"
+
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
 #~ msgstr "Permitir que no migren (Solo si quieren migrar a otra parte de latam)"
-
-#~ msgid "ALLOW_SPECIES_TO_NOT_MUTATE"
-#~ msgstr "No mutar (Solo si no hay buenas mutaciones)"
 
 #, fuzzy
 #~ msgid "MAXIMUM_SPECIES_IN_PATCH"

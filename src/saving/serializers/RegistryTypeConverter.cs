@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Reflection;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Serializes registry types as strings or objects (for supported types)
@@ -63,7 +64,7 @@ public class RegistryTypeConverter : BaseThriveConverter
         if (objectType == typeof(Biome))
             return Context.Simulation.GetBiome(name);
 
-        if (objectType == typeof(Compound))
+        if (objectType == typeof(CompoundDefinition))
             return Context.Simulation.GetCompound(name);
 
         if (objectType == typeof(MembraneType))

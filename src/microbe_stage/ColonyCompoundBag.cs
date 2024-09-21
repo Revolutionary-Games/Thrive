@@ -69,11 +69,13 @@ public class ColonyCompoundBag : ICompoundStorage
     {
         var bags = GetCompoundBags();
 
+        // TODO: rework how this colony compounds are calculated to avoid the so temporary memory and LINQ-heavy code
         foreach (var currentPair in this)
         {
             var compound = currentPair.Key;
+            var compoundDefinition = SimulationParameters.GetCompound(compound);
 
-            if (!compound.CanBeDistributed || !IsUsefulInAnyCompoundBag(compound, bags))
+            if (!compoundDefinition.CanBeDistributed || !IsUsefulInAnyCompoundBag(compoundDefinition, bags))
                 continue;
 
             var compoundAmount = currentPair.Value;
@@ -85,7 +87,7 @@ public class ColonyCompoundBag : ICompoundStorage
             {
                 if (!nanIssueReported)
                 {
-                    GD.PrintErr($"Compound {compound.Name} is set to useful but has a Capacity of zero, " +
+                    GD.PrintErr($"Compound {compoundDefinition.Name} is set to useful but has a Capacity of zero, " +
                         "https://github.com/Revolutionary-Games/Thrive/issues/3201");
                     nanIssueReported = true;
                 }
@@ -130,7 +132,7 @@ public class ColonyCompoundBag : ICompoundStorage
 
     public bool IsUsefulInAnyCompoundBag(Compound compound)
     {
-        return IsUsefulInAnyCompoundBag(compound, GetCompoundBags());
+        return IsUsefulInAnyCompoundBag(SimulationParameters.GetCompound(compound), GetCompoundBags());
     }
 
     public bool AnyIsUsefulInAnyCompoundBag(IEnumerable<Compound> compounds)
@@ -201,9 +203,15 @@ public class ColonyCompoundBag : ICompoundStorage
             bag.ClearCompounds();
     }
 
-    private static bool IsUsefulInAnyCompoundBag(Compound compound, IEnumerable<CompoundBag> compoundBags)
+    private static bool IsUsefulInAnyCompoundBag(CompoundDefinition compound, IEnumerable<CompoundBag> compoundBags)
     {
-        return compoundBags.Any(p => p.IsUseful(compound));
+        foreach (var compoundBag in compoundBags)
+        {
+            if (compoundBag.IsUseful(compound))
+                return true;
+        }
+
+        return false;
     }
 
     private ICollection<CompoundBag> GetCompoundBags()

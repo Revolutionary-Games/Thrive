@@ -12,7 +12,7 @@ add_library(thrive_extension SHARED
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
 )
 
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+if(MSVC)
   target_compile_options(thrive_extension PRIVATE /W4 /wd4068)
 
   if(WARNINGS_AS_ERRORS)
@@ -22,17 +22,16 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
   # TODO debug symbols in release for MSVC (and Distribution mode)
 
 else()
-  target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic -Wno-unknown-pragmas)
+  target_compile_options(thrive_extension PRIVATE -Wall -Wextra -Wpedantic
+    -Wno-unknown-pragmas)
 
   if(WARNINGS_AS_ERRORS)
     target_compile_options(thrive_extension PRIVATE -Werror)
   endif()
 
-  target_compile_options(thrive_extension PRIVATE $<$<CONFIG:Release>:-DNDEBUG -O3>
-    $<$<CONFIG:Distribution>:-DNDEBUG -O3>)
+  target_compile_options(thrive_extension PRIVATE
+    $<$<OR:$<CONFIG:Release>,$<CONFIG:Distribution>>:-DNDEBUG -O3>)
 endif()
-
-target_compile_definitions(thrive_extension PRIVATE thrive_extension_BUILD)
 
 target_link_libraries(thrive_extension PRIVATE godot-cpp)
 
@@ -46,12 +45,10 @@ target_precompile_headers(thrive_extension PUBLIC "${PROJECT_BINARY_DIR}/Include
 
 set_target_properties(thrive_extension PROPERTIES
   CXX_STANDARD 20
+  CXX_STANDARD_REQUIRED ON
   CXX_EXTENSIONS OFF)
 
-if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" AND WIN32)
-  message(STATUS "Disabling LTO for thrive_extension with Clang as that results in link failures")
-  target_compile_options(thrive_extension PRIVATE "-fno-lto")
-else()
+if(THRIVE_LTO)
   message(STATUS "Enabling LTO for thrive_extension")
   set_target_properties(thrive_extension PROPERTIES INTERPROCEDURAL_OPTIMIZATION ON)
 endif()

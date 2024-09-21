@@ -300,7 +300,9 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
     {
         organelleContainer.CreatedOrganelleVisuals ??= new Dictionary<PlacedOrganelle, Node3D>();
 
-        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour);
+        var organelleColour = PlacedOrganelle.CalculateHSVForOrganelle(cellProperties.Colour)
+            * Constants.ORGANELLE_TINT_STRENGTH
+            + Colors.White * (1.0f - Constants.ORGANELLE_TINT_STRENGTH);
 
         foreach (var placedOrganelle in organelleContainer.Organelles!)
         {

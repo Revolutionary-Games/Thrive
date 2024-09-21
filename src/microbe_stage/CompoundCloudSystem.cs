@@ -92,7 +92,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
             {
                 // Re-init with potentially changed compounds
                 // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0]!, cloud.Compounds[1], cloud.Compounds[2],
+                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
 
                 --renderPriority;
@@ -106,23 +106,21 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         for (int i = 0; i < clouds.Count; ++i)
         {
-            Compound cloud1;
-            Compound? cloud2 = null;
-            Compound? cloud3 = null;
-            Compound? cloud4 = null;
-
             int startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
 
-            cloud1 = allCloudCompounds[startOffset + 0];
+            var cloud1 = allCloudCompounds[startOffset + 0].ID;
+            var cloud2 = Compound.Invalid;
+            var cloud3 = Compound.Invalid;
+            var cloud4 = Compound.Invalid;
 
             if (startOffset + 1 < allCloudCompounds.Count)
-                cloud2 = allCloudCompounds[startOffset + 1];
+                cloud2 = allCloudCompounds[startOffset + 1].ID;
 
             if (startOffset + 2 < allCloudCompounds.Count)
-                cloud3 = allCloudCompounds[startOffset + 2];
+                cloud3 = allCloudCompounds[startOffset + 2].ID;
 
             if (startOffset + 3 < allCloudCompounds.Count)
-                cloud4 = allCloudCompounds[startOffset + 3];
+                cloud4 = allCloudCompounds[startOffset + 3].ID;
 
             clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
             --renderPriority;
@@ -242,7 +240,7 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
         // This version is used when working with cloud local coordinates
         float localGrabRadius = radius / resolution;
 
-        float localGrabRadiusSquared = MathF.Pow(radius / resolution, 2);
+        float localGrabRadiusSquared = localGrabRadius * localGrabRadius;
 
         // Find clouds that are in range for absorbing
         foreach (var cloud in clouds)

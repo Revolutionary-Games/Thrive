@@ -68,8 +68,8 @@ public sealed class CompoundAbsorptionSystem : AEntitySetSystem<float>
                 SimulationParameters.Instance.GetCloudCompounds().Where(storage.Compounds.IsUseful);
             foreach (var usefulCompound in usefulCompounds)
             {
-                storage.Compounds.AddCompound(usefulCompound,
-                    storage.Compounds.GetFreeSpaceForCompound(usefulCompound));
+                storage.Compounds.AddCompound(usefulCompound.ID,
+                    storage.Compounds.GetFreeSpaceForCompound(usefulCompound.ID));
             }
         }
     }

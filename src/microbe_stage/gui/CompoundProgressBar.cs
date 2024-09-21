@@ -226,7 +226,8 @@ public partial class CompoundProgressBar : Control
     [Export]
     public bool Narrow { get; set; }
 
-    public static CompoundProgressBar Create(PackedScene scene, Compound compound, float initialValue, float maxValue)
+    public static CompoundProgressBar Create(PackedScene scene, CompoundDefinition compound, float initialValue,
+        float maxValue)
     {
         var bar = scene.Instantiate<CompoundProgressBar>();
 
@@ -252,8 +253,8 @@ public partial class CompoundProgressBar : Control
     ///   Creates a bar that shows the value as percentage. Automatically sets max value to 100.
     /// </summary>
     /// <returns>The setup bar instance</returns>
-    public static CompoundProgressBar CreatePercentageDisplay(PackedScene scene, Compound compound, float initialValue,
-        bool round)
+    public static CompoundProgressBar CreatePercentageDisplay(PackedScene scene, CompoundDefinition compound,
+        float initialValue, bool round)
     {
         var bar = scene.Instantiate<CompoundProgressBar>();
 
@@ -268,8 +269,8 @@ public partial class CompoundProgressBar : Control
         return bar;
     }
 
-    public static CompoundProgressBar CreateSimpleWithUnit(PackedScene scene, Compound compound, float initialValue,
-        string unit)
+    public static CompoundProgressBar CreateSimpleWithUnit(PackedScene scene, CompoundDefinition compound,
+        float initialValue, string unit)
     {
         var bar = scene.Instantiate<CompoundProgressBar>();
 
@@ -371,7 +372,7 @@ public partial class CompoundProgressBar : Control
         CurrentValue = fraction * 100;
     }
 
-    public void SetupFromCompound(Compound compound)
+    public void SetupFromCompound(CompoundDefinition compound)
     {
         Icon = compound.LoadedIcon ?? throw new Exception("Compound type has no icon loaded");
         FillColour = compound.BarColour;
