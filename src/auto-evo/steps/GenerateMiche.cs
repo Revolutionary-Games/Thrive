@@ -5,14 +5,6 @@
 /// </summary>
 public class GenerateMiche : IRunStep
 {
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
-
-    private readonly Compound hydrogenSulfide =
-        SimulationParameters.Instance.GetCompound("hydrogensulfide");
-
-    private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-    private readonly Compound temperature = SimulationParameters.Instance.GetCompound("temperature");
-
     private readonly Patch patch;
     private readonly SimulationCache cache;
     private readonly AutoEvoGlobalCache globalCache;
@@ -46,7 +38,7 @@ public class GenerateMiche : IRunStep
         // Autotrophic Miches
 
         // Glucose
-        if (patch.Biome.TryGetCompound(glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
+        if (patch.Biome.TryGetCompound(Compound.Glucose, CompoundAmountType.Biome, out var glucoseAmount) &&
             glucoseAmount.Amount > 0)
         {
             var glucoseMiche = new Miche(globalCache.GlucoseConversionEfficiencyPressure);
@@ -78,7 +70,8 @@ public class GenerateMiche : IRunStep
         }
 
         // Hydrogen Sulfide
-        if (patch.Biome.TryGetCompound(hydrogenSulfide, CompoundAmountType.Biome, out var hydrogenSulfideAmount) &&
+        if (patch.Biome.TryGetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome,
+                out var hydrogenSulfideAmount) &&
             hydrogenSulfideAmount.Amount > 0)
         {
             var hydrogenSulfideMiche = new Miche(globalCache.HydrogenSulfideConversionEfficiencyPressure);
@@ -94,7 +87,7 @@ public class GenerateMiche : IRunStep
 
         // Sunlight
         // TODO: should there be a dynamic energy level requirement rather than an absolute value?
-        if (patch.Biome.TryGetCompound(sunlight, CompoundAmountType.Biome, out var sunlightAmount) &&
+        if (patch.Biome.TryGetCompound(Compound.Sunlight, CompoundAmountType.Biome, out var sunlightAmount) &&
             sunlightAmount.Ambient >= 0.25f)
         {
             var sunlightMiche = new Miche(globalCache.SunlightConversionEfficiencyPressure);
@@ -110,7 +103,7 @@ public class GenerateMiche : IRunStep
 
         // Heat
         // TODO: the 60 here should be a constant or explained some other way what the threshold is
-        if (patch.Biome.TryGetCompound(temperature, CompoundAmountType.Biome, out var temperatureAmount) &&
+        if (patch.Biome.TryGetCompound(Compound.Temperature, CompoundAmountType.Biome, out var temperatureAmount) &&
             temperatureAmount.Ambient > 60)
         {
             var tempMiche = new Miche(globalCache.TemperatureConversionEfficiencyPressure);

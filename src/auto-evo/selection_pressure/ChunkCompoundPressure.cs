@@ -10,16 +10,16 @@ public class ChunkCompoundPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
     private readonly string chunkType;
     private readonly LocalizedString readableName;
-    private readonly Compound compound;
+    private readonly CompoundDefinition compound;
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound, float weight) :
         base(weight, [])
     {
-        this.compound = compound;
+        this.compound = SimulationParameters.GetCompound(compound);
         this.chunkType = chunkType;
         this.readableName = readableName;
     }
@@ -69,7 +69,7 @@ public class ChunkCompoundPressure : SelectionPressure
         if (!patch.Biome.Chunks.TryGetValue(chunkType, out var chunk))
             throw new ArgumentException("Chunk does not exist in patch");
 
-        if (chunk.Compounds?.TryGetValue(compound, out var compoundAmount) != true)
+        if (chunk.Compounds?.TryGetValue(compound.ID, out var compoundAmount) != true)
             throw new ArgumentException("Chunk does not contain compound");
 
         // This computation nerfs big chunks with a large amount,

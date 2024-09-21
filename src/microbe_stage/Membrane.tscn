@@ -46,6 +46,7 @@ shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
 
 [node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance")]
 process_priority = 2
+cast_shadow = 0
 mesh = SubResource("1")
 script = ExtResource("1")
 MembraneShaderMaterial = SubResource("ShaderMaterial_55k4t")

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using Newtonsoft.Json;
 using Saving.Serializers;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   A recipe for crafting some things from raw resources

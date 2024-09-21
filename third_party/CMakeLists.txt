@@ -39,10 +39,27 @@ set(USE_AVX512 OFF)
 # libraries
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# Try to tell Jolt to use the DLL friendly runtime library
+set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
+
+# Make sure this other option doesn't accidentally trigger in Jolt
+set(USE_STATIC_MSVC_RUNTIME_LIBRARY OFF)
+
 # We need RTTI to be able to link without missing symbols when Jolt is built
 set(CPP_RTTI_ENABLED ON)
 
 add_subdirectory(JoltPhysics/Build EXCLUDE_FROM_ALL)
+
+# Force Jolt library to use the right MSVC runtime (this is for some reason required as 
+# the above library set doesn't work fully to override things)
+# Could be just a case of CMake policy CMP0091 not being set to new
+if(MSVC)
+  target_compile_options(Jolt PRIVATE -MD$<$<CONFIG:Debug>:d>)
+
+  # Need to force off this Jolt error which is triggered when compiling
+  # thrive_native otherwise
+  target_compile_options(Jolt PUBLIC /wd4714)
+endif()
 
 # Boost libraries
 add_subdirectory(boost EXCLUDE_FROM_ALL)

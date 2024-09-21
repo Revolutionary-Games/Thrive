@@ -16,30 +16,30 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public static RemoveOrganelle ThatUseCompound(Compound compound)
+    public static RemoveOrganelle ThatUseCompound(CompoundDefinition compound)
     {
         return new RemoveOrganelle(organelle =>
             organelle.RunnableProcesses.Any(proc => proc.Process.Inputs.ContainsKey(compound)));
     }
 
-    public static RemoveOrganelle ThatUseCompound(string compoundName)
+    public static RemoveOrganelle ThatUseCompound(Compound compound)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+        var compoundResolved = SimulationParameters.GetCompound(compound);
 
-        return ThatUseCompound(compound);
+        return ThatUseCompound(compoundResolved);
     }
 
-    public static RemoveOrganelle ThatCreateCompound(Compound compound)
+    public static RemoveOrganelle ThatCreateCompound(CompoundDefinition compound)
     {
         return new RemoveOrganelle(organelle =>
             organelle.RunnableProcesses.Any(proc => proc.Process.Outputs.ContainsKey(compound)));
     }
 
-    public static RemoveOrganelle ThatCreateCompound(string compoundName)
+    public static RemoveOrganelle ThatCreateCompound(Compound compound)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+        var compoundResolved = SimulationParameters.GetCompound(compound);
 
-        return ThatCreateCompound(compound);
+        return ThatCreateCompound(compoundResolved);
     }
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,

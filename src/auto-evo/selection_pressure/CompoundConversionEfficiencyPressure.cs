@@ -2,8 +2,8 @@
 
 public class CompoundConversionEfficiencyPressure : SelectionPressure
 {
-    public readonly Compound FromCompound;
-    public readonly Compound ToCompound;
+    public readonly CompoundDefinition FromCompound;
+    public readonly CompoundDefinition ToCompound;
 
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
@@ -17,8 +17,8 @@ public class CompoundConversionEfficiencyPressure : SelectionPressure
             RemoveOrganelle.ThatCreateCompound(outCompound),
         ])
     {
-        FromCompound = compound;
-        ToCompound = outCompound;
+        FromCompound = SimulationParameters.GetCompound(compound);
+        ToCompound = SimulationParameters.GetCompound(outCompound);
     }
 
     public override LocalizedString Name => NameString;

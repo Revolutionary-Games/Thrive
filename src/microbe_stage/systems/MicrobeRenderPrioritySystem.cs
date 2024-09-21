@@ -59,12 +59,13 @@ public sealed class MicrobeRenderPrioritySystem : AEntitySetSystem<float>
 
         try
         {
-            // First material is always the membrane, which gets the base value. Organelles are rendered above it.
+            // First material is always the membrane, which gets the base value with an offset,
+            // so that organelles are rendered below it.
             var materialList = materials.Materials;
 
             if (materialList.Length > 0)
             {
-                materialList[0].RenderPriority = renderOrder.RenderPriority;
+                materialList[0].RenderPriority = renderOrder.RenderPriority + Constants.MEMBRANE_RENDER_PRIORITY;
             }
             else
             {

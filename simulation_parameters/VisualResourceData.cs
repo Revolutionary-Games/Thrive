@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Info on loading a visual resource (with potentially different quality levels for graphics settings)

@@ -324,7 +324,7 @@ public static class MichePopulation
 
             if (trackEnergy)
             {
-                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch, newPopulation,
+                populations.AddTrackedEnergyConsumptionForSpecies(currentSpecies, patch,
                     energyDictionary[currentSpecies], individualCost);
             }
 

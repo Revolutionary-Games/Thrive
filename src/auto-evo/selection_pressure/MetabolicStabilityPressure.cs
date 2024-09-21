@@ -9,8 +9,8 @@ public class MetabolicStabilityPressure : SelectionPressure
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
     public MetabolicStabilityPressure(float weight) : base(weight, [
-        AddOrganelleAnywhere.ThatCreateCompound("atp"),
-        RemoveOrganelle.ThatUseCompound("atp"),
+        AddOrganelleAnywhere.ThatCreateCompound(Compound.ATP),
+        RemoveOrganelle.ThatUseCompound(Compound.ATP),
     ])
     {
     }

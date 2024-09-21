@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition for the day night cycle.

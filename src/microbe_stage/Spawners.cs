@@ -1185,7 +1185,10 @@ public class CompoundCloudSpawner : Spawner
 
     public CompoundCloudSpawner(Compound compound, CompoundCloudSystem clouds, float amount)
     {
-        this.compound = compound ?? throw new ArgumentException("compound is null");
+        if (compound == Compound.Invalid)
+            throw new ArgumentException("compound is invalid");
+
+        this.compound = compound;
         this.clouds = clouds ?? throw new ArgumentException("clouds is null");
         this.amount = amount;
     }

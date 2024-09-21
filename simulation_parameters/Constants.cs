@@ -167,6 +167,11 @@ public static class Constants
     public const float CLOUD_CHEAT_DENSITY = 16000.0f;
 
     public const int MEMBRANE_RESOLUTION = 10;
+    public const int MEMBRANE_VERTICAL_RESOLUTION = 7;
+    public const float MEMBRANE_HEIGHT_MULTIPLIER = 1.0f;
+
+    public const float MEMBRANE_SMOOTHING_POWER = 3.0f;
+    public const float MEMBRANE_SIDE_ROUNDING = 20.0f;
 
     public const float MEMBRANE_ROOM_FOR_ORGANELLES = 1.9f;
     public const float MEMBRANE_NUMBER_OF_WAVES = 9.0f;
@@ -320,8 +325,8 @@ public static class Constants
     public const float PREFER_DESPAWN_PLAYER_REPRODUCED_COPY_AFTER = 0.30f;
 
     /// <summary>
-    ///   Multiplier for how much cells in a colony contribute to the entity limit. Actually colonies seem quite a bit
-    ///   heavier than normal microbes, as such this is set pretty high.
+    ///   Multiplier for how much individual cells in a colony contribute to the entity limit. Actually colonies seem
+    ///   quite a bit heavier than normal microbes, as such this is set pretty high.
     /// </summary>
     public const float MICROBE_COLONY_MEMBER_ENTITY_WEIGHT_MULTIPLIER = 0.95f;
 
@@ -336,7 +341,7 @@ public static class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 5.25f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 1200;
 
     public const int TRANSLATION_VERY_INCOMPLETE_THRESHOLD = 30;
     public const int TRANSLATION_INCOMPLETE_THRESHOLD = 70;
@@ -788,12 +793,12 @@ public static class Constants
     /// <summary>
     ///   The speed of which a cell can absorb compounds from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.5f;
+    public const float ENGULF_COMPOUND_ABSORBING_PER_SECOND = 0.3f;
 
     /// <summary>
-    ///   How much compounds a cell can absorb per second from digestible engulfed objects.
+    ///   How much compounds in relation to real compound amount can be absorbed from digestible engulfed objects.
     /// </summary>
-    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.3f;
+    public const float ENGULF_BASE_COMPOUND_ABSORPTION_YIELD = 0.5f;
 
     /// <summary>
     ///   How long can cell be in engulf mode after activating without ATP
@@ -839,7 +844,7 @@ public static class Constants
 
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
 
-    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 0.25f;
+    public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
 
@@ -970,7 +975,7 @@ public static class Constants
     public const float CHEMORECEPTOR_AMOUNT_MAX = 5000;
     public const float CHEMORECEPTOR_AMOUNT_DEFAULT = 100;
     public const float CHEMORECEPTOR_SEARCH_UPDATE_INTERVAL = 0.25f;
-    public const string CHEMORECEPTOR_DEFAULT_COMPOUND_NAME = "glucose";
+    public const Compound CHEMORECEPTOR_DEFAULT_COMPOUND = Compound.Glucose;
 
     /// <summary>
     ///   Size, in radians, of the gaps between directions the chemoreceptor checks for compounds
@@ -996,6 +1001,8 @@ public static class Constants
 
     public const float MIN_OPACITY_CHITIN = 0.4f;
     public const float MAX_OPACITY_CHITIN = 1.2f;
+
+    public const float ORGANELLE_TINT_STRENGTH = 0.1f;
 
     // Min Opacity Mutation
     public const float MIN_OPACITY_MUTATION = -0.01f;
@@ -1350,8 +1357,6 @@ public static class Constants
     public const float GUI_FOCUS_GRABBER_PROCESS_INTERVAL = 0.1f;
     public const float GUI_FOCUS_SETTER_PROCESS_INTERVAL = 0.2f;
 
-    public const string BUILD_INFO_FILE = "res://simulation_parameters/revision.json";
-
     public const string PHYSICS_DUMP_PATH = LOGS_FOLDER + "/physics_dump.bin";
 
     public const bool VERBOSE_SIMULATION_PARAMETER_LOADING = false;
@@ -1469,6 +1474,8 @@ public static class Constants
     public const string SPECIES_NAME_REGEX = "^(?<genus>[a-zA-Z0-9]+) (?<epithet>[a-zA-Z0-9]+)$";
 
     public const string MOD_INFO_FILE_NAME = "thrive_mod.json";
+
+    public const int MEMBRANE_RENDER_PRIORITY = 20;
 
     /// <summary>
     ///   Minimum hex distance before the same render priority.
@@ -1647,6 +1654,8 @@ public static class Constants
 
     public const int MAX_NEWS_FEED_ITEMS_TO_SHOW = 15;
     public const int MAX_NEWS_FEED_ITEM_LENGTH = 1000;
+
+    public const int MAX_RECENT_VERSIONS_TO_SHOW = 5;
 
     public const string CLICKABLE_TEXT_BBCODE = "[color=#3796e1]";
     public const string CLICKABLE_TEXT_BBCODE_END = "[/color]";

@@ -8,9 +8,6 @@ using System;
 /// </summary>
 public class LeaveColonyTutorial : TutorialPhase
 {
-    private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
-    private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
-
     private bool hasColony;
     private bool fullAmmonia;
     private bool fullPhosphates;
@@ -49,11 +46,12 @@ public class LeaveColonyTutorial : TutorialPhase
                 {
                     var compounds = ((CompoundBagEventArgs)args).Compounds;
 
-                    fullAmmonia = compounds.GetCapacityForCompound(ammonia) - compounds.GetCompoundAmount(ammonia) <
+                    fullAmmonia = compounds.GetCapacityForCompound(Compound.Ammonia) -
+                        compounds.GetCompoundAmount(Compound.Ammonia) <
                         MathUtils.EPSILON;
 
-                    fullPhosphates = compounds.GetCapacityForCompound(phosphates) -
-                        compounds.GetCompoundAmount(phosphates) <
+                    fullPhosphates = compounds.GetCapacityForCompound(Compound.Phosphates) -
+                        compounds.GetCompoundAmount(Compound.Phosphates) <
                         MathUtils.EPSILON;
 
                     if (fullAmmonia && fullPhosphates && !overallState.TutorialActive())

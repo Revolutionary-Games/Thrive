@@ -23,8 +23,6 @@ public class Patch
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Compound sunlight;
-
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
@@ -49,8 +47,6 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
-
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -66,8 +62,6 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
-
-        sunlight = SimulationParameters.Instance.GetCompound("sunlight");
     }
 
     [JsonProperty]
@@ -367,15 +361,15 @@ public class Patch
     public float GetCompoundAmountForDisplay(Compound compound,
         CompoundAmountType amountType = CompoundAmountType.Current)
     {
-        switch (compound.InternalName)
+        switch (compound)
         {
-            case "sunlight":
-            case "temperature":
-            case "oxygen":
-            case "carbondioxide":
-            case "nitrogen":
+            case Compound.Sunlight:
+            case Compound.Temperature:
+            case Compound.Oxygen:
+            case Compound.Carbondioxide:
+            case Compound.Nitrogen:
                 return GetAmbientCompound(compound, amountType) * 100;
-            case "iron":
+            case Compound.Iron:
                 return GetTotalChunkCompoundAmount(compound);
             default:
             {
@@ -396,18 +390,16 @@ public class Patch
         }
     }
 
-    public float GetCompoundAmountInSnapshotForDisplay(PatchSnapshot snapshot, string compoundName)
+    public float GetCompoundAmountInSnapshotForDisplay(PatchSnapshot snapshot, Compound compound)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
-
-        switch (compoundName)
+        switch (compound)
         {
-            case "sunlight":
-            case "oxygen":
-            case "carbondioxide":
-            case "nitrogen":
+            case Compound.Sunlight:
+            case Compound.Oxygen:
+            case Compound.Carbondioxide:
+            case Compound.Nitrogen:
                 return GetAmbientCompound(compound, CompoundAmountType.Biome) * 100;
-            case "iron":
+            case Compound.Iron:
                 return GetTotalChunkCompoundAmount(compound);
             default:
                 return snapshot.Biome.Compounds[compound].Density * snapshot.Biome.Compounds[compound].Amount +
@@ -472,17 +464,17 @@ public class Patch
 
     public void UpdateAverageSunlight(float multiplier)
     {
-        Biome.AverageCompounds[sunlight] = new BiomeCompoundProperties
+        Biome.AverageCompounds[Compound.Sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[Compound.Sunlight].Ambient * multiplier,
         };
     }
 
     public void UpdateCurrentSunlight(float multiplier)
     {
-        Biome.CurrentCompoundAmounts[sunlight] = new BiomeCompoundProperties
+        Biome.CurrentCompoundAmounts[Compound.Sunlight] = new BiomeCompoundProperties
         {
-            Ambient = Biome.Compounds[sunlight].Ambient * multiplier,
+            Ambient = Biome.Compounds[Compound.Sunlight].Ambient * multiplier,
         };
     }
 

@@ -134,13 +134,15 @@ public static class DictionaryUtils
 
     public static bool DictionaryEquals<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> items1,
         IEnumerable<KeyValuePair<TKey, TValue>> items2)
-        where TKey : IEquatable<TKey>
-        where TValue : IEquatable<TValue>
     {
         // When working with enumerables it is not possible to avoid allocations in any case so this should be fine
         // to allocate enumerators like this
         using var enumerator1 = items1.GetEnumerator();
         using var enumerator2 = items2.GetEnumerator();
+
+        // Need to use a special comparer to avoid boxing enums or other value types
+        var valueComparer = EqualityComparer<TValue>.Default;
+        var keyComparer = EqualityComparer<TKey>.Default;
 
         while (enumerator1.MoveNext())
         {
@@ -151,10 +153,10 @@ public static class DictionaryUtils
             var value1 = enumerator1.Current;
             var value2 = enumerator2.Current;
 
-            if (!value1.Value.Equals(value2.Value))
+            if (!valueComparer.Equals(value1.Value, value2.Value))
                 return false;
 
-            if (!value1.Key.Equals(value2.Key))
+            if (!keyComparer.Equals(value1.Key, value2.Key))
                 return false;
         }
 

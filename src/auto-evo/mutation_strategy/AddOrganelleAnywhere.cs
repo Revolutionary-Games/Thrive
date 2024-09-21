@@ -20,37 +20,38 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
-    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, CommonMutationFunctions.Direction direction
-        = CommonMutationFunctions.Direction.Neutral)
+    public static AddOrganelleAnywhere ThatUseCompound(CompoundDefinition compound,
+        CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Any(proc => proc.Process.Inputs.ContainsKey(compound)), direction);
     }
 
-    public static AddOrganelleAnywhere ThatUseCompound(string compoundName, CommonMutationFunctions.Direction direction
+    public static AddOrganelleAnywhere ThatUseCompound(Compound compound, CommonMutationFunctions.Direction direction
         = CommonMutationFunctions.Direction.Neutral)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+        var compoundResolved = SimulationParameters.GetCompound(compound);
 
-        return ThatUseCompound(compound, direction);
+        return ThatUseCompound(compoundResolved, direction);
     }
 
-    public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
+    public static AddOrganelleAnywhere ThatCreateCompound(CompoundDefinition compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
             .Any(proc => proc.Process.Outputs.ContainsKey(compound)), direction);
     }
 
-    public static AddOrganelleAnywhere ThatCreateCompound(string compoundName,
+    public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
-        var compound = SimulationParameters.Instance.GetCompound(compoundName);
+        var compoundResolved = SimulationParameters.GetCompound(compound);
 
-        return ThatCreateCompound(compound, direction);
+        return ThatCreateCompound(compoundResolved, direction);
     }
 
-    public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
+    public static AddOrganelleAnywhere ThatConvertBetweenCompounds(CompoundDefinition fromCompound,
+        CompoundDefinition toCompound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
         return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
@@ -58,13 +59,13 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
                 proc.Process.Outputs.ContainsKey(toCompound)), direction);
     }
 
-    public static AddOrganelleAnywhere ThatConvertBetweenCompounds(string fromCompoundName, string toCompoundName,
+    public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
-        var fromCompound = SimulationParameters.Instance.GetCompound(fromCompoundName);
-        var toCompound = SimulationParameters.Instance.GetCompound(toCompoundName);
+        var fromCompoundResolved = SimulationParameters.GetCompound(fromCompound);
+        var toCompoundResolved = SimulationParameters.GetCompound(toCompound);
 
-        return ThatConvertBetweenCompounds(fromCompound, toCompound, direction);
+        return ThatConvertBetweenCompounds(fromCompoundResolved, toCompoundResolved, direction);
     }
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,

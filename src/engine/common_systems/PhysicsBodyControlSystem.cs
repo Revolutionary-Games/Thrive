@@ -66,13 +66,15 @@ public sealed class PhysicsBodyControlSystem : AEntitySetSystem<float>
 
             if (control.ImpulseToGive != Vector3.Zero)
             {
-                physicalWorld.GiveImpulse(body, control.ImpulseToGive);
+                // To not have objects that sit around until touched and then shoot off at high velocity we
+                // automatically activate bodies that have accumulated enough linear speed
+                physicalWorld.GiveImpulse(body, control.ImpulseToGive, true);
                 control.ImpulseToGive = Vector3.Zero;
             }
 
             if (control.AngularImpulseToGive != Vector3.Zero)
             {
-                physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive);
+                physicalWorld.GiveAngularImpulse(body, control.AngularImpulseToGive, true);
                 control.AngularImpulseToGive = Vector3.Zero;
             }
 

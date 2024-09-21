@@ -200,8 +200,10 @@ public class PatchManager : IChildPropertiesLoadCallback
             var amount = entry.Value.Amount * CurrentGame.GameWorld.WorldSettings.CompoundDensity *
                 Constants.CLOUD_SPAWN_AMOUNT_SCALE_FACTOR;
 
-            HandleSpawnHelper(cloudSpawners, entry.Key.InternalName, density,
-                () => new CreatedSpawner(entry.Key.InternalName,
+            var spawnerName = Enum.GetName(entry.Key) ?? throw new Exception("Enum value to string failed");
+
+            HandleSpawnHelper(cloudSpawners, spawnerName, density,
+                () => new CreatedSpawner(spawnerName,
                     Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, amount),
                     Constants.CLOUD_SPAWN_RADIUS));
         }

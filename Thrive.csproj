@@ -15,7 +15,7 @@
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
     <DefaultItemExcludes>
-      $(DefaultItemExcludes);Scripts\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
+      $(DefaultItemExcludes);Scripts\**\*;ThriveScriptsShared\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
@@ -41,7 +41,7 @@
     <PackageReference Include="Nito.Collections.Deque" Version="1.2.1" />
     <PackageReference Include="Lib.Harmony" Version="2.3.3" />
     <PackageReference Include="XoshiroPRNG.Net" Version="1.6.0" />
-    <PackageReference Include="YamlDotNet" Version="16.1.0" />
+    <PackageReference Include="YamlDotNet" Version="16.1.2" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.556" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="8.0.0" PrivateAssets="all" />
   </ItemGroup>
@@ -68,6 +68,7 @@
     <Content Include="simulation_parameters\common\screen_effects.json" />
     <Content Include="simulation_parameters\common\translations_info.json" />
     <Content Include="simulation_parameters\common\visual_resources.json" />
+    <Content Include="simulation_parameters\common\wiki.json" />
     <Content Include="simulation_parameters\industrial_stage\units.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
     <Content Include="simulation_parameters\microbe_stage\biomes.json" />
@@ -83,6 +84,7 @@
     <ProjectReference Include="RevolutionaryGamesCommon\LauncherThriveShared\LauncherThriveShared.csproj" />
     <ProjectReference Include="RevolutionaryGamesCommon\SharedBase\SharedBase.csproj" />
     <ProjectReference Include="third_party\ThirdParty.csproj" />
+    <ProjectReference Include="ThriveScriptsShared\ThriveScriptsShared.csproj" />
   </ItemGroup>
   <!-- StyleCop Analyzers configuration -->
   <PropertyGroup>

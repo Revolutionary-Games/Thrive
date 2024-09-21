@@ -8,8 +8,6 @@ public class CiliaComponent : IOrganelleComponent
 {
     private const string CILIA_PULL_UPGRADE_NAME = "pull";
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-
     private PlacedOrganelle parentOrganelle = null!;
 
     private float currentSpeed = 1.0f;
@@ -104,7 +102,7 @@ public class CiliaComponent : IOrganelleComponent
 
             var compounds = microbeEntity.Get<CompoundStorage>().Compounds;
 
-            var availableEnergy = compounds.TakeCompound(atp, requiredEnergy);
+            var availableEnergy = compounds.TakeCompound(Compound.ATP, requiredEnergy);
 
             if (availableEnergy < requiredEnergy)
             {

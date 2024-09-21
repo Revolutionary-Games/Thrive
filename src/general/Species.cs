@@ -381,18 +381,15 @@ public abstract class Species : ICloneable
     {
         var result = new Dictionary<Compound, float>();
 
-        var simulationParameters = SimulationParameters.Instance;
-
         if (Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA > 0)
         {
-            result.Add(simulationParameters.GetCompound("ammonia"),
+            result.Add(Compound.Ammonia,
                 Constants.MICROBE_REPRODUCTION_COST_BASE_AMMONIA);
         }
 
         if (Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES > 0)
         {
-            result.Add(simulationParameters.GetCompound("phosphates"),
-                Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
+            result.Add(Compound.Phosphates, Constants.MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES);
         }
 
         return result;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
+using ThriveScriptsShared;
 
 /// <summary>
 ///   Definition for a screen effect

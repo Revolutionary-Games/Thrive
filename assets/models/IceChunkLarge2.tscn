@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://0mbxlwabmmgp"]
+
+[ext_resource type="Texture2D" uid="uid://dfw401vxsi10p" path="res://assets/textures/IceChunk.png" id="2_qawph"]
+[ext_resource type="Texture2D" uid="uid://c4lakneio0v00" path="res://assets/textures/IronChunk_normal.png" id="2_rupjp"]
+[ext_resource type="ArrayMesh" uid="uid://dwku0n7qribgu" path="res://assets/models/IceChunkLarge2.mesh" id="5_p5w0v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pawmm"]
+render_priority = 18
+transparency = 4
+blend_mode = 1
+cull_mode = 2
+albedo_color = Color(0.839216, 1, 1, 0.882353)
+albedo_texture = ExtResource("2_qawph")
+metallic = 0.6
+metallic_specular = 0.78
+roughness = 0.6
+emission_enabled = true
+emission = Color(0.321569, 0.321569, 0.435294, 1)
+emission_energy_multiplier = 1.5
+normal_enabled = true
+normal_texture = ExtResource("2_rupjp")
+
+[node name="IceChunk" type="MeshInstance3D"]
+material_override = SubResource("StandardMaterial3D_pawmm")
+mesh = ExtResource("5_p5w0v")

@@ -10,11 +10,10 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
-    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
-    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+    private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
-    private readonly Compound createdCompound;
-    private readonly Compound compound;
+    private readonly CompoundDefinition createdCompound;
+    private readonly CompoundDefinition compound;
     private readonly float energyMultiplier;
 
     public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
@@ -23,16 +22,17 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             AddOrganelleAnywhere.ThatUseCompound(compound),
         ])
     {
-        if (compound.IsCloud)
+        this.compound = SimulationParameters.GetCompound(compound);
+
+        if (this.compound.IsCloud)
             throw new ArgumentException("Given compound to environmental pressure is a cloud type");
 
-        if (createdCompound != atp && createdCompound != glucose)
+        if (createdCompound != Compound.ATP && createdCompound != Compound.Glucose)
         {
             throw new ArgumentException("Unhandled created compound");
         }
 
-        this.compound = compound;
-        this.createdCompound = createdCompound;
+        this.createdCompound = SimulationParameters.GetCompound(createdCompound);
         this.energyMultiplier = energyMultiplier;
     }
 
@@ -45,9 +45,10 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
         var amountCreated = cache.GetCompoundGeneratedFrom(compound, createdCompound, microbeSpecies, patch.Biome);
 
-        if (createdCompound == glucose)
+        if (createdCompound.ID == Compound.Glucose)
         {
-            amountCreated *= cache.GetCompoundConversionScoreForSpecies(glucose, atp, microbeSpecies, patch.Biome);
+            amountCreated *=
+                cache.GetCompoundConversionScoreForSpecies(createdCompound, atp, microbeSpecies, patch.Biome);
         }
 
         var energyBalance = cache.GetEnergyBalanceForSpecies(microbeSpecies, patch.Biome);
@@ -58,7 +59,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     public override float GetEnergy(Patch patch)
     {
-        return patch.Biome.AverageCompounds[compound].Ambient * energyMultiplier;
+        return patch.Biome.AverageCompounds[compound.ID].Ambient * energyMultiplier;
     }
 
     public override LocalizedString GetDescription()

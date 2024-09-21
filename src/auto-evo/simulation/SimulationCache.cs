@@ -22,19 +22,19 @@ public class SimulationCache
 {
     private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
 
-    private readonly Compound oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
-    private readonly Compound mucilage = SimulationParameters.Instance.GetCompound("mucilage");
+    private readonly CompoundDefinition oxytoxy = SimulationParameters.GetCompound(Compound.Oxytoxy);
+    private readonly CompoundDefinition mucilage = SimulationParameters.GetCompound(Compound.Mucilage);
 
     private readonly WorldGenerationSettings worldSettings;
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
 
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound, Compound), float> cachedCompoundScores =
-        new();
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
+        cachedCompoundScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, Compound, Compound), float> cachedGeneratedCompound =
-        new();
+    private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
+        cachedGeneratedCompound = new();
 
     private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, BiomeConditions), float> predationScores = new();
 
@@ -116,7 +116,7 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetCompoundConversionScoreForSpecies(Compound fromCompound, Compound toCompound,
+    public float GetCompoundConversionScoreForSpecies(CompoundDefinition fromCompound, CompoundDefinition toCompound,
         MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         var key = (species, biomeConditions, fromCompound, toCompound);
@@ -162,8 +162,8 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetCompoundGeneratedFrom(Compound fromCompound, Compound toCompound, MicrobeSpecies species,
-        BiomeConditions biomeConditions)
+    public float GetCompoundGeneratedFrom(CompoundDefinition fromCompound, CompoundDefinition toCompound,
+        MicrobeSpecies species, BiomeConditions biomeConditions)
     {
         var key = (species, biomeConditions, fromCompound, toCompound);
 

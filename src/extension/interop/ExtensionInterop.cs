@@ -6,7 +6,7 @@ using Godot;
 ///   Interop handling for the GDExtension for Thrive. In contrast <see cref="NativeInterop"/> handles the non-Godot
 ///   using native library.
 /// </summary>
-public class ExtensionInterop
+public static class ExtensionInterop
 {
     private static readonly Lazy<bool> ExtensionAvailability = new(() => ClassDB.CanInstantiate("ThriveConfig"));
 
