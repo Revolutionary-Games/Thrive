@@ -83,7 +83,7 @@ public class BioProcess : IRegistryType
         {
             if (input.Key.IsEnvironmental)
             {
-                conditions.AverageCompounds.TryGetValue(input.Key, out var properties);
+                conditions.AverageCompounds.TryGetValue(input.Key.ID, out var properties);
 
                 rate *= properties.Ambient;
             }

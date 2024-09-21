@@ -38,7 +38,7 @@ public class GlucoseReductionEffect : IWorldEffect
         ApplyCompoundsAddition();
         HandlePatchCompoundDiffusion();
     }
-    
+
     private void ApplyCompoundsAddition()
     {
         var atp = SimulationParameters.Instance.GetCompound("atp");
@@ -89,14 +89,14 @@ public class GlucoseReductionEffect : IWorldEffect
                             // Inputs
                             foreach (var input in bioProcess.Inputs)
                             {
-                                if (input.Key == temperature)
+                                if (input.Key.ID == Compound.Temperature)
                                     continue;
 
                                 float add;
 
-                                if (patch.Biome.AverageCompounds.ContainsKey(input.Key))
+                                if (patch.Biome.AverageCompounds.ContainsKey(input.Key.ID))
                                 {
-                                    if (patch.Biome.AverageCompounds[input.Key].Ambient > 0)
+                                    if (patch.Biome.AverageCompounds[input.Key.ID].Ambient > 0)
                                     {
                                         add = -species.Value * modifier * input.Value * environmentalModifier
                                             * rate;
@@ -104,7 +104,7 @@ public class GlucoseReductionEffect : IWorldEffect
                                     else
                                     {
                                         add = -species.Value * modifier * input.Value * inputModifier *
-                                            patch.Biome.AverageCompounds[input.Key].Density * rate;
+                                            patch.Biome.AverageCompounds[input.Key.ID].Density * rate;
                                     }
                                 }
                                 else
@@ -112,20 +112,20 @@ public class GlucoseReductionEffect : IWorldEffect
                                     add = -species.Value * modifier * input.Value * inputModifier;
                                 }
 
-                                if (totalAdded.ContainsKey(input.Key))
+                                if (totalAdded.ContainsKey(input.Key.ID))
                                 {
-                                    totalAdded[input.Key] += add;
+                                    totalAdded[input.Key.ID] += add;
                                 }
                                 else
                                 {
-                                    totalAdded.Add(input.Key, add);
+                                    totalAdded.Add(input.Key.ID, add);
                                 }
                             }
 
                             // Outputs
                             foreach (var output in bioProcess.Outputs)
                             {
-                                if (output.Key.IsAgent || output.Key == atp || output.Key == temperature)
+                                if (output.Key.IsAgent || output.Key.ID == Compound.ATP || output.Key.ID == Compound.Temperature)
                                     continue;
 
                                 float add;
@@ -138,16 +138,16 @@ public class GlucoseReductionEffect : IWorldEffect
                                 else
                                 {
                                     add = species.Value * modifier * output.Value * outputModifier
-                                        * patch.Biome.AverageCompounds[output.Key].Density * rate;
+                                        * patch.Biome.AverageCompounds[output.Key.ID].Density * rate;
                                 }
 
-                                if (totalAdded.ContainsKey(output.Key))
+                                if (totalAdded.ContainsKey(output.Key.ID))
                                 {
-                                    totalAdded[output.Key] += add;
+                                    totalAdded[output.Key.ID] += add;
                                 }
                                 else
                                 {
-                                    totalAdded.Add(output.Key, add);
+                                    totalAdded.Add(output.Key.ID, add);
                                 }
                             }
                         }
@@ -162,7 +162,7 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 if (totalAdded.ContainsKey(compound.Key))
                 {
-                    if (compound.Key.IsEnvironmental)
+                    if (SimulationParameters.Instance.GetCompoundDefinition(compound.Key).IsEnvironmental)
                     {
                         tweakedBiomeConditions.Ambient = Math.Clamp(
                             patch.BiomeTemplate.Conditions.ChangeableCompounds[compound.Key].Ambient
