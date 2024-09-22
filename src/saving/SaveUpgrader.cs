@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using Godot;
 using Saving;
+using SharedBase.ModelVerifiers;
 
 /// <summary>
 ///   Allows upgrading older saves to newer versions when there are save upgrade actions programmed
@@ -36,6 +38,9 @@ public static class SaveUpgrader
     public static void PerformSaveUpgrade(SaveInformation saveInfo, string inputSave, bool backup = true,
         string? targetVersion = null)
     {
+        var stopwatch = new Stopwatch();
+        stopwatch.Start();
+
         targetVersion ??= Constants.Version;
 
         if (saveInfo.ThriveVersion == targetVersion)
@@ -100,6 +105,9 @@ public static class SaveUpgrader
             // After the first step the target save is upgraded in-place so we need to overwrite the old source
             fromSave = toSave;
         }
+
+        stopwatch.Stop();
+        GD.Print($"Save upgrade took in total: {stopwatch.Elapsed}");
     }
 
     public static bool IsSaveABackup(string saveName)
