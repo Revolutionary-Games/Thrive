@@ -145,6 +145,7 @@ public partial class SpeciesResultButton : Button
         var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");
         if (tooltip != null && ToolTipManager.Instance.MainToolTip == tooltip)
         {
+            ToolTipManager.Instance.MainToolTip = null;
             ToolTipManager.Instance.Display = false;
         }
     }
