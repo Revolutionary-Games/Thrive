@@ -41,9 +41,6 @@ public class GlucoseReductionEffect : IWorldEffect
 
     private void ApplyCompoundsAddition()
     {
-        var atp = SimulationParameters.Instance.GetCompound("atp");
-        var temperature = SimulationParameters.Instance.GetCompound("temperature");
-
         var outputModifier = 500.0f;
         var inputModifier = 500.0f;
         var environmentalModifier = 100.0f;
@@ -190,7 +187,7 @@ public class GlucoseReductionEffect : IWorldEffect
             {
                 foreach (var compound in patch.Value.Biome.Compounds)
                 {
-                    if (compound.Key == Compound.Sunlight || compound.Key == Compound.Temperature)
+                    if (compound.Key is Compound.Sunlight or Compound.Temperature)
                         return;
 
                     var newConditions = compound.Value;
