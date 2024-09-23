@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bqeojm252hm5x" path="res://src/benchmark/BenchmarkGUITopPart.tscn" id="4_jqc6b"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_s2fej"]
 
-[node name="CloudBenchmark" type="Node" node_paths=PackedStringArray("emittersCountLabel", "absorbersCountLabel", "worldRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
+[node name="CloudBenchmark" type="Node" node_paths=PackedStringArray("emittersCountLabel", "absorbersCountLabel", "multipliedSimulationsLabel", "multipliedSimulationsContainer", "worldRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
 script = ExtResource("1_gp5vd")
 emittersCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/Emitters")
 absorbersCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/Absorbers")
+multipliedSimulationsLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3/Multiplier")
+multipliedSimulationsContainer = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3")
 worldRoot = NodePath("WorldRoot")
 benchmarkCamera = NodePath("WorldRoot/MicrobeCamera")
 guiContainer = NodePath("GUIContainer")
@@ -89,6 +91,19 @@ text = "ABSORBERS_COUNT"
 label_settings = ExtResource("5_s2fej")
 
 [node name="Absorbers" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("5_s2fej")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+text = "CLOUD_SIM_MULTIPLIER"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Multiplier" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3"]
 layout_mode = 2
 text = "1"
 label_settings = ExtResource("5_s2fej")
