@@ -2,7 +2,10 @@ using System;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using DefaultEcs;
+using DefaultEcs.Threading;
 using Godot;
+using Systems;
 
 /// <summary>
 ///   Benchmark for the performance of the compound clouds feature
@@ -14,7 +17,7 @@ public partial class CloudBenchmark : BenchmarkBase
     private const float SPAWN_INTERVAL = 0.221f;
 
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
-    private const float MAX_SPAWN_DISTANCE = 110;
+    private const float MAX_SPAWN_DISTANCE = 95;
     private const float SPAWN_DISTANCE_INCREMENT = 1.8f;
 
     private const float FIRST_PHASE_SPAWNS = 100;
@@ -40,8 +43,10 @@ public partial class CloudBenchmark : BenchmarkBase
     [Export]
     private MicrobeCamera benchmarkCamera = null!;
 
-    private CompoundCloudSystem? cloudSystem;
 #pragma warning restore CA2213
+
+    private World? dummyEntityWorld;
+    private CompoundCloudSystem? cloudSystem;
 
     private int emittersCount;
     private int absorbersCount;
@@ -62,6 +67,8 @@ public partial class CloudBenchmark : BenchmarkBase
     protected override int Version => 1;
 
     protected override int TotalSteps => 4;
+
+    protected override bool StressTestClouds => true;
 
     public override void _Process(double delta)
     {
@@ -126,7 +133,7 @@ public partial class CloudBenchmark : BenchmarkBase
             {
                 if (MeasureFPS())
                 {
-                    alsoAbsorbingResult = ScoreFromMeasuredFPS();
+                    manySpawnersResult = ScoreFromMeasuredFPS();
                     IncrementPhase();
                 }
 
@@ -289,10 +296,27 @@ public partial class CloudBenchmark : BenchmarkBase
         return builder.ToString();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            dummyEntityWorld?.Dispose();
+            cloudSystem?.Dispose();
+        }
+
+        base.Dispose(disposing);
+    }
+
     private void SetupSimulation()
     {
         cloudSystem = new CompoundCloudSystem();
         worldRoot.AddChild(cloudSystem);
+
+        // Dummy currents that doesn't need to run on any entities has to be created for the cloud system
+        dummyEntityWorld = new World();
+        var dummyCurrents = new FluidCurrentsSystem(dummyEntityWorld, new DefaultParallelRunner(1));
+
+        cloudSystem.Init(dummyCurrents);
     }
 
     private void SpawnAndUpdatePositionState()

@@ -72,6 +72,8 @@ public partial class BenchmarkBase : Node
 
     protected bool HasReachedBenchmarkEnd { get; private set; }
 
+    protected virtual bool StressTestClouds => false;
+
     public override void _Ready()
     {
         base._Ready();
@@ -106,7 +108,7 @@ public partial class BenchmarkBase : Node
             {
                 // TODO: if the benchmark ever supports restarting, then cleanup of existing objects needs to be
                 // performed here
-                BenchmarkHelpers.PerformBenchmarkSetup(storedSettings);
+                BenchmarkHelpers.PerformBenchmarkSetup(storedSettings, StressTestClouds);
                 OnBenchmarkStarted();
 
                 IncrementPhase();
