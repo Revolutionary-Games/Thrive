@@ -3,7 +3,7 @@ repos:
     hooks:
     - id: check_formatting
       name: Run check formatting
-      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour files rewrite compile steam-build cleanupcode --no-rebuild
+      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour --no-rebuild files rewrite compile steam-build cleanupcode
       language: system
       verbose: true
       pass_filenames: false
