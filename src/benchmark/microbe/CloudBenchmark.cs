@@ -28,8 +28,8 @@ public partial class CloudBenchmark : BenchmarkBase
     private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 15;
     private const float STRESS_TEST_THRESHOLD_REDUCE = 0.35f;
     private const float STRESS_TEST_END_THRESHOLD_MIN = 1.0f;
-    private const int STRESS_TEST_SPAWN_INCREASE_EVERY_N = 10;
-    private const int STRESS_TEST_SIMULATION_INCREASE_EVERY_N = 100;
+    private const int STRESS_TEST_SPAWN_INCREASE_EVERY_N = 8;
+    private const float STRESS_TEST_SIMULATION_INCREASE_EVERY_N = 130;
 
     private const float ABSORBER_RADIUS = 8;
     private const float ABSORB_RATE = 0.99f;
@@ -75,7 +75,8 @@ public partial class CloudBenchmark : BenchmarkBase
     private double absorbAngle;
     private float absorbDistance;
 
-    private int extraSimulations;
+    private float extraSimulations;
+    private double accumulatedExtraDelta;
 
     private float simpleSpawningResult;
     private float alsoAbsorbingResult;
@@ -103,7 +104,7 @@ public partial class CloudBenchmark : BenchmarkBase
         if (extraSimulations > 0)
         {
             multipliedSimulationsContainer.Visible = true;
-            multipliedSimulationsLabel.Text = (extraSimulations + 1).ToString(CultureInfo.CurrentCulture);
+            multipliedSimulationsLabel.Text = Math.Round(extraSimulations + 1, 2).ToString(CultureInfo.CurrentCulture);
         }
         else
         {
@@ -112,9 +113,13 @@ public partial class CloudBenchmark : BenchmarkBase
 
         benchmarkCamera.UpdateCameraPosition(delta, Vector3.Zero);
 
-        // Extra cloud simulations per frame to make things heavier
-        for (int i = 0; i < extraSimulations; ++i)
+        // Extra cloud simulations per frame to make things heavier. Though 2x is very high so this starts low
+
+        accumulatedExtraDelta = delta * extraSimulations;
+
+        while (accumulatedExtraDelta > EXTRA_SIMULATION_DELTA)
         {
+            accumulatedExtraDelta -= EXTRA_SIMULATION_DELTA;
             cloudSystem!._Process(EXTRA_SIMULATION_DELTA);
         }
 
@@ -197,7 +202,7 @@ public partial class CloudBenchmark : BenchmarkBase
                     break;
 
                 emittersCount = 16;
-                absorbersCount = 8;
+                absorbersCount = 16;
 
                 SpawnAndUpdatePositionState();
                 AbsorbAndUpdatePositionState(delta);
@@ -266,9 +271,7 @@ public partial class CloudBenchmark : BenchmarkBase
             case 8:
             {
                 OnBenchmarkEnded();
-
-                if (extraSimulations >= 1)
-                    extraSimulations = 0;
+                extraSimulations = 0;
                 break;
             }
         }
@@ -335,8 +338,8 @@ public partial class CloudBenchmark : BenchmarkBase
 
         if (stressTestResult != 0)
         {
-            builder.Append($"Cloud sims per frame before under {TARGET_FPS_FOR_SPAWNING} FPS: ");
-            builder.Append(Math.Round(stressTestResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append($"Cloud sim multiplier before under {TARGET_FPS_FOR_SPAWNING} FPS: ");
+            builder.Append(Math.Round(stressTestResult, scoreDecimals + 1).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
 
