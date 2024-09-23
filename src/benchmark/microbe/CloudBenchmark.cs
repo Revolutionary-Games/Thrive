@@ -345,7 +345,7 @@ public partial class CloudBenchmark : BenchmarkBase
 
         if (stressTestEmittersResult != 0)
         {
-            builder.Append($"Stress test spawners: ");
+            builder.Append("Stress test spawners: ");
             builder.Append(Math.Round(stressTestEmittersResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
