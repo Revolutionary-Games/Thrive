@@ -32,6 +32,7 @@ public class NativeLibs
 
     private const string APIFolderName = "api";
     private const string GodotAPIFileName = "extension_api.json";
+    private const string GodotAPIHeaderFileName = "gdextension_interface.h";
     private const string APIInContainer = "/godot-api";
 
     private const string ExtensionInstallFolder = "lib";
@@ -1096,9 +1097,14 @@ public class NativeLibs
         if (!Directory.Exists(folder))
             throw new ArgumentException("Folder doesn't exist (must exist before calling this)", nameof(folder));
 
+        // Create a temp folder to only update the real file when it has changed
+        var temporaryFolder = Path.Combine(folder, "tmpOutput");
+
+        Directory.CreateDirectory(temporaryFolder);
+
         var startInfo = new ProcessStartInfo("godot")
         {
-            WorkingDirectory = folder,
+            WorkingDirectory = temporaryFolder,
         };
 
         startInfo.ArgumentList.Add("--headless");
@@ -1110,21 +1116,48 @@ public class NativeLibs
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
 
-        if (result.ExitCode != 0)
+        try
         {
-            ColourConsole.WriteErrorLine(
-                $"Failed to generate Godot API file (exit: {result.ExitCode}). Output: {result.FullOutput}");
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Failed to generate Godot API file (exit: {result.ExitCode}). Output: {result.FullOutput}");
 
-            return false;
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(temporaryFolder, GodotAPIFileName)))
+            {
+                ColourConsole.WriteErrorLine($"Expected Godot API file not created in {temporaryFolder}");
+                return false;
+            }
+
+            // Copy Godot API to the real target folder if it is missing
+            bool copied = await FileUtilities.MoveIfHashIsDifferent(Path.Combine(temporaryFolder, GodotAPIFileName),
+                Path.Combine(folder, GodotAPIFileName), cancellationToken);
+
+            // This is an inappropriate change as it would skip the side effects
+            // ReSharper disable once ConvertIfToOrExpression
+            if (await FileUtilities.MoveIfHashIsDifferent(Path.Combine(temporaryFolder, GodotAPIHeaderFileName),
+                    Path.Combine(folder, GodotAPIHeaderFileName), cancellationToken))
+            {
+                copied = true;
+            }
+
+            if (!copied)
+            {
+                ColourConsole.WriteInfoLine("Godot API file was already up to date, not copying new file");
+            }
+            else
+            {
+                ColourConsole.WriteNormalLine("Created Godot API file");
+            }
         }
-
-        if (!File.Exists(Path.Combine(folder, GodotAPIFileName)))
+        finally
         {
-            ColourConsole.WriteErrorLine($"Expected Godot API file not created in {folder}");
-            return false;
+            // Clean up the temporary folder
+            Directory.Delete(temporaryFolder, true);
         }
-
-        ColourConsole.WriteNormalLine("Created Godot API file");
 
         return true;
     }
