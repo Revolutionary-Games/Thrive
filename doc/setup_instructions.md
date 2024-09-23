@@ -588,9 +588,12 @@ recommended as it is easier to use.
 Pre-commit hook
 ---------------
 
-You can enable a pre-commit hook to automatically run the
+You can enable a pre-commit hook to automatically run some of the
 formatting checks before each commit to avoid accidentally committing
-code with formatting issues.
+code with formatting issues. The reason these don't run all of the
+checks for each commit is that that takes a really long time. Though,
+if you prefer that you can edit the `.pre-commit-config.yaml` file to
+switch out which variant of the formatting script is commented out.
 
 To install pre-commit run `pip install pre-commit`. On Linux you can
 optionally install it with `sudo` or with the `--user` flag as was
