@@ -3,13 +3,26 @@ repos:
     hooks:
     - id: check_formatting
       name: Run check formatting
-      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour
+      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour --no-rebuild files rewrite compile steam-build cleanupcode
       language: system
       verbose: true
       pass_filenames: false
-    - id: run_simple_tests
-      name: Run simple tests
-      entry: dotnet test test/code_tests
+    - id: locales_up_to_date
+      name: Check that translations are up to date
+      entry: dotnet run --project Scripts -- check --pre-commit --disable-colour localization
       language: system
       verbose: true
       pass_filenames: false
+    # Uncomment this and comment the above if you prefer more full checks for each commit
+    # - id: check_formatting_full
+    #   name: Run check formatting (full)
+    #   entry: dotnet run --project Scripts -- check --pre-commit --disable-colour
+    #   language: system
+    #   verbose: true
+    #   pass_filenames: false
+    # - id: run_simple_tests
+    #   name: Run simple tests
+    #   entry: dotnet test test/code_tests
+    #   language: system
+    #   verbose: true
+    #   pass_filenames: false

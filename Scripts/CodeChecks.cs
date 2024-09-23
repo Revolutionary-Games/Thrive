@@ -48,7 +48,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
                         },
                     })
             },
-            { "compile", new CompileCheck() },
+            { "compile", new CompileCheck(!opts.NoExtraRebuild) },
             { "inspectcode", inspectCode },
             { "cleanupcode", new CleanupCode() },
             { "localization", new LocalizationCheck(runLocalizationTool) },
