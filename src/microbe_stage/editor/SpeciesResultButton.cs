@@ -143,8 +143,10 @@ public partial class SpeciesResultButton : Button
     private void OnMouseExit()
     {
         var tooltip = ToolTipManager.Instance.GetToolTip<SpeciesPreviewTooltip>("speciesPreview");
-        if (tooltip != null && ToolTipManager.Instance.MainToolTip == tooltip)
+        if (tooltip != null && ToolTipManager.Instance.MainToolTip == tooltip &&
+            tooltip.PreviewSpecies == shownForSpecies)
         {
+            ToolTipManager.Instance.MainToolTip = null;
             ToolTipManager.Instance.Display = false;
         }
     }
