@@ -223,71 +223,47 @@ public partial class CloudBenchmark : BenchmarkBase
 
         // This is intentionally not translatable to make it easier for developers to request this info from players and
         // then understand it
-        builder.Append("TODO: results\n");
-
-        /*if (microbeStationaryResult != 0)
+        if (simpleSpawningResult != 0)
         {
-            builder.Append("Stationary microbes score: ");
-            builder.Append(Math.Round(microbeStationaryResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append("Cloud spawn score: ");
+            builder.Append(Math.Round(simpleSpawningResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
 
-        if (microbeAIResult != 0)
+        if (alsoAbsorbingResult != 0)
         {
-            builder.Append("AI microbes score: ");
-            builder.Append(Math.Round(microbeAIResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append("Absorber score: ");
+            builder.Append(Math.Round(alsoAbsorbingResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
 
-        if (microbeStressTestResult != 0)
+        if (manySpawnersResult != 0)
         {
-            builder.Append($"Spawns until no {TARGET_FPS_FOR_SPAWNING} FPS: ");
-            builder.Append(Math.Round(microbeStressTestResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append("Many spawners score: ");
+            builder.Append(Math.Round(manySpawnersResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
 
-        if (microbeStressTestAverageFPS != 0)
+        if (stressTestResult != 0)
         {
-            builder.Append("Microbe stress average FPS: ");
-            builder.Append(
-                Math.Round(microbeStressTestAverageFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append($"Spawners until under {TARGET_FPS_FOR_SPAWNING} FPS: ");
+            builder.Append(Math.Round(stressTestResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
 
-        if (microbeStressTestMinFPS != 0)
+        if (stressTestAverageFPS != 0)
         {
-            builder.Append("Microbe stress min FPS: ");
-            builder.Append(Math.Round(microbeStressTestMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append("Stress test average FPS: ");
+            builder.Append(Math.Round(stressTestAverageFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
 
-        if (aliveStressTestMicrobes != 0)
+        if (stressTestMinFPS != 0)
         {
-            builder.Append("Alive microbes: ");
-            builder.Append(aliveStressTestMicrobes.ToString(CultureInfo.InvariantCulture));
+            builder.Append("Stress test min FPS: ");
+            builder.Append(Math.Round(stressTestMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
             builder.Append('\n');
         }
-
-        if (microbeDeathResult != 0)
-        {
-            builder.Append("Waiting for microbes to die: ");
-            builder.Append(Math.Round(microbeDeathResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeDeathMinFPS != 0)
-        {
-            builder.Append("Microbe deaths minimum FPS: ");
-            builder.Append(Math.Round(microbeDeathMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (remainingMicrobesAtEnd != 0)
-        {
-            builder.Append("Remaining microbes: ");
-            builder.Append(remainingMicrobesAtEnd.ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }*/
 
         AddTestDurationToResult(builder);
 
