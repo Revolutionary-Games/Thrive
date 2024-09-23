@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ public partial class CloudBenchmark : BenchmarkBase
 {
     private const float PHOSPHATE_AMOUNT = 5000;
 
-    private const float SPAWN_INTERVAL = 0.221f;
+    private const float SPAWN_INTERVAL = 0.201f;
 
     private const double SPAWN_ANGLE_INCREMENT = MathUtils.FULL_CIRCLE * 0.127f;
     private const float MAX_SPAWN_DISTANCE = 95;
@@ -27,8 +28,15 @@ public partial class CloudBenchmark : BenchmarkBase
     private const float STRESS_TEST_THRESHOLD_REDUCE_EVERY_N = 10;
     private const float STRESS_TEST_THRESHOLD_REDUCE = 0.35f;
     private const float STRESS_TEST_END_THRESHOLD_MIN = 1.0f;
+    private const int STRESS_TEST_SPAWN_INCREASE_EVERY_N = 10;
+
+    private const float ABSORBER_RADIUS = 8;
+    private const float ABSORB_RATE = 0.99f;
 
     private const int STRESS_TEST_ABSOLUTE_END = 1000;
+
+    private readonly CompoundBag absorbBag = new(float.MaxValue);
+    private readonly Dictionary<Compound, float> absorbTracker = new();
 
 #pragma warning disable CA2213
     [Export]
@@ -54,6 +62,9 @@ public partial class CloudBenchmark : BenchmarkBase
     private int spawnCounter;
     private double spawnAngle;
     private float spawnDistance;
+
+    private double absorbAngle;
+    private float absorbDistance;
 
     private float simpleSpawningResult;
     private float alsoAbsorbingResult;
@@ -96,6 +107,7 @@ public partial class CloudBenchmark : BenchmarkBase
                 else
                 {
                     simpleSpawningResult = (float)Engine.GetFramesPerSecond();
+                    spawnCounter = 0;
                     IncrementPhase();
                 }
 
@@ -104,20 +116,42 @@ public partial class CloudBenchmark : BenchmarkBase
 
             case 2:
             {
-                cloudSystem!.EmptyAllClouds();
+                // This shouldn't actually clear here so that the absorbing can find some stuff
+                // cloudSystem!.EmptyAllClouds();
                 IncrementPhase();
                 break;
             }
 
             case 3:
             {
-                // TODO: further phases properly
+                if (timer < SPAWN_INTERVAL)
+                    break;
 
-                if (MeasureFPS())
+                absorbersCount = 1;
+
+                SpawnAndUpdatePositionState();
+                AbsorbAndUpdatePositionState(delta);
+
+                // Wait a bit before measuring the FPS
+                if (spawnCounter > FIRST_PHASE_SPAWNS * 0.5f)
                 {
-                    alsoAbsorbingResult = ScoreFromMeasuredFPS();
-                    IncrementPhase();
+                    // Ensure this always samples the FPS after a spawn as this reuses the timer value
+                    timer = 1;
+                    if (MeasureFPS())
+                    {
+                        alsoAbsorbingResult = ScoreFromMeasuredFPS();
+
+                        spawnCounter = 0;
+                        spawnAngle = 0;
+                        spawnDistance = 0;
+                        absorbAngle = 0;
+                        absorbDistance = 0;
+
+                        IncrementPhase();
+                    }
                 }
+
+                timer = 0;
 
                 break;
             }
@@ -131,12 +165,28 @@ public partial class CloudBenchmark : BenchmarkBase
 
             case 5:
             {
-                if (MeasureFPS())
+                if (timer < SPAWN_INTERVAL)
+                    break;
+
+                emittersCount = 16;
+                absorbersCount = 8;
+
+                SpawnAndUpdatePositionState();
+                AbsorbAndUpdatePositionState(delta);
+
+                if (spawnCounter > FIRST_PHASE_SPAWNS)
                 {
-                    manySpawnersResult = ScoreFromMeasuredFPS();
-                    IncrementPhase();
+                    timer = 1;
+                    if (MeasureFPS())
+                    {
+                        manySpawnersResult = ScoreFromMeasuredFPS();
+                        emittersCount = 1;
+                        absorbersCount = 1;
+                        IncrementPhase();
+                    }
                 }
 
+                timer = 0;
                 break;
             }
 
@@ -154,9 +204,13 @@ public partial class CloudBenchmark : BenchmarkBase
 
                 timer = 0;
 
-                if (Engine.GetFramesPerSecond() >= TARGET_FPS_FOR_SPAWNING)
+                emittersCount = 2 + spawnCounter / STRESS_TEST_SPAWN_INCREASE_EVERY_N;
+                absorbersCount = 1 + spawnCounter / STRESS_TEST_SPAWN_INCREASE_EVERY_N;
+
+                /*if (Engine.GetFramesPerSecond() >= TARGET_FPS_FOR_SPAWNING)*/
                 {
                     SpawnAndUpdatePositionState();
+                    AbsorbAndUpdatePositionState(delta);
                 }
 
                 fpsValues.Add(Engine.GetFramesPerSecond());
@@ -169,7 +223,7 @@ public partial class CloudBenchmark : BenchmarkBase
                 if ((timeSinceSpawn > endThreshold && fpsValues.Count > 0) ||
                     fpsValues.Count > STRESS_TEST_ABSOLUTE_END)
                 {
-                    stressTestResult = spawnCounter;
+                    stressTestResult = emittersCount;
                     stressTestMinFPS = (float)fpsValues.Min();
                     stressTestAverageFPS = ScoreFromMeasuredFPS();
                     IncrementPhase();
@@ -293,21 +347,55 @@ public partial class CloudBenchmark : BenchmarkBase
         var dummyCurrents = new FluidCurrentsSystem(dummyEntityWorld, new DefaultParallelRunner(1));
 
         cloudSystem.Init(dummyCurrents);
+
+        // Ensure absorption will absorb everything
+        for (var i = Compound.ATP; i < Compound.MaxInbuiltCompound; ++i)
+        {
+            absorbBag.SetUseful(i);
+        }
     }
 
     private void SpawnAndUpdatePositionState()
     {
-        var position = new Vector3((float)Math.Cos(spawnAngle), 0, (float)-Math.Sin(spawnAngle)) *
-            spawnDistance;
+        ++spawnCounter;
 
-        SpawnCloud(position);
-
-        spawnAngle += SPAWN_ANGLE_INCREMENT;
-        spawnDistance += SPAWN_DISTANCE_INCREMENT;
-
-        while (spawnDistance > MAX_SPAWN_DISTANCE)
+        for (int i = 0; i < emittersCount; ++i)
         {
-            spawnDistance -= MAX_SPAWN_DISTANCE;
+            var position = new Vector3((float)Math.Cos(spawnAngle), 0, (float)-Math.Sin(spawnAngle)) *
+                spawnDistance;
+
+            SpawnCloud(position);
+
+            spawnAngle += SPAWN_ANGLE_INCREMENT;
+            spawnDistance += SPAWN_DISTANCE_INCREMENT;
+
+            while (spawnDistance > MAX_SPAWN_DISTANCE)
+            {
+                spawnDistance -= MAX_SPAWN_DISTANCE;
+            }
+        }
+    }
+
+    private void AbsorbAndUpdatePositionState(double delta)
+    {
+        // Reset bag contents to ensure it can never overflow
+        absorbBag.ClearCompounds();
+        absorbTracker.Clear();
+
+        for (int i = 0; i < absorbersCount; ++i)
+        {
+            var position = new Vector3((float)Math.Cos(absorbAngle), 0, (float)-Math.Sin(absorbAngle)) *
+                absorbDistance;
+
+            AbsorbCloud(position, delta);
+
+            absorbAngle += SPAWN_ANGLE_INCREMENT;
+            absorbDistance += SPAWN_DISTANCE_INCREMENT;
+
+            while (absorbDistance > MAX_SPAWN_DISTANCE)
+            {
+                absorbDistance -= MAX_SPAWN_DISTANCE;
+            }
         }
     }
 
@@ -315,8 +403,11 @@ public partial class CloudBenchmark : BenchmarkBase
     {
         timeSinceSpawn = 0;
 
-        ++spawnCounter;
-
         cloudSystem!.AddCloud(Compound.Phosphates, PHOSPHATE_AMOUNT, position);
+    }
+
+    private void AbsorbCloud(Vector3 position, double delta)
+    {
+        cloudSystem!.AbsorbCompounds(position, ABSORBER_RADIUS, absorbBag, absorbTracker, (float)delta, ABSORB_RATE);
     }
 }
