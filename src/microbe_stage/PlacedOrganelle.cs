@@ -335,7 +335,18 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
         // TODO: check that the rotation of ModelOffset works correctly here (also in
         // CalculateVisualsTransformExternalCached)
-        return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scale)),
+
+        float scaleZ = scale;
+
+        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            var flagellumLength = flagellumUpgrades.LengthFraction;
+
+            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
+        }
+
+        return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),
             externalPosition + orientation * Definition.ModelOffset);
     }
 
