@@ -42,8 +42,6 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
             var smoothRotation = currentRotation.Slerp(targetRotation, 0.1f * delta);
             Unit.Transform = new Transform3D(new Basis(smoothRotation), unitPosition);
 
-            Unit.Transform = Unit.Transform.Orthonormalized();
-
             if (distanceToTarget < adjustedSpeed)
             {
                 Unit.GlobalPosition = TargetPosition;

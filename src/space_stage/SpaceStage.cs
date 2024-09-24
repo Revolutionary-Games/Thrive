@@ -280,15 +280,14 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (spawnPlanet)
             AddPlanet(Transform3D.Identity, true);
 
-        var fleet = AddFleet(new Transform3D(Basis.Identity, new Vector3(20, 0, 0)),
+        var fleet = AddFleet(new Transform3D(Basis.Identity, new Vector3(6, 0, 0)),
             spacecraft, true);
 
         // Focus the camera initially on the ship to make the stage transition smoother
         ZoomOutFromFleet(fleet);
 
-        // TODO: Set launched craft to move from the planet
-        // Add an order to have the fleet be moving
-        // fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
+        // Add an order to have the fleet start off moving
+        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
     }
 
     public void SelectUnitUnderCursor()
