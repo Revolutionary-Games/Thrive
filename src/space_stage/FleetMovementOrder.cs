@@ -1,4 +1,4 @@
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -35,8 +35,6 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
         {
             var smoothRotation = currentRotation.Slerp(targetRotation, 0.8f * delta);
             Unit.Transform = new Transform3D(new Basis(smoothRotation), unitPosition);
-
-            Unit.Transform = Unit.Transform.Orthonormalized();
             return false;
         }
         else

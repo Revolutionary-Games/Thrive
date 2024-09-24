@@ -128,6 +128,7 @@ grow_vertical = 2
 menu = NodePath("../PauseMenu")
 
 [node name="GodToolsPopup" parent="." instance=ExtResource("18")]
+anchors_preset = 1
 offset_top = 0.0
 offset_bottom = 225.0
 

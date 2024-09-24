@@ -66,9 +66,9 @@ material_override = SubResource("StandardMaterial3D_t87iy")
 size = Vector3(1.25146, 0.780255, 1.2196)
 
 [node name="Ramp" type="CSGPolygon3D" parent="."]
-transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 0.75, 0, 1.5, 0, -6.55671e-08, -1.5, -0.282, -3.351)
+transform = Transform3D(-6.55671e-08, 0, -1.5, 0, 0.75, 0, 1.5, 0, -6.55671e-08, -1.5, -0.282, -6.43027)
 material_override = SubResource("StandardMaterial3D_k14mo")
-polygon = PackedVector2Array(0, 0, 0.00326926, 0.570843, 1, 1, 1, 0)
+polygon = PackedVector2Array(0, 0, 0.00511551, 0.592298, 3.06908, 0.829082, 3.1, 0)
 depth = 2.0
 
 [node name="Tank1" type="CSGCylinder3D" parent="."]
@@ -133,14 +133,14 @@ material_override = SubResource("StandardMaterial3D_3kgwy")
 size = Vector3(1.69708, 0.0566406, 0.0666504)
 
 [node name="Road1" type="CSGBox3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0675346, -12.111)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.0675346, -14.1414)
 material_override = SubResource("StandardMaterial3D_cwq4p")
-size = Vector3(1.2, 0.226211, 10.4421)
+size = Vector3(1.2, 0.226211, 8.41167)
 
 [node name="VCB" type="CSGBox3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 4.23147, -27.4298)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.99558, -27.4298)
 material_override = SubResource("StandardMaterial3D_11bj4")
-size = Vector3(5, 4.754, 5.8)
+size = Vector3(5, 4.51811, 5.8)
 
 [node name="Road2" type="CSGBox3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -27.0947, -0.0671939, -10.0781)

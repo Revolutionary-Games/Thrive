@@ -425,7 +425,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         {
             GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
 
-            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("advancedSpaceship");
+            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
         }
 
         // TODO: preserve the actual cities placed on the starting planet
