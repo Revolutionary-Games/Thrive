@@ -12,6 +12,9 @@ public partial class FlagellumUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
     public override void _Ready()
     {
+        // Make sure GUI follows code constants
+        lengthSlider.MaxValue = Constants.FLAGELLA_MAX_UPGRADE_LENGHT;
+        lengthSlider.MinValue = Constants.FLAGELLA_MIN_UPGRADE_LENGHT;
     }
 
     public void OnStartFor(OrganelleTemplate organelle, GameProperties currentGame, float costMultiplier)

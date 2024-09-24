@@ -343,7 +343,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
             var flagellumLength = flagellumUpgrades.LengthFraction;
 
             scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                + Constants.FLAGELLA_MIN_VISUAL_LENGTH;
+                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
         }
 
         return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),

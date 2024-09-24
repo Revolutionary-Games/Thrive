@@ -2307,7 +2307,7 @@ public partial class CellEditorComponent :
                     var flagellumLength = flagellumUpgrades.LengthFraction;
 
                     organelleModel.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH *
-                        flagellumLength + Constants.FLAGELLA_MIN_VISUAL_LENGTH);
+                        flagellumLength + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH);
                 }
             }
         }
