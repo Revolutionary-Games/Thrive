@@ -5,12 +5,14 @@ using Newtonsoft.Json;
 using Nito.Collections;
 
 /// <summary>
-///   A fleet (or just one) ship out in space.
+///   A fleet of ships (or just one ship) out in space.
 /// </summary>
 public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 {
     [Export]
     public NodePath? VisualsParentPath;
+
+    // public Node _engineEmittor;
 
     private static readonly Lazy<PackedScene> LabelScene =
         new(() => GD.Load<PackedScene>("res://src/space_stage/gui/FleetNameLabel.tscn"));
@@ -57,7 +59,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     ///   Flying speed of the fleet
     /// </summary>
     [JsonProperty]
-    public float Speed { get; private set; } = 1.3f;
+    public float Speed { get; private set; } = 2.0f;
 
     [JsonProperty]
     public bool IsPlayerFleet { get; private set; }
@@ -89,6 +91,8 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
         visualsParent.Scale = new Vector3(Constants.SPACE_FLEET_MODEL_SCALE, Constants.SPACE_FLEET_MODEL_SCALE,
             Constants.SPACE_FLEET_MODEL_SCALE);
+
+        // _engineEmittor = GetNode<GPUParticles3D>("EngineFire");
     }
 
     public void ResolveNodeReferences()

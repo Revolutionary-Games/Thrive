@@ -177,7 +177,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
             if (structureToPlaceGhost != null)
             {
                 // TODO: placement validity checks (placement restrictions and hitting other structures), show the
-                // ghost differently when can't place
+                // ghost differently when it can't be placed
                 structureToPlaceGhost.GlobalPosition = GetPlayerCursorPointedWorldPosition();
             }
 
@@ -261,7 +261,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         base.StartNewGame();
 
         // Initial spaceship like when coming from industrial
-        var initialShip = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
+        var initialShip = SimulationParameters.Instance.GetUnitType("advancedSpaceship");
 
         AddFleet(new Transform3D(Basis.Identity, planet.GlobalPosition + new Vector3(15, 0, 0)), initialShip,
             true);
@@ -280,14 +280,15 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (spawnPlanet)
             AddPlanet(Transform3D.Identity, true);
 
-        var fleet = AddFleet(new Transform3D(Basis.Identity, new Vector3(6, 0, 0)),
+        var fleet = AddFleet(new Transform3D(Basis.Identity, new Vector3(20, 0, 0)),
             spacecraft, true);
 
         // Focus the camera initially on the ship to make the stage transition smoother
         ZoomOutFromFleet(fleet);
 
+        // TODO: Set launched craft to move from the planet
         // Add an order to have the fleet be moving
-        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
+        // fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
     }
 
     public void SelectUnitUnderCursor()

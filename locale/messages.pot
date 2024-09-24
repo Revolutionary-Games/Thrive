@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-24 10:45+0300\n"
+"POT-Creation-Date: 2024-09-24 10:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -182,7 +182,7 @@ msgstr ""
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.cs:404
+#: ../src/space_stage/SpaceStage.cs:405
 msgid "ALREADY_ASCENDED"
 msgstr ""
 
@@ -1190,11 +1190,11 @@ msgstr ""
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:125
+#: ../src/space_stage/SpaceStage.tscn:137
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:124
+#: ../src/space_stage/SpaceStage.tscn:136
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
 
@@ -1206,11 +1206,11 @@ msgstr ""
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
 msgstr ""
 
-#: ../src/industrial_stage/IndustrialStage.tscn:75
+#: ../src/industrial_stage/IndustrialStage.tscn:78
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
 msgstr ""
 
-#: ../src/industrial_stage/IndustrialStage.tscn:76
+#: ../src/industrial_stage/IndustrialStage.tscn:77
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
@@ -2574,7 +2574,7 @@ msgstr ""
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/space_stage/SpaceFleet.cs:86
+#: ../src/space_stage/SpaceFleet.cs:88
 msgid "FLEET_NAME_FROM_PLACE"
 msgstr ""
 
@@ -4972,7 +4972,7 @@ msgid "NAME_LABEL_CITY"
 msgstr ""
 
 #: ../src/space_stage/gui/FleetNameLabel.cs:66
-#: ../src/space_stage/SpaceFleet.cs:38
+#: ../src/space_stage/SpaceFleet.cs:40
 msgid "NAME_LABEL_FLEET"
 msgstr ""
 
@@ -7756,6 +7756,10 @@ msgstr ""
 
 #: ../src/industrial_stage/gui/StrategicUnitScreen.cs:116
 msgid "UNIT_ACTION_MOVE"
+msgstr ""
+
+#: ../simulation_parameters/industrial_stage/units.json:14
+msgid "UNIT_AVANCED_SPACESHIP"
 msgstr ""
 
 #: ../simulation_parameters/industrial_stage/units.json:3

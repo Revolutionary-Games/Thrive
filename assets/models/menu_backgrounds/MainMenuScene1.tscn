@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://jatxjxj6uy0d"]
+[gd_scene load_steps=22 format=3 uid="uid://jatxjxj6uy0d"]
 
 [ext_resource type="PackedScene" uid="uid://7etncy6memi4" path="res://assets/models/menu_backgrounds/MenuPlanet.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://c2h4vpmx0juq8" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="2"]
+[ext_resource type="Material" uid="uid://honvhyqqju7q" path="res://assets/models/menu_backgrounds/Planet_Mat.material" id="3_xl2cu"]
 [ext_resource type="PackedScene" uid="uid://cioaty38mki8x" path="res://assets/models/menu_backgrounds/MenuPlanetClouds.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dokew8lhrri5" path="res://assets/models/menu_backgrounds/Comet.tscn" id="4_6futg"]
-[ext_resource type="PackedScene" uid="uid://bjhv73tanuowa" path="res://assets/models/menu_backgrounds/MenuPlanetFakeAtmosphere.tscn" id="5"]
+[ext_resource type="PackedScene" uid="uid://c8ubajhw5aj4o" path="res://assets/models/menu_backgrounds/MenuPlanetShadow.tscn" id="6_uxlx3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bibmf"]
 sky_curve = 0.0923359
@@ -15,12 +16,12 @@ ground_energy_multiplier = 0.0
 sun_angle_max = 96.99
 sun_curve = 0.0174943
 
-[sub_resource type="Sky" id="2"]
+[sub_resource type="Sky" id="Sky_0h11p"]
 sky_material = SubResource("ProceduralSkyMaterial_bibmf")
 
 [sub_resource type="Environment" id="1"]
 background_mode = 2
-sky = SubResource("2")
+sky = SubResource("Sky_0h11p")
 sky_rotation = Vector3(-0.452023, 0, -0.269235)
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.24
@@ -62,32 +63,32 @@ disable_receive_shadows = true
 
 [sub_resource type="Animation" id="20"]
 resource_name = "PlanetRotation"
-length = 60.0
+length = 55.0
 loop_mode = 1
 step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MenuPlanet:rotation_degrees")
+tracks/0/path = NodePath("MenuPlanet/MenuPlanetClouds:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 60),
+"times": PackedFloat32Array(0, 55),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, 720, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 25.1327, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MenuPlanet/MenuPlanetClouds:rotation_degrees")
+tracks/1/path = NodePath("MenuPlanet/Sphere:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 60),
+"times": PackedFloat32Array(0, 55),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -360, 0)]
+"values": [Vector3(0, 0, 0), Vector3(0, 12.5664, 0)]
 }
 
 [sub_resource type="Animation" id="21"]
@@ -115,6 +116,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(1.001, 1.001, 1.001)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuPlanet/MenuPlanetClouds:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 6.28319, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MenuPlanet/Sphere:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 12.5664, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3b6d4"]
@@ -269,20 +294,20 @@ _data = {
 "RESET": SubResource("24")
 }
 
-[sub_resource type="Gradient" id="40"]
+[sub_resource type="Gradient" id="Gradient_nvj0c"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.519084, 0.564885)
 colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.160784, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="41"]
-gradient = SubResource("40")
+gradient = SubResource("Gradient_nvj0c")
 width = 256
 height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.9)
 
-[sub_resource type="StandardMaterial3D" id="39"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bf2ro"]
 render_priority = 2
 transparency = 4
 blend_mode = 1
@@ -299,7 +324,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="38"]
-material = SubResource("39")
+material = SubResource("StandardMaterial3D_bf2ro")
 size = Vector2(62, 62)
 
 [node name="MainMenuScene1" type="Node3D"]
@@ -313,7 +338,7 @@ camera_attributes = SubResource("CameraAttributesPractical_5nfsl")
 transform = Transform3D(10000, -2.45937, 1.74549, 2.44336, 9999.6, 91.1048, -1.76782, -91.1044, 9999.6, -12.7566, 0, 8.74701)
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.510837, 0.00851734, -0.858473, -0.0111761, 0.998933, 0.00326052, 0.858442, 0.00793674, 0.510898, -67.6689, -4.91601, 34.013)
+transform = Transform3D(0.510837, 0.00851734, -0.858474, -0.0111761, 0.998933, 0.00326053, 0.858442, 0.00793674, 0.510898, -67.6689, -4.91601, 34.013)
 current = true
 fov = 36.8
 far = 15000.0
@@ -323,10 +348,21 @@ transform = Transform3D(1, 0, 3.28153e-07, 0, 1, 0, -3.28153e-07, 0, 1, 26.1623,
 light_color = Color(0.972549, 0.956863, 0.937255, 1)
 light_energy = 25.0
 light_indirect_energy = 1.263
-light_size = 50000.0
-light_specular = 1.682
+light_size = 5000.0
+light_specular = 0.05
+light_bake_mode = 0
+omni_range = 8192.0
+
+[node name="ReflectionLight" type="OmniLight3D" parent="Sun"]
+transform = Transform3D(1, 0, 3.27826e-07, 0, 1, 0, -3.27826e-07, 0, 1, 0.304825, -0.245861, 0.673294)
+light_color = Color(1, 1, 0.945098, 1)
+light_energy = 80.0
+light_indirect_energy = 0.0
+light_size = 4.0
+light_specular = 1.0
 light_bake_mode = 0
 omni_range = 4096.0
+omni_attenuation = 1.05
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Sun"]
 transform = Transform3D(0.994733, 0.102497, 0, -0.102497, 0.994733, 0, 0, 0, 1, 0, 0, 0)
@@ -338,27 +374,32 @@ material = SubResource("19")
 [node name="MenuPlanet" parent="." instance=ExtResource("1")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 20.8068, -18.562, 23.6122)
 
+[node name="Sphere" parent="MenuPlanet" index="0"]
+transform = Transform3D(1, 0, 2.89599e-05, 0, 1, 0, -2.89599e-05, 0, 1, 0, 0, 0)
+material_override = ExtResource("3_xl2cu")
+
 [node name="MenuPlanetClouds" parent="MenuPlanet" instance=ExtResource("4")]
-transform = Transform3D(1.02, 0, -3.00974e-08, 0, 1.02, 0, 3.00974e-08, 0, 1.02, 0, 0, 0)
+transform = Transform3D(1.015, 0, 4.53338e-06, 0, 1.015, 0, -4.53338e-06, 0, 1.015, 0, 0, 0)
 
-[node name="MenuPlanet2" parent="MenuPlanet" instance=ExtResource("5")]
-transform = Transform3D(-0.175385, 0, 0.994658, 0, 1.01, 0, -0.99466, 0, -0.175385, 0, 0, 0)
-
-[node name="PlanetRotation" type="AnimationPlayer" parent="."]
+[node name="PlanetRotation" type="AnimationPlayer" parent="MenuPlanet"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_3b6d4")
 }
 autoplay = "PlanetRotation"
 speed_scale = 0.1
 
+[node name="MenuPlanetShadow" parent="." instance=ExtResource("6_uxlx3")]
+transform = Transform3D(-10.1394, -0.0492352, 0.64518, 0.167405, 9.58603, 3.36239, -0.625025, 3.3662, -9.56575, 20.8068, -18.562, 23.6122)
+
 [node name="Comet" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.993131, -0.0320738, -0.893022, -0.115243, -0.435007, -28.3748, -2.46547, 2.2588)
+transform = Transform3D(-0.135039, -0.0640295, -0.988769, 0.172987, 0.981061, -0.0871557, 0.975622, -0.182814, -0.121406, -28.3748, -2.46547, 2.2588)
 
 [node name="Comet2" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(-0.435714, -0.0203125, 0.899856, -0.112538, 0.99313, -0.0320737, -0.893022, -0.115243, -0.435007, -24.6598, -6.87856, -5.38809)
+transform = Transform3D(-0.135039, -0.0640295, -0.988769, 0.172987, 0.981061, -0.0871557, 0.975623, -0.182814, -0.121406, -24.6598, -6.87856, -5.38809)
 
 [node name="Comet3" parent="." instance=ExtResource("4_6futg")]
-transform = Transform3D(-0.435716, -0.0203126, 0.899858, -0.112538, 0.993134, -0.0320738, -0.893024, -0.115243, -0.435009, -50.2067, -10.7811, 10.4715)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -50.2067, -10.7811, 10.4715)
 
 [node name="CameraAnimation" type="AnimationPlayer" parent="."]
 libraries = {
@@ -374,3 +415,5 @@ lifetime = 1.42
 preprocess = 2.08
 mesh = SubResource("38")
 gravity = Vector3(0, 0, 0)
+
+[editable path="MenuPlanet"]

@@ -172,7 +172,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
     {
         // Intentionally not translated prototype message
         HUD.HUDMessages.ShowMessage(
-            "To advance: research rocketry and then select your city to build it to be able to go to space",
+            "To advance: research rocketry, then select your city to build a rocket and go to space",
             DisplayDuration.ExtraLong);
     }
 
@@ -392,12 +392,19 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         if (toSpaceAnimatedUnit == null)
             throw new InvalidOperationException("Unit going to space not set");
 
-        // TODO: unit specific acceleration values / movement here
-        toSpaceUnitAcceleration += (float)(delta * Constants.INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION);
+        // TODO: replace with scaled air resistance by atmosphere density
+        float atmosphereMaxSpeed = 0.45f;
+
+        if (toSpaceUnitAcceleration < atmosphereMaxSpeed ||
+            toSpaceAnimatedUnit.GlobalPosition.Y > (Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT * 0.75f))
+        {
+            // TODO: unit specific acceleration values / movement here
+            toSpaceUnitAcceleration += (float)(delta * Constants.INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION);
+        }
 
         // Almost, but don't quite, level out at max height
         var orbitTurnAngle = toSpaceAnimatedUnit.GlobalPosition.Y /
-            (Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT * 1.1f);
+            (Constants.INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT * 1.3f);
 
         toSpaceAnimatedUnit.Rotation = new Vector3(0, 0, orbitTurnAngle * (MathF.PI / 2));
         toSpaceAnimatedUnit.GlobalPosition += new Vector3(-toSpaceUnitAcceleration * orbitTurnAngle,
@@ -418,7 +425,7 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
         {
             GD.PrintErr("Spacecraft to put in initial fleet not found, using fallback unit");
 
-            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
+            launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("advancedSpaceship");
         }
 
         // TODO: preserve the actual cities placed on the starting planet
