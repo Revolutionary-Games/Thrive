@@ -1,24 +1,24 @@
 {
-	"simpleSpaceRocket": {
-		"Name": "UNIT_SIMPLE_ROCKET",
-		"UnitIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
-		"VisualScene": "res://assets/models/space/PlaceholderRocket.tscn",
-		"SpaceVisuals": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
-		"BuildCost": {
-			"rock": 1
-		},
-		"BuildTime": 15,
-		"HasSpaceMovement": true
-	},
-	"advancedSpaceship": {
-		"Name": "UNIT_AVANCED_SPACESHIP",
-		"UnitIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
-		"VisualScene": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
-		"SpaceVisuals": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
-		"BuildCost": {
-			"rock": 1
-		},
-		"BuildTime": 15,
-		"HasSpaceMovement": true
-	}
+  "simpleSpaceRocket": {
+    "Name": "UNIT_SIMPLE_ROCKET",
+    "UnitIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "VisualScene": "res://assets/models/space/PlaceholderRocket.tscn",
+    "SpaceVisuals": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
+    "BuildCost": {
+      "rock": 1
+    },
+    "BuildTime": 15,
+    "HasSpaceMovement": true
+  },
+  "advancedSpaceship": {
+    "Name": "UNIT_AVANCED_SPACESHIP",
+    "UnitIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
+    "VisualScene": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
+    "SpaceVisuals": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
+    "BuildCost": {
+      "rock": 1
+    },
+    "BuildTime": 15,
+    "HasSpaceMovement": true
+  }
 }
