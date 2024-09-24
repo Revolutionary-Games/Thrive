@@ -16,6 +16,8 @@ public class MovementComponent : IOrganelleComponent
     private float animationSpeed = 0.25f;
     private bool animationDirty = true;
 
+    private float flagellumLength;
+
     private bool lastUsed;
     private Vector3 force;
 
@@ -28,6 +30,18 @@ public class MovementComponent : IOrganelleComponent
 
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
+        var configuration = organelle.Upgrades?.CustomUpgradeData;
+
+        if (configuration == null)
+        {
+            flagellumLength = 0;
+        }
+        else
+        {
+            if (configuration is FlagellumUpgrades flagellumUpgrades)
+                flagellumLength = flagellumUpgrades.LengthFraction;
+        }
+
         // No longer can check for animation here as the organelle graphics are created later than this is attached to
         // a cell
         parentOrganelle = organelle;
@@ -124,7 +138,8 @@ public class MovementComponent : IOrganelleComponent
         var newAnimationSpeed = 2.3f;
         lastUsed = true;
 
-        var requiredEnergy = Constants.FLAGELLA_ENERGY_COST * elapsed;
+        var requiredEnergy = (Constants.FLAGELLA_ENERGY_COST + Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE
+            * flagellumLength) * elapsed;
 
         var availableEnergy = compounds.TakeCompound(Compound.ATP, requiredEnergy);
 
@@ -140,10 +155,14 @@ public class MovementComponent : IOrganelleComponent
 
         SetSpeedFactor(newAnimationSpeed);
 
-        if (isBacteria)
-            return Constants.FLAGELLA_BASE_FORCE * forceMagnitude;
+        var baseForce = Constants.FLAGELLA_BASE_FORCE + Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumLength;
 
-        return Constants.FLAGELLA_BASE_FORCE * forceMagnitude * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+        if (isBacteria)
+        {
+            return baseForce * forceMagnitude;
+        }
+
+        return baseForce * Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER * forceMagnitude;
     }
 }
 
@@ -163,5 +182,29 @@ public class MovementComponentFactory : IOrganelleComponentFactory
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Momentum needs to be > 0.0f");
         }
+    }
+}
+
+[JSONDynamicTypeAllowed]
+public class FlagellumUpgrades : IComponentSpecificUpgrades
+{
+    public float LengthFraction;
+
+    public FlagellumUpgrades(float lengthFraction)
+    {
+        LengthFraction = lengthFraction;
+    }
+
+    public bool Equals(IComponentSpecificUpgrades? other)
+    {
+        if (other is not FlagellumUpgrades otherFlagellum)
+            return false;
+
+        return otherFlagellum.LengthFraction == LengthFraction;
+    }
+
+    public object Clone()
+    {
+        return new FlagellumUpgrades(LengthFraction);
     }
 }
