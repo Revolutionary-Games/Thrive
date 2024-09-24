@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 16:20+0200\n"
-"PO-Revision-Date: 2024-09-19 06:45+0000\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-23 06:48+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -39,6 +39,10 @@ msgstr "Durdur"
 
 msgid "ABORTED_DOT"
 msgstr "Durduruldu."
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "Mikrop sayısı:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
@@ -299,18 +303,16 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Oto-evrim çalıştırılamadı"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Oto-evrim sonuçları eksik. Eğer daha eski bir kaydı yüklediyseniz, bu sonuçların bulunmaması beklenen bir şey. Eğer daha eksi bir kaydı yüklemediyseniz, lütfen bu sorunu bize bir hata raporu olarak gönderin ve oyunun günlük dosyasını yollayın."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Oto-evrim sonuçları:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Oto-evrim sonuçları:"
+msgstr "Genel Sonuçlar"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Oto-evrim sonuçları:"
+msgstr "Seçilen Arazinin Sonuçları"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
@@ -672,11 +674,19 @@ msgstr "Kapat"
 msgid "CLOSE_OPTIONS"
 msgstr "Ayarlar kapatılsın mı?"
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "Mikrop Performansı"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Bulut çözünürlük bölücü:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Bulut simülasyonu minimum aralığı:"
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "Ozmoregülasyon maliyet çarpanı"
 
 msgid "COASTAL"
 msgstr "Sahil"
@@ -795,6 +805,10 @@ msgstr ""
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutu"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
+msgstr "Bileşik bulutu yoğunluğu"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Bileşik bulutu yoğunluğu"
@@ -1635,6 +1649,10 @@ msgstr "Yutulan nesneleri dışarı at"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Yutulan nesneleri dışarı at"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "Mikrop sayısı:"
+
 msgid "ENABLED_MODS"
 msgstr "Etkin Modlar"
 
@@ -2095,9 +2113,8 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "popülasyonu:"
+msgstr "Genel popülasyon:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] popülasyonunun bir kısmı {2} arazisinden {1} arazisine göç etti"
@@ -2206,18 +2223,16 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "Hidrojen Sülfür"
 
 msgid "ICESHARD"
-msgstr "Buz Parçası"
+msgstr "Küçük Buz Kırığı"
 
 msgid "ICESHELF"
 msgstr "Buz Sahanlığı"
 
-#, fuzzy
 msgid "ICE_CHUNK_BIG"
-msgstr "Parça Baskısı"
+msgstr "Büyük Buz Parçası"
 
-#, fuzzy
 msgid "ICE_CHUNK_SMALL"
-msgstr "Parça Baskısı"
+msgstr "Küçük Buz Parçası"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID geçerli bir sayı değil"
@@ -2237,25 +2252,11 @@ msgstr "(sonraki evrelere ulaştığında, bazı özellikler mevcut olmayabilir)
 msgid "INCREASE_ITEM_SIZE"
 msgstr "Nesne büyüklüğünü arttır"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "Nesli Tükenen Tür"
+msgstr "Bu türün bu arazide ya da dünyada yeni olduğunu gösterir"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr ""
-"[b]Evre[/b]\n"
-"  Mikrop\n"
-"[b]Hücre Zarı Türü[/b]\n"
-"  {0}\n"
-"[b]Hücre Zarı Sertliği[/b]\n"
-"  {1}\n"
-"[b]Temel Hız[/b]\n"
-"  {2}\n"
-"[b]Temel Dönme Hızı[/b]\n"
-"  {3}\n"
-"[b]Temel Altıgen Büyüklüğü[/b]\n"
-"  {4}"
+msgstr "Bu türün mevcut oto-evrim döngüsü sırasında mutasyona uğradığını gösterir"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi"
@@ -4822,7 +4823,7 @@ msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Küçük Fosfat Parçası"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Kar Tanesi"
 
 msgid "SOCIETY_STAGE"
 msgstr "Topluluk Evresi"
@@ -6368,6 +6369,36 @@ msgstr "İlk birkaç evre için, Thrive'da ana kaynaklar [b]Bileşiklerdir[/b]. 
 
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
+"Thrive'da birden fazla farklı [b]Bileşik[/b] bulunmaktadır.\n"
+"\n"
+"[b][u]Bulut Bileşikler[/u][/b]\n"
+"\n"
+"Bu Bileşikler [b]ortamda[/b] bulutlar halinde ortaya çıkar.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"iron\"]Demir[/thrive:compound] (Ayrıca [b]Parçalardan[/b] da yayılır)[/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Çevresel Gazlar[/u][/b]\n"
+"\n"
+"Bu Bileşikler ortamda bulut şeklinde oluşmaz. Ancak tüm arazi boyunca bulunur ve bazı işlemleri etkiler. Bu bileşiklerin arazideki toplam miktarı her zaman %100’e ulaşır. Bu gazlar hakkında daha fazla bilgi için [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Çevresel Koşullara[/url][/color] göz atın.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Ajanlar[/u][/b]\n"
+"\n"
+"Bu Bileşikler özel [color=#3796e1][url=thriveopedia:OrganellesRoot]organellerde[/url][/color] üretilir ve özel kullanım alanlarına sahiptir.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxytoxy\"]OksiToksi[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound][/indent]\n"
+"\n"
+"[b][u]ATP[/u][/b]\n"
+"\n"
+"[thrive:compound type=\"atp\"]ATP[/thrive:compound], temel olarak [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] yoluyla üretilir ve organizmanızı hayatta tutmak için gereklidir."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "Mikrop Evresi'ndeki bileşiklerin tam listesi için Mikrop Evresi'nin Ekler sayfasındaki Bileşikler tablosuna göz atın."
@@ -6380,6 +6411,9 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+"[indent]—   Thrive'da, her türlü şeyin yapıldığı maddeler bileşikler olarak bilinir ve kaynak olarak düşünülebilir. Bu maddeler, \"Bileşik\" kavramının bilimsel tanımı olan iki veya daha fazla elementin bir araya gelmesi ile sınırlı değildir. Kaynak bakımından bileşikler; elementler (örneğin oksijen), bileşikler (amonyak gibi) veya diğer maddeler (kimyasal ajanlar veya toksinler) olabilir.[/indent]\n"
+"\n"
+"[indent]—   Temel olarak, oyundaki her şey bileşikten yapılır. Bileşik sistemi, organizmaların neyden yapıldığını, bu organizmaların ne yediklerini, bu yenilenleri neye dönüştürdüklerini ve hangi atık ürünlerini salgıladıklarını takip etmek içindir. Geri kalan her şey ortamın bir parçasıdır ve diğer organizmaların kullanımına açıktır.[/indent]"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Herhangi bir organel, ek bir mutasyon puanına mal olmadan [b]Sitoplazmanın[/b] yerine geçebilir (organelin kendi maliyeti buna dahil değildir)."
@@ -6448,9 +6482,20 @@ msgstr "Bu koşullar, ortamda yalnızca yüzde olarak ifade edilen [color=#3796e
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
 msgstr "Thrive'da bir dizi [b]çevresel koşul[/b] bulunmaktadır. Bu koşullar, [color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlarda[/url][/color] [b]Fotosentezi[/b] etkileyen [thrive:compound type=\"sunlight\"]güneş ışığı[/thrive:compound] gibi belirli Organellerin işlemlerini etkiler."
 
-#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
-msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
+msgstr ""
+"Organellerin işlemini etkileyen üç ana koşul vardır:\n"
+"\n"
+"[indent]—   [thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound][/indent]\n"
+"[indent]—   [b]Basınç[/b][/indent]\n"
+"[indent]—   [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound][/indent]\n"
+"\n"
+"Şu an için yalnızca [thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound] ve [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound] gerçek anlamda bir etkiye sahiptir:\n"
+"\n"
+"[indent]—   [thrive:compound type=\"sunlight\"]Güneş Işığı[/thrive:compound], [color=#3796e1][url=thriveopedia:chloroplast]Kloroplastları[/url][/color] ve [color=#3796e1][url=thriveopedia:chromatophore]Tilakoidleri[/url][/color] etkiler.[/indent]\n"
+"[indent]—   [thrive:compound type=\"temperature\"]Sıcaklık[/thrive:compound], [color=#3796e1][url=thriveopedia:thermoplast]Termoplastları[/url][/color] ve [color=#3796e1][url=thriveopedia:thermosynthase]Termosentazları[/url][/color] etkiler.[/indent]\n"
+"\n"
+"Bu koşullar, [color=#3796e1][url=thriveopedia:Compounds]Bileşikler[/url][/color] gibi davranır. Ancak koşullar her arazi için benzersizdir ve bileşik bulutları olarak belirmez."
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
@@ -6588,20 +6633,24 @@ msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "Çok yakında."
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"Bir hücrenin, diğer özdeş türlere katılıp bir hücre kolonisi kurmasını sağlar. Bir koloniye bağlandığında, hücreler hep birlikte hareket ederler ve bileşikleri paylaşırlar. Editöre girmeden ve bölünmeden önce, hücreler koloniden bağını koparmalıdır.\n"
+"Sanayi Evresi, Thrive'ın yedi oyun evresinden altıncısıdır ve [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi'nden[/url][/color] sonra, sanayi makinelerinin icadıyla başlar. Teknoloji ve kültür artık çok daha gelişmiş durumdadır ve medeniyet kendini sürdürebilmek için makinelere büyük ölçüde bağımlıdır. Artık tüm gezegen büyük oranda keşfedilmiş ve nüfuslanmış olup, neredeyse her yerde iletişim kurmak ya da savaş açmak mümkündür. Diplomasi ve liderlik becerileri her zamankinden daha çok gereklidir.\n"
 "\n"
-"Hücre kolonileri, çok hücreliliğe doğru ilk adımdır. Bu yüzden [b]Bağlayıcı Ajanlar[/b], sonraki evreye ilerlemede çok önemlidir."
+"Teknolojik gelişme hızla artmakta ve karmaşık makineler eskiden yüzlerce yılda icat edilirken, şimdi onlarca yıl içinde üretilmektedir. Yeni motorlu araçlar, tıbbi yöntemler, sanayi makineleri ve kitle imha silahları da dahil olmak üzere yeni teknolojiler ortaya çıkmaktadır.\n"
+"\n"
+"Sanayi Evresi, uzay yolculuğunun icadıyla sona erer ve ardından [color=#3796e1][url=thriveopedia:space_stage]Uzay Evresi[/url][/color] gelir. Uzaya ulaşan ilk roket, bu evrenin sonunu işaret eder. Ancak yine de [color=#3796e1][url=thriveopedia:space_stage]Uzay Evresi'nin[/url][/color] başlangıcı Sanayi Evresi'ne oldukça benzer."
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
-msgstr "Sanayi Evresi"
+msgstr "Sanayi Evresi, büyük ölçüde nüfus etrafında şekillenecektir. Nüfus hızla artacaktır. Ekonomi patlama yapacaktır. Savaşlar daha büyük ve kanlı hale gelecektir. Tüketim ve kirlilik artacaktır. Bütün bunlar, oyuncu türüne ait bireylerin dünyadaki sayısındaki artışın bir sonucu olacaktır. Bu artış ise tıptaki, tarımdaki, sağlık hizmetlerindeki, lojistikteki, soğutma ve ulaşım sistemlerindeki ilerlemeler sayesinde gerçekleşecektir. Bu gelişmeler, nüfustaki patlamayı tetikleyerek Sanayi Devrimi'ne yol açacak ve bu da yeni askeri, bilimsel, ekonomik ve siyasi reformları beraberinde getirecektir."
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
-msgstr "Sanayi Evresi"
+msgstr ""
+"Sanayi Evresi, oyuncu ulusunun Buhar Gücü teknolojisini keşfetmesi (ve ilk sanayi makinesini inşa etmesi) ile resmen başlar. Bunu takiben, Montaj Hattı üretim ve imalatı büyük ölçüde geliştirir; Demiryolları ticaret ve ulaşım hızını arttırır ve Tarımsal Mühendislik mahsul gelişimini ve verimini ilerletir. Yeni askeri teknolojiler savaşlarda devrim yaratır.\n"
+"\n"
+"Sanayi Evresi, tam anlamıyla bir devrim süreci ile öne çıkar. Bu süreç, toplumun her ölçeğinde devrime yol açar ve zamanla yükselen uluslar arasındaki rekabeti kökten değiştirebilir.\n"
+"\n"
+"Bu evre, oyuncu ilk kez uzaya ulaştığında sona erer."
 
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Çok yakında."

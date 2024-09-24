@@ -2,11 +2,11 @@
 
 public static class BenchmarkHelpers
 {
-    public static void PerformBenchmarkSetup(BenchmarkChangedSettingsStore settingsStore)
+    public static void PerformBenchmarkSetup(BenchmarkChangedSettingsStore settingsStore, bool uncapCloudUpdateRate)
     {
         UncapFramerate();
         EnsureNoCheatsEnabled();
-        SetConsistentCloudUpdateRate(out settingsStore.CloudSettings);
+        SetConsistentCloudUpdateRate(out settingsStore.CloudSettings, uncapCloudUpdateRate);
     }
 
     public static void RestoreNormalSettings(BenchmarkChangedSettingsStore settingsStore)
@@ -48,10 +48,19 @@ public static class BenchmarkHelpers
         CheatManager.DisableAllCheats();
     }
 
-    private static void SetConsistentCloudUpdateRate(out float settingStore)
+    private static void SetConsistentCloudUpdateRate(out float settingStore, bool uncapCloudUpdateRate)
     {
         settingStore = Settings.Instance.CloudUpdateInterval;
-        Settings.Instance.CloudUpdateInterval.Value = 0.02f;
+
+        if (uncapCloudUpdateRate)
+        {
+            // When testing cloud speed, uncap their simulation rate to match framerate
+            Settings.Instance.CloudUpdateInterval.Value = 0;
+        }
+        else
+        {
+            Settings.Instance.CloudUpdateInterval.Value = 0.02f;
+        }
     }
 
     private static void RestoreCloudUpdateRate(float settingStore)

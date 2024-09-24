@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 16:20+0200\n"
-"PO-Revision-Date: 2024-09-17 07:03+0000\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-20 12:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
 "Language: lv\n"
@@ -39,6 +39,10 @@ msgstr "Atcelt"
 
 msgid "ABORTED_DOT"
 msgstr "Atcelts."
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abisālpelaģiāle"
@@ -706,11 +710,19 @@ msgstr "Aizvērt"
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "Ieslēgt redaktoru"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Mākoņa izšķirtspējas dalītājs:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Mākoņa simulācijas minimālais intervāls:"
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "Osmoregulācijas izmaksas"
 
 msgid "COASTAL"
 msgstr "Piekrastes"
@@ -825,6 +837,10 @@ msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 msgid "COMPOUND_CLOUDS"
+msgstr "Savienojumu mākonis"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr "Savienojumu mākonis"
 
 #, fuzzy
@@ -1678,6 +1694,10 @@ msgstr "Nevar absorbēt"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Nevar absorbēt"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
 msgid "ENABLED_MODS"
 msgstr ""
 
@@ -2314,6 +2334,7 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sērūdeņradis"
 
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Ledus lauska"
 

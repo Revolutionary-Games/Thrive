@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 16:20+0200\n"
-"PO-Revision-Date: 2024-09-20 07:51+0000\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-24 06:00+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -39,6 +39,10 @@ msgstr "中止"
 
 msgid "ABORTED_DOT"
 msgstr "已中止。"
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "微生物數量："
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海帶"
@@ -299,18 +303,16 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-Evo 運行失敗"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Auto-Evo 結果缺失。如果您載入了較舊的存檔，則可能會缺失。如果您並非載入較舊的存檔，請將此作為錯誤回報給我們，並將您的遊戲記錄檔發送給我們。"
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo 結果："
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Auto-Evo 結果："
+msgstr "全域結果"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Auto-Evo 結果："
+msgstr "選擇的區域結果"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "運行狀態："
@@ -672,11 +674,19 @@ msgstr "關閉"
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項選單？"
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "微生物性能基準測試"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "雲解析度因數："
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "雲模擬最小時間間隔："
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "滲透調節成本倍率"
 
 msgid "COASTAL"
 msgstr "海岸"
@@ -795,6 +805,10 @@ msgstr ""
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
+msgstr "化合物雲密度"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物雲密度"
@@ -1635,6 +1649,10 @@ msgstr "吐出已吞噬的物體"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "吐出已吞噬的物體"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "微生物數量："
+
 msgid "ENABLED_MODS"
 msgstr "啟用模組"
 
@@ -2095,9 +2113,8 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "G"
 
-#, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "總種群數量："
+msgstr "全域種群數量："
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b] 種群的一部分從 {2}遷移到 {1}"
@@ -2206,18 +2223,16 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氫"
 
 msgid "ICESHARD"
-msgstr "冰礫"
+msgstr "小型冰礫"
 
 msgid "ICESHELF"
 msgstr "冰棚"
 
-#, fuzzy
 msgid "ICE_CHUNK_BIG"
-msgstr "營養物碎塊壓強"
+msgstr "大型冰塊"
 
-#, fuzzy
 msgid "ICE_CHUNK_SMALL"
-msgstr "營養物碎塊壓強"
+msgstr "小型冰塊"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID 無效"
@@ -2237,25 +2252,11 @@ msgstr "（進入下一階段後，某些功能可能無法使用）"
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物件"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "已滅絕物種"
+msgstr "表示此物種是該區域或世界的新物種"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr ""
-"[b]階段[/b]\n"
-"  微生物\n"
-"[b]膜類型[/b]\n"
-"  {0}\n"
-"[b]膜剛性[/b]\n"
-"  {1}\n"
-"[b]基本速度[/b]\n"
-"   {2}\n"
-"[b]基本轉動速度[/b]\n"
-"  {3}\n"
-"[b]基本六邊形網格大小[/b]\n"
-"  {4}"
+msgstr "表示此物種在本次 Auto-Evo 週期中發生了突變"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "工業階段"
@@ -2863,7 +2864,7 @@ msgstr "載入先前儲存的遊戲"
 msgid "LOAD_INCOMPATIBLE_PROTOTYPE_WARNING"
 msgstr ""
 "要載入的所選存檔是在不同 Thrive 版本的原型中創建的存檔。\n"
-"因為原型存檔不可升級，因此無法加載此存檔。\n"
+"因為原型存檔不可升級，因此無法載入此存檔。\n"
 "維護原型存檔的相容性將是一個很大的負擔，因為許多事物經常被重製，編寫存檔升級將大大減慢原型開發的速度。"
 
 msgid "LOAD_INCOMPATIBLE_SAVE_PROMPT"
@@ -3851,7 +3852,7 @@ msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 "此存檔來自舊版本的 Thrive 並且可能不相容。\n"
 "由於 Thrive 目前還處於開發早期，存檔相容性並不是優先考慮的問題。\n"
-"您可以報告遇到的任何問題，但它們不是目前的最高優先事項。\n"
+"您可以回報遇到的任何問題，但它們不是目前的最高優先事項。\n"
 "您仍然想嘗試載入此存檔嗎？"
 
 msgid "OPENGL_MODE_WARNING"
@@ -4350,7 +4351,7 @@ msgid "REFRESH"
 msgstr "重新整理"
 
 msgid "REPORT"
-msgstr "報告"
+msgstr "回報"
 
 msgid "REPORT_BUG"
 msgstr "回報錯誤"
@@ -4822,7 +4823,7 @@ msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸鹽塊"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "雪花"
 
 msgid "SOCIETY_STAGE"
 msgstr "社會階段"
@@ -6378,6 +6379,9 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+"[indent]—   在 Thrive 中，構成物質的存在稱為化合物，可以將其視為資源。它們並不限於兩個或多個元素結合在一起的「化合物」的科學定義。資源意義上的化合物可以是元素（如氧）、化合物（如氨）或其他物質（化學劑或毒素）。[/indent]\n"
+"\n"
+"[indent]—   基本上遊戲中的所有事物都是由某種化合物組成的。化合物系統的目的是追蹤生物體是由什麼組成的，追蹤生物體吃了什麼，將其轉化成什麼，以及它排出了哪些廢物。其他一切都是環境的一部分，可供其他生物體使用。[/indent]"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "任何其他細胞器都可以取代[b]細胞質[/b]，而無需額外的突變點數（僅消耗該細胞器本身的成本）。"
@@ -6484,81 +6488,63 @@ msgstr ""
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
-msgstr "厭氧固氮"
+msgstr "糖解、厭氧固氮"
 
-#, fuzzy
 msgid "WIKI_HEADING_APPENDICES"
-msgstr "升級"
+msgstr "附錄"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
-msgstr "代謝過程"
+msgstr "化合物列表"
 
-#, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
-msgstr "策略"
+msgstr "藝術概念"
 
-#, fuzzy
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
-msgstr "解鎖條件"
+msgstr "目前的開發"
 
-#, fuzzy
 msgid "WIKI_HEADING_DEVELOPMENT"
-msgstr "解鎖條件"
+msgstr "開發"
 
-#, fuzzy
 msgid "WIKI_HEADING_EDITOR"
-msgstr "效果"
+msgstr "編輯器"
 
 msgid "WIKI_HEADING_EFFECTS"
 msgstr "效果"
 
-#, fuzzy
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
-msgstr "代謝過程"
+msgstr "環境氣體"
 
-#, fuzzy
 msgid "WIKI_HEADING_FEATURES"
-msgstr "效果"
+msgstr "特色"
 
-#, fuzzy
 msgid "WIKI_HEADING_FOG_OF_WAR"
-msgstr "效果"
+msgstr "戰爭迷霧"
 
-#, fuzzy
 msgid "WIKI_HEADING_GAMEPLAY"
-msgstr "策略"
+msgstr "遊戲玩法"
 
-#, fuzzy
 msgid "WIKI_HEADING_GDD"
-msgstr "升級"
+msgstr "遊戲設計方案"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr "修改選項"
+msgstr "世代與編輯器會話"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
-msgstr "代謝過程"
+msgstr "微生物階段"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "修改選項"
 
-#, fuzzy
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr "修改選項"
+msgstr "突變與突變點數"
 
-#, fuzzy
 msgid "WIKI_HEADING_OVERVIEW"
-msgstr "代謝過程"
+msgstr "概觀"
 
-#, fuzzy
 msgid "WIKI_HEADING_PATCHES"
-msgstr "升級"
+msgstr "區域"
 
-#, fuzzy
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "物理條件"
 
@@ -6566,7 +6552,7 @@ msgid "WIKI_HEADING_PROCESSES"
 msgstr "代謝過程"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "微生物階段的繁殖"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr "解鎖條件"
@@ -6577,42 +6563,29 @@ msgstr "科學背景"
 msgid "WIKI_HEADING_STRATEGY"
 msgstr "策略"
 
-#, fuzzy
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
-msgstr "策略"
+msgstr "晝夜循環"
 
-#, fuzzy
 msgid "WIKI_HEADING_THE_PATCH_MAP"
-msgstr "策略"
+msgstr "區域地圖"
 
-#, fuzzy
 msgid "WIKI_HEADING_TRANSITIONS"
-msgstr "修改選項"
+msgstr "階段過渡"
 
-#, fuzzy
 msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
-msgstr "效果"
+msgstr "化合物類型"
 
-#, fuzzy
 msgid "WIKI_HEADING_UI"
-msgstr "升級"
+msgstr "使用者介面"
 
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "升級"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
-"細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]連接器[/b]。\n"
-"\n"
-"如果在遊戲設定中啟用了細胞器升級，則對於[i]玩家細胞[/i]，以下條件[i]兩者[/i]皆必須為真：\n"
-"\n"
-"[indent]—   包含[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]至少 [b]5[/b] 代。[/indent]\n"
-"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound] 平衡至少為 [b]+15[/b]。[/indent]"
+msgstr "此階段尚未開始開發。當[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]開始製作後，該階段的遊戲玩法和理論設計將變得相關。"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
-msgstr "工業階段"
+msgstr "即將推出。"
 
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
@@ -6629,12 +6602,11 @@ msgstr "工業階段"
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr "工業階段"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
-msgstr "工業階段"
+msgstr "即將推出。"
 
 msgid "WIKI_INJECTISOME_PILUS"
-msgstr ""
+msgstr "注射性菌毛"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -6684,20 +6656,14 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_MECHANICS"
-msgstr "細胞器"
+msgstr "遊戲機制"
 
-#, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
-"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
+"這些是多個階段或編輯器共享的各種概念。\n"
 "\n"
-"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
-"\n"
-"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
-"\n"
-"從下面的清單中選擇一種細胞器以了解更多資訊。"
+"以下頁面解釋了各種機制。請隨意瀏覽頁面以獲取遊戲提示與幫助。"
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "無效果。"
@@ -6736,27 +6702,11 @@ msgstr ""
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
-msgstr ""
-"在一顆遙遠的外星球上，經過數億年的化學演化，形成了自我複製的分子，導致了宇宙中一種新現象的發展。\n"
-"\n"
-"生命。\n"
-"\n"
-"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
-"\n"
-"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+msgstr "微生物階段附錄中收集了一些表格與其他事物"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_BUTTON"
-msgstr ""
-"在一顆遙遠的外星球上，萬古的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
-"\n"
-"生命。\n"
-"\n"
-"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
-"\n"
-"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+msgstr "微生物階段"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
@@ -6773,9 +6723,8 @@ msgstr ""
 "\n"
 "為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_GDD"
-msgstr "微生物階段"
+msgstr "微生物階段有一個包含更多細節的單獨的遊戲設計方案：微生物階段遊戲設計方案"
 
 #, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
@@ -6828,38 +6777,30 @@ msgstr "無升級。"
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr "多細胞階段"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
-"歡迎來到早期多細胞階段！\n"
-"\n"
-"您已經成功地引導您的物種度過了單細胞階段。\n"
-"\n"
-"本階段遊戲玩法遵循微生物階段的核心機制。您仍然需要繼續培養您的生物以繁殖並進入編輯器。\n"
-"\n"
-"然而，您現在可以在編輯器中設計細胞群落佈局，並且可以分化細胞使其專門用於各種職責。請記住，群落成員不能共享[thrive:compound type=\"atp\"][/thrive:compound]。\n"
-"\n"
-"如果您使用出芽生殖（預設繁殖方式），您首先會控制一個牙體，並生長細胞佈局的其餘部分。"
+msgstr "多細胞階段的原型開發已經開始。早期多細胞階段大多是可玩的。後期多細胞階段更多是實驗中的原型。"
 
 #, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr "多細胞階段"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
-msgstr "多細胞階段"
+msgstr "在多細胞階段，您的群落將變得更加複雜與專門化，並經歷向 3D 環境的轉變，直到它成為宏觀的多細胞生物。當您的生物首次發展出一定程度的感知能力時，本階段結束。"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
-msgstr "多細胞階段"
+msgstr ""
+"海洋中的生命繁衍生息。會有很多多樣性。對玩家來說，世界突然變得更大了。\n"
+"\n"
+"玩家現在將控制形成更大生物體的細胞群落。規模將逐漸增大。"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
-msgstr "多細胞階段"
+msgstr ""
+"當細胞透過使用連接器（黏附蛋白）結合在一起並且細胞無法再解除結合（它們實際上成為單一生物體）時，本階段開始。多細胞的轉變需要有足夠大的細胞群落才能存在作為先決條件。\n"
+"\n"
+"當玩家的物種演化出神經系統時，本階段結束。"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
-msgstr "多細胞階段"
+msgstr "尚未討論。"
 
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr "對於包含[b]肌原纖維[/b]的多細胞生物中的每個細胞，該生物的運動速度與該細胞的體積成比例地增加。具有[b]肌原纖維[/b]的細胞將被分類為肌肉組織類型。"
@@ -6885,9 +6826,8 @@ msgstr "我們建議在多細胞生物的多種細胞類型中添加一個[b]肌
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr "無升級"
 
-#, fuzzy
 msgid "WIKI_NATION_EDITOR"
-msgstr "啟用編輯器"
+msgstr "國家編輯器"
 
 msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
 msgstr "無效果。"
@@ -6959,12 +6899,11 @@ msgstr ""
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_NO"
-msgstr "Wiki"
+msgstr "否"
 
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
-msgstr ""
+msgstr "無，這是最後一個階段"
 
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
@@ -6988,9 +6927,8 @@ msgstr "無修改。"
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "無代謝過程。"
 
-#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr "無要求。"
+msgstr "無要求，除了需要大量的額外空間來容納它。"
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
@@ -7056,19 +6994,15 @@ msgstr ""
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
-msgstr "氧化毒素合成"
+msgstr "氧化毒素合成、糖解"
 
-#, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
-msgstr "軸突"
+msgstr "飛昇"
 
-#, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr "覺醒階段"
 
-#, fuzzy
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr "意識階段"
 
@@ -7096,53 +7030,45 @@ msgstr "葉綠體"
 msgid "WIKI_PAGE_CILIA"
 msgstr "纖毛"
 
-#, fuzzy
 msgid "WIKI_PAGE_COMPOUNDS"
-msgstr "細胞質"
+msgstr "化合物"
 
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
-msgstr ""
+msgstr "化合物系統開發"
 
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr "細胞質"
 
-#, fuzzy
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
-msgstr "細胞器"
+msgstr "開發"
 
-#, fuzzy
 msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
-msgstr "粒線體"
+msgstr "編輯器與突變"
 
-#, fuzzy
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
-msgstr "粒線體"
+msgstr "環境條件"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
-#, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "工業階段"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶體"
 
-#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
-msgstr "細胞器"
+msgstr "遊戲機制"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代謝體"
 
-#, fuzzy
 msgid "WIKI_PAGE_MICROBE_STAGE"
-msgstr "固氮酶"
+msgstr "微生物階段"
 
 msgid "WIKI_PAGE_MITOCHONDRION"
 msgstr "粒線體"
 
-#, fuzzy
 msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
 
@@ -7170,9 +7096,8 @@ msgstr "掠食性菌毛"
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr "原生質"
 
-#, fuzzy
 msgid "WIKI_PAGE_REPRODUCTION"
-msgstr "原生質"
+msgstr "繁殖"
 
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
@@ -7183,17 +7108,14 @@ msgstr "信號劑"
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr "黏液噴嘴"
 
-#, fuzzy
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr "社會階段"
 
-#, fuzzy
 msgid "WIKI_PAGE_SPACE_STAGE"
-msgstr "黏液噴嘴"
+msgstr "太空階段"
 
-#, fuzzy
 msgid "WIKI_PAGE_STAGES_ROOT"
-msgstr "細胞器"
+msgstr "階段"
 
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr "熱能體"
@@ -7201,9 +7123,8 @@ msgstr "熱能體"
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr "熱合成酶"
 
-#, fuzzy
 msgid "WIKI_PAGE_THE_PATCH_MAP"
-msgstr "熱能體"
+msgstr "區域地圖"
 
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr "類囊體"
@@ -7257,9 +7178,8 @@ msgstr ""
 "\n"
 "需要 [b]25[/b] 突變點數，修改[b]掠食性菌毛[/b]將其轉變為[b]注射性菌毛[/b]。當它們攻擊敵方細胞時，同時也會造成毒素傷害。降低毒素傷害的細胞膜類型也可以降低[b]注射性菌毛[/b]造成的傷害。"
 
-#, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr "有氧呼吸"
+msgstr "蛋白質呼吸"
 
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "無效果。"
@@ -7297,23 +7217,14 @@ msgstr ""
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_PULLING_CILIA"
-msgstr "纖毛"
+msgstr "捕食纖毛"
 
-#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
-msgstr ""
-"[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
-"\n"
-"視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
+msgstr "繁殖"
 
-#, fuzzy
 msgid "WIKI_REPRODUCTION_INTRO"
-msgstr ""
-"[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]的顯著增強版本，旨在增強非玩家物種的儲存能力。無法添加到玩家細胞中，但可能存在於玩家從環境中化石化的細胞中。\n"
-"\n"
-"視覺上匹配[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]並繼承了它的許多特徵。"
+msgstr "為了在 Thrive 中取得發展，您需要在[b]編輯器[/b]中演化您的物種並防止滅絕。為此，您需要進行[b]繁殖[/b]。"
 
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
@@ -7432,11 +7343,10 @@ msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr "無升級。"
 
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "此階段尚未開始開發。近年來，這一階段的理論和遊戲玩法討論並不多。一旦我們達到社會階段的正式開發，將會恢復討論。"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
-msgstr "社會階段"
+msgstr "即將推出。"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
@@ -7453,16 +7363,14 @@ msgstr "社會階段"
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr "社會階段"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_UI"
-msgstr "社會階段"
+msgstr "即將推出。"
 
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr "太空階段開發尚未開始。"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_FEATURES"
-msgstr "黏液噴嘴"
+msgstr "即將推出。"
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
@@ -7475,13 +7383,14 @@ msgstr ""
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr "太空階段"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
-msgstr "固氮酶"
+msgstr ""
+"當玩家首次帶著原始火箭到達太空時，本階段開始。\n"
+"\n"
+"當玩家消耗大量資源與研究建造並驅動飛昇之門時，本階段結束。"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
-msgstr "太空階段"
+msgstr "即將推出。"
 
 #, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
@@ -7494,9 +7403,8 @@ msgstr ""
 "\n"
 "從下面的清單中選擇一種細胞器以了解更多資訊。"
 
-#, fuzzy
 msgid "WIKI_TBA"
-msgstr "Wiki"
+msgstr "待定"
 
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr "無效果。"
@@ -7577,19 +7485,15 @@ msgstr "無升級。"
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_INTRO"
-msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
-"\n"
-"現實中未發現的推測細胞器。在開啟僅限已知生命形式選項的遊戲中不可用。"
+msgstr "您的物種所居住的星球是一個擁有許多不同環境與生物群系的廣闊地方。在[color=#3796e1][url=thriveopedia:microbe_stage]微生物階段[/url][/color]中，這透過[b]區域地圖[/b]中的[b]區域[/b]與[b]地域[/b]表示。"
 
 #, fuzzy
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr "無升級。"
 
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
-msgstr ""
+msgstr "[b]區域地圖[/b]代表您的星球。它由[b]區域[/b]與[b]地域[/b]組成（如下所述）。每個區域包含多個連接的（或相鄰的）區域並連接到其他地域。"
 
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr "無特殊效果。"
@@ -7696,9 +7600,8 @@ msgstr "雖然額外的儲存空間在任何情況下都很有用，但[b]液泡
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_YES"
-msgstr "Wiki"
+msgstr "是"
 
 msgid "WILL_YOU_THRIVE"
 msgstr "您能發展繁榮（Thrive）嗎？"
@@ -7771,9 +7674,8 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "年"
 
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
-msgstr "等待實現。"
+msgstr "此頁面的內容尚未完全在遊戲中實現，並且可能會發生變化。"
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "造訪我們的 YouTube 頻道"
