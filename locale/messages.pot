@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 10:56+0300\n"
+"POT-Creation-Date: 2024-09-23 12:02+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,10 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoRun.cs:128
 msgid "ABORTED_DOT"
+msgstr ""
+
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:90
+msgid "ABSORBERS_COUNT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:996
@@ -421,7 +425,7 @@ msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
-#: ../src/general/MainMenu.tscn:515 ../src/general/MainMenu.tscn:816
+#: ../src/general/MainMenu.tscn:524 ../src/general/MainMenu.tscn:827
 #: ../src/general/NewGameSettings.tscn:957 ../src/general/OptionsMenu.tscn:1661
 #: ../src/general/PauseMenu.tscn:291
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
@@ -532,15 +536,17 @@ msgstr ""
 msgid "BENCHMARKS"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:128
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:132
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:103
 msgid "BENCHMARK_FINISHED"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:73
+#: ../src/benchmark/BenchmarkGUITopPart.tscn:20
 msgid "BENCHMARK_PHASE"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:113
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:117
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:88
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
@@ -556,9 +562,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1385
 #: ../simulation_parameters/microbe_stage/biomes.json:1647
 #: ../simulation_parameters/microbe_stage/biomes.json:1888
-#: ../simulation_parameters/microbe_stage/biomes.json:2213
-#: ../simulation_parameters/microbe_stage/biomes.json:2393
-#: ../simulation_parameters/microbe_stage/biomes.json:2638
+#: ../simulation_parameters/microbe_stage/biomes.json:2223
+#: ../simulation_parameters/microbe_stage/biomes.json:2403
+#: ../simulation_parameters/microbe_stage/biomes.json:2648
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:48
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -568,8 +574,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1129
 #: ../simulation_parameters/microbe_stage/biomes.json:1710
 #: ../simulation_parameters/microbe_stage/biomes.json:1947
-#: ../simulation_parameters/microbe_stage/biomes.json:2460
-#: ../simulation_parameters/microbe_stage/biomes.json:2701
+#: ../simulation_parameters/microbe_stage/biomes.json:2470
+#: ../simulation_parameters/microbe_stage/biomes.json:2711
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -931,7 +937,8 @@ msgstr ""
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:137
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:141
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:112
 #: ../src/general/OptionsMenu.tscn:1818
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
@@ -951,12 +958,20 @@ msgstr ""
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:41
+msgid "CLOUD_BENCHMARK"
+msgstr ""
+
 #: ../src/general/OptionsMenu.tscn:871
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:827
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
+msgstr ""
+
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:103
+msgid "CLOUD_SIMULATION_MULTIPLIER"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1568
@@ -1032,19 +1047,19 @@ msgstr ""
 msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:576
+#: ../src/general/MainMenu.tscn:585
 msgid "COMMUNITY_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:571
+#: ../src/general/MainMenu.tscn:580
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:603
+#: ../src/general/MainMenu.tscn:612
 msgid "COMMUNITY_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:598
+#: ../src/general/MainMenu.tscn:607
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1103,6 +1118,10 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:810
 msgid "COMPOUND_CLOUDS"
+msgstr ""
+
+#: ../src/general/MainMenu.tscn:506
+msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:421
@@ -1451,7 +1470,8 @@ msgstr ""
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:141
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:145
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:116
 msgid "COPY_RESULTS"
 msgstr ""
 
@@ -1776,11 +1796,11 @@ msgstr ""
 msgid "DEVELOPERS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:585
+#: ../src/general/MainMenu.tscn:594
 msgid "DEVELOPMENT_FORUM"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:580
+#: ../src/general/MainMenu.tscn:589
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1788,11 +1808,11 @@ msgstr ""
 msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:594
+#: ../src/general/MainMenu.tscn:603
 msgid "DEVELOPMENT_WIKI"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:589
+#: ../src/general/MainMenu.tscn:598
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1900,7 +1920,7 @@ msgstr ""
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:727
+#: ../src/general/MainMenu.tscn:736
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
@@ -2142,6 +2162,10 @@ msgstr ""
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
 
+#: ../src/benchmark/microbe/CloudBenchmark.tscn:73
+msgid "EMITTERS_COUNT"
+msgstr ""
+
 #: ../src/modding/ModManager.tscn:168
 msgid "ENABLED_MODS"
 msgstr ""
@@ -2326,7 +2350,7 @@ msgstr ""
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2314
+#: ../simulation_parameters/microbe_stage/biomes.json:2324
 msgid "ESTUARY"
 msgstr ""
 
@@ -2433,7 +2457,7 @@ msgstr ""
 msgid "EXTRA_OPTIONS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:738
+#: ../src/general/MainMenu.tscn:747
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
@@ -2571,8 +2595,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1592
 #: ../simulation_parameters/microbe_stage/biomes.json:1833
 #: ../simulation_parameters/microbe_stage/biomes.json:2070
-#: ../simulation_parameters/microbe_stage/biomes.json:2338
-#: ../simulation_parameters/microbe_stage/biomes.json:2583
+#: ../simulation_parameters/microbe_stage/biomes.json:2348
+#: ../simulation_parameters/microbe_stage/biomes.json:2593
 msgid "FLOATING_HAZARD"
 msgstr ""
 
@@ -2682,7 +2706,7 @@ msgstr ""
 msgid "FOUR_TIMES"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.cs:197
+#: ../src/benchmark/BenchmarkBase.cs:100
 #: ../src/engine/DebugOverlays.FPSCounter.cs:18
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:151
 #: ../src/engine/DebugOverlays.tscn:71
@@ -2746,7 +2770,7 @@ msgstr ""
 msgid "GENERATION_COLON"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:694
+#: ../src/general/MainMenu.tscn:703
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
@@ -2796,9 +2820,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1495
 #: ../simulation_parameters/microbe_stage/biomes.json:1737
 #: ../simulation_parameters/microbe_stage/biomes.json:1970
-#: ../simulation_parameters/microbe_stage/biomes.json:2241
-#: ../simulation_parameters/microbe_stage/biomes.json:2487
-#: ../simulation_parameters/microbe_stage/biomes.json:2810
+#: ../simulation_parameters/microbe_stage/biomes.json:2251
+#: ../simulation_parameters/microbe_stage/biomes.json:2497
+#: ../simulation_parameters/microbe_stage/biomes.json:2820
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
@@ -2927,7 +2951,7 @@ msgstr ""
 msgid "ICESHELF"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2131
+#: ../simulation_parameters/microbe_stage/biomes.json:2133
 msgid "ICE_CHUNK_BIG"
 msgstr ""
 
@@ -3491,7 +3515,7 @@ msgstr ""
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:672
+#: ../src/general/MainMenu.tscn:681
 msgid "ITCH_TOOLTIP"
 msgstr ""
 
@@ -4010,7 +4034,7 @@ msgstr ""
 msgid "LINE_COLOUR"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:527
+#: ../src/general/MainMenu.tscn:536
 msgid "LINKS_TITLE"
 msgstr ""
 
@@ -4099,11 +4123,11 @@ msgstr ""
 msgid "LOCK_DAY_NIGHT_CYCLE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:889
+#: ../src/general/MainMenu.tscn:900
 msgid "LOW_MENU_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:888
+#: ../src/general/MainMenu.tscn:899
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
@@ -4136,7 +4160,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:841
 #: ../simulation_parameters/microbe_stage/biomes.json:1152
 #: ../simulation_parameters/microbe_stage/biomes.json:1413
-#: ../simulation_parameters/microbe_stage/biomes.json:2728
+#: ../simulation_parameters/microbe_stage/biomes.json:2738
 msgid "MARINE_SNOW"
 msgstr ""
 
@@ -4302,7 +4326,7 @@ msgstr ""
 msgid "MICROBE"
 msgstr ""
 
-#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:95
+#: ../src/benchmark/microbe/MicrobeBenchmark.tscn:70
 msgid "MICROBES_COUNT"
 msgstr ""
 
@@ -4599,7 +4623,7 @@ msgstr ""
 msgid "MODS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:847
+#: ../src/general/MainMenu.tscn:858
 msgid "MODS_INSTALLED_BUT_NOT_ENABLED"
 msgstr ""
 
@@ -4689,11 +4713,11 @@ msgstr ""
 msgid "MOD_LICENSE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:863
+#: ../src/general/MainMenu.tscn:874
 msgid "MOD_LOAD_ERRORS"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:861
+#: ../src/general/MainMenu.tscn:872
 msgid "MOD_LOAD_ERRORS_OCCURRED"
 msgstr ""
 
@@ -5193,7 +5217,7 @@ msgstr ""
 msgid "NO_FOSSIL_DIRECTORY"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:848
+#: ../src/general/MainMenu.tscn:859
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
@@ -5265,11 +5289,11 @@ msgstr ""
 msgid "OFF"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:567
+#: ../src/general/MainMenu.tscn:576
 msgid "OFFICIAL_WEBSITE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:558
+#: ../src/general/MainMenu.tscn:567
 msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -5284,11 +5308,11 @@ msgstr ""
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:838
+#: ../src/general/MainMenu.tscn:849
 msgid "OPENGL_MODE_WARNING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:837
+#: ../src/general/MainMenu.tscn:848
 msgid "OPENGL_MODE_WARNING_EXPLANATION"
 msgstr ""
 
@@ -5660,7 +5684,7 @@ msgstr ""
 msgid "PATCH_NOTE_LINK_VISIT_TEXT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:683
+#: ../src/general/MainMenu.tscn:692
 msgid "PATREON_TOOLTIP"
 msgstr ""
 
@@ -5983,7 +6007,7 @@ msgstr ""
 msgid "RECOMMENDED_THRIVE_VERSION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:716
+#: ../src/general/MainMenu.tscn:725
 msgid "REDDIT_TOOLTIP"
 msgstr ""
 
@@ -6004,7 +6028,7 @@ msgstr ""
 msgid "REPORT"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:611 ../src/general/PauseMenu.tscn:249
+#: ../src/general/MainMenu.tscn:620 ../src/general/PauseMenu.tscn:249
 msgid "REPORT_BUG"
 msgstr ""
 
@@ -6148,7 +6172,7 @@ msgstr ""
 msgid "REVEAL_ALL_PATCHES"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:649
+#: ../src/general/MainMenu.tscn:658
 msgid "REVOLUTIONARY_GAMES_SOCIAL_TOOLTIP"
 msgstr ""
 
@@ -6236,11 +6260,11 @@ msgstr ""
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:856
+#: ../src/general/MainMenu.tscn:867
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:857
+#: ../src/general/MainMenu.tscn:868
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
@@ -6401,7 +6425,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2560
+#: ../simulation_parameters/microbe_stage/biomes.json:2570
 msgid "SEA_FLOOR"
 msgstr ""
 
@@ -6636,9 +6660,9 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1349
 #: ../simulation_parameters/microbe_stage/biomes.json:1611
 #: ../simulation_parameters/microbe_stage/biomes.json:1852
-#: ../simulation_parameters/microbe_stage/biomes.json:2177
-#: ../simulation_parameters/microbe_stage/biomes.json:2357
-#: ../simulation_parameters/microbe_stage/biomes.json:2602
+#: ../simulation_parameters/microbe_stage/biomes.json:2187
+#: ../simulation_parameters/microbe_stage/biomes.json:2367
+#: ../simulation_parameters/microbe_stage/biomes.json:2612
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:46
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -6648,16 +6672,18 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1102
 #: ../simulation_parameters/microbe_stage/biomes.json:1675
 #: ../simulation_parameters/microbe_stage/biomes.json:1916
-#: ../simulation_parameters/microbe_stage/biomes.json:2421
-#: ../simulation_parameters/microbe_stage/biomes.json:2666
+#: ../simulation_parameters/microbe_stage/biomes.json:2431
+#: ../simulation_parameters/microbe_stage/biomes.json:2676
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2158
+#: ../simulation_parameters/microbe_stage/biomes.json:2163
 msgid "SNOWFLAKE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:472
+#: ../simulation_parameters/common/gallery.json:477
+#: ../simulation_parameters/common/wiki.json:2445
+#: ../simulation_parameters/common/wiki.json:2543
 msgid "SOCIETY_STAGE"
 msgstr ""
 
@@ -6901,15 +6927,15 @@ msgstr ""
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:881
+#: ../src/general/MainMenu.tscn:892
 msgid "STEAM_INIT_FAILED"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:880
+#: ../src/general/MainMenu.tscn:891
 msgid "STEAM_INIT_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:661
+#: ../src/general/MainMenu.tscn:670
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
@@ -7172,7 +7198,7 @@ msgstr ""
 msgid "TESTING_TEAM"
 msgstr ""
 
-#: ../src/general/MainMenu.cs:289 ../src/general/MainMenu.tscn:872
+#: ../src/general/MainMenu.cs:289 ../src/general/MainMenu.tscn:883
 msgid "THANKS_FOR_BUYING_THRIVE"
 msgstr ""
 
@@ -7180,7 +7206,7 @@ msgstr ""
 msgid "THANKS_FOR_PLAYING"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:873
+#: ../src/general/MainMenu.tscn:884
 msgid "THANK_YOU_TITLE"
 msgstr ""
 
@@ -7667,7 +7693,7 @@ msgstr ""
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:749
+#: ../src/general/MainMenu.tscn:758
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
@@ -8036,7 +8062,7 @@ msgstr ""
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:624
+#: ../src/general/MainMenu.tscn:466 ../src/general/MainMenu.tscn:633
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
@@ -10080,7 +10106,7 @@ msgstr ""
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
 msgstr ""
 
-#: ../src/general/MainMenu.tscn:705
+#: ../src/general/MainMenu.tscn:714
 msgid "YOUTUBE_TOOLTIP"
 msgstr ""
 

@@ -12,6 +12,8 @@ using DefaultEcs.System;
 [With(typeof(CompoundStorage))]
 [With(typeof(CellProperties))]
 [With(typeof(CompoundAbsorber))]
+
+// TODO: add mucocyst activation for colony members: https://github.com/Revolutionary-Games/Thrive/issues/5525
 [Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeMovementSystem))]

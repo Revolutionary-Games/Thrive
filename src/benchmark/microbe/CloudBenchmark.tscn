@@ -1,0 +1,151 @@
+[gd_scene load_steps=6 format=3 uid="uid://nt42mgn8tyen"]
+
+[ext_resource type="Script" path="res://src/benchmark/microbe/CloudBenchmark.cs" id="1_gp5vd"]
+[ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2_poj5n"]
+[ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="3_5x1s6"]
+[ext_resource type="PackedScene" uid="uid://bqeojm252hm5x" path="res://src/benchmark/BenchmarkGUITopPart.tscn" id="4_jqc6b"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_s2fej"]
+
+[node name="CloudBenchmark" type="Node" node_paths=PackedStringArray("emittersCountLabel", "absorbersCountLabel", "multipliedSimulationsLabel", "multipliedSimulationsContainer", "worldRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
+script = ExtResource("1_gp5vd")
+emittersCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer/Emitters")
+absorbersCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/Absorbers")
+multipliedSimulationsLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3/Multiplier")
+multipliedSimulationsContainer = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3")
+worldRoot = NodePath("WorldRoot")
+benchmarkCamera = NodePath("WorldRoot/MicrobeCamera")
+guiContainer = NodePath("GUIContainer")
+fpsLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/BenchmarkGUITopPart/FPS")
+phaseLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/BenchmarkGUITopPart/HBoxContainer/Phase")
+benchmarkResultText = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/Results")
+benchmarkFinishedText = NodePath("GUIContainer/VBoxContainer/FinishedText")
+copyResultsButton = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
+
+[node name="WorldRoot" type="Node3D" parent="."]
+
+[node name="MicrobeCamera" parent="WorldRoot" instance=ExtResource("2_poj5n")]
+DefaultCameraHeight = 80.0
+MinCameraHeight = 80.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldRoot"]
+transform = Transform3D(0.613214, 0.692812, -0.379447, -0.74027, 0.67164, 0.0299817, 0.275624, 0.262509, 0.924727, 0, 0, 0)
+
+[node name="GUIContainer" parent="." instance=ExtResource("3_5x1s6")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -94.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+WindowTitle = "CLOUD_BENCHMARK"
+Resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer"]
+custom_minimum_size = Vector2(250, 320)
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 320.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUIContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BenchmarkGUITopPart" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_jqc6b")]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HFlowContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "EMITTERS_COUNT"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Emitters" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "ABSORBERS_COUNT"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Absorbers" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("5_s2fej")
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+text = "CLOUD_SIMULATION_MULTIPLIER"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Multiplier" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+text = "1"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+
+[node name="ResultsHeading" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "BENCHMARK_RESULTS_COLON"
+label_settings = ExtResource("5_s2fej")
+
+[node name="Results" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Some stuff: 0
+Other things: 1234"
+label_settings = ExtResource("5_s2fej")
+autowrap_mode = 3
+
+[node name="FinishedText" type="Label" parent="GUIContainer/VBoxContainer"]
+layout_mode = 2
+text = "BENCHMARK_FINISHED"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="QuitBenchmark" type="Button" parent="GUIContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CLOSE"
+
+[node name="Copy" type="Button" parent="GUIContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "COPY_RESULTS"
+
+[connection signal="Closed" from="GUIContainer" to="." method="ExitBenchmark"]
+[connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/QuitBenchmark" to="." method="ExitBenchmark"]
+[connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/Copy" to="." method="CopyResultsToClipboard"]
+
+[editable path="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/BenchmarkGUITopPart"]
