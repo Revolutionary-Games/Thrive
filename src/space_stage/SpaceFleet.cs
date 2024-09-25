@@ -91,7 +91,6 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
         visualsParent.Scale = new Vector3(Constants.SPACE_FLEET_MODEL_SCALE, Constants.SPACE_FLEET_MODEL_SCALE,
             Constants.SPACE_FLEET_MODEL_SCALE);
-
     }
 
     public void ResolveNodeReferences()
@@ -158,9 +157,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     {
         ships = new List<UnitType> { ship };
 
-        // TODO: proper positioning and scaling for multiple ships
+        // TODO: proper positioning and scaling and rotation for multiple ships
         visualsParent.AddChild(ship.WorldRepresentationSpace.Instantiate());
-
-        // TODO: Inividual fleet model rotations
     }
 }
