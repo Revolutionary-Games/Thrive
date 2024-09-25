@@ -333,10 +333,10 @@ void DebugDrawer::DrawLine(const godot::Vector3& from, const godot::Vector3& to,
         startedLineDraw = true;
     }
 
+    lineMesh->surface_set_color(colour);
     lineMesh->surface_add_vertex(from);
     lineMesh->surface_set_color(colour);
     lineMesh->surface_add_vertex(to);
-    lineMesh->surface_set_color(colour);
 
     usedDrawMemory += SingleLineDrawMemoryUse;
 }
@@ -359,14 +359,14 @@ void DebugDrawer::DrawTriangle(const godot::Vector3& vertex1, const godot::Vecto
         startedTriangleDraw = true;
     }
 
+    triangleMesh->surface_set_color(colour);
     triangleMesh->surface_add_vertex(vertex1);
-    triangleMesh->surface_set_color(colour);
 
+    triangleMesh->surface_set_color(colour);
     triangleMesh->surface_add_vertex(vertex2);
-    triangleMesh->surface_set_color(colour);
 
-    triangleMesh->surface_add_vertex(vertex3);
     triangleMesh->surface_set_color(colour);
+    triangleMesh->surface_add_vertex(vertex3);
 
     usedDrawMemory += SingleTriangleDrawMemoryUse;
 }
