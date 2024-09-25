@@ -10,7 +10,7 @@
 namespace Thrive
 {
 
-inline godot::Vector3 JoltToGodot(const JPH::DVec3Arg& vector)
+inline godot::Vector3 JoltToGodot(JPH::DVec3Arg vector)
 {
     return {static_cast<float>(vector.GetX()), static_cast<float>(vector.GetY()), static_cast<float>(vector.GetZ())};
 }
