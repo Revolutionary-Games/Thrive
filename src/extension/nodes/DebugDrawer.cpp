@@ -68,6 +68,7 @@ void DebugDrawer::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("get_native_instance"), &DebugDrawer::GetThis);
     ClassDB::bind_method(D_METHOD("register_debug_draw"), &DebugDrawer::RegisterDebugDraw);
+    ClassDB::bind_method(D_METHOD("remove_debug_draw"), &DebugDrawer::RemoveDebugDraw);
 }
 
 DebugDrawer::DebugDrawer() :
@@ -129,17 +130,20 @@ void DebugDrawer::Init()
     const auto quiteBigAABB = godot::AABB(godot::Vector3{0, 0, 0},
         godot::Vector3{DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN, DEBUG_DRAW_MAX_DISTANCE_ORIGIN});
 
-    lineDrawer->set_custom_aabb(quiteBigAABB);
-    triangleDrawer->set_custom_aabb(quiteBigAABB);
-
     lineMesh = godot::Ref<godot::ImmediateMesh>(memnew(godot::ImmediateMesh));
     triangleMesh = godot::Ref<godot::ImmediateMesh>(memnew(godot::ImmediateMesh));
 
     lineDrawer->set_mesh(lineMesh);
     lineDrawer->set_visible(false);
+    lineDrawer->set_custom_aabb(quiteBigAABB);
+    lineDrawer->set_ignore_occlusion_culling(true);
+    lineDrawer->set_extra_cull_margin(1000);
 
     triangleDrawer->set_mesh(triangleMesh);
     triangleDrawer->set_visible(false);
+    triangleDrawer->set_custom_aabb(quiteBigAABB);
+    triangleDrawer->set_ignore_occlusion_culling(true);
+    triangleDrawer->set_extra_cull_margin(1000);
 
     // TODO: implement debug text drawing (this is a Control to support that in the future)
 }
@@ -293,6 +297,21 @@ bool DebugDrawer::RegisterDebugDraw() noexcept
     }
 
     return physicsDebugSupported;
+}
+
+void DebugDrawer::RemoveDebugDraw() noexcept
+{
+    auto* config = ThriveConfig::Instance();
+
+    if (!config)
+        return;
+
+    physicsDebugSupported = config->IsDebugDrawSupported();
+
+    if (physicsDebugSupported)
+    {
+        config->RegisterDebugDrawReceiver(nullptr);
+    }
 }
 
 // ------------------------------------ //

@@ -97,6 +97,7 @@ public:
             triangleBuffer) noexcept;
 
     bool RegisterDebugDraw() noexcept;
+    void RemoveDebugDraw() noexcept;
 
     [[nodiscard]] int GetDebugLevel() const noexcept
     {
@@ -174,8 +175,8 @@ private:
 
     int currentPhysicsDebugLevel = 0;
 
-    /// Set a max limit to not draw way too much stuff and slow down things a ton. 4 megabytes
-    const int drawMemoryLimit = 1024 * 1024 * 4;
+    /// Set a max limit to not draw way too much stuff and slow down things a ton. 8 megabytes
+    const int drawMemoryLimit = 1024 * 1024 * 8;
     int usedDrawMemory = 0;
     int extraNeededDrawMemory = 0;
 

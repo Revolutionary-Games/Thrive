@@ -15,7 +15,7 @@ namespace Thrive::Physics
 constexpr float MaxDebugDrawRate = 1 / 60.0f;
 constexpr bool AutoAdjustDebugDrawRateWhenSlow = true;
 constexpr float DebugDrawLODBias = 2;
-constexpr float DefaultMaxDistanceToDrawLinesFromCamera = 120;
+constexpr float DefaultMaxDistanceToDrawLinesFromCamera = 180;
 
 /// \brief Forwards debug draw from the physics system out of this native library
 class DebugDrawForwarder : public JPH::DebugRenderer
