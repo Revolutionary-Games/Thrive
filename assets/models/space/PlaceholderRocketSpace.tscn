@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cb54l5msbnmhx"]
+[gd_scene load_steps=12 format=3 uid="uid://cb54l5msbnmhx"]
 
 [ext_resource type="Texture2D" uid="uid://bjlbcex6yyjj3" path="res://assets/textures/space/Rocket.png" id="1_ubdc0"]
 [ext_resource type="Texture2D" uid="uid://cp7w5cnnrrk1r" path="res://assets/textures/space/Rocket_normal.png" id="2_yu6c4"]
@@ -11,15 +11,10 @@ metallic = 0.2
 normal_enabled = true
 normal_texture = ExtResource("2_yu6c4")
 
-[sub_resource type="Curve" id="Curve_umpri"]
-_data = [Vector2(0.473186, 0), 0.0, 0.0, 0, 0]
-point_count = 1
-
 [sub_resource type="CurveTexture" id="CurveTexture_jnydp"]
-curve = SubResource("Curve_umpri")
 
 [sub_resource type="Curve" id="Curve_oq8ij"]
-_data = [Vector2(0.615142, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.35582, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.35582, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_qnttj"]
@@ -29,42 +24,32 @@ curve = SubResource("Curve_oq8ij")
 angle_min = -179.0
 angle_max = 179.0
 direction = Vector3(0, -1, 0)
-spread = 10.0
-initial_velocity_min = 28.0
-initial_velocity_max = 31.0
+spread = 15.0
+initial_velocity_min = 50.0
+initial_velocity_max = 52.0
 angular_velocity_min = -5.00002
 angular_velocity_max = 4.99998
 radial_velocity_min = -2.00002
 radial_velocity_max = -2.00002
 gravity = Vector3(0, 0, 0)
-radial_accel_min = -2.23517e-06
-radial_accel_max = -2.23517e-06
 scale_curve = SubResource("CurveTexture_qnttj")
 alpha_curve = SubResource("CurveTexture_jnydp")
 
-[sub_resource type="Gradient" id="Gradient_6kcss"]
-offsets = PackedFloat32Array(0, 0.0983051, 0.271186, 0.579661, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.941176, 0, 1, 1, 0.568627, 0, 1, 1, 0.566667, 0, 0.994314, 1, 0.45098, 0, 0.658824)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2mlq"]
-gradient = SubResource("Gradient_6kcss")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwvq0"]
 transparency = 1
+diffuse_mode = 1
+disable_ambient_light = true
 albedo_texture = ExtResource("4_bacjf")
+albedo_texture_force_srgb = true
 emission_enabled = true
-emission = Color(0.32549, 0.27451, 0.188235, 1)
-emission_energy_multiplier = 5.0
-emission_texture = SubResource("GradientTexture2D_a2mlq")
+emission = Color(1, 0.633333, 0, 1)
+emission_energy_multiplier = 15.0
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-proximity_fade_enabled = true
-proximity_fade_distance = 0.3
+proximity_fade_distance = 0.1
 
 [sub_resource type="QuadMesh" id="QuadMesh_srknr"]
 material = SubResource("StandardMaterial3D_gwvq0")
@@ -81,6 +66,6 @@ transform = Transform3D(-4.37114e-08, 0, -1, -1, -4.37114e-08, 4.37114e-08, -4.3
 amount = 100
 lifetime = 0.6
 fixed_fps = 0
-visibility_aabb = AABB(-4, -56, -4, 8, 60, 8)
+visibility_aabb = AABB(-40, -56, -40, 80, 80, 80)
 process_material = SubResource("ParticleProcessMaterial_2i5ck")
 draw_pass_1 = SubResource("QuadMesh_srknr")

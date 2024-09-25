@@ -46,11 +46,8 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
             {
                 Unit.GlobalPosition = TargetPosition;
 
-                // Unit._engineEmittor.Emitting = false;
                 return true;
             }
-
-            // Unit._engineEmittor.Emitting = true;
 
             Unit.GlobalPosition += direction * adjustedSpeed;
             return false;

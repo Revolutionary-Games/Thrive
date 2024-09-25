@@ -34,25 +34,20 @@ material = ExtResource("6_h1j6i")
 size = Vector2(0.5, 0.45)
 
 [sub_resource type="Curve" id="Curve_122gh"]
-resource_local_to_scene = true
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0851735, 0.0867089), 0.0, 0.0, 0, 0, Vector2(0.258675, 0.300633), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_emkw4"]
-resource_local_to_scene = true
 curve = SubResource("Curve_122gh")
 
 [sub_resource type="Curve" id="Curve_xsuqv"]
-resource_local_to_scene = true
 _data = [Vector2(0, 0.753165), 0.0, 3.47764, 0, 0, Vector2(0.236593, 1), -0.10433, -0.10433, 0, 0, Vector2(1, 0.728481), -1.067, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_8mksi"]
-resource_local_to_scene = true
 curve = SubResource("Curve_xsuqv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h4fmx"]
-resource_local_to_scene = true
 emission_shape = 2
 emission_sphere_radius = 0.2
 direction = Vector3(0, 0, 1)

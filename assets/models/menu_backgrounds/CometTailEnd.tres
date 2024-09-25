@@ -6,7 +6,6 @@
 colors = PackedColorArray(0.2639, 0.58695, 0.91, 0.756863, 0, 0, 0, 0.603922)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4gidx"]
-resource_local_to_scene = true
 gradient = SubResource("Gradient_vy355")
 width = 128
 height = 128
@@ -14,7 +13,6 @@ fill = 1
 fill_from = Vector2(0.517699, 0.472898)
 
 [resource]
-resource_local_to_scene = true
 transparency = 4
 blend_mode = 1
 cull_mode = 2

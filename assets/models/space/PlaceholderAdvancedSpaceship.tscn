@@ -20,17 +20,14 @@ emission_energy_multiplier = 2.0
 emission_texture = ExtResource("2_sojrh")
 
 [sub_resource type="Curve" id="Curve_tq58m"]
-resource_local_to_scene = true
 max_value = 0.8
 _data = [Vector2(0, 0.512791), 0.0, 1.39981, 0, 0, Vector2(0.201413, 0.694186), 0.0261319, 0.0261319, 0, 0, Vector2(1, 0), -0.348202, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_lv1ho"]
-resource_local_to_scene = true
 curve = SubResource("Curve_tq58m")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfupc"]
-resource_local_to_scene = true
 lifetime_randomness = 0.1
 emission_shape = 2
 emission_sphere_radius = 0.03

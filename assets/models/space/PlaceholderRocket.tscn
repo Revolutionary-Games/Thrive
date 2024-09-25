@@ -1,10 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dwoekps04bjrn"]
+[gd_scene load_steps=19 format=3 uid="uid://dwoekps04bjrn"]
 
 [ext_resource type="Texture2D" uid="uid://bjlbcex6yyjj3" path="res://assets/textures/space/Rocket.png" id="1_6wiro"]
 [ext_resource type="ArrayMesh" uid="uid://cvoa4ev1o77nb" path="res://assets/models/space/PlaceholderRocket.mesh" id="1_xs86c"]
 [ext_resource type="Texture2D" uid="uid://cp7w5cnnrrk1r" path="res://assets/textures/space/Rocket_normal.png" id="2_w1sb5"]
-[ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="4_wk2f1"]
-[ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="5_d1bi2"]
+[ext_resource type="Material" uid="uid://djjpca5eogwt6" path="res://assets/models/space/RocketFlame.material" id="4_3sxo8"]
+[ext_resource type="Material" uid="uid://cwv2fannm2kdn" path="res://assets/models/space/RocketSmoke.material" id="5_ac0jd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnwdn"]
 albedo_texture = ExtResource("1_6wiro")
@@ -45,32 +45,8 @@ damping_max = 7.0
 scale_curve = SubResource("CurveTexture_qnttj")
 alpha_curve = SubResource("CurveTexture_jnydp")
 
-[sub_resource type="Gradient" id="Gradient_6kcss"]
-offsets = PackedFloat32Array(0, 0.0983051, 0.271186, 0.579661, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 0.941176, 0, 1, 1, 0.568627, 0, 1, 1, 0.566667, 0, 0.994314, 1, 0.45098, 0, 0.658824)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_a2mlq"]
-gradient = SubResource("Gradient_6kcss")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gwvq0"]
-transparency = 1
-albedo_texture = ExtResource("4_wk2f1")
-emission_enabled = true
-emission = Color(0.32549, 0.27451, 0.188235, 1)
-emission_energy_multiplier = 5.0
-emission_texture = SubResource("GradientTexture2D_a2mlq")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-proximity_fade_enabled = true
-proximity_fade_distance = 0.3
-
 [sub_resource type="QuadMesh" id="QuadMesh_srknr"]
-material = SubResource("StandardMaterial3D_gwvq0")
+material = ExtResource("4_3sxo8")
 
 [sub_resource type="Gradient" id="Gradient_xdfe6"]
 offsets = PackedFloat32Array(0.024055, 0.103093, 0.649485, 0.972509)
@@ -106,22 +82,8 @@ radial_accel_max = -2.23517e-06
 scale_curve = SubResource("CurveTexture_54aac")
 color_ramp = SubResource("GradientTexture1D_a3tf6")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dod7h"]
-render_priority = 1
-transparency = 1
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("4_wk2f1")
-normal_enabled = true
-normal_texture = ExtResource("5_d1bi2")
-billboard_mode = 3
-billboard_keep_scale = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-proximity_fade_distance = 0.3
-
 [sub_resource type="QuadMesh" id="QuadMesh_u1skn"]
-material = SubResource("StandardMaterial3D_dod7h")
+material = ExtResource("5_ac0jd")
 size = Vector2(1.7, 1.7)
 
 [node name="PlaceHolderRocket" type="Node3D"]
