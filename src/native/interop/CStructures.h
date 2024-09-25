@@ -11,6 +11,7 @@ extern "C"
     typedef struct PhysicsBody PhysicsBody;
     typedef struct PhysicsShape PhysicsShape;
     typedef struct ThriveConfig ThriveConfig;
+    typedef struct DebugDrawer DebugDrawer;
 
     typedef struct JVec3
     {

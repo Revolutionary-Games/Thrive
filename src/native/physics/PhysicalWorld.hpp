@@ -212,6 +212,9 @@ public:
     inline void SetDebugLevel(int level) noexcept
     {
         debugDrawLevel = level;
+
+        if (debugDrawLevel > MAX_DEBUG_DRAW_LEVEL)
+            debugDrawLevel = MAX_DEBUG_DRAW_LEVEL;
     }
 
     void SetDebugCameraLocation(JPH::Vec3Arg position) noexcept;

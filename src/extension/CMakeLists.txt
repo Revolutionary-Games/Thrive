@@ -10,6 +10,8 @@ add_library(thrive_extension SHARED
   core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
   core/ThriveConfig.cpp core/ThriveConfig.hpp
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
+  nodes/DebugDrawer.cpp nodes/DebugDrawer.hpp
+  core/GodotJoltConversions.hpp
 )
 
 if(MSVC)
@@ -33,7 +35,7 @@ else()
     $<$<OR:$<CONFIG:Release>,$<CONFIG:Distribution>>:-DNDEBUG -O3>)
 endif()
 
-target_link_libraries(thrive_extension PRIVATE godot-cpp)
+target_link_libraries(thrive_extension PRIVATE godot-cpp Jolt)
 
 target_include_directories(thrive_extension PUBLIC ${CMAKE_CURRENT_LIST_DIR}
   ${CMAKE_CURRENT_LIST_DIR}/../native)

@@ -1,12 +1,13 @@
 #pragma once
 
-#include "Jolt/Jolt.h"
+#include <Jolt/Jolt.h>
 
 #ifdef JPH_DEBUG_RENDERER
 
-#include "Jolt/Renderer/DebugRenderer.h"
+#include <Jolt/Renderer/DebugRenderer.h>
 
 #include "core/Mutex.hpp"
+#include "core/NativeLibIntercommunication.hpp"
 
 namespace Thrive::Physics
 {
@@ -17,12 +18,13 @@ constexpr float DebugDrawLODBias = 2;
 constexpr float DefaultMaxDistanceToDrawLinesFromCamera = 120;
 
 /// \brief Forwards debug draw from the physics system out of this native library
-/// \todo It would probably benefit the performance a ton if this was directly made to interact with the Godot C++ API
 class DebugDrawForwarder : public JPH::DebugRenderer
 {
 public:
-    using LineCallback = void(JPH::RVec3Arg from, JPH::RVec3Arg to, JPH::Float4 colour);
-    using TriangleCallback = void(JPH::RVec3Arg v1, JPH::RVec3Arg v2, JPH::RVec3Arg v3, JPH::Float4 colour);
+    // One extra level of deferring to allow this to not need to be updated whenever the pointers change as that'd be
+    // a bit hard to forward from the other project
+    using LineCallback = OnDebugLines*;
+    using TriangleCallback = OnDebugTriangles*;
 
     /// \brief Variant of vertex that doesn't require converting back to floats after world space calculation
     /// and has already converted colour info
@@ -46,8 +48,8 @@ public:
     }
 
     void FlushOutput();
-    void SetOutputLineReceiver(std::function<LineCallback> callback);
-    void SetOutputTriangleReceiver(std::function<TriangleCallback> callback);
+    void SetOutputLineReceiver(LineCallback callback);
+    void SetOutputTriangleReceiver(TriangleCallback callback);
 
     void ClearOutputReceivers();
 
@@ -132,8 +134,8 @@ private:
     std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>> lineBuffer;
     std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>> triangleBuffer;
 
-    std::function<LineCallback> lineCallback;
-    std::function<TriangleCallback> triangleCallback;
+    LineCallback lineCallback = nullptr;
+    TriangleCallback triangleCallback = nullptr;
 
     JPH::Vec3 cameraPosition = {};
     float cameraLODBias = DebugDrawLODBias;
