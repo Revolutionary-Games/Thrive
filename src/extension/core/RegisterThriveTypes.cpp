@@ -1,6 +1,8 @@
 // ------------------------------------ //
 #include "RegisterThriveTypes.hpp"
 
+#include "nodes/DebugDrawer.hpp"
+
 #include "ThriveConfig.hpp"
 
 // ------------------------------------ //
@@ -14,6 +16,7 @@ void InitializeThriveModule(godot::ModuleInitializationLevel level)
     }
 
     GDREGISTER_CLASS(Thrive::ThriveConfig);
+    GDREGISTER_CLASS(Thrive::DebugDrawer);
 }
 
 void UnInitializeThriveModule(godot::ModuleInitializationLevel level)

@@ -19,6 +19,16 @@ public:
         return intercommunication;
     }
 
+    [[nodiscard]] NativeLibIntercommunication& GetIntercommunicationObjectModifiable() noexcept
+    {
+        return intercommunication;
+    }
+
+    void ReportDebugDrawWorks()
+    {
+        intercommunication.PhysicsDebugSupported = true;
+    }
+
 private:
     NativeLibIntercommunication intercommunication;
 };
