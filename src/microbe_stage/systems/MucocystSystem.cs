@@ -34,13 +34,6 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
         if (control.MucocystEffectsApplied == wantsMucocyst && !control.MucocystEffectsApplied)
             return;
 
-        // Disable mucocyst if engulfed
-        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
-        {
-            control.State = MicrobeState.Normal;
-            wantsMucocyst = false;
-        }
-
         if (wantsMucocyst)
         {
             ref var storage = ref entity.Get<CompoundStorage>();
