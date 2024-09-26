@@ -373,7 +373,8 @@ public static class MicrobeControlHelpers
                             memberControl.State = MicrobeState.MucocystShield;
 
                             // TODO: maybe it is too loud if all cells in a colony play the sound?
-                            colonyMember.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+                            colonyMember.Get<SoundEffectPlayer>()
+                                .PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
                         }
                     }
                 }

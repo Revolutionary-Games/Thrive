@@ -13,7 +13,6 @@ using DefaultEcs.System;
 [With(typeof(CellProperties))]
 [With(typeof(CompoundAbsorber))]
 
-// TODO: add mucocyst activation for colony members: https://github.com/Revolutionary-Games/Thrive/issues/5525
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsOnMainThread]
