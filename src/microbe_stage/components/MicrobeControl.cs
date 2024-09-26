@@ -347,6 +347,14 @@ public static class MicrobeControlHelpers
 
         if (state)
         {
+            // Don't allow spamming if not enough mucocyst. This is inside this if to allow exiting mucocyst shield
+            // mode even without enough mucilage remaining.
+            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+                return;
+
+            control.State = MicrobeState.MucocystShield;
+            entity.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+
             if (entity.Has<MicrobeColony>())
             {
                 ref var colony = ref entity.Get<MicrobeColony>();
@@ -361,16 +369,11 @@ public static class MicrobeControlHelpers
                         // extra safety against crashing due to colony bugs
                         if (colonyMember != entity && colonyMember.IsAlive)
                         {
-                            // Don't allow spamming if not enough mucocyst. This is inside this if to allow exiting mucocyst shield
-                            // mode even without enough mucilage remaining.
-                            if (availableCompounds.Compounds.GetCompoundAmount(mucilageCompound) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
-                                return;
-
                             ref var memberControl = ref colonyMember.Get<MicrobeControl>();
                             memberControl.State = MicrobeState.MucocystShield;
 
                             // TODO: maybe it is too loud if all cells in a colony play the sound?
-                            entity.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
+                            colonyMember.Get<SoundEffectPlayer>().PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
                         }
                     }
                 }

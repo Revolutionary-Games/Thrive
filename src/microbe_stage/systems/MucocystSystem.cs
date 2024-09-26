@@ -14,7 +14,6 @@ using DefaultEcs.System;
 [With(typeof(CompoundAbsorber))]
 
 // TODO: add mucocyst activation for colony members: https://github.com/Revolutionary-Games/Thrive/issues/5525
-[Without(typeof(AttachedToEntity))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsOnMainThread]
@@ -36,6 +35,13 @@ public sealed class MucocystSystem : AEntitySetSystem<float>
         // Skip processing if already in correct state (and not currently using mucocyst which has an upkeep cost)
         if (control.MucocystEffectsApplied == wantsMucocyst && !control.MucocystEffectsApplied)
             return;
+
+        // Disable mucocyst if engulfed
+        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+        {
+            control.State = MicrobeState.Normal;
+            wantsMucocyst = false;
+        }
 
         if (wantsMucocyst)
         {
