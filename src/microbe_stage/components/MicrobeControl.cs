@@ -329,7 +329,7 @@ public static class MicrobeControlHelpers
         Compound mucilageCompound = Compound.Invalid)
     {
         // Don't activate mucocyst when engulfed
-        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+        if (state && entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
             return;
 
         if (mucilageCompound == Compound.Invalid)
