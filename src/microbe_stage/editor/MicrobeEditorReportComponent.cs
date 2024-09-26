@@ -387,7 +387,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                     Colour = compound.Colour,
                 };
 
-                GetChartForCompound(compound.InternalName)?.AddDataSet(compound.Name, dataset);
+                GetChartForCompound(compound.ID)?.AddDataSet(compound.Name, dataset);
             }
 
             foreach (var entry in snapshot.SpeciesInPatch)
@@ -415,7 +415,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             {
                 var compound = simulationParameters.GetCompoundDefinition(entry.Key);
 
-                var dataset = GetChartForCompound(compound.InternalName)?.GetDataSet(compound.Name);
+                var dataset = GetChartForCompound(compound.ID)?.GetDataSet(compound.Name);
 
                 if (dataset == null)
                     continue;
@@ -611,21 +611,21 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     ///   Returns a chart which should contain the given compound.
     /// </summary>
     /// <returns>Null if the given compound shouldn't be included in any chart.</returns>
-    private LineChart? GetChartForCompound(string compoundName)
+    private LineChart? GetChartForCompound(Compound compound)
     {
-        switch (compoundName)
+        switch (compound)
         {
-            case "atp":
-            case "oxytoxy":
-            case "temperature":
+            case Compound.ATP:
+            case Compound.Oxytoxy:
+            case Compound.Temperature:
                 return null;
-            case "sunlight":
+            case Compound.Sunlight:
                 return sunlightChart;
-            case "oxygen":
+            case Compound.Oxygen:
                 return atmosphericGassesChart;
-            case "carbondioxide":
+            case Compound.Carbondioxide:
                 return atmosphericGassesChart;
-            case "nitrogen":
+            case Compound.Nitrogen:
                 return atmosphericGassesChart;
             default:
                 return compoundsChart;
