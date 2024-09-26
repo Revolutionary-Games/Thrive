@@ -206,7 +206,7 @@ void DebugDrawer::_process(double delta)
             extraNeededDrawMemory += SingleTriangleDrawMemoryUse * 100;
 
             ERR_PRINT("Debug drawer hit immediate geometry memory limit (extra needed memory: " +
-                godot::String::num(static_cast<int64_t>(extraNeededDrawMemory / 1024)) +
+                godot::String::num_int64(static_cast<int64_t>(extraNeededDrawMemory / 1024)) +
                 " KiB), some things were not rendered (this message won't repeat even if the problem occurs again)");
         }
 
