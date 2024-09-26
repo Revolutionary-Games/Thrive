@@ -359,7 +359,7 @@ public static class MicrobeControlHelpers
         }
         else
         {
-            SetStateColonyAware(ref control, in entity, MicrobeState.Normal);
+            control.State = MicrobeState.Normal;
         }
     }
 
