@@ -13,49 +13,40 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
-    [Export]
-    public NodePath? AutoEvoSubtabButtonPath;
-
-    [Export]
-    public NodePath TimelineSubtabButtonPath = null!;
-
-    [Export]
-    public NodePath AutoEvoSubtabPath = null!;
-
-    [Export]
-    public NodePath TimelineSubtabPath = null!;
-
-    [Export]
-    public NodePath TimelineEventsContainerPath = null!;
-
-    [Export]
-    public NodePath TimeIndicatorPath = null!;
-
-    [Export]
-    public NodePath GlucoseReductionLabelPath = null!;
-
-    [Export]
-    public NodePath ExternalEffectsLabelPath = null!;
-
-    [Export]
-    public NodePath ReportTabPatchNamePath = null!;
-
-    [Export]
-    public NodePath ReportTabPatchSelectorPath = null!;
-
     private readonly NodePath scaleReference = new("scale");
 
 #pragma warning disable CA2213
+    [Export]
     private Button autoEvoSubtabButton = null!;
+
+    [Export]
     private Button timelineSubtabButton = null!;
 
+    [Export]
+    private Button foodChainSubtabButton = null!;
+
+    [Export]
     private PanelContainer autoEvoSubtab = null!;
+
+    [Export]
     private TimelineTab timelineSubtab = null!;
 
+    [Export]
+    private FoodChainDisplay foodChainSubtab = null!;
+
+    [Export]
     private Label timeIndicator = null!;
+
+    [Export]
     private Label glucoseReductionLabel = null!;
+
+    [Export]
     private CustomRichTextLabel externalEffectsLabel = null!;
+
+    [Export]
     private Label reportTabPatchName = null!;
+
+    [Export]
     private OptionButton reportTabPatchSelector = null!;
 
     [Export]
@@ -94,6 +85,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
 
+    private bool queuedAutoEvoReportUpdate;
+
     private Patch? currentlyDisplayedPatch;
 
     private RunResults? autoEvoResults;
@@ -102,23 +95,12 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         AutoEvo,
         Timeline,
+        FoodChain,
     }
 
     public override void _Ready()
     {
         base._Ready();
-
-        autoEvoSubtab = GetNode<PanelContainer>(AutoEvoSubtabPath);
-        autoEvoSubtabButton = GetNode<Button>(AutoEvoSubtabButtonPath);
-
-        timelineSubtab = GetNode<TimelineTab>(TimelineSubtabPath);
-        timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
-
-        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
-        reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
-        timeIndicator = GetNode<Label>(TimeIndicatorPath);
-        glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = physicalConditionsChartContainer.GetItem<Container>("LegendContainer")
             .GetChild<HBoxContainer>(0);
@@ -171,7 +153,23 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
             // component when initializing the editor (but only after displaying them once)
             if (autoEvoResults != null)
-                CreateGraphicalReportForPatch(selectedPatch);
+            {
+                if (selectedReportSubtab == ReportSubtab.AutoEvo)
+                {
+                    CreateGraphicalReportForPatch(selectedPatch);
+                }
+                else
+                {
+                    queuedAutoEvoReportUpdate = true;
+                }
+            }
+
+            // Refresh this expensive graphical report only if it is visible
+            if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
+            {
+                foodChainSubtab.DisplayFoodChainIfRequired(autoEvoResults,
+                    currentlyDisplayedPatch ?? Editor.CurrentPatch);
+            }
         }
     }
 
@@ -299,20 +297,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         if (disposing)
         {
-            if (AutoEvoSubtabButtonPath != null)
-            {
-                AutoEvoSubtabButtonPath.Dispose();
-                TimelineSubtabButtonPath.Dispose();
-                AutoEvoSubtabPath.Dispose();
-                TimelineSubtabPath.Dispose();
-                TimelineEventsContainerPath.Dispose();
-                TimeIndicatorPath.Dispose();
-                GlucoseReductionLabelPath.Dispose();
-                ExternalEffectsLabelPath.Dispose();
-                ReportTabPatchNamePath.Dispose();
-                ReportTabPatchSelectorPath.Dispose();
-            }
-
             scaleReference.Dispose();
         }
 
@@ -579,18 +563,46 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         autoEvoSubtab.Hide();
         timelineSubtab.Hide();
+        foodChainSubtab.Hide();
 
         switch (selectedReportSubtab)
         {
             case ReportSubtab.AutoEvo:
+            {
+                // Refresh the report if it should now show different data than when it was last visible
+                if (queuedAutoEvoReportUpdate)
+                {
+                    CreateGraphicalReportForPatch(currentlyDisplayedPatch ?? Editor.CurrentPatch);
+                    queuedAutoEvoReportUpdate = false;
+                }
+
                 autoEvoSubtab.Show();
                 autoEvoSubtabButton.ButtonPressed = true;
                 break;
+            }
+
             case ReportSubtab.Timeline:
+            {
                 timelineSubtab.Show();
                 timelineSubtabButton.ButtonPressed = true;
                 Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
                 break;
+            }
+
+            case ReportSubtab.FoodChain:
+            {
+                foodChainSubtab.Show();
+                foodChainSubtabButton.ButtonPressed = true;
+
+                if (autoEvoResults != null)
+                {
+                    foodChainSubtab.DisplayFoodChainIfRequired(autoEvoResults,
+                        currentlyDisplayedPatch ?? Editor.CurrentPatch);
+                }
+
+                break;
+            }
+
             default:
                 throw new Exception("Invalid report subtab");
         }
