@@ -231,8 +231,7 @@ public class NativeLibs
         }
 
         if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Windows,
-                true,
-                false))
+                true, false))
         {
             return false;
         }
@@ -551,7 +550,7 @@ public class NativeLibs
 
         CreateLinkTo(linkFile, linkTo);
 
-        ColourConsole.WriteNormalLine($"Installed library from: {linkTo}");
+        ColourConsole.WriteNormalLine($"Installed library from: {linkTo} to: {linkFile}");
 
         if (moreVerbose)
         {
