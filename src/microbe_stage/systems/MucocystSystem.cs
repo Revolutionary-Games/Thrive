@@ -12,7 +12,6 @@ using DefaultEcs.System;
 [With(typeof(CompoundStorage))]
 [With(typeof(CellProperties))]
 [With(typeof(CompoundAbsorber))]
-
 [ReadsComponent(typeof(CellProperties))]
 [RunsBefore(typeof(MicrobeMovementSystem))]
 [RunsOnMainThread]
