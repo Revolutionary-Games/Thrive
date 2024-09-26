@@ -3,21 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="1"]
 [ext_resource type="Script" path="res://src/benchmark/microbe/MicrobeBenchmark.cs" id="2"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="4"]
-[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="4_s44il"]
+[ext_resource type="PackedScene" uid="uid://bqeojm252hm5x" path="res://src/benchmark/BenchmarkGUITopPart.tscn" id="4_komf4"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="5_5gxef"]
 
-[node name="MicrobeBenchmark" type="Node"]
+[node name="MicrobeBenchmark" type="Node" node_paths=PackedStringArray("microbesCountLabel", "worldRoot", "dynamicRoot", "benchmarkCamera", "guiContainer", "fpsLabel", "phaseLabel", "benchmarkResultText", "benchmarkFinishedText", "copyResultsButton")]
 script = ExtResource("2")
-GUIContainerPath = NodePath("GUIContainer")
-FPSLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/FPS")
-PhaseLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer/Phase")
-MicrobesCountLabelPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Microbes")
-BenchmarkResultsTextPath = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/Results")
-BenchmarkFinishedTextPath = NodePath("GUIContainer/VBoxContainer/FinishedText")
-CopyResultsButtonPath = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
-WorldRootPath = NodePath("WorldRoot")
-DynamicRootPath = NodePath("WorldRoot/DynamicRoot")
-BenchmarkCameraPath = NodePath("WorldRoot/MicrobeCamera")
+microbesCountLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Microbes")
+worldRoot = NodePath("WorldRoot")
+dynamicRoot = NodePath("WorldRoot/DynamicRoot")
+benchmarkCamera = NodePath("WorldRoot/MicrobeCamera")
+guiContainer = NodePath("GUIContainer")
+fpsLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/BenchmarkGUITopPart/FPS")
+phaseLabel = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/BenchmarkGUITopPart/HBoxContainer/Phase")
+benchmarkResultText = NodePath("GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/Results")
+benchmarkFinishedText = NodePath("GUIContainer/VBoxContainer/FinishedText")
+copyResultsButton = NodePath("GUIContainer/VBoxContainer/HBoxContainer/Copy")
 
 [node name="WorldRoot" type="Node3D" parent="."]
 
@@ -31,10 +31,10 @@ MinCameraHeight = 80.0
 transform = Transform3D(0.613214, 0.692812, -0.379447, -0.74027, 0.67164, 0.0299817, 0.275624, 0.262509, 0.924727, 0, 0, 0)
 
 [node name="GUIContainer" parent="." instance=ExtResource("4")]
-layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
+offset_left = -94.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
@@ -58,33 +58,8 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="FPS" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-editor_description = "PLACEHOLDER"
+[node name="BenchmarkGUITopPart" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_komf4")]
 layout_mode = 2
-text = "FPS: 0"
-label_settings = ExtResource("4_s44il")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "BENCHMARK_PHASE"
-label_settings = ExtResource("5_5gxef")
-
-[node name="Control" type="Control" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Phase" type="Label" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "1"
-label_settings = ExtResource("5_5gxef")
-
-[node name="HSeparator" type="HSeparator" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
@@ -143,3 +118,5 @@ text = "COPY_RESULTS"
 [connection signal="Closed" from="GUIContainer" to="." method="ExitBenchmark"]
 [connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/QuitBenchmark" to="." method="ExitBenchmark"]
 [connection signal="pressed" from="GUIContainer/VBoxContainer/HBoxContainer/Copy" to="." method="CopyResultsToClipboard"]
+
+[editable path="GUIContainer/VBoxContainer/ScrollContainer/VBoxContainer/BenchmarkGUITopPart"]

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 10:56+0300\n"
-"PO-Revision-Date: 2024-09-17 07:03+0000\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-20 12:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -39,6 +39,10 @@ msgstr "Abortar"
 
 msgid "ABORTED_DOT"
 msgstr "Abortado."
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "Quantidade de micróbios:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelágico"
@@ -678,11 +682,19 @@ msgstr "Fechar"
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar opções?"
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "Teste de Desempenho de Micróbios"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Divisor da resolução de nuvens:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervalo mínimo da simulação de nuvens:"
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "Multiplicador do custo da osmorregulação"
 
 msgid "COASTAL"
 msgstr "Costeiro"
@@ -802,6 +814,10 @@ msgstr ""
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvens de compostos"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
+msgstr "Densidade das nuvens de compostos"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Densidade das nuvens de compostos"
@@ -1667,6 +1683,10 @@ msgstr "Ejetar objetos fagocitados"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Ejetar objetos fagocitados"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "Quantidade de micróbios:"
+
 msgid "ENABLED_MODS"
 msgstr "Mods Habilitados"
 
@@ -1974,6 +1994,10 @@ msgstr "Flagelo"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
 
+#, fuzzy
+msgid "FLAGELLUM_LENGTH_DESCRIPTION"
+msgstr "O flagelo é um apêndice de fibras proteicas semelhante a um chicote, estendendo-se da membrana da célula que pode usar ATP para ondular e impulsionar a célula em uma direção. A posição do flagelo determina a direção na qual ele impulsiona a célula. A direção do impulso é oposta à direção que o flagelo aponta, por exemplo, um flagelo que está no lado esquerdo da célula só dá impulso quando ela se move para a direita."
+
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Usa [thrive:compound type=\"atp\"][/thrive:compound] para aumentar a velocidade de movimento da célula."
 
@@ -2238,6 +2262,7 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfeto de Hidrogênio"
 
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Fragmento de gelo"
 

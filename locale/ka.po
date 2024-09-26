@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 10:56+0300\n"
-"PO-Revision-Date: 2024-09-20 01:07+0000\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-20 19:35+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
@@ -39,6 +39,10 @@ msgstr "შეწყვეტა"
 
 msgid "ABORTED_DOT"
 msgstr "გაუქმებულია."
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "მიკრობების რაოდენობა:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "აბისოპელაგიური"
@@ -302,13 +306,11 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr "ავტოევოს შედეგები:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "ავტოევოს შედეგები:"
+msgstr "გლობალური შედეგები"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "ავტოევოს შედეგები:"
+msgstr "მონიშნული პაჩის შედეგები"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "გაშვების სტატუსი:"
@@ -670,11 +672,19 @@ msgstr "დახურვა"
 msgid "CLOSE_OPTIONS"
 msgstr "დავხურო პარამეტრები?"
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "მიკრობების წარმადობის შემოწმება"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "ღრუბლის გაფართოების გამყოფი:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "ღრუბლების სიმულაციის მინიმალური შუალედი:"
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "ოსმორეგულაციის ფასის კოეფიციენტი"
 
 msgid "COASTAL"
 msgstr "სანაპირო"
@@ -785,6 +795,10 @@ msgstr ""
 
 msgid "COMPOUND_CLOUDS"
 msgstr "ნივთიერების ღრუბლები"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
+msgstr "ნაერთის ღრუბლის სიმკვრივე"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "ნაერთის ღრუბლის სიმკვრივე"
@@ -1556,6 +1570,10 @@ msgstr "შთანთქმული ობიექტების გან�
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "შთანთქმული ობიექტების განდევნა"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "მიკრობების რაოდენობა:"
+
 msgid "ENABLED_MODS"
 msgstr "ჩართული მოდები"
 
@@ -1856,6 +1874,10 @@ msgstr "შოლტი"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "FLAGELLUM_LENGTH_DESCRIPTION"
+msgstr "იყენებს [thrive:compound type=\"atp\"][/thrive:compound]-ს უჯრედის გადაადგილების სიჩქარის გასაზრდელად."
+
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "იყენებს [thrive:compound type=\"atp\"][/thrive:compound]-ს უჯრედის გადაადგილების სიჩქარის გასაზრდელად."
 
@@ -2005,9 +2027,8 @@ msgstr "GLES3"
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr "გ"
 
-#, fuzzy
 msgid "GLOBAL_POPULATION_COLON"
-msgstr "პოპულაცია:"
+msgstr "გლობალური პოპულაცია:"
 
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr "[b][u]{0}[/u][/b]-ის პოპულაცის ნაწილი მიგრირებულია {1}-ზე {2}-დან"
@@ -2112,18 +2133,16 @@ msgid "HYDROGEN_SULFIDE"
 msgstr "გოგირდწყალბადი"
 
 msgid "ICESHARD"
-msgstr "ყინულის ნამსხვრევი"
+msgstr "პატარა ყინულის ნამსხვრევი"
 
 msgid "ICESHELF"
 msgstr "შელფური მყინვარი"
 
-#, fuzzy
 msgid "ICE_CHUNK_BIG"
-msgstr "ნაგლეჯის წნევა"
+msgstr "დიდი ყინულის ნაგლეჯი"
 
-#, fuzzy
 msgid "ICE_CHUNK_SMALL"
-msgstr "ნაგლეჯის წნევა"
+msgstr "პატარა ყინულის ნაგლეჯი"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID არაწორი რიცხვია"
@@ -2143,25 +2162,11 @@ msgstr "(ზოგიერთი ფუნქცია, შეიძლებ�
 msgid "INCREASE_ITEM_SIZE"
 msgstr "ობიექტის ზომის გაზრდა"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "გადაშენებული სახეობები"
+msgstr "მიუთითებს, რომ ეს სახეობებია ახალი ამ ბიომაში ან სამყაროში"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr ""
-"[b]ფაზა[/b]\n"
-"  მიკრობი\n"
-"[b]მემბრანის ტიპი[/b]\n"
-"  {0}\n"
-"[b]მემბრანის გამძლეობა[/b]\n"
-"  {1}\n"
-"[b]საბაზისო სიჩქარე[/b]\n"
-"  {2}\n"
-"[b]ბრუნვის საბაზისო სიჩქარე[/b]\n"
-"  {3}\n"
-"[b]ექვსკუთხედის საბაზისო ზომა[/b]\n"
-"  {4}"
+msgstr "მიუთითებს, რომ ამ სახეობებმა განიცადეს მუტაცია ამ ავტოევის ციკლის დროს"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "ინდუსტრიული ფაზა"
@@ -4556,7 +4561,7 @@ msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "პატარა ფოსფატის ნაგლეჯი"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "თოვლის ფიფქი"
 
 msgid "SOCIETY_STAGE"
 msgstr "საზოგადოების ფაზა"

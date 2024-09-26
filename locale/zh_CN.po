@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 10:56+0300\n"
-"PO-Revision-Date: 2024-09-20 01:07+0000\n"
-"Last-Translator: 喵喵助推器 <1220258146@qq.com>\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,10 @@ msgstr "中止"
 
 msgid "ABORTED_DOT"
 msgstr "已中止。"
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "微生物计数："
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海带"
@@ -676,11 +680,19 @@ msgstr "关闭"
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "微生物编辑器"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "云分辨率除数："
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "渗透调节消耗系数"
 
 msgid "COASTAL"
 msgstr "海岸"
@@ -799,6 +811,10 @@ msgstr ""
 
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物云"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
+msgstr "化合物云密度"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物云密度"
@@ -1641,6 +1657,10 @@ msgstr "吐出已吞噬的物体"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "吐出已吞噬的物体"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "微生物计数："
+
 msgid "ENABLED_MODS"
 msgstr "启用Mod"
 
@@ -1945,6 +1965,10 @@ msgstr "鞭毛"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
 
+#, fuzzy
+msgid "FLAGELLUM_LENGTH_DESCRIPTION"
+msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
+
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
 
@@ -2207,6 +2231,7 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
+#, fuzzy
 msgid "ICESHARD"
 msgstr "冰砾"
 

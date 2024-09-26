@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-20 10:56+0300\n"
-"PO-Revision-Date: 2024-09-19 06:45+0000\n"
-"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
+"POT-Creation-Date: 2024-09-24 12:59+0300\n"
+"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -39,6 +39,10 @@ msgstr "Отмена"
 
 msgid "ABORTED_DOT"
 msgstr "Отменено."
+
+#, fuzzy
+msgid "ABSORBERS_COUNT"
+msgstr "Количество микробов:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Абиссопелагический"
@@ -676,11 +680,19 @@ msgstr "Закрыть"
 msgid "CLOSE_OPTIONS"
 msgstr "Закрыть настройки?"
 
+#, fuzzy
+msgid "CLOUD_BENCHMARK"
+msgstr "Тест производительности на Микробах"
+
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Делитель разрешения облака:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Мин. интервал симуляции облаков:"
+
+#, fuzzy
+msgid "CLOUD_SIMULATION_MULTIPLIER"
+msgstr "Множитель стоимости осморегуляции"
 
 msgid "COASTAL"
 msgstr "Прибрежный"
@@ -799,6 +811,10 @@ msgstr ""
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Облака веществ"
+
+#, fuzzy
+msgid "COMPOUND_CLOUD_BENCHMARK"
+msgstr "Плотность облаков веществ"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Плотность облаков веществ"
@@ -1641,6 +1657,10 @@ msgstr "Вытолкнуть поглощенные объекты"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Вытолкнуть поглощенные объекты"
 
+#, fuzzy
+msgid "EMITTERS_COUNT"
+msgstr "Количество микробов:"
+
 msgid "ENABLED_MODS"
 msgstr "Включенные моды"
 
@@ -1946,6 +1966,10 @@ msgstr "Жгутик"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Жгутик представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик. Например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
 
+#, fuzzy
+msgid "FLAGELLUM_LENGTH_DESCRIPTION"
+msgstr "Жгутик представляет собой похожий на хлыст пучок белковых волокон, отходящих от клеточной мембраны, которые используют [thrive:compound type=\"atp\"][/thrive:compound] для волнообразного движения и продвижения клетки в определенном направлении. Положение жгутика определяет направление, в котором он обеспечивает тягу для движения клетки. Направление тяги противоположно направлению, в котором направлен жгутик. Например, жгутик, расположенный на левой стороне клетки, обеспечивает тягу при движении вправо."
+
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Использует [thrive:compound type=\"atp\"][/thrive:compound] чтобы повысить скорость передвижения клетки."
 
@@ -2209,6 +2233,7 @@ msgstr "{0} (x{1})"
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сероводород"
 
+#, fuzzy
 msgid "ICESHARD"
 msgstr "Ледяной осколок"
 
