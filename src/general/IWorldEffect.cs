@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Time dependent effects running on a world
@@ -80,7 +81,8 @@ public class GlucoseReductionEffect : IWorldEffect
                         {
                             var bioProcess = SimulationParameters.Instance.GetBioProcess(process.Key);
 
-                            var rate = bioProcess.GetRateWithConditions(patch.Biome);
+                            var rate = ProcessSystem.CalculateProcessMaximumSpeed(new TweakedProcess(bioProcess),
+                                patch.Biome, CompoundAmountType.Biome, true);
 
                             // Inputs
                             foreach (var input in bioProcess.Inputs)
@@ -95,12 +97,12 @@ public class GlucoseReductionEffect : IWorldEffect
                                     if (patch.Biome.AverageCompounds[input.Key.ID].Ambient > 0)
                                     {
                                         add = -species.Value * modifier * input.Value * environmentalModifier
-                                            * rate;
+                                            * rate.CurrentSpeed;
                                     }
                                     else
                                     {
                                         add = -species.Value * modifier * input.Value * inputModifier *
-                                            patch.Biome.AverageCompounds[input.Key.ID].Density * rate;
+                                            patch.Biome.AverageCompounds[input.Key.ID].Density * rate.CurrentSpeed;
                                     }
                                 }
                                 else
@@ -130,12 +132,12 @@ public class GlucoseReductionEffect : IWorldEffect
                                 if (output.Key.IsGas)
                                 {
                                     add = species.Value * modifier * output.Value * environmentalModifier
-                                        * rate;
+                                        * rate.CurrentSpeed;
                                 }
                                 else
                                 {
                                     add = species.Value * modifier * output.Value * outputModifier
-                                        * patch.Biome.AverageCompounds[output.Key.ID].Density * rate;
+                                        * patch.Biome.AverageCompounds[output.Key.ID].Density * rate.CurrentSpeed;
                                 }
 
                                 if (totalAdded.ContainsKey(output.Key.ID))
