@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-24 12:59+0300\n"
-"PO-Revision-Date: 2024-09-23 06:48+0000\n"
+"PO-Revision-Date: 2024-09-26 20:52+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -40,9 +40,8 @@ msgstr "Durdur"
 msgid "ABORTED_DOT"
 msgstr "Durduruldu."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "Mikrop sayısı:"
+msgstr "Emiciler:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abissopelajik"
@@ -674,9 +673,8 @@ msgstr "Kapat"
 msgid "CLOSE_OPTIONS"
 msgstr "Ayarlar kapatılsın mı?"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "Mikrop Performansı"
+msgstr "Bulut Performansı"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "Bulut çözünürlük bölücü:"
@@ -684,9 +682,8 @@ msgstr "Bulut çözünürlük bölücü:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Bulut simülasyonu minimum aralığı:"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Ozmoregülasyon maliyet çarpanı"
+msgstr "Simülasyon çarpanı:"
 
 msgid "COASTAL"
 msgstr "Sahil"
@@ -806,9 +803,8 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr "Bileşik bulutu"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "Bileşik bulutu yoğunluğu"
+msgstr "Bileşik Bulutu Performansı"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Bileşik bulutu yoğunluğu"
@@ -1649,9 +1645,8 @@ msgstr "Yutulan nesneleri dışarı at"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "Yutulan nesneleri dışarı at"
 
-#, fuzzy
 msgid "EMITTERS_COUNT"
-msgstr "Mikrop sayısı:"
+msgstr "Yayıcılar:"
 
 msgid "ENABLED_MODS"
 msgstr "Etkin Modlar"
@@ -1957,9 +1952,8 @@ msgstr "Kamçı"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "Kamçı (veya Flagellum), hücrenin bir doğrultuda kıvrılması ve ilerlemesi için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri protein fiberleridir. Kamçının pozisyonu, hücre hareketi için itişi sağlayan yönü belirler. İtiş yönü, kamçının baktığı yönün tersidir. Örneğin, bir hücrenin sol tarafına yerleştirilen kamçı, sağ tarafa giderken itişi sağlar."
 
-#, fuzzy
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr "Kamçı (veya Flagellum), hücrenin bir doğrultuda kıvrılması ve ilerlemesi için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanan, hücre zarından uzanıp birbirine bağlanmış kamçı benzeri protein fiberleridir. Kamçının pozisyonu, hücre hareketi için itişi sağlayan yönü belirler. İtiş yönü, kamçının baktığı yönün tersidir. Örneğin, bir hücrenin sol tarafına yerleştirilen kamçı, sağ tarafa giderken itişi sağlar."
+msgstr "Kamçı uzunluğu. Daha uzun kamçı daha fazla itiş kuvveti sağlar, ancak daha fazla ATP tüketir."
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "Hücrenin hareket hızını arttırmak için [thrive:compound type=\"atp\"]ATP[/thrive:compound] kullanır."
@@ -5499,7 +5493,7 @@ msgstr ""
 "\n"
 "Tek hücreli aşamada türünüze rehberlik ederek başarıya ulaştınız.\n"
 "\n"
-"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Üremek ve editöre girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Çoğalmak ve editöre girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
 "\n"
 "Ancak, artık editörde koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
 "\n"
@@ -6776,16 +6770,13 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "Mikrop evresi için daha ayrıntılı bilgiler içeren ayrı bir oyun tasarım belgesi bulunmaktadır: Mikrop Evresi GDD'si"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
-"Uzaklardaki bir uzaylı gezegende, sonsuz asırlar süren volkanik aktiviteler ve göktaşı darbeleri evrende yeni bir olayın gelişmesine neden oldu.\n"
+"Önceki evre: Önceki evreler yok.\n"
 "\n"
-"Hayat.\n"
+"Sonraki evre: [color=#3796e1][url=thriveopedia:multicellular_stage]Çok Hücreli Evresi[/url][/color]\n"
 "\n"
-"Okyanusun derinliklerinde basit mikroplar ortaya çıktı. Siz, bu gezegendeki Son Evrensel Ortak Ata'sınız (SEOA).\n"
-"\n"
-"Bu hasım dünyada hayatta kalmak için, bulabileceğiniz her türlü bileşiği toplamanız ve diğer türlerle rekabet etmek için kuşaktan kuşağa evrimleşmeniz gerekiyor."
+"Mikrop Evresi, oyunun ilk evresidir. Bu evre, yaşamın ilk kökenlerinden canlı olarak çıkan ve dünyada var olan ilk türün besin açısından zengin Pangonian Bacaları'nı keşfetmesiyle başlar. Bu noktada oyuncu, türünün birkaç bireyinden biri olan küçük bir prokaryotik sitoplazma parçasının kontrolünü üstlenir. Oyuncu, henüz diğer besin maddelerini işleme yollarına sahip olmadığından, tamamen serbest halde bulunan glukozu bulmaya muhtaçtır ve büyüyüp üremeye hazırlanmak için fosfat ve amonyak aramak zorundadır. Oyuncu, yeterli büyüklüğe ulaştığında üreyebilecek ve isterse mikrop editörüne geçebilecektir. Oyun ilerledikçe, oyuncu her kuşakta git gide daha sert hale gelen bir dünyada kendi hücresinin hayatta kalma yeteneğini sürekli geliştirecek ve kendi türünden türeyen yeni türlerle rekabet edecektir."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Etki yok."
@@ -6832,9 +6823,15 @@ msgstr ""
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Çok Hücreli Evresi'nin geliştirilmesinde prototip aşamasına geçildi. İlk çok hücreli evresi büyük ölçüde oynanabilir durumdadır. İleri çok hücreli evresi ise daha çok deneysel bir prototiptir."
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
-msgstr "Çok Hücreli Evresi"
+msgstr ""
+"Bu evrenin ilk bölümünün oynanışı büyük ölçüde Mikrop Evresi'ne benzeyecek. Oyun yine diğer hücrelerle 2D düzleminde devam edecek. Ama fark şu ki, oyuncu artık büyüyen bir koloniyi kontrol edecek. Mikrop evresinin sonundan farklı olarak, koloni artık birbirinden ayrılamayacak. Bunun yerine bu koloni, kalıcı olarak birbirine yapışmış, tek bir organizma gibi hareket edecek. Mikrop ortamının hala kullanıldığı ve oyuncunun mikroplarla etkileşim kurabildiği bu bölüm, çok hücreli evresinin ilk bölümüdür.\n"
+"\n"
+"Editörde, oyuncu artık hücrelerin yapısını ve organellerini değiştirmekle kalmayıp, hücre türleri de oluşturup düzenleyebilecek. Kolonide bir hücre türünde yapılan herhangi bir değişiklik, o türdeki tüm hücrelere otomatik olarak uygulanacak. Oyuncu, farklı hücre türlerini kullanarak, kolonideki hücreleri farklı işlevlere yönelik olacak şekilde özelleştirebilecek. Böylece bu onlara, tek hücreli organizmalara karşı, büyük bir avantaj sağlayacak.\n"
+"\n"
+"Çok hücreli evresinin ilerleyen bölümlerinde, oyuncu makroskobik bir canlı haline gelir. Bu bölüm, oyunun ölçeğini değiştirir; mikroplar artık görünmez olur ve oyuncu, tek tek hücreler yerleştirmek yerine, dokuları şekillendirmeye başlar.\n"
+"\n"
+"Evre mekaniğini daha ayrıntılı açıklayan Çok Hücreli Evresi GDD'si için ayrı bir sayfa bulunmaktadır."
 
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr "Çok Hücreli Evresi'nde koloniniz, makroskopik bir çok hücreli organizmaya dönüşene dek, 3D bir ortama geçişi deneyimlemekle birlikte, daha karmaşık ve özelleşmiş hale gelir. Bu evre, canlınız ilk önce belli bir bilinç seviyesi edindiğinde sona erer."
@@ -7276,10 +7273,15 @@ msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Üreme"
 
 msgid "WIKI_REPRODUCTION_INTRO"
-msgstr "Thrive'da ilerlemek için [b]editörlerde[/b] türünüzü evrimleştirmeniz ve türünüzün soyunun tükenmesini önlemeniz gerekir. Bunu yapmak için de [b]üremeniz[/b] gerekir."
+msgstr "Thrive'da ilerlemek için [b]editörlerde[/b] türünüzü evrimleştirmeniz ve türünüzün soyunun tükenmesini önlemeniz gerekir. Bunu yapmak için de [b]çoğalmanız[/b] gerekir."
 
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
+"[color=#3796e1][url=thriveopedia:microbe_stage]Mikrop Evresi'nde[/url][/color] çoğalmak için, üremeyi sağlayan belirli sayıda [color=#3796e1][url=thriveopedia:Compounds]bileşiği[/url][/color] toplamanız gerekir. Bu bileşikler, [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfattır[/thrive:compound]. Bu bileşikleri, hücre zarınızın emilim hızına bağlı olarak, pasif bir şekilde içeri alırsınız.\n"
+"\n"
+"[b][u]Organellerin çoğalması[/u][/b]\n"
+"\n"
+"Hücreniz büyüdükçe, bazı bileşiklerin kullanımı üreme işlemine ayrılacaktır. Yeterli miktarda bileşiğe ulaşıldığında, organeller [b]ikiye katlanmaya[/b] başlayacaktır. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] için gerekli miktar, her bir organelin gereksinimlerine bağlıdır. Her bir organelin [b]ikiye katlanması[/b] için, ne kadar bileşiğe ihtiyaç duyduğunu belirleyen bir [b]çoğalma maliyeti[/b] vardır. Bütün organelleriniz ikiye katlandığında, [b]çoğalabilir[/b] ve editöre giriş yapabilirsiniz."
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -7400,16 +7402,19 @@ msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evre için son yıl
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "Çok yakında."
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
-"[thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound], [thrive:compound type=\"mucilage\"]Müsilaj[/thrive:compound] adı verilen bir yapışkan polimer üretir. Hücrenin kendini ileri doğru itmesi için, salınan maddenin alanına giren canlıları yavaşlatan, söz konusu [thrive:compound type=\"mucilage\"]Müsilajı[/thrive:compound] dışarı atmasını sağlar.\n"
+"Özetle; bu evrede ilk yerleşiminizi geliştirip genişletir ve yenilerini inşa edersiniz. Bu evrede dönem, Orta Çağ'a benzemektedir. Bu evre, teknolojiniz yeterince geliştiğinde sona erer.\n"
 "\n"
-"[b][color=#3796e1][url=thriveopedia:flagellum]Kamçının[/url][/color][/b] aksine, yırtıcılardan kaçmak veya av yakalayabilmek için yararlı olacak ani bir hız artışı sağlar."
+"Thrive'ın yedi oynanabilir evresinden biri olan Topluluk Evresi, bilinç kazanan türünüzün ([color=#3796e1][url=thriveopedia:awakening_stage]Uyanış Evresi'nde[/url][/color] gelişmiş olan) daha büyük gruplar veya topluluklar oluşturmaya başlamasıyla başlar. Bu noktada, Organizma Modu (oyuncu bu moda her an erişebilir ancak bu mod düşük önceliktedir) yerine, Strateji Modu oyunun odak noktası haline gelir. Bu evrede ayrıca Ulus Editörü kullanıma açılır. Oyuncu türü, yerleşim yerleri oluşturmak için bu evrede Topluluk Merkezleri kurmaya başlayabilir.\n"
+"\n"
+"Topluluk Evresi boyunca ana hedeflerden biri, git gide daha da gelişmiş teknolojiler geliştirmektir. Bu nedenle Topluluk Evresi, türünüzün [color=#3796e1][url=thriveopedia:industrial_stage]Sanayi Evresi'ne[/url] geçmesine yetecek kadar gelişmiş bir teknolojiye ulaşmasıyla sona erer."
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
-msgstr "Topluluk Evresi"
+msgstr ""
+"Topluluk Evresi, oyuncu türünün basit bir kabileden gelişen bir Medeniyete geçişini simgeler. Bu evre, Araştırma Ağı'nın görüntülenmesi ve bu ağa yatırım yapılmasını sağlayan belirli teknolojiler, hükümet politikalarının uygulanması, dinlerin ortaya çıkışı ve daha büyük çaplı çatışmaların başlaması ile öne çıkar. Ulus Editörü kadar, Teknoloji Editörü ve Birlik Editörü de, bu evre boyunca giderek daha önemli hale gelir. Oyuncu, türünün tek organizması ile oynamaya geri dönmekte serbest olsa da, bütün önemli olaylar ve kararlar geniş çapta gerçekleşir ve artan nüfusu yönetmek kritik hale gelir. Oyuncu, halkının ihtiyaçları ve ulusunun çıkarları arasında denge kurarak medeniyetini ileriye taşımak zorunda kalacaktır.\n"
+"\n"
+"Organizma modunu daha sonraki evrelerde çalışır durumda tutmak büyük bir çalışma gerektireceği için bu önceliğimiz değildir. Sonuçta, mevcut evreyi oynamak için en önemli ve amaçlanan yol Strateji Modu'ndan geçmektedir ve ilerlemek için bu mod gereklidir. Ayrıca, bu evrede tek bir bireyin etkisinin küçük olacağı göz önüne alındığında, organizma modunun yalnızca etrafta dolaşmak için kullanılması hoş olabilir. Ancak, organizma modunun oyuna çok az katkısı olacağı için bu modu eklemek büyük bir çaba gerektirecektir."
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
@@ -7488,7 +7493,7 @@ msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
 "[b]Termosentez[/b], ortama ait [thrive:compound type=\"temperature\"]sıcaklıktan[/thrive:compound] başka bir şey gerektirmediği için bu tepkime, özünde bedava enerjidir. Dahası [b]Termoplastlar[/b], öncüleri olan [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentazdan[/url][/color][/b] daha verimlidir. Eğer yanardağ bacaları gibi sıcak arazilerde kalmaya hevesliyseniz; bu onları oyunda, tartışılır şekilde, enerji üretimindeki en kolay yol yapmaktadır.\n"
 "\n"
-"Organel kilidini açma etkinken, hücrenizde [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] ile birkaç kez üremenin gerekli olması, [b]Termoplastları[/b] evrimleştiren bir oyuncunun, [b]Termoplastları[/b] kazandığı zaman, muhtemelen [b]Termosentez[/b] üzerinde ağırlıklı olarak uzmanlaşmış olacağı anlamına gelir."
+"Organel kilidini açma etkinken, hücrenizde [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color][/b] ile birkaç kez çoğalmanın gerekli olması, [b]Termoplastları[/b] evrimleştiren bir oyuncunun, [b]Termoplastları[/b] kazandığı zaman, muhtemelen [b]Termosentez[/b] üzerinde ağırlıklı olarak uzmanlaşmış olacağı anlamına gelir."
 
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr "Geliştirme yok."
