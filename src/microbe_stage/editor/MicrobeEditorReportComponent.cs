@@ -101,6 +101,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         FoodChain,
     }
 
+    private Patch PatchToShowInfoFor => currentlyDisplayedPatch ?? Editor.CurrentPatch;
+
     public override void _Ready()
     {
         base._Ready();
@@ -130,9 +132,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public void UpdateReportTabPatchSelector()
     {
-        var patchSelected = currentlyDisplayedPatch ?? Editor.CurrentPatch;
+        var patchSelected = PatchToShowInfoFor;
 
-        UpdateReportTabPatchName(patchSelected);
+        UpdateReportTabPatchName();
 
         reportTabPatchSelector.Clear();
 
@@ -149,30 +151,32 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public void UpdatePatchDetailsIfNeeded(Patch selectedPatch)
     {
-        if (currentlyDisplayedPatch == null || currentlyDisplayedPatch != selectedPatch)
+        if (currentlyDisplayedPatch != null && currentlyDisplayedPatch == selectedPatch)
+            return;
+
+        UpdatePatchDetails(selectedPatch);
+
+        if (PatchToShowInfoFor != selectedPatch)
+            throw new InvalidOperationException("Expected patch set to apply to property value");
+
+        // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
+        // component when initializing the editor (but only after displaying them once)
+        if (autoEvoResults != null)
         {
-            UpdatePatchDetails(selectedPatch);
-
-            // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
-            // component when initializing the editor (but only after displaying them once)
-            if (autoEvoResults != null)
+            if (selectedReportSubtab == ReportSubtab.AutoEvo)
             {
-                if (selectedReportSubtab == ReportSubtab.AutoEvo)
-                {
-                    CreateGraphicalReportForPatch(selectedPatch);
-                }
-                else
-                {
-                    queuedAutoEvoReportUpdate = true;
-                }
+                CreateGraphicalReportForPatch();
             }
-
-            // Refresh this expensive graphical report only if it is visible
-            if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
+            else
             {
-                foodChainData.DisplayFoodChainIfRequired(autoEvoResults,
-                    currentlyDisplayedPatch ?? Editor.CurrentPatch);
+                queuedAutoEvoReportUpdate = true;
             }
+        }
+
+        // Refresh this expensive graphical report only if it is visible
+        if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
+        {
+            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor);
         }
     }
 
@@ -180,13 +184,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         currentlyDisplayedPatch = currentOrSelectedPatch;
 
-        selectedPatch ??= currentOrSelectedPatch;
+        UpdateReportTabStatistics();
 
-        UpdateReportTabStatistics(currentOrSelectedPatch);
+        UpdateTimeline();
 
-        UpdateTimeline(selectedPatch);
-
-        UpdateReportTabPatchName(currentOrSelectedPatch);
+        UpdateReportTabPatchName();
 
         UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
     }
@@ -224,7 +226,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         autoEvoResults = results;
 
-        CreateGraphicalReportForPatch(currentlyDisplayedPatch ?? Editor.CurrentPatch);
+        CreateGraphicalReportForPatch();
     }
 
     public void DisplayAutoEvoFailure(string extra)
@@ -273,14 +275,12 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     protected override void OnTranslationsChanged()
     {
-        var patchToDisplay = currentlyDisplayedPatch ?? Editor.CurrentPatch;
-
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
         UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
-        UpdateTimeline(patchToDisplay);
+        UpdateTimeline();
         UpdateReportTabPatchSelector();
-        UpdateReportTabStatistics(patchToDisplay);
+        UpdateReportTabStatistics();
     }
 
     protected override void RegisterTooltips()
@@ -311,15 +311,15 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
     }
 
-    private void UpdateReportTabPatchName(Patch patch)
+    private void UpdateReportTabPatchName()
     {
-        reportTabPatchName.Text = patch.Name.ToString();
+        reportTabPatchName.Text = PatchToShowInfoFor.Name.ToString();
     }
 
     /// <summary>
     ///   Generates a new graphics-based representation of the auto-evo report
     /// </summary>
-    private void CreateGraphicalReportForPatch(Patch selectedPatch)
+    private void CreateGraphicalReportForPatch()
     {
         if (autoEvoResults == null)
         {
@@ -328,7 +328,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         }
 
         graphicalResultsContainer.FreeChildren();
-        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, selectedPatch, true, speciesResultButtonScene,
+        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, PatchToShowInfoFor, true,
+            speciesResultButtonScene,
             autoEvoReportSegmentTitleFont, new Callable(this, nameof(ShowExtraInfoOnSpecies)));
     }
 
@@ -343,8 +344,10 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         Editor.OpenSpeciesInfoFor(species);
     }
 
-    private void UpdateReportTabStatistics(Patch patch)
+    private void UpdateReportTabStatistics()
     {
+        var patch = PatchToShowInfoFor;
+
         temperatureChart.ClearDataSets();
         sunlightChart.ClearDataSets();
         atmosphericGassesChart.ClearDataSets();
@@ -544,9 +547,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         speciesPopulationChart.AddIconLegend(skull, Localization.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    private void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)
+    private void UpdateTimeline()
     {
-        timelineSubtab.UpdateTimeline(Editor, mapSelectedPatch, patch);
+        timelineSubtab.UpdateTimeline(Editor, PatchToShowInfoFor);
     }
 
     private void SetReportSubtab(string tab)
@@ -575,7 +578,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                 // Refresh the report if it should now show different data than when it was last visible
                 if (queuedAutoEvoReportUpdate)
                 {
-                    CreateGraphicalReportForPatch(currentlyDisplayedPatch ?? Editor.CurrentPatch);
+                    CreateGraphicalReportForPatch();
                     queuedAutoEvoReportUpdate = false;
                 }
 
@@ -599,8 +602,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
                 if (autoEvoResults != null)
                 {
-                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults,
-                        currentlyDisplayedPatch ?? Editor.CurrentPatch);
+                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor);
                 }
 
                 break;
@@ -613,13 +615,28 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     private void OnReportTabPatchListSelected(int index)
     {
-        var patch = Editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
-        UpdateReportTabStatistics(patch);
-        UpdateTimeline(patch);
-        UpdateReportTabPatchName(patch);
+        currentlyDisplayedPatch = Editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
+
+        UpdateReportTabStatistics();
+        UpdateTimeline();
+        UpdateReportTabPatchName();
 
         if (autoEvoResults != null)
-            CreateGraphicalReportForPatch(patch);
+        {
+            if (selectedReportSubtab == ReportSubtab.AutoEvo)
+            {
+                CreateGraphicalReportForPatch();
+            }
+            else
+            {
+                queuedAutoEvoReportUpdate = true;
+            }
+        }
+
+        if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
+        {
+            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor);
+        }
     }
 
     /// <summary>
