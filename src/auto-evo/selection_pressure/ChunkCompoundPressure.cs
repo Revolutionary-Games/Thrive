@@ -84,6 +84,11 @@ public class ChunkCompoundPressure : SelectionPressure
         return ventedEnergy * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
     }
 
+    public Compound GetUsedCompoundType()
+    {
+        return compound.ID;
+    }
+
     public override string ToString()
     {
         var chunkName = Localization.Translate("CHUNK_FOOD_SOURCE").FormatSafe(Localization.Translate(chunkType));

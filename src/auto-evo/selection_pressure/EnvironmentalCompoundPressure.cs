@@ -68,6 +68,11 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             new LocalizedString(compound.GetUntranslatedName()));
     }
 
+    public Compound GetUsedCompoundType()
+    {
+        return compound.ID;
+    }
+
     public override string ToString()
     {
         return $"{Name} ({compound.Name})";

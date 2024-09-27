@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using AutoEvo;
 using Godot;
@@ -13,6 +13,7 @@ public partial class FoodChainDisplay : Control
 
 #pragma warning disable CA2213
     private PackedScene speciesResultButtonScene = null!;
+    private PackedScene resourceScene = null!;
 #pragma warning restore CA2213
 
     private RunResults? lastResults;
@@ -21,6 +22,7 @@ public partial class FoodChainDisplay : Control
     public override void _Ready()
     {
         speciesResultButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/SpeciesResultButton.tscn");
+        resourceScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/FoodChainResource.tscn");
     }
 
     public override void _Process(double delta)
@@ -87,6 +89,10 @@ public partial class FoodChainDisplay : Control
         float x = 10;
         float y = 20;
 
+        float y2 = 70;
+        float y3 = 60;
+        float y4 = 70;
+
         foreach (var graphNode in graphNodes)
         {
             switch (graphNode.Type)
@@ -122,11 +128,8 @@ public partial class FoodChainDisplay : Control
                     {
                         resultDisplay.Disabled = true;
                     }
-                    else
-                    {
-                        // TODO: signals
-                    }
 
+                    // TODO: signals
                     AddChild(resultDisplay);
                     graphNode.CreatedControl = resultDisplay;
 
@@ -135,11 +138,16 @@ public partial class FoodChainDisplay : Control
                 }
 
                 case GraphNode.NodeType.EnvironmentalCompound:
+                    CreateResourceNode(graphNode, 100, ref y2);
                     break;
                 case GraphNode.NodeType.CompoundChunk:
+                    CreateResourceNode(graphNode, 200, ref y3);
                     break;
+
                 case GraphNode.NodeType.CompoundCloud:
+                    CreateResourceNode(graphNode, 300, ref y4);
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -169,6 +177,20 @@ public partial class FoodChainDisplay : Control
         QueueRedraw();
     }
 
+    private void CreateResourceNode(GraphNode graphNode, float x, ref float y)
+    {
+        var resource = resourceScene.Instantiate<FoodChainResource>();
+
+        resource.CompoundIcon = graphNode.Compound;
+
+        resource.Position = new Vector2(x, y);
+
+        AddChild(resource);
+        graphNode.CreatedControl = resource;
+
+        y += 60 + resource.Size.Y;
+    }
+
     private void BuildMicheEnergyNodes(Miche miche, Species species, List<GraphNode> graphNodes, Patch patch)
     {
         if (miche.Occupant == species)
@@ -193,11 +215,17 @@ public partial class FoodChainDisplay : Control
             switch (miche.Pressure)
             {
                 case ChunkCompoundPressure chunkCompoundPressure:
+                    LinkToCompoundNode(graphNodes, ourNode, chunkCompoundPressure.GetUsedCompoundType(),
+                        GraphNode.NodeType.CompoundChunk);
                     break;
-                case CompoundCloudPressure compoundCloudPressure:
 
+                case CompoundCloudPressure compoundCloudPressure:
+                    LinkToCompoundNode(graphNodes, ourNode, compoundCloudPressure.GetUsedCompoundType(),
+                        GraphNode.NodeType.CompoundChunk);
                     break;
                 case EnvironmentalCompoundPressure environmentalCompoundPressure:
+                    LinkToCompoundNode(graphNodes, ourNode, environmentalCompoundPressure.GetUsedCompoundType(),
+                        GraphNode.NodeType.CompoundChunk);
                     break;
 
                 case PredationEffectivenessPressure predationEffectivenessPressure:
@@ -252,6 +280,34 @@ public partial class FoodChainDisplay : Control
         foreach (var child in miche.Children)
         {
             BuildMicheEnergyNodes(child, species, graphNodes, patch);
+        }
+    }
+
+    private void LinkToCompoundNode(List<GraphNode> graphNodes, GraphNode nodeToLinkFrom, Compound compoundType,
+        GraphNode.NodeType nodeTypeToLinkTo)
+    {
+        GraphNode? targetNode = null;
+
+        foreach (var node in graphNodes)
+        {
+            if (node.Type == nodeTypeToLinkTo && node.Compound == compoundType)
+            {
+                targetNode = node;
+                break;
+            }
+        }
+
+        if (targetNode != null)
+        {
+            nodeToLinkFrom.Links.Add(targetNode);
+        }
+        else
+        {
+            // Need a new node
+            var node = new GraphNode(compoundType, nodeTypeToLinkTo);
+            graphNodes.Add(node);
+
+            nodeToLinkFrom.Links.Add(node);
         }
     }
 
