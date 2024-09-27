@@ -39,7 +39,7 @@ public partial class PhotoStudio : SubViewport
     private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
     private readonly Dictionary<IWorldSimulation, Node3D> simulationWorldRoots = new();
 
-    private readonly Queue<ImageTask> tasks = new();
+    private readonly PriorityQueue<ImageTask, int> tasks = new();
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
 
@@ -343,7 +343,7 @@ public partial class PhotoStudio : SubViewport
     /// <param name="task">The task to queue and run as soon as possible</param>
     public void SubmitTask(ImageTask task)
     {
-        tasks.Enqueue(task);
+        tasks.Enqueue(task, task.Priority);
     }
 
     protected override void Dispose(bool disposing)
