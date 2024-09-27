@@ -25,6 +25,12 @@ public partial class PhotographablePreview : Control
     [Export]
     public bool KeepPlainImageInMemory;
 
+    /// <summary>
+    ///   The priority that the generated image tasks will have. The lower the number, the higher the priority.
+    /// </summary>
+    [Export]
+    public int Priority = 1;
+
 #pragma warning disable CA2213
     [Export]
     private TextureRect textureRect = null!;
