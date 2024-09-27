@@ -46,7 +46,45 @@ public partial class FoodChainDisplay : Control
         this.QueueFreeChildren();
         resultButtons.Clear();
 
-        // autoEvoResults.
+        float x = 10;
+        float y = 20;
+
+        foreach (var stuff in autoEvoResults.GetSpeciesRecords())
+        {
+            if (stuff.Value.Species != null)
+            {
+                var resultDisplay = speciesResultButtonScene.Instantiate<SpeciesResultButton>();
+
+                resultDisplay.DisplaySpecies(autoEvoResults.GetSpeciesResultForInternalUse(stuff.Value.Species), false);
+
+                // Ensure the control size doesn't blow up
+                resultDisplay.SizeFlagsVertical = SizeFlags.ShrinkBegin;
+                resultDisplay.AnchorLeft = 0;
+                resultDisplay.AnchorRight = 0;
+                resultDisplay.AnchorTop = 0;
+                resultDisplay.AnchorBottom = 0;
+
+                // resultDisplay.Size = resultDisplay.CustomMinimumSize;
+                resultDisplay.Size = new Vector2(110, 92);
+
+                // Position the node
+                resultDisplay.Position = new Vector2(x, y);
+
+                // TODO: signals
+
+                AddChild(resultDisplay);
+                resultButtons.Add(resultDisplay);
+
+                // Ensure the control size doesn't blow up
+                // resultDisplay.Size = resultDisplay.CustomMinimumSize;
+                // resultDisplay.Size = new Vector2(110, 92);
+
+                y += 10 + resultDisplay.Size.Y * 2;
+            }
+        }
+
+        // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
+        CustomMinimumSize = new Vector2(Size.X, y + 10);
 
         // Queue a redraw to draw all the connection lines again
         QueueRedraw();

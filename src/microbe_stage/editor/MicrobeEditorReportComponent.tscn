@@ -412,10 +412,11 @@ theme_override_styles/panel = SubResource("29")
 
 [node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab" instance=ExtResource("14_ynonx")]
 layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
 
 [node name="FoodChainDisplay" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer" instance=ExtResource("14_ghu38")]
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
 custom_minimum_size = Vector2(340, 0)
