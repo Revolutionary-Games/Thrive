@@ -64,8 +64,7 @@ public partial class FoodChainDisplay : Control
                 resultDisplay.AnchorTop = 0;
                 resultDisplay.AnchorBottom = 0;
 
-                // resultDisplay.Size = resultDisplay.CustomMinimumSize;
-                resultDisplay.Size = new Vector2(110, 92);
+                resultDisplay.Size = resultDisplay.CustomMinimumSize;
 
                 // Position the node
                 resultDisplay.Position = new Vector2(x, y);
@@ -74,17 +73,12 @@ public partial class FoodChainDisplay : Control
 
                 AddChild(resultDisplay);
                 resultButtons.Add(resultDisplay);
-
-                // Ensure the control size doesn't blow up
-                // resultDisplay.Size = resultDisplay.CustomMinimumSize;
-                // resultDisplay.Size = new Vector2(110, 92);
-
-                y += 10 + resultDisplay.Size.Y * 2;
+                y += 10 + resultDisplay.Size.Y;
             }
         }
 
         // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
-        CustomMinimumSize = new Vector2(Size.X, y + 10);
+        CustomMinimumSize = new Vector2(Size.X, y);
 
         // Queue a redraw to draw all the connection lines again
         QueueRedraw();
