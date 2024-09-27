@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-09-24 12:59+0300\n"
-"PO-Revision-Date: 2024-09-24 06:00+0000\n"
+"PO-Revision-Date: 2024-09-27 08:20+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -40,9 +40,8 @@ msgstr "中止"
 msgid "ABORTED_DOT"
 msgstr "已中止。"
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "微生物數量："
+msgstr "吸收器："
 
 msgid "ABYSSOPELAGIC"
 msgstr "深海帶"
@@ -674,9 +673,8 @@ msgstr "關閉"
 msgid "CLOSE_OPTIONS"
 msgstr "關閉選項選單？"
 
-#, fuzzy
 msgid "CLOUD_BENCHMARK"
-msgstr "微生物性能基準測試"
+msgstr "雲性能基準測試"
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr "雲解析度因數："
@@ -684,9 +682,8 @@ msgstr "雲解析度因數："
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "雲模擬最小時間間隔："
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "滲透調節成本倍率"
+msgstr "模擬倍率："
 
 msgid "COASTAL"
 msgstr "海岸"
@@ -806,9 +803,8 @@ msgstr ""
 msgid "COMPOUND_CLOUDS"
 msgstr "化合物雲"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "化合物雲密度"
+msgstr "化合物雲性能基準測試"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "化合物雲密度"
@@ -1649,9 +1645,8 @@ msgstr "吐出已吞噬的物體"
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr "吐出已吞噬的物體"
 
-#, fuzzy
 msgid "EMITTERS_COUNT"
-msgstr "微生物數量："
+msgstr "發射器："
 
 msgid "ENABLED_MODS"
 msgstr "啟用模組"
@@ -1957,9 +1952,8 @@ msgstr "鞭毛"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "鞭毛是一種從細胞膜延伸出的鞭狀蛋白纖維束，利用[thrive:compound type=\"atp\"][/thrive:compound] 使細胞向某個方向波動並推動細胞。鞭毛的位置決定了它為細胞運動提供推力的方向。推力方向與鞭毛指向的方向相反，例如位於細胞左側的鞭毛在向右移動時提供推力。"
 
-#, fuzzy
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr "鞭毛是一種從細胞膜延伸出的鞭狀蛋白纖維束，利用[thrive:compound type=\"atp\"][/thrive:compound] 使細胞向某個方向波動並推動細胞。鞭毛的位置決定了它為細胞運動提供推力的方向。推力方向與鞭毛指向的方向相反，例如位於細胞左側的鞭毛在向右移動時提供推力。"
+msgstr "鞭毛長度。越長的鞭毛會產生越大的推力，但會消耗更多的 ATP。"
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound] 來提高細胞的移動速度。"
@@ -6025,7 +6019,7 @@ msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 "飛昇是 Thrive 中的關鍵概念，類似其他遊戲中的「遊戲通關」。在這種狀態下，知性生物透過飛昇之門轉化為能量體形式，從而獲得神一般的力量，利用宇宙本身的能量（本質上是免費創造奇蹟）。\n"
 "\n"
-"飛昇的作用是，只要您完成上帝工具研究，就會有一個新的「上帝工具」面板，可以在遊戲中的任何地方使用，讓您可以改變任何您想要的東西。從創造整個恆星系到最小的細菌，從摧毀整個文明到擁有其成員之一，一切皆有可能。"
+"飛昇的作用是，只要您完成上帝工具研究，就會有一個新的「上帝工具」面板，可以在遊戲中的任何地方使用，讓您可以改變任何您想要的東西。從創造整個行星系到最小的細菌，從摧毀整個文明到擁有其成員之一，一切皆有可能。"
 
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr "一旦您的種族通過飛昇之門，您就會進入飛昇。我們希望在進入飛昇階段的過場動畫之後顯示遊戲製作人員名單。播放完畢後玩家就會回到遊戲的飛昇階段，並附上一條祝賀訊息。為了使其成為遊戲的最後一個門檻，飛昇之門將需要大量的研究（包括上面提到的上帝工具）和大量的能量，相當於多個恆星的能量來創造和運作。在玩家獲得無限力量並可以消滅相互競爭的星際帝國之前，其他潛在的敵對物種將有最後的機會攻擊玩家。"
@@ -6456,6 +6450,9 @@ msgstr "（每一代保留的環境葡萄糖比例）"
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
+"[b]晝夜循環[/b]是可以在新遊戲選單中啟用的設定。啟用晝夜循環後，區域的[thrive:compound type=\"sunlight\"][/thrive:compound] 會在設定的時間內於 [b]0[/b] 到 [b]100[/b] [b]%[/b] 之間循環（也可以在設定中變更）。\n"
+"\n"
+"這會導致[b]光合作用[/b]變得更加不可靠且更難生存。利用[thrive:compound type=\"sunlight\"][/thrive:compound] 的自養生物需要演化出[b]儲存[/b]能力（例如[color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color]）以度過夜晚。"
 
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每個[b]鞭毛[/b]提供與其方向相反的方向的定向推力。它們也在接近完全相反的方向上提供部分推力（準確地說，是那些與完全相反的向量的分量（內積）為正的方向）。每當[b]鞭毛[/b]處於活動狀態時，它就會消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
@@ -6587,20 +6584,24 @@ msgstr "此階段尚未開始開發。當[color=#3796e1][url=thriveopedia:societ
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr "即將推出。"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"讓細胞加入同物種的其他細胞形成細胞群落。一旦結合在一個群落中，細胞就會作為一個整體移動並共享化合物。在進入編輯器和分裂之前，細胞必須與群落解散。\n"
+"工業階段是 Thrive 七個遊戲階段中的第六個，緊接在[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]之後，從工業機械的發明開始。此時科技與文化已高度發展，文明高度依賴機械來維持運作。整個星球大部分地區已被探索並有人居住，使您幾乎可以在任何地方進行交流或發動戰爭。外交與領導能力比以往任何時候都更為重要。\n"
 "\n"
-"細胞群落是邁向多細胞生物的第一步，因此[b]連接器[/b]對於進入下一階段至關重要。"
+"技術進步的速度正在迅速加速，複雜的機械從原本需要數百年才能發明的情況，縮短到僅需數十年。新的動力載具、醫療方法、工業機械不斷湧現，甚至包括大規模毀滅性武器等新型武器也開始出現。\n"
+"\n"
+"工業階段的終點是太空旅行技術的誕生，接下來便進入了[color=#3796e1][url=thriveopedia:space_stage]太空階段[/url][/color]。第一枚進入太空的火箭宣告著工業階段的結束，但早期的[color=#3796e1][url=thriveopedia:space_stage]太空階段[/url][/color]在許多方面仍與工業階段非常相似。"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
-msgstr "工業階段"
+msgstr "工業階段將主要圍繞人口發展。人口將急劇增長，經濟將蓬勃發展。戰爭將變得更大且更加血腥。消費與污染也將隨之上升。這一切都是玩家物種在世界上人口增長的結果。這一增長將由醫學、農業、衛生、物流、冷藏與運輸的進步帶來。這些進步將導致人口激增，進而催化工業革命，而工業革命將帶來新的軍事、科學、經濟與政治改革。"
 
-#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
-msgstr "工業階段"
+msgstr ""
+"當玩家的國家發現蒸汽動力技術（並製造出第一台工業機械）時，工業階段正式開始。隨後，裝配線大幅提升生產與製造的效率，鐵路促進了貿易與運輸的速度，農業工程改進了農作物的生長與產量。新的軍事技術引領了戰爭方式的變革。\n"
+"\n"
+"工業階段的特色正是這個過程—革命。它帶來了社會各個層面的變革，並且隨著時間的推移，可能會徹底改變新興國家之間的競爭態勢。\n"
+"\n"
+"當玩家首次到達太空時，本階段結束。"
 
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "即將推出。"
@@ -6726,16 +6727,13 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "微生物階段有一個包含更多細節的單獨的遊戲設計方案：微生物階段遊戲設計方案"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
-"在一顆遙遠的外星球上，萬古的火山活動和流星撞擊導致了宇宙中一種新現象的發展。\n"
+"上一階段：沒有更早的階段。\n"
 "\n"
-"生命。\n"
+"下一階段：[color=#3796e1][url=thriveopedia:multicellular_stage]多細胞階段[/url][/color]\n"
 "\n"
-"簡單的微生物居住在海洋深處。您是這個星球上最近普適共同祖先（LUCA）。\n"
-"\n"
-"為了在這個充滿敵意的世界中生存，您需要收集任何您能找到的化合物，並在多世代中不斷演化來與其他微生物競爭。"
+"微生物階段是遊戲的第一個階段。該階段從世界上最早出現的物種開始，它們剛從生命的原始起源中誕生，探索營養豐富的海底熱泉。在這裡，玩家扮演一個微小的原核細胞質團塊，它是其物種中為數不多的個體之一。此時，玩家必須完全依賴尋找散落的葡萄糖來生存，因為他們尚未擁有處理其他營養物質的能力，並且需要尋找磷酸鹽與氨來成長壯大，以準備進行繁殖。一旦玩家達到足夠的大小，他們將能夠進行繁殖，並帶領玩家進入微生物編輯器。隨著遊戲的進行，玩家將逐漸改造自己的細胞，以更好地在一個每一代都逐漸變得更加嚴酷的世界中生存，並與由玩家物種演化而來的新物種競爭。"
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "無效果。"
@@ -6773,16 +6771,24 @@ msgstr ""
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr "無升級。"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
-msgstr "多細胞階段"
+msgstr ""
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]感知概念[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]編輯器概念[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]地形色彩概念[/url][/color] \t\t\t[/indent]"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr "多細胞階段的原型開發已經開始。早期多細胞階段大多是可玩的。後期多細胞階段更多是實驗中的原型。"
 
-#, fuzzy
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
-msgstr "多細胞階段"
+msgstr ""
+"這個階段的初始遊戲玩法與微生物階段非常相似。遊戲仍然是在 2D 平面上與其他細胞互動，但不同的是玩家現在將控制一個不斷成長的細胞群落。與微生物階段末期的不同之處在於，群落不能再解散，而是作為一個永久結合在一起的單一生物體運作。這是多細胞階段的早期部分，仍然使用微生物環境，並且玩家可以與微生物進行互動。\n"
+"\n"
+"在編輯器中，玩家現在可以創建與編輯細胞類型，並且對這些細胞的結構與細胞器進行更改。對群落中某一細胞類型所做的任何更改將自動應用到該類型的所有其他細胞。通過使用不同的細胞類型，玩家可以讓群落中的不同細胞專精於不同功能，這將讓它們比單細胞生物擁有更大的優勢。\n"
+"\n"
+"在多細胞階段的後期，玩家將變成一個宏觀生物。遊戲的規模將會改變，微生物將不再可見，玩家會從放置單個細胞轉變為塑造組織。\n"
+"\n"
+"多細胞階段遊戲設計方案有一個單獨的頁面，更詳細地描述該階段的機制。"
 
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr "在多細胞階段，您的群落將變得更加複雜與專門化，並經歷向 3D 環境的轉變，直到它成為宏觀的多細胞生物。當您的生物首次發展出一定程度的感知能力時，本階段結束。"
@@ -7392,16 +7398,13 @@ msgstr ""
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "即將推出。"
 
-#, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
-"細胞器是單細胞生物的「器官」。在 Thrive 中，它們是細胞的建構組件，控制其內部代謝過程和能力。\n"
+"這些是遊戲中的所有階段。總共有 8 個階段，每個階段的遊戲玩法都略有不同。\n"
 "\n"
-"每次繁殖時，您都可以使用微生物編輯器來添加、移動、修改或移除細胞內的細胞器。幾乎所有這些行為都會消耗突變點數。細胞器排列成六邊形網格，形成由細胞膜包裹的連續形狀，每種細胞器具有獨特的網格外型。外部細胞器會附著在細胞膜的外部，因此對於許多細胞器來說，放置方向很重要。\n"
+"當你在 Thrive 中發展時，您將經歷各個階段，最終讓您達到飛昇。\n"
 "\n"
-"當您編輯細胞時，其他物種也會改變它們的細胞器佈局。他們可以獲得所有相同的能力。\n"
-"\n"
-"從下面的清單中選擇一種細胞器以了解更多資訊。"
+"您將以一個單細胞生物開始遊戲，接著演化出器官與組織，然後變得有智慧，並建立一個征服太空的社會。"
 
 msgid "WIKI_TBA"
 msgstr "待定"
@@ -7484,13 +7487,20 @@ msgstr "無升級。"
 
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
+"戰爭迷霧是一個可以啟用的遊戲設定，它限制了玩家可以預覽的區域。\n"
+"\n"
+"當設定為[b]常規[/b]時，只有玩家曾經造訪過的區域以及任何相鄰的區域才會可見。雖然與[i]那些[/i]相鄰的區域在地圖上可見，但它們的類型、[color=#3796e1][url=thriveopedia:Compounds]化合物資訊[/url][/color]與[color=#3796e1][url=thriveopedia:EnvironmentalConditions]環境條件[/url][/color]將被隱藏。\n"
+"\n"
+"當設定為[b]強烈[/b]時，[b]只有[/b]玩家曾經造訪過的區域可見。相鄰的區域將可見，但類型與化合物資訊將被隱藏"
 
 msgid "WIKI_THE_PATCH_MAP_INTRO"
 msgstr "您的物種所居住的星球是一個擁有許多不同環境與生物群系的廣闊地方。在[color=#3796e1][url=thriveopedia:microbe_stage]微生物階段[/url][/color]中，這透過[b]區域地圖[/b]中的[b]區域[/b]與[b]地域[/b]表示。"
 
-#, fuzzy
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
-msgstr "無升級。"
+msgstr ""
+"[b]區域[/b]代表具有不同環境的獨特生物群落。每個區域都有不同的[color=#3796e1][url=thriveopedia:EnvironmentalConditions]環境條件[/url][/color]與[color=#3796e1][url=thriveopedia:Compounds]化合物[/url][/color]，這會影響[b]代謝過程[/b]的運作與效率。在每次[color=#3796e1][url=thriveopedia:EditorsAndMutations]編輯器會話[/url][/color]期間，您可以移動到任何相鄰的區域或其中包含您的物種的任何區域。\n"
+"\n"
+"區域還包含其他物種的種群，它們可以在區域之間遷移並作為玩家的競爭者。在區域之間移動時，請務必檢查捕食者與獵物。"
 
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr "[b]區域地圖[/b]代表您的星球。它由[b]區域[/b]與[b]地域[/b]組成（如下所述）。每個區域包含多個連接的（或相鄰的）區域並連接到其他地域。"
