@@ -3,7 +3,8 @@ using AutoEvo;
 using Godot;
 
 /// <summary>
-///   Displays a food chain from auto-evo results in the GUI for the player to inspect
+///   Displays a food chain from auto-evo results in the GUI for the player to inspect. This node should be put inside
+///   a <see cref="DraggableScrollContainer"/> to allow big food chains to be viewed
 /// </summary>
 public partial class FoodChainDisplay : Control
 {

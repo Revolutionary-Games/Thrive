@@ -32,7 +32,10 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private TimelineTab timelineSubtab = null!;
 
     [Export]
-    private FoodChainDisplay foodChainSubtab = null!;
+    private Container foodChainSubtab = null!;
+
+    [Export]
+    private FoodChainDisplay foodChainData = null!;
 
     [Export]
     private Label timeIndicator = null!;
@@ -167,7 +170,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             // Refresh this expensive graphical report only if it is visible
             if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
             {
-                foodChainSubtab.DisplayFoodChainIfRequired(autoEvoResults,
+                foodChainData.DisplayFoodChainIfRequired(autoEvoResults,
                     currentlyDisplayedPatch ?? Editor.CurrentPatch);
             }
         }
@@ -596,7 +599,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
                 if (autoEvoResults != null)
                 {
-                    foodChainSubtab.DisplayFoodChainIfRequired(autoEvoResults,
+                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults,
                         currentlyDisplayedPatch ?? Editor.CurrentPatch);
                 }
 
