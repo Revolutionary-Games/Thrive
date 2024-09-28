@@ -9,7 +9,7 @@ public class ImageTask
     /// <summary>
     ///   This task's priority. The lower the number, the higher the priority.
     /// </summary>
-    public readonly int Priority = 1;
+    public readonly int Priority;
 
     private readonly bool storePlainImage;
 
