@@ -45,7 +45,7 @@ public partial class PhotoStudio : SubViewport
 
     /// <summary>
     ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order.
-    ///   This offset makes up for that, being increased for each consecutive image task.
+    ///   This index offset makes up for that, being increased for each consecutive image task.
     /// </summary>
     private int lastTaskIndex;
 
