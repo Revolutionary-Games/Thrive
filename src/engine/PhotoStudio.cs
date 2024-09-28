@@ -43,6 +43,12 @@ public partial class PhotoStudio : SubViewport
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
 
+    /// <summary>
+    ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order,
+    ///   so a task priority offset has to be made to make up for that.
+    /// </summary>
+    private int taskPriorityOffset = 0;
+
     private bool waitingForBackgroundOperation;
 
 #pragma warning disable CA2213
@@ -138,6 +144,12 @@ public partial class PhotoStudio : SubViewport
                 currentTask = tasks.Dequeue();
                 currentTaskStep = Step.LoadScene;
                 previousSceneWasCorrect = false;
+
+                if (tasks.Count == 0)
+                {
+                    // Ensuring that the offset doesn't reach int.MinValue
+                    taskPriorityOffset = 0;
+                }
             }
         }
 
@@ -343,7 +355,8 @@ public partial class PhotoStudio : SubViewport
     /// <param name="task">The task to queue and run as soon as possible</param>
     public void SubmitTask(ImageTask task)
     {
-        tasks.Enqueue(task, task.Priority);
+        tasks.Enqueue(task, task.Priority + taskPriorityOffset);
+        ++taskPriorityOffset;
     }
 
     protected override void Dispose(bool disposing)
