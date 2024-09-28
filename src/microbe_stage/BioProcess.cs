@@ -75,23 +75,6 @@ public class BioProcess : IRegistryType
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
-    public float GetRateWithConditions(BiomeConditions conditions)
-    {
-        var rate = 1.0f;
-
-        foreach (var input in Inputs)
-        {
-            if (input.Key.IsEnvironmental)
-            {
-                conditions.AverageCompounds.TryGetValue(input.Key.ID, out var properties);
-
-                rate *= properties.Ambient;
-            }
-        }
-
-        return rate;
-    }
-
     public void Resolve(SimulationParameters simulationParameters)
     {
         // Resolve inputs and outputs
