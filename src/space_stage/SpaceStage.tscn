@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2lgqc5cfta2m"]
+[gd_scene load_steps=21 format=3 uid="uid://d2lgqc5cfta2m"]
 
 [ext_resource type="Script" path="res://src/space_stage/SpaceStage.cs" id="1"]
 [ext_resource type="PackedScene" path="res://src/society_stage/StrategicCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://c2h4vpmx0juq8" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dokew8lhrri5" path="res://assets/models/menu_backgrounds/Comet.tscn" id="4_aqo7l"]
+[ext_resource type="Texture2D" uid="uid://lf17qrqcwjtw" path="res://assets/textures/space/SpaceSkyStars.png" id="4_meh31"]
+[ext_resource type="ArrayMesh" uid="uid://crviygmhtq7pk" path="res://assets/models/menu_backgrounds/SkySphere.mesh" id="5_rek3o"]
 [ext_resource type="PackedScene" uid="uid://i8evqpkyb68h" path="res://src/space_stage/gui/SpaceHUD.tscn" id="7"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://src/space_stage/PlayerSpaceInput.tscn" id="9"]
@@ -58,6 +60,14 @@ adjustment_saturation = 0.99
 auto_exposure_scale = 0.01
 auto_exposure_speed = 19.92
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yehpb"]
+depth_draw_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+albedo_texture = ExtResource("4_meh31")
+uv1_scale = Vector3(1.5, 1, 1)
+disable_receive_shadows = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xbal"]
 albedo_color = Color(0, 0, 0, 1)
 metallic = 1.0
@@ -92,6 +102,13 @@ MaxZoomLevel = 3.0
 
 [node name="starssphere" parent="World/StrategicCamera" instance=ExtResource("3")]
 transform = Transform3D(300, -0.0737809, 0.0523577, 0.0733008, 299.988, 2.73314, -0.0530277, -2.73313, 299.988, -12.7566, 0, 8.74701)
+visible = false
+
+[node name="Stars" type="MeshInstance3D" parent="World/StrategicCamera"]
+transform = Transform3D(100, 0, 0, 0, 85.3942, -52.0369, 0, 52.0369, 85.3942, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_yehpb")
+mesh = ExtResource("5_rek3o")
+skeleton = NodePath("")
 
 [node name="PlaceholderSpaceVisuals" type="Node3D" parent="World"]
 
@@ -128,7 +145,6 @@ grow_vertical = 2
 menu = NodePath("../PauseMenu")
 
 [node name="GodToolsPopup" parent="." instance=ExtResource("18")]
-anchors_preset = 1
 offset_top = 0.0
 offset_bottom = 225.0
 

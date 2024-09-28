@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://jatxjxj6uy0d"]
+[gd_scene load_steps=37 format=3 uid="uid://jatxjxj6uy0d"]
 
-[ext_resource type="PackedScene" uid="uid://c2h4vpmx0juq8" path="res://assets/models/menu_backgrounds/StarsMesh.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://lf17qrqcwjtw" path="res://assets/textures/space/SpaceSkyStars.png" id="2_amqrd"]
+[ext_resource type="ArrayMesh" uid="uid://crviygmhtq7pk" path="res://assets/models/menu_backgrounds/SkySphere.mesh" id="3_2s02u"]
 [ext_resource type="Texture2D" uid="uid://omojbhinobbj" path="res://assets/textures/menu_backgrounds/MenuPlanet_Base_color.png" id="3_nik4k"]
 [ext_resource type="PackedScene" uid="uid://dokew8lhrri5" path="res://assets/models/menu_backgrounds/Comet.tscn" id="4_6futg"]
 [ext_resource type="Texture2D" uid="uid://dnjv3mdsq2cgy" path="res://assets/textures/menu_backgrounds/Planet_Mat_Height.png" id="4_qaty7"]
@@ -53,6 +54,13 @@ adjustment_saturation = 0.99
 auto_exposure_scale = 0.01
 auto_exposure_speed = 19.92
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipeln"]
+shading_mode = 0
+disable_ambient_light = true
+albedo_texture = ExtResource("2_amqrd")
+uv1_scale = Vector3(3, 2, 2)
+disable_receive_shadows = true
+
 [sub_resource type="StandardMaterial3D" id="19"]
 albedo_color = Color(0, 0, 0, 1)
 metallic = 1.0
@@ -62,6 +70,28 @@ emission_enabled = true
 emission = Color(0.843137, 0.780392, 0.627451, 1)
 emission_energy_multiplier = 10.0
 disable_receive_shadows = true
+
+[sub_resource type="Gradient" id="Gradient_e6uff"]
+offsets = PackedFloat32Array(0.214984, 0.423453, 0.697068)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.699386, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jwpeg"]
+gradient = SubResource("Gradient_e6uff")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxgsm"]
+transparency = 1
+depth_draw_mode = 2
+shading_mode = 0
+disable_ambient_light = true
+albedo_color = Color(0, 0, 0, 1)
+albedo_texture = SubResource("GradientTexture2D_jwpeg")
+disable_receive_shadows = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_cv5dq"]
+material = SubResource("StandardMaterial3D_bxgsm")
+size = Vector2(100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3q10o"]
 albedo_texture = ExtResource("3_nik4k")
@@ -219,7 +249,7 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_ac783"]
 material = SubResource("StandardMaterial3D_bf2ro")
-size = Vector2(63, 60.5)
+size = Vector2(63.5, 60.9)
 
 [sub_resource type="Animation" id="22"]
 resource_name = "CameraAnimation"
@@ -374,8 +404,11 @@ transform = Transform3D(-0.305019, 0, 0.953396, 0, 1.001, 0, -0.953396, 0, -0.30
 environment = SubResource("1")
 camera_attributes = SubResource("CameraAttributesPractical_5nfsl")
 
-[node name="starssphere" parent="." instance=ExtResource("2")]
-transform = Transform3D(10000, -2.45937, 1.74549, 2.44336, 9999.6, 91.1048, -1.76782, -91.1044, 9999.6, -12.7566, 0, 8.74701)
+[node name="Stars" type="MeshInstance3D" parent="."]
+transform = Transform3D(330.486, 115.236, 0, -115.236, 330.486, 0, 0, 0, 350, -12.7566, 0, 8.74703)
+material_override = SubResource("StandardMaterial3D_ipeln")
+mesh = ExtResource("3_2s02u")
+skeleton = NodePath("")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.510837, 0.00851734, -0.858474, -0.0111761, 0.998933, 0.00326053, 0.858442, 0.00793674, 0.510898, -67.6689, -4.91601, 34.013)
@@ -410,6 +443,11 @@ radius = 2.613
 radial_segments = 32
 rings = 16
 material = SubResource("19")
+
+[node name="StarBlocker" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.833967, -0.0715305, -0.545332, -0.0324972, 0.982377, -0.178555, 0.549042, 0.166797, 0.817762, 46.7938, 39.5764, -150.288)
+mesh = SubResource("QuadMesh_cv5dq")
+skeleton = NodePath("../Sun")
 
 [node name="PlacedPlanet" type="Node3D" parent="."]
 transform = Transform3D(-1.73648, 0, 9.84808, 0, 10, 0, -9.84808, 0, -1.73648, 20.8068, -18.562, 23.6122)
