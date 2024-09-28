@@ -469,7 +469,13 @@ public partial class PhotoStudio : SubViewport
     {
         public int Compare((int, int) x, (int, int) y)
         {
-            return x.CompareTo(y);
+            if (x.Item1 < y.Item1)
+                return -1;
+
+            if (x.Item1 > y.Item1)
+                return 1;
+
+            return x.Item2.CompareTo(y.Item2);
         }
     }
 }
