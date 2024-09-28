@@ -147,7 +147,7 @@ public partial class PhotoStudio : SubViewport
 
                 if (tasks.Count == 0)
                 {
-                    // Ensuring that the offset doesn't reach int.MinValue
+                    // Ensuring that the offset doesn't reach int.MaxValue
                     taskPriorityOffset = 0;
                 }
             }
