@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Systems;
-
-/// <summary>
+﻿/// <summary>
 ///   Time dependent effects running on a world
 /// </summary>
 public interface IWorldEffect

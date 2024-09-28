@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-using Systems;
+﻿using Newtonsoft.Json;
 
 /// <summary>
 ///   An effect diffusing compounds between patches
