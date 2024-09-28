@@ -47,7 +47,7 @@ public partial class PhotoStudio : SubViewport
     ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order.
     ///   This offset makes up for that, being increased for each consecutive image task.
     /// </summary>
-    private int taskPriorityOffset = 0;
+    private int taskPriorityOffset;
 
     private bool waitingForBackgroundOperation;
 
