@@ -6,20 +6,27 @@ using Godot;
 /// </summary>
 public class ImageTask
 {
+    /// <summary>
+    ///   This task's priority. The lower the number, the higher the priority.
+    /// </summary>
+    public readonly int Priority;
+
     private readonly bool storePlainImage;
 
     private ImageTexture? finalImage;
     private Image? plainImage;
 
-    public ImageTask(IScenePhotographable photographable, bool storePlainImage = false)
+    public ImageTask(IScenePhotographable photographable, bool storePlainImage = false, int priority = 1)
     {
         this.storePlainImage = storePlainImage;
+        Priority = priority;
         ScenePhotographable = photographable;
     }
 
-    public ImageTask(ISimulationPhotographable photographable, bool storePlainImage = false)
+    public ImageTask(ISimulationPhotographable photographable, bool storePlainImage = false, int priority = 1)
     {
         this.storePlainImage = storePlainImage;
+        Priority = priority;
         SimulationPhotographable = photographable;
     }
 

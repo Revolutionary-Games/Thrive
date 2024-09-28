@@ -39,9 +39,15 @@ public partial class PhotoStudio : SubViewport
     private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
     private readonly Dictionary<IWorldSimulation, Node3D> simulationWorldRoots = new();
 
-    private readonly Queue<ImageTask> tasks = new();
+    private readonly PriorityQueue<ImageTask, (int Priority, int Index)> tasks = new(new TaskComparer());
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
+
+    /// <summary>
+    ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order.
+    ///   This index offset makes up for that, being increased for each consecutive image task.
+    /// </summary>
+    private int lastTaskIndex;
 
     private bool waitingForBackgroundOperation;
 
@@ -138,6 +144,12 @@ public partial class PhotoStudio : SubViewport
                 currentTask = tasks.Dequeue();
                 currentTaskStep = Step.LoadScene;
                 previousSceneWasCorrect = false;
+
+                if (tasks.Count == 0)
+                {
+                    // Ensuring that the offset doesn't reach int.MaxValue
+                    lastTaskIndex = 0;
+                }
             }
         }
 
@@ -343,7 +355,8 @@ public partial class PhotoStudio : SubViewport
     /// <param name="task">The task to queue and run as soon as possible</param>
     public void SubmitTask(ImageTask task)
     {
-        tasks.Enqueue(task);
+        tasks.Enqueue(task, (task.Priority, lastTaskIndex));
+        ++lastTaskIndex;
     }
 
     protected override void Dispose(bool disposing)
@@ -450,5 +463,19 @@ public partial class PhotoStudio : SubViewport
         simulationWorldRoots[worldSimulation] = node;
 
         return node;
+    }
+
+    private class TaskComparer : IComparer<(int, int)>
+    {
+        public int Compare((int, int) x, (int, int) y)
+        {
+            if (x.Item1 < y.Item1)
+                return -1;
+
+            if (x.Item1 > y.Item1)
+                return 1;
+
+            return x.Item2.CompareTo(y.Item2);
+        }
     }
 }
