@@ -59,6 +59,16 @@ int32_t InitThriveLibrary()
     // Start up the task system
     Thrive::TaskSystem::Get();
 
+#ifdef JPH_DEBUG_RENDERER
+    Thrive::IntercommunicationManager::Get().ReportDebugDrawWorks();
+
+    auto& communication = Thrive::IntercommunicationManager::Get().GetIntercommunicationObjectModifiable();
+
+    Thrive::Physics::DebugDrawForwarder::GetInstance().SetOutputLineReceiver(&communication.DebugLineReceiver);
+    Thrive::Physics::DebugDrawForwarder::GetInstance().SetOutputTriangleReceiver(&communication.DebugTriangleReceiver);
+
+#endif
+
     LOG_DEBUG("Native library init succeeded");
     return 0;
 }
@@ -74,6 +84,10 @@ void ShutdownThriveLibrary()
     JPH::Factory::sInstance = nullptr;
 
     Thrive::TaskSystem::Get().Shutdown();
+
+#ifdef JPH_DEBUG_RENDERER
+    Thrive::Physics::DebugDrawForwarder::GetInstance().ClearOutputReceivers();
+#endif
 
     SetLogForwardingCallback(nullptr);
 }
@@ -677,40 +691,6 @@ int32_t GetNativeExecutorThreads()
 }
 
 // ------------------------------------ //
-bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
-{
-#ifdef JPH_DEBUG_RENDERER
-    if (!lineDraw || !triangleDraw)
-    {
-        DisableDebugDrawerCallbacks();
-        return false;
-    }
-
-    auto& instance = Thrive::Physics::DebugDrawForwarder::GetInstance();
-
-    instance.SetOutputLineReceiver([lineDraw](JPH::RVec3Arg from, JPH::RVec3Arg to, JPH::Float4 colour)
-        { lineDraw(Thrive::DVec3ToCAPI(from), Thrive::DVec3ToCAPI(to), Thrive::ColorToCAPI(colour)); });
-
-    instance.SetOutputTriangleReceiver(
-        [triangleDraw](JPH::RVec3Arg v1, JPH::RVec3Arg v2, JPH::RVec3Arg v3, JPH::Float4 colour)
-        {
-            triangleDraw(
-                Thrive::DVec3ToCAPI(v1), Thrive::DVec3ToCAPI(v2), Thrive::DVec3ToCAPI(v3), Thrive::ColorToCAPI(colour));
-        });
-    return true;
-#else
-    UNUSED(lineDraw);
-    UNUSED(triangleDraw);
-    return false;
-#endif
-}
-
-void DisableDebugDrawerCallbacks()
-{
-#ifdef JPH_DEBUG_RENDERER
-    Thrive::Physics::DebugDrawForwarder::GetInstance().ClearOutputReceivers();
-#endif
-}
 
 #pragma clang diagnostic pop
 
