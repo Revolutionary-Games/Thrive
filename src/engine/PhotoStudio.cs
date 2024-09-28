@@ -39,7 +39,7 @@ public partial class PhotoStudio : SubViewport
     private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
     private readonly Dictionary<IWorldSimulation, Node3D> simulationWorldRoots = new();
 
-    private readonly PriorityQueue<ImageTask, (int Priority, int Index)> tasks = new();
+    private readonly PriorityQueue<ImageTask, (int Priority, int Index)> tasks = new(new TaskComparer());
     private ImageTask? currentTask;
     private Step currentTaskStep = Step.NoTask;
 
@@ -463,5 +463,13 @@ public partial class PhotoStudio : SubViewport
         simulationWorldRoots[worldSimulation] = node;
 
         return node;
+    }
+
+    private class TaskComparer : IComparer<(int, int)>
+    {
+        public int Compare((int, int) x, (int, int) y)
+        {
+            return x.CompareTo(y);
+        }
     }
 }
