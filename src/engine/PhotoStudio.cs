@@ -44,8 +44,8 @@ public partial class PhotoStudio : SubViewport
     private Step currentTaskStep = Step.NoTask;
 
     /// <summary>
-    ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order,
-    ///   so a task priority offset has to be made to make up for that.
+    ///   <see cref="PriorityQueue{TElement, TPriority}"/> doesn't guarantee the first-in-first-out order.
+    ///   This offset makes up for that, being increased for each consecutive image task.
     /// </summary>
     private int taskPriorityOffset = 0;
 
