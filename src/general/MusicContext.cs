@@ -6,5 +6,7 @@ public enum MusicContext
 {
     PatchVents = 1,
 
+    PatchTidepool = 2,
+
     PatchIceShelf,
 }
