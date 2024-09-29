@@ -24,15 +24,11 @@ public static class NativeInterop
     // Need these delegate holders to keep delegates alive
     private static readonly NativeMethods.OnLogMessage LogMessageCallback = ForwardMessage;
 
-    private static readonly NativeMethods.OnLineDraw LineDrawCallback = ForwardLineDraw;
-    private static readonly NativeMethods.OnTriangleDraw TriangleDrawCallback = ForwardTriangleDraw;
-
     private static readonly Dictionary<string, string> FoundFolderLibraries = new();
 
     private static bool disableAvx;
 
     private static bool loadCalled;
-    private static bool debugDrawIsPossible;
     private static bool nativeLoadSucceeded;
     private static bool cpuIsInsufficient;
 
@@ -46,15 +42,6 @@ public static class NativeInterop
 #if DEBUG
     private static bool printedSteamLibName;
 #endif
-
-    public delegate void OnLineDraw(Vector3 from, Vector3 to, Color colour);
-
-    public delegate void OnTriangleDraw(Vector3 vertex1, Vector3 vertex2, Vector3 vertex3, Color colour);
-
-    // These forwarding static event handlers are needed, otherwise the callback coming back will have just entirely
-    // bogus "this" values
-    private static event OnLineDraw? OnLineDrawHandler;
-    private static event OnTriangleDraw? OnTriangleDrawHandler;
 
     /// <summary>
     ///   Performs any initialization needed by the native library (note has to be called after the library is loaded)
@@ -79,16 +66,6 @@ public static class NativeInterop
         if (result != 0)
         {
             throw new InvalidOperationException($"Failed to initialize Thrive native library, code: {result}");
-        }
-
-        try
-        {
-            debugDrawIsPossible = NativeMethods.SetDebugDrawerCallbacks(LineDrawCallback, TriangleDrawCallback);
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr("Failed to initialize potential for debug drawing: ", e);
-            debugDrawIsPossible = false;
         }
 
         // TaskExecutor sets the number of used background threads on the native side
@@ -221,7 +198,6 @@ public static class NativeInterop
 
         nativeLoadSucceeded = false;
 
-        NativeMethods.DisableDebugDrawerCallbacks();
         NativeMethods.ShutdownThriveLibrary();
     }
 
@@ -248,33 +224,6 @@ public static class NativeInterop
         }
 
         return NativeMethods.GetIntercommunicationBridge().ToInt64();
-    }
-
-    public static bool RegisterDebugDrawer(OnLineDraw lineDraw, OnTriangleDraw triangleDraw)
-    {
-        if (!debugDrawIsPossible)
-            return false;
-
-        OnLineDrawHandler += lineDraw;
-        OnTriangleDrawHandler += triangleDraw;
-
-        return true;
-    }
-
-    public static void RemoveDebugDrawer()
-    {
-        // TODO: do single objects need to be able to unregister?
-        OnLineDrawHandler = null;
-        OnTriangleDrawHandler = null;
-
-        if (nativeLoadSucceeded)
-        {
-            NativeMethods.DisableDebugDrawerCallbacks();
-        }
-        else
-        {
-            GD.Print("Skip native side debug draw unregister as the native library is not loaded");
-        }
     }
 
     public static void NotifyWantedThreadCountChanged(int threads)
@@ -422,17 +371,6 @@ public static class NativeInterop
         {
             GD.PrintErr("[NATIVE] ", message);
         }
-    }
-
-    private static void ForwardLineDraw(JVec3 from, JVec3 to, JColour colour)
-    {
-        // TODO: is it possible to preserve precision by for example positioning the debug draw near the player?
-        OnLineDrawHandler?.Invoke(from, to, colour);
-    }
-
-    private static void ForwardTriangleDraw(JVec3 vertex1, JVec3 vertex2, JVec3 vertex3, JColour colour)
-    {
-        OnTriangleDrawHandler?.Invoke(vertex1, vertex2, vertex3, colour);
     }
 
     private static void CheckSizesOfInteropTypes()
@@ -772,12 +710,6 @@ internal static partial class NativeMethods
 
     [DllImport("thrive_native")]
     internal static extern int GetNativeExecutorThreads();
-
-    [DllImport("thrive_native")]
-    internal static extern bool SetDebugDrawerCallbacks(OnLineDraw lineDraw, OnTriangleDraw triangleDraw);
-
-    [DllImport("thrive_native")]
-    internal static extern void DisableDebugDrawerCallbacks();
 
     // The wrapper-specific methods are in their respective files like PhysicalWorld.cs etc.
 }

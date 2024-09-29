@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://begbjuynar75j"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_5l116"]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/upgrades/FlagellumUpgradeGUI.cs" id="2_f2xv7"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="3_pr3nu"]
+
+[node name="FlagellumUpgradeGUI" type="VBoxContainer" node_paths=PackedStringArray("lengthSlider")]
+custom_minimum_size = Vector2(400, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -880.0
+offset_bottom = -650.0
+theme = ExtResource("1_5l116")
+script = ExtResource("2_f2xv7")
+lengthSlider = NodePath("HSlider")
+
+[node name="Description" type="Label" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "FLAGELLUM_LENGTH_DESCRIPTION"
+label_settings = ExtResource("3_pr3nu")
+autowrap_mode = 3
+
+[node name="HSlider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = -1.0
+max_value = 3.0
+step = 0.05
+scrollable = false
+tick_count = 9

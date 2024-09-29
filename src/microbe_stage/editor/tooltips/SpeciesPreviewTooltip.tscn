@@ -40,8 +40,10 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("4")
+Priority = -100
 
 [node name="CellHexPreview" parent="HBoxContainer" instance=ExtResource("2")]
 layout_mode = 2
 mouse_filter = 2
 script = ExtResource("3")
+Priority = -100

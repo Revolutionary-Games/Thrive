@@ -32,6 +32,7 @@ public class NativeLibs
 
     private const string APIFolderName = "api";
     private const string GodotAPIFileName = "extension_api.json";
+    private const string GodotAPIHeaderFileName = "gdextension_interface.h";
     private const string APIInContainer = "/godot-api";
 
     private const string ExtensionInstallFolder = "lib";
@@ -55,6 +56,11 @@ public class NativeLibs
     private readonly Lazy<Task<long>> thriveExtensionPrecompiledId;
 
     private readonly HashSet<string> scriptsAPIFileCreated = new();
+
+    /// <summary>
+    ///   As each cmake run compiles multiple libraries, this tracks which builds are already done
+    /// </summary>
+    private readonly HashSet<string> cmakeBuildsRan = new();
 
     private bool checkSymbolUpload;
 
@@ -225,8 +231,7 @@ public class NativeLibs
         }
 
         if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Windows,
-                true,
-                false))
+                true, false))
         {
             return false;
         }
@@ -251,8 +256,9 @@ public class NativeLibs
     private async Task<bool> RunOperation(Program.NativeLibOptions.OperationMode operation,
         CancellationToken cancellationToken)
     {
-        ColourConsole.WriteNormalLine($"Performing operation {operation}");
-        ColourConsole.WriteDebugLine($"Debug mode is: {options.DebugLibrary}");
+        ColourConsole.WriteNormalLine(options.DebugLibrary == true ?
+            $"Performing operation {operation} with debug mode" :
+            $"Performing operation {operation}");
 
         switch (operation)
         {
@@ -544,7 +550,7 @@ public class NativeLibs
 
         CreateLinkTo(linkFile, linkTo);
 
-        ColourConsole.WriteNormalLine($"Installed library from: {linkTo}");
+        ColourConsole.WriteNormalLine($"Installed library from: {linkTo} to: {linkFile}");
 
         if (moreVerbose)
         {
@@ -592,9 +598,6 @@ public class NativeLibs
     private async Task<bool> BuildLocally(NativeConstants.Library library, PackagePlatform platform,
         CancellationToken cancellationToken)
     {
-        // TODO: this step needs to be updated to compile all at once, also then allows version numbers to match
-        // which currently has a check against this in NativeConstants
-
         if (platform != PlatformUtilities.GetCurrentPlatform())
         {
             ColourConsole.WriteErrorLine("Building for non-current platform without podman is not supported");
@@ -616,6 +619,18 @@ public class NativeLibs
         }
 
         var buildFolder = GetNativeBuildFolder();
+        var installPath = Path.GetFullPath(GetLocalCMakeInstallTarget(buildFolder, platform));
+
+        if (!cmakeBuildsRan.Add(buildFolder))
+        {
+            ColourConsole.WriteInfoLine("CMake build has already been performed, copying results only");
+
+            if (!CopyBuildResultLibraries(installPath, platform, library))
+                return false;
+
+            ColourConsole.WriteSuccessLine($"Successfully copied library {library}");
+            return true;
+        }
 
         // TODO: flag for clean builds
         Directory.CreateDirectory(buildFolder);
@@ -636,9 +651,6 @@ public class NativeLibs
 
             scriptsAPIFileCreated.Add(apiFolder);
         }
-
-        var installPath =
-            Path.GetFullPath(GetLocalCMakeInstallTarget(platform, NativeConstants.GetLibraryVersion(library)));
 
         var startInfo = new ProcessStartInfo("cmake")
         {
@@ -778,42 +790,38 @@ public class NativeLibs
             return false;
         }
 
+        if (!CopyBuildResultLibraries(installPath, platform, library))
+            return false;
+
+        ColourConsole.WriteSuccessLine($"Successfully compiled library {library}");
+        return true;
+    }
+
+    private bool CopyBuildResultLibraries(string installPath, PackagePlatform platform, NativeConstants.Library library)
+    {
         if (!Directory.Exists(installPath))
         {
             ColourConsole.WriteErrorLine($"Expected compile target folder doesn't exist: {installPath}");
             return false;
         }
 
-        // When building Thrive native and the early check, those will conflict with each other and install each other
-        // as well to their version files. This tries to remove the extra files.
-        foreach (var file in Directory.EnumerateFiles(installPath, "*.*", SearchOption.AllDirectories))
+        var target = Path.Combine(NativeConstants.LibraryFolder, platform.ToString().ToLowerInvariant(),
+            NativeConstants.GetLibraryVersion(library), LibraryBuildInstallPath(library, platform, GetTag(true)));
+
+        var targetFolder = Path.GetDirectoryName(target) ?? throw new Exception("Failed to get parent folder");
+
+        var source = Path.Combine(installPath, LibraryBuildInstallPath(library, platform, GetTag(true)));
+
+        if (!File.Exists(source))
         {
-            foreach (var otherLibrary in Enum.GetValues<NativeConstants.Library>())
-            {
-                if (otherLibrary == library)
-                    continue;
-
-                // TODO: skip libraries not compiled at the same time if any are added in the future
-
-                var name = NativeConstants.GetLibraryDllName(otherLibrary, platform, GetTag(true));
-                var nameSecondary = NativeConstants.GetLibraryDllName(otherLibrary, platform, GetTag(false));
-
-                if (file.Contains(name) || file.Contains(nameSecondary))
-                {
-                    // Don't delete unrelated type
-                    if (options.DebugLibrary != true && file.Contains("debug"))
-                        continue;
-
-                    if (options.DebugLibrary == true && file.Contains("release"))
-                        continue;
-
-                    File.Delete(file);
-                    ColourConsole.WriteNormalLine($"Deleting likely duplicate install of a different library: {file}");
-                }
-            }
+            ColourConsole.WriteErrorLine($"Expected built library not found: {source}");
+            return false;
         }
 
-        ColourConsole.WriteSuccessLine($"Successfully compiled library {library}");
+        Directory.CreateDirectory(targetFolder);
+        File.Copy(source, target, true);
+
+        ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
         return true;
     }
 
@@ -1096,9 +1104,14 @@ public class NativeLibs
         if (!Directory.Exists(folder))
             throw new ArgumentException("Folder doesn't exist (must exist before calling this)", nameof(folder));
 
+        // Create a temp folder to only update the real file when it has changed
+        var temporaryFolder = Path.Combine(folder, "tmpOutput");
+
+        Directory.CreateDirectory(temporaryFolder);
+
         var startInfo = new ProcessStartInfo("godot")
         {
-            WorkingDirectory = folder,
+            WorkingDirectory = temporaryFolder,
         };
 
         startInfo.ArgumentList.Add("--headless");
@@ -1110,21 +1123,48 @@ public class NativeLibs
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
 
-        if (result.ExitCode != 0)
+        try
         {
-            ColourConsole.WriteErrorLine(
-                $"Failed to generate Godot API file (exit: {result.ExitCode}). Output: {result.FullOutput}");
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Failed to generate Godot API file (exit: {result.ExitCode}). Output: {result.FullOutput}");
 
-            return false;
+                return false;
+            }
+
+            if (!File.Exists(Path.Combine(temporaryFolder, GodotAPIFileName)))
+            {
+                ColourConsole.WriteErrorLine($"Expected Godot API file not created in {temporaryFolder}");
+                return false;
+            }
+
+            // Copy Godot API to the real target folder if it is missing
+            bool copied = await FileUtilities.MoveIfHashIsDifferent(Path.Combine(temporaryFolder, GodotAPIFileName),
+                Path.Combine(folder, GodotAPIFileName), cancellationToken);
+
+            // This is an inappropriate change as it would skip the side effects
+            // ReSharper disable once ConvertIfToOrExpression
+            if (await FileUtilities.MoveIfHashIsDifferent(Path.Combine(temporaryFolder, GodotAPIHeaderFileName),
+                    Path.Combine(folder, GodotAPIHeaderFileName), cancellationToken))
+            {
+                copied = true;
+            }
+
+            if (!copied)
+            {
+                ColourConsole.WriteInfoLine("Godot API file was already up to date, not copying new file");
+            }
+            else
+            {
+                ColourConsole.WriteNormalLine("Created Godot API file");
+            }
         }
-
-        if (!File.Exists(Path.Combine(folder, GodotAPIFileName)))
+        finally
         {
-            ColourConsole.WriteErrorLine($"Expected Godot API file not created in {folder}");
-            return false;
+            // Clean up the temporary folder
+            Directory.Delete(temporaryFolder, true);
         }
-
-        ColourConsole.WriteNormalLine("Created Godot API file");
 
         return true;
     }
@@ -1573,9 +1613,9 @@ public class NativeLibs
         return false;
     }
 
-    private string GetLocalCMakeInstallTarget(PackagePlatform platform, string version)
+    private string GetLocalCMakeInstallTarget(string baseBuildFolder, PackagePlatform platform)
     {
-        return Path.Combine(NativeConstants.LibraryFolder, platform.ToString().ToLowerInvariant(), version);
+        return Path.Combine(baseBuildFolder, "install", platform.ToString().ToLowerInvariant());
     }
 
     private string GetDistributableBuildFolderBase(PackagePlatform platform)
@@ -1634,8 +1674,14 @@ public class NativeLibs
     private string GetPathToDistributableTempDll(NativeConstants.Library library, PackagePlatform platform,
         PrecompiledTag tags)
     {
-        var basePath = Path.Combine(GetDistributableBuildFolderBase(platform),
-            options.DebugLibrary == true ? "debug" : "release");
+        return Path.Combine(GetDistributableBuildFolderBase(platform),
+            LibraryBuildInstallPath(library, platform, tags));
+    }
+
+    private string LibraryBuildInstallPath(NativeConstants.Library library, PackagePlatform platform,
+        PrecompiledTag tags)
+    {
+        var basePath = options.DebugLibrary == true ? "debug" : "release";
 
         if (platform is PackagePlatform.Windows or PackagePlatform.Windows32)
         {

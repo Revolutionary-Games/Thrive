@@ -26,7 +26,7 @@ public partial class SpeciesPreview : PhotographablePreview
     {
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
-            return new ImageTask(microbeSpecies, KeepPlainImageInMemory);
+            return new ImageTask(microbeSpecies, KeepPlainImageInMemory, Priority);
         }
 
         GD.PrintErr("Unknown species type to preview: ", previewSpecies);

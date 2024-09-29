@@ -219,7 +219,17 @@ public static class Constants
 
     public const float FLAGELLA_ENERGY_COST = 6.0f;
 
-    public const float FLAGELLA_BASE_FORCE = 35.0f;
+    public const float FLAGELLA_BASE_FORCE = 20.0f;
+
+    public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;
+    public const float FLAGELLA_MIN_UPGRADE_LENGHT = -1;
+
+    public const float FLAGELLA_MAX_UPGRADE_FORCE = 15.0f;
+
+    public const float FLAGELLA_MAX_UPGRADE_ATP_USAGE = 4.0f;
+
+    public const float FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH = 0.40f;
+    public const float FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH = 0.80f;
 
     /// <summary>
     ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
@@ -1531,14 +1541,6 @@ public static class Constants
     ///   If set to true then physics debug draw gets enabled when the game starts
     /// </summary>
     public const bool AUTOMATICALLY_TURN_ON_PHYSICS_DEBUG_DRAW = false;
-
-    /// <summary>
-    ///   How far away from the world origin debug draw works. When farther away no debug drawing happens. Setting this
-    ///   too far seems to trigger a problem in Godot where a grey overlay is over all 3D content blocking everything.
-    ///   TODO: if we need bigger worlds then the <see cref="DebugDrawer"/> will need to be updated to reposition its
-    ///   meshes to get a smaller bounding box working
-    /// </summary>
-    public const float DEBUG_DRAW_MAX_DISTANCE_ORIGIN = 1000000000;
 
     public const int CREATURE_MESH_RESOLUTION = 3;
 

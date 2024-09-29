@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -618,21 +619,46 @@ public partial class Thriveopedia : ControlWithInput, ISpeciesDataProvider
 
     private void OnSearchUpdated(string newText)
     {
-        pageTree.Clear();
-        pageTree.CreateItem();
+        stageDropdown.Visible = false;
 
-        // Need to copy to new list as loop modifies the list
-        var pageList = allPages.Keys.ToList();
-        foreach (var page in pageList)
+        var newTextLowercase = newText.ToLower(CultureInfo.CurrentCulture);
+
+        foreach (var page in allPages)
         {
-            var children = GetAllChildren(page);
+            var visible = page.Key.TranslatedPageName.ToLower(CultureInfo.CurrentCulture)
+                .Contains(newTextLowercase);
 
-            if (page.TranslatedPageName.ToLower().Contains(newText.ToLower()) ||
-                children.Any(c => c.TranslatedPageName.ToLower().Contains(newText.ToLower())))
+            if (visible && page.Key is ThriveopediaStagePage)
             {
-                // We can assume a page is always before its children in the list of all pages
-                allPages[page] = CreateTreeItem(page, page.ParentPageName);
+                // A stage page was found, so the stage dropdown should be shown (instead of individual pages)
+                visible = false;
+
+                if (!stageDropdown.Visible)
+                {
+                    stageDropdown.Visible = true;
+                    SetParentPagesVisibility(stageDropdown, true);
+                }
             }
+
+            page.Value.Visible = visible;
+            if (visible)
+            {
+                SetParentPagesVisibility(page.Value, true);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Recursively sets visibility of parent pages
+    /// </summary>
+    private void SetParentPagesVisibility(TreeItem item, bool visible)
+    {
+        var parent = item.GetParent();
+
+        if (parent != null)
+        {
+            parent.Visible = visible;
+            SetParentPagesVisibility(parent, visible);
         }
     }
 

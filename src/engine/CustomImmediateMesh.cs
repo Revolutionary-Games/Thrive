@@ -11,6 +11,12 @@ using Array = Godot.Collections.Array;
 /// </summary>
 /// <remarks>
 ///   <para>
+///     NOTE: this class was written before the move to Godot 4 so the in-built immediate mesh may work well enough
+///     now for all uses.
+///   </para>
+/// </remarks>
+/// <remarks>
+///   <para>
 ///     Note that this class keeps one extra copy of the data in memory to avoid having to reallocate lists on each
 ///     mesh update even if the number of vertices didn't change
 ///   </para>
@@ -50,7 +56,7 @@ public class CustomImmediateMesh : IDisposable
         this.meshMaterial = meshMaterial;
         Mesh = new ArrayMesh();
 
-        // Setup the mesh data we don't need to change
+        // Set up the mesh data we don't need to change
         arrays = new Array();
         arrays.Resize((int)Godot.Mesh.ArrayType.Max);
     }

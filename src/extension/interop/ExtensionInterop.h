@@ -21,4 +21,10 @@ extern "C"
     /// This mostly exists to check everything was loaded fine and can now be used
     /// \return The version number
     [[maybe_unused]] API_EXPORT int32_t ExtensionGetVersion(ThriveConfig* thriveConfig);
+
+    // ------------------------------------ //
+    // DebugDrawer direct access calls
+    [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, JColour* colour);
+
+    [[maybe_unused]] API_EXPORT void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* point, JColour* colour);
 }

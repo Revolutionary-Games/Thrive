@@ -6,44 +6,13 @@ using System.Text;
 using Components;
 using DefaultEcs;
 using Godot;
-using Xoshiro.PRNG64;
 
 /// <summary>
 ///   Benchmarking tool for the microbe stage. Used for checking performance impact of changes or for players to see
 ///   how fast their computer is compared to other ones.
 /// </summary>
-public partial class MicrobeBenchmark : Node
+public partial class MicrobeBenchmark : BenchmarkBase
 {
-    [Export]
-    public NodePath? GUIContainerPath;
-
-    [Export]
-    public NodePath FPSLabelPath = null!;
-
-    [Export]
-    public NodePath PhaseLabelPath = null!;
-
-    [Export]
-    public NodePath MicrobesCountLabelPath = null!;
-
-    [Export]
-    public NodePath BenchmarkResultsTextPath = null!;
-
-    [Export]
-    public NodePath BenchmarkFinishedTextPath = null!;
-
-    [Export]
-    public NodePath CopyResultsButtonPath = null!;
-
-    [Export]
-    public NodePath WorldRootPath = null!;
-
-    [Export]
-    public NodePath DynamicRootPath = null!;
-
-    [Export]
-    public NodePath BenchmarkCameraPath = null!;
-
     // Benchmark configuration, should only be changed if there's really important reasons as then older benchmark
     // results are no longer comparable
     private const int FIRST_PHASE_CELL_COUNT = 150;
@@ -73,47 +42,20 @@ public partial class MicrobeBenchmark : Node
     private const float MAX_WAIT_TIME_FOR_MICROBE_DEATH = 130;
     private const int REMAINING_MICROBES_THRESHOLD = 40;
 
-    private const int RANDOM_SEED = 256345461;
-
-    // Quite good new seed with small cells
-    // private const int RANDOM_SEED = 256345461;
-
-    // Quite lively activity
-    // private const int RANDOM_SEED = 986586944;
-
-    // Quite good but a lot of early dying and then inactivity due to taking ATP damage
-    // private const int RANDOM_SEED = 653564247;
-
-    // Quite good but has slime jets
-    // private const int RANDOM_SEED = 653564254;
-
-    // Old seed, no longer good with the new mutation algorithm
-    // private const int RANDOM_SEED = 256345464;
-
-    /// <summary>
-    ///   Increment this if the functionality of the benchmark changes considerably
-    /// </summary>
-    private const int VERSION = 1;
-
-    private readonly BenchmarkHelpers.BenchmarkChangedSettingsStore storedSettings = new();
-
     private readonly List<Entity> spawnedMicrobes = new();
     private readonly List<Species> generatedSpecies = new();
 
-    private readonly List<double> fpsValues = new();
-
 #pragma warning disable CA2213
-    private CustomWindow guiContainer = null!;
-    private Label fpsLabel = null!;
-    private Label phaseLabel = null!;
+    [Export]
     private Label microbesCountLabel = null!;
-    private Label benchmarkResultsText = null!;
-    private Control benchmarkFinishedText = null!;
-    private Button copyResultsButton = null!;
 
+    [Export]
     private Node worldRoot = null!;
+
+    [Export]
     private Node dynamicRoot = null!;
 
+    [Export]
     private MicrobeCamera benchmarkCamera = null!;
 
     private CompoundCloudSystem? cloudSystem;
@@ -131,20 +73,14 @@ public partial class MicrobeBenchmark : Node
 
     private EntitySet? microbeEntities;
 
-    private XoShiRo256starstar random = new(RANDOM_SEED);
-
     private int aiGroup1Seed;
     private int aiGroup2Seed;
 
     private bool preventDying;
 
-    private int internalPhaseCounter;
-    private double timer;
-
     private int spawnCounter;
     private double spawnAngle;
     private float spawnDistance;
-    private double timeSinceSpawn;
     private bool spawnedSomething;
 
     private float microbeStationaryResult;
@@ -157,50 +93,42 @@ public partial class MicrobeBenchmark : Node
     private float microbeDeathMinFPS;
     private int remainingMicrobesAtEnd;
 
-    private DateTime startTime;
-    private double totalDuration;
+    // This used to be an int so hopefully this doesn't change things by being an int now
+    protected override long RandomSeed => 256345461;
 
-    private bool exiting;
+    // Quite good new seed with small cells
+    // protected override long RandomSeed = 256345461;
+
+    // Quite lively activity
+    // protected override long RandomSeed = 986586944;
+
+    // Quite good but a lot of early dying and then inactivity due to taking ATP damage
+    // protected override long RandomSeed = 653564247;
+
+    // Quite good but has slime jets
+    // protected override long RandomSeed = 653564254;
+
+    // Old seed, no longer good with the new mutation algorithm
+    // protected override long RandomSeed = 256345464;
+
+    protected override int Version => 1;
+
+    protected override int TotalSteps => 5;
 
     public override void _Ready()
     {
-        guiContainer = GetNode<CustomWindow>(GUIContainerPath);
-        fpsLabel = GetNode<Label>(FPSLabelPath);
-        phaseLabel = GetNode<Label>(PhaseLabelPath);
-        microbesCountLabel = GetNode<Label>(MicrobesCountLabelPath);
-        benchmarkResultsText = GetNode<Label>(BenchmarkResultsTextPath);
-        benchmarkFinishedText = GetNode<Control>(BenchmarkFinishedTextPath);
-        copyResultsButton = GetNode<Button>(CopyResultsButtonPath);
-
-        worldRoot = GetNode<Node>(WorldRootPath);
-        dynamicRoot = GetNode<Node>(DynamicRootPath);
-        benchmarkCamera = GetNode<MicrobeCamera>(BenchmarkCameraPath);
-
-        guiContainer.Visible = true;
-        benchmarkFinishedText.Visible = false;
-        copyResultsButton.Visible = false;
-
         dummyEnvironment = new DummyMicrobeSpawnEnvironment();
 
-        StartBenchmark();
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        BenchmarkHelpers.RestoreNormalSettings(storedSettings);
+        base._Ready();
     }
 
     public override void _Process(double delta)
     {
-        fpsLabel.Text = new LocalizedString("FPS", Engine.GetFramesPerSecond()).ToString();
+        base._Process(delta);
+
         microbesCountLabel.Text = spawnedMicrobes.Count.ToString(CultureInfo.CurrentCulture);
 
         benchmarkCamera.UpdateCameraPosition(delta, Vector3.Zero);
-
-        timer += delta;
-        timeSinceSpawn += delta;
 
         if (spawnedSomething)
             CheckSpawnedMicrobes();
@@ -224,27 +152,6 @@ public partial class MicrobeBenchmark : Node
 
         switch (internalPhaseCounter)
         {
-            case 0:
-            {
-                // TODO: if the benchmark ever supports restarting, then cleanup of existing objects needs to be
-                // performed here
-                BenchmarkHelpers.PerformBenchmarkSetup(storedSettings);
-
-                GenerateWorldAndSpecies();
-                SetupSimulation();
-
-                if (microbeSimulation == null)
-                    throw new InvalidOperationException("Microbe sim not setup");
-
-                spawnAngle = 0;
-                spawnDistance = 1;
-                microbeSimulation.RunAI = false;
-                preventDying = true;
-
-                IncrementPhase();
-                break;
-            }
-
             case 1:
             {
                 // Need to pass some time between each spawn
@@ -406,44 +313,31 @@ public partial class MicrobeBenchmark : Node
             case 11:
             {
                 // Benchmark ended
-                totalDuration = (float)(DateTime.Now - startTime).TotalSeconds;
-
-                IncrementPhase();
+                OnBenchmarkEnded();
                 break;
             }
         }
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void OnBenchmarkStarted()
     {
-        if (disposing)
-        {
-            microbeSimulation?.Dispose();
-            microbeEntities?.Dispose();
+        // TODO: if the benchmark ever supports restarting, then cleanup of existing objects needs to be
+        // performed here
 
-            if (GUIContainerPath != null)
-            {
-                GUIContainerPath.Dispose();
-                FPSLabelPath.Dispose();
-                PhaseLabelPath.Dispose();
-                MicrobesCountLabelPath.Dispose();
-                BenchmarkResultsTextPath.Dispose();
-                BenchmarkFinishedTextPath.Dispose();
-                CopyResultsButtonPath.Dispose();
-                WorldRootPath.Dispose();
-                DynamicRootPath.Dispose();
-                BenchmarkCameraPath.Dispose();
-            }
-        }
+        GenerateWorldAndSpecies();
+        SetupSimulation();
 
-        base.Dispose(disposing);
+        if (microbeSimulation == null)
+            throw new InvalidOperationException("Microbe sim not setup");
+
+        spawnAngle = 0;
+        spawnDistance = 1;
+        microbeSimulation.RunAI = false;
+        preventDying = true;
     }
 
-    private void StartBenchmark()
+    protected override void OnBenchmarkStateReset()
     {
-        internalPhaseCounter = 0;
-        random = new XoShiRo256starstar(RANDOM_SEED);
-
         microbeStationaryResult = 0;
         microbeAIResult = 0;
         microbeStressTestResult = 0;
@@ -453,11 +347,108 @@ public partial class MicrobeBenchmark : Node
         microbeDeathResult = 0;
         microbeDeathMinFPS = 0;
         remainingMicrobesAtEnd = 0;
+    }
 
-        startTime = DateTime.Now;
-        totalDuration = 0;
+    protected override int GetDisplayStep(int internalStepNumber)
+    {
+        return internalStepNumber switch
+        {
+            <= 3 => 1,
+            <= 6 => 2,
+            <= 9 => 3,
+            <= 10 => 4,
+            _ => 5,
+        };
+    }
 
-        UpdatePhaseLabel();
+    protected override string GenerateResultsText(int scoreDecimals = 2)
+    {
+        var builder = new StringBuilder();
+
+        // This is intentionally not translatable to make it easier for developers to request this info from players and
+        // then understand it
+        if (microbeStationaryResult != 0)
+        {
+            builder.Append("Stationary microbes score: ");
+            builder.Append(Math.Round(microbeStationaryResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (microbeAIResult != 0)
+        {
+            builder.Append("AI microbes score: ");
+            builder.Append(Math.Round(microbeAIResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (microbeStressTestResult != 0)
+        {
+            builder.Append($"Spawns until no {TARGET_FPS_FOR_SPAWNING} FPS: ");
+            builder.Append(Math.Round(microbeStressTestResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (microbeStressTestAverageFPS != 0)
+        {
+            builder.Append("Microbe stress average FPS: ");
+            builder.Append(
+                Math.Round(microbeStressTestAverageFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (microbeStressTestMinFPS != 0)
+        {
+            builder.Append("Microbe stress min FPS: ");
+            builder.Append(Math.Round(microbeStressTestMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (aliveStressTestMicrobes != 0)
+        {
+            builder.Append("Alive microbes: ");
+            builder.Append(aliveStressTestMicrobes.ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (microbeDeathResult != 0)
+        {
+            builder.Append("Waiting for microbes to die: ");
+            builder.Append(Math.Round(microbeDeathResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (microbeDeathMinFPS != 0)
+        {
+            builder.Append("Microbe deaths minimum FPS: ");
+            builder.Append(Math.Round(microbeDeathMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        if (remainingMicrobesAtEnd != 0)
+        {
+            builder.Append("Remaining microbes: ");
+            builder.Append(remainingMicrobesAtEnd.ToString(CultureInfo.InvariantCulture));
+            builder.Append('\n');
+        }
+
+        AddTestDurationToResult(builder);
+
+        AddResultHardwareInfo(builder);
+
+        // TODO: overall score?
+
+        return builder.ToString();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            microbeSimulation?.Dispose();
+            microbeEntities?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void GenerateWorldAndSpecies()
@@ -555,195 +546,5 @@ public partial class MicrobeBenchmark : Node
     private void PruneDeadMicrobes()
     {
         spawnedMicrobes.RemoveAll(r => !r.IsAlive || r.Get<Health>().Dead);
-    }
-
-    private void WaitForStableFPS()
-    {
-        // TODO: a more fancy method
-        if (timer > 3.5f)
-            IncrementPhase();
-    }
-
-    private bool MeasureFPS()
-    {
-        // Sample up to 20 times per second
-        if (timer < 0.05f)
-            return false;
-
-        timer = 0;
-
-        fpsValues.Add(Engine.GetFramesPerSecond());
-
-        // TODO: could check for standard deviation or something to determine when we have enough samples
-        if (fpsValues.Count > 50)
-            return true;
-
-        return false;
-    }
-
-    private float ScoreFromMeasuredFPS()
-    {
-        if (fpsValues.Count < 1)
-            throw new InvalidOperationException("No values recorded");
-
-        // For now just take the average
-        // TODO: would be nice to have also min and 1% lows
-        return (float)fpsValues.Average();
-    }
-
-    private void UpdatePhaseLabel()
-    {
-        benchmarkResultsText.Text = GenerateResultsText();
-
-        benchmarkFinishedText.Visible = false;
-        copyResultsButton.Visible = false;
-
-        if (internalPhaseCounter <= 0)
-        {
-            phaseLabel.Text = StringUtils.SlashSeparatedNumbersFormat(0, 5);
-        }
-        else if (internalPhaseCounter <= 3)
-        {
-            phaseLabel.Text = StringUtils.SlashSeparatedNumbersFormat(1, 5);
-        }
-        else if (internalPhaseCounter <= 6)
-        {
-            phaseLabel.Text = StringUtils.SlashSeparatedNumbersFormat(2, 5);
-        }
-        else if (internalPhaseCounter <= 9)
-        {
-            phaseLabel.Text = StringUtils.SlashSeparatedNumbersFormat(3, 5);
-        }
-        else if (internalPhaseCounter <= 10)
-        {
-            phaseLabel.Text = StringUtils.SlashSeparatedNumbersFormat(4, 5);
-        }
-        else
-        {
-            phaseLabel.Text = StringUtils.SlashSeparatedNumbersFormat(5, 5);
-
-            benchmarkFinishedText.Visible = true;
-            copyResultsButton.Visible = true;
-        }
-    }
-
-    private void IncrementPhase()
-    {
-        ++internalPhaseCounter;
-        timer = 0;
-        fpsValues.Clear();
-
-        UpdatePhaseLabel();
-    }
-
-    private string GenerateResultsText(int scoreDecimals = 2)
-    {
-        var builder = new StringBuilder();
-
-        // This is intentionally not translatable to make it easier for developers to request this info from players and
-        // then understand it
-        if (microbeStationaryResult != 0)
-        {
-            builder.Append("Stationary microbes score: ");
-            builder.Append(Math.Round(microbeStationaryResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeAIResult != 0)
-        {
-            builder.Append("AI microbes score: ");
-            builder.Append(Math.Round(microbeAIResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeStressTestResult != 0)
-        {
-            builder.Append($"Spawns until no {TARGET_FPS_FOR_SPAWNING} FPS: ");
-            builder.Append(Math.Round(microbeStressTestResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeStressTestAverageFPS != 0)
-        {
-            builder.Append("Microbe stress average FPS: ");
-            builder.Append(
-                Math.Round(microbeStressTestAverageFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeStressTestMinFPS != 0)
-        {
-            builder.Append("Microbe stress min FPS: ");
-            builder.Append(Math.Round(microbeStressTestMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (aliveStressTestMicrobes != 0)
-        {
-            builder.Append("Alive microbes: ");
-            builder.Append(aliveStressTestMicrobes.ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeDeathResult != 0)
-        {
-            builder.Append("Waiting for microbes to die: ");
-            builder.Append(Math.Round(microbeDeathResult, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (microbeDeathMinFPS != 0)
-        {
-            builder.Append("Microbe deaths minimum FPS: ");
-            builder.Append(Math.Round(microbeDeathMinFPS, scoreDecimals).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (remainingMicrobesAtEnd != 0)
-        {
-            builder.Append("Remaining microbes: ");
-            builder.Append(remainingMicrobesAtEnd.ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (totalDuration != 0)
-        {
-            builder.Append("Total test duration: ");
-            builder.Append(Math.Round(totalDuration, 1).ToString(CultureInfo.InvariantCulture));
-            builder.Append('\n');
-        }
-
-        if (builder.Length > 0 || Constants.BENCHMARKS_SHOW_HARDWARE_INFO_IMMEDIATELY)
-            builder.Append(BenchmarkHelpers.GetGeneralHardwareInfo());
-
-        // TODO: overall score?
-
-        return builder.ToString();
-    }
-
-    private void CopyResultsToClipboard()
-    {
-        var builder = new StringBuilder();
-
-        builder.Append($"Benchmark results for {nameof(MicrobeBenchmark)} v{VERSION}\n");
-        builder.Append(GenerateResultsText(3));
-
-        DisplayServer.ClipboardSet(builder.ToString());
-    }
-
-    private void ExitBenchmark()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (exiting)
-            return;
-
-        exiting = true;
-        TransitionManager.Instance.AddSequence(ScreenFade.FadeType.FadeOut, 0.1f, OnSwitchToMenuScene, false);
-    }
-
-    private void OnSwitchToMenuScene()
-    {
-        SceneManager.Instance.ReturnToMenu();
     }
 }

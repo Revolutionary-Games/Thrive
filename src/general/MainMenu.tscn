@@ -496,6 +496,15 @@ focus_previous = NodePath(".")
 mouse_filter = 1
 text = "MICROBE_BENCHMARK"
 
+[node name="CloudBenchmark" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+size_flags_vertical = 0
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "COMPOUND_CLOUD_BENCHMARK"
+
 [node name="unknown" type="Button" parent="MenuContainers/Menus/VBoxContainer/Benchmarks"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(250, 40)
@@ -783,6 +792,8 @@ layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="CreditsView" type="Control" parent="."]
 visible = false
@@ -910,6 +921,7 @@ ShowCloseButton = false
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/VisitSuggestionsSite" to="." method="VisitSuggestionsSitePressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Extras/Back" to="." method="BackFromToolsPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/MicrobeBenchmark" to="." method="MicrobeBenchmarkPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/CloudBenchmark" to="." method="CloudBenchmarkPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/VBoxContainer/Benchmarks/Back" to="." method="OnReturnFromBenchmarks"]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/OfficialWebsiteButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://revolutionarygamesstudio.com/"]]
 [connection signal="pressed" from="MenuContainers/WebsiteButtons/HBoxContainer/MarginContainer/VBoxContainer/CommunityForumButton" to="." method="OnSocialMediaButtonPressed" binds= ["https://community.revolutionarygamesstudio.com/"]]

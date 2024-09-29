@@ -4,11 +4,35 @@
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
 
+#include "nodes/DebugDrawer.hpp"
+#include "physics/DebugDrawForwarder.hpp"
+
 // ------------------------------------ //
 namespace Thrive
 {
 
 constexpr int INIT_MAGIC = 765442;
+
+ThriveConfig* ThriveConfig::instance = nullptr;
+
+DebugDrawer* activeDrawerInstance = nullptr;
+
+void ForwardLines(const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& lineBuffer) noexcept
+{
+    if (activeDrawerInstance == nullptr)
+        return;
+
+    activeDrawerInstance->OnReceiveLines(lineBuffer);
+}
+
+void ForwardTriangles(
+    const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& triangleBuffer) noexcept
+{
+    if (activeDrawerInstance == nullptr)
+        return;
+
+    activeDrawerInstance->OnReceiveTriangles(triangleBuffer);
+}
 
 int InitValueLocation = -1;
 
@@ -72,6 +96,10 @@ ThriveConfig* ThriveConfig::InitializeImplementation(NativeLibIntercommunication
     // Init succeeded
     initialized = true;
     InitValueLocation = INIT_MAGIC;
+    instance = this;
+
+    // Store for later accessing
+    storedIntercommunication = &intercommunication;
 
     godot::UtilityFunctions::print("Thrive GDExtension initialized successfully");
     return this;
@@ -105,8 +133,43 @@ bool ThriveConfig::Shutdown() noexcept
         return false;
     }
 
+    instance = nullptr;
     initialized = false;
     return true;
+}
+
+// ------------------------------------ //
+
+bool ThriveConfig::IsDebugDrawSupported() const noexcept
+{
+    if (!storedIntercommunication)
+    {
+        ERR_PRINT("ThriveConfig not initialized (missing intercommunication)");
+        return false;
+    }
+
+    return storedIntercommunication->PhysicsDebugSupported;
+}
+
+void ThriveConfig::RegisterDebugDrawReceiver(DebugDrawer* drawer) noexcept
+{
+    if (!storedIntercommunication)
+    {
+        ERR_PRINT("ThriveConfig not initialized (missing intercommunication)");
+        return;
+    }
+
+    if (drawer == nullptr)
+    {
+        storedIntercommunication->DebugLineReceiver = nullptr;
+        storedIntercommunication->DebugTriangleReceiver = nullptr;
+        activeDrawerInstance = nullptr;
+        return;
+    }
+
+    activeDrawerInstance = drawer;
+    storedIntercommunication->DebugLineReceiver = ForwardLines;
+    storedIntercommunication->DebugTriangleReceiver = ForwardTriangles;
 }
 
 // ------------------------------------ //

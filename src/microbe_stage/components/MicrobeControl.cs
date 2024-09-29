@@ -328,6 +328,10 @@ public static class MicrobeControlHelpers
         ref OrganelleContainer organelleInfo, ref CompoundStorage availableCompounds, in Entity entity, bool state,
         Compound mucilageCompound = Compound.Invalid)
     {
+        // Don't activate mucocyst when engulfed
+        if (state && entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
         if (mucilageCompound == Compound.Invalid)
             mucilageCompound = Compound.Mucilage;
 
