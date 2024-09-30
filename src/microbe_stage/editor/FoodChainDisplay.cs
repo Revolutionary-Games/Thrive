@@ -1,12 +1,11 @@
-﻿// #define GUARD_AGAINST_NEGATIVE_GRAPH_POSITIONS
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading;
 using AutoEvo;
 using Godot;
 using GraphShape.Algorithms.Layout;
 using QuikGraph;
+using QuikGraph.Algorithms;
 
 /// <summary>
 ///   Displays a food chain from auto-evo results in the GUI for the player to inspect. This node should be put inside
@@ -36,6 +35,12 @@ public partial class FoodChainDisplay : Control
 
     [Signal]
     public delegate void SpeciesSelectedEventHandler(uint id);
+
+    [Export]
+    public Vector2 Margin { get; set; } = new(10, 5);
+
+    [Export]
+    public Vector2 EstimatedSpeciesButtonSize { get; set; } = new(110, 92);
 
     public override void _Ready()
     {
@@ -169,7 +174,6 @@ public partial class FoodChainDisplay : Control
         layoutGraph.Clear();
 
         // Create the graph data object with the nodes and connections
-
         foreach (var node in graphNodes)
         {
             layoutGraph.AddVertex(node);
@@ -183,49 +187,67 @@ public partial class FoodChainDisplay : Control
             }
         }
 
+        // Then calculate a layout for them
         // Set an absolute deadline of 15 seconds to not totally freeze the game (could switch to a background layout)
         var cancellationSource = new CancellationTokenSource();
         cancellationSource.CancelAfter(TimeSpan.FromSeconds(15));
 
+        // FRLayoutAlgorithm seems to fail often so it is not usable with our data
+
         var layoutAlgorithm =
-            new FRLayoutAlgorithm<GraphNode, Edge<GraphNode>, AdjacencyGraph<GraphNode, Edge<GraphNode>>>(layoutGraph,
-                new FreeFRLayoutParameters
+            new SugiyamaLayoutAlgorithm<GraphNode, Edge<GraphNode>, AdjacencyGraph<GraphNode, Edge<GraphNode>>>(
+                layoutGraph, new SugiyamaLayoutParameters
                 {
-                    MaxIterations = 200,
-                    IdealEdgeLength = 150,
+                    Direction = GraphShape.Algorithms.Layout.LayoutDirection.BottomToTop,
+                    LayerGap = 150,
+                    SliceGap = 140,
+                    MinimizeEdgeLength = false,
+                    OptimizeWidth = false,
+                    EdgeRouting = SugiyamaEdgeRouting.Traditional,
                 });
 
         layoutAlgorithm.Compute();
         cancellationSource.Token.Register(() => layoutAlgorithm.Abort());
 
-        // Make sure all graph positions are positive
+        if (layoutAlgorithm.State != ComputationState.Finished)
+            GD.PrintErr("Graph layout algorithm didn't finish");
 
-#if GUARD_AGAINST_NEGATIVE_GRAPH_POSITIONS
-        var translation = new Point(0, 0);
+        // Convert graph coordinates so they are all on-screen
+        double xOffset = 0;
+        double yOffset = 0;
 
-        if (layoutGraph.BoundingBox.Left < 0)
+        foreach (var point in layoutAlgorithm.VerticesPositions.Values)
         {
-            translation = new Point(Math.Abs(layoutGraph.BoundingBox.Left), translation.Y);
+            if (point.X < xOffset)
+                xOffset = point.X;
+
+            if (point.Y < yOffset)
+                yOffset = point.Y;
         }
 
-        if (layoutGraph.BoundingBox.Bottom < 0)
-        {
-            translation = new Point(translation.X, Math.Abs(layoutGraph.BoundingBox.Bottom));
-        }
+        // Convert the offsets to positive to make them cancel out then the most negative positions below
+        xOffset = Math.Abs(xOffset);
+        yOffset = Math.Abs(yOffset);
 
-        if (translation.X != 0 || translation.Y != 0)
-            layoutGraph.Translate(translation);
-#endif
+        // And add base margin from this
+        // As well as size from the species buttons to be able to center align the controls on the generated points
+        // without anything getting cutoff
+        xOffset += Margin.X + EstimatedSpeciesButtonSize.X;
+        yOffset += Margin.Y + EstimatedSpeciesButtonSize.Y;
 
+        // Apply the calculated positions to the nodes
+        // TODO: convert from horizontal to vertical graph layout
         foreach (var node in graphNodes)
         {
-            if (layoutAlgorithm.VerticesPositions.TryGetValue(node, out var position))
-            {
-                // Round the positions to get integer coordinates which are less blurry for text
-                node.ReportComputedGraphPosition(new Vector2((float)Math.Round(position.X),
-                    (float)Math.Round(position.Y)));
-            }
+            if (!layoutAlgorithm.VerticesPositions.TryGetValue(node, out var position))
+                continue;
+
+            // Round the positions to get integer coordinates which are less blurry for text
+            node.ReportComputedGraphPosition(new Vector2((float)Math.Round(position.X + xOffset),
+                (float)Math.Round(position.Y + yOffset)));
         }
+
+        // Mirror the vertical axis to make the graph more similar to a food chain which his usually seen top down
     }
 
     private void ApplyGraphPositions()
@@ -522,6 +544,14 @@ public partial class FoodChainDisplay : Control
 
         public void ReportComputedGraphPosition(Vector2 position)
         {
+#if DEBUG
+            if (float.IsNaN(position.X) || float.IsNaN(position.Y))
+            {
+                GD.PrintErr("Graph node position is NaN");
+                position = Vector2.Zero;
+            }
+#endif
+
             graphPosition = position;
         }
 
@@ -530,17 +560,27 @@ public partial class FoodChainDisplay : Control
             if (CreatedControl == null)
                 throw new InvalidOperationException("No control created");
 
-            CreatedControl.Position = graphPosition;
+            var halfSize = CreatedControl.Size * 0.5f;
 
-            var size = CreatedControl.Size;
-            float right = graphPosition.X + size.X;
-            float bottom = graphPosition.Y + size.Y;
+            // Center on the graph point so that different sized controls look good
+            CreatedControl.Position = graphPosition - halfSize;
+
+            float right = graphPosition.X + halfSize.X;
+            float bottom = graphPosition.Y + halfSize.Y;
 
             if (right > maximumWidth)
                 maximumWidth = right;
 
             if (bottom > maximumHeight)
                 maximumHeight = bottom;
+        }
+
+        public override string ToString()
+        {
+            if (Species != null)
+                return $"({Type}, {Species})";
+
+            return $"({Type}, {Compound})";
         }
     }
 }
