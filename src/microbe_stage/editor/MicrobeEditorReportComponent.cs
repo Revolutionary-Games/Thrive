@@ -103,6 +103,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     private Patch PatchToShowInfoFor => currentlyDisplayedPatch ?? Editor.CurrentPatch;
 
+    private Species PlayerSpecies => Editor.CurrentGame.GameWorld.PlayerSpecies;
+
     public override void _Ready()
     {
         base._Ready();
@@ -176,7 +178,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         // Refresh this expensive graphical report only if it is visible
         if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
         {
-            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor);
+            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
         }
     }
 
@@ -602,7 +604,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
                 if (autoEvoResults != null)
                 {
-                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor);
+                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
                 }
 
                 break;
@@ -635,7 +637,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
         {
-            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor);
+            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
         }
     }
 

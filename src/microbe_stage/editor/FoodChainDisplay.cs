@@ -54,14 +54,14 @@ public partial class FoodChainDisplay : Control
 
         foreach (var (startControl, endControl) in lines)
         {
-            var start = startControl.Position + startControl.Size / 2;
-            var end = endControl.Position + endControl.Size / 2;
+            var start = startControl.Position + startControl.Size * 0.5f;
+            var end = endControl.Position + endControl.Size * 0.5f;
 
             DrawLine(start, end, Colors.Aquamarine, 2, true);
         }
     }
 
-    public void DisplayFoodChainIfRequired(RunResults autoEvoResults, Patch forPatch)
+    public void DisplayFoodChainIfRequired(RunResults autoEvoResults, Patch forPatch, Species playerSpecies)
     {
         // Only update if data has changed
         if (autoEvoResults == lastResults && forPatch == lastPatch)
@@ -113,6 +113,8 @@ public partial class FoodChainDisplay : Control
             seenSpecies.Remove(species);
         }
 
+        HandleAddingPlayer(autoEvoResults, forPatch, playerSpecies, seenSpecies);
+
         // Species that didn't get a miche and are going extinct aren't seen above, but they will be handled in
         // BuildMicheEnergyNodes
 
@@ -138,6 +140,28 @@ public partial class FoodChainDisplay : Control
         ApplyGraphPositions();
 
         CreateLines();
+    }
+
+    private static void HandleAddingPlayer(RunResults autoEvoResults, Patch forPatch, Species playerSpecies,
+        HashSet<Species> seenSpecies)
+    {
+        // Player cannot be considered to be extinct due to missing from miches, so add player always if missing
+
+        if (autoEvoResults.SpeciesHasResults(playerSpecies))
+        {
+            var speciesResult = autoEvoResults.GetSpeciesResultForInternalUse(playerSpecies);
+            if ((speciesResult.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation) &&
+                    oldPopulation > 0) ||
+                (speciesResult.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation) &&
+                    newPopulation > 0))
+            {
+                seenSpecies.Add(playerSpecies);
+            }
+        }
+        else
+        {
+            GD.PrintErr("No results for player species");
+        }
     }
 
     private void LayoutGraph()
