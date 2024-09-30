@@ -1,7 +1,18 @@
-﻿using System;
+﻿#define GUARD_AGAINST_NEGATIVE_GRAPH_POSITIONS
+
+using System;
 using System.Collections.Generic;
+using System.Threading;
 using AutoEvo;
 using Godot;
+using Microsoft.Msagl.Core;
+using Microsoft.Msagl.Core.Geometry;
+using Microsoft.Msagl.Core.Geometry.Curves;
+using Microsoft.Msagl.Core.Layout;
+using Microsoft.Msagl.Layout.MDS;
+using Microsoft.Msagl.Miscellaneous;
+using Edge = Microsoft.Msagl.Core.Layout.Edge;
+using Node = Microsoft.Msagl.Core.Layout.Node;
 
 /// <summary>
 ///   Displays a food chain from auto-evo results in the GUI for the player to inspect. This node should be put inside
@@ -9,6 +20,14 @@ using Godot;
 /// </summary>
 public partial class FoodChainDisplay : Control
 {
+    /// <summary>
+    ///   Used to run the graph layout algorithm. So this is a variant of this food chain in graph-library specific
+    ///   data format.
+    /// </summary>
+    private readonly GeometryGraph layoutGraph = new();
+
+    private readonly List<GraphNode> graphNodes = new();
+
     private readonly HashSet<(Control Start, Control End)> lines = new();
 
     private readonly List<Species> workMemory = new();
@@ -54,15 +73,12 @@ public partial class FoodChainDisplay : Control
         lastResults = autoEvoResults;
         lastPatch = forPatch;
 
-        // TODO: reuse nodes that can be to make this faster
-        this.QueueFreeChildren();
-        lines.Clear();
+        // TODO: reuse possible nodes
+        graphNodes.Clear();
 
         var micheTree = autoEvoResults.GetMicheForPatch(forPatch);
 
         var seenSpecies = new HashSet<Species>();
-
-        var graphNodes = new List<GraphNode>();
 
         // Build relationships based on the miche tree as that's the source of truth for what energy is available
         micheTree.GetOccupants(seenSpecies);
@@ -115,18 +131,127 @@ public partial class FoodChainDisplay : Control
             // This doesn't use GetSpeciesResultForInternalUse as this doesn't just care about the localized names of
             // energy sources, but also the types for more smart display in a graph like format
 
-            BuildMicheEnergyNodes(micheTree, species, graphNodes, forPatch);
+            BuildMicheEnergyNodes(micheTree, species, forPatch);
         }
 
-        // TODO: laying out the graph nicely
+        GenerateGraphGraphics(autoEvoResults, forPatch);
 
-        // Generate the final controls for the graph
-        float x = 10;
-        float y = 20;
+        LayoutGraph();
 
-        float y2 = 70;
-        float y3 = 60;
-        float y4 = 70;
+        ApplyGraphPositions();
+
+        CreateLines();
+    }
+
+    private void LayoutGraph()
+    {
+        layoutGraph.Edges.Clear();
+        layoutGraph.Nodes.Clear();
+
+        // Create the graph data object with the nodes and connections
+
+        foreach (var node in graphNodes)
+        {
+            layoutGraph.Nodes.Add(node.GetLayoutNode());
+        }
+
+        foreach (var node in graphNodes)
+        {
+            var source = node.GetLayoutNode();
+            foreach (var targetNode in node.Links)
+            {
+                layoutGraph.Edges.Add(new Edge(source, targetNode.GetLayoutNode()));
+            }
+        }
+
+        // Then use a layout algorithm
+        // TODO: would incremental layout be better?
+        // var settings = new FastIncrementalLayoutSettings();
+        // settings.IncrementalRun(graph);
+
+        var settings = new MdsLayoutSettings();
+
+        // Set an absolute deadline of 15 seconds to not totally freeze the game (could switch to a background layout)
+        var cancellationSource = new CancellationTokenSource();
+        cancellationSource.CancelAfter(TimeSpan.FromSeconds(15));
+
+        var token = new CancelToken();
+        cancellationSource.Token.Register(() => token.Canceled = true);
+
+        // TODO: this can apparently take in a folder to store some temporary stuff
+        LayoutHelpers.CalculateLayout(layoutGraph, settings, token);
+
+        // Make sure all graph positions are positive
+
+#if GUARD_AGAINST_NEGATIVE_GRAPH_POSITIONS
+        var translation = new Point(0, 0);
+
+        if (layoutGraph.BoundingBox.Left < 0)
+        {
+            translation = new Point(Math.Abs(layoutGraph.BoundingBox.Left), translation.Y);
+        }
+
+        if (layoutGraph.BoundingBox.Bottom < 0)
+        {
+            translation = new Point(translation.X, Math.Abs(layoutGraph.BoundingBox.Bottom));
+        }
+
+        if (translation.X != 0 || translation.Y != 0)
+            layoutGraph.Translate(translation);
+#endif
+
+        // And finally read back the resulting positions and lines for use in graphics generation
+        var height = (float)layoutGraph.BoundingBox.Height;
+        foreach (var graphNode in graphNodes)
+        {
+            graphNode.ReportGraphHeight(height);
+        }
+
+        // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
+        CustomMinimumSize = new Vector2((int)Math.Ceiling(layoutGraph.BoundingBox.Width),
+            (int)Math.Ceiling(layoutGraph.BoundingBox.Height));
+    }
+
+    private void ApplyGraphPositions()
+    {
+        foreach (var graphNode in graphNodes)
+        {
+            graphNode.SetPositionFromGraph();
+        }
+    }
+
+    private void CreateLines()
+    {
+        lines.Clear();
+
+        // TODO: get this from the graph to follow the wanted contours
+        // Generate lines list
+        foreach (var graphNode in graphNodes)
+        {
+            foreach (var nodeLink in graphNode.Links)
+            {
+                if (graphNode.CreatedControl == null || nodeLink.CreatedControl == null)
+                {
+                    GD.PrintErr("Invalid state of graph node (missing created Control)");
+                    continue;
+                }
+
+                var line = (graphNode.CreatedControl, nodeLink.CreatedControl);
+
+                lines.Add(line);
+            }
+        }
+
+        // Queue a redraw to draw all the connection lines again
+        QueueRedraw();
+    }
+
+    private void GenerateGraphGraphics(RunResults autoEvoResults, Patch forPatch)
+    {
+        // TODO: reuse nodes that can be to make this faster
+        this.QueueFreeChildren();
+
+        // Generate the controls for the graph which are positioned later once the layout is calculated
 
         foreach (var graphNode in graphNodes)
         {
@@ -156,9 +281,6 @@ public partial class FoodChainDisplay : Control
 
                     resultDisplay.Size = resultDisplay.CustomMinimumSize;
 
-                    // Position the node
-                    resultDisplay.Position = new Vector2(x, y);
-
                     if (graphNode.Type == GraphNode.NodeType.ExtinctSpecies)
                     {
                         resultDisplay.Disabled = true;
@@ -168,65 +290,38 @@ public partial class FoodChainDisplay : Control
                     AddChild(resultDisplay);
                     graphNode.CreatedControl = resultDisplay;
 
-                    y += 10 + resultDisplay.Size.Y;
                     break;
                 }
 
                 case GraphNode.NodeType.EnvironmentalCompound:
-                    CreateResourceNode(graphNode, 100, ref y2);
+                    CreateResourceNode(graphNode);
                     break;
+
                 case GraphNode.NodeType.CompoundChunk:
-                    CreateResourceNode(graphNode, 200, ref y3);
+                    CreateResourceNode(graphNode);
                     break;
 
                 case GraphNode.NodeType.CompoundCloud:
-                    CreateResourceNode(graphNode, 300, ref y4);
+                    CreateResourceNode(graphNode);
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
-        CustomMinimumSize = new Vector2(Size.X, y);
-
-        // Generate lines list
-        foreach (var graphNode in graphNodes)
-        {
-            foreach (var nodeLink in graphNode.Links)
-            {
-                if (graphNode.CreatedControl == null || nodeLink.CreatedControl == null)
-                {
-                    GD.PrintErr("Invalid state of graph node (missing created Control)");
-                    continue;
-                }
-
-                var line = (graphNode.CreatedControl, nodeLink.CreatedControl);
-
-                lines.Add(line);
-            }
-        }
-
-        // Queue a redraw to draw all the connection lines again
-        QueueRedraw();
     }
 
-    private void CreateResourceNode(GraphNode graphNode, float x, ref float y)
+    private void CreateResourceNode(GraphNode graphNode)
     {
         var resource = resourceScene.Instantiate<FoodChainResource>();
 
         resource.CompoundIcon = graphNode.Compound;
 
-        resource.Position = new Vector2(x, y);
-
         AddChild(resource);
         graphNode.CreatedControl = resource;
-
-        y += 60 + resource.Size.Y;
     }
 
-    private void BuildMicheEnergyNodes(Miche miche, Species species, List<GraphNode> graphNodes, Patch patch)
+    private void BuildMicheEnergyNodes(Miche miche, Species species, Patch patch)
     {
         if (miche.Occupant == species)
         {
@@ -250,16 +345,16 @@ public partial class FoodChainDisplay : Control
             switch (miche.Pressure)
             {
                 case ChunkCompoundPressure chunkCompoundPressure:
-                    LinkToCompoundNode(graphNodes, ourNode, chunkCompoundPressure.GetUsedCompoundType(),
+                    LinkToCompoundNode(ourNode, chunkCompoundPressure.GetUsedCompoundType(),
                         GraphNode.NodeType.CompoundChunk);
                     break;
 
                 case CompoundCloudPressure compoundCloudPressure:
-                    LinkToCompoundNode(graphNodes, ourNode, compoundCloudPressure.GetUsedCompoundType(),
+                    LinkToCompoundNode(ourNode, compoundCloudPressure.GetUsedCompoundType(),
                         GraphNode.NodeType.CompoundChunk);
                     break;
                 case EnvironmentalCompoundPressure environmentalCompoundPressure:
-                    LinkToCompoundNode(graphNodes, ourNode, environmentalCompoundPressure.GetUsedCompoundType(),
+                    LinkToCompoundNode(ourNode, environmentalCompoundPressure.GetUsedCompoundType(),
                         GraphNode.NodeType.CompoundChunk);
                     break;
 
@@ -314,11 +409,11 @@ public partial class FoodChainDisplay : Control
         // Look for more relevant miches in the children
         foreach (var child in miche.Children)
         {
-            BuildMicheEnergyNodes(child, species, graphNodes, patch);
+            BuildMicheEnergyNodes(child, species, patch);
         }
     }
 
-    private void LinkToCompoundNode(List<GraphNode> graphNodes, GraphNode nodeToLinkFrom, Compound compoundType,
+    private void LinkToCompoundNode(GraphNode nodeToLinkFrom, Compound compoundType,
         GraphNode.NodeType nodeTypeToLinkTo)
     {
         GraphNode? targetNode = null;
@@ -356,6 +451,9 @@ public partial class FoodChainDisplay : Control
 
         public Control? CreatedControl;
 
+        private Node? layout;
+        private float graphHeight;
+
         public GraphNode(Species species, bool extinct)
         {
             Species = species;
@@ -381,6 +479,44 @@ public partial class FoodChainDisplay : Control
             CompoundCloud,
             CompoundChunk,
             EnvironmentalCompound,
+        }
+
+        public Vector2 GetControlSize()
+        {
+            if (CreatedControl == null)
+                throw new InvalidOperationException("No control created");
+
+            return CreatedControl.Size;
+        }
+
+        public void SetPositionFromGraph()
+        {
+            if (layout == null)
+                throw new InvalidOperationException("This node was not added to the internal graph");
+
+            if (CreatedControl == null)
+                throw new InvalidOperationException("No control created");
+
+            var boundingBox = layout.BoundingBox;
+
+            CreatedControl.Position = new Vector2((float)boundingBox.Left, (float)boundingBox.Top);
+        }
+
+        // TODO: remove if unnecessary
+        public void ReportGraphHeight(float height)
+        {
+            graphHeight = height;
+        }
+
+        public Node GetLayoutNode()
+        {
+            if (layout != null)
+                return layout;
+
+            var size = GetControlSize();
+
+            layout = new Node(CurveFactory.CreateRectangle(size.X, size.Y, new Point(size.X / 2, size.Y / 2)), this);
+            return layout;
         }
     }
 }
