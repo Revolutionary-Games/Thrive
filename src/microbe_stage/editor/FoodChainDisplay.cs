@@ -1,18 +1,12 @@
-﻿#define GUARD_AGAINST_NEGATIVE_GRAPH_POSITIONS
+﻿// #define GUARD_AGAINST_NEGATIVE_GRAPH_POSITIONS
 
 using System;
 using System.Collections.Generic;
 using System.Threading;
 using AutoEvo;
 using Godot;
-using Microsoft.Msagl.Core;
-using Microsoft.Msagl.Core.Geometry;
-using Microsoft.Msagl.Core.Geometry.Curves;
-using Microsoft.Msagl.Core.Layout;
-using Microsoft.Msagl.Layout.MDS;
-using Microsoft.Msagl.Miscellaneous;
-using Edge = Microsoft.Msagl.Core.Layout.Edge;
-using Node = Microsoft.Msagl.Core.Layout.Node;
+using GraphShape.Algorithms.Layout;
+using QuikGraph;
 
 /// <summary>
 ///   Displays a food chain from auto-evo results in the GUI for the player to inspect. This node should be put inside
@@ -24,7 +18,7 @@ public partial class FoodChainDisplay : Control
     ///   Used to run the graph layout algorithm. So this is a variant of this food chain in graph-library specific
     ///   data format.
     /// </summary>
-    private readonly GeometryGraph layoutGraph = new();
+    private readonly AdjacencyGraph<GraphNode, Edge<GraphNode>> layoutGraph = new();
 
     private readonly List<GraphNode> graphNodes = new();
 
@@ -148,50 +142,37 @@ public partial class FoodChainDisplay : Control
 
     private void LayoutGraph()
     {
-        layoutGraph.Edges.Clear();
-        layoutGraph.Nodes.Clear();
-
-        layoutGraph.Margins = 5;
+        layoutGraph.Clear();
 
         // Create the graph data object with the nodes and connections
 
         foreach (var node in graphNodes)
         {
-            layoutGraph.Nodes.Add(node.GetLayoutNode());
+            layoutGraph.AddVertex(node);
         }
 
-        foreach (var node in graphNodes)
+        foreach (var source in graphNodes)
         {
-            var source = node.GetLayoutNode();
-            foreach (var targetNode in node.Links)
+            foreach (var targetNode in source.Links)
             {
-                layoutGraph.Edges.Add(new Edge(source, targetNode.GetLayoutNode()));
+                layoutGraph.AddEdge(new Edge<GraphNode>(source, targetNode));
             }
         }
-
-        // Then use a layout algorithm
-        // TODO: would incremental layout be better?
-        // var settings = new FastIncrementalLayoutSettings();
-        // settings.IncrementalRun(graph);
-
-        var settings = new MdsLayoutSettings
-        {
-            NodeSeparation = 20,
-            ClusterMargin = 50,
-            LiftCrossEdges = true,
-            RemoveOverlaps = true,
-            PackingMethod = PackingMethod.Columns,
-        };
 
         // Set an absolute deadline of 15 seconds to not totally freeze the game (could switch to a background layout)
         var cancellationSource = new CancellationTokenSource();
         cancellationSource.CancelAfter(TimeSpan.FromSeconds(15));
 
-        var token = new CancelToken();
-        cancellationSource.Token.Register(() => token.Canceled = true);
+        var layoutAlgorithm =
+            new FRLayoutAlgorithm<GraphNode, Edge<GraphNode>, AdjacencyGraph<GraphNode, Edge<GraphNode>>>(layoutGraph,
+                new FreeFRLayoutParameters
+                {
+                    MaxIterations = 200,
+                    IdealEdgeLength = 150,
+                });
 
-        // TODO: this can apparently take in a folder to store some temporary stuff
-        LayoutHelpers.CalculateLayout(layoutGraph, settings, token);
+        layoutAlgorithm.Compute();
+        cancellationSource.Token.Register(() => layoutAlgorithm.Abort());
 
         // Make sure all graph positions are positive
 
@@ -212,17 +193,29 @@ public partial class FoodChainDisplay : Control
             layoutGraph.Translate(translation);
 #endif
 
-        // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
-        CustomMinimumSize = new Vector2((int)Math.Ceiling(layoutGraph.BoundingBox.Width),
-            (int)Math.Ceiling(layoutGraph.BoundingBox.Height));
+        foreach (var node in graphNodes)
+        {
+            if (layoutAlgorithm.VerticesPositions.TryGetValue(node, out var position))
+            {
+                // Round the positions to get integer coordinates which are less blurry for text
+                node.ReportComputedGraphPosition(new Vector2((float)Math.Round(position.X),
+                    (float)Math.Round(position.Y)));
+            }
+        }
     }
 
     private void ApplyGraphPositions()
     {
+        float width = 100;
+        float height = 100;
+
         foreach (var graphNode in graphNodes)
         {
-            graphNode.SetPositionFromGraph();
+            graphNode.SetPositionFromGraph(ref width, ref height);
         }
+
+        // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
+        CustomMinimumSize = new Vector2((int)Math.Ceiling(width), (int)Math.Ceiling(height));
     }
 
     private void CreateLines()
@@ -465,7 +458,7 @@ public partial class FoodChainDisplay : Control
 
         public Control? CreatedControl;
 
-        private Node? layout;
+        private Vector2 graphPosition;
 
         public GraphNode(Species species, bool extinct)
         {
@@ -494,6 +487,7 @@ public partial class FoodChainDisplay : Control
             EnvironmentalCompound,
         }
 
+        // TODO: try to hook this up to GraphShape
         public Vector2 GetControlSize()
         {
             if (CreatedControl == null)
@@ -502,34 +496,27 @@ public partial class FoodChainDisplay : Control
             return CreatedControl.Size;
         }
 
-        public void SetPositionFromGraph()
+        public void ReportComputedGraphPosition(Vector2 position)
         {
-            if (layout == null)
-                throw new InvalidOperationException("This node was not added to the internal graph");
+            graphPosition = position;
+        }
 
+        public void SetPositionFromGraph(ref float maximumWidth, ref float maximumHeight)
+        {
             if (CreatedControl == null)
                 throw new InvalidOperationException("No control created");
 
-            var boundingBox = layout.BoundingBox;
+            CreatedControl.Position = graphPosition;
 
-            // CreatedControl.Position = new Vector2((float)boundingBox.Left, (float)boundingBox.Top);
-            var center = boundingBox.Center;
+            var size = CreatedControl.Size;
+            float right = graphPosition.X + size.X;
+            float bottom = graphPosition.Y + size.Y;
 
-            var halfSize = CreatedControl.Size * 0.5f;
+            if (right > maximumWidth)
+                maximumWidth = right;
 
-            CreatedControl.Position = new Vector2((float)center.X, (float)center.Y) - halfSize;
-        }
-
-        public Node GetLayoutNode()
-        {
-            if (layout != null)
-                return layout;
-
-            var size = GetControlSize();
-
-            // layout = new Node(CurveFactory.CreateRectangle(size.X, size.Y, new Point(size.X * 0.5f, size.Y * 0.5f)));
-            layout = new Node(CurveFactory.CreateRectangle(size.X, size.Y, new Point(0, 0)));
-            return layout;
+            if (bottom > maximumHeight)
+                maximumHeight = bottom;
         }
     }
 }
