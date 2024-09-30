@@ -28,10 +28,13 @@ public partial class FoodChainResource : PanelContainer
                 return;
             }
 
-            texture.Texture = SimulationParameters.GetCompound(displayedCompound).LoadedIcon;
+            var definition = SimulationParameters.GetCompound(displayedCompound);
+            texture.Texture = definition.LoadedIcon;
 
             if (texture.Texture == null)
                 GD.PrintErr("Compound icon is not loaded");
+
+            TooltipText = definition.GetUntranslatedName();
         }
     }
 }

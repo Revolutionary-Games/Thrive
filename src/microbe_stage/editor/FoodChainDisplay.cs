@@ -40,6 +40,9 @@ public partial class FoodChainDisplay : Control
     private RunResults? lastResults;
     private Patch? lastPatch;
 
+    [Signal]
+    public delegate void SpeciesSelectedEventHandler(uint id);
+
     public override void _Ready()
     {
         speciesResultButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/SpeciesResultButton.tscn");
@@ -148,6 +151,8 @@ public partial class FoodChainDisplay : Control
         layoutGraph.Edges.Clear();
         layoutGraph.Nodes.Clear();
 
+        layoutGraph.Margins = 5;
+
         // Create the graph data object with the nodes and connections
 
         foreach (var node in graphNodes)
@@ -169,7 +174,14 @@ public partial class FoodChainDisplay : Control
         // var settings = new FastIncrementalLayoutSettings();
         // settings.IncrementalRun(graph);
 
-        var settings = new MdsLayoutSettings();
+        var settings = new MdsLayoutSettings
+        {
+            NodeSeparation = 20,
+            ClusterMargin = 50,
+            LiftCrossEdges = true,
+            RemoveOverlaps = true,
+            PackingMethod = PackingMethod.Columns,
+        };
 
         // Set an absolute deadline of 15 seconds to not totally freeze the game (could switch to a background layout)
         var cancellationSource = new CancellationTokenSource();
@@ -199,13 +211,6 @@ public partial class FoodChainDisplay : Control
         if (translation.X != 0 || translation.Y != 0)
             layoutGraph.Translate(translation);
 #endif
-
-        // And finally read back the resulting positions and lines for use in graphics generation
-        var height = (float)layoutGraph.BoundingBox.Height;
-        foreach (var graphNode in graphNodes)
-        {
-            graphNode.ReportGraphHeight(height);
-        }
 
         // Make sure this control is big enough to contain all the child nodes and to make the scroll container work
         CustomMinimumSize = new Vector2((int)Math.Ceiling(layoutGraph.BoundingBox.Width),
@@ -285,8 +290,12 @@ public partial class FoodChainDisplay : Control
                     {
                         resultDisplay.Disabled = true;
                     }
+                    else
+                    {
+                        resultDisplay.Connect(SpeciesResultButton.SignalName.SpeciesSelected,
+                            new Callable(this, nameof(OnSpeciesClicked)));
+                    }
 
-                    // TODO: signals
                     AddChild(resultDisplay);
                     graphNode.CreatedControl = resultDisplay;
 
@@ -441,6 +450,11 @@ public partial class FoodChainDisplay : Control
         }
     }
 
+    private void OnSpeciesClicked(uint id)
+    {
+        EmitSignal(SignalName.SpeciesSelected, id);
+    }
+
     private class GraphNode
     {
         public readonly NodeType Type;
@@ -452,7 +466,6 @@ public partial class FoodChainDisplay : Control
         public Control? CreatedControl;
 
         private Node? layout;
-        private float graphHeight;
 
         public GraphNode(Species species, bool extinct)
         {
@@ -499,13 +512,12 @@ public partial class FoodChainDisplay : Control
 
             var boundingBox = layout.BoundingBox;
 
-            CreatedControl.Position = new Vector2((float)boundingBox.Left, (float)boundingBox.Top);
-        }
+            // CreatedControl.Position = new Vector2((float)boundingBox.Left, (float)boundingBox.Top);
+            var center = boundingBox.Center;
 
-        // TODO: remove if unnecessary
-        public void ReportGraphHeight(float height)
-        {
-            graphHeight = height;
+            var halfSize = CreatedControl.Size * 0.5f;
+
+            CreatedControl.Position = new Vector2((float)center.X, (float)center.Y) - halfSize;
         }
 
         public Node GetLayoutNode()
@@ -515,7 +527,8 @@ public partial class FoodChainDisplay : Control
 
             var size = GetControlSize();
 
-            layout = new Node(CurveFactory.CreateRectangle(size.X, size.Y, new Point(size.X / 2, size.Y / 2)), this);
+            // layout = new Node(CurveFactory.CreateRectangle(size.X, size.Y, new Point(size.X * 0.5f, size.Y * 0.5f)));
+            layout = new Node(CurveFactory.CreateRectangle(size.X, size.Y, new Point(0, 0)));
             return layout;
         }
     }
