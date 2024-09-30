@@ -20,6 +20,6 @@ public partial class CellHexesPreview : PhotographablePreview
 
     protected override ImageTask SetupImageTask()
     {
-        return new ImageTask(new CellHexesPhotoBuilder { Species = microbeSpecies }, KeepPlainImageInMemory);
+        return new ImageTask(new CellHexesPhotoBuilder { Species = microbeSpecies }, KeepPlainImageInMemory, Priority);
     }
 }

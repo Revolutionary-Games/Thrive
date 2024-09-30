@@ -154,6 +154,8 @@ constexpr uint64_t STUFFED_POINTER_POINTER_MASK = ~STUFFED_POINTER_DATA_MASK;
 
 constexpr uint32_t COLLISION_UNKNOWN_SUB_SHAPE = std::numeric_limits<uint32_t>::max();
 
+constexpr int MAX_DEBUG_DRAW_LEVEL = 7;
+
 } // namespace Thrive
 
 // Ensuring release builds don't have debug on

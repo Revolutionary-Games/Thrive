@@ -12,6 +12,12 @@ using Godot;
 /// </remarks>
 public partial class CellBillboard : Node3D
 {
+    /// <summary>
+    ///   The priority that the generated image tasks will have. The lower the number, the higher the priority.
+    /// </summary>
+    [Export]
+    public int Priority = 1;
+
     private int displayedHash;
 
     private ICellDefinition? displayedCell;
@@ -151,7 +157,7 @@ public partial class CellBillboard : Node3D
         displayedHash = displayedCell.GetVisualHashCode();
 
         // TODO: caching image tasks with the hash code
-        imageTask = new ImageTask(displayedCell);
+        imageTask = new ImageTask(displayedCell, priority: Priority);
 
         PhotoStudio.Instance.SubmitTask(imageTask);
 

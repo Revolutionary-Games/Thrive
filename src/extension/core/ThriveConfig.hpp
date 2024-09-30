@@ -9,6 +9,8 @@
 namespace Thrive
 {
 
+class DebugDrawer;
+
 /// \brief Manages forwarding C# side configuration and other runtime data between Thrive parts into this module
 class ThriveConfig : public godot::Object
 {
@@ -17,6 +19,10 @@ public:
     // ------------------------------------ //
     // Static access to this class to access configuration data. Invalid if this hasn't been initialized by the C#
     // code yet.
+    static ThriveConfig* Instance() noexcept
+    {
+        return instance;
+    }
 
 public:
     ThriveConfig() = default;
@@ -34,6 +40,12 @@ public:
     bool Shutdown() noexcept;
 
     // ------------------------------------ //
+    // Config access
+    [[nodiscard]] bool IsDebugDrawSupported() const noexcept;
+
+    void RegisterDebugDrawReceiver(DebugDrawer* drawer) noexcept;
+
+    // ------------------------------------ //
     // C# interop methods
     [[nodiscard]] int GetVersion() const noexcept;
 
@@ -41,7 +53,11 @@ protected:
     static void _bind_methods();
 
 private:
+    static ThriveConfig* instance;
+
     bool initialized = false;
+
+    NativeLibIntercommunication* storedIntercommunication = nullptr;
 };
 
 } // namespace Thrive

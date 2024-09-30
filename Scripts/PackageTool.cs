@@ -229,7 +229,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     protected override async Task<bool> OnBeforeStartExport(CancellationToken cancellationToken)
     {
         // Make sure Godot Editor is configured with right native libraries as it exports them itself
-        ColourConsole.WriteInfoLine("Making sure GDExtension is installed in Godot as distributable version");
+        ColourConsole.WriteInfoLine("Making sure GDExtension is installed in Godot as the distributable version");
 
         var nativeLibraryTool = new NativeLibs(new Program.NativeLibOptions
         {

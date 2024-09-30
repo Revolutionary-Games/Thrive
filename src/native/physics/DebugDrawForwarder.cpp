@@ -90,21 +90,14 @@ void DebugDrawForwarder::FlushOutput()
     Lock lock(mutex);
 
     // Send the accumulated data
-    if (lineCallback != nullptr)
+    if (lineCallback != nullptr && *lineCallback != nullptr)
     {
-        for (const auto& line : lineBuffer)
-        {
-            lineCallback(std::get<0>(line), std::get<1>(line), std::get<2>(line));
-        }
+        (*lineCallback)(lineBuffer);
     }
 
-    if (triangleCallback != nullptr)
+    if (triangleCallback != nullptr && *triangleCallback != nullptr)
     {
-        for (const auto& triangle : triangleBuffer)
-        {
-            triangleCallback(
-                std::get<0>(triangle), std::get<1>(triangle), std::get<2>(triangle), std::get<3>(triangle));
-        }
+        (*triangleCallback)(triangleBuffer);
     }
 
     lineBuffer.clear();
@@ -136,14 +129,14 @@ void DebugDrawForwarder::FlushOutput()
     }
 }
 
-void DebugDrawForwarder::SetOutputLineReceiver(std::function<LineCallback> callback)
+void DebugDrawForwarder::SetOutputLineReceiver(LineCallback callback)
 {
-    lineCallback = std::move(callback);
+    lineCallback = callback;
 }
 
-void DebugDrawForwarder::SetOutputTriangleReceiver(std::function<TriangleCallback> callback)
+void DebugDrawForwarder::SetOutputTriangleReceiver(TriangleCallback callback)
 {
-    triangleCallback = std::move(callback);
+    triangleCallback = callback;
 }
 
 void DebugDrawForwarder::ClearOutputReceivers()
