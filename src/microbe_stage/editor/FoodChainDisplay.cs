@@ -192,8 +192,6 @@ public partial class FoodChainDisplay : Control
         var cancellationSource = new CancellationTokenSource();
         cancellationSource.CancelAfter(TimeSpan.FromSeconds(15));
 
-        // FRLayoutAlgorithm seems to fail often so it is not usable with our data
-
         var layoutAlgorithm =
             new SugiyamaLayoutAlgorithm<GraphNode, Edge<GraphNode>, AdjacencyGraph<GraphNode, Edge<GraphNode>>>(
                 layoutGraph, new SugiyamaLayoutParameters
@@ -202,9 +200,22 @@ public partial class FoodChainDisplay : Control
                     LayerGap = 150,
                     SliceGap = 140,
                     MinimizeEdgeLength = false,
-                    OptimizeWidth = false,
+                    OptimizeWidth = true,
                     EdgeRouting = SugiyamaEdgeRouting.Traditional,
                 });
+
+        // Different algorithms to try if the above one isn't perfect
+        // DoubleTreeLayoutAlgorithm
+        // CompoundFDPLayoutAlgorithm
+        // SimpleTreeLayoutAlgorithm
+        // RandomLayoutAlgorithm
+        // LinLogLayoutAlgorithm
+        // KKLayoutAlgorithm
+        // ISOMLayoutAlgorithm
+        // CircularLayoutAlgorithm
+        // BalloonTreeLayoutAlgorithm
+
+        // FRLayoutAlgorithm seems to fail often so it is not usable with our data
 
         layoutAlgorithm.Compute();
         cancellationSource.Token.Register(() => layoutAlgorithm.Abort());
