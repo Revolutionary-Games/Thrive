@@ -11,6 +11,8 @@ public partial class FoodChainDisplay : Control
 {
     private readonly HashSet<(Control Start, Control End)> lines = new();
 
+    private readonly List<Species> workMemory = new();
+
 #pragma warning disable CA2213
     private PackedScene speciesResultButtonScene = null!;
     private PackedScene resourceScene = null!;
@@ -64,6 +66,39 @@ public partial class FoodChainDisplay : Control
 
         // Build relationships based on the miche tree as that's the source of truth for what energy is available
         micheTree.GetOccupants(seenSpecies);
+
+        // To not show disappeared species (according to the report screen), prune ones from the miche tree that
+        // don't have any population (and didn't have any previous population)
+        workMemory.Clear();
+
+        foreach (var species in seenSpecies)
+        {
+            // Species that weren't part of auto-evo always
+            // TODO: maybe a bug in auto-evo: https://github.com/Revolutionary-Games/Thrive/issues/5549
+            if (!autoEvoResults.SpeciesHasResults(species))
+            {
+                workMemory.Add(species);
+                continue;
+            }
+
+            var speciesResult = autoEvoResults.GetSpeciesResultForInternalUse(species);
+            if (speciesResult.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation) && oldPopulation > 0)
+            {
+                continue;
+            }
+
+            if (speciesResult.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation) && newPopulation > 0)
+            {
+                continue;
+            }
+
+            workMemory.Add(species);
+        }
+
+        foreach (var species in workMemory)
+        {
+            seenSpecies.Remove(species);
+        }
 
         // Species that didn't get a miche and are going extinct aren't seen above, but they will be handled in
         // BuildMicheEnergyNodes

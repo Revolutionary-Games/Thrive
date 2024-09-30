@@ -259,7 +259,8 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run
+    ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run.
+    ///   All species *should* have results for them that were part of the world at the start of the auto-evo run.
     /// </summary>
     /// <param name="species">The species to check</param>
     /// <returns>True if the species has results</returns>
