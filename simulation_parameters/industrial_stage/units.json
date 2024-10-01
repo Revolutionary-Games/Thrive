@@ -4,6 +4,7 @@
     "UnitIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
     "VisualScene": "res://assets/models/space/PlaceholderRocket.tscn",
     "SpaceVisuals": "res://assets/models/space/PlaceholderRocketSpace.tscn",
+    "EngineParticlesPathSpace": ["EngineFire"],
     "BuildCost": {
       "rock": 1
     },
@@ -11,10 +12,11 @@
     "HasSpaceMovement": true
   },
   "advancedSpaceship": {
-    "Name": "UNIT_AVANCED_SPACESHIP",
+    "Name": "UNIT_ADVANCED_SPACESHIP",
     "UnitIcon": "res://assets/textures/gui/bevel/technologies/UnknownTechnology.png",
     "VisualScene": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
     "SpaceVisuals": "res://assets/models/space/PlaceholderAdvancedSpaceship.tscn",
+    "EngineParticlesPathSpace": ["EngineFire"],
     "BuildCost": {
       "rock": 1
     },
