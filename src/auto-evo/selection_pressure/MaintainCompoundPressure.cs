@@ -1,7 +1,9 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Newtonsoft.Json;
 
+[JSONDynamicTypeAllowed]
 public class MaintainCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -12,14 +14,20 @@ public class MaintainCompoundPressure : SelectionPressure
 
     private readonly CompoundDefinition compound;
 
+    // Needed for saving to work
+    [JsonProperty(nameof(compound))]
+    private readonly Compound compoundRaw;
+
     public MaintainCompoundPressure(Compound compound, float weight) : base(weight, [
         AddOrganelleAnywhere.ThatCreateCompound(compound),
         RemoveOrganelle.ThatUseCompound(compound),
     ])
     {
+        compoundRaw = compound;
         this.compound = SimulationParameters.GetCompound(compound);
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)

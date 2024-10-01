@@ -35,6 +35,12 @@ public class RunResults
     // afterwards when loading from a save
     private readonly List<PossibleSpecies> modifiedSpecies = new();
 
+    /// <summary>
+    ///   Miche tree generated for this auto-evo run. This is partially saved (some subobjects are excluded) so that
+    ///   food chain tab information can be displayed after loading a save.
+    /// </summary>
+    [JsonProperty]
+    [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Patch, Miche>))]
     private readonly Dictionary<Patch, Miche> micheByPatch = new();
 
     public enum NewSpeciesType

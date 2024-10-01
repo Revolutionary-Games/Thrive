@@ -1,8 +1,11 @@
 ﻿namespace AutoEvo;
 
+using Newtonsoft.Json;
+
 /// <summary>
 ///   This pressure does nothing, but is used as a placeholder node in the Miche Tree
 /// </summary>
+[JSONDynamicTypeAllowed]
 public class NoOpPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -15,6 +18,7 @@ public class NoOpPressure : SelectionPressure
     {
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)

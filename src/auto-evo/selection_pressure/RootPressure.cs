@@ -1,5 +1,8 @@
 ﻿namespace AutoEvo;
 
+using Newtonsoft.Json;
+
+[JSONDynamicTypeAllowed]
 public class RootPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -16,6 +19,7 @@ public class RootPressure : SelectionPressure
     {
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
