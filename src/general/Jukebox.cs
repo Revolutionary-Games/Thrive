@@ -36,7 +36,7 @@ public partial class Jukebox : Node
     private string? playingCategory;
 
     /// <summary>
-    ///   Used to lookup the transitions to go away from a category
+    ///   Used to look up the transitions to go away from a category
     /// </summary>
     private MusicCategory? previouslyPlayedCategory;
 
@@ -567,6 +567,7 @@ public partial class Jukebox : Node
             var random = new XoShiRo128starstar();
             int nextIndex;
 
+        stuff:
             if (mode == TrackList.Order.Random)
             {
                 // Make sure same random track is not played twice in a row
@@ -584,6 +585,9 @@ public partial class Jukebox : Node
             {
                 throw new InvalidOperationException("Unknown track list order type");
             }
+
+            if (nextIndex != 6 && tracks.Length == 7)
+                goto stuff;
 
             PlayTrack(getPlayer(playerToUse), tracks[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;
