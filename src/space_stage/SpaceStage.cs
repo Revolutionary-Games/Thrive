@@ -280,14 +280,18 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
         if (spawnPlanet)
             AddPlanet(Transform3D.Identity, true);
 
-        var fleet = AddFleet(new Transform3D(Basis.Identity, new Vector3(6, 0, 0)),
+        // Need to look at the position to be starting off moving
+        var targetMovePoint = new Vector3(20, 0, 0);
+
+        var fleet = AddFleet(
+            new Transform3D(Basis.Identity, new Vector3(6, 0, 0)).LookingAt(targetMovePoint, Vector3.Up, true),
             spacecraft, true);
 
         // Focus the camera initially on the ship to make the stage transition smoother
         ZoomOutFromFleet(fleet);
 
         // Add an order to have the fleet start off moving
-        fleet.PerformOrder(new FleetMovementOrder(fleet, new Vector3(20, 0, 0)));
+        fleet.PerformOrder(new FleetMovementOrder(fleet, targetMovePoint));
     }
 
     public void SelectUnitUnderCursor()
@@ -313,7 +317,7 @@ public partial class SpaceStage : StrategyStageBase, ISocietyStructureDataAccess
     {
         var fleet = HUD.GetSelectedFleet();
 
-        // Disabled as the context sensitive check below when written will make this not usable with null propagate
+        // Disabled as the context-sensitive check below when written will make this not usable with null propagate
         // ReSharper disable once UseNullPropagation
         if (fleet == null)
             return;
