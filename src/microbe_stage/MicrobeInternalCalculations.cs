@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AngleSharp;
 using Godot;
 using Systems;
 
@@ -212,6 +213,13 @@ public static class MicrobeInternalCalculations
 
                 float movementConstant =
                     Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
+
+                var configuration = organelle.Upgrades?.CustomUpgradeData;
+                if (configuration != null)
+                {
+                    if (configuration is FlagellumUpgrades flagellumUpgrades)
+                        movementConstant += Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumUpgrades.LengthFraction;
+                }
 
                 if (!isBacteria)
                     movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
