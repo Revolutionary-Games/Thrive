@@ -71,6 +71,11 @@ public class CompoundCloudPressure : SelectionPressure
             new LocalizedString(compoundDefinition.GetUntranslatedName()));
     }
 
+    public Compound GetUsedCompoundType()
+    {
+        return compound;
+    }
+
     public override string ToString()
     {
         return $"{Name} ({compoundDefinition.Name})";
