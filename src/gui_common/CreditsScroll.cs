@@ -453,7 +453,13 @@ public partial class CreditsScroll : Control
     private void LoadGPLLicense()
     {
         var licenseLabel = CreateFileLoadedPart(GetNextDynamicSectionOffset(), Constants.GPL_LICENSE_FILE);
-        licenseLabel.OnBecomeVisible += LoadOFLLicense;
+        licenseLabel.OnBecomeVisible += LoadExtraThriveLicenses;
+    }
+
+    private void LoadExtraThriveLicenses()
+    {
+        var license = CreateFileLoadedPart(GetNextDynamicSectionOffset(), Constants.EXTRA_THRIVE_LICENSE_FILE);
+        license.OnBecomeVisible += LoadOFLLicense;
     }
 
     private void LoadOFLLicense()

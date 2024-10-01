@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://qdqcbnri7vsw"]
+[gd_scene load_steps=29 format=3 uid="uid://qdqcbnri7vsw"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="2"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_ocn33"]
@@ -15,6 +15,8 @@
 [ext_resource type="FontFile" uid="uid://s8m5c8resd50" path="res://assets/fonts/Lato-Regular.ttf" id="10_dmd4f"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/MicrobeEditorReportComponent.cs" id="11"]
 [ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/fonts/Title-SemiBold-AlmostSmaller.tres" id="11_xdyjp"]
+[ext_resource type="PackedScene" uid="uid://d4bf4x375rb82" path="res://src/microbe_stage/editor/FoodChainDisplay.tscn" id="14_ghu38"]
+[ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="14_ynonx"]
 [ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="57"]
 [ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="62"]
 [ext_resource type="PackedScene" uid="uid://mmqt0mcw2if3" path="res://src/gui_common/charts/line/LineChart.tscn" id="103"]
@@ -87,7 +89,7 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer")]
+[node name="MicrobeEditorReport" type="Control" node_paths=PackedStringArray("autoEvoSubtabButton", "timelineSubtabButton", "foodChainSubtabButton", "autoEvoSubtab", "timelineSubtab", "foodChainSubtab", "foodChainData", "timeIndicator", "glucoseReductionLabel", "externalEffectsLabel", "reportTabPatchName", "reportTabPatchSelector", "speciesChartContainer", "physicalConditionsChartContainer", "atmosphereChartContainer", "compoundsChartContainer", "noAutoEvoResultData", "graphicalResultsContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,16 +100,18 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("9")
 script = ExtResource("11")
-AutoEvoSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
-TimelineSubtabButtonPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
-AutoEvoSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
-TimelineSubtabPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
-TimelineEventsContainerPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/ScrollContainer/MarginContainer/GlobalEventsContainer")
-TimeIndicatorPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
-GlucoseReductionLabelPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
-ExternalEffectsLabelPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
-ReportTabPatchNamePath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchName")
-ReportTabPatchSelectorPath = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
+autoEvoSubtabButton = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton")
+timelineSubtabButton = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton")
+foodChainSubtabButton = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FoodChainButton")
+autoEvoSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel")
+timelineSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel")
+foodChainSubtab = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab")
+foodChainData = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer/FoodChainDisplay")
+timeIndicator = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
+glucoseReductionLabel = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
+externalEffectsLabel = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
+reportTabPatchName = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchName")
+reportTabPatchSelector = NodePath("MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector")
 speciesChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/SpeciesPopulation")
 physicalConditionsChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions")
 atmosphereChartContainer = NodePath("MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses")
@@ -198,7 +202,6 @@ layout_mode = 2
 size_flags_vertical = 8
 focus_mode = 0
 theme_override_font_sizes/font_size = 14
-disabled = true
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_vfabd")
@@ -401,6 +404,20 @@ mouse_filter = 2
 texture = ExtResource("7")
 expand_mode = 1
 
+[node name="FoodTab" type="PanelContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("29")
+
+[node name="DraggableScrollContainer" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab" instance=ExtResource("14_ynonx")]
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="FoodChainDisplay" parent="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer" instance=ExtResource("14_ghu38")]
+layout_mode = 2
+
 [node name="StatisticsPanel" type="PanelContainer" parent="MarginContainer/HSplitContainer"]
 custom_minimum_size = Vector2(340, 0)
 layout_mode = 2
@@ -543,9 +560,11 @@ text = "NEXT_CAPITAL"
 
 [connection signal="item_selected" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/PatchSelector" to="." method="OnReportTabPatchListSelected"]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/AutoEvoButton" to="." method="SetReportSubtab" binds= ["AutoEvo"]]
+[connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/FoodChainButton" to="." method="SetReportSubtab" binds= ["FoodChain"]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimelineButton" to="." method="SetReportSubtab" binds= ["Timeline"]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/GlobalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [0]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel/MarginContainer/MarginContainer/HBoxContainer/LocalFilter" to="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/TimelinePanel" method="OnFilterSelected" binds= [1]]
+[connection signal="SpeciesSelected" from="MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/FoodTab/DraggableScrollContainer/FoodChainDisplay" to="." method="ShowExtraInfoOnSpecies"]
 [connection signal="mouse_entered" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", true]]
 [connection signal="mouse_exited" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendMoused" binds= ["temperature", false]]
 [connection signal="pressed" from="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/PhysicalConditions/LegendContainer/Legend/temperature" to="." method="OnPhysicalConditionsChartLegendPressed" binds= ["temperature"]]

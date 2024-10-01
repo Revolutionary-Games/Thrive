@@ -61,8 +61,9 @@ public partial class DraggableScrollContainer : ScrollContainer
     {
         base._Ready();
 
-        // Child 2 is the first child added by us, while child 0 and 1 are scroll bars
-        ContentPath ??= GetChild(2).GetPath();
+        // As this now in Godot 4 ignores internal nodes, child index 0 is the first actual child (and not the
+        // scrollbars)
+        ContentPath ??= GetChild(0).GetPath();
 
         content = GetNode<Control>(ContentPath);
 

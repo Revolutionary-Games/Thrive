@@ -13,49 +13,43 @@ using Newtonsoft.Json;
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditorReportComponent.tscn", UsesEarlyResolve = false)]
 public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorReportData>
 {
-    [Export]
-    public NodePath? AutoEvoSubtabButtonPath;
-
-    [Export]
-    public NodePath TimelineSubtabButtonPath = null!;
-
-    [Export]
-    public NodePath AutoEvoSubtabPath = null!;
-
-    [Export]
-    public NodePath TimelineSubtabPath = null!;
-
-    [Export]
-    public NodePath TimelineEventsContainerPath = null!;
-
-    [Export]
-    public NodePath TimeIndicatorPath = null!;
-
-    [Export]
-    public NodePath GlucoseReductionLabelPath = null!;
-
-    [Export]
-    public NodePath ExternalEffectsLabelPath = null!;
-
-    [Export]
-    public NodePath ReportTabPatchNamePath = null!;
-
-    [Export]
-    public NodePath ReportTabPatchSelectorPath = null!;
-
     private readonly NodePath scaleReference = new("scale");
 
 #pragma warning disable CA2213
+    [Export]
     private Button autoEvoSubtabButton = null!;
+
+    [Export]
     private Button timelineSubtabButton = null!;
 
+    [Export]
+    private Button foodChainSubtabButton = null!;
+
+    [Export]
     private PanelContainer autoEvoSubtab = null!;
+
+    [Export]
     private TimelineTab timelineSubtab = null!;
 
+    [Export]
+    private Container foodChainSubtab = null!;
+
+    [Export]
+    private FoodChainDisplay foodChainData = null!;
+
+    [Export]
     private Label timeIndicator = null!;
+
+    [Export]
     private Label glucoseReductionLabel = null!;
+
+    [Export]
     private CustomRichTextLabel externalEffectsLabel = null!;
+
+    [Export]
     private Label reportTabPatchName = null!;
+
+    [Export]
     private OptionButton reportTabPatchSelector = null!;
 
     [Export]
@@ -94,6 +88,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [JsonProperty]
     private ReportSubtab selectedReportSubtab = ReportSubtab.AutoEvo;
 
+    private bool queuedAutoEvoReportUpdate;
+
     private Patch? currentlyDisplayedPatch;
 
     private RunResults? autoEvoResults;
@@ -102,23 +98,16 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         AutoEvo,
         Timeline,
+        FoodChain,
     }
+
+    private Patch PatchToShowInfoFor => currentlyDisplayedPatch ?? Editor.CurrentPatch;
+
+    private Species PlayerSpecies => Editor.CurrentGame.GameWorld.PlayerSpecies;
 
     public override void _Ready()
     {
         base._Ready();
-
-        autoEvoSubtab = GetNode<PanelContainer>(AutoEvoSubtabPath);
-        autoEvoSubtabButton = GetNode<Button>(AutoEvoSubtabButtonPath);
-
-        timelineSubtab = GetNode<TimelineTab>(TimelineSubtabPath);
-        timelineSubtabButton = GetNode<Button>(TimelineSubtabButtonPath);
-
-        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
-        reportTabPatchSelector = GetNode<OptionButton>(ReportTabPatchSelectorPath);
-        timeIndicator = GetNode<Label>(TimeIndicatorPath);
-        glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
-        externalEffectsLabel = GetNode<CustomRichTextLabel>(ExternalEffectsLabelPath);
 
         physicalConditionsIconLegends = physicalConditionsChartContainer.GetItem<Container>("LegendContainer")
             .GetChild<HBoxContainer>(0);
@@ -145,9 +134,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public void UpdateReportTabPatchSelector()
     {
-        var patchSelected = currentlyDisplayedPatch ?? Editor.CurrentPatch;
+        var patchSelected = PatchToShowInfoFor;
 
-        UpdateReportTabPatchName(patchSelected);
+        UpdateReportTabPatchName();
 
         reportTabPatchSelector.Clear();
 
@@ -164,14 +153,32 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     public void UpdatePatchDetailsIfNeeded(Patch selectedPatch)
     {
-        if (currentlyDisplayedPatch == null || currentlyDisplayedPatch != selectedPatch)
-        {
-            UpdatePatchDetails(selectedPatch);
+        if (currentlyDisplayedPatch != null && currentlyDisplayedPatch == selectedPatch)
+            return;
 
-            // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
-            // component when initializing the editor (but only after displaying them once)
-            if (autoEvoResults != null)
-                CreateGraphicalReportForPatch(selectedPatch);
+        UpdatePatchDetails(selectedPatch);
+
+        if (PatchToShowInfoFor != selectedPatch)
+            throw new InvalidOperationException("Expected patch set to apply to property value");
+
+        // Update the report. This is not in UpdatePatchDetails to avoid duplicate update of that expensive
+        // component when initializing the editor (but only after displaying them once)
+        if (autoEvoResults != null)
+        {
+            if (selectedReportSubtab == ReportSubtab.AutoEvo)
+            {
+                CreateGraphicalReportForPatch();
+            }
+            else
+            {
+                queuedAutoEvoReportUpdate = true;
+            }
+        }
+
+        // Refresh this expensive graphical report only if it is visible
+        if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
+        {
+            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
         }
     }
 
@@ -179,13 +186,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         currentlyDisplayedPatch = currentOrSelectedPatch;
 
-        selectedPatch ??= currentOrSelectedPatch;
+        UpdateReportTabStatistics();
 
-        UpdateReportTabStatistics(currentOrSelectedPatch);
+        UpdateTimeline();
 
-        UpdateTimeline(selectedPatch);
-
-        UpdateReportTabPatchName(currentOrSelectedPatch);
+        UpdateReportTabPatchName();
 
         UpdateReportTabPatchSelectorSelection(currentOrSelectedPatch.ID);
     }
@@ -223,7 +228,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         autoEvoResults = results;
 
-        CreateGraphicalReportForPatch(currentlyDisplayedPatch ?? Editor.CurrentPatch);
+        CreateGraphicalReportForPatch();
     }
 
     public void DisplayAutoEvoFailure(string extra)
@@ -272,14 +277,12 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     protected override void OnTranslationsChanged()
     {
-        var patchToDisplay = currentlyDisplayedPatch ?? Editor.CurrentPatch;
-
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
         UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
-        UpdateTimeline(patchToDisplay);
+        UpdateTimeline();
         UpdateReportTabPatchSelector();
-        UpdateReportTabStatistics(patchToDisplay);
+        UpdateReportTabStatistics();
     }
 
     protected override void RegisterTooltips()
@@ -299,20 +302,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         if (disposing)
         {
-            if (AutoEvoSubtabButtonPath != null)
-            {
-                AutoEvoSubtabButtonPath.Dispose();
-                TimelineSubtabButtonPath.Dispose();
-                AutoEvoSubtabPath.Dispose();
-                TimelineSubtabPath.Dispose();
-                TimelineEventsContainerPath.Dispose();
-                TimeIndicatorPath.Dispose();
-                GlucoseReductionLabelPath.Dispose();
-                ExternalEffectsLabelPath.Dispose();
-                ReportTabPatchNamePath.Dispose();
-                ReportTabPatchSelectorPath.Dispose();
-            }
-
             scaleReference.Dispose();
         }
 
@@ -324,15 +313,15 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         reportTabPatchSelector.Select(reportTabPatchSelector.GetItemIndex(patchID));
     }
 
-    private void UpdateReportTabPatchName(Patch patch)
+    private void UpdateReportTabPatchName()
     {
-        reportTabPatchName.Text = patch.Name.ToString();
+        reportTabPatchName.Text = PatchToShowInfoFor.Name.ToString();
     }
 
     /// <summary>
     ///   Generates a new graphics-based representation of the auto-evo report
     /// </summary>
-    private void CreateGraphicalReportForPatch(Patch selectedPatch)
+    private void CreateGraphicalReportForPatch()
     {
         if (autoEvoResults == null)
         {
@@ -341,7 +330,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         }
 
         graphicalResultsContainer.FreeChildren();
-        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, selectedPatch, true, speciesResultButtonScene,
+        autoEvoResults.MakeGraphicalSummary(graphicalResultsContainer, PatchToShowInfoFor, true,
+            speciesResultButtonScene,
             autoEvoReportSegmentTitleFont, new Callable(this, nameof(ShowExtraInfoOnSpecies)));
     }
 
@@ -356,8 +346,10 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         Editor.OpenSpeciesInfoFor(species);
     }
 
-    private void UpdateReportTabStatistics(Patch patch)
+    private void UpdateReportTabStatistics()
     {
+        var patch = PatchToShowInfoFor;
+
         temperatureChart.ClearDataSets();
         sunlightChart.ClearDataSets();
         atmosphericGassesChart.ClearDataSets();
@@ -387,7 +379,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
                     Colour = compound.Colour,
                 };
 
-                GetChartForCompound(compound.InternalName)?.AddDataSet(compound.Name, dataset);
+                GetChartForCompound(compound.ID)?.AddDataSet(compound.Name, dataset);
             }
 
             foreach (var entry in snapshot.SpeciesInPatch)
@@ -415,7 +407,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             {
                 var compound = simulationParameters.GetCompoundDefinition(entry.Key);
 
-                var dataset = GetChartForCompound(compound.InternalName)?.GetDataSet(compound.Name);
+                var dataset = GetChartForCompound(compound.ID)?.GetDataSet(compound.Name);
 
                 if (dataset == null)
                     continue;
@@ -557,9 +549,9 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         speciesPopulationChart.AddIconLegend(skull, Localization.Translate("EXTINCT_FROM_THE_PLANET"), 25);
     }
 
-    private void UpdateTimeline(Patch? mapSelectedPatch, Patch? patch = null)
+    private void UpdateTimeline()
     {
-        timelineSubtab.UpdateTimeline(Editor, mapSelectedPatch, patch);
+        timelineSubtab.UpdateTimeline(Editor, PatchToShowInfoFor);
     }
 
     private void SetReportSubtab(string tab)
@@ -579,18 +571,45 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         autoEvoSubtab.Hide();
         timelineSubtab.Hide();
+        foodChainSubtab.Hide();
 
         switch (selectedReportSubtab)
         {
             case ReportSubtab.AutoEvo:
+            {
+                // Refresh the report if it should now show different data than when it was last visible
+                if (queuedAutoEvoReportUpdate)
+                {
+                    CreateGraphicalReportForPatch();
+                    queuedAutoEvoReportUpdate = false;
+                }
+
                 autoEvoSubtab.Show();
                 autoEvoSubtabButton.ButtonPressed = true;
                 break;
+            }
+
             case ReportSubtab.Timeline:
+            {
                 timelineSubtab.Show();
                 timelineSubtabButton.ButtonPressed = true;
                 Invoke.Instance.Queue(timelineSubtab.TimelineAutoScrollToCurrentTimePeriod);
                 break;
+            }
+
+            case ReportSubtab.FoodChain:
+            {
+                foodChainSubtab.Show();
+                foodChainSubtabButton.ButtonPressed = true;
+
+                if (autoEvoResults != null)
+                {
+                    foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
+                }
+
+                break;
+            }
+
             default:
                 throw new Exception("Invalid report subtab");
         }
@@ -598,34 +617,49 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     private void OnReportTabPatchListSelected(int index)
     {
-        var patch = Editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
-        UpdateReportTabStatistics(patch);
-        UpdateTimeline(patch);
-        UpdateReportTabPatchName(patch);
+        currentlyDisplayedPatch = Editor.CurrentGame.GameWorld.Map.GetPatch(reportTabPatchSelector.GetItemId(index));
+
+        UpdateReportTabStatistics();
+        UpdateTimeline();
+        UpdateReportTabPatchName();
 
         if (autoEvoResults != null)
-            CreateGraphicalReportForPatch(patch);
+        {
+            if (selectedReportSubtab == ReportSubtab.AutoEvo)
+            {
+                CreateGraphicalReportForPatch();
+            }
+            else
+            {
+                queuedAutoEvoReportUpdate = true;
+            }
+        }
+
+        if (selectedReportSubtab == ReportSubtab.FoodChain && autoEvoResults != null)
+        {
+            foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
+        }
     }
 
     /// <summary>
     ///   Returns a chart which should contain the given compound.
     /// </summary>
     /// <returns>Null if the given compound shouldn't be included in any chart.</returns>
-    private LineChart? GetChartForCompound(string compoundName)
+    private LineChart? GetChartForCompound(Compound compound)
     {
-        switch (compoundName)
+        switch (compound)
         {
-            case "atp":
-            case "oxytoxy":
-            case "temperature":
+            case Compound.ATP:
+            case Compound.Oxytoxy:
+            case Compound.Temperature:
                 return null;
-            case "sunlight":
+            case Compound.Sunlight:
                 return sunlightChart;
-            case "oxygen":
+            case Compound.Oxygen:
                 return atmosphericGassesChart;
-            case "carbondioxide":
+            case Compound.Carbondioxide:
                 return atmosphericGassesChart;
-            case "nitrogen":
+            case Compound.Nitrogen:
                 return atmosphericGassesChart;
             default:
                 return compoundsChart;
