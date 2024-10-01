@@ -410,11 +410,12 @@ public partial class FoodChainDisplay : Control
 
                 case CompoundCloudPressure compoundCloudPressure:
                     LinkToCompoundNode(ourNode, compoundCloudPressure.GetUsedCompoundType(),
-                        GraphNode.NodeType.CompoundChunk);
+                        GraphNode.NodeType.CompoundCloud);
                     break;
+
                 case EnvironmentalCompoundPressure environmentalCompoundPressure:
                     LinkToCompoundNode(ourNode, environmentalCompoundPressure.GetUsedCompoundType(),
-                        GraphNode.NodeType.CompoundChunk);
+                        GraphNode.NodeType.EnvironmentalCompound);
                     break;
 
                 case PredationEffectivenessPressure predationEffectivenessPressure:
@@ -486,18 +487,14 @@ public partial class FoodChainDisplay : Control
             }
         }
 
-        if (targetNode != null)
-        {
-            nodeToLinkFrom.Links.Add(targetNode);
-        }
-        else
+        if (targetNode == null)
         {
             // Need a new node
-            var node = new GraphNode(compoundType, nodeTypeToLinkTo);
-            graphNodes.Add(node);
-
-            nodeToLinkFrom.Links.Add(node);
+            targetNode = new GraphNode(compoundType, nodeTypeToLinkTo);
+            graphNodes.Add(targetNode);
         }
+
+        nodeToLinkFrom.Links.Add(targetNode);
     }
 
     private void OnSpeciesClicked(uint id)
