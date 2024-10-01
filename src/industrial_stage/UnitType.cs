@@ -25,10 +25,10 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
-#pragma warning restore 169,649
 
     [JsonProperty]
     private List<string>? engineParticlesPathSpace;
+#pragma warning restore 169,649
 
     [JsonConstructor]
     public UnitType(string name)
