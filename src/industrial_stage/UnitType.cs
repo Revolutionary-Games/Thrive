@@ -25,6 +25,9 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
 #pragma warning disable 169,649 // Used through reflection
     private string? untranslatedName;
+
+    [JsonProperty]
+    private List<string>? engineParticlesPathSpace;
 #pragma warning restore 169,649
 
     [JsonConstructor]
@@ -72,6 +75,9 @@ public class UnitType : IRegistryType, ICityConstructionProject
     public Texture2D Icon => icon.Value;
 
     [JsonIgnore]
+    public NodePath[]? EngineParticlesPathSpace { get; private set; }
+
+    [JsonIgnore]
     public string InternalName { get; set; } = null!;
 
     // This has to be specified for the translation extractor to work
@@ -112,6 +118,11 @@ public class UnitType : IRegistryType, ICityConstructionProject
 
         if (BuildTime <= 0)
             throw new InvalidRegistryDataException(name, GetType().Name, "Bad build time");
+
+        if (engineParticlesPathSpace != null)
+        {
+            EngineParticlesPathSpace = engineParticlesPathSpace.Select(s => new NodePath(s)).ToArray();
+        }
     }
 
     public void Resolve()

@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bdvhu67uu45ej"]
+
+[ext_resource type="Texture2D" uid="uid://brqk1odkw0fy3" path="res://assets/textures/space/Spaceship_albedo_roughness.png" id="1_7u0ip"]
+[ext_resource type="Texture2D" uid="uid://cda1j1liv0bks" path="res://assets/textures/space/Spaceship_emit.png" id="2_sojrh"]
+[ext_resource type="ArrayMesh" uid="uid://ck75ncsm5nox5" path="res://assets/models/space/PlaceholderAdvancedSpaceship.mesh" id="3_g47x4"]
+[ext_resource type="Texture2D" uid="uid://kloyvken30uu" path="res://assets/textures/menu_backgrounds/SingleClouds.png" id="6_dxu3k"]
+[ext_resource type="Texture2D" uid="uid://dhad2rl5f4478" path="res://assets/textures/menu_backgrounds/SingleClouds_Normal.png" id="7_sct06"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aurqk"]
+albedo_texture = ExtResource("1_7u0ip")
+metallic = 0.8
+metallic_texture = ExtResource("1_7u0ip")
+metallic_texture_channel = 3
+roughness = 0.7
+roughness_texture = ExtResource("1_7u0ip")
+roughness_texture_channel = 3
+emission_enabled = true
+emission = Color(0.0588235, 0.0588235, 0.0588235, 1)
+emission_energy_multiplier = 2.0
+emission_texture = ExtResource("2_sojrh")
+
+[sub_resource type="Curve" id="Curve_tq58m"]
+max_value = 0.8
+_data = [Vector2(0, 0.512791), 0.0, 1.39981, 0, 0, Vector2(0.201413, 0.694186), 0.0261319, 0.0261319, 0, 0, Vector2(1, 0), -0.348202, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lv1ho"]
+curve = SubResource("Curve_tq58m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfupc"]
+lifetime_randomness = 0.1
+emission_shape = 2
+emission_sphere_radius = 0.03
+direction = Vector3(0, 0, -1)
+spread = 0.0
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 15.0
+linear_accel_max = 15.0
+scale_min = 0.8
+scale_curve = SubResource("CurveTexture_lv1ho")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgmud"]
+transparency = 4
+albedo_color = Color(0, 0, 0, 0.745098)
+albedo_texture = ExtResource("6_dxu3k")
+emission_enabled = true
+emission = Color(0.228375, 0.2175, 0.87, 1)
+emission_energy_multiplier = 50.0
+normal_texture = ExtResource("7_sct06")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_4o23k"]
+lightmap_size_hint = Vector2i(7, 7)
+material = SubResource("StandardMaterial3D_bgmud")
+
+[node name="PlaceHolderAdvancedSpaceship" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.870609, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.061735, 2.64271)
+material_override = SubResource("StandardMaterial3D_aurqk")
+mesh = ExtResource("3_g47x4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="MeshInstance3D"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, -2.29857)
+light_color = Color(0, 0.762946, 0.792287, 1)
+omni_range = 0.3
+
+[node name="EngineFire" type="GPUParticles3D" parent="."]
+physics_interpolation_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.84348)
+gi_mode = 0
+amount = 150
+lifetime = 0.5
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_wfupc")
+draw_pass_1 = SubResource("QuadMesh_4o23k")

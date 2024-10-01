@@ -22,7 +22,7 @@ public partial class AscensionStageStarter : ComplexStageStarterBase
     {
         // We need to setup things here like done when coming from the industrial stage
         createdScene.SetupForExistingGameFromAnotherStage(true,
-            SimulationParameters.Instance.GetUnitType("simpleSpaceRocket"), null);
+            SimulationParameters.Instance.GetUnitType("advancedSpaceship"), null);
 
         createdScene.OnBecomeAscended();
     }

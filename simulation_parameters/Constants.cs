@@ -1586,9 +1586,9 @@ public static class Constants
     public const float INDUSTRIAL_TO_SPACE_CAMERA_ZOOM_SPEED = 0.6f;
     public const float INDUSTRIAL_TO_SPACE_FADE_DURATION = 4;
 
-    public const float INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION = 0.005f;
+    public const float INDUSTRIAL_TO_SPACE_ROCKET_ACCELERATION = 0.009f;
 
-    public const float INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT = 300;
+    public const float INDUSTRIAL_TO_SPACE_END_ROCKET_HEIGHT = 400;
 
     public const float PLANET_SCREEN_UPDATE_INTERVAL = 0.1f;
     public const float UNIT_SCREEN_UPDATE_INTERVAL = 0.05f;
