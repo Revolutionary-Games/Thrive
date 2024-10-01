@@ -1,7 +1,9 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Newtonsoft.Json;
 
+[JSONDynamicTypeAllowed]
 public class CompoundCloudPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -10,8 +12,12 @@ public class CompoundCloudPressure : SelectionPressure
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
+    [JsonProperty]
     private readonly Compound compound;
+
     private readonly CompoundDefinition compoundDefinition;
+
+    [JsonProperty]
     private readonly bool isDayNightCycleEnabled;
 
     public CompoundCloudPressure(Compound compound, bool isDayNightCycleEnabled, float weight) :
@@ -29,6 +35,7 @@ public class CompoundCloudPressure : SelectionPressure
         this.isDayNightCycleEnabled = isDayNightCycleEnabled;
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)

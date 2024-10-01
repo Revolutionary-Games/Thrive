@@ -1,7 +1,11 @@
 ﻿namespace AutoEvo;
 
+using Newtonsoft.Json;
+
+[JSONDynamicTypeAllowed]
 public class AvoidPredationSelectionPressure : SelectionPressure
 {
+    [JsonProperty]
     public readonly Species Predator;
 
     // Needed for translation extraction
@@ -29,6 +33,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
         Predator = predator;
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)

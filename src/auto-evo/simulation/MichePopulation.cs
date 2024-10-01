@@ -259,7 +259,7 @@ public static class MichePopulation
                     // Weighted score is intentionally not used here as negatives break everything
                     var score = rawScore /
                         cache.GetPressureScore(currentMiche.Pressure, patch, (MicrobeSpecies)node.Occupant!) *
-                        currentMiche.Pressure.Strength;
+                        currentMiche.Pressure.Weight;
 
                     if (simulationConfiguration.WorldSettings.AutoEvoConfiguration.StrictNicheCompetition)
                         score *= score;

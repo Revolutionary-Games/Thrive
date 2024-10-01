@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A node for the Miche Tree
@@ -15,10 +16,24 @@ using System.Linq;
 ///     For a fuller explanation see docs/auto_evo.md
 ///   </para>
 /// </remarks>
+/// <remarks>
+///   <para>
+///     This is partially saved to be able to display info about the auto-evo run in the editor after loading a save.
+///     This has to be a reference to work with the parent miche reference. This uses Thrive serializer as the fields
+///     can already refer back to this object.
+///   </para>
+/// </remarks>
+[JsonObject(IsReference = true)]
+[UseThriveSerializer]
 public class Miche
 {
+    [JsonProperty]
     public readonly SelectionPressure Pressure;
+
+    [JsonProperty]
     public readonly List<Miche> Children = new();
+
+    [JsonProperty]
     public Miche? Parent;
 
     /// <summary>
@@ -29,6 +44,7 @@ public class Miche
     ///     Occupant should always be null if this Miche is not a leaf node (children is not empty).
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     public Species? Occupant;
 
     public Miche(SelectionPressure pressure)

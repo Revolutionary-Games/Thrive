@@ -228,7 +228,19 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         autoEvoResults = results;
 
-        CreateGraphicalReportForPatch();
+        if (selectedReportSubtab == ReportSubtab.AutoEvo)
+        {
+            CreateGraphicalReportForPatch();
+        }
+        else
+        {
+            queuedAutoEvoReportUpdate = true;
+
+            if (selectedReportSubtab == ReportSubtab.FoodChain)
+            {
+                foodChainData.DisplayFoodChainIfRequired(autoEvoResults, PatchToShowInfoFor, PlayerSpecies);
+            }
+        }
     }
 
     public void DisplayAutoEvoFailure(string extra)

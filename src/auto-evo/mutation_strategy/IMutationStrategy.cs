@@ -2,10 +2,12 @@
 
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public interface IMutationStrategy<T>
     where T : Species
 {
+    [JsonIgnore]
     public bool Repeatable { get; }
 
     /// <summary>
