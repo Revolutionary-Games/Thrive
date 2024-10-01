@@ -12,7 +12,7 @@ albedo_texture_force_srgb = true
 uv1_scale = Vector3(15, 15, 15)
 disable_receive_shadows = true
 
-[node name="MenuPlanet" instance=ExtResource("1")]
+[node name="StarsMesh" instance=ExtResource("1")]
 
 [node name="Sphere" parent="." index="0"]
 transparency = 0.09

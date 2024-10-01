@@ -98,14 +98,16 @@ environment = SubResource("Environment_mi3wd")
 camera_attributes = SubResource("CameraAttributesPractical_s1pyx")
 
 [node name="StrategicCamera" parent="World" instance=ExtResource("2")]
+far = 420.0
 MaxZoomLevel = 3.0
 
 [node name="starssphere" parent="World/StrategicCamera" instance=ExtResource("3")]
+editor_description = "For now this old stars is used as otherwise the phantom shapes are not drawn over the other background"
 transform = Transform3D(300, -0.0737809, 0.0523577, 0.0733008, 299.988, 2.73314, -0.0530277, -2.73313, 299.988, -12.7566, 0, 8.74701)
-visible = false
 
 [node name="Stars" type="MeshInstance3D" parent="World/StrategicCamera"]
-transform = Transform3D(100, 0, 0, 0, 85.3942, -52.0369, 0, 52.0369, 85.3942, 0, 0, 0)
+transform = Transform3D(400, 0, 0, 0, 341.577, -208.148, 0, 208.148, 341.577, 0, 0, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_yehpb")
 mesh = ExtResource("5_rek3o")
 skeleton = NodePath("")
