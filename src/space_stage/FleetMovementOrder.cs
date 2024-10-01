@@ -28,29 +28,38 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
         // The normalized vector from the ship to the target point
         var direction = toTarget / distanceToTarget;
 
-        var currentRotation = new Quaternion(new Vector3(0, 0, 1), Unit.Transform.Basis.Z.Normalized()).Normalized();
+        var currentRotation = Unit.GlobalTransform.Basis.GetRotationQuaternion();
         var targetRotation = new Quaternion(new Vector3(0, 0, 1), toTarget.Normalized()).Normalized();
 
-        if (direction.Dot(Unit.Transform.Basis.Z) < 0.99f)
+        if (currentRotation.AngleTo(targetRotation) >= 0.22f)
         {
             var smoothRotation = currentRotation.Slerp(targetRotation, 0.8f * delta);
-            Unit.Transform = new Transform3D(new Basis(smoothRotation), unitPosition);
+            Unit.GlobalTransform = new Transform3D(new Basis(smoothRotation), unitPosition);
+
+            // The particles kind of look bad when turning in place so we don't set the moving property here yet
+            // Unit.Moving = true;
             return false;
         }
         else
         {
-            var smoothRotation = currentRotation.Slerp(targetRotation, 0.1f * delta);
-            Unit.Transform = new Transform3D(new Basis(smoothRotation), unitPosition);
+            var smoothRotation = currentRotation.Slerp(targetRotation, 0.5f * delta);
+
+            bool finished = false;
 
             if (distanceToTarget < adjustedSpeed)
             {
-                Unit.GlobalPosition = TargetPosition;
-
-                return true;
+                unitPosition = TargetPosition;
+                finished = true;
+                Unit.Moving = false;
+            }
+            else
+            {
+                unitPosition += direction * adjustedSpeed;
+                Unit.Moving = true;
             }
 
-            Unit.GlobalPosition += direction * adjustedSpeed;
-            return false;
+            Unit.GlobalTransform = new Transform3D(new Basis(smoothRotation), unitPosition);
+            return finished;
         }
     }
 }
