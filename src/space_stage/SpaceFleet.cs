@@ -127,7 +127,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
         var newVisuals = unit.WorldRepresentationSpace.Instantiate<Node3D>();
         visualsParent.AddChild(newVisuals);
-        newVisuals.Position = ships.Count * new Vector3(2.5f, 0, 0);
+        newVisuals.Position = ships.Count * new Vector3(9.0f, 0, 0);
     }
 
     public void OnSelectedThroughLabel()
