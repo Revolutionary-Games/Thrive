@@ -428,6 +428,10 @@ public partial class IndustrialStage : StrategyStageBase, ISocietyStructureDataA
             launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("simpleSpaceRocket");
         }
 
+        // TODO: once the space stage is more complete and it is possible to get the advanced spaceship, remove this
+        // part where our ship magically turns advanced when exiting the planet
+        launchedSpacecraftType = SimulationParameters.Instance.GetUnitType("advancedSpaceship");
+
         // TODO: preserve the actual cities placed on the starting planet
 
         spaceStage.SetupForExistingGameFromAnotherStage(true, launchedSpacecraftType, SocietyResources);
