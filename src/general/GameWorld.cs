@@ -130,8 +130,9 @@ public class GameWorld : ISaveLoadable
 
         AutoEvoGlobalCache = new AutoEvoGlobalCache(WorldSettings);
 
-        // Register glucose reduction
-        TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
+        // Register compound production and diffusion
+        TimedEffects.RegisterEffect("compound_production", new CompoundProductionEffect(this));
+        TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
     }
 
     [JsonProperty]
