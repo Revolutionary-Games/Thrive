@@ -46,6 +46,9 @@ public class CompoundDiffusionEffect : IWorldEffect
                     newConditions.Density -= fractionDensity;
                     newConditions.Ambient -= fractionAmbient;
 
+                    // TODO: it would be more efficient to calculate the result entirely first and then applying
+                    // the new condition (as this needs to use DictionaryWithFallback with reset calculation operations
+                    // when calling this method)
                     targetWorld.Map.Patches[patch.Key].Biome.ModifyLongTermCondition(compound.Key, newConditions);
                 }
             }

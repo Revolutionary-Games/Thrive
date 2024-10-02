@@ -6,6 +6,12 @@ using Systems;
 /// <summary>
 ///   Removes and adds compounds to patches based on alive cells binding up resources and also producing compounds
 /// </summary>
+/// <remarks>
+///   <para>
+///     This is currently only experimentally enabled as this requires tweaking. And also the GUI saying that the
+///     amount of glucose in the editor has been reduced must be disabled when this is properly enabled.
+///   </para>
+/// </remarks>
 [JSONDynamicTypeAllowed]
 public class CompoundProductionEffect : IWorldEffect
 {
@@ -134,17 +140,35 @@ public class CompoundProductionEffect : IWorldEffect
             // Apply results
             foreach (var entry in totalAdded)
             {
-                var tweakedBiomeConditions = patch.Biome.GetCompound(entry.Key, CompoundAmountType.Biome);
-
-                if (SimulationParameters.Instance.GetCompoundDefinition(entry.Key).IsEnvironmental)
+                if (patch.Biome.TryGetCompound(entry.Key, CompoundAmountType.Biome, out var tweakedBiomeConditions))
                 {
-                    tweakedBiomeConditions.Ambient =
-                        Math.Clamp(tweakedBiomeConditions.Ambient + totalAdded[entry.Key], 0, 1);
+                    if (SimulationParameters.Instance.GetCompoundDefinition(entry.Key).IsEnvironmental)
+                    {
+                        tweakedBiomeConditions.Ambient =
+                            Math.Clamp(tweakedBiomeConditions.Ambient + totalAdded[entry.Key], 0, 1);
+                    }
+                    else
+                    {
+                        tweakedBiomeConditions.Density =
+                            Math.Clamp(tweakedBiomeConditions.Density + totalAdded[entry.Key], 0, 1);
+                    }
                 }
                 else
                 {
-                    tweakedBiomeConditions.Density =
-                        Math.Clamp(tweakedBiomeConditions.Density + totalAdded[entry.Key], 0, 1);
+                    // TODO: it is pretty critical that the amount in each spawned cloud is tweaked to be good
+                    var singleCloudAmount = 125000;
+
+                    // New compound produced in this patch
+                    if (SimulationParameters.Instance.GetCompoundDefinition(entry.Key).IsEnvironmental)
+                    {
+                        tweakedBiomeConditions.Ambient = Math.Clamp(totalAdded[entry.Key], 0, 1);
+                    }
+                    else
+                    {
+                        tweakedBiomeConditions.Amount = singleCloudAmount;
+
+                        tweakedBiomeConditions.Density = Math.Clamp(totalAdded[entry.Key], 0, 1);
+                    }
                 }
 
                 patch.Biome.ModifyLongTermCondition(entry.Key, tweakedBiomeConditions);
