@@ -45,7 +45,7 @@ int32_t ExtensionTestFunc(int num)
 	return Thrive::TestFunc(num);
 }
 
-bool ExtensionUnwrap(float p_texel_size, const float *p_vertices, const float *p_normals, int p_vertex_count, const int *p_indices, int p_index_count, float **r_uv, int **r_vertex, int *r_vertex_count, int **r_index, int *r_index_count, int *r_size_hint_x, int *r_size_hint_y)
+Array ExtensionUnwrap(float p_texel_size, Array* surface, int *r_size_hint_x, int *r_size_hint_y)
 {
-	return Thrive::Unwrap(p_texel_size, p_vertices, p_normals, p_vertex_count, p_indices, p_index_count, r_uv, r_vertex,  r_vertex_count, r_index, r_index_count, r_size_hint_x, r_size_hint_y);
+	return Thrive::Unwrap(p_texel_size, surface, r_size_hint_x, r_size_hint_y);
 }

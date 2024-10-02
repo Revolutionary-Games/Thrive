@@ -32,27 +32,29 @@
 
 #include "xatlas.h"
 
-namespace Thrive
-{
-	
-static int TestFunc(int test)
+static int Thrive::TestFunc(int test)
 {
 	return test;
 }
 
-static bool Unwrap(float p_texel_size, const float *p_vertices, const float *p_normals, int p_vertex_count, const int *p_indices, int p_index_count, float **r_uv, int **r_vertex, int *r_vertex_count, int **r_index, int *r_index_count, int *r_size_hint_x, int *r_size_hint_y) {
+static Array Thrive::Unwrap(float p_texel_size, Array* surface, int *r_size_hint_x, int *r_size_hint_y) {
 
 	{
+        Vector<Vector3> vertices = surface[ARRAY_VERTEX];
+        Vector<Vector3> normals = surface[ARRAY_NORMAL];
+        Vector<Vector2> uvs = surface[ARRAY_TEX_UV];
+        Vector<int> indices = surface[ARRAY_INDEX];
+		
 		// set up input mesh
 		xatlas::MeshDecl input_mesh;
-		input_mesh.indexData = p_indices;
-		input_mesh.indexCount = p_index_count;
+		input_mesh.indexData = indices;
+		input_mesh.indexCount = indices.size();
 		input_mesh.indexFormat = xatlas::IndexFormat::UInt32;
 
-		input_mesh.vertexCount = p_vertex_count;
-		input_mesh.vertexPositionData = p_vertices;
+		input_mesh.vertexCount = vertices.size();
+		input_mesh.vertexPositionData = vertices;
 		input_mesh.vertexPositionStride = sizeof(float) * 3;
-		input_mesh.vertexNormalData = p_normals;
+		input_mesh.vertexNormalData = normals;
 		input_mesh.vertexNormalStride = sizeof(uint32_t) * 3;
 		input_mesh.vertexUvData = nullptr;
 		input_mesh.vertexUvStride = 0;
@@ -88,35 +90,29 @@ static bool Unwrap(float p_texel_size, const float *p_vertices, const float *p_n
 
 		const xatlas::Mesh &output = atlas->meshes[0];
 
-		*r_vertex = (int *)memalloc(sizeof(int) * output.vertexCount);
-		ERR_FAIL_NULL_V_MSG(*r_vertex, false, "Out of memory.");
-		*r_uv = (float *)memalloc(sizeof(float) * output.vertexCount * 2);
-		ERR_FAIL_NULL_V_MSG(*r_uv, false, "Out of memory.");
-		*r_index = (int *)memalloc(sizeof(int) * output.indexCount);
-		ERR_FAIL_NULL_V_MSG(*r_index, false, "Out of memory.");
+		//*r_vertex = (int *)memalloc(sizeof(int) * output.vertexCount);
+		//ERR_FAIL_NULL_V_MSG(*r_vertex, false, "Out of memory.");
+		//*r_uv = (float *)memalloc(sizeof(float) * output.vertexCount * 2);
+		//ERR_FAIL_NULL_V_MSG(*r_uv, false, "Out of memory.");
+		//*r_index = (int *)memalloc(sizeof(int) * output.indexCount);
+		//ERR_FAIL_NULL_V_MSG(*r_index, false, "Out of memory.");
 
 		float max_x = 0;
 		float max_y = 0;
-		for (uint32_t i = 0; i < output.vertexCount; i++) {
-			(*r_vertex)[i] = output.vertexArray[i].xref;
-			(*r_uv)[i * 2 + 0] = output.vertexArray[i].uv[0] / w;
-			(*r_uv)[i * 2 + 1] = output.vertexArray[i].uv[1] / h;
+		for (uint32_t i = 0; i < vertices.size(); i++) {
+			//(*r_vertex)[i] = output.vertexArray[i].xref;
+			uvs[i * 2 + 0] = output.vertexArray[i].uv[0] / w;
+			uvs[i * 2 + 1] = output.vertexArray[i].uv[1] / h;
 			max_x = std::max(max_x, output.vertexArray[i].uv[0]);
 			max_y = std::max(max_y, output.vertexArray[i].uv[1]);
 		}
 
-		*r_vertex_count = output.vertexCount;
-
-		for (uint32_t i = 0; i < output.indexCount; i++) {
-			(*r_index)[i] = output.indexArray[i];
-		}
-
-		*r_index_count = output.indexCount;
+		//for (uint32_t i = 0; i < output.indexCount; i++) {
+		//	(*r_index)[i] = output.indexArray[i];
+		//}
 
 		xatlas::Destroy(atlas);
 	}
 
-	return true;
-}
-
+	return surface;
 }

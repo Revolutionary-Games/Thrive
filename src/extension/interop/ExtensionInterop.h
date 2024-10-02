@@ -30,8 +30,5 @@ extern "C"
 	
 	[[maybe_unused]] int32_t ExtensionTestFunc(int num);
 
-    [[maybe_unused]] bool ExtensionUnwrap(float p_texel_size, const float* p_vertices, const float* p_normals,
-        int p_vertex_count,
-        const int* p_indices, int p_index_count, float** r_uv, int** r_vertex, int* r_vertex_count, int** r_index,
-        int* r_index_count, int* r_size_hint_x, int* r_size_hint_y);
+    [[maybe_unused]] Array ExtensionUnwrap((float p_texel_size, Array* surface, int *r_size_hint_x, int *r_size_hint_y);
 }
