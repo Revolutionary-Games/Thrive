@@ -1,9 +1,6 @@
-// ------------------------------------ //
 #include "StepListener.hpp"
-
 #include "PhysicalWorld.hpp"
 
-// ------------------------------------ //
 namespace Thrive::Physics
 {
 
@@ -11,12 +8,10 @@ StepListener::StepListener(PhysicalWorld& world) : notifyWorld(world)
 {
 }
 
-void StepListener::OnStep(float inDeltaTime, JPH::PhysicsSystem& inPhysicsSystem)
+void StepListener::OnStep(const JPH::PhysicsStepListenerContext &inContext)
 {
-    // We assume here that the physics system is our target world's system
-    UNUSED(inPhysicsSystem);
-
-    notifyWorld.PerformPhysicsStepOperations(inDeltaTime);
+    // Assuming this operation uses the delta time from the context
+    notifyWorld.PerformPhysicsStepOperations(inContext.mDeltaTime);
 }
 
 } // namespace Thrive::Physics
