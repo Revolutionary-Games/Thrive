@@ -36,11 +36,15 @@
 
 #include "core/NativeLibIntercommunication.hpp"
 
+#include <godot_cpp/core/class_db.hpp>
+
+using namespace godot;
+
 namespace Thrive
 {
 
-static int TestFunc(int test);
+int TestFunc(int test);
 
-static Array Unwrap(float p_texel_size, Array* surface, int *r_size_hint_x, int *r_size_hint_y);
+bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y);
 
 }

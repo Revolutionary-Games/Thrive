@@ -6,6 +6,10 @@
 #include "core/ThriveConfig.hpp"
 #include "nodes/DebugDrawer.hpp"
 
+#include "atlas/atlas_unwrap.hpp"
+
+using namespace godot;
+
 // ------------------------------------ //
 int32_t ExtensionGetVersion(ThriveConfig* thriveConfig)
 {
@@ -45,7 +49,7 @@ int32_t ExtensionTestFunc(int num)
 	return Thrive::TestFunc(num);
 }
 
-Array ExtensionUnwrap(float p_texel_size, Array* surface, int *r_size_hint_x, int *r_size_hint_y)
+bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y)
 {
-	return Thrive::Unwrap(p_texel_size, surface, r_size_hint_x, r_size_hint_y);
+	return Thrive::Unwrap(p_texel_size, vertices, normals, vertex_count, indices, index_count, uvs, r_size_hint_x, r_size_hint_y);
 }

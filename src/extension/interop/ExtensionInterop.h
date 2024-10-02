@@ -6,6 +6,10 @@
 
 #include "interop/CStructures.h"
 
+#include "atlas/atlas_unwrap.hpp"
+
+using namespace godot;
+
 /// \file Defines all of the API methods that can be called from C# specifically in this extension type
 
 // This file uses always API_EXPORT as this always exports (and this cannot use the same macro as the general interop
@@ -28,7 +32,7 @@ extern "C"
 
     [[maybe_unused]] API_EXPORT void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* point, JColour* colour);
 	
-	[[maybe_unused]] int32_t ExtensionTestFunc(int num);
-
-    [[maybe_unused]] Array ExtensionUnwrap((float p_texel_size, Array* surface, int *r_size_hint_x, int *r_size_hint_y);
+	[[maybe_unused]] API_EXPORT int32_t ExtensionTestFunc(int num);
+	
+	[[maybe_unused]] API_EXPORT bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y);
 }
