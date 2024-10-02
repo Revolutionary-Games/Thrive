@@ -15,7 +15,7 @@
   <!-- Ignore the subproject source files -->
   <PropertyGroup>
     <DefaultItemExcludes>
-      $(DefaultItemExcludes);Scripts\**\*;ThriveScriptsShared\**\*;test\code_tests\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
+      $(DefaultItemExcludes);Scripts\**\*;ThriveScriptsShared\**\*;test\code_tests\**\*;test\code_benchmarks\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
