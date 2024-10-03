@@ -6,6 +6,7 @@
       "glucose": 0.14
     },
     "Outputs": {
+      "carbondioxide": 1,
       "atp": 91
     },
     "IsMetabolismProcess": true
@@ -33,10 +34,11 @@
   "photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
-      "carbondioxide": 0.09,
+      "carbondioxide": 3,
       "sunlight": 1
     },
     "Outputs": {
+      "oxygen": 3,
       "glucose": 0.04
     }
   },
@@ -119,6 +121,7 @@
       "glucose": 0.08
     },
     "Outputs": {
+      "carbondioxide": 1,
       "atp": 38
     },
     "IsMetabolismProcess": true
@@ -126,10 +129,11 @@
   "chromatophore_photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
-      "carbondioxide": 0.09,
+      "carbondioxide": 1,
       "sunlight": 1
     },
     "Outputs": {
+      "oxygen": 1,
       "glucose": 0.012
     }
   },
