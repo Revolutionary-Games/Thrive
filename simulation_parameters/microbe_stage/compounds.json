@@ -1,18 +1,4 @@
 ﻿{
-  "atp": {
-    "Name": "ATP",
-    "Volume": 1,
-    "IsCloud": false,
-    "IsAlwaysUseful": true,
-    "IsEnvironmental": false,
-    "CanBeDistributed": true,
-    "Colour": {
-      "r": 0.235,
-      "g": 0.627,
-      "b": 0.705
-    },
-    "IconPath": "res://assets/textures/gui/bevel/atp.png"
-  },
   "ammonia": {
     "Name": "AMMONIA",
     "Volume": 1,
@@ -31,47 +17,36 @@
       "g": 0.39,
       "b": 0.0
     },
-    "IconPath": "res://assets/textures/gui/bevel/ammonia.png"
+    "IconPath": "res://assets/textures/gui/bevel/Ammonia.svg"
   },
-  "phosphates": {
-    "Name": "PHOSPHATE",
+  "atp": {
+    "Name": "ATP",
     "Volume": 1,
-    "IsCloud": true,
+    "IsCloud": false,
     "IsAlwaysUseful": true,
     "IsEnvironmental": false,
     "CanBeDistributed": true,
-    "Digestible": true,
     "Colour": {
-      "r": 0.8,
-      "g": 0.4,
-      "b": 1
+      "r": 0.235,
+      "g": 0.627,
+      "b": 0.705
     },
-    "BarColour": {
-      "r": 0.38,
-      "g": 0.14,
-      "b": 0.80
-    },
-    "IconPath": "res://assets/textures/gui/bevel/phosphates.png"
+    "IconPath": "res://assets/textures/gui/bevel/ATP.svg"
   },
-  "hydrogensulfide": {
-    "Name": "HYDROGEN_SULFIDE",
+  "carbondioxide": {
+    "Name": "CARBON_DIOXIDE",
     "Volume": 1,
-    "IsCloud": true,
+    "IsCloud": false,
+    "IsGas": true,
     "IsAlwaysUseful": false,
-    "IsEnvironmental": false,
+    "IsEnvironmental": true,
     "CanBeDistributed": true,
-    "Digestible": true,
     "Colour": {
-      "r": 0.949,
-      "g": 0.918,
-      "b": 0.004
+      "r": 0.14,
+      "g": 0.28,
+      "b": 0.68
     },
-    "BarColour": {
-      "r": 0.46,
-      "g": 0.47,
-      "b": 0.18
-    },
-    "IconPath": "res://assets/textures/gui/bevel/hydrogensulfide.png"
+    "IconPath": "res://assets/textures/gui/bevel/CarbonDioxide.svg"
   },
   "glucose": {
     "Name": "GLUCOSE",
@@ -91,27 +66,47 @@
       "g": 0.61,
       "b": 0.61
     },
-    "IconPath": "res://assets/textures/gui/bevel/glucose.png"
+    "IconPath": "res://assets/textures/gui/bevel/Glucose.svg"
   },
-  "oxytoxy": {
-    "Name": "OXYTOXY_NT",
+  "hydrogensulfide": {
+    "Name": "HYDROGEN_SULFIDE",
     "Volume": 1,
-    "IsCloud": false,
-    "IsAgent": true,
+    "IsCloud": true,
+    "IsAlwaysUseful": false,
     "IsEnvironmental": false,
     "CanBeDistributed": true,
     "Digestible": true,
     "Colour": {
-      "r": 0.078,
-      "g": 0,
-      "b": 0.078
+      "r": 0.949,
+      "g": 0.918,
+      "b": 0.004
     },
     "BarColour": {
-      "r": 0.62,
-      "g": 0.07,
-      "b": 0.37
+      "r": 0.46,
+      "g": 0.47,
+      "b": 0.18
     },
-    "IconPath": "res://assets/textures/gui/bevel/oxytoxy.png"
+    "IconPath": "res://assets/textures/gui/bevel/HydrogenSulfide.svg"
+  },
+  "iron": {
+    "Name": "IRON",
+    "Volume": 1,
+    "IsCloud": true,
+    "IsAlwaysUseful": false,
+    "IsEnvironmental": false,
+    "CanBeDistributed": true,
+    "Digestible": true,
+    "Colour": {
+      "r": 0.631,
+      "g": 0.122,
+      "b": 0.004
+    },
+    "BarColour": {
+      "r": 0.54,
+      "g": 0.14,
+      "b": 0.07
+    },
+    "IconPath": "res://assets/textures/gui/bevel/Iron.svg"
   },
   "mucilage": {
     "Name": "MUCILAGE",
@@ -133,57 +128,7 @@
       "g": 0.49,
       "b": 0.40
     },
-    "IconPath": "res://assets/textures/gui/bevel/mucilage.png"
-  },
-  "iron": {
-    "Name": "IRON",
-    "Volume": 1,
-    "IsCloud": true,
-    "IsAlwaysUseful": false,
-    "IsEnvironmental": false,
-    "CanBeDistributed": true,
-    "Digestible": true,
-    "Colour": {
-      "r": 0.631,
-      "g": 0.122,
-      "b": 0.004
-    },
-    "BarColour": {
-      "r": 0.54,
-      "g": 0.14,
-      "b": 0.07
-    },
-    "IconPath": "res://assets/textures/gui/bevel/iron.png"
-  },
-  "oxygen": {
-    "Name": "OXYGEN",
-    "Volume": 1,
-    "IsCloud": false,
-    "IsGas": true,
-    "IsAlwaysUseful": false,
-    "IsEnvironmental": true,
-    "CanBeDistributed": true,
-    "Colour": {
-      "r": 0,
-      "g": 0.6,
-      "b": 0.76
-    },
-    "IconPath": "res://assets/textures/gui/bevel/oxygen.png"
-  },
-  "carbondioxide": {
-    "Name": "CARBON_DIOXIDE",
-    "Volume": 1,
-    "IsCloud": false,
-    "IsGas": true,
-    "IsAlwaysUseful": false,
-    "IsEnvironmental": true,
-    "CanBeDistributed": true,
-    "Colour": {
-      "r": 0.14,
-      "g": 0.28,
-      "b": 0.68
-    },
-    "IconPath": "res://assets/textures/gui/bevel/carbondioxide.png"
+    "IconPath": "res://assets/textures/gui/bevel/Mucilage.svg"
   },
   "nitrogen": {
     "Name": "NITROGEN",
@@ -198,7 +143,62 @@
       "g": 0.7,
       "b": 0.43
     },
-    "IconPath": "res://assets/textures/gui/bevel/nitrogen.png"
+    "IconPath": "res://assets/textures/gui/bevel/Nitrogen.svg"
+  },
+  "oxygen": {
+    "Name": "OXYGEN",
+    "Volume": 1,
+    "IsCloud": false,
+    "IsGas": true,
+    "IsAlwaysUseful": false,
+    "IsEnvironmental": true,
+    "CanBeDistributed": true,
+    "Colour": {
+      "r": 0,
+      "g": 0.6,
+      "b": 0.76
+    },
+    "IconPath": "res://assets/textures/gui/bevel/Oxygen.svg"
+  },
+  "oxytoxy": {
+    "Name": "OXYTOXY_NT",
+    "Volume": 1,
+    "IsCloud": false,
+    "IsAgent": true,
+    "IsEnvironmental": false,
+    "CanBeDistributed": true,
+    "Digestible": true,
+    "Colour": {
+      "r": 0.078,
+      "g": 0,
+      "b": 0.078
+    },
+    "BarColour": {
+      "r": 0.62,
+      "g": 0.07,
+      "b": 0.37
+    },
+    "IconPath": "res://assets/textures/gui/bevel/Oxytoxy.svg"
+  },
+  "phosphates": {
+    "Name": "PHOSPHATE",
+    "Volume": 1,
+    "IsCloud": true,
+    "IsAlwaysUseful": true,
+    "IsEnvironmental": false,
+    "CanBeDistributed": true,
+    "Digestible": true,
+    "Colour": {
+      "r": 0.8,
+      "g": 0.4,
+      "b": 1
+    },
+    "BarColour": {
+      "r": 0.38,
+      "g": 0.14,
+      "b": 0.80
+    },
+    "IconPath": "res://assets/textures/gui/bevel/Phosphate.svg"
   },
   "sunlight": {
     "Name": "SUNLIGHT",
@@ -217,7 +217,7 @@
       "g": 0.745,
       "b": 0.472
     },
-    "IconPath": "res://assets/textures/gui/bevel/sunlight.png"
+    "IconPath": "res://assets/textures/gui/bevel/Sunlight.svg"
   },
   "temperature": {
     "Name": "TEMPERATURE",
@@ -231,7 +231,7 @@
       "g": 0,
       "b": 0
     },
-    "IconPath": "res://assets/textures/gui/bevel/Temperature.png",
+    "IconPath": "res://assets/textures/gui/bevel/Temperature.svg",
     "Unit": "\u00B0C"
   }
 }

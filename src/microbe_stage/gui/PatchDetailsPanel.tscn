@@ -5,25 +5,25 @@
 [ext_resource type="Script" path="res://src/microbe_stage/gui/PatchDetailsPanel.cs" id="4"]
 [ext_resource type="LabelSettings" uid="uid://tgseeon8t360" path="res://src/gui_common/fonts/Title-Bold-Smaller-Green.tres" id="5_133c0"]
 [ext_resource type="LabelSettings" uid="uid://cns7wsfktfld4" path="res://src/gui_common/fonts/Title-SemiBold-Bigger.tres" id="5_xv7pc"]
-[ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://d0nvs2bcnmdsd" path="res://assets/textures/gui/bevel/nitrogen.png" id="7"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="7_np6c6"]
 [ext_resource type="LabelSettings" uid="uid://bnhcbmq3brx0s" path="res://src/gui_common/fonts/Title-SemiBold-Normal.tres" id="7_o264b"]
-[ext_resource type="Texture2D" uid="uid://bpaa6v4n78ipl" path="res://assets/textures/gui/bevel/carbondioxide.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="8_5yqej"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://cifmy0gatcl1q" path="res://assets/textures/gui/bevel/glucose.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://dlucsppj73dkc" path="res://assets/textures/gui/bevel/iron.png" id="11"]
-[ext_resource type="Texture2D" uid="uid://dy74vv7vysixm" path="res://assets/textures/gui/bevel/oxygen.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://bsk2vo17bhwbv" path="res://assets/textures/gui/bevel/ammonia.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://dv67e1fovg0r2" path="res://assets/textures/gui/bevel/hydrogensulfide.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://d1tuehjbire76" path="res://assets/textures/gui/bevel/Pressure.svg" id="10_0uoue"]
+[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="11_27t4p"]
+[ext_resource type="Texture2D" uid="uid://djaidl3g28ibi" path="res://assets/textures/gui/bevel/Oxygen.svg" id="13_04tm8"]
+[ext_resource type="Texture2D" uid="uid://d0qdyfeacbf31" path="res://assets/textures/gui/bevel/Nitrogen.svg" id="14_20t6o"]
+[ext_resource type="Texture2D" uid="uid://bylql42xmffwq" path="res://assets/textures/gui/bevel/CarbonDioxide.svg" id="15_iepc5"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="15_ng6rp"]
-[ext_resource type="Texture2D" uid="uid://b7log5abqgdv" path="res://assets/textures/gui/bevel/graphMarkerCircle.png" id="16_baud4"]
+[ext_resource type="Texture2D" uid="uid://c2nk78uls8vui" path="res://assets/textures/gui/bevel/OtherCompounds.svg" id="16_ggwv7"]
+[ext_resource type="Texture2D" uid="uid://dui1qqyh4jn7t" path="res://assets/textures/gui/bevel/HydrogenSulfide.svg" id="17_nrwlw"]
+[ext_resource type="Texture2D" uid="uid://d4bj3835y827e" path="res://assets/textures/gui/bevel/Ammonia.svg" id="18_h7r2b"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="19_6m1o4"]
-[ext_resource type="Texture2D" uid="uid://dify8alf16jac" path="res://assets/textures/gui/bevel/phosphates.png" id="21"]
-[ext_resource type="Texture2D" uid="uid://bjgfupcxx2nop" path="res://assets/textures/gui/bevel/Pressure.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://drlnrba2dvitm" path="res://assets/textures/gui/bevel/Glucose.svg" id="19_xgafm"]
+[ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphate.svg" id="20_nvinp"]
+[ext_resource type="Texture2D" uid="uid://d0lhje01k1lij" path="res://assets/textures/gui/bevel/Iron.svg" id="21_dqoqo"]
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="23_8qra5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="24_21yun"]
-[ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="25"]
 [ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="25_dd3af"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="28"]
 
@@ -162,11 +162,11 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
-custom_minimum_size = Vector2(30, 25)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "TEMPERATURE"
-texture = ExtResource("25")
+texture = ExtResource("8_5yqej")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Temperature"]
@@ -188,11 +188,11 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
-custom_minimum_size = Vector2(30, 25)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "PRESSURE"
-texture = ExtResource("23")
+texture = ExtResource("10_0uoue")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Pressure"]
@@ -207,11 +207,11 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
-custom_minimum_size = Vector2(30, 25)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "SUNLIGHT"
-texture = ExtResource("6")
+texture = ExtResource("11_27t4p")
 expand_mode = 1
 
 [node name="LightInfo" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Light"]
@@ -252,11 +252,11 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
-custom_minimum_size = Vector2(30, 25)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "OXYGEN"
-texture = ExtResource("12")
+texture = ExtResource("13_04tm8")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Oxygen"]
@@ -271,11 +271,11 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
-custom_minimum_size = Vector2(30, 25)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "NITROGEN"
-texture = ExtResource("7")
+texture = ExtResource("14_20t6o")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Nitrogen"]
@@ -290,11 +290,11 @@ size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
-custom_minimum_size = Vector2(30, 25)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "CARBON_DIOXIDE"
-texture = ExtResource("8")
+texture = ExtResource("15_iepc5")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/CO2"]
@@ -318,7 +318,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "OTHER_COMPOUNDS"
-texture = ExtResource("16_baud4")
+texture = ExtResource("16_ggwv7")
 expand_mode = 3
 
 [node name="SpacerForAlignment2" type="Control" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses/Other"]
@@ -347,7 +347,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "HYDROGEN_SULFIDE"
-texture = ExtResource("14")
+texture = ExtResource("17_nrwlw")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HydrogenSulfide"]
@@ -372,7 +372,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "AMMONIA"
-texture = ExtResource("13")
+texture = ExtResource("18_h7r2b")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Ammonia"]
@@ -397,7 +397,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "GLUCOSE"
-texture = ExtResource("10")
+texture = ExtResource("19_xgafm")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Glucose"]
@@ -422,7 +422,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "PHOSPHATE"
-texture = ExtResource("21")
+texture = ExtResource("20_nvinp")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Phosphate"]
@@ -447,7 +447,7 @@ custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "IRON"
-texture = ExtResource("11")
+texture = ExtResource("21_dqoqo")
 expand_mode = 1
 
 [node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]

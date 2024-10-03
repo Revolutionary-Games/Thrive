@@ -9,15 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://cf65ovetig4om" path="res://src/microbe_stage/gui/EnvironmentPanel.tscn" id="13_wltm2"]
 [ext_resource type="PackedScene" uid="uid://bk6re4dgb8r3n" path="res://src/microbe_stage/gui/CompoundPanels.tscn" id="14_hlko5"]
 [ext_resource type="AudioStream" uid="uid://c5u3d8rsbm0lu" path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" id="18"]
+[ext_resource type="Texture2D" uid="uid://5tclk2e3nffb" path="res://assets/textures/gui/bevel/ATP.svg" id="18_aod78"]
 [ext_resource type="Texture2D" uid="uid://siahiwtfm578" path="res://assets/textures/gui/bevel/actions/SlimeJetAction.png" id="21"]
 [ext_resource type="PackedScene" uid="uid://jjb8ei8wuuk" path="res://src/microbe_stage/gui/EditorEntryButton.tscn" id="23_satig"]
 [ext_resource type="Texture2D" uid="uid://bqtewn0kgu43l" path="res://assets/textures/gui/bevel/actions/CellSprint.png" id="32_qhyce"]
 [ext_resource type="Texture2D" uid="uid://b6tpqpuuux2xy" path="res://assets/textures/gui/bevel/parts/VacuoleIcon.png" id="32_vhwax"]
-[ext_resource type="Texture2D" uid="uid://dlucsppj73dkc" path="res://assets/textures/gui/bevel/iron.png" id="33_l4434"]
+[ext_resource type="Texture2D" uid="uid://mg4c0xuldpu8" path="res://assets/textures/gui/bevel/Siderophore.svg" id="34_bs2fk"]
 [ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="35_h7kw8"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
-[ext_resource type="Texture2D" uid="uid://8q2icxsubpdy" path="res://assets/textures/gui/bevel/atp.png" id="41"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="42"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="43"]
 [ext_resource type="Texture2D" uid="uid://budtxbmecqr3l" path="res://assets/textures/gui/bevel/dataValueBackground.png" id="44"]
@@ -230,13 +230,13 @@ border_color = Color(0.533333, 0.745098, 0.815686, 0.392157)
 texture = ExtResource("44")
 region_rect = Rect2(0, 0, 86, 52)
 
-[sub_resource type="StyleBoxFlat" id="46"]
+[sub_resource type="StyleBoxFlat" id="43"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
+border_color = Color(0.709804, 0.188235, 0.188235, 1)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -254,13 +254,13 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[sub_resource type="StyleBoxFlat" id="43"]
+[sub_resource type="StyleBoxFlat" id="46"]
 draw_center = false
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-border_color = Color(0.709804, 0.188235, 0.188235, 1)
+border_color = Color(0.701961, 0.701961, 0.701961, 0.588235)
 corner_radius_top_left = 1
 corner_radius_top_right = 1
 corner_radius_bottom_right = 1
@@ -513,12 +513,12 @@ mouse_filter = 2
 step = 0.1
 value = 100.0
 fill_mode = 4
+radial_initial_angle = 237.0
+radial_fill_degrees = 126.0
 texture_under = ExtResource("67")
 texture_progress = ExtResource("67")
 tint_under = Color(0, 0, 0, 0.752941)
 tint_progress = Color(0.960784, 0.270588, 0.478431, 1)
-radial_initial_angle = 237.0
-radial_fill_degrees = 126.0
 
 [node name="HitpointIcon" type="TextureRect" parent="BottomRight/HealthBar"]
 layout_mode = 0
@@ -543,12 +543,12 @@ mouse_filter = 2
 step = 0.1
 value = 100.0
 fill_mode = 4
+radial_initial_angle = 237.0
+radial_fill_degrees = 129.0
 texture_under = ExtResource("43")
 texture_progress = ExtResource("43")
 tint_under = Color(0, 0, 0, 0.752941)
 tint_progress = Color(0.439216, 0.956863, 0.137255, 1)
-radial_initial_angle = 237.0
-radial_fill_degrees = 129.0
 
 [node name="ATPIcon" type="TextureRect" parent="BottomRight/ATPBar"]
 layout_mode = 0
@@ -556,7 +556,7 @@ offset_left = 18.5
 offset_top = 156.5
 offset_right = 38.5
 offset_bottom = 176.5
-texture = ExtResource("41")
+texture = ExtResource("18_aod78")
 expand_mode = 1
 
 [node name="EditorButton" parent="BottomRight" instance=ExtResource("23_satig")]
@@ -618,10 +618,10 @@ alignment = 1
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_ENGULF_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
+theme_override_styles/disabled = SubResource("43")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
-theme_override_styles/disabled = SubResource("43")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("9")
 ActionName = "g_toggle_engulf"
@@ -630,9 +630,9 @@ ActionName = "g_toggle_engulf"
 visible = false
 layout_mode = 2
 tooltip_text = "EJECT_ENGULFED_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("7")
 ActionName = "g_eject_engulfed"
 
@@ -640,9 +640,9 @@ ActionName = "g_eject_engulfed"
 visible = false
 layout_mode = 2
 tooltip_text = "FIRE_TOXIN_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("10")
 ActionName = "g_fire_toxin"
 
@@ -650,9 +650,9 @@ ActionName = "g_fire_toxin"
 visible = false
 layout_mode = 2
 tooltip_text = "TOGGLE_BINDING_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("72")
 ActionName = "g_toggle_binding"
@@ -661,9 +661,9 @@ ActionName = "g_toggle_binding"
 visible = false
 layout_mode = 2
 tooltip_text = "UNBIND_ALL_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("70")
 ActionName = "g_unbind_all"
 
@@ -671,9 +671,9 @@ ActionName = "g_unbind_all"
 visible = false
 layout_mode = 2
 tooltip_text = "SIGNALING_AGENTS_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("68")
 ActionName = "g_pack_commands"
@@ -682,9 +682,9 @@ ActionName = "g_pack_commands"
 visible = false
 layout_mode = 2
 tooltip_text = "SECRETE_SLIME_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 ActionIcon = ExtResource("21")
 ActionName = "g_secrete_slime"
 
@@ -692,9 +692,9 @@ ActionName = "g_secrete_slime"
 visible = false
 layout_mode = 2
 tooltip_text = "SPRINT_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("32_qhyce")
 ActionName = "g_sprint"
@@ -703,9 +703,9 @@ ActionName = "g_sprint"
 visible = false
 layout_mode = 2
 tooltip_text = "MUCOCYST_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
+theme_override_styles/normal = SubResource("46")
 toggle_mode = true
 ActionIcon = ExtResource("32_vhwax")
 ActionName = "g_toggle_mucocyst"
@@ -714,10 +714,10 @@ ActionName = "g_toggle_mucocyst"
 visible = false
 layout_mode = 2
 tooltip_text = "SIDEROPHORE_ACTION_TOOLTIP"
-theme_override_styles/normal = SubResource("46")
 theme_override_styles/hover = SubResource("1")
 theme_override_styles/pressed = SubResource("1")
-ActionIcon = ExtResource("33_l4434")
+theme_override_styles/normal = SubResource("46")
+ActionIcon = ExtResource("34_bs2fk")
 ActionName = "g_fire_siderophore"
 
 [node name="HintText" type="Label" parent="."]
