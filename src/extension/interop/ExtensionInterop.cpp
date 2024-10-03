@@ -49,7 +49,7 @@ int32_t ExtensionTestFunc(int num)
 	return Thrive::TestFunc(num);
 }
 
-bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y)
+bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs)
 {
-	return Thrive::Unwrap(p_texel_size, vertices, normals, vertex_count, indices, index_count, uvs, r_size_hint_x, r_size_hint_y);
+	return Thrive::Unwrap(p_texel_size, vertices, normals, vertex_count, indices, index_count, uvs);
 }

@@ -119,6 +119,7 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.Color] = colors;
         arrays[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
+        arrays[(int)Mesh.ArrayType.TexUV2] = uvs.ToArray();
 
         // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
         // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
@@ -142,12 +143,12 @@ public class DualContourer
         float[] uvCoords = new float[vertexCount * 2];
         for (int i = 0; i < vertexCount; i++)
         {
-            var vertex = vertices[0];
+            var vertex = vertices[i];
             verticeCoords[i * 3 + 0] = vertex.X;
             verticeCoords[i * 3 + 1] = vertex.Y;
             verticeCoords[i * 3 + 2] = vertex.Z;
 
-            var normal = normals[0];
+            var normal = normals[i];
             normalCoords[i * 3 + 0] = normal.X;
             normalCoords[i * 3 + 1] = normal.Y;
             normalCoords[i * 3 + 2] = normal.Z;
@@ -155,8 +156,10 @@ public class DualContourer
 
         var uvSpan = new Span<float>(uvCoords);
 
+        var uvPtr = MemoryMarshal.GetReference(uvSpan);
+
         bool done = NativeMethods.Unwrap(1.0f, ref MemoryMarshal.GetReference<float>(verticeCoords),
-            ref MemoryMarshal.GetReference<float>(normalCoords), vertexCount, ref MemoryMarshal.GetReference<int>(indices.ToArray()), indexCount, ref MemoryMarshal.GetReference(uvSpan), 1, 1);
+            ref MemoryMarshal.GetReference<float>(normalCoords), vertexCount, ref MemoryMarshal.GetReference<int>(indices.ToArray()), indexCount, ref uvPtr);
 
         GD.Print("UV unwrapping is done correctly?: " + done);
 
@@ -165,6 +168,7 @@ public class DualContourer
         for (int i = 0; i < vertexCount; i++)
         {
             uvs.Add(new Vector2(uvSpan[i * 2 + 0], uvSpan[i * 2 + 1]));
+            GD.Print(uvs[i]);
         }
 
         return done;

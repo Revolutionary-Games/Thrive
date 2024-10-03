@@ -34,5 +34,5 @@ extern "C"
 	
 	[[maybe_unused]] API_EXPORT int32_t ExtensionTestFunc(int num);
 	
-	[[maybe_unused]] API_EXPORT bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y);
+	[[maybe_unused]] API_EXPORT bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs);
 }

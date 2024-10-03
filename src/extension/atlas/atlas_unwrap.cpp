@@ -41,10 +41,11 @@ int Thrive::TestFunc(int test)
 	return test;
 }
 
-bool Thrive::Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y)
+bool Thrive::Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs)
 {
 
-	{		// set up input mesh
+	{	
+		// set up input mesh
 		xatlas::MeshDecl input_mesh;
 		input_mesh.indexData = indices;
 		input_mesh.indexCount = index_count;
@@ -75,40 +76,42 @@ bool Thrive::Unwrap(float p_texel_size, float *vertices, float *normals, int ver
 		ERR_FAIL_COND_V_MSG(err != xatlas::AddMeshError::Success, false, xatlas::StringForEnum(err));
 
 		xatlas::Generate(atlas, chart_options, pack_options);
-
-		r_size_hint_x = atlas->width;
-		r_size_hint_y = atlas->height;
-
-		float w = (float)r_size_hint_x;
-		float h = (float)r_size_hint_y;
-
-		if (w == 0 || h == 0) {
+		
+		ERR_FAIL_COND_V_MSG(atlas->chartCount == 0, false, "No charts generated");
+		
+		float w = (float)(atlas->width);
+		float h = (float)(atlas->height);
+		
+		if (w == 0 || h == 0)
+		{
 			xatlas::Destroy(atlas);
-			return false; //could not bake because there is no area
+			ERR_FAIL_COND_V_MSG(w == 0 || h == 0, false, "could not bake because there is no area");
 		}
 
 		const xatlas::Mesh &output = atlas->meshes[0];
 
-		//*vertices = (int *)memalloc(sizeof(int) * output.vertexCount);
-		//ERR_FAIL_NULL_V_MSG(*vertices, NULL, "Out of memory.");
+		vertices = (float *)memalloc(sizeof(float) * output.vertexCount * 3);
+		ERR_FAIL_NULL_V_MSG(vertices, false, "Out of memory.");
 		uvs = (float *)memalloc(sizeof(float) * output.vertexCount * 2);
 		ERR_FAIL_NULL_V_MSG(uvs, false, "Out of memory.");
-		//*indices = (int *)memalloc(sizeof(int) * output.indexCount);
-		//ERR_FAIL_NULL_V_MSG(*indices, NULL, "Out of memory.");
+		indices = (int *)memalloc(sizeof(int) * output.indexCount);
+		ERR_FAIL_NULL_V_MSG(indices, false, "Out of memory.");
 
-		float max_x = 0;
-		float max_y = 0;
+		float max_x = 0.0f;
+		float max_y = 0.0f;
 		for (uint32_t i = 0; i < output.vertexCount; i++) {
-			//(*vertices)[i] = output.vertexArray[i].xref;
+			vertices[i] = (float)output.vertexArray[i].xref;
 			uvs[i * 2 + 0] = output.vertexArray[i].uv[0] / w;
 			uvs[i * 2 + 1] = output.vertexArray[i].uv[1] / h;
 			max_x = std::max(max_x, output.vertexArray[i].uv[0]);
 			max_y = std::max(max_y, output.vertexArray[i].uv[1]);
 		}
+		
+		vertex_count = output.vertexCount;
 
-		//for (uint32_t i = 0; i < output.indexCount; i++) {
-		//	(*indices)[i] = output.indexArray[i];
-		//}
+		for (uint32_t i = 0; i < output.indexCount; i++) {
+			indices[i] = output.indexArray[i];
+		}
 
 		xatlas::Destroy(atlas);
 	}

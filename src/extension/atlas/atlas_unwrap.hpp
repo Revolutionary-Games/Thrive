@@ -45,6 +45,6 @@ namespace Thrive
 
 int TestFunc(int test);
 
-bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs, int r_size_hint_x, int r_size_hint_y);
+bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs);
 
 }

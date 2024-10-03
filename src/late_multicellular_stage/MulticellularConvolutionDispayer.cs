@@ -9,6 +9,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 {
     private const float AABBMargin = 0.1f;
 
+    [Export]
     private StandardMaterial3D? material;
 
     private float? overrideColourAlpha;
@@ -37,10 +38,6 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
-        material = new StandardMaterial3D
-        {
-            VertexColorUseAsAlbedo = true,
-        };
 
         ApplyAlpha();
 
