@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using Godot;
 using UnlockConstraints;
 
@@ -16,6 +17,8 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
+    private StringBuilder atpToolTipTextBuilder = new();
+
     [Signal]
     public delegate void ClickedEventHandler();
 
@@ -598,6 +601,8 @@ public partial class CellEditorComponent
 
     private void UpdateEnergyBalanceToolTips(EnergyBalanceInfo energyBalance)
     {
+        var simulationParameters = SimulationParameters.Instance;
+
         foreach (var subBar in atpProductionBar.SubBars)
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
@@ -607,9 +612,60 @@ public partial class CellEditorComponent
 
             subBar.RegisterToolTipForControl(tooltip, true);
 
-            tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
-                SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
-                energyBalance.Production[subBar.Name]);
+            // Show required compounds for this process
+            Dictionary<Compound, float>? requiredCompounds = null;
+
+            if (energyBalance.ProductionRequiresCompounds != null)
+            {
+                energyBalance.ProductionRequiresCompounds.TryGetValue(subBar.Name, out requiredCompounds);
+            }
+            else
+            {
+                GD.PrintErr("Tracking for used compounds for energy not set up");
+            }
+
+            bool includedRequirement = false;
+
+            if (requiredCompounds is { Count: > 0 })
+            {
+                atpToolTipTextBuilder.Clear();
+
+                var translationFormat = Localization.Translate("ENERGY_BALANCE_REQUIRED_COMPOUND_LINE");
+
+                foreach (var requiredCompound in requiredCompounds)
+                {
+                    var compound = simulationParameters.GetCompoundDefinition(requiredCompound.Key);
+
+                    // Don't show environmental compounds as the player doesn't need to worry about having those to be
+                    // able to generate ATP
+                    if (compound.IsEnvironmental)
+                        continue;
+
+                    if (atpToolTipTextBuilder.Length > 0)
+                        atpToolTipTextBuilder.Append('\n');
+
+                    atpToolTipTextBuilder.Append(translationFormat.FormatSafe(compound.Name,
+                        Math.Round(requiredCompound.Value, 2)));
+                }
+
+                // As we don't check for environmental compounds before starting the loop, we might not find any valid
+                // data in the end in which case this needs to be skipped
+                if (atpToolTipTextBuilder.Length > 0)
+                {
+                    tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT")
+                        .FormatSafe(SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
+                            Math.Round(energyBalance.Production[subBar.Name], 3), atpToolTipTextBuilder.ToString());
+                    includedRequirement = true;
+                }
+            }
+
+            if (!includedRequirement)
+            {
+                // Normal display if didn't show with a requirement
+                tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_PRODUCTION").FormatSafe(
+                    SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name,
+                    Math.Round(energyBalance.Production[subBar.Name], 3));
+            }
         }
 
         foreach (var subBar in atpConsumptionBar.SubBars)
@@ -645,7 +701,7 @@ public partial class CellEditorComponent
             }
 
             tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
-                .FormatSafe(displayName, energyBalance.Consumption[subBar.Name]);
+                .FormatSafe(displayName, Math.Round(energyBalance.Consumption[subBar.Name]));
         }
     }
 
