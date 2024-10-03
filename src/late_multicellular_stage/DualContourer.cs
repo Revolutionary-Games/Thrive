@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -108,6 +109,8 @@ public class DualContourer
 
         SetColours(points, colors);
 
+        GenerateUVs(points, normals, triIndices, out var uvs);
+
         var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
 
@@ -115,6 +118,7 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Index] = triIndices.ToArray();
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.Color] = colors;
+        arrays[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
 
         // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
         // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
@@ -126,6 +130,44 @@ public class DualContourer
         GD.Print($"Generated a mesh in {sw.Elapsed}");
 
         return mesh;
+    }
+
+    private static bool GenerateUVs(List<Vector3> vertices, Vector3[] normals, List<int> indices, out List<Vector2> uvs)
+    {
+        int vertexCount = vertices.Count;
+        int indexCount = indices.Count;
+
+        float[] verticeCoords = new float[vertexCount * 3];
+        float[] normalCoords = new float[vertexCount * 3];
+        float[] uvCoords = new float[vertexCount * 2];
+        for (int i = 0; i < vertexCount; i++)
+        {
+            var vertex = vertices[0];
+            verticeCoords[i * 3 + 0] = vertex.X;
+            verticeCoords[i * 3 + 1] = vertex.Y;
+            verticeCoords[i * 3 + 2] = vertex.Z;
+
+            var normal = normals[0];
+            normalCoords[i * 3 + 0] = normal.X;
+            normalCoords[i * 3 + 1] = normal.Y;
+            normalCoords[i * 3 + 2] = normal.Z;
+        }
+
+        var uvSpan = new Span<float>(uvCoords);
+
+        bool done = NativeMethods.Unwrap(1.0f, ref MemoryMarshal.GetReference<float>(verticeCoords),
+            ref MemoryMarshal.GetReference<float>(normalCoords), vertexCount, ref MemoryMarshal.GetReference<int>(indices.ToArray()), indexCount, ref MemoryMarshal.GetReference(uvSpan), 1, 1);
+
+        GD.Print("UV unwrapping is done correctly?: " + done);
+
+        uvs = new List<Vector2>(vertexCount);
+
+        for (int i = 0; i < vertexCount; i++)
+        {
+            uvs.Add(new Vector2(uvSpan[i * 2 + 0], uvSpan[i * 2 + 1]));
+        }
+
+        return done;
     }
 
     private static void CalculateLookupTableIfNeeded()
