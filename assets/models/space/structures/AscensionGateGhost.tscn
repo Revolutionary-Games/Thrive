@@ -1,25 +1,54 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0l7mebbx60fx"]
+[gd_scene load_steps=2 format=3 uid="uid://c0l7mebbx60fx"]
 
-[ext_resource type="PackedScene" uid="uid://brucc75wulk44" path="res://assets/models/space/structures/AscensionGate.tscn" id="1"]
-
-[sub_resource type="StandardMaterial3D" id="1"]
-transparency = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qirts"]
+transparency = 4
 shading_mode = 0
-albedo_color = Color(0.905882, 0.905882, 0.905882, 0.658824)
+albedo_color = Color(1, 1, 1, 0.294118)
 
-[node name="AscensionGate" instance=ExtResource("1")]
+[node name="Node3D" type="Node3D"]
 
-[node name="CSGBox3D" parent="." index="0"]
-material_override = SubResource("1")
+[node name="AscensionGate" type="Node3D" parent="."]
 
-[node name="CSGBox2" parent="." index="1"]
-material_override = SubResource("1")
+[node name="Cylinder" type="CSGCylinder3D" parent="AscensionGate"]
+transform = Transform3D(0.92388, 0, 0.382683, 0, 1, 0, -0.382683, 0, 0.92388, 0, 0, 0)
+radius = 2.56087
+height = 0.237736
+material = SubResource("StandardMaterial3D_qirts")
 
-[node name="CSGBox3" parent="." index="2"]
-material_override = SubResource("1")
+[node name="Temple" type="CSGPolygon3D" parent="AscensionGate"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1, 0, 0.7)
+polygon = PackedVector2Array(0, 0, 1, 2, 3, 2, 4, 0)
+depth = 2.8
+material = SubResource("StandardMaterial3D_qirts")
 
-[node name="CSGBox5" parent="." index="3"]
-material_override = SubResource("1")
+[node name="EntrancePillar1" type="CSGCylinder3D" parent="AscensionGate"]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -0.2, 0.347342, -0.726975)
+radius = 0.05
+height = 0.5
+material = SubResource("StandardMaterial3D_qirts")
 
-[node name="CSGBox4" parent="." index="4"]
-material_override = SubResource("1")
+[node name="EntrancePillar2" type="CSGCylinder3D" parent="AscensionGate"]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 0.2, 0.347342, -0.726975)
+radius = 0.05
+height = 0.5
+material = SubResource("StandardMaterial3D_qirts")
+
+[node name="EntranceTop" type="CSGBox3D" parent="AscensionGate"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00660507, 0.590694, -0.726975)
+size = Vector3(0.5, 0.05, 0.1)
+material = SubResource("StandardMaterial3D_qirts")
+
+[node name="Pillar1" type="CSGBox3D" parent="AscensionGate"]
+transform = Transform3D(0.976145, -0.217121, 0, 0.217121, 0.976145, 0, 0, 0, 1, 1.53302, 1.99086, 0)
+size = Vector3(0.450878, 3.98205, 0.451)
+material = SubResource("StandardMaterial3D_qirts")
+
+[node name="Pillar2" type="CSGBox3D" parent="AscensionGate"]
+transform = Transform3D(0.975981, 0.217854, 0, -0.217854, 0.975981, 0, 0, 0, 1, -1.62222, 1.99086, 0)
+size = Vector3(0.450878, 3.98205, 0.451)
+material = SubResource("StandardMaterial3D_qirts")
+
+[node name="Beacon2" type="CSGBox3D" parent="AscensionGate"]
+transform = Transform3D(0.212132, 0, 0.212132, 0, 1, 0, -0.212132, 0, 0.212132, 0, 1.17434, 0)
+size = Vector3(0.5, 0.5, 0.5)
+material = SubResource("StandardMaterial3D_qirts")

@@ -453,8 +453,9 @@ public partial class MicrobeBenchmark : BenchmarkBase
 
     private void GenerateWorldAndSpecies()
     {
-        gameProperties = GameProperties.StartNewMicrobeGame(new WorldGenerationSettings());
-        world = new GameWorld();
+        var settings = new WorldGenerationSettings();
+        gameProperties = GameProperties.StartNewMicrobeGame(settings);
+        world = new GameWorld(settings);
 
         generatedSpecies.Clear();
 
