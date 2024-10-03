@@ -423,6 +423,10 @@ public static class Constants
     /// </summary>
     public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
+    public const float MEMORY_PHOTO_CACHE_TIME = 325;
+
+    public const float MEMORY_PHOTO_CACHE_CLEAN_INTERVAL = 37;
+
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>

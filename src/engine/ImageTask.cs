@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A request for some game object to be generated an image of for <see cref="PhotoStudio"/>
 /// </summary>
-public class ImageTask
+public class ImageTask : ICacheItem
 {
     /// <summary>
     ///   This task's priority. The lower the number, the higher the priority.
@@ -38,6 +38,8 @@ public class ImageTask
         private set => finalImage = value;
     }
 
+    public bool WillStorePlainImage => storePlainImage;
+
     /// <summary>
     ///   Raw <see cref="Image"/> version of <see cref="FinalImage"/>, only stored if specified in the constructor
     /// </summary>
@@ -64,5 +66,11 @@ public class ImageTask
         }
 
         Finished = true;
+    }
+
+    public ulong CalculateCacheHash()
+    {
+        return ScenePhotographable?.GetVisualHashCode() ?? SimulationPhotographable?.GetVisualHashCode() ??
+            throw new InvalidOperationException("Image task has neither scene or simulation photograph data");
     }
 }

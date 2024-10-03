@@ -4,7 +4,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
+///   Type of cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
 [JsonObject(IsReference = true)]
 public class CellType : ICellDefinition, ICloneable

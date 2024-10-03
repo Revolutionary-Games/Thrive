@@ -50,6 +50,11 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER), 0);
     }
 
+    public ulong GetVisualHashCode()
+    {
+        return species?.GetVisualHashCode() ?? throw new InvalidOperationException("No species set");
+    }
+
     private void BuildHexStruct()
     {
         var hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
