@@ -132,13 +132,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
-        WorldGenerationSettings worldSettings, CompoundAmountType amountType)
+        WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, null);
+            isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null);
     }
 
     /// <summary>
@@ -160,15 +160,23 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
+    /// <param name="calculateRequiredResources">
+    ///   If true, then the required input compounds to run at the given energy balance are stored per energy producer
+    /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType, SimulationCache? cache)
+        CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache)
     {
         // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
         // further items
         var result = new EnergyBalanceInfo();
+
+        if (calculateRequiredResources)
+        {
+            result.SetupTrackingForRequiredCompounds();
+        }
 
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
@@ -461,7 +469,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             if (amount > 0)
             {
-                result?.AddProduction(organelle.Definition.InternalName, amount);
+                result?.AddProduction(organelle.Definition.InternalName, amount, processData.WritableInputs);
 
                 processATPProduction += amount;
             }

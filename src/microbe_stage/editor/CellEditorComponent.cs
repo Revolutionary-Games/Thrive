@@ -1909,7 +1909,7 @@ public partial class CellEditorComponent :
         // TODO: pass moving variable
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, moving, true,
             Editor.CurrentGame.GameWorld.WorldSettings,
-            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current);
+            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
 
         UpdateEnergyBalance(energyBalance);
 

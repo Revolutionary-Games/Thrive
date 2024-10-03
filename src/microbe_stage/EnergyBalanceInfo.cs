@@ -22,6 +22,12 @@ public class EnergyBalanceInfo
     public Dictionary<string, float> Production { get; } = new();
 
     /// <summary>
+    ///   If setup to collect required compounds to run, then this collects compounds each <see cref="Production"/>
+    ///   entry requires to produce the energy.
+    /// </summary>
+    public Dictionary<string, Dictionary<Compound, float>>? ProductionRequiresCompounds { get; private set; }
+
+    /// <summary>
     ///   The cost of base movement (only when moving)
     /// </summary>
     public float BaseMovement { get; set; }
@@ -47,7 +53,7 @@ public class EnergyBalanceInfo
     public float Osmoregulation { get; set; }
 
     /// <summary>
-    ///   Total production of energy for all of the microbe's processes (assumes there's enough resources to
+    ///   Total production of energy for all the microbe's processes (assumes there's enough resources to
     ///   run everything)
     /// </summary>
     public float TotalProduction { get; set; }
@@ -79,10 +85,38 @@ public class EnergyBalanceInfo
         Consumption[groupName] = existing + amount;
     }
 
-    public void AddProduction(string groupName, float amount)
+    public void AddProduction(string groupName, float amount, Dictionary<Compound, float> requiredInputCompounds)
     {
         Production.TryGetValue(groupName, out var existing);
 
         Production[groupName] = existing + amount;
+
+        if (ProductionRequiresCompounds != null)
+        {
+            if (!ProductionRequiresCompounds.TryGetValue(groupName, out var compoundData))
+            {
+                compoundData = new Dictionary<Compound, float>();
+                ProductionRequiresCompounds[groupName] = compoundData;
+            }
+
+            foreach (var inputCompound in requiredInputCompounds)
+            {
+                compoundData.TryGetValue(inputCompound.Key, out var existingAmount);
+                compoundData[inputCompound.Key] = existingAmount + amount;
+            }
+        }
+    }
+
+    public void SetupTrackingForRequiredCompounds()
+    {
+        if (ProductionRequiresCompounds == null)
+        {
+            ProductionRequiresCompounds = new Dictionary<string, Dictionary<Compound, float>>();
+        }
+        else
+        {
+            // TODO: should this just clear the second level dictionaries for more object reuse?
+            ProductionRequiresCompounds.Clear();
+        }
     }
 }
