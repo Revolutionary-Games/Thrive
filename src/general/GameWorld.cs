@@ -38,7 +38,7 @@ public class GameWorld : ISaveLoadable
     public WorldStatsTracker StatisticsTracker = new();
 
     [JsonProperty]
-    public WorldGenerationSettings WorldSettings = new();
+    public WorldGenerationSettings WorldSettings;
 
     /// <summary>
     ///   History of the world. Generations need to be inserted in order for this to work.
@@ -71,12 +71,26 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     /// <param name="settings">Settings to generate the world with</param>
     /// <param name="startingSpecies">Starting species for the player</param>
-    public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this()
+    public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this(settings)
     {
-        WorldSettings = settings;
-        LightCycle.ApplyWorldSettings(settings);
+        // Create timed effects for the world that happen when generations pass
+        TimedEffects = new TimedWorldOperations();
 
-        AutoEvoGlobalCache = new AutoEvoGlobalCache(WorldSettings);
+        if (settings.ExperimentalFeatures)
+        {
+            GD.Print("Using experimental world effects");
+
+            // Register compound production and diffusion
+            TimedEffects.RegisterEffect("compound_production", new CompoundProductionEffect(this));
+            TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+        }
+        else
+        {
+            // Register glucose reduction
+            TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
+        }
+
+        LightCycle.ApplyWorldSettings(settings);
 
         if (startingSpecies == null)
         {
@@ -121,17 +135,14 @@ public class GameWorld : ISaveLoadable
     ///   Blank world creation, only for loading saves
     /// </summary>
     [JsonConstructor]
-    public GameWorld()
+    public GameWorld(WorldGenerationSettings worldSettings)
     {
-        // TODO: when loading a save this shouldn't be recreated as otherwise that happens all the time
-        // Note that as the properties are applied from a save after the constructor, the save is correctly loaded
-        // but these extra objects get created and garbage collected
-        TimedEffects = new TimedWorldOperations();
+        WorldSettings = worldSettings;
 
         AutoEvoGlobalCache = new AutoEvoGlobalCache(WorldSettings);
 
-        // Register glucose reduction
-        TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
+        // This relies on save loading filling this in
+        TimedEffects = null!;
     }
 
     [JsonProperty]
