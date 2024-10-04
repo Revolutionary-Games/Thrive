@@ -1,12 +1,11 @@
-﻿using AutoEvo;
-using System;
+﻿using System;
 using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Linq;
+using AutoEvo;
 
 internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 {
-
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
     private IComponentSpecificUpgrades upgrade;
 
@@ -32,6 +31,7 @@ internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             {
                 organelle.Upgrades = new OrganelleUpgrades();
             }
+
             organelle.Upgrades.CustomUpgradeData = upgrade;
         }
 
