@@ -1,7 +1,9 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Newtonsoft.Json;
 
+[JSONDynamicTypeAllowed]
 public class EnvironmentalCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -14,7 +16,16 @@ public class EnvironmentalCompoundPressure : SelectionPressure
 
     private readonly CompoundDefinition createdCompound;
     private readonly CompoundDefinition compound;
+
+    [JsonProperty]
     private readonly float energyMultiplier;
+
+    // These two are needed purely for saving to work
+    [JsonProperty(nameof(compound))]
+    private readonly Compound compoundRaw;
+
+    [JsonProperty(nameof(createdCompound))]
+    private readonly Compound createdCompoundRaw;
 
     public EnvironmentalCompoundPressure(Compound compound, Compound createdCompound, float energyMultiplier,
         float weight) :
@@ -22,6 +33,9 @@ public class EnvironmentalCompoundPressure : SelectionPressure
             AddOrganelleAnywhere.ThatUseCompound(compound),
         ])
     {
+        compoundRaw = compound;
+        createdCompoundRaw = createdCompound;
+
         this.compound = SimulationParameters.GetCompound(compound);
 
         if (this.compound.IsCloud)
@@ -36,6 +50,7 @@ public class EnvironmentalCompoundPressure : SelectionPressure
         this.energyMultiplier = energyMultiplier;
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
@@ -66,6 +81,11 @@ public class EnvironmentalCompoundPressure : SelectionPressure
     {
         return new LocalizedString("DISSOLVED_COMPOUND_FOOD_SOURCE",
             new LocalizedString(compound.GetUntranslatedName()));
+    }
+
+    public Compound GetUsedCompoundType()
+    {
+        return compound.ID;
     }
 
     public override string ToString()

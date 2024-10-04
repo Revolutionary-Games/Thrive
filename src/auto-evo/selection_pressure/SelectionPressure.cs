@@ -1,22 +1,28 @@
 ﻿namespace AutoEvo;
 
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Selection pressures in miches both score species how well they do and also generate mutations for species to be
 ///   better in terms of this selection pressure
 /// </summary>
+[JSONDynamicTypeAllowed]
 public abstract class SelectionPressure
 {
-    public readonly float Strength;
+    [JsonProperty]
+    public readonly float Weight;
+
+    [JsonIgnore]
     public readonly List<IMutationStrategy<MicrobeSpecies>> Mutations;
 
-    public SelectionPressure(float strength, List<IMutationStrategy<MicrobeSpecies>> mutations)
+    public SelectionPressure(float weight, List<IMutationStrategy<MicrobeSpecies>> mutations)
     {
-        Strength = strength;
+        Weight = weight;
         Mutations = mutations;
     }
 
+    [JsonIgnore]
     public abstract LocalizedString Name { get; }
 
     public abstract float Score(Species species, Patch patch, SimulationCache cache);
@@ -39,12 +45,12 @@ public abstract class SelectionPressure
 
         if (newScore > oldScore)
         {
-            return newScore / oldScore * Strength;
+            return newScore / oldScore * Weight;
         }
 
         if (oldScore > newScore)
         {
-            return -(oldScore / newScore) * Strength;
+            return -(oldScore / newScore) * Weight;
         }
 
         return 0;

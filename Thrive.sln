@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LauncherThriveShared", "Rev
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThriveScriptsShared", "ThriveScriptsShared\ThriveScriptsShared.csproj", "{CE809922-0763-48C7-9037-4FDCEC542AC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeBenchmark", "test\code_benchmarks\CodeBenchmark.csproj", "{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,12 @@ Global
 		{CE809922-0763-48C7-9037-4FDCEC542AC7}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
 		{CE809922-0763-48C7-9037-4FDCEC542AC7}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE809922-0763-48C7-9037-4FDCEC542AC7}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
+		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportDebug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportDebug|Any CPU.Build.0 = Debug|Any CPU
+		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportRelease|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D9390BE-EB42-468C-80D7-BBB7951FD9E3}.ExportRelease|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0

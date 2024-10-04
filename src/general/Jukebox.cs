@@ -36,7 +36,7 @@ public partial class Jukebox : Node
     private string? playingCategory;
 
     /// <summary>
-    ///   Used to lookup the transitions to go away from a category
+    ///   Used to look up the transitions to go away from a category
     /// </summary>
     private MusicCategory? previouslyPlayedCategory;
 

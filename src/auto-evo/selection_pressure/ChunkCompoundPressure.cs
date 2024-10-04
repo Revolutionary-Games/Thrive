@@ -1,7 +1,9 @@
 ﻿namespace AutoEvo;
 
 using System;
+using Newtonsoft.Json;
 
+[JSONDynamicTypeAllowed]
 public class ChunkCompoundPressure : SelectionPressure
 {
     // Needed for translation extraction
@@ -12,18 +14,28 @@ public class ChunkCompoundPressure : SelectionPressure
 
     private readonly CompoundDefinition atp = SimulationParameters.GetCompound(Compound.ATP);
 
+    [JsonProperty]
     private readonly string chunkType;
+
+    [JsonProperty]
     private readonly LocalizedString readableName;
+
     private readonly CompoundDefinition compound;
+
+    // Needed for saving to work
+    [JsonProperty(nameof(compound))]
+    private readonly Compound compoundRaw;
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound, float weight) :
         base(weight, [])
     {
+        compoundRaw = compound;
         this.compound = SimulationParameters.GetCompound(compound);
         this.chunkType = chunkType;
         this.readableName = readableName;
     }
 
+    [JsonIgnore]
     public override LocalizedString Name => NameString;
 
     public override float Score(Species species, Patch patch, SimulationCache cache)
@@ -82,6 +94,11 @@ public class ChunkCompoundPressure : SelectionPressure
         // TODO: extend this approach or find another nerf.
         var ventedEnergy = MathF.Pow(compoundAmount.Amount, Constants.AUTO_EVO_CHUNK_AMOUNT_NERF);
         return ventedEnergy * chunk.Density * Constants.AUTO_EVO_CHUNK_ENERGY_AMOUNT;
+    }
+
+    public Compound GetUsedCompoundType()
+    {
+        return compound.ID;
     }
 
     public override string ToString()

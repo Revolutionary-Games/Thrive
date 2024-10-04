@@ -94,7 +94,7 @@ public partial class TimelineTab : PanelContainer
         globalFilterButton = GetNode<Button>(GlobalFilterButtonPath);
     }
 
-    public void UpdateTimeline(IEditorReportData editor, Patch? selectedPatch, Patch? patch = null)
+    public void UpdateTimeline(IEditorReportData editor, Patch targetPatch)
     {
         if (editor.CurrentGame == null)
         {
@@ -127,8 +127,6 @@ public partial class TimelineTab : PanelContainer
 
         localEventsContainer.FreeChildren();
         cachedLocalTimelineElements = new List<TimelineSection>();
-
-        var targetPatch = patch ?? selectedPatch ?? editor.CurrentPatch;
 
         for (int i = targetPatch.History.Count - 1; i >= 0; i--)
         {

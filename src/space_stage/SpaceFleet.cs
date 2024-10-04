@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Nito.Collections;
 
 /// <summary>
-///   A fleet (or just one) ship out in space.
+///   A fleet of ships (or just one ship) out in space.
 /// </summary>
 public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 {
@@ -23,6 +23,8 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
     [JsonProperty]
     private List<UnitType>? ships;
+
+    private bool movementEffectState;
 
     /// <summary>
     ///   Emitted when this fleet is selected by the player
@@ -57,7 +59,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     ///   Flying speed of the fleet
     /// </summary>
     [JsonProperty]
-    public float Speed { get; private set; } = 1.3f;
+    public float Speed { get; private set; } = 2.0f;
 
     [JsonProperty]
     public bool IsPlayerFleet { get; private set; }
@@ -77,6 +79,22 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     [JsonIgnore]
     public Node3D EntityNode => this;
 
+    /// <summary>
+    ///   Set to true when this fleet is moving. This controls whether engine visuals are enabled or not.
+    /// </summary>
+    public bool Moving
+    {
+        get => movementEffectState;
+        set
+        {
+            if (movementEffectState == value)
+                return;
+
+            movementEffectState = value;
+            ApplyEngineVisuals();
+        }
+    }
+
     public override void _Ready()
     {
         ResolveNodeReferences();
@@ -89,6 +107,8 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
         visualsParent.Scale = new Vector3(Constants.SPACE_FLEET_MODEL_SCALE, Constants.SPACE_FLEET_MODEL_SCALE,
             Constants.SPACE_FLEET_MODEL_SCALE);
+
+        ApplyEngineVisuals();
     }
 
     public void ResolveNodeReferences()
@@ -125,7 +145,7 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
 
         var newVisuals = unit.WorldRepresentationSpace.Instantiate<Node3D>();
         visualsParent.AddChild(newVisuals);
-        newVisuals.Position = ships.Count * new Vector3(2.5f, 0, 0);
+        newVisuals.Position = ships.Count * new Vector3(9.0f, 0, 0);
     }
 
     public void OnSelectedThroughLabel()
@@ -155,9 +175,47 @@ public partial class SpaceFleet : Node3D, IEntityWithNameLabel, IStrategicUnit
     {
         ships = new List<UnitType> { ship };
 
-        // TODO: proper positioning and scaling for multiple ships
+        // TODO: proper positioning and scaling and rotation for multiple ships
         visualsParent.AddChild(ship.WorldRepresentationSpace.Instantiate());
+    }
 
-        // TODO: fleet model rotations
+    private void ApplyEngineVisuals()
+    {
+        if (ships == null || ships.Count == 0)
+            return;
+
+        bool moving = Moving;
+
+        int count = ships.Count;
+        for (int i = 0; i < count; ++i)
+        {
+            // TODO: should maybe cache the references for performance of big fleets in the future
+            var emitters = ships[i].EngineParticlesPathSpace;
+
+            if (emitters == null)
+                continue;
+
+            var node = visualsParent.GetChild(i);
+
+            if (node != null)
+            {
+                try
+                {
+                    foreach (var emitterPath in emitters)
+                    {
+                        var particles = node.GetNode<GpuParticles3D>(emitterPath);
+                        particles.Emitting = moving;
+                    }
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("Failed to apply fleet movement particles: ", e);
+                }
+            }
+            else
+            {
+                GD.PrintErr("Couldn't get ship visuals to apply engine particles");
+            }
+        }
     }
 }

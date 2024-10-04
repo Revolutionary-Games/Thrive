@@ -533,10 +533,10 @@ public class ModifyExistingSpecies : IRunStep
             foreach (var pressure in pressures)
             {
                 strengthX += cache.GetPressureScore(pressure, patch, x.Item1) /
-                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Strength;
+                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
 
                 strengthY += cache.GetPressureScore(pressure, patch, y.Item1) /
-                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Strength;
+                    cache.GetPressureScore(pressure, patch, baseSpecies) * pressure.Weight;
             }
 
             if (strengthX > strengthY)

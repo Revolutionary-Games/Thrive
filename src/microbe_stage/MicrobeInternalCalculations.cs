@@ -471,7 +471,7 @@ public static class MicrobeInternalCalculations
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
+            moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false);
 
         var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
             biomeConditions, CompoundAmountType.Biome, energyBalance);
@@ -562,7 +562,7 @@ public static class MicrobeInternalCalculations
         if (dayCompoundBalances == null)
         {
             var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-                moving, playerSpecies, worldSettings, CompoundAmountType.Biome);
+                moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false);
 
             dayCompoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
                 biomeConditions, CompoundAmountType.Biome, energyBalance);
@@ -570,8 +570,7 @@ public static class MicrobeInternalCalculations
 
         var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
             biomeConditions, CompoundAmountType.Minimum, ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions,
-                membraneType,
-                moving, playerSpecies, worldSettings, CompoundAmountType.Minimum));
+                membraneType, moving, playerSpecies, worldSettings, CompoundAmountType.Minimum, false));
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 

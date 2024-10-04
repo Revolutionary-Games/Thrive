@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 /// <summary>
-///   Orders a space flee to move to the given position
+///   Orders a space fleet to move to the given position
 /// </summary>
 public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
 {
@@ -18,22 +18,48 @@ public class FleetMovementOrder : UnitOrderBase<SpaceFleet>
     protected override bool WorkOnOrder(float delta)
     {
         var unitPosition = Unit.GlobalPosition;
+
         var toTarget = TargetPosition - unitPosition;
 
         var distanceToTarget = toTarget.Length();
 
         var adjustedSpeed = delta * Unit.Speed;
 
-        // TODO: adjust the fleet rotation towards the travel direction
-
-        if (distanceToTarget < adjustedSpeed)
-        {
-            Unit.GlobalPosition = TargetPosition;
-            return true;
-        }
-
+        // The normalized vector from the ship to the target point
         var direction = toTarget / distanceToTarget;
-        Unit.GlobalPosition += direction * adjustedSpeed;
-        return false;
+
+        var currentRotation = Unit.GlobalTransform.Basis.GetRotationQuaternion();
+        var targetRotation = new Quaternion(new Vector3(0, 0, 1), toTarget.Normalized()).Normalized();
+
+        if (currentRotation.AngleTo(targetRotation) >= 0.22f)
+        {
+            var smoothRotation = currentRotation.Slerp(targetRotation, 0.8f * delta);
+            Unit.GlobalTransform = new Transform3D(new Basis(smoothRotation), unitPosition);
+
+            // The particles kind of look bad when turning in place so we don't set the moving property here yet
+            // Unit.Moving = true;
+            return false;
+        }
+        else
+        {
+            var smoothRotation = currentRotation.Slerp(targetRotation, 0.5f * delta);
+
+            bool finished = false;
+
+            if (distanceToTarget < adjustedSpeed)
+            {
+                unitPosition = TargetPosition;
+                finished = true;
+                Unit.Moving = false;
+            }
+            else
+            {
+                unitPosition += direction * adjustedSpeed;
+                Unit.Moving = true;
+            }
+
+            Unit.GlobalTransform = new Transform3D(new Basis(smoothRotation), unitPosition);
+            return finished;
+        }
     }
 }

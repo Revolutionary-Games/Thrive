@@ -35,6 +35,12 @@ public class RunResults
     // afterwards when loading from a save
     private readonly List<PossibleSpecies> modifiedSpecies = new();
 
+    /// <summary>
+    ///   Miche tree generated for this auto-evo run. This is partially saved (some subobjects are excluded) so that
+    ///   food chain tab information can be displayed after loading a save.
+    /// </summary>
+    [JsonProperty]
+    [JsonConverter(typeof(DictionaryWithJSONKeysConverter<Patch, Miche>))]
     private readonly Dictionary<Patch, Miche> micheByPatch = new();
 
     public enum NewSpeciesType
@@ -259,7 +265,8 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run
+    ///   Checks if species has results. Species doesn't have results if it was extinct or was not part of the run.
+    ///   All species *should* have results for them that were part of the world at the start of the auto-evo run.
     /// </summary>
     /// <param name="species">The species to check</param>
     /// <returns>True if the species has results</returns>
@@ -684,6 +691,60 @@ public class RunResults
     }
 
     /// <summary>
+    ///   Calculates the final new population for a species in the given patch while taking migrations and splits into
+    ///   account.
+    /// </summary>
+    /// <returns>New population or 0</returns>
+    public long GetNewSpeciesPopulationInPatch(SpeciesResult entry, Patch forPatch, bool resolveMigrations = true,
+        bool resolveSplits = true)
+    {
+        entry.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation);
+
+        if (resolveMigrations)
+        {
+            newPopulation += CountSpeciesSpreadPopulation(entry.Species, forPatch);
+
+            // It is valid to add migrations that try to move more population than there is in total in the
+            // patch. The actual results apply clamp the values to real populations, but that haven't been done
+            // here so we need to clamp things to not be negative here as it would look pretty wierd.
+            if (newPopulation < 0)
+                newPopulation = 0;
+        }
+
+        if (resolveSplits)
+        {
+            if (entry.SplitOffPatches?.Contains(forPatch) == true)
+            {
+                // All population splits off
+                newPopulation = 0;
+            }
+
+            if (entry.SplitFrom != null)
+            {
+                var splitFrom = results[entry.SplitFrom];
+
+                // Get population from where this split-off
+                if (splitFrom.SplitOff == entry.Species)
+                {
+                    if (splitFrom.SplitOffPatches == null)
+                        throw new Exception("Split off patches is null for a split species");
+
+                    foreach (var patchPopulation in splitFrom.SplitOffPatches)
+                    {
+                        if (patchPopulation == forPatch)
+                        {
+                            newPopulation += splitFrom.NewPopulationInPatches[patchPopulation];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        return newPopulation;
+    }
+
+    /// <summary>
     ///   Makes summary text. To show previous populations <see cref="StorePreviousPopulations"/> must be called
     /// </summary>
     /// <param name="playerReadable">If true ids are removed from the output</param>
@@ -875,27 +936,8 @@ public class RunResults
 
             foreach (var patchPopulation in entry.NewPopulationInPatches)
             {
-                long adjustedPopulation = patchPopulation.Value;
-
-                if (resolveMigrations)
-                {
-                    adjustedPopulation += CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
-
-                    // It is valid to add migrations that try to move more population than there is in total in the
-                    // patch. The actual results apply clamp the values to real populations, but that haven't been done
-                    // here so we need to clamp things to not be negative here as it would look pretty wierd.
-                    if (adjustedPopulation < 0)
-                        adjustedPopulation = 0;
-                }
-
-                if (resolveSplits)
-                {
-                    if (entry.SplitOffPatches?.Contains(patchPopulation.Key) == true)
-                    {
-                        // All population splits off
-                        adjustedPopulation = 0;
-                    }
-                }
+                long adjustedPopulation =
+                    GetNewSpeciesPopulationInPatch(entry, patchPopulation.Key, resolveMigrations, resolveSplits);
 
                 // As the populations are added to all patches, even when the species is not there, we remove those
                 // from output if there is currently no population in a patch and there isn't one in
@@ -939,8 +981,7 @@ public class RunResults
 
                     if (!found)
                     {
-                        OutputPopulationForPatch(entry.Species, to,
-                            CountSpeciesSpreadPopulation(entry.Species, to));
+                        OutputPopulationForPatch(entry.Species, to, CountSpeciesSpreadPopulation(entry.Species, to));
                     }
                 }
             }
@@ -1064,47 +1105,7 @@ public class RunResults
 
             entry.OldPopulationInPatches.TryGetValue(forPatch, out var oldPopulation);
 
-            entry.NewPopulationInPatches.TryGetValue(forPatch, out var newPopulation);
-
-            if (resolveMigrations)
-            {
-                newPopulation += CountSpeciesSpreadPopulation(entry.Species, forPatch);
-
-                // Make sure big migrations don't cause negative population. See the relevant part in MakeSummary
-                // for more details.
-                if (newPopulation < 0)
-                    newPopulation = 0;
-            }
-
-            if (resolveSplits)
-            {
-                if (entry.SplitOffPatches?.Contains(forPatch) == true)
-                {
-                    // All population splits off
-                    newPopulation = 0;
-                }
-
-                if (entry.SplitFrom != null)
-                {
-                    var splitFrom = results[entry.SplitFrom];
-
-                    // Get population from where this split-off
-                    if (splitFrom.SplitOff == entry.Species)
-                    {
-                        if (splitFrom.SplitOffPatches == null)
-                            throw new Exception("Split off patches is null for a split species");
-
-                        foreach (var patchPopulation in splitFrom.SplitOffPatches)
-                        {
-                            if (patchPopulation == forPatch)
-                            {
-                                newPopulation += splitFrom.NewPopulationInPatches[patchPopulation];
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
+            var newPopulation = GetNewSpeciesPopulationInPatch(entry, forPatch, resolveMigrations, resolveSplits);
 
             resultDisplay.DisplayPopulation(newPopulation, oldPopulation, true);
 
