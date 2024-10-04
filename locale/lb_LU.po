@@ -10,7 +10,8 @@ msgstr ""
 "POT-Creation-Date: 2024-10-02 15:43+0300\n"
 "PO-Revision-Date: 2024-02-18 17:10+0000\n"
 "Last-Translator: Alex Larbière <alex@larbiere.eu>\n"
-"Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
+"Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/"
+"projects/thrive/thrive-game/lb/>\n"
 "Language: lb_LU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,9 +24,8 @@ msgstr ""
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr "2D Bewegungsart:"
 
-#, fuzzy
 msgid "3D_EDITOR"
-msgstr "3D Editor"
+msgstr "3D Bearbechter"
 
 msgid "3D_MOVEMENT"
 msgstr "Dreidimensional Bewegung"
@@ -43,19 +43,21 @@ msgid "ABORTED_DOT"
 msgstr "Ofgebrach."
 
 msgid "ABSORBERS_COUNT"
-msgstr ""
+msgstr "Absorbenten:"
 
 msgid "ABYSSOPELAGIC"
-msgstr ""
+msgstr "Abyssopelagëg"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "Zoustëmmen"
 
 msgid "ACTION_AWAKEN"
 msgstr "Erwechen ({0:F1}/{1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
+"Op d' 'Erwaachen Stuf' weidergoen. Accessibel wann's de genuch Gehier hues "
+"(eng Zort Geweebe mat Axonen)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Aktioun ass blockéiert während eng aaner am gaang ass"
@@ -67,57 +69,66 @@ msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Verdoppel Populatioun"
 
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr ""
+msgstr "Duebel Eenheeten"
 
 msgid "ACTION_HALF_POPULATION"
 msgstr "Halbeier Populatioun"
 
 msgid "ACTION_TELEPORT"
-msgstr ""
+msgstr "Teleportéieren"
 
 msgid "ACTIVE"
 msgstr "Aktiv"
 
 msgid "ACTIVE_THREAD_COUNT"
-msgstr ""
+msgstr "Momentan threads:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"Actif Mikrobe wäerten duerch d'Géigend lafe wann näischt Interessantes "
+"geschitt.\n"
+"Sesshaft Mikrobe wäerte stationär sinn a waarde bis d'Ëmwelt sech ännert "
+"éier se agéieren."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr "Zusätzlech Iwwerpreifungen hunn een Fehler fonnt: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Nei Tastebindung bäifügen"
 
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "Erweidert"
 
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Erweidert Méiglechkeeten op maachen"
 
 #, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobe Stéckstofffixeirung"
 
 msgid "AEROBIC_NITROGEN_FIXING"
-msgstr ""
+msgstr "Aerobëg Stéckstoff Fixéierung"
 
 #, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Anaerobe Stéckstofffixeirung"
 
 msgid "AGENTS"
-msgstr ""
+msgstr "Mëttel"
 
 msgid "AGENTS_COLON"
-msgstr ""
+msgstr "Mëttel:"
 
+#, fuzzy
 msgid "AGENT_NAME"
-msgstr ""
+msgstr "Mëttel {0}"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"Aggressiv Mikrobe wäerte Beuten iwwer gréisser Distanze joen\n"
+"an se si méi warscheinlech Ugräifer ze bekämpfen, wann se ugegraff ginn.\n"
+"Friddlech Mikrobe wäerten net iwwert gréisser Distanzen engagéieren \n"
+"se si manner warscheinlech Gëftstoffer géint Ugräifer ze notzen."
 
 msgid "AGGRESSIVE"
 msgstr "Aggressiv"
@@ -127,45 +138,61 @@ msgid "AI_MUTATION_RATE"
 msgstr "KI Mutatiounsrate"
 
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "ALL"
 msgstr "All"
 
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Erlaabt der Spezies net ze muteiren (wann keng gut Mutatioun fonnt get)"
+msgstr ""
+"Erlaabt der Spezies net ze muteiren (wann keng gut Mutatioun fonnt get)"
 
 #, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Allgemeng Statistiken vun allen Welten"
 
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
+"[b]Generatiounen[/b]\n"
+"  {0}\n"
+"[b]All Aarten:[/b]\n"
+"  Duerchschnëtt {1}; Standard Deviatioun {2}\n"
+"[b]Nach liewend Aarten:[/b]\n"
+"  Duerchschnëtt {3}; Standard Deviatioun {4}\n"
+"[b]Pro-Gebitt Aarten Unzuel:[/b]\n"
+"  Duerchschnëtt {5}; Standard Deviatioun {6}\n"
+"[b]Pro-Gebitt Total Populatioun:[/b]\n"
+"  Duerchschnëtt {7}; Standard Deviatioun {8}\n"
+"[b]Duerchschnëttlëch Hex Gréisst Mikroben Aarten:[/b]\n"
+"  Duerchschnëtt {9}; Standard Deviatioun {10}\n"
+"[b]Algeméng Organellen Daten:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Du bass schonn operstan"
 
 msgid "ALT"
 msgstr "Alt"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "Ëmmer siichtbat"
 
 msgid "AMBIANCE_VOLUME"
-msgstr ""
+msgstr "Ëmgebungslautstärkt"
 
 msgid "AMMONIA"
-msgstr ""
+msgstr "Ammoniak"
 
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
-msgstr ""
+msgstr "Unzuel un automatesche Späicherungen:"
 
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
-msgstr ""
+msgstr "Unzuel u Schnell-Späicherungen:"
 
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerobe Stéckstofffixeirung"
@@ -174,7 +201,7 @@ msgid "AND_UNLOCK_CONDITION"
 msgstr "an"
 
 msgid "APPEARANCE"
-msgstr ""
+msgstr "Erscheinung"
 
 msgid "APPLY"
 msgstr "Iwwerhuelen"
@@ -186,11 +213,14 @@ msgid "APRIL"
 msgstr "Abrëll"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "Bass du sécher dass du ALL Astellungen op hier Standardwerter zerécksetzen wells?"
+msgstr ""
+"Bass du sécher dass du ALL Astellungen op hier Standardwerter zerécksetzen "
+"wells?"
 
 #, fuzzy
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
-msgstr "Bass du sécher dass du d'Agaben op hier Standardwerter zerécksetzen wells?"
+msgstr ""
+"Bass du sécher dass du d'Agaben op hier Standardwerter zerécksetzen wells?"
 
 msgid "ARTIST_COLON"
 msgstr "Kënschtler:"
@@ -205,16 +235,26 @@ msgid "ART_GALLERY"
 msgstr "Konschtgalerie"
 
 msgid "ASCENSION_CONGRATULATIONS"
-msgstr ""
+msgstr "Gratulatioun!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Du bass ukomm a bass mam Spill fäerdeg ginn. Gratulatioun fir d'Enn vum "
+"Spill erreecht ze hunn!\n"
+"\n"
+"Do kanns an der Weltraum Stuf mat debloquéierten God Tools weiderspille fir "
+"an der Sandkëscht ronderëm ze bastelen.\n"
+"\n"
+"Et ass och méiglech an dëser Späicherung zu der Mikrobe Stuf zréckzegoen an "
+"all d'Stufen nach eng Kéier mat extra Virdeeler duerchzespillen.\n"
+"\n"
+"Unzuel un Evolutiounen an dësem Späicherung: {0}"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "Programklass ass erfuerderlech, wann uginn"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "Programklass ass erfuerderlech, wann 'auto harmony' aktivéiert ass"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
@@ -230,7 +270,7 @@ msgid "ATP"
 msgstr "ATP"
 
 msgid "ATP_BALANCE"
-msgstr ""
+msgstr "ATP-Niveau"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP Produktioun"
@@ -240,33 +280,51 @@ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr ""
+"De Versuch fir d'Späicheratei ze schreiwen ass Feelgeschloe. Den Numm vun "
+"der Späicherdatei kéint ze laang sinn oder dier hutt net Accès, an de "
+"Dossiér ze schreiwen."
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "Beim Feil:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "Audio output Gerät:"
 
 msgid "AUGUST"
 msgstr "August"
 
 msgid "AUTO"
-msgstr ""
+msgstr "Auto"
 
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
+"Dëse Panneau weist d'Chifferen di vun den Auto-Évo Viraussoe genotzt ginn. "
+"Di total Energie, déi eng Spezies notze kann an d'Käschte pro Individuum an "
+"der Spezies determinéieren di schlussendlech Populatioun.Auto-Évo  notzt e "
+"vereinfachte model vun der Realitéit fir auszerechnen, wéi gutt eng Aart "
+"ofschneit, baséierend op der Energie, déi se kréie konnten. Fir all "
+"Ernierungsquell gëtt gewise wéi vill Energie d'Aart dovu kritt huet. Em plus "
+"gëtt d'total Energie déi zu Verfügung steet gewisen. De Rapport un Energie "
+"déi d'Aart vun der totaler Energie kritt baséiert dorobber wéi grouss hier "
+"Fitness ass am verglach mat der totaler Fitness. Fitness ass eng Metrik dovu "
+"wéi gutt d'Spezies eng Ernierungsquell notze kann."
 
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
-msgstr ""
+msgstr "D'Populatioun vun {0} ass ëm {1} an {2} geännert, well: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
-msgstr ""
+msgstr "Auto-Évo Viraussoe"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+"Deen hei Panneau weist déi erwaarten total Energie déi vun der Aart "
+"gesammelt gouf an d'Unzuel vun der Aart (a Klammeren)  vun Auto-Évo vir di "
+"beaarbecht Aart.\n"
+"Auto-Évo ass responsabel d'Populatiouns Simulatioun déi (nieft denger "
+"eegener Leeschtung) deng Populatioun affectéiert."
 
 msgid "AUTO-EVO_STEPS_DONE"
-msgstr ""
+msgstr "{0:F1}% fäerdeg. {1:n0}/{2:n0} Schrëtt."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatescht speichern während dem Spill"
@@ -275,101 +333,104 @@ msgid "AUTO_EVO"
 msgstr "Auto-Evo"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr ""
+msgstr "Auto-Évo Exploratioun"
 
 msgid "AUTO_EVO_FAILED"
-msgstr ""
+msgstr "Auto-Évo feelgeschloen"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
 msgid "AUTO_EVO_RESULTS"
-msgstr ""
+msgstr "Auto-Évo Resultater:"
 
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr ""
+msgstr "Global Resultater"
 
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr ""
+msgstr "Ausgewielten Auto-Évo Resultater"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr ""
+msgstr "Status vum Laaf:"
 
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr ""
+msgstr "Auto-Évo Status:"
 
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Automatesch virun beweegen"
 
 msgid "AUTO_RESOLUTION"
-msgstr ""
+msgstr "Auto ({0}x{1})"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "Verfügbar Bauprojeten"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "Verfügbar Mods"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "Erwäche Stuf"
 
 msgid "AWARE_STAGE"
-msgstr ""
+msgstr "Bewosst Stuf"
 
 msgid "BACK"
 msgstr "Zeréck"
 
+#, fuzzy
 msgid "BACKSLASH"
-msgstr ""
+msgstr "Backslash"
 
 msgid "BACKSPACE"
-msgstr ""
+msgstr "Zréck-Taste"
 
 #, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Berechnen, wéi wann et daachsiwwer wier"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "D'Chifferen an dësem Panneau gi gerechent wéi wann et ëmmer Daach wier"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Beweegungs Käschte matrechnen"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
+"Rechent den Niveau an aner Chifferen an dësem Panneau, ugeholl dat d'Zell "
+"sech ëmmer beweegt"
 
 msgid "BASE_MOBILITY"
-msgstr ""
+msgstr "Basis Mobilitéit"
 
 msgid "BASE_MOVEMENT"
-msgstr ""
+msgstr "Basis Beweegung"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "Grondleeënd"
 
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Zeréck op di Grondleeënd Astellungen"
 
 msgid "BATHYPELAGIC"
-msgstr ""
+msgstr "Bathypelagech"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "Macroscopech ginn ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "Multizellular ginn ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr ""
+msgstr "Fänk un ze Gedeien"
 
 msgid "BEHAVIOUR"
 msgstr "Verhalen"
 
 msgid "BEHAVIOUR_ACTIVITY"
-msgstr ""
+msgstr "Aktivitéit"
 
 msgid "BEHAVIOUR_AGGRESSION"
 msgstr "Aggressivitéit"
@@ -387,19 +448,19 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}m ennert dem Mieresspiegel"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Referenzen"
 
 msgid "BENCHMARK_FINISHED"
-msgstr ""
+msgstr "Referenzen kompett"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Referenzéier Phase:"
 
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr "Resultater:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Bescht Gebitt:"
 
 msgid "BIG_IRON_CHUNK"
 msgstr "Grousst Eisensteck"
@@ -409,43 +470,53 @@ msgid "BIG_PHOSPHATE_CHUNK"
 msgstr "Grousst Eisensteck"
 
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} Mrd"
 
 msgid "BINDING_AGENT"
-msgstr ""
+msgstr "Pechmëttel"
 
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
+"Erlaabt, un aner Zellen ze pechen. D'ass den éischte Schratt op "
+"Multizellularitéit . Wann deng Zell en Deel vun enger Kolonie ass, gi "
+"Stoffer zwëscht den Zelle gedeelt. Du kenns net an den Beaarbechter wärend's "
+"de Deel vun enger Kolonie bass a muss dech entpechen, sou bal's de genuch "
+"Stoffer gesammelt huess fir deng Zell ze splécken."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
+"Dréck [thrive:input]g_toggle_binding[/thrive:input] fir de Pech-Modus "
+"ëmgeschalten. Am Pech-Modus kanns de aner Zellen vun denger Aart un deng "
+"Kolonie upechen an deem se a se renns. Fir aus enger Kolonie rauszekommen, "
+"dréck [thrive:input]g_unbind_all[/thrive:input]. Du kenns net an den "
+"Beaarbechter wärend's de un aneren Zellen dru pechs."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Verbann d'Achse mateneen"
 
 msgid "BIOLUMINESCENT_VACUOLE"
-msgstr ""
+msgstr "Biolumineszenz-Vakuol"
 
 msgid "BIOME_LABEL"
-msgstr ""
+msgstr "Biom: {0}"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neuron"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "Daper"
 
 msgid "BROWSE"
 msgstr "Sichen"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Workshop duerchsichen"
 
 msgid "BUILD_CITY"
 msgstr "Eng Stadt bauen"
 
 msgid "BUILD_QUEUE"
-msgstr ""
+msgstr "Bau-Schlaang"
 
 msgid "BUILD_STRUCTURE"
 msgstr "Eng Struktur bauen"
@@ -461,6 +532,10 @@ msgstr "Kalziumkarbonat"
 
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Déi hei Membran huet eng haart Schuel aus Kalziumkarbonat. Et kann Schued "
+"liicht widderstoen a brauch manner Energie fir sech net ze verformen. "
+"D'Nodeeler dovun sou eng Schuel ze hunn sinn dat d'Zell vill mi lues ass an "
+"et brauch e bëssen fir Resourcen ze absorbéieren."
 
 msgid "CAMERA"
 msgstr "Kamera"
@@ -472,43 +547,48 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr "AKTIOUN OFBRIECHEN"
 
 msgid "CANCEL_CURRENT_ACTION"
-msgstr ""
+msgstr "Aktioun ofbriechen"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
+"Eng Zort Zell, di elo grad an dengem Kierperplang benotzt gëtt kann net "
+"geläscht ginn"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "Kann net genotzten Zellen Zort läschen"
 
 msgid "CANNOT_ENGULF"
-msgstr ""
+msgstr "Kann net verschlécken"
 
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
-msgstr ""
+msgstr "Kann ee Metaball net an säi Kannerbaam beweegen"
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
+"D'Gehierleeschtung ass ze niddereg fir op der momentaner Stuf ze bleiwen. "
+"Stufen zréckzegoen ass lo grad net erlabt, w.e.g erheigt d'Gehierleeschtung "
+"fir weiderzekommen."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "Kann Gehierleeschtung net verklengeren fir Stufen zréckzegoen"
 
 msgid "CANNOT_WRITE_SAVE"
-msgstr ""
+msgstr "Kann Späicherdatei net schreiwen"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "Kann d'Informatioun fir den \"{0}\" mod let lueden"
 
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "Feststelltaste"
 
 msgid "CARBON_DIOXIDE"
 msgstr "Kuelendioxid"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "En Iwwerfloss"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "E proppert Stéck"
 
 msgid "CATEGORY_LITTLE"
 msgstr "wéineg"
@@ -536,241 +616,329 @@ msgstr "Zellulase"
 
 msgid "CELLULASE_DESCRIPTION"
 msgstr ""
+"Cellulase erlabt der Zell fir d'Cellulose Membran ofzebauen. All Additioun "
+"steigert Effizienz."
 
 msgid "CELLULOSE"
 msgstr "Zellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Di hei Membran huet eng Mauer, di bessere Schutz géint all Schued, mee "
+"speziell géint physeschen Schued, bitt. Et kascht et och manner Energie fir "
+"d'Form ze behalen, me kann Ressourcen net séier absorbéieren an d'Zell ass "
+"méi lues. [b]Cellulase kann d'Mauer verdauen[/b], wat et verwondbar géint "
+"verschlécken mëscht."
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "Numm vun der Zellen Zort"
 
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
-msgstr ""
+msgstr "Ännerungs noten sinn ze laang"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Symmetry änneren"
 
 msgid "CHEATS"
-msgstr ""
+msgstr "Fuddelen"
 
 msgid "CHEAT_KEYS_ENABLED"
-msgstr ""
+msgstr "Fuddel Tasten aktivéiert"
 
 msgid "CHEAT_MENU"
-msgstr ""
+msgstr "Fuddel menu"
 
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zellprozesser weisen / verstoppen"
 
 msgid "CHEMOPLAST"
-msgstr ""
+msgstr "Chemoplast"
 
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
+"De chemoplast ass eng duebel Membran Struktur déi Eewäiss erhält a fäeg ass "
+"fir [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], "
+"gasfërmegen [thrive:compound type=\"carbondioxide\"][/thrive:compound] a "
+"Waasser an [thrive:compound type=\"glucose\"][/thrive:compound] ze "
+"verwandelen, an engem Prozess, deen een[b]Schwiefelwaasserstoff-"
+"Chemosynthese[/b] nennt."
 
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
+"Wandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] an "
+"[thrive:compound type=\"glucose\"][/thrive:compound] ëm. Ëmsaz wiisst mat "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "CHEMORECEPTOR"
-msgstr ""
+msgstr "Chemorezeptor"
 
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
+"All d'Zellen \"gesinn\" nëmmen duerch Chemorezeptioun. Dat ass wéi Zellen "
+"Informatioune iwwert hiert Ëmfeld kréien. D'Organelle representéiert "
+"d'Evolutioun vu méi raffinéierter Chemorezeptioun. Well de Spiller schonn op "
+"der Zelle Stuf gesinn kann, gëtt d'Organell mat engem Stréch representéiert "
+"deen ausserhalb vun Bildschierm op Stoffer weist déi de Spiller nach net "
+"gesinn kann."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
+"De Chemorezeptor erlaabt d'Erkennung vu Stoffer vu méi wäit fort. "
+"Modifizéier en nodeems de e placéiert hues fir d'Stoffzort and d'Faarf vum "
+"Stréch ze wielen."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
 msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
-msgstr ""
+msgstr "Chemosyntheséierent Eewäisser"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
+"Chemosyntheséierent Eewäisser sinn kleng Gruppen vun Eewäiss am Cytoplasma a "
+"fäeg sinn fir [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], "
+"gasfërmegen [thrive:compound type=\"carbondioxide\"][/thrive:compound] a "
+"Waasser an [thrive:compound type=\"glucose\"][/thrive:compound] ëmzewandelen "
+"an engem Prozess, deen een[b]Schwiefelwaasserstoff-Chemosynthese[/b] nennt. "
+"Vue que dat d'Chemosyntheséierent Eewäisser direct am Cytoplasma "
+"ënnerbruecht sinn, erleedeg d' Flëssegkeet ronderëm [b]d'Glycolose[/b]."
 
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
+"Wandelt [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] an "
+"[thrive:compound type=\"glucose\"][/thrive:compound] ëm. Ëmsaz wiisst mat "
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound]. Wandelt och "
+"[thrive:compound type=\"glucose\"][/thrive:compound] an [thrive:compound "
+"type=\"atp\"][/thrive:compound] ëm."
 
 msgid "CHEMO_SYNTHESIS"
-msgstr ""
+msgstr "Chemosythese"
 
 msgid "CHITIN"
-msgstr ""
+msgstr "Chitin"
 
+#, fuzzy
 msgid "CHITINASE"
-msgstr ""
+msgstr "Chitinase"
 
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
+"D'Chitinase erlaabt der Zell d'Chitin Membran ze zersetzen. All addition "
+"erageheit d'Effizienz."
 
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Di hei Membran huet eng Mauer, di bessere Schutz géint all Schued, mee "
+"speziell géint Geft, bitt. Et kascht et och manner Energie fir d'Form ze "
+"behalen, me kann Ressourcen net séier absorbéieren an d'Zell ass méi lues. "
+"[b]Cellulase kann d'Mauer verdauen[/b], wat et verwondbar géint verschlécken "
+"mëscht."
 
 msgid "CHLOROPLAST"
-msgstr ""
+msgstr "Chloroplast"
 
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
+"De Chloroplast ass eng duebel Membran Struktur di photosensitif Pigmenter "
+"erhält, di an Mambranesäck zesumme gestapelt sinn. Et handelt sech ëm eng "
+"Prokaryot, déi vir säin Zweck vun engem eukaryotëgen Wiert assymiléiert "
+"gouff. D'Pigmenter am Chloroplast kennen Liichtenergie benotzen fir [thrive:"
+"compound type=\"glucose\"][/thrive:compound] vu gasfërmegen [thrive:compound "
+"type=\"carbondioxide\"][/thrive:compound] an Waasser ze generéieren an engem "
+"Prozess, deen een [b]Photosynthese[/b] nennen. Diss Pigmenter sinn och wat "
+"em seng distinguéiert Faarf gëtt. Den Ëmsaz vu senger [thrive:compound "
+"type=\"glucose\"][/thrive:compound] Produktioun wiisst mat der "
+"Konzentratioun vun [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound], an der Intensitéit vum [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]."
 
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
+"Produzéiert [thrive:compound type=\"glucose\"][/thrive:compound]. Ëmsaz "
+"wiisst mat Konzentratioun vun [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] an Intensitéit u [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]."
 
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
-msgstr ""
+msgstr "D'Dateien({0}) gëtt et schonn. Iwwerschreiwen?"
 
 msgid "CHROMATIC_ABERRATION"
-msgstr ""
+msgstr "Chomateg Aberratioun:"
 
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
+"Produzéiert [thrive:compound type=\"glucose\"][/thrive:compound]. Ëmsaz "
+"wiisst mat Konzentratioun vun [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] an Intensitéit u [thrive:compound type=\"sunlight\"][/"
+"thrive:compound]."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "Stéck Zelle-Läich"
 
 msgid "CHUNK_FOOD_SOURCE"
-msgstr ""
+msgstr "{0}-Verbrauch"
 
 msgid "CILIA"
-msgstr ""
+msgstr "Zilien"
 
 msgid "CILIA_DESCRIPTION"
 msgstr ""
+"Zilien Hoer sinn ähnleg wéi Flagellen, mee am Platz laterale Schub ze ginn, "
+"ginn se Dréikraaft vier d'Zell."
 
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr ""
+msgstr "Erhéicht d'Dréigeschwindegkeet vu gréisseren Zellen."
 
 msgid "CITY_SHORT_STATISTICS"
-msgstr ""
+msgstr "Populatioun: {0} Iessen: {1} Wëssenschaft {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
-msgstr ""
+msgstr "Al Späicherdateien raumen"
 
 msgid "CLOSE"
-msgstr ""
+msgstr "Zoumaachen"
 
 msgid "CLOSE_OPTIONS"
-msgstr ""
+msgstr "Optiounen Zoumaachen?"
 
 msgid "CLOUD_BENCHMARK"
 msgstr ""
 
 msgid "CLOUD_RESOLUTION_DIVISOR"
-msgstr ""
+msgstr "Diviseur Wolleken Opléisung:"
 
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
-msgstr ""
+msgstr "Minimale Wolleken Simulations Interval:"
 
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr ""
+msgstr "Wolleken Simulatiouns Multiplikator:"
 
 msgid "COASTAL"
-msgstr ""
+msgstr "Küst"
 
 msgid "COLLISION_SHAPE"
-msgstr ""
+msgstr "Physics Kollisionsformen weisen"
 
 msgid "COLOUR"
-msgstr ""
+msgstr "Faarf"
 
 msgid "COLOURBLIND_CORRECTION"
-msgstr ""
+msgstr "Faarweblanne Korrektur:"
 
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "Des Faarf als Virastellung bäifügen"
 
 msgid "COLOUR_PICKER_A_TOOLTIP"
-msgstr ""
+msgstr "Transparenz Wäert vun der Faarf"
 
 msgid "COLOUR_PICKER_B_TOOLTIP"
-msgstr ""
+msgstr "Blo Wäert vun der Faarf"
 
 msgid "COLOUR_PICKER_G_TOOLTIP"
-msgstr ""
+msgstr "Gréng Wäert vun der Faarf"
 
 msgid "COLOUR_PICKER_HSV_BUTTON_TOOLTIP"
 msgstr ""
+"Den HSV (Faarf, Sättegung, Hällegkeet) -Modus un oder aus maachen\n"
+"Kann net am reien Modus ugemaach ginn."
 
 msgid "COLOUR_PICKER_H_TOOLTIP"
-msgstr ""
+msgstr "Faarfwäert vun der Faarf"
 
 msgid "COLOUR_PICKER_PICK_COLOUR"
-msgstr ""
+msgstr "Wiel eng Faarf vun der Spill Fënster"
 
 msgid "COLOUR_PICKER_PRESET_TOOLTIP"
 msgstr ""
+"Faarf: {0}\n"
+"Lenks Maustaste: Benotz des Virastellung\n"
+"Riets Maustaste: Läsch des Virastellung"
 
 msgid "COLOUR_PICKER_RAW_BUTTON_TOOLTIP"
 msgstr ""
+"Rei-Modus un oder ausschalten.\n"
+"AM Rei-modus kanns de R, G, B \n"
+"Wäerter vun de Faarwen iwwer 1.0 aginn.\n"
+"Kann net am HSV-Modus ugemaach ginn."
 
 msgid "COLOUR_PICKER_R_TOOLTIP"
-msgstr ""
+msgstr "Rout Wäert vun der Faarf"
 
 msgid "COLOUR_PICKER_S_TOOLTIP"
-msgstr ""
+msgstr "Sättegung vun der Faarf"
 
 msgid "COLOUR_PICKER_V_TOOLTIP"
-msgstr ""
+msgstr "Hellegkeet/Intensitéit vun der Faarf"
 
 msgid "COMMON_ABILITIES"
-msgstr ""
+msgstr "Heefeg Fäegkeeten"
 
 msgid "COMMON_EDITING_AND_STRATEGY"
-msgstr ""
+msgstr "Heefeg Beaarbechter an Strategie Stufen"
 
+#, fuzzy
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Community Forum"
 
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Trëtt der Thrive Communautéit op eisem Community Forum bäi"
 
+#, fuzzy
 msgid "COMMUNITY_WIKI"
-msgstr ""
+msgstr "Community Wiki"
 
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
-msgstr ""
+msgstr "Besich eisen community wiki"
 
 msgid "COMPILED_AT_COLON"
-msgstr ""
+msgstr "Gebaut um:"
 
 msgid "COMPLETE_ACTION"
-msgstr ""
+msgstr "Fäerdeg"
 
 msgid "COMPOUNDS"
-msgstr ""
+msgstr "Stoffer"
 
 msgid "COMPOUNDS_AT_EQUILIBRIUM"
-msgstr ""
+msgstr "Niveau am Equiliber"
 
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr ""
+msgstr "Niveau op maximaler Vitesse"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
-msgstr ""
+msgstr "Stoffer Weisen/Verstoppen"
 
 msgid "COMPOUNDS_COLON"
-msgstr ""
+msgstr "Stoffer:"
 
 msgid "COMPOUND_BALANCE_FILL_TIME"
-msgstr ""
+msgstr "(Fëllt de Späicher an {0} s op)"
 
 msgid "COMPOUND_BALANCE_FILL_TIME_TOO_LONG"
 msgstr ""
+"(Fëllt Späicher an {0} s op, wat méi laang ass wéi di benotzbar Dagesluucht "
+"vun {1} s)"
 
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr ""
+"Aart-a-Weis fir de Stoff-Niveau ze rechnen. Maximal Geschwindegkeet hellt z."
+"B. un dat all d'Prozesser mat maximaler Geschwindegkeet lafen,\n"
+"wärend Equiliber domat rechent wat Prozesser nëmmen sou séier lafen wat se "
+"keen negativen ATP Niveau erreechen."
 
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Stoff-Niveauen"
 
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
+"Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all "
+"Stoff.\n"
+"Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit "
+"positiv sinn."
 
 msgid "COMPOUND_CLOUDS"
-msgstr ""
+msgstr "Stoff Wolleken"
 
 msgid "COMPOUND_CLOUD_BENCHMARK"
 msgstr ""
@@ -1094,7 +1262,7 @@ msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
 msgid "CREATE_A_NEW_MICROBE"
-msgstr ""
+msgstr "Nei Mikrobe erstellen"
 
 msgid "CREATE_NEW"
 msgstr ""
@@ -1124,10 +1292,10 @@ msgid "CREATING_OBJECTS_FROM_SAVE"
 msgstr ""
 
 msgid "CREDITS"
-msgstr ""
+msgstr "Oofspann"
 
 msgid "CTRL"
-msgstr ""
+msgstr "Strg/Ctrl"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
@@ -1148,16 +1316,24 @@ msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
 msgid "CUSTOM_USERNAME"
-msgstr ""
+msgstr "Personaliséierten Benotzernumm:"
 
 msgid "CYTOPLASM"
-msgstr ""
+msgstr "Zytoplasma"
 
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
+"D'Schwabbeleg Innereien vun enger Zell. Den Zytoplasma ass de basis Gemësch "
+"vun Ionen, Eewäiss an aneren a Waasser geschleisten Substanzen déi "
+"d'Banneliewen vun der Zell fëllen. Eng vun de Funktiounen déi et erfëllt ass "
+"[b] Glycolyse [/b], d'Ëmwandlung vun [thrive:compound type=\"glucose\"][/"
+"thrive:compound] an [thrive:compound type=\"atp\"][/thrive:compound]. Fir "
+"Zellen di keng Organellen fir méi fortgeschratten Metabolismen hunn ass dat "
+"op wat se fir Energie ugewise sinn. Et ass och genotzt fir Moleküllen an der "
+"Zell ze späicheren an fir Zell an der Gréisst wuessen ze doen."
 
 msgid "CYTOPLASM_GLYCOLYSIS"
-msgstr ""
+msgstr "Zytoplasma-Glykolyse"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -1331,7 +1507,7 @@ msgid "DISABLE_ALL"
 msgstr ""
 
 msgid "DISCARD_AND_CONTINUE"
-msgstr ""
+msgstr "Ofbriechen a weidermaachen"
 
 msgid "DISCARD_CHANGES"
 msgstr ""
@@ -1514,7 +1690,7 @@ msgid "EDITING_TITLE"
 msgstr ""
 
 msgid "EDITOR"
-msgstr ""
+msgstr "Beaarbechter"
 
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
 msgstr ""
@@ -1544,7 +1720,7 @@ msgid "ENABLE_ALL_COMPATIBLE"
 msgstr ""
 
 msgid "ENABLE_EDITOR"
-msgstr ""
+msgstr "Beaarbechter umaachen"
 
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
@@ -1646,13 +1822,13 @@ msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
 msgid "EPIPELAGIC"
-msgstr ""
+msgstr "Epipelagial"
 
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
 msgid "ERROR"
-msgstr ""
+msgstr "Feeler"
 
 msgid "ERROR_CREATING_FOLDER"
 msgstr ""
@@ -1661,7 +1837,7 @@ msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-msgstr ""
+msgstr "Feeler: Konnt net nei Optiounen an d'Konfiguratiouns Datei lueden."
 
 msgid "ERROR_FETCHING_EXPLANATION"
 msgstr ""
@@ -1682,7 +1858,7 @@ msgid "ESCAPE_ENGULFING"
 msgstr ""
 
 msgid "ESTUARY"
-msgstr ""
+msgstr "Ästuar"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -1706,7 +1882,7 @@ msgid "EXISTING_BUILDINGS"
 msgstr ""
 
 msgid "EXIT"
-msgstr ""
+msgstr "Verloossen"
 
 #, fuzzy
 msgid "EXIT_EDITOR"
@@ -1720,7 +1896,8 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr ""
@@ -1756,7 +1933,7 @@ msgid "EXTINCT_SPECIES"
 msgstr ""
 
 msgid "EXTRAS"
-msgstr ""
+msgstr "Extraen"
 
 msgid "EXTRA_OPTIONS"
 msgstr ""
@@ -1822,7 +1999,7 @@ msgid "FINISHED_DOT"
 msgstr ""
 
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
-msgstr ""
+msgstr "Mat Beaarbechten ophalen an zréck zu der Ëmwelt"
 
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
@@ -1831,16 +2008,24 @@ msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
 msgid "FIRE_TOXIN"
-msgstr ""
+msgstr "Gëftstoff schéissen"
 
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
+#, fuzzy
 msgid "FLAGELLUM"
-msgstr ""
+msgstr "Flagellum"
 
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
+"De Flagellum (plural: flagella) ass e Gäissel-ähnlege Grapp un Eewäiss "
+"Fiedem di aus der Zellmembran rauswuessen an [thrive:compound type=\"atp\"][/"
+"thrive:compound] notzen fir hin-an-hier ze schwéngen an d'Zell an eng "
+"bestëmmte Richtung ze drécken. D'positioun vum Flagellum determinéiert "
+"d'Richtung an déi et zur Beweegung bäidroen kann. D'Schubrichtung ass de "
+"Geigendeel ze der Richtung an déi de Flagellum weist. E.g. wann de Flagellum "
+"no lenks weist gëtt et Schub no riets."
 
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
 msgstr ""
@@ -1858,7 +2043,7 @@ msgid "FLOATING_CHUNKS_COLON"
 msgstr ""
 
 msgid "FLOATING_HAZARD"
-msgstr ""
+msgstr "Schwiewend Gefoer"
 
 msgid "FLUID"
 msgstr ""
@@ -1957,7 +2142,7 @@ msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
 msgid "FULLSCREEN"
-msgstr ""
+msgstr "Vollbild"
 
 msgid "FULL_MOD_INFO"
 msgstr ""
@@ -2000,13 +2185,13 @@ msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
 msgid "GLUCOSE"
-msgstr ""
+msgstr "Glukose"
 
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
 msgid "GLYCOLYSIS"
-msgstr ""
+msgstr "Glycolyse"
 
 msgid "GODMODE"
 msgstr ""
@@ -2027,7 +2212,7 @@ msgid "GPU_NAME"
 msgstr ""
 
 msgid "GRAPHICS"
-msgstr ""
+msgstr "Graphiken"
 
 msgid "GRAPHICS_TEAM"
 msgstr ""
@@ -2042,22 +2227,22 @@ msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
 msgid "GUI_VOLUME"
-msgstr ""
+msgstr "GUI Geräischer Lautstäerkt"
 
 msgid "HEALTH"
-msgstr ""
+msgstr "Gesondheet"
 
 msgid "HELP"
-msgstr ""
+msgstr "Hëllef"
 
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
-msgstr ""
+msgstr "(méi héich Wäerter verbesseren d'Leeschtung)"
 
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
-msgstr ""
+msgstr "(Méi héich Wäerter verschlechteren d'Leeschtung)"
 
 msgid "HOLD_FOR_PAN_OR_ROTATE_MODE"
 msgstr ""
@@ -2096,13 +2281,13 @@ msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
 msgid "HYDROGEN_SULFIDE"
-msgstr ""
+msgstr "Schwiefel-Waasserstoff"
 
 msgid "ICESHARD"
-msgstr ""
+msgstr "klengt Äisstéck"
 
 msgid "ICESHELF"
-msgstr ""
+msgstr "Schelfäis"
 
 msgid "ICE_CHUNK_BIG"
 msgstr ""
@@ -2133,7 +2318,8 @@ msgstr ""
 
 #, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr "Erlaabt der Spezies net ze muteiren (wann keng gut Mutatioun fonnt get)"
+msgstr ""
+"Erlaabt der Spezies net ze muteiren (wann keng gut Mutatioun fonnt get)"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
@@ -2196,7 +2382,7 @@ msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
 msgid "INPUTS"
-msgstr ""
+msgstr "Agaben"
 
 msgid "INPUT_NAME_BUILD_STRUCTURE"
 msgstr ""
@@ -2304,10 +2490,10 @@ msgid "IN_PROTOTYPE"
 msgstr ""
 
 msgid "IRON"
-msgstr ""
+msgstr "Eisen"
 
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
-msgstr ""
+msgstr "Eisen Chemolithoautotrophie"
 
 msgid "ITCH_TOOLTIP"
 msgstr ""
@@ -2344,6 +2530,8 @@ msgstr ""
 
 msgid "KEY_BINDING_CHANGE_CONFLICT"
 msgstr ""
+"Et gëtt ee Konflikt mat {0}.\n"
+"Wëllt der den Input vun {1} wäsch maachen?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
 msgstr ""
@@ -2484,7 +2672,7 @@ msgid "KPSUBTRACT"
 msgstr ""
 
 msgid "LANGUAGE"
-msgstr ""
+msgstr "Sprooch:"
 
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
@@ -2610,7 +2798,7 @@ msgid "LEFT_ARROW"
 msgstr ""
 
 msgid "LEFT_MOUSE"
-msgstr ""
+msgstr "Lenks Maustaste"
 
 msgid "LICENSES"
 msgstr ""
@@ -2637,7 +2825,7 @@ msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
 
 msgid "LIGHT"
-msgstr ""
+msgstr "Liicht"
 
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
@@ -2703,7 +2891,7 @@ msgid "LOAD"
 msgstr ""
 
 msgid "LOADING"
-msgstr ""
+msgstr "Luedend"
 
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
@@ -2722,12 +2910,13 @@ msgstr ""
 
 msgid "LOADING_TIP"
 msgstr ""
+"Dréck den zeréck Knäppchen am Beaarbechter fier ee Fehler ze corrigéieren"
 
 msgid "LOAD_FINISHED"
 msgstr ""
 
 msgid "LOAD_GAME"
-msgstr ""
+msgstr "Spill Lueden"
 
 msgid "LOAD_GAME_BUTTON_TOOLTIP"
 msgstr ""
@@ -2778,13 +2967,13 @@ msgid "MARCH"
 msgstr ""
 
 msgid "MARINE_SNOW"
-msgstr ""
+msgstr "Mieresschnéi"
 
 msgid "MASTER_VOLUME"
-msgstr ""
+msgstr "Haapt-Lautstäerkt"
 
 msgid "MAX_FPS"
-msgstr ""
+msgstr "Maximalen FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
@@ -2823,7 +3012,7 @@ msgid "MEMBRANE"
 msgstr ""
 
 msgid "MEMBRANE_RIGIDITY"
-msgstr ""
+msgstr "Membran Steifheet"
 
 msgid "MEMBRANE_TYPES"
 msgstr ""
@@ -2832,13 +3021,23 @@ msgid "MENU"
 msgstr ""
 
 msgid "MESOPELAGIC"
-msgstr ""
+msgstr "Mesopelageg"
 
 msgid "METABOLOSOMES"
-msgstr ""
+msgstr "Metabolosomen"
 
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
+"Metabolosomen sinn Klompen un Eewäiss, an Eewäiss Schuelen ëmwéckelt. Se "
+"kennen [thrive:compound type=\"glucose\"][/thrive:compound] an [thrive:"
+"compound type=\"atp\"]/thrive:compound] vill méi séier ëmwandelen wéi wat am "
+"Zytoplasma geschitt an engem Prozess genannt [b]Aerobeg Ootmung[/b]. Et "
+"brauch awer[thrive:compound type=\"oxygen\"][/thrive:compound] fir ze "
+"funktionéieren an méi niddereg [thrive:compound type=\"oxygen\"][/thrive:"
+"compound] Niveauen an der Ëmwelt wäerten den Ëmsaz vun der [thrive:compound "
+"type=\"atp\"][/thrive:compound] Produktioun entschleunegen. Well "
+"d'Metabolosomen direkt am Zytoplasma schwammen meescht d'Flëssegkeet "
+"ronderëm [b]Glycolyse[/b]."
 
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -2908,24 +3107,123 @@ msgstr ""
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 msgstr ""
+"Prokaryotiech Strukturen\n"
+"\n"
+"Zytoplasma: Huet Späicherplaaz an mëscht Glycolysis (Produzéiert eng kleng "
+"Unzuel un [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:"
+"compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolosomer: Produzéieren[thrive:compound type=\"atp\"][/thrive:compound] "
+"aus [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Thylakoiden: Produzéiert 1/3tel sou vill [thrive:compound type=\"glucose\"][/"
+"thrive:compound] wéi een normalen Chloroplast, mee mëscht och Glycolysis, an "
+"hëlt 1 Hex an Usproch\n"
+"\n"
+"Chemosynthetiséierend Eewäisser: Produzéiert hallef sou vill [thrive:"
+"compound type=\"glucose\"][/thrive:compound] aus [thrive:compound "
+"type=\"hydrogensulfide\"][/thrive:compound] wéi een normalen Chemoplast, mee "
+"mecht och Glycolysis, an hëlt 1 Hex an Usproch.\n"
+"\n"
+"Rusticyanin: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] an "
+"[thrive:compound type=\"atp\"][/thrive:compound] ëm\n"
+"\n"
+"Nitrogenase: Wandelt atmosphäreschen Stéckstoff an [thrive:compound "
+"type=\"atp\"][/thrive:compound] anaerobech an [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] ëm\n"
+"\n"
+"Oxytoxisome: Wandelt [thrive:compound type=\"atp\"][/thrive:compound] an "
+"[thrive:compound type=\"oxytoxy\"][/thrive:compound] ëm\n"
+"\n"
+"Thermosynthase: Produzéiert [thrive:compound type=\"atp\"][/thrive:compound] "
+"aus Temperatur Ënnerscheeder"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 msgstr ""
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
+"Extern Organellen\n"
+"\n"
+"Flagellum: Beweegt deng Zell méi séier an deem's se [thrive:compound "
+"type=\"atp\"][/thrive:compound] verbraucht\n"
+"\n"
+"Pilus: Ka benotzt ginn fir aner Zellen ze erstiechen oder fir sech géint "
+"hier Gëfter ze beschützen.\n"
+"\n"
+"Chemoreceptor: Erlaabt vir wäit fort Stoffer ze detektéieren\n"
+"\n"
+"Schläim Stral: Erlaabt fir [thrive:compound type=\"mucilage\"][/thrive:"
+"compound] fortzeschéissenm (Produzéiert aus [thrive:compound "
+"type=\"glucose\"][/thrive:compound]) fir deng Zell ze beschleunegen\n"
+"\n"
+"Cilien: Erhéicht d'Dréigeschwindegkeet vun denger Zell"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
 msgstr ""
+"Membran-gebonnen Organellen\n"
+"\n"
+"Nukleus: Hellt 11 hexen fort an erlaabt d'Evolutioun vun Membran-gebonnen "
+"Organellen, verduebelt d'Gréisst vun denger Zell an reduzéiert de Schued em "
+"50% (kann nëmmen eng kéier evoluéiert ginn)\n"
+"\n"
+"Pechstoff: Erlaabt d'zesumme pechen mat aneren Zellen. Gebraucht fir an "
+"d'Multizellular Stuf weider ze goen.\n"
+"\n"
+"Mitochondrion: Produzéiert [thrive:compound type=\"atp\"][/thrive:compound] "
+"aus [thrive:compound type=\"glucose\"][/thrive:compound] an atmosphäreschem "
+"O2 vill méi effikasse wéi Zytoplasma\n"
+"\n"
+"Chloroplast: Mëscht [thrive:compound type=\"glucose\"][/thrive:compound] aus "
+"Sonneliicht an atmosphäreschem CO2\n"
+"\n"
+"Thermoplast: Produzéiert [thrive:compound type=\"atp\"][/thrive:compound] "
+"duerch temperatur Ennerscheeder\n"
+"\n"
+"Lysosome: Enthält Verdauungs Enzymer: Enzymer beschleunegen d'Verdauung a "
+"maachen et méi effikass\n"
+"\n"
+"Chemoplast: Mescht [thrive:compound type=\"glucose\"][/thrive:compound] aus "
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"\n"
+"Ferroplast: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] an "
+"[thrive:compound type=\"atp\"][/thrive:compound] vill méi effikass em wéi "
+"Rusticyanin.\n"
+"\n"
+"Stéckstoff fixéierend Palstiden: Maachen [thrive:compound type=\"ammonia\"][/"
+"thrive:compound] aus [thrive:compound type=\"atp\"][/thrive:compound] an "
+"atmosphäreschem Stéckstoff a Sauerstoff\n"
+"\n"
+"Vakuol: Späicher 8 gesammelt Stoffer\n"
+"\n"
+"Geftesch Vakuol: Produzéiert Gëftstoffer (genannt [thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound]) an erlaabt der se ze entlueden fir "
+"Schued baséierend ob Oxytoxyx Quantitéit ze verdeelen.\n"
+"\n"
+"Signalstoff: Erlaabt Zellen fir Chemikalien ze produzéieren wourop aner "
+"Zellen reagéieren"
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
 msgstr ""
+"Du hues 100 Mutatiouns-Punkten (MP) fir auszeginn, an all Ännerung (oder "
+"Mutatioun) wäert dech eng gewëss Quantitéit un MP kaschten. Organellen "
+"bäifügen oder fort huelen kascht MP, ausser wann eng Organelle déi dëser "
+"Mutatioun dobäigesat gouf fort geholl gëtt. Du kanns Organellen beweegen "
+"oder fort huelen an deem's de se riets-clicks an dann di richteg Aktioun vum "
+"Popup Menü wiels. Du kanns Organellen dréinen wärenddeem de se platzéierst "
+"mat [thrive:input]e_rotate_left[/thrive:input] an [thrive:"
+"input]e_rotate_right[/thrive:input]."
 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr ""
+"All kéiers wann's de dech Fortplanzt kenns de an de Mikroben Beaarbechter, "
+"wouÄs de Ännerunge un denger Spezies maache kannst (an deem's de Organelle "
+"bäifügst, beweegst oder fort hellst) fir denger Aart säi Succès ze erhéijen. "
+"All Visite an den Mikrobe Beaarbechter representéiert [thrive:"
+"constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millioune Joer."
 
 msgid "MICROBE_FREEBUILD_EDITOR"
-msgstr ""
+msgstr "Fräie Mikroben Beaarbechter"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
@@ -2956,15 +3254,31 @@ msgstr ""
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 msgstr ""
+"[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/"
+"thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:"
+"input]g_move_right[/thrive:input] an Maus fir sech ze Beweegen. [thrive:"
+"input]g_fire_toxin[/thrive:input] fir ze Schéissen[thrive:compound "
+"type=\"oxytoxy\"][/thrive:compound] wann's de eng Gëft Vakuol hues. [thrive:"
+"input]g_toggle_engulf[/thrive:input] fir de Verschléng-Modus un-an-aus-"
+"zemaachen. Du kanns mam Mausrad ran-a-raus zoomen."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_10"
 msgstr ""
+"Fir ze reproduzéieren muss de jiddereng vun dengen Organellen an zwee "
+"splécken. Organellen brauchen [thrive:compound type=\"ammonia\"][/thrive:"
+"compound], [thrive:compound type=\"phosphates\"][/thrive:compound] an Zäit "
+"fir sech an zwee ze splécken."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_11"
 msgstr ""
+"Mee wann's de fir zwanzeg Generatiounen mat 300 Populatioun iwwerliefs, "
+"kanns de Consideréieren d'Spill gewonnen ze hunn. Nodeems de gewonnen hues "
+"kriss de ee Popup a kanns weiderspillen wéi's de wellst."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_12"
 msgstr ""
+"Pass op, well deng Kompetitioun evoluéiert gläichzäiteg zu dier. All Kéiers "
+"wann's de an den Beaarbechter gees, evoluéieren se."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_13"
 msgstr ""
@@ -2977,27 +3291,61 @@ msgstr ""
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_2"
 msgstr ""
+"Deng Zell benotzt [thrive:compound type=\"atp\"][/thrive:compound] als "
+"Energie Source, wann et eidelgeet steifs de."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_3"
 msgstr ""
+"Fier den Beaarbechter ze dé-bloquéieren muss de laang genuch iwwerliewen. "
+"[thrive:compound type=\"ammonia\"][/thrive:compound] (Orange Wollek) an "
+"[thrive:compound type=\"phosphates\"][/thrive:compound] (Moof Wollek) ze "
+"sammelen verschnellert de Wuestum."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_4"
 msgstr ""
+"Du kanns Zellen, Bakterien, Eisen Klompen an Zelle Klompen verschléngen, déi "
+"méi kleng si wéis du, an deem's de [thrive:input]g_toggle_engulf[/thrive:"
+"input] drécks. Et wäert extra [thrive:compound type=\"atp\"][/thrive:"
+"compound] kaschten an dech méi lues maachen. Vergiess net fir nach eng kéier "
+"[thrive:input]g_toggle_engulf[/thrive:input] ze drécken fier mat "
+"verschléngen opzehalen."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_5"
 msgstr ""
+"Osmoregulatioun kascht [thrive:compound type=\"atp\"][/thrive:compound], "
+"wëll heeschen, je méi grouss deng Zell ass, je méi Mitochondrien, "
+"Metabolosomen oder Rusticyanen (oder Cytoplasmen , déi Glycolyse maachen) 's "
+"de brauchs fir ze Vermeiden [thrive:compound type=\"atp\"][/thrive:compound] "
+"ze verléieren wann's de stall hällst."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_6"
 msgstr ""
+"Et gi fill Organellen am Beaarbechter fir dech fir ze evoluéieren, wat vir "
+"ee Wäit Spektrum un Spillstylen erlaabt."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
+msgstr "Wann deng Populatioun op null erof fält, stierfs de."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_8"
 msgstr ""
+"Di verschidden Stoff Wolleke sinn:\n"
+"\n"
+"Wäiss– [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"Giel – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+"Orange – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"Mof – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+"Raschteg Brong – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+"\n"
+"[thrive:compound type=\"glucose\"][/thrive:compound] mëscht [thrive:compound "
+"type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann [thrive:"
+"compound type=\"glucose\"][/thrive:compound] via Chemoplasten an "
+"chemosynthetiséierend Eewäisser ëmgewandelt ginn. [thrive:compound "
+"type=\"iron\"][/thrive:compound] kann via rusticyanin an [thrive:compound "
+"type=\"atp\"][/thrive:compound] ëmgewandelt ginn."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3012,7 +3360,7 @@ msgid "MICROBE_STAGE_ORGANELLE_DIVISION"
 msgstr ""
 
 msgid "MIDDLE_MOUSE"
-msgstr ""
+msgstr "Mëttel Maustaste"
 
 msgid "MIGRATE"
 msgstr ""
@@ -3028,18 +3376,21 @@ msgstr ""
 
 #, fuzzy
 msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
 msgstr ""
 
 #, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 #, fuzzy
 msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "MIGRATION_TOOLTIP"
 msgstr ""
@@ -3057,10 +3408,10 @@ msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
 msgid "MISC"
-msgstr ""
+msgstr "Aneres"
 
 msgid "MISCELLANEOUS"
-msgstr ""
+msgstr "Aneres"
 
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr ""
@@ -3077,11 +3428,22 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr ""
 
+#, fuzzy
 msgid "MITOCHONDRION"
-msgstr ""
+msgstr "Mitochondrion"
 
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
+"D'Kraftwierk vun der Zell. De Mitochondrion as eng duebel-Memebran Struktur, "
+"déi mat Eewäiss an Enzymer gefëllt ass. Et ass ee Prokaryot deen vu sengem "
+"eukaryotegem Wiert assimiléiert gouf. Et kann [thrive:compound "
+"type=\"glucose\"][/thrive:compound] an [thrive:compound type=\"atp\"][/"
+"thrive:compound] an engem vill méi heiger Effizienz ëmwandelen wéi wat mat "
+"Zytoplasma gemaach ka ginn an engem Prozess, genannt [b]aerobic Ootmung[/b]. "
+"et brauch awer [thrive:compound type=\"oxygen\"][/thrive:compound] fir ze "
+"funktionéieren an méi niddereg Niveauen un [thrive:compound type=\"oxygen\"]"
+"[/thrive:compound] am Ëmfeld wäert den Ëmsaz vun der [thrive:compound "
+"type=\"atp\"][/thrive:compound] Produktioun bremsen."
 
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -3231,28 +3593,28 @@ msgid "MOVE"
 msgstr ""
 
 msgid "MOVEMENT"
-msgstr ""
+msgstr "Beweegung"
 
 msgid "MOVE_ATTEMPTS_PER_SPECIES"
 msgstr ""
 
 msgid "MOVE_BACKWARDS"
-msgstr ""
+msgstr "Hannerzeg beweegen"
 
 msgid "MOVE_DOWN_OR_CROUCH"
 msgstr ""
 
 msgid "MOVE_FORWARD"
-msgstr ""
+msgstr "Vijenzeg beweegen"
 
 msgid "MOVE_LEFT"
-msgstr ""
+msgstr "No Lenks beweegen"
 
 msgid "MOVE_ORGANELLE"
 msgstr ""
 
 msgid "MOVE_RIGHT"
-msgstr ""
+msgstr "No riets beweegen"
 
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
@@ -3317,8 +3679,9 @@ msgstr ""
 msgid "MULTIPLE_ORGANELLES"
 msgstr ""
 
+#, fuzzy
 msgid "MULTISAMPLE_ANTI_ALIASING"
-msgstr ""
+msgstr "Multisample anti-aliasing:"
 
 msgid "MULTITHREADED_SIMULATION_ENABLED"
 msgstr ""
@@ -3333,7 +3696,7 @@ msgid "MUSIC"
 msgstr ""
 
 msgid "MUSIC_VOLUME"
-msgstr ""
+msgstr "Museks Lautstäerkt"
 
 msgid "MUTATIONS_PER_SPECIES"
 msgstr ""
@@ -3348,7 +3711,7 @@ msgid "MUTATION_POINTS"
 msgstr ""
 
 msgid "MUTE"
-msgstr ""
+msgstr "Verstommen"
 
 msgid "NAME"
 msgstr ""
@@ -3381,7 +3744,7 @@ msgid "NEWS"
 msgstr ""
 
 msgid "NEW_GAME"
-msgstr ""
+msgstr "Neit Spill"
 
 msgid "NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
@@ -3405,19 +3768,26 @@ msgid "NEXT_EDITOR_TAB"
 msgstr ""
 
 msgid "NITROGEN"
-msgstr ""
+msgstr "Stéckstoff"
 
 msgid "NITROGENASE"
-msgstr ""
+msgstr "Nitrogenase"
 
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
+"Nitrogenase ass een Eewäiss dat fäeg ass gasfërmeg [thrive:compound "
+"type=\"nitrogen\"][/thrive:compound] an zellular Energie a Form vun [thrive:"
+"compound type=\"atp\"][/thrive:compound] ze notzen fier [thrive:compound "
+"type=\"ammonia\"][/thrive:compound] ze produzéieren, w wichtegen Wuesstums-"
+"Nierstoff fir Zellen. Dëse Prozess gëtt [b]anaerobeg Stéckstoff Fixation[/b] "
+"genannt .Well d'Nitrogenasen direkt am Zytoplasma schwammen meescht "
+"d'Flëssegkeet ronderëm [b]Glycolyse[/b]."
 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NITROGEN_FIXING_PLASTID"
-msgstr ""
+msgstr "Stéckstoff-Fixéierend Plastiden"
 
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
@@ -3501,16 +3871,29 @@ msgid "NO_SELECTED_MOD"
 msgstr ""
 
 msgid "NUCLEUS"
-msgstr ""
+msgstr "Nukleus"
 
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
+"Définéierend Eegenaart vun eukaryotegen Zellen. Den Nukleus enthält och den "
+"endoplasmatescht reticulum an den golgi Kierper. Et ass eng Entwécklung vun "
+"prokaryotegen Zellen fir een System aus internen Membranen ze entwéckelen an "
+"deem's se aner Prokaryoten a sech selwer assimiléieren. Dat erlaabt hinnen "
+"fir verschidden Prozesser an der Zell ze Compartmentaliséieren an sou ze "
+"verhënneren dat se iwwerlappen. Dat erlaabt den neien Membran-gebonnenen "
+"Organellen fir vill méi komplex, effikass an spezialiséiert ze sinn, wéi "
+"wann se am Zytoplasms géife schwammen. Dat kennt awer alles mam Nodeel fir "
+"d'Zell vill méi grouss ze maachen an et brauch vill méi vun der Zell senger "
+"Energie fir ze ënnerhalen."
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
+"Erlaabt fir d'Entwécklung vu méi komplexen, Membran-gebonnenen Organellen an "
+"reduzéiert den Schued dee geholl gëtt ëm 50%. Kascht vill ATP fir ze "
+"ënnerhalen. Ass eng irreversibel Entwécklung."
 
 msgid "NUMLOCK"
 msgstr ""
@@ -3537,7 +3920,7 @@ msgid "OFFICIAL_WEBSITE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 msgid "OLDER_VERSION_LOADING_WARNING"
 msgstr ""
@@ -3561,7 +3944,7 @@ msgid "OPEN_GOD_TOOLS"
 msgstr ""
 
 msgid "OPEN_HELP_SCREEN"
-msgstr ""
+msgstr "Hëllef Schierm opmaachen"
 
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
@@ -3591,7 +3974,7 @@ msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
 msgid "OPEN_THE_MENU"
-msgstr ""
+msgstr "Menü opmaachen"
 
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
@@ -3606,7 +3989,7 @@ msgid "OPPORTUNISTIC"
 msgstr ""
 
 msgid "OPTIONS"
-msgstr ""
+msgstr "Optiounen"
 
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
@@ -3666,7 +4049,7 @@ msgid "OSMOREGULATION"
 msgstr ""
 
 msgid "OSMOREGULATION_COST"
-msgstr ""
+msgstr "Osmoregulatiouns Käschten"
 
 msgid "OSMOREGULATION_COST_MULTIPLIER"
 msgstr ""
@@ -3699,22 +4082,27 @@ msgid "OVERWRITE_SPECIES_NAME_CONFIRMATION"
 msgstr ""
 
 msgid "OXYGEN"
-msgstr ""
+msgstr "Sauerstoff"
 
+#, fuzzy
 msgid "OXYTOXISOME"
-msgstr ""
+msgstr "Oxytoxisome"
 
 msgid "OXYTOXISOME_DESC"
 msgstr ""
+"Ee modifizéierten Metabolosome responsabel fir d'Produktioun vun enger "
+"primitiver form un Gëftstoff [thrive:compound type=\"oxytoxy\"][/thrive:"
+"compound]. Ka modifizéiert ginn fir de generéiert Zort u Gëftstoff ze "
+"änneren fir aner Effekter."
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "OXYTOXY_NT"
-msgstr ""
+msgstr "OxyToxy NT"
 
 msgid "OXYTOXY_SYNTHESIS"
-msgstr ""
+msgstr "OxyToxy Syntheese"
 
 msgid "PAGEDOWN"
 msgstr ""
@@ -3732,19 +4120,19 @@ msgid "PAGE_TITLE"
 msgstr ""
 
 msgid "PAN_CAMERA_DOWN"
-msgstr ""
+msgstr "Erof schwenken"
 
 msgid "PAN_CAMERA_LEFT"
-msgstr ""
+msgstr "No lenks schwenken"
 
 msgid "PAN_CAMERA_RESET"
-msgstr ""
+msgstr "Kamera zeréckstellen"
 
 msgid "PAN_CAMERA_RIGHT"
-msgstr ""
+msgstr "No riets schwenken"
 
 msgid "PAN_CAMERA_UP"
-msgstr ""
+msgstr "Erop schwenken"
 
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr ""
@@ -3829,7 +4217,7 @@ msgid "PERCENTAGE_VALUE"
 msgstr ""
 
 msgid "PERFORMANCE"
-msgstr ""
+msgstr "Leeschtung"
 
 msgid "PERFORM_UNBINDING"
 msgstr ""
@@ -3841,10 +4229,10 @@ msgid "PER_SECOND_SLASH"
 msgstr ""
 
 msgid "PHOSPHATE"
-msgstr ""
+msgstr "Phosphat"
 
 msgid "PHOTOSYNTHESIS"
-msgstr ""
+msgstr "Photosyntheese"
 
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
@@ -3853,7 +4241,7 @@ msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
 msgid "PLACE_ORGANELLE"
-msgstr ""
+msgstr "Organelle placéieren"
 
 msgid "PLANET"
 msgstr ""
@@ -3904,10 +4292,10 @@ msgid "PLAYSTATION_5"
 msgstr ""
 
 msgid "PLAY_INTRO_VIDEO"
-msgstr ""
+msgstr "Spill den Intro Filmchen"
 
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
-msgstr ""
+msgstr "Spill d'Mikroben Intro all neit Spill"
 
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
@@ -3937,7 +4325,7 @@ msgid "PRESSURE_SHORT"
 msgstr ""
 
 msgid "PRESS_KEY_DOT_DOT_DOT"
-msgstr ""
+msgstr "Dréck ee Knäppchen ..."
 
 msgid "PREVIEW_IMAGE_DOES_NOT_EXIST"
 msgstr ""
@@ -3967,19 +4355,19 @@ msgid "PROTEINS"
 msgstr ""
 
 msgid "PROTOPLASM"
-msgstr ""
+msgstr "Protoplasma"
 
 msgid "PULL_REQUESTS_PROGRAMMING"
 msgstr ""
 
 msgid "QUICK_LOAD"
-msgstr ""
+msgstr "Séier Lueden"
 
 msgid "QUICK_SAVE"
-msgstr ""
+msgstr "Séier späicheren"
 
 msgid "QUIT"
-msgstr ""
+msgstr "Verloossen"
 
 msgid "QUIT_BUTTON_TOOLTIP"
 msgstr ""
@@ -4012,10 +4400,10 @@ msgid "REDDIT_TOOLTIP"
 msgstr ""
 
 msgid "REDO"
-msgstr ""
+msgstr "Widder hierstellen"
 
 msgid "REDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Läscht Aktioun Widderhierstellen"
 
 msgid "REFRESH"
 msgstr ""
@@ -4048,7 +4436,7 @@ msgid "RESEARCH"
 msgstr ""
 
 msgid "RESET"
-msgstr ""
+msgstr "Zrécksetzen"
 
 msgid "RESET_DEADZONES"
 msgstr ""
@@ -4057,16 +4445,16 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
-msgstr ""
+msgstr "Agaben zerécksetzen?"
 
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
 msgid "RESET_SETTINGS_TO_DEFAULTS"
-msgstr ""
+msgstr "Standarden"
 
 msgid "RESET_TO_DEFAULTS"
-msgstr ""
+msgstr "Standarden zerécksetzen?"
 
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
@@ -4075,7 +4463,7 @@ msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
 msgid "RESOLUTION"
-msgstr ""
+msgstr "Opléisung:"
 
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
@@ -4096,7 +4484,7 @@ msgid "RESOURCE_WOOD"
 msgstr ""
 
 msgid "RESPIRATION"
-msgstr ""
+msgstr "Aerobeg Ootmung"
 
 msgid "RESPONSIVE"
 msgstr ""
@@ -4105,13 +4493,13 @@ msgid "RESTART_REQUIRED"
 msgstr ""
 
 msgid "RESUME"
-msgstr ""
+msgstr "Weider"
 
 msgid "RESUME_TOOLTIP"
 msgstr ""
 
 msgid "RETURN_TO_MENU"
-msgstr ""
+msgstr "Zréck an de Menü"
 
 msgid "RETURN_TO_MENU_TOOLTIP"
 msgstr ""
@@ -4129,25 +4517,27 @@ msgid "RIGHT_ARROW"
 msgstr ""
 
 msgid "RIGHT_MOUSE"
-msgstr ""
+msgstr "Riets Maustaste"
 
 msgid "RIGID"
 msgstr ""
 
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Eng méi steif Membran ass méi resistent géint Schued, mee mëscht et méi "
+"schwéier fir d'Zell fir sech ze beweegen."
 
 msgid "ROTATE_LEFT"
-msgstr ""
+msgstr "No lenks dréinen"
 
 msgid "ROTATE_RIGHT"
-msgstr ""
+msgstr "No riets dréinen"
 
 msgid "ROTATION_COLON"
 msgstr ""
 
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
-msgstr ""
+msgstr "Auto-Évo wärend dem Spill lafe loosen"
 
 msgid "RUN_ONE_STEP"
 msgstr ""
@@ -4177,10 +4567,15 @@ msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
 
 msgid "RUSTICYANIN"
-msgstr ""
+msgstr "Rusticyanin"
 
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
+"Rusticyanin ass een Eewäiss dat [thrive:compound type=\"carbondioxide\"][/"
+"thrive:compound] an [thrive:compound type=\"oxygen\"][/thrive:compound] "
+"notze kann fir [thrive:compound type=\"iron\"][/thrive:compound] vun engem "
+"chemeschen Zoustand an deen aneren ze oxidéieren. Dësen Prozess, genannt "
+"[b]Eisen Ootmung[/b], entléisst Energie déi d'Zell notze kann."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -4192,10 +4587,10 @@ msgid "SAFE_MODE_TITLE"
 msgstr ""
 
 msgid "SAVE"
-msgstr ""
+msgstr "Späicheren"
 
 msgid "SAVE_AND_CONTINUE"
-msgstr ""
+msgstr "Späicheren a Weidermaachen"
 
 msgid "SAVE_AUTOSAVE"
 msgstr ""
@@ -4213,16 +4608,19 @@ msgid "SAVE_FAILED"
 msgstr ""
 
 msgid "SAVE_GAME"
-msgstr ""
+msgstr "Spill Späicheren"
 
 msgid "SAVE_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "SAVE_HAS_DIFFERENT_VERSION"
-msgstr ""
+msgstr "Späicherdatei huet verschidden Versiounen"
 
 msgid "SAVE_HAS_DIFFERENT_VERSION_TEXT"
 msgstr ""
+"D'Späicherdatei déi's du probéiert ze lueden huet eng aner Versioun wéi "
+"d'Spill selwer. \n"
+"W.e.g luet d'Datei manuell iwwert de Menü."
 
 msgid "SAVE_HAS_INVALID_GAME_STATE"
 msgstr ""
@@ -4309,7 +4707,7 @@ msgid "SEARCH_RADIUS"
 msgstr ""
 
 msgid "SEA_FLOOR"
-msgstr ""
+msgstr "Mieresbuedem"
 
 msgid "SECRETE_SLIME"
 msgstr ""
@@ -4381,16 +4779,16 @@ msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
 msgid "SFX_VOLUME"
-msgstr ""
+msgstr "SFX Lautstäerkt"
 
 msgid "SHIFT"
-msgstr ""
+msgstr "Shift"
 
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
 msgid "SHOW_HELP"
-msgstr ""
+msgstr "Hëllef weisen"
 
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
@@ -4402,10 +4800,10 @@ msgid "SHOW_TUTORIALS"
 msgstr ""
 
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
-msgstr ""
+msgstr "Weis d'Tutorialen (an dësem Spill)"
 
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
-msgstr ""
+msgstr "Weis d'Tutorialen (an all neiem Spill)"
 
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
@@ -4454,6 +4852,10 @@ msgstr ""
 
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
+"Di hei Membran huet eng staark Mauer aus Silicondioxid, di bessere Schutz "
+"géint all Schued, mee speziell géint physesche Schued, bitt. Et kascht et "
+"och manner Energie fir d'Form ze behalen, me kann Ressourcen net séier "
+"absorbéieren an d'Zell ass méi vill lues."
 
 msgid "SIZE_COLON"
 msgstr ""
@@ -4471,7 +4873,7 @@ msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "SMALL_IRON_CHUNK"
-msgstr ""
+msgstr "Klengt Stéck Eisen"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
@@ -4483,7 +4885,7 @@ msgid "SOCIETY_STAGE"
 msgstr ""
 
 msgid "SOUND"
-msgstr ""
+msgstr "Audio"
 
 msgid "SOUND_TEAM"
 msgstr ""
@@ -4510,7 +4912,7 @@ msgid "SPACE_STRUCTURE_WAITING_CONSTRUCTION"
 msgstr ""
 
 msgid "SPAWN_AMMONIA"
-msgstr ""
+msgstr "Ammoniak Erstellen"
 
 msgid "SPAWN_ENEMY"
 msgstr ""
@@ -4519,16 +4921,16 @@ msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
 msgid "SPAWN_GLUCOSE"
-msgstr ""
+msgstr "Glocose Erstellen"
 
 msgid "SPAWN_PHOSPHATES"
-msgstr ""
+msgstr "Phosphat Erstellen"
 
 msgid "SPECIAL_MOUSE_1"
-msgstr ""
+msgstr "Maus Zousätzlech 1"
 
 msgid "SPECIAL_MOUSE_2"
-msgstr ""
+msgstr "Maus Zousätzlech 2"
 
 msgid "SPECIES"
 msgstr ""
@@ -4564,7 +4966,7 @@ msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
 msgid "SPEED"
-msgstr ""
+msgstr "Geschwindegkeet"
 
 msgid "SPEED_COLON"
 msgstr ""
@@ -4585,7 +4987,7 @@ msgid "START"
 msgstr ""
 
 msgid "STARTING"
-msgstr ""
+msgstr "Gestart"
 
 msgid "START_CALIBRATION"
 msgstr ""
@@ -4597,7 +4999,7 @@ msgid "START_RESEARCH"
 msgstr ""
 
 msgid "STATISTICS"
-msgstr ""
+msgstr "Statistiken"
 
 #, fuzzy
 msgid "STAT_ATP_PRODUCTION_REDUCTION"
@@ -4673,7 +5075,7 @@ msgid "STOP"
 msgstr ""
 
 msgid "STORAGE"
-msgstr ""
+msgstr "Späicher"
 
 msgid "STORAGE_COLON"
 msgstr ""
@@ -4742,7 +5144,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 msgid "SUNLIGHT"
-msgstr ""
+msgstr "Sonneliicht"
 
 msgid "SUPPORTER_PATRONS"
 msgstr ""
@@ -4778,7 +5180,7 @@ msgid "TAGS_IS_WHITESPACE"
 msgstr ""
 
 msgid "TAKE_SCREENSHOT"
-msgstr ""
+msgstr "Screenshot huelen"
 
 msgid "TARGET_TYPE_COLON"
 msgstr ""
@@ -4917,16 +5319,27 @@ msgid "THRIVE_LICENSES"
 msgstr ""
 
 msgid "THYLAKOID"
-msgstr ""
+msgstr "Thylakoid"
 
 msgid "THYLAKOIDS"
-msgstr ""
+msgstr "Thylakoiden"
 
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
+"Thylakoiden si Klompen aus Eewäiss an photosensitive Pigmenter. D'Pigmenter "
+"kennen d'Energie vun [thrive:compound type=\"sunlight\"][/thrive:compound] "
+"vir [thrive:compound type=\"glucose\"][/thrive:compound] aus Waasser an "
+"gasfërmegen [thrive:compound type=\"carbondioxide\"][/thrive:compound] ze "
+"produzéieren an engem Prozess genannt [b]Photosyntheese[/b]. D'Pigmenter "
+"ginn den Thylakoiden och hier distinktif Faarf. Den Ëmsaz vun hierer [thrive:"
+"compound type=\"glucose\"][/thrive:compound] Produktioun wiisst mat der "
+"Konzentratioun aus [thrive:compound type=\"carbondioxide\"][/thrive:"
+"compound] an der Intensitéit vun [thrive:compound type=\"sunlight\"][/thrive:"
+"compound]. Well d'Thylakoiden direkt am Zytoplasma schwammen meescht "
+"d'Flëssegkeet ronderëm [b]Glycolyse[/b]."
 
 msgid "TIDEPOOL"
-msgstr ""
+msgstr "Gezäiten Dëmpel"
 
 msgid "TIMELINE"
 msgstr ""
@@ -4983,13 +5396,13 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 msgid "TOGGLE_ENGULF"
-msgstr ""
+msgstr "Verschléng Modus un/aus maachen"
 
 msgid "TOGGLE_ENGULF_TOOLTIP"
 msgstr ""
 
 msgid "TOGGLE_FPS"
-msgstr ""
+msgstr "FPS Weisen/Verstoppen"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr ""
@@ -5016,7 +5429,7 @@ msgid "TOGGLE_UNBINDING"
 msgstr ""
 
 msgid "TOOLS"
-msgstr ""
+msgstr "Geschier (Tools)"
 
 msgid "TOOL_HAND_AXE"
 msgstr ""
@@ -5074,7 +5487,8 @@ msgstr ""
 
 #, fuzzy
 msgid "TOXIN_TOXICITY_CUSTOMIZATION_TOOLTIP"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 #, fuzzy
 msgid "TOXIN_TYPE_COLON"
@@ -5082,10 +5496,13 @@ msgstr "Kënschtler:"
 
 #, fuzzy
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
-msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+msgstr ""
+"(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "TOXIN_VACUOLE"
 msgstr ""
+"Gëftstoff\n"
+"Vakuol"
 
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
@@ -5094,7 +5511,7 @@ msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "TO_BE_IMPLEMENTED"
-msgstr ""
+msgstr "Ze Implementéieren."
 
 msgid "TRANSLATORS"
 msgstr ""
@@ -5211,7 +5628,7 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
 msgid "UNDERWATERCAVE"
-msgstr ""
+msgstr "Ënnerwaasser Hiel"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr ""
@@ -5220,10 +5637,10 @@ msgid "UNDISCOVERED_PATCH"
 msgstr ""
 
 msgid "UNDO"
-msgstr ""
+msgstr "Zeréckgoen"
 
 msgid "UNDO_THE_LAST_ACTION"
-msgstr ""
+msgstr "Läscht Aktioun réckgängeg maachen"
 
 msgid "UNIT_ACTION_CONSTRUCT"
 msgstr ""
@@ -5244,7 +5661,7 @@ msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
 msgid "UNKNOWN_MOUSE"
-msgstr ""
+msgstr "Onbekannt Maus"
 
 msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
@@ -5311,6 +5728,8 @@ msgstr ""
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
+"Du hues ongespäichert Ännerungen déi verluer wäerte ginn.\n"
+"Wëlls de wierklech weider?"
 
 msgid "UNTITLED"
 msgstr ""
@@ -5367,7 +5786,7 @@ msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
-msgstr ""
+msgstr "Benotz een personaliséierten Benotzernumm"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
@@ -5379,7 +5798,7 @@ msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
 msgid "VACUOLE"
-msgstr ""
+msgstr "Vakuol"
 
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
@@ -5436,7 +5855,7 @@ msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
 msgid "VIEW_SOURCE_CODE"
-msgstr ""
+msgstr "Quellcode Gesinn"
 
 msgid "VIP_PATRONS"
 msgstr ""
@@ -5454,7 +5873,7 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
 msgid "VOLCANIC_VENT"
-msgstr ""
+msgstr "Vulkanesche Schlot"
 
 msgid "VOLUMEDOWN"
 msgstr ""
@@ -5465,8 +5884,9 @@ msgstr ""
 msgid "VOLUMEUP"
 msgstr ""
 
+#, fuzzy
 msgid "VSYNC"
-msgstr ""
+msgstr "VSync"
 
 msgid "WAITING_FOR_AUTO_EVO"
 msgstr ""
@@ -5481,16 +5901,16 @@ msgid "WENT_EXTINCT_IN"
 msgstr ""
 
 msgid "WHEEL_DOWN"
-msgstr ""
+msgstr "Mausrad erof"
 
 msgid "WHEEL_LEFT"
-msgstr ""
+msgstr "Mausrad lenks"
 
 msgid "WHEEL_RIGHT"
-msgstr ""
+msgstr "Mausrad riets"
 
 msgid "WHEEL_UP"
-msgstr ""
+msgstr "Mausrad erop"
 
 msgid "WIKI"
 msgstr ""
@@ -6869,7 +7289,7 @@ msgid "WIKI_YES"
 msgstr ""
 
 msgid "WILL_YOU_THRIVE"
-msgstr ""
+msgstr "Wäerts de Gedeien? (Failed titledrop)"
 
 msgid "WIN_BOX_TITLE"
 msgstr ""
@@ -6950,11 +7370,12 @@ msgid "YOU_CAN_SUPPORT_THRIVE_ON_PATREON"
 msgstr ""
 
 msgid "ZOOM_IN"
-msgstr ""
+msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
-msgstr ""
+msgstr "Eraus Zoomen"
 
 #, fuzzy
 #~ msgid "ALLOW_SPECIES_TO_NOT_MIGRATE"
-#~ msgstr "Erlaabt der Spezies net ze migreiren (wann keng gut Migratioun fonnt get)"
+#~ msgstr ""
+#~ "Erlaabt der Spezies net ze migreiren (wann keng gut Migratioun fonnt get)"
