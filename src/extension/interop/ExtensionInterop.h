@@ -8,6 +8,9 @@
 
 #include "atlas/atlas_unwrap.hpp"
 
+#include <godot_cpp/classes/mesh.hpp>
+#include <godot_cpp/classes/array_mesh.hpp>
+
 using namespace godot;
 
 /// \file Defines all of the API methods that can be called from C# specifically in this extension type
@@ -34,5 +37,5 @@ extern "C"
 	
 	[[maybe_unused]] API_EXPORT int32_t ExtensionTestFunc(int num);
 	
-	[[maybe_unused]] API_EXPORT bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs);
+	[[maybe_unused]] API_EXPORT bool Unwrap(float p_texel_size, ArrayMesh* mesh);
 }

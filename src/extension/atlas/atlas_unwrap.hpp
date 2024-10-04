@@ -38,6 +38,10 @@
 
 #include <godot_cpp/core/class_db.hpp>
 
+#include <godot_cpp/classes/mesh.hpp>
+#include <godot_cpp/classes/array_mesh.hpp>
+#include <godot_cpp/classes/surface_tool.hpp>
+
 using namespace godot;
 
 namespace Thrive
@@ -45,6 +49,6 @@ namespace Thrive
 
 int TestFunc(int test);
 
-bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs);
+bool Unwrap(float p_texel_size, ArrayMesh* mesh);
 
 }

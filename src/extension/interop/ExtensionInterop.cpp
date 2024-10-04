@@ -8,6 +8,9 @@
 
 #include "atlas/atlas_unwrap.hpp"
 
+#include <godot_cpp/classes/mesh.hpp>
+#include <godot_cpp/classes/array_mesh.hpp>
+
 using namespace godot;
 
 // ------------------------------------ //
@@ -49,7 +52,7 @@ int32_t ExtensionTestFunc(int num)
 	return Thrive::TestFunc(num);
 }
 
-bool Unwrap(float p_texel_size, float *vertices, float *normals, int vertex_count, int *indices, int index_count, float *uvs)
+bool Unwrap(float p_texel_size, ArrayMesh* mesh)
 {
-	return Thrive::Unwrap(p_texel_size, vertices, normals, vertex_count, indices, index_count, uvs);
+	return Thrive::Unwrap(p_texel_size, mesh);
 }
