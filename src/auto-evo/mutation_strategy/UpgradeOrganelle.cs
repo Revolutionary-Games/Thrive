@@ -26,7 +26,6 @@ internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
         foreach (OrganelleTemplate organelle in newSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-
             if (organelle.Upgrades == null)
             {
                 organelle.Upgrades = new OrganelleUpgrades();
