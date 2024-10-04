@@ -165,7 +165,7 @@ public class CellType : ICellDefinition, ICloneable
             hash ^= (ulong)list[i].GetHashCode() * 13;
         }
 
-        return hash;
+        return hash ^ Constants.VISUAL_HASH_CELL;
     }
 
     public override int GetHashCode()

@@ -320,7 +320,7 @@ public class MicrobeSpecies : Species, ICellDefinition
             hash ^= (ulong)list[i].GetHashCode() * 13;
         }
 
-        return hash;
+        return hash ^ Constants.VISUAL_HASH_CELL;
     }
 
     public override string GetDetailString()

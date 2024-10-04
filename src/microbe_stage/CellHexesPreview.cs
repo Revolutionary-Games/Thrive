@@ -26,7 +26,7 @@ public partial class CellHexesPreview : PhotographablePreview
         if (microbeSpecies == null)
             throw new InvalidOperationException("No species set to generate image of hexes for");
 
-        var hash = microbeSpecies.GetVisualHashCode();
+        var hash = CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
 
         var task = PhotoStudio.Instance.TryGetFromCache(hash);
 

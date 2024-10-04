@@ -36,6 +36,11 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
         }
     }
 
+    public static ulong GetVisualHash(MicrobeSpecies species)
+    {
+        return Constants.VISUAL_HASH_HEX_LAYOUT ^ species.GetVisualHashCode();
+    }
+
     public void ApplySceneParameters(Node3D instancedScene)
     {
         var builder = (CellHexesPhotoBuilder)instancedScene;
@@ -52,7 +57,7 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
 
     public ulong GetVisualHashCode()
     {
-        return species?.GetVisualHashCode() ?? throw new InvalidOperationException("No species set");
+        return GetVisualHash(species ?? throw new InvalidOperationException("No species set"));
     }
 
     private void BuildHexStruct()
