@@ -45,4 +45,9 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     {
         return new ToxinUpgrades(BaseType, Toxicity);
     }
+
+    public override int GetHashCode()
+    {
+        return int.RotateLeft(Toxicity.GetHashCode(), 3) ^ BaseType.GetHashCode();
+    }
 }

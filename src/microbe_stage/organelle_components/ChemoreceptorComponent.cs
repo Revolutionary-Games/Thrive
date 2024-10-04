@@ -125,4 +125,10 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
     {
         return new ChemoreceptorUpgrades(TargetCompound, TargetSpecies, SearchRange, SearchAmount, LineColour);
     }
+
+    public override int GetHashCode()
+    {
+        return 283 * TargetCompound.GetHashCode() ^ 293 * TargetSpecies?.GetHashCode() ?? 2579 ^
+            307 * SearchRange.GetHashCode() ^ 311 * SearchAmount.GetHashCode() ^ 313 * LineColour.GetHashCode();
+    }
 }

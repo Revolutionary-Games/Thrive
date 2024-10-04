@@ -207,4 +207,9 @@ public class FlagellumUpgrades : IComponentSpecificUpgrades
     {
         return new FlagellumUpgrades(LengthFraction);
     }
+
+    public override int GetHashCode()
+    {
+        return int.RotateRight(LengthFraction.GetHashCode(), 1);
+    }
 }

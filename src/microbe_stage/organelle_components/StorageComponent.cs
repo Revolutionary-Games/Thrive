@@ -54,4 +54,9 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
     {
         return new StorageComponentUpgrades(SpecializedFor);
     }
+
+    public override int GetHashCode()
+    {
+        return int.RotateLeft(SpecializedFor.GetHashCode(), 7);
+    }
 }
