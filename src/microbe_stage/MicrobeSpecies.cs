@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
 using Systems;
+using Vector3 = Godot.Vector3;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.

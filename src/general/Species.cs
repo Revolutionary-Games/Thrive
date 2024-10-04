@@ -312,9 +312,10 @@ public abstract class Species : ICloneable
     ///   "is this species visually the same as this other one" possible by comparing the hashes.
     /// </summary>
     /// <returns>The visual hash code</returns>
-    public virtual int GetVisualHashCode()
+    public virtual ulong GetVisualHashCode()
     {
-        return Genus.GetHashCode() * 599 ^ Epithet.GetHashCode() * 601 ^ Colour.GetHashCode() * 607;
+        return (ulong)Genus.GetHashCode() * 599 ^ (ulong)Epithet.GetHashCode() * 601 ^
+            (ulong)Colour.GetHashCode() * 607;
     }
 
     public virtual string GetDetailString()
