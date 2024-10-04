@@ -148,6 +148,26 @@ public class CellType : ICellDefinition, ICloneable
         return result;
     }
 
+    public ulong GetVisualHashCode()
+    {
+        // This code is copied from MicrobeSpecies
+        var count = Organelles.Count;
+
+        ulong hash = (ulong)MembraneType.InternalName.GetHashCode() * 5743 ^
+            (ulong)MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
+
+        var list = Organelles.Organelles;
+
+        for (int i = 0; i < count; ++i)
+        {
+            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // stuff here
+            hash ^= (ulong)list[i].GetHashCode() * 13;
+        }
+
+        return hash;
+    }
+
     public override int GetHashCode()
     {
         var hash = TypeName.GetHashCode() * 131 ^ MPCost * 2797 ^ MembraneType.GetHashCode() * 2801 ^

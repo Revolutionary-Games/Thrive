@@ -5,4 +5,5 @@
 /// </summary>
 public interface IComponentSpecificUpgrades : ICloneable, IEquatable<IComponentSpecificUpgrades>
 {
+    public int GetHashCode();
 }
