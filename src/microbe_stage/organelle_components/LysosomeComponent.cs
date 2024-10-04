@@ -74,4 +74,9 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
     {
         return new LysosomeUpgrades(Enzyme);
     }
+
+    public override int GetHashCode()
+    {
+        return int.RotateRight(Enzyme.InternalName.GetHashCode(), 3);
+    }
 }

@@ -96,9 +96,6 @@ public partial class PhotographablePreview : Control
 
         textureRect.Texture = loadingTexture;
         task = SetupImageTask();
-
-        if (task != null)
-            PhotoStudio.Instance.SubmitTask(task);
     }
 
     /// <summary>

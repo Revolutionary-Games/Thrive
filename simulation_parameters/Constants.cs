@@ -423,6 +423,16 @@ public static class Constants
     /// </summary>
     public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
+    public const float MEMORY_PHOTO_CACHE_TIME = 300;
+    public const int MEMORY_PHOTO_CACHE_MAX_ITEMS = 250;
+
+    public const float MEMORY_PHOTO_CACHE_CLEAN_INTERVAL = 37;
+
+    // Base randomness for visual hashes to make different types not conflict
+    public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
+    public const ulong VISUAL_HASH_HEX_LAYOUT = 6086113318220891786UL;
+    public const ulong VISUAL_HASH_PATH = 16930532057563531237UL;
+
     /// <summary>
     ///   Controls with how much speed agents are fired
     /// </summary>
