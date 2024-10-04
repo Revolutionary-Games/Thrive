@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
+"POT-Creation-Date: 2024-10-04 13:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -125,7 +125,7 @@ msgstr ""
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:95
+#: ../simulation_parameters/microbe_stage/bio_processes.json:97
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr ""
 
@@ -212,7 +212,7 @@ msgstr ""
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:106
+#: ../simulation_parameters/microbe_stage/bio_processes.json:108
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
@@ -472,7 +472,7 @@ msgstr ""
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:676
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:692
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -857,8 +857,8 @@ msgstr ""
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/bio_processes.json:73
-#: ../simulation_parameters/microbe_stage/bio_processes.json:84
+#: ../simulation_parameters/microbe_stage/bio_processes.json:75
+#: ../simulation_parameters/microbe_stage/bio_processes.json:86
 msgid "CHEMO_SYNTHESIS"
 msgstr ""
 
@@ -1132,7 +1132,8 @@ msgstr ""
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:75 ../src/general/IWorldEffect.cs:99
+#: ../src/microbe_stage/GlucoseReductionEffect.cs:62
+#: ../src/microbe_stage/GlucoseReductionEffect.cs:86
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
@@ -1190,11 +1191,11 @@ msgstr ""
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:156
+#: ../src/space_stage/SpaceStage.tscn:138
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
 msgstr ""
 
-#: ../src/space_stage/SpaceStage.tscn:155
+#: ../src/space_stage/SpaceStage.tscn:137
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
 
@@ -1645,7 +1646,7 @@ msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:704
-#: ../simulation_parameters/microbe_stage/bio_processes.json:24
+#: ../simulation_parameters/microbe_stage/bio_processes.json:25
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr ""
 
@@ -2242,19 +2243,19 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:631
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:633
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:687
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:703
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:649
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:665
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:643
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:655
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
@@ -2807,12 +2808,12 @@ msgstr ""
 msgid "GLUCOSE"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:94
+#: ../src/microbe_stage/GlucoseReductionEffect.cs:81
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1573
-#: ../simulation_parameters/microbe_stage/bio_processes.json:14
+#: ../simulation_parameters/microbe_stage/bio_processes.json:15
 msgid "GLYCOLYSIS"
 msgstr ""
 
@@ -3522,8 +3523,8 @@ msgid "IRON"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1652
-#: ../simulation_parameters/microbe_stage/bio_processes.json:137
-#: ../simulation_parameters/microbe_stage/bio_processes.json:167
+#: ../simulation_parameters/microbe_stage/bio_processes.json:141
+#: ../simulation_parameters/microbe_stage/bio_processes.json:171
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr ""
 
@@ -4893,7 +4894,7 @@ msgid "MUCILAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1810
-#: ../simulation_parameters/microbe_stage/bio_processes.json:64
+#: ../simulation_parameters/microbe_stage/bio_processes.json:66
 msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
@@ -5485,7 +5486,7 @@ msgstr ""
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:670
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:686
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -5588,8 +5589,8 @@ msgid "OXYTOXY_NT"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:2126
-#: ../simulation_parameters/microbe_stage/bio_processes.json:44
-#: ../simulation_parameters/microbe_stage/bio_processes.json:54
+#: ../simulation_parameters/microbe_stage/bio_processes.json:46
+#: ../simulation_parameters/microbe_stage/bio_processes.json:56
 msgid "OXYTOXY_SYNTHESIS"
 msgstr ""
 
@@ -5740,7 +5741,6 @@ msgstr ""
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/general/IWorldEffect.cs:76 ../src/general/IWorldEffect.cs:100
 #: ../src/general/NewGameSettings.cs:838
 #: ../src/general/WorldGenerationSettings.cs:157
 #: ../src/gui_common/CompoundAmount.cs:247
@@ -5749,6 +5749,8 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:214
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:495
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
+#: ../src/microbe_stage/GlucoseReductionEffect.cs:63
+#: ../src/microbe_stage/GlucoseReductionEffect.cs:87
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:423
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:499
 #: ../src/microbe_stage/gui/PatchDetailsPanel.cs:346
@@ -5785,8 +5787,8 @@ msgid "PHOSPHATE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:546
-#: ../simulation_parameters/microbe_stage/bio_processes.json:34
-#: ../simulation_parameters/microbe_stage/bio_processes.json:127
+#: ../simulation_parameters/microbe_stage/bio_processes.json:35
+#: ../simulation_parameters/microbe_stage/bio_processes.json:130
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
@@ -6147,7 +6149,7 @@ msgid "RESOURCE_WOOD"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/bio_processes.json:3
-#: ../simulation_parameters/microbe_stage/bio_processes.json:116
+#: ../simulation_parameters/microbe_stage/bio_processes.json:118
 msgid "RESPIRATION"
 msgstr ""
 
@@ -7253,8 +7255,8 @@ msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1889
-#: ../simulation_parameters/microbe_stage/bio_processes.json:149
-#: ../simulation_parameters/microbe_stage/bio_processes.json:158
+#: ../simulation_parameters/microbe_stage/bio_processes.json:153
+#: ../simulation_parameters/microbe_stage/bio_processes.json:162
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
