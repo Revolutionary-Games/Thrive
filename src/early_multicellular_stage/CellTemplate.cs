@@ -91,11 +91,6 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
         return GeneralCellPropertiesHelpers.CalculatePhotographDistance(worldSimulation);
     }
 
-    public ulong GetVisualHashCode()
-    {
-        return CellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
-    }
-
     public object Clone()
     {
         return new CellTemplate(CellType)
@@ -103,5 +98,10 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
             Position = Position,
             Orientation = Orientation,
         };
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        return CellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
     }
 }
