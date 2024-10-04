@@ -57,11 +57,37 @@ public class PhotoStudioMemoryCache : IComputeCache<ImageTask>
 
             keysToClear.Clear();
         }
+        else if (cache.Count > Constants.MEMORY_PHOTO_CACHE_MAX_ITEMS)
+        {
+            // Clear items if there are too many total items even when it isn't time to clean yet otherwise
+            float oldest = float.MaxValue;
+
+            // To not look through a ton of entries if they are in a terrible order, this exits early and purges
+            // something that probably still deserved it
+            int tried = 0;
+
+            keysToClear.Add(0);
+
+            foreach (var entry in cache)
+            {
+                if (entry.Value.LastAccess < oldest)
+                {
+                    oldest = entry.Value.LastAccess;
+                    keysToClear[0] = entry.Key;
+
+                    if (++tried > 50)
+                        break;
+                }
+            }
+
+            cache.Remove(keysToClear[0]);
+            keysToClear.Clear();
+        }
     }
 
     public void Clear()
     {
-        throw new System.NotImplementedException();
+        cache.Clear();
     }
 
     private class CacheEntry

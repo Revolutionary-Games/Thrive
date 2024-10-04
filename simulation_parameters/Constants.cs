@@ -424,6 +424,7 @@ public static class Constants
     public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
     public const float MEMORY_PHOTO_CACHE_TIME = 325;
+    public const int MEMORY_PHOTO_CACHE_MAX_ITEMS = 200;
 
     public const float MEMORY_PHOTO_CACHE_CLEAN_INTERVAL = 37;
 
