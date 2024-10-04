@@ -170,15 +170,16 @@ public class CellType : ICellDefinition, ICloneable
 
     public override int GetHashCode()
     {
-        var hash = TypeName.GetHashCode() * 131 ^ MPCost * 2797 ^ MembraneType.GetHashCode() * 2801 ^
-            MembraneRigidity.GetHashCode() * 2803 ^ Colour.GetHashCode() * 587 ^ (IsBacteria ? 1 : 0) * 5171 ^
-            Organelles.Count * 127;
+        var count = Organelles.Count;
 
-        int counter = 0;
+        int hash = TypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
+            MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1 : 0) * 5779 ^ count * 131;
 
-        foreach (var organelle in Organelles)
+        var list = Organelles.Organelles;
+
+        for (int i = 0; i < count; ++i)
         {
-            hash ^= counter++ * 11 * organelle.GetHashCode();
+            hash ^= list[i].GetHashCode() * 13;
         }
 
         return hash;
