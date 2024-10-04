@@ -103,7 +103,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         var barScene = GD.Load<PackedScene>("res://src/microbe_stage/gui/CompoundProgressBar.tscn");
 
         ingestedMatterBar = CompoundProgressBar.Create(barScene,
-            GD.Load<Texture2D>("res://assets/textures/gui/bevel/ingestedmatter.png"),
+            GD.Load<Texture2D>("res://assets/textures/gui/bevel/IngestedMatter.svg"),
             new LocalizedString("INGESTED_MATTER"), 0, 1);
         ingestedMatterBar.FillColour = IngestedMatterBarFillColour;
 
