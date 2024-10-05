@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-04 13:06+0300\n"
+"POT-Creation-Date: 2024-10-05 11:32+0100\n"
 "PO-Revision-Date: 2024-09-20 12:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -679,6 +679,9 @@ msgstr "关闭"
 
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -2235,6 +2238,18 @@ msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
+
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "硫化氢"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞的生长至关重要。这个过程被称作[b]厌氧固氮[/b]。由于固氮酶是直接悬浮在细胞质中的，所以它周围的细胞质也能进行一些[b]糖酵解[/b]。"
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
