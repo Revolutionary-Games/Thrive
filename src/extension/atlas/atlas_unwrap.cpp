@@ -37,6 +37,7 @@
 #include <godot_cpp/classes/mesh.hpp>
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/surface_tool.hpp>
+#include <godot_cpp/classes/ref.hpp>
 #include "godot_cpp/templates/pair.hpp"
 #include "godot_cpp/templates/local_vector.hpp"
 
@@ -90,7 +91,6 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	ERR_FAIL_COND_V_MSG(vc != vertices.size() / 3, false, "Unequal lengths, vertices");
 	ERR_FAIL_COND_V_MSG(vc != normals.size() / 3, false, "Unequal lengths, normals");
 
-	// CTRL + C, CTRL + V
 	float eps = 1.19209290e-7F; // Taken from xatlas.h
 	if (ic == 0) {
 		for (int j = 0; j < vc / 3; j++) {
@@ -120,26 +120,20 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 			indices.push_back(rindices[j * 3 + 0]);
 			indices.push_back(rindices[j * 3 + 1]);
 			indices.push_back(rindices[j * 3 + 2]);
-			
-			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 0] >= (int)(vertices.size() / 3), false, "Index out of bounds");
-			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 1] >= (int)(vertices.size() / 3), false, "Index out of bounds");
-			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 2] >= (int)(vertices.size() / 3), false, "Index out of bounds");
 		}
 	}
 	
-	ERR_FAIL_COND_V_MSG((uint64_t)rindices.size() != ic, false, "Wrond index count");
-	
 	// set up input mesh
 	xatlas::MeshDecl input_mesh;
-	input_mesh.indexData = &indices;
+	input_mesh.indexData = indices.ptr();
 	input_mesh.indexCount = indices.size();
 	input_mesh.indexFormat = xatlas::IndexFormat::UInt32;
 
 	input_mesh.vertexCount = vertices.size() / 3;
-	input_mesh.vertexPositionData = &vertices;
-	input_mesh.vertexPositionStride = sizeof(float);
-	input_mesh.vertexNormalData = &normals;
-	input_mesh.vertexNormalStride = sizeof(float);
+	input_mesh.vertexPositionData = vertices.ptr();
+	input_mesh.vertexPositionStride = sizeof(float) * 3;
+	input_mesh.vertexNormalData = normals.ptr();
+	input_mesh.vertexNormalStride = sizeof(uint32_t) * 3;
 	input_mesh.vertexUvData = nullptr;
 	input_mesh.vertexUvStride = 0;
 
@@ -156,12 +150,8 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 
 	xatlas::Atlas *atlas = xatlas::Create();
 
-	// problem
-	xatlas::AddMesh(atlas, input_mesh, 1);
-	// ERR_FAIL_COND_V_MSG(err != xatlas::AddMeshError::Success, false, xatlas::StringForEnum(err));
-	// \problem
-	
-	ERR_FAIL_COND_V_MSG(true, false, "Something happened");
+	xatlas::AddMeshError err = xatlas::AddMesh(atlas, input_mesh, 1);
+	ERR_FAIL_COND_V_MSG(err != xatlas::AddMeshError::Success, false, xatlas::StringForEnum(err));
 
 	xatlas::Generate(atlas, chart_options, pack_options);
 	
@@ -180,11 +170,18 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	
 	mesh.clear_surfaces();
 	
-	SurfaceTool* surfaces_tools = new SurfaceTool();
+	Ref<SurfaceTool> surfaces_tools;
+	surfaces_tools.instantiate();
 	surfaces_tools->begin(Mesh::PRIMITIVE_TRIANGLES);
 	
 	vc = output.vertexCount;
 	ic = output.indexCount;
+	
+	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_COLOR > arrays.size(), false, "Wrong array id?");
+	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_TEX_UV2 > arrays.size(), false, "Wrong array id?");
+	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_TANGENT > arrays.size(), false, "Wrong array id?");
+	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_BONES > arrays.size(), false, "Wrong array id?");
+	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_WEIGHTS > arrays.size(), false, "Wrong array id?");
 	
 	PackedColorArray rcolors = arrays[Mesh::ARRAY_COLOR];
 	PackedVector2Array r_uv2 = arrays[Mesh::ARRAY_TEX_UV2];
@@ -193,14 +190,9 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	PackedFloat32Array rweights = arrays[Mesh::ARRAY_WEIGHTS];
 	
 	for (int i = 0; i < ic; i += 3) {
-		//ERR_FAIL_INDEX_V(output.vertexArray[output.indexArray[i + 0]].xref, (int)uv_indices.size(), false);
-		//ERR_FAIL_INDEX_V(output.vertexArray[output.indexArray[i + 1]].xref, (int)uv_indices.size(), false);
-		//ERR_FAIL_INDEX_V(output.vertexArray[output.indexArray[i + 2]].xref, (int)uv_indices.size(), false);
-
-		//ERR_FAIL_COND_V(uv_indices[output.vertexArray[output.indexArray[i + 0]].xref].first != uv_indices[output.vertexArray[output.indexArray[i + 1]].xref].first || uv_indices[output.vertexArray[output.indexArray[i + 0]].xref].first != uv_indices[output.vertexArray[output.indexArray[i + 2]].xref].first, false);
-
+		
 		for (int j = 0; j < 3; j++) {
-			int vertex_id = output.indexArray[i + j];
+			int vertex_id = output.vertexArray[output.indexArray[i + j]].xref;
 			
 			if (surface_format & Mesh::ARRAY_FORMAT_COLOR) {
                 surfaces_tools->set_color(rcolors[vertex_id]);
@@ -223,12 +215,12 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 			if (surface_format & Mesh::ARRAY_FORMAT_WEIGHTS) {
 				surfaces_tools->set_weights(rweights.slice(vertex_id, vertex_id + 3));
 			}
-
-			Vector2 uv(output.vertexArray[output.indexArray[i + j] * 2].uv[0],output.vertexArray[output.indexArray[i + j] * 2].uv[1]);
+			
+			Vector2 uv(output.vertexArray[output.indexArray[i + j] * 2].uv[0] / w,output.vertexArray[output.indexArray[i + j] * 2].uv[1] / h);
+			
 			surfaces_tools->set_uv(uv);
-
+			
 			surfaces_tools->add_vertex(rvertices[vertex_id]);
-			surfaces_tools->add_index(vertex_id);
 		}
 	}
 	

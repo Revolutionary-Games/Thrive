@@ -19,7 +19,7 @@ protected:
 public:
 	ExtendedArrayMesh();
 	~ExtendedArrayMesh();
-	[[nodiscard]] bool UnwrapMesh();
+	[[nodiscard]] bool UnwrapMesh(float texel_size);
 };
 
 }  // namespace Thrive

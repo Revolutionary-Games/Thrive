@@ -120,13 +120,17 @@ public class DualContourer
         ExtendedArrayMesh mesh = new ExtendedArrayMesh();
         mesh.Mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
-        mesh.Unwrap(0.1f);
+        mesh.Unwrap(1.0f);
 
         var uvs = mesh.Mesh.SurfaceGetArrays(0)[(int)ArrayMesh.ArrayType.TexUV].As<Vector2[]>();
+
+        int nan = 0;
         foreach (var uv in uvs)
         {
-            GD.Print(uv);
+
         }
+
+        GD.Print("NaN values: " + nan);
 
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");

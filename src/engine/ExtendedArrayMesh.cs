@@ -28,6 +28,6 @@ public partial class ExtendedArrayMesh
             GD.Print(c);
         }
 
-        NativeExtendedArrayMesh.As<ArrayMesh>().Call("unwrap");
+        NativeExtendedArrayMesh.As<ArrayMesh>().Call("unwrap", texelSize);
     }
 }

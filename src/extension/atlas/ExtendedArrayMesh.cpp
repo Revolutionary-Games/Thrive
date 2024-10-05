@@ -14,14 +14,14 @@ namespace Thrive
 		using namespace godot;
 		
 		//ClassDB::bind_method(D_METHOD("get_native_instance"), &ExtendedArrayMesh::GetThis);
-		ClassDB::bind_method(D_METHOD("unwrap"), &ExtendedArrayMesh::UnwrapMesh);
+		ClassDB::bind_method(D_METHOD("unwrap", "texel_size"), &ExtendedArrayMesh::UnwrapMesh);
 	}
 	
-	bool ExtendedArrayMesh::UnwrapMesh()
+	bool ExtendedArrayMesh::UnwrapMesh(float texel_size)
 	{
 		try
 		{
-			return Thrive::Unwrap(1.0f, *this);
+			return Thrive::Unwrap(texel_size, *this);
 		}
 		catch(...)
 		{
