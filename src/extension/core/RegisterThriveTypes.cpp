@@ -5,6 +5,8 @@
 
 #include "ThriveConfig.hpp"
 
+#include "atlas/ExtendedArrayMesh.hpp"
+
 // ------------------------------------ //
 namespace Thrive
 {
@@ -17,6 +19,7 @@ void InitializeThriveModule(godot::ModuleInitializationLevel level)
 
     GDREGISTER_CLASS(Thrive::ThriveConfig);
     GDREGISTER_CLASS(Thrive::DebugDrawer);
+    GDREGISTER_CLASS(Thrive::ExtendedArrayMesh);
 }
 
 void UnInitializeThriveModule(godot::ModuleInitializationLevel level)

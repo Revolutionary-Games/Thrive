@@ -126,5 +126,5 @@ internal static partial class NativeMethods
     internal static extern int ExtensionTestFunc(int num);
 
     [DllImport("thrive_extension")]
-    internal static extern bool Unwrap(float p_texel_size, ref float vertices, ref float normals, int vertexCount, ref int indices, int indexCount, ref float uvs);
+    internal static extern bool Unwrap(float p_texel_size, IntPtr arrayMesh);
 }

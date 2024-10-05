@@ -47,7 +47,7 @@ int Thrive::TestFunc(int test)
 	return test;
 }
 
-bool Thrive::Unwrap(float p_texel_size, ArrayMesh* mesh)
+bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 {
 	// Data for the xatlas library
 	LocalVector<float> vertices;
@@ -55,18 +55,18 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh* mesh)
 	LocalVector<int> indices;
 	LocalVector<Pair<int, int>> uv_indices;
 	
-	uint64_t surface_format = mesh->surface_get_format(0);
+	uint64_t surface_format = mesh.surface_get_format(0);
 	
-	Array arrays = mesh->surface_get_arrays(0);
+	Array arrays = mesh.surface_get_arrays(0);
 	
 	PackedVector3Array rvertices = arrays[Mesh::ARRAY_VERTEX];
-	uint32_t vc = rvertices.size();
+	uint64_t vc = rvertices.size();
 
 	PackedVector3Array rnormals = arrays[Mesh::ARRAY_NORMAL];
 
-	vertices.resize(vc * 3);
-	normals.resize(vc * 3);
-	uv_indices.resize(vc);
+	vertices.resize((uint32_t)(vc * 3));
+	normals.resize((uint32_t)(vc * 3));
+	uv_indices.resize((uint32_t)vc);
 
 	for (int j = 0; j < vc; j++) {
 		Vector3 v = rvertices[j];
@@ -82,7 +82,7 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh* mesh)
 	}
 
 	PackedInt32Array rindices = arrays[Mesh::ARRAY_INDEX];
-	uint32_t ic = rindices.size();
+	uint64_t ic = rindices.size();
 
 	for (int j = 0; j < ic; j++)
 	{
@@ -92,10 +92,10 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh* mesh)
 	// set up input mesh
 	xatlas::MeshDecl input_mesh;
 	input_mesh.indexData = &indices;
-	input_mesh.indexCount = ic;
+	input_mesh.indexCount = (uint32_t)ic;
 	input_mesh.indexFormat = xatlas::IndexFormat::UInt32;
 
-	input_mesh.vertexCount = vc;
+	input_mesh.vertexCount = (uint32_t)vc;
 	input_mesh.vertexPositionData = &vertices;
 	input_mesh.vertexPositionStride = sizeof(float) * 3;
 	input_mesh.vertexNormalData = &normals;
@@ -189,7 +189,7 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh* mesh)
 	}
 	
 	surfaces_tools->index();
-	surfaces_tools->commit(Ref<ArrayMesh>((ArrayMesh *)mesh), surface_format);
+	surfaces_tools->commit(Ref<ArrayMesh>((ArrayMesh *)&mesh), surface_format);
 
 	xatlas::Destroy(atlas);
 

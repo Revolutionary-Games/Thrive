@@ -109,7 +109,7 @@ public class DualContourer
 
         SetColours(points, colors);
 
-        GenerateUVs(points, normals, triIndices, out var uvs);
+        // GenerateUVs(points, normals, triIndices, out var uvs);
 
         var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
@@ -118,14 +118,20 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Index] = triIndices.ToArray();
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.Color] = colors;
-        arrays[(int)Mesh.ArrayType.TexUV] = uvs.ToArray();
-        arrays[(int)Mesh.ArrayType.TexUV2] = uvs.ToArray();
 
         // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
         // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
 
-        ArrayMesh mesh = new ArrayMesh();
+        ExtendedArrayMesh mesh = new ExtendedArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+
+        mesh.Unwrap(0.1f);
+
+        var uvs = mesh.SurfaceGetArrays(0)[(int)ArrayMesh.ArrayType.TexUV].As<Vector2[]>();
+        foreach (var uv in uvs)
+        {
+            GD.Print(uv);
+        }
 
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");
@@ -133,7 +139,7 @@ public class DualContourer
         return mesh;
     }
 
-    private static bool GenerateUVs(List<Vector3> vertices, Vector3[] normals, List<int> indices, out List<Vector2> uvs)
+    /*private static bool GenerateUVs(List<Vector3> vertices, Vector3[] normals, List<int> indices, out List<Vector2> uvs)
     {
         int vertexCount = vertices.Count;
         int indexCount = indices.Count;
@@ -172,7 +178,7 @@ public class DualContourer
         }
 
         return done;
-    }
+    }*/
 
     private static void CalculateLookupTableIfNeeded()
     {

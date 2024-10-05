@@ -49,6 +49,6 @@ namespace Thrive
 
 int TestFunc(int test);
 
-bool Unwrap(float p_texel_size, ArrayMesh* mesh);
+bool Unwrap(float p_texel_size, ArrayMesh& mesh);
 
 }
