@@ -54,5 +54,5 @@ int32_t ExtensionTestFunc(int num)
 
 bool Unwrap(float p_texel_size, ArrayMesh* mesh)
 {
-	return Thrive::Unwrap(p_texel_size, *reinterpret_cast<godot::ArrayMesh*>(mesh));
+	return Thrive::Unwrap(p_texel_size, *mesh);
 }
