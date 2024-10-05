@@ -23,11 +23,6 @@ public partial class ExtendedArrayMesh
 
     public void Unwrap(float texelSize)
     {
-        foreach (var c in ClassDB.ClassGetMethodList("ExtendedArrayMesh", true))
-        {
-            GD.Print(c);
-        }
-
         NativeExtendedArrayMesh.As<ArrayMesh>().Call("unwrap", texelSize);
     }
 }

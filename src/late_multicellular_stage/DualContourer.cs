@@ -122,16 +122,6 @@ public class DualContourer
 
         mesh.Unwrap(1.0f);
 
-        var uvs = mesh.Mesh.SurfaceGetArrays(0)[(int)ArrayMesh.ArrayType.TexUV].As<Vector2[]>();
-
-        int nan = 0;
-        foreach (var uv in uvs)
-        {
-
-        }
-
-        GD.Print("NaN values: " + nan);
-
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");
 
