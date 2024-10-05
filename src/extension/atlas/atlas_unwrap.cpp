@@ -120,8 +120,18 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 			indices.push_back(rindices[j * 3 + 0]);
 			indices.push_back(rindices[j * 3 + 1]);
 			indices.push_back(rindices[j * 3 + 2]);
+			
+			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 0] >= (int)(vertices.size() / 3), false, "Index out of bounds");
+			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 1] >= (int)(vertices.size() / 3), false, "Index out of bounds");
+			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 2] >= (int)(vertices.size() / 3), false, "Index out of bounds");
 		}
 	}
+	
+	ERR_FAIL_COND_V_MSG((uint64_t)rindices.size() != ic, false, "Wrond index count");
+	
+	ERR_FAIL_COND_V_MSG(indices.ptr() == nullptr, false, "Null pointer found");
+	ERR_FAIL_COND_V_MSG(vertices.ptr() == nullptr, false, "Null pointer found");
+	ERR_FAIL_COND_V_MSG(normals.ptr() == nullptr, false, "Null pointer found");
 	
 	// set up input mesh
 	xatlas::MeshDecl input_mesh;
@@ -192,7 +202,9 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	for (int i = 0; i < ic; i += 3) {
 		
 		for (int j = 0; j < 3; j++) {
+			ERR_FAIL_COND_V_MSG(i + j > (int)ic, false, "index id Out of range");
 			int vertex_id = output.vertexArray[output.indexArray[i + j]].xref;
+			ERR_FAIL_COND_V_MSG(vertex_id > (int)vc, false, "vertex id Out of range");
 			
 			if (surface_format & Mesh::ARRAY_FORMAT_COLOR) {
                 surfaces_tools->set_color(rcolors[vertex_id]);
