@@ -352,6 +352,37 @@
     "EditorButtonOrder": 1,
     "EndosymbiosisUnlocks": "mitochondrion"
   },
+  "hydrogenase": {
+    "MPCost": 45,
+    "InitialComposition": {
+      "ammonia": 1,
+      "phosphates": 1
+    },
+    "Hexes": [
+      {
+        "r": 0,
+        "q": 0
+      }
+    ],
+    "Processes": {
+      "clostridial_fermentation": 1
+    },
+    "Components": {
+      "Storage": {
+        "Capacity": 0.5
+      }
+    },
+    "Density": 1100,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn"
+    },
+    "Name": "HYDROGENASE",
+    "ProductionColour": "#aa291f",
+    "ConsumptionColour": "#ff5649",
+    "IconPath": "res://assets/textures/gui/bevel/parts/HydrogenaseIcon.svg",
+    "EditorButtonGroup": "Protein",
+    "EditorButtonOrder": 0
+  },
   "nitrogenfixingplastid": {
     "MPCost": 50,
     "InitialComposition": {
