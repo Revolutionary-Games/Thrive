@@ -2,18 +2,32 @@
 using Godot;
 
 /// <summary>
-///   <see cref="ArrayMesh"/> with additional functionality
+///   Wrapper of an <see cref="ArrayMesh"/> with additional functionality
 /// </summary>
-public partial class ExtendedArrayMesh : ArrayMesh
+public partial class ExtendedArrayMesh
 {
-    public ExtendedArrayMesh() : base()
+    public Variant NativeExtendedArrayMesh;
+
+    public ExtendedArrayMesh()
     {
-        // Nothing here
+        NativeExtendedArrayMesh = ClassDB.Instantiate("ExtendedArrayMesh");
+    }
+
+    public ArrayMesh Mesh
+    {
+        get
+        {
+            return NativeExtendedArrayMesh.As<ArrayMesh>();
+        }
     }
 
     public void Unwrap(float texelSize)
     {
-        bool nativeCallResult = Call("unwrap", texelSize).As<bool>();
-        GD.Print("Success in generating UVs?: " + nativeCallResult);
+        foreach (var c in ClassDB.ClassGetMethodList("ExtendedArrayMesh", true))
+        {
+            GD.Print(c);
+        }
+
+        NativeExtendedArrayMesh.As<ArrayMesh>().Call("unwrap");
     }
 }

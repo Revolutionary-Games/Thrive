@@ -16,10 +16,10 @@ void InitializeThriveModule(godot::ModuleInitializationLevel level)
     {
         return;
     }
-
+	
+	GDREGISTER_CLASS(Thrive::ExtendedArrayMesh);
     GDREGISTER_CLASS(Thrive::ThriveConfig);
     GDREGISTER_CLASS(Thrive::DebugDrawer);
-    GDREGISTER_CLASS(Thrive::ExtendedArrayMesh);
 }
 
 void UnInitializeThriveModule(godot::ModuleInitializationLevel level)

@@ -14,12 +14,20 @@ namespace Thrive
 		using namespace godot;
 		
 		//ClassDB::bind_method(D_METHOD("get_native_instance"), &ExtendedArrayMesh::GetThis);
-		ClassDB::bind_method(D_METHOD("unwrap", "p_texel_size"), &ExtendedArrayMesh::UnwrapMesh);
+		ClassDB::bind_method(D_METHOD("unwrap"), &ExtendedArrayMesh::UnwrapMesh);
 	}
 	
-	[[nodiscard]] bool ExtendedArrayMesh::UnwrapMesh(float p_texel_size) noexcept
+	bool ExtendedArrayMesh::UnwrapMesh()
 	{
-		return Thrive::Unwrap(p_texel_size, *this);
+		try
+		{
+			return Thrive::Unwrap(1.0f, *this);
+		}
+		catch(...)
+		{
+			ERR_FAIL_COND_V_MSG(true, false, "An exception in C++ code");
+			return false;
+		}
 	}
 	
 	ExtendedArrayMesh::ExtendedArrayMesh()

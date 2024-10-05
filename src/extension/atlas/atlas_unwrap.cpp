@@ -53,7 +53,7 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	LocalVector<float> vertices;
 	LocalVector<float> normals;
 	LocalVector<int> indices;
-	LocalVector<Pair<int, int>> uv_indices;
+	LocalVector<float> uvs;
 	
 	uint64_t surface_format = mesh.surface_get_format(0);
 	
@@ -66,7 +66,7 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 
 	vertices.resize((uint32_t)(vc * 3));
 	normals.resize((uint32_t)(vc * 3));
-	uv_indices.resize((uint32_t)vc);
+	uvs.resize((uint32_t)(vc * 2));
 
 	for (int j = 0; j < vc; j++) {
 		Vector3 v = rvertices[j];
@@ -78,28 +78,68 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 		normals[j * 3 + 0] = n.x;
 		normals[j * 3 + 1] = n.y;
 		normals[j * 3 + 2] = n.z;
-		uv_indices[j] = Pair<int, int>(0, j);
+		uvs[j * 2 + 0] = 0.0f;
+		uvs[j * 2 + 1] = 0.0f;
 	}
 
 	PackedInt32Array rindices = arrays[Mesh::ARRAY_INDEX];
 	uint64_t ic = rindices.size();
+	
+	ERR_FAIL_COND_V_MSG(vc <= 0, false, "No vertices");
+	ERR_FAIL_COND_V_MSG(ic <= 0, false, "No indices");
+	ERR_FAIL_COND_V_MSG(vc != vertices.size() / 3, false, "Unequal lengths, vertices");
+	ERR_FAIL_COND_V_MSG(vc != normals.size() / 3, false, "Unequal lengths, normals");
 
-	for (int j = 0; j < ic; j++)
-	{
-		indices.push_back(rindices[j]);
+	// CTRL + C, CTRL + V
+	float eps = 1.19209290e-7F; // Taken from xatlas.h
+	if (ic == 0) {
+		for (int j = 0; j < vc / 3; j++) {
+			Vector3 p0 = rvertices[j * 3 + 0];
+			Vector3 p1 = rvertices[j * 3 + 1];
+			Vector3 p2 = rvertices[j * 3 + 2];
+
+			if ((p0 - p1).length_squared() < eps || (p1 - p2).length_squared() < eps || (p2 - p0).length_squared() < eps) {
+				continue;
+			}
+
+			indices.push_back(j * 3 + 0);
+			indices.push_back(j * 3 + 1);
+			indices.push_back(j * 3 + 2);
+		}
+
+	} else {
+		for (int j = 0; j < ic / 3; j++) {
+			Vector3 p0 = rvertices[rindices[j * 3 + 0]];
+			Vector3 p1 = rvertices[rindices[j * 3 + 1]];
+			Vector3 p2 = rvertices[rindices[j * 3 + 2]];
+
+			if ((p0 - p1).length_squared() < eps || (p1 - p2).length_squared() < eps || (p2 - p0).length_squared() < eps) {
+				continue;
+			}
+
+			indices.push_back(rindices[j * 3 + 0]);
+			indices.push_back(rindices[j * 3 + 1]);
+			indices.push_back(rindices[j * 3 + 2]);
+			
+			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 0] >= (int)(vertices.size() / 3), false, "Index out of bounds");
+			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 1] >= (int)(vertices.size() / 3), false, "Index out of bounds");
+			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 2] >= (int)(vertices.size() / 3), false, "Index out of bounds");
+		}
 	}
+	
+	ERR_FAIL_COND_V_MSG((uint64_t)rindices.size() != ic, false, "Wrond index count");
 	
 	// set up input mesh
 	xatlas::MeshDecl input_mesh;
 	input_mesh.indexData = &indices;
-	input_mesh.indexCount = (uint32_t)ic;
+	input_mesh.indexCount = indices.size();
 	input_mesh.indexFormat = xatlas::IndexFormat::UInt32;
 
-	input_mesh.vertexCount = (uint32_t)vc;
+	input_mesh.vertexCount = vertices.size() / 3;
 	input_mesh.vertexPositionData = &vertices;
-	input_mesh.vertexPositionStride = sizeof(float) * 3;
+	input_mesh.vertexPositionStride = sizeof(float);
 	input_mesh.vertexNormalData = &normals;
-	input_mesh.vertexNormalStride = sizeof(uint32_t) * 3;
+	input_mesh.vertexNormalStride = sizeof(float);
 	input_mesh.vertexUvData = nullptr;
 	input_mesh.vertexUvStride = 0;
 
@@ -116,8 +156,12 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 
 	xatlas::Atlas *atlas = xatlas::Create();
 
-	xatlas::AddMeshError err = xatlas::AddMesh(atlas, input_mesh, 1);
-	ERR_FAIL_COND_V_MSG(err != xatlas::AddMeshError::Success, false, xatlas::StringForEnum(err));
+	// problem
+	xatlas::AddMesh(atlas, input_mesh, 1);
+	// ERR_FAIL_COND_V_MSG(err != xatlas::AddMeshError::Success, false, xatlas::StringForEnum(err));
+	// \problem
+	
+	ERR_FAIL_COND_V_MSG(true, false, "Something happened");
 
 	xatlas::Generate(atlas, chart_options, pack_options);
 	

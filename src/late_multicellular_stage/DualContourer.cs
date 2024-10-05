@@ -118,11 +118,11 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Color] = colors;
 
         ExtendedArrayMesh mesh = new ExtendedArrayMesh();
-        mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+        mesh.Mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
         mesh.Unwrap(0.1f);
 
-        var uvs = mesh.SurfaceGetArrays(0)[(int)ArrayMesh.ArrayType.TexUV].As<Vector2[]>();
+        var uvs = mesh.Mesh.SurfaceGetArrays(0)[(int)ArrayMesh.ArrayType.TexUV].As<Vector2[]>();
         foreach (var uv in uvs)
         {
             GD.Print(uv);
@@ -131,7 +131,7 @@ public class DualContourer
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");
 
-        return mesh;
+        return mesh.Mesh;
     }
 
     private static void CalculateLookupTableIfNeeded()
