@@ -18,7 +18,7 @@ internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     public bool Repeatable => true;
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
-    Random random)
+        Random random)
     {
         if (allOrganelles.Count == 0)
         {
@@ -31,11 +31,7 @@ internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
         foreach (OrganelleTemplate organelle in newSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-            if (organelle.Upgrades == null)
-            {
-                organelle.Upgrades = new OrganelleUpgrades();
-            }
-
+            organelle.Upgrades ??= new OrganelleUpgrades();
             organelle.Upgrades.CustomUpgradeData = upgrade;
         }
 
