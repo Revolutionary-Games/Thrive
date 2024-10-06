@@ -213,9 +213,10 @@ public static class MicrobeInternalCalculations
                 float movementConstant =
                     Constants.FLAGELLA_BASE_FORCE * organelle.Definition.Components.Movement!.Momentum;
 
-                movementConstant += organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades configuration
-                    ? Constants.FLAGELLA_MAX_UPGRADE_FORCE
-                    * configuration.LengthFraction : 0;
+                movementConstant += organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades configuration ?
+                    Constants.FLAGELLA_MAX_UPGRADE_FORCE
+                    * configuration.LengthFraction :
+                    0;
 
                 if (!isBacteria)
                     movementConstant *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
