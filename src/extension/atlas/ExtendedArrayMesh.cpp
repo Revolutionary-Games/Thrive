@@ -19,15 +19,7 @@ namespace Thrive
 	
 	bool ExtendedArrayMesh::UnwrapMesh(float texel_size)
 	{
-		try
-		{
-			return Thrive::Unwrap(texel_size, *this);
-		}
-		catch(...)
-		{
-			ERR_FAIL_COND_V_MSG(true, false, "An exception in C++ code");
-			return false;
-		}
+		return Thrive::Unwrap(texel_size, *this);
 	}
 	
 	ExtendedArrayMesh::ExtendedArrayMesh()

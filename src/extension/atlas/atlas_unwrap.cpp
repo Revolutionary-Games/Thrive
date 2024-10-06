@@ -143,7 +143,7 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	input_mesh.vertexPositionData = vertices.ptr();
 	input_mesh.vertexPositionStride = sizeof(float) * 3;
 	input_mesh.vertexNormalData = normals.ptr();
-	input_mesh.vertexNormalStride = sizeof(uint32_t) * 3;
+	input_mesh.vertexNormalStride = sizeof(float) * 3;
 	input_mesh.vertexUvData = nullptr;
 	input_mesh.vertexUvStride = 0;
 
@@ -203,6 +203,8 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 		
 		for (int j = 0; j < 3; j++) {
 			ERR_FAIL_COND_V_MSG(i + j > (int)ic, false, "index id Out of range");
+			
+			// Index of an original vertex corresponding to the generated one.
 			int vertex_id = output.vertexArray[output.indexArray[i + j]].xref;
 			ERR_FAIL_COND_V_MSG(vertex_id > (int)vc, false, "vertex id Out of range");
 			
@@ -228,7 +230,7 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 				surfaces_tools->set_weights(rweights.slice(vertex_id, vertex_id + 3));
 			}
 			
-			Vector2 uv(output.vertexArray[output.indexArray[i + j] * 2].uv[0] / w,output.vertexArray[output.indexArray[i + j] * 2].uv[1] / h);
+			Vector2 uv(output.vertexArray[output.indexArray[i + j]].uv[0] / w,output.vertexArray[output.indexArray[i + j]].uv[1] / h);
 			
 			surfaces_tools->set_uv(uv);
 			
