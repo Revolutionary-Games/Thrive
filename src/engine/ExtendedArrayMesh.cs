@@ -1,10 +1,9 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Wrapper of an <see cref="ArrayMesh"/> with additional functionality
 /// </summary>
-public partial class ExtendedArrayMesh
+public class ExtendedArrayMesh
 {
     public Variant NativeExtendedArrayMesh;
 
