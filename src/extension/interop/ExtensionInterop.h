@@ -34,8 +34,4 @@ extern "C"
     [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, JColour* colour);
 
     [[maybe_unused]] API_EXPORT void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* point, JColour* colour);
-	
-	[[maybe_unused]] API_EXPORT int32_t ExtensionTestFunc(int num);
-	
-	[[maybe_unused]] API_EXPORT bool Unwrap(float p_texel_size, ArrayMesh* mesh);
 }

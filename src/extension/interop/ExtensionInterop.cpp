@@ -46,13 +46,3 @@ void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* position, JColour*
     reinterpret_cast<Thrive::DebugDrawer*>(drawerInstance)
         ->AddPoint(*reinterpret_cast<godot::Vector3*>(position), *reinterpret_cast<godot::Color*>(colour));
 }
-
-int32_t ExtensionTestFunc(int num)
-{
-	return Thrive::TestFunc(num);
-}
-
-bool Unwrap(float p_texel_size, ArrayMesh* mesh)
-{
-	return Thrive::Unwrap(p_texel_size, *mesh);
-}
