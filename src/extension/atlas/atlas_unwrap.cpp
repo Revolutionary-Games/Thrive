@@ -85,11 +85,6 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 
 	PackedInt32Array rindices = arrays[Mesh::ARRAY_INDEX];
 	uint64_t ic = rindices.size();
-	
-	ERR_FAIL_COND_V_MSG(vc <= 0, false, "No vertices");
-	ERR_FAIL_COND_V_MSG(ic <= 0, false, "No indices");
-	ERR_FAIL_COND_V_MSG(vc != vertices.size() / 3, false, "Unequal lengths, vertices");
-	ERR_FAIL_COND_V_MSG(vc != normals.size() / 3, false, "Unequal lengths, normals");
 
 	float eps = 1.19209290e-7F; // Taken from xatlas.h
 	if (ic == 0) {
@@ -120,18 +115,8 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 			indices.push_back(rindices[j * 3 + 0]);
 			indices.push_back(rindices[j * 3 + 1]);
 			indices.push_back(rindices[j * 3 + 2]);
-			
-			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 0] >= (int)(vertices.size() / 3), false, "Index out of bounds");
-			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 1] >= (int)(vertices.size() / 3), false, "Index out of bounds");
-			ERR_FAIL_COND_V_MSG(rindices[j * 3 + 2] >= (int)(vertices.size() / 3), false, "Index out of bounds");
 		}
 	}
-	
-	ERR_FAIL_COND_V_MSG((uint64_t)rindices.size() != ic, false, "Wrond index count");
-	
-	ERR_FAIL_COND_V_MSG(indices.ptr() == nullptr, false, "Null pointer found");
-	ERR_FAIL_COND_V_MSG(vertices.ptr() == nullptr, false, "Null pointer found");
-	ERR_FAIL_COND_V_MSG(normals.ptr() == nullptr, false, "Null pointer found");
 	
 	// set up input mesh
 	xatlas::MeshDecl input_mesh;
@@ -187,12 +172,6 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	vc = output.vertexCount;
 	ic = output.indexCount;
 	
-	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_COLOR > arrays.size(), false, "Wrong array id?");
-	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_TEX_UV2 > arrays.size(), false, "Wrong array id?");
-	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_TANGENT > arrays.size(), false, "Wrong array id?");
-	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_BONES > arrays.size(), false, "Wrong array id?");
-	ERR_FAIL_COND_V_MSG(Mesh::ARRAY_WEIGHTS > arrays.size(), false, "Wrong array id?");
-	
 	PackedColorArray rcolors = arrays[Mesh::ARRAY_COLOR];
 	PackedVector2Array r_uv2 = arrays[Mesh::ARRAY_TEX_UV2];
 	PackedFloat32Array rtangent = arrays[Mesh::ARRAY_TANGENT];
@@ -202,11 +181,8 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	for (int i = 0; i < ic; i += 3) {
 		
 		for (int j = 0; j < 3; j++) {
-			ERR_FAIL_COND_V_MSG(i + j > (int)ic, false, "index id Out of range");
-			
 			// Index of an original vertex corresponding to the generated one.
 			int vertex_id = output.vertexArray[output.indexArray[i + j]].xref;
-			ERR_FAIL_COND_V_MSG(vertex_id > (int)vc, false, "vertex id Out of range");
 			
 			if (surface_format & Mesh::ARRAY_FORMAT_COLOR) {
                 surfaces_tools->set_color(rcolors[vertex_id]);
