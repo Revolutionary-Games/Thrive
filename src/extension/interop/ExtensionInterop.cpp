@@ -6,13 +6,6 @@
 #include "core/ThriveConfig.hpp"
 #include "nodes/DebugDrawer.hpp"
 
-#include "atlas/atlas_unwrap.hpp"
-
-#include <godot_cpp/classes/mesh.hpp>
-#include <godot_cpp/classes/array_mesh.hpp>
-
-using namespace godot;
-
 // ------------------------------------ //
 int32_t ExtensionGetVersion(ThriveConfig* thriveConfig)
 {

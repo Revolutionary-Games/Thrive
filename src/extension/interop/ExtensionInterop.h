@@ -6,13 +6,6 @@
 
 #include "interop/CStructures.h"
 
-#include "atlas/atlas_unwrap.hpp"
-
-#include <godot_cpp/classes/mesh.hpp>
-#include <godot_cpp/classes/array_mesh.hpp>
-
-using namespace godot;
-
 /// \file Defines all of the API methods that can be called from C# specifically in this extension type
 
 // This file uses always API_EXPORT as this always exports (and this cannot use the same macro as the general interop
