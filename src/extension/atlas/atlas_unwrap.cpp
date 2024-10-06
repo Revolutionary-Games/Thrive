@@ -83,35 +83,18 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	uint64_t ic = rindices.size();
 
 	float eps = 1.19209290e-7F; // Taken from xatlas.h
-	if (ic == 0) {
-		for (int j = 0; j < vc / 3; j++) {
-			Vector3 p0 = rvertices[j * 3 + 0];
-			Vector3 p1 = rvertices[j * 3 + 1];
-			Vector3 p2 = rvertices[j * 3 + 2];
-
-			if ((p0 - p1).length_squared() < eps || (p1 - p2).length_squared() < eps || (p2 - p0).length_squared() < eps) {
-				continue;
-			}
-
-			indices.push_back(j * 3 + 0);
-			indices.push_back(j * 3 + 1);
-			indices.push_back(j * 3 + 2);
+	for (int j = 0; j < ic / 3; j++) {
+		Vector3 p0 = rvertices[rindices[j * 3 + 0]];
+		Vector3 p1 = rvertices[rindices[j * 3 + 1]];
+		Vector3 p2 = rvertices[rindices[j * 3 + 2]];
+		
+		if ((p0 - p1).length_squared() < eps || (p1 - p2).length_squared() < eps || (p2 - p0).length_squared() < eps) {
+			continue;
 		}
 
-	} else {
-		for (int j = 0; j < ic / 3; j++) {
-			Vector3 p0 = rvertices[rindices[j * 3 + 0]];
-			Vector3 p1 = rvertices[rindices[j * 3 + 1]];
-			Vector3 p2 = rvertices[rindices[j * 3 + 2]];
-
-			if ((p0 - p1).length_squared() < eps || (p1 - p2).length_squared() < eps || (p2 - p0).length_squared() < eps) {
-				continue;
-			}
-
-			indices.push_back(rindices[j * 3 + 0]);
-			indices.push_back(rindices[j * 3 + 1]);
-			indices.push_back(rindices[j * 3 + 2]);
-		}
+		indices.push_back(rindices[j * 3 + 0]);
+		indices.push_back(rindices[j * 3 + 1]);
+		indices.push_back(rindices[j * 3 + 2]);
 	}
 	
 	// set up input mesh
