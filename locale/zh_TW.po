@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-27 08:20+0000\n"
+"POT-Creation-Date: 2024-10-04 13:06+0300\n"
+"PO-Revision-Date: 2024-10-04 09:07+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -1705,9 +1705,8 @@ msgstr "開始該物種的內共生（選擇目標細胞器類型後可用）"
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "內共生"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "{0}：-{1} ATP"
+msgstr "- {0}：{1} /s"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
@@ -1715,9 +1714,11 @@ msgstr "{0}：-{1} ATP"
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr "{0}：+{1} ATP"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
-msgstr "{0}：+{1} ATP"
+msgstr ""
+"{0}：+{1} ATP\n"
+"消耗時：\n"
+"{2}"
 
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr "{1} 在 {0}的能量"
@@ -5728,7 +5729,7 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "移動"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "先進太空船"
 
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr "簡易火箭"
@@ -7245,6 +7246,11 @@ msgstr "為了在 Thrive 中取得發展，您需要在[b]編輯器[/b]中演化
 
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
+"要在[color=#3796e1][url=thriveopedia:microbe_stage]微生物階段[/url][/color]中進行繁殖，您必須收集一定數量的繁殖[color=#3796e1][url=thriveopedia:Compounds]化合物[/url][/color]。即[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound]。您會被動地吸收這些化合物，吸收速度取決於您的細胞膜。\n"
+"\n"
+"[b][u]細胞器增殖[/u][/b]\n"
+"\n"
+"隨著細胞的成長，部分化合物將被保留用於繁殖。當達到特定數量的化合物時，您的細胞器就會開始[b]複製[/b]。[thrive:compound type=\"ammonia\"][/thrive:compound] 與[thrive:compound type=\"phosphates\"][/thrive:compound] 的所需量取決於每個細胞器。每個細胞器都有一個[b]繁殖成本[/b]，決定它[b]複製[/b]所需的化合物數量。一旦所有細胞器都複製完成，您就可以[b]繁殖[/b]並進入編輯器。"
 
 msgid "WIKI_ROOT_BODY"
 msgstr ""
@@ -7365,16 +7371,19 @@ msgstr "此階段尚未開始開發。近年來，這一階段的理論和遊戲
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr "即將推出。"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
-"由[thrive:compound type=\"glucose\"][/thrive:compound] 合成一種名為[thrive:compound type=\"mucilage\"][/thrive:compound] 的黏性聚合物。允許細胞噴射[thrive:compound type=\"mucilage\"][/thrive:compound] 以推動自身，同時減慢進入排出物質的生物的速度。\n"
+"簡介：在這個階段中，您將發展和擴展您的第一個定居點，並建立更多的定居點。這個階段讓人聯想到中世紀。當您的科技發展到足夠先進的程度時，本階段結束。\n"
 "\n"
-"與[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]相比，它提供更快的加速度，有助於躲避掠食者或追上獵物。"
+"社會階段是 Thrive 的七個遊戲階段之一。在經歷了[color=#3796e1][url=thriveopedia:awakening_stage]覺醒階段[/url][/color]並發展後，您的智慧物種開始形成更大的群體或社會。此時，策略模式成為遊戲的主要焦點，而非生物模式（儘管玩家仍然可以隨時使用生物模式，這是較低優先實現的功能）。同時，國家編輯器也會解鎖供玩家使用。最後，玩家的物種可以開始建立社會中心來形成定居點。\n"
+"\n"
+"在整個社會階段中，主要目標之一是發展越來越先進的科技。因此，當您的物種發展出足夠先進的科技進入[color=#3796e1][url=thriveopedia:industrial_stage]工業階段[/url][/color]時，社會階段結束。"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
-msgstr "社會階段"
+msgstr ""
+"社會階段標誌著玩家的物種從簡單的部落到先進文明的轉變。社會階段的特色在於某些技術的出現，這些技術使研究網絡的查看和投資、政府政策的實施、宗教的出現以及更大規模衝突的開始成為可能。在這個階段，國家編輯器變得越來越重要，科技編輯器與隊伍編輯器也是如此。儘管玩家可以自由切換至以個體生物的視角來進行遊戲，但所有重要的事件與決策都發生在更大的範圍內，並且需要管理越來越多的人口。玩家必須在滿足人民需求與平衡國家利益之間做出抉擇，以帶領他們的文明向前發展。\n"
+"\n"
+"由於在後期階段維持生物模式的運作將是非常繁重的工作，因此確保這一模式正常運作並不是當前的優先事項。畢竟，策略模式是本階段最重要、最有目的的玩法，也是推進文明所必須的。此外，也曾討論過，在這個階段單個個體的影響已經變得微乎其微，因此允許玩家在生物模式中四處遊走雖然不錯，但需要付出很大的努力才能對遊戲玩法產生很小的影響。"
 
 #, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
@@ -7389,12 +7398,13 @@ msgstr "太空階段開發尚未開始。"
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "即將推出。"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr ""
-"由[thrive:compound type=\"glucose\"][/thrive:compound] 合成一種名為[thrive:compound type=\"mucilage\"][/thrive:compound] 的黏性聚合物。允許細胞噴射[thrive:compound type=\"mucilage\"][/thrive:compound] 以推動自身，同時減慢進入排出物質的生物的速度。\n"
+"簡介：在這個階段，玩家將探索宇宙並擁有重大的技術進步。\n"
 "\n"
-"與[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]相比，它提供更快的加速度，有助於躲避掠食者或追上獵物。"
+"太空階段是 Thrive 中的倒數第二個階段。當[color=#3796e1][url=thriveopedia:industrial_stage]工業階段[/url][/color]的國家先進到足以建造太空船後，他們就可以開始向星空擴張。此時，玩家已經進入太空階段。\n"
+"\n"
+"玩家的種族已經研究了許多不同的技術，但在這個階段，科幻（scifi）技術將開始出現。玩家的種族可能會遇到其他星球上的生命並與之互動，並開始向宇宙擴展。追求進一步的技術進步最終將解鎖上帝工具與[color=#3796e1][url=thriveopedia:ascension_stage]飛昇[/url][/color]。一些玩家可能不喜歡在一個以科學為基礎的遊戲中出現科幻技術，因此我們將加入一個隔斷點，玩家可以選擇不推進科幻技術，但代價是無法到達[color=#3796e1][url=thriveopedia:ascension_stage]飛昇[/url][/color]。這基本上會將玩家鎖定在早期太空階段。"
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_OVERVIEW"

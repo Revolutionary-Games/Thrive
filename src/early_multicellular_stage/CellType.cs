@@ -4,7 +4,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Type of a cell in a multicellular species. There can be multiple instances of a cell type placed at once
+///   Type of cell in a multicellular species. There can be multiple instances of a cell type placed at once
 /// </summary>
 [JsonObject(IsReference = true)]
 public class CellType : ICellDefinition, ICloneable
@@ -148,17 +148,38 @@ public class CellType : ICellDefinition, ICloneable
         return result;
     }
 
+    public ulong GetVisualHashCode()
+    {
+        // This code is copied from MicrobeSpecies
+        var count = Organelles.Count;
+
+        ulong hash = (ulong)MembraneType.InternalName.GetHashCode() * 5743 ^
+            (ulong)MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
+
+        var list = Organelles.Organelles;
+
+        for (int i = 0; i < count; ++i)
+        {
+            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // stuff here
+            hash ^= (ulong)list[i].GetHashCode() * 13;
+        }
+
+        return hash ^ Constants.VISUAL_HASH_CELL;
+    }
+
     public override int GetHashCode()
     {
-        var hash = TypeName.GetHashCode() * 131 ^ MPCost * 2797 ^ MembraneType.GetHashCode() * 2801 ^
-            MembraneRigidity.GetHashCode() * 2803 ^ Colour.GetHashCode() * 587 ^ (IsBacteria ? 1 : 0) * 5171 ^
-            Organelles.Count * 127;
+        var count = Organelles.Count;
 
-        int counter = 0;
+        int hash = TypeName.GetHashCode() ^ MembraneType.InternalName.GetHashCode() * 5743 ^
+            MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1 : 0) * 5779 ^ count * 131;
 
-        foreach (var organelle in Organelles)
+        var list = Organelles.Organelles;
+
+        for (int i = 0; i < count; ++i)
         {
-            hash ^= counter++ * 11 * organelle.GetHashCode();
+            hash ^= list[i].GetHashCode() * 13;
         }
 
         return hash;

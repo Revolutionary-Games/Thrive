@@ -36,6 +36,11 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
         }
     }
 
+    public static ulong GetVisualHash(MicrobeSpecies species)
+    {
+        return Constants.VISUAL_HASH_HEX_LAYOUT ^ species.GetVisualHashCode();
+    }
+
     public void ApplySceneParameters(Node3D instancedScene)
     {
         var builder = (CellHexesPhotoBuilder)instancedScene;
@@ -48,6 +53,11 @@ public partial class CellHexesPhotoBuilder : Node3D, IScenePhotographable
         return new Vector3(0, PhotoStudio.CameraDistanceFromRadiusOfObject(
             ((CellHexesPhotoBuilder)instancedScene).Radius *
             Constants.PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER), 0);
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        return GetVisualHash(species ?? throw new InvalidOperationException("No species set"));
     }
 
     private void BuildHexStruct()

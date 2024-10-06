@@ -38,9 +38,11 @@ public partial class GalleryCardModel : GalleryCard
             return;
         }
 
-        imageTask = new ImageTask(new ModelPreview(Asset.ResourcePath, Asset.MeshNodePath!));
+        // Avoid allocating extra memory if already has a preview for this
+        var hash = ModelPreview.HashForPath(Asset.ResourcePath);
 
-        PhotoStudio.Instance.SubmitTask(imageTask);
+        imageTask = PhotoStudio.Instance.TryGetFromCache(hash) ??
+            PhotoStudio.Instance.GenerateImage(new ModelPreview(Asset.ResourcePath, Asset.MeshNodePath!));
 
         Thumbnail = imageLoadingIcon;
     }
@@ -57,6 +59,11 @@ public partial class GalleryCardModel : GalleryCard
         }
 
         public string SceneToPhotographPath => resourcePath;
+
+        public static ulong HashForPath(string resourcePath)
+        {
+            return (ulong)resourcePath.GetHashCode() * 11 ^ Constants.VISUAL_HASH_PATH;
+        }
 
         public void ApplySceneParameters(Node3D instancedScene)
         {
@@ -76,6 +83,11 @@ public partial class GalleryCardModel : GalleryCard
             }
 
             return new Vector3(0, (instancedMesh.GlobalTransform * instancedMesh.GetAabb()).Size.Length(), 0);
+        }
+
+        public ulong GetVisualHashCode()
+        {
+            return HashForPath(resourcePath);
         }
     }
 }
