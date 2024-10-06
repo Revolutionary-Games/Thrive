@@ -20,6 +20,11 @@ internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
     Random random)
     {
+        if (allOrganelles.Count == 0)
+        {
+            return null;
+        }
+
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
         MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
