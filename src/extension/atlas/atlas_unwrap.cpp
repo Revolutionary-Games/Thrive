@@ -54,7 +54,6 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	LocalVector<float> vertices;
 	LocalVector<float> normals;
 	LocalVector<int> indices;
-	LocalVector<float> uvs;
 	
 	uint64_t surface_format = mesh.surface_get_format(0);
 	
@@ -67,7 +66,6 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 
 	vertices.resize((uint32_t)(vc * 3));
 	normals.resize((uint32_t)(vc * 3));
-	uvs.resize((uint32_t)(vc * 2));
 
 	for (int j = 0; j < vc; j++) {
 		Vector3 v = rvertices[j];
@@ -79,8 +77,6 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 		normals[j * 3 + 0] = n.x;
 		normals[j * 3 + 1] = n.y;
 		normals[j * 3 + 2] = n.z;
-		uvs[j * 2 + 0] = 0.0f;
-		uvs[j * 2 + 1] = 0.0f;
 	}
 
 	PackedInt32Array rindices = arrays[Mesh::ARRAY_INDEX];
