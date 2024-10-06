@@ -9,8 +9,10 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 {
     private const float AABBMargin = 0.1f;
 
+#pragma warning disable CA2213
     [Export]
     private StandardMaterial3D? material;
+#pragma warning disable CA2213
 
     private float? overrideColourAlpha;
 
@@ -79,7 +81,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
     {
         if (disposing)
         {
-            material?.Dispose();
+            // ...
         }
 
         base.Dispose(disposing);
