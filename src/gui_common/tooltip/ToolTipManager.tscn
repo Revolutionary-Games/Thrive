@@ -298,6 +298,33 @@ ModifierValue = "+1"
 ModifierValueFont = ExtResource("10_xjuqe")
 ModifierIcon = ExtResource("6")
 
+[node name="hydrogenase" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
+visible = false
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 2.0
+DisplayName = "HYDROGENASE"
+ProcessesDescription = "HYDROGENASE_PROCESSES_DESCRIPTION"
+Description = "HYDROGENASE_DESCRIPTION"
+MutationPointCost = 40
+ThriveopediaPageName = "hydrogenase"
+
+[node name="Title" parent="GroupHolder/organelleSelection/hydrogenase/MarginContainer/VBoxContainer/Header" index="1"]
+custom_minimum_size = Vector2(210, 0)
+
+[node name="storage" parent="GroupHolder/organelleSelection/hydrogenase/MarginContainer/VBoxContainer/ModifierList" index="0" instance=ExtResource("2")]
+layout_mode = 2
+DisplayName = "STORAGE"
+ModifierValue = "+0.5"
+ModifierIcon = ExtResource("9")
+
+[node name="osmoregulationCost" parent="GroupHolder/organelleSelection/hydrogenase/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
+layout_mode = 2
+DisplayName = "OSMOREGULATION_COST"
+ModifierValue = "+1"
+ModifierValueFont = ExtResource("10_xjuqe")
+ModifierIcon = ExtResource("6")
+
 [node name="chromatophore" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
 visible = false
 layout_mode = 0
@@ -705,6 +732,7 @@ ModifierIcon = ExtResource("6")
 
 [node name="ferroplast" parent="GroupHolder/organelleSelection" instance=ExtResource("5")]
 visible = false
+layout_mode = 0
 offset_right = 373.0
 offset_bottom = 226.0
 DisplayName = "FERROPLAST"
@@ -1222,6 +1250,13 @@ DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginCo
 DisplayDelay = 0.0
 Positioning = 1
 
+[node name="hydrogenase" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+DescriptionLabelPath = NodePath("../metabolosome/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
 [node name="chromatophore" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
 visible = false
 layout_mode = 0
@@ -1273,6 +1308,7 @@ Positioning = 1
 
 [node name="ferroplast" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
 visible = false
+layout_mode = 0
 offset_bottom = 34.0
 DescriptionLabelPath = NodePath("../mitochondrion/MarginContainer/VBoxContainer/Description")
 DisplayDelay = 0.0
@@ -1461,6 +1497,7 @@ DisplayDelay = 2.5
 [editable path="GroupHolder/editor/rigiditySlider"]
 [editable path="GroupHolder/organelleSelection/cytoplasm"]
 [editable path="GroupHolder/organelleSelection/metabolosome"]
+[editable path="GroupHolder/organelleSelection/hydrogenase"]
 [editable path="GroupHolder/organelleSelection/chromatophore"]
 [editable path="GroupHolder/organelleSelection/chemoSynthesizingProteins"]
 [editable path="GroupHolder/organelleSelection/rusticyanin"]

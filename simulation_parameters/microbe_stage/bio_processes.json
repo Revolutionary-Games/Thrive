@@ -126,6 +126,16 @@
     },
     "IsMetabolismProcess": true
   },
+  "clostridial_fermentation": {
+    "Name": "CLOSTRIDIAL_FERMENTATION",
+    "Inputs": {
+      "glucose": 0.013
+    },
+    "Outputs": {
+      "atp": 5.5
+    },
+    "IsMetabolismProcess": true
+  },
   "chromatophore_photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
