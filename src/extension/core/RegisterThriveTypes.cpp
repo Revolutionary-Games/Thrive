@@ -14,7 +14,7 @@ void InitializeThriveModule(godot::ModuleInitializationLevel level)
     {
         return;
     }
-	
+
     GDREGISTER_CLASS(Thrive::ThriveConfig);
     GDREGISTER_CLASS(Thrive::DebugDrawer);
 }

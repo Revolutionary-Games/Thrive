@@ -30,21 +30,20 @@
 
 #pragma once
 
-#include "xatlas.h"
+#include <godot_cpp/classes/array_mesh.hpp>
+#include <godot_cpp/classes/mesh.hpp>
+#include <godot_cpp/classes/surface_tool.hpp>
+#include <godot_cpp/core/class_db.hpp>
 
 #include "Include.h"
 
 #include "core/NativeLibIntercommunication.hpp"
 
-#include <godot_cpp/core/class_db.hpp>
-
-#include <godot_cpp/classes/mesh.hpp>
-#include <godot_cpp/classes/array_mesh.hpp>
-#include <godot_cpp/classes/surface_tool.hpp>
+#include "xatlas.h"
 
 namespace Thrive
 {
 
 bool Unwrap(float texelSize, godot::ArrayMesh& mesh);
 
-}
+} // namespace Thrive

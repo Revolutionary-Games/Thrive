@@ -1,13 +1,12 @@
 // ------------------------------------ //
 #include "ExtensionInterop.h"
 
+#include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 
+#include "atlas/atlas_unwrap.hpp"
 #include "core/ThriveConfig.hpp"
 #include "nodes/DebugDrawer.hpp"
-
-#include "atlas/atlas_unwrap.hpp"
-#include <godot_cpp/classes/array_mesh.hpp>
 
 // ------------------------------------ //
 int32_t ExtensionGetVersion(ThriveConfig* thriveConfig)
@@ -39,7 +38,7 @@ void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, J
 
 bool Unwrap(float texelSize, ArrayMesh* mesh)
 {
-	return Thrive::Unwrap(texelSize, *reinterpret_cast<godot::ArrayMesh*>(mesh));
+    return Thrive::Unwrap(texelSize, *reinterpret_cast<godot::ArrayMesh*>(mesh));
 }
 
 void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* position, JColour* colour)
