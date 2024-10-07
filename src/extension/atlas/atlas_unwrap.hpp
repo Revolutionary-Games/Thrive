@@ -42,13 +42,9 @@
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/surface_tool.hpp>
 
-using namespace godot;
-
 namespace Thrive
 {
 
-int TestFunc(int test);
-
-bool Unwrap(float p_texel_size, ArrayMesh& mesh);
+bool Unwrap(float texelSize, godot::ArrayMesh& mesh);
 
 }

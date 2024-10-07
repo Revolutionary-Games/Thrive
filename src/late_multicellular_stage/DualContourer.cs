@@ -116,15 +116,15 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.Color] = colors;
 
-        ExtendedArrayMesh mesh = new ExtendedArrayMesh();
-        mesh.Mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+        ArrayMesh mesh = new ArrayMesh();
+        mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
-        mesh.Unwrap(1.0f);
+        NativeMethods.Unwrap(1.0f, mesh.NativeInstance);
 
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");
 
-        return mesh.Mesh;
+        return mesh;
     }
 
     private static void CalculateLookupTableIfNeeded()

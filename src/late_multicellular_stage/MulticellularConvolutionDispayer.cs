@@ -77,16 +77,6 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            // ...
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void ApplyAlpha()
     {
         if (material == null)

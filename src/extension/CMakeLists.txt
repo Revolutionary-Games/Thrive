@@ -10,7 +10,6 @@ add_library(thrive_extension SHARED
   core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
   atlas/xatlas.cpp atlas/xatlas.h
   atlas/atlas_unwrap.cpp atlas/atlas_unwrap.hpp
-  atlas/ExtendedArrayMesh.cpp atlas/ExtendedArrayMesh.hpp
   core/ThriveConfig.cpp core/ThriveConfig.hpp
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
   nodes/DebugDrawer.cpp nodes/DebugDrawer.hpp

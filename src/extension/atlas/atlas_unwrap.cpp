@@ -43,12 +43,7 @@
 
 using namespace godot;
 
-int Thrive::TestFunc(int test)
-{
-	return test;
-}
-
-bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
+bool Thrive::Unwrap(float texelSize, godot::ArrayMesh& mesh)
 {
 	// Data for the xatlas library
 	LocalVector<float> vertices;
@@ -114,13 +109,13 @@ bool Thrive::Unwrap(float p_texel_size, ArrayMesh& mesh)
 	xatlas::ChartOptions chart_options;
 	chart_options.fixWinding = true;
 
-	ERR_FAIL_COND_V_MSG(p_texel_size <= 0.0f, false, "Texel size must be greater than 0.");
+	ERR_FAIL_COND_V_MSG(texelSize <= 0.0f, false, "Texel size must be greater than 0.");
 
 	xatlas::PackOptions pack_options;
 	pack_options.padding = 1;
-	pack_options.maxChartSize = 4094; // Lightmap atlassing needs 2 for padding between meshes, so 4096-2
+	pack_options.maxChartSize = 1022; // Lightmap atlassing needs 2 for padding between meshes, so 4096-2
 	pack_options.blockAlign = true;
-	pack_options.texelsPerUnit = 1.0f / p_texel_size;
+	pack_options.texelsPerUnit = 1.0f / texelSize;
 
 	xatlas::Atlas *atlas = xatlas::Create();
 
