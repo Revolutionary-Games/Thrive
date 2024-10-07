@@ -119,7 +119,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
-        temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.png");
+        temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.svg");
 
         speciesResultButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/SpeciesResultButton.tscn");
 
