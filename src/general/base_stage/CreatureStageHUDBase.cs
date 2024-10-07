@@ -350,7 +350,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         // TODO: set value from patch
         pressureBar = CompoundProgressBar.CreateSimpleWithUnit(barScene,
-            GD.Load<Texture2D>("res://assets/textures/gui/bevel/Pressure.png"), new LocalizedString("PRESSURE_SHORT"),
+            GD.Load<Texture2D>("res://assets/textures/gui/bevel/Pressure.svg"), new LocalizedString("PRESSURE_SHORT"),
             200, "kPa");
 
         environmentPanel.AddPrimaryBar(oxygenBar);
