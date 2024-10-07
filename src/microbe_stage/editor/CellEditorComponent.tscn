@@ -938,6 +938,8 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "ATP_BALANCE_TOOLTIP"
+mouse_filter = 1
 text = "ATP_BALANCE"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
@@ -983,16 +985,27 @@ size_flags_horizontal = 3
 text = "00000"
 label_settings = ExtResource("28_qclxk")
 
-[node name="ATPBalanceMode" type="OptionButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-editor_description = "Not implemented yet PLACEHOLDER"
-visible = false
+[node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
-disabled = true
-selected = 1
-item_count = 2
-popup/item_0/text = "ATP_BALANCE_AT_EQUILIBRIUM"
-popup/item_1/text = "ATP_BALANCE_AT_MAX_SPEED"
+mouse_filter = 2
+
+[node name="ATPBalanceMode" type="OptionButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+layout_mode = 2
+text_overrun_behavior = 3
+clip_text = true
+selected = 0
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
 popup/item_1/id = 1
+popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
+popup/item_2/id = 2
+popup/item_3/text = "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+popup/item_3/id = 3
+popup/item_4/text = "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+popup/item_4/id = 4
 
 [node name="StorageNotEnough" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("11")]
 visible = false

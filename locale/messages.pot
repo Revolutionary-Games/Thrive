@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
+"POT-Creation-Date: 2024-10-07 16:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -299,8 +299,32 @@ msgstr ""
 msgid "ATP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:941
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:943
 msgid "ATP_BALANCE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:941
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1007
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1001
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1005
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1000
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:573
@@ -332,7 +356,7 @@ msgstr ""
 msgid "AUTO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1352
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1365
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -340,12 +364,12 @@ msgstr ""
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1062
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1312
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1075
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1325
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1046
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1059
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
@@ -446,19 +470,19 @@ msgstr ""
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1008
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1021
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1006
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1019
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1017
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1030
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1014
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1027
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
@@ -550,7 +574,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1129
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1142
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
@@ -675,7 +699,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:573
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:664
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1207
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1220
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
@@ -943,7 +967,7 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1360
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1373
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:82
 #: ../src/microbe_stage/ProcessPanel.tscn:58 ../src/modding/ModManager.tscn:709
 #: ../src/thriveopedia/Thriveopedia.tscn:293
@@ -1917,11 +1941,11 @@ msgstr ""
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1270
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1283
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1282
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
@@ -2295,7 +2319,7 @@ msgstr ""
 msgid "ENTITY_LABEL"
 msgstr ""
 
-#: ../src/microbe_stage/gui/EnvironmentPanel.tscn:223
+#: ../src/microbe_stage/gui/EnvironmentPanel.tscn:232
 msgid "ENVIRONMENT"
 msgstr ""
 
@@ -2400,7 +2424,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1274
 msgid "EXIT_EDITOR"
 msgstr ""
 
@@ -2474,7 +2498,7 @@ msgstr ""
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1114
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1127
 msgid "FAILED"
 msgstr ""
 
@@ -2771,7 +2795,7 @@ msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:2812
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1119
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1132
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 
@@ -5014,11 +5038,11 @@ msgstr ""
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1252
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1265
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1251
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1264
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
@@ -5062,7 +5086,7 @@ msgstr ""
 
 #: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1217
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1230
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:174
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:559
 msgid "NEXT_CAPITAL"
@@ -5751,11 +5775,11 @@ msgstr ""
 msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1259
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1272
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1262
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1275
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
@@ -5926,7 +5950,7 @@ msgstr ""
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1071
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1084
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
@@ -5962,7 +5986,7 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1295
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1308
 #: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
@@ -7490,7 +7514,7 @@ msgstr ""
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1121
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
 
@@ -8059,7 +8083,7 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1035
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1048
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -8075,7 +8099,7 @@ msgstr ""
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1260
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1273
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
@@ -10115,7 +10139,7 @@ msgstr ""
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1149
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1162
 msgid "WORST_PATCH_COLON"
 msgstr ""
 

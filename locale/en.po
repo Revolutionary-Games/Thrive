@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-10-07 11:12+0300\n"
+"POT-Creation-Date: 2024-10-07 16:19+0300\n"
+"PO-Revision-Date: 2024-10-07 16:29+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -250,6 +250,28 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP Balance"
+
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"This section shows the total ATP (energy) balance of the current cell.\n"
+"In order to survive the balance needs to be positive. For sessile cells they may consider the balance positive with movement excluded.\n"
+"The dropdown below can be used to check what would happen if the cell didn't have some resource available to make ATP from.\n"
+"For example, some cells can only maintain a positive ATP balance when they have multiple compound types to make ATP from at once."
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr "Without external resources"
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr "Without glucose"
+
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Without hydrogen sulfide"
+
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Without iron"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr "With all required compounds"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP Production"
