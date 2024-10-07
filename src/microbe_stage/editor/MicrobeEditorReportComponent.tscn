@@ -17,8 +17,8 @@
 [ext_resource type="LabelSettings" uid="uid://2wocwdhy8088" path="res://src/gui_common/fonts/Title-SemiBold-AlmostSmaller.tres" id="11_xdyjp"]
 [ext_resource type="PackedScene" uid="uid://d4bf4x375rb82" path="res://src/microbe_stage/editor/FoodChainDisplay.tscn" id="14_ghu38"]
 [ext_resource type="PackedScene" uid="uid://din62wkc2pcnk" path="res://src/gui_common/DraggableScrollContainer.tscn" id="14_ynonx"]
-[ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="57"]
-[ext_resource type="Texture2D" uid="uid://c7cgjvfo1in67" path="res://assets/textures/gui/bevel/Temperature.png" id="62"]
+[ext_resource type="Texture2D" uid="uid://ut73drrfbmk0" path="res://assets/textures/gui/bevel/Temperature.svg" id="18_j02qe"]
+[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="19_fph1y"]
 [ext_resource type="PackedScene" uid="uid://mmqt0mcw2if3" path="res://src/gui_common/charts/line/LineChart.tscn" id="103"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_vfabd"]
@@ -484,7 +484,7 @@ layout_mode = 2
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_d1pk0")
-texture_normal = ExtResource("62")
+texture_normal = ExtResource("18_j02qe")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -494,7 +494,7 @@ layout_mode = 2
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_d1pk0")
-texture_normal = ExtResource("57")
+texture_normal = ExtResource("19_fph1y")
 ignore_texture_size = true
 stretch_mode = 5
 
