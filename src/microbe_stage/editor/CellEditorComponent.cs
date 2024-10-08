@@ -301,6 +301,8 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
+    private ResourceLimitingMode balanceMode;
+
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
@@ -1906,8 +1908,14 @@ public partial class CellEditorComponent :
 
         bool moving = calculateBalancesWhenMoving.ButtonPressed;
 
-        // TODO: pass moving variable
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, moving, true,
+        IBiomeConditions conditionsData = biome;
+
+        if (balanceMode != ResourceLimitingMode.AllResources)
+        {
+            conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
+        }
+
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
             Editor.CurrentGame.GameWorld.WorldSettings,
             calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
 

@@ -867,6 +867,13 @@ public partial class CellEditorComponent
         return bar.OrderBy(i => i.Key, comparer).ToList();
     }
 
+    private void SelectATPBalanceMode(int index)
+    {
+        balanceMode = (ResourceLimitingMode)index;
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+    }
+
     private void ConfirmFinishEditingWithNegativeATPPressed()
     {
         if (OnFinish == null)
