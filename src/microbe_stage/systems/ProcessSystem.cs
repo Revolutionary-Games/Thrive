@@ -569,6 +569,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
 
+        // To not claim the output is the limiting factor when no inputs could be taken at all, track if any inputs
+        // are added
+        bool tookInputs = false;
+
         // So that the speed factor is available here
         foreach (var entry in process.Process.Inputs)
         {
@@ -582,6 +586,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             var adjustedValue = entry.Value * speedFactor;
             result.WritableInputs.Add(inputCompound, adjustedValue);
 
+            if (adjustedValue > 0)
+            {
+                tookInputs = true;
+            }
+            else
+            {
+                // Cannot take any of this input, mark as a problem. This is helpful at least in the editor process
+                // panel view.
+                result.WritableLimitingCompounds.Add(entry.Key.ID);
+            }
+
             if (inputCompound == Compound.ATP)
                 result.ATPConsumption += adjustedValue;
         }
@@ -594,7 +609,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             result.WritableOutputs[outputCompound] = amount;
 
-            if (amount <= 0)
+            if (amount <= 0 && tookInputs)
                 result.WritableLimitingCompounds.Add(outputCompound);
 
             if (outputCompound == Compound.ATP)
