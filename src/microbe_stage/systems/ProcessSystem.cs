@@ -286,7 +286,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
@@ -324,7 +324,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome)
     {
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
@@ -342,7 +342,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
@@ -356,7 +356,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
-        bool useRatio;
 
         foreach (var organelle in organelles)
         {
@@ -364,11 +363,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             {
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
 
-                useRatio = false;
-
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                if (speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f)
-                    useRatio = true;
+                bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -404,7 +400,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance)
     {
         return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,

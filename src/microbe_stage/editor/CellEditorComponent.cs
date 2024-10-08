@@ -1924,16 +1924,18 @@ public partial class CellEditorComponent :
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
 
+        // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
                 calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
-                organelles, biome, energyBalance,
+                organelles, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
+        // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
-            CompoundAmountType.Minimum, organelles, biome, energyBalance, ref specificStorages, ref nominalStorage);
+            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages, ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
@@ -1944,11 +1946,9 @@ public partial class CellEditorComponent :
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles,
-        BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
+        IBiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
-        // TODO: should this also take balanceMode into account?
-
         Dictionary<Compound, CompoundBalance> compoundBalanceData;
         switch (calculationType)
         {
