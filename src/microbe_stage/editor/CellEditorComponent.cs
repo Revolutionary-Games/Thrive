@@ -1947,6 +1947,8 @@ public partial class CellEditorComponent :
         BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
+        // TODO: should this also take balanceMode into account?
+
         Dictionary<Compound, CompoundBalance> compoundBalanceData;
         switch (calculationType)
         {

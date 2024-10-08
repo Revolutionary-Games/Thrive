@@ -96,8 +96,24 @@ public class BiomeResourceLimiterAdapter : IBiomeConditions
             if (chunk.Value.Compounds == null)
                 continue;
 
-            // Chunk is let through
-            chunks[chunk.Key] = chunk.Value;
+            // It's probably fine to skip chunks that have one or more disallowed compounds because otherwise we'd
+            // need to create new chunk configurations with partial compounds
+            bool allow = true;
+
+            foreach (var entry in chunk.Value.Compounds)
+            {
+                if (!AllowCompound(entry.Key))
+                {
+                    allow = false;
+                    break;
+                }
+            }
+
+            if (allow)
+            {
+                // Chunk is fine, let through
+                chunks[chunk.Key] = chunk.Value;
+            }
         }
 
         return chunks;
