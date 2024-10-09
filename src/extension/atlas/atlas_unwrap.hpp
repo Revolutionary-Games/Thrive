@@ -31,8 +31,6 @@
 #pragma once
 
 #include <godot_cpp/classes/array_mesh.hpp>
-#include <godot_cpp/classes/mesh.hpp>
-#include <godot_cpp/classes/surface_tool.hpp>
 #include <godot_cpp/core/class_db.hpp>
 
 #include "Include.h"
