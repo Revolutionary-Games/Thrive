@@ -21,7 +21,7 @@ public static class ToxinUpgradeNames
     public static ToxinType GetToxinTypeFromUpgrades(this OrganelleUpgrades? upgrades)
     {
         if (upgrades == null || upgrades.UnlockedFeatures.Count < 1)
-            return ToxinType.Oxytoxy;
+            return ToxinType.Cytotoxin;
 
         foreach (var feature in upgrades.UnlockedFeatures)
         {
@@ -29,7 +29,7 @@ public static class ToxinUpgradeNames
                 return type;
         }
 
-        return ToxinType.Oxytoxy;
+        return ToxinType.Cytotoxin;
     }
 
     public static ToxinType ToxinTypeFromName(string name)

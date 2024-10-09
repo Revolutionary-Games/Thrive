@@ -200,7 +200,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
             float amountAvailable = compounds.GetCompoundAmount(agentType);
 
-            var selectedToxinType = ToxinType.Oxytoxy;
+            var selectedToxinType = ToxinType.Cytotoxin;
 
             // Pick the next toxin type to fire, but only if the data is present (for example loading an earlier save
             // wouldn't have this data set). This uses a round-robin algorithm to pick the next toxin type.
