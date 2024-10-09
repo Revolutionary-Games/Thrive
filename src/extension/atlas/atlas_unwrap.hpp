@@ -31,13 +31,6 @@
 #pragma once
 
 #include <godot_cpp/classes/array_mesh.hpp>
-#include <godot_cpp/core/class_db.hpp>
-
-#include "Include.h"
-
-#include "core/NativeLibIntercommunication.hpp"
-
-#include "xatlas.h"
 
 namespace Thrive
 {
