@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-10-09 11:53+0300\n"
+"POT-Creation-Date: 2024-10-09 14:29+0300\n"
+"PO-Revision-Date: 2024-10-09 14:35+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -593,6 +593,9 @@ msgstr "Change notes are too long"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Change the symmetry"
+
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Channel Inhibitor Synthesis"
 
 msgid "CHEATS"
 msgstr "Cheats"
@@ -1259,6 +1262,9 @@ msgstr "Cytoplasm Glycolysis"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound]."
+
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Cytotoxin Synthesis"
 
 msgid "DAY_LENGTH"
 msgstr "Day Length"
@@ -2947,6 +2953,9 @@ msgstr "The lysosome is a membrane-bound organelle that contain hydrolytic enzym
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contains digestive enzymes. Can be modified to change the type of enzyme it contains. Only one enzyme per lysosome can be utilized at a time. Enzymes speed up and improve efficiency of digestion."
 
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Macrolide Synthesis"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Manually Set Time of Day"
 
@@ -4059,8 +4068,8 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Oxygen"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxisome"
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Oxygen Inhibitor Synthesis"
 
 msgid "OXYTOXISOME_DESC"
 msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
@@ -5449,6 +5458,9 @@ msgstr "Channel Inhibitor"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Inhibits ATP production of affected cell, which effectively prevents them from moving fast and can cause cells with not a lot of excess ATP production to die."
 
+msgid "TOXIN_COMPOUND"
+msgstr "Toxin"
+
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Cytotoxin"
 
@@ -5507,6 +5519,9 @@ msgstr "The toxin vacuole is a vacuole that has been modified for the specific p
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have a reduced damage."
+
+msgid "TOXISOME"
+msgstr "Toxisome"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
