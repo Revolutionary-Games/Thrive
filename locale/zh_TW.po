@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
+"POT-Creation-Date: 2024-10-09 14:29+0300\n"
 "PO-Revision-Date: 2024-10-04 09:07+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -593,6 +593,10 @@ msgstr "更新註記過長"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改變對稱"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "抑制受影響細胞的 ATP 生產，有效防止它們快速移動，並可能導致 ATP 產量不高的細胞死亡。"
 
 msgid "CHEATS"
 msgstr "作弊"
@@ -1259,6 +1263,10 @@ msgstr "細胞質糖解"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "氧化毒素合成"
 
 msgid "DAY_LENGTH"
 msgstr "一日時長"
@@ -2950,6 +2958,10 @@ msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "含有消化酶。可以進行修改以改變其所含酶的類型。每個溶酶體一次只能利用一種酶。酶加速並提高消化效率。"
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "黏液合成"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "手動設定時間"
 
@@ -4062,8 +4074,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "氧"
 
-msgid "OXYTOXISOME"
-msgstr "氧化毒酶體"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "氧化毒素合成"
 
 msgid "OXYTOXISOME_DESC"
 msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
@@ -5452,6 +5465,10 @@ msgstr "通道抑制劑"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "抑制受影響細胞的 ATP 生產，有效防止它們快速移動，並可能導致 ATP 產量不高的細胞死亡。"
 
+#, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "化合物"
+
 msgid "TOXIN_CYTOTOXIN"
 msgstr "細胞毒素"
 
@@ -5510,6 +5527,10 @@ msgstr "毒素液泡是為了專門生產、儲存和分泌[thrive:compound type
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "氧化毒酶體"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "等待實現。"

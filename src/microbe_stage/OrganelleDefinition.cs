@@ -210,6 +210,8 @@ public class OrganelleDefinition : IRegistryType
 
     private Vector3 modelOffset;
 
+    private bool hasProcessAffectingUpgrades;
+
     public enum OrganelleGroup
     {
         /// <summary>
@@ -399,6 +401,32 @@ public class OrganelleDefinition : IRegistryType
         }
 
         return false;
+    }
+
+    /// <summary>
+    ///   Gets a list of processes to run instead of <see cref="RunnableProcesses"/> given the upgrades, or null if no
+    ///   upgrade affects the processes
+    /// </summary>
+    /// <returns>Upgraded processes</returns>
+    public List<TweakedProcess>? GetUpgradeProcesses(OrganelleUpgrades upgrades)
+    {
+        // Early return for types that don't support such upgrades for efficiency
+        if (!hasProcessAffectingUpgrades)
+            return null;
+
+        foreach (var availableUpgrade in AvailableUpgrades)
+        {
+            if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key) &&
+                availableUpgrade.Value.OverrideProcesses != null)
+            {
+                // Found an unlocked upgrade that affects processes. For now, it is assumed that the first one doing
+                // the overriding is fine to apply
+                return availableUpgrade.Value.OverrideProcesses;
+            }
+        }
+
+        // No upgrade with changed processes
+        return null;
     }
 
     public void Check(string name)
@@ -619,7 +647,18 @@ public class OrganelleDefinition : IRegistryType
 
         foreach (var availableUpgrade in AvailableUpgrades.Values)
         {
-            availableUpgrade.Resolve();
+            availableUpgrade.Resolve(parameters);
+
+            if (availableUpgrade.OverrideProcesses != null)
+            {
+                hasProcessAffectingUpgrades = true;
+
+                if (availableUpgrade.IsDefault)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Default upgrade shouldn't override processes");
+                }
+            }
         }
     }
 

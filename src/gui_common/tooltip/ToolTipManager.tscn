@@ -75,6 +75,7 @@ DisplayDelay = 0.0
 [node name="speciesPreview" parent="GroupHolder/default" instance=ExtResource("3")]
 visible = false
 layout_mode = 0
+anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 0.0
@@ -420,7 +421,7 @@ ModifierIcon = ExtResource("6")
 visible = false
 layout_mode = 0
 offset_bottom = 173.0
-DisplayName = "OXYTOXISOME"
+DisplayName = "TOXISOME"
 ProcessesDescription = "OXYTOXISOME_PROCESSES_DESCRIPTION"
 Description = "OXYTOXISOME_DESC"
 MutationPointCost = 55
