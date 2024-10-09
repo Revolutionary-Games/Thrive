@@ -77,7 +77,8 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     PackedInt32Array rindices = arrays[Mesh::ARRAY_INDEX];
     uint64_t ic = rindices.size();
 
-    float eps = 1.19209290e-7F; // Taken from xatlas.h
+    // Taken from xatlas.h
+    float eps = 1.19209290e-7F;
     for (int j = 0; j < ic / 3; j++)
     {
         Vector3 p0 = rvertices[rindices[j * 3 + 0]];
@@ -115,7 +116,9 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
 
     xatlas::PackOptions pack_options;
     pack_options.padding = 1;
-    pack_options.maxChartSize = 1022; // Lightmap atlassing needs 2 for padding between meshes, so 4096-2
+
+    // Lightmap atlassing needs 2 for padding between meshes, so 4096-2
+    pack_options.maxChartSize = 1022;
     pack_options.blockAlign = true;
     pack_options.texelsPerUnit = 1.0f / texelSize;
 
