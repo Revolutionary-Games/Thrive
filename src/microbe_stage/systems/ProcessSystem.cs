@@ -71,6 +71,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
             var processes = organelle.Definition.RunnableProcesses;
+
+            // Organelle upgrades can change the processes of an organelle so that needs to be checked here
+            if (organelle.Upgrades != null)
+            {
+                var upgraded = organelle.Definition.GetUpgradeProcesses(organelle.Upgrades);
+                if (upgraded != null)
+                    processes = upgraded;
+            }
+
             int processCount = processes.Count;
 
             for (int j = 0; j < processCount; ++j)

@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 using ThriveScriptsShared;
 
@@ -21,6 +22,9 @@ public class AvailableUpgrade : IRegistryType
     /// </remarks>
     [JsonProperty]
     private SceneWithModelInfo overrideGraphics;
+
+    [JsonProperty(nameof(OverrideProcesses))]
+    private Dictionary<string, float>? overrideProcesses;
 
     private string? untranslatedName;
     private string? untranslatedDescription;
@@ -48,6 +52,12 @@ public class AvailableUpgrade : IRegistryType
 
     [JsonProperty]
     public string IconPath { get; private set; } = string.Empty;
+
+    /// <summary>
+    ///   If not null this list of processes overrides the defaults for the organelle
+    /// </summary>
+    [JsonIgnore]
+    public List<TweakedProcess>? OverrideProcesses { get; private set; }
 
     /// <summary>
     ///   Loaded icon for display in GUIs
@@ -82,10 +92,19 @@ public class AvailableUpgrade : IRegistryType
                 throw new InvalidRegistryDataException(name, GetType().Name, "IconPath is missing");
         }
 
+        if (overrideProcesses != null)
+        {
+            foreach (var process in overrideProcesses)
+            {
+                if (process.Value <= 0)
+                    throw new InvalidRegistryDataException(name, GetType().Name, "Process speed should be positive");
+            }
+        }
+
         TranslationHelper.CopyTranslateTemplatesToTranslateSource(this);
     }
 
-    public void Resolve()
+    public void Resolve(SimulationParameters parameters)
     {
         if (!string.IsNullOrEmpty(IconPath))
             LoadedIcon = GD.Load<Texture2D>(IconPath);
@@ -96,6 +115,22 @@ public class AvailableUpgrade : IRegistryType
         if (!string.IsNullOrEmpty(overrideGraphics.ScenePath))
         {
             loadedSceneData.LoadFrom(overrideGraphics);
+        }
+
+        if (overrideProcesses != null)
+        {
+            OverrideProcesses = new List<TweakedProcess>();
+
+            foreach (var process in overrideProcesses)
+            {
+                OverrideProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key), process.Value));
+            }
+
+            if (OverrideProcesses.Count < 1)
+            {
+                throw new InvalidRegistryDataException(InternalName, nameof(AvailableUpgrade),
+                    "Override process list cannot be empty");
+            }
         }
     }
 

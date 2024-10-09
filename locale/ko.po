@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
+"POT-Creation-Date: 2024-10-09 14:29+0300\n"
 "PO-Revision-Date: 2024-09-20 12:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -626,6 +626,10 @@ msgstr "설명:"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "연대 변경"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
 msgid "CHEATS"
 msgstr "치트"
@@ -1320,6 +1324,10 @@ msgstr "세포질 해당 작용"
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "산소 합성"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3157,6 +3165,10 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "점액 합성"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4316,8 +4328,9 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 msgid "OXYGEN"
 msgstr "산소"
 
-msgid "OXYTOXISOME"
-msgstr "옥시톡시솜"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "산소 합성"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5822,6 +5835,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "화합물"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "새로운 키 배치 추가"
 
@@ -5889,6 +5906,10 @@ msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "옥시톡시솜"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
