@@ -36,9 +36,9 @@ void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, J
             *reinterpret_cast<godot::Color*>(colour));
 }
 
-bool Unwrap(float texelSize, ArrayMesh* mesh)
+bool ArrayMeshUnwrap(ArrayMesh* mesh, float texelSize)
 {
-    return Thrive::Unwrap(texelSize, *reinterpret_cast<godot::ArrayMesh*>(mesh));
+    return Thrive::Unwrap(*reinterpret_cast<godot::ArrayMesh*>(mesh), texelSize);
 }
 
 void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* position, JColour* colour)

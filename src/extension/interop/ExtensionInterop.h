@@ -22,7 +22,7 @@ extern "C"
     /// \return The version number
     [[maybe_unused]] API_EXPORT int32_t ExtensionGetVersion(ThriveConfig* thriveConfig);
 
-    [[maybe_unused]] API_EXPORT bool Unwrap(float texelSize, ArrayMesh* mesh);
+    [[maybe_unused]] API_EXPORT bool ArrayMeshUnwrap(ArrayMesh* mesh, float texelSize);
 
     // ------------------------------------ //
     // DebugDrawer direct access calls

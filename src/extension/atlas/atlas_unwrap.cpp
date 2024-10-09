@@ -42,7 +42,7 @@
 
 using namespace godot;
 
-bool Thrive::Unwrap(float texelSize, godot::ArrayMesh& mesh)
+bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
 {
     // Data for the xatlas library
     LocalVector<float> vertices;

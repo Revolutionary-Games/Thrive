@@ -42,6 +42,6 @@
 namespace Thrive
 {
 
-bool Unwrap(float texelSize, godot::ArrayMesh& mesh);
+bool Unwrap(godot::ArrayMesh& mesh, float texelSize);
 
 } // namespace Thrive
