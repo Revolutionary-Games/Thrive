@@ -211,14 +211,14 @@
     ],
     "Processes": {
       "glycolysis": 1,
-      "bacterial_oxytoxySynthesis": 1
+      "bacterial_cytotoxinSynthesis": 1
     },
     "Components": {
       "Storage": {
         "Capacity": 0.5
       },
       "AgentVacuole": {
-        "Process": "bacterial_oxytoxySynthesis",
+        "Process": "bacterial_cytotoxinSynthesis",
         "Compound": "oxytoxy"
       }
     },
@@ -226,7 +226,7 @@
     "Graphics": {
       "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
     },
-    "Name": "OXYTOXISOME",
+    "Name": "TOXISOME",
     "ProductionColour": "#834acb",
     "ConsumptionColour": "#c4303d",
     "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
@@ -248,32 +248,48 @@
     "AvailableUpgrades": {
       "none": {
         "IsDefault": true,
+        "Name": "TOXIN_CYTOTOXIN",
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION"
+      },
+      "oxytoxy": {
         "Name": "OXYTOXY_NT",
-        "Description": "TOXIN_OXYTOXY_DESCRIPTION"
+        "Description": "TOXIN_OXYTOXY_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "glycolysis": 1,
+          "bacterial_oxytoxySynthesis": 1
+        }
       },
       "macrolide": {
         "Name": "TOXIN_MACROLIDE",
         "Description": "TOXIN_MACROLIDE_DESCRIPTION",
-        "MPCost": 20,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+        "MPCost": 15,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "glycolysis": 1,
+          "bacterial_macrolideSynthesis": 1
+        }
       },
       "channel": {
         "Name": "TOXIN_CHANNEL_INHIBITOR",
         "Description": "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION",
-        "MPCost": 30,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+        "MPCost": 25,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "glycolysis": 1,
+          "bacterial_channelInhibitorSynthesis": 1
+        }
       },
       "oxygen_inhibitor": {
         "Name": "TOXIN_OXYGEN_METABOLISM_INHIBITOR",
         "Description": "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION",
-        "MPCost": 25,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
-      },
-      "cytotoxin": {
-        "Name": "TOXIN_CYTOTOXIN",
-        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
-        "MPCost": 10,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+        "MPCost": 20,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "glycolysis": 1,
+          "bacterial_oxygenInhibitorSynthesis": 1
+        }
       }
     },
     "EditorButtonOrder": 6,
@@ -635,14 +651,14 @@
       }
     ],
     "Processes": {
-      "oxytoxySynthesis": 1
+      "cytotoxinSynthesis": 1
     },
     "Components": {
       "Storage": {
         "Capacity": 1
       },
       "AgentVacuole": {
-        "Process": "oxytoxySynthesis",
+        "Process": "cytotoxinSynthesis",
         "Compound": "oxytoxy"
       }
     },
@@ -672,32 +688,45 @@
     "AvailableUpgrades": {
       "none": {
         "IsDefault": true,
+        "Name": "TOXIN_CYTOTOXIN",
+        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+      },
+      "oxytoxy": {
         "Name": "OXYTOXY_NT",
-        "Description": "TOXIN_OXYTOXY_DESCRIPTION"
+        "Description": "TOXIN_OXYTOXY_DESCRIPTION",
+        "MPCost": 10,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "oxytoxySynthesis": 1
+        }
       },
       "macrolide": {
         "Name": "TOXIN_MACROLIDE",
         "Description": "TOXIN_MACROLIDE_DESCRIPTION",
-        "MPCost": 20,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+        "MPCost": 15,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "macrolideSynthesis": 1
+        }
       },
       "channel": {
         "Name": "TOXIN_CHANNEL_INHIBITOR",
         "Description": "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION",
-        "MPCost": 30,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+        "MPCost": 25,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "channelInhibitorSynthesis": 1
+        }
       },
       "oxygen_inhibitor": {
         "Name": "TOXIN_OXYGEN_METABOLISM_INHIBITOR",
         "Description": "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION",
-        "MPCost": 25,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
-      },
-      "cytotoxin": {
-        "Name": "TOXIN_CYTOTOXIN",
-        "Description": "TOXIN_CYTOTOXIN_DESCRIPTION",
-        "MPCost": 10,
-        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png"
+        "MPCost": 20,
+        "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
+        "OverrideProcesses": {
+          "oxygenInhibitorSynthesis": 1
+        }
       }
     },
     "EditorButtonGroup": "Organelle",

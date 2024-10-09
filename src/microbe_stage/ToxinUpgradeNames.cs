@@ -8,7 +8,7 @@ public static class ToxinUpgradeNames
     /// <summary>
     ///   Technically this is "none" but internally upgrades don't save the "none" upgrade in the upgrades list.
     /// </summary>
-    public const string OXYTOXY_UPGRADE_NAME = Constants.ORGANELLE_UPGRADE_SPECIAL_NONE;
+    public const string CYTOTOXIN_UPGRADE_NAME = Constants.ORGANELLE_UPGRADE_SPECIAL_NONE;
 
     public const string MACROLIDE_UPGRADE_NAME = "macrolide";
 
@@ -16,7 +16,7 @@ public static class ToxinUpgradeNames
 
     public const string OXYGEN_INHIBITOR_UPGRADE_NAME = "oxygen_inhibitor";
 
-    public const string CYTOTOXIN_UPGRADE_NAME = "cytotoxin";
+    public const string OXYTOXY_UPGRADE_NAME = "oxytoxy";
 
     public static ToxinType GetToxinTypeFromUpgrades(this OrganelleUpgrades? upgrades)
     {
@@ -61,7 +61,7 @@ public static class ToxinUpgradeNames
                 return true;
         }
 
-        type = ToxinType.Oxytoxy;
+        type = ToxinType.Cytotoxin;
         return false;
     }
 
