@@ -1,15 +1,15 @@
 ﻿using Newtonsoft.Json;
 
 /// <summary>
-///   An effect diffusing compounds between patches
+///   An effect diffusing compounds between patches (for experimental mode affecting all compounds)
 /// </summary>
 [JSONDynamicTypeAllowed]
-public class CompoundDiffusionEffect : IWorldEffect
+public class AllCompoundDiffusionEffect : IWorldEffect
 {
     [JsonProperty]
     private GameWorld targetWorld;
 
-    public CompoundDiffusionEffect(GameWorld targetWorld)
+    public AllCompoundDiffusionEffect(GameWorld targetWorld)
     {
         this.targetWorld = targetWorld;
     }

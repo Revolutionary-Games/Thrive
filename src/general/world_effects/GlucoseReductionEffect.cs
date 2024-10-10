@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 
 /// <summary>
-///   An effect reducing the glucose amount
+///   An effect reducing the glucose amount (for the microbe stage to make early game easier)
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class GlucoseReductionEffect : IWorldEffect

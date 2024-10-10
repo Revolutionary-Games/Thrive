@@ -82,7 +82,7 @@ public class GameWorld : ISaveLoadable
 
             // Register compound production and diffusion
             TimedEffects.RegisterEffect("compound_production", new CompoundProductionEffect(this));
-            TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+            TimedEffects.RegisterEffect("all_compound_diffusion", new AllCompoundDiffusionEffect(this));
         }
         else
         {
