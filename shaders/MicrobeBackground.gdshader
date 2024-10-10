@@ -27,23 +27,23 @@ varying vec2 UV4;
 vec3 LightInfluence(float amount)
 {
     if (amount > 0.5f)
-{
+    {
     // Day
         return mix(vec3(0.75f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), 2.0f * amount - 1.0f);
     }
-else if (amount > 0.25f)
-{
-    // Dawn and Dusk
+    else if (amount > 0.25f)
+    {
+        // Dawn and Dusk
         return mix(vec3(0.25f, 0.25f, 0.25f), vec3(0.75f, 0.5f, 0.5f), 4.0f * amount - 1.0f);
     }
-else
+    else
     {
         // Night
         return mix(vec3(0.052f, 0.05f, 0.17f), vec3(0.25f, 0.25f, 0.25f), 4.0f * amount);
     }
 }
 
-void vertex() {
+void vertex(){
     vec2 offset = (repeats - 1.0f) / 2.0f;
     vec2 worldPos = (INV_VIEW_MATRIX * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xz;
 
