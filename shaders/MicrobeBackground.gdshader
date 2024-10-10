@@ -61,7 +61,6 @@ void fragment(){
     vec2 noise_uv3 = UV3 - TIME * distortion_speed * 1.5;
     vec2 noise_uv4 = UV4 - TIME * distortion_speed;
 
-
     vec2 noise1 = vec2(texture(noise_tex_1, noise_uv1).r, texture(noise_tex_2, noise_uv1).r);
     vec2 noise2 = vec2(texture(noise_tex_1, noise_uv2).r, texture(noise_tex_2, noise_uv2).r);
     vec2 noise3 = vec2(texture(noise_tex_1, noise_uv3).r, texture(noise_tex_2, noise_uv3).r);
