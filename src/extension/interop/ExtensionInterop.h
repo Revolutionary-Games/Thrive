@@ -22,6 +22,8 @@ extern "C"
     /// \return The version number
     [[maybe_unused]] API_EXPORT int32_t ExtensionGetVersion(ThriveConfig* thriveConfig);
 
+    [[maybe_unused]] API_EXPORT bool ArrayMeshUnwrap(ArrayMesh* mesh, float texelSize);
+
     // ------------------------------------ //
     // DebugDrawer direct access calls
     [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, JColour* colour);

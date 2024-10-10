@@ -116,11 +116,10 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.Color] = colors;
 
-        // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
-        // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
-
         ArrayMesh mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
+
+        NativeMethods.ArrayMeshUnwrap(mesh.NativeInstance, 1.0f);
 
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");
