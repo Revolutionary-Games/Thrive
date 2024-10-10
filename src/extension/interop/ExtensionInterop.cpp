@@ -38,6 +38,11 @@ void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, J
 
 bool ArrayMeshUnwrap(ArrayMesh* mesh, float texelSize)
 {
+    if (mesh == nullptr)
+    {
+        return false;
+    }
+
     return Thrive::Unwrap(*reinterpret_cast<godot::ArrayMesh*>(mesh), texelSize);
 }
 
