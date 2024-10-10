@@ -28,7 +28,7 @@ vec3 LightInfluence(float amount)
 {
     if (amount > 0.5f)
     {
-    // Day
+        // Day
         return mix(vec3(0.75f, 0.5f, 0.5f), vec3(1.0f, 1.0f, 1.0f), 2.0f * amount - 1.0f);
     }
     else if (amount > 0.25f)
