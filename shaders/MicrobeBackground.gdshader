@@ -10,7 +10,7 @@ uniform sampler2D layer1 : source_color;
 uniform sampler2D layer2 : source_color;
 uniform sampler2D layer3 : source_color;
 
-// the noise textures, distortion amount, and distortion speed for the distortion shader
+// The noise textures, distortion amount, and distortion speed for the distortion shader
 uniform sampler2D noise_tex_1;
 uniform sampler2D noise_tex_2;
 uniform float distortion_factor;
