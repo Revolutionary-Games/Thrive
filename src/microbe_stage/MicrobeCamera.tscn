@@ -31,14 +31,14 @@ render_priority = -100
 shader = ExtResource("5")
 shader_parameter/lightLevel = 1.0
 shader_parameter/repeats = Vector2(2, 1)
-shader_parameter/distortion_factor = null
-shader_parameter/distortion_speed = null
+shader_parameter/distortionFactor = null
+shader_parameter/distortionSpeed = null
 shader_parameter/layer0 = ExtResource("6")
 shader_parameter/layer1 = ExtResource("1")
 shader_parameter/layer2 = ExtResource("2")
 shader_parameter/layer3 = ExtResource("4")
-shader_parameter/noise_tex_1 = SubResource("NoiseTexture2D_f6pop")
-shader_parameter/noise_tex_2 = SubResource("NoiseTexture2D_tsmw6")
+shader_parameter/noiseTex1 = SubResource("NoiseTexture2D_f6pop")
+shader_parameter/noiseTex2 = SubResource("NoiseTexture2D_tsmw6")
 
 [node name="MicrobeCamera" type="Camera3D"]
 process_priority = 100
