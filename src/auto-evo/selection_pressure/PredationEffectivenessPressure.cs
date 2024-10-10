@@ -22,6 +22,7 @@ public class PredationEffectivenessPressure : SelectionPressure
             new AddOrganelleAnywhere(organelle => organelle.HasMovementComponent,
                 CommonMutationFunctions.Direction.Rear),
             new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
+            new UpgradeOrganelle(organelle => organelle.HasMovementComponent, new FlagellumUpgrades(0.5f)),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Aggression, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Opportunism, 150.0f),
             new ChangeBehaviorScore(ChangeBehaviorScore.BehaviorAttribute.Fear, -150.0f),
