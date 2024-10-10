@@ -6,8 +6,8 @@
       "glucose": 0.14
     },
     "Outputs": {
-      "carbondioxide": 1,
-      "atp": 91
+      "atp": 91,
+      "carbondioxide": 1
     },
     "IsMetabolismProcess": true
   },
@@ -34,12 +34,12 @@
   "photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
-      "carbondioxide": 3,
-      "sunlight": 1
+      "sunlight": 1,
+      "carbondioxide": 3
     },
     "Outputs": {
-      "oxygen": 3,
-      "glucose": 0.04
+      "glucose": 0.04,
+      "oxygen": 3
     }
   },
   "cytotoxinSynthesis": {
@@ -148,8 +148,8 @@
   "chemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "carbondioxide": 0.09,
-      "hydrogensulfide": 0.12
+      "hydrogensulfide": 0.12,
+      "carbondioxide": 0.09
     },
     "Outputs": {
       "glucose": 0.1
@@ -159,8 +159,8 @@
   "bacterial_ChemoSynthesis": {
     "Name": "CHEMO_SYNTHESIS",
     "Inputs": {
-      "carbondioxide": 0.09,
-      "hydrogensulfide": 0.06
+      "hydrogensulfide": 0.06,
+      "carbondioxide": 0.09
     },
     "Outputs": {
       "glucose": 0.04
@@ -195,8 +195,8 @@
       "glucose": 0.08
     },
     "Outputs": {
-      "carbondioxide": 1,
-      "atp": 38
+      "atp": 38,
+      "carbondioxide": 1
     },
     "IsMetabolismProcess": true
   },
@@ -213,20 +213,20 @@
   "chromatophore_photosynthesis": {
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
-      "carbondioxide": 1,
-      "sunlight": 1
+      "sunlight": 1,
+      "carbondioxide": 1
     },
     "Outputs": {
-      "oxygen": 1,
-      "glucose": 0.012
+      "glucose": 0.012,
+      "oxygen": 1
     }
   },
   "iron_chemolithoautotrophy": {
     "Name": "IRON_CHEMOLITHOAUTOTROPHY",
     "Inputs": {
+      "iron": 0.02,
       "carbondioxide": 0.09,
-      "oxygen": 0.21,
-      "iron": 0.02
+      "oxygen": 0.21
     },
     "Outputs": {
       "atp": 5
@@ -254,9 +254,9 @@
   "ferrosynthesis": {
     "Name": "IRON_CHEMOLITHOAUTOTROPHY",
     "Inputs": {
+      "iron": 0.033,
       "carbondioxide": 0.09,
-      "oxygen": 0.21,
-      "iron": 0.033
+      "oxygen": 0.21
     },
     "Outputs": {
       "atp": 13
