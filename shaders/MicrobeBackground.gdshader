@@ -11,10 +11,10 @@ uniform sampler2D layer2 : source_color;
 uniform sampler2D layer3 : source_color;
 
 // The noise textures, distortion amount, and distortion speed for the distortion shader
-uniform sampler2D noise_tex_1;
-uniform sampler2D noise_tex_2;
-uniform float distortion_factor;
-uniform float distortion_speed;
+uniform sampler2D noiseTex1;
+uniform sampler2D noiseTex2;
+uniform float distortionFactor;
+uniform float distortionSpeed;
 
 const vec2 speed0 = vec2(3300.0f);
 const vec2 speed1 = vec2(2550.0f);
@@ -56,20 +56,20 @@ void vertex(){
 void fragment(){
     // Application of noise textures on parallax layers, creating distortion. 
     // Subtracting time results in a flip of the direction of distortion, and multiplying by factor amplifies speed.
-    vec2 noise_uv1 = UV + TIME * distortion_speed;
-    vec2 noise_uv2 = UV2 + TIME * distortion_speed * .8;
-    vec2 noise_uv3 = UV3 - TIME * distortion_speed * 1.5;
-    vec2 noise_uv4 = UV4 - TIME * distortion_speed;
+    vec2 noise_uv1 = UV + TIME * distortionSpeed;
+    vec2 noise_uv2 = UV2 + TIME * distortionSpeed * .8;
+    vec2 noise_uv3 = UV3 - TIME * distortionSpeed * 1.5;
+    vec2 noise_uv4 = UV4 - TIME * distortionSpeed;
 
-    vec2 noise1 = vec2(texture(noise_tex_1, noise_uv1).r, texture(noise_tex_2, noise_uv1).r);
-    vec2 noise2 = vec2(texture(noise_tex_1, noise_uv2).r, texture(noise_tex_2, noise_uv2).r);
-    vec2 noise3 = vec2(texture(noise_tex_1, noise_uv3).r, texture(noise_tex_2, noise_uv3).r);
-    vec2 noise4 = vec2(texture(noise_tex_1, noise_uv4).r, texture(noise_tex_2, noise_uv4).r);
+    vec2 noise1 = vec2(texture(noiseTex1, noise_uv1).r, texture(noiseTex2, noise_uv1).r);
+    vec2 noise2 = vec2(texture(noiseTex1, noise_uv2).r, texture(noiseTex2, noise_uv2).r);
+    vec2 noise3 = vec2(texture(noiseTex1, noise_uv3).r, texture(noiseTex2, noise_uv3).r);
+    vec2 noise4 = vec2(texture(noiseTex1, noise_uv4).r, texture(noiseTex2, noise_uv4).r);
 
-    vec2 distorted_uv0 = UV + noise1 * distortion_factor;
-    vec2 distorted_uv1 = UV2 + noise2 * distortion_factor;
-    vec2 distorted_uv2 = UV3 + noise3 * distortion_factor;
-    vec2 distorted_uv3 = UV4 + noise4 * distortion_factor;
+    vec2 distorted_uv0 = UV + noise1 * distortionFactor;
+    vec2 distorted_uv1 = UV2 + noise2 * distortionFactor;
+    vec2 distorted_uv2 = UV3 + noise3 * distortionFactor;
+    vec2 distorted_uv3 = UV4 + noise4 * distortionFactor;
 
     vec4 colour0 = texture(layer0, distorted_uv0);
     vec4 colour1 = texture(layer1, distorted_uv1);
