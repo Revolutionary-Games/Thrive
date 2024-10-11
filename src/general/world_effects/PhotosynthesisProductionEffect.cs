@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 using Systems;
@@ -29,9 +30,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
     private void ApplyCompoundsAddition()
     {
-        var outputModifier = 500.0f;
-        var inputModifier = 500.0f;
-        var modifier = 0.0000005f;
+        var outputModifier = 1.0f;
+        var inputModifier = 1.0f;
+        var modifier = 0.0001f;
+
+        List<TweakedProcess> microbeProcesses = [];
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
@@ -50,50 +53,47 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 if (species.Key is not MicrobeSpecies microbeSpecies)
                     continue;
 
-                var organelles = microbeSpecies.Organelles.Organelles;
-                int count = organelles.Count;
+                ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
-                for (int i = 0; i < count; ++i)
+                foreach (var process in microbeProcesses)
                 {
-                    var organelle = organelles[i];
+                    // Only handle relevant processes
+                    if (!IsProcessRelevant(process.Process))
+                        continue;
 
-                    foreach (var process in organelle.Definition.RunnableProcesses)
+                    var rate = ProcessSystem.CalculateProcessMaximumSpeed(process,
+                        patch.Biome, CompoundAmountType.Biome, true);
+
+                    // TODO: for metabolic processes the speed should probably be at most ATP equilibrium to not
+                    // unnecessarily consume environmental oxygen
+
+                    // Skip checking processes that cannot run
+                    if (rate.CurrentSpeed <= 0)
+                        continue;
+
+                    // Inputs take away compounds scaled by the speed and population of the species
+                    foreach (var input in process.Process.Inputs)
                     {
-                        // Only handle relevant processes
-                        if (!IsProcessRelevant(process.Process))
-                            continue;
-
-                        var rate = ProcessSystem.CalculateProcessMaximumSpeed(process,
-                            patch.Biome, CompoundAmountType.Biome, true);
-
-                        // Skip checking processes that cannot run
-                        if (rate.CurrentSpeed <= 0)
-                            continue;
-
-                        // Inputs take away compounds scaled by the speed and population of the species
-                        foreach (var input in process.Process.Inputs)
+                        if (input.Key.ID is Compound.Oxygen)
                         {
-                            if (input.Key.ID is Compound.Oxygen)
-                            {
-                                oxygenBalance -= input.Value * inputModifier * rate.CurrentSpeed * species.Value;
-                            }
-                            else if (input.Key.ID is Compound.Carbondioxide)
-                            {
-                                co2Balance -= input.Value * inputModifier * rate.CurrentSpeed * species.Value;
-                            }
+                            oxygenBalance -= input.Value * inputModifier * rate.CurrentSpeed * species.Value;
                         }
-
-                        // Outputs generate the given compounds
-                        foreach (var output in process.Process.Outputs)
+                        else if (input.Key.ID is Compound.Carbondioxide)
                         {
-                            if (output.Key.ID is Compound.Oxygen)
-                            {
-                                oxygenBalance += output.Value * outputModifier * rate.CurrentSpeed * species.Value;
-                            }
-                            else if (output.Key.ID is Compound.Carbondioxide)
-                            {
-                                co2Balance += output.Value * outputModifier * rate.CurrentSpeed * species.Value;
-                            }
+                            co2Balance -= input.Value * inputModifier * rate.CurrentSpeed * species.Value;
+                        }
+                    }
+
+                    // Outputs generate the given compounds
+                    foreach (var output in process.Process.Outputs)
+                    {
+                        if (output.Key.ID is Compound.Oxygen)
+                        {
+                            oxygenBalance += output.Value * outputModifier * rate.CurrentSpeed * species.Value;
+                        }
+                        else if (output.Key.ID is Compound.Carbondioxide)
+                        {
+                            co2Balance += output.Value * outputModifier * rate.CurrentSpeed * species.Value;
                         }
                     }
                 }
@@ -103,10 +103,12 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             oxygenBalance *= modifier;
             co2Balance *= modifier;
 
+            // TODO: add patch volumes, calculate absolute values and after that go back to fractional values
+
             if (oxygenBalance != 0)
                 ApplyCompoundChanges(patch, Compound.Oxygen, oxygenBalance);
 
-            if (oxygenBalance != 0)
+            if (co2Balance != 0)
                 ApplyCompoundChanges(patch, Compound.Oxygen, co2Balance);
         }
     }

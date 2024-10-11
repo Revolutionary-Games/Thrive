@@ -1,7 +1,8 @@
 ﻿using Newtonsoft.Json;
 
 /// <summary>
-///   An effect diffusing compounds between patches (for experimental mode affecting all compounds)
+///   An effect diffusing compounds between patches (for experimental mode affecting all compounds). This should
+///   probably eventually be deleted in favour of <see cref="CompoundDiffusionEffect"/>
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class AllCompoundDiffusionEffect : IWorldEffect
