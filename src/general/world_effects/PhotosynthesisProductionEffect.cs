@@ -53,6 +53,17 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 if (species.Key is not MicrobeSpecies microbeSpecies)
                     continue;
 
+                var balance = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles, patch.Biome,
+                    microbeSpecies.MembraneType, false, false, targetWorld.WorldSettings, CompoundAmountType.Average,
+                    false);
+
+                float balanceModifier = 1;
+
+                // Scale processes to not consume excess oxygen than what is actually needed. Though, see below which
+                // actual processes use this modifier.
+                if (balance.TotalConsumption < balance.TotalProduction)
+                    balanceModifier = balance.TotalConsumption / balance.TotalProduction;
+
                 ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
                 foreach (var process in microbeProcesses)
@@ -64,23 +75,25 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     var rate = ProcessSystem.CalculateProcessMaximumSpeed(process,
                         patch.Biome, CompoundAmountType.Biome, true);
 
-                    // TODO: for metabolic processes the speed should probably be at most ATP equilibrium to not
-                    // unnecessarily consume environmental oxygen
-
                     // Skip checking processes that cannot run
                     if (rate.CurrentSpeed <= 0)
                         continue;
+
+                    // For metabolic processes the speed is at most to reach ATP equilibrium in order to not
+                    // unnecessarily consume environmental oxygen
+                    var effectiveSpeed =
+                        (process.Process.IsMetabolismProcess ? balanceModifier : 1) * rate.CurrentSpeed;
 
                     // Inputs take away compounds scaled by the speed and population of the species
                     foreach (var input in process.Process.Inputs)
                     {
                         if (input.Key.ID is Compound.Oxygen)
                         {
-                            oxygenBalance -= input.Value * inputModifier * rate.CurrentSpeed * species.Value;
+                            oxygenBalance -= input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                         else if (input.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Balance -= input.Value * inputModifier * rate.CurrentSpeed * species.Value;
+                            co2Balance -= input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                     }
 
@@ -89,11 +102,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (output.Key.ID is Compound.Oxygen)
                         {
-                            oxygenBalance += output.Value * outputModifier * rate.CurrentSpeed * species.Value;
+                            oxygenBalance += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                         else if (output.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Balance += output.Value * outputModifier * rate.CurrentSpeed * species.Value;
+                            co2Balance += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                     }
                 }
@@ -109,7 +122,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 ApplyCompoundChanges(patch, Compound.Oxygen, oxygenBalance);
 
             if (co2Balance != 0)
-                ApplyCompoundChanges(patch, Compound.Oxygen, co2Balance);
+                ApplyCompoundChanges(patch, Compound.Carbondioxide, co2Balance);
         }
     }
 
