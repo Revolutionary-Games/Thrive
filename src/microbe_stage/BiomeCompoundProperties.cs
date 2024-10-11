@@ -42,7 +42,7 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
         Ambient = Math.Clamp(Ambient, min, max);
 
         // Amount is in different units so it isn't clamped
-        // Amount = Mathf.Clamp(Amount, min, max);
+        // Amount = Math.Clamp(Amount, min, max);
     }
 
     public override bool Equals(object? obj)
