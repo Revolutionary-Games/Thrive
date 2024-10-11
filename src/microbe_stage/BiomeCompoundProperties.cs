@@ -33,6 +33,18 @@ public struct BiomeCompoundProperties : IEquatable<BiomeCompoundProperties>
         return !(left == right);
     }
 
+    /// <summary>
+    ///   Clamps the density and ambient values to be in the given range
+    /// </summary>
+    public void Clamp(float min, float max)
+    {
+        Density = Math.Clamp(Density, min, max);
+        Ambient = Math.Clamp(Ambient, min, max);
+
+        // Amount is in different units so it isn't clamped
+        // Amount = Mathf.Clamp(Amount, min, max);
+    }
+
     public override bool Equals(object? obj)
     {
         if (obj is BiomeCompoundProperties other)

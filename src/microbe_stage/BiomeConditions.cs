@@ -178,6 +178,19 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     /// <param name="newValue">New value to set</param>
     public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue)
     {
+        // Ensure negative values can't be calculated and applied accidentally. This is here as conditions are modified
+        // from many places so the easiest and safes thing is to just clamp stuff to non-zero here
+        if (newValue.Ambient < 0)
+            newValue.Ambient = 0;
+
+        if (newValue.Density < 0)
+            newValue.Density = 0;
+
+        // As this is the cloud size, this is unlikely to be wrong, but probably better to check here than to cause
+        // weird issues in cloud spawning
+        if (newValue.Amount < 0)
+            newValue.Amount = 0;
+
         ChangeableCompounds[compound] = newValue;
 
         // Reset other related values
