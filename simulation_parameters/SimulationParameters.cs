@@ -230,8 +230,6 @@ public partial class SimulationParameters : Node
         // This is done this way to allow StartupActions to run before SimulationParameters are loaded
         ApplyTranslations();
 
-        CreateOrganelleTooltips();
-
         GD.Print("SimulationParameters are good");
     }
 
@@ -831,32 +829,5 @@ public partial class SimulationParameters : Node
     private List<Enzyme> ComputeHydrolyticEnzymes()
     {
         return enzymes.Where(e => e.Value.Property == Enzyme.EnzymeProperty.Hydrolytic).Select(e => e.Value).ToList();
-    }
-
-    private void CreateOrganelleTooltips()
-    {
-        if (instance == null)
-            return;
-
-        var packedTooltip = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn");
-
-        foreach (var organelle in instance.GetAllOrganelles())
-        {
-            var tooltip = packedTooltip.Instantiate<SelectionMenuToolTip>();
-
-            ToolTipManager.Instance.AddToolTip(tooltip, "organelleSelection");
-
-            tooltip.Description = organelle.Description;
-            tooltip.MutationPointCost = organelle.MPCost;
-            tooltip.Name = organelle.InternalName;
-            tooltip.DisplayName = organelle.Name;
-            tooltip.RequiresNucleus = organelle.RequiresNucleus;
-            tooltip.ThriveopediaPageName = organelle.InternalName;
-
-            if (organelle.Components.Storage != null)
-                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(), 0, "res://assets/textures/gui/bevel/StorageIcon.png");
-
-            tooltip.AddModifierInfo("OSMOREGULATION_COST", "+" + organelle.HexCount.ToString(), -1, "res://assets/textures/gui/bevel/osmoregulationIcon.png");
-        }
     }
 }

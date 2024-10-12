@@ -99,6 +99,8 @@ public partial class ToolTipManager : CanvasLayer
 
         ResolveNodeReferences();
 
+        CreateOrganelleTooltips();
+
         // Make sure the tooltip parent control is visible
         groupHolder.Show();
     }
@@ -514,6 +516,34 @@ public partial class ToolTipManager : CanvasLayer
             {
                 UpdateToolTipVisibility(tooltip, false);
             }
+        }
+    }
+
+    private void CreateOrganelleTooltips()
+    {
+        if (SimulationParameters.Instance == null)
+            return;
+
+        var packedTooltip = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn");
+
+        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        {
+            var tooltip = packedTooltip.Instantiate<SelectionMenuToolTip>();
+
+            Instance.AddToolTip(tooltip, "organelleSelection");
+
+            tooltip.Description = organelle.Description;
+            tooltip.MutationPointCost = organelle.MPCost;
+            tooltip.Name = organelle.InternalName;
+            tooltip.DisplayName = organelle.Name;
+            tooltip.RequiresNucleus = organelle.RequiresNucleus;
+            tooltip.ThriveopediaPageName = organelle.InternalName;
+            tooltip.ProcessesDescription = organelle.ProcessesDescription == null ? string.Empty : organelle.ProcessesDescription;
+
+            if (organelle.Components.Storage != null)
+                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(), 0, "res://assets/textures/gui/bevel/StorageIcon.png");
+
+            tooltip.AddModifierInfo("OSMOREGULATION_COST", "+" + organelle.HexCount.ToString(), -1, "res://assets/textures/gui/bevel/osmoregulationIcon.png");
         }
     }
 }
