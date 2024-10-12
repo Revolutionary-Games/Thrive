@@ -21,7 +21,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="SelectionMenuTooltip" type="PanelContainer"]
+[node name="SelectionMenuTooltip" type="PanelContainer" node_paths=PackedStringArray("modifierInfoList")]
 custom_minimum_size = Vector2(350, 0)
 offset_right = 350.0
 offset_bottom = 155.0
@@ -37,6 +37,7 @@ ProcessesDescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Processe
 ModifierListPath = NodePath("MarginContainer/VBoxContainer/ModifierList")
 ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
 MoreInfoPath = NodePath("MarginContainer/VBoxContainer/MoreInfo")
+modifierInfoList = NodePath("MarginContainer/VBoxContainer/ModifierList")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

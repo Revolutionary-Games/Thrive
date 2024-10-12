@@ -40,6 +40,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
 #pragma warning disable CA2213
+    [Export]
+    private VBoxContainer modifierInfoList = null!;
+
     private PackedScene modifierInfoScene = null!;
     private LabelSettings noProcessesFont = null!;
     private LabelSettings processTitleFont = null!;
@@ -50,7 +53,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private ModifierInfoLabel? osmoregulationModifier;
     private CustomRichTextLabel? descriptionLabel;
     private CustomRichTextLabel? processesDescriptionLabel;
-    private VBoxContainer modifierInfoList = null!;
     private ProcessList processList = null!;
     private VBoxContainer? moreInfo;
 #pragma warning restore CA2213
@@ -176,7 +178,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
         descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
         processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
-        modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<ProcessList>(ProcessListPath);
         moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
 
@@ -213,12 +214,15 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// <summary>
     ///   Instances the UI element for a modifier info
     /// </summary>
-    public void AddModifierInfo(string name, float value)
+    public void AddModifierInfo(string name, string value, float valueColor = 0, string? iconPath = null)
     {
         var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
         modifierInfo.DisplayName = name;
-        modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
+        modifierInfo.ModifierValue = value;
+
+        modifierInfo.AdjustValueColor(valueColor);
+        modifierInfo.ModifierIcon = string.IsNullOrEmpty(iconPath) ? null : GD.Load<Texture2D>(iconPath);
 
         modifierInfoList.AddChild(modifierInfo);
         modifierInfos.Add(modifierInfo);

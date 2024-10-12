@@ -31,6 +31,11 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
+    ///   Description of the organelle
+    /// </summary>
+    public string Description = null!;
+
+    /// <summary>
     ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
     ///   point outside from the cell)
     /// </summary>
