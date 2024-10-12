@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
 "Language: nl_BE\n"
@@ -614,6 +614,10 @@ msgstr "Veranderingsnotities zijn te lang"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Verander de symmetrie"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
 
 msgid "CHEATS"
 msgstr "Cheats"
@@ -1300,6 +1304,10 @@ msgstr "Cytoplasma Glycolyse"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "OxyToxy Synthese"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3183,6 +3191,10 @@ msgstr "Metabolosomen zijn clusters van proteïnen verpakt in eiwitomhulsels. Ze
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ratio schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gif afvuren door te drukken op [thrive:input]g_fire_toxin[/thrive:input]."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Chemosynthese"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4321,8 +4333,9 @@ msgstr "Het verwijderen van dit opgeslagen bestand kan niet ongedaan worden gema
 msgid "OXYGEN"
 msgstr "Zuurstof"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxisoom"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "OxyToxy Synthese"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5822,6 +5835,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de specifieke productie, opslag en afscheiding van oxytoxy gifstoffen. Meer gifstoffenvacuolen zullen de snelheid waarmee gifstoffen worden vrijgelaten kunnen vergroten."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Chemische verbindingen"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Zelfmoord"
 
@@ -5886,6 +5903,7 @@ msgstr ""
 "Vreedzame microben zullen anderen over grotere afstanden niet betrekken\n"
 "en zullen minder snel gifstoffen tegen roofdieren te gebruiken."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxine\n"
@@ -5897,6 +5915,10 @@ msgstr "De gifstoffenvacuole is een vacuole die speciaal aangepast is voor de sp
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Verandert [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. Kan gifstoffen afvuren door op [thrive:input]g_fire_toxin[/thrive:input] te drukken. Wanneer de hoeveelheid van [thrive:compound type=\"oxytoxy\"][/thrive:compound] laag is, is afvuren nog altijd mogelijk maar het zal minder schade doen."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxisoom"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Moet nog toegevoegd worden."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -601,6 +601,10 @@ msgstr "Poznámky ke změnám jsou příliš dlouhé"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Změnit symetrii"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 msgid "CHEATS"
 msgstr "Cheaty"
@@ -1329,6 +1333,10 @@ msgstr "Cytoplazmatická Glykolýza"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Syntéza OxyToxynů"
 
 msgid "DAY_LENGTH"
 msgstr "Délka dne"
@@ -3167,6 +3175,10 @@ msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytick
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Syntéza slizů"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4351,8 +4363,9 @@ msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale
 msgid "OXYGEN"
 msgstr "Kyslík"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxizom"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Syntéza OxyToxynů"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5804,6 +5817,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Sloučeniny"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
 
@@ -5868,6 +5885,7 @@ msgstr ""
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxinová\n"
@@ -5879,6 +5897,10 @@ msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produ
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxizom"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "K implementaci."

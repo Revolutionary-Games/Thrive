@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Cyrillic script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Cyrl/>\n"
 "Language: sr_Cyrl\n"
@@ -645,6 +645,10 @@ msgstr "Опис:"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Промените симетрију"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
 
 msgid "CHEATS"
 msgstr "Варање"
@@ -1336,6 +1340,10 @@ msgstr "Гликолиза цитоплазме"
 #, fuzzy
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Лепљива унутрашњост ћелије. Цитоплазма је основна смеша јона, протеина и других супстанци растворених у води која испуњава унутрашњост ћелије. Једна од функција коју обавља је ферментација, претварање глукозе у ATP енергију. Да би ћелије којима недостају органели имали напреднији метаболизам, на то се ослањају у енергији. Такође се користи за складиштење молекула у ћелији и за повећање величине ћелије."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Синтеза ОксиТокси"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3183,6 +3191,10 @@ msgstr "Метаболосоми су грозди протеина умотан
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Метаболосоми су грозди протеина умотани у протеинске љуске. Они су у стању да претворе глукозу у ATP много већом брзином него што се то може учинити у цитоплазми са процесу који се назива аеробно дисање. Међутим, потребан му је кисеоник да би функционисао, а нижи нивои кисеоника у околини успориће брзину његове производње ATP. Пошто су метаболосоми суспендовани директно у цитоплазми, околна течност врши одређену ферментацију."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Хемосинтеза"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4372,8 +4384,9 @@ msgstr "Брисање овог чувања не може се опозвати
 msgid "OXYGEN"
 msgstr "Кисеоник"
 
-msgid "OXYTOXISOME"
-msgstr "ОксиТоксизом"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Синтеза ОксиТокси"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5907,6 +5920,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Једињење"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Додајте ново везивање тастера"
 
@@ -5963,6 +5980,7 @@ msgstr "Здрав.:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Број популације од {0} променио се за {1} због: {2}"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Отровна\n"
@@ -5975,6 +5993,10 @@ msgstr "Отровна вакуола је вакуола која је моди
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Отровна вакуола је вакуола која је модификована за специфичну производњу, складиштење и излучивање окситокси токсина. Више отровне вакуола повећаће брзину ослобађања токсина."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "ОксиТоксизом"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Да се имплементира."

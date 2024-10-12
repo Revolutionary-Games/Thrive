@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -601,6 +601,10 @@ msgstr "Notas de atualização está muito longa"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar a simetria"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
 
 msgid "CHEATS"
 msgstr "Trapaças"
@@ -1294,6 +1298,10 @@ msgstr "Glicólise do Citoplasma"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Síntese de Oxitoxina"
 
 msgid "DAY_LENGTH"
 msgstr "Duração do dia"
@@ -3013,6 +3021,10 @@ msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidro
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Síntese de mucilagem"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir Manualmente a Hora do Dia"
 
@@ -4161,8 +4173,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Oxigênio"
 
-msgid "OXYTOXISOME"
-msgstr "Oxitoxissoma"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Síntese de Oxitoxina"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5573,6 +5586,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produção, armazenamento, e secreção de oxitoxinas. Mais vacúolos de toxinas vão aumentar a taxa na qual toxinas serão liberadas."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Compostos"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Dispara um projétil de toxina que danifica outras células"
 
@@ -5639,6 +5656,7 @@ msgstr ""
 "\n"
 "Após confirmar a descensão, você poderá editar as configurações do jogo para escolher uma nova semente de mundo e jogar em um mapa diferente ou desabilitar a vida baseada na realidade, por exemplo."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacúolo de\n"
@@ -5650,6 +5668,10 @@ msgstr "O vacúolo de toxinas é um vacúolo que foi modificado para a produçã
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Quantidade aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode disparar toxinas apertando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] ficar baixa, será possível disparar, mas o dano irá ser reduzido."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxitoxissoma"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."

@@ -42,6 +42,24 @@
       "glucose": 0.04
     }
   },
+  "cytotoxinSynthesis": {
+    "Name": "CYTOTOXIN_SYNTHESIS",
+    "Inputs": {
+      "atp": 8
+    },
+    "Outputs": {
+      "oxytoxy": 1.4
+    }
+  },
+  "bacterial_cytotoxinSynthesis": {
+    "Name": "CYTOTOXIN_SYNTHESIS",
+    "Inputs": {
+      "atp": 5
+    },
+    "Outputs": {
+      "oxytoxy": 0.14
+    }
+  },
   "oxytoxySynthesis": {
     "Name": "OXYTOXY_SYNTHESIS",
     "Inputs": {
@@ -54,6 +72,62 @@
   },
   "bacterial_oxytoxySynthesis": {
     "Name": "OXYTOXY_SYNTHESIS",
+    "Inputs": {
+      "oxygen": 0.21,
+      "atp": 5
+    },
+    "Outputs": {
+      "oxytoxy": 0.15
+    }
+  },
+  "macrolideSynthesis": {
+    "Name": "MACROLIDE_SYNTHESIS",
+    "Inputs": {
+      "atp": 8
+    },
+    "Outputs": {
+      "oxytoxy": 1.6
+    }
+  },
+  "bacterial_macrolideSynthesis": {
+    "Name": "MACROLIDE_SYNTHESIS",
+    "Inputs": {
+      "atp": 5
+    },
+    "Outputs": {
+      "oxytoxy": 0.16
+    }
+  },
+  "channelInhibitorSynthesis": {
+    "Name": "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS",
+    "Inputs": {
+      "atp": 8
+    },
+    "Outputs": {
+      "oxytoxy": 1.4
+    }
+  },
+  "bacterial_channelInhibitorSynthesis": {
+    "Name": "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS",
+    "Inputs": {
+      "atp": 5
+    },
+    "Outputs": {
+      "oxytoxy": 0.14
+    }
+  },
+  "oxygenInhibitorSynthesis": {
+    "Name": "OXYGEN_INHIBITOR_SYNTHESIS",
+    "Inputs": {
+      "oxygen": 1,
+      "atp": 8
+    },
+    "Outputs": {
+      "oxytoxy": 1.5
+    }
+  },
+  "bacterial_oxygenInhibitorSynthesis": {
+    "Name": "OXYGEN_INHIBITOR_SYNTHESIS",
     "Inputs": {
       "oxygen": 0.21,
       "atp": 5

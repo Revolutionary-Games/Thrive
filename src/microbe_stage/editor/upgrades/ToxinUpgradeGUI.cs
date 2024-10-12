@@ -71,7 +71,7 @@ public partial class ToxinUpgradeGUI : VBoxContainer, IOrganelleUpgrader
                 Math.Round(info.MPCost * costMultiplier)), (int)toxinType);
         }
 
-        var currentlySelectedType = ToxinType.Oxytoxy;
+        var currentlySelectedType = ToxinType.Cytotoxin;
 
         toxicitySlider.Value = 0;
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
 "Language: bg\n"
@@ -605,6 +605,10 @@ msgstr "Бележките към изданието са твърде дълг�
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Промяна на симетрията"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
 msgid "CHEATS"
 msgstr "Кодове"
@@ -1349,6 +1353,10 @@ msgstr "Цитоплазмена гликолиза"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Окситоксиносинтеза"
 
 msgid "DAY_LENGTH"
 msgstr "Продължителност на деня"
@@ -3129,6 +3137,10 @@ msgstr "Лизозомата е мембранен органел, съдърж�
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Секреция"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4298,8 +4310,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Кислород"
 
-msgid "OXYTOXISOME"
-msgstr "Окситоксизома"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Окситоксиносинтеза"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5744,6 +5757,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Токсичната вакуола е видоизменена вакуола, която произвежда, съхранява и изстрелва [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Всяка токсична вакуола увеличава скоростта на изстрелване на токсините."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Химични съединения"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Зависи от включването на „Земеподобен живот“"
 
@@ -5800,6 +5817,7 @@ msgstr "Вид:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Вкаменете тези създания, за да ги запазите в музея. Може да го посетите от Трайвопедията или да заредите създанията в редактора."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсична\n"
@@ -5811,6 +5829,10 @@ msgstr "Токсичната вакуола е видоизменена ваку
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Окситоксизома"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "В процес на разработка."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
@@ -636,6 +636,10 @@ msgstr "Kuvaus:"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Vaihda symmetriamoodia"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
 
 msgid "CHEATS"
 msgstr "Huijauskoodit"
@@ -1345,6 +1349,10 @@ msgstr "Soluliman glykolyysi"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]:ksi."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Happimyrkkysynteesi"
 
 msgid "DAY_LENGTH"
 msgstr "Vuorokauden pituus"
@@ -3236,6 +3244,10 @@ msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimi
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Kemosynteesi"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4432,8 +4444,9 @@ msgstr "Tämän tallennuksen poistamista ei voi kumota, haluatko varmasti poista
 msgid "OXYGEN"
 msgstr "Happi"
 
-msgid "OXYTOXISOME"
-msgstr "Happimyrkkysomi"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Happimyrkkysynteesi"
 
 msgid "OXYTOXISOME_DESC"
 msgstr ""
@@ -5946,6 +5959,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Yhdisteet"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Kuole"
 
@@ -6010,6 +6027,7 @@ msgstr ""
 "Passiiviset mikrobit pysyttelevät enemmän paikallaan ja eivät yleensä\n"
 "käytä esimerkiksi myrkkyjä toisia mikrobeja vastaan."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Myrkky-\n"
@@ -6020,6 +6038,10 @@ msgstr ""
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Ampuu myrkkyä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]varastot ovat alhaiset, ampuminen on edelleen mahdollista tuottaen vähemmän vahinkoa kohteelle."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Happimyrkkysomi"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Tullaan toteuttamaan tulevaisuudessa."
