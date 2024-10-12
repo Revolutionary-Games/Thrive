@@ -846,8 +846,6 @@ public partial class SimulationParameters : Node
 
             ToolTipManager.Instance.AddToolTip(tooltip, "organelleSelection");
 
-            tooltip._Ready();
-
             tooltip.Description = organelle.Description;
             tooltip.MutationPointCost = organelle.MPCost;
             tooltip.Name = organelle.InternalName;
@@ -856,11 +854,9 @@ public partial class SimulationParameters : Node
             tooltip.ThriveopediaPageName = organelle.InternalName;
 
             if (organelle.Components.Storage != null)
-                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(), 0);
+                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(), 0, "res://assets/textures/gui/bevel/StorageIcon.png");
 
-            tooltip.AddModifierInfo("OSMOREGULATION_COST", organelle.HexCount.ToString(), 1, "res://assets/textures/gui/bevel/osmoregulationIcon.png");
+            tooltip.AddModifierInfo("OSMOREGULATION_COST", "+" + organelle.HexCount.ToString(), -1, "res://assets/textures/gui/bevel/osmoregulationIcon.png");
         }
-
-        packedTooltip.Dispose();
     }
 }

@@ -216,6 +216,10 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// </summary>
     public void AddModifierInfo(string name, string value, float valueColor = 0, string? iconPath = null)
     {
+        // For stuff that loads too early
+        if (modifierInfoScene == null)
+            modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
+
         var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
         modifierInfo.DisplayName = name;
