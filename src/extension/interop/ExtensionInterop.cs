@@ -123,5 +123,5 @@ internal static partial class NativeMethods
     internal static extern int ExtensionGetVersion(IntPtr thriveConfig);
 
     [DllImport("thrive_extension")]
-    internal static extern int ArrayMeshUnwrap(IntPtr mesh, float texelSize);
+    internal static extern bool ArrayMeshUnwrap(IntPtr mesh, float texelSize);
 }

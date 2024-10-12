@@ -7,6 +7,8 @@
 #include "atlas/atlas_unwrap.hpp"
 #include "core/ThriveConfig.hpp"
 #include "nodes/DebugDrawer.hpp"
+#include <godot_cpp/core/object.hpp>
+#include <godot_cpp/variant/variant.hpp>
 
 // ------------------------------------ //
 int32_t ExtensionGetVersion(ThriveConfig* thriveConfig)
@@ -42,8 +44,15 @@ bool ArrayMeshUnwrap(ArrayMesh* mesh, float texelSize)
     {
         return false;
     }
-
-    return Thrive::Unwrap(*reinterpret_cast<godot::ArrayMesh*>(mesh), texelSize);
+	
+	godot::Variant* variant = reinterpret_cast<godot::Variant*>(mesh);
+	
+	if (variant->get_type() != godot::Variant::OBJECT)
+	{
+		return false;
+	}
+	
+    return Thrive::Unwrap(*dynamic_cast<godot::ArrayMesh*>((godot::Object *)&variant), texelSize);
 }
 
 void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* position, JColour* colour)
