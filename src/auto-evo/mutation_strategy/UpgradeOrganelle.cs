@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using AutoEvo;
 
-internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
+public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 {
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
-    private IComponentSpecificUpgrades upgrade;
+    private readonly IComponentSpecificUpgrades upgrade;
 
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades upgrade)
     {
@@ -31,8 +31,11 @@ internal class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
         foreach (OrganelleTemplate organelle in newSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
-            organelle.Upgrades ??= new OrganelleUpgrades();
-            organelle.Upgrades.CustomUpgradeData = upgrade;
+            if (allOrganelles.Contains(organelle.Definition))
+            {
+                organelle.Upgrades ??= new OrganelleUpgrades();
+                organelle.Upgrades.CustomUpgradeData = upgrade;
+            }
         }
 
         mutated.Add(new Tuple<MicrobeSpecies, float>(newSpecies, mp));
