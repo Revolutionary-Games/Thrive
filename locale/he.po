@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
 "Language: he\n"
@@ -246,6 +246,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "מאזן ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "הראה/החבא תרכובות"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "מימן גופרתי"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "מאזן ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "ייצור ATP"
@@ -577,6 +598,10 @@ msgstr "הערות שינוי ארוכות מידי"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "שנה סימטריה"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
 msgid "CHEATS"
 msgstr "קודים"
@@ -1284,6 +1309,10 @@ msgstr "גליקוליזה של הציטופלזמה"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "סינתזת \"אוקסיטוקסי\""
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3102,6 +3131,10 @@ msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנ
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "ייצור ריר"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4279,8 +4312,9 @@ msgstr "מחיקת שמירה זו היינו פעולה בלתי הפיכה, ה
 msgid "OXYGEN"
 msgstr "חמצן"
 
-msgid "OXYTOXISOME"
-msgstr "אוקסיטוקסיזום"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "סינתזת \"אוקסיטוקסי\""
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5724,6 +5758,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצור, אחסון והפרשה ספציפיים של רעלנים אוקסיטוקסיים. חלוליות רעלן נוספים יגדילו את קצב שחרור הרעלנים."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "תרכובות"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "חלק מהאפשרויות היו מבוטלים לשינוי אם LAWK מופעל"
 
@@ -5788,6 +5826,7 @@ msgstr ""
 "מיקרובים שלווים לא יתקפו אחרים למרחקים\n"
 "ופחות נוטים להשתמש ברעלנים כנגד טורפים."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "חלולית\n"
@@ -5799,6 +5838,10 @@ msgstr "חלולית רעלן היא חלולית שהשתנה לצורך ייצ
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "הופך[thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"oxygen\"][/thrive:compound]. ניתן לשחרר את הרעלן על ידי לחיצה על [thrive:input]g_fire_toxin[/thrive:input]."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "אוקסיטוקסיזום"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "יושם בקרוב."

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-09-26 20:52+0000\n"
-"Last-Translator: Finnjan Bonhage <finnjan.bonhage@gmail.com>\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -250,6 +250,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP-Saldo"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Substanzen ein-/ausblenden"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Schwefelwasserstoff"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "ATP-Saldo"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP-Produktion"
@@ -580,6 +601,10 @@ msgstr "Änderungsnotizen sind zu lang"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Ändern der Symmetrie"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 msgid "CHEATS"
 msgstr "Cheats"
@@ -1286,6 +1311,10 @@ msgstr "Zytoplasma-Glykolyse"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "OxyToxid-Synthese"
 
 msgid "DAY_LENGTH"
 msgstr "Tageslänge"
@@ -3102,6 +3131,10 @@ msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthä
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Enthält Verdauungsenzyme, welche die Geschwidigkeit und die Effizienz der Verdauung verbessern. Die Art des enthaltenen Enzyms kann verändert werden. Es kann nur ein Enzym pro Lysosom benutzt werden."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Synthese von Schleimstoffen"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Uhrzeit manuell einstellen"
 
@@ -4261,8 +4294,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Sauerstoff"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxisome"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "OxyToxid-Synthese"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5722,6 +5756,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, Lagerung und Sekretion von Oxytoxiden modifiziert wurde. Mehr Toxinvakuolen erhöhen die Geschwindigkeit, mit der Toxine freigesetzt werden können."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Substanzen"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Einige Optionen sind möglicherweise nicht verfügbar, wenn nur kohlenstoffbasiertes Leben aktiviert ist"
 
@@ -5778,6 +5816,7 @@ msgstr "Typ:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Mache diese Spezies zu einem Fossil um sie im Museum zu speichern. Du kannst von der Thriveopedia auf das Museum zugreifen, oder Fossile im Sandboxeditor laden."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxin-\n"
@@ -5789,6 +5828,10 @@ msgstr "Die Toxinvakuole ist eine Vakuole, die für die spezifische Produktion, 
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Menge niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxisome"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Noch zu implementieren."

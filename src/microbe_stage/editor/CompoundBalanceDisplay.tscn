@@ -42,5 +42,6 @@ item_count = 2
 popup/item_0/text = "COMPOUNDS_AT_EQUILIBRIUM"
 popup/item_0/id = 1
 popup/item_1/text = "COMPOUNDS_AT_MAX_SPEED"
+popup/item_1/id = 2
 
 [connection signal="item_selected" from="CompoundBalanceMode" to="." method="OnBalanceModeChanged"]

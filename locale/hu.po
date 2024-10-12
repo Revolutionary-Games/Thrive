@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
@@ -257,6 +257,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP egyensúly"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Hidrogén-szulfid"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "ATP egyensúly"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP előállítás"
@@ -591,6 +612,10 @@ msgstr "A leírás túl hosszú"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Szimmetria változtatása"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
 msgid "CHEATS"
 msgstr "Csalások"
@@ -1259,6 +1284,10 @@ msgstr "Citoplazma glikolízis"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "OxyToxy szintézis"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3108,6 +3137,10 @@ msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Nyálka szintézis"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4298,8 +4331,9 @@ msgstr "Biztos, hogy végérvényesen törölni akarod ezt a mentést?"
 msgid "OXYGEN"
 msgstr "Oxigén"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxyszóma"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "OxyToxy szintézis"
 
 msgid "OXYTOXISOME_DESC"
 msgstr ""
@@ -5773,6 +5807,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "A rusticyanin egy fehérje, ami szén-dioxid, és oxigén segítségével képes oxidálni a vasat egyik kémiai állapotból a másikba. Ez a folyamat (amit vas-légzésnek hívnak) energiát termel, amit a sejt később fel tud használni."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Vegyületek"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Egyes beállítások lehet, hogy nem elérhetők, hogyha a LAWK engedélyezve van"
 
@@ -5837,6 +5875,7 @@ msgstr ""
 "A békés sejtek nem kergetnek más prédákat,\n"
 "és kevesebb eséllyel használnak mérgeket ragadozók ellen."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Méreganyag\n"
@@ -5847,6 +5886,10 @@ msgstr ""
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxyszóma"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Fejlesztés alatt."

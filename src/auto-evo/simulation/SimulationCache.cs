@@ -26,7 +26,7 @@ public class SimulationCache
     private readonly CompoundDefinition mucilage = SimulationParameters.GetCompound(Compound.Mucilage);
 
     private readonly WorldGenerationSettings worldSettings;
-    private readonly Dictionary<(MicrobeSpecies, BiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
+    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
 
@@ -36,9 +36,9 @@ public class SimulationCache
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
         cachedGeneratedCompound = new();
 
-    private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, BiomeConditions), float> predationScores = new();
+    private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies, IBiomeConditions), float> predationScores = new();
 
-    private readonly Dictionary<(TweakedProcess, BiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
+    private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
     private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
@@ -67,7 +67,7 @@ public class SimulationCache
         return cached;
     }
 
-    public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, BiomeConditions biomeConditions)
+    public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, IBiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
         // different species but with same organelles to be able to use the same cache value) would be nice here
@@ -205,7 +205,7 @@ public class SimulationCache
     /// <param name="process">The process to calculate the speed for</param>
     /// <param name="biomeConditions">The biome conditions to use</param>
     /// <returns>The speed information for the process</returns>
-    public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, BiomeConditions biomeConditions)
+    public ProcessSpeedInformation GetProcessMaximumSpeed(TweakedProcess process, IBiomeConditions biomeConditions)
     {
         var key = (process, biomeConditions);
 
@@ -220,7 +220,7 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetPredationScore(Species species, Species preySpecies, BiomeConditions biomeConditions)
+    public float GetPredationScore(Species species, Species preySpecies, IBiomeConditions biomeConditions)
     {
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;

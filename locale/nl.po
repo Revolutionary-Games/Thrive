@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
@@ -262,6 +262,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP-balans"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Toon / verberg stoffen"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Waterstofsulfide"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "ATP-balans"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP Productie"
@@ -587,6 +608,10 @@ msgstr "Verandernotities zijn te lang"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Verander symmetrie"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 msgid "CHEATS"
 msgstr "Cheats"
@@ -1306,6 +1331,10 @@ msgstr "Cytoplasma Glycolyse"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "OxyToxy-synthse"
 
 msgid "DAY_LENGTH"
 msgstr "Daglengte"
@@ -3056,6 +3085,10 @@ msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Slijmsynthese"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Stel Handmatig Tijd In"
 
@@ -4216,8 +4249,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Zuurstof"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxysoom"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "OxyToxy-synthse"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5633,6 +5667,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de productie, opslag, en afscheiding van [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Meer gifstoffenvacuolen zullen de snelheid waarin gifstoffen kunnen worden afgegeven verhogen."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Verbindingen"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Sommige opties kunnen uitgeschakeld zijn als \"Enkel LZWHK\" ingeschakeld is"
 
@@ -5699,6 +5737,7 @@ msgstr ""
 "\n"
 "Zodra je besluit neer te dalen kun je een nieuw wereldkiemgetal kiezen om op een andere kaart te spelen. Ook kun je bijvoorbeeld LZWHK uitzetten."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxine\n"
@@ -5710,6 +5749,10 @@ msgstr "Het gifstoffenvacuool is een vacuool wat specifiek is aangepast voor de 
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxysoom"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Wordt Nog Geimplementeerd."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
 "Language: ca\n"
@@ -253,6 +253,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Equilibri d'ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Àcid Sulfhídric"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Equilibri d'ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Producció d'ATP"
@@ -589,6 +610,10 @@ msgstr "Les notes de canvi són massa llargues"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Canviar la simetria"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
 msgid "CHEATS"
 msgstr "Trucs"
@@ -1260,6 +1285,10 @@ msgstr "Glicòlisi de Citoplasma"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Síntesi de les toxines OxyToxy"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3096,6 +3125,10 @@ msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidr
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Síntesi de mucílag"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4301,8 +4334,9 @@ msgstr "L'acció d'eliminar aquest arxiu de guardat és irreversible. Esteu segu
 msgid "OXYGEN"
 msgstr "Oxigen"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxysoma"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Síntesi de les toxines OxyToxy"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5766,6 +5800,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la producció, emmagatzematge i secreció de Toxines OxyToxy. Com més quantitat d'aquests Vacúols tingui una cèl·lula, més ràpidament produirà aquestes Toxines."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Compostos"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Algunes opcions poden ser desactivades si només LAWK està activat"
 
@@ -5830,6 +5868,7 @@ msgstr ""
 "Els microbis pacífics desistiran de perseguir les seves preses abans\n"
 "i és menys probable que facin servir toxines contra depredadors."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxina\n"
@@ -5841,6 +5880,10 @@ msgstr "El Vacúol de Toxines, és un Vacúol que ha estat modificat per a la pr
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Allibera toxines quan es prem la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixa, encara és possible disparar, però el dany causat serà menor."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxysoma"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Encara no s'ha implementat."

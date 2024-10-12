@@ -122,9 +122,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     [JsonIgnore]
     public List<IOrganelleComponent> Components { get; } = new();
 
-    /// <summary>
-    ///   The upgrades that this organelle has which affect how the components function
-    /// </summary>
     [JsonProperty]
     public OrganelleUpgrades? Upgrades { get; private set; }
 

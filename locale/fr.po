@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-10-04 09:07+0000\n"
-"Last-Translator: syl <syl@gresille.org>\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -255,6 +255,29 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Niveau d'ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Sulfure d'hydrogène"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Niveau d'ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Production d'ATP"
@@ -578,6 +601,10 @@ msgstr "Les notes de changement sont trop longues"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Modifier la symétrie"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
 
 msgid "CHEATS"
 msgstr "Triches"
@@ -1257,6 +1284,10 @@ msgstr "Glycolyse cytoplasmique"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Synthèse d'OxyToxy"
 
 msgid "DAY_LENGTH"
 msgstr "Durée de la journée"
@@ -2276,9 +2307,8 @@ msgstr "TSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
-#, fuzzy
 msgid "HYDROGENASE"
-msgstr "Sulfure d'hydrogène"
+msgstr "Hydrogénase"
 
 #, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
@@ -2986,6 +3016,10 @@ msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contient des enzymes digestives. peut être modifié pour changer le type d'enzyme. Seul une enzyme peut être utilisé par lysosome. Les enzymes augmentent la vitesse et l'efficacité de la digestion."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Synthèse de mucilage"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4156,8 +4190,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Oxygène"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxisome"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Synthèse d'OxyToxy"
 
 msgid "OXYTOXISOME_DESC"
 msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
@@ -5579,6 +5614,10 @@ msgstr "Inhibiteur de canal"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
 
+#, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Composés"
+
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Cytotoxine"
 
@@ -5626,6 +5665,7 @@ msgstr "Type de toxine :"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacuole\n"
@@ -5636,6 +5676,10 @@ msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spé
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxisome"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."

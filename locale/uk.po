@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-05 11:32+0100\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -253,6 +253,27 @@ msgstr "АТФ"
 
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Показати/ приховати сполуки"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Сірководень"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "АТФ баланс"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТФ"
@@ -576,6 +597,10 @@ msgstr "Нотатки змін надто довгі"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Змінити симетрію"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Сповільнює продукування АТФ враженої клітини, внаслідок заважаючи їй рухатися швидко, а також може змусити клітину без залишків продукованого АТФ померти."
 
 msgid "CHEATS"
 msgstr "Чити"
@@ -1248,6 +1273,10 @@ msgstr "Цитоплазматичний Гліколіз"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Синтез окситоксину"
 
 msgid "DAY_LENGTH"
 msgstr "Тривалість дня"
@@ -2962,6 +2991,10 @@ msgstr "Лізосома– це мембранна органела, що мі�
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Містить травні ферменти. Можна модифікувати тип вмістимого ферменту. Можна використовувати тільки один фермент за раз."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Синтез слизу"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Установити час доби вручну"
 
@@ -4095,8 +4128,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Кисень"
 
-msgid "OXYTOXISOME"
-msgstr "Окситоксисома"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Синтез окситоксину"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5499,6 +5533,10 @@ msgstr "Канальний інгібітор"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Сповільнює продукування АТФ враженої клітини, внаслідок заважаючи їй рухатися швидко, а також може змусити клітину без залишків продукованого АТФ померти."
 
+#, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Сполуки"
+
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Цитотоксин"
 
@@ -5546,6 +5584,7 @@ msgstr "Тип токсину:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Різні типи токсинів мають різноманітні ефекти, кожен з яких є ефективним проти тих чи інших типів клітин. Якщо клітина має декілька типів токсинів, вони випорскуватимуться послідовно, а не водночас."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсинова\n"
@@ -5557,6 +5596,10 @@ msgstr "Токсинова вакуоля– це вакуоля модифік�
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирснути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound type=\"oxytoxy\"][/thrive:compound] недостатньо, то постріл можливий, але шкода буде незначною."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Окситоксисома"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізовано."
