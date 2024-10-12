@@ -25,21 +25,38 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             return null;
         }
 
-        var mutated = new List<Tuple<MicrobeSpecies, float>>();
-
-        MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
-
-        foreach (OrganelleTemplate organelle in newSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
+        bool validMutations = false;
+        foreach (OrganelleTemplate organelle in baseSpecies.Organelles)
         {
             if (allOrganelles.Contains(organelle.Definition))
             {
-                organelle.Upgrades ??= new OrganelleUpgrades();
-                organelle.Upgrades.CustomUpgradeData = upgrade;
+                validMutations = true;
+                break;
             }
         }
 
-        mutated.Add(new Tuple<MicrobeSpecies, float>(newSpecies, mp));
+        if (validMutations)
+        {
+            var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
-        return mutated;
+            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+
+            foreach (OrganelleTemplate organelle in newSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
+            {
+                if (allOrganelles.Contains(organelle.Definition))
+                {
+                    organelle.Upgrades ??= new OrganelleUpgrades();
+                    organelle.Upgrades.CustomUpgradeData = upgrade;
+                }
+            }
+
+            mutated.Add(new Tuple<MicrobeSpecies, float>(newSpecies, mp));
+
+            return mutated;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
