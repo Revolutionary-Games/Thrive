@@ -54,9 +54,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
             return mutated;
         }
-        else
-        {
-            return null;
-        }
+
+        return null;
     }
 }
