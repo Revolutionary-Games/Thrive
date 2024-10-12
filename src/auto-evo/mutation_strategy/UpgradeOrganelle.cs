@@ -41,7 +41,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 
             MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            foreach (OrganelleTemplate organelle in newSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
+            foreach (OrganelleTemplate organelle in newSpecies.Organelles)
             {
                 if (allOrganelles.Contains(organelle.Definition))
                 {
