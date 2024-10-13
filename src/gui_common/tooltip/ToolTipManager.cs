@@ -536,7 +536,8 @@ public partial class ToolTipManager : CanvasLayer
             tooltip.DisplayName = organelle.Name;
             tooltip.RequiresNucleus = organelle.RequiresNucleus;
             tooltip.ThriveopediaPageName = organelle.InternalName;
-            tooltip.ProcessesDescription = organelle.ProcessesDescription == null ? string.Empty :
+            tooltip.ProcessesDescription = organelle.ProcessesDescription == null ?
+                string.Empty :
                 organelle.ProcessesDescription;
 
             if (organelle.Components.Storage != null)
