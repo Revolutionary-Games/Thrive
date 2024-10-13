@@ -28,6 +28,9 @@
 /* SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                 */
 /**************************************************************************/
 
+// This is based on Godot's script: /modules/xatlas_unwrap/register_types.cpp
+// But made to work with UV1 layer and without lightmaps
+
 #include "atlas_unwrap.hpp"
 
 #include "godot_cpp/templates/local_vector.hpp"
