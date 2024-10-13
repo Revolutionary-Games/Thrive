@@ -555,7 +555,8 @@ public partial class ToolTipManager : CanvasLayer
 
                 tooltip.AddModifierInfo(new LocalizedString("DIGESTION_EFFICIENCY").ToString(),
                     "+" + (Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * 100 *
-                        Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%", 0,
+                        Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%",
+                    0,
                     "res://assets/textures/gui/bevel/DigestionIcon.png");
             }
 
