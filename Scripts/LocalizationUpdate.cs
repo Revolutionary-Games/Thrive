@@ -112,7 +112,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     private static readonly IReadOnlyCollection<string> TranslatedJSONKeys = new List<string>
     {
         "Description",
-	"ProcessesDescription",
+	    "ProcessesDescription",
         "DisplayName",
         "GroupName",
         "Message",
