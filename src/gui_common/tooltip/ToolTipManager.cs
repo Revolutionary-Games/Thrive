@@ -541,8 +541,9 @@ public partial class ToolTipManager : CanvasLayer
 
             if (organelle.Components.Storage != null)
             {
-                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(CultureInfo.CurrentCulture),
-                    0, "res://assets/textures/gui/bevel/StorageIcon.png");
+                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(
+                    CultureInfo.CurrentCulture),
+                        0, "res://assets/textures/gui/bevel/StorageIcon.png");
             }
         }
     }
