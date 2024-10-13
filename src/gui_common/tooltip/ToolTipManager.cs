@@ -536,13 +536,14 @@ public partial class ToolTipManager : CanvasLayer
             tooltip.DisplayName = organelle.Name;
             tooltip.RequiresNucleus = organelle.RequiresNucleus;
             tooltip.ThriveopediaPageName = organelle.InternalName;
-            tooltip.ProcessesDescription = organelle.ProcessesDescription == null ?
-                string.Empty : organelle.ProcessesDescription;
+            tooltip.ProcessesDescription = organelle.ProcessesDescription == null ? string.Empty :
+                organelle.ProcessesDescription;
 
             if (organelle.Components.Storage != null)
             {
-                tooltip.AddModifierInfo("STORAGE", "+" + organelle.Components.Storage.Capacity.ToString(
-                    CultureInfo.CurrentCulture), 0, "res://assets/textures/gui/bevel/StorageIcon.png");
+                tooltip.AddModifierInfo("STORAGE", 
+                    "+" + organelle.Components.Storage.Capacity.ToString(CultureInfo.CurrentCulture), 0,
+                    "res://assets/textures/gui/bevel/StorageIcon.png");
             }
         }
     }
