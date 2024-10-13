@@ -541,8 +541,26 @@ public partial class ToolTipManager : CanvasLayer
 
             if (organelle.Components.Storage != null)
             {
-                tooltip.AddModifierInfo("STORAGE",
+                tooltip.AddModifierInfo(new LocalizedString("STORAGE").ToString(),
                     "+" + organelle.Components.Storage.Capacity.ToString(CultureInfo.CurrentCulture), 0,
+                    "res://assets/textures/gui/bevel/StorageIcon.png");
+            }
+
+            if (organelle.Components.Lysosome != null)
+            {
+                tooltip.AddModifierInfo(new LocalizedString("DIGESTION_SPEED").ToString(),
+                    "+" + (Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND * Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString(CultureInfo.CurrentCulture), 0,
+                    "res://assets/textures/gui/bevel/StorageIcon.png");
+
+                tooltip.AddModifierInfo(new LocalizedString("DIGESTION_EFFICIENCY").ToString(),
+                    "+" + (Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture), 0,
+                    "res://assets/textures/gui/bevel/StorageIcon.png");
+            }
+
+            if (organelle.Components.Movement != null)
+            {
+                tooltip.AddModifierInfo(new LocalizedString("SPEED").ToString(),
+                    "+" + organelle.Components.Movement.Momentum.ToString(CultureInfo.CurrentCulture), 0,
                     "res://assets/textures/gui/bevel/StorageIcon.png");
             }
         }
