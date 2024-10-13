@@ -10,30 +10,6 @@ using Godot;
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
-    [Export]
-    public NodePath? NameLabelPath;
-
-    [Export]
-    public NodePath MpLabelPath = null!;
-
-    [Export]
-    public NodePath RequiresNucleusPath = null!;
-
-    [Export]
-    public NodePath DescriptionLabelPath = null!;
-
-    [Export]
-    public NodePath ProcessesDescriptionLabelPath = null!;
-
-    [Export]
-    public NodePath ModifierListPath = null!;
-
-    [Export]
-    public NodePath ProcessListPath = null!;
-
-    [Export]
-    public NodePath MoreInfoPath = null!;
-
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
@@ -47,13 +23,28 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private LabelSettings noProcessesFont = null!;
     private LabelSettings processTitleFont = null!;
 
+    [Export]
     private Label? nameLabel;
+
+    [Export]
     private Label? mpLabel;
+
+    [Export]
     private Label? requiresNucleusLabel;
+
+    [Export]
     private ModifierInfoLabel? osmoregulationModifier;
+
+    [Export]
     private CustomRichTextLabel? descriptionLabel;
+
+    [Export]
     private CustomRichTextLabel? processesDescriptionLabel;
+
+    [Export]
     private ProcessList processList = null!;
+
+    [Export]
     private VBoxContainer? moreInfo;
 #pragma warning restore CA2213
 
@@ -173,14 +164,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     public override void _Ready()
     {
-        nameLabel = GetNode<Label>(NameLabelPath);
-        mpLabel = GetNode<Label>(MpLabelPath);
-        requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
-        descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
-        processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
-        processList = GetNode<ProcessList>(ProcessListPath);
-        moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
-
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller.tres");
         processTitleFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller-Gold.tres");
@@ -192,11 +175,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateRequiresNucleus();
         UpdateLists();
         UpdateMoreInfo();
-
-        // Update osmoregulation cost last after the modifier list has been populated
-        // to make sure this tooltip even has an osmoregulation cost modifier
-        osmoregulationModifier = GetModifierInfo("osmoregulationCost");
-        UpdateOsmoregulationCost();
     }
 
     public override void _EnterTree()
@@ -216,10 +194,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// </summary>
     public void AddModifierInfo(string name, string value, float valueColor = 0, string? iconPath = null)
     {
-        // For stuff that loads too early
-        if (modifierInfoScene == null)
-            modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
-
         var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
         modifierInfo.DisplayName = name;
@@ -347,16 +321,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     {
         if (disposing)
         {
-            if (NameLabelPath != null)
+            if (modifierInfoScene != null)
             {
-                NameLabelPath.Dispose();
-                MpLabelPath.Dispose();
-                RequiresNucleusPath.Dispose();
-                DescriptionLabelPath.Dispose();
-                ProcessesDescriptionLabelPath.Dispose();
-                ModifierListPath.Dispose();
-                ProcessListPath.Dispose();
-                MoreInfoPath.Dispose();
                 modifierInfoScene.Dispose();
             }
         }

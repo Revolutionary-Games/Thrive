@@ -31,6 +31,11 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
+    ///   Description of processes the organelle performs
+    /// </summary>
+    public string? ProcessesDescription;
+
+    /// <summary>
     ///   Description of the organelle
     /// </summary>
     public string Description = null!;
@@ -94,11 +99,6 @@ public class OrganelleDefinition : IRegistryType
     ///   features that <see cref="Components"/> provides.
     /// </summary>
     public OrganelleFeatureTag[] FeatureTags = Array.Empty<OrganelleFeatureTag>();
-
-    /// <summary>
-    ///   Description of processes the organelle performs
-    /// </summary>
-    public string? ProcessesDescription = null;
 
     /// <summary>
     ///   Defines the processes this organelle does and their speed multipliers
