@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 11:00+0200\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -1496,9 +1496,16 @@ msgstr "어려움"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "보통"
 
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "설명:"
+
+#, fuzzy
+msgid "DIGESTION_SPEED"
+msgstr "자원 흡수 속도"
 
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
@@ -4326,6 +4333,10 @@ msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "산소 합성"
 
 #, fuzzy
+msgid "OXYTOXISOME_DESC"
+msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
+
+#, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
@@ -5313,6 +5324,9 @@ msgstr "종:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "종:"
 
+msgid "SPEED"
+msgstr "속도"
+
 msgid "SPEED_COLON"
 msgstr "속도:"
 
@@ -5430,6 +5444,9 @@ msgstr "임의 사용자 이름:"
 
 msgid "STOP"
 msgstr ""
+
+msgid "STORAGE"
+msgstr "저장소"
 
 #, fuzzy
 msgid "STORAGE_COLON"
@@ -5684,6 +5701,9 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
+msgid "THYLAKOID"
+msgstr "틸라코이드"
+
 msgid "THYLAKOIDS"
 msgstr "틸라코이드"
 
@@ -5891,10 +5911,6 @@ msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound typ
 #, fuzzy
 msgid "TOXISOME"
 msgstr "옥시톡시솜"
-
-#, fuzzy
-msgid "TOXISOME_DESCRIPTION"
-msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
@@ -8092,23 +8108,6 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
-
-#, fuzzy
-#~ msgid "DIGESTION_SPEED"
-#~ msgstr "자원 흡수 속도"
-
-#, fuzzy
-#~ msgid "OXYTOXISOME_DESC"
-#~ msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
-
-#~ msgid "SPEED"
-#~ msgstr "속도"
-
-#~ msgid "STORAGE"
-#~ msgstr "저장소"
-
-#~ msgid "THYLAKOID"
-#~ msgstr "틸라코이드"
 
 #, fuzzy
 #~ msgid "ASCENSION"

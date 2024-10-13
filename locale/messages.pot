@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 11:00+0200\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,7 +101,7 @@ msgstr ""
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:215
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:218
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
 
@@ -109,7 +109,7 @@ msgstr ""
 msgid "ADDITIONAL_VALIDATION_FAILED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1439
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -145,7 +145,7 @@ msgstr ""
 msgid "AGENT_NAME"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:188
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:191
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:771
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1460
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
@@ -486,13 +486,13 @@ msgstr ""
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:175
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:274
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:311
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:348
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:456
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:510
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:178
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:963
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1000
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1037
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1145
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1199
 msgid "BASE_MOBILITY"
 msgstr ""
 
@@ -607,15 +607,16 @@ msgstr ""
 msgid "BILLION_ABBREVIATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:792
+#: ../simulation_parameters/microbe_stage/organelles.json:760
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:600
 msgid "BINDING_AGENT"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:793
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:602
 msgid "BINDING_AGENT_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:794
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:601
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -623,7 +624,8 @@ msgstr ""
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1090
+#: ../simulation_parameters/microbe_stage/organelles.json:1044
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:842
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr ""
 
@@ -670,11 +672,11 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:77
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:441
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1130
 msgid "CALCIUM_CARBONATE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:442
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1131
 msgid "CALCIUM_CARBONATE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -702,7 +704,7 @@ msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:197
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:103
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:106
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
@@ -716,10 +718,10 @@ msgstr ""
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:374
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:428
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:487
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:541
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1063
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1117
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1176
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1230
 msgid "CANNOT_ENGULF"
 msgstr ""
 
@@ -798,11 +800,11 @@ msgid "CELLULASE_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:39
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:333
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1022
 msgid "CELLULOSE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:334
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1023
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -814,7 +816,7 @@ msgstr ""
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:122
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:125
 msgid "CHANGE_THE_SYMMETRY"
 msgstr ""
 
@@ -841,27 +843,29 @@ msgstr ""
 msgid "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:529
+#: ../simulation_parameters/microbe_stage/organelles.json:507
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:714
 msgid "CHEMOPLAST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:530
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:716
 msgid "CHEMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:715
 msgid "CHEMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:987
+#: ../simulation_parameters/microbe_stage/organelles.json:947
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:567
 msgid "CHEMORECEPTOR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:988
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:569
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:989
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:568
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -869,15 +873,16 @@ msgstr ""
 msgid "CHEMOSYNTHESIS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:200
+#: ../simulation_parameters/microbe_stage/organelles.json:192
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:354
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:201
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:356
 msgid "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:202
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:355
 msgid "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -887,7 +892,7 @@ msgid "CHEMO_SYNTHESIS"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:58
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1076
 msgid "CHITIN"
 msgstr ""
 
@@ -899,19 +904,20 @@ msgstr ""
 msgid "CHITINASE_DESCRIPTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:388
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1077
 msgid "CHITIN_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:844
+#: ../simulation_parameters/microbe_stage/organelles.json:810
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:668
 msgid "CHLOROPLAST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:845
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:670
 msgid "CHLOROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:846
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:669
 msgid "CHLOROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -923,7 +929,7 @@ msgstr ""
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:337
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:333
 msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -936,15 +942,16 @@ msgstr ""
 msgid "CHUNK_FOOD_SOURCE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1171
+#: ../simulation_parameters/microbe_stage/organelles.json:1122
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:583
 msgid "CILIA"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1172
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:585
 msgid "CILIA_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1173
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:584
 msgid "CILIA_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1584,7 +1591,7 @@ msgstr ""
 msgid "CREATED_ON_PLATFORM"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:143
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:146
 msgid "CREATE_A_NEW_MICROBE"
 msgstr ""
 
@@ -1662,12 +1669,12 @@ msgstr ""
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:886
+#: ../simulation_parameters/microbe_stage/organelles.json:850
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:256
 msgid "CYTOPLASM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:167
-#: ../simulation_parameters/microbe_stage/organelles.json:887
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:258
 msgid "CYTOPLASM_DESCRIPTION"
 msgstr ""
 
@@ -1676,8 +1683,7 @@ msgstr ""
 msgid "CYTOPLASM_GLYCOLYSIS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:168
-#: ../simulation_parameters/microbe_stage/organelles.json:888
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:257
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -1889,8 +1895,16 @@ msgstr ""
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:876
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:907
 msgid "DIGESTION_EFFICIENCY_COLON"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:870
+msgid "DIGESTION_SPEED"
 msgstr ""
 
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:902
@@ -2008,7 +2022,7 @@ msgid "DOT_DOT_DOT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:21
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:296
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:985
 msgid "DOUBLE"
 msgstr ""
 
@@ -2016,7 +2030,7 @@ msgstr ""
 msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:986
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -2514,7 +2528,7 @@ msgstr ""
 msgid "FEARFUL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:206
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:209
 msgid "FEAR_EXPLANATION"
 msgstr ""
 
@@ -2546,15 +2560,16 @@ msgstr ""
 msgid "FEED_ITEM_TRUNCATED_NOTICE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1275
+#: ../simulation_parameters/microbe_stage/organelles.json:1222
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:739
 msgid "FERROPLAST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1276
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:741
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1277
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:740
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -2572,7 +2587,7 @@ msgstr ""
 msgid "FINISHED_DOT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:109
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:112
 msgid "FINISH_EDITING_AND_RETURN_TO_ENVIRONMENT"
 msgstr ""
 
@@ -2593,11 +2608,12 @@ msgstr ""
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:566
+#: ../simulation_parameters/microbe_stage/organelles.json:542
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:501
 msgid "FLAGELLUM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:567
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:503
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr ""
 
@@ -2605,7 +2621,7 @@ msgstr ""
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:568
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:502
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -2647,7 +2663,7 @@ msgstr ""
 msgid "FOCUSED"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:227
 msgid "FOCUS_EXPLANATION"
 msgstr ""
 
@@ -2886,7 +2902,7 @@ msgstr ""
 msgid "GUI"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:764
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1453
 msgid "GUI_LIGHT_EFFECTS_OPTION_DESCRIPTION"
 msgstr ""
 
@@ -2898,13 +2914,13 @@ msgstr ""
 msgid "GUI_VOLUME"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:180
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:290
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:327
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:364
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:418
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:472
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:526
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:183
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:979
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1016
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1053
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1107
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1215
 msgid "HEALTH"
 msgstr ""
 
@@ -2973,15 +2989,16 @@ msgstr ""
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:411
+#: ../simulation_parameters/microbe_stage/organelles.json:395
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:307
 msgid "HYDROGENASE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:412
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:309
 msgid "HYDROGENASE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:413
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:308
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4178,15 +4195,16 @@ msgstr ""
 msgid "LOW_MENU_PERFORMANCE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1222
+#: ../simulation_parameters/microbe_stage/organelles.json:1171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:862
 msgid "LYSOSOME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1223
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:864
 msgid "LYSOSOME_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1224
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:863
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4274,7 +4292,7 @@ msgstr ""
 msgid "MEMBRANE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:160
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:163
 msgid "MEMBRANE_RIGIDITY"
 msgstr ""
 
@@ -4290,15 +4308,16 @@ msgstr ""
 msgid "MESOPELAGIC"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:377
+#: ../simulation_parameters/microbe_stage/organelles.json:363
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:280
 msgid "METABOLOSOMES"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:378
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:282
 msgid "METABOLOSOMES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:379
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:281
 msgid "METABOLOSOMES_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4631,15 +4650,16 @@ msgstr ""
 msgid "MISSING_TITLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:648
+#: ../simulation_parameters/microbe_stage/organelles.json:620
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:645
 msgid "MITOCHONDRION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:649
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:647
 msgid "MITOCHONDRION_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:650
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:646
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -4819,7 +4839,7 @@ msgstr ""
 msgid "MORE_INFO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:139
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:129
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
@@ -5087,7 +5107,7 @@ msgstr ""
 msgid "NEXT_CAPITAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:115
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:118
 msgid "NEXT_EDITOR_TAB"
 msgstr ""
 
@@ -5096,27 +5116,29 @@ msgstr ""
 msgid "NITROGEN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:123
+#: ../simulation_parameters/microbe_stage/organelles.json:119
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:401
 msgid "NITROGENASE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:124
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:403
 msgid "NITROGENASE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:125
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:402
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:448
+#: ../simulation_parameters/microbe_stage/organelles.json:430
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:748
 msgid "NITROGEN_FIXING_PLASTID"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:449
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:750
 msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:450
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:749
 msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5190,11 +5212,11 @@ msgid "NONE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:3
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:259
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:948
 msgid "NORMAL"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:260
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:949
 msgid "NORMAL_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -5268,7 +5290,7 @@ msgstr ""
 msgid "NO_MODS_ENABLED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:419
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.cs:458
 msgid "NO_ORGANELLE_PROCESSES"
 msgstr ""
 
@@ -5288,7 +5310,8 @@ msgstr ""
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:958
+#: ../simulation_parameters/microbe_stage/organelles.json:920
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:623
 msgid "NUCLEUS"
 msgstr ""
 
@@ -5296,11 +5319,11 @@ msgstr ""
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:959
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:625
 msgid "NUCLEUS_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:960
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:624
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr ""
 
@@ -5318,7 +5341,7 @@ msgstr ""
 msgid "N_A"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:78
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:75
 msgid "N_A_MP"
 msgstr ""
 
@@ -5379,7 +5402,7 @@ msgstr ""
 msgid "OPEN_GOD_TOOLS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:64
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:67
 msgid "OPEN_HELP_SCREEN"
 msgstr ""
 
@@ -5419,7 +5442,7 @@ msgstr ""
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:57
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:60
 msgid "OPEN_THE_MENU"
 msgstr ""
 
@@ -5431,7 +5454,7 @@ msgstr ""
 msgid "OPERATION_PAUSED_DOT"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:197
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:200
 msgid "OPPORTUNISM_EXPLANATION"
 msgstr ""
 
@@ -5460,11 +5483,12 @@ msgstr ""
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1316
+#: ../simulation_parameters/microbe_stage/organelles.json:1261
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:899
 msgid "ORGANELLE_AXON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1317
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:900
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
@@ -5472,23 +5496,25 @@ msgstr ""
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1359
+#: ../simulation_parameters/microbe_stage/organelles.json:1303
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:921
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1360
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:922
 msgid "ORGANELLE_MYOFIBRIL_DESCRIPTION"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/organelles.json:25
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:551
 msgid "ORGANELLE_PILUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:26
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:553
 msgid "ORGANELLE_PILUS_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:27
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:552
 msgid "ORGANELLE_PILUS_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -5512,7 +5538,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:689
+#: ../src/microbe_stage/OrganelleDefinition.cs:679
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -5520,13 +5546,37 @@ msgstr ""
 msgid "OSMOREGULATION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:279
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:316
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:353
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:407
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:461
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:515
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:116
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:270
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:297
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:324
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:346
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:371
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:393
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:415
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:438
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:477
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:521
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:543
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:559
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:575
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:592
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:615
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:637
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:660
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:683
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:706
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:729
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:763
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:787
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:810
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:833
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:890
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:968
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1005
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1042
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1096
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1150
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1204
 msgid "OSMOREGULATION_COST"
 msgstr ""
 
@@ -5581,12 +5631,16 @@ msgstr ""
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:241
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:426
+msgid "OXYTOXISOME_DESC"
+msgstr ""
+
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:425
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:267
-#: ../simulation_parameters/microbe_stage/organelles.json:728
+#: ../simulation_parameters/microbe_stage/organelles.json:255
+#: ../simulation_parameters/microbe_stage/organelles.json:696
 msgid "OXYTOXY_NT"
 msgstr ""
 
@@ -5664,7 +5718,7 @@ msgstr ""
 msgid "PATCH_MAP"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:806
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1495
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
@@ -5799,9 +5853,9 @@ msgstr ""
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:369
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:477
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:531
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1058
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1166
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1220
 msgid "PHYSICAL_RESISTANCE"
 msgstr ""
 
@@ -5963,7 +6017,7 @@ msgstr ""
 msgid "PROTEINS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:166
+#: ../simulation_parameters/microbe_stage/organelles.json:160
 msgid "PROTOPLASM"
 msgstr ""
 
@@ -5992,7 +6046,7 @@ msgstr ""
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:148
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:151
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
@@ -6031,7 +6085,7 @@ msgstr ""
 msgid "REDO"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:136
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:139
 msgid "REDO_THE_LAST_ACTION"
 msgstr ""
 
@@ -6071,7 +6125,7 @@ msgstr ""
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
-#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:98
+#: ../src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn:95
 msgid "REQUIRES_NUCLEUS"
 msgstr ""
 
@@ -6107,8 +6161,8 @@ msgstr ""
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:434
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1069
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1123
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
@@ -6120,12 +6174,12 @@ msgstr ""
 msgid "RESOLUTION"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:285
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:322
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:359
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:413
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:467
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:521
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:974
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1011
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1048
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1102
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1156
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1210
 msgid "RESOURCE_ABSORBTION_SPEED"
 msgstr ""
 
@@ -6204,7 +6258,7 @@ msgstr ""
 msgid "RIGID"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:161
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:164
 msgid "RIGIDITY_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -6262,16 +6316,17 @@ msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1656
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
-#: ../simulation_parameters/microbe_stage/organelles.json:88
+#: ../simulation_parameters/microbe_stage/organelles.json:86
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:379
 msgid "RUSTICYANIN"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/enzymes.json:19
-#: ../simulation_parameters/microbe_stage/organelles.json:89
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:381
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:90
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:380
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -6538,7 +6593,7 @@ msgstr ""
 msgid "SESSILE"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1446
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
@@ -6583,7 +6638,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:776
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1465
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
@@ -6595,7 +6650,8 @@ msgstr ""
 msgid "SIDEROPHORE_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1067
+#: ../simulation_parameters/microbe_stage/organelles.json:1023
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:818
 msgid "SIGNALING_AGENT"
 msgstr ""
 
@@ -6603,11 +6659,11 @@ msgstr ""
 msgid "SIGNALING_AGENTS_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1068
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:820
 msgid "SIGNALING_AGENT_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1069
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:819
 msgid "SIGNALING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -6636,11 +6692,11 @@ msgid "SIGNAL_TO_EMIT"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/membranes.json:95
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:495
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1184
 msgid "SILICA"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:496
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1185
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
@@ -6653,15 +6709,16 @@ msgstr ""
 msgid "SLIDESHOW"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1023
+#: ../simulation_parameters/microbe_stage/organelles.json:981
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:529
 msgid "SLIME_JET"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1024
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:531
 msgid "SLIME_JET_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1025
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:530
 msgid "SLIME_JET_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -6813,6 +6870,10 @@ msgstr ""
 msgid "SPECIES_WITH_POPULATION"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:509
+msgid "SPEED"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:889
 msgid "SPEED_COLON"
 msgstr ""
@@ -6956,6 +7017,31 @@ msgstr ""
 msgid "STOP"
 msgstr ""
 
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:264
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:291
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:318
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:340
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:365
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:387
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:409
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:432
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:471
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:515
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:537
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:609
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:631
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:654
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:677
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:723
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:757
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:781
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:804
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:827
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:883
+msgid "STORAGE"
+msgstr ""
+
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:881
 msgid "STORAGE_COLON"
 msgstr ""
@@ -7051,7 +7137,7 @@ msgid "SUICIDE_BUTTON_TOOLTIP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:204
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1484
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:510
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:213
@@ -7168,7 +7254,7 @@ msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:223
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:789
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1478
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:378
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:503
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:168
@@ -7199,27 +7285,29 @@ msgstr ""
 msgid "THEORY_TEAM"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1126
+#: ../simulation_parameters/microbe_stage/organelles.json:1079
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:691
 msgid "THERMOPLAST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1127
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:693
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1128
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:692
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:482
+#: ../simulation_parameters/microbe_stage/organelles.json:462
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:447
 msgid "THERMOSYNTHASE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:483
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:449
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:484
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:448
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -7293,11 +7381,15 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:335
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:332
+msgid "THYLAKOID"
+msgstr ""
+
+#: ../simulation_parameters/microbe_stage/organelles.json:323
 msgid "THYLAKOIDS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:336
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:334
 msgid "THYLAKOIDS_DESCRIPTION"
 msgstr ""
 
@@ -7444,13 +7536,13 @@ msgstr ""
 msgid "TOTAL_SAVES"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:287
-#: ../simulation_parameters/microbe_stage/organelles.json:746
+#: ../simulation_parameters/microbe_stage/organelles.json:275
+#: ../simulation_parameters/microbe_stage/organelles.json:714
 msgid "TOXIN_CHANNEL_INHIBITOR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:288
-#: ../simulation_parameters/microbe_stage/organelles.json:747
+#: ../simulation_parameters/microbe_stage/organelles.json:276
+#: ../simulation_parameters/microbe_stage/organelles.json:715
 #: ../src/microbe_stage/ToxinType.cs:34
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr ""
@@ -7459,13 +7551,13 @@ msgstr ""
 msgid "TOXIN_COMPOUND"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:263
-#: ../simulation_parameters/microbe_stage/organelles.json:723
+#: ../simulation_parameters/microbe_stage/organelles.json:251
+#: ../simulation_parameters/microbe_stage/organelles.json:691
 msgid "TOXIN_CYTOTOXIN"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:264
-#: ../simulation_parameters/microbe_stage/organelles.json:724
+#: ../simulation_parameters/microbe_stage/organelles.json:252
+#: ../simulation_parameters/microbe_stage/organelles.json:692
 #: ../src/microbe_stage/ToxinType.cs:22
 msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr ""
@@ -7474,30 +7566,30 @@ msgstr ""
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:277
-#: ../simulation_parameters/microbe_stage/organelles.json:737
+#: ../simulation_parameters/microbe_stage/organelles.json:265
+#: ../simulation_parameters/microbe_stage/organelles.json:705
 msgid "TOXIN_MACROLIDE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:278
-#: ../simulation_parameters/microbe_stage/organelles.json:738
+#: ../simulation_parameters/microbe_stage/organelles.json:266
+#: ../simulation_parameters/microbe_stage/organelles.json:706
 #: ../src/microbe_stage/ToxinType.cs:28
 msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:297
-#: ../simulation_parameters/microbe_stage/organelles.json:755
+#: ../simulation_parameters/microbe_stage/organelles.json:285
+#: ../simulation_parameters/microbe_stage/organelles.json:723
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:298
-#: ../simulation_parameters/microbe_stage/organelles.json:756
+#: ../simulation_parameters/microbe_stage/organelles.json:286
+#: ../simulation_parameters/microbe_stage/organelles.json:724
 #: ../src/microbe_stage/ToxinType.cs:40
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:268
-#: ../simulation_parameters/microbe_stage/organelles.json:729
+#: ../simulation_parameters/microbe_stage/organelles.json:256
+#: ../simulation_parameters/microbe_stage/organelles.json:697
 #: ../src/microbe_stage/ToxinType.cs:16
 msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr ""
@@ -7514,9 +7606,9 @@ msgstr ""
 msgid "TOXIN_PROPERTIES_HEADING"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:423
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:482
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:536
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1112
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1171
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:1225
 msgid "TOXIN_RESISTANCE"
 msgstr ""
 
@@ -7535,27 +7627,25 @@ msgstr ""
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:699
+#: ../simulation_parameters/microbe_stage/organelles.json:669
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:795
 msgid "TOXIN_VACUOLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:700
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:797
 msgid "TOXIN_VACUOLE_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:701
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:796
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:239
+#: ../simulation_parameters/microbe_stage/organelles.json:229
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:424
 msgid "TOXISOME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:240
-msgid "TOXISOME_DESCRIPTION"
-msgstr ""
-
-#: ../simulation_parameters/microbe_stage/organelles.json:1091
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:843
 msgid "TO_BE_IMPLEMENTED"
 msgstr ""
 
@@ -7736,7 +7826,7 @@ msgstr ""
 msgid "UNDO"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:129
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:132
 msgid "UNDO_THE_LAST_ACTION"
 msgstr ""
 
@@ -7862,11 +7952,11 @@ msgstr ""
 msgid "UNTITLED"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1187
+#: ../simulation_parameters/microbe_stage/organelles.json:1136
 msgid "UPGRADE_CILIA_PULL"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1188
+#: ../simulation_parameters/microbe_stage/organelles.json:1137
 msgid "UPGRADE_CILIA_PULL_DESCRIPTION"
 msgstr ""
 
@@ -7874,31 +7964,31 @@ msgstr ""
 msgid "UPGRADE_COST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:47
-#: ../simulation_parameters/microbe_stage/organelles.json:1034
-#: ../simulation_parameters/microbe_stage/organelles.json:1184
+#: ../simulation_parameters/microbe_stage/organelles.json:45
+#: ../simulation_parameters/microbe_stage/organelles.json:990
+#: ../simulation_parameters/microbe_stage/organelles.json:1133
 msgid "UPGRADE_DESCRIPTION_NONE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:46
-#: ../simulation_parameters/microbe_stage/organelles.json:1033
-#: ../simulation_parameters/microbe_stage/organelles.json:1183
+#: ../simulation_parameters/microbe_stage/organelles.json:44
+#: ../simulation_parameters/microbe_stage/organelles.json:989
+#: ../simulation_parameters/microbe_stage/organelles.json:1132
 msgid "UPGRADE_NAME_NONE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:50
+#: ../simulation_parameters/microbe_stage/organelles.json:48
 msgid "UPGRADE_PILUS_INJECTISOME"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:51
+#: ../simulation_parameters/microbe_stage/organelles.json:49
 msgid "UPGRADE_PILUS_INJECTISOME_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1037
+#: ../simulation_parameters/microbe_stage/organelles.json:993
 msgid "UPGRADE_SLIME_JET_MUCOCYST"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:1038
+#: ../simulation_parameters/microbe_stage/organelles.json:994
 msgid "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION"
 msgstr ""
 
@@ -7950,11 +8040,12 @@ msgstr ""
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:611
+#: ../simulation_parameters/microbe_stage/organelles.json:585
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:772
 msgid "VACUOLE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:612
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:774
 msgid "VACUOLE_DESCRIPTION"
 msgstr ""
 
@@ -7966,7 +8057,7 @@ msgstr ""
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/organelles.json:613
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:773
 msgid "VACUOLE_PROCESSES_DESCRIPTION"
 msgstr ""
 
@@ -9998,7 +10089,7 @@ msgstr ""
 msgid "WIKI_YES"
 msgstr ""
 
-#: ../src/gui_common/tooltip/ToolTipManager.tscn:91
+#: ../src/gui_common/tooltip/ToolTipManager.tscn:94
 msgid "WILL_YOU_THRIVE"
 msgstr ""
 

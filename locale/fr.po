@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 11:00+0200\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1462,8 +1462,14 @@ msgstr "Difficile"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
+msgid "DIGESTION_EFFICIENCY"
+msgstr "Efficacité de la digestion"
+
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Efficacité de la digestion :"
+
+msgid "DIGESTION_SPEED"
+msgstr "Vitesse d'absorption des ressources"
 
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Vitesse de digestion :"
@@ -4188,6 +4194,9 @@ msgstr "Oxygène"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Synthèse d'OxyToxy"
 
+msgid "OXYTOXISOME_DESC"
+msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -5091,6 +5100,9 @@ msgstr "Espèce à trouver :"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} avec population : {1}"
 
+msgid "SPEED"
+msgstr "Vitesse"
+
 msgid "SPEED_COLON"
 msgstr "Vitesse :"
 
@@ -5201,6 +5213,9 @@ msgstr "Souche"
 
 msgid "STOP"
 msgstr "Stop"
+
+msgid "STORAGE"
+msgstr "Stockage"
 
 msgid "STORAGE_COLON"
 msgstr "Stockage :"
@@ -5470,6 +5485,9 @@ msgstr "Carte des secteurs"
 msgid "THRIVE_LICENSES"
 msgstr "Licences de Thrive"
 
+msgid "THYLAKOID"
+msgstr "Thylakoïde"
+
 msgid "THYLAKOIDS"
 msgstr "Thylakoïdes"
 
@@ -5662,10 +5680,6 @@ msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxytoxisome"
-
-#, fuzzy
-msgid "TOXISOME_DESCRIPTION"
-msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."
@@ -7919,24 +7933,6 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
-
-#~ msgid "DIGESTION_EFFICIENCY"
-#~ msgstr "Efficacité de la digestion"
-
-#~ msgid "DIGESTION_SPEED"
-#~ msgstr "Vitesse d'absorption des ressources"
-
-#~ msgid "OXYTOXISOME_DESC"
-#~ msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
-
-#~ msgid "SPEED"
-#~ msgstr "Vitesse"
-
-#~ msgid "STORAGE"
-#~ msgstr "Stockage"
-
-#~ msgid "THYLAKOID"
-#~ msgstr "Thylakoïde"
 
 #, fuzzy
 #~ msgid "ASCENSION"

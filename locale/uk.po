@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 11:00+0200\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1451,8 +1451,14 @@ msgstr "Важкий"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Нормальний"
 
+msgid "DIGESTION_EFFICIENCY"
+msgstr "Ефективність травлення"
+
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Ефективність травлення:"
+
+msgid "DIGESTION_SPEED"
+msgstr "Швидкість травлення"
 
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Швидкість травлення:"
@@ -4126,6 +4132,10 @@ msgstr "Кисень"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Синтез окситоксину"
 
+#, fuzzy
+msgid "OXYTOXISOME_DESC"
+msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирскнути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли кількість [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелика, то постріл можливий, але шкода буде незначною."
 
@@ -5025,6 +5035,9 @@ msgstr "Наявні види:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} з популяції: {1}"
 
+msgid "SPEED"
+msgstr "Швидкість"
+
 msgid "SPEED_COLON"
 msgstr "Швидкість:"
 
@@ -5134,6 +5147,9 @@ msgstr "Рід"
 
 msgid "STOP"
 msgstr "Стоп"
+
+msgid "STORAGE"
+msgstr "Збереження"
 
 msgid "STORAGE_COLON"
 msgstr "Збереження:"
@@ -5394,6 +5410,9 @@ msgstr "Мапа ділянок"
 msgid "THRIVE_LICENSES"
 msgstr "Ліцензії Thrive"
 
+msgid "THYLAKOID"
+msgstr "Тилакоїд"
+
 msgid "THYLAKOIDS"
 msgstr "Тилакоїди"
 
@@ -5581,10 +5600,6 @@ msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] н
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Окситоксисома"
-
-#, fuzzy
-msgid "TOXISOME_DESCRIPTION"
-msgstr "Лізосома– це мембранна органела, що містить гідролітичні ферменти, що розчеплюють різноманітні біомолекули. Лізосоми дозволяють клітинам перетравлювати матеріали, поглинуті ендоцитозом та очищати відходи клітини в процесі, що називається [b]автофагією[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізовано."
@@ -7772,25 +7787,6 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
-
-#~ msgid "DIGESTION_EFFICIENCY"
-#~ msgstr "Ефективність травлення"
-
-#~ msgid "DIGESTION_SPEED"
-#~ msgstr "Швидкість травлення"
-
-#, fuzzy
-#~ msgid "OXYTOXISOME_DESC"
-#~ msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
-
-#~ msgid "SPEED"
-#~ msgstr "Швидкість"
-
-#~ msgid "STORAGE"
-#~ msgstr "Збереження"
-
-#~ msgid "THYLAKOID"
-#~ msgstr "Тилакоїд"
 
 #, fuzzy
 #~ msgid "ASCENSION"

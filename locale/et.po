@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 11:00+0200\n"
+"POT-Creation-Date: 2024-10-11 16:09+0300\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1514,9 +1514,16 @@ msgstr "Raske"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Keskmine"
 
+msgid "DIGESTION_EFFICIENCY"
+msgstr ""
+
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Kirjeldus on liiga pikk"
+
+#, fuzzy
+msgid "DIGESTION_SPEED"
+msgstr "Ressursi neeldumiskiirus"
 
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
@@ -4453,6 +4460,10 @@ msgstr "Hapnik"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Oksütotsiin"
 
+#, fuzzy
+msgid "OXYTOXISOME_DESC"
+msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
+
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
@@ -5418,6 +5429,9 @@ msgstr "Liigid:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} elanikkonnaga: {1}"
 
+msgid "SPEED"
+msgstr "Kiirus"
+
 msgid "SPEED_COLON"
 msgstr "Kiirus:"
 
@@ -5535,6 +5549,9 @@ msgstr "tüvirakk"
 #, fuzzy
 msgid "STOP"
 msgstr "Peatus"
+
+msgid "STORAGE"
+msgstr "Varud"
 
 #, fuzzy
 msgid "STORAGE_COLON"
@@ -5803,6 +5820,9 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thrive litsentsid"
 
+msgid "THYLAKOID"
+msgstr "Tülakoid"
+
 msgid "THYLAKOIDS"
 msgstr "Tülakoidid"
 
@@ -6021,10 +6041,6 @@ msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thriv
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oksütoksisoom"
-
-#, fuzzy
-msgid "TOXISOME_DESCRIPTION"
-msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Pole veel mängus."
@@ -8294,23 +8310,6 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
-
-#, fuzzy
-#~ msgid "DIGESTION_SPEED"
-#~ msgstr "Ressursi neeldumiskiirus"
-
-#, fuzzy
-#~ msgid "OXYTOXISOME_DESC"
-#~ msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
-
-#~ msgid "SPEED"
-#~ msgstr "Kiirus"
-
-#~ msgid "STORAGE"
-#~ msgstr "Varud"
-
-#~ msgid "THYLAKOID"
-#~ msgstr "Tülakoid"
 
 #, fuzzy
 #~ msgid "ASCENSION"
