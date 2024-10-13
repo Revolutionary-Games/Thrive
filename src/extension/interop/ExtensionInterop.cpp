@@ -2,6 +2,7 @@
 #include "ExtensionInterop.h"
 
 #include <godot_cpp/classes/array_mesh.hpp>
+#include <godot_cpp/classes/object.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 
 #include "atlas/atlas_unwrap.hpp"
@@ -38,21 +39,17 @@ void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, J
             *reinterpret_cast<godot::Color*>(colour));
 }
 
-bool ArrayMeshUnwrap(ArrayMesh* mesh, float texelSize)
+bool ArrayMeshUnwrap(ArrayMeshVariant* mesh, float texelSize)
 {
-    if (mesh == nullptr)
-    {
-        return false;
-    }
+	godot::Variant* var = reinterpret_cast<godot::Variant*>(mesh);
 	
-	godot::Variant* variant = reinterpret_cast<godot::Variant*>(mesh);
+	godot::Object* obj = (godot::Object *)var;
 	
-	if (variant->get_type() != godot::Variant::OBJECT)
-	{
-		return false;
-	}
+	obj->is_class("ArrayMesh");
 	
-    return Thrive::Unwrap(*dynamic_cast<godot::ArrayMesh*>((godot::Object *)&variant), texelSize);
+	godot::ArrayMesh* arrayMesh = godot::Object::cast_to<godot::ArrayMesh>(obj);
+	
+    return Thrive::Unwrap(*arrayMesh, texelSize);
 }
 
 void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* position, JColour* colour)

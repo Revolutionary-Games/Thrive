@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
+using Godot.NativeInterop;
 using Array = Godot.Collections.Array;
 
 /// <summary>
@@ -119,7 +120,11 @@ public class DualContourer
         ArrayMesh mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
-        bool generated = NativeMethods.ArrayMeshUnwrap(mesh.NativeInstance, 1.0f);
+        var nativeVariant = Variant.From(mesh).CopyNativeVariant();
+
+        bool generated = NativeMethods.ArrayMeshUnwrap(ref nativeVariant, 1.0f);
+
+        nativeVariant.Dispose();
 
         GD.Print("Succeded?: " + generated);
 

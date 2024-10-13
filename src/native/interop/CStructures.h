@@ -12,7 +12,7 @@ extern "C"
     typedef struct PhysicsShape PhysicsShape;
     typedef struct ThriveConfig ThriveConfig;
     typedef struct DebugDrawer DebugDrawer;
-    typedef struct ArrayMesh ArrayMesh;
+    typedef struct ArrayMeshVariant ArrayMeshVariant;
 
     typedef struct JVec3
     {
