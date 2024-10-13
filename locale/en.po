@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 14:35+0300\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -4071,9 +4071,6 @@ msgstr "Oxygen"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Oxygen Inhibitor Synthesis"
 
-msgid "OXYTOXISOME_DESC"
-msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"oxygen\"][/thrive:compound]. Can release toxins by pressing [thrive:input]g_fire_toxin[/thrive:input]. When [thrive:compound type=\"oxytoxy\"][/thrive:compound] amount is low, shooting is still possible but will have reduced damage."
 
@@ -5336,9 +5333,6 @@ msgstr "Patch Map"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenses"
 
-msgid "THYLAKOID"
-msgstr "Thylakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Thylakoids"
 
@@ -5522,6 +5516,10 @@ msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:comp
 
 msgid "TOXISOME"
 msgstr "Toxisome"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "The lysosome is a membrane-bound organelle that contain hydrolytic enzymes that can break down various biomolecules. Lysosomes allow the cell to digest materials ingested through endocytosis and clean waste products of the cell in a process called [b]autophagy[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "To be Implemented."
@@ -8043,6 +8041,12 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thylakoid"
 
 #~ msgid "STAGES_BUTTON"
 #~ msgstr "Stages"
