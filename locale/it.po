@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 11:00+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -1447,14 +1447,8 @@ msgstr "Difficile"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normale"
 
-msgid "DIGESTION_EFFICIENCY"
-msgstr "Efficienza di digestione"
-
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Efficienza di digestione:"
-
-msgid "DIGESTION_SPEED"
-msgstr "Velocità di digestione"
 
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Velocità di digestione:"
@@ -4310,10 +4304,6 @@ msgstr "Ossigeno"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Sintesi dell'OssiTossi"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]. Il danno aumenta con la quantità disponibile."
 
@@ -5255,9 +5245,6 @@ msgstr "Specie:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} con popolazione: {1}"
 
-msgid "SPEED"
-msgstr "Velocità"
-
 msgid "SPEED_COLON"
 msgstr "Velocità:"
 
@@ -5372,9 +5359,6 @@ msgstr "Staminale"
 
 msgid "STOP"
 msgstr "Stop"
-
-msgid "STORAGE"
-msgstr "Spazio di stoccaggio"
 
 msgid "STORAGE_COLON"
 msgstr "Spazio di stoccaggio:"
@@ -5631,9 +5615,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Licenze Thrive"
 
-msgid "THYLAKOID"
-msgstr "Tilacoide"
-
 msgid "THYLAKOIDS"
 msgstr "Tilacoidi"
 
@@ -5848,6 +5829,10 @@ msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:
 #, fuzzy
 msgid "TOXISOME"
 msgstr "OssiTossisoma"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Da implementare."
@@ -8026,6 +8011,25 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#~ msgid "DIGESTION_EFFICIENCY"
+#~ msgstr "Efficienza di digestione"
+
+#~ msgid "DIGESTION_SPEED"
+#~ msgstr "Velocità di digestione"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
+#~ msgid "SPEED"
+#~ msgstr "Velocità"
+
+#~ msgid "STORAGE"
+#~ msgstr "Spazio di stoccaggio"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tilacoide"
 
 #, fuzzy
 #~ msgid "ASCENSION"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 11:00+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1486,14 +1486,8 @@ msgstr "Schwer"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normal"
 
-msgid "DIGESTION_EFFICIENCY"
-msgstr "Verdauungseffizienz"
-
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Verdauungseffizienz:"
-
-msgid "DIGESTION_SPEED"
-msgstr "Ressourcen-Absorptionsgeschwindigkeit"
 
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Ressourcen-Absorptionsgeschwindigkeit:"
@@ -4298,10 +4292,6 @@ msgstr "Sauerstoff"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "OxyToxid-Synthese"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"oxygen\"][/thrive:compound] ab. Kann durch Drücken von [thrive:input]g_fire_toxin[/thrive:input] Giftstoffe freisetzen. Wenn die [thrive:compound type=\"oxytoxy\"][/thrive:compound]-Konzentration niedrig ist, ist das Schießen immer noch möglich, aber der Schaden ist geringer."
 
@@ -5237,9 +5227,6 @@ msgstr "Suche nach Art:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} mit Bevölkerung: {1}"
 
-msgid "SPEED"
-msgstr "Geschwindigkeit"
-
 msgid "SPEED_COLON"
 msgstr "Geschwindigkeit:"
 
@@ -5354,9 +5341,6 @@ msgstr "Stamm"
 
 msgid "STOP"
 msgstr "Stopp"
-
-msgid "STORAGE"
-msgstr "Speicher"
 
 msgid "STORAGE_COLON"
 msgstr "Speicherplatz:"
@@ -5623,9 +5607,6 @@ msgstr "Gebietskarte"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Lizenzen"
 
-msgid "THYLAKOID"
-msgstr "Thylakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Thylakoide"
 
@@ -5832,6 +5813,10 @@ msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:comp
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxytoxisome"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Das Lysosom ist eine von einer Membran umschlossene Organelle. Es enthält hydrolytische Enzyme, welche verschiedenste Biomoleküle aufbrechen können. Lysosomen erlauben der Zelle Materialien zu verdauen, welche mit Endozytose aufgenommen wurden und Abfallprodukte der Zelle mit einen Prozess namens [b]Autophagie[/b] auszuscheiden."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Noch zu implementieren."
@@ -8023,6 +8008,25 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "DIGESTION_EFFICIENCY"
+#~ msgstr "Verdauungseffizienz"
+
+#~ msgid "DIGESTION_SPEED"
+#~ msgstr "Ressourcen-Absorptionsgeschwindigkeit"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
+
+#~ msgid "SPEED"
+#~ msgstr "Geschwindigkeit"
+
+#~ msgid "STORAGE"
+#~ msgstr "Speicher"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thylakoid"
 
 #, fuzzy
 #~ msgid "ASCENSION"

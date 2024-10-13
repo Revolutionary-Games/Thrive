@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 11:00+0200\n"
 "PO-Revision-Date: 2024-10-11 05:29+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1437,14 +1437,8 @@ msgstr "困難"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "普通"
 
-msgid "DIGESTION_EFFICIENCY"
-msgstr "消化效率"
-
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "消化效率："
-
-msgid "DIGESTION_SPEED"
-msgstr "消化速度"
 
 msgid "DIGESTION_SPEED_COLON"
 msgstr "消化速度："
@@ -4071,9 +4065,6 @@ msgstr "氧"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "氧抑制劑合成"
 
-msgid "OXYTOXISOME_DESC"
-msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率與[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。可以透過按下[thrive:input]g_fire_toxin[/thrive:input]釋放毒素。當[thrive:compound type=\"oxytoxy\"][/thrive:compound] 儲量較低時仍然可以釋放，但傷害會降低。"
 
@@ -4966,9 +4957,6 @@ msgstr "尋找物種："
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0} 的種群數量：{1}"
 
-msgid "SPEED"
-msgstr "速度"
-
 msgid "SPEED_COLON"
 msgstr "速度："
 
@@ -5075,9 +5063,6 @@ msgstr "幹細胞"
 
 msgid "STOP"
 msgstr "停止"
-
-msgid "STORAGE"
-msgstr "儲存空間"
 
 msgid "STORAGE_COLON"
 msgstr "儲存空間："
@@ -5336,9 +5321,6 @@ msgstr "區域地圖"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive 授權條款"
 
-msgid "THYLAKOID"
-msgstr "類囊體"
-
 msgid "THYLAKOIDS"
 msgstr "類囊體"
 
@@ -5522,6 +5504,10 @@ msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:com
 
 msgid "TOXISOME"
 msgstr "毒素體"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "等待實現。"
@@ -7788,6 +7774,24 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#~ msgid "DIGESTION_EFFICIENCY"
+#~ msgstr "消化效率"
+
+#~ msgid "DIGESTION_SPEED"
+#~ msgstr "消化速度"
+
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
+
+#~ msgid "SPEED"
+#~ msgstr "速度"
+
+#~ msgid "STORAGE"
+#~ msgstr "儲存空間"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "類囊體"
 
 #, fuzzy
 #~ msgid "ASCENSION"

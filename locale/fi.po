@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 11:00+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -1537,16 +1537,9 @@ msgstr "Vaikea"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Normaali"
 
-msgid "DIGESTION_EFFICIENCY"
-msgstr "Sulatuksen Tehokkuus"
-
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Kuvaus on liian pitkä"
-
-#, fuzzy
-msgid "DIGESTION_SPEED"
-msgstr "Resurssien imeytymisen nopeus"
 
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
@@ -4448,9 +4441,6 @@ msgstr "Happi"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Happimyrkkysynteesi"
 
-msgid "OXYTOXISOME_DESC"
-msgstr ""
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"oxytoxy\"]oxytoxyksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]. Voi päästää myrkkyjä painamalla [thrive:input]g_fire_toxin[/thrive:input]. Kun [thrive:compound type=\"oxytoxy\"][/thrive:compound]n pitoisuudet ovat alhaiset, ampuminen on edelleen mahdollista, mutta aiheuttaa vähemmän vahinkoa."
 
@@ -5431,9 +5421,6 @@ msgstr "Lajit:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}:n populaatio: {1}"
 
-msgid "SPEED"
-msgstr "Nopeus"
-
 msgid "SPEED_COLON"
 msgstr "Nopeus:"
 
@@ -5552,9 +5539,6 @@ msgstr "Kantasolu"
 #, fuzzy
 msgid "STOP"
 msgstr "Stop"
-
-msgid "STORAGE"
-msgstr "Varastotila"
 
 msgid "STORAGE_COLON"
 msgstr "Varastotila:"
@@ -5823,9 +5807,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thriven lisenssit"
 
-msgid "THYLAKOID"
-msgstr "Tylakoidi"
-
 msgid "THYLAKOIDS"
 msgstr "Tylakoidit"
 
@@ -6042,6 +6023,10 @@ msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:com
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Happimyrkkysomi"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Metabolosomit, eli aineenvaihduntaelimet ovat proteiinikuorien koteloimia proteiiniryppäitä, jotka muuntavat glukoosia ATP:ksi. Näiden energian tuotanto on solulimaa tehokkaampaa johtuen prosessista, jota kutsutaan aerobiseksi energiantuotoksi. Siinä glykolyysin lisäksi tapahtuu muita toimintoja, jotka tuottavat pelkkää glykolyysiä huomattavasti enemmän ATP:tä. Tämä prosessi tarvitsee kuitenkin happea toimiakseen, ja siten ympäristön happipitoisuus vaikuttaa muunnosnopeuteen."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Tullaan toteuttamaan tulevaisuudessa."
@@ -8307,6 +8292,22 @@ msgstr "Zoomaa sisään"
 
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
+
+#~ msgid "DIGESTION_EFFICIENCY"
+#~ msgstr "Sulatuksen Tehokkuus"
+
+#, fuzzy
+#~ msgid "DIGESTION_SPEED"
+#~ msgstr "Resurssien imeytymisen nopeus"
+
+#~ msgid "SPEED"
+#~ msgstr "Nopeus"
+
+#~ msgid "STORAGE"
+#~ msgstr "Varastotila"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tylakoidi"
 
 #, fuzzy
 #~ msgid "ASCENSION"

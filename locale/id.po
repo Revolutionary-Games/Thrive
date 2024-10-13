@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 11:00+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -1497,16 +1497,9 @@ msgstr "Sulit"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Sedang"
 
-msgid "DIGESTION_EFFICIENCY"
-msgstr ""
-
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Deskripsi:"
-
-#, fuzzy
-msgid "DIGESTION_SPEED"
-msgstr "Kecepatan Serap Sumber Daya"
 
 #, fuzzy
 msgid "DIGESTION_SPEED_COLON"
@@ -4357,10 +4350,6 @@ msgstr "Oksigen"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Sintesis OksiToksi"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"oxygen\"][/thrive:compound]. Dapat meluncurkan toksin dengan menekan tombol [thrive:input]g_fire_toxin[/thrive:input]."
 
@@ -5341,9 +5330,6 @@ msgstr "Spesies:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "Populasi Spesies"
 
-msgid "SPEED"
-msgstr "Kecepatan"
-
 msgid "SPEED_COLON"
 msgstr "Kecepatan:"
 
@@ -5464,9 +5450,6 @@ msgstr "Induk"
 #, fuzzy
 msgid "STOP"
 msgstr "Stop"
-
-msgid "STORAGE"
-msgstr "Penyimpanan"
 
 #, fuzzy
 msgid "STORAGE_COLON"
@@ -5728,9 +5711,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Lisensi dan Libraries yang Digunakan"
 
-msgid "THYLAKOID"
-msgstr "Tilakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Tilakoid"
 
@@ -5936,6 +5916,10 @@ msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thriv
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oksitoksisom"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Metabolosom adalah gugusan protein terbungkus dalam kulit protein. Mereka dapat mengkonversi glukosa menjadi ATP pada laju yang lebih tinggi daripada yang terjadi di sitoplasma dengan proses yang dinamakan Respirasi Aerob. Namun, proses tersebut tentu membutuhkan oksigen untuk berfungsi, dan tingkat oksigen yang lebih rendah di lingkungan akan memperlambat laju produksi ATP-nya. Karena metabolosom tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Untuk di implementasi."
@@ -8131,6 +8115,23 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "DIGESTION_SPEED"
+#~ msgstr "Kecepatan Serap Sumber Daya"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
+
+#~ msgid "SPEED"
+#~ msgstr "Kecepatan"
+
+#~ msgid "STORAGE"
+#~ msgstr "Penyimpanan"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tilakoid"
 
 #, fuzzy
 #~ msgid "ASCENSION"

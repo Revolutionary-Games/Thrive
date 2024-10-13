@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 11:00+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1527,14 +1527,8 @@ msgstr "Трудно"
 msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "Нормално"
 
-msgid "DIGESTION_EFFICIENCY"
-msgstr "Хранителна ефективност"
-
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr "Хранителна ефективност:"
-
-msgid "DIGESTION_SPEED"
-msgstr "Хранителна скорост"
 
 msgid "DIGESTION_SPEED_COLON"
 msgstr "Хранителна скорост:"
@@ -4314,10 +4308,6 @@ msgstr "Кислород"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Окситоксиносинтеза"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]. Количеството зависи от концентрацията на [thrive:compound type=\"oxygen\"]кислород[/thrive:compound] в околната среда. Изстрелва токсини с натискане на [thrive:input]g_fire_toxin[/thrive:input]. Тяхната ефективност зависи от количеството на [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound] в клетката."
 
@@ -5242,9 +5232,6 @@ msgstr "Има създания:"
 msgid "SPECIES_WITH_POPULATION"
 msgstr "{0}: {1} индивида"
 
-msgid "SPEED"
-msgstr "Скорост"
-
 msgid "SPEED_COLON"
 msgstr "Скорост:"
 
@@ -5357,9 +5344,6 @@ msgstr "Стволова"
 
 msgid "STOP"
 msgstr "Спиране"
-
-msgid "STORAGE"
-msgstr "Съхранение"
 
 msgid "STORAGE_COLON"
 msgstr "Съхранение:"
@@ -5624,9 +5608,6 @@ msgstr "Карта на зоните"
 msgid "THRIVE_LICENSES"
 msgstr "Лицензи на „Thrive“"
 
-msgid "THYLAKOID"
-msgstr "Тилакоид"
-
 msgid "THYLAKOIDS"
 msgstr "Тилакоиди"
 
@@ -5833,6 +5814,10 @@ msgstr "Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] 
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Окситоксизома"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "В процес на разработка."
@@ -8029,6 +8014,25 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "DIGESTION_EFFICIENCY"
+#~ msgstr "Хранителна ефективност"
+
+#~ msgid "DIGESTION_SPEED"
+#~ msgstr "Хранителна скорост"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Окситоксизомата е видоизменена метаболозома, която произвежда примитивна форма на токсичния агент [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]."
+
+#~ msgid "SPEED"
+#~ msgstr "Скорост"
+
+#~ msgid "STORAGE"
+#~ msgstr "Съхранение"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Тилакоид"
 
 #, fuzzy
 #~ msgid "ASCENSION"
