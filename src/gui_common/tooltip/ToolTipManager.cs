@@ -550,12 +550,12 @@ public partial class ToolTipManager : CanvasLayer
             {
                 tooltip.AddModifierInfo(new LocalizedString("DIGESTION_SPEED").ToString(),
                     "+" + (Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND *
-                    Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString(CultureInfo.CurrentCulture), 0,
+                        Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString(CultureInfo.CurrentCulture), 0,
                     "res://assets/textures/gui/bevel/DigestionSpeedIcon.png");
 
                 tooltip.AddModifierInfo(new LocalizedString("DIGESTION_EFFICIENCY").ToString(),
                     "+" + (Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * 100 *
-                    Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%", 0,
+                        Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%", 0,
                     "res://assets/textures/gui/bevel/DigestionIcon.png");
             }
 
