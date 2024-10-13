@@ -562,7 +562,7 @@ public partial class ToolTipManager : CanvasLayer
             if (organelle.Components.Movement != null)
             {
                 tooltip.AddModifierInfo(new LocalizedString("SPEED").ToString(),
-                    "+7", 0,
+                    "+0.7", 0,
                     "res://assets/textures/gui/bevel/SpeedIcon.png");
             }
         }
