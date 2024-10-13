@@ -317,19 +317,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         return true;
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (modifierInfoScene != null)
-            {
-                modifierInfoScene.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateName()
     {
         if (nameLabel == null)
