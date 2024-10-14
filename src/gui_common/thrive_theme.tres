@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://kmtq0av2alnp" path="res://assets/textures/gui/bevel/CheckADisabled.svg" id="15_xv0jb"]
 [ext_resource type="Texture2D" uid="uid://77ftcyji8ftt" path="res://assets/textures/gui/bevel/Grab.svg" id="17_hkxud"]
 [ext_resource type="Texture2D" uid="uid://wvtbp8xg2fg5" path="res://assets/textures/gui/bevel/GrabDisabled.svg" id="18_jmus8"]
-[ext_resource type="Texture2D" uid="uid://ddfqdpkhm2x8l" path="res://assets/textures/gui/bevel/GrabHover.svg" id="19_rvxr8"]
+[ext_resource type="Texture2D" uid="uid://cs4ewaw3baruk" path="res://assets/textures/gui/bevel/GrabClick.svg" id="19_ucfam"]
 [ext_resource type="Texture2D" uid="uid://c8u4uaeedwcs3" path="res://assets/textures/gui/bevel/vSeparatorUp.png" id="20_4os0c"]
 [ext_resource type="Texture2D" uid="uid://c87pmuytu68hf" path="res://assets/textures/gui/bevel/MenuDownArrow.svg" id="21_68djs"]
 [ext_resource type="FontFile" uid="uid://b62thy1er4r08" path="res://assets/fonts/Lato-Bold.ttf" id="23_s6elw"]
@@ -733,7 +733,7 @@ HSeparator/constants/separation = 4
 HSeparator/styles/separator = SubResource("16")
 HSlider/icons/grabber = ExtResource("17_hkxud")
 HSlider/icons/grabber_disabled = ExtResource("18_jmus8")
-HSlider/icons/grabber_highlight = ExtResource("19_rvxr8")
+HSlider/icons/grabber_highlight = ExtResource("19_ucfam")
 HSlider/icons/tick = null
 HSlider/styles/grabber_area = SubResource("17")
 HSlider/styles/grabber_area_highlight = SubResource("18")
