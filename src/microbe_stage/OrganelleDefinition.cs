@@ -455,6 +455,11 @@ public class OrganelleDefinition : IRegistryType
 
         // Components list is now allowed to be empty as some organelles do not need any components
 
+        if (string.IsNullOrEmpty(Description))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Description is not set or empty");
+        }
+
         if (Density < 100)
         {
             throw new InvalidRegistryDataException(name, GetType().Name, "Density is unset or unrealistically low");
