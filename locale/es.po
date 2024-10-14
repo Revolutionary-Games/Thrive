@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
+"POT-Creation-Date: 2024-10-09 14:29+0300\n"
 "PO-Revision-Date: 2024-09-20 12:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -606,6 +606,10 @@ msgstr "Las notas de cambios son demasiado largas"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Cambiar la simetría"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 msgid "CHEATS"
 msgstr "Trucos"
@@ -1321,6 +1325,10 @@ msgstr "Glicólisis Citoplasmática"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Síntesis de OxiToxi"
 
 #, fuzzy
 msgid "DAY_LENGTH"
@@ -3154,6 +3162,10 @@ msgstr "El lisosoma es un orgánulo integrado a la membrana que contiene enzimas
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contiene enzimas digestivas. Puede ser modificado para cambiar el tipo de enzima que contiene. Solo se puede usar una enzima por lisosoma. Enzimas aumentan la velocidad y eficiencia de la digestion."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Síntesis de mucílago"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Ajustar manualmente hora del día"
 
@@ -4332,8 +4344,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Oxígeno"
 
-msgid "OXYTOXISOME"
-msgstr "Oxitoxisoma"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Síntesis de OxiToxi"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5817,6 +5830,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Compuestos"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Ciertas opciones serán deshabilitadas si \"Solo usar VCLC\" está activado"
 
@@ -5884,6 +5901,10 @@ msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión escala con la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]. Puedes liberar toxinas presionando la tecla [thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira siendo posible pero con un daño reducido."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxitoxisoma"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A implementar."

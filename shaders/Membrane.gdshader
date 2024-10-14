@@ -39,7 +39,7 @@ void fragment(){
 
     vec4 normalmap = texture(normalTexture, UV);
     NORMAL_MAP = normalmap.xyz;
-    NORMAL_MAP_DEPTH = 1.5f;
+    NORMAL_MAP_DEPTH = 0.5f;
 
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = ((albedo * healthFraction) +
@@ -62,7 +62,7 @@ void fragment(){
         + normalmap.y * BINORMAL;
     
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
-    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 1.0));
+    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2));
 
     ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, adjusted_normals, adjusted_view) * round(cutoff);

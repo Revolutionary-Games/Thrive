@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-07 16:19+0300\n"
+"POT-Creation-Date: 2024-10-09 14:29+0300\n"
 "PO-Revision-Date: 2024-09-20 12:56+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -640,6 +640,10 @@ msgstr "Muuda märkmeid on liiga pikk"
 
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Muutke sümmeetriat"
+
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 msgid "CHEATS"
 msgstr "Sohitegija"
@@ -1325,6 +1329,10 @@ msgstr "Tsütoplasma glükolüüs"
 
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Oksütotsiin"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3224,6 +3232,10 @@ msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad o
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Kemosüntees"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -4444,8 +4456,9 @@ msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, e
 msgid "OXYGEN"
 msgstr "Hapnik"
 
-msgid "OXYTOXISOME"
-msgstr "Oksütoksisoom"
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Oksütotsiin"
 
 #, fuzzy
 msgid "OXYTOXISOME_DESC"
@@ -5944,6 +5957,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Ühendid"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "vabasurm"
 
@@ -6019,6 +6036,10 @@ msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinid
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oksütoksisoom"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Pole veel mängus."
