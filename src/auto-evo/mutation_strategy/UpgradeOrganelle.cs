@@ -15,7 +15,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         this.upgrade = upgrade;
     }
 
-    public bool Repeatable => true;
+    public bool Repeatable => false;
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
         Random random)
@@ -45,6 +45,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
             {
                 if (allOrganelles.Contains(organelle.Definition))
                 {
+                    // TODO: Once this is used with an upgrade that costs MP this will need to factor that in
                     organelle.Upgrades ??= new OrganelleUpgrades();
                     organelle.Upgrades.CustomUpgradeData = upgrade;
                 }
