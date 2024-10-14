@@ -617,7 +617,7 @@ public partial class ToolTipManager : CanvasLayer
 
         modifierInfo.DisplayName = new LocalizedString("DIGESTION_SPEED").ToString();
         modifierInfo.ModifierValue = "+" + (Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND *
-                    Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString(CultureInfo.CurrentCulture);
+            Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString(CultureInfo.CurrentCulture);
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("digestionEfficiency");
 
@@ -626,7 +626,7 @@ public partial class ToolTipManager : CanvasLayer
 
         modifierInfo.DisplayName = new LocalizedString("DIGESTION_EFFICIENCY").ToString();
         modifierInfo.ModifierValue = "+" + (Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * 100 *
-                    Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%";
+            Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%";
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
 

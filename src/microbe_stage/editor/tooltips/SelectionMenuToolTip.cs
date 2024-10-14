@@ -192,7 +192,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// <summary>
     ///   Instances the UI element for a modifier info
     /// </summary>
-    public void AddModifierInfo(string name, string value, float valueForColourApplying = 0, string? iconPath = null, string? nodeName = null)
+    public void AddModifierInfo(string name, string value, float valueForColourApplying = 0,
+        string? iconPath = null, string? nodeName = null)
     {
         var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
