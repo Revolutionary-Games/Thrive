@@ -9,6 +9,10 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 public class CompoundDiffusionEffect : IWorldEffect
 {
+    // Tweak variable for how fast compounds diffuse between patches
+    private const float BaseMoveAmount = 1;
+    private const float BaseDistance = 5;
+
     [JsonProperty]
     private GameWorld targetWorld;
 
@@ -26,63 +30,94 @@ public class CompoundDiffusionEffect : IWorldEffect
         HandlePatchCompoundDiffusion();
     }
 
+    private static (float Ambient, float Density) CalculateWantedMoveAmounts(Patch sourcePatch, Patch adjacent,
+        KeyValuePair<Compound, BiomeCompoundProperties> compound)
+    {
+        // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
+        // resources like oxygen)
+        // TODO: improve the formula here as sqrt isn't the best
+        float moveModifier = BaseMoveAmount /
+            MathF.Sqrt(BaseDistance + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
+
+        adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
+            out var destinationAmount);
+
+        // Calculate compound amounts to move
+        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * moveModifier;
+
+        float density = (compound.Value.Density - destinationAmount.Density) * moveModifier;
+        return (ambient, density);
+    }
+
     private void HandlePatchCompoundDiffusion()
     {
-        // Tweak variable for how fast compounds diffuse between patches
-        const float baseMoveAmount = 1;
-        const float baseDistance = 5;
-
         var simulationParameters = SimulationParameters.Instance;
 
         var movedAmounts = new Dictionary<Patch, Dictionary<Compound, BiomeCompoundProperties>>();
 
-        // Calculate compound amounts that are moving
+        // Calculate compound amounts that are moving. This loop checks patch by patch how many compounds that patch
+        // wants to send to its neighbours.
         foreach (var patch in targetWorld.Map.Patches)
         {
-            // Each patch receives (potentially) some compound from its adjacent ones
-            foreach (var adjacent in patch.Value.Adjacent)
+            foreach (var compound in patch.Value.Biome.Compounds)
             {
-                // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
-                // resources like oxygen)
-                float moveModifier = baseMoveAmount /
-                    MathF.Sqrt(baseDistance + Math.Abs(patch.Value.Depth[0] - adjacent.Depth[0]));
+                var definition = simulationParameters.GetCompoundDefinition(compound.Key);
 
-                // Share the move "bandwidth" equally with all nearby patches to not drain resources below zero as a
-                // total result
-                moveModifier /= adjacent.Adjacent.Count;
+                // If not diffusible, then skip
+                if (!definition.Diffusible)
+                    continue;
 
-                foreach (var compound in adjacent.Biome.Compounds)
+                // Calculate how many compounds would like to move
+                int targetPatches = 0;
+
+                foreach (var adjacent in patch.Value.Adjacent)
                 {
-                    var definition = simulationParameters.GetCompoundDefinition(compound.Key);
+                    var (ambient, density) = CalculateWantedMoveAmounts(patch.Value, adjacent, compound);
 
-                    // If not diffusible or there's nothing to move, then skip
-                    if (!definition.Diffusible || (compound.Value.Ambient <= 0 && compound.Value.Density <= 0))
+                    // If there's nothing really to move, then skip (or if negative as those moves are added by the
+                    // other patch)
+                    if (ambient < MathUtils.EPSILON && density < MathUtils.EPSILON)
                         continue;
 
-                    BiomeCompoundProperties changes = default;
+                    ++targetPatches;
+                }
 
-                    patch.Value.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome, out var patchCompound);
+                if (targetPatches < 1)
+                    continue;
 
-                    // Move speed depends on the relative amount of the compounds (and only high concentrations move
-                    // to lower ones)
-                    // And the above multiplier
-                    if (compound.Value.Ambient > patchCompound.Ambient)
-                    {
-                        changes.Ambient = (compound.Value.Ambient - patchCompound.Ambient) / compound.Value.Ambient *
-                            moveModifier;
-                    }
+                // Then queue the move amounts
+                BiomeCompoundProperties changes = default;
 
-                    if (compound.Value.Density > patchCompound.Density)
-                    {
-                        changes.Density = (compound.Value.Density - patchCompound.Density) / compound.Value.Density *
-                            moveModifier;
-                    }
+                // In case a new cloud type is created, copy the cloud spawn size
+                changes.Amount = compound.Value.Amount;
 
-                    // If there's nothing really to move, then skip
-                    if (changes.Ambient < MathUtils.EPSILON && changes.Density < MathUtils.EPSILON)
+                foreach (var adjacent in patch.Value.Adjacent)
+                {
+                    var (ambient, density) = CalculateWantedMoveAmounts(patch.Value, adjacent, compound);
+                    if (ambient < MathUtils.EPSILON && density < MathUtils.EPSILON)
                         continue;
 
-                    AddMove(compound.Key, patch.Value, changes, movedAmounts);
+                    // Scale the move amount to give equal proportional move to each adjacent patch
+                    if (ambient > 0)
+                    {
+                        changes.Ambient = ambient * (1.0f / targetPatches);
+                    }
+                    else
+                    {
+                        // Avoid divisions by zero
+                        changes.Ambient = 0;
+                    }
+
+                    if (density > 0)
+                    {
+                        changes.Density = density * (1.0f / targetPatches);
+                    }
+                    else
+                    {
+                        changes.Density = 0;
+                    }
+
+                    AddMove(compound.Key, adjacent, changes, movedAmounts);
 
                     // Negate for the source patch to keep the same total amount of compounds but just to move it
                     if (changes.Ambient != 0)
@@ -91,7 +126,7 @@ public class CompoundDiffusionEffect : IWorldEffect
                     if (changes.Density != 0)
                         changes.Density = -changes.Density;
 
-                    AddMove(compound.Key, adjacent, changes, movedAmounts);
+                    AddMove(compound.Key, patch.Value, changes, movedAmounts);
                 }
             }
         }
@@ -141,6 +176,9 @@ public class CompoundDiffusionEffect : IWorldEffect
         {
             existingCompoundProperties.Ambient += amount.Ambient;
             existingCompoundProperties.Density += amount.Density;
+
+            // Copy cloud spawn size in case a new thing of such type is created
+            existingCompoundProperties.Amount = amount.Amount;
 
             patchData[compound] = existingCompoundProperties;
         }
