@@ -11,7 +11,7 @@ public class CompoundDiffusionEffect : IWorldEffect
 {
     // Tweak variable for how fast compounds diffuse between patches
     private const float BaseMoveAmount = 1;
-    private const float BaseDistance = 5;
+    private const float BaseDistance = 1;
 
     [JsonProperty]
     private GameWorld targetWorld;
