@@ -65,4 +65,12 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
             return Rate.GetHashCode() * 397 ^ Process.GetHashCode();
         }
     }
+
+    public override string ToString()
+    {
+        if (SpeedMultiplier != 1)
+            return $"{Process} at {Rate}x (mult: #{SpeedMultiplier})";
+
+        return $"{Process} at {Rate}x";
+    }
 }

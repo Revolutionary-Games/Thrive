@@ -70,6 +70,9 @@ public class CompoundProductionEffect : IWorldEffect
                     {
                         var organelle = organelles[i];
 
+                        // TODO: processes from different organelles should be all combined using
+                        // ProcessSystem.ComputeActiveProcessList
+                        // (that also takes special stuff into account, so the below code has a subtle bug)
                         foreach (var process in organelle.Definition.RunnableProcesses)
                         {
                             var rate = ProcessSystem.CalculateProcessMaximumSpeed(process,
@@ -138,6 +141,7 @@ public class CompoundProductionEffect : IWorldEffect
             }
 
             // Apply results
+            // TODO: this should probably take parts from PhotosynthesisProductionEffect
             foreach (var entry in totalAdded)
             {
                 if (patch.Biome.TryGetCompound(entry.Key, CompoundAmountType.Biome, out var tweakedBiomeConditions))
