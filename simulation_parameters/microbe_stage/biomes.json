@@ -3,7 +3,7 @@
     "Name": "EPIPELAGIC",
     "Background": "ocean",
     "Panorama": "res://assets/textures/background/panoramas/Epipelagic.png",
-    "Icon": "res://assets/textures/gui/bevel/epipelagic.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchEpipelagic.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -154,7 +154,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -183,7 +183,7 @@
     "Name": "VOLCANIC_VENT",
     "Background": "vent",
     "Panorama": "res://assets/textures/background/panoramas/HydrothermalVents.png",
-    "Icon": "res://assets/textures/gui/bevel/vents.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchVents.svg",
     "Sunlight": {
       "Colour": {
         "r": 0.972,
@@ -468,7 +468,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.10
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -497,7 +497,7 @@
     "Name": "TIDEPOOL",
     "Background": "tidepool",
     "Panorama": "res://assets/textures/background/panoramas/Tidepool.png",
-    "Icon": "res://assets/textures/gui/bevel/tidepool.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchTidepool.svg",
     "Sunlight": {
       "Colour": {
         "r": 0.972,
@@ -713,7 +713,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.20
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -742,7 +742,7 @@
     "Name": "BATHYPELAGIC",
     "Background": "bathypelagic",
     "Panorama": "res://assets/textures/background/panoramas/Bathypelagic.png",
-    "Icon": "res://assets/textures/gui/bevel/bathy.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchBathypelagic.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -978,7 +978,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.14
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -1007,7 +1007,7 @@
     "Name": "ABYSSOPELAGIC",
     "Background": "abyssopelagic",
     "Panorama": "res://assets/textures/background/panoramas/Abyssopelagic.png",
-    "Icon": "res://assets/textures/gui/bevel/abyss.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchAbyss.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -1293,7 +1293,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.16
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -1322,7 +1322,7 @@
     "Name": "MESOPELAGIC",
     "Background": "mesopelagic",
     "Panorama": "res://assets/textures/background/panoramas/Mesopelagic.png",
-    "Icon": "res://assets/textures/gui/bevel/mesopelagic.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchMesopelagic.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -1554,7 +1554,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.18
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -1583,7 +1583,7 @@
     "Name": "COASTAL",
     "Background": "coastal",
     "Panorama": "res://assets/textures/background/panoramas/Epipelagic.png",
-    "Icon": "res://assets/textures/gui/bevel/shallow.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchShore.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -1796,7 +1796,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.21
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -1825,7 +1825,7 @@
     "Name": "UNDERWATERCAVE",
     "Background": "cave",
     "Panorama": "res://assets/textures/background/panoramas/Cave.png",
-    "Icon": "res://assets/textures/gui/bevel/cave.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchCave.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -2029,7 +2029,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.15
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -2058,7 +2058,7 @@
     "Name": "ICESHELF",
     "Background": "iceshelf",
     "Panorama": "res://assets/textures/background/panoramas/PolarSea.png",
-    "Icon": "res://assets/textures/gui/bevel/iceshelf.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchIceShelf.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -2310,7 +2310,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.22
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -2339,7 +2339,7 @@
     "Name": "ESTUARY",
     "Background": "estuary",
     "Panorama": "res://assets/textures/background/panoramas/Estuary.png",
-    "Icon": "res://assets/textures/gui/bevel/estuary.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchEstuary.svg",
     "Sunlight": {
       "Colour": {
         "r": 0.882,
@@ -2556,7 +2556,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.22
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
@@ -2585,7 +2585,7 @@
     "Name": "SEA_FLOOR",
     "Background": "seafloor",
     "Panorama": "res://assets/textures/background/panoramas/Abyssopelagic.png",
-    "Icon": "res://assets/textures/gui/bevel/bathyFloor.png",
+    "Icon": "res://assets/textures/gui/bevel/PatchAbyssFloor.svg",
     "Sunlight": {
       "Colour": {
         "r": 1,
@@ -2883,7 +2883,7 @@
         "oxygen": {
           "Amount": 0,
           "Density": 0,
-          "Ambient": 0.14
+          "Ambient": 0
         },
         "carbondioxide": {
           "Amount": 0,
