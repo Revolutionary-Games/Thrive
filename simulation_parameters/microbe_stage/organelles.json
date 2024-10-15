@@ -23,6 +23,8 @@
     },
     "PositionedExternally": true,
     "Name": "ORGANELLE_PILUS",
+    "Description": "ORGANELLE_PILUS_DESCRIPTION",
+    "ProcessesDescription": "ORGANELLE_PILUS_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/PilusIcon.png",
     "UnlockConditions": [
       {
@@ -84,6 +86,8 @@
       "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn"
     },
     "Name": "RUSTICYANIN",
+    "Description": "RUSTICYANIN_DESCRIPTION",
+    "ProcessesDescription": "RUSTICYANIN_PROCESSES_DESCRIPTION",
     "ProductionColour": "#3293f7",
     "ConsumptionColour": "#f04681",
     "IconPath": "res://assets/textures/gui/bevel/parts/RusticyaninIcon.png",
@@ -117,6 +121,8 @@
       "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn"
     },
     "Name": "NITROGENASE",
+    "Description": "NITROGENASE_DESCRIPTION",
+    "ProcessesDescription": "NITROGENASE_PROCESSES_DESCRIPTION",
     "ProductionColour": "#3feb67",
     "ConsumptionColour": "#ff8425",
     "IconPath": "res://assets/textures/gui/bevel/parts/NitrogenaseIcon.png",
@@ -158,6 +164,8 @@
       "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
     },
     "Name": "PROTOPLASM",
+    "Description": "CYTOPLASM_DESCRIPTION",
+    "ProcessesDescription": "CYTOPLASM_PROCESSES_DESCRIPTION",
     "ProductionColour": "#1db7c5",
     "ConsumptionColour": "#c51d38",
     "IconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
@@ -190,6 +198,8 @@
       "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn"
     },
     "Name": "CHEMOSYNTHESIZING_PROTEINS",
+    "Description": "CHEMOSYNTHESIZING_PROTEINS_DESCRIPTION",
+    "ProcessesDescription": "CHEMOSYNTHESIZING_PROTEINS_PROCESSES_DESCRIPTION",
     "ProductionColour": "#64f995",
     "ConsumptionColour": "#ff7248",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoproteinsIcon.png",
@@ -227,6 +237,8 @@
       "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
     },
     "Name": "TOXISOME",
+    "Description": "TOXISOME_DESCRIPTION",
+    "ProcessesDescription": "OXYTOXISOME_PROCESSES_DESCRIPTION",
     "ProductionColour": "#834acb",
     "ConsumptionColour": "#c4303d",
     "IconPath": "res://assets/textures/gui/bevel/parts/OxytoxisomeIcon.png",
@@ -321,6 +333,8 @@
       "ScenePath": "res://assets/models/organelles/Chromatophore.tscn"
     },
     "Name": "THYLAKOIDS",
+    "Description": "THYLAKOIDS_DESCRIPTION",
+    "ProcessesDescription": "CHROMATOPHORE_PROCESSES_DESCRIPTION",
     "ProductionColour": "#40f0ac",
     "ConsumptionColour": "#fbae3a",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChromatophoreIcon.png",
@@ -361,6 +375,8 @@
       "ScenePath": "res://assets/models/organelles/Metabolosome.tscn"
     },
     "Name": "METABOLOSOMES",
+    "Description": "METABOLOSOMES_DESCRIPTION",
+    "ProcessesDescription": "METABOLOSOMES_PROCESSES_DESCRIPTION",
     "ProductionColour": "#26e0ff",
     "ConsumptionColour": "#ff5649",
     "IconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png",
@@ -393,6 +409,8 @@
       "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn"
     },
     "Name": "HYDROGENASE",
+    "Description": "HYDROGENASE_DESCRIPTION",
+    "ProcessesDescription": "HYDROGENASE_PROCESSES_DESCRIPTION",
     "ProductionColour": "#aa291f",
     "ConsumptionColour": "#ff5649",
     "IconPath": "res://assets/textures/gui/bevel/parts/HydrogenaseIcon.svg",
@@ -428,6 +446,8 @@
       "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn"
     },
     "Name": "NITROGEN_FIXING_PLASTID",
+    "Description": "NITROGEN_FIXING_PLASTID_DESCRIPTION",
+    "ProcessesDescription": "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION",
     "ProductionColour": "#4fc9ff",
     "ConsumptionColour": "#ffb74f",
     "IconPath": "res://assets/textures/gui/bevel/parts/NitroplastidIcon.png",
@@ -460,6 +480,8 @@
       "ScenePath": "res://assets/models/organelles/Thermosynthase.tscn"
     },
     "Name": "THERMOSYNTHASE",
+    "Description": "THERMOSYNTHASE_DESCRIPTION",
+    "ProcessesDescription": "THERMOSYNTHASE_PROCESSES_DESCRIPTION",
     "ProductionColour": "#6a5cc6",
     "ConsumptionColour": "#ad5161",
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermosynthaseIcon.png",
@@ -505,6 +527,8 @@
       "ScenePath": "res://assets/models/organelles/Chemoplast.tscn"
     },
     "Name": "CHEMOPLAST",
+    "Description": "CHEMOPLAST_DESCRIPTION",
+    "ProcessesDescription": "CHEMOPLAST_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
@@ -540,6 +564,8 @@
     },
     "PositionedExternally": true,
     "Name": "FLAGELLUM",
+    "Description": "FLAGELLUM_DESCRIPTION",
+    "ProcessesDescription": "FLAGELLUM_PROCESSES_DESCRIPTION",
     "ProductionColour": "#ff9721",
     "ConsumptionColour": "#ff9721",
     "IconPath": "res://assets/textures/gui/bevel/parts/FlagellumIcon.png",
@@ -583,6 +609,8 @@
       "ScenePath": "res://assets/models/organelles/Vacuole.tscn"
     },
     "Name": "VACUOLE",
+    "Description": "VACUOLE_DESCRIPTION",
+    "ProcessesDescription": "VACUOLE_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/VacuoleUpgradeGUI.tscn",
     "RequiresNucleus": true,
@@ -618,6 +646,8 @@
       "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn"
     },
     "Name": "MITOCHONDRION",
+    "Description": "MITOCHONDRION_DESCRIPTION",
+    "ProcessesDescription": "MITOCHONDRION_PROCESSES_DESCRIPTION",
     "ProductionColour": "#26ffce",
     "ConsumptionColour": "#ff2653",
     "IconPath": "res://assets/textures/gui/bevel/parts/MitochondrionIcon.png",
@@ -667,6 +697,8 @@
       "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn"
     },
     "Name": "TOXIN_VACUOLE",
+    "Description": "TOXIN_VACUOLE_DESCRIPTION",
+    "ProcessesDescription": "TOXIN_VACUOLE_PROCESSES_DESCRIPTION",
     "ProductionColour": "#624acb",
     "ConsumptionColour": "#c4307b",
     "IconPath": "res://assets/textures/gui/bevel/parts/ToxinVacuoleIcon.png",
@@ -758,6 +790,8 @@
       "ScenePath": "res://assets/models/organelles/BindingAgent.tscn"
     },
     "Name": "BINDING_AGENT",
+    "Description": "BINDING_AGENT_DESCRIPTION",
+    "ProcessesDescription": "BINDING_AGENT_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/BindingAgentIcon.png",
     "UnlockConditions": [
       {
@@ -808,6 +842,8 @@
       "ScenePath": "res://assets/models/organelles/Chloroplast.tscn"
     },
     "Name": "CHLOROPLAST",
+    "Description": "CHLOROPLAST_DESCRIPTION",
+    "ProcessesDescription": "CHLOROPLAST_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChloroplastIcon.png",
     "UnlockConditions": [
       {
@@ -848,6 +884,8 @@
       "ScenePath": "res://assets/models/organelles/Cytoplasm.tscn"
     },
     "Name": "CYTOPLASM",
+    "Description": "CYTOPLASM_DESCRIPTION",
+    "ProcessesDescription": "CYTOPLASM_PROCESSES_DESCRIPTION",
     "ProductionColour": "#1db7c5",
     "ConsumptionColour": "#c51d38",
     "IconPath": "res://assets/textures/gui/bevel/parts/CytoplasmIcon.png",
@@ -918,6 +956,8 @@
       "ScenePath": "res://assets/models/organelles/Nucleus.tscn"
     },
     "Name": "NUCLEUS",
+    "Description": "NUCLEUS_DESCRIPTION",
+    "ProcessesDescription": "NUCLEUS_SMALL_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/NucleusIcon.png",
     "Unique": true,
     "EditorButtonGroup": "Organelle",
@@ -945,6 +985,8 @@
     },
     "PositionedExternally": true,
     "Name": "CHEMORECEPTOR",
+    "Description": "CHEMORECEPTOR_DESCRIPTION",
+    "ProcessesDescription": "CHEMORECEPTOR_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoreceptorIcon.png",
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn",
     "EditorButtonGroup": "External",
@@ -979,6 +1021,8 @@
     },
     "PositionedExternally": true,
     "Name": "SLIME_JET",
+    "Description": "SLIME_JET_DESCRIPTION",
+    "ProcessesDescription": "SLIME_JET_PROCESSES_DESCRIPTION",
     "ConsumptionColour": "#00ffcc",
     "IconPath": "res://assets/textures/gui/bevel/parts/SlimeJetIcon.png",
     "EditorButtonGroup": "External",
@@ -1021,6 +1065,8 @@
       "ScenePath": "res://assets/models/organelles/SignalingAgent.tscn"
     },
     "Name": "SIGNALING_AGENT",
+    "Description": "SIGNALING_AGENT_DESCRIPTION",
+    "ProcessesDescription": "SIGNALING_AGENT_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/SignalingAgentIcon.png",
     "RequiresNucleus": true,
     "Unique": true,
@@ -1042,6 +1088,7 @@
     "Processes": {},
     "Components": {},
     "Name": "BIOLUMINESCENT_VACUOLE",
+    "Description": "TO_BE_IMPLEMENTED",
     "IconPath": "res://assets/textures/gui/bevel/parts/BioluminescentIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
@@ -1077,6 +1124,8 @@
       "ScenePath": "res://assets/models/organelles/Thermoplast.tscn"
     },
     "Name": "THERMOPLAST",
+    "Description": "THERMOPLAST_DESCRIPTION",
+    "ProcessesDescription": "THERMOPLAST_PROCESSES_DESCRIPTION",
     "ProductionColour": "#9168b5",
     "ConsumptionColour": "#d15378",
     "IconPath": "res://assets/textures/gui/bevel/parts/ThermoplastIcon.png",
@@ -1120,6 +1169,8 @@
     },
     "PositionedExternally": true,
     "Name": "CILIA",
+    "Description": "CILIA_DESCRIPTION",
+    "ProcessesDescription": "CILIA_PROCESSES_DESCRIPTION",
     "ProductionColour": "#ffae21",
     "ConsumptionColour": "#ffae21",
     "IconPath": "res://assets/textures/gui/bevel/parts/CiliaIcon.png",
@@ -1169,6 +1220,8 @@
       "ScenePath": "res://assets/models/organelles/Lysosome.tscn"
     },
     "Name": "LYSOSOME",
+    "Description": "LYSOSOME_DESCRIPTION",
+    "ProcessesDescription": "LYSOSOME_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/LysosomeIcon.png",
     "UnlockConditions": [
       {
@@ -1220,6 +1273,8 @@
       "ScenePath": "res://assets/models/organelles/Ferroplast.tscn"
     },
     "Name": "FERROPLAST",
+    "Description": "FERROPLAST_DESCRIPTION",
+    "ProcessesDescription": "FERROPLAST_PROCESSES_DESCRIPTION",
     "ProductionColour": "#3d9eff",
     "ConsumptionColour": "#f04681",
     "IconPath": "res://assets/textures/gui/bevel/parts/FerroplastIcon.png",
@@ -1259,6 +1314,7 @@
     },
     "PositionedExternally": true,
     "Name": "ORGANELLE_AXON",
+    "Description": "ORGANELLE_AXON_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Multicellular",
@@ -1301,6 +1357,7 @@
       "ScenePath": "res://assets/models/organelles/Myofibril.tscn"
     },
     "Name": "ORGANELLE_MYOFIBRIL",
+    "Description": "ORGANELLE_MYOFIBRIL_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,
     "EditorButtonGroup": "Multicellular",

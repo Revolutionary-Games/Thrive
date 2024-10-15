@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -4109,9 +4109,6 @@ msgstr "氧"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "氧化毒素合成"
 
-msgid "OXYTOXISOME_DESC"
-msgstr "修改版的代谢体，用来产出一种原始的有毒物质：[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以切换以修改生成的毒素类型来获得其他效果。"
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
 
@@ -5377,9 +5374,6 @@ msgstr "地区图"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
 
-msgid "THYLAKOID"
-msgstr "类囊体"
-
 msgid "THYLAKOIDS"
 msgstr "类囊体"
 
@@ -5566,6 +5560,10 @@ msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:comp
 #, fuzzy
 msgid "TOXISOME"
 msgstr "毒素体"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "仍在开发中。"
@@ -7944,6 +7942,12 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "修改版的代谢体，用来产出一种原始的有毒物质：[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以切换以修改生成的毒素类型来获得其他效果。"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "类囊体"
 
 #, fuzzy
 #~ msgid "ASCENSION"

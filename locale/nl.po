@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -4253,10 +4253,6 @@ msgstr "Zuurstof"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "OxyToxy-synthse"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Snelheid schaalt met concentratie van [thrive:compound type=\"oxygen\"][/thrive:compound]. De gifstoffen kunnen worden vrijgelaten door [thrive:input]g_fire_toxin[/thrive:input]. Wanneer er weinig [thrive:compound type=\"oxytoxy\"][/thrive:compound] is, blijft het mogelijk om deze te schieten maar er zal minder schade worden aangedaan."
 
@@ -5537,9 +5533,6 @@ msgstr "Gebiedenkaart"
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licenties"
 
-msgid "THYLAKOID"
-msgstr "Thu"
-
 msgid "THYLAKOIDS"
 msgstr "thylakoïden"
 
@@ -5753,6 +5746,10 @@ msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compo
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxytoxysoom"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Wordt Nog Geimplementeerd."
@@ -7935,6 +7932,13 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Een aangepast matobolosoom dat verantwoordelijk is voor de productie van het primitieve gifstof [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thu"
 
 #, fuzzy
 #~ msgid "ASCENSION"

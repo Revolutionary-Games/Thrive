@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -4335,9 +4335,6 @@ msgstr "Oxigén"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "OxyToxy szintézis"
 
-msgid "OXYTOXISOME_DESC"
-msgstr ""
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"oxytoxy\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától. Mérget képes kilőni a [thrive:input]g_fire_toxin[/thrive:input] megnyomásával. Ha az [thrive:compound type=\"oxytoxy\"][/thrive:compound] mennyisége alacsony, akkor azt a kis mennyiséget ki tudod lőni, viszont kevesebb sebzést okoz."
 
@@ -5676,9 +5673,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thrive licenszek"
 
-msgid "THYLAKOID"
-msgstr "Thilakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Thilakoidok"
 
@@ -5890,6 +5884,10 @@ msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:c
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxytoxyszóma"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "A metaboloszómák fehérjecsoportosulások fehérjeburokba csomagolva. A glükózt a citoplazmánál sokkal gyorsabban át tudják alakítani ATP-vé az aerob légzés segítségével. Viszont, mivel egyfajta \"légzés\", ezért oxigén kell a működéséhez, így a környezetben kisebb az oxigénszint, akkor ennek hatására az ATP előállítása lelassul. Mivel a metaboloszómák a citoplazmában helyezkednek el, ezért a körülötte elhelyezkedő folyadék végez némi glikolízist."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Fejlesztés alatt."
@@ -8052,6 +8050,9 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thilakoid"
 
 #, fuzzy
 #~ msgid "ASCENSION"

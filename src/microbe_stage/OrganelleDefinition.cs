@@ -31,6 +31,16 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
+    ///   Description of processes the organelle performs (this is the short description at the top of the tooltip)
+    /// </summary>
+    public string? ProcessesDescription;
+
+    /// <summary>
+    ///   Description of the organelle
+    /// </summary>
+    public string Description = string.Empty;
+
+    /// <summary>
     ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
     ///   point outside from the cell)
     /// </summary>
@@ -444,6 +454,11 @@ public class OrganelleDefinition : IRegistryType
         Components.Check(name);
 
         // Components list is now allowed to be empty as some organelles do not need any components
+
+        if (string.IsNullOrEmpty(Description))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Description is not set or empty");
+        }
 
         if (Density < 100)
         {
