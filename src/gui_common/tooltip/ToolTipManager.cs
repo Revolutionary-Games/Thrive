@@ -551,17 +551,15 @@ public partial class ToolTipManager : CanvasLayer
         {
             var tooltip = packedTooltip.Instantiate<SelectionMenuToolTip>();
 
+            tooltip.Name = organelle.InternalName;
             Instance.AddToolTip(tooltip, "organelleSelection");
 
             tooltip.Description = organelle.Description;
             tooltip.MutationPointCost = organelle.MPCost;
-            tooltip.Name = organelle.InternalName;
             tooltip.DisplayName = organelle.Name;
             tooltip.RequiresNucleus = organelle.RequiresNucleus;
             tooltip.ThriveopediaPageName = organelle.InternalName;
-            tooltip.ProcessesDescription = organelle.ProcessesDescription == null ?
-                string.Empty :
-                organelle.ProcessesDescription;
+            tooltip.ProcessesDescription = organelle.ProcessesDescription ?? string.Empty;
 
             FillOrganelleToolTipModifierInfo(organelle, tooltip);
         }
@@ -604,36 +602,47 @@ public partial class ToolTipManager : CanvasLayer
 
         var modifierInfo = selectionMenuTooltip.GetModifierInfo("storage");
 
-        if (modifierInfo == null)
-            return;
-
-        modifierInfo.DisplayName = new LocalizedString("STORAGE").ToString();
-        modifierInfo.ModifierValue = "+" + organelle.Components.Storage!.Capacity.ToString(CultureInfo.CurrentCulture);
+        if (modifierInfo != null)
+        {
+            // The translations here are kept by KeepModifierInfoTranslations
+            modifierInfo.DisplayName = "STORAGE";
+            modifierInfo.ModifierValue =
+                "+" + organelle.Components.Storage!.Capacity.ToString(CultureInfo.CurrentCulture);
+        }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("digestionSpeed");
 
-        if (modifierInfo == null)
-            return;
-
-        modifierInfo.DisplayName = new LocalizedString("DIGESTION_SPEED").ToString();
-        modifierInfo.ModifierValue = "+" + (Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND *
-            Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString(CultureInfo.CurrentCulture);
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_SPEED";
+            modifierInfo.ModifierValue = "+" + (Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND *
+                Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString("F2", CultureInfo.CurrentCulture);
+        }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("digestionEfficiency");
 
-        if (modifierInfo == null)
-            return;
-
-        modifierInfo.DisplayName = new LocalizedString("DIGESTION_EFFICIENCY").ToString();
-        modifierInfo.ModifierValue = "+" + (Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * 100 *
-            Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString(CultureInfo.CurrentCulture) + "%";
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            modifierInfo.ModifierValue = "+" + Localization
+                .Translate("PERCENTAGE_VALUE").FormatSafe((Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * 100 *
+                    Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString("F1", CultureInfo.CurrentCulture));
+        }
 
         modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
 
-        if (modifierInfo == null)
-            return;
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "SPEED";
+            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+        }
+    }
 
-        modifierInfo.DisplayName = new LocalizedString("SPEED").ToString();
-        modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+    private void KeepModifierInfoTranslations()
+    {
+        Localization.Translate("STORAGE");
+        Localization.Translate("DIGESTION_SPEED");
+        Localization.Translate("DIGESTION_EFFICIENCY");
+        Localization.Translate("SPEED");
     }
 }

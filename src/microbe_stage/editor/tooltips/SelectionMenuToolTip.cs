@@ -23,6 +23,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private LabelSettings noProcessesFont = null!;
     private LabelSettings processTitleFont = null!;
 
+    // TODO: these can probably be changed to be non-nullable with the Godot 4 upgrade now allowing directly setting
+    // these
     [Export]
     private Label? nameLabel;
 
@@ -218,9 +220,20 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   Gets a modifier based on its name.
+    /// </summary>
+    /// <param name="nodeName">Name of the modifier node</param>
+    /// <returns>The found modifier or null</returns>
     public ModifierInfoLabel? GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(m => m.Name == nodeName);
+        foreach (var modifierInfo in modifierInfos)
+        {
+            if (modifierInfo.Name == nodeName)
+                return modifierInfo;
+        }
+
+        return null;
     }
 
     /// <summary>

@@ -221,6 +221,9 @@ public static class Constants
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
+    /// <summary>
+    ///   TODO: this needs to be dynamically calculated: https://github.com/Revolutionary-Games/Thrive/issues/5591
+    /// </summary>
     public const float FLAGELLA_SPEED_BONUS_DISPLAY = 0.7f;
 
     public const float FLAGELLA_MAX_UPGRADE_LENGHT = 3;

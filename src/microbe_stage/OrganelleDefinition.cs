@@ -31,14 +31,14 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
-    ///   Description of processes the organelle performs
+    ///   Description of processes the organelle performs (this is the short description at the top of the tooltip)
     /// </summary>
     public string? ProcessesDescription;
 
     /// <summary>
     ///   Description of the organelle
     /// </summary>
-    public string Description = null!;
+    public string Description = string.Empty;
 
     /// <summary>
     ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
