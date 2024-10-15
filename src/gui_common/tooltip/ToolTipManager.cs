@@ -567,34 +567,34 @@ public partial class ToolTipManager : CanvasLayer
         }
     }
 
-    private void FillOrganelleToolTipModifierInfo(OrganelleDefinition organelle, ICustomToolTip tooltip)
+    private void FillOrganelleToolTipModifierInfo(OrganelleDefinition organelle, SelectionMenuToolTip tooltip)
     {
-        if (tooltip is not SelectionMenuToolTip selectionMenuTooltip)
-            return;
-
-        if (organelle.Components.Storage != null)
+        // The order of these is important to have the most important info towards the top of the tooltip
+        if (organelle.Components.Movement != null)
         {
-            // Modifier info is filled info later
-            selectionMenuTooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
         }
 
         if (organelle.Components.Lysosome != null)
         {
-            selectionMenuTooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
                 "res://assets/textures/gui/bevel/DigestionSpeedIcon.png", "digestionSpeed");
 
-            selectionMenuTooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
                 "res://assets/textures/gui/bevel/DigestionIcon.png", "digestionEfficiency");
         }
 
-        if (organelle.Components.Movement != null)
+        if (organelle.Components.Storage != null)
         {
-            selectionMenuTooltip.AddModifierInfo(string.Empty, string.Empty, 0,
-                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+            // Modifier info is filled into later (so this uses blank values)
+            // This is done just on startup so it isn't super important but this allocates a bunch of StringNames
+            // for the modifier info sections for each organelle unnecessarily (when the StringNames could be reused)
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
         }
 
-        UpdateModifierInfoWithTranslations(organelle, selectionMenuTooltip);
+        UpdateModifierInfoWithTranslations(organelle, tooltip);
     }
 
     private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle, ICustomToolTip tooltip)

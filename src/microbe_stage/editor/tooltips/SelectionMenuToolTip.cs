@@ -193,7 +193,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     ///   Instances the UI element for a modifier info
     /// </summary>
     public void AddModifierInfo(string name, string value, float valueForColourApplying = 0,
-        string? iconPath = null, string? nodeName = null)
+        string? iconPath = null, StringName? nodeName = null)
     {
         var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
@@ -208,6 +208,14 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         modifierInfoList.AddChild(modifierInfo);
         modifierInfos.Add(modifierInfo);
+
+        // Make sure the default osmoregulation cost info is always last as it is usually the least important one (as
+        // it is the same for all organelles)
+        var count = modifierInfoList.GetChildCount();
+        if (count > 1)
+        {
+            modifierInfoList.MoveChild(modifierInfoList.GetChild(count - 2), count - 1);
+        }
     }
 
     public ModifierInfoLabel? GetModifierInfo(string nodeName)
