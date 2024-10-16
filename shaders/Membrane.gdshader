@@ -31,13 +31,13 @@ void vertex(){
 
 float fresnel(float power, vec3 normal, vec3 view)
 {
-    return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.875 + 0.125) * 3.0, power), 0.0, 1.0);
+    return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.85 + 0.15) * 3.85, power), 0.1, 1.0);
 }
 
 void fragment(){
     vec4 albedo = texture(albedoTexture, UV);
 
-    vec4 normalmap = texture(normalTexture, UV);
+    vec4 normalmap = texture(normalTexture, UV2);
     NORMAL_MAP = normalmap.xyz;
     NORMAL_MAP_DEPTH = 0.5f;
 
