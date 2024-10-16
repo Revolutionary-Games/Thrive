@@ -380,6 +380,14 @@
     "ProductionColour": "#26e0ff",
     "ConsumptionColour": "#ff5649",
     "IconPath": "res://assets/textures/gui/bevel/parts/MetabolosomeIcon.png",
+    "UnlockConditions": [
+      {
+        "PatchCompound": {
+          "Compound": "oxygen",
+          "Min": 1
+        }
+      }
+    ],
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 1,
     "EndosymbiosisUnlocks": "mitochondrion"

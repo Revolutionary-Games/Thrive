@@ -556,6 +556,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // Environmental compound that can limit the rate
             var availableInEnvironment = GetAmbientInBiome(inputCompound, biome, pointInTimeType);
 
+            // Is a serious limit if there is none of the compound
+            if (availableInEnvironment <= 0)
+            {
+                result.WritableLimitingCompounds.Add(input.Key.ID);
+            }
+
             var availableRate = inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
                 availableInEnvironment / input.Value;
@@ -603,6 +609,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             {
                 // Cannot take any of this input, mark as a problem. This is helpful at least in the editor process
                 // panel view.
+                // TODO: this kind of unnecessarily marks some stuff red when environmental conditions are the real
+                // problem
                 result.WritableLimitingCompounds.Add(entry.Key.ID);
             }
 
