@@ -28,19 +28,18 @@ public partial class CellHexesPreview : PhotographablePreview
 
         var hash = CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
 
-        var task = PhotoStudio.Instance.TryGetFromCache(hash);
+        var task = PhotoStudio.Instance.TryGetFromCache(hash, KeepPlainImageInMemory);
 
         if (task != null)
         {
+            // This should no longer be able to trigger but just for safety against future bugs this is left in
             if (KeepPlainImageInMemory && !task.WillStorePlainImage)
                 GD.PrintErr("Already existing task doesn't have store plain image enabled like this preview wants");
 
             return task;
         }
 
-        if (KeepPlainImageInMemory)
-            throw new NotSupportedException("This option hasn't been implemented to be passed");
-
-        return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority);
+        return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority,
+            KeepPlainImageInMemory);
     }
 }
