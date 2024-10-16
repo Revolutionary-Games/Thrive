@@ -308,9 +308,10 @@ public static class Constants
     public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
 
     /// <summary>
-    ///   1 means that each cilia counts as 1 in the pulling force
+    ///   1 means that each cilia counts as 1 in the pulling force.
+    ///   Smaller values mean diminishing returns.
     /// </summary>
-    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
+    public const float CILIA_FORCE_EXPONENT_PER_CILIA = 0.9f;
 
     public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
