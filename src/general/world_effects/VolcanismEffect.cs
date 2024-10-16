@@ -7,11 +7,11 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 public class VolcanismEffect : IWorldEffect
 {
-    private const float VentsCO2Strength = 0.1f;
+    private const float VentsCO2Strength = 0.15f;
     private const float VentsCO2Threshold = 0.3f;
 
-    private const float SurfaceCO2Strength = 0.015f;
-    private const float SurfaceCO2Threshold = 0.13f;
+    private const float SurfaceCO2Strength = 0.025f;
+    private const float SurfaceCO2Threshold = 0.15f;
 
     private const float FloorCO2Strength = 0.005f;
     private const float FloorCO2Threshold = 0.1f;
