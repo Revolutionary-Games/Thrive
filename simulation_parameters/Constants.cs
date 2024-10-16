@@ -298,7 +298,7 @@ public static class Constants
     /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE = 200000.0f;
     public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
 
     /// <summary>
@@ -313,7 +313,7 @@ public static class Constants
     /// </summary>
     public const float CILIA_FORCE_EXPONENT_PER_CILIA = 0.9f;
 
-    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
+    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.05f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
