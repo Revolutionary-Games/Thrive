@@ -3,13 +3,13 @@
 
 #include <godot_cpp/classes/array_mesh.hpp>
 #include <godot_cpp/classes/object.hpp>
+#include <godot_cpp/core/object.hpp>
+#include <godot_cpp/variant/variant.hpp>
 #include <godot_cpp/variant/vector3.hpp>
 
 #include "atlas/atlas_unwrap.hpp"
 #include "core/ThriveConfig.hpp"
 #include "nodes/DebugDrawer.hpp"
-#include <godot_cpp/core/object.hpp>
-#include <godot_cpp/variant/variant.hpp>
 
 // ------------------------------------ //
 int32_t ExtensionGetVersion(ThriveConfig* thriveConfig)
@@ -41,14 +41,14 @@ void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, J
 
 bool ArrayMeshUnwrap(ArrayMeshVariant* mesh, float texelSize)
 {
-	godot::Variant* var = reinterpret_cast<godot::Variant*>(mesh);
-	
-	godot::Object* obj = (godot::Object *)var;
-	
-	obj->is_class("ArrayMesh");
-	
-	godot::ArrayMesh* arrayMesh = godot::Object::cast_to<godot::ArrayMesh>(obj);
-	
+    godot::Variant* var = reinterpret_cast<godot::Variant*>(mesh);
+
+    godot::Object* obj = (godot::Object*)var;
+
+    obj->is_class("ArrayMesh");
+
+    godot::ArrayMesh* arrayMesh = godot::Object::cast_to<godot::ArrayMesh>(obj);
+
     return Thrive::Unwrap(*arrayMesh, texelSize);
 }
 

@@ -205,7 +205,7 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     }
 
     surfaces_tools->index();
-	callable_mp_static(&FinishUnwrap).call_deferred(surfaces_tools, Ref<ArrayMesh>(&mesh), surface_format);
+    callable_mp_static(&FinishUnwrap).call_deferred(surfaces_tools, Ref<ArrayMesh>(&mesh), surface_format);
 
     xatlas::Destroy(atlas);
 
@@ -214,5 +214,5 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
 
 static void Thrive::FinishUnwrap(Ref<SurfaceTool> surfaces_tools, Ref<ArrayMesh> mesh, uint64_t surface_format)
 {
-	surfaces_tools->commit(mesh, surface_format);
+    surfaces_tools->commit(mesh, surface_format);
 }
