@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -74,7 +76,30 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         Mesh = meshGen.DualContour();
         Mesh.SurfaceSetMaterial(0, material);
 
+        Task uvUnwrap = new Task(() => UVUnwrapAndTexturize((Mesh as ArrayMesh)!));
+        TaskExecutor.Instance.AddTask(uvUnwrap);
+
         CustomAabb = new Aabb(minExtends, maxExtends);
+    }
+
+    private void UVUnwrapAndTexturize(ArrayMesh mesh)
+    {
+        var nativeVariant = Variant.From(mesh).CopyNativeVariant();
+
+        // Note: Unwrapper's Native code uses call_deferred (delayed call) to apply changes to the mesh surface
+        // (so that the code can be multithreaded).
+        // This means that there is no surface immediately after calling this function and texture application
+        // has to be deferred too.
+        NativeMethods.ArrayMeshUnwrap(ref nativeVariant, 1.0f);
+
+        CallDeferred(nameof(ApplyTextures), mesh);
+
+        nativeVariant.Dispose();
+    }
+
+    private void ApplyTextures(ArrayMesh mesh)
+    {
+        mesh.SurfaceSetMaterial(0, material);
     }
 
     private void ApplyAlpha()

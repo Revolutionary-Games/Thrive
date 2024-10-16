@@ -120,14 +120,6 @@ public class DualContourer
         ArrayMesh mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
-        var nativeVariant = Variant.From(mesh).CopyNativeVariant();
-
-        bool generated = NativeMethods.ArrayMeshUnwrap(ref nativeVariant, 1.0f);
-
-        nativeVariant.Dispose();
-
-        GD.Print("Succeded?: " + generated);
-
         sw.Stop();
         GD.Print($"Generated a mesh in {sw.Elapsed}");
 
