@@ -10,48 +10,43 @@ using Godot;
 /// </summary>
 public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 {
-    [Export]
-    public NodePath? NameLabelPath;
-
-    [Export]
-    public NodePath MpLabelPath = null!;
-
-    [Export]
-    public NodePath RequiresNucleusPath = null!;
-
-    [Export]
-    public NodePath DescriptionLabelPath = null!;
-
-    [Export]
-    public NodePath ProcessesDescriptionLabelPath = null!;
-
-    [Export]
-    public NodePath ModifierListPath = null!;
-
-    [Export]
-    public NodePath ProcessListPath = null!;
-
-    [Export]
-    public NodePath MoreInfoPath = null!;
-
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
     /// </summary>
     private readonly List<ModifierInfoLabel> modifierInfos = new();
 
 #pragma warning disable CA2213
+    [Export]
+    private VBoxContainer modifierInfoList = null!;
+
     private PackedScene modifierInfoScene = null!;
     private LabelSettings noProcessesFont = null!;
     private LabelSettings processTitleFont = null!;
 
+    // TODO: these can probably be changed to be non-nullable with the Godot 4 upgrade now allowing directly setting
+    // these
+    [Export]
     private Label? nameLabel;
+
+    [Export]
     private Label? mpLabel;
+
+    [Export]
     private Label? requiresNucleusLabel;
+
+    [Export]
     private ModifierInfoLabel? osmoregulationModifier;
+
+    [Export]
     private CustomRichTextLabel? descriptionLabel;
+
+    [Export]
     private CustomRichTextLabel? processesDescriptionLabel;
-    private VBoxContainer modifierInfoList = null!;
+
+    [Export]
     private ProcessList processList = null!;
+
+    [Export]
     private VBoxContainer? moreInfo;
 #pragma warning restore CA2213
 
@@ -171,15 +166,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
     public override void _Ready()
     {
-        nameLabel = GetNode<Label>(NameLabelPath);
-        mpLabel = GetNode<Label>(MpLabelPath);
-        requiresNucleusLabel = GetNode<Label>(RequiresNucleusPath);
-        descriptionLabel = GetNode<CustomRichTextLabel>(DescriptionLabelPath);
-        processesDescriptionLabel = GetNode<CustomRichTextLabel>(ProcessesDescriptionLabelPath);
-        modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
-        processList = GetNode<ProcessList>(ProcessListPath);
-        moreInfo = GetNode<VBoxContainer>(MoreInfoPath);
-
         modifierInfoScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn");
         noProcessesFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller.tres");
         processTitleFont = GD.Load<LabelSettings>("res://src/gui_common/fonts/Body-Bold-Smaller-Gold.tres");
@@ -191,11 +177,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateRequiresNucleus();
         UpdateLists();
         UpdateMoreInfo();
-
-        // Update osmoregulation cost last after the modifier list has been populated
-        // to make sure this tooltip even has an osmoregulation cost modifier
-        osmoregulationModifier = GetModifierInfo("osmoregulationCost");
-        UpdateOsmoregulationCost();
     }
 
     public override void _EnterTree()
@@ -213,20 +194,46 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     /// <summary>
     ///   Instances the UI element for a modifier info
     /// </summary>
-    public void AddModifierInfo(string name, float value)
+    public void AddModifierInfo(string name, string value, float valueForColourApplying = 0,
+        string? iconPath = null, StringName? nodeName = null)
     {
         var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
 
         modifierInfo.DisplayName = name;
-        modifierInfo.ModifierValue = value.ToString(CultureInfo.CurrentCulture);
+        if (nodeName != null)
+            modifierInfo.Name = nodeName;
+
+        modifierInfo.ModifierValue = value;
+
+        modifierInfo.AdjustValueColor(valueForColourApplying);
+        modifierInfo.ModifierIcon = string.IsNullOrEmpty(iconPath) ? null : GD.Load<Texture2D>(iconPath);
 
         modifierInfoList.AddChild(modifierInfo);
         modifierInfos.Add(modifierInfo);
+
+        // Make sure the default osmoregulation cost info is always last as it is usually the least important one (as
+        // it is the same for all organelles)
+        var count = modifierInfoList.GetChildCount();
+        if (count > 1)
+        {
+            modifierInfoList.MoveChild(modifierInfoList.GetChild(count - 2), count - 1);
+        }
     }
 
+    /// <summary>
+    ///   Gets a modifier based on its name.
+    /// </summary>
+    /// <param name="nodeName">Name of the modifier node</param>
+    /// <returns>The found modifier or null</returns>
     public ModifierInfoLabel? GetModifierInfo(string nodeName)
     {
-        return modifierInfos.Find(m => m.Name == nodeName);
+        foreach (var modifierInfo in modifierInfos)
+        {
+            if (modifierInfo.Name == nodeName)
+                return modifierInfo;
+        }
+
+        return null;
     }
 
     /// <summary>
@@ -333,27 +340,6 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
         ThriveopediaManager.OpenPage(thriveopediaPageName);
         return true;
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            if (NameLabelPath != null)
-            {
-                NameLabelPath.Dispose();
-                MpLabelPath.Dispose();
-                RequiresNucleusPath.Dispose();
-                DescriptionLabelPath.Dispose();
-                ProcessesDescriptionLabelPath.Dispose();
-                ModifierListPath.Dispose();
-                ProcessListPath.Dispose();
-                MoreInfoPath.Dispose();
-                modifierInfoScene.Dispose();
-            }
-        }
-
-        base.Dispose(disposing);
     }
 
     private void UpdateName()

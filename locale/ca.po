@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -4338,10 +4338,6 @@ msgstr "Oxigen"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Síntesi de les toxines OxyToxy"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pot alliberar toxines prement la tecla [thrive:input]g_fire_toxin[/thrive:input]. Quan la quantitat de [thrive:compound type=\"oxytoxy\"][/thrive:compound] és baixo, encara és possible disparar, però el dany causat serà menor."
 
@@ -5667,9 +5663,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Llicències de Thrive"
 
-msgid "THYLAKOID"
-msgstr "Tilacoide"
-
 msgid "THYLAKOIDS"
 msgstr "Tilacoide"
 
@@ -5884,6 +5877,10 @@ msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:c
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxytoxysoma"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Encara no s'ha implementat."
@@ -8068,6 +8065,13 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tilacoide"
 
 #, fuzzy
 #~ msgid "ASCENSION"

@@ -82,10 +82,16 @@ public class GameWorld : ISaveLoadable
 
             // Register compound production and diffusion
             TimedEffects.RegisterEffect("compound_production", new CompoundProductionEffect(this));
-            TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+            TimedEffects.RegisterEffect("all_compound_diffusion", new AllCompoundDiffusionEffect(this));
         }
         else
         {
+            // A limited photosynthesis-only compound production effects that were added as these are much simpler than
+            // the full effect to get balanced well enough
+            TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
+            TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
+            TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
         }

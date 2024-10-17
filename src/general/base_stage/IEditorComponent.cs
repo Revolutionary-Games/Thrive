@@ -13,13 +13,24 @@ public interface IEditorComponent
 
     public bool Visible { get; }
 
+    /// <summary>
+    ///   Called when initialization phase of the editor is running
+    /// </summary>
+    /// <param name="owningEditor">The editor that has the current component</param>
+    /// <param name="fresh">True when the game state was *not* loaded from a save</param>
     public void Init(IEditor owningEditor, bool fresh);
+
+    /// <summary>
+    ///   Called once editor entry has finished and the editor is fading in. Note that this only happens when not
+    ///   loading a save!
+    /// </summary>
+    public void OnEditorReady();
 
     /// <summary>
     ///   Called when the species data is ready in the editor
     /// </summary>
     /// <param name="species">
-    ///   The species that was setup, accessing more specific data through
+    ///   The species that was set up, accessing more specific data through
     ///   <see cref="EditorComponentBase{TEditor}.Editor"/> rather than casting to a derived class is recommended.
     /// </param>
     public void OnEditorSpeciesSetup(Species species);

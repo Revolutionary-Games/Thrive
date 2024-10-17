@@ -51,6 +51,8 @@ public partial class PhotoStudio : SubViewport
     /// </summary>
     private int lastTaskIndex;
 
+    private int cacheMissesDueToImageSave;
+
     private bool waitingForBackgroundOperation;
 
 #pragma warning disable CA2213
@@ -362,33 +364,45 @@ public partial class PhotoStudio : SubViewport
         base._Process(delta);
     }
 
-    public ImageTask GenerateImage(IScenePhotographable photographable, int priority = 1)
+    public ImageTask GenerateImage(IScenePhotographable photographable, int priority = 1,
+        bool requirePlainImageVariant = false)
     {
         var cacheKey = photographable.GetVisualHashCode();
 
-        var image = TryGetFromCache(cacheKey);
+        var image = TryGetFromCache(cacheKey, requirePlainImageVariant);
 
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority: priority));
+        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, requirePlainImageVariant, priority));
     }
 
-    public ImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1)
+    public ImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1,
+        bool requirePlainImageVariant = false)
     {
         var cacheKey = photographable.GetVisualHashCode();
 
-        var image = TryGetFromCache(cacheKey);
+        var image = TryGetFromCache(cacheKey, requirePlainImageVariant);
 
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority: priority));
+        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, requirePlainImageVariant, priority));
     }
 
-    public ImageTask? TryGetFromCache(ulong hashCode)
+    public ImageTask? TryGetFromCache(ulong hashCode, bool requirePlainImageVariant = false)
     {
         var image = memoryCache.Get(hashCode);
+
+        if (image == null)
+            return null;
+
+        if (requirePlainImageVariant && !image.WillStorePlainImage)
+        {
+            // Wrong variant of storing plain image, need to regenerate the cache entry
+            ++cacheMissesDueToImageSave;
+            return null;
+        }
 
         return image;
 

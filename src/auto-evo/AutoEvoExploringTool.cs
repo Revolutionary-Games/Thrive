@@ -714,7 +714,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         results.StorePreviousPopulations(gameWorld.Map);
         world.RunResultsList.Add(results.MakeSummary(true));
 
-        // Apply the results
+        // Apply the results (and pass time for world effects)
         gameWorld.OnTimePassed(1);
         autoEvoRun.ApplyAllResults(true);
         ++gameWorld.PlayerSpecies.Generation;

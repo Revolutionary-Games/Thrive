@@ -92,6 +92,9 @@ public partial class CellEditorComponent
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
 
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+
+        UpdateOsmoregulationTooltips();
+        UpdateMPCost();
     }
 
     private void CheckRunningAutoEvoPrediction()

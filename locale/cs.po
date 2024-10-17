@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -4367,10 +4367,6 @@ msgstr "Kyslík"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Syntéza OxyToxynů"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
 
@@ -5684,9 +5680,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licence"
 
-msgid "THYLAKOID"
-msgstr "Thylakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
 
@@ -5901,6 +5894,10 @@ msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxytoxizom"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytické enzymy, které mohou rozkládat různé biomolekuly. Lysozomy umožnují buňce strávit materiály vstřebány skrze endocytózu a čistit odpadní látky buňky skrze proces zvaný [b]autofagie[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "K implementaci."
@@ -8088,6 +8085,13 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thylakoid"
 
 #, fuzzy
 #~ msgid "ASCENSION"

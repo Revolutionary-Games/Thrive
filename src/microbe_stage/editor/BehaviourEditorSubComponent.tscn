@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bapb4m7jw7pc8"]
 
-[ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="2"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="3"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="3_g62sd"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.cs" id="4"]
+[ext_resource type="Texture2D" uid="uid://cnplt8x3gpyvx" path="res://assets/textures/gui/bevel/SliderTick.svg" id="4_lwlq4"]
 
 [sub_resource type="StyleBoxEmpty" id="16"]
 
@@ -70,7 +70,7 @@ horizontal_alignment = 2
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
-theme_override_icons/tick = ExtResource("2")
+theme_override_icons/tick = ExtResource("4_lwlq4")
 theme_override_styles/grabber_area = SubResource("39")
 theme_override_styles/grabber_area_highlight = SubResource("38")
 max_value = 400.0
@@ -111,7 +111,7 @@ horizontal_alignment = 2
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
-theme_override_icons/tick = ExtResource("2")
+theme_override_icons/tick = ExtResource("4_lwlq4")
 theme_override_styles/grabber_area = SubResource("39")
 theme_override_styles/grabber_area_highlight = SubResource("38")
 max_value = 400.0
@@ -151,7 +151,7 @@ horizontal_alignment = 2
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
-theme_override_icons/tick = ExtResource("2")
+theme_override_icons/tick = ExtResource("4_lwlq4")
 theme_override_styles/grabber_area = SubResource("39")
 theme_override_styles/grabber_area_highlight = SubResource("38")
 max_value = 400.0
@@ -191,7 +191,7 @@ horizontal_alignment = 2
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
-theme_override_icons/tick = ExtResource("2")
+theme_override_icons/tick = ExtResource("4_lwlq4")
 theme_override_styles/grabber_area = SubResource("39")
 theme_override_styles/grabber_area_highlight = SubResource("38")
 max_value = 400.0
@@ -231,7 +231,7 @@ horizontal_alignment = 2
 layout_mode = 2
 focus_mode = 1
 mouse_filter = 1
-theme_override_icons/tick = ExtResource("2")
+theme_override_icons/tick = ExtResource("4_lwlq4")
 theme_override_styles/grabber_area = SubResource("39")
 theme_override_styles/grabber_area_highlight = SubResource("38")
 max_value = 400.0

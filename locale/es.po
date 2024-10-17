@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-11 16:09+0300\n"
+"POT-Creation-Date: 2024-10-13 16:33+0200\n"
 "PO-Revision-Date: 2024-10-09 19:33+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -4348,10 +4348,6 @@ msgstr "Oxígeno"
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
 msgstr "Síntesis de OxiToxi"
 
-#, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
-
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. La tasa de conversión es proporcional a la concentración de [thrive:compound type=\"oxygen\"][/thrive:compound]. Puede liberar toxinas presionando [thrive:input]g_fire_toxin[/thrive:input]. Cuando la cantidad de [thrive:compound type=\"oxytoxy\"][/thrive:compound] este baja, disparar seguira siendo posible pero con un daño reducido."
 
@@ -5698,9 +5694,6 @@ msgstr "Zona"
 msgid "THRIVE_LICENSES"
 msgstr "Licencias de Thrive"
 
-msgid "THYLAKOID"
-msgstr "Tilacoide"
-
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
 
@@ -5906,6 +5899,10 @@ msgstr "Convierte [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:co
 #, fuzzy
 msgid "TOXISOME"
 msgstr "Oxitoxisoma"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "El lisosoma es un orgánulo integrado a la membrana que contiene enzimas hidrolícas que pueden quebrar las cadenas de ciertas biomoléculas. El Lisosoma permite que la célula obtenga mas compuestos a través de endocitosis, con agua como el único residuo en un proceso llamado [b]autofagia[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A implementar."
@@ -8114,6 +8111,13 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Un metabolosoma modificado para la producción de OxiToxi NT, una forma primitiva de toxinas."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tilacoide"
 
 #, fuzzy
 #~ msgid "ASCENSION"
