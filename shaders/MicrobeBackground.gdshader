@@ -13,8 +13,14 @@ uniform sampler2D layer3 : source_color;
 // The noise textures, distortion amount, and distortion speed for the distortion shader
 uniform sampler2D noiseTex1;
 uniform sampler2D noiseTex2;
-uniform float distortionFactor;
-uniform float distortionSpeed;
+uniform float distortionFactor : hint_range(0.0, 1.0, 0.1);
+uniform float distortionSpeed : hint_range(0.0, 0.01, 0.0001) = 0.001f;
+
+// When defined all (even the bubble layers) are distorted, if false time based
+// movement is applied to the other layers
+// #define DISTORT_ALL_LAYERS
+
+uniform float layerAnimateSpeed : hint_range(0.0, 2.0, 0.1) = 1.0f;
 
 const vec2 speed0 = vec2(3300.0f);
 const vec2 speed1 = vec2(2550.0f);
@@ -82,5 +88,6 @@ void fragment(){
     vec3 composition = mix(colour0.rgb, mixture2.rgb, 0.5f);
 
     ALBEDO.rgb = composition.rgb * LightInfluence(lightLevel);
+
     ALPHA = 1.0f;
 }
