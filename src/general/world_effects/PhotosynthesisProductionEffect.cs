@@ -30,9 +30,12 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
     private void ApplyCompoundsAddition()
     {
-        var outputModifier = 1.0f;
+        // These affect the final balance
+        var outputModifier = 1.5f;
         var inputModifier = 1.0f;
-        var modifier = 0.0001f;
+
+        // This affects how fast the conditions change, but also the final balance somewhat
+        var modifier = 0.00015f;
 
         List<TweakedProcess> microbeProcesses = [];
 
@@ -68,6 +71,9 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
                 foreach (var process in microbeProcesses)
                 {
+                    if (process.Process.InternalName == "protein_respiration")
+                        _ = 1;
+
                     // Only handle relevant processes
                     if (!IsProcessRelevant(process.Process))
                         continue;
@@ -83,6 +89,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     // unnecessarily consume environmental oxygen
                     var effectiveSpeed =
                         (process.Process.IsMetabolismProcess ? balanceModifier : 1) * rate.CurrentSpeed;
+
+                    // TODO: maybe photosynthesis should also only try to reach glucose balance of +0?
 
                     // Inputs take away compounds scaled by the speed and population of the species
                     foreach (var input in process.Process.Inputs)
@@ -170,9 +178,9 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 return true;
         }
 
-        foreach (var input in process.Outputs)
+        foreach (var output in process.Outputs)
         {
-            if (input.Key.ID is Compound.Oxygen or Compound.Carbondioxide)
+            if (output.Key.ID is Compound.Oxygen or Compound.Carbondioxide)
                 return true;
         }
 
