@@ -47,8 +47,16 @@ public partial class CompoundStorageStatistics : VBoxContainer
 
         storageWarningBuilder.Clear();
 
+        var simulationParameters = SimulationParameters.Instance;
+
         foreach (var entry in daytimeBalances)
         {
+            var compoundDefinition = simulationParameters.GetCompoundDefinition(entry.Key);
+
+            // Skip any gas compounds as they aren't stored by cells
+            if (compoundDefinition.IsGas)
+                continue;
+
             var storage = specialCapacities.GetValueOrDefault(entry.Key, nominalStorage);
 
             if (nightBalance.TryGetValue(entry.Key, out var nightEntry) && nightEntry.Balance < 0)
@@ -72,7 +80,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
                         compoundControl.ValueColour = CompoundAmount.Colour.Red;
 
                         storageWarningBuilder.Append(new LocalizedString("COMPOUND_STORAGE_NOT_ENOUGH_SPACE",
-                            SimulationParameters.GetCompound(entry.Key).InternalName,
+                            compoundDefinition.InternalName,
                             Math.Round(lastingTime, 1),
                             Math.Round(nightDuration)));
                         storageWarningBuilder.Append(' ');
@@ -90,7 +98,7 @@ public partial class CompoundStorageStatistics : VBoxContainer
                     {
                         storageWarningBuilder.Append(new LocalizedString(
                             "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY",
-                            SimulationParameters.GetCompound(entry.Key).InternalName,
+                            compoundDefinition.InternalName,
                             Math.Round(generated, 1),
                             Math.Round(required, 1)));
                         storageWarningBuilder.Append(' ');
