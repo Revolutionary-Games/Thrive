@@ -152,7 +152,8 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Takes a mesh with placed vertices and places UVs and normals on it
     /// </summary>
-    private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs, Vector3[] normals)
+    private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs,
+        Vector3[] normals)
     {
         float uvAngleModifier = 2.0f * MathF.PI / vertexCount;
 
