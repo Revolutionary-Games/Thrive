@@ -11,20 +11,18 @@ public class TimedWorldOperations
     private List<IWorldEffect> effects = new();
 
     /// <summary>
-    ///   Called when time passes
+    ///   Called when time passes (long timespans, like entering the editor)
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This is different than realtime gameplay time, these are
-    ///     mostly the time jumps that happen in the editor.
+    ///     This is different from realtime gameplay time, these are mostly the time jumps that happen in the editor.
     ///   </para>
     /// </remarks>
     /// <param name="timePassed">Time passed since last call</param>
     /// <param name="totalPassed">Total time passed</param>
     public void OnTimePassed(double timePassed, double totalPassed)
     {
-        GD.Print("TimedWorldOperations: running effects. elapsed: ",
-            timePassed, " total passed: ", totalPassed);
+        GD.Print("TimedWorldOperations: running effects. elapsed: ", timePassed, " total passed: ", totalPassed);
 
         foreach (var effect in effects)
         {
