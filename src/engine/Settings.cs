@@ -107,6 +107,13 @@ public class Settings
     public SettingValue<bool> ChromaticEnabled { get; private set; } = new(true);
 
     /// <summary>
+    ///   Enable or disable microbe background distortion shader. Should be 0 for disabled and around 0.3-0.9 when
+    ///   enabled.
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> MicrobeDistortionStrength { get; private set; } = new(0);
+
+    /// <summary>
     ///   Type of controller button prompts to show
     /// </summary>
     [JsonProperty]
@@ -123,6 +130,12 @@ public class Settings
     /// </summary>
     public SettingValue<StrainBarVisibility> StrainBarVisibilityMode { get; private set; } =
         new(StrainBarVisibility.VisibleWhenOverZero);
+
+    /// <summary>
+    ///   Enable or disable bloom
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> BloomEnabled { get; private set; } = new(false);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
