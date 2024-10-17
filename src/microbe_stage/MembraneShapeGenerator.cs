@@ -152,8 +152,7 @@ public class MembraneShapeGenerator
     /// <summary>
     ///   Takes a mesh with placed vertices and places UVs and normals on it
     /// </summary>
-    private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs, Vector2[] uvs2,
-        Vector3[] normals)
+    private static void FinishMesh(int vertexCount, int layerCount, Vector3[] vertices, Vector2[] uvs, Vector3[] normals)
     {
         float uvAngleModifier = 2.0f * MathF.PI / vertexCount;
 
@@ -169,7 +168,6 @@ public class MembraneShapeGenerator
                 Vector2 direction = (1.0f - y) * new Vector2(sin, cos) * 0.49f + new Vector2(0.5f, 0.5f);
 
                 uvs[id] = direction;
-                uvs2[id] = new Vector2(vertices[id].X, vertices[id].Z) * 0.05f;
 
                 // Find normals
                 Vector3 previous = i == 0 ? vertices[id + vertexCount - 1] : vertices[id - 1];
@@ -328,7 +326,6 @@ public class MembraneShapeGenerator
         // Last two vertices are reserved for the topmost and the bottommost vertices of the mesh, respectively
         var vertices = new Vector3[bufferSize];
         var uvs = new Vector2[bufferSize];
-        var uvs2 = new Vector2[bufferSize];
         var normals = new Vector3[bufferSize];
 
         const float sideRounding = Constants.MEMBRANE_SIDE_ROUNDING;
@@ -371,7 +368,7 @@ public class MembraneShapeGenerator
 
         PlaceTriangles(vertexCount, layerCount, indices);
 
-        FinishMesh(vertexCount, layerCount, vertices, uvs, uvs2, normals);
+        FinishMesh(vertexCount, layerCount, vertices, uvs, normals);
 
         // Godot might do this automatically
         // // Set the bounds to get frustum culling and LOD to work correctly.
@@ -384,7 +381,6 @@ public class MembraneShapeGenerator
         arrays[(int)Mesh.ArrayType.Index] = indices;
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.TexUV] = uvs;
-        arrays[(int)Mesh.ArrayType.TexUV2] = uvs2;
 
         // Create the mesh
         var generatedMesh = new ArrayMesh();

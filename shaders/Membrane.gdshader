@@ -21,6 +21,8 @@ uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
+	
+	UV2 = VERTEX.xz * 0.05f;
     
     // Any changes to this must be matched in EngulfEffect.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
