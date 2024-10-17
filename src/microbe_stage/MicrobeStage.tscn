@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://dva08tpqyn15k"]
+[gd_scene load_steps=14 format=3 uid="uid://dva08tpqyn15k"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt2fv82h01ice" path="res://src/microbe_stage/MicrobeHUD.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dqpjtfkjeuwmq" path="res://src/microbe_stage/MicrobeWorldEnvironment.tscn" id="5_jtm5v"]
 [ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
 [ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudSystem.cs" id="10"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
@@ -37,6 +38,8 @@ shadow_enabled = true
 
 [node name="GuidanceLine" parent="World" instance=ExtResource("75")]
 visible = false
+
+[node name="MicrobeWorldEnvironment" parent="World" instance=ExtResource("5_jtm5v")]
 
 [node name="PlayerHoverInfo" type="Node" parent="."]
 process_mode = 3

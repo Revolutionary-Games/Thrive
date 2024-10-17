@@ -1533,6 +1533,8 @@ public static class Constants
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
 
+    public const float DEFAULT_MICROBE_DISTORTION_STRENGHT = 0.6f;
+
     // Min/max values for each customizable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;
     public const float MAX_MP_MULTIPLIER = 2;

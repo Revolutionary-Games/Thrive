@@ -64,6 +64,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     public float LightLevelInterpolateSpeed = 4;
 
     private readonly StringName lightLevelParameter = new("lightLevel");
+    private readonly StringName distortionStrengthParameter = new("distortionFactor");
 
 #pragma warning disable CA2213
 
@@ -76,7 +77,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [JsonIgnore]
     private GpuParticles3D? backgroundParticles;
 
-    private ShaderMaterial materialToUpdate = null!;
+    private ShaderMaterial? materialToUpdate;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -178,6 +179,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             ResetHeight();
 
         UpdateBackgroundVisibility();
+        ApplyDistortionEffect();
 
         ProcessMode = ProcessModeEnum.Always;
     }
@@ -199,6 +201,9 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         InputManager.RegisterReceiver(this);
 
         Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
+        Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
+
+        ApplyDistortionEffect();
     }
 
     public override void _ExitTree()
@@ -207,6 +212,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         InputManager.UnregisterReceiver(this);
 
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
+        Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
     }
 
     public override void _Process(double delta)
@@ -351,6 +357,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         if (disposing)
         {
             lightLevelParameter.Dispose();
+            distortionStrengthParameter.Dispose();
         }
 
         base.Dispose(disposing);
@@ -454,6 +461,12 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     private void UpdateLightLevel(float delta)
     {
+        if (materialToUpdate == null)
+        {
+            GD.PrintErr($"{nameof(UpdateLightLevel)} called too early, material not ready");
+            return;
+        }
+
         if (lastSetLightLevel < lightLevel)
         {
             lastSetLightLevel += LightLevelInterpolateSpeed * delta;
@@ -474,5 +487,16 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         }
 
         materialToUpdate.SetShaderParameter(lightLevelParameter, lastSetLightLevel);
+    }
+
+    private void OnBackgroundDistortionChanged(float value)
+    {
+        ApplyDistortionEffect();
+    }
+
+    private void ApplyDistortionEffect()
+    {
+        materialToUpdate?.SetShaderParameter(distortionStrengthParameter,
+            Settings.Instance.MicrobeDistortionStrength.Value);
     }
 }
