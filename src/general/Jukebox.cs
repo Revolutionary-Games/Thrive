@@ -558,13 +558,13 @@ public partial class Jukebox : Node
 
         var random = new XoShiRo128starstar();
 
-        var contextMusicOnly = tracks.Where(c => c.ExclusiveToContexts != null);
+        var contextMusicOnly = tracks.Where(c => c.ExclusiveToContexts != null).ToArray();
 
         if (contextMusicOnly.Count() > 0)
         {
             if (random.Next(0, Constants.CONTEXTUAL_MUSIC_RARITY) == 0)
             {
-                tracks = contextMusicOnly.ToArray();
+                tracks = contextMusicOnly;
             }
         }
 
