@@ -53,7 +53,7 @@ CompoundCloudPlane::CompoundCloudPlane() {
 
     for (int i = 0; i < CLOUDS_IN_ONE; ++i) {
         decay_rates[i] = 0.99f - (i * 0.01f);
-        compound_colors[i] = godot::Color(1, 1, 1, 1);  // Default white color
+        compound_colors[i] = godot::Color(1, 1, 1, 1);  
     }
 }
 
@@ -186,7 +186,7 @@ void CompoundCloudPlane::update_cloud_texture() {
 
             if (total_density > minimum_visible_density && dominant_compound != -1) {
                 pixel_color = compound_colors[dominant_compound];
-                pixel_color.a = godot::Math::clamp(total_density * 2.0f, 0.0f, 1.0f); // Increased sensitivity
+                pixel_color.a = godot::Math::clamp(total_density * 2.0f, 0.0f, 1.0f); 
             }
 
             image->set_pixel(x, y, pixel_color);
@@ -393,7 +393,7 @@ void CompoundCloudPlane::advect(float delta) {
     std::lock_guard<std::mutex> lock(density_mutex);
     std::swap(density, old_density);
 
-    float flow_speed = 0.05f * delta; // Significantly reduced
+    float flow_speed = 0.05f * delta; 
     for (int x = 0; x < size; ++x) {
         for (int y = 0; y < size; ++y) {
             float new_x = std::fmod(static_cast<float>(x) + flow_speed, static_cast<float>(size));
