@@ -17,6 +17,8 @@ ThriveConfig* ThriveConfig::instance = nullptr;
 
 DebugDrawer* activeDrawerInstance = nullptr;
 
+CompoundCloudPlane* activePlaneInstance = nullptr;
+
 void ForwardLines(const std::vector<std::tuple<JPH::RVec3Arg, JPH::RVec3Arg, JPH::Float4>>& lineBuffer) noexcept
 {
     if (activeDrawerInstance == nullptr)
@@ -170,6 +172,28 @@ void ThriveConfig::RegisterDebugDrawReceiver(DebugDrawer* drawer) noexcept
     activeDrawerInstance = drawer;
     storedIntercommunication->DebugLineReceiver = ForwardLines;
     storedIntercommunication->DebugTriangleReceiver = ForwardTriangles;
+}
+
+// ------------------------------------ //
+
+void ThriveConfig::RegisterCompoundCloudPlaneReceiver(CompoundCloudPlane* receiver) noexcept
+{
+    if (!storedIntercommunication)
+    {
+        ERR_PRINT("ThriveConfig not initialized (missing intercommunication)");
+        return;
+    }
+
+    CompoundCloudPlane* plane = receiver;
+
+
+    if (plane == nullptr)
+    {
+        activePlaneInstance = nullptr;
+        return;
+    }
+
+    activePlaneInstance = plane;
 }
 
 // ------------------------------------ //
