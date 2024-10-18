@@ -12,6 +12,7 @@ add_library(thrive_extension SHARED
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
   nodes/DebugDrawer.cpp nodes/DebugDrawer.hpp
   core/GodotJoltConversions.hpp
+  nodes/CompoundCloudPlane.cpp nodes/CompoundCloudPlane.hpp
 )
 
 if(MSVC)
