@@ -13,7 +13,7 @@ using Systems;
 /// </summary>
 public partial class CloudBenchmark : BenchmarkBase
 {
-    private const float PHOSPHATE_AMOUNT = 5000;
+    private const float CLOUD_AMOUNT = 4000;
 
     private const float SPAWN_INTERVAL = 0.201f;
 
@@ -40,6 +40,9 @@ public partial class CloudBenchmark : BenchmarkBase
 
     private readonly CompoundBag absorbBag = new(float.MaxValue);
     private readonly Dictionary<Compound, float> absorbTracker = new();
+
+    private readonly IReadOnlyList<CompoundDefinition>
+        allCloudTypes = SimulationParameters.Instance.GetCloudCompounds();
 
 #pragma warning disable CA2213
     [Export]
@@ -71,6 +74,12 @@ public partial class CloudBenchmark : BenchmarkBase
     private int spawnCounter;
     private double spawnAngle;
     private float spawnDistance;
+
+    /// <summary>
+    ///   Used to spawn each cloud type in sequence to ensure that more realistic gameplay situation is recreated where
+    ///   most cloud types all exist at once in the world and need to be simulated.
+    /// </summary>
+    private int cloudTypeCounter;
 
     private double absorbAngle;
     private float absorbDistance;
@@ -448,7 +457,11 @@ public partial class CloudBenchmark : BenchmarkBase
     {
         timeSinceSpawn = 0;
 
-        cloudSystem!.AddCloud(Compound.Phosphates, PHOSPHATE_AMOUNT, position);
+        ++cloudTypeCounter;
+
+        var type = allCloudTypes[cloudTypeCounter % allCloudTypes.Count];
+
+        cloudSystem!.AddCloud(type.ID, CLOUD_AMOUNT, position);
     }
 
     private void AbsorbCloud(Vector3 position, double delta)
