@@ -560,7 +560,7 @@ public partial class Jukebox : Node
 
         var contextMusicOnly = tracks.Where(c => c.ExclusiveToContexts != null).ToArray();
 
-        if (contextMusicOnly.Count() > 0)
+        if (contextMusicOnly.Length > 0)
         {
             if (random.Next(0, Constants.CONTEXTUAL_MUSIC_RARITY) == 0)
             {
