@@ -413,6 +413,9 @@ public partial class CloudBenchmark : BenchmarkBase
     {
         ++spawnCounter;
 
+        // TODO: this should probably maybe be split into a few tasks to benchmark how well things scale when multiple
+        // threads (like how microbes are processed) are trying to do things at once (so testing if there are big locks
+        // in the system that prevent simultaneous access)
         for (int i = 0; i < emittersCount; ++i)
         {
             var position = new Vector3((float)Math.Cos(spawnAngle), 0, (float)-Math.Sin(spawnAngle)) *
@@ -436,6 +439,7 @@ public partial class CloudBenchmark : BenchmarkBase
         absorbBag.ClearCompounds();
         absorbTracker.Clear();
 
+        // TODO: this should probably also use a few tasks here for parallelism.
         for (int i = 0; i < absorbersCount; ++i)
         {
             var position = new Vector3((float)Math.Cos(absorbAngle), 0, (float)-Math.Sin(absorbAngle)) *
