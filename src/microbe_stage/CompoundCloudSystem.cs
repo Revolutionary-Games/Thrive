@@ -1,210 +1,182 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
 using Godot;
-using Newtonsoft.Json;
 using Systems;
 
-/// <summary>
-///   Manages spawning and processing compound clouds
-/// </summary>
-[RuntimeCost(35)]
+[GodotAutoload]
 public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveLoadedTracked
 {
-    [JsonProperty]
-    private int neededCloudsAtOnePosition;
-
-    [JsonProperty]
-    private List<CompoundCloudPlane> clouds = new();
-
-#pragma warning disable CA2213
-    private PackedScene cloudScene = null!;
-#pragma warning restore CA2213
-
-    /// <summary>
-    ///   This is the point in the center of the middle cloud. This is
-    ///   used for calculating which clouds to move when the player
-    ///   moves.
-    /// </summary>
-    [JsonProperty]
+    private List<Node> cloudInstances = new();
     private Vector3 cloudGridCenter;
-
-    [JsonProperty]
     private double elapsed;
-
-    [JsonIgnore]
     private float currentBrightness = 1.0f;
-
-    /// <summary>
-    ///   The cloud resolution of the first cloud
-    /// </summary>
-    [JsonIgnore]
-    public int Resolution => clouds[0].Resolution;
+    private PackedScene cloudScene = null!;
+    private FluidCurrentsSystem? fluidCurrentsSystem;
+    private bool isExiting = false;
 
     public bool IsLoadedFromSave { get; set; }
 
+    public int NeededCloudsAtOnePosition { get; private set; }
+
     public override void _Ready()
     {
+        base._Ready();
+
+        if (Engine.IsEditorHint())
+            return;
+
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
-    }
 
-    /// <summary>
-    ///   Resets the cloud contents and positions as well as the compound types they store
-    /// </summary>
-    public void Init(FluidCurrentsSystem fluidSystem)
-    {
-        var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
-
-        if (!IsLoadedFromSave)
+        if (cloudScene == null)
         {
-            clouds.Clear();
-        }
-
-        // Count the number of clouds needed at one position from the loaded compound types
-        neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count /
-            (float)Constants.CLOUDS_IN_ONE);
-
-        // We need to dynamically spawn more / delete some if this doesn't match
-        while (clouds.Count < neededCloudsAtOnePosition)
-        {
-            var createdCloud = cloudScene.Instantiate<CompoundCloudPlane>();
-            clouds.Add(createdCloud);
-            AddChild(createdCloud);
-        }
-
-        // TODO: this should be changed to detect which clouds are safe to delete
-        while (clouds.Count > neededCloudsAtOnePosition)
-        {
-            var cloud = clouds[clouds.Count - 1];
-            RemoveChild(cloud);
-            cloud.Free();
-            clouds.Remove(cloud);
-        }
-
-        // CompoundCloudPlanes have a negative render priority, so they are drawn beneath organelles
-        int renderPriority = -1;
-
-        // TODO: if the compound types have changed since we saved, that needs to be handled
-        if (IsLoadedFromSave)
-        {
-            foreach (var cloud in clouds)
-            {
-                // Re-init with potentially changed compounds
-                // TODO: special handling is needed if the compounds actually changed
-                cloud.Init(fluidSystem, renderPriority, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
-                    cloud.Compounds[3]);
-
-                --renderPriority;
-
-                // Re-add the clouds as our children
-                AddChild(cloud);
-            }
-
+            GD.PrintErr("Failed to load CompoundCloudPlane scene.");
             return;
         }
+    }
 
-        for (int i = 0; i < clouds.Count; ++i)
+    public override void _ExitTree()
+    {
+        isExiting = true;
+        base._ExitTree();
+
+        foreach (var cloudInstance in cloudInstances)
         {
-            int startOffset = (i % neededCloudsAtOnePosition) * Constants.CLOUDS_IN_ONE;
+            cloudInstance.QueueFree();
+        }
+        cloudInstances.Clear();
+    }
 
-            var cloud1 = allCloudCompounds[startOffset + 0].ID;
-            var cloud2 = Compound.Invalid;
-            var cloud3 = Compound.Invalid;
-            var cloud4 = Compound.Invalid;
+    public void Init(FluidCurrentsSystem fluidCurrentsSystem)
+    {
+        try
+        {
+            this.fluidCurrentsSystem = fluidCurrentsSystem;
 
-            if (startOffset + 1 < allCloudCompounds.Count)
-                cloud2 = allCloudCompounds[startOffset + 1].ID;
+            var allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
-            if (startOffset + 2 < allCloudCompounds.Count)
-                cloud3 = allCloudCompounds[startOffset + 2].ID;
+            cloudInstances.Clear();
 
-            if (startOffset + 3 < allCloudCompounds.Count)
-                cloud4 = allCloudCompounds[startOffset + 3].ID;
+            NeededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count / (float)Constants.CLOUDS_IN_ONE);
 
-            clouds[i].Init(fluidSystem, renderPriority, cloud1, cloud2, cloud3, cloud4);
-            --renderPriority;
-            clouds[i].Position = new Vector3(0, 0, 0);
+            for (int i = 0; i < NeededCloudsAtOnePosition; i++)
+            {
+                var cloudNode = cloudScene.Instantiate<Node>();
+
+                if (cloudNode == null)
+                {
+                    GD.PrintErr($"Failed to create CompoundCloudPlane instance {i}");
+                    return;
+                }
+
+                AddChild(cloudNode);
+                cloudInstances.Add(cloudNode);
+
+                int startOffset = i * Constants.CLOUDS_IN_ONE;
+                int cloud1 = (startOffset < allCloudCompounds.Count) ? GetCompoundID(allCloudCompounds[startOffset]) : -1;
+                int cloud2 = (startOffset + 1 < allCloudCompounds.Count) ? GetCompoundID(allCloudCompounds[startOffset + 1]) : -1;
+                int cloud3 = (startOffset + 2 < allCloudCompounds.Count) ? GetCompoundID(allCloudCompounds[startOffset + 2]) : -1;
+                int cloud4 = (startOffset + 3 < allCloudCompounds.Count) ? GetCompoundID(allCloudCompounds[startOffset + 3]) : -1;
+
+                cloudNode.Call("init", -i - 1, cloud1, cloud2, cloud3, cloud4);
+                cloudNode.Set("position", Vector3.Zero);
+            }
+
+            GD.Print("CompoundCloudSystem initialization completed successfully");
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Error in CompoundCloudSystem.Init: {e.Message}\n{e.StackTrace}");
         }
     }
 
     public override void _Process(double delta)
     {
-        elapsed += delta;
+        if (isExiting)
+            return;
 
-        // Limit the rate at which the clouds are processed as they
-        // are a major performance sink
-        if (elapsed >= Settings.Instance.CloudUpdateInterval)
+        try
         {
-            UpdateCloudContents((float)elapsed);
-            elapsed = 0;
+            elapsed += delta;
+
+            if (elapsed >= Settings.Instance.CloudUpdateInterval)
+            {
+                elapsed = 0;
+                foreach (var cloudInstance in cloudInstances)
+                {
+                    cloudInstance.Call("update_texture");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr($"Error in CompoundCloudSystem._Process: {e.Message}\n{e.StackTrace}");
         }
     }
 
-    /// <summary>
-    ///   Places specified amount of compound at position using interlocked operations for thread safety
-    /// </summary>
-    /// <returns>True when placing succeeded, false if out of range</returns>
+    private int GetCompoundID(CompoundDefinition compoundDefinition)
+    {
+        return (int)compoundDefinition.ID;
+    }
+
+    private int GetCompoundID(Compound compound)
+    {
+        return (int)compound;
+    }
+
+    public void SpawnCloud(Compound compound, float density, Vector3 worldPosition)
+    {
+        AddCloud(compound, density, worldPosition);
+    }
+
     public bool AddCloud(Compound compound, float density, Vector3 worldPosition)
     {
-        // Find the target cloud //
-        foreach (var cloud in clouds)
-        {
-            if (cloud.ContainsPosition(worldPosition, out int x, out int y))
-            {
-                // Within cloud
+        int compoundID = GetCompoundID(compound);
 
-                // Add if cloud handles this type
-                if (cloud.AddCloudInterlockedIfHandlesType(compound, x, y, density))
-                    return true;
+        foreach (var cloudInstance in cloudInstances)
+        {
+            bool contains = (bool)cloudInstance.Call("contains_position", worldPosition);
+            if (contains)
+            {
+                var coords = (Vector2)cloudInstance.Call("convert_to_cloud_local", worldPosition);
+                cloudInstance.Call("add_cloud", compoundID, (int)coords.X, (int)coords.Y, density);
+                return true;
             }
         }
 
         return false;
     }
 
-    /// <summary>
-    ///   Takes compound at world position. This doesn't use locks or interlocked read so this is not thread safe
-    ///   unlike <see cref="AbsorbCompounds"/>, which is basically what should be used instead.
-    /// </summary>
-    /// <param name="compound">The compound type to take</param>
-    /// <param name="worldPosition">World position to take from</param>
-    /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
     public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
         if (fraction < 0.0f)
             throw new ArgumentException("Fraction to take can't be negative");
 
-        foreach (var cloud in clouds)
+        int compoundID = GetCompoundID(compound);
+
+        foreach (var cloudInstance in cloudInstances)
         {
-            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
+            bool contains = (bool)cloudInstance.Call("contains_position", worldPosition);
+            if (contains)
             {
-                // Within cloud
-
-                // Skip wrong types
-                if (!cloud.HandlesCompound(compound))
-                    continue;
-
-                return cloud.TakeCompound(compound, x, y, fraction);
+                var coords = (Vector2)cloudInstance.Call("convert_to_cloud_local", worldPosition);
+                return (float)cloudInstance.Call("take_compound", compoundID, (int)coords.X, (int)coords.Y, fraction);
             }
         }
 
         return 0;
     }
 
-    public float AmountAvailable(Compound compound, Vector3 worldPosition, float fraction)
+    public float AmountAvailable(Compound compound, Vector3 worldPosition, float fraction = 1.0f)
     {
-        foreach (var cloud in clouds)
+        int compoundID = GetCompoundID(compound);
+
+        foreach (var cloudInstance in cloudInstances)
         {
-            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
+            bool contains = (bool)cloudInstance.Call("contains_position", worldPosition);
+            if (contains)
             {
-                // Within cloud
-
-                // Skip wrong types
-                if (!cloud.HandlesCompound(compound))
-                    continue;
-
-                return cloud.AmountAvailable(compound, x, y, fraction);
+                var coords = (Vector2)cloudInstance.Call("convert_to_cloud_local", worldPosition);
+                return (float)cloudInstance.Call("amount_available", compoundID, (int)coords.X, (int)coords.Y, fraction);
             }
         }
 
@@ -213,163 +185,47 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
     public void GetAllAvailableAt(Vector3 worldPosition, Dictionary<Compound, float> result, bool onlyAbsorbable = true)
     {
-        foreach (var cloud in clouds)
+        foreach (var cloudInstance in cloudInstances)
         {
-            if (cloud.ContainsPosition(worldPosition, out var x, out var y))
+            bool contains = (bool)cloudInstance.Call("contains_position", worldPosition);
+            if (contains)
             {
-                cloud.GetCompoundsAt(x, y, result, onlyAbsorbable);
-            }
-        }
-    }
+                var coords = (Vector2)cloudInstance.Call("convert_to_cloud_local", worldPosition);
+                int x = (int)coords.X;
+                int y = (int)coords.Y;
 
-    /// <summary>
-    ///   Absorbs compounds from clouds into a bag
-    /// </summary>
-    public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-        Dictionary<Compound, float>? totals, float delta, float rate)
-    {
-        // It might be fine to remove this check but this was in the old code
-        if (radius < 1.0f)
-        {
-            GD.PrintErr("Grab radius < 1 is not allowed");
-            return;
-        }
+                var compounds = (int[])cloudInstance.Call("get_compounds");
 
-        int resolution = Resolution;
-
-        // This version is used when working with cloud local coordinates
-        float localGrabRadius = radius / resolution;
-
-        float localGrabRadiusSquared = localGrabRadius * localGrabRadius;
-
-        // Find clouds that are in range for absorbing
-        foreach (var cloud in clouds)
-        {
-            // Skip clouds that are out of range
-            if (!cloud.ContainsPositionWithRadius(position, radius))
-                continue;
-
-            cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
-
-            // Calculate all circle positions and grab from all the valid
-            // positions
-
-            // For simplicity all points within a bounding box around the
-            // relative origin point is calculated and that is restricted by
-            // checking if the point is within the circle before grabbing
-            int xEnd = (int)MathF.Round(cloudRelativeX + localGrabRadius);
-            int yEnd = (int)MathF.Round(cloudRelativeY + localGrabRadius);
-
-            // No lock needed here now as AbsorbCompounds now uses atomic reads and updates
-            for (int x = (int)MathF.Round(cloudRelativeX - localGrabRadius); x <= xEnd; x += 1)
-            {
-                for (int y = (int)MathF.Round(cloudRelativeY - localGrabRadius); y <= yEnd; y += 1)
+                foreach (int compoundID in compounds)
                 {
-                    // Negative coordinates are always outside the cloud area
-                    if (x < 0 || y < 0)
+                    if (compoundID == -1)
                         continue;
 
-                    // Circle check
-                    if (MathF.Pow(x - cloudRelativeX, 2) + MathF.Pow(y - cloudRelativeY, 2) >
-                        localGrabRadiusSquared)
+                    float amount = (float)cloudInstance.Call("amount_available", compoundID, x, y, 1.0f);
+                    var compound = (Compound)compoundID;
+
+                    if (!result.ContainsKey(compound))
                     {
-                        // Not in it
-                        continue;
+                        result[compound] = 0;
                     }
 
-                    // Then just need to check that it is within the cloud simulation array
-                    if (x < cloud.Size && y < cloud.Size)
-                    {
-                        // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals, delta, rate);
-                    }
+                    result[compound] += amount;
                 }
             }
         }
     }
 
-    public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 200,
-        float minConcentration = 120)
-    {
-        if (searchRadius < 1)
-            throw new ArgumentException("searchRadius must be >= 1");
-
-        int resolution = Resolution;
-
-        // This version is used when working with cloud local coordinates
-        float localRadius = searchRadius / resolution;
-
-        float nearestDistanceSquared = float.MaxValue;
-
-        Vector3? closestPoint = null;
-
-        foreach (var cloud in clouds)
-        {
-            // Skip clouds that don't handle the target compound
-            if (!cloud.HandlesCompound(compound))
-                continue;
-
-            // Skip clouds that are out of range
-            if (!cloud.ContainsPositionWithRadius(position, searchRadius))
-                continue;
-
-            cloud.ConvertToCloudLocal(position, out var cloudRelativeX, out var cloudRelativeY);
-
-            // Search each angle for nearby compounds
-            for (int radius = 1; radius < localRadius; radius += 1)
-            {
-                for (double theta = 0; theta <= MathUtils.FULL_CIRCLE; theta += Constants.CHEMORECEPTOR_ARC_SIZE)
-                {
-                    int x = cloudRelativeX + (int)Math.Round(Math.Cos(theta) * radius);
-                    int y = cloudRelativeY + (int)Math.Round(Math.Sin(theta) * radius);
-
-                    // Negative coordinates are always outside the cloud area
-                    if (x < 0 || y < 0)
-                        continue;
-
-                    // Then just need to check that it is within the cloud simulation array
-                    if (x < cloud.Size && y < cloud.Size)
-                    {
-                        if (cloud.AmountAvailable(compound, x, y) >= minConcentration)
-                        {
-                            // Potential target point
-                            var currentWorldPos = cloud.ConvertToWorld(x, y);
-                            var distance = (position - currentWorldPos).LengthSquared();
-
-                            if (distance < nearestDistanceSquared)
-                            {
-                                closestPoint = currentWorldPos;
-                                nearestDistanceSquared = distance;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        return closestPoint;
-    }
-
-    /// <summary>
-    ///   Clears the contents of all clouds
-    /// </summary>
     public void EmptyAllClouds()
     {
-        foreach (var cloud in clouds)
-            cloud.ClearContents();
+        foreach (var cloudInstance in cloudInstances)
+        {
+            cloudInstance.Call("clear_contents");
+        }
     }
 
-    /// <summary>
-    ///   Used from the stage to update the player position to reposition the clouds
-    /// </summary>
     public void ReportPlayerPosition(Vector3 position)
     {
-        // Calculate what our center should be
         var targetCenter = CalculateGridCenterForPlayerPos(position);
-
-        // TODO: because we no longer check if the player has moved at least a bit
-        // it is possible that this gets triggered very often if the player spins
-        // around a cloud edge.
 
         if (!cloudGridCenter.Equals(targetCenter))
         {
@@ -385,73 +241,197 @@ public partial class CompoundCloudSystem : Node, IReadonlyCompoundClouds, ISaveL
 
         currentBrightness = brightness;
 
-        foreach (var cloud in clouds)
+        foreach (var cloudInstance in cloudInstances)
         {
-            cloud.SetBrightness(currentBrightness);
+            cloudInstance.Call("set_brightness", currentBrightness);
         }
     }
 
-    [SuppressMessage("ReSharper", "PossibleLossOfFraction",
-        Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
     private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
     {
-        // The gaps between the positions is used for calculations here. Otherwise
-        // all clouds get moved when the player moves
-        return new Vector3((int)Math.Round(pos.X / (Constants.CLOUD_X_EXTENT / 3)),
-            0,
+        return new Vector3(
+            (int)Math.Round(pos.X / (Constants.CLOUD_X_EXTENT / 3)), 0,
             (int)Math.Round(pos.Z / (Constants.CLOUD_Y_EXTENT / 3)));
     }
 
-    /// <summary>
-    ///   Repositions all clouds according to the center of the cloud grid
-    /// </summary>
     private void PositionClouds()
     {
-        foreach (var cloud in clouds)
+        foreach (var cloudInstance in cloudInstances)
         {
-            // TODO: make sure the cloud knows where we moved.
-            cloud.Position = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
-            cloud.UpdatePosition(new Vector2I((int)cloudGridCenter.X, (int)cloudGridCenter.Z));
+            var newPosition = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloudInstance.Set("position", newPosition);
+            cloudInstance.Call("update_position", new Vector2(cloudGridCenter.X, cloudGridCenter.Z));
         }
     }
 
-    private void UpdateCloudContents(float delta)
+    public int Resolution
     {
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
+        get
         {
-            cloud.UpdateEdgesBeforeCenter(delta);
+            if (cloudInstances.Count > 0)
+            {
+                return (int)cloudInstances[0].Get("resolution");
+            }
+
+            return 4; // Default value
+        }
+    }
+
+    public int Size
+    {
+        get
+        {
+            if (cloudInstances.Count > 0)
+            {
+                return (int)cloudInstances[0].Get("size");
+            }
+
+            return 256; // Default value
+        }
+    }
+
+    public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 200, float minConcentration = 120)
+    {
+        if (searchRadius < 1)
+            throw new ArgumentException("searchRadius must be >= 1");
+
+        int resolution = Resolution;
+        float localRadius = searchRadius / resolution;
+        float localRadiusSquared = localRadius * localRadius;
+        float nearestDistanceSquared = float.MaxValue;
+        Vector3? closestPoint = null;
+        int compoundID = GetCompoundID(compound);
+
+        foreach (var cloudInstance in cloudInstances)
+        {
+            var compounds = (int[])cloudInstance.Call("get_compounds");
+
+            if (!Array.Exists(compounds, id => id == compoundID))
+                continue;
+
+            bool contains = (bool)cloudInstance.Call("contains_position_with_radius", position, searchRadius);
+            if (!contains)
+                continue;
+
+            var coords = (Vector2)cloudInstance.Call("convert_to_cloud_local", position);
+            int cloudRelativeX = (int)coords.X;
+            int cloudRelativeY = (int)coords.Y;
+
+            int cloudSize = Size;
+
+            int xStart = Math.Max(0, cloudRelativeX - (int)localRadius);
+            int xEnd = Math.Min(cloudSize - 1, cloudRelativeX + (int)localRadius);
+            int yStart = Math.Max(0, cloudRelativeY - (int)localRadius);
+            int yEnd = Math.Min(cloudSize - 1, cloudRelativeY + (int)localRadius);
+
+            for (int x = xStart; x <= xEnd; x++)
+            {
+                for (int y = yStart; y <= yEnd; y++)
+                {
+                    float dx = x - cloudRelativeX;
+                    float dy = y - cloudRelativeY;
+                    float distanceSquared = dx * dx + dy * dy;
+
+                    if (distanceSquared > localRadiusSquared)
+                        continue;
+
+                    float amount = (float)cloudInstance.Call("amount_available", compoundID, x, y, 1.0f);
+
+                    if (amount >= minConcentration)
+                    {
+                        Vector3 currentWorldPos = (Vector3)cloudInstance.Call("convert_to_world", x, y);
+                        float worldDistanceSquared = (position - currentWorldPos).LengthSquared();
+
+                        if (worldDistanceSquared < nearestDistanceSquared)
+                        {
+                            closestPoint = currentWorldPos;
+                            nearestDistanceSquared = worldDistanceSquared;
+                        }
+                    }
+                }
+            }
         }
 
-        var executor = TaskExecutor.Instance;
-        var tasks = new List<Task>(9 * neededCloudsAtOnePosition);
+        return closestPoint;
+    }
 
-        foreach (var cloud in clouds)
+    public void AbsorbCompounds(Vector3 position, float radius, CompoundBag absorbBag, Dictionary<Compound, float> absorbTracker, float deltaTime, float absorbRate)
+    {
+        if (absorbRate <= 0.0f)
+            throw new ArgumentException("Absorb rate must be positive");
+
+        if (radius <= 0.0f)
+            throw new ArgumentException("Radius must be positive");
+
+        foreach (var cloudInstance in cloudInstances)
         {
-            cloud.QueueUpdateCloud(delta, tasks);
-        }
+            bool contains = (bool)cloudInstance.Call("contains_position_with_radius", position, radius);
+            if (!contains)
+                continue;
 
-        // Start and wait for tasks to finish
-        executor.RunTasks(tasks);
-        tasks.Clear();
+            var coords = (Vector2)cloudInstance.Call("convert_to_cloud_local", position);
+            int cloudRelativeX = (int)coords.X;
+            int cloudRelativeY = (int)coords.Y;
 
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
-        {
-            cloud.UpdateEdgesAfterCenter(delta);
-        }
+            int cloudSize = Size;
+            int resolution = Resolution;
 
-        // Update the cloud textures in parallel
-        foreach (var cloud in clouds)
-        {
-            cloud.QueueUpdateTextureImage(tasks);
-        }
+            int localRadius = (int)(radius / resolution) + 1;
 
-        executor.RunTasks(tasks);
+            int xStart = Math.Max(0, cloudRelativeX - localRadius);
+            int xEnd = Math.Min(cloudSize - 1, cloudRelativeX + localRadius);
+            int yStart = Math.Max(0, cloudRelativeY - localRadius);
+            int yEnd = Math.Min(cloudSize - 1, cloudRelativeY + localRadius);
 
-        foreach (var cloud in clouds)
-        {
-            cloud.UpdateTexture();
+            for (int x = xStart; x <= xEnd; x++)
+            {
+                for (int y = yStart; y <= yEnd; y++)
+                {
+                    float dx = (x - cloudRelativeX) * resolution;
+                    float dy = (y - cloudRelativeY) * resolution;
+                    float distanceSquared = dx * dx + dy * dy;
+
+                    if (distanceSquared > radius * radius)
+                        continue;
+
+                    var compounds = (int[])cloudInstance.Call("get_compounds");
+
+                    foreach (int compoundID in compounds)
+                    {
+                        if (compoundID == -1)
+                            continue;
+
+                        var compound = (Compound)compoundID;
+
+                        if (!absorbBag.IsUseful(compound))
+                            continue;
+
+                        float availableAmount = (float)cloudInstance.Call("amount_available", compoundID, x, y, 1.0f);
+
+                        if (availableAmount <= 0)
+                            continue;
+
+                        float fractionToAbsorb = absorbRate * deltaTime;
+
+                        // Calculate the amount to absorb
+                        float amountToAbsorb = availableAmount * fractionToAbsorb;
+
+                        // Update the absorb bag and tracker
+                        absorbBag.AddCompound(compound, amountToAbsorb);
+                        if (absorbTracker.ContainsKey(compound))
+                        {
+                            absorbTracker[compound] += amountToAbsorb;
+                        }
+                        else
+                        {
+                            absorbTracker[compound] = amountToAbsorb;
+                        }
+
+                        // Remove the absorbed amount from the cloud
+                        cloudInstance.Call("take_compound", compoundID, x, y, fractionToAbsorb);
+                    }
+                }
+            }
         }
     }
 }
