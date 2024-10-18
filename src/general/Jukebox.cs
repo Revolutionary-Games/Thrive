@@ -556,6 +556,18 @@ public partial class Jukebox : Node
         if (tracks.Length == 0)
             return;
 
+        var random = new XoShiRo128starstar();
+
+        var contextMusicOnly = tracks.Where(c => c.ExclusiveToContexts != null);
+
+        if (contextMusicOnly.Count() > 0)
+        {
+            if (random.Next(0, Constants.CONTEXTUAL_MUSIC_RARITY) == 0)
+            {
+                tracks = contextMusicOnly.ToArray();
+            }
+        }
+
         if (mode == TrackList.Order.Sequential)
         {
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % tracks.Length;
@@ -564,7 +576,6 @@ public partial class Jukebox : Node
         }
         else
         {
-            var random = new XoShiRo128starstar();
             int nextIndex;
 
             if (mode == TrackList.Order.Random)
