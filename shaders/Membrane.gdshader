@@ -21,6 +21,8 @@ uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
+	
+	UV2 = VERTEX.xz * 0.05f;
     
     // Any changes to this must be matched in EngulfEffect.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
@@ -31,13 +33,13 @@ void vertex(){
 
 float fresnel(float power, vec3 normal, vec3 view)
 {
-    return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.875 + 0.125) * 3.0, power), 0.0, 1.0);
+    return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.85 + 0.15) * 3.85, power), 0.1, 1.0);
 }
 
 void fragment(){
     vec4 albedo = texture(albedoTexture, UV);
 
-    vec4 normalmap = texture(normalTexture, UV);
+    vec4 normalmap = texture(normalTexture, UV2);
     NORMAL_MAP = normalmap.xyz;
     NORMAL_MAP_DEPTH = 0.5f;
 
