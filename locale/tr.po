@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 21:19+0300\n"
+"POT-Creation-Date: 2024-10-18 12:26+0300\n"
 "PO-Revision-Date: 2024-10-18 08:11+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -6692,6 +6692,54 @@ msgstr "Kullanıcı Arayüzü"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Geliştirmeler"
 
+#, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Etki yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr ""
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinden[/url][/color][/b] daha verimsizdir.\n"
+"\n"
+"Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Değişiklikler yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr ""
+"[b]Oksijensiz Azot Fiksasyonu[/b]: [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] → [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
+"\n"
+"Enerji harcayarak atmosferik [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinde[/url][/color][/b] bulunan benzer işlemden daha verimsizdir.\n"
+"\n"
+"[b]Glikoliz[/b]\n"
+"\n"
+"Birçok prokaryotik organel gibi; [b]Nitrojenazı[/b] çevreleyen [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazma[/url][/color][/b], [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştüren [b]Glikolizin[/b] daha verimsiz bir biçimini yerine getirir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr ""
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En fazla [b]13[/b] değerinde [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] sahip bir arazide olmak.[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr ""
+"[b]Nitrojenaz[/b] tarafından üretilen [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], üreme için saklanan kaynaklara katkı sağlar. Bu yüzden, [b]Nitrojenazlı[/b] hücrelerin ortamda yalnızca [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] bulması gerekir. Bu işlem, temelinden daha hızlı bir üreme sağlar (eğer pasif olarak üreme gelişimi mevcut oyun için ayarlardan devre dışı bırakıldıysa, temel hız sıfırdır).\n"
+"\n"
+"[b]Oksijensiz Azot Fiksasyonu[/b], [thrive:compound type=\"atp\"]ATP[/thrive:compound] tükettiği için bu organeli hücrenize eklemeden önce fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sahip olmanız gerekir. [b]Nitrojenaz[/b] tarafından yapılan küçük miktarda [b]Glikoliz[/b], bu organelin kendi ozmoregülasyon maliyetini dengelemek için yeterli değildir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Geliştirme yok."
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı ve teori tasarımı, [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi[/url][/color] üzerinde çalışılmaya başlandığında daha belirgin hale gelecektir."
 
@@ -7257,6 +7305,10 @@ msgstr "Çevresel Koşullar"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Kamçı"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrojenaz"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi"

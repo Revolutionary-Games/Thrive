@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-17 21:19+0300\n"
+"POT-Creation-Date: 2024-10-18 12:26+0300\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -6744,6 +6744,47 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr ""
+"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
+"\n"
+"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury. Tempo skaluje się ze stężeniem [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr ""
+"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"\n"
+"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
+"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "Termosyntaza jest białkiem które używa konwekcji termicznej by zmieniać swój kształt, pozwalając mu się zwinąć i związać z ADP pod wpływem ciepła, następnie rozwinąć i przetworzyć ADP na [thrive:compound type=\"atp\"][/thrive:compound] w kontakcie z niższą temperaturą w procesie zwanym [b]thermosynthesis[/b]. Szybkość produkcji [thrive:compound type=\"atp\"][/thrive:compound] wzrasta z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 "Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
@@ -7165,6 +7206,10 @@ msgstr "Mitochondrium"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Wić"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Azotaza"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
