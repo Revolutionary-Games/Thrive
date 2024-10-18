@@ -1,24 +1,25 @@
-﻿using System;
+using System;
 
-/// <summary>
-///   Converter for CompoundCloudPlane
-/// </summary>
-public class CompoundCloudPlaneConverter : BaseThriveConverter
+namespace Saving.Serializers
 {
-    public CompoundCloudPlaneConverter(ISaveContext context) : base(context)
+    /// <summary>
+    ///   Converter for CompoundCloudPlane
+    /// </summary>
+    public class CompoundCloudPlaneConverter : BaseThriveConverter
     {
-    }
+        public CompoundCloudPlaneConverter(ISaveContext context) : base(context)
+        {
+        }
 
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(CompoundCloudPlane);
-    }
+        public override bool CanConvert(Type objectType)
+        {
+            // Since CompoundCloudPlane is not a C# type, we return false
+            return false;
+        }
 
-    protected override bool SkipMember(string name)
-    {
-        if (name == "Mesh")
-            return true;
-
-        return base.SkipMember(name);
+        protected override bool SkipMember(string name)
+        {
+            return base.SkipMember(name);
+        }
     }
 }
