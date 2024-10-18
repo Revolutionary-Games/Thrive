@@ -17,6 +17,7 @@ void InitializeThriveModule(godot::ModuleInitializationLevel level)
 
     GDREGISTER_CLASS(Thrive::ThriveConfig);
     GDREGISTER_CLASS(Thrive::DebugDrawer);
+    GDREGISTER_CLASS(Thrive::CompoundCloudPlane);
 }
 
 void UnInitializeThriveModule(godot::ModuleInitializationLevel level)
