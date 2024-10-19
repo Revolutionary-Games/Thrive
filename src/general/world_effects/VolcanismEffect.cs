@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 public class VolcanismEffect : IWorldEffect
 {
-    private const float VentsCO2Strength = 0.1f;
+    private const float VentsCO2Strength = 0.15f;
     private const float VentsCO2Threshold = 0.3f;
 
-    private const float SurfaceCO2Strength = 0.01f;
+    private const float SurfaceCO2Strength = 0.025f;
     private const float SurfaceCO2Threshold = 0.15f;
 
     private const float FloorCO2Strength = 0.005f;
@@ -44,8 +44,10 @@ public class VolcanismEffect : IWorldEffect
                 ProduceCO2(patchKeyValue.Value, VentsCO2Strength, VentsCO2Threshold);
             }
             else if (patchKeyValue.Value.BiomeType is BiomeType.Epipelagic or BiomeType.Coastal or BiomeType.Estuary
-                     or BiomeType.Tidepool)
+                     or BiomeType.Tidepool or BiomeType.IceShelf)
             {
+                // Ice shelf gets co2 here as it seems to be pretty often the driver for early oxygen in the world
+
                 // Surface patches are given some CO2 from assumed volcanic activity on land
                 ProduceCO2(patchKeyValue.Value, SurfaceCO2Strength, SurfaceCO2Threshold);
             }

@@ -1,13 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://b4vme2vxaxfkw"]
+[gd_scene load_steps=15 format=3 uid="uid://b4vme2vxaxfkw"]
 
 [ext_resource type="PackedScene" uid="uid://cil2efpg6jdmd" path="res://src/gui_common/tooltip/DefaultToolTip.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bhy1rrdfux74j" path="res://src/microbe_stage/editor/tooltips/ModifierInfoLabel.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://b8tdhxl6kquhx" path="res://src/microbe_stage/editor/tooltips/SpeciesPreviewTooltip.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="4"]
 [ext_resource type="PackedScene" uid="uid://bl77ntlowknmp" path="res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn" id="5"]
-[ext_resource type="Texture2D" uid="uid://w33dve6al45k" path="res://assets/textures/gui/bevel/osmoregulationIcon.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="7"]
-[ext_resource type="LabelSettings" uid="uid://bhs4dgsx2ut6q" path="res://src/gui_common/fonts/Body-Bold-AlmostSmall-Red.tres" id="10_xjuqe"]
 [ext_resource type="Texture2D" uid="uid://d0iv1w2t5wwae" path="res://assets/textures/gui/bevel/parts/membraneAmoeba.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://dgnaltjd8hysi" path="res://assets/textures/gui/bevel/parts/PilusIcon.png" id="15"]
@@ -274,18 +272,12 @@ layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="osmoregulationCost" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
-layout_mode = 2
-DisplayName = "OSMOREGULATION_COST"
-ModifierValueFont = ExtResource("10_xjuqe")
-ModifierIcon = ExtResource("6")
-
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/single/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
@@ -311,18 +303,12 @@ layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="osmoregulationCost" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
-layout_mode = 2
-DisplayName = "OSMOREGULATION_COST"
-ModifierValueFont = ExtResource("10_xjuqe")
-ModifierIcon = ExtResource("6")
-
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/double/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
@@ -348,34 +334,28 @@ layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="osmoregulationCost" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
-layout_mode = 2
-DisplayName = "OSMOREGULATION_COST"
-ModifierValueFont = ExtResource("10_xjuqe")
-ModifierIcon = ExtResource("6")
-
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
@@ -402,34 +382,28 @@ layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="osmoregulationCost" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
-layout_mode = 2
-DisplayName = "OSMOREGULATION_COST"
-ModifierValueFont = ExtResource("10_xjuqe")
-ModifierIcon = ExtResource("6")
-
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
@@ -456,33 +430,27 @@ layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="osmoregulationCost" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
-layout_mode = 2
-DisplayName = "OSMOREGULATION_COST"
-ModifierValueFont = ExtResource("10_xjuqe")
-ModifierIcon = ExtResource("6")
-
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
@@ -510,33 +478,27 @@ layout_mode = 2
 DisplayName = "BASE_MOBILITY"
 ModifierIcon = ExtResource("7")
 
-[node name="osmoregulationCost" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
-layout_mode = 2
-DisplayName = "OSMOREGULATION_COST"
-ModifierValueFont = ExtResource("10_xjuqe")
-ModifierIcon = ExtResource("6")
-
-[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
+[node name="resourceAbsorptionSpeed" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="1" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESOURCE_ABSORBTION_SPEED"
 ModifierIcon = ExtResource("11")
 
-[node name="health" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
+[node name="health" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="2" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
 
-[node name="physicalResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
+[node name="physicalResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="3" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="toxinResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="toxinResistance" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")

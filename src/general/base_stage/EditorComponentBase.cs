@@ -106,6 +106,13 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         Init((TEditor)owningEditor, fresh);
     }
 
+    public virtual void OnEditorReady()
+    {
+        // Late initialization stuff can go here (usually overridden by component types that need that)
+        // Note that this only happens when not loading a save as when loading a save auto-evo etc. data should be
+        // ready immediately
+    }
+
     /// <summary>
     ///   Called
     /// </summary>

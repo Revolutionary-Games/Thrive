@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   A visual preview of how a species looks like in-game
@@ -27,10 +26,7 @@ public partial class SpeciesPreview : PhotographablePreview
     {
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
-            if (KeepPlainImageInMemory)
-                throw new NotSupportedException("This option hasn't been implemented to be passed");
-
-            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority);
+            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority, KeepPlainImageInMemory);
         }
 
         GD.PrintErr("Unknown species type to preview: ", previewSpecies);

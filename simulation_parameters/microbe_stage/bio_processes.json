@@ -3,10 +3,10 @@
     "Name": "RESPIRATION",
     "Inputs": {
       "oxygen": 1,
-      "glucose": 0.14
+      "glucose": 0.15
     },
     "Outputs": {
-      "atp": 91,
+      "atp": 110,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -192,10 +192,10 @@
     "Name": "RESPIRATION",
     "Inputs": {
       "oxygen": 1,
-      "glucose": 0.08
+      "glucose": 0.09
     },
     "Outputs": {
-      "atp": 38,
+      "atp": 45,
       "carbondioxide": 1
     },
     "IsMetabolismProcess": true
@@ -225,8 +225,7 @@
     "Name": "IRON_CHEMOLITHOAUTOTROPHY",
     "Inputs": {
       "iron": 0.02,
-      "carbondioxide": 0.09,
-      "oxygen": 0.21
+      "carbondioxide": 0.09
     },
     "Outputs": {
       "atp": 5
@@ -255,8 +254,7 @@
     "Name": "IRON_CHEMOLITHOAUTOTROPHY",
     "Inputs": {
       "iron": 0.033,
-      "carbondioxide": 0.09,
-      "oxygen": 0.21
+      "carbondioxide": 0.09
     },
     "Outputs": {
       "atp": 13

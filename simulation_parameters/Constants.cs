@@ -298,7 +298,7 @@ public static class Constants
     /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
 
-    public const float CILIA_PULLING_FORCE = 500000.0f;
+    public const float CILIA_PULLING_FORCE = 200000.0f;
     public const float CILIA_PULLING_FORCE_FIELD_RADIUS = 16.0f;
 
     /// <summary>
@@ -308,11 +308,12 @@ public static class Constants
     public const float CILIA_PULL_RADIUS_PER_CILIA = 0.70f;
 
     /// <summary>
-    ///   1 means that each cilia counts as 1 in the pulling force
+    ///   1 means that each cilia counts as 1 in the pulling force.
+    ///   Smaller values mean diminishing returns.
     /// </summary>
-    public const float CILIA_FORCE_MULTIPLIER_PER_CILIA = 1;
+    public const float CILIA_FORCE_EXPONENT_PER_CILIA = 0.9f;
 
-    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.1f;
+    public const float CILIA_PULLING_FORCE_FALLOFF_FACTOR = 0.05f;
     public const float CILIA_CURRENT_GENERATION_ANIMATION_SPEED = 5.0f;
 
     public const int MICROBE_SPAWN_RADIUS = 350;
@@ -1531,6 +1532,8 @@ public static class Constants
     public const int MICROBE_DEFAULT_RENDER_PRIORITY = 18;
 
     public const float COLOUR_PICKER_PICK_INTERVAL = 0.2f;
+
+    public const float DEFAULT_MICROBE_DISTORTION_STRENGHT = 0.6f;
 
     // Min/max values for each customizable difficulty option
     public const float MIN_MP_MULTIPLIER = 0.2f;

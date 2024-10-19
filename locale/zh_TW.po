@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 16:33+0200\n"
-"PO-Revision-Date: 2024-10-11 05:29+0000\n"
+"POT-Creation-Date: 2024-10-18 12:26+0300\n"
+"PO-Revision-Date: 2024-10-18 08:11+0000\n"
 "Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -470,6 +470,9 @@ msgstr "生物發光液泡"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
+
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "光暈效果"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神經元"
@@ -1514,6 +1517,9 @@ msgstr "顯示 3D 選單背景"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "顯示能力欄"
 
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "微生物背景扭曲"
+
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "顯示背景粒子"
 
@@ -1958,10 +1964,10 @@ msgid "FERROPLAST"
 msgstr "鐵能體"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "一個金屬發電廠。鐵能體是一種充滿蛋白質和酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"iron\"][/thrive:compound] 從一種化學狀態氧化為另一種化學狀態，其效率比鐵硫菌藍蛋白更高。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 才能發揮作用，並且其中任何較低的環境濃度都會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
+msgstr "一個金屬發電廠。鐵能體是一種充滿蛋白質和酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。它能夠將[thrive:compound type=\"iron\"][/thrive:compound] 從一種化學狀態氧化為另一種化學狀態，其效率比鐵硫菌藍蛋白更高。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 才能發揮作用，並且較低的環境濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。"
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
+msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按類別過濾項目："
@@ -2405,7 +2411,7 @@ msgid "INTERACTION_DESTROY"
 msgstr "摧毀"
 
 msgid "INTERACTION_FOUND_SETTLEMENT"
-msgstr "成立一個聚居地"
+msgstr "成立一個聚落"
 
 msgid "INTERACTION_HARVEST"
 msgstr "收獲"
@@ -3062,7 +3068,7 @@ msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "避免捕食選擇壓力"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr "營養物碎塊壓強"
+msgstr "營養物碎塊壓力"
 
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "化合物雲壓力"
@@ -4556,10 +4562,10 @@ msgid "RUSTICYANIN"
 msgstr "鐵硫菌藍蛋白"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "鐵硫菌藍蛋白是一種蛋白質，能夠使用[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 氧化[thrive:compound type=\"iron\"][/thrive:compound]。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。"
+msgstr "鐵硫菌藍蛋白是一種蛋白質，能夠利用[thrive:compound type=\"carbondioxide\"][/thrive:compound] 氧化[thrive:compound type=\"iron\"][/thrive:compound]。此過程被稱為[b]鐵呼吸[/b]，釋放能量，然後細胞可以收集這些能量。"
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
+msgstr "將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。速率與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5517,9 +5523,8 @@ msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:com
 msgid "TOXISOME"
 msgstr "毒素體"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
+msgstr "一種修改過的代謝體，負責產生原始形式的有毒物質[thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]。可以修改以切換生成的毒素類型以獲得其他效果。"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "等待實現。"
@@ -6107,7 +6112,7 @@ msgstr ""
 "\n"
 "「語言」發明允許玩家可以指定物種成員進行更具體的任務。這一功能建立在早期階段的「群體命令」之上（這在微生物階段是信號傳遞的媒介）。每當分配（或執行）任務時，「合作」的進度就會推進（進度不應依賴隨機性，但可以存在提前解鎖的可能性）。「合作」技術在「語言」基礎上進一步拓展，讓物種成員（在此階段已經足夠進步到可稱為「部落成員」）可以通過自己的行為來發現新技術。在此之前，只有玩家控制的生物體才能發現新技術。這使玩家可以更加專注於管理其逐漸興起的部落。\n"
 "\n"
-"此時策略模式仍然被鎖定，但玩家可以使用「群體命令」來分配物種成員進行各種任務（最重要的是資源與食物的收集），這是通過發現「合作」發明所實現的。當玩家分配了資源收集者並建造了結構物時，便會解鎖「集體住宅」技術，允許建造「社會中心」建築，從而建立定居點。\n"
+"此時策略模式仍然被鎖定，但玩家可以使用「群體命令」來分配物種成員進行各種任務（最重要的是資源與食物的收集），這是通過發現「合作」發明所實現的。當玩家分配了資源收集者並建造了結構物時，便會解鎖「集體住宅」技術，允許建造「社會中心」建築，從而建立聚落。\n"
 "\n"
 "當玩家建造了第一個「社會中心」時，本階段結束。此時玩家的視角將轉變為「策略模式」，從而顯示階段之間的變化以及遊戲向策略階段的轉變。"
 
@@ -6429,6 +6434,36 @@ msgstr "對於前幾個階段，Thrive 中的主要資源是[b]化合物[/b]。�
 
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
+"Thrive 中有許多不同的[b]化合物[/b]。\n"
+"\n"
+"[b][u]雲狀化合物[/u][/b]\n"
+"\n"
+"這些化合物在[b]環境[/b]中產生的雲中生成。\n"
+"\n"
+"[indent]—   [thrive:compound type=\"glucose\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound] (Also is emitted from [b]Chunks[/b])[/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"ammonia\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]環境氣體[/u][/b]\n"
+"\n"
+"這些化合物不會在環境中以雲的形式生成，而是存在於整個區域中並影響某些代謝。這些化合物在區域中的含量總和為 100%。要了解有關氣體的更多資訊，請參閱[color=#3796e1][url=thriveopedia:EnvironmentalConditions]環境條件[/url][/color]。\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxygen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]作用劑[/u][/b]\n"
+"\n"
+"這些化合物由特殊的[color=#3796e1][url=thriveopedia:OrganellesRoot]細胞器[/url][/color]生產，並且具有特殊用途。\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxytoxy\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"mucilage\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]ATP[/u][/b]\n"
+"\n"
+"[thrive:compound type=\"atp\"][/thrive:compound] 主要透過[thrive:compound type=\"glucose\"][/thrive:compound] 轉化，是維持生物存活所需的化合物。"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr "有關微生物階段中化合物的完整列表，請查看微生物階段附錄頁面上的化合物表。"
@@ -6512,9 +6547,20 @@ msgstr "這些是[color=#3796e1][url=thriveopedia:Compounds]化合物[/url][/col
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
 msgstr "Thrive 中有許多[b]環境條件[/b]。這些會影響某些細胞器的代謝過程，例如[thrive:compound type=\"sunlight\"][/thrive:compound] 影響[color=#3796e1][url=thriveopedia:chloroplast]葉綠體[/url][/color]中的[b]光合作用[/b]。"
 
-#, fuzzy
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
-msgstr "（每一代保留的環境葡萄糖比例）"
+msgstr ""
+"影響細胞器代謝的三個主要條件：\n"
+"\n"
+"[indent]—   [thrive:compound type=\"sunlight\"][/thrive:compound][/indent]\n"
+"[indent]—   [b]壓力[/b][/indent]\n"
+"[indent]—   [thrive:compound type=\"temperature\"][/thrive:compound][/indent]\n"
+"\n"
+"目前只有[thrive:compound type=\"sunlight\"][/thrive:compound] 與[thrive:compound type=\"temperature\"][/thrive:compound] 有實際影響：\n"
+"\n"
+"[indent]—   [thrive:compound type=\"sunlight\"][/thrive:compound] 影響[color=#3796e1][url=thriveopedia:chloroplast]葉綠體[/url][/color]與[color=#3796e1][url=thriveopedia:chromatophore]類囊體[/url][/color].[/indent]\n"
+"[indent]—   [thrive:compound type=\"temperature\"][/thrive:compound] 影響[color=#3796e1][url=thriveopedia:thermoplast]熱能體[/url][/color]與[color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color].[/indent]\n"
+"\n"
+"這些條件的處理方式與[color=#3796e1][url=thriveopedia:Compounds]化合物[/url][/color]類似，但對於每個區域來說更加獨特，並且不會呈現為化合物雲。"
 
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
@@ -6646,6 +6692,54 @@ msgstr "使用者介面"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "升級"
 
+#, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "無效果。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr ""
+"進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮體[/url][/color][/b]。\n"
+"\n"
+"也會進行一些[b]糖解[/b]，消耗[thrive:compound type=\"glucose\"][/thrive:compound] 生產[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "無修改。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr ""
+"[b]厭氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"透過消耗能量將大氣中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與環境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。效率低於[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮體[/url][/color][/b]中的同種代謝。\n"
+"\n"
+"[b]糖解[/b]\n"
+"\n"
+"與許多原核細胞器一樣，[b]固氮酶[/b]周圍的[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]會進行效率較低的[b]糖解[/b]，將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr ""
+"如果在遊戲設定中啟用了細胞器升級，則[i]玩家細胞[/i]必須滿足以下條件：\n"
+"\n"
+"[indent]—   位於少於 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的區域中。[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr ""
+"[b]固氮酶[/b]生產的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助於儲存用於繁殖的資源。因此，具有[b]固氮酶[/b]的細胞只需要從環境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在當前遊戲選項中停用了被動繁殖進度，則基本速率為零）。\n"
+"\n"
+"由於[b]厭氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您應該在將此細胞器添加到您的細胞之前檢查是否有多餘的[thrive:compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]進行的少量[b]糖解[/b]不足以抵銷其自身的滲透調節成本。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "無升級。"
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "此階段尚未開始開發。當[color=#3796e1][url=thriveopedia:society_stage]社會階段[/url][/color]開始製作後，該階段的遊戲玩法和理論設計將變得相關。"
 
@@ -6718,7 +6812,7 @@ msgstr "待定"
 
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
-"對於吞噬獵物的細胞，通常建議進化至少兩種[b]溶酶體[/b]，設定一種使用[b]幾丁質酶[/b]，一種使用[b]纖維素酶[/b]。這樣，您的細胞就可以消化更多類型的獵物，否則這些獵物將堅不可摧。\n"
+"對於吞噬獵物的細胞，通常建議演化至少兩種[b]溶酶體[/b]，設定一種使用[b]幾丁質酶[/b]，一種使用[b]纖維素酶[/b]。這樣，您的細胞就可以消化更多類型的獵物，否則這些獵物將堅不可摧。\n"
 "\n"
 "增加更多的[b]溶酶體[/b]以及酶的種類也是個好主意。提高消化速度可以防止攝入物質儲存空間不足的問題，提高消化效率使掠食作為一種策略更加可行。"
 
@@ -7125,6 +7219,10 @@ msgstr "環境條件"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "固氮酶"
+
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "工業階段"
 
@@ -7429,9 +7527,9 @@ msgstr "即將推出。"
 
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
-"簡介：在這個階段中，您將發展和擴展您的第一個定居點，並建立更多的定居點。這個階段讓人聯想到中世紀。當您的科技發展到足夠先進的程度時，本階段結束。\n"
+"簡介：在這個階段中，您將發展和擴展您的第一個聚落，並建立更多的聚落。這個階段讓人聯想到中世紀。當您的科技發展到足夠先進的程度時，本階段結束。\n"
 "\n"
-"社會階段是 Thrive 的七個遊戲階段之一。在經歷了[color=#3796e1][url=thriveopedia:awakening_stage]覺醒階段[/url][/color]並發展後，您的智慧物種開始形成更大的群體或社會。此時，策略模式成為遊戲的主要焦點，而非生物模式（儘管玩家仍然可以隨時使用生物模式，這是較低優先實現的功能）。同時，國家編輯器也會解鎖供玩家使用。最後，玩家的物種可以開始建立社會中心來形成定居點。\n"
+"社會階段是 Thrive 的七個遊戲階段之一。在經歷了[color=#3796e1][url=thriveopedia:awakening_stage]覺醒階段[/url][/color]並發展後，您的智慧物種開始形成更大的群體或社會。此時，策略模式成為遊戲的主要焦點，而非生物模式（儘管玩家仍然可以隨時使用生物模式，這是較低優先實現的功能）。同時，國家編輯器也會解鎖供玩家使用。最後，玩家的物種可以開始建立社會中心來形成聚落。\n"
 "\n"
 "在整個社會階段中，主要目標之一是發展越來越先進的科技。因此，當您的物種發展出足夠先進的科技進入[color=#3796e1][url=thriveopedia:industrial_stage]工業階段[/url][/color]時，社會階段結束。"
 
@@ -7441,9 +7539,17 @@ msgstr ""
 "\n"
 "由於在後期階段維持生物模式的運作將是非常繁重的工作，因此確保這一模式正常運作並不是當前的優先事項。畢竟，策略模式是本階段最重要、最有目的的玩法，也是推進文明所必須的。此外，也曾討論過，在這個階段單個個體的影響已經變得微乎其微，因此允許玩家在生物模式中四處遊走雖然不錯，但需要付出很大的努力才能對遊戲玩法產生很小的影響。"
 
-#, fuzzy
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
-msgstr "社會階段"
+msgstr ""
+"社會階段在您建造第一個社會中心（聚落）後開始。集體住宅可以形成社會中心。社會中心建築作為聚落的核心樞紐，聚落是一群建築，它們會像一個集體運作，並自動生成一個名稱。新的統計數據將出現在該聚落上，如幸福度、健康度和穩定度。遊戲的控制將切換到策略模式，並解鎖國家編輯器。這允許玩家最終從他們正在扮演的個體視角脫離，並轉而以即時戰略遊戲視角來控制物種。玩家可以向部落的不同單位發號施令，並且可以同時控制多個單位。現在可以指定物種成員來填充這些聚落，這意味著他們將作為一個可控單位消失，成為該聚落人口中的一個數字。預設情況下，人口將被分配為勞工。雖然將單位編入聚落會削弱他們在戰場上的許多能力，但它開闢了一系列全新的機會，並減輕了同時控制太多單位的負擔。現在，勞工、工匠或其他人口類型的標籤變得重要，因為電腦現在將該類型的所有成員視為一個整體。例如，勞工在聚落中進行可用的體力勞動，工匠則進行選定的製作任務。可以向人口徵收稅款，它們受人口增長的影響，並在需要操作員的建築中用來僱用人員。他們本質上只是螢幕上的數字。除了隨機在聚落周圍走動以使其看起來比較熱鬧之外，他們的模型不再重要。這也是為什麼生物模式不再重要的部分原因（但計劃仍然可用，儘管優先級較低）。玩家可以選擇一個部落成員並開始以生物模式進行遊戲，並獲得與之前相同的所有能力。\n"
+"\n"
+"儘管如此，現在居住在這些聚落中的人口成員隨時可以部署，這會將他們從聚落中移出，重新成為遊戲中的一個單位。建立新聚落就是以這種方式進行的。單位，特別是勞工，必須從一個聚落中部署出來，然後前往新地點，建造一個新的社會中心與支援建築，以啟動新的聚落。用來建造聚落的勞工可以用來填充人口，讓聚落順利運行。需要注意的是，只有勞工才能建造建築。\n"
+"\n"
+"社會傳統解鎖了自動文化生成，使藝術在您的國家誕生。社會進步將逐漸解鎖國家編輯器的更多功能。\n"
+"\n"
+"相反，在整個進步過程中，玩家物種的其他部落也會開始出現。每一個從玩家物種中產生的部落，將會帶走一部分該物種的人口，因此從同一物種中形成的部落數量有限。其他物種也可能獲得智慧，並開始形成部落。這種情況發生的頻率需要根據實際情況進行調整以確保現實，因為時間尺度意味著多個物種基本上必須在非常短的時間內幾乎同時變得智慧，才能在玩家行星的整體演化過程中成為一部分。如果一個物種進步得更快，它們可以在幾萬年內迅速用技術消滅其他競爭對手。只有玩家組建的部落，以及後來的國家，將由玩家控制。其他國家將是 AI 國家，並將成為玩家在漫長歷史中競爭的來源。它們仍然屬於與玩家相同的物種，但無法控制，甚至可能與玩家敵對。它們將發現自己的科技，形成自己的社會中心，並走向自己的文明之路。\n"
+"\n"
+"當玩家解鎖並建造第一台工業機械後，本階段結束。"
 
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr "即將推出。"
@@ -7485,7 +7591,7 @@ msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 "這些是遊戲中的所有階段。總共有 8 個階段，每個階段的遊戲玩法都略有不同。\n"
 "\n"
-"當你在 Thrive 中發展時，您將經歷各個階段，最終讓您達到飛昇。\n"
+"當您在 Thrive 中發展時，您將經歷各個階段，最終讓您達到飛昇。\n"
 "\n"
 "您將以一個單細胞生物開始遊戲，接著演化出器官與組織，然後變得有智慧，並建立一個征服太空的社會。"
 
@@ -7786,12 +7892,6 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
-
-#~ msgid "OXYTOXISOME_DESC"
-#~ msgstr "一種修飾過的代謝體，負責生產原始形式的有毒物質[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以修改以切換生成的毒素類型來獲得其他效果。"
-
-#~ msgid "THYLAKOID"
-#~ msgstr "類囊體"
 
 #, fuzzy
 #~ msgid "ASCENSION"

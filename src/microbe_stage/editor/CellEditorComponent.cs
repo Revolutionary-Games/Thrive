@@ -788,10 +788,11 @@ public partial class CellEditorComponent :
             {
                 GD.Print("Loaded cell editor with no cell to edit set");
             }
-        }
 
-        // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInCurrentPatch();
+            // Send info to the GUI about the organelle effectiveness in the current patch
+            // When not loading a save, this is handled by OnEditorReady
+            OnPatchDataReady();
+        }
 
         if (IsMulticellularEditor)
         {
@@ -909,6 +910,13 @@ public partial class CellEditorComponent :
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+    }
+
+    public override void OnEditorReady()
+    {
+        // As auto-evo results can modify the patch data, we only want to calculate the effectiveness of organelles in
+        // the current patch once that data is ready (and whenever the selected patch changes of course)
+        OnPatchDataReady();
     }
 
     [RunOnKeyDown("e_primary")]
@@ -1577,6 +1585,15 @@ public partial class CellEditorComponent :
         }
 
         base.Dispose(disposing);
+    }
+
+    /// <summary>
+    ///   Called once patch data is ready for initial read
+    /// </summary>
+    private void OnPatchDataReady()
+    {
+        CalculateOrganelleEffectivenessInCurrentPatch();
+        UpdatePatchDependentBalanceData();
     }
 
     private bool PerformEndosymbiosisPlace(int q, int r)

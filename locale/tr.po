@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-13 16:33+0200\n"
-"PO-Revision-Date: 2024-10-11 05:29+0000\n"
+"POT-Creation-Date: 2024-10-18 12:26+0300\n"
+"PO-Revision-Date: 2024-10-18 08:11+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -470,6 +470,9 @@ msgstr "Biyolüminesan Koful"
 
 msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
+
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Kamaşma efekti"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Nöron"
@@ -1514,6 +1517,9 @@ msgstr "3D menü arkaplanlarını göster"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Yetenekler çubuğunu göster"
 
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "Mikrop arkaplanlarına çarpıklık uygula"
+
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Arkaplan parçacıklarını göster"
 
@@ -1958,10 +1964,10 @@ msgid "FERROPLAST"
 msgstr "Ferroplast"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "Metalik bir güç merkezidir. Ferroplast, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Ferroplast, rustisiyanin ile elde edilenden daha yüksek bir verimlilikle, [thrive:compound type=\"iron\"]demiri[/thrive:compound] bir kimyasal halden diğerine dönüştürebilir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir. Ancak, ferroplast çalışmak için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] gerektirir ve ortamda düşük seviyelerde bulunan bu bileşikler, onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
+msgstr "Metalik bir güç merkezidir. Ferroplast, protein ve enzimlerle dolu çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Ferroplast, rustisiyanin ile elde edilenden daha yüksek bir verimlilikle, [thrive:compound type=\"iron\"]demiri[/thrive:compound] bir kimyasal halden diğerine dönüştürebilir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir. Ancak, ferroplast çalışmak için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gerektirir ve ortamda düşük seviyelerde bulunan bu bileşik, onun [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretim hızını yavaşlatır."
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "Öğeleri kategori cinsinden filtrele:"
@@ -4556,10 +4562,10 @@ msgid "RUSTICYANIN"
 msgstr "Rustisiyanin"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Rustisiyanin, demiri bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazı ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
+msgstr "Rustisiyanin, [thrive:compound type=\"iron\"]demiri[/thrive:compound] bir kimyasal halden diğerine dönüştürmek için [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] kullanan bir proteindir. [b]Demir solunumu[/b] olarak adlandırılan bu işlem, hücrenin sonradan kullanacağı enerjiyi verir."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+msgstr "[thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5517,9 +5523,8 @@ msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound
 msgid "TOXISOME"
 msgstr "Toksizom"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+msgstr "[thrive:compound type=\\\"oxytoxy\\\"]OksiToksi[/thrive:compound] zehirli ajanının ilkel bir formunun üretiminden sorumlu, değiştirilmiş bir metabolozomdur. Diğer etkiler için, oluşturulan toksin türünü değiştirmek amacıyla modifiye edilebilir."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Henüz Eklenmedi."
@@ -6687,6 +6692,54 @@ msgstr "Kullanıcı Arayüzü"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Geliştirmeler"
 
+#, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Etki yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr ""
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinden[/url][/color][/b] daha verimsizdir.\n"
+"\n"
+"Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Değişiklikler yok."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr ""
+"[b]Oksijensiz Azot Fiksasyonu[/b]: [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] → [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
+"\n"
+"Enerji harcayarak atmosferik [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinde[/url][/color][/b] bulunan benzer işlemden daha verimsizdir.\n"
+"\n"
+"[b]Glikoliz[/b]\n"
+"\n"
+"Birçok prokaryotik organel gibi; [b]Nitrojenazı[/b] çevreleyen [b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazma[/url][/color][/b], [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştüren [b]Glikolizin[/b] daha verimsiz bir biçimini yerine getirir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr ""
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki şart [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   En fazla [b]13[/b] değerinde [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] sahip bir arazide olmak.[/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr ""
+"[b]Nitrojenaz[/b] tarafından üretilen [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], üreme için saklanan kaynaklara katkı sağlar. Bu yüzden, [b]Nitrojenazlı[/b] hücrelerin ortamda yalnızca [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] bulması gerekir. Bu işlem, temelinden daha hızlı bir üreme sağlar (eğer pasif olarak üreme gelişimi mevcut oyun için ayarlardan devre dışı bırakıldıysa, temel hız sıfırdır).\n"
+"\n"
+"[b]Oksijensiz Azot Fiksasyonu[/b], [thrive:compound type=\"atp\"]ATP[/thrive:compound] tükettiği için bu organeli hücrenize eklemeden önce fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sahip olmanız gerekir. [b]Nitrojenaz[/b] tarafından yapılan küçük miktarda [b]Glikoliz[/b], bu organelin kendi ozmoregülasyon maliyetini dengelemek için yeterli değildir."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Geliştirme yok."
+
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Bu evrenin geliştirilmesine henüz başlanmadı. Bu evrenin oynanışı ve teori tasarımı, [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi[/url][/color] üzerinde çalışılmaya başlandığında daha belirgin hale gelecektir."
 
@@ -6879,44 +6932,46 @@ msgstr ""
 "\n"
 "[b][u]Kontroller[/u][/b]\n"
 "\n"
-"The Microbe Stage is played using the keyboard and mouse. The cell always faces the mouse cursor's position, while the WASD keys will propel the cell in a direction relative to the cursor's position. For example, pressing the W key will make the cell travel forward towards the mouse cursor. Whereas pressing the S key will make the cell travel backwards away from the mouse cursor. These controls allow the player to strategically move their cell to dodge toxin projectiles or position themselves to catch as many prey cells as they can.The mouse is also used to interact with the various UI elements on the screen.\n"
+"Mikrop Evresi, klavye ve fare kullanılarak oynanır. Hücre, her zaman fare imlecine doğru yönelir, WASD tuşları ise hücreyi fare imlecinin konumuna göre bir yöne doğru hareket ettirir. Örneğin, W tuşuna basmak hücreyi fare imlecine doğru, ileri götürürken, S tuşuna basmak hücreyi fare imlecinden uzağa, geri götürür. Bu kontroller, oyuncunun hücresini stratejik olarak hareket ettirerek toksin mermilerinden sıyrılmasına veya mümkün olduğu kadar av hücresini yakalayacak şekilde pozisyon almasını sağlar. Fare ayrıca ekrandaki çeşitli kullanıcı arayüzü (UI) öğeleriyle etkileşim kurmak için de kullanılır.\n"
 "\n"
-"Pressing the G key will enable Engulfment Mode. In this mode, the cell will begin flashing with a blue overlay and damage any cells smaller than them they come into contact with. All cells have this ability, regardless of adaptations so it would be wise to avoid approaching larger cells if the player does not have any defenses.\n"
+"G tuşuna basmak Yutma Modunu etkinleştirir. Bu modda hücre, etrafında mavi bir tabaka ile yanıp söner ve kendinden küçük hücrelere temas ettiğinde hasar verir. Adaptasyonlara bakılmaksızın bütün hücreler bu yeteneğe sahiptir. Bu nedenle, oyuncunun herhangi bir savunması yoksa daha büyük hücrelerden uzak durması akıllıca olacaktır.\n"
 "\n"
-"Pressing the E key will expel a toxin projectile from your cell, should your cell possess toxin generating parts.\n"
+"Eğer hücrenizin toksin üreten parçaları varsa, E tuşuna basmak hücrenizden bir toksin mermisi fırlatır.\n"
 "\n"
-"Using the mouse wheel, the player can adjust their field of view. This is very useful for navigating the environment around them or taking a close look at their cell.\n"
+"Fare tekerleğini kullanarak oyuncu görüş alanını ayarlayabilir. Bu kontrol, oyuncunun etrafındaki ortamı seyretmesi veya hücresine yakından bakması için oldukça kullanışlıdır.\n"
 "\n"
-"Pressing X will enable auto-move, causing the player to move forward automatically. This frees the player from continuously holding down the movement keys when they do not have a need for fine control. The player can still steer using the mouse while in this state, and can cancel auto-move at any time by pressing any movement key.\n"
+"X tuşuna basmak otomatik hareketi etkinleştirir ve oyuncunun hücresini otomatik olarak ileri hareket ettirir. Bu kontrol, hassas kontrol gerekmediğinde oyuncunun sürekli hareket tuşlarına basmasını önler. Bu durumdayken oyuncu hala fareyi kullanarak hücreyi yönlendirebilir ve herhangi bir hareket tuşuna basarak otomatik hareketi iptal edebilir.\n"
 "\n"
-"[b][u]Environment[/u][/b]\n"
+"[b][u]Ortam[/u][/b]\n"
 "\n"
-"These are unique parameters that relate to the climate of the current patch and act as a passive effect on the cells.\n"
+"Aşağıdaki parametreler, mevcut arazinin iklimiyle ilgili benzersiz parametrelerdir ve hücreler üzerinde pasif bir etki olarak işlev görür.\n"
 "\n"
-"[indent]—   [b]Temperature:[/b] The measure of heat in the current environment. Temperature currently has no direct effect on cells, but is needed to generate energy using thermoplasts.[/indent]\n"
+"[indent]—   [b]Sıcaklık:[/b] Mevcut ortamın ısısının ölçüsüdür. Sıcaklık şu an için hücreler üzerinde doğrudan bir etkiye sahip değildir, ancak termoplastları kullanarak enerji üretmek için gereklidir.[/indent]\n"
 "\n"
-"[indent]—   [b]Pressure:[/b] The amount of crushing force in the environment due to depth. Pressure currently has no effect in the game.[/indent]\n"
+"[indent]—   [b]Basınç:[/b] Ortamda, derinliğe bağlı olarak oluşan baskı kuvvetidir. Basınç şu an için oyunda bir etkiye sahip değildir.[/indent]\n"
 "\n"
-"[indent]—   [b]Lux:[/b] The amount of light reaching the environment. Lux is vital for photosynthesis to function, so photosynthesizers should make sure that the environment they inhabit has enough light to support them. 50% lux and above makes for a perfectly suitable home for photosynthesizers.[/indent]\n"
+"[indent]—   [b]Lüks:[/b] Ortama ulaşan ışık miktarıdır. Lüks, fotosentez için hayati bir öneme sahiptir. Bu yüzden fotosentez yapan hücreler, bulundukları ortamın onları destekleyecek kadar ışık içerdiğinden emin olmalıdır. 50% lux ve üzeri, fotosentez yapan hücreler için tamamen uygun bir yuva sağlar.[/indent]\n"
 "\n"
-"These are gasses that are present within a patch and do not have a physical presence in the game world. These elements act as a passive effect on various processes of the cell and can be required for certain proteins and organelles to function.\n"
+"Aşağıdaki gazlar, bir arazi içerisinde bulunan ve oyun dünyasında fiziksel bir varlığı olmayan gazlardır. Bu elementler, hücrelerin çeşitli işlemleri üzerinde pasif bir etki yaratır ve bazı proteinlerin ve organellerin çalışması için gerekli olabilir.\n"
 "\n"
-"[indent]—   [b]Oxygen:[/b] An important gas for aerobic respiration, oxygen is used by parts such as metabolosomes to perform their purposes. The more oxygen that is present in a patch, the better these parts will perform. Currently, oxygen has no other effect on cells and is at a constant 21% concentration in all patches.[/indent]\n"
+"Şu anda oksijenin hücreler üzerinde başka bir etkisi yoktur ve tüm yamalarda %21 sabit bir konsantrasyonda bulunur.\n"
 "\n"
-"[indent]—   [b]Nitrogen:[/b] A gas used by cells for nitrogen fixation in the synthesis of ammonia. Nitrogen currently has no other effect on cells and is at a constant 70% concentration in all patches.[/indent]\n"
+"[indent]—   [b]Oksijen:[/b] Oksijenli solunum için önemli bir gazdır. Oksijen, metabolozomlar gibi parçaların işlevlerini yerine getirmesi için kullanılır. Bir arazide ne kadar fazla oksijen varsa, bu parçalar o kadar iyi çalışır. Şu an için oksijenin hücreler üzerinde başka bir etkisi yoktur ve tüm arazilerde sabit %21'lik bir konsantrasyonda bulunur.[/indent]\n"
 "\n"
-"[indent]—   [b]Carbon Dioxide:[/b] An important gas for chemosynthesis and photosynthesis. Carbon dioxide is currently at a constant 9% concentration in all patches.[/indent]\n"
+"[indent]—   [b]Azot:[/b] Amonyak sentezinde, azot fiksasyonu için hücreler tarafından kullanılan bir gazdır. Şu an için azotun hücreler üzerinde başka bir etkisi yoktur ve tüm arazilerde sabit %70'lik bir konsantrasyonda bulunur.[/indent]\n"
 "\n"
-"There are several compounds present in the Microbe Stage. Below is a list of all compounds and their uses.\n"
+"[indent]—   [b]Karbondioksit:[/b] Kemosentez ve fotosentez için önemli bir gazdır. Karbondioksit şu an için tüm arazilerde sabit %9'luk bir konsantrasyonda bulunur.[/indent]\n"
 "\n"
-"[indent]—   [b]Glucose:[/b] Primary ATP storage for cells, and initial source of food for the player. Glucose is consumed by several organelles and proteins to produce ATP, the most notable being the metabolosomes and mitochondria as they are specifically used for glucose. When the player dies they will respawn with a reserve of glucose within their cell, allowing them to readily resume gameplay without fear of starvation. The player must take care should they rely on the readily available glucose found in the environment, as every generation the global glucose amounts decrease by 80%. Glucose clouds are white in color.[/indent]\n"
+"Mikrop Evresi'nde bulunan birçok bileşik vardır. Aşağıda, tüm bileşiklerin ve kullanım amaçlarının bir listesi bulunmaktadır.\n"
 "\n"
-"[indent]—   [b]Ammonia:[/b] Vital compounds required for reproduction. Ammonia is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the nitrogenase and nitrogen-fixing plastid can produce ammonia from ATP and nitrogen, saving the player from having to actively seek it out in the environment to reproduce. Ammonia clouds are orange in color.[/indent]\n"
+"[indent]—   [b]Glukoz:[/b] Primary ATP storage for cells, and initial source of food for the player. Glucose is consumed by several organelles and proteins to produce ATP, the most notable being the metabolosomes and mitochondria as they are specifically used for glucose. When the player dies they will respawn with a reserve of glucose within their cell, allowing them to readily resume gameplay without fear of starvation. The player must take care should they rely on the readily available glucose found in the environment, as every generation the global glucose amounts decrease by 80%. Glucose clouds are white in color.[/indent]\n"
 "\n"
-"[indent]—   [b]Phosphate:[/b] Identical in purpose to ammonia, phosphate is a requirement for reproduction. Unlike ammonia, however, there are no methods of synthesizing phosphate so it can only be found in the environment or from predation. Phosphate clouds are purple in color.[/indent]\n"
+"[indent]—   [b]Amonyak:[/b] Vital compounds required for reproduction. Ammonia is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the nitrogenase and nitrogen-fixing plastid can produce ammonia from ATP and nitrogen, saving the player from having to actively seek it out in the environment to reproduce. Ammonia clouds are orange in color.[/indent]\n"
 "\n"
-"[indent]—   [b]Hydrogen Sulfide:[/b] An alternative source of glucose for cells, that can be found in high quantities in a select few patches. Should a player intend to use hydrogen sulfide for energy, they must take care to ensure that the patch they inhabit contains the compound. Hydrogen sulfide is only usable if the player possesses chemosynthesizing proteins, otherwise the player cannot take in the compound, and any already stored within the cell will be quickly expelled.[/indent]\n"
-"[indent]—   [b]Iron:[/b] Another alternative source of ATP, iron is a relatively uncommon resource found in almost, but not all, patches in the world. Unlike any other compound, iron can not only be found in clouds but also as variably sized chunks that trail iron clouds as they drift. Iron can only be used by a cell if it possesses rustycyanin. Iron clouds appear brown in color. The chunks themselves can be engulfed for a significant source of iron.[/indent]"
+"[indent]—   [b]Fosfat:[/b] Identical in purpose to ammonia, phosphate is a requirement for reproduction. Unlike ammonia, however, there are no methods of synthesizing phosphate so it can only be found in the environment or from predation. Phosphate clouds are purple in color.[/indent]\n"
+"\n"
+"[indent]—   [b]Hidrojen Sülfür:[/b] An alternative source of glucose for cells, that can be found in high quantities in a select few patches. Should a player intend to use hydrogen sulfide for energy, they must take care to ensure that the patch they inhabit contains the compound. Hydrogen sulfide is only usable if the player possesses chemosynthesizing proteins, otherwise the player cannot take in the compound, and any already stored within the cell will be quickly expelled.[/indent]\n"
+"[indent]—   [b]Demir:[/b] Another alternative source of ATP, iron is a relatively uncommon resource found in almost, but not all, patches in the world. Unlike any other compound, iron can not only be found in clouds but also as variably sized chunks that trail iron clouds as they drift. Iron can only be used by a cell if it possesses rustycyanin. Iron clouds appear brown in color. The chunks themselves can be engulfed for a significant source of iron.[/indent]"
 
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "Mikrop evresi için daha ayrıntılı bilgiler içeren ayrı bir oyun tasarım belgesi bulunmaktadır: Mikrop Evresi GDD'si"
@@ -7250,6 +7305,10 @@ msgstr "Çevresel Koşullar"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Kamçı"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrojenaz"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Sanayi Evresi"
@@ -7920,12 +7979,6 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
-
-#~ msgid "OXYTOXISOME_DESC"
-#~ msgstr "[thrive:compound type=\"oxytoxy\"]OksiToksi NT[/thrive:compound] toksik ajanının basit bir formunun üretilmesinden sorumlu, değişime uğramış bir metabolozomdur. Diğer etkiler için, üretilen toksin türünü değiştirmek amacıyla, üzerinde değişiklik yapılabilir."
-
-#~ msgid "THYLAKOID"
-#~ msgstr "Tilakoid"
 
 #~ msgid "ASCENSION"
 #~ msgstr "Tırmanış"
