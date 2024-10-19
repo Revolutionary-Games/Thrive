@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-10-18 12:26+0300\n"
-"PO-Revision-Date: 2024-10-18 16:45+0000\n"
+"PO-Revision-Date: 2024-10-19 21:07+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -4050,16 +4050,14 @@ msgstr "Множитель стоимости осморегуляции"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "(стоимость осморегуляции вида игрока)"
 
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
-msgstr "Соединения"
+msgstr "Другое"
 
 msgid "OUR_WIKI"
 msgstr "наша Wiki"
 
-#, fuzzy
 msgid "OUTDATED_NOTICE"
-msgstr "Не начато."
+msgstr "Эта страница или секция содержит устаревшую информацию."
 
 msgid "OUTREACH_TEAM"
 msgstr "Агитационная Команда"
@@ -4081,9 +4079,8 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Кислород"
 
-#, fuzzy
 msgid "OXYGEN_INHIBITOR_SYNTHESIS"
-msgstr "Синтез ОксиТоксина"
+msgstr "Синтез Ингибитора Кислорода"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелико, стрельба все еще возможна, но урон будет уменьшен."
@@ -4091,7 +4088,6 @@ msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в
 msgid "OXYTOXY_NT"
 msgstr "ОксиТоксин НТ"
 
-#, fuzzy
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "Синтез ОксиТоксина"
 
@@ -4214,9 +4210,8 @@ msgstr "Производительность"
 msgid "PERFORM_UNBINDING"
 msgstr "Отвязать"
 
-#, fuzzy
 msgid "PER_SECOND_ABBREVIATION"
-msgstr "{0} Тыс"
+msgstr "/с"
 
 msgid "PER_SECOND_SLASH"
 msgstr "/секунд"
@@ -4571,13 +4566,11 @@ msgstr "Запустить определенное количество мир�
 msgid "RUSTICYANIN"
 msgstr "Рустицианин"
 
-#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию ([thrive:compound type=\"atp\"][/thrive:compound]) , которую клетка затем может собрать."
+msgstr "Рустицианин - это белок, способный использовать [thrive:compound type=\"carbondioxide\"][/thrive:compound] для окисления [thrive:compound type=\"iron\"][/thrive:compound] из одного химического состояния в другое. Этот процесс, называемый [b]Хемосинтезом Железа[/b], высвобождает энергию ([thrive:compound type=\"atp\"][/thrive:compound]) , которую клетка затем может собрать."
 
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4885,7 +4878,7 @@ msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Маленький Фрагмент Фосфата"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Снежинка"
 
 msgid "SOCIETY_STAGE"
 msgstr "Стадия Общества"
@@ -5167,7 +5160,7 @@ msgid "SUPPORTER_PATRONS"
 msgstr "Поддержка"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Выживание"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Переключиться на вид от первого лица"
@@ -5300,11 +5293,9 @@ msgstr "Количество глюкозы было уменьшено до {0}
 msgid "THE_DISTURBANCE"
 msgstr "Беспорядок"
 
-#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "Карта Биомов"
 
-#, fuzzy
 msgid "THE_WORLD_TITLE"
 msgstr "Мир"
 
@@ -5472,9 +5463,8 @@ msgstr "Ингибитор Каналов"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Ингибирует выработку АТФ в пораженном микробе, что препятствует его быстрому движению и может привести к гибели микробов, не обладающих избыточной выработкой АТФ."
 
-#, fuzzy
 msgid "TOXIN_COMPOUND"
-msgstr "Соединения"
+msgstr "Токсин"
 
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Цитотоксин"
@@ -5526,7 +5516,6 @@ msgstr "Тип Токсина:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Разные типы токсинов оказывают различные эффекты, которые более эффективны против определенных типов клеток. Для клеток с несколькими различными типами токсинов они используются последовательно, а не стреляют все сразу."
 
-#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсиновая\n"
@@ -5538,13 +5527,11 @@ msgstr "Токсинная Вакуоль -- вакуоль, что была м�
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"oxygen\"][/thrive:compound]. Можно выпустить токсины нажав [thrive:input]g_fire_toxin[/thrive:input]. Если количество [thrive:compound type=\"oxytoxy\"][/thrive:compound] низкое, стрельба все еще возможна, но урон будет уменьшен."
 
-#, fuzzy
 msgid "TOXISOME"
-msgstr "Окситоксисома"
+msgstr "Токсисома"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+msgstr "Модифицированная метаболосома, ответственная за синтез примитивной формы токсичного агента [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]. Может быть изменена для переключения типа синтезируемого токсина."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Будет реализовано."
@@ -5803,7 +5790,7 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "Переместить"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Продвинутый Космический Корабль"
 
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr "Базовая Ракета"
@@ -6068,88 +6055,86 @@ msgstr "Колёсико вверх"
 msgid "WIKI"
 msgstr "наша Wiki"
 
-#, fuzzy
 msgid "WIKI_2D"
-msgstr "наша Wiki"
+msgstr "2D"
 
 msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
+msgstr "2D (ранее), 3D (позднее)"
 
-#, fuzzy
 msgid "WIKI_3D"
-msgstr "наша Wiki"
+msgstr "3D"
 
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "3D, Песочница"
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
-msgstr "Не готово"
+msgstr "3D, Стратегия"
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "Не готово"
+msgstr "3D, Стратегия, Космос"
 
-#, fuzzy
 msgid "WIKI_8_BRACKET_16"
-msgstr "Поворот влево"
+msgstr "8 (16)"
 
-#, fuzzy
 msgid "WIKI_ASCENSION"
-msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
+msgstr "Возвышение"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "Текущие Разработчики"
+msgstr "Работа над Возвышением еще не была начата."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr ""
-"За каждую клетку в многоклеточном организме, что содержит [b]Аксон[/b], сила мозга организма повышается пропорционально объёму этой клетки. Клетки с [b]Аксонами[/b] классифицируются как мышечные клетки мозга.\n"
-"\n"
-"Когда сила мозга достигает как минимум [b]+0.5[/b], игрок входит в Стадию Осознания. Когда сила мозга достигает [b]+5.0[/b], игрок входит в Стадию Пробуждения."
+msgstr "Будет доступно в Скором Времени"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
-msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
+msgstr "Кратко говоря: Финальная стадия, где ты можешь стать метафизической сущностью, меняя вселенную по своему велению. Это было долгим приключением, и ты это заслужил."
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
+"Возвышение это ключевой концепт в Thrive, что-то вроде \"Победы в игре\" в других видеоиграх. Это -- состояние, когда разумный организм трансформируется в \n"
+"Метафизическую сущность, воспользовавшись Вратами Возвышения, приобретая Богоподобные Силы.\n"
+"\n"
+"При Возвышении тебе станут доступны Инструменты Бога. Инструменты Бога -- панель, которая будет доступна в любой момент игры, позволяющая тебе менять всё,\n"
+"что ты только хочешь. От создания целой солнечной системы до малейшей бактерии, от уничтожения целых цивилизаций до управления одним из её членов."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "Поздравляем!"
+msgstr ""
+"Ты вознесёшься как только твой вид пройдёт сквозь Врата Возвышения. Мы, скорей всего, покажем титры после катсцены входа в Стадию Возвышения.\n"
+"Как только титры завершатся, игрок сразу же вернётся в игру в Стадии Возвышения с поздравительным сообщением. Для Перехода на Стадию Возвышения игроку понадобится приложить множество усилий: Изучить огромное кол-во технологий (В т.ч Божественные Инструменты), тонна энергии, вырабатываемую множеством солнц.\n"
+"Прямо перед возвышением враждебные виды атакуют игрока перед тем, как он трансформируется в Метафизическую сущность."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_UI"
-msgstr "Волокна нервов между нейронами, доступные начиная с Многоклеточной Стадии. Требуется для повышения силы мозга организма, что в свою очередь необходима для перехода на следующие стадии."
+msgstr "Будет Доступно В Скором Времени."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
-msgstr "Не готово"
+msgstr "Работа над Стадией Пробуждения еще не началась."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
-msgstr "Стадия пробуждения"
+msgstr "Будет готово в Скором Времени."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_INTRO"
-msgstr "Не готово"
+msgstr "Кратко Говоря: Ты начнёшь за существо, что будет учиться использовать инструменты и улучшать их для того, чтобы выжить и Выйти за рамки естественного отбора. Стадия завершится как только ты построишь свой первый Центр Общества"
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
-msgstr "Стадия пробуждения"
+msgstr "Будет готово в Скором Времени."
 
 #, fuzzy
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
-msgstr "Стадия пробуждения"
+msgstr ""
+"Стадия пробуждения начинается как только Вид Игрока достигает Разумности. Впрочем little changes, other than the ending of evolution for the player’s species. As the timescales have shrunk massively, only small evolutionary changes can happen anymore. Strategy Mode is still locked, the Nation Editor is locked, and Society Centers don’t exist. The initial transition is mostly symbolic (other than the greatly reduced species editing ability), and the substance of the change is gradual.\n"
+"\n"
+"What is enabled, although not at first visible, is the Research Web. The Research Web cannot be viewed until Record Keeping is discovered. Interaction is also automatically discovered. Researchable technologies cannot be directly researched at this point. Instead, the actions that the player carries out, such as communicating or interacting with the environment, now provide progress towards discovering new technologies or Inventions, in effect developing your technology. This is the effect of having discovered Interaction. For example, using objects in the environment as tools (after crafting together raw materials found around the world) runs the chance of discovering the invention Tools (progress should be guaranteed to not subject players to a total random experience). Tech Editor will now be unlocked after Crafting becomes available. Tools allows Tech Objects made by the player in the Tech Editor, which are tagged as \"Tools\", to be equipped by members of their species.\n"
+"\n"
+"The Language invention allows the player to task other members of their species to do more specific assignments. This feature builds on top of the pack commands from earlier stages (these are the signaling agents in the microbe stage). Every time a task is assigned (or performed), Cooperation progresses towards being discovered (as progress shouldn't depend on random chance, but there could be a chance for early lucky unlocks). Cooperation builds upon Language by allowing other species members, at this point advanced enough to be called tribe members, to discover technologies as a result of their own actions. Remember, before this, only the player’s organism could discover new technologies. This frees up the player to take more of a management role in their emerging tribe.\n"
+"\n"
+"At this point Strategy Mode is still locked, but the player can use pack commands to assign members of their species to various tasks (most important being resource and food collection), made possible by discovering the Cooperation Invention. Once the player has assigned some resource gatherers and built structures, Collective Residence is discovered allowing the building of the Society Center building, which will establish a settlement.\n"
+"\n"
+"The stage ends when the player builds their first Society Center. At this point the player's view will transition into the Strategy Mode really highlighting the change between the stages and the move to the strategy stages of the game."
 
-#, fuzzy
 msgid "WIKI_AWAKENING_STAGE_UI"
-msgstr "Стадия пробуждения"
+msgstr "Будет доступно в Скором Времени."
 
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Эта Стадия в нынешний момент времени существует лишь в виде очень грубого Прототипа."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
