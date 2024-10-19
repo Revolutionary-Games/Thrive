@@ -398,12 +398,12 @@ public class Patch
             case Compound.Oxygen:
             case Compound.Carbondioxide:
             case Compound.Nitrogen:
-                return GetAmbientCompound(compound, CompoundAmountType.Biome) * 100;
+                return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
             case Compound.Iron:
-                return GetTotalChunkCompoundAmount(compound);
+                return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             default:
                 return snapshot.Biome.Compounds[compound].Density * snapshot.Biome.Compounds[compound].Amount +
-                    GetTotalChunkCompoundAmount(compound);
+                    GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
         }
     }
 
@@ -414,6 +414,26 @@ public class Patch
         foreach (var chunkKey in Biome.Chunks.Keys)
         {
             var chunk = Biome.Chunks[chunkKey];
+
+            if (chunk.Compounds == null)
+                continue;
+
+            if (chunk.Density > 0 && chunk.Compounds.TryGetValue(compound, out var chunkCompound))
+            {
+                result += chunk.Density * chunkCompound.Amount;
+            }
+        }
+
+        return result;
+    }
+
+    public float GetTotalChunkCompoundAmountInSnapshot(PatchSnapshot snapshot, Compound compound)
+    {
+        var result = 0.0f;
+
+        foreach (var chunkKey in snapshot.Biome.Chunks.Keys)
+        {
+            var chunk = snapshot.Biome.Chunks[chunkKey];
 
             if (chunk.Compounds == null)
                 continue;
@@ -541,6 +561,27 @@ public class Patch
                 return Biome.AverageCompounds[compound].Ambient;
             case CompoundAmountType.Biome:
                 return Biome.Compounds[compound].Ambient;
+            case CompoundAmountType.Template:
+                return BiomeTemplate.Conditions.Compounds[compound].Ambient;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(option), option, null);
+        }
+    }
+
+    private float GetAmbientCompoundInSnapshot(PatchSnapshot snapshot, Compound compound, CompoundAmountType option)
+    {
+        switch (option)
+        {
+            case CompoundAmountType.Current:
+                return snapshot.Biome.CurrentCompoundAmounts[compound].Ambient;
+            case CompoundAmountType.Maximum:
+                return snapshot.Biome.MaximumCompounds[compound].Ambient;
+            case CompoundAmountType.Minimum:
+                return snapshot.Biome.MinimumCompounds[compound].Ambient;
+            case CompoundAmountType.Average:
+                return snapshot.Biome.AverageCompounds[compound].Ambient;
+            case CompoundAmountType.Biome:
+                return snapshot.Biome.Compounds[compound].Ambient;
             case CompoundAmountType.Template:
                 return BiomeTemplate.Conditions.Compounds[compound].Ambient;
             default:

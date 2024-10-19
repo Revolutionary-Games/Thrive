@@ -308,7 +308,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     public object Clone()
     {
         // Shallow cloning is enough here thanks to us using value types (structs) as the dictionary values
-        var result = new BiomeConditions(compounds = compounds.CloneShallow(), currentCompoundAmounts.CloneShallow(),
+        var result = new BiomeConditions(compounds.CloneShallow(), currentCompoundAmounts.CloneShallow(),
             averageCompoundAmounts.CloneShallow(), maximumCompoundAmounts.CloneShallow(),
             minimumCompoundAmounts.CloneShallow())
         {
