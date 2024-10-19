@@ -21,10 +21,10 @@ uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
-    
+
     // Copy non-distorted vertex for bump map
     UV2 = VERTEX.xz * 0.05f;
-    
+
     // Any changes to this must be matched in EngulfEffect.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
         * wigglyNess * size;
@@ -63,7 +63,7 @@ void fragment(){
     vec3 adjusted_normals = normalmap.z * NORMAL
         + normalmap.x * TANGENT
         + normalmap.y * BINORMAL;
-    
+
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
     adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2));
 
