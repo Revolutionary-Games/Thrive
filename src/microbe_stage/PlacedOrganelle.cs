@@ -314,8 +314,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     {
         var scale = CalculateTransformScale();
 
-        return new Transform3D(
-            new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(scale),
+        return new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(scale),
             Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
         // TODO: check is this still needed
