@@ -55,7 +55,6 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {
         ref var engulfable = ref entity.Get<Engulfable>();
 
-
         if (engulfable.HandleEjectionFlag)
             engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
 
