@@ -315,7 +315,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         var scale = CalculateTransformScale();
 
         return new Transform3D(
-            new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(scale, scale, scale)),
+            new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(scale),
             Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
         // TODO: check is this still needed
@@ -333,17 +333,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         // TODO: check that the rotation of ModelOffset works correctly here (also in
         // CalculateVisualsTransformExternalCached)
 
-        float scaleZ = scale;
-
-        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
-        }
-
-        return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),
+        return new Transform3D(new Basis(orientation).Scaled(scale),
             externalPosition + orientation * Definition.ModelOffset);
     }
 
@@ -357,18 +347,8 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     {
         var scale = CalculateTransformScale();
 
-        float scaleZ = scale;
-
-        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
-        }
-
         // TODO: check that the rotation of ModelOffset works correctly here
-        return new Transform3D(new Basis(cachedExternalOrientation).Scaled(new Vector3(scale, scale, scaleZ)),
+        return new Transform3D(new Basis(cachedExternalOrientation).Scaled(scale),
             cachedExternalPosition + cachedExternalOrientation * Definition.ModelOffset);
     }
 
@@ -425,7 +405,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         }
     }
 
-    private float CalculateTransformScale()
+    private Vector3 CalculateTransformScale()
     {
         float growth;
         if (Definition.ShouldScale)
@@ -437,9 +417,21 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
             growth = 0;
         }
 
+        var scale = Constants.DEFAULT_HEX_SIZE + growth;
+
+        float scaleZ = scale;
+
+        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            var flagellumLength = flagellumUpgrades.LengthFraction;
+
+            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
+        }
+
         // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
         // intended way, but might be worse looking than before
-        return Constants.DEFAULT_HEX_SIZE + growth;
+        return new Vector3(scale, scale, scaleZ);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
