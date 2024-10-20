@@ -361,6 +361,12 @@ public class Patch
     public float GetCompoundAmountForDisplay(Compound compound,
         CompoundAmountType amountType = CompoundAmountType.Current)
     {
+        return GetCompoundAmountInSnapshotForDisplay(currentSnapshot, compound, amountType);
+    }
+
+    public float GetCompoundAmountInSnapshotForDisplay(PatchSnapshot snapshot, Compound compound,
+        CompoundAmountType amountType = CompoundAmountType.Current)
+    {
         switch (compound)
         {
             case Compound.Sunlight:
@@ -368,9 +374,9 @@ public class Patch
             case Compound.Oxygen:
             case Compound.Carbondioxide:
             case Compound.Nitrogen:
-                return GetAmbientCompound(compound, amountType) * 100;
+                return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
             case Compound.Iron:
-                return GetTotalChunkCompoundAmount(compound);
+                return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             default:
             {
                 BiomeCompoundProperties amount;
@@ -381,50 +387,18 @@ public class Patch
                 }
                 else
                 {
-                    amount = Biome.GetCompound(compound, amountType);
+                    amount = snapshot.Biome.GetCompound(compound, amountType);
                 }
 
                 // TODO: passing amountType to GetTotalChunkCompoundAmount
-                return amount.Density * amount.Amount + GetTotalChunkCompoundAmount(compound);
+                return amount.Density * amount.Amount + GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             }
-        }
-    }
-
-    public float GetCompoundAmountInSnapshotForDisplay(PatchSnapshot snapshot, Compound compound)
-    {
-        switch (compound)
-        {
-            case Compound.Sunlight:
-            case Compound.Oxygen:
-            case Compound.Carbondioxide:
-            case Compound.Nitrogen:
-                return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
-            case Compound.Iron:
-                return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
-            default:
-                return snapshot.Biome.Compounds[compound].Density * snapshot.Biome.Compounds[compound].Amount +
-                    GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
         }
     }
 
     public float GetTotalChunkCompoundAmount(Compound compound)
     {
-        var result = 0.0f;
-
-        foreach (var chunkKey in Biome.Chunks.Keys)
-        {
-            var chunk = Biome.Chunks[chunkKey];
-
-            if (chunk.Compounds == null)
-                continue;
-
-            if (chunk.Density > 0 && chunk.Compounds.TryGetValue(compound, out var chunkCompound))
-            {
-                result += chunk.Density * chunkCompound.Amount;
-            }
-        }
-
-        return result;
+        return GetTotalChunkCompoundAmountInSnapshot(currentSnapshot, compound);
     }
 
     public float GetTotalChunkCompoundAmountInSnapshot(PatchSnapshot snapshot, Compound compound)
@@ -549,23 +523,7 @@ public class Patch
 
     private float GetAmbientCompound(Compound compound, CompoundAmountType option)
     {
-        switch (option)
-        {
-            case CompoundAmountType.Current:
-                return Biome.CurrentCompoundAmounts[compound].Ambient;
-            case CompoundAmountType.Maximum:
-                return Biome.MaximumCompounds[compound].Ambient;
-            case CompoundAmountType.Minimum:
-                return Biome.MinimumCompounds[compound].Ambient;
-            case CompoundAmountType.Average:
-                return Biome.AverageCompounds[compound].Ambient;
-            case CompoundAmountType.Biome:
-                return Biome.Compounds[compound].Ambient;
-            case CompoundAmountType.Template:
-                return BiomeTemplate.Conditions.Compounds[compound].Ambient;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(option), option, null);
-        }
+        return GetAmbientCompoundInSnapshot(currentSnapshot, compound, option);
     }
 
     private float GetAmbientCompoundInSnapshot(PatchSnapshot snapshot, Compound compound, CompoundAmountType option)
