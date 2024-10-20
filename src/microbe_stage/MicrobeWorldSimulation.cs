@@ -241,7 +241,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         microbeReproductionSystem =
             new MicrobeReproductionSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, parallelRunner);
         microbeDeathSystem = new MicrobeDeathSystem(this, SpawnSystem, EntitySystem, couldParallelize);
-        engulfingSystem = new EngulfingSystem(this, SpawnSystem, EntitySystem);
+        engulfingSystem = new EngulfingSystem(this, EntitySystem);
 
         delayedColonyOperationSystem =
             new DelayedColonyOperationSystem(this, spawnEnvironment, SpawnSystem, EntitySystem, couldParallelize);

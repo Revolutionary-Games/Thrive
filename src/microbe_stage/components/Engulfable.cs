@@ -82,7 +82,7 @@ public struct Engulfable
     public bool DestroyIfPartiallyDigested;
 
     /// <summary>
-    ///   EngulfingSystem runs <see cref="Engulfable.OnExpelledFromEngulfment"/> when true
+    ///   EngulfingSystem runs <see cref="EngulfableHelpers.OnExpelledFromEngulfment"/> when true
     /// </summary>
     public bool HandleEjectionFlag;
 

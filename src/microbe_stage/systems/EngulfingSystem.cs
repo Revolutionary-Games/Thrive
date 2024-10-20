@@ -68,7 +68,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 #pragma warning restore CA2213
 
     private readonly IWorldSimulation worldSimulation;
-    private readonly ISpawnSystem spawnSystem;
 
     private readonly XoShiRo128plus random = new();
 
@@ -107,11 +106,10 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
     private bool endosomeDebugAlreadyPrinted;
 
-    public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
+    public EngulfingSystem(IWorldSimulation worldSimulation, World world) :
         base(world, null)
     {
         this.worldSimulation = worldSimulation;
-        this.spawnSystem = spawnSystem;
         endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
     }
 
