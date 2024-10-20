@@ -30,6 +30,10 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
+
+    float cellOffset = (NODE_POSITION_WORLD.x + NODE_POSITION_WORLD.z);
+    VERTEX.y += (sin(cellOffset * movementWigglyNess + TIME / 4.0f) + 1.0f)
+        * 0.35f * wigglyNess * abs(worldVertex.y);
 }
 
 float fresnel(float power, vec3 normal, vec3 view)
@@ -63,7 +67,7 @@ void fragment(){
     vec3 adjusted_normals = normalmap.z * NORMAL
         + normalmap.x * TANGENT
         + normalmap.y * BINORMAL;
-    
+
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
     adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2));
 
