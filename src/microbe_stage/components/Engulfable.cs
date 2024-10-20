@@ -81,6 +81,11 @@ public struct Engulfable
     /// </summary>
     public bool DestroyIfPartiallyDigested;
 
+    /// <summary>
+    ///   EngulfingSystem runs <see cref="Engulfable.OnExpelledFromEngulfment"/> when true
+    /// </summary>
+    public bool HandleEjectionFlag;
+
     [JsonIgnore]
     public float AdjustedEngulfSize => BaseEngulfSize * (1 - DigestedAmount);
 
@@ -236,6 +241,8 @@ public static class EngulfableHelpers
     public static void OnExpelledFromEngulfment(this ref Engulfable engulfable, in Entity entity,
         ISpawnSystem spawnSystem, IWorldSimulation worldSimulation)
     {
+        engulfable.HandleEjectionFlag = false;
+
         // Restore scale
         ref var spatial = ref entity.Get<SpatialInstance>();
 

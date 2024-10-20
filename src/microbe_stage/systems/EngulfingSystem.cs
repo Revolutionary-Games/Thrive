@@ -1576,7 +1576,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         {
             if (!engulfableObject.Has<AttachedToEntity>())
             {
-                GD.PrintErr("Ejected entity that has no attached component");
+                GD.PrintErr("Ejected entity that has no attached-to-entity component");
             }
             else
             {
@@ -1629,8 +1629,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         physics.VelocitiesApplied = false;
 
         // Reset engulfable state after the ejection (but before RemoveEngulfedObject to allow this to still see
-        // the hostile engulfer entity)
-        engulfable.OnExpelledFromEngulfment(engulfableObject, spawnSystem, worldSimulation);
+        // the hostile engulfer entity). Delayed a frame to avoid "zombies"
+        engulfable.HandleEjectionFlag = true;
     }
 
     /// <summary>

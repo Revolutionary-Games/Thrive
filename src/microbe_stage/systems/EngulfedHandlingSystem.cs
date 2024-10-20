@@ -55,6 +55,10 @@ public sealed class EngulfedHandlingSystem : AEntitySetSystem<float>
     {
         ref var engulfable = ref entity.Get<Engulfable>();
 
+
+        if (engulfable.HandleEjectionFlag)
+            engulfable.OnExpelledFromEngulfment(entity, spawnSystem, worldSimulation);
+
         // Handle logic if the cell that's being/has been digested is us
         if (engulfable.PhagocytosisStep == PhagocytosisPhase.None)
         {
