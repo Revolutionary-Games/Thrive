@@ -264,6 +264,8 @@ public static class Constants
 
     public const float BASE_CELL_DENSITY = 1000;
 
+    public const float CONTEXTUAL_ONLY_MUSIC_CHANCE = 0.33f;
+
     public const float MICROBE_MOVEMENT_SOUND_EMIT_COOLDOWN = 1.3f;
 
     // Note that the rotation speed is reversed, i.e. lower values mean faster

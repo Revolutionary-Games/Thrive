@@ -551,7 +551,25 @@ public partial class Jukebox : Node
     private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
     {
         var mode = list.TrackOrder;
-        var tracks = list.GetTracksForContexts(activeContexts).ToArray();
+        TrackList.Track[]? tracks = null;
+
+        var random = new XoShiRo128starstar();
+
+        if (random.NextFloat() <= Constants.CONTEXTUAL_ONLY_MUSIC_CHANCE)
+        {
+            var contextMusicOnly = list.GetTracksForContexts(activeContexts).Where(c => c.ExclusiveToContexts != null)
+                .ToArray();
+
+            if (contextMusicOnly.Length > 0)
+            {
+                tracks = contextMusicOnly;
+
+                // TODO: it would be nice to ensure that contextual track doesn't cause the same track to play in a row
+                // Currently it is way more likely as most contexts only have one track for them.
+            }
+        }
+
+        tracks ??= list.GetTracksForContexts(activeContexts).ToArray();
 
         if (tracks.Length == 0)
             return;
@@ -564,7 +582,6 @@ public partial class Jukebox : Node
         }
         else
         {
-            var random = new XoShiRo128starstar();
             int nextIndex;
 
             if (mode == TrackList.Order.Random)
