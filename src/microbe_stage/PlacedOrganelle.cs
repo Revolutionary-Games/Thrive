@@ -156,8 +156,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         return Definition.Enzymes;
     }
 
-    // TODO: remove if this stays unused
-
     /// <summary>
     ///   Gives organelles more compounds to grow (or takes free compounds).
     ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
@@ -416,6 +414,8 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
             growth = 0;
         }
 
+        // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
+        // intended way, but might be worse looking than before
         var scale = Constants.DEFAULT_HEX_SIZE + growth;
 
         float scaleZ = scale;
@@ -428,8 +428,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
                 + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
         }
 
-        // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
-        // intended way, but might be worse looking than before
         return new Vector3(scale, scale, scaleZ);
     }
 
