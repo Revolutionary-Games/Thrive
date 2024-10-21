@@ -35,11 +35,11 @@
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
       "sunlight": 1,
-      "carbondioxide": 3
+      "carbondioxide": 0.27
     },
     "Outputs": {
-      "glucose": 0.04,
-      "oxygen": 3
+      "glucose": 0.12,
+      "oxygen": 0.27
     }
   },
   "cytotoxinSynthesis": {
@@ -214,11 +214,11 @@
     "Name": "PHOTOSYNTHESIS",
     "Inputs": {
       "sunlight": 1,
-      "carbondioxide": 1
+      "carbondioxide": 0.081
     },
     "Outputs": {
-      "glucose": 0.012,
-      "oxygen": 1
+      "glucose": 0.036,
+      "oxygen": 0.081
     }
   },
   "iron_chemolithoautotrophy": {
