@@ -8,6 +8,8 @@
 add_library(thrive_extension SHARED
   "${PROJECT_BINARY_DIR}/Include.h"
   core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
+  atlas/xatlas.cpp atlas/xatlas.h
+  atlas/atlas_unwrap.cpp atlas/atlas_unwrap.hpp
   core/ThriveConfig.cpp core/ThriveConfig.hpp
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
   nodes/DebugDrawer.cpp nodes/DebugDrawer.hpp
