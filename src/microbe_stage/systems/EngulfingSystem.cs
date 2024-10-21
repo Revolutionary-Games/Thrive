@@ -68,7 +68,6 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 #pragma warning restore CA2213
 
     private readonly IWorldSimulation worldSimulation;
-    private readonly ISpawnSystem spawnSystem;
 
     private readonly XoShiRo128plus random = new();
 
@@ -107,11 +106,10 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
 
     private bool endosomeDebugAlreadyPrinted;
 
-    public EngulfingSystem(IWorldSimulation worldSimulation, ISpawnSystem spawnSystem, World world) :
+    public EngulfingSystem(IWorldSimulation worldSimulation, World world) :
         base(world, null)
     {
         this.worldSimulation = worldSimulation;
-        this.spawnSystem = spawnSystem;
         endosomeScene = GD.Load<PackedScene>("res://src/microbe_stage/Endosome.tscn");
     }
 
@@ -1576,7 +1574,7 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         {
             if (!engulfableObject.Has<AttachedToEntity>())
             {
-                GD.PrintErr("Ejected entity that has no attached component");
+                GD.PrintErr("Ejected entity that has no attached-to-entity component");
             }
             else
             {
@@ -1629,8 +1627,8 @@ public sealed class EngulfingSystem : AEntitySetSystem<float>
         physics.VelocitiesApplied = false;
 
         // Reset engulfable state after the ejection (but before RemoveEngulfedObject to allow this to still see
-        // the hostile engulfer entity)
-        engulfable.OnExpelledFromEngulfment(engulfableObject, spawnSystem, worldSimulation);
+        // the hostile engulfer entity). Delayed a frame to avoid "zombies"
+        engulfable.HandleEjectionFlag = true;
     }
 
     /// <summary>
