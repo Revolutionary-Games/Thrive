@@ -81,8 +81,7 @@ public class CompoundProductionEffect : IWorldEffect
                             // Inputs
                             foreach (var input in process.Process.Inputs)
                             {
-                                // TODO: why would this remove sunlight? (and not ignore it here)
-                                if (input.Key.ID == Compound.Temperature || input.Key.ID == Compound.Sunlight)
+                                if (input.Key.ID is Compound.Temperature or Compound.Sunlight)
                                     continue;
 
                                 float add;
@@ -117,7 +116,7 @@ public class CompoundProductionEffect : IWorldEffect
                                 // It's unlikely we have sunlight emitting species but
                                 // we can continue with sunlight just in case
                                 if (output.Key.IsAgent || output.Key.ID is Compound.ATP or Compound.Temperature
-                                    or Compound.Sunlight)
+                                        or Compound.Sunlight)
                                 {
                                     continue;
                                 }
