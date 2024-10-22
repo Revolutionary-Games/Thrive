@@ -114,8 +114,10 @@ public class CompoundProductionEffect : IWorldEffect
                             // Outputs
                             foreach (var output in process.Process.Outputs)
                             {
-                                // It's unlikely we have sunlight emitting species but we can continue with sunlight just in case
-                                if (output.Key.IsAgent || output.Key.ID is Compound.ATP or Compound.Temperature or Compound.Sunlight)
+                                // It's unlikely we have sunlight emitting species but
+                                // we can continue with sunlight just in case
+                                if (output.Key.IsAgent || output.Key.ID is Compound.ATP or Compound.Temperature
+                                    or Compound.Sunlight)
                                 {
                                     continue;
                                 }
