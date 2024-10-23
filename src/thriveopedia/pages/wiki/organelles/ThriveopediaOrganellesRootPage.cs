@@ -36,6 +36,10 @@ public partial class ThriveopediaOrganellesRootPage : ThriveopediaWikiPage
 
         var wiki = SimulationParameters.Instance.GetWiki();
 
+        // Ensure duplicate buttons aren't created each time the page is opened
+        // TODO: for more efficiency could update existing buttons instead
+        organelleListContainer.QueueFreeChildren();
+
         foreach (var organelle in wiki.Organelles)
         {
             var button = linkButtonScene.Instantiate<IconPageLinkButton>();
