@@ -30,10 +30,27 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
-
-    float cellOffset = (NODE_POSITION_WORLD.x + NODE_POSITION_WORLD.z);
-    VERTEX.y += (sin(cellOffset * movementWigglyNess + VERTEX.z + TIME / 4.0f) + 1.0f)
-        * 0.35f * wigglyNess * abs(worldVertex.y);
+    
+    float verticalWave = sin(NODE_POSITION_WORLD.z * movementWigglyNess
+        + VERTEX.z * 0.8f + TIME / 4.0f);
+    float horizontalWave = sin(NODE_POSITION_WORLD.x * movementWigglyNess
+        + VERTEX.x * 0.8f + TIME / 4.0f);
+    VERTEX.y += (verticalWave + horizontalWave + 2.0f)
+        * 0.25f * wigglyNess * abs(worldVertex.y);
+    
+	vec2 verticalTangent = normalize(vec2(-abs(cos(NODE_POSITION_WORLD.z * movementWigglyNess
+        + VERTEX.z * 0.8f + TIME / 4.0f)), 1.0f))
+	    * 0.75f * wigglyNess * abs(worldVertex.y);
+	vec2 horizontalTangent = normalize(vec2(-abs(cos(NODE_POSITION_WORLD.x * movementWigglyNess
+	    + VERTEX.x * 0.8f + TIME / 4.0f)), 1.0f))
+	    * 0.75f * wigglyNess * abs(worldVertex.y);
+	
+    NORMAL += vec3(horizontalTangent.x, horizontalTangent.y + verticalTangent.y, verticalTangent.x);
+    BINORMAL += vec3(horizontalTangent.y, -horizontalTangent.x - verticalTangent.x, verticalTangent.y);
+    
+    NORMAL = normalize(NORMAL);
+    BINORMAL = normalize(BINORMAL);
+    TANGENT = cross(NORMAL, BINORMAL);
 }
 
 float fresnel(float power, vec3 normal, vec3 view)
@@ -45,8 +62,8 @@ void fragment(){
     vec4 albedo = texture(albedoTexture, UV);
 
     vec4 normalmap = texture(normalTexture, UV2);
-    NORMAL_MAP = normalmap.xyz;
-    NORMAL_MAP_DEPTH = 0.5f;
+    //NORMAL_MAP = normalmap.xyz;
+    //NORMAL_MAP_DEPTH = 0.5f;
 
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = ((albedo * healthFraction) +
@@ -69,9 +86,9 @@ void fragment(){
         + normalmap.y * BINORMAL;
 
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
-    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2));
+    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.0));
 
-    ALBEDO = final.rgb;
+    ALBEDO = vec3(1.0f);
     ALPHA = fresnel(3.0, adjusted_normals, adjusted_view) * round(cutoff);
     ROUGHNESS = 0.7;
 }
