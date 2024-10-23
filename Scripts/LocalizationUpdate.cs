@@ -134,11 +134,17 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
     /// <summary>
     ///   List of folders to extract translations in
     /// </summary>
-    protected override IEnumerable<string> PathsToExtractFrom => new List<string>
+    protected override IEnumerable<string> PathsToExtractFrom { get; } = new List<string>
     {
         "simulation_parameters",
         "assets",
         "src",
+        "ThriveScriptsShared",
+    };
+
+    protected override IEnumerable<string> FilesToIgnore { get; } = new List<string>
+    {
+        ".deps.json",
     };
 
     protected override IReadOnlyList<string> Locales => ThriveLocales;
@@ -233,7 +239,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
             }
 
             // It seems that sometimes the subsequent files only have problems so there is no longer a break here
-            // Instead there's a continue here
+            // Instead there's a "continue" here
             if (!changed)
                 continue;
 
