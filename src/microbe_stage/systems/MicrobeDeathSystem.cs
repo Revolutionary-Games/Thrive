@@ -275,8 +275,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         // Then handle death for cells that should die
         if (health.CurrentHealth <= 0 || health.Dead)
         {
-            // Ensure dead flag is always set, as otherwise this will cause "zombies", so that this is always retried
-            // if the death procesing cannot be done yet
+            // Ensure dead flag is always set, as otherwise this will cause "zombies," so that this is always retried
+            // if the death processing cannot be done yet
             health.Dead = true;
 
             if (HandleMicrobeDeath(ref cellProperties, entity))
@@ -354,7 +354,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
             // This might cause some bugs so there's a warning print here
             if (suppressChunks)
-                GD.PrintErr("Will handle a microbe killed in engulfed as a retry that will forge this state");
+                GD.PrintErr("Will handle a microbe killed in engulfment as a retry that will forge this state");
 
             return false;
         }
@@ -421,7 +421,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
         {
-            // When dying when engulfed all the normal actions don't apply (this doesn't apply when ejected)
+            // When dying when engulfed all the normal actions don't apply (this doesn't apply when ejected as the
+            // state is cleared to none before this system sees the dead microbe)
             // Special handling for this is in EngulfableHelpers.OnExpelledFromEngulfment
             return true;
         }
