@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-18 12:26+0300\n"
+"POT-Creation-Date: 2024-10-23 11:22+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -261,6 +261,10 @@ msgstr ""
 msgid "ART_GALLERY"
 msgstr ""
 
+#: ../ThriveScriptsShared/Stage.cs:35
+msgid "ASCENSION"
+msgstr ""
+
 #: ../src/ascension_stage/gui/AscensionCongratulationsPopup.tscn:9
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr ""
@@ -438,12 +442,14 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:534
 #: ../simulation_parameters/common/wiki.json:2473
 #: ../simulation_parameters/common/wiki.json:2571
+#: ../ThriveScriptsShared/Stage.cs:23
 msgid "AWAKENING_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:523
 #: ../simulation_parameters/common/wiki.json:2422
 #: ../simulation_parameters/common/wiki.json:2520
+#: ../ThriveScriptsShared/Stage.cs:20
 msgid "AWARE_STAGE"
 msgstr ""
 
@@ -589,6 +595,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2238
 #: ../simulation_parameters/microbe_stage/biomes.json:2418
 #: ../simulation_parameters/microbe_stage/biomes.json:2663
+#: ../simulation_parameters/microbe_stage/biomes.json:2971
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:48
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -1723,7 +1730,7 @@ msgstr ""
 msgid "DEADZONE_CONFIGURATION"
 msgstr ""
 
-#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:381
+#: ../src/microbe_stage/systems/MicrobeDeathSystem.cs:390
 msgid "DEATH"
 msgstr ""
 
@@ -2224,15 +2231,15 @@ msgstr ""
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1349
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1350
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1355
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1356
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1326
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1327
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
 msgstr ""
 
@@ -3058,6 +3065,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:562
 #: ../simulation_parameters/common/wiki.json:2575
 #: ../simulation_parameters/common/wiki.json:2673
+#: ../ThriveScriptsShared/Stage.cs:29
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -4457,6 +4465,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:146
 #: ../simulation_parameters/common/gallery.json:377
 #: ../simulation_parameters/common/wiki.json:2418
+#: ../ThriveScriptsShared/Stage.cs:14
 msgid "MICROBE_STAGE"
 msgstr ""
 
@@ -4977,6 +4986,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:471
 #: ../simulation_parameters/common/wiki.json:2367
 #: ../simulation_parameters/common/wiki.json:2469
+#: ../ThriveScriptsShared/Stage.cs:17
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
@@ -5246,12 +5256,12 @@ msgstr ""
 msgid "NOTICE_ENGULF_MISSING_ENZYME"
 msgstr ""
 
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1143
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1144
 msgid "NOTICE_ENGULF_SIZE_TOO_SMALL"
 msgstr ""
 
 #: ../src/microbe_stage/systems/EngulfedDigestionSystem.cs:142
-#: ../src/microbe_stage/systems/EngulfingSystem.cs:1135
+#: ../src/microbe_stage/systems/EngulfingSystem.cs:1136
 msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr ""
 
@@ -6698,6 +6708,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2202
 #: ../simulation_parameters/microbe_stage/biomes.json:2382
 #: ../simulation_parameters/microbe_stage/biomes.json:2627
+#: ../simulation_parameters/microbe_stage/biomes.json:2935
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:46
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -6719,6 +6730,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:545
 #: ../simulation_parameters/common/wiki.json:2524
 #: ../simulation_parameters/common/wiki.json:2622
+#: ../ThriveScriptsShared/Stage.cs:26
 msgid "SOCIETY_STAGE"
 msgstr ""
 
@@ -6745,6 +6757,7 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:573
 #: ../simulation_parameters/common/wiki.json:2626
 #: ../simulation_parameters/common/wiki.json:2724
+#: ../ThriveScriptsShared/Stage.cs:32
 msgid "SPACE_STAGE"
 msgstr ""
 
@@ -8090,6 +8103,7 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:183
+#: ../simulation_parameters/microbe_stage/biomes.json:2912
 msgid "VOLCANIC_VENT"
 msgstr ""
 
