@@ -103,7 +103,7 @@ public class ChunkCompoundPressure : SelectionPressure
 
     public override string ToString()
     {
-        var chunkName = Localization.Translate("CHUNK_FOOD_SOURCE").FormatSafe(Localization.Translate(chunkType));
+        var chunkName = Localization.Translate("CHUNK_FOOD_SOURCE").FormatSafe(readableName);
 
         return $"{Name} ({chunkName})";
     }

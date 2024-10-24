@@ -44,6 +44,7 @@ using World = DefaultEcs.World;
 [WritesToComponent(typeof(MicrobeAI))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
 [WritesToComponent(typeof(DamageCooldown))]
+[WritesToComponent(typeof(TimedLife))]
 [ReadsComponent(typeof(CollisionManagement))]
 [ReadsComponent(typeof(MicrobePhysicsExtraData))]
 [ReadsComponent(typeof(OrganelleContainer))]
