@@ -561,3 +561,85 @@
     - Added TODO comments to a few places we could use graphics pooling as new graphics instance creation is one of the heaviest parts of the game in terms of performance currently
     - Added more instructions regarding gettext to our setup instructions
     - Updated translations
+
+0.7.1:
+  IntroductionText: |
+    This release brings dynamic oxygen levels to the world that are produced once photosynthesis evolves. We also got a lot of graphics tweaks, and even new experimental graphics effects that can be turned on in the options. And those aren't the only very visual changes as the editor GUI got multiple improvements to give better insight into what auto-evo and cell processes are doing. This release completed most of the 0.7.x release roadmap but a few items couldn't be completed in time so this release was not called 0.8.0, which is now planned to be the version number of the next release.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.7.1
+  PatchNotes:
+    - The world now starts off with no oxygen and photosynthesis, once evolved, will add oxygen to the world. This effectively locks many organelles that require oxygen during the early game.
+    - Created a new much more graphical auto-evo report screen
+    - Implemented the food chain tab in the editor
+    - Added 3D membranes for microbes
+    - Improved the Thriveopedia with various new pages
+    - Converted the old help menu to open a relevant Thriveopedia page with links to important pages
+    - Upgraded to Godot 4.3
+    - Added a microbe background distortion shader effect that can be enabled in the options (this may become the default in the future)
+    - Added an experimental bloom effect that can be enabled
+    - Added mesh subdivision for the convolution surfaces to make them look better
+    - Metabolosomes are now locked until reaching a patch with oxygen
+    - Added hydrogenase as an early game glucose to ATP converting organelle
+    - Switched default toxin type to cytotoxin and modified the toxin creation process to not always require oxygen
+    - Renamed oxytoxy to just toxin in general toxin contexts where other toxin types are also used
+    - Iron respiration no longer requires oxygen to keep it viable in the vents biome
+    - Added an upgrade for flagellum for picking between long and short variants that have different energy cost and speed
+    - Added a new music track for the tidepool biome
+    - Added a new music track for the ice shelf biome
+    - Buffed engulfing resource gain
+    - Increased engulf size requirement for big phosphate chunks
+    - Added multiple new ice chunk types for more variety
+    - Made AI wait behaviour not trigger as much when out of just one compound type to reduce unnecessary AI sessility
+    - Added resource limiting mode for the ATP bar to view what would happen if some resource was missing from the cell storage
+    - Increased opacity of microbe membranes
+    - Added a new bump map for the microbe membranes
+    - Changed membrane bump map UVs to not distort with the membrane animation
+    - Added new radio and check button icons as SVG images
+    - Added one new microbe loading screen image
+    - Added type icons for compound and environment panels
+    - ATP balance bar tooltips now show which compounds are required to produce that amount of ATP
+    - Tweaked editor GUI to be closer to what it was before the Godot 4 update
+    - Abbreviated per second as just "s" in chemical equation speeds
+    - Updated the space and industrial stage prototype visuals
+    - Reduced pulling cilia power a bit when there are many of them
+    - Added an animation for when something is digested so that it shrinks to a small size instead of just visually popping out of existence
+    - Redid compound icons as SVG images
+    - Reworked patch and some UI icons as SVG files
+    - Created priority levels for PhotoStudio image generation to avoid important images taking minutes to load on slower computers
+    - Added an in-memory image cache for the PhotoStudio to speed up displaying images of the same species again
+    - Added a GDExtension for Thrive that will be used in the future to improve various things
+    - Added a compound cloud benchmark
+    - Added experimental dynamic compounds feature where patches dynamically change their available compound amounts based on the species that are in it
+    - Fixed mucocyst to work in cell colonies
+    - Fixed water currents not affecting chunks correctly ever since the ECS refactoring probably
+    - Fixed loading screen loading spinner not spinning smoothly
+    - Fixed Thriveopedia search not working
+    - Fixed a bug where the editor showed patch compounds as they were during the previous generation
+    - Fixed initial species compounds calculation never giving iron due to calculating only with available compounds in the default biome type
+    - Fixed the strain system always taking movement ATP while not moving
+    - Fixed used matter storage size flickering when ejecting too big objects that no longer fit in storage
+    - Fixed some cases where ejected cells wouldn't properly die and despawn
+    - Fixed saving status text not fading out properly
+    - Fixed image sizes in concept art gallery cards
+    - Fixed clicking on a miche node that is empty not clearing the info box which was pretty confusing GUI behaviour
+    - Reduced lag spike on selecting different patch to show details for
+    - Added a limit to the recent patch notes shown to ensure it doesn't try to display truly ridiculous number of notes for someone who hasn't played Thrive for years
+    - Fixed editor saves failing to load with a completed endosymbiosis action
+    - Fixed right editor panel being able to be too wide in certain translations
+    - Fixed auto-evo being able to remove the nucleus as a mutation
+    - Fixed art gallery model viewer not working correctly with 3D menu backgrounds being enabled
+    - Fixed "x worlds" text not being translated initially in the auto-evo exploring tool
+    - Hopefully fixed some engulf digestion and cells dying during it issues that caused cell chunks to spawn
+    - Added missing models to the art gallery model viewer
+    - Reimplemented debug line renderer as a GDExtension to make it much faster than before
+    - Refactored our compound related code to use enum values to simplify a lot of our code that needed to define special operations for various compounds
+    - Added code project for running small code benchmarks easily in the future
+    - Organelle tooltips are now dynamically generated from the organelle JSON data
+    - Improved our setup instructions for compiling on Linux
+    - Added new automatic code style checks related to post-increment
+    - Updated YamlDotNet from 16.0.0 to 16.1.3
+    - Updated Jolt Physics Engine
+    - Tweaked the pre-commit hook to be much shorter
+    - Updated code checking tools
+    - Improved our wiki content updating script
+    - Updated wiki text content
+    - Updated translations
