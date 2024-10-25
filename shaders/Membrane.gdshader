@@ -30,6 +30,10 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
+
+    float cellOffset = (NODE_POSITION_WORLD.x + NODE_POSITION_WORLD.z);
+    VERTEX.y += (sin(cellOffset * movementWigglyNess + VERTEX.z + TIME / 4.0f) + 1.0f)
+        * 0.35f * wigglyNess * abs(worldVertex.y);
 }
 
 float fresnel(float power, vec3 normal, vec3 view)

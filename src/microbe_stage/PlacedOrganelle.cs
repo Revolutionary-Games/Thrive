@@ -156,8 +156,6 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         return Definition.Enzymes;
     }
 
-    // TODO: remove if this stays unused
-
     /// <summary>
     ///   Gives organelles more compounds to grow (or takes free compounds).
     ///   If <see cref="allowedCompoundUse"/> goes to 0 stops early and doesn't use any more compounds.
@@ -314,8 +312,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
     {
         var scale = CalculateTransformScale();
 
-        return new Transform3D(
-            new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(new Vector3(scale, scale, scale)),
+        return new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(1 * Orientation)).Scaled(scale),
             Hex.AxialToCartesian(Position) + Definition.ModelOffset);
 
         // TODO: check is this still needed
@@ -333,17 +330,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         // TODO: check that the rotation of ModelOffset works correctly here (also in
         // CalculateVisualsTransformExternalCached)
 
-        float scaleZ = scale;
-
-        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
-        }
-
-        return new Transform3D(new Basis(orientation).Scaled(new Vector3(scale, scale, scaleZ)),
+        return new Transform3D(new Basis(orientation).Scaled(scale),
             externalPosition + orientation * Definition.ModelOffset);
     }
 
@@ -358,7 +345,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         var scale = CalculateTransformScale();
 
         // TODO: check that the rotation of ModelOffset works correctly here
-        return new Transform3D(new Basis(cachedExternalOrientation).Scaled(new Vector3(scale, scale, scale)),
+        return new Transform3D(new Basis(cachedExternalOrientation).Scaled(scale),
             cachedExternalPosition + cachedExternalOrientation * Definition.ModelOffset);
     }
 
@@ -415,7 +402,7 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
         }
     }
 
-    private float CalculateTransformScale()
+    private Vector3 CalculateTransformScale()
     {
         float growth;
         if (Definition.ShouldScale)
@@ -429,7 +416,19 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
         // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
         // intended way, but might be worse looking than before
-        return Constants.DEFAULT_HEX_SIZE + growth;
+        var scale = Constants.DEFAULT_HEX_SIZE + growth;
+
+        float scaleZ = scale;
+
+        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            var flagellumLength = flagellumUpgrades.LengthFraction;
+
+            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
+        }
+
+        return new Vector3(scale, scale, scaleZ);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

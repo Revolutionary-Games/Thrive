@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-18 12:26+0300\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-24 12:08+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -227,6 +227,9 @@ msgstr ""
 "ასევე შესაძლებელია ჩამოქვეითება მიკრობის ფაზაზე და თავიდან ითამაშოთ დამატებითი შესაძლებლობებით.\n"
 "\n"
 "სულ განვითრდით ამ შენახულში: {0}"
+
+msgid "ASCENSION_STAGE"
+msgstr "აყვავების ფაზა"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "მოდის assembly-ის კლასი აუცილებელია, როცა assembly მითითებულია"
@@ -469,9 +472,8 @@ msgstr "ბიოლუმინესცენტური ვაკუოლ�
 msgid "BIOME_LABEL"
 msgstr "ბიომა: {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "ეკრანის ეფექტი"
+msgstr "გაფურჩქვნის ეფექტი"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "ნეირონი"
@@ -702,7 +704,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "დავხურო პარამეტრები?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr "კლოსტრიდიული ფერმენტაცია"
+msgstr "კლოსტრიდიალური ფერმენტაცია"
 
 msgid "CLOUD_BENCHMARK"
 msgstr "ღრუბლის წარმადობის შემოწმება"
@@ -1446,9 +1448,8 @@ msgstr "3D მენიუს ფონების ჩვენება"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "შესაძლებლობების პანელის ჩვენება"
 
-#, fuzzy
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
-msgstr "ფონური ნაწილაკების ჩვენება"
+msgstr "მიკრობის ფონების დამახინჯება"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "ფონური ნაწილაკების ჩვენება"
@@ -1885,9 +1886,8 @@ msgstr "ფეროპლასტი"
 msgid "FERROPLAST_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"][/thrive:compound]-ის და [thrive:compound type=\"oxygen\"][/thrive:compound]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
+msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"][/thrive:compound]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "საგნების ფილტრი კატეგორიით:"
@@ -4317,9 +4317,8 @@ msgstr "რუსტიციანინი"
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"][/thrive:compound]-ის და [thrive:compound type=\"oxygen\"][/thrive:compound]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
+msgstr "გადაჰყავს [thrive:compound type=\"iron\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-ში. სიჩქარე [thrive:compound type=\"carbondioxide\"]-ის კონცენტრაციის ზრდასთან ერთად იზრდება."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5249,9 +5248,8 @@ msgstr ""
 msgid "TOXISOME"
 msgstr "ტოქსისომა"
 
-#, fuzzy
 msgid "TOXISOME_DESCRIPTION"
-msgstr "ხიტინაზა უჯრედს ხიტინის მემბრანის დაშლის საშუალებას გაძლევს. თითოეული დამატება ზრდის მის ეფექტურობას."
+msgstr "შეცვლილი მეტაბოლოსომა პასუხისმგებელია ტოქსიკური ნივთიერება [thrive:compound type=\\\"oxytoxy\\\"][/thrive:compound]-ის პრიმიტიული ფორმის წარმოებაში .შეიძლება, სხვა ეფექტების მქონე ტოქსინზე გადაირთოს."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "ჯერ განხორციელებული არაა."
@@ -6147,38 +6145,27 @@ msgstr "ინტერფეისი"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "გაუმჯობესებები"
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "ეფექტების გარეშე."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_INTRO"
-msgstr "ნერვული ბოჭკოები ნეირონებს შორის. ხელმისაწვდომია მრავალუჯრედიანი ფაზიდან. აუცილებელია ორგანიზმის ტვინის სიმძლავრის გასაზრდელად და გასავითარებლად მომავალ ფაზებში."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_MODIFICATIONS"
 msgstr "ცვლილებების გარეშე."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_PROCESSES"
 msgstr ""
-"[b]ბაქტერიული თერმოსინთეზი[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"ქმნის ენერგიას პასიურად გარემოს [thrive:compound type=\"temperature\"][/thrive:compound]-დან. [b][color=#3796e1][url=thriveopedia:thermoplast]Thermoplasts[/url][/color][/b]-ის [b]თერმოსინთეზის[/b] უფრო სუსტი ფორმა."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
-msgstr "მოთხოვნების გარეშე."
+msgstr "გაშვების ნაწილი. მოთხოვნების გარეშე."
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
-msgstr "ჯერ უცნობია"
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_STRATEGY"
-msgstr "სტრატეგია"
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
 
@@ -6512,9 +6499,8 @@ msgstr "გარემოს პირობები"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "შოლტი"
 
-#, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
-msgstr "ნიტროგენაზა"
+msgstr "ჰიდროგენაზა"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "ინდუსტრიული ფაზა"
@@ -7023,10 +7009,6 @@ msgstr "დაპატარავება"
 
 #~ msgid "THYLAKOID"
 #~ msgstr "თილაკოიდი"
-
-#, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "აღმასვლა"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
