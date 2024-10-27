@@ -152,7 +152,6 @@ public partial class ChemicalEquation : VBoxContainer
     public override void _Ready()
     {
         UpdateEquation();
-        ApplyProcessToggleValue();
     }
 
     public override void _EnterTree()
