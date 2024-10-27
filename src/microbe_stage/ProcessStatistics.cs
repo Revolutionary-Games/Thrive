@@ -149,10 +149,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
     }
 
-    public bool Enabled
-    {
-        get => Process.SpeedMultiplier > 0.5f;
-    }
+    public bool Enabled => Process.SpeedMultiplier > 0.5f;
 
     public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
 
@@ -401,10 +398,7 @@ public class AverageProcessStatistics : IProcessDisplayInfo
 
     public TweakedProcess Process => owner.Process;
 
-    public bool Enabled
-    {
-        get => owner.Process.SpeedMultiplier > 0.5f;
-    }
+    public bool Enabled => owner.Process.SpeedMultiplier > 0.5f;
 
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
