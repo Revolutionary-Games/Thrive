@@ -852,9 +852,26 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        ref var processes = ref stage.Player.Get<BioProcesses>();
+        if (stage.Player.Has<MicrobeColony>())
+        {
+            ref var colony = ref stage.Player.Get<MicrobeColony>();
 
-        var activeProcesses = processes.ActiveProcesses;
+            foreach (var colonyMember in colony.ColonyMembers)
+            {
+                ref var bioProcesses = ref colonyMember.Get<BioProcesses>();
+                ToggleProcessOnEntity(equation, enabled, ref bioProcesses);
+            }
+        }
+        else
+        {
+            ref var bioProcesses = ref stage.Player.Get<BioProcesses>();
+            ToggleProcessOnEntity(equation, enabled, ref bioProcesses);
+        }
+    }
+
+    private void ToggleProcessOnEntity(ChemicalEquation equation, bool enabled, ref BioProcesses bioProcesses)
+    {
+        var activeProcesses = bioProcesses.ActiveProcesses;
 
         if (activeProcesses == null)
             return;
@@ -864,7 +881,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         for (int i = 0; i < processesCount; ++i)
         {
             // Update speed of the process controlled by the GUI control that signaled this change
-            if (equation.EquationFromProcess.MatchesUnderlyingProcess(activeProcesses[i].Process))
+            if (equation.EquationFromProcess!.MatchesUnderlyingProcess(activeProcesses[i].Process))
             {
                 var process = activeProcesses[i];
                 process.SpeedMultiplier = enabled ? 1 : 0;
