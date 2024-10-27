@@ -61,6 +61,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         result ??= new List<TweakedProcess>();
 
+        var speedMultipliers = new Dictionary<BioProcess, float>();
+
+        foreach (var process in result)
+        {
+            speedMultipliers.TryAdd(process.Process, process.SpeedMultiplier);
+        }
+
         // Very important to clear any existing list to ensure old processes don't hang around
         result.Clear();
 
@@ -108,6 +115,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 // If not found, then create a new result
                 result.Add(new TweakedProcess(process.Process, process.Rate));
             }
+        }
+
+        foreach (var newProcess in result)
+        {
+            if (speedMultipliers.TryGetValue(newProcess.Process, out float speedMultiplier))
+                newProcess.SpeedMultiplier = speedMultiplier;
         }
     }
 
