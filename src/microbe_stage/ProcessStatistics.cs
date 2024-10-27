@@ -22,11 +22,6 @@ public class ProcessStatistics
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This uses <see cref="BioProcess"/> rather than <see cref="TweakedProcess"/> as the key so that equality
-    ///     comparison matches based on the process type not the process type and speed. All processables should
-    ///     combine their processes to run correctly with speed tracking.
-    ///   </para>
-    ///   <para>
     ///     This is JSON ignore to ensure that this object can exist in saves, but won't store non-savable information
     ///     like the process statistics object. That's the situation now but maybe some other design would be better...
     ///   </para>
