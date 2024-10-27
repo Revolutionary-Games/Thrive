@@ -88,8 +88,6 @@ public partial class ProcessList : VBoxContainer
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
 
-        equation.ProcessEnabled = process.DisplayInfo.CurrentSpeed > 0;
-
         if (ProcessesTitleColour != null)
             equation.DefaultTitleFont = ProcessesTitleColour;
 
@@ -99,8 +97,8 @@ public partial class ProcessList : VBoxContainer
         return equation;
     }
 
-    private void HandleToggleProcess(ChemicalEquation equation)
+    private void HandleToggleProcess(ChemicalEquation equation, bool enabled)
     {
-        EmitSignal(SignalName.ToggleProcessPressed, equation);
+        EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);
     }
 }

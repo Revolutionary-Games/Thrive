@@ -1,16 +1,11 @@
 ﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   A concrete process that organelle does. Applies a modifier to the process
 /// </summary>
-/// <remarks>
-///   <para>
-///     This is a struct as this just packs a few floats and a single object reference in here. This allows much tighter
-///     data packing when this is used in lists.
-///   </para>
-/// </remarks>
-public struct TweakedProcess : IEquatable<TweakedProcess>
+public class TweakedProcess : IEquatable<TweakedProcess>
 {
     [JsonProperty]
     public readonly BioProcess Process;
@@ -44,13 +39,19 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
         return false;
     }
 
-    public bool Equals(TweakedProcess other)
+    public bool Equals(TweakedProcess? other)
     {
+        if (ReferenceEquals(null, other))
+            return false;
+        if (ReferenceEquals(this, other))
+            return true;
+
         if (Process != other.Process)
             return false;
 
         // ReSharper disable once CompareOfFloatsByEqualityOperator
-        return Rate == other.Rate && ReferenceEquals(Process, other.Process);
+        return Rate == other.Rate && SpeedMultiplier == other.SpeedMultiplier
+            && ReferenceEquals(Process, other.Process);
     }
 
     public TweakedProcess Clone()

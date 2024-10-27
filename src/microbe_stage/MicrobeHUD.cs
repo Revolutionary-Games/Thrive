@@ -841,7 +841,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
         UpdateColonySizeForMacroscopic();
     }
 
-    private void ToggleProcessPressed(ChemicalEquation equation)
+    private void ToggleProcessPressed(ChemicalEquation equation, bool enabled)
     {
         if (!stage!.HasAlivePlayer || !stage.Player.Has<BioProcesses>())
             return;
@@ -867,8 +867,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             if (equation.EquationFromProcess.MatchesUnderlyingProcess(activeProcesses[i].Process))
             {
                 var process = activeProcesses[i];
-                process.SpeedMultiplier = equation.ProcessEnabled ? 1 : 0;
-                activeProcesses[i] = process;
+                process.SpeedMultiplier = enabled ? 0 : 1;
             }
         }
     }

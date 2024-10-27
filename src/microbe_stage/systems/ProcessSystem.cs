@@ -745,7 +745,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 var processData = process.Process;
 
-                var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
+                var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
 
                 if (currentProcessStatistics != null)
                 {

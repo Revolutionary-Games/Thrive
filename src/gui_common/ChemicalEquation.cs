@@ -59,8 +59,6 @@ public partial class ChemicalEquation : VBoxContainer
     /// </summary>
     private bool hasNoInputs;
 
-    private bool lastToggle = true;
-
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation thisEquation);
 
@@ -102,14 +100,19 @@ public partial class ChemicalEquation : VBoxContainer
 
     public bool ProcessEnabled
     {
-        get => lastToggle;
+        get
+        {
+            if (EquationFromProcess == null)
+                return true;
+
+            return EquationFromProcess.Enabled;
+        }
         set
         {
-            if (value == lastToggle)
+            if (EquationFromProcess == null)
                 return;
 
-            lastToggle = value;
-            ApplyProcessToggleValue();
+            EmitSignal(SignalName.ToggleProcessPressed, this, value);
         }
     }
 
@@ -245,6 +248,8 @@ public partial class ChemicalEquation : VBoxContainer
 
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
+
+        ApplyProcessToggleValue();
     }
 
     private void UpdateHeader()
@@ -376,8 +381,6 @@ public partial class ChemicalEquation : VBoxContainer
     private void ToggleButtonPressed(bool toggled)
     {
         ProcessEnabled = toggled;
-
-        EmitSignal(SignalName.ToggleProcessPressed, this);
     }
 
     private void ApplyProcessToggleValue()

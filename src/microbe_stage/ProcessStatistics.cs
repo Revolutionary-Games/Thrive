@@ -15,7 +15,7 @@ public class ProcessStatistics
     ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
     ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
     /// </summary>
-    private List<BioProcess>? temporaryRemovedItems;
+    private List<TweakedProcess>? temporaryRemovedItems;
 
     /// <summary>
     ///   The processes and their associated speed statistics
@@ -32,7 +32,7 @@ public class ProcessStatistics
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public Dictionary<BioProcess, SingleProcessStatistics> Processes { get; } = new();
+    public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()
     {
@@ -49,7 +49,7 @@ public class ProcessStatistics
     {
         lock (Processes)
         {
-            temporaryRemovedItems ??= new List<BioProcess>();
+            temporaryRemovedItems ??= new List<TweakedProcess>();
 
             foreach (var entry in Processes)
             {
@@ -71,7 +71,7 @@ public class ProcessStatistics
         }
     }
 
-    public SingleProcessStatistics GetAndMarkUsed(BioProcess forProcess)
+    public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
     {
 #if DEBUG
         if (forProcess == null!)
@@ -109,7 +109,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     private Dictionary<Compound, float>? precomputedEnvironmentInputs;
 
-    public SingleProcessStatistics(BioProcess process,
+    public SingleProcessStatistics(TweakedProcess process,
         float keepSnapshotTime = Constants.DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL)
     {
         this.keepSnapshotTime = keepSnapshotTime;
@@ -120,11 +120,11 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   The process these statistics are for
     /// </summary>
-    public BioProcess Process { get; }
+    public TweakedProcess Process { get; }
 
     public bool Used { get; internal set; }
 
-    public string Name => Process.Name;
+    public string Name => Process.Process.Name;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
         LatestSnapshot?.Inputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key)) ??
@@ -135,7 +135,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         throw new InvalidOperationException("No snapshot set");
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
-        precomputedEnvironmentInputs ??= Process.Inputs
+        precomputedEnvironmentInputs ??= Process.Process.Inputs
             .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key.ID))
             .ToDictionary(p => p.Key.ID, p => p.Value);
 
@@ -152,6 +152,11 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
             LatestSnapshot.CurrentSpeed = value;
         }
+    }
+
+    public bool Enabled
+    {
+        get => Process.SpeedMultiplier > 0.5f;
     }
 
     public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
@@ -296,7 +301,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
-        return Process == process;
+        return Process.Process == process;
     }
 
     public bool Equals(IProcessDisplayInfo? other)
@@ -312,6 +317,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         // This also checks for obj being null
         if (obj is SingleProcessStatistics statistics)
         {
+            GD.Print(Process.Equals(statistics.Process));
             return Process.Equals(statistics.Process);
         }
 
@@ -322,6 +328,10 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         if (ReferenceEquals(null, other))
             return false;
+
+        if (Process.SpeedMultiplier != other.Process.SpeedMultiplier)
+            GD.Print("Speed multiplier mismatch!");
+
         if (ReferenceEquals(this, other))
             return true;
 
@@ -394,9 +404,16 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 
+    public TweakedProcess Process => owner.Process;
+
+    public bool Enabled
+    {
+        get => owner.Process.SpeedMultiplier > 0.5f;
+    }
+
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
-        return owner.Process == process;
+        return owner.Process.Process == process;
     }
 
     public bool Equals(IProcessDisplayInfo? other)
@@ -412,6 +429,10 @@ public class AverageProcessStatistics : IProcessDisplayInfo
         // This also checks for obj being null
         if (obj is AverageProcessStatistics statistics)
         {
+            GD.Print(owner.Equals(statistics.owner));
+            if (owner.Process.SpeedMultiplier != statistics.owner.Process.SpeedMultiplier)
+                GD.Print("Speed multiplier mismatch!");
+
             return owner.Equals(statistics.owner);
         }
 
