@@ -314,7 +314,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         if (ReferenceEquals(null, other))
             return false;
-
         if (ReferenceEquals(this, other))
             return true;
 
