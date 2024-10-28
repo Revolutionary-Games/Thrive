@@ -72,6 +72,10 @@ public class ProcessStatistics
         {
             if (Processes.TryGetValue(forProcess, out var entry))
             {
+#if DEBUG
+                if (forProcess.Process == null!)
+                    throw new ArgumentException("Invalid process marked used");
+#endif
                 entry.Used = true;
                 return entry;
             }
