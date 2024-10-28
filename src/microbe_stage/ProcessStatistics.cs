@@ -309,7 +309,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         // This also checks for obj being null
         if (obj is SingleProcessStatistics statistics)
         {
-            GD.Print(Process.Equals(statistics.Process));
             return Process.Equals(statistics.Process);
         }
 
@@ -320,9 +319,6 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     {
         if (ReferenceEquals(null, other))
             return false;
-
-        if (Process.SpeedMultiplier != other.Process.SpeedMultiplier)
-            GD.Print("Speed multiplier mismatch!");
 
         if (ReferenceEquals(this, other))
             return true;
@@ -418,10 +414,6 @@ public class AverageProcessStatistics : IProcessDisplayInfo
         // This also checks for obj being null
         if (obj is AverageProcessStatistics statistics)
         {
-            GD.Print(owner.Equals(statistics.owner));
-            if (owner.Process.SpeedMultiplier != statistics.owner.Process.SpeedMultiplier)
-                GD.Print("Speed multiplier mismatch!");
-
             return owner.Equals(statistics.owner);
         }
 
