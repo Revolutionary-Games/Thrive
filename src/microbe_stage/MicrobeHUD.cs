@@ -885,6 +885,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             {
                 var process = activeProcesses[i];
                 process.SpeedMultiplier = enabled ? 1 : 0;
+                activeProcesses[i] = process;
             }
         }
     }

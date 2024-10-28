@@ -117,10 +117,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
-        foreach (var newProcess in result)
+        int newProcessCount = result.Count;
+        for (int i = 0; i < newProcessCount; i++)
         {
+            var newProcess = result[i];
             if (speedMultipliers.TryGetValue(newProcess.Process, out float speedMultiplier))
+            {
                 newProcess.SpeedMultiplier = speedMultiplier;
+                result[i] = newProcess;
+            }
         }
     }
 
