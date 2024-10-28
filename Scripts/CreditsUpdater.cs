@@ -155,11 +155,11 @@ public static class CreditsUpdater
             {
                 foreach (var personEntry in (JsonArray?)languageData ?? throw new Exception("Missing language array"))
                 {
-                    var person = (JsonArray?)personEntry ?? throw new Exception("Missing nested arrays");
+                    var person = (JsonObject?)personEntry ?? throw new Exception("Missing nested arrays");
 
-                    var email = person[0]?.GetValue<string>() ?? throw new Exception("missing email");
-                    var name = person[1]?.GetValue<string>() ?? throw new Exception("missing name");
-                    var score = person[2]?.GetValue<long>() ?? throw new Exception("missing score");
+                    var email = person["email"]?.GetValue<string>() ?? throw new Exception("missing email");
+                    var name = person["full_name"]?.GetValue<string>() ?? throw new Exception("missing name");
+                    var score = person["change_count"]?.GetValue<long>() ?? throw new Exception("missing score");
 
                     // Ignore some users to make the credits nicer
                     if (IgnoredWeblateUsers.Contains(name) || IgnoredWeblateUsers.Contains(email))
