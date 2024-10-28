@@ -110,7 +110,10 @@ public partial class ChemicalEquation : VBoxContainer
         set
         {
             if (EquationFromProcess == null)
+            {
+                GD.PrintErr("Display info isn't assigned to a ChemicalEquation, can't toggle process");
                 return;
+            }
 
             EmitSignal(SignalName.ToggleProcessPressed, this, value);
         }
