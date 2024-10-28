@@ -33,9 +33,6 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         var our = DisplayInfo;
         var theirs = other.DisplayInfo;
 
-        if (our.Enabled != theirs.Enabled)
-            return false;
-
         if (our.Name != theirs.Name)
             return false;
 
@@ -72,9 +69,6 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
         if (ReferenceEquals(our.LimitingCompounds, null) != ReferenceEquals(theirs.LimitingCompounds, null))
             return false;
         if (our.LimitingCompounds != null && !our.LimitingCompounds.SequenceEqual(theirs.LimitingCompounds!))
-            return false;
-
-        if (!our.Equals(theirs))
             return false;
 
         return true;
