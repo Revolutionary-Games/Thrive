@@ -68,14 +68,14 @@ public class ProcessStatistics
 
     public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
     {
+#if DEBUG
+        if (forProcess.Process == null!)
+            throw new ArgumentException("Invalid process marked used");
+#endif
         lock (Processes)
         {
             if (Processes.TryGetValue(forProcess, out var entry))
             {
-#if DEBUG
-                if (forProcess.Process == null!)
-                    throw new ArgumentException("Invalid process marked used");
-#endif
                 entry.Used = true;
                 return entry;
             }
