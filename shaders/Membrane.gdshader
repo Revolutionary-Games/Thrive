@@ -30,22 +30,22 @@ void vertex(){
         * wigglyNess * size;
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
-    
+
     float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.25f
-        + worldVertex.z * 0.4f + TIME / 4.0f;
+        + movementWigglyNess * worldVertex.z * 1.5f + TIME / 4.0f;
     float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.25f
-        + worldVertex.x * 0.4f + TIME / 4.0f;
+        + movementWigglyNess * worldVertex.x * 1.5f + TIME / 4.0f;
     VERTEX.y += (sin(verticalAngle) + sin(horizontalAngle) + 2.0f)
         * 0.25f * wigglyNess * abs(worldVertex.y);
-    
-    vec2 verticalDerivative = normalize(vec2(abs(cos(verticalAngle)), 1.0f))
+
+    vec2 verticalDerivative = vec2(abs(cos(verticalAngle)), 1.0f)
         * 0.25f * wigglyNess * abs(worldVertex.y);
-    vec2 horizontalDerivative = normalize(vec2(abs(cos(horizontalAngle)), 1.0f))
+    vec2 horizontalDerivative = vec2(abs(cos(horizontalAngle)), 1.0f)
         * 0.25f * wigglyNess * abs(worldVertex.y);
-    
+
     NORMAL += vec3(-horizontalDerivative.x, horizontalDerivative.y + verticalDerivative.y, -verticalDerivative.x);
     TANGENT += vec3(horizontalDerivative.y, -horizontalDerivative.x - verticalDerivative.x, verticalDerivative.y);
-    
+
     NORMAL = normalize(NORMAL);
     TANGENT = normalize(TANGENT);
     BINORMAL = cross(NORMAL, TANGENT);
