@@ -32,6 +32,8 @@ using World = DefaultEcs.World;
 [RuntimeCost(55)]
 public sealed class ProcessSystem : AEntitySetSystem<float>
 {
+    private static readonly Dictionary<BioProcess, float> TempSpeedMultipliers = new();
+
 #if CHECK_USED_STATISTICS
     private readonly List<ProcessStatistics> usedStatistics = new();
 #endif
@@ -61,11 +63,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         result ??= new List<TweakedProcess>();
 
-        var speedMultipliers = new Dictionary<BioProcess, float>();
-
         foreach (var process in result)
         {
-            speedMultipliers.TryAdd(process.Process, process.SpeedMultiplier);
+            TempSpeedMultipliers.TryAdd(process.Process, process.SpeedMultiplier);
         }
 
         // Very important to clear any existing list to ensure old processes don't hang around
@@ -121,12 +121,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         for (int i = 0; i < newProcessCount; ++i)
         {
             var newProcess = result[i];
-            if (speedMultipliers.TryGetValue(newProcess.Process, out float speedMultiplier))
+            if (TempSpeedMultipliers.TryGetValue(newProcess.Process, out float speedMultiplier))
             {
                 newProcess.SpeedMultiplier = speedMultiplier;
                 result[i] = newProcess;
             }
         }
+
+        TempSpeedMultipliers.Clear();
     }
 
     /// <summary>
