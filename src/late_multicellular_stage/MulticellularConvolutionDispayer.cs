@@ -76,7 +76,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         Mesh = meshGen.DualContour();
         Mesh.SurfaceSetMaterial(0, material);
 
-        Task uvUnwrap = new Task(() => UVUnwrapAndTexturize((Mesh as ArrayMesh)!));
+        Task uvUnwrap = new Task(() => UVUnwrapAndTexturize((ArrayMesh)Mesh));
         TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
