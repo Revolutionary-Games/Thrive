@@ -2040,8 +2040,19 @@ public partial class CellEditorComponent :
             organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
                 cartesianPosition + shownOrganelleDefinition.ModelOffset);
 
-            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
+            var scale = Constants.DEFAULT_HEX_SIZE;
+
+            float scaleZ = scale;
+
+            if (upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+            {
+                var flagellumLength = flagellumUpgrades.LengthFraction;
+
+                scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                    + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
+            }
+
+            organelleModel.Scale = new Vector3(scale, scale, scaleZ);
 
             organelleModel.Visible = true;
 
