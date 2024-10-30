@@ -66,6 +66,9 @@ public partial class PhotographablePreview : Control
         {
             textureRect.Texture = task.FinalImage;
 
+            // TODO: should the images always be kept in memory for writing to a disk cache when removed from memory?
+            // For now that isn't done to save a bit on RAM usage
+            // Finished image is always kept in memory
             if (KeepPlainImageInMemory)
             {
                 finishedImage = task.PlainImage;
@@ -96,9 +99,6 @@ public partial class PhotographablePreview : Control
 
         textureRect.Texture = loadingTexture;
         task = SetupImageTask();
-
-        if (task != null)
-            PhotoStudio.Instance.SubmitTask(task);
     }
 
     /// <summary>

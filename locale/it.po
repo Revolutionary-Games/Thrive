@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -236,6 +236,10 @@ msgstr ""
 "E' possibile inoltre discendere e ritornare alla Fase Microbo in questo salvataggio e ripetere tutti gli stadi con vantaggi extra.\n"
 "Ascese totali in questo salvataggio: {0}"
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Versione:"
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe dell'assembly è richiesta quando l'assembly è specificato"
 
@@ -258,6 +262,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Bilancio ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Mostra/nascondi i composti"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Idrogeno solforato"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Bilancio ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Produzione di ATP"
@@ -461,6 +486,10 @@ msgstr "Vacuolo bioluminescente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Effetti esterni:"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
 
@@ -585,6 +614,10 @@ msgstr "Le note sull'aggiornamento sono troppo lughe"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Cambia la simmetria"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
+
 msgid "CHEATS"
 msgstr "Trucchi"
 
@@ -687,6 +720,9 @@ msgstr "Chiudi"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Chiudere le opzioni?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1244,6 +1280,10 @@ msgstr "Glicolisi citoplasmatica"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Trasforma il [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Sintesi dell'OssiTossi"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1497,6 +1537,10 @@ msgstr "Mostra particelle di sfondo"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostra la barra delle abilità"
+
+#, fuzzy
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "Mostra particelle di sfondo"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostra particelle di sfondo"
@@ -2328,6 +2372,18 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "Idrogeno solforato"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Idrogeno solforato"
 
@@ -3061,6 +3117,10 @@ msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in gr
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contiene uno di tre enzimi digestivi. Fai clic su \"Modifica\" per scegliere quale. Gli enzimi velocizzano la digestione e la rendono più efficiente."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Sintesi della mucillagine"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4258,12 +4318,9 @@ msgstr "Eliminare questo salvataggio è un'operazione irreversibile. Non potrai 
 msgid "OXYGEN"
 msgstr "Ossigeno"
 
-msgid "OXYTOXISOME"
-msgstr "OssiTossisoma"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Sintesi dell'OssiTossi"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi rilasciare le tossine premendo [thrive:input]g_fire_toxin[/thrive:input]. Il danno aumenta con la quantità disponibile."
@@ -4776,9 +4833,11 @@ msgstr "Tempo trascorso: {0:#,#} anni"
 msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "La rusticianina è una proteina che usa il [thrive:compound type=\"carbondioxide\"][/thrive:compound] gassoso e l'[thrive:compound type=\"oxygen\"][/thrive:compound] per ossidare il ferro da uno stato chimico all'altro. Questo processo, chiamato [b]ossidazione del ferro[/b], rilascia energia che la cellula poi immagazzina."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Trasforma il [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"carbondioxide\"][/thrive:compound] e di [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -5582,9 +5641,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Licenze Thrive"
 
-msgid "THYLAKOID"
-msgstr "Tilacoide"
-
 msgid "THYLAKOIDS"
 msgstr "Tilacoidi"
 
@@ -5715,6 +5771,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzione, l'immagazzinamento e la secrezione di [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Più vacuoli tossine hai, più rapidamente sarai in grado di rilasciare le tossine."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Composti"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Alcune opzioni potrebbero essere disattivate in caso che \"Solo VCLC\" sia attivata"
 
@@ -5779,6 +5839,7 @@ msgstr ""
 "I microbi pacifici, invece, ignorano i soggetti lontani\n"
 "e sono meno inclini a sparare tossine ai propri predatori."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacuolo\n"
@@ -5790,6 +5851,14 @@ msgstr "Il vacuolo tossine è un vacuolo che è stato modificato per la produzio
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"oxygen\"][/thrive:compound]. Puoi rilasciare tali tossine premendo [thrive:input]g_fire_toxin[/thrive:input]. Il danno aumenta con la quantità disponibile."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "OssiTossisoma"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Il lisosoma è un organulo membranoso contenente enzimi idrolitici in grado di spezzare diversi tipi di biomolecole; ciò permette alle cellule di digerire i materiali ingeriti attraverso l'endocitosi e di pulire i propri prodotti di scarto, in un processo detto [b]autofagia[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Da implementare."
@@ -6931,6 +7000,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "La termosintasi è una proteina che cambia forma in base alle convezioni termiche del liquido in cui è immersa. Esposta al calore, si piega, legandosi così all'ADP. Raffreddata, si apre, riciclandola in [thrive:compound type=\"atp\"][/thrive:compound]. Questo processo si chiama [b]termosintesi[/b]. Il tasso di produzione di [thrive:compound type=\"atp\"][/thrive:compound] aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound] circostante."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permette di legarsi ad altre cellule: è il primo passo verso la multicellularità. All'interno di una colonia, le tue cellule si scambiano i composti liberamente, ma non puoi attivare l'editor. Per farlo, devi prima lasciarla."
 
@@ -7367,6 +7468,10 @@ msgstr "Mitocondrio"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagello"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenasi"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7970,8 +8075,11 @@ msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Versione:"
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tilacoide"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

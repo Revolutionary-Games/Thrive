@@ -10,6 +10,18 @@ uniform sampler2D layer1 : source_color;
 uniform sampler2D layer2 : source_color;
 uniform sampler2D layer3 : source_color;
 
+// The noise textures, distortion amount, and distortion speed for the distortion shader
+uniform sampler2D noiseTex1;
+uniform sampler2D noiseTex2;
+uniform float distortionFactor : hint_range(0.0, 1.0, 0.1);
+uniform float distortionSpeed : hint_range(0.0, 0.01, 0.0001) = 0.001f;
+
+// When defined all (even the bubble layers) are distorted, if false time based
+// movement is applied to the other layers
+// #define DISTORT_ALL_LAYERS
+
+uniform float layerAnimateSpeed : hint_range(0.0, 2.0, 0.1) = 1.0f;
+
 const vec2 speed0 = vec2(3300.0f);
 const vec2 speed1 = vec2(2550.0f);
 const vec2 speed2 = vec2(1800.0f);
@@ -48,10 +60,35 @@ void vertex(){
 }
 
 void fragment(){
-    vec4 colour0 = texture(layer0, UV);
-    vec4 colour1 = texture(layer1, UV2);
-    vec4 colour2 = texture(layer2, UV3);
-    vec4 colour3 = texture(layer3, UV4);
+    // Application of noise textures on parallax layers, creating distortion.
+    // Subtracting time results in a flip of the direction of distortion, and multiplying by factor amplifies speed.
+    vec2 noiseUV1 = UV + TIME * distortionSpeed;
+	vec2 noise1 = vec2(texture(noiseTex1, noiseUV1).r, texture(noiseTex2, noiseUV1).r);
+    vec2 distortedUV0 = UV + noise1 * distortionFactor;
+
+#ifdef DISTORT_ALL_LAYERS
+    vec2 noiseUV2 = UV2 + TIME * distortionSpeed * 0.8f;
+    vec2 noiseUV3 = UV3 - TIME * distortionSpeed * 1.5f;
+    vec2 noiseUV4 = UV4 - TIME * distortionSpeed;
+
+    vec2 noise2 = vec2(texture(noiseTex1, noiseUV2).r, texture(noiseTex2, noiseUV2).r);
+    vec2 noise3 = vec2(texture(noiseTex1, noiseUV3).r, texture(noiseTex2, noiseUV3).r);
+    vec2 noise4 = vec2(texture(noiseTex1, noiseUV4).r, texture(noiseTex2, noiseUV4).r);
+
+    vec2 distortedUV1 = UV2 + noise2 * distortionFactor;
+    vec2 distortedUV2 = UV3 + noise3 * distortionFactor;
+    vec2 distortedUV3 = UV4 + noise4 * distortionFactor;
+#else
+    // Apply time-based movement to other layers instead of the distortion
+    vec2 distortedUV1 = UV2 + vec2(TIME * 0.004f, TIME * 0.0035f + sin(TIME * 0.5f) * 0.01f) * layerAnimateSpeed;
+    vec2 distortedUV2 = UV3 + vec2(TIME * 0.004f, -TIME * 0.005f) * layerAnimateSpeed;
+    vec2 distortedUV3 = UV4 - vec2(TIME * 0.004f, TIME * 0.003f + cos(TIME * 0.2f) * 0.05f) * layerAnimateSpeed;
+#endif
+
+    vec4 colour0 = texture(layer0, distortedUV0);
+    vec4 colour1 = texture(layer1, distortedUV1);
+    vec4 colour2 = texture(layer2, distortedUV2);
+    vec4 colour3 = texture(layer3, distortedUV3);
 
     vec3 mixture0 = mix(colour1.rgb, colour2.rgb * colour2.a, 1.0f);
     vec3 mixture1 = mix(colour2.rgb, colour3.rgb * colour3.a, 1.0f);

@@ -75,6 +75,11 @@ public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
     public bool Digestible;
 
     /// <summary>
+    ///   If true, this compound can diffuse between patches on the map
+    /// </summary>
+    public bool Diffusible;
+
+    /// <summary>
     ///   Colour of this compound in the environment (microbe compound clouds for example)
     /// </summary>
     public Color Colour;

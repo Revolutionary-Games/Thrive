@@ -26,7 +26,7 @@ public partial class SpeciesPreview : PhotographablePreview
     {
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
-            return new ImageTask(microbeSpecies, KeepPlainImageInMemory, Priority);
+            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority, KeepPlainImageInMemory);
         }
 
         GD.PrintErr("Unknown species type to preview: ", previewSpecies);

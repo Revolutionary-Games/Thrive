@@ -36,6 +36,8 @@ public partial class PhotoStudio : SubViewport
 
     private static PhotoStudio? instance;
 
+    private readonly PhotoStudioMemoryCache memoryCache = new();
+
     private readonly Dictionary<ISimulationPhotographable.SimulationType, IWorldSimulation> worldSimulations = new();
     private readonly Dictionary<IWorldSimulation, Node3D> simulationWorldRoots = new();
 
@@ -48,6 +50,8 @@ public partial class PhotoStudio : SubViewport
     ///   This index offset makes up for that, being increased for each consecutive image task.
     /// </summary>
     private int lastTaskIndex;
+
+    private int cacheMissesDueToImageSave;
 
     private bool waitingForBackgroundOperation;
 
@@ -134,10 +138,21 @@ public partial class PhotoStudio : SubViewport
         ProcessMode = ProcessModeEnum.Always;
     }
 
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        // Let go of memory resources that were cached as the game should be shutting down
+        memoryCache.Clear();
+    }
+
     public override void _Process(double delta)
     {
         if (currentTaskStep == Step.NoTask)
         {
+            // Probably fine to do cache maintenance slower when generating images
+            memoryCache.CleanCacheIfTime(delta);
+
             // Try to start a task or do nothing if there aren't any
             if (tasks.Count > 0)
             {
@@ -349,14 +364,49 @@ public partial class PhotoStudio : SubViewport
         base._Process(delta);
     }
 
-    /// <summary>
-    ///   Starts an image creation task
-    /// </summary>
-    /// <param name="task">The task to queue and run as soon as possible</param>
-    public void SubmitTask(ImageTask task)
+    public ImageTask GenerateImage(IScenePhotographable photographable, int priority = 1,
+        bool requirePlainImageVariant = false)
     {
-        tasks.Enqueue(task, (task.Priority, lastTaskIndex));
-        ++lastTaskIndex;
+        var cacheKey = photographable.GetVisualHashCode();
+
+        var image = TryGetFromCache(cacheKey, requirePlainImageVariant);
+
+        if (image != null)
+            return image;
+
+        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, requirePlainImageVariant, priority));
+    }
+
+    public ImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1,
+        bool requirePlainImageVariant = false)
+    {
+        var cacheKey = photographable.GetVisualHashCode();
+
+        var image = TryGetFromCache(cacheKey, requirePlainImageVariant);
+
+        if (image != null)
+            return image;
+
+        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, requirePlainImageVariant, priority));
+    }
+
+    public ImageTask? TryGetFromCache(ulong hashCode, bool requirePlainImageVariant = false)
+    {
+        var image = memoryCache.Get(hashCode);
+
+        if (image == null)
+            return null;
+
+        if (requirePlainImageVariant && !image.WillStorePlainImage)
+        {
+            // Wrong variant of storing plain image, need to regenerate the cache entry
+            ++cacheMissesDueToImageSave;
+            return null;
+        }
+
+        return image;
+
+        // TODO: an on-disk cache: https://github.com/Revolutionary-Games/Thrive/issues/3156
     }
 
     protected override void Dispose(bool disposing)
@@ -391,6 +441,24 @@ public partial class PhotoStudio : SubViewport
         }
 
         base.Dispose(disposing);
+    }
+
+    private ImageTask HandleTaskSubmit(ulong hash, ImageTask imageTask)
+    {
+        SubmitTask(imageTask);
+        memoryCache.Insert(hash, imageTask);
+        return imageTask;
+    }
+
+    /// <summary>
+    ///   Starts an image creation task. This is now protected as there is a potential to access cache before having
+    ///   to create a new task.
+    /// </summary>
+    /// <param name="task">The task to queue and run as soon as possible</param>
+    private void SubmitTask(ImageTask task)
+    {
+        tasks.Enqueue(task, (task.Priority, lastTaskIndex));
+        ++lastTaskIndex;
     }
 
     private void LoadCurrentTaskScene()

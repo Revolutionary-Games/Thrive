@@ -10,10 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="9"]
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="11"]
 [ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="12"]
+[ext_resource type="Texture2D" uid="uid://cnplt8x3gpyvx" path="res://assets/textures/gui/bevel/SliderTick.svg" id="12_7fujv"]
 [ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="13"]
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
-[ext_resource type="Texture2D" uid="uid://bnhmjullvbla5" path="res://assets/textures/gui/bevel/sunlight.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="15"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="18"]
@@ -33,7 +34,6 @@
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
 [ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="31"]
 [ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="32"]
-[ext_resource type="Texture2D" uid="uid://bssy7badj4d0y" path="res://assets/textures/gui/bevel/sliderTick.png" id="35"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
@@ -765,7 +765,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
 mouse_filter = 1
-theme_override_icons/tick = ExtResource("35")
+theme_override_icons/tick = ExtResource("12_7fujv")
 theme_override_styles/grabber_area = SubResource("37")
 theme_override_styles/grabber_area_highlight = SubResource("36")
 min_value = -10.0
@@ -938,6 +938,8 @@ theme_override_constants/separation = 0
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "ATP_BALANCE_TOOLTIP"
+mouse_filter = 1
 text = "ATP_BALANCE"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
@@ -983,16 +985,27 @@ size_flags_horizontal = 3
 text = "00000"
 label_settings = ExtResource("28_qclxk")
 
-[node name="ATPBalanceMode" type="OptionButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-editor_description = "Not implemented yet PLACEHOLDER"
-visible = false
+[node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
-disabled = true
-selected = 1
-item_count = 2
-popup/item_0/text = "ATP_BALANCE_AT_EQUILIBRIUM"
-popup/item_1/text = "ATP_BALANCE_AT_MAX_SPEED"
+mouse_filter = 2
+
+[node name="ATPBalanceMode" type="OptionButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+layout_mode = 2
+text_overrun_behavior = 3
+clip_text = true
+selected = 0
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
 popup/item_1/id = 1
+popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
+popup/item_2/id = 2
+popup/item_3/text = "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+popup/item_3/id = 3
+popup/item_4/text = "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+popup/item_4/id = 4
 
 [node name="StorageNotEnough" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("11")]
 visible = false
@@ -1374,6 +1387,7 @@ text = "CLOSE"
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
+[connection signal="item_selected" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceMode" to="." method="SelectATPBalanceMode"]
 [connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
 [connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving" to="." method="OnBalanceShowOptionsChanged"]
 [connection signal="BalanceTypeChanged" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay" to="." method="OnCompoundBalanceTypeChanged"]

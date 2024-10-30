@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
 "Language: ko\n"
@@ -232,6 +232,10 @@ msgstr "종:"
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "버전:"
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
@@ -252,6 +256,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP 균형"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "황화수소"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "ATP 균형"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP 생산"
@@ -474,6 +499,10 @@ msgstr "생물발광 액포"
 msgid "BIOME_LABEL"
 msgstr "생태계: {0}"
 
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "외부 효과:"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -606,6 +635,10 @@ msgstr "설명:"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "연대 변경"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
+
 msgid "CHEATS"
 msgstr "치트"
 
@@ -721,6 +754,9 @@ msgstr "닫기"
 
 msgid "CLOSE_OPTIONS"
 msgstr "설정을 종료합니까?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1297,6 +1333,10 @@ msgstr "세포질 해당 작용"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "산소 합성"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1551,6 +1591,9 @@ msgstr ""
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "능력"
+
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
@@ -2367,6 +2410,18 @@ msgstr ""
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "황화수소"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "황화수소"
 
@@ -3120,6 +3175,10 @@ msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그�
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "점액 합성"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4280,12 +4339,9 @@ msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적�
 msgid "OXYGEN"
 msgstr "산소"
 
-msgid "OXYTOXISOME"
-msgstr "옥시톡시솜"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "산소 합성"
 
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -4817,6 +4873,7 @@ msgstr "새로운 키 배치 추가"
 msgid "RUSTICYANIN"
 msgstr "루스티시아닌"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "루스티시아닌은 가스 상태의 이산화탄소와 산소를 사용하여 산화철을 화학적 상태에서 다른 화학적 상태로 산화시킬 수 있는 단백질입니다. 철 호흡이라고하는 이 과정은 세포가 수확 할 수 있는 에너지를 방출합니다."
 
@@ -5652,9 +5709,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-msgid "THYLAKOID"
-msgstr "틸라코이드"
-
 msgid "THYLAKOIDS"
 msgstr "틸라코이드"
 
@@ -5786,6 +5840,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생산, 저장 및 분비를 위해 특별히 변형된 액포입니다. 독소 액포가 많으면 독소의 분비 속도가 빨라집니다."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "화합물"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "새로운 키 배치 추가"
 
@@ -5842,6 +5900,7 @@ msgstr "생명력:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "독소 \n"
@@ -5853,6 +5912,14 @@ msgstr "독소 액포는 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]를 [thrive:compound type=\"oxytoxy\"][/thrive:compound]로 변환합니다. 변환 속도는 [thrive:compound type=\"oxygen\"][/thrive:compound]의 농도에 비례합니다. [thrive:input]g_fire_toxin[/thrive:input]를 눌러 독소를 분비할 수 있습니다. [thrive:compound type=\"oxytoxy\"][/thrive:compound] 양이 적다면, 독소를 발사할 수는 있지만 피해량이 적어집니다."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "옥시톡시솜"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "대사체는 단백질 껍질에 싸인 단백질 집합입니다. 그들은 호기성 호흡이라는 과정을 통해 세포질에서 할 수있는 것보다 훨씬 더 빠른 속도로 포도당을 ATP로 전환 할 수 있습니다. 그러나 이를 위해 산소가 필요하며 산소가 적은 환경에선 ATP 생산 속도가 느려집니다. 대사체가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "실행됨."
@@ -7012,6 +7079,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있는 이중 막 구조입니다. 진핵 숙주가 사용하기 위해 동화 된 원핵 생물입니다. 열 세포의 안료는 열 합성 이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성하기 위해 주변의 열 차이 에너지를 사용할 수 있습니다. 포도당 생산 속도는 이산화탄소 농도와 온도에 따라 달라집니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
@@ -7447,6 +7546,10 @@ msgstr "미토콘드리아"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "편모"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "니트로게나아제"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -8052,8 +8155,11 @@ msgid "ZOOM_OUT"
 msgstr "축소"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "버전:"
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "틸라코이드"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

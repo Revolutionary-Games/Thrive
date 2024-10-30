@@ -7,11 +7,8 @@ using ThriveScriptsShared;
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
 /// </summary>
 [UseThriveSerializer]
-public class BiomeConditions : ICloneable
+public class BiomeConditions : IBiomeConditions, ICloneable
 {
-    // TODO: make this also a property / private
-    public Dictionary<string, ChunkConfiguration> Chunks = null!;
-
     [JsonProperty]
     private Dictionary<Compound, BiomeCompoundProperties> compounds;
 
@@ -65,6 +62,8 @@ public class BiomeConditions : ICloneable
         MinimumCompounds =
             new DictionaryWithFallback<Compound, BiomeCompoundProperties>(this.minimumCompoundAmounts, compounds);
     }
+
+    public Dictionary<string, ChunkConfiguration> Chunks { get; set; } = null!;
 
     /// <summary>
     ///   The compound amounts that change in realtime during gameplay
@@ -179,6 +178,19 @@ public class BiomeConditions : ICloneable
     /// <param name="newValue">New value to set</param>
     public void ModifyLongTermCondition(Compound compound, BiomeCompoundProperties newValue)
     {
+        // Ensure negative values can't be calculated and applied accidentally. This is here as conditions are modified
+        // from many places so the easiest and safes thing is to just clamp stuff to non-zero here
+        if (newValue.Ambient < 0)
+            newValue.Ambient = 0;
+
+        if (newValue.Density < 0)
+            newValue.Density = 0;
+
+        // As this is the cloud size, this is unlikely to be wrong, but probably better to check here than to cause
+        // weird issues in cloud spawning
+        if (newValue.Amount < 0)
+            newValue.Amount = 0;
+
         ChangeableCompounds[compound] = newValue;
 
         // Reset other related values
@@ -188,10 +200,6 @@ public class BiomeConditions : ICloneable
         CurrentCompoundAmounts[compound] = newValue;
     }
 
-    /// <summary>
-    ///   Get compounds that vary during the day
-    /// </summary>
-    /// <returns>The compounds that vary</returns>
     public IEnumerable<Compound> GetAmbientCompoundsThatVary()
     {
         const float epsilon = 0.000001f;
@@ -206,10 +214,6 @@ public class BiomeConditions : ICloneable
         }
     }
 
-    /// <summary>
-    ///   Checks if the method <see cref="GetAmbientCompoundsThatVary"/> would return true
-    /// </summary>
-    /// <returns>True if there are compounds that vary</returns>
     public bool HasCompoundsThatVary()
     {
         const float epsilon = 0.000001f;
@@ -226,11 +230,6 @@ public class BiomeConditions : ICloneable
         return false;
     }
 
-    /// <summary>
-    ///   Returns true if the specified compound varies during the day / night cycle
-    /// </summary>
-    /// <param name="compound">Compound type to check</param>
-    /// <returns>True if compound varies</returns>
     public bool IsVaryingCompound(Compound compound)
     {
         const float epsilon = 0.000001f;
@@ -309,7 +308,7 @@ public class BiomeConditions : ICloneable
     public object Clone()
     {
         // Shallow cloning is enough here thanks to us using value types (structs) as the dictionary values
-        var result = new BiomeConditions(compounds = compounds.CloneShallow(), currentCompoundAmounts.CloneShallow(),
+        var result = new BiomeConditions(compounds.CloneShallow(), currentCompoundAmounts.CloneShallow(),
             averageCompoundAmounts.CloneShallow(), maximumCompoundAmounts.CloneShallow(),
             minimumCompoundAmounts.CloneShallow())
         {

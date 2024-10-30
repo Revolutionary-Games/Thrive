@@ -57,9 +57,7 @@ public partial class CellTypeSelection : MicrobePartSelection
         }
 
         // We need to generate a cell image
-        imageTask = new ImageTask(CellType);
-
-        PhotoStudio.Instance.SubmitTask(imageTask);
+        imageTask = PhotoStudio.Instance.GenerateImage(CellType);
 
         // Show placeholder while generating
         // TODO: only show placeholder after 10-ish frames if we don't have the real image ready

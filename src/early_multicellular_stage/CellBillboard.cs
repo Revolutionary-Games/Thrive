@@ -18,7 +18,7 @@ public partial class CellBillboard : Node3D
     [Export]
     public int Priority = 1;
 
-    private int displayedHash;
+    private ulong displayedHash;
 
     private ICellDefinition? displayedCell;
 
@@ -156,10 +156,7 @@ public partial class CellBillboard : Node3D
 
         displayedHash = displayedCell.GetVisualHashCode();
 
-        // TODO: caching image tasks with the hash code
-        imageTask = new ImageTask(displayedCell, priority: Priority);
-
-        PhotoStudio.Instance.SubmitTask(imageTask);
+        imageTask = PhotoStudio.Instance.GenerateImage(displayedCell, Priority);
 
         // Show previous graphics while generating the new image (don't reset to null). As with quick generations this
         // would flicker some.

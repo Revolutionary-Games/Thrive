@@ -166,6 +166,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         get => dayLightFraction;
         set
         {
+            if (dayLightFraction == value)
+                return;
+
             dayLightFraction = value;
 
             ApplyComponentLightLevels();
@@ -574,7 +577,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         {
             SetupEditedSpecies();
 
-            // For now we only show a loading screen if auto-evo is not ready yet
+            // For now, we only show a loading screen if auto-evo is not ready yet
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 EditorReady = false;
@@ -722,6 +725,11 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
         ApplyAutoEvoResults();
 
         FadeIn();
+
+        foreach (var editorComponent in GetAllEditorComponents())
+        {
+            editorComponent.OnEditorReady();
+        }
     }
 
     protected void SetEditorTab(EditorTab tab)

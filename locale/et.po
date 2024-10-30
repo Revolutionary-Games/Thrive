@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
 "Language: et\n"
@@ -246,6 +246,10 @@ msgstr "Liikide populatsioon"
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Mod-monteerimisklass on nõutav, kui kokkupanek on täpsustatud"
 
@@ -269,6 +273,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP Tasakaal"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Näita/peida keskkonda ja ühendeid"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Vesiniksulfiid"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "ATP Tasakaal"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP tootmine"
@@ -492,6 +517,10 @@ msgstr "Bioluminestseeruv vakuool"
 msgid "BIOME_LABEL"
 msgstr "biome: {0}"
 
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Välised mõjud:"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -620,6 +649,10 @@ msgstr "Muuda märkmeid on liiga pikk"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Muutke sümmeetriat"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
+
 msgid "CHEATS"
 msgstr "Sohitegija"
 
@@ -727,6 +760,9 @@ msgstr "Sulge"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Kas sulgeda valikud?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1302,6 +1338,10 @@ msgstr "Tsütoplasma glükolüüs"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Oksütotsiin"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1568,6 +1608,9 @@ msgstr ""
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Kuvamisvõimaluste riba"
+
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
@@ -2431,6 +2474,18 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "Vesiniksulfiid"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vesiniksulfiid"
 
@@ -3187,6 +3242,10 @@ msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad o
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Kemosüntees"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4408,12 +4467,9 @@ msgstr "Selle salvestamise kustutamist ei saa tagasi võtta. Kas olete kindel, e
 msgid "OXYGEN"
 msgstr "Hapnik"
 
-msgid "OXYTOXISOME"
-msgstr "Oksütoksisoom"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Oksütotsiin"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
@@ -4935,9 +4991,11 @@ msgstr "Möödunud aeg: {0:#,#} aastat"
 msgid "RUSTICYANIN"
 msgstr "rustitsüaniin"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] ja [thrive:compound type=\"hapnik\"][/thrive:ühend]."
 
@@ -5771,9 +5829,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thrive litsentsid"
 
-msgid "THYLAKOID"
-msgstr "Tülakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Tülakoidid"
 
@@ -5908,6 +5963,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinide spetsiifiliseks tootmiseks, säilitamiseks ja sekreteerimiseks. Rohkem toksiinide vakuoole suurendab toksiinide vabanemise kiirust."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Ühendid"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "vabasurm"
 
@@ -5972,6 +6031,7 @@ msgstr ""
 "Rahumeelsed mikroobid ei haara teisi kaugemal\n"
 "ja kasutavad vähem tõenäoliselt toksiine röövloomade vastu."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toksiin\n"
@@ -5983,6 +6043,14 @@ msgstr "Toksiinivakuool on vakuool, mida on modifitseeritud oksütoksütoksiinid
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oksütoksisoom"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Pole veel mängus."
@@ -7152,6 +7220,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
@@ -7602,6 +7702,10 @@ msgstr "Mitokondrid"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vibur"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Lämmastik"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -8254,8 +8358,11 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Rustitsüaniin on valk, mis on võimeline kasutama gaasilist süsinikdioksiidi ja hapnikku, et oksüdeerida rauda ühest keemilisest olekust teise. See protsess, mida nimetatakse raudseks hingamiseks, vabastab energiat, mida rakk saab seejärel koguda."
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Modifitseeritud metabolosoom, mis vastutab toksilise aine OxyToxy NT primitiivse vormi tootmise eest."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tülakoid"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

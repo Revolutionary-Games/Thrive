@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-21 20:20+0000\n"
+"Last-Translator: syl <syl@gresille.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -97,14 +97,12 @@ msgstr "Avancée"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Ouvrir la vue de configuration avancée"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fixation anaérobique d'azote"
+msgstr "Fixation aérobique d'azote"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fixation aérobique d'azote"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiration aérobie"
 
@@ -233,6 +231,10 @@ msgstr ""
 "\n"
 "Nombre d'évolutions dans cette sauvegarde : {0}"
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Version :"
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "La classe de l'assemblage des Mods est requise lorsque l'assemblage est précisé"
 
@@ -255,6 +257,29 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Niveau d'ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Sulfure d'hydrogène"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Niveau d'ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Production d'ATP"
@@ -353,9 +378,8 @@ msgstr "Barre oblique inversée"
 msgid "BACKSPACE"
 msgstr "Retour arrière"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Thermosynthèse"
+msgstr "Thermosynthèse bactérienne"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Calculer comme si c'était le jour"
@@ -455,6 +479,10 @@ msgstr "Vacuole bioluminescente"
 
 msgid "BIOME_LABEL"
 msgstr "Terrain : {0}"
+
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Effets d'écran"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurone"
@@ -579,6 +607,10 @@ msgstr "Les notes de changement sont trop longues"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Modifier la symétrie"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
+
 msgid "CHEATS"
 msgstr "Triches"
 
@@ -681,6 +713,9 @@ msgstr "Fermer"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Fermer les paramètres ?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1255,6 +1290,10 @@ msgstr "Glycolyse cytoplasmique"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Synthèse des cytotoxines"
+
 msgid "DAY_LENGTH"
 msgstr "Durée de la journée"
 
@@ -1506,6 +1545,10 @@ msgstr "Afficher les arrières-plans 3D du menu"
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Afficher la barre des capacités"
 
+#, fuzzy
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "Afficher les particules en arrière-plan"
+
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Afficher les particules en arrière-plan"
 
@@ -1743,15 +1786,14 @@ msgstr "Démarrer l'endosymbiose avec cette espèce (disponible après avoir sé
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "Endosymbiose"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "{0} : -{1} ATP"
+msgstr "- {0} : {1} /seconde"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
-msgstr "{0} : -{1} ATP"
+msgstr "{0} : -{1} ATP"
 
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
-msgstr "{0} : +{1} ATP"
+msgstr "{0} : +{1} ATP"
 
 #, fuzzy
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
@@ -2273,6 +2315,17 @@ msgstr "TSV"
 #, fuzzy
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
+
+msgid "HYDROGENASE"
+msgstr "Hydrogénase"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammonia\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfure d'hydrogène"
@@ -2972,6 +3025,10 @@ msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contient des enzymes digestives. peut être modifié pour changer le type d'enzyme. Seul une enzyme peut être utilisé par lysosome. Les enzymes augmentent la vitesse et l'efficacité de la digestion."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Synthèse de mucilage"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4142,11 +4199,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Oxygène"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxisome"
-
-msgid "OXYTOXISOME_DESC"
-msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
+#, fuzzy
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Synthèse d'OxyToxy"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]."
@@ -4637,10 +4692,10 @@ msgid "RUSTICYANIN"
 msgstr "Rusticyanine"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux et l'[thrive:compound type=\"oxygen\"][/thrive:compound] pour oxyder le fer d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
+msgstr "La rusticyanine est une protéine capable d'utiliser le [thrive:compound type=\"carbondioxide\"][/thrive:compound] pour oxyder le [thrive:compound type=\"iron\"][/thrive:compound] d'un état chimique à un autre. Ce processus, appelé [b]respiration ferrique[/b], libère de l'énergie que la cellule peut ensuite récolter."
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
+msgstr "Transforme le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -5436,9 +5491,6 @@ msgstr "Carte des secteurs"
 msgid "THRIVE_LICENSES"
 msgstr "Licences de Thrive"
 
-msgid "THYLAKOID"
-msgstr "Thylakoïde"
-
 msgid "THYLAKOIDS"
 msgstr "Thylakoïdes"
 
@@ -5565,6 +5617,10 @@ msgstr "Inhibiteur de canal"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Inhibe la production d'ATP des cellules affectées, ce qui les empêche de se déplacer rapidement et peut entraîner la mort des cellules dont la production d'ATP n'a pas beaucoup d'excédent."
 
+#, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Composés"
+
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Cytotoxine"
 
@@ -5612,6 +5668,7 @@ msgstr "Type de toxine :"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Les différents types de toxines ont des effets variés qui sont plus efficaces contre certains types de cellules. Si une cellule possède plusieurs types de toxines, celles-ci sont utilisées successivement plutôt que toutes à la fois."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacuole\n"
@@ -5622,6 +5679,14 @@ msgstr "La vacuole à toxines est une vacuole ayant évolué de manière à spé
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Taux proportionnel à la concentration d'[thrive:compound type=\"oxygen\"][/thrive:compound]. Peut libérer des toxines en appuyant sur [thrive:input]g_fire_toxin[/thrive:input]. Lorsque la quantité d'[thrive:compound type=\"oxytoxy\"][/thrive:compound] est faible, il est toujours possible de tirer mais les dégâts sont réduits."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxisome"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Doit être implémenté."
@@ -6824,6 +6889,35 @@ msgstr "Améliorations"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Améliorations"
 
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Pas d'effets."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Pas de modifications."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "À venir"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
+
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Pas d'améliorations."
+
 #, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
@@ -7213,6 +7307,7 @@ msgstr "Un métabolosome responsable de la production d'une forme primitive de l
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 
+#, fuzzy
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr ""
 "Les toxines sont une arme précieuse dans le combat cellulaire. Elles sont actuellement la seule méthode d'attaque à distance dans le jeu, l'engloutissement et les [b][color=#3796e1][url=thriveopedia:pilus]pili perforants[/url][/color][/b] s'apparentant davantage à des armes de mêlée.\n"
@@ -7285,6 +7380,9 @@ msgstr "Mitochondrie"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
+
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Hydrogénase"
 
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr "Phase industrielle"
@@ -7876,9 +7974,11 @@ msgstr "Zoomer"
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
-#, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Version :"
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thylakoïde"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

@@ -144,10 +144,11 @@ public partial class OrganelleInfoBox : PanelContainer
             return;
         }
 
-        modelImageTask = new ImageTask(new GalleryCardModel.ModelPreview(sceneWithModelInfo.LoadedScene.ResourcePath,
-            sceneWithModelInfo.ModelPath));
+        var hash = GalleryCardModel.ModelPreview.HashForPath(sceneWithModelInfo.LoadedScene.ResourcePath);
 
-        PhotoStudio.Instance.SubmitTask(modelImageTask);
+        modelImageTask = PhotoStudio.Instance.TryGetFromCache(hash) ?? PhotoStudio.Instance.GenerateImage(
+            new GalleryCardModel.ModelPreview(sceneWithModelInfo.LoadedScene.ResourcePath,
+                sceneWithModelInfo.ModelPath));
 
         ModelTexture = modelLoadingTexture;
     }

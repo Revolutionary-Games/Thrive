@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Godot;
 
@@ -99,6 +100,8 @@ public partial class ToolTipManager : CanvasLayer
 
         ResolveNodeReferences();
 
+        CreateOrganelleTooltips();
+
         // Make sure the tooltip parent control is visible
         groupHolder.Show();
     }
@@ -122,9 +125,18 @@ public partial class ToolTipManager : CanvasLayer
 
         ResolveNodeReferences();
 
+        Localization.Instance.OnTranslationsChanged += OnLanguageChanged;
+
         // The tooltip initialization logic needs to run in _EnterTree as the initial scene may want to already
         // register tooltips before _Ready methods are called
         FetchToolTips();
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Localization.Instance.OnTranslationsChanged -= OnLanguageChanged;
     }
 
     public override void _Process(double delta)
@@ -361,6 +373,20 @@ public partial class ToolTipManager : CanvasLayer
         return groupNode;
     }
 
+    public void OnLanguageChanged()
+    {
+        // Organelle tooltips
+        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        {
+            var tooltip = GetToolTip(organelle.InternalName, "organelleSelection");
+
+            if (tooltip == null)
+                continue;
+
+            UpdateModifierInfoWithTranslations(organelle, tooltip);
+        }
+    }
+
     /// <summary>
     ///   Adjusts <see cref="MainToolTip"/>'s position and size.
     /// </summary>
@@ -515,5 +541,108 @@ public partial class ToolTipManager : CanvasLayer
                 UpdateToolTipVisibility(tooltip, false);
             }
         }
+    }
+
+    private void CreateOrganelleTooltips()
+    {
+        var packedTooltip = GD.Load<PackedScene>("res://src/microbe_stage/editor/tooltips/SelectionMenuToolTip.tscn");
+
+        foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+        {
+            var tooltip = packedTooltip.Instantiate<SelectionMenuToolTip>();
+
+            tooltip.Name = organelle.InternalName;
+            Instance.AddToolTip(tooltip, "organelleSelection");
+
+            tooltip.Description = organelle.Description;
+            tooltip.MutationPointCost = organelle.MPCost;
+            tooltip.DisplayName = organelle.Name;
+            tooltip.RequiresNucleus = organelle.RequiresNucleus;
+            tooltip.ThriveopediaPageName = organelle.InternalName;
+            tooltip.ProcessesDescription = organelle.ProcessesDescription ?? string.Empty;
+
+            FillOrganelleToolTipModifierInfo(organelle, tooltip);
+        }
+    }
+
+    private void FillOrganelleToolTipModifierInfo(OrganelleDefinition organelle, SelectionMenuToolTip tooltip)
+    {
+        // The order of these is important to have the most important info towards the top of the tooltip
+        if (organelle.Components.Movement != null)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/SpeedIcon.png", "speed");
+        }
+
+        if (organelle.Components.Lysosome != null)
+        {
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/DigestionSpeedIcon.png", "digestionSpeed");
+
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/DigestionIcon.png", "digestionEfficiency");
+        }
+
+        if (organelle.Components.Storage != null)
+        {
+            // Modifier info is filled into later (so this uses blank values)
+            // This is done just on startup so it isn't super important but this allocates a bunch of StringNames
+            // for the modifier info sections for each organelle unnecessarily (when the StringNames could be reused)
+            tooltip.AddModifierInfo(string.Empty, string.Empty, 0,
+                "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
+        }
+
+        UpdateModifierInfoWithTranslations(organelle, tooltip);
+    }
+
+    private void UpdateModifierInfoWithTranslations(OrganelleDefinition organelle, ICustomToolTip tooltip)
+    {
+        if (tooltip is not SelectionMenuToolTip selectionMenuTooltip)
+            return;
+
+        var modifierInfo = selectionMenuTooltip.GetModifierInfo("storage");
+
+        if (modifierInfo != null)
+        {
+            // The translations here are kept by KeepModifierInfoTranslations
+            modifierInfo.DisplayName = "STORAGE";
+            modifierInfo.ModifierValue =
+                "+" + organelle.Components.Storage!.Capacity.ToString(CultureInfo.CurrentCulture);
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("digestionSpeed");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_SPEED";
+            modifierInfo.ModifierValue = "+" + (Constants.ENGULF_COMPOUND_ABSORBING_PER_SECOND *
+                Constants.ENZYME_DIGESTION_SPEED_UP_FRACTION).ToString("F2", CultureInfo.CurrentCulture);
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("digestionEfficiency");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "DIGESTION_EFFICIENCY";
+            modifierInfo.ModifierValue = "+" + Localization
+                .Translate("PERCENTAGE_VALUE").FormatSafe((Constants.ENGULF_BASE_COMPOUND_ABSORPTION_YIELD * 100 *
+                    Constants.ENZYME_DIGESTION_EFFICIENCY_BUFF_FRACTION).ToString("F1", CultureInfo.CurrentCulture));
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("speed");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "SPEED";
+            modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+        }
+    }
+
+    private void KeepModifierInfoTranslations()
+    {
+        Localization.Translate("STORAGE");
+        Localization.Translate("DIGESTION_SPEED");
+        Localization.Translate("DIGESTION_EFFICIENCY");
+        Localization.Translate("SPEED");
     }
 }

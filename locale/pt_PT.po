@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -232,6 +232,10 @@ msgstr "Parabéns!"
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Versão:"
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "A classe de assembly do mod é necessária quando o assembly é especificado"
 
@@ -255,6 +259,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Saldo ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Mostrar / ocultar compostos"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Sulfureto de Hidrogénio"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Saldo ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Produção de ATP"
@@ -460,6 +485,10 @@ msgstr "Vacúolo Bioluminescente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Efeito de ecrã"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurónio"
 
@@ -583,6 +612,10 @@ msgstr "Notas de alteração são demasiado longas"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Mudar simetria"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "O vacúolo de toxinas é um vacúolo especialmente modificado para a produção, armazenamento e secreção de oxitoxinas. Um maior número de vacúolos de toxinas aumentará a taxa a que toxinas podem ser libertadas."
+
 msgid "CHEATS"
 msgstr "Cheats"
 
@@ -685,6 +718,9 @@ msgstr "Fechar"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Fechar as opções?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1262,6 +1298,10 @@ msgstr "Glicólise Citoplasmática"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Síntese de OxiToxi"
+
 msgid "DAY_LENGTH"
 msgstr "Duração do dia"
 
@@ -1506,6 +1546,10 @@ msgstr "Mostrar fundos de menu 3D"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Mostrar barra de habilidades"
+
+#, fuzzy
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "Mostrar partículas de fundo"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Mostrar partículas de fundo"
@@ -2274,6 +2318,18 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "Sulfureto de Hidrogénio"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso e a energia celular na forma de [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente chave para o crescimento das células. Isto é um processo referido como [b]Fixação Anaeróbica de Nitrogénio[/b]. Uma vez que a Nitrogenase está suspensa diretamente no citoplasma, o fluído envolvente efetua alguma [b]glicólise[/b]."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sulfureto de Hidrogénio"
 
@@ -2986,6 +3042,10 @@ msgstr "O lisossoma é um organelo ligado à membrana que contém enzimas hidrol
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Contém enzimas digestivas. Pode ser modificado para alterar o tipo de enzima que contém. Apenas uma enzima por lisossoma pode ser utilizada de cada vez. As enzimas aceleram e melhoram a eficiência da digestão."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Quimiossíntese"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir manualmente a hora do dia"
@@ -4112,12 +4172,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Oxigénio"
 
-msgid "OXYTOXISOME"
-msgstr "Oxitoxissoma"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Um metabolossoma modificado responsável pela produção da forma primitiva do agente tóxico OxiToxi NT."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Síntese de OxiToxi"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionado [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, será possível disparar, mas o dano irá ser reduzido."
@@ -4614,9 +4671,11 @@ msgstr "Tempo Passado: {0:#,#} anos"
 msgid "RUSTICYANIN"
 msgstr "Rusticianina"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticianina é uma proteína capaz de utilizar [thrive:compound type=\"carbondioxide\"][/thrive:compound] gasoso e [thrive:compound type=\"oxygen\"][/thrive:compound] para oxidar [thrive:compound type=\"iron\"][/thrive:compound] de um estado químico para outro. Este processo, chamado [b]Quimiossíntese litoautotrófica[/b], liberta energia que a célula pode posteriormente recolher."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -5417,9 +5476,6 @@ msgstr "Mapa de regiões"
 msgid "THRIVE_LICENSES"
 msgstr "Licenças Thrive"
 
-msgid "THYLAKOID"
-msgstr "Tilacoide"
-
 msgid "THYLAKOIDS"
 msgstr "Tilacoides"
 
@@ -5542,6 +5598,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "O vacúolo de toxinas é um vacúolo especialmente modificado para a produção, armazenamento e secreção de oxitoxinas. Um maior número de vacúolos de toxinas aumentará a taxa a que toxinas podem ser libertadas."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Compostos"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Dispara projeteis tóxicos causando danos a células"
 
@@ -5606,6 +5666,7 @@ msgstr ""
 "Micróbios pacíficos não se envolvem com os outros em distâncias maiores\n"
 "e são menos propensos a usar toxinas contra predadores."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Vacúolo de\n"
@@ -5618,6 +5679,14 @@ msgstr "O vacúolo de toxinas é um vacúolo especialmente modificado para a pro
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"oxytoxy\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"oxygen\"][/thrive:compound]. Pode libertar toxinas pressionando [thrive:input]g_fire_toxin[/thrive:input]. Quando a quantidade de [thrive:compound type=\"oxytoxy\"][/thrive:compound] é baixa, pode libertar toxinas, mas terá um dano reduzido."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxitoxissoma"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "O lisossoma é um organelo ligado à membrana que contém enzimas hidrolíticas capazes de decompor várias biomoléculas. Os lisossomas permitem à célula digerir materiais ingeridos por endocitose e limpar os resíduos da célula num processo chamado [b]autofagia[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "A ser implementado."
@@ -6728,6 +6797,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Permite conectar com outras células. Este é o primeiro passo para a multicelularidade. Quando a tua célula pertence a uma colónia, os compostos são partilhados entre células. Não é possível entrar no editor enquanto pertenceres a uma colónia, sendo necessário desconectar-te da mesma assim que tenhas coletado compostos suficientes para dividires a tua célula."
 
@@ -7154,6 +7255,10 @@ msgstr "Mitocôndria"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenase"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7752,8 +7857,11 @@ msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Versão:"
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Um metabolossoma modificado responsável pela produção da forma primitiva do agente tóxico OxiToxi NT."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Tilacoide"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

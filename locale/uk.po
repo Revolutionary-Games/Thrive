@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -231,6 +231,10 @@ msgstr ""
 "\n"
 "Усього піднесень у цьому збереженні: {0}"
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Версія:"
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Потрібен клас збірки моду, коли її вказано"
 
@@ -253,6 +257,27 @@ msgstr "АТФ"
 
 msgid "ATP_BALANCE"
 msgstr "АТФ баланс"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Показати/ приховати сполуки"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Сірководень"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "АТФ баланс"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТФ"
@@ -454,6 +479,10 @@ msgstr "Біолюмінесцентна вакуоля"
 msgid "BIOME_LABEL"
 msgstr "Біом: {0}"
 
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Екранні ефекти"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
 
@@ -577,6 +606,10 @@ msgstr "Нотатки змін надто довгі"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Змінити симетрію"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Сповільнює продукування АТФ враженої клітини, внаслідок заважаючи їй рухатися швидко, а також може змусити клітину без залишків продукованого АТФ померти."
+
 msgid "CHEATS"
 msgstr "Чити"
 
@@ -679,6 +712,9 @@ msgstr "Закрити"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Закрити налаштування?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1246,6 +1282,10 @@ msgstr "Цитоплазматичний Гліколіз"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Синтез окситоксину"
+
 msgid "DAY_LENGTH"
 msgstr "Тривалість дня"
 
@@ -1496,6 +1536,10 @@ msgstr "Показувати трьохвимірні задні фони"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Панель здібностей дисплею"
+
+#, fuzzy
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "Показ частинок заднього плану"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Показ частинок заднього плану"
@@ -1945,9 +1989,11 @@ msgstr "Цю новину було обрізано через її довжин
 msgid "FERROPLAST"
 msgstr "Ферропласт"
 
+#, fuzzy
 msgid "FERROPLAST_DESCRIPTION"
 msgstr "Металева енергостанція. Ферропласт — це подвійна мембранна структура, заповнена протеїнами та ензимами. Це прокаріот, що був асимільований для використання його еукаріотичним хостом. Ферропласт здатен окислювати [thrive:compound type=\"iron\"][/thrive:compound] з одного хімічного стану в інший набагато ефективніше за рустіціанін. Цей процес, що зветься [b]Залізним Диханням[/b], вивільняє енергію, якою клітина потім живиться. Однак, йому потрібні [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound] задля функціонування, і нестача будь-якого з цих компонентів сповільнить її продукування [thrive:compound type=\"atp\"][/thrive:compound]."
 
+#, fuzzy
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Швидкість залежить від концентрації [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound] в оточенні."
 
@@ -2244,6 +2290,18 @@ msgstr "HSV"
 
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
+
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "Сірководень"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
@@ -2946,6 +3004,10 @@ msgstr "Лізосома– це мембранна органела, що мі�
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Містить травні ферменти. Можна модифікувати тип вмістимого ферменту. Можна використовувати тільки один фермент за раз."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Синтез слизу"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Установити час доби вручну"
@@ -4080,12 +4142,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Кисень"
 
-msgid "OXYTOXISOME"
-msgstr "Окситоксисома"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Синтез окситоксину"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирскнути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли кількість [thrive:compound type=\"oxytoxy\"][/thrive:compound] невелика, то постріл можливий, але шкода буде незначною."
@@ -4575,9 +4634,11 @@ msgstr "Запустити декілька світів, кількість г�
 msgid "RUSTICYANIN"
 msgstr "Рустіціанін"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Рустіціанін — це білок, що використовує [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound] для окиснення [thrive:compound type=\"iron\"][/thrive:compound] з одного хімічного стану в інший. Цей процес, що зветься [b]залізним диханням[/b], вивільняє енергію, яку клітина потім забирає."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"iron\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -5361,9 +5422,6 @@ msgstr "Мапа ділянок"
 msgid "THRIVE_LICENSES"
 msgstr "Ліцензії Thrive"
 
-msgid "THYLAKOID"
-msgstr "Тилакоїд"
-
 msgid "THYLAKOIDS"
 msgstr "Тилакоїди"
 
@@ -5484,6 +5542,10 @@ msgstr "Канальний інгібітор"
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Сповільнює продукування АТФ враженої клітини, внаслідок заважаючи їй рухатися швидко, а також може змусити клітину без залишків продукованого АТФ померти."
 
+#, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Сполуки"
+
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Цитотоксин"
 
@@ -5531,6 +5593,7 @@ msgstr "Тип токсину:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Різні типи токсинів мають різноманітні ефекти, кожен з яких є ефективним проти тих чи інших типів клітин. Якщо клітина має декілька типів токсинів, вони випорскуватимуться послідовно, а не водночас."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Токсинова\n"
@@ -5542,6 +5605,14 @@ msgstr "Токсинова вакуоля– це вакуоля модифік�
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирснути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound type=\"oxytoxy\"][/thrive:compound] недостатньо, то постріл можливий, але шкода буде незначною."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Окситоксисома"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Лізосома– це мембранна органела, що містить гідролітичні ферменти, що розчеплюють різноманітні біомолекули. Лізосоми дозволяють клітинам перетравлювати матеріали, поглинуті ендоцитозом та очищати відходи клітини в процесі, що називається [b]автофагією[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Буде реалізовано."
@@ -6675,6 +6746,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "Термосинтаза– білок, що використовував теплову конвекцію для зміни своєї форми, даючи змогу згортатися та зв'язуватися з АДФ під дією тепла, а потім розгортатися перероблюючи [thrive:compound type=\"atp\"][/thrive:compound], під дією нижчих температур у процесі, що зветься [b]термосинтезом [/b]. Швидкість виробництва [thrive:compound type=\"atp\"][/thrive:compound] змінюється залежно від [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 "Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b], щоб розвинути собі [b]Зв'язувальні агенти[/b].\n"
@@ -7129,6 +7232,10 @@ msgstr "Мітохондрія"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Джгутик"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Нітрогеназа"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7731,8 +7838,11 @@ msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Версія:"
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Модифікована метаболосома відповідає за продукування примітивної форми токсичного агента [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Тилакоїд"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

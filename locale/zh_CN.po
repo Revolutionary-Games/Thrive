@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-21 02:55+0000\n"
+"Last-Translator: Guno haozheum <guhaozhe@hsefz.cn>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -97,14 +97,12 @@ msgstr "高级"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "打开高级菜单"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "无氧固氨"
+msgstr "好氧固氨"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "有氧固氮"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "有氧呼吸作用"
 
@@ -231,6 +229,10 @@ msgstr ""
 "\n"
 "您一共在本存档中飞升了{0}次"
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "版本："
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "当指定了Mod的assembly后你还需要Mod assembly class"
 
@@ -253,6 +255,29 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP开支"
+
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr ""
+"这个区域显示了目前细胞ATP（能量）的总平衡情况\n"
+"如果想要生存，这个数值应该是正的。对于没有运动需求的细胞，可以不考虑移动所消耗的ATP。\n"
+"下面的下拉菜单可以用来检查各种资源短缺时会发生的情况。\n"
+"比如，有些细胞只有在同时拥有好几种类型的化合物时才可以使ATP收支平衡。\n"
+"这些细胞将更难存活，因为它们需要收集更多的化合物。"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr "缺少外界资源"
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr "缺少葡萄糖"
+
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "缺少硫化氢"
+
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "缺少铁"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr "所有需要的化合物充足时"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP产出"
@@ -305,18 +330,16 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo未能正常运行"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "自动进化结果缺失。当您载入了较旧的存档时，该情况可能发生。如果您并未载入一个较久的存档，请将其作为错误报告给我们，并附上游戏日志。"
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo结果："
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Auto-evo结果："
+msgstr "全局结果"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Auto-evo结果："
+msgstr "选择区域结果"
 
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr "运行状态："
@@ -351,9 +374,8 @@ msgstr "反斜杠"
 msgid "BACKSPACE"
 msgstr "退格键"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "热合成"
+msgstr "细菌热合成"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "以白天计算"
@@ -425,7 +447,7 @@ msgid "BENCHMARK_RESULTS_COLON"
 msgstr "结果："
 
 msgid "BEST_PATCH_COLON"
-msgstr "最繁荣的地区："
+msgstr "最繁荣的区域："
 
 msgid "BIG_IRON_CHUNK"
 msgstr "大铁块"
@@ -453,6 +475,10 @@ msgstr "生物发光液泡"
 
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
+
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "画面效果"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神经元"
@@ -577,6 +603,9 @@ msgstr "更改说明太长了"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "改变对称"
 
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "通道抑制剂合成"
+
 msgid "CHEATS"
 msgstr "作弊"
 
@@ -607,9 +636,8 @@ msgstr "化学感知是细胞的视觉。是细胞获得有关其周围环境信
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化学感受器可以从更远的地方探测到化合物。放置后可以修改，以选择化合物类型和引导线颜色。"
 
-#, fuzzy
 msgid "CHEMOSYNTHESIS"
-msgstr "化学合成"
+msgstr "化能合成"
 
 msgid "CHEMOSYNTHESIZING_PROTEINS"
 msgstr "化学合成蛋白"
@@ -680,6 +708,9 @@ msgstr "关闭"
 msgid "CLOSE_OPTIONS"
 msgstr "关闭选项菜单？"
 
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr "梭菌发酵"
+
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
 msgstr "微生物编辑器"
@@ -690,9 +721,8 @@ msgstr "云分辨率除数："
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "云仿真最小间隔时间："
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "渗透调节消耗系数"
+msgstr "模拟倍率："
 
 msgid "COASTAL"
 msgstr "海岸"
@@ -1244,6 +1274,9 @@ msgstr "细胞质糖酵解"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。"
 
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "细胞毒素合成"
+
 msgid "DAY_LENGTH"
 msgstr "日长"
 
@@ -1442,9 +1475,8 @@ msgstr "放弃更改并继续"
 msgid "DISCARD_CHANGES"
 msgstr "放弃更变"
 
-#, fuzzy
 msgid "DISCARD_MIGRATION"
-msgstr "放弃更改并继续"
+msgstr "放弃迁徙"
 
 msgid "DISCONNECTED_CELLS"
 msgstr "未连接的细胞"
@@ -1492,6 +1524,10 @@ msgstr "显示3D菜单背景"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "显示能力栏"
+
+#, fuzzy
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "显示背景粒子"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "显示背景粒子"
@@ -1560,19 +1596,19 @@ msgid "EASTEREGG_MESSAGE_16"
 msgstr "小提示：进化细胞核前请做好准备，这玩意可贵啦！无论是突变点还是ATP都是如此。"
 
 msgid "EASTEREGG_MESSAGE_17"
-msgstr "逗知识：你知道地球上有超过8000种纤毛虫吗？"
+msgstr "趣闻：你知道地球上有超过8000种纤毛虫吗？"
 
 msgid "EASTEREGG_MESSAGE_18"
-msgstr "逗知识：喇叭虫属是一类纤毛虫，它们可以把自己拉开，用纤毛产生水流把猎物吸入自己喇叭形的嘴。"
+msgstr "趣闻：喇叭虫属是一类纤毛虫，它们可以把自己拉开，用纤毛产生水流把猎物吸入自己喇叭形的嘴。"
 
 msgid "EASTEREGG_MESSAGE_19"
-msgstr "逗知识：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
+msgstr "趣闻：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
 
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "小提示：如果你手速够快，你可以用自己的毒素把其它毒素推开。"
 
 msgid "EASTEREGG_MESSAGE_20"
-msgstr "逗知识：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
+msgstr "趣闻：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
 
 msgid "EASTEREGG_MESSAGE_21"
 msgstr "小提示：小心比你更大的细胞，它们会吃你哟，被吃可不有趣。"
@@ -1587,13 +1623,13 @@ msgid "EASTEREGG_MESSAGE_24"
 msgstr "Thrive是对外星球生物进化的模拟，所以你遇上的大多数生物其实都是之前遇到的生物的进化型，看看你是否能辨别出来！"
 
 msgid "EASTEREGG_MESSAGE_25"
-msgstr "逗知识：Thrive的开发团队经常做播客，你应该去听听看！"
+msgstr "趣闻：Thrive的开发团队经常做播客，你应该去听听看！"
 
 msgid "EASTEREGG_MESSAGE_26"
-msgstr "逗知识：Thrive是用开源的Godot引擎做的！"
+msgstr "趣闻：Thrive是用开源的Godot引擎做的！"
 
 msgid "EASTEREGG_MESSAGE_27"
-msgstr "逗知识：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
+msgstr "趣闻：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5个ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或移除一些细胞器就行了。"
@@ -1602,7 +1638,7 @@ msgid "EASTEREGG_MESSAGE_4"
 msgstr "小知识：现实中原核生物有一种叫生物区隔（Biocompartments）的结构，作用跟细胞器很相似，而且实际上也被叫做多角体细胞器（Polyhedral organelles）。"
 
 msgid "EASTEREGG_MESSAGE_5"
-msgstr "逗知识：所谓多角体细胞器（Polyhedral organelle）就是代谢体。"
+msgstr "趣闻：所谓多角体细胞器（Polyhedral organelle，又称细菌微室）就是代谢体。"
 
 msgid "EASTEREGG_MESSAGE_6"
 msgstr "小提示：有些时候逃跑就是最佳选择。"
@@ -1631,9 +1667,8 @@ msgstr "编辑"
 msgid "EDITOR"
 msgstr "编辑器"
 
-#, fuzzy
 msgid "EDITORS_AND_MUTATIONS_BUTTON"
-msgstr "发生变异"
+msgstr "编辑与突变"
 
 msgid "EDITOR_BUTTON_TOOLTIP"
 msgstr "进入编辑器并修改你的物种"
@@ -1644,7 +1679,7 @@ msgstr ""
 "\n"
 "在这里，你可以回顾自游戏开始或上一次进入编辑器以来发生的状况。 并对你的物种进行更改。\n"
 "\n"
-"这个选项卡为你提供了你目前所处的地区中的变化列表。试着探索你拥有的各种工具，以了解更多发生在你的世界中的事！\n"
+"这个选项卡为你提供了你目前所处的区域中的变化列表。试着探索你拥有的各种工具，以了解更多发生在你的世界中的事！\n"
 "\n"
 "当你准备好了，按右下角的 \"下一步 \"按钮以继续。"
 
@@ -1718,9 +1753,8 @@ msgstr "开启与该物种的内共生进程（在选定目标细胞器类型后
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr "内共生"
 
-#, fuzzy
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
-msgstr "{0}：-{1} ATP"
+msgstr "- {0}: {1} /秒"
 
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr "{0}：-{1} ATP"
@@ -1938,10 +1972,10 @@ msgid "FERROPLAST"
 msgstr "铁化能质体"
 
 msgid "FERROPLAST_DESCRIPTION"
-msgstr "一个以金属为原料的“动力工厂”。铁化能质体是一种充满了蛋白质与酶的双层膜结构，起源于一种被其真核宿主吸收利用了原核生物。它能够将[thrive:compound type=\"iron\"][/thrive:compound] 从一种化学状态氧化到另一种，且效率远高于铁硫菌蓝蛋白。此過程这一过程称为[b]铁呼吸[/b]，释放并供给细胞能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 才能发挥作用，并且其中任何一样环境的浓度较低都会降低其[thrive:compound type=\"atp\"][/thrive:compound] 的生产速率。"
+msgstr "一个以金属为原料的“动力工厂”。铁化能质体是一种充满了蛋白质与酶的双层膜结构，起源于一种被其真核宿主吸收利用了原核生物。它能够将[thrive:compound type=\"iron\"][/thrive:compound] 从一种化学状态氧化到另一种，且效率远高于铁硫菌蓝蛋白。此過程这一过程称为[b]铁呼吸[/b]，释放并供给细胞能量。然而，它需要[thrive:compound type=\"carbondioxide\"][/thrive:compound] 才能发挥作用，若其环境浓度较低则会降低其[thrive:compound type=\"atp\"][/thrive:compound] 的生产速率。"
 
 msgid "FERROPLAST_PROCESSES_DESCRIPTION"
-msgstr "利用[thrive:compound type=\"iron\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]。合成速率与环境[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
+msgstr "利用[thrive:compound type=\"iron\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]。合成速率与环境[thrive:compound type=\"carbondioxide\"][/thrive:compound]浓度成正比。"
 
 msgid "FILTER_ITEMS_BY_CATEGORY_COLON"
 msgstr "按类别过滤项目："
@@ -1973,9 +2007,8 @@ msgstr "鞭毛"
 msgid "FLAGELLUM_DESCRIPTION"
 msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
 
-#, fuzzy
 msgid "FLAGELLUM_LENGTH_DESCRIPTION"
-msgstr "鞭毛是一种从细胞膜伸出的鞭状蛋白纤维束，使用ATP沿一个方向起伏并推动细胞。鞭毛的位置决定其推力的方向，推力方向跟鞭毛的朝向是相反的。举例说，如果将鞭毛放在细胞的左侧，那么它就会在细胞往右侧移动时提供推力。"
+msgstr "鞭毛长度。更长的鞭毛可以产生更强的推力，但ATP消耗量会更大。"
 
 msgid "FLAGELLUM_PROCESSES_DESCRIPTION"
 msgstr "使用[thrive:compound type=\"atp\"][/thrive:compound]来增加细胞的移动速度。"
@@ -2236,23 +2269,29 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
+msgid "HYDROGENASE"
+msgstr "氢化酶"
+
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "氢化酶使用氢气来分解[thrive:compound type=\\\"glucose\\\"][/thrive:compound]获取能量。相比代谢体，它们在[thrive:compound type=\\\"oxygen\\\"][/thrive:compound]浓度较低时更加高效。许多生活在缺少氧气的环境中的生物都以此为主要的能量来源。"
+
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "将[thrive:compound type=\\\"glucose\\\"][/thrive:compound]转换成[thrive:compound type=\\\"atp\\\"][/thrive:compound]。"
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "硫化氢"
 
-#, fuzzy
 msgid "ICESHARD"
 msgstr "冰砾"
 
 msgid "ICESHELF"
 msgstr "冰架"
 
-#, fuzzy
 msgid "ICE_CHUNK_BIG"
-msgstr "营养物碎块压力"
+msgstr "大碎冰砾"
 
-#, fuzzy
 msgid "ICE_CHUNK_SMALL"
-msgstr "营养物碎块压力"
+msgstr "小碎冰砾"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID无效"
@@ -2272,25 +2311,11 @@ msgstr "（当你进入测试阶段，一些功能可能无法使用）"
 msgid "INCREASE_ITEM_SIZE"
 msgstr "放大物体"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_IS_NEW"
-msgstr "灭绝物种"
+msgstr "该物种是新出现在该地区或世界的"
 
-#, fuzzy
 msgid "INDICATOR_SPECIES_MUTATED"
-msgstr ""
-"[b]阶段[/b]\n"
-"  微生物\n"
-"[b]膜类型[/b]\n"
-"  {0}\n"
-"[b]膜刚度[/b]\n"
-"  {1}\n"
-"[b]基础速度[/b]\n"
-"  {2}\n"
-"[b]基础转动速度[/b]\n"
-"  {3}\n"
-"[b]基础六角格大小[/b]\n"
-"  {4}"
+msgstr "该物种在这一轮auto-evo中发生了变异"
 
 msgid "INDUSTRIAL_STAGE"
 msgstr "工业阶段"
@@ -2642,7 +2667,7 @@ msgid "KPMULTIPLY"
 msgstr "小键盘*键"
 
 msgid "KPPERIOD"
-msgstr "小键盘.键"
+msgstr "小键盘."
 
 msgid "KPSUBTRACT"
 msgstr "小键盘-键"
@@ -2943,6 +2968,9 @@ msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
+
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "大环内酯物合成"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "手动设置时间"
@@ -3627,7 +3655,6 @@ msgstr "{0} 变异点"
 msgid "MUCILAGE"
 msgstr "黏液"
 
-#, fuzzy
 msgid "MUCILAGE_SYNTHESIS"
 msgstr "黏液合成"
 
@@ -3970,9 +3997,8 @@ msgstr "改变你的设置"
 msgid "ORGANELLES"
 msgstr "细胞器"
 
-#, fuzzy
 msgid "ORGANELLES_BUTTON"
-msgstr "轴突"
+msgstr "细胞器"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "在进入编辑器时，解锁条件每世代只会被检查一次"
@@ -4031,9 +4057,8 @@ msgstr "渗透调节消耗系数"
 msgid "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 msgstr "（调节玩家物种渗透调节的消耗）"
 
-#, fuzzy
 msgid "OTHER_COMPOUNDS"
-msgstr "化合物"
+msgstr "其他"
 
 msgid "OUR_WIKI"
 msgstr "我们的Wiki"
@@ -4062,11 +4087,8 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "氧"
 
-msgid "OXYTOXISOME"
-msgstr "毒素体"
-
-msgid "OXYTOXISOME_DESC"
-msgstr "修改版的代谢体，用来产出一种原始的有毒物质：[thrive:compound type=\"oxytoxy\"][/thrive:compound]。可以切换以修改生成的毒素类型来获得其他效果。"
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "氰化物合成"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。可以通过按下[thrive:input]g_fire_toxin[/thrive:input]来释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]数量不足时仍能释放，但是伤害会降低。"
@@ -4074,7 +4096,6 @@ msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:comp
 msgid "OXYTOXY_NT"
 msgstr "氧化毒素"
 
-#, fuzzy
 msgid "OXYTOXY_SYNTHESIS"
 msgstr "氧化毒素合成"
 
@@ -4443,9 +4464,8 @@ msgstr "重置为默认值？"
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr "不会被没有对应酶的细胞吞噬并消化"
 
-#, fuzzy
 msgid "RESIZE_METABALL_TOOLTIP"
-msgstr "返回游戏"
+msgstr "设置要放置的元球大小。可以用快捷键更改。"
 
 msgid "RESOLUTION"
 msgstr "分辨率："
@@ -4555,10 +4575,10 @@ msgid "RUSTICYANIN"
 msgstr "铁硫菌蓝蛋白"
 
 msgid "RUSTICYANIN_DESCRIPTION"
-msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳和氧将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
+msgstr "铁硫菌蓝蛋白能够利用气态二氧化碳将铁从一种化学状态氧化为另一种化学状态。这个过程被称作[b]铁呼吸[/b]，能够释放可被细胞收集的能量。"
 
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
-msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]和[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。"
+msgstr "将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。速率跟[thrive:compound type=\"carbondioxide\"][/thrive:compound]的浓度成正比。"
 
 msgid "SAFE_MODE_EXPLANATION"
 msgstr ""
@@ -4866,7 +4886,7 @@ msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸盐碎块"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "雪花"
 
 msgid "SOCIETY_STAGE"
 msgstr "社会阶段"
@@ -5148,7 +5168,7 @@ msgid "SUPPORTER_PATRONS"
 msgstr "支持者"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "生存"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "切换到正视图"
@@ -5281,11 +5301,9 @@ msgstr "环境中的葡萄糖已减少到原先量的{0}。"
 msgid "THE_DISTURBANCE"
 msgstr "干扰"
 
-#, fuzzy
 msgid "THE_PATCH_MAP_BUTTON"
 msgstr "地区图"
 
-#, fuzzy
 msgid "THE_WORLD_TITLE"
 msgstr "世界"
 
@@ -5333,9 +5351,6 @@ msgstr "地区图"
 
 msgid "THRIVE_LICENSES"
 msgstr "Thrive的许可证书"
-
-msgid "THYLAKOID"
-msgstr "类囊体"
 
 msgid "THYLAKOIDS"
 msgstr "类囊体"
@@ -5442,7 +5457,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "手斧"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "因为最近版本太多而没有全部显示"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "收集到的能量："
@@ -5455,6 +5470,9 @@ msgstr "通道抑制剂"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "抑制受影响细胞的 ATP 产生，有效地阻止它们快速移动，并可能导致没有太多过量 ATP 产生的细胞死亡。"
+
+msgid "TOXIN_COMPOUND"
+msgstr "毒素"
 
 msgid "TOXIN_CYTOTOXIN"
 msgstr "细胞毒素"
@@ -5514,6 +5532,13 @@ msgstr "毒素液泡是一种专门用于产出，存储和分泌[thrive:compoun
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"oxytoxy\"][/thrive:compound]。速率跟[thrive:compound type=\"oxygen\"][/thrive:compound]的浓度成正比。按[thrive:input]g_fire_toxin[/thrive:input]以释放毒素。当[thrive:compound type=\"oxytoxy\"][/thrive:compound]储量不足时也能释放，但伤害会降低。"
+
+msgid "TOXISOME"
+msgstr "毒素体"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "仍在开发中。"
@@ -5846,7 +5871,7 @@ msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr "速度低于{0}"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr "[b]{0}[/b]解锁时"
+msgstr "[b]{0}[/b]解锁条件"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -6036,46 +6061,36 @@ msgstr "向上滚轮"
 msgid "WIKI"
 msgstr "Wiki"
 
-#, fuzzy
 msgid "WIKI_2D"
-msgstr "Wiki"
+msgstr "2D"
 
 msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_3D"
-msgstr "Wiki"
+msgstr "3D"
 
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "3D，沙盒"
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
-msgstr "[b]纤毛[/b]对于大型细胞至关重要，尤其是那些依赖掠食的细胞。 如果没有它们，大型细胞有时会受到极其缓慢的转动速度的困扰。 我们建议在演化[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]后尽快添加[b]纤毛[/b]以抵消该关键细胞器的巨大尺寸，并且将它们放置在尽可能远离细胞中心的位置，以最大限度地提高转动能力。"
+msgstr "3D,策略"
 
-#, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
-msgstr "[b]纤毛[/b]对于大型细胞至关重要，尤其是那些依赖掠食的细胞。 如果没有它们，大型细胞有时会受到极其缓慢的转动速度的困扰。 我们建议在演化[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]后尽快添加[b]纤毛[/b]以抵消该关键细胞器的巨大尺寸，并且将它们放置在尽可能远离细胞中心的位置，以最大限度地提高转动能力。"
+msgstr "3D,策略，空间"
 
 #, fuzzy
 msgid "WIKI_8_BRACKET_16"
 msgstr "向左转"
 
-#, fuzzy
 msgid "WIKI_ASCENSION"
-msgstr "神经元之间的神经纤维，在多细胞阶段可用。 要求增加生物体的脑力并进入到之后的阶段。"
+msgstr "飞升"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "当前开发人员"
+msgstr "飞升开发尚未开始。"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr ""
-"对于包含[b]轴突[/b]的多细胞生物中的每个细胞，该生物体的脑力与该细胞的体积成比例地增加。 具有[b]轴突[/b]的细胞将被分类为具有脑组织的类型。\n"
-"\n"
-"当脑力达到 [b]+0.5[/b] 时，玩家进入意识阶段。 当脑力达到 [b]+5.0[/b] 时，玩家进入觉醒阶段。"
+msgstr "敬请期待"
 
 #, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
@@ -6084,9 +6099,8 @@ msgstr "神经元之间的神经纤维，在多细胞阶段可用。 要求增�
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "恭喜！"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_ASCENSION_UI"
@@ -6419,14 +6433,13 @@ msgstr "无代谢过程。"
 msgid "WIKI_CILIA_REQUIREMENTS"
 msgstr "细胞必须有[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能演化出[b]纤毛[/b]。"
 
-#, fuzzy
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "与[b][color=#3796e1][url=thriveopedia:flagellum]鞭毛[/url][/color][/b]类似，[b]纤毛[/b]是提供定向推力的细毛，但它们以不同的方式移动，并且还具有其他好处。 许多生物体利用[b]纤毛[/b]来实现感官目的，它们也可以在较大的生物体中搬运营养物质。\n"
 "\n"
 "在现实中，[b]纤毛[/b]通常出现在整个细胞的外部，而不是单一丛。 具有这种外表的细胞称为纤毛虫。\n"
 "\n"
-"阅读更多关于该生物体的资讯 [color=#3796e1][url=https://en.wikipedia.org/wiki/Cilium]Wikipedia 页面[/url][/color]"
+"阅读更多关于该细胞器的资讯 [color=#3796e1][url=https://en.wikipedia.org/wiki/Cilium]Wikipedia 页面[/url][/color]"
 
 msgid "WIKI_CILIA_STRATEGY"
 msgstr "[b]纤毛[/b]对于大型细胞至关重要，尤其是那些依赖掠食的细胞。 如果没有它们，大型细胞有时会受到极其缓慢的转动速度的困扰。 我们建议在演化[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]后尽快添加[b]纤毛[/b]以抵消该关键细胞器的巨大尺寸，并且将它们放置在尽可能远离细胞中心的位置，以最大限度地提高转动能力。"
@@ -6437,32 +6450,24 @@ msgstr ""
 "\n"
 "需要 [b]25[/b] 突变点数，修改[b]纤毛[/b]将其转变为[b]捕食纤毛[/b]。 除了细胞器的常规作用外，[b]捕食纤毛[/b]会产生漩涡来吸引小细胞和碎块，例如漂浮的细胞器。"
 
-#, fuzzy
 msgid "WIKI_COMPOUNDS_BUTTON"
-msgstr ""
-"细胞粘稠的内脏。[b]细胞质[/b]是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。\n"
-"\n"
-"它其中一个功能是[b]细胞质糖酵解[/b]，作用是将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
+msgstr "化合物"
 
 #, fuzzy
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr "化合物："
 
-#, fuzzy
 msgid "WIKI_COMPOUNDS_INTRO"
-msgstr ""
-"细胞粘稠的内脏。[b]细胞质[/b]是溶解在水中的离子，蛋白质和其它物质的基本混合物，充满了细胞的内部。\n"
-"\n"
-"它其中一个功能是[b]细胞质糖酵解[/b]，作用是将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]。对于缺少细胞器而不能进行更高级代谢活动的细胞而言就是它们能量的来源。它同样还能用来储存收集到的化合物和增加细胞的大小。"
+msgstr "在最初的几个阶段中，thrive中的主要资源为[b]化合物[/b]。化合物可以在代谢过程中被转化为其他化合物，或者以其他方式被消耗利用。"
 
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
-msgstr ""
+msgstr "若想查看微生物阶段中所有化合物的列表，请在微生物阶段的附录页面查看化合物列表。"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
-msgstr ""
+msgstr "化合物系统是游戏的基础机制之一，是整个游戏流程中从细胞稳态到星际贸易各种模拟的基础。"
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
@@ -6514,27 +6519,11 @@ msgstr "无升级。"
 msgid "WIKI_DEVELOPMENT"
 msgstr "开发者wiki"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
-msgstr ""
-"细胞器是细胞的“器官”。在Thrive中，它们是你细胞的组件，控制着它的代谢过程和能力。\n"
-"\n"
-"每次你进行增殖时，你就可以在细胞编辑器里增加，移动，修改或删除细胞中的细胞器。几乎所有这些动作都需要花费变异点数。细胞器占有一个或多个六边形格子，形成被细胞膜包裹的完整结构，且各种细胞器占用的格数不同。外部细胞器会附着在细胞膜的外侧，因此对其中大多数来说，放置的方向会对功能产生影响。\n"
-"\n"
-"当你编辑你的细胞时，其他物种的细胞器布局也会发生变化。它们可以获得相同的细胞器以获得相同的能力。\n"
-"\n"
-"在下方列表中选择一个细胞器以了解更多。"
+msgstr "开发细节"
 
-#, fuzzy
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
-msgstr ""
-"细胞器是细胞的“器官”。在Thrive中，它们是你细胞的组件，控制着它的代谢过程和能力。\n"
-"\n"
-"每次你进行增殖时，你就可以在细胞编辑器里增加，移动，修改或删除细胞中的细胞器。几乎所有这些动作都需要花费变异点数。细胞器占有一个或多个六边形格子，形成被细胞膜包裹的完整结构，且各种细胞器占用的格数不同。外部细胞器会附着在细胞膜的外侧，因此对其中大多数来说，放置的方向会对功能产生影响。\n"
-"\n"
-"当你编辑你的细胞时，其他物种的细胞器布局也会发生变化。它们可以获得相同的细胞器以获得相同的能力。\n"
-"\n"
-"在下方列表中选择一个细胞器以了解更多。"
+msgstr "这些是关于thrive的开发的页面，包含有关于理论以及把它们实现到游戏中的信息。"
 
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
@@ -6708,6 +6697,53 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr "可用升级"
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr ""
+"进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率低于真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]。\n"
+"\n"
+"也会进行一些[b]糖酵解[/b]，消耗[thrive:compound type=\"glucose\"][/thrive:compound] 生产[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr ""
+"[b]厌氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type =\"ammonia\"][/thrive:compound]\n"
+"\n"
+"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 的量成正比。 效率低于[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]中的同种代谢。\n"
+"\n"
+"[b]糖酵解[/b]\n"
+"\n"
+"与许多原核细胞器一样，[b]固氮酶[/b]周围的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]会进行效率较低的[b]糖酵解[/b]，将[thrive:compound type=\"glucose\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr ""
+"如果在游戏设定中启用了细胞器升级，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   位于少于 [b]13[/b] [thrive:compound type=\"ammonia\"][/thrive:compound] 的区域中。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr ""
+"[b]固氮酶[/b]生产的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助于储存用于繁殖的资源。 因此，具有[b]固氮酶[/b]的细胞只需要从环境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在当前游戏选项中停用了被动繁殖进度，则基本速率为零）。\n"
+"\n"
+"由于[b]厌氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您应该在将此细胞器添加到您的细胞之前检查是否有多余的[thrive: compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]进行的少量[b]糖酵解[/b]不足以抵销其自身的渗透调节成本。"
+
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "无升级。"
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 "一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
@@ -6741,7 +6777,7 @@ msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "工业阶段"
 
 msgid "WIKI_INJECTISOME_PILUS"
-msgstr ""
+msgstr "毒刺"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
@@ -7095,9 +7131,8 @@ msgstr "无修改。"
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr "无代谢过程。"
 
-#, fuzzy
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
-msgstr "无要求"
+msgstr "无要求，但需要占用大量空间"
 
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
@@ -7125,7 +7160,7 @@ msgstr ""
 
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
-"如果细胞至少有一个[b]氧化毒素酶体[/b]或[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]，它就可以发射毒素弹，通过排出储存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 来做到。这些弹体会损害其他物种的细胞，但不会伤害发射者同物种的成员。\n"
+"如果细胞至少有一个[b]毒素酶体[/b]或[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]，它就可以发射毒素弹，通过排出储存的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 来做到。这些弹体会损害其他物种的细胞，但不会伤害发射者同物种的成员。\n"
 "\n"
 "伤害与发射的[thrive:compound type=\"oxytoxy\"][/thrive:compound] 量成正比。"
 
@@ -7143,7 +7178,7 @@ msgstr ""
 "\n"
 "[b]糖酵解[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"与许多原核细胞器一样，[b]氧化毒素酶体[/b]周围的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]会进行效率较低的[b]糖酵解[/b]，将[thrive:compound type=\"glucose\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
+"与许多原核细胞器一样，[b]毒素酶体[/b]周围的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]会进行效率较低的[b]糖酵解[/b]，将[thrive:compound type=\"glucose\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]。"
 
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
@@ -7158,7 +7193,7 @@ msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr ""
 "毒素是在细胞战斗中的宝贵武器。 它们是游戏中目前唯一的远程攻击方法，吞噬和[b][color=#3796e1][url=thriveopedia:pilus]掠食性菌毛[/url][/color][/b]更类似于近战武器 。\n"
 "\n"
-"[b]氧化毒素体[/b]及其真核版本[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]也可用作防御目的。 吞噬另一个具有这些细胞器的细胞的生物会在猎物被消化时受到伤害，这可以对更大的掠食者起到威慑作用。"
+"[b]毒素酶体[/b]及其真核版本[b][color=#3796e1][url=thriveopedia:oxytoxy]毒素液泡[/url][/color][/b]也可用作防御目的。 吞噬另一个具有这些细胞器的细胞的生物会在猎物被消化时受到伤害，这可以对更大的掠食者起到威慑作用。"
 
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr "无升级。"
@@ -7227,6 +7262,9 @@ msgstr "线粒体"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
+
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "氢化酶"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7364,9 +7402,8 @@ msgstr ""
 "\n"
 "需要 [b]25[/b] 突变点数，修改[b]掠食性菌毛[/b]将其转变为[b]注射性菌毛[/b]。 当它们攻击敌方细胞时，同时也会造成毒素伤害。 降低毒素伤害的细胞膜类型也可以降低[b]注射性菌毛[/b]造成的伤害。"
 
-#, fuzzy
 msgid "WIKI_PROTEIN_RESPIRATION"
-msgstr "有氧呼吸作用"
+msgstr "蛋白呼吸作用"
 
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr "无效果。"
@@ -7878,9 +7915,8 @@ msgstr "Xbox Series X"
 msgid "YEARS"
 msgstr "年"
 
-#, fuzzy
 msgid "YET_TO_BE_IMPLEMENTED_NOTICE"
-msgstr "仍在开发中。"
+msgstr "该页面的内容尚未被完全实现到游戏中，并且有可能会变化。"
 
 msgid "YOUTUBE_TOOLTIP"
 msgstr "访问我们的YouTube频道"
@@ -7898,10 +7934,6 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
-
-#, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "版本："
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

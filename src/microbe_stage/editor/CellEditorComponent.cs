@@ -301,6 +301,8 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
+    private ResourceLimitingMode balanceMode;
+
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
@@ -786,10 +788,11 @@ public partial class CellEditorComponent :
             {
                 GD.Print("Loaded cell editor with no cell to edit set");
             }
-        }
 
-        // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInCurrentPatch();
+            // Send info to the GUI about the organelle effectiveness in the current patch
+            // When not loading a save, this is handled by OnEditorReady
+            OnPatchDataReady();
+        }
 
         if (IsMulticellularEditor)
         {
@@ -907,6 +910,13 @@ public partial class CellEditorComponent :
                 MouseHoverPositions = hoveredHexes.ToList();
             }
         }
+    }
+
+    public override void OnEditorReady()
+    {
+        // As auto-evo results can modify the patch data, we only want to calculate the effectiveness of organelles in
+        // the current patch once that data is ready (and whenever the selected patch changes of course)
+        OnPatchDataReady();
     }
 
     [RunOnKeyDown("e_primary")]
@@ -1577,6 +1587,15 @@ public partial class CellEditorComponent :
         base.Dispose(disposing);
     }
 
+    /// <summary>
+    ///   Called once patch data is ready for initial read
+    /// </summary>
+    private void OnPatchDataReady()
+    {
+        CalculateOrganelleEffectivenessInCurrentPatch();
+        UpdatePatchDependentBalanceData();
+    }
+
     private bool PerformEndosymbiosisPlace(int q, int r)
     {
         if (PendingEndosymbiontPlace == null)
@@ -1906,8 +1925,14 @@ public partial class CellEditorComponent :
 
         bool moving = calculateBalancesWhenMoving.ButtonPressed;
 
-        // TODO: pass moving variable
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biome, membrane, moving, true,
+        IBiomeConditions conditionsData = biome;
+
+        if (balanceMode != ResourceLimitingMode.AllResources)
+        {
+            conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
+        }
+
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
             Editor.CurrentGame.GameWorld.WorldSettings,
             calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
 
@@ -1916,27 +1941,30 @@ public partial class CellEditorComponent :
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
 
+        // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
                 calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
-                organelles, biome, energyBalance,
+                organelles, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
+        // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
-            CompoundAmountType.Minimum, organelles, biome, energyBalance, ref specificStorages, ref nominalStorage);
+            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
+            ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
         // Handle process list
-        HandleProcessList(energyBalance, biome);
+        HandleProcessList(energyBalance, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles,
-        BiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
+        IBiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData;
@@ -1959,7 +1987,7 @@ public partial class CellEditorComponent :
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
-    private void HandleProcessList(EnergyBalanceInfo energyBalance, BiomeConditions biome)
+    private void HandleProcessList(EnergyBalanceInfo energyBalance, IBiomeConditions biome)
     {
         var processes = new List<TweakedProcess>();
 
@@ -1972,8 +2000,10 @@ public partial class CellEditorComponent :
 
         foreach (var process in processes)
         {
+            // This requires the inputs to be in the biome to give a realistic prediction of how fast the processes
+            // *might* run once swimming around in the stage.
             var singleProcess = ProcessSystem.CalculateProcessMaximumSpeed(process, biome, CompoundAmountType.Current,
-                false);
+                true);
 
             // If produces more ATP than consumes, lower down production for inputs and for outputs,
             // otherwise use maximum production values (this matches the equilibrium display mode and what happens

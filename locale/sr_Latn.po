@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
 "Language: sr_Latn\n"
@@ -229,6 +229,10 @@ msgstr ""
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može da sakupi."
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
 
@@ -249,6 +253,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "ATP Ravnoteža"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Vodonik Sulfid"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "ATP Ravnoteža"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr ""
@@ -469,6 +494,10 @@ msgstr "Bioluminiscentna Vakuola"
 msgid "BIOME_LABEL"
 msgstr ""
 
+#, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Spoljni efekti:"
+
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -602,6 +631,10 @@ msgstr "Generacija:"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Promenite simetriju"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
 msgid "CHEATS"
 msgstr "Varanje"
 
@@ -719,6 +752,9 @@ msgstr "Zatvori"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Zatvoriti opcije?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1287,6 +1323,10 @@ msgstr "Glikoliza citoplazme"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Sinteza OksiToksi"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1534,6 +1574,9 @@ msgstr ""
 #, fuzzy
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Sposobnosti"
+
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
@@ -2333,6 +2376,18 @@ msgstr ""
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "Vodonik Sulfid"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Vodonik Sulfid"
 
@@ -3068,6 +3123,10 @@ msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u st
 #, fuzzy
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Hemosinteza"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4157,12 +4216,9 @@ msgstr ""
 msgid "OXYGEN"
 msgstr "Kiseonik"
 
-msgid "OXYTOXISOME"
-msgstr "OksiToksizom"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Modifikovani metabolosom odgovoran za proizvodnju primitivnog oblika toksičnog agensa OksiToksi NT."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Sinteza OksiToksi"
 
 #, fuzzy
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
@@ -4696,6 +4752,7 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "RUSTICYANIN"
 msgstr "Rusticijanin"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može da sakupi."
 
@@ -5522,9 +5579,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr ""
 
-msgid "THYLAKOID"
-msgstr "Thilakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Tilakoidi"
 
@@ -5657,6 +5711,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Jedinjenje"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Dodajte novo vezivanje tastera"
 
@@ -5713,6 +5771,7 @@ msgstr "Zdrav.:"
 msgid "TOXIN_TYPE_CUSTOMIZATION_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Otrovna\n"
@@ -5725,6 +5784,14 @@ msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodn
 #, fuzzy
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Otrovna vakuola je vakuola koja je modifikovana za specifičnu proizvodnju, skladištenje i izlučivanje oksitoksi toksina. Više otrovne vakuola povećaće brzinu oslobađanja toksina."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "OksiToksizom"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u stanju da pretvore glukozu u ATP mnogo većom brzinom nego što se to može učiniti u citoplazmi sa procesu koji se naziva aerobno disanje. Međutim, potreban mu je kiseonik da bi funkcionisao, a niži nivoi kiseonika u okolini usporiće brzinu njegove proizvodnje ATP. Pošto su metabolosomi suspendovani direktno u citoplazmi, okolna tečnost vrši određenu fermentaciju."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "Da se implementira."
@@ -6779,6 +6846,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
@@ -7194,6 +7293,10 @@ msgstr "Mitohondrija"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bič"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenaza"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -7810,8 +7913,11 @@ msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Rusticijanin je protein koji može da koristi gasoviti ugljen-dioksid i kiseonik za oksidaciju gvožđa iz jednog hemijskog stanja u drugo. Ovaj proces, nazvan Respiracija gvožđa, oslobađa energiju koju ćelija tada može da sakupi."
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Modifikovani metabolosom odgovoran za proizvodnju primitivnog oblika toksičnog agensa OksiToksi NT."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thilakoid"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

@@ -71,6 +71,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
             var processes = organelle.Definition.RunnableProcesses;
+
+            // Organelle upgrades can change the processes of an organelle so that needs to be checked here
+            if (organelle.Upgrades != null)
+            {
+                var upgraded = organelle.Definition.GetUpgradeProcesses(organelle.Upgrades);
+                if (upgraded != null)
+                    processes = upgraded;
+            }
+
             int processCount = processes.Count;
 
             for (int j = 0; j < processCount; ++j)
@@ -131,7 +140,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   can be specified to be a different type of value)
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
+        IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources)
     {
         var organellesList = organelles.ToList();
@@ -165,7 +174,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
-        BiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache)
     {
@@ -286,7 +295,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
@@ -324,7 +333,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         bool requireInputCompoundsInBiome)
     {
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
@@ -342,7 +351,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
@@ -356,7 +365,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
-        bool useRatio;
 
         foreach (var organelle in organelles)
         {
@@ -364,11 +372,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             {
                 var speedAdjusted = CalculateProcessMaximumSpeed(process, biome, amountType, true);
 
-                useRatio = false;
-
                 // If the cell produces more ATP than it needs, its ATP producing processes need to be toned down
-                if (speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f)
-                    useRatio = true;
+                bool useRatio = speedAdjusted.Outputs.ContainsKey(Compound.ATP) && consumptionProductionRatio < 1.0f;
 
                 foreach (var input in speedAdjusted.Inputs)
                 {
@@ -404,7 +409,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleTemplate> organelles, BiomeConditions biome, CompoundAmountType amountType,
+        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance)
     {
         return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
@@ -439,7 +444,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   input compounds present in the biome can run)
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
-        BiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
+        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
     {
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
@@ -490,7 +495,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        BiomeConditions biome, CompoundAmountType pointInTimeType, bool requireInputCompoundsInBiome)
+        IBiomeConditions biome, CompoundAmountType pointInTimeType, bool requireInputCompoundsInBiome)
     {
         var result = new ProcessSpeedInformation(process.Process);
 
@@ -511,7 +516,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 // Quickly check all inputs to see if they are in the patch
                 var inPatch = false;
-                if (biome.AverageCompounds.TryGetValue(inputCompound, out var neededCompound))
+                if (biome.TryGetCompound(inputCompound, CompoundAmountType.Average, out var neededCompound))
                 {
                     if (neededCompound.Ambient > 0 || neededCompound.Amount > 0)
                     {
@@ -551,6 +556,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             // Environmental compound that can limit the rate
             var availableInEnvironment = GetAmbientInBiome(inputCompound, biome, pointInTimeType);
 
+            // Is a serious limit if there is none of the compound
+            if (availableInEnvironment <= 0)
+            {
+                result.WritableLimitingCompounds.Add(input.Key.ID);
+            }
+
             var availableRate = inputCompound == Compound.Temperature ?
                 CalculateTemperatureEffect(availableInEnvironment) :
                 availableInEnvironment / input.Value;
@@ -573,6 +584,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         // Note that we don't consider storage constraints here so we don't use spaceConstraintModifier calculations
 
+        // To not claim the output is the limiting factor when no inputs could be taken at all, track if any inputs
+        // are added
+        bool tookInputs = false;
+
         // So that the speed factor is available here
         foreach (var entry in process.Process.Inputs)
         {
@@ -586,6 +601,19 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             var adjustedValue = entry.Value * speedFactor;
             result.WritableInputs.Add(inputCompound, adjustedValue);
 
+            if (adjustedValue > 0)
+            {
+                tookInputs = true;
+            }
+            else
+            {
+                // Cannot take any of this input, mark as a problem. This is helpful at least in the editor process
+                // panel view.
+                // TODO: this kind of unnecessarily marks some stuff red when environmental conditions are the real
+                // problem
+                result.WritableLimitingCompounds.Add(entry.Key.ID);
+            }
+
             if (inputCompound == Compound.ATP)
                 result.ATPConsumption += adjustedValue;
         }
@@ -598,7 +626,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
             result.WritableOutputs[outputCompound] = amount;
 
-            if (amount <= 0)
+            if (amount <= 0 && tookInputs)
                 result.WritableLimitingCompounds.Add(outputCompound);
 
             if (outputCompound == Compound.ATP)
@@ -671,7 +699,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         ProcessNode(ref processes, ref storage, delta);
     }
 
-    private static float GetAmbientInBiome(Compound compound, BiomeConditions biome, CompoundAmountType amountType)
+    private static float GetAmbientInBiome(Compound compound, IBiomeConditions biome, CompoundAmountType amountType)
     {
         if (!biome.TryGetCompound(compound, amountType, out var environmentalCompoundProperties))
             return 0;

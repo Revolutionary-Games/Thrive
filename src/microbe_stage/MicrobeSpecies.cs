@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Godot;
 using Newtonsoft.Json;
 using Saving.Serializers;
 using Systems;
+using Vector3 = Godot.Vector3;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
@@ -166,8 +166,8 @@ public class MicrobeSpecies : Species, ICellDefinition
         // which could basically make them die instantly in certain situations)
         var simulationParameters = SimulationParameters.Instance;
 
-        // TODO: improve this depending on the default patch: https://github.com/Revolutionary-Games/Thrive/issues/5446
-        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
+        // TODO: improve this depending on a hardcoded patch: https://github.com/Revolutionary-Games/Thrive/issues/5446
+        var biomeConditions = simulationParameters.GetBiome("speciesInitialCompoundsBiome").Conditions;
 
         // False is passed here until we can make the initial compounds patch specific
         var compoundBalances = ProcessSystem.ComputeCompoundBalance(Organelles,
@@ -301,21 +301,26 @@ public class MicrobeSpecies : Species, ICellDefinition
         return result;
     }
 
-    public override int GetVisualHashCode()
+    public override ulong GetVisualHashCode()
     {
         var hash = base.GetVisualHashCode();
 
-        hash ^= MembraneType.GetHashCode() * 5743 ^ MembraneRigidity.GetHashCode() * 5749 ^
-            (IsBacteria ? 1 : 0) * 5779 ^ Organelles.Count * 131;
+        // This code also exists in CellType visual calculation
+        var count = Organelles.Count;
 
-        int counter = 0;
+        hash ^= (ulong)MembraneType.InternalName.GetHashCode() * 5743 ^ (ulong)MembraneRigidity.GetHashCode() * 5749 ^
+            (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
 
-        foreach (var organelle in Organelles)
+        var list = Organelles.Organelles;
+
+        for (int i = 0; i < count; ++i)
         {
-            hash ^= counter++ * 13 * organelle.GetHashCode();
+            // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
+            // stuff here
+            hash ^= (ulong)list[i].GetHashCode() * 13;
         }
 
-        return hash;
+        return hash ^ Constants.VISUAL_HASH_CELL;
     }
 
     public override string GetDetailString()

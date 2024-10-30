@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-02 15:43+0300\n"
-"PO-Revision-Date: 2024-09-20 12:56+0000\n"
+"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -229,6 +229,10 @@ msgstr ""
 "\n"
 "Celkový počet časů vystoupání v tomto uložení: {0}"
 
+#, fuzzy
+msgid "ASCENSION_STAGE"
+msgstr "Verze:"
+
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Třída sestavy modu je potřebná když je soustava specifikovaná"
 
@@ -251,6 +255,27 @@ msgstr "ATP"
 
 msgid "ATP_BALANCE"
 msgstr "Zůstatek ATP"
+
+#, fuzzy
+msgid "ATP_BALANCE_TOOLTIP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
+msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+msgstr ""
+
+msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
+msgstr ""
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+msgstr "Sirovodík"
+
+#, fuzzy
+msgid "ATP_BALANCE_WITHOUT_IRON"
+msgstr "Zůstatek ATP"
+
+msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+msgstr ""
 
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
@@ -458,6 +483,10 @@ msgid "BIOME_LABEL"
 msgstr "Biom: {0}"
 
 #, fuzzy
+msgid "BLOOM_RENDER_EFFECT"
+msgstr "Vedlejší účinky:"
+
+#, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurony"
 
@@ -581,6 +610,10 @@ msgstr "Poznámky ke změnám jsou příliš dlouhé"
 msgid "CHANGE_THE_SYMMETRY"
 msgstr "Změnit symetrii"
 
+#, fuzzy
+msgid "CHANNEL_INHIBITOR_TOXIN_SYNTHESIS"
+msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
+
 msgid "CHEATS"
 msgstr "Cheaty"
 
@@ -684,6 +717,9 @@ msgstr "Zavřít"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
+
+msgid "CLOSTRIDIAL_FERMENTATION"
+msgstr ""
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1306,6 +1342,10 @@ msgstr "Cytoplazmatická Glykolýza"
 msgid "CYTOPLASM_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"]ATP[/thrive:compound]."
 
+#, fuzzy
+msgid "CYTOTOXIN_SYNTHESIS"
+msgstr "Syntéza OxyToxynů"
+
 msgid "DAY_LENGTH"
 msgstr "Délka dne"
 
@@ -1567,6 +1607,10 @@ msgstr "Zobrazení částic v pozadí"
 
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr "Zobrazit panel schopností"
+
+#, fuzzy
+msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+msgstr "Zobrazení částic v pozadí"
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr "Zobrazení částic v pozadí"
@@ -2397,6 +2441,18 @@ msgstr "Barva - Saturace - Hodnota"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr ""
 
+#, fuzzy
+msgid "HYDROGENASE"
+msgstr "Sirovodík"
+
+#, fuzzy
+msgid "HYDROGENASE_DESCRIPTION"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
+msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
 msgid "HYDROGEN_SULFIDE"
 msgstr "Sirovodík"
 
@@ -3130,6 +3186,10 @@ msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytick
 
 msgid "LYSOSOME_PROCESSES_DESCRIPTION"
 msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enzymu, který obsahuje. Lysozomy jsou schopny obsahovat pouze jeden typ enzymu najednou. Enzymy zrychlují a zvyšují efektivitu trávení."
+
+#, fuzzy
+msgid "MACROLIDE_SYNTHESIS"
+msgstr "Syntéza slizů"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4315,12 +4375,9 @@ msgstr "Smazání tohoto uložení nelze vrátit zpět. Opravdu ho chceš trvale
 msgid "OXYGEN"
 msgstr "Kyslík"
 
-msgid "OXYTOXISOME"
-msgstr "Oxytoxizom"
-
 #, fuzzy
-msgid "OXYTOXISOME_DESC"
-msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
+msgid "OXYGEN_INHIBITOR_SYNTHESIS"
+msgstr "Syntéza OxyToxynů"
 
 msgid "OXYTOXISOME_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny mohou být uvolněny stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
@@ -4828,9 +4885,11 @@ msgstr "Připoj se na náš komunitní Discord server"
 msgid "RUSTICYANIN"
 msgstr "Rusticyanin (protein mědi)"
 
+#, fuzzy
 msgid "RUSTICYANIN_DESCRIPTION"
 msgstr "Rusticyanin je protein schopný využít plynný [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound] k oxidaci železa z jednoho chemického stavu na jiný. Tento proces, nazývaný [b]respirace železa[/b], uvolňuje energii, kterou je pak buňka schopna sklidit."
 
+#, fuzzy
 msgid "RUSTICYANIN_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"carbondioxide\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -5635,9 +5694,6 @@ msgstr ""
 msgid "THRIVE_LICENSES"
 msgstr "Thrive Licence"
 
-msgid "THYLAKOID"
-msgstr "Thylakoid"
-
 msgid "THYLAKOIDS"
 msgstr "Thylakoidy"
 
@@ -5768,6 +5824,10 @@ msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produkci, skladování a sekreci oxytoxytoxinů. Více toxinových vakuol zvýší rychlost uvolňování toxinů."
 
 #, fuzzy
+msgid "TOXIN_COMPOUND"
+msgstr "Sloučeniny"
+
+#, fuzzy
 msgid "TOXIN_CYTOTOXIN"
 msgstr "Některé možnosti mohou být nedostupné pokud je zapnut realistický režim"
 
@@ -5832,6 +5892,7 @@ msgstr ""
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
+#, fuzzy
 msgid "TOXIN_VACUOLE"
 msgstr ""
 "Toxinová\n"
@@ -5843,6 +5904,14 @@ msgstr "Toxinová vakuola je vakuola, která byla upravena pro specifickou produ
 
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"oxygen\"][/thrive:compound]. Toxiny můžete vypustit stisknutím [thrive:input]g_fire_toxin[/thrive:input]. Pokud je množství [thrive:compound type=\"oxytoxy\"][/thrive:compound] nízké, střelba je stále možná, ale bude mít snížené poškození."
+
+#, fuzzy
+msgid "TOXISOME"
+msgstr "Oxytoxizom"
+
+#, fuzzy
+msgid "TOXISOME_DESCRIPTION"
+msgstr "Lysozom je organela připojena na membránu, která obsahuje hydrolytické enzymy, které mohou rozkládat různé biomolekuly. Lysozomy umožnují buňce strávit materiály vstřebány skrze endocytózu a čistit odpadní látky buňky skrze proces zvaný [b]autofagie[/b]."
 
 msgid "TO_BE_IMPLEMENTED"
 msgstr "K implementaci."
@@ -6992,6 +7061,38 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HYDROGENASE_EFFECTS"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_INTRO"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_MODIFICATIONS"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_PROCESSES"
+msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_REQUIREMENTS"
+msgstr "Termosyntáza je protein který využívá teplotní konvekci ke změně svého tvaru, což mu umožnuje složit a navázat se na ADP když je vystaven teplu, pak jej rozložit a recyklovat na [thrive:compound type=\"atp\"][/thrive:compound] když je vystaven chlazení v procesu známém jako [b]termosyntéza[/b]. Rychlost produkce [thrive:compound type=\"atp\"][/thrive:compound] je úměrná [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_STRATEGY"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_HYDROGENASE_UPGRADES"
+msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
 
@@ -7428,6 +7529,10 @@ msgstr "Mitochondrie"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bičík"
+
+#, fuzzy
+msgid "WIKI_PAGE_HYDROGENASE"
+msgstr "Nitrogenáza"
 
 #, fuzzy
 msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
@@ -8032,8 +8137,11 @@ msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
 #, fuzzy
-#~ msgid "ASCENSION"
-#~ msgstr "Verze:"
+#~ msgid "OXYTOXISOME_DESC"
+#~ msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
+
+#~ msgid "THYLAKOID"
+#~ msgstr "Thylakoid"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"

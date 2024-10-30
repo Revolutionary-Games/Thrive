@@ -31,6 +31,16 @@ public class OrganelleDefinition : IRegistryType
     public string Name = null!;
 
     /// <summary>
+    ///   Description of processes the organelle performs (this is the short description at the top of the tooltip)
+    /// </summary>
+    public string? ProcessesDescription;
+
+    /// <summary>
+    ///   Description of the organelle
+    /// </summary>
+    public string Description = string.Empty;
+
+    /// <summary>
     ///   When true the graphics for this organelle are positioned externally (i.e. moved to the membrane edge and
     ///   point outside from the cell)
     /// </summary>
@@ -209,6 +219,8 @@ public class OrganelleDefinition : IRegistryType
     private string? endosymbiosisUnlocks;
 
     private Vector3 modelOffset;
+
+    private bool hasProcessAffectingUpgrades;
 
     public enum OrganelleGroup
     {
@@ -401,6 +413,32 @@ public class OrganelleDefinition : IRegistryType
         return false;
     }
 
+    /// <summary>
+    ///   Gets a list of processes to run instead of <see cref="RunnableProcesses"/> given the upgrades, or null if no
+    ///   upgrade affects the processes
+    /// </summary>
+    /// <returns>Upgraded processes</returns>
+    public List<TweakedProcess>? GetUpgradeProcesses(OrganelleUpgrades upgrades)
+    {
+        // Early return for types that don't support such upgrades for efficiency
+        if (!hasProcessAffectingUpgrades)
+            return null;
+
+        foreach (var availableUpgrade in AvailableUpgrades)
+        {
+            if (upgrades.UnlockedFeatures.Contains(availableUpgrade.Key) &&
+                availableUpgrade.Value.OverrideProcesses != null)
+            {
+                // Found an unlocked upgrade that affects processes. For now, it is assumed that the first one doing
+                // the overriding is fine to apply
+                return availableUpgrade.Value.OverrideProcesses;
+            }
+        }
+
+        // No upgrade with changed processes
+        return null;
+    }
+
     public void Check(string name)
     {
         if (string.IsNullOrEmpty(Name))
@@ -416,6 +454,11 @@ public class OrganelleDefinition : IRegistryType
         Components.Check(name);
 
         // Components list is now allowed to be empty as some organelles do not need any components
+
+        if (string.IsNullOrEmpty(Description))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name, "Description is not set or empty");
+        }
 
         if (Density < 100)
         {
@@ -619,7 +662,18 @@ public class OrganelleDefinition : IRegistryType
 
         foreach (var availableUpgrade in AvailableUpgrades.Values)
         {
-            availableUpgrade.Resolve();
+            availableUpgrade.Resolve(parameters);
+
+            if (availableUpgrade.OverrideProcesses != null)
+            {
+                hasProcessAffectingUpgrades = true;
+
+                if (availableUpgrade.IsDefault)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Default upgrade shouldn't override processes");
+                }
+            }
         }
     }
 

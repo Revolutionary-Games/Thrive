@@ -71,6 +71,9 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     [JsonProperty]
     private float upDownSwimSpeed = 3;
 
+    [JsonProperty]
+    private float jumpStrength = 60;
+
     private bool actionHasSucceeded;
 
     // TODO: implement
@@ -377,7 +380,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             // TODO: only allow jumping when touching the ground
             // TODO: suppress jump when the user just interacted with a dialog to confirm something, maybe jump should
             // use the on press key thing to only trigger jumping once?
-            ApplyCentralImpulse(new Vector3(0, 1, 0) * (float)delta * 12000);
+            ApplyCentralImpulse(new Vector3(0, 1, 0) * (float)delta * jumpStrength * Mass);
         }
     }
 

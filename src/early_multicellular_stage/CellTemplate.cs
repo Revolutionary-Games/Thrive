@@ -99,4 +99,9 @@ public class CellTemplate : IPositionedCell, ICloneable, IActionHex
             Orientation = Orientation,
         };
     }
+
+    public ulong GetVisualHashCode()
+    {
+        return CellType.GetVisualHashCode() ^ (ulong)Orientation * 347 ^ (ulong)Position.GetHashCode() * 317;
+    }
 }

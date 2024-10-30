@@ -370,6 +370,13 @@ public partial class OptionsMenu : ControlWithInput
     private CheckBox guiLightEffectsToggle = null!;
     private CheckBox displayPartNamesToggle = null!;
     private CheckBox displayMenu3DBackgroundsToggle = null!;
+
+    [Export]
+    private Button displayMicrobeBackgroundDistortionToggle = null!;
+
+    [Export]
+    private Button bloomEffectToggle = null!;
+
     private Label gpuName = null!;
     private Label usedRendererName = null!;
     private Label videoMemory = null!;
@@ -777,9 +784,11 @@ public partial class OptionsMenu : ControlWithInput
         damageEffect.ButtonPressed = settings.ScreenDamageEffect;
         strainVisibility.Selected = (int)settings.StrainBarVisibilityMode.Value;
         displayBackgroundParticlesToggle.ButtonPressed = settings.DisplayBackgroundParticles;
+        displayMicrobeBackgroundDistortionToggle.ButtonPressed = settings.MicrobeDistortionStrength.Value > 0;
         guiLightEffectsToggle.ButtonPressed = settings.GUILightEffectsEnabled;
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
         displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
+        bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -1931,6 +1940,20 @@ public partial class OptionsMenu : ControlWithInput
         UpdateResetSaveButtonState();
     }
 
+    private void OnMicrobeBackgroundDistortionToggled(bool toggle)
+    {
+        if (toggle)
+        {
+            Settings.Instance.MicrobeDistortionStrength.Value = Constants.DEFAULT_MICROBE_DISTORTION_STRENGHT;
+        }
+        else
+        {
+            Settings.Instance.MicrobeDistortionStrength.Value = 0;
+        }
+
+        UpdateResetSaveButtonState();
+    }
+
     private void OnGUILightEffectsToggled(bool toggle)
     {
         Settings.Instance.GUILightEffectsEnabled.Value = toggle;
@@ -1948,6 +1971,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnDisplay3DMenuBackgroundsToggled(bool toggle)
     {
         Settings.Instance.Menu3DBackgroundEnabled.Value = toggle;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnBloomToggled(bool toggle)
+    {
+        Settings.Instance.BloomEnabled.Value = toggle;
 
         UpdateResetSaveButtonState();
     }

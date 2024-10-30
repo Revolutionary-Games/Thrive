@@ -92,6 +92,9 @@ public partial class CellEditorComponent
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
 
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
+
+        UpdateOsmoregulationTooltips();
+        UpdateMPCost();
     }
 
     private void CheckRunningAutoEvoPrediction()
@@ -865,6 +868,13 @@ public partial class CellEditorComponent
         var comparer = new ATPComparer();
 
         return bar.OrderBy(i => i.Key, comparer).ToList();
+    }
+
+    private void SelectATPBalanceMode(int index)
+    {
+        balanceMode = (ResourceLimitingMode)index;
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()

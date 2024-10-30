@@ -235,7 +235,7 @@ public class CiliaComponent : IOrganelleComponent
             return;
         }
 
-        ciliaCountForForce = 1 + (ciliaCountForForce - 1) * Constants.CILIA_FORCE_MULTIPLIER_PER_CILIA;
+        ciliaCountForForce = 1 + MathF.Pow(ciliaCountForForce - 1, Constants.CILIA_FORCE_EXPONENT_PER_CILIA);
 
         ref var microbePosition = ref microbeEntity.Get<WorldPosition>();
         ref var microbePhysicsControl = ref microbeEntity.Get<ManualPhysicsControl>();
@@ -267,7 +267,7 @@ public class CiliaComponent : IOrganelleComponent
                 return;
 
             float force = Constants.CILIA_PULLING_FORCE * ciliaCountForForce * delta /
-                (distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
+                MathF.Max(1.0f, distance * Constants.CILIA_PULLING_FORCE_FALLOFF_FACTOR);
 
             ref var targetPhysics = ref pulledEntity.Get<ManualPhysicsControl>();
             targetPhysics.ImpulseToGive +=

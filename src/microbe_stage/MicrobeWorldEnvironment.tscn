@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqpjtfkjeuwmq"]
+
+[ext_resource type="Script" path="res://src/microbe_stage/MicrobeWorldEnvironment.cs" id="1_gansp"]
+
+[sub_resource type="Environment" id="Environment_31nh3"]
+glow_normalized = true
+glow_strength = 1.8
+glow_bloom = 1.0
+glow_blend_mode = 4
+
+[node name="MicrobeWorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_31nh3")
+script = ExtResource("1_gansp")
