@@ -144,7 +144,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2, tempProcessListMemory);
+        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2,
+            tempProcessListMemory);
 
         // TODO: update species member component if species changed?
     }
