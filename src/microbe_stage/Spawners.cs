@@ -571,9 +571,10 @@ public static class SpawnHelpers
             // just need to accept that spawning a microbe allocates a bit of temporary unnecessary memory
             var workData1 = new List<Hex>();
             var workData2 = new List<Hex>();
+            var tempMemory = new Dictionary<BioProcess, float>();
 
             container.CreateOrganelleLayout(usedCellDefinition, workData1, workData2);
-            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
+            container.RecalculateOrganelleBioProcesses(ref bioProcesses, tempMemory);
 
             organelleCount = container.Organelles!.Count;
 

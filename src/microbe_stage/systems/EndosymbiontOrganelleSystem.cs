@@ -32,6 +32,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
 
     private readonly List<Hex> hexWorkData = new();
     private readonly List<Hex> hexWorkData2 = new();
+    private readonly Dictionary<BioProcess, float> tempProcessListMemory = new();
 
     public EndosymbiontOrganelleSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner,
         Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
@@ -74,7 +75,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
                     // times and when not empty mostly just once
                     organelleContainer.OnOrganellesChanged(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(), ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                        ref entity.Get<CellProperties>());
+                        ref entity.Get<CellProperties>(), tempProcessListMemory);
 
                     endosymbiontInfo.CreatedOrganelleInstancesFor.Add(symbiontSpecies);
                 }

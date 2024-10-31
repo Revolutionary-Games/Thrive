@@ -634,6 +634,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var workData1 = new List<Hex>();
         var workData2 = new List<Hex>();
+        var tempMemory = new Dictionary<BioProcess, float>();
 
         var playerSpecies = Player.Get<SpeciesMember>().Species;
 
@@ -650,13 +651,13 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
 
             cellProperties.ReApplyCellTypeProperties(Player, earlySpeciesType.MulticellularCellType,
-                earlySpeciesType.Species, WorldSimulation, workData1, workData2);
+                earlySpeciesType.Species, WorldSimulation, workData1, workData2, tempMemory);
         }
         else
         {
             ref var species = ref Player.Get<MicrobeSpeciesMember>();
             cellProperties.ReApplyCellTypeProperties(Player, species.Species, species.Species, WorldSimulation,
-                workData1, workData2);
+                workData1, workData2, tempMemory);
         }
 
         var playerPosition = Player.Get<WorldPosition>().Position;

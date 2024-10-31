@@ -68,6 +68,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     private readonly List<Compound> compoundWorkData = new();
     private readonly List<Hex> hexWorkData = new();
     private readonly List<Hex> hexWorkData2 = new();
+    private readonly Dictionary<BioProcess, float> tempProcessListMemory = new();
 
     private GameWorld? gameWorld;
 
@@ -532,7 +533,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             // help to complicate things by trying to fetch these before the loop
             organelles.OnOrganellesChanged(ref storage, ref entity.Get<BioProcesses>(),
                 ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
-                ref entity.Get<CellProperties>());
+                ref entity.Get<CellProperties>(), tempProcessListMemory);
 
             if (entity.Has<MicrobeEventCallbacks>())
             {
@@ -623,7 +624,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
                     // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
                     organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(),
-                        entity, species, species, worldSimulation, workData1, workData2);
+                        entity, species, species, worldSimulation, workData1, workData2, tempProcessListMemory);
 
                     // This is purely inside this lock to suppress a warning on worldSimulation
                     cellProperties.Divide(ref organelles, entity, species, worldSimulation, spawnEnvironment,
