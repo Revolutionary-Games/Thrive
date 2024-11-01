@@ -57,17 +57,20 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
-        [NotNull] ref List<TweakedProcess>? result, Dictionary<BioProcess, float> tempStorage)
+        [NotNull] ref List<TweakedProcess>? result)
     {
         result ??= new List<TweakedProcess>();
 
-        foreach (var process in result)
+        // Make sure processes are unmarked
+        for (int i = 0; i < result.Count; i++)
         {
-            tempStorage.TryAdd(process.Process, process.SpeedMultiplier);
+            if (result[i].Marked)
+            {
+                var process = result[i];
+                process.Marked = false;
+                result[i] = process;
+            }
         }
-
-        // Very important to clear any existing list to ensure old processes don't hang around
-        result.Clear();
 
         // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
         // A basic linear scan over all organelles and their processes with combining duplicates into the result
@@ -101,7 +104,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     if (result[k].Process == processKey)
                     {
                         // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
-                        result[k] = new TweakedProcess(processKey, process.Rate + result[k].Rate);
+                        var addedProcess = new TweakedProcess(processKey, process.Rate + result[k].Rate);
+                        addedProcess.SpeedMultiplier = result[k].SpeedMultiplier;
+                        addedProcess.Marked = true;
+                        result[k] = addedProcess;
                         added = true;
                         break;
                     }
@@ -111,22 +117,26 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     continue;
 
                 // If not found, then create a new result
-                result.Add(new TweakedProcess(process.Process, process.Rate));
+                var newProcess = new TweakedProcess(processKey, process.Rate);
+                newProcess.Marked = true;
+                result.Add(newProcess);
             }
         }
 
-        int newProcessCount = result.Count;
-        for (int i = 0; i < newProcessCount; ++i)
+        for (int i = 0; i < result.Count; i++)
         {
-            var newProcess = result[i];
-            if (tempStorage.TryGetValue(newProcess.Process, out float speedMultiplier))
+            if (!result[i].Marked)
             {
-                newProcess.SpeedMultiplier = speedMultiplier;
-                result[i] = newProcess;
+                result.RemoveAt(i);
+                --i;
+            }
+            else
+            {
+                var process = result[i];
+                process.Marked = false;
+                result[i] = process;
             }
         }
-
-        tempStorage.Clear();
     }
 
     /// <summary>

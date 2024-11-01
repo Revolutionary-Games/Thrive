@@ -574,7 +574,7 @@ public static class SpawnHelpers
             var tempMemory = new Dictionary<BioProcess, float>();
 
             container.CreateOrganelleLayout(usedCellDefinition, workData1, workData2);
-            container.RecalculateOrganelleBioProcesses(ref bioProcesses, tempMemory);
+            container.RecalculateOrganelleBioProcesses(ref bioProcesses);
 
             organelleCount = container.Organelles!.Count;
 

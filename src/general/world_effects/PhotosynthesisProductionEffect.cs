@@ -50,8 +50,6 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             float oxygenBalance = 0;
             float co2Balance = 0;
 
-            Dictionary<BioProcess, float> tempStorage = new();
-
             foreach (var species in patch.SpeciesInPatch)
             {
                 // Only microbial photosynthesis and respiration are taken into account
@@ -69,7 +67,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 if (balance.TotalConsumption < balance.TotalProduction)
                     balanceModifier = balance.TotalConsumption / balance.TotalProduction;
 
-                ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses, tempStorage);
+                ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
                 foreach (var process in microbeProcesses)
                 {

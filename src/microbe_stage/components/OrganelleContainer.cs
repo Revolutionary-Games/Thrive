@@ -272,7 +272,7 @@ public static class OrganelleContainerHelpers
     public static void ResetOrganelleLayout(this ref OrganelleContainer container,
         ref CompoundStorage storageToUpdate, ref BioProcesses bioProcessesToUpdate, in Entity entity,
         ICellDefinition cellDefinition, Species baseReproductionCostFrom, IWorldSimulation worldSimulation,
-        List<Hex> workMemory1, List<Hex> workMemory2, Dictionary<BioProcess, float> tempStorage)
+        List<Hex> workMemory1, List<Hex> workMemory2)
     {
         container.CreateOrganelleLayout(cellDefinition, workMemory1, workMemory2);
         container.UpdateEngulfingSizeData(ref entity.Get<Engulfer>(), ref entity.Get<Engulfable>(),
@@ -314,7 +314,7 @@ public static class OrganelleContainerHelpers
 
         container.UpdateCompoundBagStorageFromOrganelles(ref storageToUpdate);
 
-        container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate, tempStorage);
+        container.RecalculateOrganelleBioProcesses(ref bioProcessesToUpdate);
 
         // Rescale health in case max health changed (for example the player picked a new membrane)
         ref var health = ref entity.Get<Health>();
@@ -330,7 +330,7 @@ public static class OrganelleContainerHelpers
     /// </summary>
     public static void OnOrganellesChanged(this ref OrganelleContainer container, ref CompoundStorage storage,
         ref BioProcesses bioProcesses, ref Engulfer engulfer, ref Engulfable engulfable,
-        ref CellProperties cellProperties, Dictionary<BioProcess, float> tempStorage)
+        ref CellProperties cellProperties)
     {
         container.OrganelleVisualsCreated = false;
         container.OrganelleComponentsCached = false;
@@ -339,16 +339,16 @@ public static class OrganelleContainerHelpers
         container.UpdateEngulfingSizeData(ref engulfer, ref engulfable, cellProperties.IsBacteria);
         container.UpdateCompoundBagStorageFromOrganelles(ref storage);
 
-        container.RecalculateOrganelleBioProcesses(ref bioProcesses, tempStorage);
+        container.RecalculateOrganelleBioProcesses(ref bioProcesses);
     }
 
     public static void RecalculateOrganelleBioProcesses(this ref OrganelleContainer container,
-        ref BioProcesses bioProcesses, Dictionary<BioProcess, float> tempStorage)
+        ref BioProcesses bioProcesses)
     {
         if (container.Organelles != null)
         {
             ProcessSystem.ComputeActiveProcessList(container.Organelles.Organelles,
-                ref bioProcesses.ActiveProcesses, new Dictionary<BioProcess, float>());
+                ref bioProcesses.ActiveProcesses);
         }
     }
 

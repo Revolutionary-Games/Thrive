@@ -15,7 +15,6 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
     private readonly List<Hex> hexWorkData1 = new();
     private readonly List<Hex> hexWorkData2 = new();
-    private readonly Dictionary<BioProcess, float> tempProcessListMemory = new();
 
     // Base systems
     private AnimationControlSystem animationControlSystem = null!;
@@ -144,8 +143,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
         // Do a full update apply with the general code method
         ref var cellProperties = ref microbe.Get<CellProperties>();
-        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2,
-            tempProcessListMemory);
+        cellProperties.ReApplyCellTypeProperties(microbe, species, species, this, hexWorkData1, hexWorkData2);
 
         // TODO: update species member component if species changed?
     }

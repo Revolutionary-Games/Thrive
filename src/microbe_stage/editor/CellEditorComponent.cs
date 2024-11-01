@@ -164,8 +164,6 @@ public partial class CellEditorComponent :
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
-    private readonly Dictionary<BioProcess, float> tempProcessListMemory = new();
-
     private readonly List<ShaderMaterial> temporaryDisplayerFetchList = new();
 
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
@@ -1995,8 +1993,6 @@ public partial class CellEditorComponent :
 
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
-
-        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes, tempProcessListMemory);
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
