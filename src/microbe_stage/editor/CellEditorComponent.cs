@@ -590,19 +590,7 @@ public partial class CellEditorComponent :
             new Basis(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation)),
             organelle.OrganelleModelPosition);
 
-        if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            // TODO: shouldn't this also use Constants.DEFAULT_HEX_SIZE here as the base scale?
-            organelleModel.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH *
-                flagellumLength + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH);
-        }
-        else
-        {
-            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
-        }
+        organelleModel.Scale = organelle.Definition.GetUpgradesSizeModification(organelle.Upgrades);
     }
 
     /// <summary>
@@ -2040,8 +2028,7 @@ public partial class CellEditorComponent :
             organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
                 cartesianPosition + shownOrganelleDefinition.ModelOffset);
 
-            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
+            organelleModel.Scale = shownOrganelleDefinition.GetUpgradesSizeModification(upgrades);
 
             organelleModel.Visible = true;
 
