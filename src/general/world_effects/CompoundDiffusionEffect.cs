@@ -43,10 +43,12 @@ public class CompoundDiffusionEffect : IWorldEffect
             out var destinationAmount);
 
         // Calculate compound amounts to move
-        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * moveModifier;
+        // At most half of the surplus can move as otherwise the source patch may end up with fewer compounds than
+        // the destination
+        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * 0.5f;
 
-        float density = (compound.Value.Density - destinationAmount.Density) * moveModifier;
-        return (ambient, density);
+        float density = (compound.Value.Density - destinationAmount.Density) * 0.5f;
+        return (ambient * moveModifier, density * moveModifier);
     }
 
     private void HandlePatchCompoundDiffusion()
