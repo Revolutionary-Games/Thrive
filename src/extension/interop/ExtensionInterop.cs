@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Godot;
-using Godot.NativeInterop;
 
 /// <summary>
 ///   Interop handling for the GDExtension for Thrive. In contrast <see cref="NativeInterop"/> handles the non-Godot
