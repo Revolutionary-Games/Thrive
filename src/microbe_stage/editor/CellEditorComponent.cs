@@ -1994,6 +1994,8 @@ public partial class CellEditorComponent :
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
+        ProcessSystem.ComputeActiveProcessList(editedMicrobeOrganelles, ref processes);
+
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
         foreach (var process in processes)

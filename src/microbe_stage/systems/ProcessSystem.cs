@@ -62,7 +62,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         result ??= new List<TweakedProcess>();
 
         // Make sure processes are unmarked
-        for (int i = 0; i < result.Count; i++)
+        for (int i = 0; i < result.Count; ++i)
         {
             if (result[i].Marked)
             {
@@ -125,7 +125,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         RemoveUnmarkedProcesses(result);
 
-        for (int i = 0; i < result.Count; i++)
+        for (int i = 0; i < result.Count; ++i)
         {
             if (result[i].Marked)
             {
@@ -729,7 +729,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         int firstUnmarkedID = -1;
         int unmarkedIDsBefore = 0;
 
-        for (int i = 0; i < processes.Count; i++)
+        for (int i = 0; i < processes.Count; ++i)
         {
             if (!processes[i].Marked)
             {
@@ -750,7 +750,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
                 else
                 {
-                    for (int j = firstUnmarkedID; j < i; j++)
+                    for (int j = firstUnmarkedID; j < i; ++j)
                     {
                         if (!processes[j].Marked)
                         {
