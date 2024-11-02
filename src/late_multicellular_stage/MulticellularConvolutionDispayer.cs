@@ -90,9 +90,10 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // (so that the code can be multithreaded).
         // This means that there is no surface immediately after calling this function and texture application
         // has to be deferred too.
-        NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f);
-
-        CallDeferred(nameof(ApplyTextures), mesh);
+        if (NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f))
+        {
+            CallDeferred(nameof(ApplyTextures), mesh);
+        }
     }
 
     private void ApplyTextures(ArrayMesh mesh)

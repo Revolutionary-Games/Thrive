@@ -22,7 +22,7 @@ extern "C"
     /// \return The version number
     [[maybe_unused]] API_EXPORT int32_t ExtensionGetVersion(ThriveConfig* thriveConfig);
 
-    [[maybe_unused]] API_EXPORT bool ArrayMeshUnwrap(ArrayMeshVariant* mesh, float texelSize);
+    [[maybe_unused]] API_EXPORT bool ArrayMeshUnwrap(GodotVariant* mesh, float texelSize);
 
     // ------------------------------------ //
     // DebugDrawer direct access calls
