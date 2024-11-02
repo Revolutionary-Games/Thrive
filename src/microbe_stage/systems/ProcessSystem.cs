@@ -123,14 +123,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
+        RemoveUnmarkedProcesses(result);
+
         for (int i = 0; i < result.Count; i++)
         {
-            if (!result[i].Marked)
-            {
-                result.RemoveAt(i);
-                --i;
-            }
-            else
+            if (result[i].Marked)
             {
                 var process = result[i];
                 process.Marked = false;
@@ -725,6 +722,50 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         ref var processes = ref entity.Get<BioProcesses>();
 
         ProcessNode(ref processes, ref storage, delta);
+    }
+
+    private static void RemoveUnmarkedProcesses(List<TweakedProcess> processes)
+    {
+        int firstUnmarkedID = -1;
+        int unmarkedIDsBefore = 0;
+
+        for (int i = 0; i < processes.Count; i++)
+        {
+            if (!processes[i].Marked)
+            {
+                if (firstUnmarkedID == -1)
+                    firstUnmarkedID = i;
+
+                ++unmarkedIDsBefore;
+            }
+            else if (unmarkedIDsBefore > 0)
+            {
+                // Process is marked and there are unmarked processes before
+
+                (processes[firstUnmarkedID], processes[i]) = (processes[i], processes[firstUnmarkedID]);
+
+                if (unmarkedIDsBefore == 1)
+                {
+                    firstUnmarkedID = i;
+                }
+                else
+                {
+                    for (int j = firstUnmarkedID; j < i; j++)
+                    {
+                        if (!processes[j].Marked)
+                        {
+                            firstUnmarkedID = j;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        if (firstUnmarkedID == -1)
+            return;
+
+        processes.RemoveRange(firstUnmarkedID, processes.Count - firstUnmarkedID);
     }
 
     private static float GetAmbientInBiome(Compound compound, IBiomeConditions biome, CompoundAmountType amountType)
