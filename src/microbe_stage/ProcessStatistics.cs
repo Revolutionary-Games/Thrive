@@ -72,6 +72,7 @@ public class ProcessStatistics
         if (forProcess.Process == null!)
             throw new ArgumentException("Invalid process marked used");
 #endif
+
         lock (Processes)
         {
             if (Processes.TryGetValue(forProcess, out var entry))
@@ -148,7 +149,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         }
     }
 
-    public bool Enabled => Process.SpeedMultiplier > 0.5f;
+    public bool Enabled => Process.SpeedMultiplier > 0;
 
     public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
 
@@ -392,7 +393,7 @@ public class AverageProcessStatistics : IProcessDisplayInfo
 
     public TweakedProcess Process => owner.Process;
 
-    public bool Enabled => owner.Process.SpeedMultiplier > 0.5f;
+    public bool Enabled => owner.Enabled;
 
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
