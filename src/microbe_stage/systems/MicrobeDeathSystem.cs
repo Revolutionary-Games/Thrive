@@ -257,6 +257,7 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
         if (health.DeathProcessed)
             return;
 
+        // Update membrane damaged status
         ref var cellProperties = ref entity.Get<CellProperties>();
         if (cellProperties.CreatedMembrane != null)
         {
@@ -271,9 +272,11 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             }
         }
 
+        // Then handle death for cells that should die
         if (health.CurrentHealth <= 0 || health.Dead)
         {
-            // Ensure dead flag is always set, as otherwise this will cause "zombies"
+            // Ensure dead flag is always set, as otherwise this will cause "zombies," so that this is always retried
+            // if the death processing cannot be done yet
             health.Dead = true;
 
             if (HandleMicrobeDeath(ref cellProperties, entity))
@@ -284,6 +287,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     private bool HandleMicrobeDeath(ref CellProperties cellProperties, in Entity entity)
     {
         EntityCommandRecorder? commandRecorder = null;
+
+        bool suppressChunks = false;
 
         if (entity.Has<AttachedToEntity>())
         {
@@ -299,9 +304,9 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             }
             else
             {
-                // Being engulfed handling is in OnKilled and OnExpelledFromEngulfment
-                // Dropping corpse chunks won't make sense while inside a cell (being engulfed)
-                return true;
+                // Dropping corpse chunks won't make sense while inside a cell (being engulfed), so partially the death
+                // handling is skipped
+                suppressChunks = true;
             }
         }
 
@@ -316,9 +321,8 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
             }
         }
 
-        if (OnKilled(ref cellProperties, entity, ref commandRecorder))
+        if (OnKilled(ref cellProperties, entity, ref commandRecorder, suppressChunks))
         {
-            // TODO: engulfed death doesn't trigger this mod interface...
             ModLoader.ModInterface.TriggerOnMicrobeDied(entity, entity.Has<PlayerMarker>());
 
             if (commandRecorder != null)
@@ -340,13 +344,18 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
     ///   True when the death could be processed, false if the entity isn't ready to process the death
     /// </returns>
     private bool OnKilled(ref CellProperties cellProperties, in Entity entity,
-        ref EntityCommandRecorder? commandRecorder)
+        ref EntityCommandRecorder? commandRecorder, bool suppressChunks)
     {
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         if (organelleContainer.Organelles == null)
         {
             GD.Print("Can't kill a microbe yet with uninitialized organelles");
+
+            // This might cause some bugs so there's a warning print here
+            if (suppressChunks)
+                GD.PrintErr("Will handle a microbe killed in engulfment as a retry that will forge this state");
+
             return false;
         }
 
@@ -412,30 +421,36 @@ public sealed class MicrobeDeathSystem : AEntitySetSystem<float>
 
         if (engulfable.PhagocytosisStep != PhagocytosisPhase.None)
         {
-            // When dying when engulfed all of the normal actions don't apply
+            // When dying when engulfed all the normal actions don't apply (this doesn't apply when ejected as the
+            // state is cleared to none before this system sees the dead microbe)
             // Special handling for this is in EngulfableHelpers.OnExpelledFromEngulfment
             return true;
         }
 
-        var compounds = entity.Get<CompoundStorage>().Compounds;
         ref var position = ref entity.Get<WorldPosition>();
 
         ApplyDeathVisuals(ref cellProperties, ref organelleContainer, ref position, entity, commandRecorder);
 
-        // Ejecting all engulfed objects on death are now handled by EngulfingSystem
-
-        // Releasing all the agents.
-
-        if (organelleContainer.AgentVacuoleCount > 0)
+        // Chunk handling when the cell was engulfed, is handled elsewhere
+        if (!suppressChunks)
         {
-            ReleaseAllAgents(ref position, entity, compounds, species, commandRecorder);
+            // Ejecting all engulfed objects on death are now handled by EngulfingSystem
+
+            var compounds = entity.Get<CompoundStorage>().Compounds;
+
+            // Releasing all the agents.
+
+            if (organelleContainer.AgentVacuoleCount > 0)
+            {
+                ReleaseAllAgents(ref position, entity, compounds, species, commandRecorder);
+            }
+
+            var isBacteria = cellProperties.IsBacteria;
+
+            // Eject compounds and build costs as corpse chunks of the cell
+            SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
+                position.Position, random, null, isBacteria);
         }
-
-        var isBacteria = cellProperties.IsBacteria;
-
-        // Eject compounds and build costs as corpse chunks of the cell
-        SpawnCorpseChunks(ref organelleContainer, compounds, spawnSystem, worldSimulation, commandRecorder,
-            position.Position, random, null, isBacteria);
 
         ref var soundPlayer = ref entity.Get<SoundEffectPlayer>();
         soundPlayer.StopAllSounds();
