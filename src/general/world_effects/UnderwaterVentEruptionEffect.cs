@@ -11,9 +11,9 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
     [JsonProperty]
     private GameWorld targetWorld;
 
-    private XoRoShiRo128starstar random;
+    private XoShiRo256starstar random;
 
-    public UnderwaterVentEruptionEffect(GameWorld targetWorld, XoRoShiRo128starstar random)
+    public UnderwaterVentEruptionEffect(GameWorld targetWorld, XoShiRo256starstar random)
     {
         this.targetWorld = targetWorld;
         this.random = random;
