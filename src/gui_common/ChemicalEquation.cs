@@ -380,9 +380,9 @@ public partial class ChemicalEquation : VBoxContainer
         return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 
-    private void ToggleButtonPressed(bool toggled)
+    private void ToggleButtonPressed()
     {
-        ProcessEnabled = toggled;
+        ProcessEnabled = !ProcessEnabled;
     }
 
     private void ApplyProcessToggleValue()

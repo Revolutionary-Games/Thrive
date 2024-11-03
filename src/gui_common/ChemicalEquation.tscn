@@ -64,4 +64,4 @@ layout_mode = 2
 mouse_filter = 2
 theme = SubResource("1")
 
-[connection signal="toggled" from="HBoxContainer/ToggleProcess" to="." method="ToggleButtonPressed"]
+[connection signal="pressed" from="HBoxContainer/ToggleProcess" to="." method="ToggleButtonPressed"]
