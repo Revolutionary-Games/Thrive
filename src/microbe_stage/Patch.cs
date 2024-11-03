@@ -23,6 +23,9 @@ public class Patch
 
     // ReSharper restore ArrangeObjectCreationWhenTypeEvident
 
+    [JsonProperty]
+    public List<WorldEffectVisuals> ActiveDisplayVisuals;
+
     /// <summary>
     ///   The current snapshot of this patch.
     /// </summary>
@@ -47,6 +50,7 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
+        ActiveDisplayVisuals = new List<WorldEffectVisuals>();
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -62,6 +66,7 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
+        ActiveDisplayVisuals = new List<WorldEffectVisuals>();
     }
 
     [JsonProperty]

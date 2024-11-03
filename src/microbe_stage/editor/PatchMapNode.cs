@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A single patch in PatchMapDrawer
 /// </summary>
-public partial class PatchMapNode : MarginContainer
+public partial class PatchMapNode : HBoxContainer
 {
     [Export]
     public NodePath? IconPath;
@@ -32,6 +32,12 @@ public partial class PatchMapNode : MarginContainer
 
     [Export]
     public string UnknownTextureFilePath = null!;
+
+#pragma warning disable CA2213
+    // Is public to easily edit
+    [Export]
+    public TextureRect MarginEruption = null!;
+#pragma warning restore CA2213
 
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;

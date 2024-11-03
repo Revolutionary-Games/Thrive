@@ -384,6 +384,10 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
+        foreach (var patch in Map.Patches)
+        {
+            patch.Value.ActiveDisplayVisuals = new List<WorldEffectVisuals>();
+        }
         TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);

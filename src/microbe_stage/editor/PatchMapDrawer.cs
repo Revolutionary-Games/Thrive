@@ -876,6 +876,9 @@ public partial class PatchMapDrawer : Control
 
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
 
+        if (patch.ActiveDisplayVisuals.Contains(WorldEffectVisuals.UnderwaterVentEruption))
+            node.MarginEruption.Visible = true;
+
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
     }

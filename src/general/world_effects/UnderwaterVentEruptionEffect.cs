@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
 
@@ -53,6 +54,8 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
                 patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
                     true, "PatchVents.svg");
+
+                patch.ActiveDisplayVisuals.Add(WorldEffectVisuals.UnderwaterVentEruption);
             }
         }
     }
