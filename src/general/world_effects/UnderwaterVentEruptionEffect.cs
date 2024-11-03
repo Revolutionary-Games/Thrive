@@ -57,7 +57,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
                 if (patch.Visibility == MapElementVisibility.Shown)
                 {
-                    targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
+                    targetWorld.LogEvent(new LocalizedString("ERUPTION_IN", patch.Name),
                         true, true, "PatchVents.svg");
                 }
 
