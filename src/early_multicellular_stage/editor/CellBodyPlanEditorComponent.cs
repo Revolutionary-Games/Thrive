@@ -259,18 +259,16 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // Show the cell that is about to be placed
-        if (Editor.ShowHover)
+        if (activeActionName != null && Editor.ShowHover)
         {
             GetMouseHex(out int q, out int r);
 
             var effectiveSymmetry = Symmetry;
 
-            CellType? cellType = null;
+            var cellType = CellTypeFromName(activeActionName);
 
-            if (MovingPlacedHex == null && activeActionName != null)
+            if (MovingPlacedHex == null)
             {
-                cellType = CellTypeFromName(activeActionName);
-
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
                 isPlacementProbablyValid = IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType))
@@ -278,29 +276,17 @@ public partial class CellBodyPlanEditorComponent :
                     Position = new Hex(q, r),
                 });
             }
-            else if (MovingPlacedHex != null)
+            else
             {
                 isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
-
-                if (MovingPlacedHex.Data != null)
-                {
-                    cellType = MovingPlacedHex.Data.CellType;
-                }
-                else
-                {
-                    GD.PrintErr("Moving placed hex has no cell data");
-                }
 
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            if (cellType != null)
-            {
-                RunWithSymmetry(q, r,
-                    (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
-                    effectiveSymmetry);
-            }
+            RunWithSymmetry(q, r,
+                (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                effectiveSymmetry);
         }
         else if (forceUpdateCellGraphics)
         {

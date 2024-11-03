@@ -336,22 +336,6 @@ public class OrganelleDefinition : IRegistryType
         return true;
     }
 
-    public Vector3 GetUpgradesSizeModification(OrganelleUpgrades? upgrades)
-    {
-        var scale = Constants.DEFAULT_HEX_SIZE;
-        var scaleZ = scale;
-
-        if (upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
-                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
-        }
-
-        return new Vector3(scale, scale, scaleZ);
-    }
-
     public bool ContainsHex(Hex hex)
     {
         foreach (var existingHex in Hexes)

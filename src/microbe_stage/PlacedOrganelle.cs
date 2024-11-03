@@ -416,9 +416,19 @@ public class PlacedOrganelle : IPositionedOrganelle, ICloneable
 
         // TODO: organelle scale used to be 1 + GrowthValue before the refactor, and now this is probably *more*
         // intended way, but might be worse looking than before
-        var scale = Definition.GetUpgradesSizeModification(Upgrades) + new Vector3(growth, growth, growth);
+        var scale = Constants.DEFAULT_HEX_SIZE + growth;
 
-        return scale;
+        float scaleZ = scale;
+
+        if (Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            var flagellumLength = flagellumUpgrades.LengthFraction;
+
+            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
+        }
+
+        return new Vector3(scale, scale, scaleZ);
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

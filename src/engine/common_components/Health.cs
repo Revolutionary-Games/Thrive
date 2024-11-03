@@ -187,7 +187,6 @@ public static class HealthHelpers
         if (health.Invulnerable && !goesThroughInvulnerability)
             return;
 
-        health.Dead = true;
         health.CurrentHealth = 0;
         health.Invulnerable = false;
     }

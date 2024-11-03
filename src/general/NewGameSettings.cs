@@ -220,12 +220,6 @@ public partial class NewGameSettings : ControlWithInput
 
     [Export]
     private CheckBox experimentalFeatures = null!;
-
-    [Export]
-    private Label experimentalExplanation = null!;
-
-    [Export]
-    private Label experimentalWarning = null!;
 #pragma warning restore CA2213
 
     private SelectedOptionsTab selectedOptionsTab;
@@ -354,8 +348,6 @@ public partial class NewGameSettings : ControlWithInput
         // Make sure non-lawk options are disabled if lawk is set to true on start-up
         UpdateLifeOriginOptions(lawkButton.ButtonPressed);
 
-        OnExperimentalFeaturesChanged(experimentalFeatures.ButtonPressed);
-
         if (Descending)
         {
             backButton.Visible = false;
@@ -423,7 +415,6 @@ public partial class NewGameSettings : ControlWithInput
 
         lawkButton.ButtonPressed = settings.LAWK;
         experimentalFeatures.ButtonPressed = settings.ExperimentalFeatures;
-        OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
         dayNightCycleButton.ButtonPressed = settings.DayNightCycleEnabled;
         dayLength.Value = settings.DayLength;
 
@@ -622,7 +613,6 @@ public partial class NewGameSettings : ControlWithInput
         settings.Origin = (WorldGenerationSettings.LifeOrigin)lifeOriginButton.Selected;
         settings.LAWK = lawkButton.ButtonPressed;
         settings.ExperimentalFeatures = experimentalFeatures.ButtonPressed;
-        OnExperimentalFeaturesChanged(settings.ExperimentalFeatures);
         settings.DayNightCycleEnabled = dayNightCycleButton.ButtonPressed;
         settings.DayLength = (int)dayLength.Value;
         settings.Seed = latestValidSeed;
@@ -1010,11 +1000,5 @@ public partial class NewGameSettings : ControlWithInput
         // TODO: check that the meta has the correct content?
 
         EmitSignal(SignalName.OnWantToSwitchToOptionsMenu);
-    }
-
-    private void OnExperimentalFeaturesChanged(bool enabled)
-    {
-        experimentalWarning.Visible = enabled;
-        experimentalExplanation.Visible = !enabled;
     }
 }

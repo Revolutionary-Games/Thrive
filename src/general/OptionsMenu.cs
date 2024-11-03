@@ -16,14 +16,6 @@ using Saving;
 /// </remarks>
 public partial class OptionsMenu : ControlWithInput
 {
-    /// <summary>
-    ///   Sliders aren't disabled by default (or at least the ones most recently added) when the relevant option is
-    ///   disabled as navigation focus isn't super clear in those cases due to:
-    ///   TODO: https://github.com/Revolutionary-Games/Thrive/issues/4010
-    /// </summary>
-    [Export]
-    public bool DisableInactiveSliders = false;
-
     // GUI Control Paths
 
     // Options control buttons.
@@ -384,9 +376,6 @@ public partial class OptionsMenu : ControlWithInput
 
     [Export]
     private Button bloomEffectToggle = null!;
-
-    [Export]
-    private Slider bloomSlider = null!;
 
     private Label gpuName = null!;
     private Label usedRendererName = null!;
@@ -790,7 +779,6 @@ public partial class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
-        chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
         damageEffect.ButtonPressed = settings.ScreenDamageEffect;
@@ -801,8 +789,6 @@ public partial class OptionsMenu : ControlWithInput
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
         displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
         bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
-        bloomSlider.Value = settings.BloomStrength;
-        bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -1877,7 +1863,6 @@ public partial class OptionsMenu : ControlWithInput
     private void OnChromaticAberrationToggled(bool toggle)
     {
         Settings.Instance.ChromaticEnabled.Value = toggle;
-        chromaticAberrationSlider.Editable = toggle || !DisableInactiveSliders;
 
         UpdateResetSaveButtonState();
     }
@@ -1993,14 +1978,6 @@ public partial class OptionsMenu : ControlWithInput
     private void OnBloomToggled(bool toggle)
     {
         Settings.Instance.BloomEnabled.Value = toggle;
-        bloomSlider.Editable = toggle || !DisableInactiveSliders;
-
-        UpdateResetSaveButtonState();
-    }
-
-    private void OnBloomStrengthChanged(float value)
-    {
-        Settings.Instance.BloomStrength.Value = value;
 
         UpdateResetSaveButtonState();
     }

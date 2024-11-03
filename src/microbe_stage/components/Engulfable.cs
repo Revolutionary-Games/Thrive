@@ -312,8 +312,6 @@ public static class EngulfableHelpers
                     // shortly destroyed
                     return;
                 }
-
-                GD.PrintErr("Killed a partially digested cell that didn't have organelles set yet");
             }
         }
 
@@ -335,13 +333,6 @@ public static class EngulfableHelpers
                     entityRecord.Set(new TimedLife(10));
 
                     worldSimulation.FinishRecordingEntityCommands(recorder);
-                }
-                else
-                {
-                    // Really ensure the entity cannot live too long if already despawning
-                    ref var timedLife = ref entity.Get<TimedLife>();
-                    if (timedLife.TimeToLiveRemaining > 10)
-                        timedLife.TimeToLiveRemaining = 10;
                 }
             }
 

@@ -132,15 +132,10 @@ public class Settings
         new(StrainBarVisibility.VisibleWhenOverZero);
 
     /// <summary>
-    ///   Controls if bloom is on or off, bloom strength is stored separately in <see cref="BloomStrength"/>
-    /// </summary>
-    public SettingValue<bool> BloomEnabled { get; private set; } = new(true);
-
-    /// <summary>
-    ///   Bloom effect strength (if 0 bloom option should be set disabled)
+    ///   Enable or disable bloom
     /// </summary>
     [JsonProperty]
-    public SettingValue<float> BloomStrength { get; private set; } = new(0.65f);
+    public SettingValue<bool> BloomEnabled { get; private set; } = new(false);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
