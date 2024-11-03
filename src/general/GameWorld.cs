@@ -154,6 +154,8 @@ public class GameWorld : ISaveLoadable
 
         // This relies on save loading filling this in
         TimedEffects = null!;
+
+        random = new XoRoShiRo128starstar();
     }
 
     [JsonProperty]
