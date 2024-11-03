@@ -206,9 +206,9 @@ anchors_preset = -1
 anchor_top = -0.139
 anchor_bottom = 1.0
 offset_left = 3.0
-offset_top = 1.84801
+offset_top = -3.152
 offset_right = 259.0
-offset_bottom = -44.0
+offset_bottom = -49.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -296,6 +296,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("28")
 text = "100"
 label_settings = ExtResource("38_ueybo")
+horizontal_alignment = 1
 
 [node name="DataValue" type="PanelContainer" parent="BottomRight"]
 layout_mode = 0
