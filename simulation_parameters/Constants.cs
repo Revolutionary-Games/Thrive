@@ -1163,6 +1163,10 @@ public static class Constants
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
     public const float GLUCOSE_MIN = 0.0f;
 
+    public const int VENT_ERUPTION_CHANCE = 15;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00008f;
+    public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
+
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
     public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 150;

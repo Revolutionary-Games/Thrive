@@ -66,6 +66,8 @@ public class GameWorld : ISaveLoadable
     /// </remarks>
     private AutoEvoRun? autoEvo;
 
+    private XoRoShiRo128starstar random;
+
     /// <summary>
     ///   Creates a new world
     /// </summary>
@@ -73,6 +75,8 @@ public class GameWorld : ISaveLoadable
     /// <param name="startingSpecies">Starting species for the player</param>
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this(settings)
     {
+        random = new XoRoShiRo128starstar();
+
         // Create timed effects for the world that happen when generations pass
         TimedEffects = new TimedWorldOperations();
 
@@ -91,6 +95,7 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+            TimedEffects.RegisterEffect("underwater_vent_eruption", new UnderwaterVentEruptionEffect(this, random));
 
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
