@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
-"PO-Revision-Date: 2024-10-31 16:07+0200\n"
+"POT-Creation-Date: 2024-11-03 13:29+0100\n"
+"PO-Revision-Date: 2024-11-03 13:31+0100\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.5\n"
+"X-Generator: Poedit 3.4.1\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1829,6 +1829,9 @@ msgstr "Error Loading"
 
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
+
+msgid "ERUPTION_IN"
+msgstr "Eruption in {0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -5288,9 +5291,6 @@ msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperat
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "The amount of glucose has been reduced to {0} of the previous amount."
-
 msgid "THE_DISTURBANCE"
 msgstr "The Disturbance"
 
@@ -5768,6 +5768,9 @@ msgstr "This is a debug build where the info below is probably not up to date"
 
 msgid "UNDERWATERCAVE"
 msgstr "Underwater cave"
+
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Underwater vent eruption"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Undiscovered"
@@ -8092,6 +8095,9 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."
