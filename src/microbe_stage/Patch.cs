@@ -484,7 +484,8 @@ public class Patch
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
     /// <param name="showInReport">If true, the event will be shown on report tab main page</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
-    public void LogEvent(LocalizedString description, bool highlight = false, bool showInReport = false, string? iconPath = null)
+    public void LogEvent(LocalizedString description, bool highlight = false,
+        bool showInReport = false, string? iconPath = null)
     {
         // Event already logged in timeline
         foreach (var gameEvent in currentSnapshot.EventsLog)
