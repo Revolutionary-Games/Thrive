@@ -3,11 +3,12 @@
 /// </summary>
 public class GameEventDescription
 {
-    public GameEventDescription(LocalizedString description, string? iconPath, bool highlighted)
+    public GameEventDescription(LocalizedString description, string? iconPath, bool highlighted, bool showInReport)
     {
         Description = description;
         IconPath = iconPath;
         Highlighted = highlighted;
+        ShowInReport = showInReport;
     }
 
     /// <summary>
@@ -24,4 +25,9 @@ public class GameEventDescription
     ///   If true, this event will be highlighted in the timeline UI
     /// </summary>
     public bool Highlighted { get; private set; }
+
+    /// <summary>
+    ///     Some events show up in report tab
+    /// </summary>
+    public bool ShowInReport { get; private set; }
 }

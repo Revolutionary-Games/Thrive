@@ -41,9 +41,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private Label timeIndicator = null!;
 
     [Export]
-    private Label glucoseReductionLabel = null!;
-
-    [Export]
     private CustomRichTextLabel externalEffectsLabel = null!;
 
     [Export]
@@ -72,6 +69,12 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     [Export]
     private LabelSettings autoEvoReportSegmentTitleFont = null!;
+
+    [Export]
+    private VBoxContainer majorEventsList = null!;
+
+    [Export]
+    private Label eventTemplate = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
@@ -209,13 +212,27 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
-    public void UpdateGlucoseReduction(float value)
+    public void UpdateEvents(List<GameEventDescription> events)
     {
-        var percentage = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
+        foreach (var currentLabel in majorEventsList.GetChildren())
+        {
+            if (currentLabel is Label && currentLabel != eventTemplate)
+            {
+                currentLabel.QueueFree();
+            }
+        }
 
-        // The amount of glucose has been reduced to {0} of the previous amount.
-        glucoseReductionLabel.Text = Localization.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
-            .FormatSafe(percentage);
+        foreach (var registeredEvent in events)
+        {
+            if (registeredEvent.ShowInReport)
+            {
+                var duplicate = (Label)eventTemplate.Duplicate();
+
+                majorEventsList.AddChild(duplicate);
+                duplicate.Text = registeredEvent.Description.ToString();
+                duplicate.Visible = true;
+            }
+        }
     }
 
     public void UpdateAutoEvoResults(RunResults results, string external)
@@ -291,7 +308,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
+        UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog.Where(
+            c => c.Key == Editor.CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
         UpdateTimeline();
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics();

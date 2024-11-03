@@ -60,7 +60,7 @@ public class GlucoseReductionEffect : IWorldEffect
                 var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
                 patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
+                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false, true,
                     "glucoseDown.png");
             }
 
@@ -79,13 +79,13 @@ public class GlucoseReductionEffect : IWorldEffect
         if (globalReduction >= 50)
         {
             targetWorld.LogEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
-                false, "glucoseDown.png");
+                false, true, "glucoseDown.png");
         }
         else if (globalReduction > 0)
         {
             targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
                     glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
-                "glucoseDown.png");
+                true, "glucoseDown.png");
         }
     }
 }

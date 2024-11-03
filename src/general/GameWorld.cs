@@ -388,6 +388,7 @@ public class GameWorld : ISaveLoadable
         {
             patch.Value.ActiveDisplayVisuals = new List<WorldEffectVisuals>();
         }
+
         TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
@@ -823,8 +824,9 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     /// <param name="description">The event's description</param>
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
+    /// <param name="showInReport">If true, the event will be shown on report tab main page</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
-    public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
+    public void LogEvent(LocalizedString description, bool highlight = false, bool showInReport = false, string? iconPath = null)
     {
         if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
         {
@@ -841,7 +843,7 @@ public class GameWorld : ISaveLoadable
             return;
         }
 
-        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
+        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight, showInReport));
     }
 
     /// <summary>

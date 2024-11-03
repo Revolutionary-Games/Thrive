@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   A single patch in PatchMapDrawer
 /// </summary>
-public partial class PatchMapNode : HBoxContainer
+public partial class PatchMapNode : MarginContainer
 {
     [Export]
     public NodePath? IconPath;

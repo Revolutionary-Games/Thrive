@@ -53,7 +53,13 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
                 patch.Biome.ModifyLongTermCondition(Compound.Carbondioxide, currentCarbonDioxide);
 
                 patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
-                    true, "PatchVents.svg");
+                    true, true, "PatchVents.svg");
+
+                if (patch.Visibility == MapElementVisibility.Shown)
+                {
+                    targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
+                        true, true, "PatchVents.svg");
+                }
 
                 patch.ActiveDisplayVisuals.Add(WorldEffectVisuals.UnderwaterVentEruption);
             }
