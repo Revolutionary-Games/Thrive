@@ -19,6 +19,14 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
 
     public float SpeedMultiplier = 1;
 
+    /// <summary>
+    ///   Indicates if this process is marked for a specific operation.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Should be reset to false by any function using this field.
+    ///   </para>
+    /// </remarks>
     internal bool Marked;
 
     [JsonConstructor]

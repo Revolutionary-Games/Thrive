@@ -61,17 +61,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         result ??= new List<TweakedProcess>();
 
-        // Make sure processes are unmarked
-        for (int i = 0; i < result.Count; ++i)
-        {
-            if (result[i].Marked)
-            {
-                var process = result[i];
-                process.Marked = false;
-                result[i] = process;
-            }
-        }
-
         // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
         // A basic linear scan over all organelles and their processes with combining duplicates into the result
         int count = organelles.Count;
@@ -123,6 +112,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
+        // Remove unmarked processes, so that old processes aren't kept around
+        // Also unmarks marked processes
         int writeIndex = 0;
 
         for (int readIndex = 0; readIndex < result.Count; ++readIndex)
