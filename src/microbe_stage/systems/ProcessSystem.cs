@@ -772,6 +772,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     // freeze the game)
                     lock (currentProcessStatistics)
                     {
+                        // Apply enabled status as this is not otherwise applied, this is necessary as the data is
+                        // a copy of a struct in the speed statistics so it doesn't get the updated value as the
+                        // equality comparison doesn't check the speed (because if it did that would break consistent
+                        // order between pause/resume of a process in the process panel)
+                        currentProcessStatistics.UpdateProcessDataIfNeeded(process);
+
                         currentProcessStatistics.BeginFrame(delta);
                         RunProcess(delta, processData, bag, process, ref processor, currentProcessStatistics);
                     }

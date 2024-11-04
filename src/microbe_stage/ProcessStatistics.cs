@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -115,7 +116,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   The process these statistics are for
     /// </summary>
-    public TweakedProcess Process { get; }
+    public TweakedProcess Process { get; private set; }
 
     public bool Used { get; internal set; }
 
@@ -291,6 +292,21 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs = null;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void UpdateProcessDataIfNeeded(in TweakedProcess process)
+    {
+        if (!MatchesUnderlyingProcess(process.Process))
+        {
+            GD.PrintErr("Wrong process info passed to SingleProcessStatistics for data update");
+            return;
+        }
+
+        // Copying the whole struct is needed here, even though really we'd just need to copy the speed multiplier as
+        // that's the only thing that is allowed to change
+        Process = process;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
         return Process.Process == process;
