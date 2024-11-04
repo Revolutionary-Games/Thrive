@@ -158,12 +158,15 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
             for (float aCoef = -abStep; aCoef <= 1.0f + abStep; aCoef += abStep)
             {
-                float acStep = 0.5f / (MathF.Abs(aUV.Lerp(bUV, aCoef).DistanceTo(cUV.Lerp(cUV, aCoef))) * dimension);
+                var left = aUV.Lerp(bUV, aCoef);
+                var right = cUV.Lerp(bUV, aCoef);
+
+                float acStep = 0.5f / (left.DistanceTo(right) * dimension);
 
                 for (float bCoef = -acStep; bCoef <= 1.0f + acStep; bCoef += acStep)
                 {
-                    int x = (int)(float.Lerp(float.Lerp(aUV.X, bUV.X, aCoef), float.Lerp(cUV.X, bUV.X, aCoef), bCoef) * dimension);
-                    int y = (int)(float.Lerp(float.Lerp(aUV.Y, bUV.Y, aCoef), float.Lerp(cUV.Y, bUV.Y, aCoef), bCoef) * dimension);
+                    int x = (int)(float.Lerp(left.X, right.X, bCoef) * dimension);
+                    int y = (int)(float.Lerp(left.Y, right.Y, bCoef) * dimension);
 
                     image.SetPixel(x, y, color);
                 }
