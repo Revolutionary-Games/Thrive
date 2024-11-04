@@ -72,8 +72,15 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         meshGen.UnitsFrom = minExtends;
         meshGen.UnitsTo = maxExtends;
 
+        GD.Print("Generating mesh");
+
         Mesh = meshGen.DualContour();
+
+        GD.Print("Applying initial material");
+
         Mesh.SurfaceSetMaterial(0, material);
+
+        GD.Print("Starting an unwrap and texturize task");
 
         Task uvUnwrap = new Task(() => UVUnwrapAndTexturize((ArrayMesh)Mesh));
         TaskExecutor.Instance.AddTask(uvUnwrap);
@@ -91,13 +98,76 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // has to be deferred too.
         if (NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f))
         {
+            GD.Print("Finishing initial material");
+
             CallDeferred(nameof(ApplyTextures), mesh);
         }
     }
 
     private void ApplyTextures(ArrayMesh mesh)
     {
+        GD.Print("Finally applying a material");
+
+        material.AlbedoTexture = ImageTexture.CreateFromImage(GenerateTexture(mesh));
+
         mesh.SurfaceSetMaterial(0, material);
+    }
+
+    private Image GenerateTexture(ArrayMesh mesh)
+    {
+        Image image = Image.CreateEmpty(2048, 2048, false, Image.Format.Rgba8);
+        image.Fill(Colors.White);
+
+        var arrays = mesh.SurfaceGetArrays(0);
+
+        var indices = arrays[(int)ArrayMesh.ArrayType.Index].AsInt32Array();
+        var uvs = arrays[(int)ArrayMesh.ArrayType.TexUV].AsVector2Array();
+
+        float min = float.MaxValue;
+        float max = float.MinValue;
+
+        foreach (var uv in uvs)
+        {
+            if (uv.X < min)
+                min = uv.X;
+            if (uv.Y < min)
+                min = uv.Y;
+            if (uv.X > max)
+                max = uv.X;
+            if (uv.Y > max)
+                max = uv.Y;
+        }
+
+        GD.Print("Min: " + min + ", max: " + max);
+
+        for (int i = 0; i < indices.Length; i += 3)
+        {
+            for (float j = 0; j < 1.0f; j += 0.01f)
+            {
+                int pixelPosX = (int)(float.Lerp(uvs[indices[i]].X, uvs[indices[i + 1]].X, j) * 2048f);
+                int pixelPosY = (int)(float.Lerp(uvs[indices[i]].Y, uvs[indices[i + 1]].Y, j) * 2048f);
+
+                image.SetPixel(pixelPosX, pixelPosY, Colors.Black);
+            }
+
+            for (float j = 0; j < 1.0f; j += 0.01f)
+            {
+                int pixelPosX = (int)(float.Lerp(uvs[indices[i + 1]].X, uvs[indices[i + 2]].X, j) * 2048f);
+                int pixelPosY = (int)(float.Lerp(uvs[indices[i + 1]].Y, uvs[indices[i + 2]].Y, j) * 2048f);
+
+                image.SetPixel(pixelPosX, pixelPosY, Colors.Black);
+            }
+
+            for (float j = 0; j < 1.0f; j += 0.01f)
+            {
+                int pixelPosX = (int)(float.Lerp(uvs[indices[i]].X, uvs[indices[i + 2]].X, j) * 2048f);
+                int pixelPosY = (int)(float.Lerp(uvs[indices[i]].Y, uvs[indices[i + 2]].Y, j) * 2048f);
+
+                image.SetPixel(pixelPosX, pixelPosY, Colors.Black);
+            }
+        }
+
+        return image;
     }
 
     private void ApplyAlpha()
