@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
+using Xoshiro.PRNG32;
 
 /// <summary>
 ///   Creature component to display it using convolution surfaces
@@ -108,62 +110,63 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
     {
         GD.Print("Finally applying a material");
 
-        material.AlbedoTexture = ImageTexture.CreateFromImage(GenerateTexture(mesh));
+        if (material != null)
+        {
+            Stopwatch sw = new();
+            sw.Start();
+
+            material.AlbedoTexture = ImageTexture.CreateFromImage(GenerateTexture(mesh));
+
+            sw.Stop();
+            GD.Print("Drew a texture in " + sw.Elapsed);
+        }
 
         mesh.SurfaceSetMaterial(0, material);
     }
 
     private Image GenerateTexture(ArrayMesh mesh)
     {
-        Image image = Image.CreateEmpty(2048, 2048, false, Image.Format.Rgba8);
+        int dimension = 2048;
+
+        Image image = Image.CreateEmpty(dimension, dimension, false, Image.Format.Rgba8);
         image.Fill(Colors.White);
 
         var arrays = mesh.SurfaceGetArrays(0);
 
         var indices = arrays[(int)ArrayMesh.ArrayType.Index].AsInt32Array();
         var uvs = arrays[(int)ArrayMesh.ArrayType.TexUV].AsVector2Array();
-
-        float min = float.MaxValue;
-        float max = float.MinValue;
-
-        foreach (var uv in uvs)
-        {
-            if (uv.X < min)
-                min = uv.X;
-            if (uv.Y < min)
-                min = uv.Y;
-            if (uv.X > max)
-                max = uv.X;
-            if (uv.Y > max)
-                max = uv.Y;
-        }
-
-        GD.Print("Min: " + min + ", max: " + max);
+        var vertices = arrays[(int)ArrayMesh.ArrayType.Vertex].AsVector3Array();
 
         for (int i = 0; i < indices.Length; i += 3)
         {
-            for (float j = 0; j < 1.0f; j += 0.01f)
+            var aUV = uvs[indices[i]];
+            var bUV = uvs[indices[i + 1]];
+            var cUV = uvs[indices[i + 2]];
+
+            // Vertex data
+            // var a = vertices[indices[i]];
+            // var b = vertices[indices[i + 1]];
+            // var c = vertices[indices[i + 2]];
+
+            var random = new XoShiRo128plus();
+
+            var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
+
+            // Drawing image based on triangles
+            // TODO: Find a better way
+            float abStep = 1.0f / (MathF.Abs(aUV.DistanceTo(bUV)) * dimension);
+
+            for (float aCoef = -abStep; aCoef <= 1.0f + abStep; aCoef += abStep)
             {
-                int pixelPosX = (int)(float.Lerp(uvs[indices[i]].X, uvs[indices[i + 1]].X, j) * 2048f);
-                int pixelPosY = (int)(float.Lerp(uvs[indices[i]].Y, uvs[indices[i + 1]].Y, j) * 2048f);
+                float acStep = 0.5f / (MathF.Abs(aUV.Lerp(bUV, aCoef).DistanceTo(cUV.Lerp(cUV, aCoef))) * dimension);
 
-                image.SetPixel(pixelPosX, pixelPosY, Colors.Black);
-            }
+                for (float bCoef = -acStep; bCoef <= 1.0f + acStep; bCoef += acStep)
+                {
+                    int x = (int)(float.Lerp(float.Lerp(aUV.X, bUV.X, aCoef), float.Lerp(cUV.X, bUV.X, aCoef), bCoef) * dimension);
+                    int y = (int)(float.Lerp(float.Lerp(aUV.Y, bUV.Y, aCoef), float.Lerp(cUV.Y, bUV.Y, aCoef), bCoef) * dimension);
 
-            for (float j = 0; j < 1.0f; j += 0.01f)
-            {
-                int pixelPosX = (int)(float.Lerp(uvs[indices[i + 1]].X, uvs[indices[i + 2]].X, j) * 2048f);
-                int pixelPosY = (int)(float.Lerp(uvs[indices[i + 1]].Y, uvs[indices[i + 2]].Y, j) * 2048f);
-
-                image.SetPixel(pixelPosX, pixelPosY, Colors.Black);
-            }
-
-            for (float j = 0; j < 1.0f; j += 0.01f)
-            {
-                int pixelPosX = (int)(float.Lerp(uvs[indices[i]].X, uvs[indices[i + 2]].X, j) * 2048f);
-                int pixelPosY = (int)(float.Lerp(uvs[indices[i]].Y, uvs[indices[i + 2]].Y, j) * 2048f);
-
-                image.SetPixel(pixelPosX, pixelPosY, Colors.Black);
+                    image.SetPixel(x, y, color);
+                }
             }
         }
 
