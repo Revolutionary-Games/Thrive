@@ -93,11 +93,43 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 {
                     if (result[k].Process == processKey)
                     {
-                        // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
-                        var addedProcess = new TweakedProcess(processKey, process.Rate + result[k].Rate);
-                        addedProcess.SpeedMultiplier = result[k].SpeedMultiplier;
-                        addedProcess.Marked = true;
-                        result[k] = addedProcess;
+                        var replacedEntry = result[k];
+
+                        if (!replacedEntry.Marked)
+                        {
+                            // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
+                            // considered to be a real result entry
+                            // To keep consistent ordering no matter what the old data is, we need to move the current
+                            // item to be in place of the first non-marked item
+                            for (int l = 0; l < k; ++l)
+                            {
+                                if (!result[l].Marked)
+                                {
+                                    // Swap positions of the data, as we will write to the k index (that is updated)
+                                    // we need to only write the moving away data to perform the swap
+                                    result[k] = result[l];
+                                    k = l;
+                                    break;
+                                }
+                            }
+
+                            // Add without copying the base rate as that is outdated data we don't want to add to
+                            result[k] = new TweakedProcess(processKey, process.Rate)
+                            {
+                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                                Marked = true,
+                            };
+                        }
+                        else
+                        {
+                            // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                            result[k] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
+                            {
+                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                                Marked = true,
+                            };
+                        }
+
                         added = true;
                         break;
                     }
@@ -107,9 +139,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     continue;
 
                 // If not found, then create a new result
-                var newProcess = new TweakedProcess(processKey, process.Rate);
-                newProcess.Marked = true;
-                result.Add(newProcess);
+                result.Add(new TweakedProcess(processKey, process.Rate)
+                {
+                    Marked = true,
+                });
             }
         }
 
@@ -127,7 +160,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
         }
 
-        result.RemoveRange(writeIndex, result.Count - writeIndex);
+        // This if is not strictly necessary as RemoveRange works with also 0 items
+        if (writeIndex < result.Count)
+            result.RemoveRange(writeIndex, result.Count - writeIndex);
     }
 
     /// <summary>
