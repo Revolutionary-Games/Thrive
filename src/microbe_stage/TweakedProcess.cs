@@ -59,9 +59,9 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
         if (Process != other.Process)
             return false;
 
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
-        return Rate == other.Rate && SpeedMultiplier == other.SpeedMultiplier
-            && ReferenceEquals(Process, other.Process);
+        // This equality check may not be very strict, because otherwise the ProcessPanel breaks! Specifically
+        // ProcessStatistics.GetAndMarkUsed doesn't return the correct entry
+        return Rate == other.Rate && ReferenceEquals(Process, other.Process);
     }
 
     public TweakedProcess Clone()
