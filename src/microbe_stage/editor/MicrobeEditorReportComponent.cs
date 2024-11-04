@@ -308,8 +308,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog.Where(
-            c => c.Key == Editor.CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
+        UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog
+            .Where(c => c.Key == Editor.CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
         UpdateTimeline();
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics();
