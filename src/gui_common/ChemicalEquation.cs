@@ -59,8 +59,6 @@ public partial class ChemicalEquation : VBoxContainer
     /// </summary>
     private bool hasNoInputs;
 
-    private bool lastToggle = true;
-
     [Signal]
     public delegate void ToggleProcessPressedEventHandler(ChemicalEquation thisEquation);
 
@@ -102,14 +100,22 @@ public partial class ChemicalEquation : VBoxContainer
 
     public bool ProcessEnabled
     {
-        get => lastToggle;
+        get
+        {
+            if (EquationFromProcess == null)
+                return true;
+
+            return EquationFromProcess.Enabled;
+        }
         set
         {
-            if (value == lastToggle)
+            if (EquationFromProcess == null)
+            {
+                GD.PrintErr("Display info isn't assigned to a ChemicalEquation, can't toggle process");
                 return;
+            }
 
-            lastToggle = value;
-            ApplyProcessToggleValue();
+            EmitSignal(SignalName.ToggleProcessPressed, this, value);
         }
     }
 
@@ -149,7 +155,6 @@ public partial class ChemicalEquation : VBoxContainer
     public override void _Ready()
     {
         UpdateEquation();
-        ApplyProcessToggleValue();
     }
 
     public override void _EnterTree()
@@ -245,6 +250,8 @@ public partial class ChemicalEquation : VBoxContainer
 
         // Environment conditions
         UpdateEnvironmentPart(environmentalInputs);
+
+        ApplyProcessToggleValue();
     }
 
     private void UpdateHeader()
@@ -373,11 +380,9 @@ public partial class ChemicalEquation : VBoxContainer
         return Localization.Translate("PROCESS_ENVIRONMENT_SEPARATOR");
     }
 
-    private void ToggleButtonPressed(bool toggled)
+    private void ToggleButtonPressed()
     {
-        ProcessEnabled = toggled;
-
-        EmitSignal(SignalName.ToggleProcessPressed, this);
+        ProcessEnabled = !ProcessEnabled;
     }
 
     private void ApplyProcessToggleValue()
