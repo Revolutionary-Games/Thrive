@@ -1522,7 +1522,7 @@ public static class Constants
     ///   How many times a target species needs to be engulfed for it to be completed (in the base case, this is
     ///   lowered with more organelle instances)
     /// </summary>
-    public const int ENDOSYMBIOSIS_COST_BASE = 6;
+    public const int ENDOSYMBIOSIS_COST_BASE = 5;
 
     public const int ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE = 1;
 
