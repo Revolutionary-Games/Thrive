@@ -53,7 +53,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This takes in an existing list to avoid allocations as much as possible
+    ///     This takes in an existing list to avoid allocations as much as possible. It is more efficient to clear the
+    ///     list if it is used for unrelated cells before calling this method.
     ///   </para>
     /// </remarks>
     public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
