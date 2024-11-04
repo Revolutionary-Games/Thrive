@@ -453,6 +453,7 @@ size_flags_vertical = 4
 tooltip_text = "SUNLIGHT"
 texture = ExtResource("15")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Control" type="Control" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
