@@ -1,4 +1,4 @@
-# Windows-specific godot-cpp configuration
+# Windows-specific godot-cpp configuration (temporary fix)
 cmake_minimum_required(VERSION 3.13)
 project(godot-cpp LANGUAGES CXX)
 
@@ -18,12 +18,11 @@ option(GODOT_CPP_WARNING_AS_ERROR "Treat warnings as errors" OFF)
 # Add path to modules
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/")
 
-# Default build type is Debug in the SConstruct
 if("${CMAKE_BUILD_TYPE}" STREQUAL "")
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-# Hot reload is enabled by default in Debug-builds
+# Hot reload is enabled by default in Debug-builds should be further tested
 if("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     option(GODOT_ENABLE_HOT_RELOAD "Build with hot reload support" ON)
 else()
@@ -94,11 +93,11 @@ add_custom_command(
     COMMENT "Generating bindings"
 )
 
-# Get Sources
+# Get Sources using GLOB
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.c**)
 file(GLOB_RECURSE HEADERS CONFIGURE_DEPENDS include/*.h**)
 
-# Handle object.cpp collision
+# Configure object.cpp 
 if(MSVC)
     set_source_files_properties(
         "${CMAKE_CURRENT_SOURCE_DIR}/src/core/object.cpp"
@@ -109,7 +108,6 @@ if(MSVC)
     )
 endif()
 
-# Define the library
 add_library(${PROJECT_NAME} STATIC
     ${SOURCES}
     ${HEADERS}
@@ -122,6 +120,7 @@ add_library(godot::cpp ALIAS ${PROJECT_NAME})
 if(MSVC)
     string(REGEX REPLACE "/W[0-4]" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
+# These are the survivors that earned their right to silence
     target_compile_options(${PROJECT_NAME} PRIVATE 
         /MP${CPU_CORES}
         /bigobj
@@ -166,7 +165,7 @@ if(MSVC)
         TYPED_METHOD_BIND
     )
 
-    # CPU-optimized unity build configuration
+# CPU core optimization
     if(CPU_CORES LESS 4)
         set(UNITY_BATCH_SIZE 10)
     elseif(CPU_CORES LESS 8)
