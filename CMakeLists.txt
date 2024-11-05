@@ -52,6 +52,7 @@ endfunction()
 # Windows detection function
 function(configure_windows_target target)
     if(NOT WIN32 OR NOT MSVC)
+        message(FATAL_ERROR "function called on non-Windows/MSVC platform for target ${target}")
         return()
     endif()
 
