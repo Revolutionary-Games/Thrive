@@ -138,10 +138,6 @@ function(configure_linux_target target)
 
     target_compile_options(${target} PRIVATE
         -Wall
-        -Wextra
-        -Wpedantic
-        -Wno-unknown-pragmas
-        -fPIC
         $<$<OR:$<CONFIG:Release>,$<CONFIG:Distribution>>:-O3>
     )
 
