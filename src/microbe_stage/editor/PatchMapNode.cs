@@ -33,18 +33,13 @@ public partial class PatchMapNode : MarginContainer
     [Export]
     public string UnknownTextureFilePath = null!;
 
-#pragma warning disable CA2213
-
-    // Is public to easily edit
-    [Export]
-    public TextureRect MarginEruption = null!;
-
-#pragma warning restore CA2213
-
     // TODO: Move this to Constants.cs
     private const float HalfBlinkInterval = 0.5f;
 
 #pragma warning disable CA2213
+
+    [Export]
+    private TextureRect MarginEruption = null!;
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
@@ -275,6 +270,12 @@ public partial class PatchMapNode : MarginContainer
                 return;
             }
         }
+    }
+
+    public void ChangeMarginIconVisibility(WorldEffectVisuals type, bool value)
+    {
+        if (type == WorldEffectVisuals.UnderwaterVentEruption)
+            MarginEruption.Visible = value;
     }
 
     public void OnSelect()

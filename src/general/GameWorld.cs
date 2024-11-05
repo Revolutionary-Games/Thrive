@@ -66,8 +66,6 @@ public class GameWorld : ISaveLoadable
     /// </remarks>
     private AutoEvoRun? autoEvo;
 
-    private XoShiRo256starstar random;
-
     /// <summary>
     ///   Creates a new world
     /// </summary>
@@ -75,7 +73,7 @@ public class GameWorld : ISaveLoadable
     /// <param name="startingSpecies">Starting species for the player</param>
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this(settings)
     {
-        random = new XoShiRo256starstar();
+        var random = new XoShiRo256starstar();
 
         // Create timed effects for the world that happen when generations pass
         TimedEffects = new TimedWorldOperations();
@@ -154,8 +152,6 @@ public class GameWorld : ISaveLoadable
 
         // This relies on save loading filling this in
         TimedEffects = null!;
-
-        random = new XoShiRo256starstar();
     }
 
     [JsonProperty]
@@ -345,6 +341,8 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void GenerateRandomSpeciesForFreeBuild(long seed = 0)
     {
+        Random random;
+
         if (seed == 0)
         {
             random = new XoShiRo256starstar();

@@ -27,7 +27,7 @@ public class GameEventDescription
     public bool Highlighted { get; private set; }
 
     /// <summary>
-    ///   Some events show up in report tab
+    ///   Some events show up in the report tab to draw extra attention to them
     /// </summary>
     public bool ShowInReport { get; private set; }
 }

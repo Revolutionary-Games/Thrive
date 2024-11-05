@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   An effect reducing the glucose amount (for the microbe stage to make early game easier, and the late game harder)
+///   Underwater vents only event producing hydrogen sulfide and carbon dioxide
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class UnderwaterVentEruptionEffect : IWorldEffect
