@@ -2,7 +2,6 @@
 cmake_minimum_required(VERSION 3.13)
 
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution" CACHE STRING "" FORCE)
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
 # Force x64 for Windows before project() call
 if(WIN32)
