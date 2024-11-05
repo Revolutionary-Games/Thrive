@@ -1,5 +1,8 @@
 shader_type spatial;
 
+// Setting this unshaded makes this very visible (but more glitchy at small sizes)
+// render_mode unshaded;
+
 // Any changes to these two must be matched in Membrane.gdshader
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
@@ -8,7 +11,7 @@ uniform float movementWigglyNess = 1.f;
 uniform float waviness = 20.f;
 uniform float waveSpeed = 15.f;
 
-uniform float fade = 0.f;
+uniform float fade : hint_range(0, 1) = 0.0f;
 
 uniform vec3 tint : source_color = vec3(0, 0.55, 0.80);
 
@@ -29,4 +32,7 @@ void fragment() {
 
     ALBEDO = final;
     ALPHA = waves * (1.f - UV.y) * fade;
+
+	// Increase minimum visibility to help in certain backgrounds to be visible
+	EMISSION = final * 0.18f;
 }
