@@ -1163,6 +1163,8 @@ public static class Constants
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
     public const float GLUCOSE_MIN = 0.0f;
 
+    public const float OTHER_GASES_DECAY_SPEED = 0.05f;
+
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
     public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 150;

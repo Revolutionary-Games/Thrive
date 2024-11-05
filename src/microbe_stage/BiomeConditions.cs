@@ -226,14 +226,19 @@ public class BiomeConditions : IBiomeConditions, ICloneable
 
         // Calculate current gases in absolute volume
         var gases = new Dictionary<Compound, float>();
+        float previousTotal = 0;
 
         foreach (var current in compounds)
         {
             if (simulationParameters.GetCompoundDefinition(current.Key).IsGas)
             {
-                gases[current.Key] = biomeDetails.GasVolume * current.Value.Ambient;
+                var absoluteAmount = biomeDetails.GasVolume * current.Value.Ambient;
+                gases[current.Key] = absoluteAmount;
+                previousTotal += absoluteAmount;
             }
         }
+
+        float previousOther = 1 * biomeDetails.GasVolume - previousTotal;
 
         // TODO: handling for keeping some space for other compounds?
 
@@ -254,6 +259,15 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         {
             totalGases += pair.Value;
         }
+
+        // Add some other compounds filling up stuff, but gradually remove them as other compounds build up
+        if (totalGases > previousTotal - previousOther)
+        {
+            previousOther *= 1 - Constants.OTHER_GASES_DECAY_SPEED;
+        }
+
+        if (previousOther > MathUtils.EPSILON)
+            totalGases += previousOther;
 
         // Finally scale each compound by its fraction of the total and apply it
         foreach (var gas in gases)
