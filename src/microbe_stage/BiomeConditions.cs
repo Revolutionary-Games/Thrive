@@ -260,7 +260,16 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         {
             TryGetCompound(gas.Key, CompoundAmountType.Biome, out var result);
 
-            result.Ambient = gas.Value / totalGases;
+            // Safety for when there are *no* gases
+            if (totalGases < MathUtils.EPSILON)
+            {
+                result.Ambient = 0;
+            }
+            else
+            {
+                result.Ambient = gas.Value / totalGases;
+            }
+
             ModifyLongTermCondition(gas.Key, result);
         }
     }
