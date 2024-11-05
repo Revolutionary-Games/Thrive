@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 using ThriveScriptsShared;
 
@@ -167,6 +168,100 @@ public class BiomeConditions : IBiomeConditions, ICloneable
                 throw new NotSupportedException("BiomeConditions doesn't have access to template");
             default:
                 throw new ArgumentOutOfRangeException(nameof(amountType), amountType, null);
+        }
+    }
+
+    /// <summary>
+    ///   Applies a set of compound value changes all at once. Handles environmental compound more intelligently than
+    ///   pure <see cref="ModifyLongTermCondition"/>. Note should be only called for long-timescale operations like
+    ///   <see cref="IWorldEffect"/> (and also this allocates some temporary work memory)
+    /// </summary>
+    /// <param name="biomeDetails">
+    ///   Needed details about the current patch, needed to know some physical properties of it for the gas handling
+    /// </param>
+    /// <param name="changes">
+    ///   The changes to apply. Changes that would negative compounds are clamped automatically
+    /// </param>
+    /// <param name="newCloudSizes">
+    ///   Specifies the compound cloud spawn sizes for all new non-environmental compounds
+    /// </param>
+    public void ApplyLongTermCompoundChanges(Biome biomeDetails, Dictionary<Compound, float> changes,
+        IReadOnlyDictionary<Compound, float> newCloudSizes)
+    {
+        var simulationParameters = SimulationParameters.Instance;
+
+        // Apply first non-environmental types as that is the easiest
+        foreach (var entry in changes)
+        {
+            var definition = simulationParameters.GetCompoundDefinition(entry.Key);
+            if (!definition.IsEnvironmental)
+            {
+                if (!TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
+                {
+                    if (!newCloudSizes.TryGetValue(entry.Key, out var cloudSize))
+                    {
+                        GD.PrintErr(
+                            $"Unknown cloud spawn size to use for {entry.Key}, using a default hardcoded value");
+                        cloudSize = 250000;
+                    }
+
+                    existing.Amount = cloudSize;
+                }
+
+                existing.Density += entry.Value;
+                ModifyLongTermCondition(entry.Key, existing);
+            }
+            else if (!definition.IsGas)
+            {
+                // Then non-gas environmental can also be applied here as these don't use custom handling
+                TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing);
+
+                existing.Ambient = Math.Clamp(existing.Ambient + entry.Value, 0, 1);
+                ModifyLongTermCondition(entry.Key, existing);
+            }
+        }
+
+        // Then apply environmental all at once as absolute values so that the gas percentages will not add up to over
+        // 100%
+
+        // Calculate current gases in absolute volume
+        var gases = new Dictionary<Compound, float>();
+
+        foreach (var current in compounds)
+        {
+            if (simulationParameters.GetCompoundDefinition(current.Key).IsGas)
+            {
+                gases[current.Key] = biomeDetails.GasVolume * current.Value.Ambient;
+            }
+        }
+
+        // TODO: handling for keeping some space for other compounds?
+
+        foreach (var change in changes)
+        {
+            if (!simulationParameters.GetCompoundDefinition(change.Key).IsGas)
+                continue;
+
+            gases.TryGetValue(change.Key, out var updatedValue);
+
+            updatedValue = Math.Clamp(updatedValue + change.Value, 0, 1);
+
+            gases[change.Key] = updatedValue;
+        }
+
+        float totalGases = 0;
+        foreach (var pair in gases)
+        {
+            totalGases += pair.Value;
+        }
+
+        // Finally scale each compound by its fraction of the total and apply it
+        foreach (var gas in gases)
+        {
+            TryGetCompound(gas.Key, CompoundAmountType.Biome, out var result);
+
+            result.Ambient = gas.Value / totalGases;
+            ModifyLongTermCondition(gas.Key, result);
         }
     }
 
