@@ -31,20 +31,24 @@ void vertex(){
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
 
-    float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.25f
+    float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.75f
         + movementWigglyNess * worldVertex.z * 1.5f + TIME / 4.0f;
-    float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.25f
+    float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.75f
         + movementWigglyNess * worldVertex.x * 1.5f + TIME / 4.0f;
     VERTEX.y += (sin(verticalAngle) + sin(horizontalAngle) + 2.0f)
-        * 0.25f * wigglyNess * abs(worldVertex.y);
+        * 0.35f * wigglyNess * abs(worldVertex.y);
 
-    vec2 verticalDerivative = vec2(abs(cos(verticalAngle)), 1.0f)
-        * 0.25f * wigglyNess * abs(worldVertex.y);
-    vec2 horizontalDerivative = vec2(abs(cos(horizontalAngle)), 1.0f)
-        * 0.25f * wigglyNess * abs(worldVertex.y);
+    vec2 verticalDerivative = vec2(cos(verticalAngle), 1.0f);
+    vec2 horizontalDerivative = vec2(cos(horizontalAngle), 1.0f);
 
-    NORMAL += vec3(-horizontalDerivative.x, horizontalDerivative.y + verticalDerivative.y, -verticalDerivative.x);
-    TANGENT += vec3(horizontalDerivative.y, -horizontalDerivative.x - verticalDerivative.x, verticalDerivative.y);
+    vec3 worldspaceNormal = normalize(vec3(-horizontalDerivative.x, (horizontalDerivative.y + verticalDerivative.y) * 0.5f, -verticalDerivative.x))
+        * 0.1f * wigglyNess * abs(worldVertex.y);
+    vec3 worldspaceTangent = normalize(vec3(horizontalDerivative.y, (-horizontalDerivative.x - verticalDerivative.x) * 0.5f, verticalDerivative.y))
+        * 0.1f * wigglyNess * abs(worldVertex.y);
+
+    // Convert worldspace normals into model space and apply
+    NORMAL += (inverse(MODEL_MATRIX) * vec4(worldspaceNormal, 0.0f)).xyz;
+    TANGENT += (inverse(MODEL_MATRIX) * vec4(worldspaceTangent, 0.0f)).xyz;
 
     NORMAL = normalize(NORMAL);
     TANGENT = normalize(TANGENT);
