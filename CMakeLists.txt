@@ -1,6 +1,9 @@
 # Native code side of Thrive
 cmake_minimum_required(VERSION 3.13)
 
+# Must be defined before project() call
+# Distribution build type is required by Jolt Physics library 
+# and is based on RelWithDebInfo to maintain debug symbols for crash reporting
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution" CACHE STRING "" FORCE)
 
 # Force x64 for Windows before project() call
