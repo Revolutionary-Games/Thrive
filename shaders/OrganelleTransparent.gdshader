@@ -4,14 +4,14 @@ render_mode depth_prepass_alpha, diffuse_lambert_wrap;
 uniform sampler2D texture : source_color;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1);
+uniform float dissolveValue : hint_range(0, 1) = 0.0;
 uniform float dissolveScale = 1.0;
 
-uniform float fresnelValue : hint_range(0, 1) = 1;
+uniform float fresnelValue : hint_range(0, 1) = 1.0;
 uniform bool fresnelActive = false;
 
-uniform float outlineWidth;
-uniform vec4 growColor : source_color;
+uniform float outlineWidth = 0.0;
+uniform vec4 growColor : source_color = vec4(0.5, 0.5, 0.5, 1);
 
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
