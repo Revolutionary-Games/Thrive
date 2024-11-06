@@ -47,11 +47,11 @@ void vertex(){
         * 0.1f * wigglyNess * abs(worldVertex.y);
 
     // Convert worldspace normals into model space and apply,
-	// also make wave normals less visible for faster microbes to reduce flickering
+    // also make wave normals less visible for faster microbes to reduce flickering
     NORMAL += (inverse(MODEL_MATRIX) * vec4(worldspaceNormal, 0.0f)).xyz
-	    * (1.5f - movementWigglyNess);
+        * (1.5f - movementWigglyNess);
     TANGENT += (inverse(MODEL_MATRIX) * vec4(worldspaceTangent, 0.0f)).xyz
-	    * (1.5f - movementWigglyNess);
+        * (1.5f - movementWigglyNess);
 
     NORMAL = normalize(NORMAL);
     TANGENT = normalize(TANGENT);
