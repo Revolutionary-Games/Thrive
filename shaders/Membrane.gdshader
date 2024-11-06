@@ -31,9 +31,9 @@ void vertex(){
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
 
-    float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.35f
+    float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.25f
         + wigglyNess * worldVertex.z * 1.5f + TIME / 4.0f;
-    float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.35f
+    float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.25f
         + wigglyNess * worldVertex.x * 1.5f + TIME / 4.0f;
     VERTEX.y += (sin(verticalAngle) + sin(horizontalAngle) + 2.0f)
         * 0.25f * wigglyNess * abs(worldVertex.y);
@@ -48,8 +48,10 @@ void vertex(){
 
     // Convert worldspace normals into model space and apply,
 	// also make wave normals less visible for faster microbes to reduce flickering
-    NORMAL += (inverse(MODEL_MATRIX) * vec4(worldspaceNormal, 0.0f)).xyz * (1.2f - movementWigglyNess);
-    TANGENT += (inverse(MODEL_MATRIX) * vec4(worldspaceTangent, 0.0f)).xyz * (1.2f - movementWigglyNess);
+    NORMAL += (inverse(MODEL_MATRIX) * vec4(worldspaceNormal, 0.0f)).xyz
+	    * (1.5f - movementWigglyNess);
+    TANGENT += (inverse(MODEL_MATRIX) * vec4(worldspaceTangent, 0.0f)).xyz
+	    * (1.5f - movementWigglyNess);
 
     NORMAL = normalize(NORMAL);
     TANGENT = normalize(TANGENT);
