@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-06 18:42+0000\n"
 "PO-Revision-Date: 2024-10-31 16:07+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
@@ -7080,7 +7080,7 @@ msgstr ""
 "\n"
 "[indent]—   [b]Glucose:[/b] Primary ATP storage for cells, and initial source of food for the player. Glucose is consumed by several organelles and proteins to produce ATP, the most notable being the metabolosomes and mitochondria as they are specifically used for glucose. When the player dies they will respawn with a reserve of glucose within their cell, allowing them to readily resume gameplay without fear of starvation. The player must take care should they rely on the readily available glucose found in the environment, as every generation the global glucose amounts decrease by 80%. Glucose clouds are white in color.[/indent]\n"
 "\n"
-"[indent]—   [b]Ammonia:[/b] Vital compounds required for reproduction. Ammonia is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the nitrogenase and nitrogen-fixing plastid can produce ammonia from ATP and nitrogen, saving the player from having to actively seek it out in the environment to reproduce. Ammonia clouds are orange in color.[/indent]\n"
+"[indent]—   [b]Ammonia:[/b] Vital compounds required for reproduction. Ammonia is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the nitrogenase and nitroplast can produce ammonia from ATP and nitrogen, saving the player from having to actively seek it out in the environment to reproduce. Ammonia clouds are orange in color.[/indent]\n"
 "\n"
 "[indent]—   [b]Phosphate:[/b] Identical in purpose to ammonia, phosphate is a requirement for reproduction. Unlike ammonia, however, there are no methods of synthesizing phosphate so it can only be found in the environment or from predation. Phosphate clouds are purple in color.[/indent]\n"
 "\n"
@@ -7198,42 +7198,12 @@ msgstr "No upgrades"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Nation Editor"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "No effects."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. More efficient than the prokaryotic [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "No modifications."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-"[b]Aerobic Nitrogen Fixation[/b]\n"
-"\n"
-"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]. More efficient than the equivalent process in [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Nitrogen-Fixing Plastids[/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-"We recommend replacing [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b] with [b]Nitrogen-Fixing Plastids[/b] when your cell develops a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b], as the latter can more efficiently generate resources needed for reproduction.\n"
-"\n"
-"As with [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b], [b]Nitrogen-Fixing Plastids[/b] are a sensible choice if you have [thrive:compound type=\"atp\"][/thrive:compound] to spare. Creating reproduction resources yourself removes a limiting factor on your ability to progress through generations more quickly."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "No upgrades."
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "No effects."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. Less efficient than the eukaryotic [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitrogen-Fixing Plastid[/url][/color][/b].\n"
+"Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. Less efficient than the eukaryotic [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b].\n"
 "\n"
 "Also performs some [b]Glycolysis[/b] to produce [thrive:compound type=\"atp\"][/thrive:compound] from [thrive:compound type=\"glucose\"][/thrive:compound]."
 
@@ -7244,7 +7214,7 @@ msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]Anaerobic Nitrogen Fixation[/b]: [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound]. Less efficient than the equivalent process in the [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitrogen-Fixing Plastid[/url][/color][/b].\n"
+"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound]. Less efficient than the equivalent process in the [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b].\n"
 "\n"
 "[b]Glycolysis[/b]\n"
 "\n"
@@ -7266,6 +7236,36 @@ msgstr ""
 "Since [b]Anaerobic Nitrogen Fixation[/b] consumes [thrive:compound type=\"atp\"][/thrive:compound], you should have excess [thrive:compound type=\"atp\"][/thrive:compound] available before adding this organelle to your cell. The small amount of [b]Glycolysis[/b] performed by [b]Nitrogenase[/b] is not enough to offset its own osmoregulation cost."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "No upgrades."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "No effects."
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. More efficient than the prokaryotic [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "No modifications."
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+"[b]Aerobic Nitrogen Fixation[/b]\n"
+"\n"
+"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]. More efficient than the equivalent process in [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Nitroplasts[/b]."
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+"We recommend replacing [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b] with [b]Nitroplasts[/b] when your cell develops a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b], as the latter can more efficiently generate resources needed for reproduction.\n"
+"\n"
+"As with [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b], [b]Nitroplasts[/b] are a sensible choice if you have [thrive:compound type=\"atp\"][/thrive:compound] to spare. Creating reproduction resources yourself removes a limiting factor on your ability to progress through generations more quickly."
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_NO"
@@ -7447,11 +7447,11 @@ msgstr "Multicellular Stage"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Myofibril"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Nitrogen-Fixing Plastid"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Nitroplast"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Nucleus"
