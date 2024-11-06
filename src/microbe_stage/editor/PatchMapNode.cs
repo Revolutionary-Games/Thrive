@@ -39,7 +39,8 @@ public partial class PatchMapNode : MarginContainer
 #pragma warning disable CA2213
 
     [Export]
-    private TextureRect MarginEruption = null!;
+    private TextureRect marginEruption = null!;
+
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
@@ -275,7 +276,7 @@ public partial class PatchMapNode : MarginContainer
     public void ChangeMarginIconVisibility(WorldEffectVisuals type, bool value)
     {
         if (type == WorldEffectVisuals.UnderwaterVentEruption)
-            MarginEruption.Visible = value;
+            marginEruption.Visible = value;
     }
 
     public void OnSelect()
