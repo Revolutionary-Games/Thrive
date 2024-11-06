@@ -1,25 +1,25 @@
 [gd_scene load_steps=6 format=3 uid="uid://d18jaljhot4pk"]
 
-[ext_resource type="Texture2D" uid="uid://d35w5tdi3k1xf" path="res://assets/textures/oxytoxy_fluid.png" id="1"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1_f788l"]
 [ext_resource type="ArrayMesh" uid="uid://bj5d562k8regp" path="res://assets/models/organelles/OxytoxyProteins.mesh" id="3"]
+[ext_resource type="Texture2D" uid="uid://cy5h6h7b5ru4o" path="res://assets/textures/ToxinGlands.png" id="3_hckb4"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
-[sub_resource type="ShaderMaterial" id="1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rwb03"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2")
+shader = ExtResource("1_f788l")
 shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.1
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = 0.05
 shader_parameter/growColor = Color(0.227451, 0.180392, 0.180392, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("1")
+shader_parameter/texture = ExtResource("3_hckb4")
 shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="OxytoxyProteins" type="MeshInstance3D"]
-transform = Transform3D(0.837087, 0.147601, -6.45184e-09, 0, -3.71547e-08, -0.85, -0.147601, 0.837087, -3.65902e-08, 0, -0.00876844, 0)
-material_override = SubResource("1")
+material_override = SubResource("ShaderMaterial_rwb03")
 mesh = ExtResource("3")

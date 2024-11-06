@@ -1,15 +1,16 @@
 [gd_scene load_steps=6 format=3 uid="uid://50shflx63ucp"]
 
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1"]
-[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/pilus.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/ExternalOrganelle.png" id="2"]
 [ext_resource type="ArrayMesh" uid="uid://uqj6aa1eetwf" path="res://assets/models/organelles/Pilus.mesh" id="3"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
-[sub_resource type="ShaderMaterial" id="1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8msh6"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
 shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.1
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = 0.05
@@ -21,5 +22,5 @@ shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="Pilus" type="MeshInstance3D"]
 transform = Transform3D(100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0)
-material_override = SubResource("1")
+material_override = SubResource("ShaderMaterial_8msh6")
 mesh = ExtResource("3")
