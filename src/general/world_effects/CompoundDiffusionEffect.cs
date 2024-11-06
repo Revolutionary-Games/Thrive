@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -56,6 +57,9 @@ public class CompoundDiffusionEffect : IWorldEffect
         var simulationParameters = SimulationParameters.Instance;
 
         var movedAmounts = new Dictionary<Patch, Dictionary<Compound, BiomeCompoundProperties>>();
+
+        var cloudSizes = new Dictionary<Compound, float>();
+        var changesToApplyAtOnce = new Dictionary<Compound, float>();
 
         // Calculate compound amounts that are moving. This loop checks patch by patch how many compounds that patch
         // wants to send to its neighbours.
@@ -139,25 +143,24 @@ public class CompoundDiffusionEffect : IWorldEffect
             if (!movedAmounts.TryGetValue(patch.Value, out var moved))
                 continue;
 
+            changesToApplyAtOnce.Clear();
+
             foreach (var entry in moved)
             {
-                // TODO: switch gas compound handling to work in absolute values and then convert back to percentages?
+                changesToApplyAtOnce[entry.Key] = entry.Value.Ambient + entry.Value.Density;
 
-                if (patch.Value.Biome.TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
+                if (entry.Value.Ambient != 0 && entry.Value.Density != 0)
                 {
-                    existing.Density += entry.Value.Density;
-                    existing.Ambient += entry.Value.Ambient;
-
-                    if (simulationParameters.GetCompoundDefinition(entry.Key).IsGas)
-                        existing.Clamp(0, 1);
-
-                    patch.Value.Biome.ModifyLongTermCondition(entry.Key, existing);
+                    GD.PrintErr("A compound type shouldn't have both moving density and ambient, this will cause an " +
+                        "incorrect result");
                 }
-                else
-                {
-                    patch.Value.Biome.ModifyLongTermCondition(entry.Key, entry.Value);
-                }
+
+                // Setup cloud size copying in case it ends up needed
+                if (entry.Value.Amount > 0)
+                    cloudSizes[entry.Key] = entry.Value.Amount;
             }
+
+            patch.Value.Biome.ApplyLongTermCompoundChanges(patch.Value.BiomeTemplate, changesToApplyAtOnce, cloudSizes);
         }
     }
 

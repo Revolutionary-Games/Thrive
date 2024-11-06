@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -15,6 +16,9 @@ public class VolcanismEffect : IWorldEffect
 
     private const float FloorCO2Strength = 0.005f;
     private const float FloorCO2Threshold = 0.1f;
+
+    private readonly Dictionary<Compound, float> addedCo2 = new();
+    private readonly Dictionary<Compound, float> cloudSizesDummy = new();
 
     [JsonProperty]
     private GameWorld targetWorld;
@@ -63,11 +67,9 @@ public class VolcanismEffect : IWorldEffect
     {
         if (!patch.Biome.TryGetCompound(Compound.Carbondioxide, CompoundAmountType.Biome, out var amount))
         {
-            patch.Biome.ModifyLongTermCondition(Compound.Carbondioxide, new BiomeCompoundProperties
-            {
-                Ambient = co2Strength,
-            });
+            addedCo2[Compound.Carbondioxide] = co2Strength;
 
+            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, addedCo2, cloudSizesDummy);
             return;
         }
 
@@ -76,8 +78,8 @@ public class VolcanismEffect : IWorldEffect
             return;
 
         // TODO: should this clamp or not?
-        amount.Ambient = Math.Clamp(amount.Ambient + co2Strength, 0, threshold);
+        addedCo2[Compound.Carbondioxide] = Math.Clamp(amount.Ambient + co2Strength, 0, threshold);
 
-        patch.Biome.ModifyLongTermCondition(Compound.Carbondioxide, amount);
+        patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, addedCo2, cloudSizesDummy);
     }
 }

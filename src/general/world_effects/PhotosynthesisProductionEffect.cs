@@ -130,8 +130,6 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
             changesToApply.Clear();
 
-            // TODO: add patch volumes, calculate absolute values and after that go back to fractional values
-
             if (oxygenBalance != 0)
                 changesToApply[Compound.Oxygen] = oxygenBalance;
 

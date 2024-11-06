@@ -107,7 +107,8 @@ public class BiomeConditions : IBiomeConditions, ICloneable
     ///   Allows access to modification of the compound values in the biome permanently. Should only be used by
     ///   auto-evo or map generator. After changing <see cref="AverageCompounds"/> must to be updated.
     ///   <see cref="ModifyLongTermCondition"/> is the preferred method to update this data which handles that
-    ///   automatically.
+    ///   automatically. Or for more advanced handling (of gases especially):
+    ///   <see cref="ApplyLongTermCompoundChanges"/>
     /// </summary>
     [JsonIgnore]
     public IDictionary<Compound, BiomeCompoundProperties> ChangeableCompounds => compounds;
