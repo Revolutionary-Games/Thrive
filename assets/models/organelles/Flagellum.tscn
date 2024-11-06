@@ -1,59 +1,47 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1cn5qg3v8fg0"]
 
 [ext_resource type="PackedScene" uid="uid://dk3i4rrc0gjjq" path="res://assets/models/organelles/Flagellum.glb" id="1"]
-[ext_resource type="Shader" path="res://shaders/OrganelleOpaque.gdshader" id="2_laoej"]
-[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_43ujs"]
-[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/ExternalOrganelle.png" id="4_3yarh"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_4pd8r"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_7rn5o"]
+[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/ExternalOrganelle.png" id="4_uwayx"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jlk70"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_provs"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2_laoej")
+shader = ExtResource("2_4pd8r")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.5
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = null
 shader_parameter/growColor = null
 shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("4_3yarh")
-shader_parameter/dissolveTexture = ExtResource("3_43ujs")
+shader_parameter/jiggleAmount = 0.0
+shader_parameter/texture = ExtResource("4_uwayx")
+shader_parameter/dissolveTexture = ExtResource("3_7rn5o")
 
 [node name="Flagellum" instance=ExtResource("1")]
 
 [node name="Skeleton3D" parent="Armature_001" index="0"]
-bones/0/position = Vector3(0.026737, -0.0103679, 0.987055)
-bones/0/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/1/position = Vector3(-0.011006, -0.06919, -0.06757)
-bones/2/position = Vector3(-0.177854, 0.0160232, -0.700238)
-bones/2/rotation = Quaternion(-0.707107, 2.80375e-23, 2.80375e-23, 0.707107)
-bones/3/position = Vector3(0.023521, 0.084848, -1.40271)
-bones/3/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/4/position = Vector3(0.254097, -0.023103, -2.07028)
-bones/4/rotation = Quaternion(-0.707107, 1.1215e-22, 1.1215e-22, 0.707107)
-bones/5/position = Vector3(-0.10214, -0.08822, -2.73785)
-bones/5/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/6/position = Vector3(-0.277863, 0.043686, -3.40542)
-bones/6/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/7/position = Vector3(0.119467, 0.088628, -4.07299)
-bones/7/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/8/position = Vector3(0.07876, -0.034706, 0.376399)
-bones/8/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/9/position = Vector3(-0.162795, -0.054775, -0.375976)
-bones/9/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/10/position = Vector3(-0.159348, 0.067499, -1.06892)
-bones/11/position = Vector3(0.199128, 0.052361, -1.73649)
-bones/11/rotation = Quaternion(-0.707107, -2.80375e-23, -2.80375e-23, 0.707107)
-bones/12/position = Vector3(0.147298, -0.082923, -2.40406)
-bones/12/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/13/position = Vector3(-0.271156, -0.039624, -3.07163)
-bones/13/rotation = Quaternion(-0.707107, -5.60749e-23, -5.60749e-23, 0.707107)
-bones/14/position = Vector3(-0.095174, 0.094042, -3.7392)
-bones/14/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
-bones/15/position = Vector3(0.274318, 0.023056, -4.40677)
-bones/15/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
+bones/0/position = Vector3(0.018158, -0.0121349, 0.987055)
+bones/1/position = Vector3(-0.077255, -0.057645, -0.06757)
+bones/2/position = Vector3(-0.21558, 0.03514, -0.735139)
+bones/3/position = Vector3(0.10268, 0.071748, -1.40271)
+bones/4/position = Vector3(0.200754, -0.058261, -2.07028)
+bones/5/position = Vector3(-0.187991, -0.070903, -2.73785)
+bones/6/position = Vector3(-0.195265, 0.078756, -3.40542)
+bones/7/position = Vector3(0.229396, 0.061931, -4.07299)
+bones/8/position = Vector3(0.021757, -0.03748, 0.376399)
+bones/9/position = Vector3(-0.196349, -0.029784, -0.375976)
+bones/10/position = Vector3(-0.141033, 0.077108, -1.08831)
+bones/11/position = Vector3(0.240594, 0.021294, -1.73649)
+bones/12/position = Vector3(0.032682, -0.099299, -2.40406)
+bones/13/position = Vector3(-0.308219, 0.000927, -3.07163)
+bones/14/position = Vector3(0.020694, 0.099601, -3.7392)
+bones/15/position = Vector3(0.282216, -0.030774, -4.40677)
 
-[node name="flagella" parent="Armature_001/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_jlk70")
+[node name="FlagellumMesh" parent="Armature_001/Skeleton3D" index="0"]
+material_override = SubResource("ShaderMaterial_provs")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "swim"

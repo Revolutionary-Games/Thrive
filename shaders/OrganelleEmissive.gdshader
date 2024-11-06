@@ -1,5 +1,4 @@
-// Intended for light-emitting vacuole
-
+// Intended for thermoplast and light-emitting vacuole
 shader_type spatial;
 render_mode depth_prepass_alpha, blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
