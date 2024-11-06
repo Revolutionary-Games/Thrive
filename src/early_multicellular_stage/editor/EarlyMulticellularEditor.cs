@@ -198,8 +198,8 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
         reportTab.UpdateReportTabPatchSelector();
 
-        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog.Where(
-            c => c.Key == CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
+        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog
+            .Where(c => c.Key == CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
 
         if (fresh)
         {
