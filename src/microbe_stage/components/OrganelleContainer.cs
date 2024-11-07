@@ -347,8 +347,7 @@ public static class OrganelleContainerHelpers
     {
         if (container.Organelles != null)
         {
-            ProcessSystem.ComputeActiveProcessList(container.Organelles.Organelles,
-                ref bioProcesses.ActiveProcesses);
+            ProcessSystem.ComputeActiveProcessList(container.Organelles.Organelles, ref bioProcesses.ActiveProcesses);
         }
     }
 

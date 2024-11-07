@@ -67,6 +67,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 if (balance.TotalConsumption < balance.TotalProduction)
                     balanceModifier = balance.TotalConsumption / balance.TotalProduction;
 
+                // Cleared for efficiency
+                microbeProcesses.Clear();
                 ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
                 foreach (var process in microbeProcesses)

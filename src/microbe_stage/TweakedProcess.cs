@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This is a struct as this just packs a few floats and a single object reference in here. This allows much tighter
+///     This is a struct as this just packs a few values and a single object reference in here. This allows much tighter
 ///     data packing when this is used in lists.
 ///   </para>
 /// </remarks>
@@ -18,6 +18,16 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
     public float Rate;
 
     public float SpeedMultiplier = 1;
+
+    /// <summary>
+    ///   Indicates if this process is marked for a specific operation.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Should be reset to false by any function using this field.
+    ///   </para>
+    /// </remarks>
+    internal bool Marked;
 
     [JsonConstructor]
     public TweakedProcess(BioProcess process, float rate = 1.0f)
@@ -49,7 +59,8 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
         if (Process != other.Process)
             return false;
 
-        // ReSharper disable once CompareOfFloatsByEqualityOperator
+        // This equality check may not be very strict, because otherwise the ProcessPanel breaks! Specifically
+        // ProcessStatistics.GetAndMarkUsed doesn't return the correct entry
         return Rate == other.Rate && ReferenceEquals(Process, other.Process);
     }
 
@@ -69,7 +80,7 @@ public struct TweakedProcess : IEquatable<TweakedProcess>
     public override string ToString()
     {
         if (SpeedMultiplier != 1)
-            return $"{Process} at {Rate}x (mult: #{SpeedMultiplier})";
+            return $"{Process} at {Rate}x (mult: {SpeedMultiplier})";
 
         return $"{Process} at {Rate}x";
     }
