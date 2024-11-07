@@ -262,7 +262,8 @@ public class BiomeConditions : IBiomeConditions, ICloneable
         }
 
         // Add some other compounds filling up stuff, but gradually remove them as other compounds build up
-        if (totalGases > previousTotal - previousOther)
+        // The slightly above one multiplier here is to make this a bit more often to trigger
+        if (totalGases > previousTotal - previousOther * 1.01f)
         {
             previousOther *= 1 - Constants.OTHER_GASES_DECAY_SPEED;
         }
