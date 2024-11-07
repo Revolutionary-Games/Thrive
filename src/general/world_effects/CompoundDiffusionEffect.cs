@@ -10,10 +10,6 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 public class CompoundDiffusionEffect : IWorldEffect
 {
-    // Tweak variable for how fast compounds diffuse between patches
-    private const float BaseMoveAmount = 1;
-    private const float BaseDistance = 1;
-
     [JsonProperty]
     private GameWorld targetWorld;
 
@@ -37,8 +33,8 @@ public class CompoundDiffusionEffect : IWorldEffect
         // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
         // resources like oxygen)
         // TODO: improve the formula here as sqrt isn't the best
-        float moveModifier = BaseMoveAmount /
-            MathF.Sqrt(BaseDistance + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
+        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT /
+            MathF.Sqrt(Constants.COMPOUND_DIFFUSE_BASE_DISTANCE + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
 
         adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
             out var destinationAmount);
