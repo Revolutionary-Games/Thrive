@@ -157,6 +157,6 @@ if(MSVC AND CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
 endif()
 
-message(STATUS "Building Thrive version ${NATIVE_LIBRARY_VERSION}")
+message(STATUS "Building ThriveNative version ${NATIVE_LIBRARY_VERSION}")
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "Install prefix: ${CMAKE_INSTALL_PREFIX}")
