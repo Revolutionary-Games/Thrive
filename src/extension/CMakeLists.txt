@@ -5,13 +5,13 @@
 # libraries are not included and need to be separately downloaded
 # (for example from our official Thrive git repository)
 
-add_library(thrive_extension SHARED)
-
-# Collect all source files recursively
-file(GLOB_RECURSE EXTENSION_SOURCES 
-    "*.cpp"
-    "*.hpp"
-    "*.h"
+add_library(thrive_extension SHARED
+  "${PROJECT_BINARY_DIR}/Include.h"
+  core/RegisterThriveTypes.cpp core/RegisterThriveTypes.hpp
+  core/ThriveConfig.cpp core/ThriveConfig.hpp
+  interop/ExtensionInterop.cpp interop/ExtensionInterop.h
+  nodes/DebugDrawer.cpp nodes/DebugDrawer.hpp
+  core/GodotJoltConversions.hpp
 )
 
 target_sources(thrive_extension PRIVATE ${EXTENSION_SOURCES})
