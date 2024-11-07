@@ -876,11 +876,7 @@ public partial class PatchMapDrawer : Control
 
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
 
-        foreach (var effect in Enum.GetValues(typeof(WorldEffectVisuals)))
-        {
-            if (patch.ActiveDisplayVisuals.Contains((WorldEffectVisuals)effect))
-                node.ChangeMarginIconVisibility((WorldEffectVisuals)effect, true);
-        }
+        patch.UpdatePatchNodeVisuals(node);
 
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);

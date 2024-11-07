@@ -1,5 +1,5 @@
 ﻿public enum WorldEffectVisuals
 {
-    Default,
+    None,
     UnderwaterVentEruption,
 }

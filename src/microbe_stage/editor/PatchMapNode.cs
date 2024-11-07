@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -273,10 +274,12 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ChangeMarginIconVisibility(WorldEffectVisuals type, bool value)
+    public void ShowEventVisuals(List<WorldEffectVisuals> list)
     {
-        if (type == WorldEffectVisuals.UnderwaterVentEruption)
-            marginEruption.Visible = value;
+        foreach (var item in list)
+        {
+            marginEruption.Visible = item == WorldEffectVisuals.UnderwaterVentEruption;
+        }
     }
 
     public void OnSelect()

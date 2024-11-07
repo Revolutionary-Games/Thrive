@@ -382,7 +382,7 @@ public class GameWorld : ISaveLoadable
     {
         foreach (var patch in Map.Patches)
         {
-            patch.Value.ActiveDisplayVisuals = new List<WorldEffectVisuals>();
+            patch.Value.ClearPatchNodeVisuals();
         }
 
         TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;

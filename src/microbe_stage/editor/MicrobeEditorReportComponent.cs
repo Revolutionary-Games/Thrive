@@ -73,8 +73,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     [Export]
     private VBoxContainer majorEventsList = null!;
 
-    [Export]
-    private Label eventTemplate = null!;
+    private PackedScene eventTemplate = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
@@ -121,6 +120,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
         speciesPopulationChart = speciesChartContainer.GetItem<LineChart>("SpeciesChart");
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
+
+        eventTemplate = GD.Load<PackedScene>("res://src/microbe_stage/editor/ReportEventLabelTemplate.tscn");
 
         temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.svg");
 
@@ -216,21 +217,18 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         foreach (var currentLabel in majorEventsList.GetChildren())
         {
-            if (currentLabel is Label && currentLabel != eventTemplate)
-            {
-                currentLabel.QueueFree();
-            }
+            currentLabel.QueueFree();
         }
 
         foreach (var registeredEvent in events)
         {
             if (registeredEvent.ShowInReport)
             {
-                var duplicate = (Label)eventTemplate.Duplicate();
+                var label = eventTemplate.Instantiate<Label>();
 
-                majorEventsList.AddChild(duplicate);
-                duplicate.Text = registeredEvent.Description.ToString();
-                duplicate.Visible = true;
+                majorEventsList.AddChild(label);
+                label.Text = registeredEvent.Description.ToString();
+                label.Visible = true;
             }
         }
     }

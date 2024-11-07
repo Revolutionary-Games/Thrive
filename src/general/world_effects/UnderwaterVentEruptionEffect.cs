@@ -60,7 +60,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
                         true, true, "PatchVents.svg");
                 }
 
-                patch.ActiveDisplayVisuals.Add(WorldEffectVisuals.UnderwaterVentEruption);
+                patch.ApplyPatchNodeVisuals(WorldEffectVisuals.UnderwaterVentEruption);
             }
         }
     }

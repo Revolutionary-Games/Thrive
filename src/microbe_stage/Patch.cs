@@ -16,9 +16,6 @@ using Saving.Serializers;
 [UseThriveSerializer]
 public class Patch
 {
-    [JsonProperty]
-    public List<WorldEffectVisuals> ActiveDisplayVisuals;
-
     // Needed for translation extraction
     // ReSharper disable ArrangeObjectCreationWhenTypeEvident
     private static readonly LocalizedString UnknownPatchName = new LocalizedString("UNKNOWN_PATCH");
@@ -39,6 +36,12 @@ public class Patch
     [JsonProperty]
     private readonly Dictionary<Species, long> gameplayPopulations = new();
 
+    /// <summary>
+    ///   The current effects on patch node in the patch map
+    /// </summary>
+    [JsonProperty]
+    private List<WorldEffectVisuals> activeWorldEffectVisuals;
+
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
@@ -50,7 +53,7 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
-        ActiveDisplayVisuals = new List<WorldEffectVisuals>();
+        activeWorldEffectVisuals = new List<WorldEffectVisuals>();
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -66,7 +69,7 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
-        ActiveDisplayVisuals = new List<WorldEffectVisuals>();
+        activeWorldEffectVisuals = new List<WorldEffectVisuals>();
     }
 
     [JsonProperty]
@@ -526,6 +529,21 @@ public class Patch
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
+    }
+
+    public void ApplyPatchNodeVisuals(WorldEffectVisuals visual)
+    {
+        activeWorldEffectVisuals.Add(visual);
+    }
+
+    public void ClearPatchNodeVisuals()
+    {
+        activeWorldEffectVisuals = new List<WorldEffectVisuals>();
+    }
+
+    public void UpdatePatchNodeVisuals(PatchMapNode node)
+    {
+        node.ShowEventVisuals(activeWorldEffectVisuals);
     }
 
     private float GetAmbientCompound(Compound compound, CompoundAmountType option)
