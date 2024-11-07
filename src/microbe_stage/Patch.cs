@@ -526,11 +526,6 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public override string ToString()
-    {
-        return $"Patch \"{Name}\"";
-    }
-
     public void ApplyPatchNodeVisuals(WorldEffectVisuals visual)
     {
         activeWorldEffectVisuals.Add(visual);
@@ -544,6 +539,11 @@ public class Patch
     public void UpdatePatchNodeVisuals(PatchMapNode node)
     {
         node.ShowEventVisuals(activeWorldEffectVisuals);
+    }
+
+    public override string ToString()
+    {
+        return $"Patch \"{Name}\"";
     }
 
     private float GetAmbientCompound(Compound compound, CompoundAmountType option)
