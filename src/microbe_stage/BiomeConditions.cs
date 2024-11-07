@@ -241,8 +241,6 @@ public class BiomeConditions : IBiomeConditions, ICloneable
 
         float previousOther = 1 * biomeDetails.GasVolume - previousTotal;
 
-        // TODO: handling for keeping some space for other compounds?
-
         foreach (var change in changes)
         {
             if (!simulationParameters.GetCompoundDefinition(change.Key).IsGas)
@@ -250,7 +248,7 @@ public class BiomeConditions : IBiomeConditions, ICloneable
 
             gases.TryGetValue(change.Key, out var updatedValue);
 
-            updatedValue = Math.Clamp(updatedValue + change.Value, 0, 1);
+            updatedValue = Math.Clamp(updatedValue + change.Value, 0, biomeDetails.GasVolume);
 
             gases[change.Key] = updatedValue;
         }
