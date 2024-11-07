@@ -5,10 +5,6 @@ add_library(early_checks SHARED
   ../helpers/CPUCheck.hpp
   ../helpers/CPUCheckResult.h)
 
-# Make the library runnable on really old CPUs (and turn on extra warnings)
-if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
-  # TODO: really old CPU support for MSVC
-
 target_sources(early_checks PRIVATE ${EARLY_CHECK_SOURCES})
 
 # Print files and configure build
