@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.13)
 # Must be defined before project() call
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution" CACHE STRING "" FORCE)
 
-project(Thrive VERSION 1.0 LANGUAGES CXX)
+project(Thrive)
 
 # Add our custom CMake scripts directory
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Scripts")
