@@ -1,13 +1,13 @@
 # Early load library that allows checking things before loading the main library,
 # which causes global constructors to run that may already do some complex stuff
-add_library(early_checks SHARED)
+add_library(early_checks SHARED
+  EarlyInterop.h EarlyInterop.cpp
+  ../helpers/CPUCheck.hpp
+  ../helpers/CPUCheckResult.h)
 
-# Collect all source files recursively
-file(GLOB_RECURSE EARLY_CHECK_SOURCES 
-    "*.cpp"
-    "*.hpp"
-    "*.h"
-)
+# Make the library runnable on really old CPUs (and turn on extra warnings)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+  # TODO: really old CPU support for MSVC
 
 target_sources(early_checks PRIVATE ${EARLY_CHECK_SOURCES})
 
@@ -89,7 +89,11 @@ if(WIN32 AND MSVC)
         VS_GLOBAL_DisableSpecificWarnings "MSB8027;MSB8065;4244;4267;4996;4273;4141;9025;9035;9036;4005;4574"
     )
 else()
-    # Linux-specific compiler options
+
+  # For now, no debug symbols as it should be impossible to crash in this
+  # simple library
+  # target_compile_options(early_checks PRIVATE $<$<CONFIG:Release>:-g -O3>
+  #   $<$<CONFIG:Distribution>:-g -O3>)
     target_compile_options(early_checks PRIVATE
         -march=sandybridge  # Minimum CPU support for required instructions
         -Wall 
@@ -105,7 +109,6 @@ else()
         target_compile_options(early_checks PRIVATE -Werror)
     endif()
 
-    # Linux-specific target properties
     set_target_properties(early_checks PROPERTIES
         POSITION_INDEPENDENT_CODE ON
         CXX_VISIBILITY_PRESET hidden
@@ -113,7 +116,6 @@ else()
     )
 endif()
 
-# Common properties for both OS
 set_target_properties(early_checks PROPERTIES
     CXX_STANDARD 20
     CXX_STANDARD_REQUIRED ON
