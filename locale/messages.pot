@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-03 13:29+0100\n"
+"POT-Creation-Date: 2024-11-07 15:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,9 +290,9 @@ msgstr ""
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:554
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:521
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:525
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:552
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:511
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:515
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:246
 msgid "ATMOSPHERIC_GASSES"
 msgstr ""
@@ -385,7 +385,7 @@ msgstr ""
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:198
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:197
 msgid "AUTO_EVO"
 msgstr ""
 
@@ -393,16 +393,16 @@ msgstr ""
 msgid "AUTO_EVO_EXPLORING_TOOL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:268
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:266
 msgid "AUTO_EVO_FAILED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:266
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:256
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:531
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:273
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:263
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
@@ -414,7 +414,7 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:274
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:272
 msgid "AUTO_EVO_RUN_STATUS"
 msgstr ""
 
@@ -1109,9 +1109,9 @@ msgstr ""
 msgid "COMPLETE_ACTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:558
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:530
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:534
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:556
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:520
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:524
 #: ../src/microbe_stage/editor/upgrades/ChemoreceptorUpgradeGUI.tscn:33
 #: ../src/microbe_stage/gui/CompoundPanels.tscn:662
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:329
@@ -2400,7 +2400,7 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:60
+#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:59
 msgid "ERUPTION_IN"
 msgstr ""
 
@@ -2414,6 +2414,10 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:2339
 msgid "ESTUARY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/PatchMapNode.tscn:99
+msgid "EVENT_TOOLTIP_ERUPTION"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:569
@@ -2485,7 +2489,7 @@ msgstr ""
 msgid "EXTERNAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:289
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:279
 msgid "EXTERNAL_EFFECTS"
 msgstr ""
 
@@ -2497,13 +2501,13 @@ msgstr ""
 msgid "EXTINCTION_CAPITAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:567
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:578
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:565
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:576
 msgid "EXTINCT_FROM_PATCH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:566
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:579
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:564
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:577
 msgid "EXTINCT_FROM_THE_PLANET"
 msgstr ""
 
@@ -2712,7 +2716,7 @@ msgstr ""
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:209
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:208
 msgid "FOOD_CHAIN"
 msgstr ""
 
@@ -2846,7 +2850,7 @@ msgstr ""
 msgid "GLES3"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:379
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:369
 msgid "GLOBAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4205,7 +4209,7 @@ msgstr ""
 msgid "LOAD_INVALID_SAVE_WARNING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:391
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:381
 msgid "LOCAL_INITIAL_LETTER"
 msgstr ""
 
@@ -4308,7 +4312,7 @@ msgid "MEDIASTOP"
 msgstr ""
 
 #: ../src/auto-evo/EvolutionaryTree.cs:410
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:204
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:205
 #: ../src/microbe_stage/editor/TimelineTab.cs:258
 msgid "MEGA_YEARS"
 msgstr ""
@@ -5128,7 +5132,7 @@ msgstr ""
 #: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1230
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:174
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:564
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:554
 msgid "NEXT_CAPITAL"
 msgstr ""
 
@@ -5709,7 +5713,7 @@ msgstr ""
 msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:176
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:175
 #: ../src/microbe_stage/PatchMapGenerator.cs:826
 msgid "PATCH_NAME"
 msgstr ""
@@ -5791,7 +5795,7 @@ msgstr ""
 #: ../src/gui_common/CompoundAmount.cs:247
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:271
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:297
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:513
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:511
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:423
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:499
@@ -5834,7 +5838,7 @@ msgstr ""
 msgid "PHOTOSYNTHESIS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:472
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:462
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:156
 msgid "PHYSICAL_CONDITIONS"
 msgstr ""
@@ -6826,7 +6830,7 @@ msgstr ""
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:556
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:554
 msgid "SPECIES_LIST"
 msgstr ""
 
@@ -6839,8 +6843,8 @@ msgstr ""
 msgid "SPECIES_NAME_TOO_LONG_POPUP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:462
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:466
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:452
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:456
 msgid "SPECIES_POPULATION"
 msgstr ""
 
@@ -6902,7 +6906,7 @@ msgid "START_RESEARCH"
 msgstr ""
 
 #: ../src/microbe_stage/editor/EditorCommonBottomLeftButtons.tscn:46
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:456
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:446
 #: ../src/microbe_stage/HUDBottomBar.tscn:109
 msgid "STATISTICS"
 msgstr ""
@@ -7104,7 +7108,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/compounds.json:206
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:757
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:453
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:515
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:505
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:213
 msgid "SUNLIGHT"
 msgstr ""
@@ -7220,8 +7224,8 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:225
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:751
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:396
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:508
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:394
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:498
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:168
 msgid "TEMPERATURE"
 msgstr ""
@@ -7352,15 +7356,15 @@ msgstr ""
 msgid "TIDEPOOL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:220
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:219
 msgid "TIMELINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:373
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:363
 msgid "TIMELINE_GLOBAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:385
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:375
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
@@ -7401,7 +7405,7 @@ msgstr ""
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:211
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:212
 msgid "TIME_INDICATOR_TOOLTIP"
 msgstr ""
 
@@ -7770,7 +7774,7 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:55
+#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:54
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
@@ -7779,7 +7783,7 @@ msgstr ""
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/Patch.cs:25
+#: ../src/microbe_stage/Patch.cs:22
 msgid "UNDISCOVERED_PATCH"
 msgstr ""
 
@@ -7825,7 +7829,7 @@ msgid "UNKNOWN_ORGANELLE_SYMBOL"
 msgstr ""
 
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:109
-#: ../src/microbe_stage/Patch.cs:24
+#: ../src/microbe_stage/Patch.cs:21
 msgid "UNKNOWN_PATCH"
 msgstr ""
 
@@ -10184,11 +10188,11 @@ msgstr ""
 msgid "XBOX_SERIES"
 msgstr ""
 
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:549
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:550
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:551
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:552
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:553
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:555
-#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:558
+#: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:556
 msgid "YEARS"
 msgstr ""
 
