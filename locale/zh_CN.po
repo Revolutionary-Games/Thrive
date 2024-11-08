@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-07 15:32+0100\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
 "PO-Revision-Date: 2024-10-31 16:02+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1835,10 +1835,6 @@ msgstr "载入时出错"
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
-#, fuzzy
-msgid "ERUPTION_IN"
-msgstr "出芽"
-
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1849,8 +1845,8 @@ msgid "ESTUARY"
 msgstr "河口"
 
 #, fuzzy
-msgid "EVENT_TOOLTIP_ERUPTION"
-msgstr "{0}： +{1} ATP"
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "这是编译此版本 Thrive 的确切 Commit"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
@@ -5791,6 +5787,10 @@ msgstr "水下洞穴"
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "水下洞穴"
 
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "水下洞穴"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "未发现"
 
@@ -7948,6 +7948,14 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "出芽"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}： +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "环境中的葡萄糖已减少到原先量的{0}。"

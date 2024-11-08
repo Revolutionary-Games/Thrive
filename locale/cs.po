@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-07 15:32+0100\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1947,10 +1947,6 @@ msgstr "Chyba v načítání"
 msgid "ERROR_SAVING"
 msgstr "Chyba při ukládání"
 
-#, fuzzy
-msgid "ERUPTION_IN"
-msgstr "Pučení"
-
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1961,8 +1957,8 @@ msgid "ESTUARY"
 msgstr "Ústí"
 
 #, fuzzy
-msgid "EVENT_TOOLTIP_ERUPTION"
-msgstr "{0}: +{1} ATP"
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
@@ -6172,6 +6168,10 @@ msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "Podvodní jeskyně"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Podvodní jeskyně"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Odpojené organely"
 
@@ -8148,6 +8148,14 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Pučení"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."

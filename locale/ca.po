@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-07 15:32+0100\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1893,10 +1893,6 @@ msgstr "Error durant la càrrega"
 msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
-#, fuzzy
-msgid "ERUPTION_IN"
-msgstr "Gemmació"
-
 msgid "ESCAPE"
 msgstr "Tecla Esc"
 
@@ -1907,8 +1903,8 @@ msgid "ESTUARY"
 msgstr "Estuari"
 
 #, fuzzy
-msgid "EVENT_TOOLTIP_ERUPTION"
-msgstr "{0}: +{1} ATP"
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -6152,6 +6148,10 @@ msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "Cova submarina"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Cova submarina"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
@@ -8128,6 +8128,14 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Gemmació"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "La quantitat de Glucosa s'ha reduït un percentatge de {0} respecte a la Generació anterior."

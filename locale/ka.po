@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-07 15:32+0100\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
 "PO-Revision-Date: 2024-11-02 09:54+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -1751,10 +1751,6 @@ msgstr "ჩატვირთვის შეცდომა"
 msgid "ERROR_SAVING"
 msgstr "შენახვის შეცდომა"
 
-#, fuzzy
-msgid "ERUPTION_IN"
-msgstr "გამრავლება"
-
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1765,8 +1761,8 @@ msgid "ESTUARY"
 msgstr "შესართავი"
 
 #, fuzzy
-msgid "EVENT_TOOLTIP_ERUPTION"
-msgstr "{0}: +{1} ატფ"
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "ეს ზუსტ კოდის კომიტია, რომლიდანაც Thrive-ის ეს ვერსია იქნა დაკომპილებული"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "ევოლუციის ხე"
@@ -5401,6 +5397,10 @@ msgstr "წყალქვეშა გამოქვაბული"
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "წყალქვეშა გამოქვაბული"
 
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "წყალქვეშა გამოქვაბული"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "აღმოუჩენელია"
 
@@ -7020,6 +7020,14 @@ msgstr "გადიდება"
 
 msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "გამრავლება"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ატფ"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "გლუკოზის რაოდენობა წინა რაოდენობასთან შედარებით {0}-მდე შემცირდა."

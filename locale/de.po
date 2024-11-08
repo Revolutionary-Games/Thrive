@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-07 15:32+0100\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1912,10 +1912,6 @@ msgstr "Fehler beim Laden"
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
-#, fuzzy
-msgid "ERUPTION_IN"
-msgstr "Knospend"
-
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1926,8 +1922,8 @@ msgid "ESTUARY"
 msgstr "Ästuar"
 
 #, fuzzy
-msgid "EVENT_TOOLTIP_ERUPTION"
-msgstr "{0}: +{1} ATP"
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Dies ist die exakte Version dieser Thrive Instanz"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -6107,6 +6103,10 @@ msgid "UNDERWATER_VENT_ERUPTION"
 msgstr "Unterwasser-Höhle"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Unterwasser-Höhle"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Getrennte Organellen"
 
@@ -8083,6 +8083,14 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Knospend"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
 #~ msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
