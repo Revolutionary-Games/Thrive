@@ -38,9 +38,8 @@ public partial class PatchMapNode : MarginContainer
     private const float HalfBlinkInterval = 0.5f;
 
 #pragma warning disable CA2213
-
     [Export]
-    private TextureRect marginEruption = null!;
+    private TextureRect eruptionEventIndicator = null!;
 
     private TextureRect? iconRect;
     private Panel? highlightPanel;
@@ -274,11 +273,25 @@ public partial class PatchMapNode : MarginContainer
         }
     }
 
-    public void ShowEventVisuals(List<WorldEffectVisuals> list)
+    public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals> list)
     {
-        foreach (var item in list)
+        eruptionEventIndicator.Visible = false;
+
+        var count = list.Count;
+
+        for (int i = 0; i < count; ++i)
         {
-            marginEruption.Visible = item == WorldEffectVisuals.UnderwaterVentEruption;
+            switch (list[i])
+            {
+                case WorldEffectVisuals.None:
+                    break;
+                case WorldEffectVisuals.UnderwaterVentEruption:
+                    eruptionEventIndicator.Visible = true;
+                    break;
+                default:
+                    GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");
+                    break;
+            }
         }
     }
 

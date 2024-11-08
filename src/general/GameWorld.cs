@@ -93,8 +93,9 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
+            TimedEffects.RegisterEffect("underwater_vent_eruption",
+                new UnderwaterVentEruptionEffect(this, random.Next64()));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
-            TimedEffects.RegisterEffect("underwater_vent_eruption", new UnderwaterVentEruptionEffect(this, random));
 
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
@@ -381,9 +382,10 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
+        // TODO: switch patches to keep an event history and remove this clear
         foreach (var patch in Map.Patches)
         {
-            patch.Value.ClearPatchNodeVisuals();
+            patch.Value.ClearPatchNodeEventVisuals();
         }
 
         TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;

@@ -26,7 +26,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("marginEruption")]
+[node name="PatchMapNode" type="MarginContainer" node_paths=PackedStringArray("eruptionEventIndicator")]
 custom_minimum_size = Vector2(64, 64)
 offset_right = 64.0
 offset_bottom = 64.0
@@ -38,7 +38,7 @@ MarkPanelPath = NodePath("PlayerHereHighlight")
 AdjacentPanelPath = NodePath("AdjacentToHighlight")
 UnknownLabelPath = NodePath("MarginContainer/MarginContainer/UnknownLabel")
 UnknownTextureFilePath = "res://assets/textures/gui/bevel/PatchAbyss.svg"
-marginEruption = NodePath("Margin/Eruption")
+eruptionEventIndicator = NodePath("EventIcons/Eruption")
 
 [node name="AdjacentToHighlight" type="Panel" parent="."]
 visible = false
@@ -87,16 +87,18 @@ label_settings = ExtResource("4_tygy2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Margin" type="VBoxContainer" parent="."]
+[node name="EventIcons" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(16, 64)
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 2
 
-[node name="Eruption" type="TextureRect" parent="Margin"]
+[node name="Eruption" type="TextureRect" parent="EventIcons"]
 visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
-tooltip_text = "EVENT_TOOLTIP_ERUPTION"
+tooltip_text = "EVENT_ERUPTION_TOOLTIP"
+mouse_filter = 0
 texture = ExtResource("4_asr5c")
 expand_mode = 2
 stretch_mode = 4

@@ -231,8 +231,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
         reportTab.UpdateReportTabPatchSelector();
 
-        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog
-            .Where(c => c.Key == CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
+        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
 
         if (fresh)
         {

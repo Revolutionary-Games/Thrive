@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Xoshiro.PRNG64;
 
@@ -9,10 +10,18 @@ using Xoshiro.PRNG64;
 public class UnderwaterVentEruptionEffect : IWorldEffect
 {
     [JsonProperty]
+    private readonly XoShiRo256starstar random;
+
+    [JsonProperty]
     private GameWorld targetWorld;
 
-    private XoShiRo256starstar random;
+    public UnderwaterVentEruptionEffect(GameWorld targetWorld, long randomSeed)
+    {
+        this.targetWorld = targetWorld;
+        random = new XoShiRo256starstar(randomSeed);
+    }
 
+    [JsonConstructor]
     public UnderwaterVentEruptionEffect(GameWorld targetWorld, XoShiRo256starstar random)
     {
         this.targetWorld = targetWorld;
@@ -25,43 +34,53 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
+        var changes = new Dictionary<Compound, float>();
+        var cloudSizes = new Dictionary<Compound, float>();
+
         foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            if (patch.BiomeType == BiomeType.Vents)
+            if (patch.BiomeType != BiomeType.Vents)
+                continue;
+
+            if (random.Next(100) > Constants.VENT_ERUPTION_CHANCE)
+                continue;
+
+            var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
+                out var currentHydrogenSulfide);
+            var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
+                out var currentCarbonDioxide);
+
+            // TODO: shouldn't the eruption work even with the compounds not present initially?
+            if (!hasHydrogenSulfide || !hasCarbonDioxide)
+                continue;
+
+            currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
+            currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
+
+            // Percentage is density times amount, so clamp to the inversed amount (times 100)
+            currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
+                / currentHydrogenSulfide.Amount * 100);
+            currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
+
+            // Intelligently apply the changes taking total gas percentages into account
+            changes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Density;
+            changes[Compound.Carbondioxide] = currentCarbonDioxide.Ambient;
+            cloudSizes[Compound.Hydrogensulfide] = currentHydrogenSulfide.Amount;
+
+            patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
+
+            if (patch.Visibility == MapElementVisibility.Shown)
             {
-                if (random.Next(100) > Constants.VENT_ERUPTION_CHANCE)
-                    continue;
-
-                var hasHydrogenSulfide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Hydrogensulfide,
-                    out var currentHydrogenSulfide);
-                var hasCarbonDioxide = patch.Biome.ChangeableCompounds.TryGetValue(Compound.Carbondioxide,
-                    out var currentCarbonDioxide);
-
-                if (!hasHydrogenSulfide || !hasCarbonDioxide)
-                    continue;
-
-                currentHydrogenSulfide.Density += Constants.VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE;
-                currentCarbonDioxide.Ambient += Constants.VENT_ERUPTION_CARBON_DIOXIDE_INCREASE;
-
-                // Percentage is density times amount, so clamp to the inversed amount (times 100)
-                currentHydrogenSulfide.Density = Math.Clamp(currentHydrogenSulfide.Density, 0, 1
-                    / currentHydrogenSulfide.Amount * 100);
-                currentCarbonDioxide.Ambient = Math.Clamp(currentCarbonDioxide.Ambient, 0, 1);
-
-                patch.Biome.ModifyLongTermCondition(Compound.Hydrogensulfide, currentHydrogenSulfide);
-                patch.Biome.ModifyLongTermCondition(Compound.Carbondioxide, currentCarbonDioxide);
-
+                targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
+                    true, true, "PatchVents.svg");
+            }
+            else
+            {
                 patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
                     true, true, "PatchVents.svg");
-
-                if (patch.Visibility == MapElementVisibility.Shown)
-                {
-                    targetWorld.LogEvent(new LocalizedString("ERUPTION_IN", patch.Name),
-                        true, true, "PatchVents.svg");
-                }
-
-                patch.ApplyPatchNodeVisuals(WorldEffectVisuals.UnderwaterVentEruption);
             }
+
+            patch.AddPatchEventRecord(WorldEffectVisuals.UnderwaterVentEruption, totalTimePassed);
         }
     }
 }

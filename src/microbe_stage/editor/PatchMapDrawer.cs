@@ -876,7 +876,7 @@ public partial class PatchMapDrawer : Control
 
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
 
-        patch.UpdatePatchNodeVisuals(node);
+        patch.ApplyPatchEventVisuals(node);
 
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);

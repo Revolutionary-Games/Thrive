@@ -37,10 +37,10 @@ public class Patch
     private readonly Dictionary<Species, long> gameplayPopulations = new();
 
     /// <summary>
-    ///   The current effects on patch node in the patch map
+    ///   The current effects on patch node (shown in the patch map)
     /// </summary>
     [JsonProperty]
-    private List<WorldEffectVisuals> activeWorldEffectVisuals;
+    private readonly List<WorldEffectVisuals> activeWorldEffectVisuals = new();
 
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
@@ -53,7 +53,6 @@ public class Patch
         BiomeType = biomeType;
         currentSnapshot = new PatchSnapshot((BiomeConditions)biomeTemplate.Conditions.Clone());
         Region = region;
-        activeWorldEffectVisuals = new List<WorldEffectVisuals>();
     }
 
     public Patch(LocalizedString name, int id, Biome biomeTemplate, BiomeType biomeType, PatchSnapshot currentSnapshot)
@@ -69,7 +68,6 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         this.currentSnapshot = currentSnapshot;
-        activeWorldEffectVisuals = new List<WorldEffectVisuals>();
     }
 
     [JsonProperty]
@@ -526,17 +524,21 @@ public class Patch
             Region.Visibility = visibility;
     }
 
-    public void ApplyPatchNodeVisuals(WorldEffectVisuals visual)
+    public void AddPatchEventRecord(WorldEffectVisuals visual, double happenedAt)
     {
+        // TODO: switch this class to have more of the logic for keeping event history together
+        _ = happenedAt;
+
         activeWorldEffectVisuals.Add(visual);
     }
 
-    public void ClearPatchNodeVisuals()
+    public void ClearPatchNodeEventVisuals()
     {
-        activeWorldEffectVisuals = new List<WorldEffectVisuals>();
+        // TODO: see the TODO comment in AddPatchEventRecord
+        activeWorldEffectVisuals.Clear();
     }
 
-    public void UpdatePatchNodeVisuals(PatchMapNode node)
+    public void ApplyPatchEventVisuals(PatchMapNode node)
     {
         node.ShowEventVisuals(activeWorldEffectVisuals);
     }

@@ -213,22 +213,30 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
-    public void UpdateEvents(List<GameEventDescription> events)
+    public void UpdateEvents(IReadOnlyDictionary<double, List<GameEventDescription>> events, double currentTime)
     {
         foreach (var currentLabel in majorEventsList.GetChildren())
         {
+            // TODO: could reuse the label objects, especially when needing to rebuild on locale change this would help
             currentLabel.QueueFree();
         }
 
         foreach (var registeredEvent in events)
         {
-            if (registeredEvent.ShowInReport)
+            // For now our time points are exact
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (registeredEvent.Key != currentTime)
+                continue;
+
+            foreach (var eventDescription in registeredEvent.Value)
             {
+                if (!eventDescription.ShowInReport)
+                    continue;
+
                 var label = eventTemplate.Instantiate<Label>();
 
                 majorEventsList.AddChild(label);
-                label.Text = registeredEvent.Description.ToString();
-                label.Visible = true;
+                label.Text = eventDescription.Description.ToString();
             }
         }
     }
@@ -306,8 +314,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog
-            .Where(c => c.Key == Editor.CurrentGame.GameWorld.TotalPassedTime).ToDictionary().Values.ToList()[0]);
+        UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog, Editor.CurrentGame.GameWorld.TotalPassedTime);
         UpdateTimeline();
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics();
