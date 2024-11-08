@@ -74,15 +74,9 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         meshGen.UnitsFrom = minExtends;
         meshGen.UnitsTo = maxExtends;
 
-        GD.Print("Generating mesh");
-
         Mesh = meshGen.DualContour();
 
-        GD.Print("Applying initial material");
-
         Mesh.SurfaceSetMaterial(0, material);
-
-        GD.Print("Starting an unwrap and texturize task");
 
         Task uvUnwrap = new Task(() => UVUnwrapAndTexturize((ArrayMesh)Mesh));
         TaskExecutor.Instance.AddTask(uvUnwrap);
@@ -100,16 +94,12 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // has to be deferred too.
         if (NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f))
         {
-            GD.Print("Finishing initial material");
-
             CallDeferred(nameof(ApplyTextures), mesh);
         }
     }
 
     private void ApplyTextures(ArrayMesh mesh)
     {
-        GD.Print("Finally applying a material");
-
         if (material != null)
         {
             Stopwatch sw = new();
