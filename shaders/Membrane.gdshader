@@ -36,7 +36,7 @@ void vertex(){
     float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.25f
         + wigglyNess * worldVertex.x * 1.5f + TIME / 4.0f;
     VERTEX.y += (sin(verticalAngle) + sin(horizontalAngle) + 2.0f)
-        * 0.25f * wigglyNess * abs(worldVertex.y);
+        * 0.20f * wigglyNess * abs(worldVertex.y);
 
     vec2 verticalDerivative = vec2(cos(verticalAngle), 1.0f);
     vec2 horizontalDerivative = vec2(cos(horizontalAngle), 1.0f);
