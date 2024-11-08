@@ -12,10 +12,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 {
     private const float AABBMargin = 0.1f;
 
-#pragma warning disable CA2213
-    [Export]
     private StandardMaterial3D? material;
-#pragma warning disable CA2213
 
     private float? overrideColourAlpha;
 
@@ -43,6 +40,10 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // {
         //     Shader = GD.Load<Shader>("res://shaders/Metaball.shader"),
         // },
+        material = new StandardMaterial3D
+        {
+            VertexColorUseAsAlbedo = true,
+        };
 
         ApplyAlpha();
 
@@ -82,6 +83,16 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            material?.Dispose();
+        }
+
+        base.Dispose(disposing);
     }
 
     private void UVUnwrapAndTexturize(ArrayMesh mesh)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://byu1bi6ok7kak"]
+[gd_scene load_steps=5 format=3 uid="uid://byu1bi6ok7kak"]
 
 [ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularCreature.cs" id="2"]
 [ext_resource type="PackedScene" uid="uid://doe55k2jyc4xn" path="res://src/late_multicellular_stage/MulticellularConvolutionDisplayer.tscn" id="2_alrwn"]
-[ext_resource type="Texture2D" uid="uid://btvaabw1tcq3d" path="res://assets/textures/IronChunk_Full.png" id="3_ssn47"]
 
 [sub_resource type="PhysicsMaterial" id="2"]
 rough = true
@@ -10,10 +9,6 @@ bounce = 0.2
 absorbent = true
 
 [sub_resource type="CapsuleShape3D" id="1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1yd7"]
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_ssn47")
 
 [node name="MulticellularCreature" type="RigidBody3D"]
 process_priority = 1
@@ -31,4 +26,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("1")
 
 [node name="MetaballDisplayer" parent="." instance=ExtResource("2_alrwn")]
-material = SubResource("StandardMaterial3D_f1yd7")
