@@ -31,9 +31,28 @@ void vertex(){
     VERTEX.z += sin(worldVertex.x * movementWigglyNess - TIME / 4.0f) / 10.f
         * wigglyNess * size;
 
-    float cellOffset = (NODE_POSITION_WORLD.x + NODE_POSITION_WORLD.z);
-    VERTEX.y += (sin(cellOffset * movementWigglyNess + VERTEX.z + TIME / 4.0f) + 1.0f)
-        * 0.35f * wigglyNess * abs(worldVertex.y);
+    float verticalAngle = NODE_POSITION_WORLD.z * movementWigglyNess * 0.25f
+        + wigglyNess * worldVertex.z * 1.5f + TIME / 4.0f;
+    float horizontalAngle = NODE_POSITION_WORLD.x * movementWigglyNess * 0.25f
+        + wigglyNess * worldVertex.x * 1.5f + TIME / 4.0f;
+    VERTEX.y += (sin(verticalAngle) + sin(horizontalAngle) + 2.0f)
+        * 0.20f * wigglyNess * abs(worldVertex.y);
+
+    vec2 verticalDerivative = vec2(cos(verticalAngle), 1.0f);
+    vec2 horizontalDerivative = vec2(cos(horizontalAngle), 1.0f);
+
+    vec3 worldspaceNormal = normalize(vec3(-horizontalDerivative.x, (horizontalDerivative.y + verticalDerivative.y) * 0.5f, -verticalDerivative.x))
+        * 0.1f * wigglyNess * abs(worldVertex.y);
+    vec3 worldspaceTangent = normalize(vec3(horizontalDerivative.y, (-horizontalDerivative.x - verticalDerivative.x) * 0.5f, verticalDerivative.y))
+        * 0.1f * wigglyNess * abs(worldVertex.y);
+
+    // Convert worldspace normals into model space and apply,
+    // also make wave normals less visible for faster microbes to reduce flickering
+    NORMAL = normalize(NORMAL + (inverse(MODEL_MATRIX) * vec4(worldspaceNormal, 0.0f)).xyz
+        * (1.5f - movementWigglyNess));
+    TANGENT = normalize(TANGENT + (inverse(MODEL_MATRIX) * vec4(worldspaceTangent, 0.0f)).xyz
+        * (1.5f - movementWigglyNess));
+    BINORMAL = cross(NORMAL, TANGENT);
 }
 
 float fresnel(float power, vec3 normal, vec3 view)

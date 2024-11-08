@@ -43,6 +43,8 @@ public interface IProcessDisplayInfo : IEquatable<IProcessDisplayInfo>
     /// </summary>
     public float CurrentSpeed { get; }
 
+    public bool Enabled { get; }
+
     /// <summary>
     ///   The limiting compounds in speed. Or null if not set
     /// </summary>

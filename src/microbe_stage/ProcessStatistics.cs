@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Godot;
 using Newtonsoft.Json;
 using Nito.Collections;
@@ -15,24 +16,19 @@ public class ProcessStatistics
     ///   a ThreadLocal in <see cref="Systems.ProcessSystem"/> as that was causing the game process to lock up in
     ///   Godot 4 (for unknown reasons). See: https://github.com/Revolutionary-Games/Thrive/issues/4989 for context.
     /// </summary>
-    private List<BioProcess>? temporaryRemovedItems;
+    private List<TweakedProcess>? temporaryRemovedItems;
 
     /// <summary>
     ///   The processes and their associated speed statistics
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This uses <see cref="BioProcess"/> rather than <see cref="TweakedProcess"/> as the key so that equality
-    ///     comparison matches based on the process type not the process type and speed. All processables should
-    ///     combine their processes to run correctly with speed tracking.
-    ///   </para>
-    ///   <para>
     ///     This is JSON ignore to ensure that this object can exist in saves, but won't store non-savable information
     ///     like the process statistics object. That's the situation now but maybe some other design would be better...
     ///   </para>
     /// </remarks>
     [JsonIgnore]
-    public Dictionary<BioProcess, SingleProcessStatistics> Processes { get; } = new();
+    public Dictionary<TweakedProcess, SingleProcessStatistics> Processes { get; } = new();
 
     public void MarkAllUnused()
     {
@@ -49,7 +45,7 @@ public class ProcessStatistics
     {
         lock (Processes)
         {
-            temporaryRemovedItems ??= new List<BioProcess>();
+            temporaryRemovedItems ??= new List<TweakedProcess>();
 
             foreach (var entry in Processes)
             {
@@ -71,10 +67,10 @@ public class ProcessStatistics
         }
     }
 
-    public SingleProcessStatistics GetAndMarkUsed(BioProcess forProcess)
+    public SingleProcessStatistics GetAndMarkUsed(TweakedProcess forProcess)
     {
 #if DEBUG
-        if (forProcess == null!)
+        if (forProcess.Process == null!)
             throw new ArgumentException("Invalid process marked used");
 #endif
 
@@ -109,7 +105,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
 
     private Dictionary<Compound, float>? precomputedEnvironmentInputs;
 
-    public SingleProcessStatistics(BioProcess process,
+    public SingleProcessStatistics(TweakedProcess process,
         float keepSnapshotTime = Constants.DEFAULT_PROCESS_STATISTICS_AVERAGE_INTERVAL)
     {
         this.keepSnapshotTime = keepSnapshotTime;
@@ -120,11 +116,11 @@ public class SingleProcessStatistics : IProcessDisplayInfo
     /// <summary>
     ///   The process these statistics are for
     /// </summary>
-    public BioProcess Process { get; }
+    public TweakedProcess Process { get; private set; }
 
     public bool Used { get; internal set; }
 
-    public string Name => Process.Name;
+    public string Name => Process.Process.Name;
 
     public IEnumerable<KeyValuePair<Compound, float>> Inputs =>
         LatestSnapshot?.Inputs.Where(p => !IProcessDisplayInfo.IsEnvironmental(p.Key)) ??
@@ -135,7 +131,7 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         throw new InvalidOperationException("No snapshot set");
 
     public IReadOnlyDictionary<Compound, float> FullSpeedRequiredEnvironmentalInputs =>
-        precomputedEnvironmentInputs ??= Process.Inputs
+        precomputedEnvironmentInputs ??= Process.Process.Inputs
             .Where(p => IProcessDisplayInfo.IsEnvironmental(p.Key.ID))
             .ToDictionary(p => p.Key.ID, p => p.Value);
 
@@ -153,6 +149,8 @@ public class SingleProcessStatistics : IProcessDisplayInfo
             LatestSnapshot.CurrentSpeed = value;
         }
     }
+
+    public bool Enabled => Process.SpeedMultiplier > 0;
 
     public IReadOnlyList<Compound>? LimitingCompounds => LatestSnapshot?.LimitingCompounds;
 
@@ -294,9 +292,24 @@ public class SingleProcessStatistics : IProcessDisplayInfo
         precomputedEnvironmentInputs = null;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public void UpdateProcessDataIfNeeded(in TweakedProcess process)
+    {
+        if (!MatchesUnderlyingProcess(process.Process))
+        {
+            GD.PrintErr("Wrong process info passed to SingleProcessStatistics for data update");
+            return;
+        }
+
+        // Copying the whole struct is needed here, even though really we'd just need to copy the speed multiplier as
+        // that's the only thing that is allowed to change
+        Process = process;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
-        return Process == process;
+        return Process.Process == process;
     }
 
     public bool Equals(IProcessDisplayInfo? other)
@@ -394,9 +407,13 @@ public class AverageProcessStatistics : IProcessDisplayInfo
     public float CurrentSpeed { get; set; }
     public IReadOnlyList<Compound> LimitingCompounds => WritableLimitingCompounds;
 
+    public TweakedProcess Process => owner.Process;
+
+    public bool Enabled => owner.Enabled;
+
     public bool MatchesUnderlyingProcess(BioProcess process)
     {
-        return owner.Process == process;
+        return owner.Process.Process == process;
     }
 
     public bool Equals(IProcessDisplayInfo? other)

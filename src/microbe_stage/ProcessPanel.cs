@@ -64,8 +64,8 @@ public partial class ProcessPanel : CustomWindow
         base.Dispose(disposing);
     }
 
-    private void ToggleProcessToggled(ChemicalEquation equation)
+    private void ToggleProcessToggled(ChemicalEquation equation, bool enabled)
     {
-        EmitSignal(SignalName.ToggleProcessPressed, equation);
+        EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);
     }
 }

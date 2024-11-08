@@ -92,6 +92,7 @@ public class GameWorld : ISaveLoadable
             // the full effect to get balanced well enough
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
+            TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
             TimedEffects.RegisterEffect("underwater_vent_eruption", new UnderwaterVentEruptionEffect(this, random));
 

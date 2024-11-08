@@ -550,7 +550,7 @@ public class NativeLibs
 
         CreateLinkTo(linkFile, linkTo);
 
-        ColourConsole.WriteNormalLine($"Installed library from: {linkTo} to: {linkFile}");
+        ColourConsole.WriteNormalLine($"Installed library from: {linkTo} to: {Path.GetFullPath(linkFile)}");
 
         if (moreVerbose)
         {
