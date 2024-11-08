@@ -231,8 +231,6 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
         reportTab.UpdateReportTabPatchSelector();
 
-        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
-
         if (fresh)
         {
             CurrentGame.SetBool("edited_late_multicellular", true);
@@ -244,6 +242,8 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
             reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
+
+            reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
         }
 
         UpdateBackgrounds(CurrentPatch);
@@ -298,6 +298,10 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
+
+        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
+
+        patchMapTab.UpdatePatchEvents();
     }
 
     protected override void OnUndoPerformed()

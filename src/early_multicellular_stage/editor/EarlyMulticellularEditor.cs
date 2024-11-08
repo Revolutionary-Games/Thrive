@@ -198,8 +198,6 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
         reportTab.UpdateReportTabPatchSelector();
 
-        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
-
         if (fresh)
         {
             CurrentGame.SetBool("edited_early_multicellular", true);
@@ -211,6 +209,8 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
             reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
+
+            reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
         }
 
         cellEditorTab.UpdateBackgroundImage(CurrentPatch.BiomeTemplate);
@@ -273,6 +273,10 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
+
+        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
+
+        patchMapTab.UpdatePatchEvents();
     }
 
     protected override void OnUndoPerformed()

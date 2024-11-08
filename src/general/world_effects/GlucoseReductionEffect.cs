@@ -59,8 +59,11 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
+                // TODO: improve how the glucose reduction is shown for the patch the player is in
+                // as right now the reduction percentages aren't super drastic anymore (like under 1%) rather than
+                // the 20% it used to say.
                 patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false, true,
+                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false, false,
                     "glucoseDown.png");
             }
 

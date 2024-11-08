@@ -69,14 +69,14 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
             patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
 
+            // Patch specific log
+            patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
+                true, true, "PatchVents.svg");
+
             if (patch.Visibility == MapElementVisibility.Shown)
             {
+                // Global log, but only if patch is known to the player
                 targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
-                    true, true, "PatchVents.svg");
-            }
-            else
-            {
-                patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
                     true, true, "PatchVents.svg");
             }
 

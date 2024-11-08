@@ -247,6 +247,23 @@ public partial class PatchMapDrawer : Control
         }
     }
 
+    /// <summary>
+    ///   Update the patch event visuals on all created patch map nodes. Call if events change after initial graphics
+    ///   init for this drawer.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: the auto-evo exploring tool needs to call this to show things properly
+    ///   </para>
+    /// </remarks>
+    public void UpdatePatchEvents()
+    {
+        foreach (var (patch, node) in nodes)
+        {
+            patch.ApplyPatchEventVisuals(node);
+        }
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
