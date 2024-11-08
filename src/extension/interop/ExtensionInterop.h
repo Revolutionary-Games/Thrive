@@ -26,8 +26,8 @@ extern "C"
 
     // ------------------------------------ //
     // DebugDrawer direct access calls
-    [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(
-        DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, JColour* colour);
+    [[maybe_unused]] API_EXPORT void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to,
+        JColour* colour);
 
     [[maybe_unused]] API_EXPORT void DebugDrawerAddPoint(DebugDrawer* drawerInstance, JVecF3* point, JColour* colour);
 }
