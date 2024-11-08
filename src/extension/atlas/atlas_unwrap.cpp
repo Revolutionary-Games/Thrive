@@ -120,8 +120,7 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     xatlas::PackOptions packOptions;
     packOptions.padding = 1;
 
-    // Lightmap atlassing needs 2 for padding between meshes, so 4096-2
-    packOptions.maxChartSize = 1022;
+    packOptions.maxChartSize = 1024;
     packOptions.blockAlign = true;
     packOptions.texelsPerUnit = 1.0f / texelSize;
 
