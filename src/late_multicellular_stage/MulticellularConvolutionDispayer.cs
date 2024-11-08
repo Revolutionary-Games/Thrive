@@ -134,9 +134,9 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
         var arrays = mesh.SurfaceGetArrays(0);
 
-        var indices = arrays[(int)ArrayMesh.ArrayType.Index].AsInt32Array();
-        var uvs = arrays[(int)ArrayMesh.ArrayType.TexUV].AsVector2Array();
-        var vertices = arrays[(int)ArrayMesh.ArrayType.Vertex].AsVector3Array();
+        // var vertices = arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array();
+        var indices = arrays[(int)Mesh.ArrayType.Index].AsInt32Array();
+        var uvs = arrays[(int)Mesh.ArrayType.TexUV].AsVector2Array();
 
         for (int i = 0; i < indices.Length; i += 3)
         {
