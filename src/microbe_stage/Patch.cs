@@ -36,6 +36,12 @@ public class Patch
     [JsonProperty]
     private readonly Dictionary<Species, long> gameplayPopulations = new();
 
+    /// <summary>
+    ///   The current effects on patch node (shown in the patch map)
+    /// </summary>
+    [JsonProperty]
+    private readonly List<WorldEffectVisuals> activeWorldEffectVisuals = new();
+
     [JsonProperty]
     private Deque<PatchSnapshot> history = new();
 
@@ -477,8 +483,10 @@ public class Patch
     /// </summary>
     /// <param name="description">The event's description</param>
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
+    /// <param name="showInReport">If true, the event will be shown on report tab main page</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
-    public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
+    public void LogEvent(LocalizedString description, bool highlight = false,
+        bool showInReport = false, string? iconPath = null)
     {
         // Event already logged in timeline
         foreach (var gameEvent in currentSnapshot.EventsLog)
@@ -487,7 +495,7 @@ public class Patch
                 return;
         }
 
-        currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight));
+        currentSnapshot.EventsLog.Add(new GameEventDescription(description, iconPath, highlight, showInReport));
     }
 
     /// <summary>
@@ -514,6 +522,25 @@ public class Patch
 
         if ((int)Region.Visibility >= (int)visibility)
             Region.Visibility = visibility;
+    }
+
+    public void AddPatchEventRecord(WorldEffectVisuals visual, double happenedAt)
+    {
+        // TODO: switch this class to have more of the logic for keeping event history together
+        _ = happenedAt;
+
+        activeWorldEffectVisuals.Add(visual);
+    }
+
+    public void ClearPatchNodeEventVisuals()
+    {
+        // TODO: see the TODO comment in AddPatchEventRecord
+        activeWorldEffectVisuals.Clear();
+    }
+
+    public void ApplyPatchEventVisuals(PatchMapNode node)
+    {
+        node.ShowEventVisuals(activeWorldEffectVisuals);
     }
 
     public override string ToString()

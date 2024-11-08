@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
 "PO-Revision-Date: 2024-10-31 16:02+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1843,6 +1843,10 @@ msgstr "逃脱被吞噬的命运"
 
 msgid "ESTUARY"
 msgstr "河口"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "这是编译此版本 Thrive 的确切 Commit"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
@@ -5300,9 +5304,6 @@ msgstr "利用温度梯度生产[thrive:compound type=\"atp\"][/thrive:compound]
 msgid "THERMOSYNTHESIS"
 msgstr "热合成"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "环境中的葡萄糖已减少到原先量的{0}。"
-
 msgid "THE_DISTURBANCE"
 msgstr "干扰"
 
@@ -5780,6 +5781,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "这是一个调试版本，下面的信息可能不是最新的"
 
 msgid "UNDERWATERCAVE"
+msgstr "水下洞穴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "水下洞穴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "水下洞穴"
 
 msgid "UNDISCOVERED_ORGANELLES"
@@ -7939,6 +7948,17 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "出芽"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}： +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "环境中的葡萄糖已减少到原先量的{0}。"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
