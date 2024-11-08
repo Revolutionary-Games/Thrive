@@ -42,18 +42,18 @@ void DebugDrawerAddLine(DebugDrawer* drawerInstance, JVecF3* from, JVecF3* to, J
 bool ArrayMeshUnwrap(GodotVariant* mesh, float texelSize)
 {
     godot::Variant* var = reinterpret_cast<godot::Variant*>(mesh);
-	
-	if (var->get_type() != godot::Variant::OBJECT)
-	{
-		return false;
-	}
+
+    if (var->get_type() != godot::Variant::OBJECT)
+    {
+        return false;
+    }
 
     godot::Object* obj = (godot::Object*)var;
 
     if (!obj->is_class("ArrayMesh"))
-	{
-		return false;
-	}
+    {
+        return false;
+    }
 
     godot::ArrayMesh* arrayMesh = godot::Object::cast_to<godot::ArrayMesh>(obj);
 

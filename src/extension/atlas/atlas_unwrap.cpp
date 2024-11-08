@@ -179,7 +179,8 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
             if (surfaceFormat & Mesh::ARRAY_FORMAT_TANGENT)
             {
                 Plane t;
-                t.normal = Vector3(initialTangents[vertex_id * 4], initialTangents[vertex_id * 4 + 1], initialTangents[vertex_id * 4 + 2]);
+                t.normal = Vector3(initialTangents[vertex_id * 4], initialTangents[vertex_id * 4 + 1],
+                    initialTangents[vertex_id * 4 + 2]);
                 t.d = initialTangents[vertex_id * 4 + 3];
                 surfacesTools->set_tangent(t);
             }
