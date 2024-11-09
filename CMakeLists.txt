@@ -8,9 +8,6 @@ project(Thrive)
 
 # Options
 # Building either the faster variant with AVX or without for older CPU support
-option(PRINT_SOURCE_FILES "Print source files for targets during configuration"
-  OFF)
-
 option(THRIVE_AVX "Create faster code that needs AVX2" ON)
 
 option(THRIVE_LTO "Use LTO when linking Thrive libraries" ON)
@@ -45,39 +42,23 @@ option(USE_ATOMIC_COLLISION_WRITE
 option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" OFF)
 
 option(NULL_HAS_UNUSUAL_REPRESENTATION
-  "When on it is not assumed that null equals numeric 0" OFF)
+ "When on it is not assumed that null equals numeric 0" OFF)
 
-option(THRIVE_GODOT_API_FILE "Override folder Godot API file is looked for in" "")
+# Option to print source files during build
+option(PRINT_SOURCE_FILES "Print source files during build" OFF)
 
 # Add our custom CMake scripts directory
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Scripts")
 include(CMakeConfiguration)
 include(CMakeHelperFunctions)
 
-# Set default build type if not specified
-if(NOT CMAKE_BUILD_TYPE)
-  set(CMAKE_BUILD_TYPE Debug)
+if(WIN32)
+  set(CMAKE_GENERATOR_PLATFORM x64)
 endif()
 
-if(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
-  set(INSTALL_BUILD_TYPE "release")
-else()
-  string(TOLOWER "${CMAKE_BUILD_TYPE}" INSTALL_BUILD_TYPE)
-endif()
+message(STATUS "Building for ${THRIVE_OS} on ${THRIVE_ARCH}")
 
-# Set installation prefix
-set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install/${THRIVE_OS}/${INSTALL_BUILD_TYPE}" 
-  CACHE PATH "Installation directory" FORCE)
-
-# Configure output directories
-foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
-  string(TOUPPER ${CONFIG} CONFIG_UPPER)
-  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/bin/${CONFIG}")
-  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/lib/${CONFIG}")
-  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/lib/${CONFIG}")
-  set(CMAKE_PDB_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/bin/${CONFIG}")
-endforeach()
-
+# Detect library version
 file(READ "${CMAKE_CURRENT_SOURCE_DIR}/src/native/NativeConstants.cs" versionFile)
 string(REGEX MATCH "Version = ([0-9]+);" _ "${versionFile}")
 set(NATIVE_LIBRARY_VERSION ${CMAKE_MATCH_1})
@@ -100,14 +81,33 @@ if(NOT THRIVE_EXTENSION_VERSION)
   message(FATAL_ERROR "Failed to parse Thrive GDExtensions library version")
 endif()
 
-# Configure gdextension stuff
-if(THRIVE_GODOT_API_FILE)
-  set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
-else()
-  set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+# Set default build type if not specified
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-include_directories(${GODOT_GDEXTENSION_DIR})
+# Handle RelWithDebInfo as Release for installation purposes
+if(CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo")
+  set(INSTALL_BUILD_TYPE "release")
+else()
+  string(TOLOWER "${CMAKE_BUILD_TYPE}" INSTALL_BUILD_TYPE)
+endif()
+
+# Set installation prefix
+set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/install/${THRIVE_OS}/${INSTALL_BUILD_TYPE}" 
+  CACHE PATH "Installation directory" FORCE)
+
+# Configure output directories
+foreach(CONFIG ${CMAKE_CONFIGURATION_TYPES})
+  string(TOUPPER ${CONFIG} CONFIG_UPPER)
+  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/bin/${CONFIG}")
+  set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/lib/${CONFIG}")
+  set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_${CONFIG_UPPER} "${CMAKE_BINARY_DIR}/lib/${CONFIG}")
+endforeach()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin/${INSTALL_BUILD_TYPE}")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib/${INSTALL_BUILD_TYPE}")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib/${INSTALL_BUILD_TYPE}")
 
 # Configure include file
 configure_file(
@@ -118,6 +118,15 @@ configure_file(
 
 include_directories(${CMAKE_BINARY_DIR})
 
+# Configure gdextension stuff
+if(THRIVE_GODOT_API_FILE)
+  set(GODOT_GDEXTENSION_DIR "${THRIVE_GODOT_API_FILE}")
+else()
+  set(GODOT_GDEXTENSION_DIR "${CMAKE_BINARY_DIR}/api")
+endif()
+
+include_directories(${GODOT_GDEXTENSION_DIR})
+
 # GODOT_CPP_SYSTEM_HEADERS
 # GODOT_CPP_WARNING_AS_ERROR
 
@@ -125,6 +134,7 @@ include_directories(${CMAKE_BINARY_DIR})
 add_subdirectory(third_party)
 
 if(NOT THRIVE_DISTRIBUTION OR (THRIVE_AVX AND THRIVE_DISTRIBUTION))
+  # Early checks is not compiled in non-avx mode
   add_subdirectory(src/native/early_checks)
 endif()
 
