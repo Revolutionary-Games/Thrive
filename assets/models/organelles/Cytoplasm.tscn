@@ -11,9 +11,9 @@ render_priority = 0
 shader = ExtResource("3")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
-shader_parameter/fresnelValue = 0.8
-shader_parameter/fresnelActive = true
-shader_parameter/outlineWidth = 0.05
+shader_parameter/fresnelValue = 1.0
+shader_parameter/fresnelActive = false
+shader_parameter/outlineWidth = 0.0
 shader_parameter/growColor = Color(0.0941176, 0.0823529, 0.247059, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
@@ -21,6 +21,6 @@ shader_parameter/texture = ExtResource("4")
 shader_parameter/dissolveTexture = ExtResource("2")
 
 [node name="Cytoplasm" type="MeshInstance3D"]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0.620938, 0)
 material_override = SubResource("ShaderMaterial_v3ckx")
 mesh = ExtResource("1")

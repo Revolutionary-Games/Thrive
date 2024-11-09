@@ -1,11 +1,13 @@
-// Intended for thermoplast and light-emitting vacuole
+// Intended for thermoplast and light-emitting vacuole. Uses EMISSION to light up the mesh.
+// Values above 1.0 for emissionEnergy cause a glow around the organelle (if Bloom is active).
+// Use emissionTexture to have only part of the mesh glow, or ignore it to affect the whole mesh.
 shader_type spatial;
 render_mode depth_prepass_alpha, blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
 
 uniform sampler2D albedoTexture : source_color, filter_linear_mipmap, repeat_enable;
 
 uniform float dissolveValue : hint_range(0, 1);
-uniform float dissolveScale = 1.0;
+uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.0;
 
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
@@ -46,10 +48,9 @@ void vertex(){
 }
 
 void fragment() {
-    vec2 base_uv = UV;
-    vec4 final = texture(albedoTexture, base_uv) * tint;
+    vec4 final = texture(albedoTexture, UV) * tint;
 
-    vec4 dissolveTex = texture(dissolveTexture, (base_uv * dissolveScale));
+    vec4 dissolveTex = texture(dissolveTexture, (UV * dissolveScale));
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
         float(-0.5 + clamp(dissolveValue, 0, 1));
@@ -61,14 +62,14 @@ void fragment() {
 
     SPECULAR = specular;
 
-    vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
-    float roughness_tex = dot(texture(roughnessTexture, base_uv), roughness_texture_channel);
-    ROUGHNESS = roughness_tex * roughness;
+    vec4 roughnessTextureChannel = vec4(1.0, 0.0, 0.0, 0.0);
+    float roughnessTex = dot(texture(roughnessTexture, UV), roughnessTextureChannel);
+    ROUGHNESS = roughnessTex * roughness;
 
-    vec3 emission_tex = texture(emissionTexture, base_uv).rgb;
+    vec3 emissionTex = texture(emissionTexture, UV).rgb;
 
     // Emission Operator: Add
-    EMISSION = clamp((dissolveOutline + emission.rgb + emission_tex) * emissionEnergy, 0, emissionEnergy);
+    EMISSION = clamp((dissolveOutline + emission.rgb + emissionTex) * emissionEnergy, 0, emissionEnergy);
 
     ALPHA = round(cutoff) * final.a;
 }
