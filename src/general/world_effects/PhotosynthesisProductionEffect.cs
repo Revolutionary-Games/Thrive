@@ -49,8 +49,10 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             if (patch.SpeciesInPatch.Count < 1)
                 continue;
 
-            float oxygenBalance = 0;
-            float co2Balance = 0;
+            float oxygenIn = 0;
+            float oxygenOut = 0;
+            float co2In = 0;
+            float co2Out = 0;
 
             foreach (var species in patch.SpeciesInPatch)
             {
@@ -101,11 +103,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (input.Key.ID is Compound.Oxygen)
                         {
-                            oxygenBalance -= input.Value * inputModifier * effectiveSpeed * species.Value;
+                            oxygenOut += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                         else if (input.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Balance -= input.Value * inputModifier * effectiveSpeed * species.Value;
+                            co2Out += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                     }
 
@@ -114,18 +116,18 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (output.Key.ID is Compound.Oxygen)
                         {
-                            oxygenBalance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            oxygenIn += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                         else if (output.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Balance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            co2In += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                     }
                 }
             }
 
             // Scale the balances to make the changes less drastic
-            oxygenBalance *= modifier;
+            /*oxygenBalance *= modifier;
             co2Balance *= modifier;
 
             changesToApply.Clear();
@@ -134,7 +136,15 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 changesToApply[Compound.Oxygen] = oxygenBalance;
 
             if (co2Balance != 0)
-                changesToApply[Compound.Carbondioxide] = co2Balance;
+                changesToApply[Compound.Carbondioxide] = co2Balance;*/
+
+            float oxygenTarget = oxygenIn / oxygenOut * 20.0f;
+            patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var existingOxygen);
+            changesToApply[Compound.Oxygen] = oxygenTarget - existingOxygen.Ambient;
+
+            float co2Target = co2In / co2Out * 20.0f;
+            patch.Biome.TryGetCompound(Compound.Carbondioxide, CompoundAmountType.Biome, out var existingCo2);
+            changesToApply[Compound.Carbondioxide] = co2Target - existingCo2.Ambient;
 
             if (changesToApply.Count > 0)
                 patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
