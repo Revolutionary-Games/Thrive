@@ -1,30 +1,31 @@
 [gd_scene load_steps=7 format=3 uid="uid://00nfh32p4ex6"]
 
-[ext_resource type="Shader" path="res://shaders/OrganelleEmissive.gdshader" id="1_j21jj"]
+[ext_resource type="Shader" path="res://shaders/OrganelleEmissive.gdshader" id="1_6dvsg"]
 [ext_resource type="Texture2D" uid="uid://hg3fqkcf4eda" path="res://assets/textures/Thermoplast.png" id="2_igm2k"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_5fepa"]
-[ext_resource type="Texture2D" uid="uid://bstbqrrrojhhs" path="res://assets/textures/Thermoplast_emission.png" id="4_tm8c7"]
-[ext_resource type="ArrayMesh" path="res://assets/models/organelles/Thermoplast.mesh" id="5_ryp7d"]
+[ext_resource type="Texture2D" uid="uid://bstbqrrrojhhs" path="res://assets/textures/Thermoplast_emission.png" id="4_n42dm"]
+[ext_resource type="ArrayMesh" uid="uid://dt07yd3kcctp2" path="res://assets/models/organelles/Thermoplast.mesh" id="5_ryp7d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_22sb0"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("1_j21jj")
+shader = ExtResource("1_6dvsg")
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.2
 shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/roughness = 0.9
-shader_parameter/specular = 0.5
-shader_parameter/emission = Color(0.143246, 0.121188, 0.0466739, 1)
-shader_parameter/emissionEnergy = 2.0
-shader_parameter/outlineWidth = 0.05
-shader_parameter/growColor = Color(0.313361, 0.201026, 9.62615e-08, 1)
+shader_parameter/roughness = 0.6
+shader_parameter/specular = 0.35
+shader_parameter/emission = Color(0.3, 0.24645, 0.111, 1)
+shader_parameter/emissionEnergy = 12.5
+shader_parameter/useTextureEmission = true
+shader_parameter/outlineWidth = 0.1
+shader_parameter/growColor = Color(0.08, 0.0426667, 0, 1)
 shader_parameter/jiggleAmount = 0.03
 shader_parameter/albedoTexture = ExtResource("2_igm2k")
-shader_parameter/emissionTexture = ExtResource("4_tm8c7")
+shader_parameter/emissionTexture = ExtResource("4_n42dm")
 shader_parameter/dissolveTexture = ExtResource("3_5fepa")
 
-[node name="ThermoplastInside" type="MeshInstance3D"]
+[node name="Thermoplast" type="MeshInstance3D"]
 transform = Transform3D(0.988207, 0, 0, 0, 0.988207, 0, 0, 0, 0.988207, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_22sb0")
 mesh = ExtResource("5_ryp7d")

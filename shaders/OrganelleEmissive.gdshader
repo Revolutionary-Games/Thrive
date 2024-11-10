@@ -2,7 +2,7 @@
 // Values above 1.0 for emissionEnergy cause a glow around the organelle (if Bloom is active).
 // Use emissionTexture to have only part of the mesh glow, or ignore it to affect the whole mesh.
 shader_type spatial;
-render_mode depth_prepass_alpha, blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+render_mode depth_prepass_alpha, blend_mix, depth_draw_opaque, cull_back;
 
 uniform sampler2D albedoTexture : source_color, filter_linear_mipmap, repeat_enable;
 
@@ -12,13 +12,12 @@ uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.0;
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
 uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D roughnessTexture : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-
 uniform float specular : hint_range(0.0, 1.0, 0.01);
 
 uniform sampler2D emissionTexture : source_color, hint_default_black, filter_linear_mipmap, repeat_enable;
 uniform vec4 emission : source_color = vec4(0.08, 0.08, 0.08, 1.0);
-uniform float emissionEnergy : hint_range(0.0, 100.0, 0.01) = 1;
+uniform float emissionEnergy : hint_range(0.0, 50.0, 0.01) = 1;
+uniform bool useTextureEmission = false;
 
 uniform float outlineWidth;
 uniform vec4 growColor : source_color;
@@ -53,23 +52,29 @@ void fragment() {
     vec4 dissolveTex = texture(dissolveTexture, (UV * dissolveScale));
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-        float(-0.5 + clamp(dissolveValue, 0, 1));
+        float(-0.5 + dissolveValue);
 
-    vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
-        growColor.rgb;
+    vec3 dissolveOutline = clamp(vec3(round(1.0 - float(cutoff - outlineWidth))) *
+        growColor.rgb, 0, dissolveValue);
 
     ALBEDO = final.rgb;
 
     SPECULAR = specular;
 
-    vec4 roughnessTextureChannel = vec4(1.0, 0.0, 0.0, 0.0);
-    float roughnessTex = dot(texture(roughnessTexture, UV), roughnessTextureChannel);
-    ROUGHNESS = roughnessTex * roughness;
+    ROUGHNESS = roughness;
 
-    vec3 emissionTex = texture(emissionTexture, UV).rgb;
+    vec3 emissionValue;
+    if (useTextureEmission)
+    {
+        vec3 emissionTex = texture(emissionTexture, UV).rgb;
+        emissionValue = emissionTex * emissionTex * 10.0;
+    }
+    else
+    {
+        emissionValue = vec3(1.0, 1.0, 1.0);
+    }
 
-    // Emission Operator: Add
-    EMISSION = clamp((dissolveOutline + emission.rgb + emissionTex) * emissionEnergy, 0, emissionEnergy);
+    EMISSION = (dissolveOutline + (emission.rgb * emissionValue)) * emissionEnergy;
 
     ALPHA = round(cutoff) * final.a;
 }

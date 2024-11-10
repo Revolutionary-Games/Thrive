@@ -44,10 +44,10 @@ void fragment(){
     vec4 dissolveTex = texture(dissolveTexture, (UV * dissolveScale));
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-        float(-0.5 + clamp(dissolveValue, 0, 1));
+        float(-0.5 + dissolveValue);
 
-    vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
-        growColor.rgb;
+    vec3 dissolveOutline = clamp(vec3(round(1.0 - float(cutoff - outlineWidth))) *
+        growColor.rgb, 0, dissolveValue);
 
     ALBEDO = final.rgb;
 

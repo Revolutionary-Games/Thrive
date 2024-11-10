@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dk3i4rrc0gjjq" path="res://assets/models/organelles/Flagellum.glb" id="1"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_4pd8r"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_7rn5o"]
-[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/ExternalOrganelle.png" id="4_uwayx"]
+[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/FilamentousOrganelle.png" id="4_uwayx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_provs"]
 resource_local_to_scene = true
@@ -13,8 +13,8 @@ shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.5
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0
 shader_parameter/texture = ExtResource("4_uwayx")
