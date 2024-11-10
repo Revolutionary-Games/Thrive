@@ -6,7 +6,7 @@ using Godot;
 using Xoshiro.PRNG32;
 
 /// <summary>
-///   Creature component to display it using convolution surfaces
+///   Displays a creature using convolution surfaces based on a metaball layout
 /// </summary>
 public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
 {
