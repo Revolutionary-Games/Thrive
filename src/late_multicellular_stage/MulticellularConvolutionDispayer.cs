@@ -139,6 +139,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
         float pixelWidth = 1.0f / dimension;
 
+        // Draw image based on triangles
         for (int i = 0; i < indices.Length; i += 3)
         {
             var aUV = uvs[indices[i]];
@@ -153,8 +154,6 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
             var random = new XoShiRo128plus();
 
             var color = new Color(random.NextFloat(), random.NextFloat(), random.NextFloat());
-
-            // Drawing image based on triangles
 
             float minY = MathF.Min(aUV.Y, MathF.Min(bUV.Y, cUV.Y));
             float maxY = MathF.Max(aUV.Y, MathF.Max(bUV.Y, cUV.Y));
@@ -172,6 +171,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
                 {
                     image.SetPixel((int)(x * dimension), (int)(y * dimension), color);
 
+                    // Margin pixel, so that there is no spaces between drawn triangles
                     if (x < prevLeftX || x > prevRightX)
                         image.SetPixel((int)(x * dimension), (int)((y - pixelWidth) * dimension), color);
                 }
@@ -188,6 +188,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
                 {
                     image.SetPixel((int)(x * dimension), (int)(y * dimension), color);
 
+                    // Margin pixel
                     if (x < prevLeftX || x > prevRightX)
                         image.SetPixel((int)(x * dimension), (int)((y + pixelWidth) * dimension), color);
                 }
