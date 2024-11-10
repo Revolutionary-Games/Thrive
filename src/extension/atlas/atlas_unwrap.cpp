@@ -34,9 +34,7 @@
 #include "atlas_unwrap.hpp"
 
 #include "godot_cpp/templates/local_vector.hpp"
-#include "godot_cpp/templates/pair.hpp"
 #include <godot_cpp/classes/array_mesh.hpp>
-#include <godot_cpp/classes/mesh.hpp>
 #include <godot_cpp/classes/ref.hpp>
 #include <godot_cpp/classes/surface_tool.hpp>
 #include <godot_cpp/core/class_db.hpp>
