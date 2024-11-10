@@ -18,14 +18,18 @@ public interface IMembraneDataSource
 /// </summary>
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
-    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
+    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type, Vector2[]? multicellularPositions, Vector2? thisCellPosition)
     {
         HexPositions = hexPositions;
+        MulticellularPositions = multicellularPositions;
+        CellPositionInMulticellular = thisCellPosition;
         HexPositionCount = hexPositionCount;
         Type = type;
     }
 
     public Vector2[] HexPositions { get; }
+    public Vector2[]? MulticellularPositions { get; }
+    public Vector2? CellPositionInMulticellular { get; }
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
@@ -108,7 +112,7 @@ public static class MembraneComputationHelpers
 
         lock (generator)
         {
-            result = generator.GenerateShape(hexes, length, membraneType);
+            result = generator.GenerateShape(hexes, length, membraneType, null, null);
         }
 
         cache.WriteMembraneData(ref result);

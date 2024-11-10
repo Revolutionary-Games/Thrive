@@ -11,6 +11,7 @@ using Components;
 using DefaultEcs;
 using DefaultEcs.System;
 using Godot;
+using HarmonyLib;
 using World = DefaultEcs.World;
 
 /// <summary>
@@ -136,8 +137,17 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
         ref var materialStorage = ref entity.Get<EntityMaterial>();
 
+        MembranePointData? data = null;
+
         // Background thread membrane generation
-        var data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        if (entity.Has<EarlyMulticellularSpeciesMember>())
+        {
+            data = GetMulticellularMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer, ref entity.Get<EarlyMulticellularSpeciesMember>());
+        }
+        else
+        {
+            data = GetMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer);
+        }
 
         if (data == null)
         {
@@ -258,7 +268,71 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             }
         }
 
-        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType));
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, null, null));
+
+        // Immediately start some jobs to give background threads something to do while the main thread is busy
+        // potentially setting up other visuals
+        StartMembraneGenerationJobs();
+
+        return null;
+    }
+
+    private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(ref CellProperties cellProperties,
+        ref OrganelleContainer organelleContainer, ref EarlyMulticellularSpeciesMember multicellular)
+    {
+        // TODO: should we consider the situation where a membrane was requested on the previous update but is not
+        // ready yet? This causes extra memory usage here in those cases.
+        var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
+            organelleContainer.Organelles!.Organelles, out var hexCount);
+
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
+
+        var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
+
+        if (cachedMembrane != null)
+        {
+            // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
+            // re-generate on each game update cycle
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            {
+                CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
+                cachedMembrane = null;
+            }
+        }
+
+        if (cachedMembrane != null)
+        {
+            // Membrane was ready now
+            return cachedMembrane;
+        }
+
+        // Need to generate a new membrane
+
+        lock (pendingGenerationsOfMembraneHashes)
+        {
+            if (!pendingGenerationsOfMembraneHashes.Add(hash))
+            {
+                // Already queued, don't need to queue again
+
+                // Return the unnecessary array that there won't be a cache entry to hold to the pool
+                ArrayPool<Vector2>.Shared.Return(hexes);
+
+                return null;
+            }
+        }
+
+        List<Vector2> positions = new List<Vector2>();
+
+        foreach (var cell in multicellular.Species.Cells)
+        {
+            var cartesian = Hex.AxialToCartesian(cell.Position);
+            positions.AddItem(new Vector2(cartesian.X, cartesian.Z));
+        }
+
+        var thisCartesian = Hex.AxialToCartesian(multicellular.Species.Cells[multicellular.MulticellularBodyPlanPartIndex].Position);
+        var thisVector2 = new Vector2(thisCartesian.X, thisCartesian.Z);
+
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positions.ToArray(), thisVector2));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals

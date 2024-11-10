@@ -54,7 +54,8 @@ public class MembraneShapeGenerator
     ///   Computed data in a cache entry format (to be used with <see cref="ProceduralDataCache"/>, which should be
     ///   checked for existing data before computing new data)
     /// </returns>
-    public MembranePointData GenerateShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
+    public MembranePointData GenerateShape(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
+        Vector2[]? cellPositions, Vector2? thisCellPosition)
     {
         // The length in pixels (probably not accurate?) of a side of the square that bounds the membrane.
         // Half the side length of the original square that is compressed to make the membrane.
@@ -109,7 +110,7 @@ public class MembraneShapeGenerator
         // ReSharper restore PossibleLossOfFraction
 
         // Get new membrane points for vertices2D
-        GenerateMembranePoints(hexPositions, hexCount, membraneType);
+        GenerateMembranePoints(hexPositions, hexCount, membraneType, cellPositions, thisCellPosition);
 
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
         return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D);
@@ -117,12 +118,13 @@ public class MembraneShapeGenerator
 
     public MembranePointData GenerateShape(ref MembraneGenerationParameters parameters)
     {
-        return GenerateShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type);
+        return GenerateShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type,
+            parameters.MulticellularPositions, parameters.CellPositionInMulticellular);
     }
 
     public MembranePointData GenerateShape(IMembraneDataSource parameters)
     {
-        return GenerateShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type);
+        return GenerateShape(parameters.HexPositions, parameters.HexPositionCount, parameters.Type, null, null);
     }
 
     /// <summary>
@@ -464,7 +466,8 @@ public class MembraneShapeGenerator
         return generatedMesh;
     }
 
-    private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType)
+    private void GenerateMembranePoints(Vector2[] hexPositions, int hexCount, MembraneType membraneType,
+        Vector2[]? cellPositions, Vector2? thisCellPosition)
     {
         // Move all the points in the source buffer close to organelles
         // This operation used to be iterative but this is now a much faster version that moves things all the way in
@@ -477,6 +480,30 @@ public class MembraneShapeGenerator
             var movement = direction * Constants.MEMBRANE_ROOM_FOR_ORGANELLES;
 
             startingBuffer[i] = closestOrganelle + movement;
+        }
+
+        // Multicellular matrix
+        if (thisCellPosition != null && cellPositions != null)
+        {
+            for (int i = 0, end = startingBuffer.Count; i < end; ++i)
+            {
+                // Make into constant unless you will forget
+                var multicellularHexDistanceMultiplier = 20;
+
+                Vector2 movement = default;
+
+                foreach (var cellPosition in cellPositions)
+                {
+                    // Not normalizing due to need to keep proportions
+                    var multicellularDirection = (cellPosition * multicellularHexDistanceMultiplier)
+                        - (thisCellPosition * multicellularHexDistanceMultiplier + startingBuffer[i]);
+
+                    if (multicellularDirection != null)
+                        movement += multicellularDirection.Value;
+                }
+
+                startingBuffer[i] = startingBuffer[i] + movement;
+            }
         }
 
         float circumference = 0.0f;
