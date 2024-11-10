@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-06 18:42+0000\n"
-"PO-Revision-Date: 2024-10-31 16:07+0200\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"PO-Revision-Date: 2024-11-08 15:19+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1838,6 +1838,11 @@ msgstr "escape engulfing"
 
 msgid "ESTUARY"
 msgstr "Estuary"
+
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr ""
+"Eruption Patch Event\n"
+"Creates extra hydrogen sulfide and carbon dioxide"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionary Tree"
@@ -5288,9 +5293,6 @@ msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperat
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "The amount of glucose has been reduced to {0} of the previous amount."
-
 msgid "THE_DISTURBANCE"
 msgstr "The Disturbance"
 
@@ -5768,6 +5770,12 @@ msgstr "This is a debug build where the info below is probably not up to date"
 
 msgid "UNDERWATERCAVE"
 msgstr "Underwater cave"
+
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Underwater vent eruption"
+
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Eruption in {0}"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Undiscovered"
@@ -8092,6 +8100,17 @@ msgstr "Zoom in"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
+
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Eruption in {0}"
+
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr ""
+#~ "Eruption Patch Event\n"
+#~ "Creates extra hydrogen sulfide and carbon dioxide"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "The amount of glucose has been reduced to {0} of the previous amount."
 
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "A modified metabolosome responsible for the production of a primitive form of the toxic agent [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Can be modified to switch the generated toxin type for other effects."

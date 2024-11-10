@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-06 18:42+0000\n"
-"PO-Revision-Date: 2024-11-01 09:32+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"PO-Revision-Date: 2024-11-04 07:58+0000\n"
+"Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -474,9 +474,8 @@ msgstr "生物發光液泡"
 msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "光暈效果"
+msgstr "光暈效果："
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神經元"
@@ -1840,6 +1839,10 @@ msgstr "逃離吞噬"
 msgid "ESTUARY"
 msgstr "河口灣"
 
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "這是編譯此版本 Thrive 的確切程式碼提交"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化樹"
 
@@ -1876,13 +1879,11 @@ msgstr "退出至啟動器"
 msgid "EXPERIMENTAL_FEATURES"
 msgstr "實驗性功能"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr "（啟用遊戲中尚未完善的額外功能，如果您使用這些功能，請分享您對這些功能的任何反饋）"
 
-#, fuzzy
 msgid "EXPERIMENTAL_FEATURES_WARNING"
-msgstr "實驗性功能"
+msgstr "（警告：實驗性功能可能會破壞遊戲平衡與其他方面，因此僅建議經驗豐富的 Thrive 玩家使用。如果您回報任何錯誤，則需要在回報前說明實驗性功能已啟用。）"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "匯出所有世界"
@@ -5291,9 +5292,6 @@ msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]
 msgid "THERMOSYNTHESIS"
 msgstr "熱合成"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "環境葡萄糖量已減少至先前的 {0}。"
-
 msgid "THE_DISTURBANCE"
 msgstr "干擾"
 
@@ -5770,6 +5768,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "這是一個除錯版本，以下資訊可能不是最新的"
 
 msgid "UNDERWATERCAVE"
+msgstr "水下洞穴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "水下洞穴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "水下洞穴"
 
 msgid "UNDISCOVERED_ORGANELLES"
@@ -8095,6 +8101,17 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "縮小"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "出芽生殖"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}：+{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "環境葡萄糖量已減少至先前的 {0}。"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
