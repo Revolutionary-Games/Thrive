@@ -823,6 +823,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
         UpdateCurrentWorldStatistics();
+        patchMapDrawer.UpdatePatchEvents();
 
         if (patchMapDrawer.PlayerPatch != null)
             PatchListMenuUpdate(patchMapDrawer.PlayerPatch);
@@ -847,6 +848,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateAutoEvoReport();
         UpdateSpeciesList();
         UpdatePatchDetailPanel(patchMapDrawer);
+        patchMapDrawer.UpdatePatchEvents();
     }
 
     private void UpdateAutoEvoReport()
