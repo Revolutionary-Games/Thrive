@@ -340,6 +340,16 @@ public class WikiUpdater
         foreach (var page in pages)
         {
             var name = page.QuerySelector(".mw-page-title-main")!.TextContent;
+
+            // Ignore redirect pages
+            var redirect = page.QuerySelector("span#redirectsub");
+
+            if (redirect != null)
+            {
+                ColourConsole.WriteNormalLine($"Skipping redirect page: {name}");
+                continue;
+            }
+
             var pageUrl = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
             var untranslatedPageName = name.ToUpperInvariant().Replace(" ", "_");
