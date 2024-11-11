@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1920,6 +1920,10 @@ msgstr "Verschlingung entflohen"
 
 msgid "ESTUARY"
 msgstr "Ästuar"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Dies ist die exakte Version dieser Thrive Instanz"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -3987,13 +3991,13 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Stickstofffixier-Plastid"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
 msgid "NONE"
@@ -5578,9 +5582,6 @@ msgstr "Produziert [thrive:compound type=\"atp\"][/thrive:compound] mithilfe von
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthese"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
-
 msgid "THE_DISTURBANCE"
 msgstr "Die Verstörung (Thrive Maskottchen)"
 
@@ -6095,6 +6096,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Dies ist eine Debug-Version und die Info unten ist vermutlich nicht aktuell"
 
 msgid "UNDERWATERCAVE"
+msgstr "Unterwasser-Höhle"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Unterwasser-Höhle"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Unterwasser-Höhle"
 
 #, fuzzy
@@ -7267,38 +7276,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Editor aktivieren"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
@@ -7328,6 +7305,38 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Stickstofffixier-Plastid"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7507,12 +7516,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Raubtier-Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Stickstofffixier-Plastid"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8074,6 +8083,17 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Knospend"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

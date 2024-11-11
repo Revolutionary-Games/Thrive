@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Thai <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/th/>\n"
@@ -1871,6 +1871,10 @@ msgstr ""
 
 msgid "ESTUARY"
 msgstr "ปากน้ำ"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "ดำเนินการต่อ"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -3906,14 +3910,14 @@ msgstr "Nitrogenase เป็นโปรตีนที่สามารถใ
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "พลาสติดตรึงไนโตรเจน"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
 
 #, fuzzy
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
 
 msgid "NONE"
@@ -5528,9 +5532,6 @@ msgstr "เทอร์โมพลาสต์เป็นโครงสร้
 msgid "THERMOSYNTHESIS"
 msgstr "การสังเคราะห์ด้วยเคมี"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6002,6 +6003,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
 msgid "UNDERWATERCAVE"
+msgstr "ถ้ำใต้น้ำ"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "ถ้ำใต้น้ำ"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "ถ้ำใต้น้ำ"
 
 #, fuzzy
@@ -7143,38 +7152,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "เปิดใช้งานตัวแก้ไข"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "พลาสติดตรึงไนโตรเจน"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "พลาสติดตรึงไนโตรเจน"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "พลาสติดตรึงไนโตรเจน"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "พลาสติดตรึงไนโตรเจน"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "พลาสติดตรึงไนโตรเจน"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
@@ -7204,6 +7181,38 @@ msgstr "Nitrogenase เป็นโปรตีนที่สามารถใ
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "พลาสติดตรึงไนโตรเจน"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "พลาสติดตรึงไนโตรเจน"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "พลาสติดตรึงไนโตรเจน"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogen Fixing Plastid เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและออกซิเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบแอโรบิค"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "พลาสติดตรึงไนโตรเจน"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "พลาสติดตรึงไนโตรเจน"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7386,12 +7395,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "สัตว์นักล่า"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "พลาสติดตรึงไนโตรเจน"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "ไนโตรเจน"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "พลาสติดตรึงไนโตรเจน"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7963,6 +7972,14 @@ msgstr "ซูมเข้า"
 
 msgid "ZOOM_OUT"
 msgstr "ซูมออก"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "ถ้ำใต้น้ำ"
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

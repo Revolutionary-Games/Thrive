@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1917,6 +1917,10 @@ msgstr "בריחה מבליעה"
 
 msgid "ESTUARY"
 msgstr "שפך נהר"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "עץ אבולוציוני"
@@ -4006,13 +4010,13 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "פלסטיד מקבע חנקן"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -5589,9 +5593,6 @@ msgstr "מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעזרת �
 msgid "THERMOSYNTHESIS"
 msgstr "תרמוסינתזה"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6103,6 +6104,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "זהו בניית די-באג כאשר שהמידע מתחת ככל הנראה לא מעודכן"
 
 msgid "UNDERWATERCAVE"
+msgstr "מערה תת-מימית"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "מערה תת-מימית"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "מערה תת-מימית"
 
 #, fuzzy
@@ -7272,38 +7281,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "הפעל את העורך"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
 
@@ -7333,6 +7310,38 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "פלסטיד מקבע חנקן"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7512,12 +7521,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "פילוס טורף"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "ניטרוגנאז"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "פלסטיד מקבע חנקן"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8079,6 +8088,17 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "הנצה"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: {1}+ ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Godot;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Systems;
 
@@ -38,6 +36,10 @@ public class PhotosynthesisProductionEffect : IWorldEffect
         var modifier = 0.00015f;
 
         List<TweakedProcess> microbeProcesses = [];
+
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        var changesToApply = new Dictionary<Compound, float>();
 
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
@@ -126,49 +128,17 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             oxygenBalance *= modifier;
             co2Balance *= modifier;
 
-            // TODO: add patch volumes, calculate absolute values and after that go back to fractional values
+            changesToApply.Clear();
 
             if (oxygenBalance != 0)
-                ApplyCompoundChanges(patch, Compound.Oxygen, oxygenBalance);
+                changesToApply[Compound.Oxygen] = oxygenBalance;
 
             if (co2Balance != 0)
-                ApplyCompoundChanges(patch, Compound.Carbondioxide, co2Balance);
-        }
-    }
+                changesToApply[Compound.Carbondioxide] = co2Balance;
 
-    private void ApplyCompoundChanges(Patch patch, Compound compound, float change)
-    {
-        if (patch.Biome.TryGetCompound(compound, CompoundAmountType.Biome, out var tweakedBiomeConditions))
-        {
-            if (SimulationParameters.Instance.GetCompoundDefinition(compound).IsEnvironmental)
-            {
-                tweakedBiomeConditions.Ambient = Math.Clamp(tweakedBiomeConditions.Ambient + change, 0, 1);
-            }
-            else
-            {
-                tweakedBiomeConditions.Density = Math.Clamp(tweakedBiomeConditions.Density + change, 0, 1);
-            }
+            if (changesToApply.Count > 0)
+                patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
         }
-        else
-        {
-            // New compound added to this patch
-            if (change <= 0)
-            {
-                // If trying to add negative compound balance initially, it doesn't make sense so this is just skipped
-                return;
-            }
-
-            if (SimulationParameters.Instance.GetCompoundDefinition(compound).IsEnvironmental)
-            {
-                tweakedBiomeConditions.Ambient = Math.Clamp(change, 0, 1);
-            }
-            else
-            {
-                GD.PrintErr("This effect doesn't handle adding new non-environmental compounds");
-            }
-        }
-
-        patch.Biome.ModifyLongTermCondition(compound, tweakedBiomeConditions);
     }
 
     private bool IsProcessRelevant(BioProcess process)

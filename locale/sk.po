@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1854,6 +1854,10 @@ msgstr "uniknúť pohlteniu"
 
 msgid "ESTUARY"
 msgstr "Ústie"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -3833,13 +3837,13 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"nitrogen\"]dusíka[/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastid fixujúci dusík"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NONE"
@@ -5413,9 +5417,6 @@ msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] pomocou teplo
 msgid "THERMOSYNTHESIS"
 msgstr "Termosyntéza"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -5797,6 +5798,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
 msgid "UNDERWATERCAVE"
+msgstr "Podvodná jaskyňa"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Podvodná jaskyňa"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Podvodná jaskyňa"
 
 #, fuzzy
@@ -6908,38 +6917,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Zapni editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenáza"
 
@@ -6968,6 +6945,38 @@ msgstr "Nitrogenáza"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastid fixujúci dusík"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7145,12 +7154,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Dravý Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastid fixujúci dusík"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7705,6 +7714,14 @@ msgstr "Priblížiť"
 
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Pučanie"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
 
 #~ msgid "THYLAKOID"
 #~ msgstr "Tylakoid"

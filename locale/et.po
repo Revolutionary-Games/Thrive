@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1977,6 +1977,10 @@ msgstr "neelamisest pääsemine"
 
 msgid "ESTUARY"
 msgstr "lehtersuue"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "vabasurm"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -4141,13 +4145,13 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Lämmastikku fikseeriv plastiid"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
 msgid "NONE"
@@ -5783,9 +5787,6 @@ msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisska
 msgid "THERMOSYNTHESIS"
 msgstr "Kemosüntees"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Glükoosi kogust on vähendatud {0}-ni eelmisest kogusest."
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6298,6 +6299,14 @@ msgstr ""
 "Kas soovite siiski proovida salvestust laadida?"
 
 msgid "UNDERWATERCAVE"
+msgstr "Veealune koobas"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Veealune koobas"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Veealune koobas"
 
 #, fuzzy
@@ -7497,38 +7506,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Luba redaktor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
@@ -7558,6 +7535,38 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Lämmastikku fikseeriv plastiid"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7744,12 +7753,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Lämmastikku fikseeriv plastiid"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8360,6 +8369,17 @@ msgstr "Suurenda"
 
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "lootustandev"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Glükoosi kogust on vähendatud {0}-ni eelmisest kogusest."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

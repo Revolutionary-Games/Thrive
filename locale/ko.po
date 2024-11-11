@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -1949,6 +1949,10 @@ msgstr "삼키기 탈출"
 
 msgid "ESTUARY"
 msgstr "어귀"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "진화 계보"
@@ -4011,14 +4015,14 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "질소 고정 색소체"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
 #, fuzzy
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
 msgid "NONE"
@@ -5663,9 +5667,6 @@ msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있�
 msgid "THERMOSYNTHESIS"
 msgstr "열합성"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6182,6 +6183,14 @@ msgstr ""
 "그래도 불러오시겠습니까?"
 
 msgid "UNDERWATERCAVE"
+msgstr "수중 동굴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "수중 동굴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "수중 동굴"
 
 #, fuzzy
@@ -7349,38 +7358,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "편집기 활성화"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
@@ -7410,6 +7387,38 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "질소 고정 색소체"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7588,12 +7597,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "포식자 선모"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "니트로게나아제"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "질소 고정 색소체"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8157,6 +8166,17 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "생산"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "수중 동굴"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

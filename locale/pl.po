@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1873,6 +1873,10 @@ msgstr "Uniknij fagocytozy"
 
 msgid "ESTUARY"
 msgstr "Eustarium"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
@@ -3882,13 +3886,13 @@ msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"n
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywajac [thrive:compound type=\"atp\"][/thrive:compound] . Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastyd Wiążący Azot"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -5428,9 +5432,6 @@ msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gr
 msgid "THERMOSYNTHESIS"
 msgstr "Termosynteza"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
-
 msgid "THE_DISTURBANCE"
 msgstr "Disturbaniec"
 
@@ -5901,6 +5902,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "To jest wersja debugowania gdzie informacje poniżej są prawdopodobnie przestarzałe"
 
 msgid "UNDERWATERCAVE"
+msgstr "Podwodna Jaskinia"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Podwodna Jaskinia"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Podwodna Jaskinia"
 
 #, fuzzy
@@ -7032,33 +7041,6 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "Włącz edytor"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Brak efektów."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Przekształca wolny [thrive:compound type=\"nitrogen\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając energię. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]. Bardziej efektywne niż podobny proces w [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Brak ulepszeń."
-
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
@@ -7086,6 +7068,33 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Brak efektów."
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Przekształca wolny [thrive:compound type=\"nitrogen\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając energię. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]. Bardziej efektywne niż podobny proces w [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7248,11 +7257,11 @@ msgstr "Etap Wielokomórkowca"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miofibryle"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastyd Wiążący Azot"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Azotaza"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastyd Wiążący Azot"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Jądro Komórkowe"
@@ -7806,6 +7815,17 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Pączkowanie"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
