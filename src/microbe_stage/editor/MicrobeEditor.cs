@@ -147,8 +147,6 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
         reportTab.UpdateReportTabPatchSelector();
 
-        reportTab.UpdateGlucoseReduction(CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
-
         if (fresh)
         {
             CurrentGame.SetBool("edited_microbe", true);
@@ -160,6 +158,8 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
             reportTab.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
             reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
+
+            reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
         }
 
         ProceduralDataCache.Instance.OnEnterState(MainGameState.MicrobeEditor);
@@ -244,6 +244,10 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
         }
 
         reportTab.UpdatePatchDetails(CurrentPatch, TargetPatch);
+
+        reportTab.UpdateEvents(CurrentGame.GameWorld.EventsLog, CurrentGame.GameWorld.TotalPassedTime);
+
+        patchMapTab.UpdatePatchEvents();
     }
 
     protected override void ElapseEditorEntryTime()

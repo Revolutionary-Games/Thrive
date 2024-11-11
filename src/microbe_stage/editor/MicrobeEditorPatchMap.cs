@@ -10,6 +10,11 @@ public partial class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWith
         mapDrawer.MarkDirty();
     }
 
+    public void UpdatePatchEvents()
+    {
+        mapDrawer.UpdatePatchEvents();
+    }
+
     protected override void UpdateShownPatchDetails()
     {
         base.UpdateShownPatchDetails();

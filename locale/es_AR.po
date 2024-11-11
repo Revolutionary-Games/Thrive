@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-16 05:52+0000\n"
 "Last-Translator: fideos con queso <whipstickagostopp@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -1837,6 +1837,10 @@ msgstr ""
 
 msgid "ESTUARY"
 msgstr "Estuario"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Disparar toxina"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -3855,13 +3859,13 @@ msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
 #, fuzzy
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plástido fijador de nitrógeno"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NONE"
@@ -5397,9 +5401,6 @@ msgstr ""
 msgid "THERMOSYNTHESIS"
 msgstr "Fotosíntesis"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -5847,6 +5848,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
 msgid "UNDERWATERCAVE"
+msgstr "Cueva marítima"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Cueva marítima"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Cueva marítima"
 
 #, fuzzy
@@ -7102,38 +7111,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Habilitar el editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenasa"
 
@@ -7164,6 +7141,38 @@ msgstr "Nitrogenasa"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plástido fijador de nitrógeno"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plástido fijador de nitrógeno"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7369,12 +7378,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pili de depredador"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plástido fijador de nitrógeno"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plástido fijador de nitrógeno"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8012,6 +8021,14 @@ msgstr "Acercar la pantalla"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "población:"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "Cueva marítima"
 
 #, fuzzy
 #~ msgid "WIKI_CHEMOSYNTHESIS"
