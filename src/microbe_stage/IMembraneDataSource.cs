@@ -9,6 +9,9 @@ using Godot;
 public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
+
+    public Vector2[]? MulticellularPositions { get; }
+
     public int HexPositionCount { get; }
     public MembraneType Type { get; }
 }
@@ -150,11 +153,11 @@ public static class MembraneComputationHelpers
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type, other.MulticellularPositions);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType)
+        int otherPointCount, MembraneType otherType, Vector2[]? multicellularPositions)
     {
         if (!dataSource.Type.Equals(otherType))
             return false;
@@ -165,6 +168,21 @@ public static class MembraneComputationHelpers
         var count = dataSource.HexPositionCount;
 
         var sourcePoints = dataSource.HexPositions;
+
+        if (dataSource.MulticellularPositions != null)
+        {
+            if (!dataSource.MulticellularPositions.Equals(multicellularPositions))
+            {
+                return false;
+            }
+            GD.Print("elo");
+        }
+        else
+        {
+            if (multicellularPositions != null)
+                return false;
+            GD.Print("olelo");
+        }
 
         for (int i = 0; i < count; ++i)
         {

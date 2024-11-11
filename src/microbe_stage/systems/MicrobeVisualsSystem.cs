@@ -240,7 +240,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, null))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -285,6 +285,16 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
+        List<Vector2> positions = new List<Vector2>();
+
+        foreach (var cell in multicellular.Species.Cells)
+        {
+            var cartesian = Hex.AxialToCartesian(cell.Position);
+            positions.AddItem(new Vector2(cartesian.X, cartesian.Z));
+        }
+
+        var positionsArray = positions.ToArray();
+
         var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
@@ -293,10 +303,12 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType))
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
+
+                GD.Print("uhm");
             }
         }
 
@@ -321,18 +333,10 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             }
         }
 
-        List<Vector2> positions = new List<Vector2>();
-
-        foreach (var cell in multicellular.Species.Cells)
-        {
-            var cartesian = Hex.AxialToCartesian(cell.Position);
-            positions.AddItem(new Vector2(cartesian.X, cartesian.Z));
-        }
-
         var thisCartesian = Hex.AxialToCartesian(multicellular.Species.Cells[multicellular.MulticellularBodyPlanPartIndex].Position);
         var thisVector2 = new Vector2(thisCartesian.X, thisCartesian.Z);
 
-        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positions.ToArray(), thisVector2));
+        membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray, thisVector2));
 
         // Immediately start some jobs to give background threads something to do while the main thread is busy
         // potentially setting up other visuals

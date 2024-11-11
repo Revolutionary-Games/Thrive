@@ -112,8 +112,10 @@ public class MembraneShapeGenerator
         // Get new membrane points for vertices2D
         GenerateMembranePoints(hexPositions, hexCount, membraneType, cellPositions, thisCellPosition);
 
+        GD.Print(cellPositions == null);
+
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
-        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D);
+        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D, cellPositions);
     }
 
     public MembranePointData GenerateShape(ref MembraneGenerationParameters parameters)
@@ -483,12 +485,12 @@ public class MembraneShapeGenerator
         }
 
         // Multicellular matrix
-        if (thisCellPosition != null && cellPositions != null)
+        /*if (thisCellPosition != null && cellPositions != null)
         {
             for (int i = 0, end = startingBuffer.Count; i < end; ++i)
             {
                 // Make into constant unless you will forget
-                var multicellularHexDistanceMultiplier = 20;
+                var multicellularHexDistanceMultiplier = 1;
 
                 Vector2 movement = default;
 
@@ -504,7 +506,7 @@ public class MembraneShapeGenerator
 
                 startingBuffer[i] = startingBuffer[i] + movement;
             }
-        }
+        }*/
 
         float circumference = 0.0f;
 
