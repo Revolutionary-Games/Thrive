@@ -105,24 +105,24 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // has to be deferred too.
         if (NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f))
         {
-            CallDeferred(nameof(ApplyTextures), mesh);
+            Invoke.Instance.Perform(ApplyTextures);
         }
     }
 
-    private void ApplyTextures(ArrayMesh mesh)
+    private void ApplyTextures()
     {
         if (material != null)
         {
             Stopwatch sw = new();
             sw.Start();
 
-            material.AlbedoTexture = ImageTexture.CreateFromImage(GenerateTexture(mesh));
+            material.AlbedoTexture = ImageTexture.CreateFromImage(GenerateTexture((ArrayMesh)Mesh));
 
             sw.Stop();
             GD.Print("Drew a texture in " + sw.Elapsed);
         }
 
-        mesh.SurfaceSetMaterial(0, material);
+        Mesh.SurfaceSetMaterial(0, material);
     }
 
     private Image GenerateTexture(ArrayMesh mesh)
