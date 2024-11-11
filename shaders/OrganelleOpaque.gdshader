@@ -4,11 +4,11 @@ render_mode depth_draw_opaque;
 uniform sampler2D texture : source_color;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1) = 0.0;
-uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.0;
+uniform float dissolveValue : hint_range(0, 1) = 0.f;
+uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.f;
 
-uniform float outlineWidth = 0.0;
-uniform vec4 growColor : source_color = vec4(0.5, 0.5, 0.5, 1);
+uniform float outlineWidth : hint_range(0.0, 0.25, 0.01) = 0.f;
+uniform vec4 growColor : source_color = vec4(0.1, 0.1, 0.1, 1);
 
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
@@ -54,5 +54,5 @@ void fragment(){
 
     ALPHA = round(cutoff) * final.a;
 
-    EMISSION = clamp(dissolveOutline, 0, dissolveValue);
+    EMISSION = clamp(dissolveOutline, 0.f, dissolveValue);
 }

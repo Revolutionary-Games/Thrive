@@ -6,21 +6,21 @@ render_mode depth_prepass_alpha, blend_mix, depth_draw_opaque, cull_back;
 
 uniform sampler2D albedoTexture : source_color, filter_linear_mipmap, repeat_enable;
 
-uniform float dissolveValue : hint_range(0, 1);
-uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.0;
+uniform float dissolveValue : hint_range(0, 1) = 0.f;
+uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.f;
 
-uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
+uniform vec4 tint : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 
-uniform float roughness : hint_range(0.0, 1.0);
-uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float roughness : hint_range(0.0, 1.0) = 0.5f;
+uniform float specular : hint_range(0.0, 1.0, 0.01) = 0.2f;
 
-uniform sampler2D emissionTexture : source_color, hint_default_black, filter_linear_mipmap, repeat_enable;
-uniform vec4 emission : source_color = vec4(0.08, 0.08, 0.08, 1.0);
-uniform float emissionEnergy : hint_range(0.0, 50.0, 0.01) = 1;
+uniform sampler2D emissionTexture : source_color, filter_linear_mipmap, repeat_enable;
+uniform vec4 emission : source_color = vec4(0.08f, 0.08f, 0.08f, 1.f);
+uniform float emissionEnergy : hint_range(0.0, 50.0, 0.01) = 1.f;
 uniform bool useTextureEmission = false;
 
-uniform float outlineWidth;
-uniform vec4 growColor : source_color;
+uniform float outlineWidth : hint_range(0.0, 0.25, 0.01) = 0.0;
+uniform vec4 growColor : source_color = vec4(0.1, 0.1, 0.1, 1.0);
 
 uniform float jiggleAmount = 0.0005f;
 
@@ -51,11 +51,11 @@ void fragment() {
 
     vec4 dissolveTex = texture(dissolveTexture, (UV * dissolveScale));
 
-    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-        float(-0.5 + dissolveValue);
+    float cutoff = dot(dissolveTex.rgb, vec3(0.3f, 0.3f, 0.3f)) -
+        float(-0.5f + dissolveValue);
 
-    vec3 dissolveOutline = clamp(vec3(round(1.0 - float(cutoff - outlineWidth))) *
-        growColor.rgb, 0, dissolveValue);
+    vec3 dissolveOutline = clamp(vec3(round(1.f - float(cutoff - outlineWidth))) *
+        growColor.rgb, 0.f, dissolveValue);
 
     ALBEDO = final.rgb;
 
@@ -63,18 +63,14 @@ void fragment() {
 
     ROUGHNESS = roughness;
 
-    vec3 emissionValue;
+    vec3 pixelEmission = vec3(1.f, 1.f, 1.f);
     if (useTextureEmission)
     {
         vec3 emissionTex = texture(emissionTexture, UV).rgb;
-        emissionValue = emissionTex * emissionTex * 10.0;
-    }
-    else
-    {
-        emissionValue = vec3(1.0, 1.0, 1.0);
+        pixelEmission = emissionTex * 10.f;
     }
 
-    EMISSION = (dissolveOutline + (emission.rgb * emissionValue)) * emissionEnergy;
+    EMISSION = dissolveOutline + (emission.rgb * pixelEmission * emissionEnergy);
 
     ALPHA = round(cutoff) * final.a;
 }

@@ -4,14 +4,14 @@ render_mode depth_prepass_alpha, diffuse_lambert_wrap;
 uniform sampler2D texture : source_color;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1) = 0.0;
-uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.0;
+uniform float dissolveValue : hint_range(0, 1) = 0.f;
+uniform float dissolveScale : hint_range(0.5, 5.0, 0.1) = 1.f;
 
-uniform float fresnelValue : hint_range(0, 1) = 1.0;
+uniform float fresnelValue : hint_range(0, 1, 0.01) = 1.f;
 uniform bool fresnelActive = false;
 
-uniform float outlineWidth = 0.0;
-uniform vec4 growColor : source_color = vec4(0.5, 0.5, 0.5, 1);
+uniform float outlineWidth : hint_range(0.0, 0.25, 0.01) = 0.f;
+uniform vec4 growColor : source_color = vec4(0.1, 0.1, 0.1, 1.0);
 
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
 
@@ -53,8 +53,8 @@ void fragment(){
 
     if (fresnelActive)
     {
-		float fresnel = pow(dot(NORMAL, VIEW), 1.2) * fresnelValue;
-        ALPHA = clamp(round(cutoff) * final.a * (1.05f - fresnel) * 1.5, 0, 1);
+		float fresnel = pow(dot(NORMAL, VIEW), 1.2f) * fresnelValue;
+        ALPHA = clamp(round(cutoff) * final.a * (1.05f - fresnel) * 1.5f, 0.f, 1.f);
     }
     else
     {
