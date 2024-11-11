@@ -340,6 +340,16 @@ public class WikiUpdater
         foreach (var page in pages)
         {
             var name = page.QuerySelector(".mw-page-title-main")!.TextContent;
+
+            // Ignore redirect pages
+            var redirect = page.QuerySelector("span#redirectsub");
+
+            if (redirect != null)
+            {
+                ColourConsole.WriteNormalLine($"Skipping redirect page: {name}");
+                continue;
+            }
+
             var pageUrl = $"https://wiki.revolutionarygamesstudio.com/wiki/{name.Replace(" ", "_")}";
 
             var untranslatedPageName = name.ToUpperInvariant().Replace(" ", "_");
@@ -660,7 +670,10 @@ public class WikiUpdater
             return $"[color=#3796e1][url={link.Href}]{ConvertTextToBbcode(link.InnerHtml)}[/url][/color]";
         }
 
-        var translatedPageName = link.Title!;
+        var translatedPageName = link.Title;
+
+        if (translatedPageName == null)
+            throw new Exception($"Missing title in a wiki link! Tries to link to {link.Href}");
 
         if (!pageNames.TryGetValue(translatedPageName, out var internalPageName))
         {
