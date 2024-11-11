@@ -142,6 +142,7 @@ public partial class OrganelleUpgradeGUI : Control
                 tooltip.DisplayName = upgrade.Name;
                 tooltip.Description = upgrade.Description;
                 tooltip.MutationPointCost = cost;
+                tooltip.ShowOsmoregulation = false;
 
                 // TODO: add support for flavour text
                 // tooltip.ProcessesDescription = upgrade.Description;
