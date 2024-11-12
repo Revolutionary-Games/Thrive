@@ -105,7 +105,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // has to be deferred too.
         if (NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f))
         {
-            Invoke.Instance.Perform(ApplyTextures);
+            Invoke.Instance.QueueForObject(ApplyTextures, this);
         }
     }
 
