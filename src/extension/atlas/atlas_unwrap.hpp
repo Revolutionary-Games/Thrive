@@ -10,6 +10,6 @@ namespace Thrive
 bool Unwrap(godot::ArrayMesh& mesh, float texelSize);
 
 void FinishUnwrap(
-    godot::Ref<godot::SurfaceTool> surfaces_tools, godot::Ref<godot::ArrayMesh> mesh, uint64_t surface_format);
+    const godot::Ref<godot::SurfaceTool>& surfaces_tools, const godot::Ref<godot::ArrayMesh>& mesh, uint64_t surface_format);
 
 } // namespace Thrive

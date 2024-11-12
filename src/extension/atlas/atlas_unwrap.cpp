@@ -55,14 +55,17 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     Array arrays = mesh.surface_get_arrays(0);
 
     PackedVector3Array initialVertices = arrays[Mesh::ARRAY_VERTEX];
-    uint64_t vertexCount = initialVertices.size();
+
+    // We cast to a smaller type here so that the math for filling indexes works better. We assume here that billions
+    // of vertices per mesh are totally out of the question.
+    int vertexCount = static_cast<int>(initialVertices.size());
 
     PackedVector3Array initialNormals = arrays[Mesh::ARRAY_NORMAL];
 
     vertices.resize((uint32_t)(vertexCount * 3));
     normals.resize((uint32_t)(vertexCount * 3));
 
-    for (int j = 0; j < vertexCount; j++)
+    for (int j = 0; j < vertexCount; ++j)
     {
         Vector3 vertex = initialVertices[j];
         Vector3 normal = initialNormals[j];
@@ -76,11 +79,11 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     }
 
     PackedInt32Array initialIndices = arrays[Mesh::ARRAY_INDEX];
-    uint64_t indexCount = initialIndices.size();
+    int indexCount = static_cast<int>(initialIndices.size());
 
     // Taken from xatlas.h
     float eps = 1.19209290e-7F;
-    for (int j = 0; j < indexCount / 3; j++)
+    for (int j = 0; j < indexCount / 3; ++j)
     {
         Vector3 p0 = initialVertices[initialIndices[j * 3 + 0]];
         Vector3 p1 = initialVertices[initialIndices[j * 3 + 1]];
@@ -131,8 +134,8 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
 
     ERR_FAIL_COND_V_MSG(atlas->chartCount == 0, false, "No charts generated");
 
-    float w = (float)(atlas->width);
-    float h = (float)(atlas->height);
+    const auto w = (float)(atlas->width);
+    const auto h = (float)(atlas->height);
 
     if (w == 0 || h == 0)
     {
@@ -147,7 +150,7 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     Ref<SurfaceTool> surfacesTools;
     surfacesTools.instantiate();
     surfacesTools->begin(Mesh::PRIMITIVE_TRIANGLES);
-    indexCount = output.indexCount;
+    indexCount = static_cast<int>(output.indexCount);
 
     PackedColorArray initialColors = arrays[Mesh::ARRAY_COLOR];
     PackedVector2Array initialUV2 = arrays[Mesh::ARRAY_TEX_UV2];
@@ -160,7 +163,7 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
         for (int j = 0; j < 3; j++)
         {
             // Index of an original vertex corresponding to the generated one.
-            int vertex_id = output.vertexArray[output.indexArray[i + j]].xref;
+            unsigned int vertex_id = output.vertexArray[output.indexArray[i + j]].xref;
 
             if (surfaceFormat & Mesh::ARRAY_FORMAT_COLOR)
             {
@@ -208,7 +211,7 @@ bool Thrive::Unwrap(godot::ArrayMesh& mesh, float texelSize)
     return true;
 }
 
-void Thrive::FinishUnwrap(Ref<SurfaceTool> surfacesTools, Ref<ArrayMesh> mesh, uint64_t surfaceFormat)
+void Thrive::FinishUnwrap(const Ref<SurfaceTool>& surfacesTools, const Ref<ArrayMesh>& mesh, uint64_t surfaceFormat)
 {
     surfacesTools->commit(mesh, surfaceFormat);
 }
