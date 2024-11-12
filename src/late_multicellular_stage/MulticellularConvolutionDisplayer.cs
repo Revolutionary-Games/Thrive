@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Godot;
 using Xoshiro.PRNG32;
 
@@ -83,8 +82,9 @@ public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaba
 
         Mesh.SurfaceSetMaterial(0, material);
 
-        Task uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
-        TaskExecutor.Instance.AddTask(uvUnwrap);
+        // UV generation disabled until proper textures can be made for it
+        // var uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
+        // TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
