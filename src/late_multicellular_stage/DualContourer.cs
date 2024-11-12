@@ -116,9 +116,6 @@ public class DualContourer
         arrays[(int)Mesh.ArrayType.Normal] = normals;
         arrays[(int)Mesh.ArrayType.Color] = colors;
 
-        // arrays[(int)Mesh.ArrayType.TexUV] = newUV;
-        // arrays[(int)Mesh.ArrayType.TexUV2] = newUV1;
-
         ArrayMesh mesh = new ArrayMesh();
         mesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, arrays);
 
@@ -400,7 +397,7 @@ public class DualContourer
             Vector3 normal = GetFunctionMomentarySpeed(point, functionAtPoint, d);
 
             // If we move one unit in the direction of the normal, function value should be this much more.
-            // (If we assume that the function is completely )
+            // (If we assume that the function is very uniform)
             float instantaneousSpeed = normal.Length();
 
             Vector3 change = (normal / instantaneousSpeed) * ((MathFunction.SurfaceValue - functionAtPoint)
