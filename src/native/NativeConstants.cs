@@ -11,7 +11,7 @@ public class NativeConstants
 {
     public const int Version = 19;
     public const int EarlyCheck = 2;
-    public const int ExtensionVersion = 5;
+    public const int ExtensionVersion = 6;
 
     public const string LibraryFolder = "native_libs";
     public const string DistributableFolderName = "distributable";
