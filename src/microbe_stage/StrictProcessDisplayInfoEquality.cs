@@ -2,7 +2,8 @@
 using System.Linq;
 
 /// <summary>
-///   A strict equality comparison for <see cref="IProcessDisplayInfo"/>
+///   A strict equality comparison for <see cref="IProcessDisplayInfo"/>, done as some displays must be much more
+///   strict than normal related to the equality of the data.
 /// </summary>
 public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayInfoEquality>
 {
@@ -37,6 +38,11 @@ public class StrictProcessDisplayInfoEquality : IEquatable<StrictProcessDisplayI
             return false;
 
         if (Math.Abs(our.CurrentSpeed - theirs.CurrentSpeed) > MathUtils.EPSILON)
+            return false;
+
+        // If process toggle state doesn't match, cannot be equal (needed to properly update process panel state when
+        // enable / disable button is pressed)
+        if (our.Enabled != theirs.Enabled)
             return false;
 
         if (ReferenceEquals(our.Inputs, null) != ReferenceEquals(theirs.Inputs, null))

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -263,10 +263,10 @@ msgid "ATP_BALANCE_TOOLTIP"
 msgstr "Показати/ приховати сполуки"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Без зовнішніх ресурсів"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Без глюкози"
 
 #, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
@@ -277,7 +277,7 @@ msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr "АТФ баланс"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Без необхідних компонентів"
 
 msgid "ATP_PRODUCTION"
 msgstr "Продукування АТФ"
@@ -714,7 +714,7 @@ msgid "CLOSE_OPTIONS"
 msgstr "Закрити налаштування?"
 
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Клострідиальна Ферментація"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -1860,6 +1860,10 @@ msgstr "уникнення поглинання"
 msgid "ESTUARY"
 msgstr "Гирло"
 
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
 
@@ -1899,6 +1903,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(швидкість з якою ШІ мутує вид)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(швидкість з якою ШІ мутує вид)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2291,17 +2299,14 @@ msgstr "HSV"
 msgid "HUD_MESSAGE_MULTIPLE"
 msgstr "{0} (x{1})"
 
-#, fuzzy
 msgid "HYDROGENASE"
-msgstr "Сірководень"
+msgstr "Гідрогеназа"
 
-#, fuzzy
 msgid "HYDROGENASE_DESCRIPTION"
-msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+msgstr "Використовує водень для здобування енергії з[thrive:compound type=\\\"glucose\\\"][/thrive:compound]. Є ефективнішою за метаболосоми при низьких рівнях [thrive:compound type=\\\"oxygen\\\"][/thrive:compound]. Багато організмів у безкисневих оточеннях використовують її як основне джерело енергії."
 
-#, fuzzy
 msgid "HYDROGENASE_PROCESSES_DESCRIPTION"
-msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
+msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "HYDROGEN_SULFIDE"
 msgstr "Сірководень"
@@ -3839,13 +3844,13 @@ msgstr "Нітрогеназа– це білок, що використовує
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Азотфіксувальні пластиди"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфіксувальні пластиди – це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], ключової поживної речовини для росту клітини. Цей процес кличуть [b]Аеробною азотфіксацією[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -5363,9 +5368,6 @@ msgstr "Продукує [thrive:compound type=\"atp\"][/thrive:compound] вик
 msgid "THERMOSYNTHESIS"
 msgstr "Термосинтез"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
-
 msgid "THE_DISTURBANCE"
 msgstr "Порушення"
 
@@ -5847,6 +5849,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Це збірка налагоджувань, де інформація нижче, ймовірно, застаріла"
 
 msgid "UNDERWATERCAVE"
+msgstr "Підводна печера"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Підводна печера"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Підводна печера"
 
 msgid "UNDISCOVERED_ORGANELLES"
@@ -6745,9 +6755,8 @@ msgstr "Загальний редактор та стратегічні стад
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
-msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+msgstr "Жодних ефектів."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_INTRO"
@@ -7030,37 +7039,6 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "Увімкнути редактор"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Немає ефектів."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Азотофіксуючі пластиди"
-
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
@@ -7091,6 +7069,37 @@ msgstr "Нітрогеназа– це білок, що використовує
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Немає ефектів."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Азотофіксуючі пластиди"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Азотофіксуючі пластиди"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Азотофіксуючі пластиди"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Азотофіксуючі пластиди"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7270,12 +7279,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Міофібрила"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Азотофіксуючі пластиди"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7836,6 +7845,17 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Брункування"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} АТФ"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

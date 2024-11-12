@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1906,6 +1906,10 @@ msgid "ESTUARY"
 msgstr "Torkolat"
 
 #, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Öngyilkosság"
+
+#, fuzzy
 msgid "EVOLUTIONARY_TREE"
 msgstr "A Revolutionary Games Studio-tól"
 
@@ -1947,6 +1951,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(a sebesség, mely alatt az AI fajok mutálódnak)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(a sebesség, mely alatt az AI fajok mutálódnak)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -4020,13 +4028,13 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Nitrifikáló színtest"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
 msgid "NONE"
@@ -5637,9 +5645,6 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hat
 msgid "THERMOSYNTHESIS"
 msgstr "Termoszintézis"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -6131,6 +6136,14 @@ msgstr ""
 "Így is be akarod tölteni a mentést?"
 
 msgid "UNDERWATERCAVE"
+msgstr "Víz alatti barlang"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Víz alatti barlang"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Víz alatti barlang"
 
 #, fuzzy
@@ -7292,38 +7305,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Szerkesztő engedélyezése"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
@@ -7353,6 +7334,38 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Nitrifikáló színtest"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7530,12 +7543,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Ragadozói pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Nitrifikáló színtest"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8100,6 +8113,17 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Bimbózás"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."
 
 #~ msgid "THYLAKOID"
 #~ msgstr "Thilakoid"

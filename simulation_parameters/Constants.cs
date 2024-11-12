@@ -1163,6 +1163,35 @@ public static class Constants
     public const int EDITOR_TIME_JUMP_MILLION_YEARS = 100;
     public const float GLUCOSE_MIN = 0.0f;
 
+    // Tweak variable for how fast compounds diffuse between patches
+    public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 1;
+    public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
+
+    // Volcanism co2 production configuration
+    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.15f;
+    public const float VOLCANISM_VENTS_CO2_THRESHOLD = 0.3f;
+
+    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.025f;
+    public const float VOLCANISM_SURFACE_CO2_THRESHOLD = 0.15f;
+
+    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.005f;
+    public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
+
+    // These control the safe levels of nitrogen in a patch (due to other effects the max is also not really an
+    // absolute)
+    public const float MAX_NITROGEN_LEVEL = 0.75f;
+    public const float SOFT_MIN_NITROGEN_LEVEL = 0.3f;
+
+    /// <summary>
+    ///   Controls how fast the "other" category of gases disappears
+    /// </summary>
+    public const float OTHER_GASES_DECAY_SPEED = 0.08f;
+
+    // Patch event variables
+    public const int VENT_ERUPTION_CHANCE = 15;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00008f;
+    public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
+
     // These control how many game entities can exist at once
     public const int TINY_MAX_SPAWNED_ENTITIES = 80;
     public const int VERY_SMALL_MAX_SPAWNED_ENTITIES = 150;
@@ -1522,7 +1551,7 @@ public static class Constants
     ///   How many times a target species needs to be engulfed for it to be completed (in the base case, this is
     ///   lowered with more organelle instances)
     /// </summary>
-    public const int ENDOSYMBIOSIS_COST_BASE = 6;
+    public const int ENDOSYMBIOSIS_COST_BASE = 5;
 
     public const int ENDOSYMBIOSIS_COST_REDUCTION_PER_ORGANELLE = 1;
 

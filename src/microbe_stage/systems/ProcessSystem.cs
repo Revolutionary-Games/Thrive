@@ -53,16 +53,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     This takes in an existing list to avoid allocations as much as possible
+    ///     This takes in an existing list to avoid allocations as much as possible. It is more efficient to clear the
+    ///     list if it is used for unrelated cells before calling this method.
     ///   </para>
     /// </remarks>
     public static void ComputeActiveProcessList(IReadOnlyList<IPositionedOrganelle> organelles,
         [NotNull] ref List<TweakedProcess>? result)
     {
         result ??= new List<TweakedProcess>();
-
-        // Very important to clear any existing list to ensure old processes don't hang around
-        result.Clear();
 
         // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
         // A basic linear scan over all organelles and their processes with combining duplicates into the result
@@ -95,8 +93,43 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 {
                     if (result[k].Process == processKey)
                     {
-                        // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
-                        result[k] = new TweakedProcess(processKey, process.Rate + result[k].Rate);
+                        var replacedEntry = result[k];
+
+                        if (!replacedEntry.Marked)
+                        {
+                            // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
+                            // considered to be a real result entry
+                            // To keep consistent ordering no matter what the old data is, we need to move the current
+                            // item to be in place of the first non-marked item
+                            for (int l = 0; l < k; ++l)
+                            {
+                                if (!result[l].Marked)
+                                {
+                                    // Swap positions of the data, as we will write to the k index (that is updated)
+                                    // we need to only write the moving away data to perform the swap
+                                    result[k] = result[l];
+                                    k = l;
+                                    break;
+                                }
+                            }
+
+                            // Add without copying the base rate as that is outdated data we don't want to add to
+                            result[k] = new TweakedProcess(processKey, process.Rate)
+                            {
+                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                                Marked = true,
+                            };
+                        }
+                        else
+                        {
+                            // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                            result[k] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
+                            {
+                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                                Marked = true,
+                            };
+                        }
+
                         added = true;
                         break;
                     }
@@ -106,9 +139,30 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     continue;
 
                 // If not found, then create a new result
-                result.Add(new TweakedProcess(process.Process, process.Rate));
+                result.Add(new TweakedProcess(processKey, process.Rate)
+                {
+                    Marked = true,
+                });
             }
         }
+
+        // Remove unmarked processes, so that old processes aren't kept around
+        // Also unmarks marked processes
+        int writeIndex = 0;
+
+        for (int readIndex = 0; readIndex < result.Count; ++readIndex)
+        {
+            if (result[readIndex].Marked)
+            {
+                var process = result[readIndex];
+                process.Marked = false;
+                result[writeIndex++] = process;
+            }
+        }
+
+        // This if is not strictly necessary as RemoveRange works with also 0 items
+        if (writeIndex < result.Count)
+            result.RemoveRange(writeIndex, result.Count - writeIndex);
     }
 
     /// <summary>
@@ -745,7 +799,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 var processData = process.Process;
 
-                var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process.Process);
+                var currentProcessStatistics = processStatistics?.GetAndMarkUsed(process);
 
                 if (currentProcessStatistics != null)
                 {
@@ -754,6 +808,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     // freeze the game)
                     lock (currentProcessStatistics)
                     {
+                        // Apply enabled status as this is not otherwise applied, this is necessary as the data is
+                        // a copy of a struct in the speed statistics so it doesn't get the updated value as the
+                        // equality comparison doesn't check the speed (because if it did that would break consistent
+                        // order between pause/resume of a process in the process panel)
+                        currentProcessStatistics.UpdateProcessDataIfNeeded(process);
+
                         currentProcessStatistics.BeginFrame(delta);
                         RunProcess(delta, processData, bag, process, ref processor, currentProcessStatistics);
                     }

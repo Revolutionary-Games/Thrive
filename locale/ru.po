@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
-"PO-Revision-Date: 2024-10-21 16:34+0000\n"
+"POT-Creation-Date: 2024-11-11 15:58+0200\n"
+"PO-Revision-Date: 2024-11-04 13:47+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -228,9 +228,8 @@ msgstr ""
 "\n"
 "Количество вознесений в данном сохранении:{0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Версия:"
+msgstr "Стадия Возвышения"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
@@ -476,7 +475,7 @@ msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Эффект Свечения"
+msgstr "Эффект Свечения:"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -1840,6 +1839,10 @@ msgstr "избежали поглощение"
 msgid "ESTUARY"
 msgstr "Устье реки"
 
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Код коммита, с которого была скомпилирована эта версия Thrive"
+
 msgid "EVOLUTIONARY_TREE"
 msgstr "Эволюционное древо"
 
@@ -1878,6 +1881,9 @@ msgstr "Экспериментальные особенности"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr "( включает дополнительные фичи, что недостаточно отполированы для того, чтобы быть включёнными изначально, если вы будете играть с ними, то, пожалуйста, делитесь обратной связью о них)"
+
+msgid "EXPERIMENTAL_FEATURES_WARNING"
+msgstr "(ВНИМАНИЕ: экспериментальные фичи могут ухудшить игровой баланс и другие аспекты игры. Они рекомендуются лишь для опытных игроков Thrive. Если вы сообщаете о багах, то вам нужно уточнить, что вы играли с включенными экспериментальными фичами.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Экспорт всех миров"
@@ -3779,13 +3785,13 @@ msgstr "Нитрогеназа - это белок, способный испо�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Азотфиксирующая пластида"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -5285,9 +5291,6 @@ msgstr "Производит [thrive:compound type=\"atp\"][/thrive:compound] и
 msgid "THERMOSYNTHESIS"
 msgstr "Термосинтез"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
-
 msgid "THE_DISTURBANCE"
 msgstr "Беспорядок"
 
@@ -5767,6 +5770,14 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Это отладочная сборка, где приведенная ниже информация, вероятно, не актуальна"
 
 msgid "UNDERWATERCAVE"
+msgstr "Подводная пещера"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Подводная пещера"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr "Подводная пещера"
 
 msgid "UNDISCOVERED_ORGANELLES"
@@ -6905,36 +6916,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Включить редактор"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Никаких улучшений"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "TBA"
 
@@ -6964,6 +6945,36 @@ msgstr "TBA"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Никаких улучшений"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7148,12 +7159,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Миофибрилла"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Азотфиксирующая пластида"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Азотфиксирующая пластида"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7717,6 +7728,17 @@ msgstr "Увеличить масштаб"
 
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Размножение"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} АТФ"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
