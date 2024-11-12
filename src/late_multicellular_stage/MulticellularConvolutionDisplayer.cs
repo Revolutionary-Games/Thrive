@@ -103,6 +103,8 @@ public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaba
     {
         // TODO: investigate if it is somehow possible to avoid this data copy here (and another probably caused in
         // the native interop call ArrayMeshUnwrap)
+        // Godot does the following in a unsafe block:
+        // `godot_variant arg3_in = (godot_variant)arg3.NativeVar;` and uses `&arg3_in` to get a pointer to it.
         var nativeVariant = Variant.From(mesh).CopyNativeVariant();
 
         try
@@ -151,8 +153,12 @@ public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaba
 
         var arrays = mesh.SurfaceGetArrays(0);
 
+        // TODO: reading the full arrays back into Godot types is pretty ineffective so "finished" version of this
+        // feature shouldn't do the same thing as here
         // var vertices = arrays[(int)Mesh.ArrayType.Vertex].AsVector3Array();
         var indices = arrays[(int)Mesh.ArrayType.Index].AsInt32Array();
+
+        // TODO: there's a bug where this is sometimes empty
         var uvs = arrays[(int)Mesh.ArrayType.TexUV].AsVector2Array();
 
         float pixelWidth = 1.0f / dimension;
