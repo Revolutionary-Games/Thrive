@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using Godot;
+using Godot.NativeInterop;
 
 /// <summary>
 ///   Interop handling for the GDExtension for Thrive. In contrast <see cref="NativeInterop"/> handles the non-Godot
@@ -123,5 +124,5 @@ internal static partial class NativeMethods
     internal static extern int ExtensionGetVersion(IntPtr thriveConfig);
 
     [DllImport("thrive_extension")]
-    internal static extern bool ArrayMeshUnwrap(ref Variant mesh, float texelSize);
+    internal static extern bool ArrayMeshUnwrap(in godot_variant mesh, float texelSize);
 }

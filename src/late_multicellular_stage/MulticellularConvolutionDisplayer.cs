@@ -101,15 +101,29 @@ public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaba
 
     private void UVUnwrapAndTexture(ArrayMesh mesh)
     {
-        var variant = Variant.From(mesh);
+        // TODO: investigate if it is somehow possible to avoid this data copy here (and another probably caused in
+        // the native interop call ArrayMeshUnwrap)
+        var nativeVariant = Variant.From(mesh).CopyNativeVariant();
 
-        // Note: Unwrapper's Native code uses call_deferred (delayed call) to apply changes to the mesh surface
-        // (so that the code can be multithreaded).
-        // This means that there is no surface immediately after calling this function and texture application
-        // has to be deferred too.
-        if (NativeMethods.ArrayMeshUnwrap(variant, 1.0f))
+        try
         {
-            Invoke.Instance.QueueForObject(ApplyTextures, this);
+            // Note: Unwrapper's Native code uses call_deferred (delayed call) to apply changes to the mesh surface
+            // (so that the code can be multithreaded).
+            // This means that there is no surface immediately after calling this function and texture application
+            // has to be deferred too.
+            if (NativeMethods.ArrayMeshUnwrap(nativeVariant, 1.0f))
+            {
+                Invoke.Instance.QueueForObject(ApplyTextures, this);
+            }
+            else
+            {
+                GD.PrintErr("Native ArrayMesh unwrap failed");
+            }
+        }
+        finally
+        {
+            // Must be disposed to not leak resources
+            nativeVariant.Dispose();
         }
     }
 
