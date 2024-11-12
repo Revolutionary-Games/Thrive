@@ -455,7 +455,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected override IMetaballDisplayer<MulticellularMetaball> CreateVisualMetaballDisplayer()
     {
-        var displayer = visualMetaballDisplayerScene.Instantiate<MulticellularConvolutionDispayer>();
+        var displayer = visualMetaballDisplayerScene.Instantiate<MulticellularConvolutionDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }

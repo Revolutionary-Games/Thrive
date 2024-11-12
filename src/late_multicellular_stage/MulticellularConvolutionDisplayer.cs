@@ -8,7 +8,7 @@ using Xoshiro.PRNG32;
 /// <summary>
 ///   Displays a creature using convolution surfaces based on a metaball layout
 /// </summary>
-public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
+public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
 {
     private const float AABBMargin = 0.1f;
 
@@ -67,20 +67,24 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         }
 
         // TODO: find a way to cache those mesh generations in future as they are quite expensive.
-        var mathFunction = new Scalis(layout);
-        mathFunction.SurfaceValue = 1;
+        var mathFunction = new Scalis(layout)
+        {
+            SurfaceValue = 1,
+        };
 
-        var meshGen = new DualContourer(mathFunction);
-        meshGen.PointsPerUnit = Constants.CREATURE_MESH_RESOLUTION;
-        meshGen.UnitsFrom = minExtends;
-        meshGen.UnitsTo = maxExtends;
+        var meshGen = new DualContourer(mathFunction)
+        {
+            PointsPerUnit = Constants.CREATURE_MESH_RESOLUTION,
+            UnitsFrom = minExtends,
+            UnitsTo = maxExtends,
+        };
 
         Mesh = meshGen.DualContour();
 
         Mesh.SurfaceSetMaterial(0, material);
 
-        // Task uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
-        // TaskExecutor.Instance.AddTask(uvUnwrap);
+        Task uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
+        TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
     }
@@ -103,7 +107,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         // (so that the code can be multithreaded).
         // This means that there is no surface immediately after calling this function and texture application
         // has to be deferred too.
-        if (NativeMethods.ArrayMeshUnwrap(ref variant, 1.0f))
+        if (NativeMethods.ArrayMeshUnwrap(variant, 1.0f))
         {
             Invoke.Instance.QueueForObject(ApplyTextures, this);
         }
@@ -165,7 +169,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
             for (float y = MathF.Round(minY * 2048.0f) / 2048.0f; y <= middleY; y += pixelWidth)
             {
-                (float leftX, float rightX) = CalculateXBoundsForTrinangle(aUV, bUV, cUV, y);
+                (float leftX, float rightX) = CalculateXBoundsForTriangle(aUV, bUV, cUV, y);
 
                 for (float x = leftX - pixelWidth; x <= rightX + pixelWidth; x += pixelWidth)
                 {
@@ -182,7 +186,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
             for (float y = MathF.Round(maxY * 2048.0f) / 2048.0f; y >= middleY; y -= pixelWidth)
             {
-                (float leftX, float rightX) = CalculateXBoundsForTrinangle(aUV, bUV, cUV, y);
+                (float leftX, float rightX) = CalculateXBoundsForTriangle(aUV, bUV, cUV, y);
 
                 for (float x = leftX - pixelWidth; x <= rightX + pixelWidth; x += pixelWidth)
                 {
@@ -201,7 +205,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         return image;
     }
 
-    private (float LeftX, float RightX) CalculateXBoundsForTrinangle(Vector2 a, Vector2 b, Vector2 c, float y)
+    private (float LeftX, float RightX) CalculateXBoundsForTriangle(Vector2 a, Vector2 b, Vector2 c, float y)
     {
         float leftX = 10.0f;
         float rightX = -10.0f;
