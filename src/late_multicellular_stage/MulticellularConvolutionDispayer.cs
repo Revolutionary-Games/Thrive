@@ -79,7 +79,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
 
         Mesh.SurfaceSetMaterial(0, material);
 
-        // Task uvUnwrap = new Task(() => UVUnwrapAndTexturize((ArrayMesh)Mesh));
+        // Task uvUnwrap = new Task(() => UVUnwrapAndTexture((ArrayMesh)Mesh));
         // TaskExecutor.Instance.AddTask(uvUnwrap);
 
         CustomAabb = new Aabb(minExtends, maxExtends);
@@ -95,7 +95,7 @@ public partial class MulticellularConvolutionDispayer : MeshInstance3D, IMetabal
         base.Dispose(disposing);
     }
 
-    private void UVUnwrapAndTexturize(ArrayMesh mesh)
+    private void UVUnwrapAndTexture(ArrayMesh mesh)
     {
         var variant = Variant.From(mesh);
 
