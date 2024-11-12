@@ -151,7 +151,8 @@ endif()
 set(CMAKE_BUILD_WITH_INSTALL_RPATH ON)
 set(CMAKE_INSTALL_RPATH "$ORIGIN")
 
-# Avoid lib64 suffix on some Linux distros which will break the script
+# Avoid lib64 suffix on some Linux distros which will break the script that
+# is used to compile the native libraries
 set(CMAKE_INSTALL_LIBDIR "lib")
 
 # Detect library version
