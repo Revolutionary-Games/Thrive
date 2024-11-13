@@ -31,7 +31,7 @@
 texture = ExtResource("9")
 region_rect = Rect2(0, 0, 429, 1)
 
-[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer")]
+[node name="PatchDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("nothingSelected", "unknownPatch", "detailsContainer", "playerHere", "patchName", "biome", "depth", "moveToPatchHSeparator", "moveToPatchButton", "normalContentContainer", "migrationContentContainer", "migrateStartButton", "migrationStepExplanation", "migrationStatusLabel", "migrationErrorLabel", "migrationAmountSelector", "migrationAccept", "migrationCancel", "physicalConditionsContainer", "atmosphereContainer", "compoundsContainer", "speciesParentContainer", "micheViewButton")]
 custom_minimum_size = Vector2(340, 0)
 offset_right = 352.0
 offset_bottom = 620.0
@@ -59,6 +59,7 @@ physicalConditionsContainer = NodePath("NormalContent/MarginContainer/ScrollCont
 atmosphereContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericGasses")
 compoundsContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds")
 speciesParentContainer = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesBox")
+micheViewButton = NodePath("NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MichesViewButton")
 
 [node name="NormalContent" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -464,7 +465,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 fit_content = true
 
-[node name="MichesViewButton" type="Button" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 12
+
+[node name="MichesViewButton" type="Button" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "VIEW_PATCH_MICHES"
@@ -594,7 +599,7 @@ layout_mode = 2
 focus_mode = 0
 text = "CANCEL"
 
-[connection signal="pressed" from="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
+[connection signal="pressed" from="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MarginContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="pressed" from="NormalContent/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
 [connection signal="pressed" from="NormalContent/MarginContainer3/MigrateButton" to="." method="MigrateButtonPressed"]
 [connection signal="value_changed" from="MigrationMenu/MarginContainer3/PopulationAmount" to="." method="MigrationAmountSliderChanged"]

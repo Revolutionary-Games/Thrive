@@ -853,7 +853,9 @@ public partial class PatchDetailsPanel : PanelContainer
 
     private void UpdateMicheViewState()
     {
-        micheViewButton.Visible = SelectedPatch != null && onMicheDetailsRequested != null;
+        // Only show miche view button when target is valid
+        micheViewButton.Visible = SelectedPatch != null && onMicheDetailsRequested != null &&
+            SelectedPatch.Visibility == MapElementVisibility.Shown;
     }
 
     private void OnMicheViewRequested()
