@@ -464,6 +464,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 fit_content = true
 
+[node name="MichesViewButton" type="Button" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "VIEW_PATCH_MICHES"
+
 [node name="HSeparator" type="HSeparator" parent="NormalContent"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("34")
@@ -589,6 +594,7 @@ layout_mode = 2
 focus_mode = 0
 text = "CANCEL"
 
+[connection signal="pressed" from="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="pressed" from="NormalContent/MarginContainer2/MoveToPatchButton" to="." method="MoveToPatchClicked"]
 [connection signal="pressed" from="NormalContent/MarginContainer3/MigrateButton" to="." method="MigrateButtonPressed"]
 [connection signal="value_changed" from="MigrationMenu/MarginContainer3/PopulationAmount" to="." method="MigrationAmountSliderChanged"]
