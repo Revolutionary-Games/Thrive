@@ -1276,7 +1276,7 @@ public class RunResults
                             species.PlayerSpecies, false, "popDown.png");
                     }
                 }
-                else
+                else if (finalPatchPopulation <= 0)
                 {
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL",
                         species.FormattedNameBbCodeUnstyled), species.PlayerSpecies, false, "extinctionLocal.png");
