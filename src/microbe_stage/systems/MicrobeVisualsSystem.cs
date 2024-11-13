@@ -232,7 +232,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType, false);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -290,12 +290,12 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         foreach (var cell in multicellular.Species.Cells)
         {
             var cartesian = Hex.AxialToCartesian(cell.Position);
-            positions.AddItem(new Vector2(cartesian.X, cartesian.Z));
+            positions.Add(new Vector2(cartesian.X, cartesian.Z));
         }
 
         var positionsArray = positions.ToArray();
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType, true);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -307,8 +307,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
-
-                GD.Print("uhm");
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -485,28 +486,24 @@ public class MembraneShapeGenerator
         }
 
         // Multicellular matrix
-        /*if (thisCellPosition != null && cellPositions != null)
+        if (thisCellPosition != null && cellPositions != null)
         {
+            // Make into constant unless you will forget
+            var multicellularHexDistanceMultiplier = 10f;
+
+            
+
             for (int i = 0, end = startingBuffer.Count; i < end; ++i)
             {
-                // Make into constant unless you will forget
-                var multicellularHexDistanceMultiplier = 1;
+                
 
-                Vector2 movement = default;
+                var movement = thisCellPosition.Value;
 
-                foreach (var cellPosition in cellPositions)
-                {
-                    // Not normalizing due to need to keep proportions
-                    var multicellularDirection = (cellPosition * multicellularHexDistanceMultiplier)
-                        - (thisCellPosition * multicellularHexDistanceMultiplier + startingBuffer[i]);
-
-                    if (multicellularDirection != null)
-                        movement += multicellularDirection.Value;
-                }
+                GD.Print(movement);
 
                 startingBuffer[i] = startingBuffer[i] + movement;
             }
-        }*/
+        }
 
         float circumference = 0.0f;
 

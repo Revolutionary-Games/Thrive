@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -96,7 +97,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(hexes, length, membraneType);
+        var hash = ComputeMembraneDataHash(hexes, length, membraneType, false);
 
         var result = cache.ReadMembraneData(hash);
 
@@ -122,7 +123,7 @@ public static class MembraneComputationHelpers
         return result;
     }
 
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type)
+    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type, bool multicellular)
     {
         var nameHash = type.InternalName.GetHashCode();
 
@@ -136,9 +137,10 @@ public static class MembraneComputationHelpers
             for (int i = 0; i < count; ++i)
             {
                 var posHash = positions[i].GetHashCode();
+                var multicellularityAdd = multicellular ? 1 : 0;
 
                 // TODO: switch to using rotate left here once we can (after Godot 4)
-                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
+                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash + multicellularityAdd) << 32);
                 ++hashMultiply;
             }
 
@@ -148,7 +150,8 @@ public static class MembraneComputationHelpers
 
     public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type);
+        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
+            dataSource.MulticellularPositions == null ? false : dataSource.MulticellularPositions.Length > 0);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
@@ -171,17 +174,21 @@ public static class MembraneComputationHelpers
 
         if (dataSource.MulticellularPositions != null)
         {
-            if (!dataSource.MulticellularPositions.Equals(multicellularPositions))
+            if (multicellularPositions == null)
+                return false;
+
+            if (!dataSource.MulticellularPositions.SequenceEqual(multicellularPositions))
             {
                 return false;
             }
-            GD.Print("elo");
         }
         else
         {
             if (multicellularPositions != null)
+            {
                 return false;
-            GD.Print("olelo");
+
+            }
         }
 
         for (int i = 0; i < count; ++i)
