@@ -5,19 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://cyvkcpdtij2q" path="res://assets/textures/Myofibril.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7kj5k"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pnrts"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_1xrf0")
-shader_parameter/dissolveValue = null
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = Color(0.853081, 0.334244, 0, 1)
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 2.0
+shader_parameter/outlineWidth = 0.05
+shader_parameter/growColor = Color(0.73, 0.4015, 0.1825, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 shader_parameter/texture = ExtResource("2")
 shader_parameter/dissolveTexture = ExtResource("4")
 
 [node name="Myofibril" type="MeshInstance3D"]
-transform = Transform3D(0.24, 0, 0, 0, 0.24, 0, 0, 0, 0.24, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_7kj5k")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -1.28775, 0)
+material_override = SubResource("ShaderMaterial_pnrts")
 mesh = ExtResource("1")
