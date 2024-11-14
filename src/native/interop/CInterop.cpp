@@ -533,7 +533,13 @@ void ReleasePhysicsBodyReference(PhysicsBody* body)
 
 bool PhysicsBodyIsDetached(PhysicsBody* body)
 {
-    return reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->IsDetached();
+    // Due to the C# interop declaration not working correctly for this function, the return value is interpreted as
+    // a byte
+    static_assert(sizeof(bool) == 1);
+
+    const bool detached = reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->IsDetached();
+
+    return detached;
 }
 
 void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength)
