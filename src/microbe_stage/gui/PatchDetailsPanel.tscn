@@ -474,6 +474,9 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 14
 text = "VIEW_PATCH_MICHES"
 
+[node name="Spacer" type="Control" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="HSeparator" type="HSeparator" parent="NormalContent"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("34")

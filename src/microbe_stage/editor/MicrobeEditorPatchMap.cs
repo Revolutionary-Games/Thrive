@@ -56,6 +56,7 @@ public partial class MicrobeEditorPatchMap : PatchMapEditorComponent<IEditorWith
             return;
         }
 
-        micheViewer.ShowMiches(patch.Name.ToString(), Editor.PreviousAutoEvoResults.GetMicheForPatch(patch));
+        micheViewer.ShowMiches(patch, Editor.PreviousAutoEvoResults.GetMicheForPatch(patch),
+            Editor.CurrentGame.GameWorld.WorldSettings);
     }
 }

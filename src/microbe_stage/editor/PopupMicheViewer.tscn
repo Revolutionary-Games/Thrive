@@ -18,8 +18,8 @@ mouse_filter = 2
 script = ExtResource("1_euixo")
 michePopup = NodePath("Popup")
 miches = NodePath("Popup/HBoxContainer/MicheTree")
-speciesDetails = NodePath("Popup/HBoxContainer/ScrollContainer/VBoxContainer/SpeciesDetailsPanel")
-micheDetails = NodePath("Popup/HBoxContainer/ScrollContainer/VBoxContainer/MicheDetailsPanel")
+speciesDetails = NodePath("Popup/HBoxContainer/VBoxContainer/SpeciesDetailsPanel")
+micheDetails = NodePath("Popup/HBoxContainer/VBoxContainer/MicheDetailsPanel")
 
 [node name="Popup" parent="." instance=ExtResource("2_gkx7s")]
 layout_mode = 1
@@ -39,7 +39,7 @@ Resizable = true
 Exclusive = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Popup"]
-custom_minimum_size = Vector2(400, 400)
+custom_minimum_size = Vector2(700, 500)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -48,19 +48,21 @@ offset_bottom = 40.0
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 3.0
+size_flags_stretch_ratio = 1.1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Popup/HBoxContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="VSeparator" type="VSeparator" parent="Popup/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popup/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Popup/HBoxContainer/ScrollContainer"]
+[node name="MicheDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" instance=ExtResource("5_6rljh")]
 layout_mode = 2
 
-[node name="MicheDetailsPanel" parent="Popup/HBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("5_6rljh")]
-layout_mode = 2
-
-[node name="SpeciesDetailsPanel" parent="Popup/HBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("4_v5bmc")]
+[node name="SpeciesDetailsPanel" parent="Popup/HBoxContainer/VBoxContainer" instance=ExtResource("4_v5bmc")]
 visible = false
 layout_mode = 2
+
+[connection signal="MicheSelected" from="Popup/HBoxContainer/MicheTree" to="." method="MicheTreeNodeSelected"]
