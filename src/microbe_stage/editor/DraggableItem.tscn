@@ -5,13 +5,16 @@
 [ext_resource type="Texture2D" uid="uid://d03mjimd54adn" path="res://assets/textures/gui/bevel/ExpandUp.svg" id="3_s0daa"]
 [ext_resource type="Texture2D" uid="uid://jypb8hhom3iv" path="res://assets/textures/gui/bevel/ExpandDown.svg" id="4_hc1dy"]
 
-[node name="DraggableItem" type="HBoxContainer"]
+[node name="DraggableItem" type="HBoxContainer" node_paths=PackedStringArray("position", "moveUpButton", "moveDownButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vhcni")
+position = NodePath("PositionLabel")
+moveUpButton = NodePath("Up")
+moveDownButton = NodePath("Down")
 
 [node name="DragHandle" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(32, 32)
@@ -33,14 +36,17 @@ text = "ITEM_NAME_SEPARATOR"
 
 [node name="ItemName" type="Label" parent="."]
 editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Reorderable item"
+autowrap_mode = 3
 
 [node name="Up" type="Button" parent="."]
 layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "MOVE_ITEM_UP"
+disabled = true
 icon = ExtResource("3_s0daa")
 
 [node name="Down" type="Button" parent="."]

@@ -11,10 +11,21 @@
 public partial class DraggableItem : Control
 {
 #pragma warning disable CA2213
+    [Export]
     private Label position = null!;
+
+    [Export]
+    private Button moveUpButton = null!;
+
+    [Export]
+    private Button moveDownButton = null!;
 #pragma warning restore CA2213
 
     private int numericPosition = -1;
+
+    private bool canMoveUp;
+    private bool canMoveDown = true;
+    private bool beingDragged;
 
     [Signal]
     public delegate void OnUpPressedEventHandler(DraggableItem item);
@@ -28,6 +39,28 @@ public partial class DraggableItem : Control
     [Signal]
     public delegate void OnDragEndEventHandler(DraggableItem item);
 
+    [Export]
+    public bool CanMoveUp
+    {
+        get => canMoveUp;
+        set
+        {
+            canMoveUp = value;
+            moveUpButton.Disabled = BeingDragged || !canMoveUp;
+        }
+    }
+
+    [Export]
+    public bool CanMoveDown
+    {
+        get => canMoveDown;
+        set
+        {
+            canMoveDown = value;
+            moveDownButton.Disabled = BeingDragged || !canMoveDown;
+        }
+    }
+
     /// <summary>
     ///   Position number shown in this. Doesn't automatically reorder anything.
     /// </summary>
@@ -40,11 +73,34 @@ public partial class DraggableItem : Control
                 return;
 
             numericPosition = value;
-            position.Text = numericPosition.ToString();
+            position.Text = Localization.Translate("POSITION_NUMBER").FormatSafe(numericPosition);
         }
     }
 
-    // TODO: dragged property to make this visually distinct
+    /// <summary>
+    ///   True when this is being dragged by the user
+    /// </summary>
+    public bool BeingDragged
+    {
+        get => beingDragged;
+        private set
+        {
+            beingDragged = value;
+
+            // Update dependent button statuses
+            CanMoveUp = canMoveUp;
+            CanMoveDown = canMoveDown;
+
+            if (beingDragged)
+            {
+                Modulate = new Color(1, 1, 1, 0.8f);
+            }
+            else
+            {
+                Modulate = new Color(1, 1, 1, 1.0f);
+            }
+        }
+    }
 
     public override void _Ready()
     {
