@@ -80,6 +80,9 @@ public partial class PatchDetailsPanel : PanelContainer
     [Export]
     private CollapsibleList speciesParentContainer = null!;
 
+    [Export]
+    private Button micheViewButton = null!;
+
     private Label temperatureLabel = null!;
     private Label pressureLabel = null!;
     private Label lightLabel = null!;
@@ -119,6 +122,7 @@ public partial class PatchDetailsPanel : PanelContainer
     private bool migrationManagerEnabled = true;
 
     private MigrationWizardStep currentMigrationStep;
+    private Action<Patch>? onMicheDetailsRequested;
 
     public enum MigrationWizardStep
     {
@@ -136,6 +140,17 @@ public partial class PatchDetailsPanel : PanelContainer
     public Action<Migration>? OnMigrationAdded { get; set; }
 
     [JsonIgnore]
+    public Action<Patch>? OnMicheDetailsRequested
+    {
+        get => onMicheDetailsRequested;
+        set
+        {
+            onMicheDetailsRequested = value;
+            UpdateMicheViewState();
+        }
+    }
+
+    [JsonIgnore]
     public Action<MigrationWizardStep>? OnMigrationWizardStepChanged { get; set; }
 
     [JsonIgnore]
@@ -148,6 +163,7 @@ public partial class PatchDetailsPanel : PanelContainer
             UpdateShownPatchDetails();
 
             UpdateMigrationStateWithPatch(value);
+            UpdateMicheViewState();
         }
     }
 
@@ -294,6 +310,7 @@ public partial class PatchDetailsPanel : PanelContainer
         UpdateMoveToPatchButton();
         UpdateMigrationManagerVisibility();
         ApplyMigrationStepGUI();
+        UpdateMicheViewState();
     }
 
     public void UpdateShownPatchDetails()
@@ -832,6 +849,22 @@ public partial class PatchDetailsPanel : PanelContainer
 
         // The multiply and divide by 10 here is to adjust how many decimals the Floor call keeps
         return MathF.Floor(10 * (100.0f - totalCompounds)) / 10;
+    }
+
+    private void UpdateMicheViewState()
+    {
+        // Only show miche view button when target is valid
+        micheViewButton.Visible = SelectedPatch != null && onMicheDetailsRequested != null &&
+            SelectedPatch.Visibility == MapElementVisibility.Shown;
+    }
+
+    private void OnMicheViewRequested()
+    {
+        if (SelectedPatch != null)
+        {
+            GUICommon.Instance.PlayButtonPressSound();
+            onMicheDetailsRequested?.Invoke(SelectedPatch);
+        }
     }
 
     public class Migration
