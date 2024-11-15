@@ -18,6 +18,7 @@ horizontal_scroll_mode = 0
 
 [node name="OrderableItems" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Reset" type="Button" parent="."]
 layout_mode = 2
