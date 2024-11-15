@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=66 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="15"]
+[ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="18"]
@@ -348,7 +349,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "processListWindow")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "growthOrderTab", "growthOrderGUI", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -403,6 +404,9 @@ OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
 RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer")
 ATPBalanceNormalText = ExtResource("24_ekuel")
 ATPBalanceNotEnoughText = ExtResource("4_fhdek")
+growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
+growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
+growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
 atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
@@ -414,6 +418,7 @@ compoundStorageLastingTimes = NodePath("RightPanel/VBoxContainer/Statistics/VBox
 notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
 processListButton = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
 processList = NodePath("ProcessPanel/ScrollContainer/ProcessList")
+growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 processListWindow = NodePath("ProcessPanel")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
@@ -421,6 +426,16 @@ ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+
+[node name="GrowthOrderNumberContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TopPanel" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -636,6 +651,25 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "BEHAVIOUR"
 
+[node name="Growth" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_07qd0")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_xodoa")
+text = "GROWTH_ORDER"
+
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -801,6 +835,40 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 FinishOrNextButtonPath = NodePath("")
+
+[node name="Growth" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("14")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="GrowthContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GrowthOrderPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" instance=ExtResource("15_krpbw")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+layout_mode = 2
+
+[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+label_settings = ExtResource("28_qclxk")
+autowrap_mode = 3
 
 [node name="RightPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(285, 629)
@@ -1384,6 +1452,7 @@ text = "CLOSE"
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= ["Membrane"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth" to="." method="SetSelectionMenuTab" binds= ["GrowthOrder"]]
 [connection signal="text_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection/SearchBar" to="." method="OnSearchBoxTextChanged"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]

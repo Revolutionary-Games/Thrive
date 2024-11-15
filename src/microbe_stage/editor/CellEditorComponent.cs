@@ -182,12 +182,21 @@ public partial class CellEditorComponent :
     private Button appearanceTabButton = null!;
     private Button behaviourTabButton = null!;
 
+    [Export]
+    private Button growthOrderTabButton = null!;
+
     private PanelContainer structureTab = null!;
     private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [Export]
+    private PanelContainer growthOrderTab = null!;
+
+    [Export]
+    private GrowthOrderPicker growthOrderGUI = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
@@ -276,6 +285,9 @@ public partial class CellEditorComponent :
 
     [Export]
     private ProcessList processList = null!;
+
+    [Export]
+    private Control growthOrderNumberContainer = null!;
 
     [Export]
     private CustomWindow processListWindow = null!;
@@ -380,18 +392,21 @@ public partial class CellEditorComponent :
 
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
-    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild every time when
+    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuilt every time when
     ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
     private bool microbeVisualizationOrganellePositionsAreDirty = true;
 
     private bool microbePreviewMode;
 
+    private bool showGrowthOrderNumbers;
+
     public enum SelectionMenuTab
     {
         Structure,
         Membrane,
         Behaviour,
+        GrowthOrder,
     }
 
     public enum LightLevelOption
@@ -497,6 +512,20 @@ public partial class CellEditorComponent :
 
             foreach (var model in placedModels)
                 model.Visible = !MicrobePreviewMode;
+        }
+    }
+
+    /// <summary>
+    ///   When enabled numbers are shown above the organelles to indicate their growth order
+    /// </summary>
+    public bool ShowGrowthOrder
+    {
+        get => showGrowthOrderNumbers;
+        set
+        {
+            showGrowthOrderNumbers = value;
+
+            UpdateGrowthOrderNumbers();
         }
     }
 
@@ -797,6 +826,8 @@ public partial class CellEditorComponent :
             // In multicellular the body plan editor handles this
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
+            growthOrderTab.Visible = false;
+            growthOrderTabButton.Visible = false;
         }
 
         UpdateMicrobePartSelections();
@@ -2681,6 +2712,7 @@ public partial class CellEditorComponent :
         structureTab.Hide();
         appearanceTab.Hide();
         behaviourEditor.Hide();
+        growthOrderTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -2690,6 +2722,7 @@ public partial class CellEditorComponent :
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2698,6 +2731,7 @@ public partial class CellEditorComponent :
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
                 MicrobePreviewMode = true;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2706,6 +2740,18 @@ public partial class CellEditorComponent :
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
+                break;
+            }
+
+            case SelectionMenuTab.GrowthOrder:
+            {
+                growthOrderTab.Show();
+                growthOrderTabButton.ButtonPressed = true;
+                MicrobePreviewMode = false;
+                ShowGrowthOrder = true;
+
+                UpdateGrowthOrderButtons();
                 break;
             }
 
