@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-15 16:11+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1622,6 +1622,9 @@ msgstr "Doppelklicken zum Betrachten"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Als zweischichtige Membran bietet sie besseren Schutz vor Beschädigungen und benötigt weniger Energie, um sich nicht zu verformen. Allerdings verlangsamt sie die Zelle etwas und senkt die Geschwindigkeit, mit der sie Ressourcen absorbieren kann."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree ausgeben"
 
@@ -2346,6 +2349,10 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikteam"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Beschränke die Nutzung von Wachstums-Substanzen"
+
 msgid "GUI"
 msgstr "Benutzeroberfläche"
 
@@ -2678,6 +2685,13 @@ msgstr "Eisen-Chemolithoautotrophie"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Besuche unsere Itch.io Seite"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Beende eine Generation"
 
 msgid "JANUARY"
 msgstr "Januar"
@@ -3804,6 +3818,14 @@ msgstr "Nach unten bewegen oder bücken/schleichen"
 msgid "MOVE_FORWARD"
 msgstr "Vorwärts bewegen"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Landgang"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Nach rechts bewegen"
+
 msgid "MOVE_LEFT"
 msgstr "Nach links bewegen"
 
@@ -4242,6 +4264,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Makroskopischer Mehrzeller"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Raubtier-Pilus"
 
@@ -4566,6 +4592,10 @@ msgstr "Bevölkerung in Gebieten:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID-Nummer"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Beute von {0}"
 
@@ -4703,6 +4733,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Versteckte Pop-ups zurücksetzen"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Standardeingaben laden?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Standardeingaben laden?"
 
 msgid "RESET_KEYBINDINGS"

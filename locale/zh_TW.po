@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-15 16:11+0200\n"
 "PO-Revision-Date: 2024-11-11 18:23+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1564,6 +1564,9 @@ msgstr "雙擊即可全螢幕檢視"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "傾印 SceneTree"
 
@@ -2212,6 +2215,10 @@ msgstr "圖形"
 msgid "GRAPHICS_TEAM"
 msgstr "圖形團隊"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "限制生長化合物使用"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2507,6 +2514,16 @@ msgstr "鐵化能自養"
 
 msgid "ITCH_TOOLTIP"
 msgstr "造訪我們的 Itch.io 頁面"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"位置座標：{0}\n"
+"朝向座標：{1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "與物件交互"
 
 msgid "JANUARY"
 msgstr "一月"
@@ -3608,6 +3625,14 @@ msgstr "向下移動或蹲下"
 msgid "MOVE_FORWARD"
 msgstr "前進"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "移動至陸地"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "右移"
+
 msgid "MOVE_LEFT"
 msgstr "左移"
 
@@ -4023,6 +4048,10 @@ msgstr "軸突是神經元用來相互連結與溝通的神經纖維。放置這
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多細胞生物"
 
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "（啟用時會限制生長速度，如果停用則生長速度僅受可用化合物量影響）"
+
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纖維"
 
@@ -4325,6 +4354,10 @@ msgstr "區域中的種群數量："
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0}（{1}）"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID 號碼"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食 {0}"
 
@@ -4460,6 +4493,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "重置已關閉的彈出視窗"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "將輸入重設為預設值？"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "將輸入重設為預設值？"
 
 msgid "RESET_KEYBINDINGS"

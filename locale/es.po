@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-15 16:11+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1642,6 +1642,9 @@ msgstr "Doble click para ver en pantalla completa"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana con dos capas; tiene mejor protección y consume menos energía. Sin embargo, reduce un poco la velocidad del movimiento y absorbe recursos más lentamente."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Volcado de SceneTree"
 
@@ -2365,6 +2368,10 @@ msgstr "Gráficos"
 msgid "GRAPHICS_TEAM"
 msgstr "Equipo de diseño grafico"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limita el crecimiento del uso de compuestos"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2705,6 +2712,16 @@ msgstr "Quimiolitoautotrofía Férrica"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visita nuestra página de itch.io"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Coordenadas de posición: {0}\n"
+"Mirando a las coordenadas: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Completa Una Generación"
 
 msgid "JANUARY"
 msgstr "Enero"
@@ -3846,6 +3863,14 @@ msgstr "Moverse hacia Abajo o Agacharse"
 msgid "MOVE_FORWARD"
 msgstr "Moverse hacia adelante"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Moverse a tierra"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Moverse a la derecha"
+
 msgid "MOVE_LEFT"
 msgstr "Moverse a la izquierda"
 
@@ -4292,6 +4317,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular avanzado"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(Si es habilitado, limita la cantidad necesaria de compuestos; si no, solo los compuestos disponibles limitan la velocidad de crecimiento)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Pilus predatorio"
 
@@ -4621,6 +4650,10 @@ msgstr "Población en biomas:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Número ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Depredación de {0}"
 
@@ -4757,6 +4790,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Reiniciar ventanas emergentes"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "¿Restablecer entradas a los valores por defecto?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "¿Restablecer entradas a los valores por defecto?"
 
 msgid "RESET_KEYBINDINGS"

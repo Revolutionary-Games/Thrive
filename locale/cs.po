@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-15 16:11+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1655,6 +1655,9 @@ msgstr "Dvojklikem zobrazíte v celé obrazovce"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Vyhoď SceneTree"
 
@@ -2384,6 +2387,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limit využití růstových sloučenin"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2720,6 +2727,16 @@ msgstr "Chemolithoautotrofie železa"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Opustit hru"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Souřadnice polohy: {0}\n"
+"Při pohledu na souřadnice: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Dokončit jednu generaci"
 
 msgid "JANUARY"
 msgstr "Leden"
@@ -3851,6 +3868,14 @@ msgstr "Pohyb dolů nebo skrčení"
 msgid "MOVE_FORWARD"
 msgstr "Pohyb dopředu"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod k nahrání:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Pohyb vpravo"
+
 msgid "MOVE_LEFT"
 msgstr "Pohyb vlevo"
 
@@ -4315,6 +4340,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Umístit organelu"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Dravý/útočný Pilus"
 
@@ -4634,6 +4663,10 @@ msgstr "populace v prostředích:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID číslo"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predace {0}"
 
@@ -4771,6 +4804,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Resetovat ovládání ?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Resetovat ovládání ?"
 
 #, fuzzy
