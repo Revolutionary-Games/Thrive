@@ -17,6 +17,8 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
+    private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
+
     private StringBuilder atpToolTipTextBuilder = new();
 
     [Signal]
@@ -925,6 +927,99 @@ public partial class CellEditorComponent
         ApplyLightLevelOption();
 
         UpdateCancelButtonVisibility();
+    }
+
+    private void UpdateGrowthOrderNumbers()
+    {
+        if (!ShowGrowthOrder)
+        {
+            growthOrderNumberContainer.Visible = false;
+            return;
+        }
+
+        if (camera == null)
+        {
+            GD.PrintErr("Camera must be set for growth order numbers");
+            return;
+        }
+
+        growthOrderNumberContainer.Visible = true;
+
+        // Setup tracking for what gets used
+        foreach (var orderLabel in createdGrowthOrderLabels.Values)
+        {
+            orderLabel.Marked = false;
+        }
+
+        var orderList = growthOrderGUI.GetCurrentOrder();
+        var orderListCount = orderList.Count;
+
+        foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+        {
+            // TODO: fallback numbers if item not found?
+            var order = -1;
+
+            for (int i = 0; i < orderListCount; ++i)
+            {
+                if (ReferenceEquals(orderList[i], editedMicrobeOrganelle))
+                {
+                    // +1 to be user readable numbers
+                    order = i + 1;
+                    break;
+                }
+            }
+
+            if (!createdGrowthOrderLabels.TryGetValue(order, out var graphicalLabel))
+            {
+                graphicalLabel = GrowthOrderLabel.Create(order);
+                growthOrderNumberContainer.AddChild(graphicalLabel);
+                createdGrowthOrderLabels.Add(order, graphicalLabel);
+            }
+
+            graphicalLabel.Position = camera.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
+            graphicalLabel.Marked = true;
+        }
+
+        // Hide unused labels
+        foreach (var orderLabel in createdGrowthOrderLabels.Values)
+        {
+            if (!orderLabel.Marked)
+                orderLabel.Visible = false;
+        }
+    }
+
+    private void UpdateGrowthOrderButtons()
+    {
+        // To save on performance, only update this when it is actually visible to the player
+        if (selectedSelectionMenuTab != SelectionMenuTab.GrowthOrder)
+            return;
+
+        growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        // TODO: there's some bug here
+        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
+        UpdateGrowthOrderNumbers();
+    }
+
+    /// <summary>
+    ///   A simple label showing the growth order of something
+    /// </summary>
+    private partial class GrowthOrderLabel : Label
+    {
+        public bool Marked { get; set; }
+
+        public static GrowthOrderLabel Create(int number)
+        {
+            return new GrowthOrderLabel
+            {
+                Text = number.ToString(),
+                Marked = true,
+            };
+        }
     }
 
     private class ATPComparer : IComparer<string>

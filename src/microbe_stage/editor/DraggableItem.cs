@@ -15,6 +15,9 @@ public partial class DraggableItem : Control
     private Label position = null!;
 
     [Export]
+    private Label nameLabel = null!;
+
+    [Export]
     private Button moveUpButton = null!;
 
     [Export]
@@ -102,8 +105,18 @@ public partial class DraggableItem : Control
         }
     }
 
+    /// <summary>
+    ///   Freely usable data by outside classes to store here
+    /// </summary>
+    public object? UserData { get; set; }
+
     public override void _Ready()
     {
+    }
+
+    public void SetLabelText(string readableText)
+    {
+        nameLabel.Text = readableText;
     }
 
     private void OnUpButtonPressed()

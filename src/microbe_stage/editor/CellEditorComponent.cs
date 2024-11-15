@@ -525,7 +525,7 @@ public partial class CellEditorComponent :
         {
             showGrowthOrderNumbers = value;
 
-            UpdateGrowthOrderNumbers();
+            UpdateGrowthOrderButtons();
         }
     }
 
