@@ -485,26 +485,6 @@ public class MembraneShapeGenerator
             startingBuffer[i] = closestOrganelle + movement;
         }
 
-        // Multicellular matrix
-        if (thisCellPosition != null && cellPositions != null)
-        {
-            // Make into constant unless you will forget
-            var multicellularHexDistanceMultiplier = 10f;
-
-            
-
-            for (int i = 0, end = startingBuffer.Count; i < end; ++i)
-            {
-                
-
-                var movement = thisCellPosition.Value;
-
-                GD.Print(movement);
-
-                startingBuffer[i] = startingBuffer[i] + movement;
-            }
-        }
-
         float circumference = 0.0f;
 
         for (int i = 0, end = startingBuffer.Count; i < end; ++i)
@@ -575,6 +555,63 @@ public class MembraneShapeGenerator
             var movement = direction * MathF.Sin(waveFrequency * i) * waveHeight;
 
             vertices2D[i] = point + movement;
+        }
+
+        var average = Vector2.Zero;
+
+        foreach (var vertex in vertices2D)
+        {
+            average += vertex;
+        }
+
+        average /= vertices2D.Count;
+
+        // Multicellular matrix
+        if (thisCellPosition != null && cellPositions != null)
+        {
+            // Make into constant unless you will forget
+            var multicellularHexDistanceMultiplier = 10f;
+
+            for (int i = 0; i < vertices2D.Count; ++i)
+            {
+                var relativeVertex = vertices2D[i] - average;
+
+                float minMultiplier = float.MaxValue;
+
+                foreach (var cellPos in cellPositions)
+                {
+                    if (cellPos == thisCellPosition)
+                        continue;
+
+                    // Coordinates of such a point on the Voronoi edge, that a line from the cell's center to this
+                    // point is perpendicular to the edge.
+                    var edge = (cellPos + thisCellPosition.Value) * 0.5f;
+
+                    var relativeEdge = (edge - thisCellPosition.Value) * 2.0f;
+
+                    float dotProduct = relativeVertex.Dot(relativeEdge);
+
+                    // If the dotproduct is less that this (arbitrary) value, then this edge faces away
+                    // from our vertex, so it doesn't need to be considered
+                    if (dotProduct <= 0.5f)
+                        continue;
+
+                    // The vertex pos, when multiplied by this, should be placed at the edge
+                    float multiplier = relativeEdge.LengthSquared() / dotProduct;
+
+                    if (multiplier < minMultiplier)
+                        minMultiplier = multiplier;
+                }
+
+                vertices2D[i] = average + relativeVertex * minMultiplier;
+            }
+
+            for (int i = 0, end = startingBuffer.Count; i < end; ++i)
+            {
+                var movement = thisCellPosition.Value;
+
+                startingBuffer[i] = startingBuffer[i] + movement;
+            }
         }
     }
 }
