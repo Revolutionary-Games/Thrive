@@ -227,6 +227,6 @@ public class PerformEndosymbiosis : WorldBasedUnlockCondition
 
     public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
     {
-        builder.Append(new LocalizedString("UNLOCK_CONDITION_ENDOSYMBIOSIS"));
+        builder.Append(new LocalizedString("UNLOCK_CONDITION_ENDOSYMBIOSIS_PERFORMED"));
     }
 }
