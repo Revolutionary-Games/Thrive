@@ -215,8 +215,11 @@ public class PatchCompound : WorldBasedUnlockCondition
 /// <summary>
 ///   The player species need to perform endosymbiosis.
 /// </summary>
-public class Endosymbiosis : WorldBasedUnlockCondition
+public class PerformEndosymbiosis : WorldBasedUnlockCondition
 {
+    [JsonProperty]
+    public bool? Endosymbiosis; 
+    
     public override bool Satisfied(IUnlockStateDataSource data)
     {
         return false;
