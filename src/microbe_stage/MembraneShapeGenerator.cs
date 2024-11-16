@@ -570,12 +570,13 @@ public class MembraneShapeGenerator
         if (thisCellPosition != null && cellPositions != null)
         {
             // Make into constant unless you will forget
-            var multicellularHexDistanceMultiplier = 10f;
+            var verticeDistanceMultiplier = 0.8f;
 
             for (int i = 0; i < vertices2D.Count; ++i)
             {
                 var relativeVertex = vertices2D[i] - average;
 
+                bool facesAnEdge = false;
                 float minMultiplier = float.MaxValue;
 
                 foreach (var cellPos in cellPositions)
@@ -591,19 +592,31 @@ public class MembraneShapeGenerator
 
                     float dotProduct = relativeVertex.Dot(relativeEdge);
 
-                    // If the dotproduct is less that this (arbitrary) value, then this edge faces away
-                    // from our vertex, so it doesn't need to be considered
-                    if (dotProduct <= 0.5f)
+                    // If the dotproduct is less that this value, then this edge faces a direction different
+                    // than that of the vertex, so it doesn't need to be considered
+                    if (dotProduct <= 0.0f)
                         continue;
 
                     // The vertex pos, when multiplied by this, should be placed at the edge
                     float multiplier = relativeEdge.LengthSquared() / dotProduct;
 
                     if (multiplier < minMultiplier)
+                    {
                         minMultiplier = multiplier;
+                        facesAnEdge = true;
+                    }
                 }
 
-                vertices2D[i] = average + relativeVertex * minMultiplier;
+                if (!facesAnEdge)
+                {
+                    minMultiplier = 1.0f;
+                }
+                else if (minMultiplier > 3.0f)
+                {
+                    minMultiplier = 1.0f;
+                }
+
+                vertices2D[i] = average + relativeVertex * minMultiplier * verticeDistanceMultiplier;
             }
 
             for (int i = 0, end = startingBuffer.Count; i < end; ++i)
