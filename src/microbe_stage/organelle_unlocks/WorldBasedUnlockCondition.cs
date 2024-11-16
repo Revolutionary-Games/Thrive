@@ -217,9 +217,6 @@ public class PatchCompound : WorldBasedUnlockCondition
 /// </summary>
 public class PerformEndosymbiosis : WorldBasedUnlockCondition
 {
-    [JsonProperty]
-    public bool? Endosymbiosis; 
-    
     public override bool Satisfied(IUnlockStateDataSource data)
     {
         return false;
