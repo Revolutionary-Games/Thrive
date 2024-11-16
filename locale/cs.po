@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-15 16:03+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-11-16 19:09+0000\n"
+"Last-Translator: Adam David <adabab0909@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "Přijmout"
 
 msgid "ACTION_AWAKEN"
 msgstr "Probudit se ({0:F1}/{1:F1})"
@@ -261,10 +261,10 @@ msgid "ATP_BALANCE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Bez externích zdrojů"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Bez glukózy"
 
 #, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
@@ -275,7 +275,7 @@ msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr "Zůstatek ATP"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Se všemi požadovanými sloučeninami"
 
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
@@ -327,8 +327,9 @@ msgstr "Nástroj Průzkumu Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "Nezdařilo se spustit Auto-evo"
 
+#, fuzzy
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Chybí výsledky Auto-evo. Pokud jste načetli starší uloženou hru (save), očekává se, že bude chybět. Pokud jste nenačetli starší uloženou hru (save), nahlaste nám to jako chybu a pošlete nám svůj soubor protokolu hry."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledky Auto-evo:"
@@ -380,14 +381,16 @@ msgstr "Backspace"
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosyntéza"
 
+#, fuzzy
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Počítat jako by byl den"
 
+#, fuzzy
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "Při zaškrtnutí se čísla vypočítaná v tomto panelu počítají, jako by byl vždy den"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Zahrnout náklady na pohyb"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
@@ -726,8 +729,9 @@ msgstr "Zavřít"
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
+#, fuzzy
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Klostridiová fermentace"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -885,7 +889,7 @@ msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Balanc sloučenin"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Během dne lze generovat pouze {1} [thrive:compound type=\"{0}\"][/thrive:compound], ale k přežití noci je vyžadována {2}."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
@@ -1039,7 +1043,7 @@ msgid "CONTROLLER_BUTTON_DPAD_LEFT"
 msgstr "Dezónové zóny ovladače"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "D-pad vpravo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
@@ -1133,8 +1137,9 @@ msgstr "Vizualizéry osy ovladače:"
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr "Tlačítko Controller zobrazí výzvu typu:"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Dotyková destička"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_UNKNOWN"
@@ -1149,10 +1154,10 @@ msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr "Mrtvá zóna:"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "Zpět"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Návod"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
@@ -1389,8 +1394,9 @@ msgstr ""
 "Souřadnice polohy: {0}\n"
 "Při pohledu na souřadnice: {1}"
 
+#, fuzzy
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Vykreslování ladění fyziky není v tomto typu sestavení k dispozici"
 
 msgid "DEBUG_PANEL"
 msgstr "Debugovací Panel"
@@ -1807,21 +1813,24 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Proces endosymbiózy je již dokončen, dokončete jej v editoru"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "Cíl endosymbiózy se změnil na dočasnou organelu, pokud se dostanete do editoru, bude endosymbióza pokračovat"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Typ endosymbionta je již přítomen, vstupte do editoru a pokračujte v procesu endosymbiózy"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "Více organel"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosymbióza"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
@@ -1839,8 +1848,9 @@ msgstr ""
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
+#, fuzzy
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Dosud nebyly pohlceny žádné vhodné druhy k přeměně v endosymbionty"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
@@ -1853,8 +1863,9 @@ msgstr ""
 "a mohou být mnohem náročnější na kusy.\n"
 "Reagující mikroby se dříve přepnou na nové cíle."
 
+#, fuzzy
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Prokaryota mohou mít nejvýše jednoho endosymbionta"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
@@ -1895,8 +1906,9 @@ msgstr "Zdroje energie:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
+#, fuzzy
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Poškozen vstupem do režimu pohlcení bez ATP"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Zadejte existující ID"
@@ -2005,7 +2017,7 @@ msgid "EXIT_TO_LAUNCHER"
 msgstr "Spustit E"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Experimentální funkce"
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
@@ -2215,17 +2227,17 @@ msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Intensita mlhy války"
 
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Režim Mlhy Války"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Pravidelná mlha války"
 
 #, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
@@ -2269,8 +2281,9 @@ msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli násled
 msgid "FOSSILISATION_HINT"
 msgstr "Zkamenění tohoto druhu"
 
+#, fuzzy
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Fosilizovat tento druh (již zkamenělý)"
 
 #, fuzzy
 msgid "FOSSILISE"
@@ -2480,10 +2493,10 @@ msgid "ICESHELF"
 msgstr "Šelfový ledovec"
 
 msgid "ICE_CHUNK_BIG"
-msgstr ""
+msgstr "Velý kus ledu"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr ""
+msgstr "Malý kus ledu"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID není platné číslo"
@@ -2514,7 +2527,7 @@ msgid "INDICATOR_SPECIES_MUTATED"
 msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
 
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Průmyslová etapa"
 
 msgid "INFINITE_COMPOUNDS"
 msgstr "Nekonečné sloučeniny"
@@ -2530,8 +2543,9 @@ msgstr "PROSPERUJEŠ!"
 msgid "INFO_BOX_EDITORS"
 msgstr "PROSPERUJEŠ!"
 
+#, fuzzy
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Enzymy"
 
 #, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
@@ -2577,7 +2591,7 @@ msgid "INFO_BOX_UNIQUE"
 msgstr "PROSPERUJEŠ!"
 
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Vylepšení"
 
 msgid "INGESTED_MATTER"
 msgstr "Strávená hmota"
@@ -2621,7 +2635,7 @@ msgid "INTERACTION_CONSTRUCT"
 msgstr "Rychlost mutace AI"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Dokončit stavbu (chybí požadované materiály)"
 
 #, fuzzy
 msgid "INTERACTION_CRAFT"
@@ -2632,7 +2646,7 @@ msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Rychlost mutace AI"
 
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Vložit materiály (žádné vhodné přepravované předměty)"
 
 #, fuzzy
 msgid "INTERACTION_DESTROY"
@@ -2647,13 +2661,13 @@ msgid "INTERACTION_HARVEST"
 msgstr "Rychlost mutace AI"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "Sklidit (CHYBĚJÍCÍ VYBAVENÍ: {0})"
 
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "Vzít"
 
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Vzít (PLNÉ)"
 
 msgid "INTERNALS"
 msgstr "Vnitřnosti"
@@ -2689,20 +2703,20 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Neplatné schéma adresy URL"
 
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Předměty na zemi"
 
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Výroba"
 
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Země"
 
 msgid "INVERTED"
-msgstr ""
+msgstr "Převrácené"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -2759,7 +2773,7 @@ msgstr ""
 "Chcete odstranit vstup z {1}?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Otevřít klávesnici"
 
 msgid "KEY_CLEAR"
 msgstr "Clear (smazat)"
@@ -3059,14 +3073,14 @@ msgid "LIGHT"
 msgstr "Světlo"
 
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Průměr"
 
 #, fuzzy
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr "Kolečkem vpravo"
 
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Den"
 
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
