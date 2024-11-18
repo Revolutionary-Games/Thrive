@@ -58,7 +58,7 @@ public partial class GrowthOrderPicker : Control
                 break;
             }
 
-            var existingItem = itemControls[index];
+            var existingItem = itemControls[index++];
             var wantedItem = enumerator.Current;
 
             if (!ReferenceEquals(existingItem.UserData, wantedItem))
