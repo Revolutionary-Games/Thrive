@@ -29,6 +29,17 @@ public class CombinedEditorAction : EditorAction
             throw new ArgumentException("Actions can't be empty");
     }
 
+    /// <summary>
+    ///   Constructor variant that takes ownership of the action list
+    /// </summary>
+    public CombinedEditorAction(List<EditorAction> actions)
+    {
+        this.actions = actions;
+
+        if (Actions.Count < 1)
+            throw new ArgumentException("Actions can't be empty");
+    }
+
     [JsonIgnore]
     public IReadOnlyList<EditorAction> Actions => actions;
 

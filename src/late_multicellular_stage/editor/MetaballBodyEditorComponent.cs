@@ -845,26 +845,36 @@ public partial class MetaballBodyEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the cells symmetrical to the clicked cell.
-            StartMetaballMoveWithSymmetry(metaballPopupMenu.SelectedMetaballs);
+            StartMetaballMoveWithSymmetry(metaballPopupMenu.GetSelectedThatAreStillValid(editedMetaballs));
         }
         else
         {
-            StartMetaballMove(metaballPopupMenu.SelectedMetaballs.First());
+            StartMetaballMove(metaballPopupMenu.GetSelectedThatAreStillValid(editedMetaballs).FirstOrDefault());
         }
     }
 
     private void OnDeletePressed()
     {
         int alreadyDeleted = 0;
-        var action =
-            new CombinedEditorAction(metaballPopupMenu.SelectedMetaballs
-                .Select(m => TryCreateMetaballRemoveAction(m, ref alreadyDeleted)).WhereNotNull());
+        var targets = metaballPopupMenu.GetSelectedThatAreStillValid(editedMetaballs)
+            .Select(m => TryCreateMetaballRemoveAction(m, ref alreadyDeleted)).WhereNotNull().ToList();
+
+        if (targets.Count < 1)
+        {
+            GD.PrintErr("No targets found to delete");
+            return;
+        }
+
+        var action = new CombinedEditorAction(targets);
+
         EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        EmitSignal(SignalName.OnCellTypeToEditSelected, metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
+        // Should be safe for us to try to signal to edit any kind of cell so this doesn't check if the cell is removed
+        EmitSignal(SignalName.OnCellTypeToEditSelected,
+            metaballPopupMenu.SelectedMetaballs.First().CellType.TypeName);
     }
 
     /// <summary>
