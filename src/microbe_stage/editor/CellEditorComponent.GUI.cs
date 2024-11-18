@@ -997,10 +997,11 @@ public partial class CellEditorComponent
     private void UpdateGrowthOrderButtons()
     {
         // To save on performance, only update this when it is actually visible to the player
-        if (selectedSelectionMenuTab != SelectionMenuTab.GrowthOrder)
-            return;
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
+        }
 
-        growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
         UpdateGrowthOrderNumbers();
     }
 
