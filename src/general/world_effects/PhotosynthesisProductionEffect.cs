@@ -136,9 +136,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             {
                 if (co2Out == 0)
                 {
-                    //in the rare event we aren't making either compound, do nothing
-                    GD.Print(patch.Name + " not producing either compound");
-                    return;
+                    // in the rare event we aren't making either compound, do nothing
+                    continue;
                 }
 
                 oxygenTarget = 0;
@@ -151,12 +150,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             }
             else
             {
-                GD.Print("\no2 production detected in "+patch.Name+": \n  o2 = " + oxygenOut + ", co2 = " + co2Out+", total = "+total+
-                    "\n  existing o2 = "+existingOxygen.Ambient+", existingCo2 = "+existingCo2.Ambient);
                 oxygenTarget = oxygenOut / (oxygenIn + co2In) * total;
                 co2Target = co2Out / (oxygenIn + co2In) * total;
-
-                GD.Print("=>target O2 = " + oxygenTarget + ", target CO2 = " + co2Target);
             }
 
             changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) / 2.0f;
