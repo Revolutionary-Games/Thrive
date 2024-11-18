@@ -55,7 +55,7 @@ public class AutoEvoGlobalCache
 
         SunlightConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, 1.0f);
-        SunlightCompoundPressure = new EnvironmentalCompoundPressure(Compound.Sunlight, Compound.Glucose, 20000, 1.0f);
+        SunlightCompoundPressure = new EnvironmentalCompoundPressure(Compound.Sunlight, Compound.Glucose, 400000, 1.0f);
 
         TemperatureConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.ATP, 1.0f);

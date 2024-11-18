@@ -1164,8 +1164,7 @@ public static class Constants
     public const float GLUCOSE_MIN = 0.0f;
 
     // Tweak variable for how fast compounds diffuse between patches
-    public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 1;
-    public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
+    public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 0.8f;
 
     // Volcanism co2 production configuration
     public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.15f;
