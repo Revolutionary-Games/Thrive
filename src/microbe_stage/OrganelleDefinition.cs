@@ -185,11 +185,6 @@ public class OrganelleDefinition : IRegistryType
     public List<ConditionSet>? UnlockConditions;
 
     /// <summary>
-    ///   Tells whether the organelle can be unlocked via endosymbiosis
-    /// </summary>
-    public bool? UnlockedByEndosymbiosis;
-
-    /// <summary>
     ///   What organelle does this organelle turn into when doing endosymbiosis. See
     ///   <see cref="MicrobeInternalCalculations.CalculatePossibleEndosymbiontsFromSpecies"/>.
     /// </summary>
@@ -719,12 +714,6 @@ public class OrganelleDefinition : IRegistryType
                 unlockCondition.GenerateTooltip(builder, worldAndPlayerArgs);
                 first = false;
             }
-        }
-
-        if (UnlockedByEndosymbiosis != null)
-        {
-            builder.Append("\n");
-            builder.Append(new LocalizedString("UNLOCK_CONDITION_ENDOSYMBIOSIS_PERFORMED"));
         }
     }
 

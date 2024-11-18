@@ -501,7 +501,6 @@
         }
       }
     ],
-    "UnlockedByEndosymbiosis": true,
     "EditorButtonGroup": "Protein",
     "EditorButtonOrder": 8,
     "LAWK": false,
@@ -539,7 +538,6 @@
     "Description": "CHEMOPLAST_DESCRIPTION",
     "ProcessesDescription": "CHEMOPLAST_PROCESSES_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/ChemoplastIcon.png",
-    "UnlockedByEndosymbiosis": true,
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 8
@@ -672,9 +670,11 @@
           "MinimumCount": 4,
           "InARow": true
         }
+      },
+      {
+        "PerformEndosymbiosis": {}
       }
     ],
-    "UnlockedByEndosymbiosis": true,
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 3
@@ -725,7 +725,6 @@
         }
       }
     ],
-    "UnlockedByEndosymbiosis": true,
     "RequiresNucleus": true,
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.tscn",
     "UpgraderSkipDefaultControls": true,
@@ -865,9 +864,11 @@
           "InARow": true,
           "MinimumCount": 5
         }
+      },
+      {
+        "PerformEndosymbiosis": {}
       }
     ],
-    "UnlockedByEndosymbiosis": true,
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 4
@@ -1152,7 +1153,6 @@
         }
       }
     ],
-    "UnlockedByEndosymbiosis": true,
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 7,
@@ -1301,7 +1301,6 @@
         }
       }
     ],
-    "UnlockedByEndosymbiosis": true,
     "RequiresNucleus": true,
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 5
