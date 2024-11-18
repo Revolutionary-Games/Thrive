@@ -33,8 +33,7 @@ public class CompoundDiffusionEffect : IWorldEffect
         // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
         // resources like oxygen)
         // TODO: improve the formula here as sqrt isn't the best
-        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT /
-            MathF.Sqrt(Constants.COMPOUND_DIFFUSE_BASE_DISTANCE + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
+        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT;
 
         adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
             out var destinationAmount);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 using Systems;
 
@@ -29,11 +30,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
     private void ApplyCompoundsAddition()
     {
         // These affect the final balance
-        var outputModifier = 1.5f;
+        var outputModifier = 1.0f;
         var inputModifier = 1.0f;
-
-        // This affects how fast the conditions change, but also the final balance somewhat
-        var modifier = 0.00015f;
 
         List<TweakedProcess> microbeProcesses = [];
 
@@ -103,11 +101,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (input.Key.ID is Compound.Oxygen)
                         {
-                            oxygenOut += input.Value * inputModifier * effectiveSpeed * species.Value;
+                            oxygenIn += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                         else if (input.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Out += input.Value * inputModifier * effectiveSpeed * species.Value;
+                            co2In += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                     }
 
@@ -116,35 +114,53 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (output.Key.ID is Compound.Oxygen)
                         {
-                            oxygenIn += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            oxygenOut += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                         else if (output.Key.ID is Compound.Carbondioxide)
                         {
-                            co2In += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            co2Out += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                     }
                 }
             }
 
-            // Scale the balances to make the changes less drastic
-            /*oxygenBalance *= modifier;
-            co2Balance *= modifier;
+            float oxygenTarget;
+            float co2Target;
 
-            changesToApply.Clear();
-
-            if (oxygenBalance != 0)
-                changesToApply[Compound.Oxygen] = oxygenBalance;
-
-            if (co2Balance != 0)
-                changesToApply[Compound.Carbondioxide] = co2Balance;*/
-
-            float oxygenTarget = oxygenIn / oxygenOut * 20.0f;
             patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var existingOxygen);
-            changesToApply[Compound.Oxygen] = oxygenTarget - existingOxygen.Ambient;
-
-            float co2Target = co2In / co2Out * 20.0f;
             patch.Biome.TryGetCompound(Compound.Carbondioxide, CompoundAmountType.Biome, out var existingCo2);
-            changesToApply[Compound.Carbondioxide] = co2Target - existingCo2.Ambient;
+
+            float total = existingOxygen.Ambient + existingCo2.Ambient;
+
+            if (oxygenOut == 0)
+            {
+                if (co2Out == 0)
+                {
+                    //in the rare event we aren't making either compound, do nothing
+                    GD.Print(patch.Name + " not producing either compound");
+                    return;
+                }
+
+                oxygenTarget = 0;
+                co2Target = total;
+            }
+            else if (co2Out == 0)
+            {
+                oxygenTarget = total;
+                co2Target = 0;
+            }
+            else
+            {
+                GD.Print("\no2 production detected in "+patch.Name+": \n  o2 = " + oxygenOut + ", co2 = " + co2Out+", total = "+total+
+                    "\n  existing o2 = "+existingOxygen.Ambient+", existingCo2 = "+existingCo2.Ambient);
+                oxygenTarget = oxygenOut / (oxygenIn + co2In) * total;
+                co2Target = co2Out / (oxygenIn + co2In) * total;
+
+                GD.Print("=>target O2 = " + oxygenTarget + ", target CO2 = " + co2Target);
+            }
+
+            changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) / 2.0f;
+            changesToApply[Compound.Carbondioxide] = (co2Target - existingCo2.Ambient) / 2.0f;
 
             if (changesToApply.Count > 0)
                 patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
