@@ -55,6 +55,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     private string processesDescription = string.Empty;
     private int mpCost;
     private float osmoregulationCost;
+    private bool showOsmoregulation = true;
     private bool requiresNucleus;
     private string? thriveopediaPageName;
 
@@ -131,6 +132,23 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         }
     }
 
+    /// <summary>
+    ///   If set to false hides the osmoregulation cost section of this tooltip.
+    /// </summary>
+    [Export]
+    public bool ShowOsmoregulation
+    {
+        get => showOsmoregulation;
+        set
+        {
+            if (showOsmoregulation == value)
+                return;
+
+            showOsmoregulation = value;
+            UpdateOsmoregulationCost();
+        }
+    }
+
     [Export]
     public bool RequiresNucleus
     {
@@ -177,6 +195,11 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         UpdateRequiresNucleus();
         UpdateLists();
         UpdateMoreInfo();
+
+        // Apply initial hidden state to osmoregulation if it was applied before this was put into the scene tree
+        // TODO: make also other properties work before this is added to the scene tree to not cause surprise problems
+        if (!ShowOsmoregulation)
+            UpdateOsmoregulationCost();
     }
 
     public override void _EnterTree()
@@ -406,7 +429,16 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         if (osmoregulationModifier == null)
             return;
 
-        osmoregulationModifier.ModifierValue = $"+{osmoregulationCost.ToString("0.###", CultureInfo.CurrentCulture)}";
+        if (ShowOsmoregulation)
+        {
+            osmoregulationModifier.Visible = true;
+            osmoregulationModifier.ModifierValue =
+                $"+{osmoregulationCost.ToString("0.###", CultureInfo.CurrentCulture)}";
+        }
+        else
+        {
+            osmoregulationModifier.Visible = false;
+        }
     }
 
     private void UpdateRequiresNucleus()

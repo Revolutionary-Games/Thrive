@@ -9,7 +9,8 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
-shader_parameter/dissolveValue = null
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
 shader_parameter/outlineWidth = 0.05

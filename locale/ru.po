@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2024-11-15 16:03+0200\n"
 "PO-Revision-Date: 2024-11-04 13:47+0000\n"
 "Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -630,8 +630,16 @@ msgstr "Хеморецептор"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Минимальное количество для обнаружения:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор позволяет обнаруживать соединения на большем расстоянии. Модифицируйте после размещения, чтобы выбрать тип соединения и цвет линии направления."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
 
 msgid "CHEMOSYNTHESIS"
 msgstr "Хемосинтез"
@@ -3075,6 +3083,10 @@ msgid "MICHE"
 msgstr "Мульти-Ниша"
 
 #, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Вымерли из биома"
+
+#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Avoid Predation Selection Pressure"
 
@@ -3785,13 +3797,13 @@ msgstr "Нитрогеназа - это белок, способный испо�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Азотфиксирующая пластида"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -5995,6 +6007,10 @@ msgstr "Просмотреть Клеточные Процессы"
 msgid "VIEW_ONLINE"
 msgstr "Просмотреть онлайн"
 
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Просмотреть Заметки Обновления"
+
 msgid "VIEW_PATCH_NOTES"
 msgstr "Просмотреть Заметки Обновления"
 
@@ -6916,36 +6932,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Включить редактор"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Никаких улучшений"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "TBA"
 
@@ -6975,6 +6961,36 @@ msgstr "TBA"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Никаких улучшений"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7159,12 +7175,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Миофибрилла"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Азотфиксирующая пластида"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Азотфиксирующая пластида"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"

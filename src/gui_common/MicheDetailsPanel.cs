@@ -56,6 +56,15 @@ public partial class MicheDetailsPanel : MarginContainer
             UpdateMichePreview();
     }
 
+    public void ClearPreview()
+    {
+        previewMiche = null;
+        CurrentPatch = null;
+
+        if (micheDetailsLabel != null)
+            micheDetailsLabel.ExtendedBbcode = null;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)

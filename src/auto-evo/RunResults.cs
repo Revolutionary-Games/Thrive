@@ -1253,7 +1253,6 @@ public class RunResults
 
                 if (globalPopulation <= 0)
                 {
-                    // TODO: see https://github.com/Revolutionary-Games/Thrive/issues/2958
                     LogEventGloballyAndLocally(world, patch,
                         new LocalizedString("TIMELINE_SPECIES_EXTINCT", species.FormattedNameBbCodeUnstyled),
                         species.PlayerSpecies, false, "extinction.png");
@@ -1276,7 +1275,7 @@ public class RunResults
                             species.PlayerSpecies, false, "popDown.png");
                     }
                 }
-                else
+                else if (finalPatchPopulation <= 0)
                 {
                     patch.LogEvent(new LocalizedString("TIMELINE_SPECIES_EXTINCT_LOCAL",
                         species.FormattedNameBbCodeUnstyled), species.PlayerSpecies, false, "extinctionLocal.png");
