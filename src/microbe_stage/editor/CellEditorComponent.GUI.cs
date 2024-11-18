@@ -982,6 +982,7 @@ public partial class CellEditorComponent
             }
 
             graphicalLabel.Position = camera.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
+            graphicalLabel.Visible = true;
             graphicalLabel.Marked = true;
         }
 
