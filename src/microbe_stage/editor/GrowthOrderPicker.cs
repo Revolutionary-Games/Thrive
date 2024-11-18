@@ -75,6 +75,9 @@ public partial class GrowthOrderPicker : Control
                 existingItem.SetLabelText(enumerator.Current.ReadableName);
             }
 
+            // Always enable down button, it will be disabled later for the last item
+            existingItem.CanMoveDown = true;
+
             lastItem = existingItem;
         }
 
