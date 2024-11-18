@@ -954,17 +954,22 @@ public partial class CellEditorComponent
         var orderList = growthOrderGUI.GetCurrentOrder();
         var orderListCount = orderList.Count;
 
-        foreach (var editedMicrobeOrganelle in editedMicrobeOrganelles)
+        var organelles = editedMicrobeOrganelles.Organelles;
+        var organellesCount = organelles.Count;
+
+        for (int i = 0; i < organellesCount; ++i)
         {
+            var editedMicrobeOrganelle = organelles[i];
+
             // TODO: fallback numbers if item not found?
             var order = -1;
 
-            for (int i = 0; i < orderListCount; ++i)
+            for (int j = 0; j < orderListCount; ++j)
             {
-                if (ReferenceEquals(orderList[i], editedMicrobeOrganelle))
+                if (ReferenceEquals(orderList[j], editedMicrobeOrganelle))
                 {
                     // +1 to be user readable numbers
-                    order = i + 1;
+                    order = j + 1;
                     break;
                 }
             }
@@ -1000,7 +1005,6 @@ public partial class CellEditorComponent
 
     private void OnResetGrowthOrderPressed()
     {
-        // TODO: there's some bug here
         growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
         UpdateGrowthOrderNumbers();
     }

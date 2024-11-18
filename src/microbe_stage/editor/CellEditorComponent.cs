@@ -877,6 +877,13 @@ public partial class CellEditorComponent :
             previewSimulation!.ProcessAll((float)delta);
         }
 
+        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
+        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            UpdateGrowthOrderNumbers();
+        }
+
         // Show the organelle that is about to be placed
         if (Editor.ShowHover && !MicrobePreviewMode)
         {
@@ -2322,6 +2329,8 @@ public partial class CellEditorComponent :
 
         // Updated here to make sure everything else has been updated first so tooltips are accurate
         UpdateOrganelleUnlockTooltips(false);
+
+        UpdateGrowthOrderButtons();
     }
 
     /// <summary>
