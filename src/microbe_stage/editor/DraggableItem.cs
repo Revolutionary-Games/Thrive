@@ -37,10 +37,7 @@ public partial class DraggableItem : Control
     public delegate void OnDownPressedEventHandler(DraggableItem item);
 
     [Signal]
-    public delegate void OnDragStartEventHandler(DraggableItem item);
-
-    [Signal]
-    public delegate void OnDragEndEventHandler(DraggableItem item);
+    public delegate void OnDraggedToNewPositionEventHandler(DraggableItem item, DraggableItem newPositionBefore);
 
     [Export]
     public bool CanMoveUp
@@ -96,7 +93,7 @@ public partial class DraggableItem : Control
 
             if (beingDragged)
             {
-                Modulate = new Color(1, 1, 1, 0.8f);
+                Modulate = new Color(1, 1, 1, 0.7f);
             }
             else
             {
@@ -110,8 +107,71 @@ public partial class DraggableItem : Control
     /// </summary>
     public object? UserData { get; set; }
 
+    public static Control CreateDragPreview()
+    {
+        return new TextureRect
+        {
+            ExpandMode = TextureRect.ExpandModeEnum.FitWidthProportional,
+            StretchMode = TextureRect.StretchModeEnum.Scale,
+            Texture = GD.Load<Texture2D>("res://assets/textures/gui/bevel/DragHandle.svg"),
+            CustomMinimumSize = new Vector2(32, 32),
+        };
+    }
+
     public override void _Ready()
     {
+    }
+
+    public override Variant _GetDragData(Vector2 atPosition)
+    {
+        SetDragPreview(CreateDragPreview());
+
+        // Mark as being dragged
+        BeingDragged = true;
+
+        return Variant.From(this);
+    }
+
+    public override bool _CanDropData(Vector2 atPosition, Variant data)
+    {
+        if (data.VariantType != Variant.Type.Object)
+            return false;
+
+        var obj = data.AsGodotObject();
+
+        if (obj is DraggableItem dragData)
+        {
+            // Don't allow drop into itself
+            // TODO: should this react with a colour change to indicate valid drag?
+            return dragData != this;
+        }
+
+        return false;
+    }
+
+    public override void _DropData(Vector2 atPosition, Variant data)
+    {
+        if (data.VariantType != Variant.Type.Object)
+            return;
+
+        var obj = data.AsGodotObject();
+
+        if (obj is DraggableItem dragData)
+        {
+            dragData.BeingDragged = false;
+
+            if (dragData != this)
+                EmitSignal(SignalName.OnDraggedToNewPosition, this, dragData);
+        }
+    }
+
+    public override void _Notification(int what)
+    {
+        // Reset drag status as this is the only way to detect when our created drag data object is no longer used
+        if (what == NotificationDragEnd && beingDragged)
+            BeingDragged = false;
+
+        base._Notification(what);
     }
 
     public void SetLabelText(string readableText)

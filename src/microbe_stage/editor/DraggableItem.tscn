@@ -22,7 +22,6 @@ moveDownButton = NodePath("Down")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 tooltip_text = "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-mouse_filter = 0
 mouse_default_cursor_shape = 13
 texture = ExtResource("2_v31cb")
 expand_mode = 1
@@ -62,3 +61,6 @@ layout_mode = 2
 size_flags_vertical = 4
 tooltip_text = "MOVE_ITEM_DOWN"
 icon = ExtResource("4_hc1dy")
+
+[connection signal="pressed" from="Up" to="." method="OnUpButtonPressed"]
+[connection signal="pressed" from="Down" to="." method="OnDownButtonPressed"]
