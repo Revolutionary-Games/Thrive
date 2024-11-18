@@ -211,19 +211,3 @@ public class PatchCompound : WorldBasedUnlockCondition
         }
     }
 }
-
-/// <summary>
-///   The player species need to perform endosymbiosis.
-/// </summary>
-public class PerformEndosymbiosis : WorldBasedUnlockCondition
-{
-    public override bool Satisfied(IUnlockStateDataSource data)
-    {
-        return false;
-    }
-
-    public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
-    {
-        builder.Append(new LocalizedString("UNLOCK_CONDITION_ENDOSYMBIOSIS_PERFORMED"));
-    }
-}
