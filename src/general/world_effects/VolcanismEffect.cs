@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -33,8 +32,6 @@ public class VolcanismEffect : IWorldEffect
     {
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
-            GD.Print(patchKeyValue.Value + " volcanism");
-
             // TODO: make these configured by the biomes.json file
             if (patchKeyValue.Value.BiomeType == BiomeType.Vents)
             {
