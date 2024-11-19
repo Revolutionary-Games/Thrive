@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class SlimeJetComponent : IOrganelleComponent
 {
-    private const string SlimeJetAnimationName = "SlimeJet";
+    private const string SlimeJetAnimationName = "SlimeSpurt";
     private const string MUCOCYST_UPGRADE_NAME = "mucocyst";
 
     private bool animationActive;
