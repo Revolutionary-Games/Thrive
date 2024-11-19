@@ -196,6 +196,8 @@ public partial class CellEditorComponent :
     private PanelContainer growthOrderTab = null!;
 
     [Export]
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private GrowthOrderPicker growthOrderGUI = null!;
 
     private VBoxContainer partsSelectionContainer = null!;

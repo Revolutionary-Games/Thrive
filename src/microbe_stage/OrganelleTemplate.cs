@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
 [JsonObject(IsReference = true)]
+[JSONDynamicTypeAllowed]
 public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName
 {
     [JsonProperty]

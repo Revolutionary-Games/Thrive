@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Allows picking the growth order of things in a GUI
 /// </summary>
+[JsonObject(MemberSerialization.OptIn)]
 public partial class GrowthOrderPicker : Control
 {
     private readonly List<DraggableItem> itemControls = new();
@@ -29,6 +31,10 @@ public partial class GrowthOrderPicker : Control
     private PackedScene draggableItemScene = null!;
 #pragma warning restore CA2213
 
+    private List<IPlayerReadableName?>? currentSavedOrder;
+
+    private SaveComparer? savedItemComparer;
+
     public GrowthOrderPicker()
     {
         downPress = new Callable(this, nameof(MoveDown));
@@ -40,6 +46,26 @@ public partial class GrowthOrderPicker : Control
 
     [Signal]
     public delegate void OrderResetEventHandler();
+
+    /// <summary>
+    ///   A special property to handle saving and loading of state. Can technically be used to read the data but this
+    ///   causes more memory allocations than necessary.
+    /// </summary>
+    [JsonProperty]
+    public List<IPlayerReadableName?> CurrentSavedOrder
+    {
+        get
+        {
+            if (itemControls.Count < 1)
+            {
+                currentSavedOrder ??= new List<IPlayerReadableName?>();
+                return currentSavedOrder;
+            }
+
+            return itemControls.Select(c => (IPlayerReadableName?)c.UserData).ToList();
+        }
+        private set => currentSavedOrder = value;
+    }
 
     public override void _Ready()
     {
@@ -57,6 +83,9 @@ public partial class GrowthOrderPicker : Control
     /// <param name="items">Sequence of items to ensure are shown in the given order</param>
     public void UpdateItems(IEnumerable<IPlayerReadableName> items)
     {
+        // We are getting real items, so let go of any saved data
+        currentSavedOrder = null;
+
         using var enumerator = items.GetEnumerator();
 
         DraggableItem? lastItem = null;
@@ -145,6 +174,16 @@ public partial class GrowthOrderPicker : Control
         if (itemControls.Count <= 0)
         {
             // If no existing items, can just return the raw list
+
+            // Except if this is loaded from a save and no real order was created yet, then use that
+            if (currentSavedOrder != null)
+            {
+                // It shouldn't be possible for the list to change so hopefully the save comparer never needs to be
+                // recreated
+                savedItemComparer ??= new SaveComparer(currentSavedOrder);
+                return rawItems.OrderBy(i => i, savedItemComparer);
+            }
+
             return rawItems;
         }
 
@@ -335,6 +374,39 @@ public partial class GrowthOrderPicker : Control
             }
 
             // We want not-found items to be last, so return max int for them rather than the default -1
+            return int.MaxValue;
+        }
+    }
+
+    /// <summary>
+    ///   Variant of the custom comparer that uses saved data list instead of a control data list
+    /// </summary>
+    private class SaveComparer(List<IPlayerReadableName?> existingItems) : IComparer<IPlayerReadableName>
+    {
+        public int Compare(IPlayerReadableName? x, IPlayerReadableName? y)
+        {
+            if (ReferenceEquals(x, y))
+                return 0;
+
+            if (y is null)
+                return 1;
+
+            if (x is null)
+                return -1;
+
+            return FindIndex(x).CompareTo(FindIndex(y));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private int FindIndex(IPlayerReadableName item)
+        {
+            var count = existingItems.Count;
+            for (var i = 0; i < count; ++i)
+            {
+                if (ReferenceEquals(item, existingItems[i]))
+                    return i;
+            }
+
             return int.MaxValue;
         }
     }
