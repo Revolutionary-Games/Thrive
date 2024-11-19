@@ -2364,26 +2364,41 @@ public partial class CellEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the organelles symmetrical to the clicked organelle.
-            StartHexMoveWithSymmetry(organelleMenu.SelectedOrganelles);
+            StartHexMoveWithSymmetry(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles));
         }
         else
         {
-            StartHexMove(organelleMenu.SelectedOrganelles.First());
+            StartHexMove(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles).FirstOrDefault());
         }
     }
 
     private void OnDeletePressed()
     {
         int alreadyDeleted = 0;
-        var action =
-            new CombinedEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
+        var targets = organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles)
+            .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull().ToList();
+
+        if (targets.Count < 1)
+        {
+            GD.PrintErr("No targets found to delete");
+            return;
+        }
+
+        var action = new CombinedEditorAction(targets);
+
         EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        var targetOrganelle = organelleMenu.SelectedOrganelles.First();
+        var targetOrganelle = organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles).FirstOrDefault();
+
+        if (targetOrganelle == null)
+        {
+            GD.PrintErr("Target to modify has disappeared");
+            return;
+        }
+
         var upgradeGUI = targetOrganelle.Definition.UpgradeGUI;
 
         if (!IsUpgradingPossibleFor(targetOrganelle.Definition))
