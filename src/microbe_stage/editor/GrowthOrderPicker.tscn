@@ -9,14 +9,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ju87a")
-buttonContainer = NodePath("ScrollContainer/OrderableItems")
+buttonContainer = NodePath("OrderableItems")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-
-[node name="OrderableItems" type="VBoxContainer" parent="ScrollContainer"]
+[node name="OrderableItems" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
 
