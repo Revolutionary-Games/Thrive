@@ -1042,7 +1042,8 @@ public partial class CellEditorComponent :
         // It is easiest to just replace all
         editedProperties.Organelles.Clear();
 
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
+        // Even in multicellular context, it should always be safe to apply the organelle growth order
+        foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
             editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);

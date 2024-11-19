@@ -139,7 +139,8 @@ public partial class GrowthOrderPicker : Control
     /// </summary>
     /// <param name="rawItems">Items to apply ordering to</param>
     /// <returns>Items with current GUI order state applied to them</returns>
-    public IEnumerable<IPlayerReadableName> ApplyOrderingToItems(IEnumerable<IPlayerReadableName> rawItems)
+    public IEnumerable<T> ApplyOrderingToItems<T>(IEnumerable<T> rawItems)
+        where T : IPlayerReadableName
     {
         if (itemControls.Count <= 0)
         {
