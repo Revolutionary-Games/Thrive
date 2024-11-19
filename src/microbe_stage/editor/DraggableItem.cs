@@ -161,7 +161,7 @@ public partial class DraggableItem : Control
             dragData.BeingDragged = false;
 
             if (dragData != this)
-                EmitSignal(SignalName.OnDraggedToNewPosition, this, dragData);
+                EmitSignal(SignalName.OnDraggedToNewPosition, dragData, this);
         }
     }
 

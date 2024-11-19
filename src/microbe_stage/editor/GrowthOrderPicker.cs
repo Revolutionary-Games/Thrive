@@ -231,7 +231,63 @@ public partial class GrowthOrderPicker : Control
 
     private void MoveToFront(DraggableItem item, DraggableItem toFrontOf)
     {
-        throw new NotImplementedException();
+        var itemIndex = itemControls.IndexOf(item);
+        var targetIndex = itemControls.IndexOf(toFrontOf);
+
+        if (itemIndex == targetIndex || itemIndex == -1 || targetIndex == -1)
+        {
+            GD.PrintErr("Couldn't find proper indexes for dragged item move");
+            return;
+        }
+
+        int itemCount = itemControls.Count;
+
+        if (itemIndex > targetIndex)
+        {
+            // Item is after target
+
+            // First put the item there, and then "push" the remaining items until they reach the target and everything
+            // is settled correctly
+
+            object? wantedItem = item.UserData;
+
+            for (int i = itemIndex; i > targetIndex; --i)
+            {
+                itemControls[i].UserData = itemControls[i - 1].UserData;
+            }
+
+            itemControls[targetIndex].UserData = wantedItem;
+        }
+        else
+        {
+            // Opposite of the above
+            // Note that slightly differently than the name, when dragged from an earlier index, the item wants to be
+            // placed at the given target index and *not before* it
+            object? wantedItem = item.UserData;
+
+            for (int i = itemIndex; i < targetIndex; ++i)
+            {
+                itemControls[i].UserData = itemControls[i + 1].UserData;
+            }
+
+            itemControls[targetIndex].UserData = wantedItem;
+        }
+
+        // Update all control labels (easier to bulk do it here at the end instead of interleaving with the other
+        // algorithm)
+        var firstIndex = Math.Min(itemIndex, targetIndex);
+        for (int i = firstIndex; i < itemCount; ++i)
+        {
+            var itemControl = itemControls[i];
+
+            if (itemControl.UserData == null)
+            {
+                GD.PrintErr("Dragged item has no user data, not updating label");
+                continue;
+            }
+
+            itemControl.SetLabelText(((IPlayerReadableName)itemControl.UserData).ReadableName);
+        }
     }
 
     private void SwapControls(DraggableItem from, DraggableItem to)
