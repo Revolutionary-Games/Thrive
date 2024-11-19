@@ -185,6 +185,9 @@ public partial class CellEditorComponent :
     [Export]
     private Button growthOrderTabButton = null!;
 
+    [Export]
+    private Button toleranceTabButton = null!;
+
     private PanelContainer structureTab = null!;
     private PanelContainer appearanceTab = null!;
 
@@ -199,6 +202,9 @@ public partial class CellEditorComponent :
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private GrowthOrderPicker growthOrderGUI = null!;
+
+    [Export]
+    private PanelContainer toleranceTab = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
@@ -409,6 +415,7 @@ public partial class CellEditorComponent :
         Membrane,
         Behaviour,
         GrowthOrder,
+        Tolerance,
     }
 
     public enum LightLevelOption
@@ -830,6 +837,8 @@ public partial class CellEditorComponent :
             behaviourEditor.Visible = false;
             growthOrderTab.Visible = false;
             growthOrderTabButton.Visible = false;
+
+            // Tolerances are visible for now
         }
 
         UpdateMicrobePartSelections();
@@ -2740,6 +2749,7 @@ public partial class CellEditorComponent :
         appearanceTab.Hide();
         behaviourEditor.Hide();
         growthOrderTab.Hide();
+        toleranceTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -2779,6 +2789,15 @@ public partial class CellEditorComponent :
                 ShowGrowthOrder = true;
 
                 UpdateGrowthOrderButtons();
+                break;
+            }
+
+            case SelectionMenuTab.Tolerance:
+            {
+                toleranceTab.Show();
+                toleranceTabButton.ButtonPressed = true;
+                MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
                 break;
             }
 
