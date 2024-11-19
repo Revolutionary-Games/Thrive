@@ -417,12 +417,18 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
         return true;
     }
 
-    public void StartMetaballMove(TMetaball selectedMetaball)
+    public void StartMetaballMove(TMetaball? selectedMetaball)
     {
         if (MovingPlacedMetaball != null)
         {
             // Already moving something! some code went wrong
             throw new InvalidOperationException("Can't begin metaball move while another in progress");
+        }
+
+        if (selectedMetaball == null)
+        {
+            GD.PrintErr("Skipping metaball move start as the target has disappeared");
+            return;
         }
 
         MovingPlacedMetaball = selectedMetaball;

@@ -537,13 +537,19 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         return true;
     }
 
-    public void StartHexMove(THexMove selectedHex)
+    public void StartHexMove(THexMove? selectedHex)
     {
         if (MovingPlacedHex != null || CanCancelAction)
         {
             // Already moving something! some code went wrong
             throw new InvalidOperationException(
                 "Can't begin hex move while another in progress (or another in-progress action)");
+        }
+
+        if (selectedHex == null)
+        {
+            GD.PrintErr("Skipping hex move start as the target has disappeared");
+            return;
         }
 
         MovingPlacedHex = selectedHex;
@@ -556,6 +562,9 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     {
         // TODO: implement: https://github.com/Revolutionary-Games/Thrive/issues/3318
         throw new NotImplementedException();
+
+        // TODO: this needs to handle the case where the enumerable is empty (as that is a possible edge case when the
+        // player is slightly exploiting the hex popup menu)
 
         /*
         if (MovingOrganelles != null)

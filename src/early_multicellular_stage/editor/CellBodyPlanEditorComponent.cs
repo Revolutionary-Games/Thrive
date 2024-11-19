@@ -847,26 +847,37 @@ public partial class CellBodyPlanEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the cells symmetrical to the clicked cell.
-            StartHexMoveWithSymmetry(cellPopupMenu.SelectedCells);
+            StartHexMoveWithSymmetry(cellPopupMenu.GetSelectedThatAreStillValid(editedMicrobeCells));
         }
         else
         {
-            StartHexMove(cellPopupMenu.SelectedCells.First());
+            StartHexMove(cellPopupMenu.GetSelectedThatAreStillValid(editedMicrobeCells).FirstOrDefault());
         }
     }
 
     private void OnDeletePressed()
     {
         int alreadyDeleted = 0;
-        var action =
-            new CombinedEditorAction(cellPopupMenu.SelectedCells
-                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
+        var targets = cellPopupMenu.GetSelectedThatAreStillValid(editedMicrobeCells)
+            .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull().ToList();
+
+        if (targets.Count < 1)
+        {
+            GD.PrintErr("No targets found to delete");
+            return;
+        }
+
+        var action = new CombinedEditorAction(targets);
+
         EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+        // This should be fine to trigger even when the cell is no longer in the layout as the other code should
+        // prevent editing invalid cell types
+        EmitSignal(SignalName.OnCellTypeToEditSelected,
+            cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
             true);
     }
 
