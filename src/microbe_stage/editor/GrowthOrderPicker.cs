@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Godot;
@@ -15,6 +16,10 @@ public partial class GrowthOrderPicker : Control
     /// </summary>
     private readonly List<IPlayerReadableName> readItemOrder = new();
 
+    private readonly Callable downPress;
+    private readonly Callable upPress;
+    private readonly Callable dragSwitch;
+
     private readonly Comparer itemComparer;
 
 #pragma warning disable CA2213
@@ -26,6 +31,10 @@ public partial class GrowthOrderPicker : Control
 
     public GrowthOrderPicker()
     {
+        downPress = new Callable(this, nameof(MoveDown));
+        upPress = new Callable(this, nameof(MoveUp));
+        dragSwitch = new Callable(this, nameof(MoveToFront));
+
         itemComparer = new Comparer(itemControls);
     }
 
@@ -108,6 +117,11 @@ public partial class GrowthOrderPicker : Control
                 itemControls.Add(item);
                 item.PositionNumber = itemControls.Count;
 
+                // Register signals to allow the items to reorder things
+                item.Connect(DraggableItem.SignalName.OnDownPressed, downPress);
+                item.Connect(DraggableItem.SignalName.OnUpPressed, upPress);
+                item.Connect(DraggableItem.SignalName.OnDraggedToNewPosition, dragSwitch);
+
                 buttonContainer.AddChild(item);
                 lastItem = item;
             }
@@ -166,6 +180,22 @@ public partial class GrowthOrderPicker : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(SignalName.OrderReset);
+    }
+
+    private void MoveDown(DraggableItem item)
+    {
+        // TODO: continue
+        throw new NotImplementedException();
+    }
+
+    private void MoveUp(DraggableItem item)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void MoveToFront(DraggableItem item, DraggableItem toFrontOf)
+    {
+        throw new NotImplementedException();
     }
 
     private class Comparer(List<DraggableItem> existingItems) : IComparer<IPlayerReadableName>
