@@ -184,18 +184,71 @@ public partial class GrowthOrderPicker : Control
 
     private void MoveDown(DraggableItem item)
     {
-        // TODO: continue
-        throw new NotImplementedException();
+        var itemCount = itemControls.Count;
+        for (int i = 0; i < itemCount; ++i)
+        {
+            var currentControl = itemControls[i];
+
+            if (currentControl == item)
+            {
+                if (i + 1 >= itemControls.Count)
+                {
+                    GD.PrintErr("Item is already at the bottom");
+                    return;
+                }
+
+                // Swap this item with the below one to perform the down move
+                SwapControls(currentControl, itemControls[i + 1]);
+                return;
+            }
+        }
+
+        GD.PrintErr("Couldn't find item control to reorder to move down");
     }
 
     private void MoveUp(DraggableItem item)
     {
-        throw new NotImplementedException();
+        var itemCount = itemControls.Count;
+        for (int i = 0; i < itemCount; ++i)
+        {
+            var currentControl = itemControls[i];
+
+            if (currentControl == item)
+            {
+                if (i < 1)
+                {
+                    GD.PrintErr("Item is already at the top");
+                    return;
+                }
+
+                SwapControls(currentControl, itemControls[i - 1]);
+                return;
+            }
+        }
+
+        GD.PrintErr("Couldn't find item control to reorder to move up");
     }
 
     private void MoveToFront(DraggableItem item, DraggableItem toFrontOf)
     {
         throw new NotImplementedException();
+    }
+
+    private void SwapControls(DraggableItem from, DraggableItem to)
+    {
+        if (from == to)
+            throw new ArgumentException("Can't swap an item with itself");
+
+        var temp = from.UserData;
+
+        if (temp == null || to.UserData == null)
+            throw new InvalidOperationException("User data to move shouldn't be null");
+
+        from.UserData = to.UserData;
+        from.SetLabelText(((IPlayerReadableName)from.UserData).ReadableName);
+
+        to.UserData = temp;
+        to.SetLabelText(((IPlayerReadableName)to.UserData).ReadableName);
     }
 
     private class Comparer(List<DraggableItem> existingItems) : IComparer<IPlayerReadableName>
