@@ -122,6 +122,15 @@ public partial class DraggableItem : Control
     {
     }
 
+    public override void _Notification(int what)
+    {
+        // Reset drag status as this is the only way to detect when our created drag data object is no longer used
+        if (what == NotificationDragEnd && beingDragged)
+            BeingDragged = false;
+
+        base._Notification(what);
+    }
+
     public override Variant _GetDragData(Vector2 atPosition)
     {
         SetDragPreview(CreateDragPreview());
@@ -163,15 +172,6 @@ public partial class DraggableItem : Control
             if (dragData != this)
                 EmitSignal(SignalName.OnDraggedToNewPosition, dragData, this);
         }
-    }
-
-    public override void _Notification(int what)
-    {
-        // Reset drag status as this is the only way to detect when our created drag data object is no longer used
-        if (what == NotificationDragEnd && beingDragged)
-            BeingDragged = false;
-
-        base._Notification(what);
     }
 
     public void SetLabelText(string readableText)
