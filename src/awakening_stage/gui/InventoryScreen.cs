@@ -120,7 +120,7 @@ public partial class InventoryScreen : ControlWithInput
     ///   Cache of available crafting materials. This is stored in a variable to ensure that
     ///   <see cref="CreateRecipeListItem"/> can initialize the recipe with up to date info
     /// </summary>
-    private System.Collections.Generic.Dictionary<WorldResource, int> availableCraftingMaterials = new();
+    private Dictionary<WorldResource, int> availableCraftingMaterials = new();
 
     public bool IsOpen => inventoryPopup.Visible;
 
