@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-19 16:04+0200\n"
 "PO-Revision-Date: 2024-11-14 06:43+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
@@ -1492,6 +1492,9 @@ msgstr "ორმაგი წკაპი სრულ ეკრანზე �
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "ScreneTree-ს დამპი"
 
@@ -1728,6 +1731,10 @@ msgstr "(დარჩენილი გლუკოზის პროპორ
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "გარემოს ჩვენება / დამალვა"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "გარემო"
 
 msgid "EPIPELAGIC"
 msgstr "ეპიპელაგიალური"
@@ -2126,6 +2133,10 @@ msgstr "გრაფიკა"
 msgid "GRAPHICS_TEAM"
 msgstr "გრაფიკის გუნდი"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "ზრდის ნაერთების გამოყენების შეზღუდვა"
+
 msgid "GUI"
 msgstr "გრაფიკული ინტერფეისი"
 
@@ -2413,6 +2424,16 @@ msgstr "რკინის ქემოლითოავტოტროფი�
 
 msgid "ITCH_TOOLTIP"
 msgstr "ეწვიეთ ჩვენს itch.io-ის გვერდს"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"მდებარეობის კოორდინატები: {0}\n"
+"უყურებთ კოორდინატებს: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "ობიექტთან ურთიერთქმედება"
 
 msgid "JANUARY"
 msgstr "იანვარი"
@@ -3381,6 +3402,14 @@ msgstr "დაბლა ჩასვლა ან ჩახტომა"
 msgid "MOVE_FORWARD"
 msgstr "გადატანა წინ"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "მიწაზე გადასვლა"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "გადატანა მარჯვნივ"
+
 msgid "MOVE_LEFT"
 msgstr "გადატანა მარცხნივ"
 
@@ -3773,6 +3802,10 @@ msgstr ""
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "მრავალუჯრედიანი"
 
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(როცა ჩართულია, შეზღუდავს ზრდის სიჩქარეს. თუ გათიშულია, ზრდის სიჩქარეს, მხოლოდ, ხელმისაწვდომი ნაერთები ზღუდავენ)"
+
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "მიოფიბრილი"
 
@@ -4075,6 +4108,10 @@ msgstr "პოპულაცია ბიომებში:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID ნომერი"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0}-ის ამოწყვეტა"
 
@@ -4210,6 +4247,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "მოცილებული მხტუნარების ჩამოყრა"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "ჩამოვყარო შეყვანა ნაგულისხმევებზე?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "ჩამოვყარო შეყვანა ნაგულისხმევებზე?"
 
 msgid "RESET_KEYBINDINGS"

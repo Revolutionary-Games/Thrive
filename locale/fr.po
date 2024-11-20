@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-19 16:04+0200\n"
 "PO-Revision-Date: 2024-10-31 16:02+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1590,6 +1590,9 @@ msgstr "Double-cliquer pour voir en plein écran"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Étant une membrane à double couche de phospholipides, elle offre une meilleure protection et demande peu d'énergie pour ne pas se déformer. Néanmoins, elle peut ralentir une cellule en terme de vitesse de locomotion et d'absorption de ressources."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 #, fuzzy
 msgid "DUMP_SCENE_TREE"
 msgstr "Vider l'arbre des scènes"
@@ -1846,6 +1849,10 @@ msgstr "(proportion de glucose retenue dans l'environnement à chaque générati
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Environnement"
 
 msgid "EPIPELAGIC"
 msgstr "Épipélagique"
@@ -2264,6 +2271,10 @@ msgstr "Graphismes"
 msgid "GRAPHICS_TEAM"
 msgstr "Équipe de graphisme"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limiter l'utilisation du composé de croissance"
+
 msgid "GUI"
 msgstr "Interface utilisateur"
 
@@ -2569,6 +2580,16 @@ msgstr "Chimiolithoautotrophe ferrique"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visitez notre page Itch.io"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Position : {0}\n"
+"Pointeur à : {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interagir"
 
 msgid "JANUARY"
 msgstr "Janvier"
@@ -3709,6 +3730,14 @@ msgstr "Reculer ou s'accroupir"
 msgid "MOVE_FORWARD"
 msgstr "Avancer"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Aller sur la terre ferme"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Se déplacer vers la droite"
+
 msgid "MOVE_LEFT"
 msgstr "Se déplacer vers la gauche"
 
@@ -4142,6 +4171,10 @@ msgstr "Les axones sont les fibres nerveuses utilisés par les neurones pour com
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulaire"
 
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
+
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibrille"
 
@@ -4452,6 +4485,10 @@ msgstr "population dans les secteurs :"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Identifiant numérique"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Prédation de {0}"
 
@@ -4587,6 +4624,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Réinitialiser les popups désactivées"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Réinitialiser les entrées aux valeurs par défaut ?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Réinitialiser les entrées aux valeurs par défaut ?"
 
 msgid "RESET_KEYBINDINGS"

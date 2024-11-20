@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-19 16:04+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -1656,6 +1656,9 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Kahekihiline membraan kaitseb paremini kahjustuste eest ja võtab vähem energiat, et mitte deformeeruda. Siiski aeglustab see raku tööd ja aeglustab ressursside neelamise kiirust."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -1940,6 +1943,10 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näita/peida keskkonda ja ühendeid"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Keskkond"
 
 msgid "EPIPELAGIC"
 msgstr "Epipelaagiline"
@@ -2419,6 +2426,10 @@ msgstr "Graafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Graafika meeskond"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "KINNITA"
+
 msgid "GUI"
 msgstr ""
 
@@ -2754,6 +2765,13 @@ msgstr "Raua kemolitoautotroofia"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "vabasurm"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
 msgid "JANUARY"
 msgstr "jaanuaril"
@@ -3923,6 +3941,14 @@ msgstr "Liigu alla või kükita"
 msgid "MOVE_FORWARD"
 msgstr "Edasi liikuma"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Modifikatsioon üleslaadimiseks:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Liigu paremale"
+
 msgid "MOVE_LEFT"
 msgstr "Liigu vasakule"
 
@@ -4402,6 +4428,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Pilus"
 
@@ -4730,6 +4760,10 @@ msgstr "populatsioon laikudena:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Isikukood"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} rööv"
 
@@ -4875,6 +4909,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Kas lähtestada sisendid normaalseks?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Kas lähtestada sisendid normaalseks?"
 
 #, fuzzy

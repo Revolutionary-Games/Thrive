@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-19 16:04+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -1582,6 +1582,9 @@ msgstr "Двічі клікніть, щоб переглянути в повно
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана з двома шарами, що має кращий захист від пошкоджень, та потребує менше енергії для збереження форми. Проте вона уповільнює клітину та поглинання ресурсів."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Вивантаження ДереваСцен"
 
@@ -1828,6 +1831,10 @@ msgstr "(частка глюкози, що залишається в навко�
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати/ приховати оточення"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Оточення"
 
 msgid "EPIPELAGIC"
 msgstr "Поверхня моря"
@@ -2240,6 +2247,10 @@ msgstr "Графіка"
 msgid "GRAPHICS_TEAM"
 msgstr "Графічна команда"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Ліміт використання сполук для росту"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2544,6 +2555,16 @@ msgstr "Хемолітоавтотрофія заліза"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Відвідайте"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Координати позиції: {0}\n"
+"Напрямок погляду: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Взаємодіяти з об'єктом"
 
 msgid "JANUARY"
 msgstr "Січень"
@@ -3663,6 +3684,14 @@ msgstr "Перемістити вниз або швидко опустити"
 msgid "MOVE_FORWARD"
 msgstr "Рухайтесь вперед"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Перейти на сушу"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Рухайтесь вправо"
+
 msgid "MOVE_LEFT"
 msgstr "Рухайтесь вліво"
 
@@ -4082,6 +4111,10 @@ msgstr "Аксони є нервовими тканинами, що викори
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Багатоклітинна"
 
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(Коли ввімкнено обмеження швидкісті росту, а якщо вимкнено, лише сполуки вплинуть на швидкість росту)"
+
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Міофібрила"
 
@@ -4391,6 +4424,10 @@ msgstr "популяція в ділянці:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "НомерID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Винищення {0}"
 
@@ -4526,6 +4563,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Скинути закриття вікон"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Скинути вхідні дані до замовчуваних?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Скинути вхідні дані до замовчуваних?"
 
 msgid "RESET_KEYBINDINGS"
