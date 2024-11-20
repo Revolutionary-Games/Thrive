@@ -499,8 +499,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? GetNearestChunkItem(
         in Entity entity, ref Engulfer engulfer, ref MicrobeControl control, ref WorldPosition position,
-        CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random, bool ironEater, float strain,
-        out bool isBigIron)
+        CompoundBag ourCompounds, float speciesFocus, float speciesOpportunism, Random random, bool ironEater,
+        float strain, out bool isBigIron)
     {
         (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? chosenChunk = null;
         float bestFoundChunkDistance = float.MaxValue;
@@ -785,6 +785,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
         {
+            bool shouldSprint = true;
             if ((organelles.SlimeJets?.Count ?? 0) > 0 &&
                 RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random))
             {
@@ -795,12 +796,20 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             {
                 // If the predator is right on top of us there's a chance to try and swing with a pilus
                 ai.MoveWithRandomTurn(2.5f, 3.0f, position.Position, ref control, speciesActivity, random);
+
+                // If attacking the predator do no sprint
+                shouldSprint = false;
             }
-            else if (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.75 ||
-                     (strain <= Constants.MAX_STRAIN_PER_ENTITY && position.Position.DistanceSquaredTo(predatorLocation) < 25.0f))
+
+            if (shouldSprint)
             {
-                // Otherwise just sprint from the predator. If the predator is really close sprint until fully strained
-                control.Sprinting = true;
+                if (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.75 ||
+                    (strain <= Constants.MAX_STRAIN_PER_ENTITY &&
+                        position.Position.DistanceSquaredTo(predatorLocation) < 25.0f))
+                {
+                    // Otherwise just sprint from the predator. If the predator is too close sprint until fully strained
+                    control.Sprinting = true;
+                }
             }
         }
 
@@ -840,7 +849,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             control.SetMoveSpeedTowardsPoint(ref position, target, Constants.AI_BASE_MOVEMENT);
 
             if (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.5 ||
-                (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.9 && RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random)))
+                (strain <= Constants.MAX_STRAIN_PER_ENTITY * 0.9
+                    && RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random)))
             {
                 // Aggressive species should sprint while hunting the prey even if it costs more strain
                 control.Sprinting = true;
