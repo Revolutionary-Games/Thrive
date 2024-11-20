@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-11-19 16:04+0200\n"
-"PO-Revision-Date: 2024-11-11 18:23+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-11-20 07:02+0000\n"
+"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -630,16 +630,20 @@ msgstr "化學感受器"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "所有細胞只能透過化學感受來「看」。這就是細胞獲取周圍環境資訊的方式。添加這種細胞器代表著演化出更精細的化學感受。由於即使在細胞階段玩家也能獲得視覺，這將表現為一條指向螢幕可見區域外的線，顯示玩家尚未看到的附近化合物。"
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "最小檢測量："
+msgstr ""
+"設定化合物檢測閾值。較低的數值可能會指向非常微弱的化合物痕跡，但這些痕跡可能不具有實際用途。\n"
+"一種策略是增加搜尋半徑與最低濃度，從而檢測到最近且濃度足夠的雲團。\n"
+"化學感受器會嗅探化合物雲中的個別點，而非單個雲團的總濃度。"
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化學感受器可以探測更遠距離的化合物。放置後進行修改以選擇化合物類型與引導線顏色。"
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
-msgstr "所有細胞只能透過化學感受來「看」。這就是細胞獲取周圍環境資訊的方式。添加這種細胞器代表著演化出更精細的化學感受。由於即使在細胞階段玩家也能獲得視覺，這將表現為一條指向螢幕可見區域外的線，顯示玩家尚未看到的附近化合物。"
+msgstr ""
+"設定此化學感受器搜尋目標物的最大距離。\n"
+"例如，對於移動速度較慢的細胞，可以降低搜尋距離，以避免指向可能在細胞抵達前就消失的資源。\n"
+"相對地，增加搜尋距離可以讓化學感受器指向更遠的目標物，但這些目標物可能在細胞到達前變得難以取得或已經消失。"
 
 msgid "CHEMOSYNTHESIS"
 msgstr "化能合成"
@@ -3104,9 +3108,8 @@ msgstr "{0} MiB"
 msgid "MICHE"
 msgstr "演化食源"
 
-#, fuzzy
 msgid "MICHES_FOR_PATCH"
-msgstr "在這個區域滅絕了"
+msgstr "區域 {0}的演化食源"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "避免捕食選擇壓力"
@@ -4041,7 +4044,7 @@ msgid "ORGANELLES_BUTTON"
 msgstr "細胞器"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "進入編輯器時，每代僅檢查一次解鎖條件"
+msgstr "進入編輯器時，每代僅檢查一次解鎖條件。部分細胞器也可以透過內共生來解鎖。"
 
 msgid "ORGANELLE_AXON"
 msgstr "軸突"
@@ -6045,9 +6048,8 @@ msgstr "查看細胞代謝過程"
 msgid "VIEW_ONLINE"
 msgstr "在網路上查看"
 
-#, fuzzy
 msgid "VIEW_PATCH_MICHES"
-msgstr "查看更新說明"
+msgstr "查看演化食源"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "查看更新說明"
@@ -7107,7 +7109,6 @@ msgstr ""
 "[indent]—   沉著／活躍：決定物種在沒有刺激的情況下移動的意願。[/indent]\n"
 "[indent]—   應變／專注：決定物種在追求目標時放棄的速度。[/indent]"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
 "微生物階段發生在一個從 2D 角度觀看的 3D 環境中，就像是透過顯微鏡觀看。在這裡，玩家需要操控他們的細胞進入色彩鮮豔的化合物雲中，以維持並生長細胞，直到它們能夠繁殖。遊戲開始時，沒有掠食者，唯一的危險是飢餓與偶爾出現的毒素。然而，隨著玩家繁殖，新的競爭物種會從玩家的物種中分化出來，並逐漸成為一個越來越危險的障礙，需要玩家克服。一開始，玩家只是一個微小的細胞，僅能攝取葡萄糖、氨與磷酸鹽，但每次繁殖後，玩家可以任意調整他們的細胞，這會給玩家帶來新的能力與選擇。然而，這是有代價的，隨著玩家細胞變得更大、更複雜，它將需要更多的食物來維持。玩家必須謹慎確保細胞始終可持續，否則很快就會餓死。此外，從玩家物種衍生出的物種會繼承玩家的適應特徵，因此玩家必須謹慎選擇何時開發武器等功能。\n"
@@ -7146,7 +7147,7 @@ msgstr ""
 "\n"
 "[indent]—   [b]葡萄糖：[/b]細胞的主要 ATP 儲存與玩家的初始食物來源。葡萄糖被多種細胞器與蛋白質消耗以生產 ATP，其中最值得注意的是代謝體與粒線體，因為它們專門用於葡萄糖。當玩家死亡時，它們將會以細胞內儲存的葡萄糖重新生成，使它們可以在不擔心飢餓的情況下輕鬆恢復遊戲。如果玩家依賴環境中容易獲得的葡萄糖，則必須小心，因為隨著每一代，環境中可用的葡萄糖總量會減少 80%。葡萄糖雲呈白色。[/indent]\n"
 "\n"
-"[indent]—   [b]氨：[/b]細胞繁殖所需的化合物。氨被用來生長並複製細胞內的蛋白質與細胞器，並且可以在環境中隨處找到。像固氮酶與固氮質體這樣的部件可以從 ATP 與氮中製造氨，這樣可以節省玩家在環境中主動尋找氨的時間。氨雲呈橙色。[/indent]\n"
+"[indent]—   [b]氨：[/b]細胞繁殖所需的化合物。氨被用來生長並複製細胞內的蛋白質與細胞器，並且可以在環境中隨處找到。像固氮酶與固氮體這樣的部件可以從 ATP 與氮中製造氨，這樣可以節省玩家在環境中主動尋找氨的時間。氨雲呈橙色。[/indent]\n"
 "\n"
 "[indent]—   [b]磷酸鹽：[/b]與氨的用途相同，磷酸鹽也是繁殖所需的化合物。然而，與氨不同的是，沒有合成磷酸鹽的方法，因此它只能從環境或捕食中獲得。磷酸鹽雲呈紫色。[/indent]\n"
 "\n"
@@ -7267,7 +7268,6 @@ msgstr "國家編輯器"
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "無效果。"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
 "進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 與[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率低於真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮體[/url][/color][/b]。\n"
@@ -7277,7 +7277,6 @@ msgstr ""
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]厭氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
@@ -7325,7 +7324,12 @@ msgid "WIKI_NITROPLAST_REQUIREMENTS"
 msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]固氮體[/b]。"
 
 msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"固氮體已被證明是從真核細胞的內共生體演化而來的。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitroplast]https://en.wikipedia.org/wiki/Nitroplast[/url][/color]\n"
+"\n"
+"https://www.science.org/doi/10.1126/science.ado8571"
 
 msgid "WIKI_NITROPLAST_STRATEGY"
 msgstr ""
