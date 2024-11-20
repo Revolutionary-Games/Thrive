@@ -1,25 +1,25 @@
 [gd_scene load_steps=6 format=3 uid="uid://de8ucwdxwykbx"]
 
-[ext_resource type="ArrayMesh" uid="uid://6os6t8new16s" path="res://assets/models/organelles/Vacuole.mesh" id="1"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
-[ext_resource type="Texture2D" uid="uid://2hbye6cfsiaf" path="res://assets/textures/vacuole.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1_62uah"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_2nypi"]
+[ext_resource type="ArrayMesh" uid="uid://bcip0xy0b1px1" path="res://assets/models/organelles/Vacuole.mesh" id="2_l8ojh"]
+[ext_resource type="Texture2D" uid="uid://2hbye6cfsiaf" path="res://assets/textures/Vacuole.png" id="3_wcqn6"]
 
-[sub_resource type="ShaderMaterial" id="1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qaowp"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2")
+shader = ExtResource("1_62uah")
 shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
+shader_parameter/dissolveScale = 1.0
+shader_parameter/fresnelValue = 0.94
+shader_parameter/fresnelActive = true
 shader_parameter/outlineWidth = 0.05
-shader_parameter/growColor = Color(0.0666667, 0.168627, 0.211765, 1)
+shader_parameter/growColor = Color(0.303233, 0.303233, 0.303233, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("3")
-shader_parameter/dissolveTexture = ExtResource("4")
+shader_parameter/texture = ExtResource("3_wcqn6")
+shader_parameter/dissolveTexture = ExtResource("2_2nypi")
 
 [node name="Vacuole" type="MeshInstance3D"]
-transform = Transform3D(127.947, 0, 0, 0, -1.79126e-05, 111.947, 0, -109.947, -1.82385e-05, 0, 0, 0)
-material_override = SubResource("1")
-mesh = ExtResource("1")
+material_override = SubResource("ShaderMaterial_qaowp")
+mesh = ExtResource("2_l8ojh")

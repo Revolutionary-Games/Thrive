@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -9,10 +10,6 @@ using Newtonsoft.Json;
 [JSONDynamicTypeAllowed]
 public class CompoundDiffusionEffect : IWorldEffect
 {
-    // Tweak variable for how fast compounds diffuse between patches
-    private const float BaseMoveAmount = 1;
-    private const float BaseDistance = 1;
-
     [JsonProperty]
     private GameWorld targetWorld;
 
@@ -36,17 +33,19 @@ public class CompoundDiffusionEffect : IWorldEffect
         // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
         // resources like oxygen)
         // TODO: improve the formula here as sqrt isn't the best
-        float moveModifier = BaseMoveAmount /
-            MathF.Sqrt(BaseDistance + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
+        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT /
+            MathF.Sqrt(Constants.COMPOUND_DIFFUSE_BASE_DISTANCE + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
 
         adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
             out var destinationAmount);
 
         // Calculate compound amounts to move
-        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * moveModifier;
+        // At most half of the surplus can move as otherwise the source patch may end up with fewer compounds than
+        // the destination
+        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * 0.5f;
 
-        float density = (compound.Value.Density - destinationAmount.Density) * moveModifier;
-        return (ambient, density);
+        float density = (compound.Value.Density - destinationAmount.Density) * 0.5f;
+        return (ambient * moveModifier, density * moveModifier);
     }
 
     private void HandlePatchCompoundDiffusion()
@@ -54,6 +53,9 @@ public class CompoundDiffusionEffect : IWorldEffect
         var simulationParameters = SimulationParameters.Instance;
 
         var movedAmounts = new Dictionary<Patch, Dictionary<Compound, BiomeCompoundProperties>>();
+
+        var cloudSizes = new Dictionary<Compound, float>();
+        var changesToApplyAtOnce = new Dictionary<Compound, float>();
 
         // Calculate compound amounts that are moving. This loop checks patch by patch how many compounds that patch
         // wants to send to its neighbours.
@@ -137,25 +139,24 @@ public class CompoundDiffusionEffect : IWorldEffect
             if (!movedAmounts.TryGetValue(patch.Value, out var moved))
                 continue;
 
+            changesToApplyAtOnce.Clear();
+
             foreach (var entry in moved)
             {
-                // TODO: switch gas compound handling to work in absolute values and then convert back to percentages?
+                changesToApplyAtOnce[entry.Key] = entry.Value.Ambient + entry.Value.Density;
 
-                if (patch.Value.Biome.TryGetCompound(entry.Key, CompoundAmountType.Biome, out var existing))
+                if (entry.Value.Ambient != 0 && entry.Value.Density != 0)
                 {
-                    existing.Density += entry.Value.Density;
-                    existing.Ambient += entry.Value.Ambient;
-
-                    if (simulationParameters.GetCompoundDefinition(entry.Key).IsGas)
-                        existing.Clamp(0, 1);
-
-                    patch.Value.Biome.ModifyLongTermCondition(entry.Key, existing);
+                    GD.PrintErr("A compound type shouldn't have both moving density and ambient, this will cause an " +
+                        "incorrect result");
                 }
-                else
-                {
-                    patch.Value.Biome.ModifyLongTermCondition(entry.Key, entry.Value);
-                }
+
+                // Setup cloud size copying in case it ends up needed
+                if (entry.Value.Amount > 0)
+                    cloudSizes[entry.Key] = entry.Value.Amount;
             }
+
+            patch.Value.Biome.ApplyLongTermCompoundChanges(patch.Value.BiomeTemplate, changesToApplyAtOnce, cloudSizes);
         }
     }
 

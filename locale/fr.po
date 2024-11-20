@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
 "PO-Revision-Date: 2024-10-31 16:02+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -638,8 +638,16 @@ msgstr "Chimiorécepteur"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Quantité minimale à détecter :"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Le chimiorécepteur permet de détecter les composés de plus loin. Modifier une fois placé pour choisir le type de composé détecté et la couleur de la ligne de guidage."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Toutes les cellules ne \"voient\" que par le biais de la chimioréception. C'est ainsi que les cellules acquièrent des informations sur leur environnement. L'ajout de cet organite représente l'évolution d'une chimioréception plus fine. Comme le joueur obtient la vision même au stade de la cellule, cela est représenté par une ligne pointant en dehors de la zone visible de l'écran, montrant les composés proches que le joueur ne pouvait pas encore voir."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -1582,6 +1590,9 @@ msgstr "Double-cliquer pour voir en plein écran"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Étant une membrane à double couche de phospholipides, elle offre une meilleure protection et demande peu d'énergie pour ne pas se déformer. Néanmoins, elle peut ralentir une cellule en terme de vitesse de locomotion et d'absorption de ressources."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 #, fuzzy
 msgid "DUMP_SCENE_TREE"
 msgstr "Vider l'arbre des scènes"
@@ -1839,6 +1850,10 @@ msgstr "(proportion de glucose retenue dans l'environnement à chaque générati
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Afficher / cacher l'environnement et les composés"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Environnement"
+
 msgid "EPIPELAGIC"
 msgstr "Épipélagique"
 
@@ -1877,6 +1892,10 @@ msgstr "échapper à l'engloutissement"
 
 msgid "ESTUARY"
 msgstr "Estuaire"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Ceci est le code exact à partir duquel cette version de Thrive a été compilée"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Arbre phylogénétique"
@@ -2252,6 +2271,10 @@ msgstr "Graphismes"
 msgid "GRAPHICS_TEAM"
 msgstr "Équipe de graphisme"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limiter l'utilisation du composé de croissance"
+
 msgid "GUI"
 msgstr "Interface utilisateur"
 
@@ -2557,6 +2580,16 @@ msgstr "Chimiolithoautotrophe ferrique"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visitez notre page Itch.io"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Position : {0}\n"
+"Pointeur à : {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interagir"
 
 msgid "JANUARY"
 msgstr "Janvier"
@@ -3139,6 +3172,10 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Disparu du secteur"
+
+#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] s'est séparé de [b][u]{1}[/u][/b] en tant que nouvelle espèce en raison de différentes pressions sélectives"
 
@@ -3693,6 +3730,14 @@ msgstr "Reculer ou s'accroupir"
 msgid "MOVE_FORWARD"
 msgstr "Avancer"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Aller sur la terre ferme"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Se déplacer vers la droite"
+
 msgid "MOVE_LEFT"
 msgstr "Se déplacer vers la gauche"
 
@@ -3893,13 +3938,13 @@ msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound 
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plaste fixateur d'azote"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Le plaste fixateur d'azote est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux, l'[thrive:compound type=\"oxygen\"][/thrive:compound] et l'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammonia\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation aérobique de l'azote[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4125,6 +4170,10 @@ msgstr "Les axones sont les fibres nerveuses utilisés par les neurones pour com
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulaire"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(si elle est activée, la vitesse de croissance est plafonnée, si elle est désactivée, seuls les composés disponibles affectent la vitesse de croissance)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibrille"
@@ -4436,6 +4485,10 @@ msgstr "population dans les secteurs :"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Identifiant numérique"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Prédation de {0}"
 
@@ -4571,6 +4624,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Réinitialiser les popups désactivées"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Réinitialiser les entrées aux valeurs par défaut ?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Réinitialiser les entrées aux valeurs par défaut ?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5437,9 +5494,6 @@ msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthèse"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "La quantité de glucose a été réduite à {0} de sa valeur précédente."
-
 msgid "THE_DISTURBANCE"
 msgstr "La Perturbation"
 
@@ -5944,6 +5998,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Grotte sous-marine"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Grotte sous-marine"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Grotte sous-marine"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Organites Déconnectés"
 
@@ -6174,6 +6236,10 @@ msgstr "Pas de processus."
 
 msgid "VIEW_ONLINE"
 msgstr "Voir en ligne"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Voir les notes de correctif"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Voir les notes de correctif"
@@ -7182,34 +7248,6 @@ msgstr "Pas d'améliorations"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Activer l'éditeur"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Pas d'effets."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plaste Fixateur d'Azote"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Pas de modifications."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plaste Fixateur d'Azote"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "À venir"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plaste Fixateur d'Azote"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Pas d'améliorations."
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -7235,6 +7273,34 @@ msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "Pas d'améliorations."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Pas d'effets."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plaste Fixateur d'Azote"
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Pas de modifications."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration d'[thrive:compound type=\"nitrogen\"][/thrive:compound] et d'[thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plaste Fixateur d'Azote"
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "À venir"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plaste Fixateur d'Azote"
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr "Pas d'améliorations."
 
 msgid "WIKI_NO"
@@ -7415,12 +7481,12 @@ msgstr "Phase multicellulaire"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Myofibrille"
 
-#, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plaste Fixateur d'Azote"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogénase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plaste Fixateur d'Azote"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Noyau"
@@ -7978,6 +8044,17 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Bourgeonnement"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0} : +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "La quantité de glucose a été réduite à {0} de sa valeur précédente."
 
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Un métabolosome modifié responsable de la production d'une forme primitive de l'agent toxique [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Peut être modifié pour changer le type de toxine généré pour obtenir d'autres effets."

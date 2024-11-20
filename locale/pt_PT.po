@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -643,8 +643,16 @@ msgstr "Quimiorreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Todas as células apenas \"veem\" através da quimiorrecepção. É assim que as células adquirem informações sobre seus arredores. A adição deste organelo representa a evolução da quimiorrecepção mais afinada. Como o jogador recebe visão, mesmo no estágio de célula, isso é representado por uma linha apontando para fora da área visível da tela, mostrando compostos próximos que o jogador ainda não podia ver."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Quantidade Mínima a Detectar:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "O quimiorrecetor permite detetar compostos de mais longe. Modifique-o quando colocado para selecionar o tipo de composto e a cor da linha usada para indicar o caminho."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Todas as células apenas \"veem\" através da quimiorrecepção. É assim que as células adquirem informações sobre seus arredores. A adição deste organelo representa a evolução da quimiorrecepção mais afinada. Como o jogador recebe visão, mesmo no estágio de célula, isso é representado por uma linha apontando para fora da área visível da tela, mostrando compostos próximos que o jogador ainda não podia ver."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -1586,6 +1594,9 @@ msgstr "Clique duas vezes para ver em ecrã completo"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem uma melhor proteção contra danos e consome menos energia para não se deformar. No entanto, abranda um pouco a célula e diminui a taxa de absorção de recursos."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -1849,6 +1860,10 @@ msgstr "(proporção de glicose retida no ambiente a cada geração)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar ambiente"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Ambiente"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelágica"
 
@@ -1887,6 +1902,10 @@ msgstr "escapou de ser engolido"
 
 msgid "ESTUARY"
 msgstr "Estuário"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Este é o codigo exato do commit que esta versão do Thrive foi compilada de"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Árvore evolutiva"
@@ -2254,6 +2273,10 @@ msgstr "Gráficos"
 msgid "GRAPHICS_TEAM"
 msgstr "Equipa dos Gráficos"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "CONFIRMAR"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2563,6 +2586,13 @@ msgstr "Quimiolitoautotrofia Férrica"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página Itch.io"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interagir com objetos"
 
 msgid "JANUARY"
 msgstr "Janeiro"
@@ -3140,6 +3170,10 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Extinguiram-se na região"
+
+#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] separou-se de [b][u]{1}[/u][/b] como uma nova espécie devido a diferentes pressões de seleção"
 
@@ -3669,6 +3703,14 @@ msgstr "Mover para baixo ou agachar"
 msgid "MOVE_FORWARD"
 msgstr "Mover para a frente"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod a Carregar:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Mover para a direita"
+
 msgid "MOVE_LEFT"
 msgstr "Mover para a esquerda"
 
@@ -3866,13 +3908,13 @@ msgstr "Nitrogenase é uma proteína capaz de utilizar o [thrive:compound type=\
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastídeo Fixador de Nitrogénio"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso, [thrive:compound type=\"oxygen\"][/thrive:compound] e [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente essencial para o crescimento das células. Este é um processo chamado [b]Fixação Aeróbica de Nitrogénio[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4096,6 +4138,10 @@ msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se l
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miofibrilha"
@@ -4413,6 +4459,10 @@ msgstr "população em regiões:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Número de ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
@@ -4549,6 +4599,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Repor as entradas por defeito?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Repor as entradas por defeito?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5421,9 +5475,6 @@ msgstr "Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradiente
 msgid "THERMOSYNTHESIS"
 msgstr "Termossíntese"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
-
 msgid "THE_DISTURBANCE"
 msgstr "O Distúrbio"
 
@@ -5928,6 +5979,14 @@ msgstr "Esta é uma compilação de depuração em que a informação abaixo pro
 msgid "UNDERWATERCAVE"
 msgstr "Caverna Subaquática"
 
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Caverna Subaquática"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Caverna Subaquática"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Não Descoberto"
 
@@ -6152,6 +6211,10 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 
 msgid "VIEW_ONLINE"
 msgstr "Ver Online"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Caverna"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7059,38 +7122,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Ativar o editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
 
@@ -7120,6 +7151,38 @@ msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a 
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastídeo Fixador de Nitrogénio"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7296,12 +7359,12 @@ msgstr "Fase multicelular"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilo Predatório"
 
-#, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastídeo Fixador de Nitrogénio"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7859,6 +7922,17 @@ msgstr "Ampliar"
 
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "reproduzido"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "A quantidade de glicose foi reduzida para {0} da quantidade anterior."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

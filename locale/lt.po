@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
 "PO-Revision-Date: 2023-10-12 00:43+0000\n"
 "Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -646,8 +646,16 @@ msgstr "Chemoreceptorius"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Chemoreceptorius"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptorius leidžia aptikti junginius iš didesnio atstumo. Padėjus modifikuoti, pasirinkite junginio tipą ir kreipiamosios linijos spalvą."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -1598,6 +1606,9 @@ msgstr "Spustelėkite du kartus peržiūrai pilname ekrane"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -1850,6 +1861,10 @@ msgstr ""
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pradėti žaidimą tokiais nustatymais"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Aplinka"
+
 msgid "EPIPELAGIC"
 msgstr ""
 
@@ -1889,6 +1904,10 @@ msgstr ""
 
 msgid "ESTUARY"
 msgstr ""
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Baigti žaidimą"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -2271,6 +2290,10 @@ msgstr ""
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
 msgid "GUI"
 msgstr ""
 
@@ -2580,6 +2603,12 @@ msgstr ""
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Baigti žaidimą"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+msgid "ITEM_NAME_SEPARATOR"
+msgstr ""
 
 msgid "JANUARY"
 msgstr ""
@@ -3137,6 +3166,9 @@ msgstr ""
 msgid "MICHE"
 msgstr ""
 
+msgid "MICHES_FOR_PATCH"
+msgstr ""
+
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr ""
 
@@ -3548,6 +3580,12 @@ msgstr ""
 msgid "MOVE_FORWARD"
 msgstr ""
 
+msgid "MOVE_ITEM_DOWN"
+msgstr ""
+
+msgid "MOVE_ITEM_UP"
+msgstr ""
+
 msgid "MOVE_LEFT"
 msgstr ""
 
@@ -3728,13 +3766,13 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NONE"
@@ -3950,6 +3988,10 @@ msgstr "Elemento aprašymas:"
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
@@ -4254,6 +4296,10 @@ msgstr ""
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID kodas"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -4390,6 +4436,9 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr ""
+
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr ""
 
 msgid "RESET_KEYBINDINGS"
@@ -5227,9 +5276,6 @@ msgstr ""
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -5603,6 +5649,12 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr ""
+
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr ""
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr ""
 
@@ -5828,6 +5880,10 @@ msgstr "Padidina didelių ląstelių sukimosi greitį."
 
 msgid "VIEW_ONLINE"
 msgstr ""
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Paverčia [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] į [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
 
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
@@ -6775,38 +6831,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Pereiti prie kito redaktoriaus skirtuko"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Anaerobinė Azoto Fiksacija"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Aerobinė Azoto Fiksacija"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Anaerobinė Azoto Fiksacija"
 
@@ -6837,6 +6861,38 @@ msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Aerobinė Azoto Fiksacija"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Aerobinė Azoto Fiksacija"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Anaerobinė Azoto Fiksacija"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Aerobinė Azoto Fiksacija"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Aerobinė Azoto Fiksacija"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Aerobinė Azoto Fiksacija"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Aerobinė Azoto Fiksacija"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7025,11 +7081,11 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Chemoplastas"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
+msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Aerobinė Azoto Fiksacija"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGENASE"
+msgid "WIKI_PAGE_NITROPLAST"
 msgstr "Aerobinė Azoto Fiksacija"
 
 #, fuzzy
@@ -7613,6 +7669,10 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Aprašymas:"
 
 #, fuzzy
 #~ msgid "WIKI_CHEMOSYNTHESIS"

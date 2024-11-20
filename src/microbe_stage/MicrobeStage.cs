@@ -484,11 +484,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // Log becoming multicellular in the timeline
         GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR",
-            previousSpecies.FormattedNameBbCodeUnstyled), true, "multicellularTimelineMembraneTouch.png");
+            previousSpecies.FormattedNameBbCodeUnstyled), true, false, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
             new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedNameBbCodeUnstyled),
-            true, "multicellularTimelineMembraneTouch.png");
+            true, false, "multicellularTimelineMembraneTouch.png");
 
         if (WorldSimulation.Processing)
             throw new Exception("This shouldn't be ran while world is in the middle of a simulation");

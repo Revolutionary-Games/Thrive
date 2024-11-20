@@ -9,7 +9,8 @@ using Newtonsoft.Json;
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
 [JsonObject(IsReference = true)]
-public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
+[JSONDynamicTypeAllowed]
+public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, IPlayerReadableName
 {
     [JsonProperty]
     public readonly OrganelleDefinition Definition;
@@ -35,6 +36,10 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex
     ///   The upgrades this organelle will have when instantiated in a microbe
     /// </summary>
     public OrganelleUpgrades? Upgrades { get; set; }
+
+    [JsonIgnore]
+    public string ReadableName => Localization.Translate("ITEM_AT_2D_COORDINATES")
+        .FormatSafe(Definition.Name, Position.Q, Position.R);
 
 #pragma warning disable CA1033
     OrganelleDefinition IPositionedOrganelle.Definition => Definition;

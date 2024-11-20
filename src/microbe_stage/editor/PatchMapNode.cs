@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -37,6 +38,9 @@ public partial class PatchMapNode : MarginContainer
     private const float HalfBlinkInterval = 0.5f;
 
 #pragma warning disable CA2213
+    [Export]
+    private TextureRect eruptionEventIndicator = null!;
+
     private TextureRect? iconRect;
     private Panel? highlightPanel;
     private Panel? markPanel;
@@ -265,6 +269,28 @@ public partial class PatchMapNode : MarginContainer
                 unknownLabel.Hide();
                 PatchIcon = patch!.BiomeTemplate.LoadedIcon;
                 return;
+            }
+        }
+    }
+
+    public void ShowEventVisuals(IReadOnlyList<WorldEffectVisuals> list)
+    {
+        eruptionEventIndicator.Visible = false;
+
+        var count = list.Count;
+
+        for (int i = 0; i < count; ++i)
+        {
+            switch (list[i])
+            {
+                case WorldEffectVisuals.None:
+                    break;
+                case WorldEffectVisuals.UnderwaterVentEruption:
+                    eruptionEventIndicator.Visible = true;
+                    break;
+                default:
+                    GD.PrintErr($"Unknown event to display on patch map node: {list[i]}");
+                    break;
             }
         }
     }

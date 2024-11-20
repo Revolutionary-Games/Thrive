@@ -44,6 +44,12 @@ public partial class CellPopupMenu : HexPopupMenu
         }
     }
 
+    public IEnumerable<HexWithData<CellTemplate>> GetSelectedThatAreStillValid(
+        IReadOnlyCollection<HexWithData<CellTemplate>> allValidCells)
+    {
+        return SelectedCells.Where(allValidCells.Contains);
+    }
+
     protected override void UpdateTitleLabel()
     {
         if (titleLabel == null)

@@ -121,6 +121,9 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
     public bool FreeBuilding { get; protected set; }
 
     [JsonIgnore]
+    public RunResults? PreviousAutoEvoResults => autoEvoResults;
+
+    [JsonIgnore]
     public GameProperties CurrentGame
     {
         get => currentGame ?? throw new InvalidOperationException("Editor not initialized with current game yet");

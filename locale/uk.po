@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -637,8 +637,16 @@ msgstr "Хеморецептор"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Усі клітини «бачають» лиш через хеморецепцію. Так вони отримують інформацію про своє оточення. Додавання цієї органели означає еволяцію точніше розвиненої хеморецепції. Оскільки гравець має зір на клітинній стадії, вона представляє собою вказівну лінію, яка йде за межі екрану та веде до ближні сполуки невидимі для гравця."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Мінімальна кількість для виявлення:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор дозволяє відстежувати сполуки на відстані. Модифікуйте один раз, аби вибрати тип сполуки та колір та колір вказівної лінії."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Усі клітини «бачають» лиш через хеморецепцію. Так вони отримують інформацію про своє оточення. Додавання цієї органели означає еволяцію точніше розвиненої хеморецепції. Оскільки гравець має зір на клітинній стадії, вона представляє собою вказівну лінію, яка йде за межі екрану та веде до ближні сполуки невидимі для гравця."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -1574,6 +1582,9 @@ msgstr "Двічі клікніть, щоб переглянути в повно
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана з двома шарами, що має кращий захист від пошкоджень, та потребує менше енергії для збереження форми. Проте вона уповільнює клітину та поглинання ресурсів."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Вивантаження ДереваСцен"
 
@@ -1821,6 +1832,10 @@ msgstr "(частка глюкози, що залишається в навко�
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показати/ приховати оточення"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Оточення"
+
 msgid "EPIPELAGIC"
 msgstr "Поверхня моря"
 
@@ -1859,6 +1874,10 @@ msgstr "уникнення поглинання"
 
 msgid "ESTUARY"
 msgstr "Гирло"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Це точний підтверджувальний код компіляції цієї версії Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Еволюційне дерево"
@@ -2228,6 +2247,10 @@ msgstr "Графіка"
 msgid "GRAPHICS_TEAM"
 msgstr "Графічна команда"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Ліміт використання сполук для росту"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2532,6 +2555,16 @@ msgstr "Хемолітоавтотрофія заліза"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Відвідайте"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Координати позиції: {0}\n"
+"Напрямок погляду: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Взаємодіяти з об'єктом"
 
 msgid "JANUARY"
 msgstr "Січень"
@@ -3114,6 +3147,10 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "вимерли в ділянці"
+
+#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] відокремились від [b][u]{1}[/u][/b] як новий вид через різні утиски відбору"
 
@@ -3647,6 +3684,14 @@ msgstr "Перемістити вниз або швидко опустити"
 msgid "MOVE_FORWARD"
 msgstr "Рухайтесь вперед"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Перейти на сушу"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Рухайтесь вправо"
+
 msgid "MOVE_LEFT"
 msgstr "Рухайтесь вліво"
 
@@ -3840,13 +3885,13 @@ msgstr "Нітрогеназа– це білок, що використовує
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Азотфіксувальні пластиди"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфіксувальні пластиди – це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], ключової поживної речовини для росту клітини. Цей процес кличуть [b]Аеробною азотфіксацією[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4054,6 +4099,7 @@ msgstr "Органели"
 msgid "ORGANELLES_BUTTON"
 msgstr "Аксон"
 
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Умови відкриття перевіряються лише раз на генерацію при вході в редактор"
 
@@ -4065,6 +4111,10 @@ msgstr "Аксони є нервовими тканинами, що викори
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Багатоклітинна"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(Коли ввімкнено обмеження швидкісті росту, а якщо вимкнено, лише сполуки вплинуть на швидкість росту)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Міофібрила"
@@ -4375,6 +4425,10 @@ msgstr "популяція в ділянці:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "НомерID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Винищення {0}"
 
@@ -4510,6 +4564,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Скинути закриття вікон"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Скинути вхідні дані до замовчуваних?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Скинути вхідні дані до замовчуваних?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5364,9 +5422,6 @@ msgstr "Продукує [thrive:compound type=\"atp\"][/thrive:compound] вик
 msgid "THERMOSYNTHESIS"
 msgstr "Термосинтез"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
-
 msgid "THE_DISTURBANCE"
 msgstr "Порушення"
 
@@ -5850,6 +5905,14 @@ msgstr "Це збірка налагоджувань, де інформація 
 msgid "UNDERWATERCAVE"
 msgstr "Підводна печера"
 
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Підводна печера"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Підводна печера"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Не відкрито"
 
@@ -6068,6 +6131,10 @@ msgstr "Збільшує швидкість обертання великих к
 
 msgid "VIEW_ONLINE"
 msgstr "Показати онлайн"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Показати інформацію про зміни"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Показати інформацію про зміни"
@@ -7030,37 +7097,6 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "Увімкнути редактор"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Немає ефектів."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Азотофіксуючі пластиди"
-
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
@@ -7091,6 +7127,37 @@ msgstr "Нітрогеназа– це білок, що використовує
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Нітрогеназа– це білок, що використовує газоподібний [thrive:compound type=\"nitrogen\"][/thrive:compound] та клітинну енергію, у вигляді [thrive:compound type=\"atp\"][/thrive:compound], щоб перетворити останнє на виробленний [thrive:compound type=\"ammonia\"][/thrive:compound], головна поживна речовина для росту клітин. Цей процес зветься [b]анаеробна азотофіксація [/b]. Оскільки нітрогеназа розміщена в цитоплазмі, то оточуюча рідина одразу здійснює [b]гліколіз [/b]."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Немає ефектів."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Азотофіксуючі пластиди"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"ammonia\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"nitrogen\"][/thrive:compound] та [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Азотофіксуючі пластиди"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Азотофіксуючі пластиди–це білки, що використовують [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], та [thrive:compound type=\"atp\"][/thrive:compound] для продукування [thrive:compound type=\"ammonia\"][/thrive:compound], поживну речовину та ключа росту клітини. Цей процес названий, як [b]Аеробна Азотофіксація[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Азотофіксуючі пластиди"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Азотофіксуючі пластиди"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7270,12 +7337,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Міофібрила"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Азотофіксуючі пластиди"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Азотофіксуючі пластиди"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7836,6 +7903,17 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Брункування"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} АТФ"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Кількість глюкози зменшена до {0} з попередньої кількості."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

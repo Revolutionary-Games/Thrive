@@ -460,9 +460,13 @@ void PhysicsBodyDisableCollisionRecording(PhysicalWorld* physicalWorld, PhysicsB
 
 void PhysicsBodyAddCollisionFilter(PhysicalWorld* physicalWorld, PhysicsBody* body, OnFilterPhysicsCollision callback)
 {
+    // Needs a two-step cast to be able to cast the function with a pointer argument to a reference argument. This
+    // should be always safe as pointers and references are in-memory handled the same so the methods are equivalent.
+    const auto partiallyConverted = reinterpret_cast<void (*)()>(callback);
+
     reinterpret_cast<Thrive::Physics::PhysicalWorld*>(physicalWorld)
         ->AddCollisionFilter(*reinterpret_cast<Thrive::Physics::PhysicsBody*>(body),
-            reinterpret_cast<Thrive::Physics::CollisionFilterCallback>(callback));
+            reinterpret_cast<Thrive::Physics::CollisionFilterCallback>(partiallyConverted));
 }
 
 void PhysicsBodyDisableCollisionFilter(PhysicalWorld* physicalWorld, PhysicsBody* body)
@@ -529,7 +533,13 @@ void ReleasePhysicsBodyReference(PhysicsBody* body)
 
 bool PhysicsBodyIsDetached(PhysicsBody* body)
 {
-    return reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->IsDetached();
+    // Due to the C# interop declaration not working correctly for this function, the return value is interpreted as
+    // a byte
+    static_assert(sizeof(bool) == 1);
+
+    const bool detached = reinterpret_cast<Thrive::Physics::PhysicsBody*>(body)->IsDetached();
+
+    return detached;
 }
 
 void PhysicsBodySetUserData(PhysicsBody* body, const char* data, int32_t dataLength)

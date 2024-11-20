@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-01 15:52+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
@@ -635,8 +635,16 @@ msgstr "Chemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Minimalna Ilość do Wykrycia:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umożliwia wykrywanie związków z oddali. Modyfikuj gdy umieścisz by wybrać typ związku oraz kolor prowadzącej do niego linii."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Wszystkie komórki \"widzą\" jedynie dzięki chemorecepcji. Tak zdobywają informacje o otaczającym je środowisku. Dodanie tego organellum oznacza wyewoluowanie dokładniej skoordynowanej chemorecepcji. Jest ona oznaczona przez linię wskazującą poza pole widzenia, pokazując pobliskie związki, których gracz nie był w stanie zobaczyć."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -1580,6 +1588,9 @@ msgstr "Należy kliknąć dwa razy żeby przejść w tryb pełnego ekranu"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrana z dwoma warstwami, lepiej chroni przed uszkodzeniami i potrzebuje mniej energii żeby się nie deformować. Aczkolwiek, spowalnia trochę komórkę oraz prędkość absorbcji zasobów."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -1835,6 +1846,10 @@ msgstr "(proporcja glukozy zachowana w środowisku w każdym pokoleniu)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Pokaż / ukryj otoczenie"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Środowisko"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagial"
 
@@ -1873,6 +1888,10 @@ msgstr "Uniknij fagocytozy"
 
 msgid "ESTUARY"
 msgstr "Eustarium"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "To jest dokładne zatwierdzenie kodu, z którego została złożona ta wersja Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Drzewo Filogenetyczne"
@@ -2244,6 +2263,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Graficy"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limituj użycie związków wzrostu"
+
 msgid "GUI"
 msgstr "Interfejs Graficzny"
 
@@ -2557,6 +2580,16 @@ msgstr "Utlenianie Żelaza"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Odwiedź naszą stronę Itch.io"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Koordynaty pozycji: {0} \n"
+"Obserwowanie koordynatów: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interakcja z obiektem"
 
 msgid "JANUARY"
 msgstr "Styczeń"
@@ -3148,6 +3181,10 @@ msgid "MICHE"
 msgstr ""
 
 #, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Wyginął z obszaru"
+
+#, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] oddzielił się od [b][u]{1}[/u][/b] jako nowy gatunek ze względu na zróżnicowane naciski selekcyjne"
 
@@ -3688,6 +3725,14 @@ msgstr "Przenieś się w dół lub kucnij"
 msgid "MOVE_FORWARD"
 msgstr "Poruszanie do przodu"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Przemieść Się na Ląd"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Poruszanie w prawo"
+
 msgid "MOVE_LEFT"
 msgstr "Poruszanie w lewo"
 
@@ -3882,13 +3927,13 @@ msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"n
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Przekształca N₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywajac [thrive:compound type=\"atp\"][/thrive:compound] . Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastyd Wiążący Azot"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Przekształca wolny N₂ i O₂ w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4104,6 +4149,7 @@ msgstr "Organella komórkowe"
 msgid "ORGANELLES_BUTTON"
 msgstr "Akson"
 
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Warunki odblokowania są sprawdzane jeden raz na generacje przy wejściu do edytora"
 
@@ -4117,6 +4163,10 @@ msgstr "Dźgaj tym inne komórki."
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Wielokomórkowe"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(gdy włączone, limituje prędkość wzrostu, jeśli wyłączone, jedynie dostępne związki wpływają na wzrost)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miofibryle"
@@ -4421,6 +4471,10 @@ msgstr "populacja w obszarach:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Numer ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Drapieżnictwo {0}"
 
@@ -4557,6 +4611,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Zresetuj Odrzucone Popupy"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Zresetować wejścia do domyślnych?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Zresetować wejścia do domyślnych?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5428,9 +5486,6 @@ msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gr
 msgid "THERMOSYNTHESIS"
 msgstr "Termosynteza"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
-
 msgid "THE_DISTURBANCE"
 msgstr "Disturbaniec"
 
@@ -5904,6 +5959,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Podwodna Jaskinia"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Podwodna Jaskinia"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Podwodna Jaskinia"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Niepołączone Organelle"
 
@@ -6131,6 +6194,10 @@ msgstr "Zwiększa prędkość obrotu większych komórek."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Wyłącz wszystko"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Przeczytaj Notki Aktualizacji"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Przeczytaj Notki Aktualizacji"
@@ -7032,33 +7099,6 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "Włącz edytor"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Brak efektów."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Przekształca wolny [thrive:compound type=\"nitrogen\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając energię. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]. Bardziej efektywne niż podobny proces w [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Brak ulepszeń."
-
 #, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
@@ -7086,6 +7126,33 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenaza to białko mogące użyć gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], kluczowego składnika dla wzrostu komórek. Ten proces nazywany jest [b]anaerobic nitrogen fixation[/b]. Jako iż nitrogenaza jest zawieszona bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glycolysis[/b]."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Brak efektów."
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Przekształca wolny [thrive:compound type=\"nitrogen\"][/thrive:compound] w [thrive:compound type=\"ammonia\"][/thrive:compound] zużywając energię. Tempo skaluje się ze stężeniem [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]. Bardziej efektywne niż podobny proces w [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Nitroplast to plastyd używający gazowego [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] oraz energii komórkowej w formie [thrive:compound type=\"atp\"][/thrive:compound] do produkcji [thrive:compound type=\"ammonia\"][/thrive:compound], składnika kluczowego dla wzrostu komórek. Ten proces jest znany jako [b]tlenowe wiązanie azotu[/b]."
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Brak ulepszeń."
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7248,11 +7315,11 @@ msgstr "Etap Wielokomórkowca"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miofibryle"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastyd Wiążący Azot"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Azotaza"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastyd Wiążący Azot"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Jądro Komórkowe"
@@ -7806,6 +7873,17 @@ msgstr "Przybliż"
 
 msgid "ZOOM_OUT"
 msgstr "Oddal"
+
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Pączkowanie"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Ilość glukozy została zredukowana do {0} poprzedniej ilości."
 
 #, fuzzy
 #~ msgid "OXYTOXISOME_DESC"

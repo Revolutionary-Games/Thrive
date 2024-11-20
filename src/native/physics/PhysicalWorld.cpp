@@ -1364,6 +1364,15 @@ Ref<PhysicsBody> PhysicalWorld::OnBodyCreated(Ref<PhysicsBody>&& body, bool addT
     {
         physicsSystem->GetBodyInterface().AddBody(body->GetId(), JPH::EActivation::Activate);
         OnPostBodyAdded(*body);
+
+        // Sanity checking debug code (likely will never trigger)
+#ifndef NDEBUG
+        if (body->IsDetached()) [[unlikely]]
+        {
+            LOG_ERROR("Created physics body ended up in detached state.");
+            std::abort();
+        }
+#endif
     }
 
     return std::move(body);
