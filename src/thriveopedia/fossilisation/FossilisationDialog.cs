@@ -71,9 +71,6 @@ public partial class FossilisationDialog : CustomWindow
         overwriteNameConfirmationDialog = GetNode<CustomConfirmationDialog>(OverwriteNameConfirmationDialogPath);
         fossilisationFailedDialog = GetNode<CustomConfirmationDialog>(FossilisationFailedDialogPath);
         speciesPreview = speciesDetailsPanel.GetNode<SpeciesPreview>(speciesDetailsPanel.SpeciesPreviewPath);
-
-        // For saving a preview image of the species we need this preview object to keep hold of the raw rendered image
-        speciesPreview.KeepPlainImageInMemory = true;
     }
 
     public override void _Process(double delta)

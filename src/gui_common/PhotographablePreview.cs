@@ -20,12 +20,6 @@
 public partial class PhotographablePreview : Control
 {
     /// <summary>
-    ///   If true then the plain <see cref="Image"/> version of the preview texture is also kept in memory
-    /// </summary>
-    [Export]
-    public bool KeepPlainImageInMemory;
-
-    /// <summary>
     ///   The priority that the generated image tasks will have. The lower the number, the higher the priority.
     /// </summary>
     [Export]
@@ -37,11 +31,11 @@ public partial class PhotographablePreview : Control
 
     private Texture2D? loadingTexture;
 
-    // TODO: conclude if we should dispose this or if caching might in the future share these
+    // These are shared through caching so not disposed here
     private Image? finishedImage;
 #pragma warning restore CA2213
 
-    private ImageTask? task;
+    private IImageTask? task;
 
     protected PhotographablePreview()
     {
@@ -65,26 +59,14 @@ public partial class PhotographablePreview : Control
         if (task?.Finished == true)
         {
             textureRect.Texture = task.FinalImage;
-
-            // TODO: should the images always be kept in memory for writing to a disk cache when removed from memory?
-            // For now that isn't done to save a bit on RAM usage
-            // Finished image is always kept in memory
-            if (KeepPlainImageInMemory)
-            {
-                finishedImage = task.PlainImage;
-            }
-            else
-            {
-                finishedImage = null;
-            }
+            finishedImage = task.PlainImage;
 
             task = null;
         }
     }
 
     /// <summary>
-    ///   Returns the finished plain image when ready and <see cref="KeepPlainImageInMemory"/> was true when the image
-    ///   generation started
+    ///   Returns the finished plain image when ready
     /// </summary>
     /// <returns>The image or null</returns>
     public Image? GetFinishedImageIfReady()
@@ -123,7 +105,7 @@ public partial class PhotographablePreview : Control
     ///   </code>
     /// </example>
     /// <returns>An image task, or null if condition not satisfied</returns>
-    protected virtual ImageTask? SetupImageTask()
+    protected virtual IImageTask? SetupImageTask()
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

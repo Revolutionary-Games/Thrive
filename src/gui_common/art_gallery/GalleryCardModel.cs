@@ -5,7 +5,7 @@
 /// </summary>
 public partial class GalleryCardModel : GalleryCard
 {
-    private ImageTask? imageTask;
+    private IImageTask? imageTask;
 
 #pragma warning disable CA2213
     private Texture2D imageLoadingIcon = null!;
