@@ -44,6 +44,12 @@ public partial class MetaballPopupMenu : HexPopupMenu
         }
     }
 
+    public IEnumerable<MulticellularMetaball> GetSelectedThatAreStillValid(
+        IReadOnlyCollection<MulticellularMetaball> allValidMetaballs)
+    {
+        return SelectedMetaballs.Where(allValidMetaballs.Contains);
+    }
+
     protected override void UpdateTitleLabel()
     {
         if (titleLabel == null)

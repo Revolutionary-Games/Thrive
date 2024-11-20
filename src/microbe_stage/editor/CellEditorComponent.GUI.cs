@@ -17,6 +17,8 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
+    private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
+
     private StringBuilder atpToolTipTextBuilder = new();
 
     [Signal]
@@ -219,7 +221,8 @@ public partial class CellEditorComponent
 
     private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
     {
-        storageLabel.Value = (float)Math.Round(nominalStorage, 1);
+        // Storage values can be as low as 0.25 so 2 decimals are needed
+        storageLabel.Value = MathF.Round(nominalStorage, 2);
 
         if (storage.Count == 0)
         {
@@ -925,6 +928,105 @@ public partial class CellEditorComponent
         ApplyLightLevelOption();
 
         UpdateCancelButtonVisibility();
+    }
+
+    private void UpdateGrowthOrderNumbers()
+    {
+        if (!ShowGrowthOrder)
+        {
+            growthOrderNumberContainer.Visible = false;
+            return;
+        }
+
+        if (camera == null)
+        {
+            GD.PrintErr("Camera must be set for growth order numbers");
+            return;
+        }
+
+        growthOrderNumberContainer.Visible = true;
+
+        // Setup tracking for what gets used
+        foreach (var orderLabel in createdGrowthOrderLabels.Values)
+        {
+            orderLabel.Marked = false;
+        }
+
+        var orderList = growthOrderGUI.GetCurrentOrder();
+        var orderListCount = orderList.Count;
+
+        var organelles = editedMicrobeOrganelles.Organelles;
+        var organellesCount = organelles.Count;
+
+        for (int i = 0; i < organellesCount; ++i)
+        {
+            var editedMicrobeOrganelle = organelles[i];
+
+            // TODO: fallback numbers if item not found?
+            var order = -1;
+
+            for (int j = 0; j < orderListCount; ++j)
+            {
+                if (ReferenceEquals(orderList[j], editedMicrobeOrganelle))
+                {
+                    // +1 to be user readable numbers
+                    order = j + 1;
+                    break;
+                }
+            }
+
+            if (!createdGrowthOrderLabels.TryGetValue(order, out var graphicalLabel))
+            {
+                graphicalLabel = GrowthOrderLabel.Create(order);
+                growthOrderNumberContainer.AddChild(graphicalLabel);
+                createdGrowthOrderLabels.Add(order, graphicalLabel);
+            }
+
+            graphicalLabel.Position = camera.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
+            graphicalLabel.Visible = true;
+            graphicalLabel.Marked = true;
+        }
+
+        // Hide unused labels
+        foreach (var orderLabel in createdGrowthOrderLabels.Values)
+        {
+            if (!orderLabel.Marked)
+                orderLabel.Visible = false;
+        }
+    }
+
+    private void UpdateGrowthOrderButtons()
+    {
+        // To save on performance, only update this when it is actually visible to the player
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
+        }
+
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
+        UpdateGrowthOrderNumbers();
+    }
+
+    /// <summary>
+    ///   A simple label showing the growth order of something
+    /// </summary>
+    private partial class GrowthOrderLabel : Label
+    {
+        public bool Marked { get; set; }
+
+        public static GrowthOrderLabel Create(int number)
+        {
+            return new GrowthOrderLabel
+            {
+                Text = number.ToString(),
+                Marked = true,
+            };
+        }
     }
 
     private class ATPComparer : IComparer<string>

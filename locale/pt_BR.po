@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
-"PO-Revision-Date: 2024-10-31 16:02+0000\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -1605,6 +1605,9 @@ msgstr "Clique duas vezes para ver em tela cheia"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem melhor proteção contra dano e leva menos energia para não se deformar. No entanto, diminui um pouco sua velocidade e diminui a taxa em que pode absorver recursos."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Despejar SceneTree"
 
@@ -1852,6 +1855,10 @@ msgstr "(proporção da glicose conservada no ambiente a cada geração)"
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar/esconder ambiente"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Ambiente"
 
 msgid "EPIPELAGIC"
 msgstr "Epipelágico"
@@ -2264,6 +2271,10 @@ msgstr "Gráficos"
 msgid "GRAPHICS_TEAM"
 msgstr "Equipe Gráfica"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limitar o uso dos compostos de crescimento"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2571,6 +2582,16 @@ msgstr "Quimiolitoautotrofia Férrica"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página na Itch.io"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Coordenadas de posição: {0}\n"
+"Olhando para as coordenadas: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interagir com o objeto"
 
 msgid "JANUARY"
 msgstr "Janeiro"
@@ -3708,6 +3729,14 @@ msgstr "Ir para baixo ou abaixar"
 msgid "MOVE_FORWARD"
 msgstr "Mover para a frente"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Migrar para a terra"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Mover para a direita"
+
 msgid "MOVE_LEFT"
 msgstr "Mover para a esquerda"
 
@@ -4118,6 +4147,7 @@ msgstr "Organelas"
 msgid "ORGANELLES_BUTTON"
 msgstr "Axônio"
 
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "As condições de desbloqueio são verificadas a cada geração ao entrar no editor"
 
@@ -4129,6 +4159,10 @@ msgstr "Axônios são fibras nervosas que os neurônios utilizam para conectar e
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(quando ativado limita a velocidade do crescimento da célula, quando desativado somente os compostos disponíveis afetam a velocidade do crescimento)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miofibrila"
@@ -4441,6 +4475,10 @@ msgstr "população nas regiões:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Número de ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
@@ -4576,6 +4614,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Redefinir os pop-ups dispensados"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Redefinir entradas para configurações padrão?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Redefinir entradas para configurações padrão?"
 
 msgid "RESET_KEYBINDINGS"

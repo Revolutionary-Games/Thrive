@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-15 16:03+0200\n"
+"POT-Creation-Date: 2024-11-20 09:06+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -1594,6 +1594,9 @@ msgstr "Clique duas vezes para ver em ecrã completo"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem uma melhor proteção contra danos e consome menos energia para não se deformar. No entanto, abranda um pouco a célula e diminui a taxa de absorção de recursos."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
@@ -1856,6 +1859,10 @@ msgstr "(proporção de glicose retida no ambiente a cada geração)"
 
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar ambiente"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Ambiente"
 
 msgid "EPIPELAGIC"
 msgstr "Epipelágica"
@@ -2266,6 +2273,10 @@ msgstr "Gráficos"
 msgid "GRAPHICS_TEAM"
 msgstr "Equipa dos Gráficos"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "CONFIRMAR"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2575,6 +2586,13 @@ msgstr "Quimiolitoautotrofia Férrica"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página Itch.io"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interagir com objetos"
 
 msgid "JANUARY"
 msgstr "Janeiro"
@@ -3685,6 +3703,14 @@ msgstr "Mover para baixo ou agachar"
 msgid "MOVE_FORWARD"
 msgstr "Mover para a frente"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod a Carregar:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Mover para a direita"
+
 msgid "MOVE_LEFT"
 msgstr "Mover para a esquerda"
 
@@ -4113,6 +4139,10 @@ msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se l
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular"
 
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
+
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miofibrilha"
 
@@ -4429,6 +4459,10 @@ msgstr "população em regiões:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Número de ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
@@ -4565,6 +4599,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Repor as entradas por defeito?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Repor as entradas por defeito?"
 
 msgid "RESET_KEYBINDINGS"

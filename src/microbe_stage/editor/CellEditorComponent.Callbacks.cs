@@ -5,7 +5,7 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   This partial class has all of the editor action callbacks needed for the microbe editor
+///   This partial class has all the editor action callbacks needed for the microbe editor
 /// </summary>
 [DeserializedCallbackTarget]
 public partial class CellEditorComponent

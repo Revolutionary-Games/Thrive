@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://yxuatqlicwtn"]
+[gd_scene load_steps=6 format=3 uid="uid://yxuatqlicwtn"]
 
 [ext_resource type="PackedScene" uid="uid://d2keheblwnnfe" path="res://assets/models/organelles/Cilia.glb" id="1_3y8uh"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_dkpan"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_uptes"]
 [ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/FilamentousOrganelle.png" id="4_52435"]
-[ext_resource type="ArrayMesh" uid="uid://bylob7v74wjbb" path="res://assets/models/organelles/Cilia.mesh" id="5_uvfp1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jjmap"]
 resource_local_to_scene = true
@@ -22,36 +21,47 @@ shader_parameter/texture = ExtResource("4_52435")
 shader_parameter/dissolveTexture = ExtResource("3_uptes")
 
 [node name="Cilia" instance=ExtResource("1_3y8uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.128127)
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/1/rotation = Quaternion(-0.00878315, -0.0863505, 0.000288114, 0.996226)
-bones/2/rotation = Quaternion(-0.0133134, -0.0784489, -0.00723503, 0.996803)
-bones/3/rotation = Quaternion(0.0178515, 0.211634, 0.106178, 0.9714)
-bones/4/rotation = Quaternion(-0.0323654, 0.280138, 0.119343, 0.951962)
-bones/5/rotation = Quaternion(0.0323044, -0.122566, -0.109227, 0.985902)
-bones/6/rotation = Quaternion(0.0590854, -0.139002, -0.169496, 0.973888)
-bones/7/rotation = Quaternion(-0.009155, -0.14818, -0.163101, 0.975375)
-bones/8/rotation = Quaternion(0.0266372, 0.103122, 0.0486732, 0.99312)
-bones/9/rotation = Quaternion(0.0567211, 0.662795, 0.0371481, 0.745725)
-bones/10/rotation = Quaternion(-0.00127555, 0.220357, 0.0398706, 0.974603)
-bones/11/rotation = Quaternion(-0.0232308, -0.119849, 0.0612927, 0.990626)
-bones/12/rotation = Quaternion(0.00409056, -0.163622, 0.126868, 0.978323)
-bones/13/rotation = Quaternion(0.00815998, 0.176283, 0.111464, 0.977974)
-bones/14/rotation = Quaternion(-0.026875, 0.135833, 0.0545623, 0.988863)
-bones/15/rotation = Quaternion(-0.0237881, 0.195296, 0.0460238, 0.979375)
-bones/16/rotation = Quaternion(-0.0373953, -0.061726, 0.0590191, 0.995645)
-bones/17/rotation = Quaternion(-0.00056857, 0.708348, -0.000570359, 0.705863)
-bones/18/rotation = Quaternion(0.0466885, 0.135809, -0.02992, 0.989182)
-bones/19/rotation = Quaternion(-0.00475943, -0.109584, -0.0167473, 0.993825)
-bones/20/rotation = Quaternion(0.0323454, -0.220061, 0.13441, 0.96564)
-bones/21/rotation = Quaternion(0.0379198, 0.0480719, 0.0459524, 0.997066)
-bones/22/rotation = Quaternion(-0.035468, 0.236547, -0.112789, 0.964399)
-bones/23/rotation = Quaternion(0.0341753, 0.119834, -0.0883902, 0.988261)
-bones/24/rotation = Quaternion(-0.0142192, -0.114817, 0.051429, 0.991953)
+bones/0/rotation = Quaternion(0.00725351, -0.723076, -0.00759352, 0.690688)
+bones/1/rotation = Quaternion(-0.00406095, -0.0784843, -0.146779, 0.986042)
+bones/2/rotation = Quaternion(-0.0267779, -0.113322, -0.0598286, 0.991394)
+bones/3/rotation = Quaternion(0.0200702, 0.208145, 0.098232, 0.972946)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0251332, 0.300555, 0.0605301, 0.95151)
+bones/5/rotation = Quaternion(-0.0769956, -0.163386, 0.0971606, 0.978742)
+bones/6/rotation = Quaternion(-0.0346544, -0.138487, 0.212578, 0.96666)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.0291426, -0.134586, 0.143836, 0.979974)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.0469107, 0.0911712, 0.250107, 0.962774)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.0234258, 0.663388, -0.0280769, 0.747382)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.087049, 0.268526, -0.140924, 0.948924)
+bones/11/rotation = Quaternion(0.0638744, -0.107675, -0.227062, 0.9658)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.0419051, -0.165545, -0.164275, 0.971521)
+bones/13/rotation = Quaternion(0.00155651, 0.162287, -0.133275, 0.977701)
+bones/14/rotation = Quaternion(-0.00339819, 0.130045, -0.0368417, 0.990818)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(-0.0144584, 0.194441, 0.0159522, 0.980678)
+bones/16/rotation = Quaternion(-0.019944, -0.0555706, 0.0309134, 0.997777)
+bones/17/rotation = Quaternion(-0.0848186, 0.703251, -0.0844622, 0.700793)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.0126939, 0.128431, 0.0230852, 0.991368)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(-0.0174936, -0.10195, 0.064275, 0.992557)
+bones/20/rotation = Quaternion(0.0187206, -0.153898, 0.166147, 0.973838)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.0234958, -0.02778, 0.0446901, 0.998338)
+bones/22/rotation = Quaternion(-0.00509515, 0.223582, 0.0359652, 0.974008)
+bones/23/rotation = Quaternion(0.00162125, 0.115492, 0.00921006, 0.993264)
+bones/24/rotation = Quaternion(-0.00903337, -0.101841, 0.00500631, 0.994747)
 
 [node name="CiliaMesh" parent="Armature/Skeleton3D" index="0"]
 material_override = SubResource("ShaderMaterial_jjmap")
-mesh = ExtResource("5_uvfp1")
 
 [node name="AnimationPlayer" parent="." index="1"]
 autoplay = "wiggle"

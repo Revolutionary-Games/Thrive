@@ -182,12 +182,29 @@ public partial class CellEditorComponent :
     private Button appearanceTabButton = null!;
     private Button behaviourTabButton = null!;
 
+    [Export]
+    private Button growthOrderTabButton = null!;
+
+    [Export]
+    private Button toleranceTabButton = null!;
+
     private PanelContainer structureTab = null!;
     private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [Export]
+    private PanelContainer growthOrderTab = null!;
+
+    [Export]
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private GrowthOrderPicker growthOrderGUI = null!;
+
+    [Export]
+    private PanelContainer toleranceTab = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
@@ -276,6 +293,9 @@ public partial class CellEditorComponent :
 
     [Export]
     private ProcessList processList = null!;
+
+    [Export]
+    private Control growthOrderNumberContainer = null!;
 
     [Export]
     private CustomWindow processListWindow = null!;
@@ -380,18 +400,22 @@ public partial class CellEditorComponent :
 
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
-    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild every time when
+    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuilt every time when
     ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
     private bool microbeVisualizationOrganellePositionsAreDirty = true;
 
     private bool microbePreviewMode;
 
+    private bool showGrowthOrderNumbers;
+
     public enum SelectionMenuTab
     {
         Structure,
         Membrane,
         Behaviour,
+        GrowthOrder,
+        Tolerance,
     }
 
     public enum LightLevelOption
@@ -497,6 +521,20 @@ public partial class CellEditorComponent :
 
             foreach (var model in placedModels)
                 model.Visible = !MicrobePreviewMode;
+        }
+    }
+
+    /// <summary>
+    ///   When enabled numbers are shown above the organelles to indicate their growth order
+    /// </summary>
+    public bool ShowGrowthOrder
+    {
+        get => showGrowthOrderNumbers;
+        set
+        {
+            showGrowthOrderNumbers = value;
+
+            UpdateGrowthOrderButtons();
         }
     }
 
@@ -797,6 +835,10 @@ public partial class CellEditorComponent :
             // In multicellular the body plan editor handles this
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
+            growthOrderTab.Visible = false;
+            growthOrderTabButton.Visible = false;
+
+            // Tolerances are visible for now
         }
 
         UpdateMicrobePartSelections();
@@ -844,6 +886,13 @@ public partial class CellEditorComponent :
         {
             // Init being called is checked at the start of this method
             previewSimulation!.ProcessAll((float)delta);
+        }
+
+        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
+        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            UpdateGrowthOrderNumbers();
         }
 
         // Show the organelle that is about to be placed
@@ -1004,7 +1053,8 @@ public partial class CellEditorComponent :
         // It is easiest to just replace all
         editedProperties.Organelles.Clear();
 
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
+        // Even in multicellular context, it should always be safe to apply the organelle growth order
+        foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
             editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
@@ -2291,6 +2341,8 @@ public partial class CellEditorComponent :
 
         // Updated here to make sure everything else has been updated first so tooltips are accurate
         UpdateOrganelleUnlockTooltips(false);
+
+        UpdateGrowthOrderButtons();
     }
 
     /// <summary>
@@ -2364,26 +2416,41 @@ public partial class CellEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the organelles symmetrical to the clicked organelle.
-            StartHexMoveWithSymmetry(organelleMenu.SelectedOrganelles);
+            StartHexMoveWithSymmetry(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles));
         }
         else
         {
-            StartHexMove(organelleMenu.SelectedOrganelles.First());
+            StartHexMove(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles).FirstOrDefault());
         }
     }
 
     private void OnDeletePressed()
     {
         int alreadyDeleted = 0;
-        var action =
-            new CombinedEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
+        var targets = organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles)
+            .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull().ToList();
+
+        if (targets.Count < 1)
+        {
+            GD.PrintErr("No targets found to delete");
+            return;
+        }
+
+        var action = new CombinedEditorAction(targets);
+
         EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        var targetOrganelle = organelleMenu.SelectedOrganelles.First();
+        var targetOrganelle = organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles).FirstOrDefault();
+
+        if (targetOrganelle == null)
+        {
+            GD.PrintErr("Target to modify has disappeared");
+            return;
+        }
+
         var upgradeGUI = targetOrganelle.Definition.UpgradeGUI;
 
         if (!IsUpgradingPossibleFor(targetOrganelle.Definition))
@@ -2681,6 +2748,8 @@ public partial class CellEditorComponent :
         structureTab.Hide();
         appearanceTab.Hide();
         behaviourEditor.Hide();
+        growthOrderTab.Hide();
+        toleranceTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -2690,6 +2759,7 @@ public partial class CellEditorComponent :
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2698,6 +2768,7 @@ public partial class CellEditorComponent :
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
                 MicrobePreviewMode = true;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2706,6 +2777,27 @@ public partial class CellEditorComponent :
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
+                break;
+            }
+
+            case SelectionMenuTab.GrowthOrder:
+            {
+                growthOrderTab.Show();
+                growthOrderTabButton.ButtonPressed = true;
+                MicrobePreviewMode = false;
+                ShowGrowthOrder = true;
+
+                UpdateGrowthOrderButtons();
+                break;
+            }
+
+            case SelectionMenuTab.Tolerance:
+            {
+                toleranceTab.Show();
+                toleranceTabButton.ButtonPressed = true;
+                MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
                 break;
             }
 
