@@ -221,7 +221,8 @@ public partial class CellEditorComponent
 
     private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
     {
-        storageLabel.Value = (float)Math.Round(nominalStorage, 1);
+        // Storage values can be as low as 0.25 so 2 decimals are needed
+        storageLabel.Value = MathF.Round(nominalStorage, 2);
 
         if (storage.Count == 0)
         {
