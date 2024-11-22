@@ -3,6 +3,8 @@
 
 #include "nodes/DebugDrawer.hpp"
 
+#include "nodes/Ripple.hpp"
+
 #include "ThriveConfig.hpp"
 
 // ------------------------------------ //
@@ -17,6 +19,7 @@ void InitializeThriveModule(godot::ModuleInitializationLevel level)
 
     GDREGISTER_CLASS(Thrive::ThriveConfig);
     GDREGISTER_CLASS(Thrive::DebugDrawer);
+    GDREGISTER_CLASS(Thrive::Ripple);
 }
 
 void UnInitializeThriveModule(godot::ModuleInitializationLevel level)
