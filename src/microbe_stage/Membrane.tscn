@@ -1,17 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=20 format=3 uid="uid://jgcbwcrqbblv"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/Membrane.cs" id="1"]
 [ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="2"]
 [ext_resource type="Texture2D" uid="uid://c3fla17itmoba" path="res://assets/textures/FresnelGradient.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://lei41d7q7tgk" path="res://assets/textures/FresnelGradientDamaged.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="5"]
-[ext_resource type="Shader" path="res://shaders/EngulfEffect.gdshader" id="6_vljlr"]
-[ext_resource type="Shader" path="res://shaders/MucocystEffect.gdshader" id="7_grw0d"]
+[ext_resource type="Shader" path="res://shaders/EngulfEffect.gdshader" id="6"]
+[ext_resource type="Shader" path="res://shaders/MucocystEffect.gdshader" id="7"]
+[ext_resource type="Shader" path="res://shaders/Ripple.gdshader" id="8"]
 
-[sub_resource type="BoxMesh" id="1"]
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
 size = Vector3(2, 0.539, 2)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_55k4t"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1"]
 resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("2")
@@ -24,10 +25,10 @@ shader_parameter/albedoTexture = ExtResource("3")
 shader_parameter/damagedTexture = ExtResource("4")
 shader_parameter/dissolveTexture = ExtResource("5")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p8cmc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("6_vljlr")
+shader = ExtResource("6")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
 shader_parameter/waviness = 40.0
@@ -35,28 +36,90 @@ shader_parameter/waveSpeed = 10.0
 shader_parameter/fade = 0.2
 shader_parameter/tint = Color(0, 0.55, 0.8, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lboqi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("7_grw0d")
+shader = ExtResource("7")
 shader_parameter/wigglyNess = 1.0
 shader_parameter/movementWigglyNess = 1.0
 shader_parameter/fade = 0.25
 shader_parameter/tint = Color(0.4, 0.8, 0.6, 1)
 
+[sub_resource type="Gradient" id="Gradient_1"]
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.8, 0.9, 1, 1, 0.9, 0.95, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1"]
+gradient = SubResource("Gradient_1")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1"]
+frequency = 0.005
+fractal_octaves = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1"]
+seamless = true
+seamless_blend_skirt = 0.4
+noise = SubResource("FastNoiseLite_1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bubble"]
+render_priority = 0
+shader = ExtResource("8")
+shader_parameter/smoothness = 0.5
+shader_parameter/refraction_strength = 0.2
+shader_parameter/bubble_noise = SubResource("NoiseTexture2D_1")
+shader_parameter/bubble_gradient = SubResource("GradientTexture2D_1")
+
+[sub_resource type="SphereMesh" id="SphereMesh_1"]
+material = SubResource("ShaderMaterial_bubble")
+radius = 0.9
+height = 1.8
+radial_segments = 32
+rings = 24
+
+[sub_resource type="Curve" id="Curve_1"]
+_data = [Vector2(0, 0.3), 0.0, 2.0, 0, 0, Vector2(1, 1), 2.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Membrane" type="MeshInstance3D" node_paths=PackedStringArray("engulfAnimationMeshInstance", "mucocystAnimationMeshInstance")]
-process_priority = 2
-cast_shadow = 0
-mesh = SubResource("1")
+mesh = SubResource("BoxMesh_1")
+surface_material_override/0 = SubResource("ShaderMaterial_1")
 script = ExtResource("1")
-MembraneShaderMaterial = SubResource("ShaderMaterial_55k4t")
-EngulfShaderMaterial = SubResource("ShaderMaterial_p8cmc")
-MucocystShaderMaterial = SubResource("ShaderMaterial_lboqi")
+MembraneShaderMaterial = SubResource("ShaderMaterial_1")
+EngulfShaderMaterial = SubResource("ShaderMaterial_2")
+MucocystShaderMaterial = SubResource("ShaderMaterial_3")
 engulfAnimationMeshInstance = NodePath("EngulfMesh")
 mucocystAnimationMeshInstance = NodePath("MucocystMesh")
 
 [node name="EngulfMesh" type="MeshInstance3D" parent="."]
 visible = false
+layers = 2
+material_override = SubResource("ShaderMaterial_2")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_1")
 
 [node name="MucocystMesh" type="MeshInstance3D" parent="."]
 visible = false
+layers = 2
+material_override = SubResource("ShaderMaterial_3")
+cast_shadow = 0
+mesh = SubResource("BoxMesh_1")
+
+[node name="Ripple" type="Node3D" parent="."]
+
+[node name="SharedParticles" type="CPUParticles3D" parent="Ripple"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+amount = 4
+lifetime = 0.3
+fixed_fps = 60
+draw_order = 2
+mesh = SubResource("SphereMesh_1")
+particle_flag_align_y = true
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = 0.001
+initial_velocity_max = 0.001
+scale_amount_min = 0.3
+scale_amount_curve = SubResource("Curve_1")
