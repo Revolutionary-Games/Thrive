@@ -386,9 +386,14 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     public Species? GetActiveSpeciesData(uint speciesId)
     {
+        return GetActiveSpeciesDataFromGeneration(generationDisplayed, speciesId);
+    }
+
+    public Species? GetActiveSpeciesDataFromGeneration(int generation, uint speciesId)
+    {
         var gameWorld = world.GameProperties.GameWorld;
 
-        for (int i = generationDisplayed; i >= 0; --i)
+        for (int i = generation; i >= 0; --i)
         {
             gameWorld.GenerationHistory[i].AllSpeciesData
                 .TryGetValue(speciesId, out var speciesRecord);
@@ -891,7 +896,16 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
         HistoryListMenuIndexChanged(generation);
-        UpdateSpeciesPreview(world.SpeciesHistoryList[generation][id]);
+
+        var species = GetActiveSpeciesDataFromGeneration(generation, id);
+
+        if (species == null)
+        {
+            GD.PrintErr("Couldn't find active species data to show");
+            return;
+        }
+
+        UpdateSpeciesPreview(species);
     }
 
     private void PatchListMenuIndexChanged(int index)
