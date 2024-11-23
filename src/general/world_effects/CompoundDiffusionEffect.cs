@@ -29,8 +29,6 @@ public class CompoundDiffusionEffect : IWorldEffect
     private static (float Ambient, float Density) CalculateWantedMoveAmounts(Patch adjacent,
         KeyValuePair<Compound, BiomeCompoundProperties> compound)
     {
-        // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
-        // resources like oxygen)
         float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT;
 
         adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,

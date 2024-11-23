@@ -153,8 +153,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 co2Target = co2Out / (oxygenIn + co2In) * total;
             }
 
-            changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) / 2.0f;
-            changesToApply[Compound.Carbondioxide] = (co2Target - existingCo2.Ambient) / 2.0f;
+            changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) * 0.5f;
+            changesToApply[Compound.Carbondioxide] = (co2Target - existingCo2.Ambient) * 0.5f;
 
             if (changesToApply.Count > 0)
                 patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
