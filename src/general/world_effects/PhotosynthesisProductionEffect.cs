@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 using Systems;
 
@@ -124,11 +125,12 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 }
             }
 
-            float oxygenTarget;
-            float co2Target;
-
             patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var existingOxygen);
             patch.Biome.TryGetCompound(Compound.Carbondioxide, CompoundAmountType.Biome, out var existingCo2);
+
+            // Unless something else changes it, compound values stay the same
+            float oxygenTarget = existingOxygen.Ambient;
+            float co2Target = existingCo2.Ambient;
 
             float total = existingOxygen.Ambient + existingCo2.Ambient;
 
@@ -158,8 +160,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             if (oxygenProduced > 0 && co2Produced > 0)
             {
                 // Calculate long-term equilibrium balances based on production and consumption ratio
-                oxygenTarget = oxygenProduced / (oxygenConsumed + co2Consumed) * total;
-                co2Target = co2Produced / (oxygenConsumed + co2Consumed) * total;
+                oxygenTarget = oxygenProduced / (oxygenConsumed + co2Consumed + MathUtils.EPSILON) * total;
+                co2Target = co2Produced / (oxygenConsumed + co2Consumed + MathUtils.EPSILON) * total;
             }
 
             changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) * 0.5f;
