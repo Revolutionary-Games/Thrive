@@ -101,6 +101,11 @@ public partial class PhotographablePreview : Control
         task = SetupImageTask();
     }
 
+    protected void ResetPreview()
+    {
+        textureRect.Texture = null!;
+    }
+
     /// <summary>
     ///   Return an ImageTask ready for PhotoStudio to process
     /// </summary>

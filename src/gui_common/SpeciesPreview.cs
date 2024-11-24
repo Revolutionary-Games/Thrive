@@ -19,6 +19,8 @@ public partial class SpeciesPreview : PhotographablePreview
 
             if (previewSpecies != null)
                 UpdatePreview();
+            else
+                ResetPreview();
         }
     }
 

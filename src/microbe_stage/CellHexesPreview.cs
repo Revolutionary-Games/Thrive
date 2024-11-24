@@ -17,7 +17,11 @@ public partial class CellHexesPreview : PhotographablePreview
                 return;
 
             microbeSpecies = value;
-            UpdatePreview();
+
+            if (microbeSpecies != null)
+                UpdatePreview();
+            else
+                ResetPreview();
         }
     }
 

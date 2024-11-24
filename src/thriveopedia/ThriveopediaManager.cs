@@ -54,8 +54,7 @@ public class ThriveopediaManager
         {
             var species = provider.GetActiveSpeciesData(speciesId);
 
-            if (species != null)
-                return species;
+            return species;
         }
 
         return null;

@@ -81,6 +81,6 @@ public partial class SpeciesDetailsPanelWithFossilisation : VBoxContainer
 
     private void UpdateFossilisationButtonState()
     {
-        fossilisationButton.Disabled = previewSpecies is not MicrobeSpecies;
+        fossilisationButton.Disabled = previewSpecies == null || previewSpecies is not MicrobeSpecies;
     }
 }

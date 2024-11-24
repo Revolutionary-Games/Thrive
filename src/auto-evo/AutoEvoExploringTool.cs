@@ -887,10 +887,22 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateSpeciesPreview(species);
     }
 
-    private void UpdateSpeciesPreview(Species species)
+    private void UpdateSpeciesPreview(Species? species)
     {
+        if (species == null)
+        {
+            ResetSpeciesPreview();
+            return;
+        }
+
         speciesListMenu.Text = species.FormattedName;
         speciesDetailsPanelWithFossilisation.PreviewSpecies = species;
+    }
+
+    private void ResetSpeciesPreview()
+    {
+        speciesListMenu.Text = string.Empty;
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = null;
     }
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
@@ -898,12 +910,6 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         HistoryListMenuIndexChanged(generation);
 
         var species = GetActiveSpeciesDataFromGeneration(generation, id);
-
-        if (species == null)
-        {
-            GD.PrintErr("Couldn't find active species data to show");
-            return;
-        }
 
         UpdateSpeciesPreview(species);
     }
