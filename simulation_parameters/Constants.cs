@@ -217,7 +217,7 @@ public static class Constants
 
     public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
