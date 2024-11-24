@@ -46,10 +46,10 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             if (patch.SpeciesInPatch.Count < 1)
                 continue;
 
-            float oxygenIn = 0;
-            float oxygenOut = 0;
-            float co2In = 0;
-            float co2Out = 0;
+            float oxygenConsumed = 0;
+            float oxygenProduced = 0;
+            float co2Consumed = 0;
+            float co2Produced = 0;
 
             foreach (var species in patch.SpeciesInPatch)
             {
@@ -72,6 +72,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 microbeProcesses.Clear();
                 ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
+                // Iterate over each process and determine compounds produced and consumed
                 foreach (var process in microbeProcesses)
                 {
                     if (process.Process.InternalName == "protein_respiration")
@@ -100,11 +101,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (input.Key.ID is Compound.Oxygen)
                         {
-                            oxygenIn += input.Value * inputModifier * effectiveSpeed * species.Value;
+                            oxygenConsumed += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                         else if (input.Key.ID is Compound.Carbondioxide)
                         {
-                            co2In += input.Value * inputModifier * effectiveSpeed * species.Value;
+                            co2Consumed += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                     }
 
@@ -113,11 +114,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (output.Key.ID is Compound.Oxygen)
                         {
-                            oxygenOut += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            oxygenProduced += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                         else if (output.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Out += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            co2Produced += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                     }
                 }
@@ -131,26 +132,34 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
             float total = existingOxygen.Ambient + existingCo2.Ambient;
 
-            if (oxygenOut == 0)
+            // Special (but common) case where zero oxygen is being produced
+            if (oxygenProduced == 0 && oxygenConsumed > 0)
             {
-                if (co2Out == 0)
-                {
-                    // in the rare event we aren't making either compound, do nothing
-                    continue;
-                }
+                oxygenTarget = 0.0f;
 
-                oxygenTarget = 0;
-                co2Target = total;
+                if (co2Produced > 0)
+                {
+                    co2Target = total;
+                }
             }
-            else if (co2Out == 0)
+
+            // Special (but common) case where zero carbon dioxide is being produced
+            if (co2Produced == 0 && co2Consumed > 0)
             {
-                oxygenTarget = total;
-                co2Target = 0;
+                co2Target = 0.0f;
+
+                if (oxygenProduced > 0)
+                {
+                    oxygenTarget = total;
+                }
             }
-            else
+
+            // if both compounds are being produced, calculate an aproximate steady state value
+            if (oxygenProduced > 0 && co2Produced > 0)
             {
-                oxygenTarget = oxygenOut / (oxygenIn + co2In) * total;
-                co2Target = co2Out / (oxygenIn + co2In) * total;
+                // Calculate long-term equilibrium balances based on production and consumption ratio
+                oxygenTarget = oxygenProduced / (oxygenConsumed + co2Consumed) * total;
+                co2Target = co2Produced / (oxygenConsumed + co2Consumed) * total;
             }
 
             changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) * 0.5f;
