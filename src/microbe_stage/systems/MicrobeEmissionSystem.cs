@@ -82,15 +82,9 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
         ref var control = ref entity.Get<MicrobeControl>();
 
-        // Reduce agent emission cooldown
-        // TODO: is it faster to check than to just blindly always subtract delta here?
-        control.AgentEmissionCooldown -= delta;
-        if (control.AgentEmissionCooldown < 0)
-            control.AgentEmissionCooldown = 0;
-
-        control.SlimeSecretionCooldown -= delta;
-        if (control.SlimeSecretionCooldown < 0)
-            control.SlimeSecretionCooldown = 0;
+        DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
+        DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
+        DecreaseTimeCountdownValue(ref control.MucusSecretionCooldown, delta);
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
         ref var cellProperties = ref entity.Get<CellProperties>();
@@ -117,9 +111,26 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             control.QueuedSiderophoreToEmit = false;
         }
 
-        // This method itself checks for the preconditions on emitting slime
-        HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
-            ref position, compounds, engulfed, delta);
+        if (control.QueuedSlimeSecretionTime > 0)
+        {
+            HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+                ref position, compounds, engulfed, delta);
+        }
+
+        if (control.QueuedMucusSecretionTime > 0)
+        {
+            HandleMucusSecretion(entity, ref control, ref organelles, ref soundEffectPlayer, compounds, engulfed, delta);
+        }
+    }
+
+    private void DecreaseTimeCountdownValue(ref float countdownValue, float delta)
+    {
+        if (countdownValue > 0)
+        {
+            countdownValue -= delta;
+            if (countdownValue < 0)
+                countdownValue = 0;
+        }
     }
 
     /// <summary>
@@ -324,6 +335,9 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             // Activate all jets, which will constantly secrete slime until we turn them off
             foreach (var jet in organelles.SlimeJets)
             {
+                if (jet.IsMucocyst)
+                    continue;
+
                 // Make sure this is animating
                 jet.Active = true;
 
@@ -345,11 +359,61 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         {
             // Deactivate the jets if we aren't supposed to secrete slime
             foreach (var jet in organelles.SlimeJets)
-                jet.Active = false;
+            {
+                if (!jet.IsMucocyst)
+                    jet.Active = false;
+            }
         }
 
-        control.QueuedSlimeSecretionTime -= delta;
-        if (control.QueuedSlimeSecretionTime < 0)
-            control.QueuedSlimeSecretionTime = 0;
+        DecreaseTimeCountdownValue(ref control.QueuedSlimeSecretionTime, delta);
+    }
+
+    private void HandleMucusSecretion(in Entity entity, ref MicrobeControl control,
+        ref OrganelleContainer organelles, ref SoundEffectPlayer soundEffectPlayer,
+        CompoundBag compounds, bool engulfed, float delta)
+    {
+        // Don't activate mucocyst when engulfed
+        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
+            return;
+
+        // Ignore if we have no mucocysts
+        if (organelles.MucocystCount <= 0 || organelles.SlimeJets == null || organelles.SlimeJets.Count <= 0)
+            return;
+
+        int mucocystCount = organelles.MucocystCount;
+
+        // Start a cooldown timer if we're out of mucilage to prevent "flickering" with mucus shield.
+        // Scaling by mucocyst count ensures we aren't producing mucilage fast enough to beat this check.
+        if (compounds.GetCompoundAmount(Compound.Mucilage) < Constants.MUCOCYST_MINIMUM_MUCILAGE * mucocystCount)
+            control.MucusSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
+
+        if (engulfed)
+            control.QueuedMucusSecretionTime = 0;
+
+        if (control.QueuedMucusSecretionTime > 0 && control.MucusSecretionCooldown <= 0)
+        {
+            control.State = MicrobeState.MucocystShield;
+            foreach (var jet in organelles.SlimeJets)
+            {
+                if (jet.IsMucocyst)
+                {
+                    jet.Active = true;
+                    soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");;
+                }
+            }
+        }
+        else
+        {
+            control.QueuedMucusSecretionTime = 0;
+
+            // Deactivate the mucocysts if we aren't supposed to secrete mucus
+            foreach (var jet in organelles.SlimeJets)
+            {
+                if (jet.IsMucocyst)
+                    jet.Active = false;
+            }
+        }
+
+        DecreaseTimeCountdownValue(ref control.QueuedMucusSecretionTime, delta);
     }
 }

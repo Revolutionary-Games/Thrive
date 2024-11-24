@@ -304,16 +304,21 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         float speciesFocus = speciesBehaviour.Focus;
         float speciesOpportunism = speciesBehaviour.Opportunism;
 
+        // If microbe secretes mucus skip thinking since it can't take any action
+        if (control.State == MicrobeState.MucocystShield)
+            return;
+
         control.Sprinting = false;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
-        Vector3? predator =
-            GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear)?.Position;
-        if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value) <
+        (Entity Entity, Vector3 Position, float EngulfSize)? predator = 
+            GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear);
+        if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value.Position) <
             1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR)
         {
-            FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity, predator.Value,
-                speciesFocus, speciesActivity, speciesAggression, speciesFear, strain, random);
+            FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity, 
+                predator.Value.Position, predator.Value.Entity, speciesFocus, 
+                speciesActivity, speciesAggression, speciesFear, strain, random);
             return;
         }
 
@@ -774,8 +779,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
         ref OrganelleContainer organelles, CompoundBag ourCompounds, in Entity entity, Vector3 predatorLocation,
-        float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear, float strain,
-        Random random)
+        Entity predatorEntity, float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear,
+        float strain, Random random)
     {
         control.SetStateColonyAware(entity, MicrobeState.Normal);
 
@@ -786,6 +791,19 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
         {
             bool shouldSprint = true;
+
+            // If the microbe is exhausted or really close to predator use mucus to defend itself
+            if (organelles.MucocystCount > 0 && control.MucusSecretionCooldown <= 0 && (
+                    (strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.75
+                        && RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR / 2, random))
+                    || position.Position.DistanceSquaredTo(predatorLocation) < 20.0f))
+            {
+                float mucusSecreteTime = 4 + 4 * random.NextSingle();
+                GD.Print("Secreting mucus for seconds: " + mucusSecreteTime);
+                control.QueuedMucusSecretionTime = mucusSecreteTime;
+                return;
+            }
+
             if ((organelles.SlimeJets?.Count ?? 0) > 0 &&
                 RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random))
             {

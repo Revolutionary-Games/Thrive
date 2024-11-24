@@ -44,6 +44,16 @@ public struct MicrobeControl
     public float QueuedSlimeSecretionTime;
 
     /// <summary>
+    ///   This is here as this is very closely related to <see cref="QueuedMucusSecretionTime"/>
+    /// </summary>
+    public float MucusSecretionCooldown;
+
+    /// <summary>
+    ///   How long this microbe wants to emit mucus
+    /// </summary>
+    public float QueuedMucusSecretionTime;
+
+    /// <summary>
     ///   Time until this microbe can fire agents (toxin) again
     /// </summary>
     public float AgentEmissionCooldown;
