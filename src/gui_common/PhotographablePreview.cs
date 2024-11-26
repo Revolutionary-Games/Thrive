@@ -103,7 +103,7 @@ public partial class PhotographablePreview : Control
 
     protected void ResetPreview()
     {
-        textureRect.Texture = null!;
+        textureRect.Texture = null;
     }
 
     /// <summary>
