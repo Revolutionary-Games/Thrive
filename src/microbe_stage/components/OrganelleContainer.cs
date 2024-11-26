@@ -44,6 +44,13 @@ public struct OrganelleContainer
     public List<SlimeJetComponent>? SlimeJets;
 
     /// <summary>
+    ///   The slime jets upgraded to mucocyst attached to this microbe. JsonIgnore as the components add themselves
+    ///   to this list each load (as they are recreated).
+    /// </summary>
+    [JsonIgnore]
+    public List<SlimeJetComponent>? Mucocysts;
+
+    /// <summary>
     ///   Flagellum components that need to be animated when the cell is moving at top speed
     /// </summary>
     [JsonIgnore]
@@ -79,11 +86,6 @@ public struct OrganelleContainer
     ///   How good this microbe is at breaking down iron (score is sum of scores from all organelles)
     /// </summary>
     public int IronBreakdownEfficiency;
-
-    /// <summary>
-    ///   The slime jets with mucocyst
-    /// </summary>
-    public int MucocystCount;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
@@ -249,6 +251,11 @@ public static class OrganelleContainerHelpers
         container.Organelles?.Clear();
 
         container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
+
+        if ("Rhepsis imenepsis" == cellDefinition.FormattedName)
+        {
+        }
+        GD.Print(cellDefinition.FormattedName);
 
         foreach (var organelleTemplate in cellDefinition.Organelles)
         {
@@ -470,7 +477,6 @@ public static class OrganelleContainerHelpers
         container.AgentVacuoleCount = 0;
         container.AverageToxinToxicity = 0;
         container.IronBreakdownEfficiency = 0;
-        container.MucocystCount = 0;
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
@@ -527,7 +533,8 @@ public static class OrganelleContainerHelpers
                 {
                     if (slimeJetComponent.IsMucocyst)
                     {
-                        ++container.MucocystCount;
+                        container.Mucocysts ??= new List<SlimeJetComponent>();
+                        container.Mucocysts.Add(slimeJetComponent);
                     }
                     else
                     {

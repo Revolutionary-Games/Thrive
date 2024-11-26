@@ -113,6 +113,7 @@ public struct MicrobeControl
         QueuedSiderophoreToEmit = false;
         SlimeSecretionCooldown = 0;
         QueuedSlimeSecretionTime = 0;
+        QueuedMucusSecretionTime = 0;
         AgentEmissionCooldown = 0;
         State = MicrobeState.Normal;
         SlowedBySlime = false;
@@ -302,6 +303,29 @@ public static class MicrobeControlHelpers
         // MovementDirection doesn't have to be normalized, so it isn't here
         control.MovementDirection = selfPosition.Rotation.Inverse() * vectorToTarget * speed;
     }
+    
+    public static void QueueSecreteMucus(this ref MicrobeControl control,
+        ref OrganelleContainer organelleInfo, in Entity entity, float duration)
+    {
+        GD.Print("Queueing!");
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+
+            colony.PerformForOtherColonyMembersThanLeader(m =>
+                m.Get<MicrobeControl>()
+                    .QueueSecreteMucus(ref m.Get<OrganelleContainer>(), m, duration));
+        }
+
+        if ((organelleInfo.Mucocysts?.Count ?? 0) < 1)
+        {
+            GD.Print("No Mucocyst!");
+            return;
+        }
+
+        control.QueuedMucusSecretionTime += duration;
+        GD.Print(control.QueuedMucusSecretionTime);
+    }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,
         ref OrganelleContainer organelleInfo, in Entity entity, float duration)
@@ -356,7 +380,7 @@ public static class MicrobeControlHelpers
                         mucilageCompound));
         }
 
-        if (organelleInfo.MucocystCount < 1)
+        if ((organelleInfo.Mucocysts?.Count ?? 0) < 1)
             return;
 
         if (state)

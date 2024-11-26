@@ -272,6 +272,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
 
+        // TODO: CELL RADIUS
         ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var signaling = ref entity.Get<CommandSignaler>();
@@ -311,13 +312,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         control.Sprinting = false;
 
         // If nothing is engulfing me right now, see if there's something that might want to hunt me
-        (Entity Entity, Vector3 Position, float EngulfSize)? predator = 
+        (Entity Entity, Vector3 Position, float EngulfSize)? predator =
             GetNearestPredatorItem(ref health, ref ourSpecies, ref engulfer, ref position, speciesFear);
         if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value.Position) <
             1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR)
         {
-            FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity, 
-                predator.Value.Position, predator.Value.Entity, speciesFocus, 
+            MicrobeState predatorState = predator.Value.Entity.Get<MicrobeControl>().State;
+            FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity,
+                predator.Value.Position, predatorState, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
             return;
         }
@@ -779,7 +781,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
         ref OrganelleContainer organelles, CompoundBag ourCompounds, in Entity entity, Vector3 predatorLocation,
-        Entity predatorEntity, float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear,
+        MicrobeState predatorState, float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear,
         float strain, Random random)
     {
         control.SetStateColonyAware(entity, MicrobeState.Normal);
@@ -787,20 +789,44 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         ai.TargetPosition = (2 * (position.Position - predatorLocation)) + position.Position;
 
         control.LookAtPoint = ai.TargetPosition;
+        // if ((organelles.Mucocysts?.Count ?? 0) > 0)
+        //     GD.Print("Name: " + entity.Get<ReadableName>().Name + ", MucocystCount: " + (organelles.Mucocysts?.Count ?? 0) + ", MucusSecretionCooldown: " +
+        //         control.MucusSecretionCooldown + ", engulf: " + predatorState + ", distance: " + position.Position.DistanceSquaredTo(predatorLocation) + ", Mucus: " + ourCompounds.GetCompoundAmount(Compound.Mucilage));
 
-        if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
+        if ("Rhepsis imenepsis" == entity.Get<ReadableName>().Name.ToString())
+        {
+            GD.Print("Running! ");
+            GD.Print(organelles.Mucocysts);
+            GD.Print(organelles.SlimeJets);
+            GD.Print(organelles.ToString());
+        }
+        if ((organelles.Mucocysts?.Count ?? 0) > 0)
+        {
+            GD.Print("Name: " + entity.Get<ReadableName>().Name);
+            GD.Print("dist: " + position.Position.DistanceSquaredTo(predatorLocation));
+        }
+        
+        if (position.Position.DistanceSquaredTo(predatorLocation) < 300.0f)
         {
             bool shouldSprint = true;
+            int mucocystCount = organelles.Mucocysts?.Count ?? 0;
 
-            // If the microbe is exhausted or really close to predator use mucus to defend itself
-            if (organelles.MucocystCount > 0 && control.MucusSecretionCooldown <= 0 && (
-                    (strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.75
+            // If the microbe is exhausted, too close to predator or the predator
+            // starts to engulf use mucus to defend itself
+            
+            if (mucocystCount > 0 && control.MucusSecretionCooldown <= 0
+                && ourCompounds.GetCompoundAmount(Compound.Mucilage) > Constants.MUCOCYST_MINIMUM_MUCILAGE
+                && ((strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.75
                         && RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR / 2, random))
-                    || position.Position.DistanceSquaredTo(predatorLocation) < 20.0f))
+                    || position.Position.DistanceSquaredTo(predatorLocation) < 50.0f
+                    || predatorState == MicrobeState.Engulf))
             {
-                float mucusSecreteTime = 4 + 4 * random.NextSingle();
-                GD.Print("Secreting mucus for seconds: " + mucusSecreteTime);
-                control.QueuedMucusSecretionTime = mucusSecreteTime;
+                GD.Print("Using mucus!");
+
+                // Secrete mucus for 4-8 seconds
+                control.QueueSecreteMucus(ref organelles, entity, 4 + 4 * random.NextSingle());
+
+                // Don't take any other action
                 return;
             }
 
