@@ -329,7 +329,8 @@ public class Settings
     ///   disk)
     /// </summary>
     [JsonProperty]
-    public SettingValue<float> DiskMemoryCachePortionTime { get; private set; } = new(Constants.MEMORY_CACHE_TIME);
+    public SettingValue<float> DiskMemoryCachePortionTime { get; private set; } =
+        new(Constants.MEMORY_BEFORE_DISK_CACHE_TIME);
 
     /// <summary>
     ///   How long disk cache items are kept at most
@@ -341,7 +342,7 @@ public class Settings
     ///   How long items stay in a memory-only cache (that is not backed by disk)
     /// </summary>
     [JsonProperty]
-    public SettingValue<float> MemoryOnlyCacheTime { get; private set; } = new(Constants.MEMORY_CACHE_TIME);
+    public SettingValue<float> MemoryOnlyCacheTime { get; private set; } = new(Constants.MEMORY_ONLY_CACHE_TIME);
 
     /// <summary>
     ///   How many items are allowed to be cached in-memory at once

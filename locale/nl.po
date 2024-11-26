@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-26 17:25+0200\n"
 "PO-Revision-Date: 2024-10-21 20:20+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -507,6 +507,24 @@ msgstr "Door:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Door Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Videogeheugen nu in gebruik:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Videogeheugen nu in gebruik:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Vervaardigen"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Calciumcarbonaat"
 
@@ -711,6 +729,9 @@ msgstr "Bevolking: {0} Voedsel: {1} Wetenschap: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Oude Opslagbestanden Opschonen"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sluiten"
@@ -1282,6 +1303,14 @@ msgstr "Credits"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Er wordt niets onderzocht"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Slijm vrijlaten"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Huidige Ontwikkelaars"
 
@@ -1568,6 +1597,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Word lid van onze gemeenschapsdiscordserver"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Bezoek onze Itch.io pagina"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Afgewezen popupvensters:"
@@ -3137,11 +3170,19 @@ msgstr "Mariene sneeuw"
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Slijm vrijlaten"
+
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ongelimiteerd"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Grootte:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum hoeveelheid entiteiten:"
@@ -6230,6 +6271,9 @@ msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet ges
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Stel handmatig de nummers van achtergrond threads in"

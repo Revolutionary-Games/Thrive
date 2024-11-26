@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-26 17:25+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -516,6 +516,22 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Od Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Chýba názov"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
@@ -721,6 +737,9 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Štatistika organizmu"
 
 msgid "CLEAN_UP_OLD_SAVES"
+msgstr ""
+
+msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1248,6 +1267,14 @@ msgstr "Poďakovanie"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Súčasní vývojári"
 
@@ -1503,6 +1530,10 @@ msgstr ""
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Opustiť hru"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -3111,11 +3142,19 @@ msgstr "Morský sneh"
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitosť"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "MAX_FPS"
 msgstr "Maximálny počet snímkov za sekundu:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neobmedzené"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Veľkosť:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximálny počet entít:"
@@ -6033,6 +6072,9 @@ msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použiť vlastné používateľské meno"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ručne nastaviť počet vlákien na pozadí"

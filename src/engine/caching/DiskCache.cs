@@ -56,7 +56,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
     // Config
     private float cacheItemKeepTime = Constants.DISK_CACHE_DEFAULT_KEEP;
-    private float cacheItemMemoryTime = Constants.MEMORY_CACHE_TIME;
+    private float cacheItemMemoryTime = Constants.MEMORY_BEFORE_DISK_CACHE_TIME;
     private long maxTotalCacheSize = Constants.DISK_CACHE_DEFAULT_MAX_SIZE;
     private int maxMemoryItems = Constants.MEMORY_PHOTO_CACHE_MAX_ITEMS;
 
@@ -83,6 +83,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     private bool hasLimitedExecutors;
 
     public static DiskCache Instance => instance ?? throw new InstanceNotLoadedYetException();
+
+    public long TotalCacheSize => totalCacheSize;
 
     public override void _Ready()
     {

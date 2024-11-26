@@ -431,7 +431,8 @@ public static class Constants
     /// </summary>
     public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
-    public const float MEMORY_CACHE_TIME = 300;
+    public const float MEMORY_BEFORE_DISK_CACHE_TIME = 120;
+    public const float MEMORY_ONLY_CACHE_TIME = 300;
     public const int MEMORY_PHOTO_CACHE_MAX_ITEMS = 250;
 
     public const float MEMORY_PHOTO_CACHE_CLEAN_INTERVAL = 37;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-26 17:25+0200\n"
 "PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -508,6 +508,24 @@ msgstr "Przez:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Wykonane Przez Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Obecnie wykorzystana pamięć wideo:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Obecnie wykorzystana pamięć wideo:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Craftowanie"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Węglanowo-Wapienna"
 
@@ -712,6 +730,9 @@ msgstr "Populacja:{0} Pożywienie:{1} Nauka:{2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Usuń stare zapisy"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Zamknij"
@@ -1245,6 +1266,14 @@ msgstr "Twórcy"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Brak aktualnych badań"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Wydziel śluz"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Obecni Developerzy"
 
@@ -1528,6 +1557,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Dołącz do naszego serwera Discord"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Odwiedź naszą stronę Itch.io"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Ukryte popupy:"
@@ -3091,11 +3124,19 @@ msgstr "Śnieg morski"
 msgid "MASTER_VOLUME"
 msgstr "Ogólna głośność"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Wydziel śluz"
+
 msgid "MAX_FPS"
 msgstr "Maksymalna ilość klatek na sekundę:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Nieograniczone"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Wielkość:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksymalna ilość bytów:"
@@ -6133,6 +6174,9 @@ msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Użyj własnej nazwy użytkownika"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ustaw ręcznie liczbę wątków w tle"

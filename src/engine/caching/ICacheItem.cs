@@ -27,7 +27,7 @@ public interface ILoadableCacheItem : ICacheItem
     ///   Unloads the item from memory, but leaves this current instance metadata present so that <see cref="Load"/>
     ///   can be called if the item is needed again
     /// </summary>
-    void Unload();
+    public void Unload();
 }
 
 public interface ISavableCacheItem : ICacheItem
