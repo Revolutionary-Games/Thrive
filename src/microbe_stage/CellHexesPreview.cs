@@ -19,9 +19,13 @@ public partial class CellHexesPreview : PhotographablePreview
             microbeSpecies = value;
 
             if (microbeSpecies != null)
+            {
                 UpdatePreview();
+            }
             else
+            {
                 ResetPreview();
+            }
         }
     }
 
