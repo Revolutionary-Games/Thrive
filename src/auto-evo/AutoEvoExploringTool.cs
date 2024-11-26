@@ -386,10 +386,13 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     public Species? GetActiveSpeciesData(uint speciesId)
     {
-        return GetActiveSpeciesDataFromGeneration(generationDisplayed, speciesId);
+        return GetSpeciesDataFromGeneration(generationDisplayed, speciesId);
     }
 
-    public Species? GetActiveSpeciesDataFromGeneration(int generation, uint speciesId)
+    /// <summary>
+    ///   Returns a record of the species from the given generation or earlier
+    /// </summary>
+    public Species? GetSpeciesDataFromGeneration(int generation, uint speciesId)
     {
         var gameWorld = world.GameProperties.GameWorld;
 
@@ -909,7 +912,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
     {
         HistoryListMenuIndexChanged(generation);
 
-        var species = GetActiveSpeciesDataFromGeneration(generation, id);
+        var species = GetSpeciesDataFromGeneration(generation, id);
 
         UpdateSpeciesPreview(species);
     }
