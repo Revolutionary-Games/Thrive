@@ -82,11 +82,6 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
         ref var control = ref entity.Get<MicrobeControl>();
 
-        // if (control.QueuedMucusSecretionTime > 0)
-        // {
-        //     GD.Print(control.QueuedMucusSecretionTime);
-        // }
-
         DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.MucusSecretionCooldown, delta);
@@ -385,7 +380,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         // Start a cooldown timer if we're out of mucilage to prevent "flickering" with mucus shield.
         // Scaling by mucocyst count ensures we aren't producing mucilage fast enough to beat this check.
-        if (compounds.GetCompoundAmount(Compound.Mucilage) < Constants.MUCOCYST_MINIMUM_MUCILAGE)
+        if (compounds.GetCompoundAmount(Compound.Mucilage) < Constants.MUCOCYST_MINIMUM_MUCILAGE * mucocystCount)
             control.MucusSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
 
         if (engulfed)
@@ -393,7 +388,7 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         if (control.QueuedMucusSecretionTime > 0 && control.MucusSecretionCooldown <= 0)
         {
-            // Don't activate id already has mucus shield
+            // Don't activate if already has mucus shield
             if (control.State != MicrobeState.MucocystShield)
             {
                 soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
@@ -416,7 +411,6 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             }
         }
 
-        // GD.Print("Mucus left: " + compounds.GetCompoundAmount(Compound.Mucilage));
         DecreaseTimeCountdownValue(ref control.QueuedMucusSecretionTime, delta);
     }
 }
