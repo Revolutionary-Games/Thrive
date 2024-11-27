@@ -83,6 +83,10 @@ project/assembly_name="Thrive"
 
 search_in_file_extensions=PackedStringArray("gd", "shader", "cs")
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
 [global]
 
 hardened=false
