@@ -727,14 +727,19 @@ public class OrganelleDefinition : IRegistryType
         }
     }
 
-    public override string ToString()
-    {
-        return Name + " Organelle";
-    }
-
     public override int GetHashCode()
     {
         return unchecked((int)PersistentStringHash.GetHash(InternalName));
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        return PersistentStringHash.GetHash(InternalName);
+    }
+
+    public override string ToString()
+    {
+        return Name + " Organelle";
     }
 
     private void ComputeFactoryCache()

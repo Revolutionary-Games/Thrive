@@ -308,7 +308,8 @@ public class MicrobeSpecies : Species, ICellDefinition
         // This code also exists in CellType visual calculation
         var count = Organelles.Count;
 
-        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^ (ulong)MembraneRigidity.GetHashCode() * 5749 ^
+        hash ^= PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^
+            (ulong)MembraneRigidity.GetHashCode() * 5749 ^
             (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
 
         var list = Organelles.Organelles;
@@ -317,7 +318,10 @@ public class MicrobeSpecies : Species, ICellDefinition
         {
             // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
             // stuff here
-            hash ^= (ulong)list[i].GetHashCode() * 13;
+            unchecked
+            {
+                hash += list[i].GetVisualHashCode() * 13;
+            }
         }
 
         return hash ^ Constants.VISUAL_HASH_CELL;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Hashing;
+using System.Numerics;
 using System.Text;
 
 /// <summary>
@@ -31,6 +32,43 @@ public static class PersistentStringHash
             result = CalculateHashWithoutCache(str);
             HashCache.Add(str, result);
             return result;
+        }
+    }
+
+    /// <summary>
+    ///   Helper for combining hashes of multiple strings in a sequence, assumes the sequence order is *irrelevant*.
+    ///   Note that this adds all the strings to the cache so they should not be dynamically generated.
+    /// </summary>
+    /// <param name="strings">Strings which hashes are combined in a non-order preserving manner</param>
+    /// <returns>A hash for a collection of strings</returns>
+    public static ulong GetHash(IReadOnlyList<string> strings)
+    {
+        lock (HashCache)
+        {
+            lock (Hasher)
+            {
+                int length = strings.Count;
+
+                ulong result = 5749;
+
+                for (int i = 0; i < length; ++i)
+                {
+                    var str = strings[i];
+
+                    if (!HashCache.TryGetValue(str, out var cached))
+                    {
+                        cached = CalculateHashWithoutCache(str);
+                        HashCache.Add(str, result);
+                    }
+
+                    unchecked
+                    {
+                        result += BitOperations.RotateLeft(cached, i + 3);
+                    }
+                }
+
+                return result;
+            }
         }
     }
 

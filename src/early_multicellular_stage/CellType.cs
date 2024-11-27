@@ -162,7 +162,10 @@ public class CellType : ICellDefinition, ICloneable
         {
             // Organelles in different order don't matter (in terms of visuals) so we don't apply any loop specific
             // stuff here
-            hash ^= (ulong)list[i].GetHashCode() * 13;
+            unchecked
+            {
+                hash += list[i].GetVisualHashCode() * 13;
+            }
         }
 
         return hash ^ Constants.VISUAL_HASH_CELL;
