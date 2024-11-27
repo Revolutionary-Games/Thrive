@@ -640,7 +640,11 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    if (!slimeJetComponent.IsMucocyst)
+                    if (slimeJetComponent.IsMucocyst)
+                    {
+                        ++container.MucocystCount;
+                    }
+                    else
                     {
                         container.SlimeJets ??= new List<SlimeJetComponent>();
                         container.SlimeJets.Add(slimeJetComponent);
