@@ -84,7 +84,6 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
         DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
-        DecreaseTimeCountdownValue(ref control.MucusSecretionCooldown, delta);
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
         ref var cellProperties = ref entity.Get<CellProperties>();
@@ -115,11 +114,6 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         {
             HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
                 ref position, compounds, engulfed, delta);
-        }
-
-        if (control.QueuedMucusSecretionTime > 0)
-        {
-            HandleMucusSecretion(entity, ref control, ref organelles, ref soundEffectPlayer, compounds, engulfed, delta);
         }
     }
 
@@ -362,55 +356,5 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         }
 
         DecreaseTimeCountdownValue(ref control.QueuedSlimeSecretionTime, delta);
-    }
-
-    private void HandleMucusSecretion(in Entity entity, ref MicrobeControl control,
-        ref OrganelleContainer organelles, ref SoundEffectPlayer soundEffectPlayer,
-        CompoundBag compounds, bool engulfed, float delta)
-    {
-        // Don't activate mucocyst when engulfed
-        if (entity.Get<Engulfable>().PhagocytosisStep != PhagocytosisPhase.None)
-            return;
-
-        int mucocystCount = organelles.Mucocysts?.Count ?? 0;
-        if (mucocystCount < 1 || organelles.Mucocysts == null)
-        {
-            return;
-        }
-
-        // Start a cooldown timer if we're out of mucilage to prevent "flickering" with mucus shield.
-        // Scaling by mucocyst count ensures we aren't producing mucilage fast enough to beat this check.
-        if (compounds.GetCompoundAmount(Compound.Mucilage) < Constants.MUCOCYST_MINIMUM_MUCILAGE * mucocystCount)
-            control.MucusSecretionCooldown = Constants.MUCILAGE_COOLDOWN_TIMER;
-
-        if (engulfed)
-            control.QueuedMucusSecretionTime = 0;
-
-        if (control.QueuedMucusSecretionTime > 0 && control.MucusSecretionCooldown <= 0)
-        {
-            // Don't activate if already has mucus shield
-            if (control.State != MicrobeState.MucocystShield)
-            {
-                soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-slime-jet.ogg");
-                control.State = MicrobeState.MucocystShield;
-                foreach (var jet in organelles.Mucocysts)
-                {
-                    jet.Active = true;
-                }
-            }
-        }
-        else
-        {
-            control.QueuedMucusSecretionTime = 0;
-            control.State = MicrobeState.Normal;
-
-            // Deactivate the mucocysts if we aren't supposed to secrete mucus
-            foreach (var jet in organelles.Mucocysts)
-            {
-                jet.Active = false;
-            }
-        }
-
-        DecreaseTimeCountdownValue(ref control.QueuedMucusSecretionTime, delta);
     }
 }

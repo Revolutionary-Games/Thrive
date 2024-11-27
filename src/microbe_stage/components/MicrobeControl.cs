@@ -44,16 +44,6 @@ public struct MicrobeControl
     public float QueuedSlimeSecretionTime;
 
     /// <summary>
-    ///   This is here as this is very closely related to <see cref="QueuedMucusSecretionTime"/>
-    /// </summary>
-    public float MucusSecretionCooldown;
-
-    /// <summary>
-    ///   How long this microbe wants to emit mucus
-    /// </summary>
-    public float QueuedMucusSecretionTime;
-
-    /// <summary>
     ///   Time until this microbe can fire agents (toxin) again
     /// </summary>
     public float AgentEmissionCooldown;
@@ -113,7 +103,6 @@ public struct MicrobeControl
         QueuedSiderophoreToEmit = false;
         SlimeSecretionCooldown = 0;
         QueuedSlimeSecretionTime = 0;
-        QueuedMucusSecretionTime = 0;
         AgentEmissionCooldown = 0;
         State = MicrobeState.Normal;
         SlowedBySlime = false;
@@ -303,39 +292,6 @@ public static class MicrobeControlHelpers
         // MovementDirection doesn't have to be normalized, so it isn't here
         control.MovementDirection = selfPosition.Rotation.Inverse() * vectorToTarget * speed;
     }
-    
-    public static void QueueSecreteMucus(this ref MicrobeControl control,
-        ref OrganelleContainer organelleInfo, in Entity entity, float duration)
-    {
-        if (entity.Has<MicrobeColony>())
-        {
-            ref var colony = ref entity.Get<MicrobeColony>();
-            colony.PerformForOtherColonyMembersThanLeader(m =>
-                m.Get<MicrobeControl>()
-                    .QueueSecreteMucus(ref m.Get<OrganelleContainer>(), m, duration));
-        }
-
-        if ((organelleInfo.Mucocysts?.Count ?? 0) < 1)
-        {
-            return;
-        }
-
-        control.QueuedMucusSecretionTime += duration;
-    }
-
-    public static void StopSecretingMucus(this ref MicrobeControl control,
-        ref OrganelleContainer organelleInfo, in Entity entity)
-    {
-        if (entity.Has<MicrobeColony>())
-        {
-            ref var colony = ref entity.Get<MicrobeColony>();
-            colony.PerformForOtherColonyMembersThanLeader(m =>
-                m.Get<MicrobeControl>()
-                    .StopSecretingMucus(ref m.Get<OrganelleContainer>(), m));
-        }
-
-        control.QueuedMucusSecretionTime = 0;
-    }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,
         ref OrganelleContainer organelleInfo, in Entity entity, float duration)
@@ -390,7 +346,7 @@ public static class MicrobeControlHelpers
                         mucilageCompound));
         }
 
-        if ((organelleInfo.Mucocysts?.Count ?? 0) < 1)
+        if (organelleInfo.MucocystCount < 1)
             return;
 
         if (state)
