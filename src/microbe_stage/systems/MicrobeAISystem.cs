@@ -812,7 +812,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 control.SecreteSlimeForSomeTime(ref organelles, random);
             }
             else if (ourCompounds.GetCompoundAmount(Compound.Mucilage) > Constants.MUCOCYST_MINIMUM_MUCILAGE
-                     && organelles.MucocystCount > 0 && (strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.75
+                     && organelles.MucocystCount > 0 && (strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.70
                          || RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random)
                          || predatorState == MicrobeState.Engulf))
             {
