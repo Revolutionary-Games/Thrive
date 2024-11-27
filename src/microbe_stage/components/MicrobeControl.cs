@@ -307,11 +307,9 @@ public static class MicrobeControlHelpers
     public static void QueueSecreteMucus(this ref MicrobeControl control,
         ref OrganelleContainer organelleInfo, in Entity entity, float duration)
     {
-        GD.Print("Queueing!");
         if (entity.Has<MicrobeColony>())
         {
             ref var colony = ref entity.Get<MicrobeColony>();
-
             colony.PerformForOtherColonyMembersThanLeader(m =>
                 m.Get<MicrobeControl>()
                     .QueueSecreteMucus(ref m.Get<OrganelleContainer>(), m, duration));
@@ -319,12 +317,24 @@ public static class MicrobeControlHelpers
 
         if ((organelleInfo.Mucocysts?.Count ?? 0) < 1)
         {
-            GD.Print("No Mucocyst!");
             return;
         }
 
         control.QueuedMucusSecretionTime += duration;
-        GD.Print(control.QueuedMucusSecretionTime);
+    }
+
+    public static void StopSecretingMucus(this ref MicrobeControl control,
+        ref OrganelleContainer organelleInfo, in Entity entity)
+    {
+        if (entity.Has<MicrobeColony>())
+        {
+            ref var colony = ref entity.Get<MicrobeColony>();
+            colony.PerformForOtherColonyMembersThanLeader(m =>
+                m.Get<MicrobeControl>()
+                    .StopSecretingMucus(ref m.Get<OrganelleContainer>(), m));
+        }
+
+        control.QueuedMucusSecretionTime = 0;
     }
 
     public static void QueueSecreteSlime(this ref MicrobeControl control,

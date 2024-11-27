@@ -252,11 +252,6 @@ public static class OrganelleContainerHelpers
 
         container.Organelles ??= new OrganelleLayout<PlacedOrganelle>();
 
-        if ("Rhepsis imenepsis" == cellDefinition.FormattedName)
-        {
-        }
-        GD.Print(cellDefinition.FormattedName);
-
         foreach (var organelleTemplate in cellDefinition.Organelles)
         {
             container.Organelles.AddFast(new PlacedOrganelle(organelleTemplate.Definition,
@@ -647,7 +642,12 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    if (!slimeJetComponent.IsMucocyst)
+                    if (slimeJetComponent.IsMucocyst)
+                    {
+                        container.Mucocysts ??= new List<SlimeJetComponent>();
+                        container.Mucocysts.Add(slimeJetComponent);
+                    }
+                    else
                     {
                         container.SlimeJets ??= new List<SlimeJetComponent>();
                         container.SlimeJets.Add(slimeJetComponent);

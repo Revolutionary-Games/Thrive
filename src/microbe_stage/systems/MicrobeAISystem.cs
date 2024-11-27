@@ -272,7 +272,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
 
-        // TODO: CELL RADIUS
         ref var cellProperties = ref entity.Get<CellProperties>();
 
         ref var signaling = ref entity.Get<CommandSignaler>();
@@ -304,10 +303,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         float speciesFocus = speciesBehaviour.Focus;
         float speciesOpportunism = speciesBehaviour.Opportunism;
-
-        // If microbe secretes mucus skip thinking since it can't take any action
-        if (control.State == MicrobeState.MucocystShield)
-            return;
+        
 
         control.Sprinting = false;
 
@@ -317,11 +313,21 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         if (predator.HasValue && position.Position.DistanceSquaredTo(predator.Value.Position) <
             1500.0 * speciesFear / Constants.MAX_SPECIES_FEAR)
         {
-            MicrobeState predatorState = predator.Value.Entity.Get<MicrobeControl>().State;
+            // If microbe secretes mucus and predator is still there skip taking any action
+            if (control.State == MicrobeState.MucocystShield)
+                return;
+
+            // MicrobeState predatorState = predator.Value.Entity.Get<MicrobeControl>().State;
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, compounds, entity,
-                predator.Value.Position, predatorState, speciesFocus,
+                predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
             return;
+        }
+
+        // If there are no predators stop secreting mucus
+        if (control.State == MicrobeState.MucocystShield)
+        {
+            control.StopSecretingMucus(ref organelles, entity);
         }
 
         // If this microbe is out of ATP, pick an amount of time to rest
@@ -781,60 +787,42 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
         ref OrganelleContainer organelles, CompoundBag ourCompounds, in Entity entity, Vector3 predatorLocation,
-        MicrobeState predatorState, float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear,
+        Entity predatorEntity, float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear,
         float strain, Random random)
     {
         control.SetStateColonyAware(entity, MicrobeState.Normal);
+        MicrobeState predatorState = predatorEntity.Get<MicrobeControl>().State;
 
         ai.TargetPosition = (2 * (position.Position - predatorLocation)) + position.Position;
 
         control.LookAtPoint = ai.TargetPosition;
-        // if ((organelles.Mucocysts?.Count ?? 0) > 0)
-        //     GD.Print("Name: " + entity.Get<ReadableName>().Name + ", MucocystCount: " + (organelles.Mucocysts?.Count ?? 0) + ", MucusSecretionCooldown: " +
-        //         control.MucusSecretionCooldown + ", engulf: " + predatorState + ", distance: " + position.Position.DistanceSquaredTo(predatorLocation) + ", Mucus: " + ourCompounds.GetCompoundAmount(Compound.Mucilage));
 
-        if ("Rhepsis imenepsis" == entity.Get<ReadableName>().Name.ToString())
-        {
-            GD.Print("Running! ");
-            GD.Print(organelles.Mucocysts);
-            GD.Print(organelles.SlimeJets);
-            GD.Print(organelles.ToString());
-        }
-        if ((organelles.Mucocysts?.Count ?? 0) > 0)
-        {
-            GD.Print("Name: " + entity.Get<ReadableName>().Name);
-            GD.Print("dist: " + position.Position.DistanceSquaredTo(predatorLocation));
-        }
-        
-        if (position.Position.DistanceSquaredTo(predatorLocation) < 300.0f)
+        // Shouldn't this distance value scale with predator's and prey's cell radius?
+        // When the players cell is really big this distance value might not be enough
+        if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
         {
             bool shouldSprint = true;
             int mucocystCount = organelles.Mucocysts?.Count ?? 0;
-
-            // If the microbe is exhausted, too close to predator or the predator
-            // starts to engulf use mucus to defend itself
-            
-            if (mucocystCount > 0 && control.MucusSecretionCooldown <= 0
-                && ourCompounds.GetCompoundAmount(Compound.Mucilage) > Constants.MUCOCYST_MINIMUM_MUCILAGE
-                && ((strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.75
-                        && RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR / 2, random))
-                    || position.Position.DistanceSquaredTo(predatorLocation) < 50.0f
-                    || predatorState == MicrobeState.Engulf))
-            {
-                GD.Print("Using mucus!");
-
-                // Secrete mucus for 4-8 seconds
-                control.QueueSecreteMucus(ref organelles, entity, 4 + 4 * random.NextSingle());
-
-                // Don't take any other action
-                return;
-            }
 
             if ((organelles.SlimeJets?.Count ?? 0) > 0 &&
                 RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random))
             {
                 // There's a chance to jet away if we can
                 control.SecreteSlimeForSomeTime(ref organelles, random);
+            }
+            else if (mucocystCount > 0 && control.MucusSecretionCooldown <= 0
+                     && ourCompounds.GetCompoundAmount(Compound.Mucilage)
+                     > Constants.MUCOCYST_MINIMUM_MUCILAGE * mucocystCount
+                     && (strain >= Constants.MAX_STRAIN_PER_ENTITY * 0.75
+                         || RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random)
+                         || predatorState == MicrobeState.Engulf))
+            {
+                // If the microbe is exhausted, too close to predator or the predator
+                // starts to engulf use mucus for 3-6 seconds to defend itself
+                control.QueueSecreteMucus(ref organelles, entity, 3 + 3 * random.NextSingle());
+
+                // Don't take any other action
+                return;
             }
             else if (RollCheck(speciesAggression, Constants.MAX_SPECIES_AGGRESSION, random))
             {
