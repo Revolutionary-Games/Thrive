@@ -153,7 +153,7 @@ public class CellType : ICellDefinition, ICloneable
         // This code is copied from MicrobeSpecies
         var count = Organelles.Count;
 
-        ulong hash = (ulong)MembraneType.InternalName.GetHashCode() * 5743 ^
+        ulong hash = PersistentStringHash.GetHash(MembraneType.InternalName) * 5743 ^
             (ulong)MembraneRigidity.GetHashCode() * 5749 ^ (IsBacteria ? 1UL : 0UL) * 5779UL ^ (ulong)count * 131;
 
         var list = Organelles.Organelles;

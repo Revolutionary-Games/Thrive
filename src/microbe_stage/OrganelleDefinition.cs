@@ -732,6 +732,11 @@ public class OrganelleDefinition : IRegistryType
         return Name + " Organelle";
     }
 
+    public override int GetHashCode()
+    {
+        return unchecked((int)PersistentStringHash.GetHash(InternalName));
+    }
+
     private void ComputeFactoryCache()
     {
         HasPilusComponent = HasFeatureTag(OrganelleFeatureTag.Pilus);

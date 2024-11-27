@@ -62,7 +62,7 @@ public partial class GalleryCardModel : GalleryCard
 
         public static ulong HashForPath(string resourcePath)
         {
-            return (ulong)resourcePath.GetHashCode() * 11 ^ Constants.VISUAL_HASH_PATH;
+            return PersistentStringHash.GetHash(resourcePath) * 11 ^ Constants.VISUAL_HASH_PATH;
         }
 
         public void ApplySceneParameters(Node3D instancedScene)
