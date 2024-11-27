@@ -428,7 +428,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             var cacheEntry = GetCacheItemEntryToUse(itemPathTemp.ToString(), CacheItemType.Png);
             itemPathTemp.Clear();
 
-            cacheEntry.Hash = GetHashFromPathName(path.Length, entry);
+            // +1 is specified here to skip the last path separator part to get purely the right part of the path
+            // we want to parse
+            cacheEntry.Hash = GetHashFromPathName(path.Length + 1, entry);
 
             cacheEntry.LastAccessTime = modifiedLast;
 
@@ -551,10 +553,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                             itemInfo.Value.Status = CacheItemInfo.OperationStatus.Saving;
                             objectsPendingSave.Enqueue(itemInfo.Value);
                         }
-                        else if (value.LoadedItem.Loaded)
+                        else if (value.LoadedItem.Finished)
                         {
-                            // The Loaded if check above makes sure that Unload isn't called in a loop constantly
-
                             // Already written to disk, can just let go of item
                             if (value.LoadedItem is ILoadableCacheItem loadableItem)
                             {
@@ -570,8 +570,10 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                             }
                         }
                     }
-                    else if (value.LoadedItem is { Loaded: true })
+                    else if (value.LoadedItem is { Finished: true } or not ILoadableCacheItem)
                     {
+                        // Count in limit if currently finished loading or is of a type that cannot have parts of it be
+                        // unloaded
                         --itemsLeft;
                     }
                 }

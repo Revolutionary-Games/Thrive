@@ -25,11 +25,6 @@ public class ImageTask : IImageTask
 
     public bool Finished { get; private set; }
 
-    /// <summary>
-    ///   This class doesn't support re-acquiring the photographable data so this is always loaded
-    /// </summary>
-    public bool Loaded => true;
-
     public ImageTexture FinalImage
     {
         get => finalImage ?? throw new InvalidOperationException("Not finished yet");
@@ -93,7 +88,6 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
     }
 
     public bool Finished { get; private set; }
-    public bool Loaded => finalImage != null;
 
     public ImageTexture FinalImage
     {
@@ -131,7 +125,8 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         // TODO: does this need to run on the main thread?
         FinalImage = ImageTexture.CreateFromImage(plainImage);
 
-        Finished = true;
+        if (FinalImage != null)
+            Finished = true;
     }
 
     public void Unload()
@@ -139,6 +134,8 @@ public class CacheLoadedImage : IImageTask, ILoadableCacheItem
         // Allow some GUI parts to still use the image, so just let go of the reference instead of destroying the data
         plainImage = null;
         finalImage = null;
+
+        Finished = false;
     }
 
     public void Save()

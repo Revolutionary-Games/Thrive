@@ -42,7 +42,9 @@ public static class FileHelpers
         if (!seen)
             throw new ArgumentException("File path doesn't have a parent folder in it");
 
-        MakeSureDirectoryExists(filePath.Substring(0, filePath.Length - lastSeparator));
+        // 1 needs to be subtracted here so that the substring properly ends at the last separator and not a character
+        // after
+        MakeSureDirectoryExists(filePath.Substring(0, filePath.Length - lastSeparator - 1));
     }
 
     /// <summary>

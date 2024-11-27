@@ -132,7 +132,7 @@ public static class CachePaths
                 throw new Exception("Failed to decode cache path");
             }
 
-            GD.PrintErr($"Failed to decode calculate hash from path: {cachePath}");
+            GD.PrintErr($"Failed to decode hash from path: {cachePath}");
             return 0;
         }
 

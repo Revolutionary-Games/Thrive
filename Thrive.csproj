@@ -18,6 +18,12 @@
       $(DefaultItemExcludes);Scripts\**\*;ThriveScriptsShared\**\*;test\code_tests\**\*;test\code_benchmarks\**\*;RevolutionaryGamesCommon\**\*;third_party\**\*
     </DefaultItemExcludes>
   </PropertyGroup>
+  <!-- Ignore exporting tests when making release build of Thrive -->
+  <PropertyGroup>
+    <DefaultItemExcludes Condition="'$(Configuration)' == 'ExportRelease'">
+      $(DefaultItemExcludes);test/**/*
+    </DefaultItemExcludes>
+  </PropertyGroup>
   <!-- Non-Steam build needs to skip this file -->
   <ItemGroup>
     <Compile Remove="src\steam\SteamClient.cs" />
