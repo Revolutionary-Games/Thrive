@@ -787,9 +787,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void FleeFromPredators(ref WorldPosition position, ref MicrobeAI ai, ref MicrobeControl control,
-        ref OrganelleContainer organelles, ref CompoundStorage compoundStorage, in Entity entity, Vector3 predatorLocation,
-        Entity predatorEntity, float speciesFocus, float speciesActivity, float speciesAggression, float speciesFear,
-        float strain, Random random)
+        ref OrganelleContainer organelles, ref CompoundStorage compoundStorage, in Entity entity,
+        Vector3 predatorLocation, Entity predatorEntity, float speciesFocus, float speciesActivity,
+        float speciesAggression, float speciesFear, float strain, Random random)
     {
         var ourCompounds = compoundStorage.Compounds;
         control.SetStateColonyAware(entity, MicrobeState.Normal);

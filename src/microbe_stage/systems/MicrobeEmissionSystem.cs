@@ -112,7 +112,6 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
 
         HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
             ref position, compounds, engulfed, delta);
-
     }
 
     /// <summary>
