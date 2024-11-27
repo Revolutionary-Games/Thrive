@@ -817,7 +817,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                          || predatorState == MicrobeState.Engulf))
             {
                 // If the microbe is exhausted, too close to predator or the predator
-                // starts to engulf use mucus for 3-6 seconds to defend itself
+                // starts to engulf use mucus
                 control.SetMucocystState(ref organelles, ref compoundStorage, entity, true);
 
                 // Don't take any other action

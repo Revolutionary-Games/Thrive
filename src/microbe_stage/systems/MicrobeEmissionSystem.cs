@@ -110,21 +110,9 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
             control.QueuedSiderophoreToEmit = false;
         }
 
-        if (control.QueuedSlimeSecretionTime > 0)
-        {
-            HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
-                ref position, compounds, engulfed, delta);
-        }
-    }
+        HandleSlimeSecretion(entity, ref control, ref organelles, ref cellProperties, ref soundEffectPlayer,
+            ref position, compounds, engulfed, delta);
 
-    private void DecreaseTimeCountdownValue(ref float countdownValue, float delta)
-    {
-        if (countdownValue > 0)
-        {
-            countdownValue -= delta;
-            if (countdownValue < 0)
-                countdownValue = 0;
-        }
     }
 
     /// <summary>
@@ -350,11 +338,19 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         {
             // Deactivate the jets if we aren't supposed to secrete slime
             foreach (var jet in organelles.SlimeJets)
-            {
                 jet.Active = false;
-            }
         }
 
         DecreaseTimeCountdownValue(ref control.QueuedSlimeSecretionTime, delta);
+    }
+
+    private void DecreaseTimeCountdownValue(ref float countdownValue, float delta)
+    {
+        if (countdownValue > 0)
+        {
+            countdownValue -= delta;
+            if (countdownValue < 0)
+                countdownValue = 0;
+        }
     }
 }
