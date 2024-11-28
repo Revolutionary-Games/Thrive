@@ -440,6 +440,9 @@ public static class Constants
     public const float DISK_CACHE_IDLE_SAVE_INTERVAL = 53;
     public const int DISK_CACHE_IDLE_SAVE_ITEMS = 3;
 
+    public const int DISK_CACHE_SAVES_PER_RUN = 5;
+    public const float DISK_CACHE_SAVE_RESUME_CHECK_INTERVAL = 1.17f;
+
     public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
     public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
 

@@ -64,8 +64,13 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     private double currentTime;
     private double timeSinceLastCheck;
     private double timeSinceLastSave;
+    private double saveResumeTime;
 
     private long totalCacheSize;
+
+    private long cacheMissesOrInserts;
+    private long cacheHits;
+    private long cacheKeyConflicts;
 
     private bool loadTaskRunning;
     private bool saveTaskRunning;
@@ -177,6 +182,29 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
         currentTime += delta;
 
         CleanCacheIfTime(delta);
+
+        saveResumeTime += delta;
+
+        // Resume a save queue if there are items in it (a single run only saves a few items to make sure there aren't
+        // massive lag spikes if something ends up waiting for the event)
+        if (saveResumeTime >= Constants.DISK_CACHE_SAVE_RESUME_CHECK_INTERVAL)
+        {
+            saveResumeTime = 0;
+
+            lock (generalLock)
+            {
+                if (!loadTaskRunning && !deleteTaskRunning && !objectsPendingSave.IsEmpty)
+                {
+                    StartSaveIfRequired();
+                }
+            }
+        }
+
+        // Make sure load is always running if there are waiting objects to load
+        if (!objectsPendingLoad.IsEmpty)
+        {
+            StartLoadIfRequired();
+        }
     }
 
     public IImageTask? Get(ulong cacheKey)
@@ -192,10 +220,14 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     return null;
                 }
 
+                Interlocked.Increment(ref cacheHits);
                 cacheItem.LastAccessTime = currentTime;
 
                 if (cacheItem.LoadedItem != null)
+                {
+                    TriggerItemLoadIfNeeded(cacheItem, cacheItem.LoadedItem);
                     return (IImageTask)cacheItem.LoadedItem;
+                }
 
                 // Need to start loading this cache item before returning the object tracking the load
                 return (IImageTask)StartCacheItemLoad(cacheItem);
@@ -221,6 +253,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         // Make sure the cache path is stored in case the item is written to disk
         item.CachePath = path;
+
+        Interlocked.Increment(ref cacheMissesOrInserts);
 
         infoLock.EnterWriteLock();
         try
@@ -420,6 +454,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             // past as the current cache time starts at 0 and increments while the game runs.
             var modifiedLast = -(now - entryFileData.LastWriteTimeUtc).TotalSeconds;
 
+            // TODO: should this already apply cache time pruning here (and queue delete the files)?
+
             // Convert back to Godot path
             itemPathTemp.Append(Constants.CACHE_IMAGES_FOLDER);
             itemPathTemp.Append('/');
@@ -443,6 +479,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             // Loaded from disk so the data is already on disk and doesn't need to be written back when removing this
             // entry from memory
             cacheEntry.WrittenToDisk = true;
+
+            // Very important step, store the item metadata in the cache structure so that it can be found
+            cacheInfo[cacheEntry.Hash] = cacheEntry;
         }
     }
 
@@ -477,6 +516,19 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             throw new Exception("Incorrect logic in cache item load prepare");
 
         return cacheItem.LoadedItem;
+    }
+
+    private void TriggerItemLoadIfNeeded(CacheItemInfo itemInfo, ISavableCacheItem cacheItem)
+    {
+        if (cacheItem is ILoadableCacheItem loadableItem)
+        {
+            if (!loadableItem.Finished && itemInfo.Status != CacheItemInfo.OperationStatus.Loading)
+            {
+                // This is probably fine to do this without locking first
+                itemInfo.Status = CacheItemInfo.OperationStatus.Loading;
+                objectsPendingLoad.Enqueue(itemInfo);
+            }
+        }
     }
 
     /// <summary>
@@ -553,7 +605,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                             itemInfo.Value.Status = CacheItemInfo.OperationStatus.Saving;
                             objectsPendingSave.Enqueue(itemInfo.Value);
                         }
-                        else if (value.LoadedItem.Finished)
+                        else if (value.LoadedItem.Finished && value.Status != CacheItemInfo.OperationStatus.Saving)
                         {
                             // Already written to disk, can just let go of item
                             if (value.LoadedItem is ILoadableCacheItem loadableItem)
@@ -795,10 +847,12 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     {
         saveQueued = false;
 
+        int saved = 0;
+
         while (objectsPendingSave.TryDequeue(out var item))
         {
-            // TODO: should this be time limited so that only a few items at once could be saved (so break here and
-            // then _Process could restart this task at specific intervals)
+            ++saved;
+
             try
             {
                 item.Save();
@@ -817,6 +871,12 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             {
                 item.WrittenToDisk = false;
                 GD.PrintErr($"Error when writing cache item to disk ({item.Path}): {e}");
+            }
+
+            // Limit how many disk writes are done quickly, a new save task is queued by _PhysicsProcess
+            if (saved >= Constants.DISK_CACHE_SAVES_PER_RUN)
+            {
+                break;
             }
         }
 
@@ -849,6 +909,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     {
         GD.PrintErr($"Conflict between different types of cache items! Wanted: {wantedType}, actual: " +
             $"{item.ItemType}, hash: {key}");
+
+        Interlocked.Increment(ref cacheKeyConflicts);
 
         // This doesn't actually need to delete the item as when it is inserted into the cache, that is when the
         // deletion happens (when the old item is evicted)
