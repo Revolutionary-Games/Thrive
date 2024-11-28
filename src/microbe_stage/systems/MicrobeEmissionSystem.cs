@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -344,13 +345,13 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
         DecreaseTimeCountdownValue(ref control.QueuedSlimeSecretionTime, delta);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void DecreaseTimeCountdownValue(ref float countdownValue, float delta)
     {
-        if (countdownValue > 0)
-        {
-            countdownValue -= delta;
-            if (countdownValue < 0)
-                countdownValue = 0;
-        }
+        // Reduce agent emission cooldown
+        // TODO: is it faster to check than to just blindly always subtract delta here?
+        countdownValue -= delta;
+        if (countdownValue < 0)
+            countdownValue = 0;
     }
 }
