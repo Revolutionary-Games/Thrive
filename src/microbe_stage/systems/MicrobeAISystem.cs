@@ -798,7 +798,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         control.LookAtPoint = ai.TargetPosition;
 
-        // Shouldn't this distance value scale with predator's and prey's cell radius?
+        // TODO: shouldn't this distance value scale with predator's and prey's cell radius?
         // When the players cell is really big this distance value might not be enough
         if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
         {
