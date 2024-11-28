@@ -372,7 +372,6 @@ public partial class Membrane : MeshInstance3D
         // This is called rarely enough that this just plain re-creates StringName instances here each time
         MembraneShaderMaterial!.SetShaderParameter("albedoTexture", albedoTexture);
         MembraneShaderMaterial.SetShaderParameter("normalTexture", Type.LoadedNormalTexture);
-        MembraneShaderMaterial.SetShaderParameter("wiggleNormalTexture", Type.LoadedWiggleNormalTexture);
         MembraneShaderMaterial.SetShaderParameter("damagedTexture", Type.LoadedDamagedTexture);
 
         currentlyLoadedAlbedoTexture = Type.AlbedoTexture;

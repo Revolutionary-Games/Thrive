@@ -10,10 +10,9 @@ uniform sampler2D albedoTexture : source_color;
 uniform sampler2D damagedTexture : source_color;
 
 uniform sampler2D normalTexture;
-uniform sampler2D wiggleNormalTexture;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1) = 0.f;
+uniform float dissolveValue : hint_range(0, 1);
 
 uniform float healthFraction : hint_range(0, 1) = 0.5f;
 uniform vec4 tint : source_color = vec4(1, 1, 1, 1);
@@ -23,8 +22,8 @@ void vertex(){
     vec3 worldVertex = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
 
-    // Copy non-distorted vertex for bump map
-    UV2 = VERTEX.xz * 0.05f;
+    // Copy non-distorted vertex for normal map
+    // UV2 = VERTEX.xz * 0.04f;
 
     // Any changes to this must be matched in EngulfEffect.gdshader
     VERTEX.x += sin(worldVertex.z * movementWigglyNess + TIME / 4.0f) / 10.f
@@ -64,17 +63,8 @@ float fresnel(float power, vec3 normal, vec3 view)
 void fragment(){
     vec4 albedo = texture(albedoTexture, UV);
 
-    vec3 normalmap1 = texture(normalTexture, UV).rgb;
-    vec3 normalmap2 = texture(wiggleNormalTexture, UV).rgb;
-    float blend_amount = 0.45f;
-
-    vec3 a = normalmap1*2.0 - 1.0;
-    vec3 b = normalmap2*2.0 - 1.0;
-    vec3 normalMix = vec3((a.xy * blend_amount) + (b.xy * (1.0 - blend_amount)), a.z*b.z);
-    normalMix = normalize(normalMix);
-    normalMix = normalMix*0.5 + 0.5;
-
-    NORMAL_MAP = normalMix;
+    vec4 normalmap = texture(normalTexture, UV);
+    NORMAL_MAP = normalmap.xyz;
     NORMAL_MAP_DEPTH = 1.0f;
 
     vec4 damaged = texture(damagedTexture, UV);
@@ -84,23 +74,23 @@ void fragment(){
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
     float cutoff = dot(dissolveTex.rgb, vec3(0.34, 0.34, 0.34)) -
-        float(-0.482 + dissolveValue);
+        float(-0.482 + clamp(dissolveValue, 0, 1));
 
-    vec3 adjustedView = VIEW;
+    vec3 adjusted_view = VIEW;
     // Move fresnel's center closer to membrane's top
     // Not an absolutely necessary step, but it makes fresnel look better
-    adjustedView = normalize(adjustedView + vec3(0.0, 0.0, 2.0));
+    adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
 
-    normalmap2 = normalmap2 * 2.0 - 1.0;
+    normalmap = normalmap * 2.0 - 1.0;
 
-    vec3 adjustedNormals = normalmap2.z * NORMAL
-        + normalmap2.x * TANGENT
-        + normalmap2.y * BINORMAL;
+    vec3 adjusted_normals = normalmap.z * NORMAL
+        + normalmap.x * TANGENT
+        + normalmap.y * BINORMAL;
 
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
-    adjustedNormals = normalize(mix(NORMAL, adjustedNormals, 0.2));
+    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2));
 
     ALBEDO = final.rgb;
-    ALPHA = fresnel(3.0, adjustedNormals, adjustedView) * round(cutoff);
+    ALPHA = fresnel(3.0, adjusted_normals, adjusted_view) * round(cutoff);
     ROUGHNESS = 0.7;
 }

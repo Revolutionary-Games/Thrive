@@ -18,7 +18,6 @@ public class MembraneType : IRegistryType
 
     public string AlbedoTexture = null!;
     public string NormalTexture = null!;
-    public string WiggleNormalTexture = null!;
     public string DamagedTexture = null!;
     public float MovementFactor = 1.0f;
     public float OsmoregulationFactor = 1.0f;
@@ -43,9 +42,6 @@ public class MembraneType : IRegistryType
 
     [JsonIgnore]
     public Texture2D LoadedNormalTexture = null!;
-
-    [JsonIgnore]
-    public Texture2D LoadedWiggleNormalTexture = null!;
 
     [JsonIgnore]
     public Texture2D LoadedDamagedTexture = null!;
@@ -99,7 +95,6 @@ public class MembraneType : IRegistryType
     {
         LoadedAlbedoTexture = GD.Load<Texture2D>(AlbedoTexture);
         LoadedNormalTexture = GD.Load<Texture2D>(NormalTexture);
-        LoadedWiggleNormalTexture = GD.Load<Texture2D>(WiggleNormalTexture);
         LoadedDamagedTexture = GD.Load<Texture2D>(DamagedTexture);
 
         LoadedIcon = GD.Load<Texture2D>(IconPath);
