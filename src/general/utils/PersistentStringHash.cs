@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Hashing;
-using System.Numerics;
 using System.Text;
 
 /// <summary>
@@ -49,7 +48,7 @@ public static class PersistentStringHash
             {
                 int length = strings.Count;
 
-                ulong result = 5749;
+                ulong result = 9395544164746249217;
 
                 for (int i = 0; i < length; ++i)
                 {
@@ -58,13 +57,11 @@ public static class PersistentStringHash
                     if (!HashCache.TryGetValue(str, out var cached))
                     {
                         cached = CalculateHashWithoutCache(str);
-                        HashCache.Add(str, result);
+                        HashCache.Add(str, cached);
                     }
 
-                    unchecked
-                    {
-                        result += BitOperations.RotateLeft(cached, i + 3);
-                    }
+                    // Need to use an operator that is not dependent on ordering
+                    result ^= cached;
                 }
 
                 return result;
@@ -94,6 +91,13 @@ public static class PersistentStringHash
         }
     }
 
+    /// <summary>
+    ///   Calculates a hash for a pair of strings. Note that the order of the strings matters so swapping the arguments
+    ///   changes the hash.
+    /// </summary>
+    /// <param name="str1">First string to hash</param>
+    /// <param name="str2">Second string to hash</param>
+    /// <returns>A combined hash of string from appending the strings together with a separator character</returns>
     public static ulong CalculateHashWithoutCache(string str1, string str2)
     {
         lock (Hasher)
@@ -109,8 +113,18 @@ public static class PersistentStringHash
                 // first part needs to be encoded again into the buffer
                 if (encoding.TryGetBytes(str1, encodingBuffer, out bytesWritten1))
                 {
-                    if (encoding.TryGetBytes(str2, encodingBuffer.AsSpan(bytesWritten1), out bytesWritten2))
-                        break;
+                    // The +1 to the size check here is probably unnecessary but should cause very little harm if
+                    // unnecessarily the buffer occasionally needs to grow one more time unnecessarily
+                    if (bytesWritten1 + 1 < encodingBuffer.Length)
+                    {
+                        // Put in a separator character to make sure the input strings can't force specific hashes
+                        // if characters are moved between the strings
+                        encodingBuffer[bytesWritten1] = (byte)':';
+                        ++bytesWritten1;
+
+                        if (encoding.TryGetBytes(str2, encodingBuffer.AsSpan(bytesWritten1), out bytesWritten2))
+                            break;
+                    }
                 }
 
                 // Need more space in the buffer

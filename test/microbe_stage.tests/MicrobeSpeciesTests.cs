@@ -111,14 +111,20 @@ public class MicrobeSpeciesTests
     [TestCase]
     public void DeserializedHashIsConsistent()
     {
+        const ulong desiredHash = 680356391097977883;
+
         var species = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(TestSpecies1);
 
         AssertThat(species).IsNotNull();
 
-        AssertThat(species!.GetVisualHashCode()).IsEqual(14021167612773540574);
+        AssertThat(species!.GetVisualHashCode()).IsEqual(desiredHash);
 
         var hexesHash = CellHexesPhotoBuilder.GetVisualHash(species);
 
-        AssertThat(hexesHash).IsNotEqual(species.GetVisualHashCode()).IsEqual(10872541043048358996);
+        AssertThat(hexesHash).IsNotEqual(desiredHash).IsNotEqual(species.GetVisualHashCode())
+            .IsEqual(6703374232947739281);
+
+        // Check that result has not changed
+        AssertThat(species.GetVisualHashCode()).IsEqual(desiredHash);
     }
 }
