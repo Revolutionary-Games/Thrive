@@ -143,7 +143,7 @@ public partial class ChemicalEquation : VBoxContainer
     /// <summary>
     ///   If true this will automatically check the set process for changes
     /// </summary>
-    public bool AutoRefreshProcess { get; set; } = true;
+    public static bool AutoRefreshProcess { get; set; } = false;
 
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
@@ -182,7 +182,10 @@ public partial class ChemicalEquation : VBoxContainer
         }
 
         if (AutoRefreshProcess)
+        {
+            AutoRefreshProcess = false;
             UpdateEquation();
+        }
     }
 
     private void OnTranslationsChanged()
@@ -205,6 +208,7 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void UpdateEquation()
     {
+        GD.Print("Updating equation");
         if (title == null)
             return;
 
