@@ -370,6 +370,9 @@ public partial class CellEditorComponent
 
         var worldAndPlayerArgs = GetUnlockPlayerDataSource();
 
+        // Apply LAWK settings so that no-unexpected organelles are shown
+        UpdateOrganelleLAWKSettings();
+
         foreach (var entry in allPartSelectionElements)
         {
             var organelle = entry.Key;
@@ -445,9 +448,6 @@ public partial class CellEditorComponent
             ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
             button.RegisterToolTipForControl(tooltip, true);
         }
-
-        // Apply LAWK settings so that no-unexpected organelles are shown
-        UpdateOrganelleLAWKSettings();
     }
 
     private void RemoveUndiscoveredOrganelleButtons()
