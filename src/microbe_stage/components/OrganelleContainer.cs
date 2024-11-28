@@ -629,6 +629,7 @@ public static class OrganelleContainerHelpers
         container.SlimeJets?.Clear();
         container.ThrustComponents?.Clear();
         container.RotationComponents?.Clear();
+        container.MucocystCount = 0;
 
         // This method can be safely called again if this happened to run too early
         if (container.Organelles == null)
