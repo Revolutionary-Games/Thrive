@@ -318,7 +318,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             if (control.State == MicrobeState.MucocystShield)
                 return;
 
-            // MicrobeState predatorState = predator.Value.Entity.Get<MicrobeControl>().State;
             FleeFromPredators(ref position, ref ai, ref control, ref organelles, ref compoundStorage, entity,
                 predator.Value.Position, predator.Value.Entity, speciesFocus,
                 speciesActivity, speciesAggression, speciesFear, strain, random);
