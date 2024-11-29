@@ -1,0 +1,4 @@
+﻿public enum CacheItemType
+{
+    Png,
+}

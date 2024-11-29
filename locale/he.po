@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-29 11:19+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -511,6 +511,24 @@ msgstr "על ידי:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "עלי ידי Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "חסרה כותרת"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "סידן פחמתי"
 
@@ -716,6 +734,9 @@ msgstr "סטטיסטיקת האורגניזם"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "נקה שמירות ישנות"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "סגור"
@@ -1289,6 +1310,14 @@ msgstr "קרדיט"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "הפרש ריר"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "מפתחים נוכחים"
 
@@ -1553,6 +1582,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "ראו את דף Itch.io שלנו"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -3196,11 +3229,19 @@ msgstr "שלג ימי"
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "הפרש ריר"
+
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "ללא הגבלה"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "גודל:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
@@ -6339,6 +6380,9 @@ msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחל�
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "הגדר ידנית את מספר נושאי הרקע"

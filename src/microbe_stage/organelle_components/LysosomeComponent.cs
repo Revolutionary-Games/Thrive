@@ -79,4 +79,10 @@ public class LysosomeUpgrades : IComponentSpecificUpgrades
     {
         return int.RotateRight(Enzyme.InternalName.GetHashCode(), 3);
     }
+
+    public ulong GetVisualHashCode()
+    {
+        // Doesn't impact the visuals at all
+        return 3;
+    }
 }

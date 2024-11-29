@@ -217,7 +217,7 @@ public static class Constants
 
     public const float SPRINTING_FORCE_MULTIPLIER = 1.8f;
 
-    public const float FLAGELLA_ENERGY_COST = 4.0f;
+    public const float FLAGELLA_ENERGY_COST = 6.0f;
 
     public const float FLAGELLA_BASE_FORCE = 20.0f;
 
@@ -431,10 +431,20 @@ public static class Constants
     /// </summary>
     public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
-    public const float MEMORY_PHOTO_CACHE_TIME = 300;
+    public const float MEMORY_BEFORE_DISK_CACHE_TIME = 120;
+    public const float MEMORY_ONLY_CACHE_TIME = 300;
     public const int MEMORY_PHOTO_CACHE_MAX_ITEMS = 250;
 
     public const float MEMORY_PHOTO_CACHE_CLEAN_INTERVAL = 37;
+    public const float DISK_CACHE_CHECK_INTERVAL = 47;
+    public const float DISK_CACHE_IDLE_SAVE_INTERVAL = 53;
+    public const int DISK_CACHE_IDLE_SAVE_ITEMS = 3;
+
+    public const int DISK_CACHE_SAVES_PER_RUN = 5;
+    public const float DISK_CACHE_SAVE_RESUME_CHECK_INTERVAL = 1.17f;
+
+    public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
+    public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
 
     // Base randomness for visual hashes to make different types not conflict
     public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
@@ -1378,6 +1388,9 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string CACHE_FOLDER = "user://cache";
+    public const string CACHE_IMAGES_FOLDER = "user://cache/img";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 

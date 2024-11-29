@@ -92,7 +92,7 @@ jobs:
                 echo "No changes made"
                 rm -f cleanup_diff.patch
             fi
-  format_script:
+  format_test:
     image: thrive/godot-ci:v25
     cache:
       loadFrom:
@@ -110,8 +110,8 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
-          name: Simple Thrive code-only tests
-          command: dotnet test test/code_tests
+          name: Unit tests
+          command: GODOT_BIN=$(which godot) dotnet test
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite

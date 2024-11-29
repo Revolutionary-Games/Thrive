@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-29 11:19+0200\n"
 "PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -514,6 +514,24 @@ msgstr "Por:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Por Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Memória de vídeo usada atualmente:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Memória de vídeo usada atualmente:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Criação"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato de Cálcio"
 
@@ -718,6 +736,9 @@ msgstr "População: {0} Alimento: {1} Ciência: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Limpar salvamentos antigos"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -1263,6 +1284,14 @@ msgstr "Créditos"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Sem pesquisas ativas"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Atuais"
 
@@ -1547,6 +1576,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Junte-se ao servidor Discord da comunidade"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Visite a nossa página na Itch.io"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Pop-ups dispensados:"
@@ -3091,11 +3124,19 @@ msgstr "Neve marinha"
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Expele mucilagem para aumentar a velocidade e desacelerar células presas na gosma"
+
 msgid "MAX_FPS"
 msgstr "FPS máximo:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ilimitado"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Tamanho:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Número máximo de entidades:"
@@ -6171,6 +6212,9 @@ msgstr "Carregar patches Harmony do Assembly automaticamente (não é preciso es
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar um nome personalizado"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Definir número de tarefas de fundo manualmente"
