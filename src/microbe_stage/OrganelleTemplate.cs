@@ -66,4 +66,10 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
         return Position.GetHashCode() * 131 ^ Orientation * 2909 ^ Definition.GetHashCode() * 947 ^
             (Upgrades != null ? Upgrades.GetHashCode() : 1) * 1063;
     }
+
+    public ulong GetVisualHashCode()
+    {
+        return (ulong)Position.GetHashCode() * 131 ^ (ulong)Orientation * 2909 ^ Definition.GetVisualHashCode() * 947 ^
+            (Upgrades != null ? Upgrades.GetVisualHashCode() : 1) * 1063;
+    }
 }

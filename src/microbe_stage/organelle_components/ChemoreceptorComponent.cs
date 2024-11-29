@@ -131,4 +131,10 @@ public class ChemoreceptorUpgrades : IComponentSpecificUpgrades
         return 283 * TargetCompound.GetHashCode() ^ 293 * TargetSpecies?.GetHashCode() ?? 2579 ^
             307 * SearchRange.GetHashCode() ^ 311 * SearchAmount.GetHashCode() ^ 313 * LineColour.GetHashCode();
     }
+
+    public ulong GetVisualHashCode()
+    {
+        // This upgrade doesn't impact the visuals at all
+        return 2579;
+    }
 }

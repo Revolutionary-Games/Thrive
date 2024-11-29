@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-29 11:19+0200\n"
 "PO-Revision-Date: 2024-10-16 05:52+0000\n"
 "Last-Translator: fideos con queso <whipstickagostopp@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -505,6 +505,22 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "\" {0} \" - {1}"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato de Calcio"
 
@@ -709,6 +725,9 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Población: {0} Comida: {1} Ciencia: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
+msgstr ""
+
+msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLOSE"
@@ -1215,6 +1234,14 @@ msgstr "Créditos"
 msgid "CTRL"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Barrita de habilidades (recomendado)"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Disparar toxina"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1458,6 +1485,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Desvincular a todos"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -3054,11 +3085,24 @@ msgstr "Nieve marina(?"
 msgid "MASTER_VOLUME"
 msgstr "Volumen maestro"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para poder sobrevivir, el balance tiene que ser positivo. Para las célular sésiles se puede considerar el balance positivo con el movimiento excluído.\n"
+"El menú desplegable de ahí abajo lo podés usar para chequear que pasaría si la célula no tuviese ningún recurso disponible para poder crear ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiples tipos de componentes de los que pueden crear ATP al mísmo tiempo.\n"
+"Ese tipo de células son más difíciles de jugar porque requieren que almacenes varios tipos de componentes al mísmo tiempo para poder sobrevivir."
+
 msgid "MAX_FPS"
 msgstr "Máximos FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Poder ilimitado"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "población:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -6072,6 +6116,9 @@ msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
+msgstr ""
+
+msgid "USE_DISK_CACHE"
 msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"

@@ -32,7 +32,7 @@ public partial class SpeciesDetailsPanel : MarginContainer
 
             previewSpecies = value;
 
-            if (previewSpecies != null && speciesDetailsLabel != null)
+            if (speciesDetailsLabel != null)
                 UpdateSpeciesPreview();
         }
     }
@@ -83,7 +83,11 @@ public partial class SpeciesDetailsPanel : MarginContainer
     {
         speciesPreview.PreviewSpecies = PreviewSpecies;
 
-        if (PreviewSpecies is MicrobeSpecies microbeSpecies)
+        if (PreviewSpecies == null)
+        {
+            hexesPreview.PreviewSpecies = null;
+        }
+        else if (PreviewSpecies is MicrobeSpecies microbeSpecies)
         {
             hexesPreview.PreviewSpecies = microbeSpecies;
         }
