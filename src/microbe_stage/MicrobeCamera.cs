@@ -66,6 +66,10 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     private readonly StringName lightLevelParameter = new("lightLevel");
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
 
+    [Export]
+    [JsonIgnore]
+    private NodePath backgroundPlanePath = null!;
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -164,7 +168,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     public override void _Ready()
     {
-        var material = GetNode<CsgMesh3D>("BackgroundPlane").Material;
+        var material = GetNode<CsgMesh3D>(backgroundPlanePath).Material;
         if (material == null)
         {
             GD.PrintErr("MicrobeCamera didn't find material to update");
@@ -191,8 +195,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
         NodeReferencesResolved = true;
 
-        if (HasNode("BackgroundPlane"))
-            backgroundPlane = GetNode<Node3D>("BackgroundPlane");
+        if (HasNode(backgroundPlanePath))
+            backgroundPlane = GetNode<Node3D>(backgroundPlanePath);
     }
 
     public override void _EnterTree()
@@ -230,6 +234,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         {
             UpdateCameraPosition(delta, null);
         }
+
+        materialToUpdate?.SetShaderParameter("worldPos", Variant.From(new Vector2(Position.X, Position.Z)));
     }
 
     public void UpdateCameraPosition(double delta, Vector3? followedObject)
@@ -358,6 +364,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         {
             lightLevelParameter.Dispose();
             distortionStrengthParameter.Dispose();
+            backgroundPlanePath.Dispose();
         }
 
         base.Dispose(disposing);

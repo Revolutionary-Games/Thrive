@@ -1,14 +1,54 @@
-[gd_scene load_steps=13 format=3 uid="uid://bako5jivv1dji"]
+[gd_scene load_steps=25 format=3 uid="uid://bako5jivv1dji"]
 
 [ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="2"]
+[ext_resource type="Shader" path="res://shaders/BackgroundPlane.gdshader" id="2_70a3p"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
 [ext_resource type="Texture2D" uid="uid://bsvls5moner1g" path="res://assets/textures/background/Thrive_vent3.png" id="4"]
 [ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="5"]
 [ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="6"]
+[ext_resource type="Shader" path="res://shaders/Blur.gdshader" id="8_qrk01"]
 
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(800, 400)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_kn1oa"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_70a3p")
+shader_parameter/texture_albedo = SubResource("ViewportTexture_kn1oa")
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y62cm"]
+
+[sub_resource type="Environment" id="Environment_iygdt"]
+
+[sub_resource type="Environment" id="Environment_kcf2w"]
+
+[sub_resource type="World3D" id="World3D_76d81"]
+environment = SubResource("Environment_iygdt")
+fallback_environment = SubResource("Environment_kcf2w")
+camera_attributes = SubResource("CameraAttributesPractical_y62cm")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yaywj"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bdv2o"]
+resource_local_to_scene = true
+shader = ExtResource("8_qrk01")
+shader_parameter/blur_step = Vector2(0, 1)
+shader_parameter/texture_albedo = SubResource("ViewportTexture_yaywj")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mulq8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
+resource_local_to_scene = true
+shader = ExtResource("8_qrk01")
+shader_parameter/blur_step = Vector2(1, 0)
+shader_parameter/texture_albedo = SubResource("ViewportTexture_mulq8")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dor76"]
 frequency = 0.0035
@@ -34,6 +74,7 @@ shader_parameter/repeats = Vector2(2, 1)
 shader_parameter/distortionFactor = 0.0
 shader_parameter/distortionSpeed = 0.001
 shader_parameter/layerAnimateSpeed = 0.4
+shader_parameter/worldPos = Vector2(0, 0)
 shader_parameter/layer0 = ExtResource("6")
 shader_parameter/layer1 = ExtResource("1")
 shader_parameter/layer2 = ExtResource("2")
@@ -48,12 +89,50 @@ current = true
 fov = 90.0
 script = ExtResource("3")
 DefaultCameraHeight = 30.0
+backgroundPlanePath = NodePath("SubViewport/Node3D/BackgroundPlane")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="."]
+current = true
 
 [node name="BackgroundPlane" type="CSGMesh3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15)
+transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -150)
+cast_shadow = 0
+mesh = SubResource("1")
+material = SubResource("ShaderMaterial_1sr76")
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_76d81")
+size = Vector2i(2000, 1000)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport3"]
+material = SubResource("ShaderMaterial_bdv2o")
+offset_right = 2000.0
+offset_bottom = 1000.0
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+own_world_3d = true
+world_3d = SubResource("World3D_76d81")
+size = Vector2i(2000, 1000)
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport2"]
+material = SubResource("ShaderMaterial_tdrj5")
+offset_right = 2000.0
+offset_bottom = 1000.0
+
+[node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
+size = Vector2i(2000, 1000)
+
+[node name="Node3D" type="Node3D" parent="SubViewport"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("2")
 
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
+[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+fov = 90.0
