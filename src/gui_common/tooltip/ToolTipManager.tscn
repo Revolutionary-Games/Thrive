@@ -158,6 +158,7 @@ layout_mode = 0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 MutationPointCost = 2
+ShowOsmoregulation = false
 
 [node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -177,9 +178,6 @@ ModifierIcon = ExtResource("7")
 layout_mode = 2
 DisplayName = "HEALTH"
 ModifierIcon = ExtResource("13")
-
-[node name="osmoregulationCost" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList" index="2"]
-visible = false
 
 [node name="aggressionSlider" parent="GroupHolder/editor" instance=ExtResource("1")]
 visible = false
