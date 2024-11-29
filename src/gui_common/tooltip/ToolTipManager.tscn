@@ -158,6 +158,7 @@ layout_mode = 0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 MutationPointCost = 2
+ShowOsmoregulation = false
 
 [node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
 visible = false
