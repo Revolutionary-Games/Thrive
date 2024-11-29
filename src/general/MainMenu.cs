@@ -745,6 +745,10 @@ public partial class MainMenu : NodeWithInput
         // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
         // consume power unnecessarily while showing the video
         RandomizeBackground();
+
+        // Report to cache that we are in the main menu and that it'd be a good time to clean stuff without affecting
+        // game performance
+        DiskCache.Instance.InMainMenu();
     }
 
     private void CheckStartupSuccess()

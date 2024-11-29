@@ -212,4 +212,10 @@ public class FlagellumUpgrades : IComponentSpecificUpgrades
     {
         return int.RotateRight(LengthFraction.GetHashCode(), 1);
     }
+
+    public ulong GetVisualHashCode()
+    {
+        // Could maybe round the value a tiny bit as it wouldn't impact the visuals...
+        return (ulong)int.RotateRight(LengthFraction.GetHashCode(), 1);
+    }
 }

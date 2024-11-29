@@ -14,7 +14,7 @@ public partial class CellTypeSelection : MicrobePartSelection
     private Texture2D? cellImage;
 #pragma warning restore CA2213
 
-    private ImageTask? imageTask;
+    private IImageTask? imageTask;
 
     public CellType CellType
     {

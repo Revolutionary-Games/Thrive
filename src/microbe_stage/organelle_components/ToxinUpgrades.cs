@@ -50,4 +50,10 @@ public class ToxinUpgrades : IComponentSpecificUpgrades
     {
         return int.RotateLeft(Toxicity.GetHashCode(), 3) ^ BaseType.GetHashCode();
     }
+
+    public ulong GetVisualHashCode()
+    {
+        // Upgrades don't affect the visuals
+        return 3L << 32;
+    }
 }

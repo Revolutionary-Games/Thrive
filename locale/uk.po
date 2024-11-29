@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-26 17:25+0200\n"
 "PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -510,6 +510,24 @@ msgstr "Від:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Виробництва Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Поточна використовувана відеопам'ять:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Поточна використовувана відеопам'ять:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Створення"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Карбонат Кальцію"
 
@@ -714,6 +732,9 @@ msgstr "Населення: {0} Їжа: {1} Наука: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Очистити старі збереження"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Закрити"
@@ -1238,6 +1259,14 @@ msgstr "Титри"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Зараз нічого не досліджується"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Виділення слизу для власного прискорення і сповільнення клітин, які застрягли в слизу"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Поточні розробники"
 
@@ -1524,6 +1553,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Приєднуйтесь до спільноти Discord серверу"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Відвідайте"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Закриті спливаючі вікна:"
@@ -3058,11 +3091,19 @@ msgstr "Морський сніг"
 msgid "MASTER_VOLUME"
 msgstr "Загальна гучність"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Виділення слизу для власного прискорення і сповільнення клітин, які застрягли в слизу"
+
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Необмежено"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Розмір:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальне число сутностей:"
@@ -6073,6 +6114,9 @@ msgstr "Автоматичне завантаження патчів Гармо�
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Встановити кількість фонових потоків вручну"

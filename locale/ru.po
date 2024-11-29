@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-26 17:25+0200\n"
 "PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -504,6 +504,24 @@ msgstr "Создано:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Автор: Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Используемая видеопамять:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Используемая видеопамять:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "\"Ремесло\""
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Карбонат кальция"
 
@@ -706,6 +724,9 @@ msgstr "Популяция: {0} Еда: {1} Наука: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Удалить устаревшие сохранения"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Закрыть"
@@ -1225,6 +1246,14 @@ msgstr "Титры"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Ничего не исследуется"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Выпускает слизь, на некоторое время повышая вашу скорость, одновременно с этим замедляя клетки, что попали в слизь"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Текущие Разработчики"
 
@@ -1507,6 +1536,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Посетить нашу страницу на itch.io"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отклоненные всплывающие окна:"
@@ -3016,11 +3049,19 @@ msgstr "Морской снег"
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Выпускает слизь, на некоторое время повышая вашу скорость, одновременно с этим замедляя клетки, что попали в слизь"
+
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Бесконечно"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Размер:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальное количество сущностей:"
@@ -5991,6 +6032,9 @@ msgstr "Автоматически загружать патчи для сбор
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
