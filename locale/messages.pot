@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-26 17:25+0200\n"
+"POT-Creation-Date: 2024-11-29 11:19+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgstr ""
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:343
+#: ../simulation_parameters/common/gallery.json:348
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:413
 msgid "ALL"
 msgstr ""
@@ -178,7 +178,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1072
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1095
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1158 ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.cs:1159 ../src/general/OptionsMenu.tscn:333
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -439,14 +439,14 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:534
+#: ../simulation_parameters/common/gallery.json:539
 #: ../simulation_parameters/common/wiki.json:2473
 #: ../simulation_parameters/common/wiki.json:2571
 #: ../ThriveScriptsShared/Stage.cs:23
 msgid "AWAKENING_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:523
+#: ../simulation_parameters/common/gallery.json:528
 #: ../simulation_parameters/common/wiki.json:2422
 #: ../simulation_parameters/common/wiki.json:2520
 #: ../ThriveScriptsShared/Stage.cs:20
@@ -1709,7 +1709,7 @@ msgstr ""
 msgid "CURRENT_WORLD"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1031
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1054
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
@@ -1798,7 +1798,7 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1632
+#: ../src/general/OptionsMenu.cs:1633
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -2048,11 +2048,11 @@ msgstr ""
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1175
+#: ../src/general/OptionsMenu.cs:1176
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1172
+#: ../src/general/OptionsMenu.cs:1173
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
@@ -2667,7 +2667,7 @@ msgstr ""
 msgid "FINISH_ONE_GENERATION"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:642
+#: ../src/auto-evo/AutoEvoExploringTool.cs:650
 msgid "FINISH_X_GENERATIONS"
 msgstr ""
 
@@ -2880,7 +2880,7 @@ msgstr ""
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:91
+#: ../simulation_parameters/common/gallery.json:96
 msgid "GENERAL"
 msgstr ""
 
@@ -3129,7 +3129,7 @@ msgstr ""
 msgid "INDICATOR_SPECIES_MUTATED"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:562
+#: ../simulation_parameters/common/gallery.json:567
 #: ../simulation_parameters/common/wiki.json:2575
 #: ../simulation_parameters/common/wiki.json:2673
 #: ../ThriveScriptsShared/Stage.cs:29
@@ -3907,15 +3907,15 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1684
+#: ../src/general/OptionsMenu.cs:1685
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1680
+#: ../src/general/OptionsMenu.cs:1681
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1676
+#: ../src/general/OptionsMenu.cs:1677
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -4400,7 +4400,7 @@ msgstr ""
 msgid "MEMBRANE_TYPES"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:354
+#: ../simulation_parameters/common/gallery.json:359
 msgid "MENU"
 msgstr ""
 
@@ -4430,7 +4430,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:172
-#: ../src/general/OptionsMenu.cs:1760 ../src/general/OptionsMenu.cs:2291
+#: ../src/general/OptionsMenu.cs:1761 ../src/general/OptionsMenu.cs:2302
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
@@ -4509,7 +4509,7 @@ msgstr ""
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:436
+#: ../simulation_parameters/common/gallery.json:441
 #: ../simulation_parameters/common/wiki.json:2371
 msgid "MICROBE_EDITOR"
 msgstr ""
@@ -4542,18 +4542,18 @@ msgstr ""
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1044
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1088
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1067
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1111
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeSpecies.cs:329
+#: ../src/microbe_stage/MicrobeSpecies.cs:333
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../simulation_parameters/common/gallery.json:146
-#: ../simulation_parameters/common/gallery.json:377
+#: ../simulation_parameters/common/gallery.json:151
+#: ../simulation_parameters/common/gallery.json:382
 #: ../simulation_parameters/common/wiki.json:2418
 #: ../ThriveScriptsShared/Stage.cs:14
 msgid "MICROBE_STAGE"
@@ -4776,7 +4776,7 @@ msgstr ""
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:143
+#: ../simulation_parameters/common/gallery.json:148
 msgid "MODELS"
 msgstr ""
 
@@ -5072,7 +5072,7 @@ msgstr ""
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:512
+#: ../simulation_parameters/common/gallery.json:517
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -5081,7 +5081,7 @@ msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:66
-#: ../simulation_parameters/common/gallery.json:471
+#: ../simulation_parameters/common/gallery.json:476
 #: ../simulation_parameters/common/wiki.json:2367
 #: ../simulation_parameters/common/wiki.json:2469
 #: ../ThriveScriptsShared/Stage.cs:17
@@ -5116,7 +5116,7 @@ msgstr ""
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:340
+#: ../simulation_parameters/common/gallery.json:345
 msgid "MUSIC"
 msgstr ""
 
@@ -6151,7 +6151,7 @@ msgstr ""
 msgid "READING_SAVE_DATA"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:791
+#: ../src/auto-evo/AutoEvoExploringTool.cs:799
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:264
 msgid "READY"
 msgstr ""
@@ -6394,7 +6394,7 @@ msgstr ""
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:658
+#: ../src/auto-evo/AutoEvoExploringTool.cs:666
 msgid "RUN_X_WORLDS"
 msgstr ""
 
@@ -6837,7 +6837,7 @@ msgstr ""
 msgid "SNOWFLAKE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:545
+#: ../simulation_parameters/common/gallery.json:550
 #: ../simulation_parameters/common/wiki.json:2524
 #: ../simulation_parameters/common/wiki.json:2622
 #: ../ThriveScriptsShared/Stage.cs:26
@@ -6864,7 +6864,7 @@ msgstr ""
 msgid "SPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:573
+#: ../simulation_parameters/common/gallery.json:578
 #: ../simulation_parameters/common/wiki.json:2626
 #: ../simulation_parameters/common/wiki.json:2724
 #: ../ThriveScriptsShared/Stage.cs:32
@@ -7864,7 +7864,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1774
+#: ../src/general/OptionsMenu.cs:1775
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -7918,7 +7918,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1179
+#: ../src/general/OptionsMenu.cs:1180
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -7939,7 +7939,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1789
+#: ../src/general/OptionsMenu.cs:1790
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -8163,7 +8163,7 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1189 ../src/general/OptionsMenu.tscn:516
+#: ../src/general/OptionsMenu.cs:1190 ../src/general/OptionsMenu.tscn:516
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
