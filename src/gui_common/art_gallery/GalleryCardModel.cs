@@ -5,7 +5,7 @@
 /// </summary>
 public partial class GalleryCardModel : GalleryCard
 {
-    private ImageTask? imageTask;
+    private IImageTask? imageTask;
 
 #pragma warning disable CA2213
     private Texture2D imageLoadingIcon = null!;
@@ -62,7 +62,7 @@ public partial class GalleryCardModel : GalleryCard
 
         public static ulong HashForPath(string resourcePath)
         {
-            return (ulong)resourcePath.GetHashCode() * 11 ^ Constants.VISUAL_HASH_PATH;
+            return PersistentStringHash.GetHash(resourcePath) * 11 ^ Constants.VISUAL_HASH_PATH;
         }
 
         public void ApplySceneParameters(Node3D instancedScene)

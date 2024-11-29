@@ -18,15 +18,21 @@ public partial class SpeciesPreview : PhotographablePreview
             previewSpecies = value;
 
             if (previewSpecies != null)
+            {
                 UpdatePreview();
+            }
+            else
+            {
+                ResetPreview();
+            }
         }
     }
 
-    protected override ImageTask? SetupImageTask()
+    protected override IImageTask? SetupImageTask()
     {
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
-            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority, KeepPlainImageInMemory);
+            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority);
         }
 
         GD.PrintErr("Unknown species type to preview: ", previewSpecies);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-29 11:19+0200\n"
 "PO-Revision-Date: 2024-11-20 07:02+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -504,6 +504,24 @@ msgstr "創建者："
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由 Revolutionary Games Studio 製作"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "目前使用的視訊記憶體："
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "目前使用的視訊記憶體："
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "製作"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸鈣"
 
@@ -710,6 +728,9 @@ msgstr "人口：{0} 食物：{1} 科學：{2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -1229,6 +1250,14 @@ msgstr "製作人員"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "未研究任何內容"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "噴射黏液以提高速度並減緩困在黏液中細胞的速度"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "當前開發人員"
 
@@ -1512,6 +1541,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我們的社群 Discord 伺服器"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "造訪我們的 Itch.io 頁面"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的彈出視窗："
 
@@ -1569,7 +1602,7 @@ msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "用滑鼠拖曳以重新排序"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "傾印 SceneTree"
@@ -1815,9 +1848,8 @@ msgstr "（每一代保留的環境葡萄糖比例）"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏環境"
 
-#, fuzzy
 msgid "ENVIRONMENT_TOLERANCE"
-msgstr "環境"
+msgstr "耐受"
 
 msgid "EPIPELAGIC"
 msgstr "表層帶"
@@ -2223,9 +2255,8 @@ msgstr "圖形"
 msgid "GRAPHICS_TEAM"
 msgstr "圖形團隊"
 
-#, fuzzy
 msgid "GROWTH_ORDER"
-msgstr "限制生長化合物使用"
+msgstr "生長順序"
 
 msgid "GUI"
 msgstr "GUI"
@@ -2523,15 +2554,11 @@ msgstr "鐵化能自養"
 msgid "ITCH_TOOLTIP"
 msgstr "造訪我們的 Itch.io 頁面"
 
-#, fuzzy
 msgid "ITEM_AT_2D_COORDINATES"
-msgstr ""
-"位置座標：{0}\n"
-"朝向座標：{1}"
+msgstr "{0} at ({1}, {2})"
 
-#, fuzzy
 msgid "ITEM_NAME_SEPARATOR"
-msgstr "與物件交互"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "一月"
@@ -3021,11 +3048,19 @@ msgstr "海洋雪"
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "噴射黏液以提高速度並減緩困在黏液中細胞的速度"
+
 msgid "MAX_FPS"
 msgstr "最大 FPS："
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "無限"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "大小："
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "實體數量上限："
@@ -3632,13 +3667,11 @@ msgstr "向下移動或蹲下"
 msgid "MOVE_FORWARD"
 msgstr "前進"
 
-#, fuzzy
 msgid "MOVE_ITEM_DOWN"
-msgstr "移動至陸地"
+msgstr "向下移動此項目"
 
-#, fuzzy
 msgid "MOVE_ITEM_UP"
-msgstr "右移"
+msgstr "向上移動此項目"
 
 msgid "MOVE_LEFT"
 msgstr "左移"
@@ -4055,9 +4088,8 @@ msgstr "軸突是神經元用來相互連結與溝通的神經纖維。放置這
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多細胞生物"
 
-#, fuzzy
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
-msgstr "（啟用時會限制生長速度，如果停用則生長速度僅受可用化合物量影響）"
+msgstr "此分頁允許設定細胞器生長的順序。這對於在生長過程中 ATP 生產不穩定的細胞非常重要。生長順序也會對生物代謝的運作順序造成影響。建議僅在完成結構編輯後進行修改，因為可以如同結構編輯一樣取消此處所做的變更。"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纖維"
@@ -4361,9 +4393,8 @@ msgstr "區域中的種群數量："
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0}（{1}）"
 
-#, fuzzy
 msgid "POSITION_NUMBER"
-msgstr "ID 號碼"
+msgstr "{0}."
 
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食 {0}"
@@ -4502,9 +4533,8 @@ msgstr "重置已關閉的彈出視窗"
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "將輸入重設為預設值？"
 
-#, fuzzy
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
-msgstr "將輸入重設為預設值？"
+msgstr "將項目順序重設為預設值"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "重置按鍵綁定"
@@ -5990,6 +6020,9 @@ msgstr "自動從 Assembly 載入 Harmony 補丁（不需要指定模組類別�
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自訂使用者名稱"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設定後台執行緒數"
