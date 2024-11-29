@@ -370,13 +370,17 @@ public partial class CellEditorComponent
 
         var worldAndPlayerArgs = GetUnlockPlayerDataSource();
 
-        // Apply LAWK settings so that no-unexpected organelles are shown
-        UpdateOrganelleLAWKSettings();
-
         foreach (var entry in allPartSelectionElements)
         {
             var organelle = entry.Key;
             var control = entry.Value;
+
+            // Skip and hide non-lawk organelles if non-lawk is enabled
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !organelle.LAWK)
+            {
+                control.Hide();
+                continue;
+            }
 
             // Skip already unlocked organelles
             if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
@@ -384,7 +388,6 @@ public partial class CellEditorComponent
             {
                 control.Undiscovered = false;
 
-                // This can end up showing non-LAWK organelles in LAWK mode, so this needs a bit of post-processing
                 control.Show();
                 continue;
             }
