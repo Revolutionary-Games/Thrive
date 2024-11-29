@@ -57,7 +57,7 @@ void vertex(){
 
 float fresnel(float power, vec3 normal, vec3 view)
 {
-    return clamp(pow(((1.0 - clamp(dot(normal, view), 0.0, 1.0)) * 0.85 + 0.15) * 3.85, power), 0.1, 1.0);
+    return clamp(pow(((1.0f - clamp(dot(normal, view), 0.0f, 1.0f)) * 0.85f + 0.15f) * 3.85f, power), 0.1f, 1.0f);
 }
 
 void fragment(){
@@ -69,28 +69,28 @@ void fragment(){
 
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = ((albedo * healthFraction) +
-        (damaged * (1.f - healthFraction))) * tint;
+        (damaged * (1.0f - healthFraction))) * tint;
 
     vec4 dissolveTex = texture(dissolveTexture, UV);
 
-    float cutoff = dot(dissolveTex.rgb, vec3(0.34, 0.34, 0.34)) -
-        float(-0.482 + clamp(dissolveValue, 0, 1));
+    float cutoff = dot(dissolveTex.rgb, vec3(0.34f, 0.34f, 0.34f)) -
+        float(-0.482f + clamp(dissolveValue, 0.0f, 1.0f));
 
     vec3 adjusted_view = VIEW;
     // Move fresnel's center closer to membrane's top
     // Not an absolutely necessary step, but it makes fresnel look better
-    adjusted_view = normalize(adjusted_view + vec3(0.0, 0.0, 2.0));
+    adjusted_view = normalize(adjusted_view + vec3(0.0f, 0.0f, 2.0f));
 
-    normalmap = normalmap * 2.0 - 1.0;
+    normalmap = normalmap * 2.0f - 1.0f;
 
     vec3 adjusted_normals = normalmap.z * NORMAL
         + normalmap.x * TANGENT
         + normalmap.y * BINORMAL;
 
     // Mix base normals with detail normals in some proportion (0.0 - 1.0)
-    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2));
+    adjusted_normals = normalize(mix(NORMAL, adjusted_normals, 0.2f));
 
     ALBEDO = final.rgb;
     ALPHA = fresnel(3.0, adjusted_normals, adjusted_view) * round(cutoff);
-    ROUGHNESS = 0.7;
+    ROUGHNESS = 0.7f;
 }
