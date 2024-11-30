@@ -63,8 +63,18 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [Export]
     public float LightLevelInterpolateSpeed = 4;
 
+    private readonly StringName applyBlurParameter = new("applyBlur");
+    private readonly StringName worldPositionParameter = new("worldPos");
     private readonly StringName lightLevelParameter = new("lightLevel");
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
+
+    [Export]
+    [JsonIgnore]
+    private NodePath blurPlane = null!;
+
+    [Export]
+    [JsonIgnore]
+    private NodePath blurColorRect = null!;
 
     [Export]
     [JsonIgnore]
@@ -81,7 +91,11 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [JsonIgnore]
     private GpuParticles3D? backgroundParticles;
 
-    private ShaderMaterial? materialToUpdate;
+    private ShaderMaterial? spatialBlurMaterial;
+
+    private ShaderMaterial? canvasBlurMaterial;
+
+    private ShaderMaterial? backgroundMaterial;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -169,13 +183,18 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     public override void _Ready()
     {
         var material = GetNode<CsgMesh3D>(backgroundPlanePath).Material;
-        if (material == null)
+        var planeBlurMaterial = GetNode<CsgMesh3D>(blurPlane).Material;
+        var colorRectBlurMaterial = GetNode<CanvasItem>(blurColorRect).Material;
+
+        if (material == null || planeBlurMaterial == null || colorRectBlurMaterial == null)
         {
             GD.PrintErr("MicrobeCamera didn't find material to update");
             return;
         }
 
-        materialToUpdate = (ShaderMaterial)material;
+        backgroundMaterial = (ShaderMaterial)material;
+        spatialBlurMaterial = (ShaderMaterial)planeBlurMaterial;
+        canvasBlurMaterial = (ShaderMaterial)colorRectBlurMaterial;
 
         ResolveNodeReferences();
 
@@ -184,6 +203,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
         UpdateBackgroundVisibility();
         ApplyDistortionEffect();
+        ApplyBlurEffect();
 
         ProcessMode = ProcessModeEnum.Always;
     }
@@ -208,6 +228,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
 
         ApplyDistortionEffect();
+        ApplyBlurEffect();
     }
 
     public override void _ExitTree()
@@ -235,7 +256,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             UpdateCameraPosition(delta, null);
         }
 
-        materialToUpdate?.SetShaderParameter("worldPos", Variant.From(new Vector2(Position.X, Position.Z)));
+        backgroundMaterial?.SetShaderParameter(worldPositionParameter, Variant.From(new Vector2(Position.X, Position.Z)));
     }
 
     public void UpdateCameraPosition(double delta, Vector3? followedObject)
@@ -338,13 +359,13 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     {
         // TODO: skip duplicate background changes
 
-        if (materialToUpdate == null)
+        if (backgroundMaterial == null)
             throw new InvalidOperationException("Camera not initialized yet");
 
         for (int i = 0; i < 4; ++i)
         {
             // TODO: switch this loop away to reuse StringName instances if this causes significant allocations
-            materialToUpdate.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));
+            backgroundMaterial.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));
         }
 
         backgroundParticles?.DetachAndQueueFree();
@@ -362,8 +383,13 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     {
         if (disposing)
         {
+            applyBlurParameter.Dispose();
             lightLevelParameter.Dispose();
             distortionStrengthParameter.Dispose();
+            worldPositionParameter.Dispose();
+
+            blurPlane.Dispose();
+            blurColorRect.Dispose();
             backgroundPlanePath.Dispose();
         }
 
@@ -468,7 +494,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     private void UpdateLightLevel(float delta)
     {
-        if (materialToUpdate == null)
+        if (backgroundMaterial == null)
         {
             GD.PrintErr($"{nameof(UpdateLightLevel)} called too early, material not ready");
             return;
@@ -493,17 +519,26 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             lastSetLightLevel = lightLevel;
         }
 
-        materialToUpdate.SetShaderParameter(lightLevelParameter, lastSetLightLevel);
+        backgroundMaterial.SetShaderParameter(lightLevelParameter, lastSetLightLevel);
     }
 
     private void OnBackgroundDistortionChanged(float value)
     {
         ApplyDistortionEffect();
+        ApplyBlurEffect();
     }
 
     private void ApplyDistortionEffect()
     {
-        materialToUpdate?.SetShaderParameter(distortionStrengthParameter,
+        backgroundMaterial?.SetShaderParameter(distortionStrengthParameter,
             Settings.Instance.MicrobeDistortionStrength.Value);
+    }
+
+    private void ApplyBlurEffect()
+    {
+        bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0.1f;
+        GD.Print("blur is " + enabled);
+        canvasBlurMaterial?.SetShaderParameter(applyBlurParameter, enabled);
+        spatialBlurMaterial?.SetShaderParameter(applyBlurParameter, enabled);
     }
 }

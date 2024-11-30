@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bako5jivv1dji"]
+[gd_scene load_steps=19 format=3 uid="uid://bako5jivv1dji"]
 
 [ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="1"]
 [ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="2"]
@@ -13,33 +13,24 @@
 size = Vector2(800, 400)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
-viewport_path = NodePath("SubViewport2")
+viewport_path = NodePath("SubViewportContainer/SubViewport2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
 resource_local_to_scene = true
-render_priority = 0
+render_priority = -100
 shader = ExtResource("2_70a3p")
 shader_parameter/blurStep = Vector2(0, 1)
+shader_parameter/applyBlur = true
 shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y62cm"]
-
-[sub_resource type="Environment" id="Environment_iygdt"]
-
-[sub_resource type="Environment" id="Environment_kcf2w"]
-
-[sub_resource type="World3D" id="World3D_76d81"]
-environment = SubResource("Environment_iygdt")
-fallback_environment = SubResource("Environment_kcf2w")
-camera_attributes = SubResource("CameraAttributesPractical_y62cm")
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
 resource_local_to_scene = true
 shader = ExtResource("8_qrk01")
 shader_parameter/blurStep = Vector2(1, 0)
+shader_parameter/applyBlur = true
 shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dor76"]
@@ -81,7 +72,9 @@ current = true
 fov = 90.0
 script = ExtResource("3")
 DefaultCameraHeight = 30.0
-backgroundPlanePath = NodePath("SubViewport/BackgroundPlane")
+blurPlane = NodePath("BackgroundPlane")
+blurColorRect = NodePath("SubViewportContainer/SubViewport2/ColorRect")
+backgroundPlanePath = NodePath("SubViewportContainer/SubViewport/BackgroundPlane")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
@@ -92,26 +85,47 @@ cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("ShaderMaterial_1sr76")
 
-[node name="SubViewport2" type="SubViewport" parent="."]
-own_world_3d = true
-world_3d = SubResource("World3D_76d81")
-size = Vector2i(2000, 1000)
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
-[node name="ColorRect" type="ColorRect" parent="SubViewport2"]
+[node name="SubViewport2" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport2"]
 material = SubResource("ShaderMaterial_tdrj5")
-offset_right = 2000.0
-offset_bottom = 1000.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1000.0
+offset_top = -500.0
+offset_right = 1000.0
+offset_bottom = 500.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
 own_world_3d = true
-size = Vector2i(2000, 1000)
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
 
-[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport"]
+[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("2")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 fov = 90.0
