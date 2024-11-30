@@ -64,7 +64,7 @@ void fragment(){
     // Application of noise textures on parallax layers, creating distortion.
     // Subtracting time results in a flip of the direction of distortion, and multiplying by factor amplifies speed.
     vec2 noiseUV1 = UV + TIME * distortionSpeed;
-	vec2 noise1 = vec2(texture(noiseTex1, noiseUV1).r, texture(noiseTex2, noiseUV1).r);
+    vec2 noise1 = vec2(texture(noiseTex1, noiseUV1).r, texture(noiseTex2, noiseUV1).r);
     vec2 distortedUV0 = UV + noise1 * distortionFactor;
 
 #ifdef DISTORT_ALL_LAYERS
