@@ -375,13 +375,6 @@ public partial class CellEditorComponent
             var organelle = entry.Key;
             var control = entry.Value;
 
-            // Skip and hide non-lawk organelles if non-lawk is enabled
-            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !organelle.LAWK)
-            {
-                control.Hide();
-                continue;
-            }
-
             // Skip already unlocked organelles
             if (Editor.CurrentGame.GameWorld.UnlockProgress.IsUnlocked(organelle, worldAndPlayerArgs,
                     Editor.CurrentGame, autoUnlock))
@@ -398,6 +391,12 @@ public partial class CellEditorComponent
 
             control.Hide();
             control.Undiscovered = true;
+
+            // Skip adding unlock conditions for organelles prevented by LAWK setting
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !organelle.LAWK)
+            {
+                continue;
+            }
 
             var buttonGroup = organelle.EditorButtonGroup;
 
@@ -451,6 +450,9 @@ public partial class CellEditorComponent
             ToolTipManager.Instance.AddToolTip(tooltip, "lockedOrganelles");
             button.RegisterToolTipForControl(tooltip, true);
         }
+
+        // Apply LAWK settings so that no-unexpected organelles are shown
+        UpdateOrganelleLAWKSettings();
     }
 
     private void RemoveUndiscoveredOrganelleButtons()
