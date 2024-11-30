@@ -7,6 +7,9 @@ uniform vec2 blurStep = vec2(1.0f, 0.0f);
 
 void fragment() {
 	vec2 s = blurStep / vec2(textureSize(textureAlbedo, 0));
+	
+	// Use SCREEN_UV instead of UV, because otherwise the textureAlbedo is stretched
+	// across the plane and only a small part of it is visible on the screen
 	ALBEDO =
 		0.011194727 * texture(textureAlbedo, SCREEN_UV - 10.000000000 * s).rgb +
 		0.039368696 * texture(textureAlbedo, SCREEN_UV - 8.415809477 * s).rgb +
