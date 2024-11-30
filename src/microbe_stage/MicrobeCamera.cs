@@ -256,7 +256,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             UpdateCameraPosition(delta, null);
         }
 
-        backgroundMaterial?.SetShaderParameter(worldPositionParameter, Variant.From(new Vector2(Position.X, Position.Z)));
+        backgroundMaterial?.SetShaderParameter(worldPositionParameter, new Vector2(Position.X, Position.Z));
     }
 
     public void UpdateCameraPosition(double delta, Vector3? followedObject)
