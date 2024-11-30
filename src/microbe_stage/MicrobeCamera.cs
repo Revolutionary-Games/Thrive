@@ -69,7 +69,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
 
     [Export]
-    private NodePath blurPlanePath = null!;
+    private NodePath? blurPlanePath;
 
     [Export]
     private NodePath blurColorRectPath = null!;
