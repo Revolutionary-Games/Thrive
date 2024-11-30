@@ -536,8 +536,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     private void ApplyBlurEffect()
     {
-        bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0.1f;
-        GD.Print("blur is " + enabled);
+        bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0.0f;
         canvasBlurMaterial?.SetShaderParameter(applyBlurParameter, enabled);
         spatialBlurMaterial?.SetShaderParameter(applyBlurParameter, enabled);
     }
