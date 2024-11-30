@@ -2,7 +2,7 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v25
+    image: thrive/godot-ci:v26
     cache:
       loadFrom:
         - v11-{Branch}-build
@@ -36,7 +36,7 @@ jobs:
           name: Upload devbuilds
           command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v25
+    image: thrive/godot-ci:v26
     cache:
       loadFrom:
         - v9-{Branch}-jetbrains
@@ -93,7 +93,7 @@ jobs:
                 rm -f cleanup_diff.patch
             fi
   format_test:
-    image: thrive/godot-ci:v25
+    image: thrive/godot-ci:v26
     cache:
       loadFrom:
         - v9-{Branch}-format

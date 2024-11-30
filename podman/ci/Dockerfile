@@ -1,6 +1,6 @@
-FROM fedora:40
+FROM fedora:41
 
-RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-8.0 \
+RUN dnf install -y --setopt=deltarpm=false git git-lfs unzip wget dotnet-sdk-9.0 \
     gettext p7zip fontconfig && dnf clean all
 RUN git lfs install
 
