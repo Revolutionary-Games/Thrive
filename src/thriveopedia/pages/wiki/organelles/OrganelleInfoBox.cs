@@ -71,7 +71,7 @@ public partial class OrganelleInfoBox : PanelContainer
     private Texture2D? modelLoadingTexture;
 #pragma warning restore CA2213
 
-    private ImageTask? modelImageTask;
+    private IImageTask? modelImageTask;
     private bool finishedLoadingModelImage;
 
     /// <summary>

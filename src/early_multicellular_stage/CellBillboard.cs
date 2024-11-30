@@ -29,7 +29,7 @@ public partial class CellBillboard : Node3D
 #pragma warning restore CA2213
 
     private StandardMaterial3D material = null!;
-    private ImageTask? imageTask;
+    private IImageTask? imageTask;
 
     private bool dirty = true;
     private float scale = Constants.DEFAULT_HEX_SIZE * Constants.CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER;

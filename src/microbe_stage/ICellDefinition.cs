@@ -73,20 +73,4 @@ public static class GeneralCellPropertiesHelpers
     {
         return ((MicrobeVisualOnlySimulation)worldSimulation).CalculateMicrobePhotographDistance();
     }
-
-    public static int GetVisualHashCode(this ICellDefinition definition)
-    {
-        int hash = definition.Colour.GetHashCode() * 607;
-
-        hash ^= definition.MembraneType.GetHashCode() * 5743 ^ definition.MembraneRigidity.GetHashCode() * 5749 ^
-            (definition.IsBacteria ? 1 : 0) * 5779 ^ definition.Organelles.Count * 131;
-
-        int counter = 0;
-        foreach (var organelle in definition.Organelles)
-        {
-            hash ^= counter++ * 13 * organelle.GetHashCode();
-        }
-
-        return hash;
-    }
 }

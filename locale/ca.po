@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-11-29 11:19+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -523,6 +523,22 @@ msgstr "Per:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Per Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Falta un nom"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonat de Calci"
 
@@ -728,6 +744,9 @@ msgstr "Estadístiques de la Cèl·lula"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Netejar els arxius de guardat antics"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tancar"
@@ -1266,6 +1285,14 @@ msgstr "Crèdits"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Secretar mucílag"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolupadors Actuals"
 
@@ -1536,6 +1563,10 @@ msgstr ""
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Sortir del joc"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -3190,11 +3221,19 @@ msgstr "Neu marina"
 msgid "MASTER_VOLUME"
 msgstr "Volum General"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Secretar mucílag"
+
 msgid "MAX_FPS"
 msgstr "Màxims FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Il·limitat"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Mida:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Màxim nombre d'entitats:"
@@ -6378,6 +6417,9 @@ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no re
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manualment establir nombre de fils del fons"
