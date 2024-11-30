@@ -111,7 +111,7 @@ public class Settings
     ///   enabled.
     /// </summary>
     [JsonProperty]
-    public SettingValue<float> MicrobeDistortionStrength { get; private set; } = new(0);
+    public SettingValue<float> MicrobeDistortionStrength { get; private set; } = new(0.6f);
 
     /// <summary>
     ///   Type of controller button prompts to show
