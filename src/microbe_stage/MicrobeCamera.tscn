@@ -12,15 +12,15 @@
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(800, 400)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kn1oa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
 viewport_path = NodePath("SubViewport2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_70a3p")
-shader_parameter/blur_step = Vector2(0, 1)
-shader_parameter/texture_albedo = SubResource("ViewportTexture_kn1oa")
+shader_parameter/blurStep = Vector2(0, 1)
+shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_y62cm"]
 
@@ -33,14 +33,14 @@ environment = SubResource("Environment_iygdt")
 fallback_environment = SubResource("Environment_kcf2w")
 camera_attributes = SubResource("CameraAttributesPractical_y62cm")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mulq8"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
 resource_local_to_scene = true
 shader = ExtResource("8_qrk01")
-shader_parameter/blur_step = Vector2(1, 0)
-shader_parameter/texture_albedo = SubResource("ViewportTexture_mulq8")
+shader_parameter/blurStep = Vector2(1, 0)
+shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dor76"]
 frequency = 0.0035
@@ -64,7 +64,7 @@ shader = ExtResource("5")
 shader_parameter/lightLevel = 1.0
 shader_parameter/repeats = Vector2(2, 1)
 shader_parameter/distortionFactor = 0.0
-shader_parameter/distortionSpeed = 0.001
+shader_parameter/distortionSpeed = 0.0025
 shader_parameter/layerAnimateSpeed = 0.4
 shader_parameter/worldPos = Vector2(0, 0)
 shader_parameter/layer0 = ExtResource("6")
@@ -81,7 +81,7 @@ current = true
 fov = 90.0
 script = ExtResource("3")
 DefaultCameraHeight = 30.0
-backgroundPlanePath = NodePath("SubViewport/Node3D/BackgroundPlane")
+backgroundPlanePath = NodePath("SubViewport/BackgroundPlane")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true
@@ -106,15 +106,12 @@ offset_bottom = 1000.0
 own_world_3d = true
 size = Vector2i(2000, 1000)
 
-[node name="Node3D" type="Node3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-
-[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport/Node3D"]
+[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("2")
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 fov = 90.0
