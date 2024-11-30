@@ -69,15 +69,12 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
 
     [Export]
-    [JsonIgnore]
-    private NodePath blurPlane = null!;
+    private NodePath blurPlanePath = null!;
 
     [Export]
-    [JsonIgnore]
-    private NodePath blurColorRect = null!;
+    private NodePath blurColorRectPath = null!;
 
     [Export]
-    [JsonIgnore]
     private NodePath backgroundPlanePath = null!;
 
 #pragma warning disable CA2213
@@ -183,8 +180,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     public override void _Ready()
     {
         var material = GetNode<CsgMesh3D>(backgroundPlanePath).Material;
-        var planeBlurMaterial = GetNode<CsgMesh3D>(blurPlane).Material;
-        var colorRectBlurMaterial = GetNode<CanvasItem>(blurColorRect).Material;
+        var planeBlurMaterial = GetNode<CsgMesh3D>(blurPlanePath).Material;
+        var colorRectBlurMaterial = GetNode<CanvasItem>(blurColorRectPath).Material;
 
         if (material == null || planeBlurMaterial == null || colorRectBlurMaterial == null)
         {
@@ -388,9 +385,12 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
 
-            blurPlane.Dispose();
-            blurColorRect.Dispose();
-            backgroundPlanePath.Dispose();
+            if (blurPlanePath != null)
+            {
+                blurPlanePath.Dispose();
+                blurColorRectPath.Dispose();
+                backgroundPlanePath.Dispose();
+            }
         }
 
         base.Dispose(disposing);
