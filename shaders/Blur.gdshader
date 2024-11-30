@@ -12,17 +12,15 @@ void fragment() {
     {
         vec2 s = blurStep / vec2(textureSize(textureAlbedo, 0));
         COLOR.rgb =
-            0.057433154f * texture(textureAlbedo, UV - 8.0f * s).rgb +
-            0.09469126f * texture(textureAlbedo, UV - 6.4f * s).rgb +
-            0.13970186f * texture(textureAlbedo, UV - 4.8f * s).rgb +
-            0.18443339f * texture(textureAlbedo, UV - 3.2f * s).rgb +
-            0.21788229f * texture(textureAlbedo, UV - 1.6f * s).rgb +
-            0.23032942f * texture(textureAlbedo, UV - 0.0f * s).rgb +
-            0.21788229f * texture(textureAlbedo, UV + 1.6f * s).rgb +
-            0.18443339f * texture(textureAlbedo, UV + 3.2f * s).rgb +
-            0.13970186f * texture(textureAlbedo, UV + 4.8f * s).rgb +
-            0.09469126f * texture(textureAlbedo, UV + 6.4f * s).rgb +
-            0.057433154f * texture(textureAlbedo, UV + 8.0f * s).rgb;
+            0.0016858046f * texture(textureAlbedo, UV - 6.4f * s).rgb +
+            0.015835322f * texture(textureAlbedo, UV - 4.8f * s).rgb +
+            0.07843286f * texture(textureAlbedo, UV - 3.2f * s).rgb +
+            0.20484284f * texture(textureAlbedo, UV - 1.6f * s).rgb +
+            0.28209478f * texture(textureAlbedo, UV).rgb +
+            0.20484288f * texture(textureAlbedo, UV + 1.6f * s).rgb +
+            0.07843288f * texture(textureAlbedo, UV + 3.2f * s).rgb +
+            0.01583533f * texture(textureAlbedo, UV + 4.8f * s).rgb +
+            0.0016858061f * texture(textureAlbedo, UV + 6.4f * s).rgb;
     }
     else
     {

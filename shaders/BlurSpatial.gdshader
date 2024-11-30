@@ -15,17 +15,15 @@ void fragment() {
         // Use SCREEN_UV instead of UV, because otherwise the textureAlbedo is stretched
         // across the plane and only a small part of it is visible on the screen
         ALBEDO =
-            0.057433154f * texture(textureAlbedo, SCREEN_UV - 8.0f * s).rgb +
-            0.09469126f * texture(textureAlbedo, SCREEN_UV - 6.4f * s).rgb +
-            0.13970186f * texture(textureAlbedo, SCREEN_UV - 4.8f * s).rgb +
-            0.18443339f * texture(textureAlbedo, SCREEN_UV - 3.2f * s).rgb +
-            0.21788229f * texture(textureAlbedo, SCREEN_UV - 1.6f * s).rgb +
-            0.23032942f * texture(textureAlbedo, SCREEN_UV - 0.0f * s).rgb +
-            0.21788229f * texture(textureAlbedo, SCREEN_UV + 1.6f * s).rgb +
-            0.18443339f * texture(textureAlbedo, SCREEN_UV + 3.2f * s).rgb +
-            0.13970186f * texture(textureAlbedo, SCREEN_UV + 4.8f * s).rgb +
-            0.09469126f * texture(textureAlbedo, SCREEN_UV + 6.4f * s).rgb +
-            0.057433154f * texture(textureAlbedo, SCREEN_UV + 8.0f * s).rgb;
+            0.0016858046f * texture(textureAlbedo, SCREEN_UV - 6.4f * s).rgb +
+            0.015835322f * texture(textureAlbedo, SCREEN_UV - 4.8f * s).rgb +
+            0.07843286f * texture(textureAlbedo, SCREEN_UV - 3.2f * s).rgb +
+            0.20484284f * texture(textureAlbedo, SCREEN_UV - 1.6f * s).rgb +
+            0.28209478f * texture(textureAlbedo, SCREEN_UV).rgb +
+            0.20484288f * texture(textureAlbedo, SCREEN_UV + 1.6f * s).rgb +
+            0.07843288f * texture(textureAlbedo, SCREEN_UV + 3.2f * s).rgb +
+            0.01583533f * texture(textureAlbedo, SCREEN_UV + 4.8f * s).rgb +
+            0.0016858061f * texture(textureAlbedo, SCREEN_UV + 6.4f * s).rgb;
     }
     else
     {
