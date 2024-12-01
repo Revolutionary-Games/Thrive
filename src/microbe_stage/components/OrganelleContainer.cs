@@ -629,7 +629,6 @@ public static class OrganelleContainerHelpers
         container.SlimeJets?.Clear();
         container.ThrustComponents?.Clear();
         container.RotationComponents?.Clear();
-        container.MucocystCount = 0;
 
         // This method can be safely called again if this happened to run too early
         if (container.Organelles == null)
@@ -641,11 +640,7 @@ public static class OrganelleContainerHelpers
             {
                 if (organelleComponent is SlimeJetComponent slimeJetComponent)
                 {
-                    if (slimeJetComponent.IsMucocyst)
-                    {
-                        ++container.MucocystCount;
-                    }
-                    else
+                    if (!slimeJetComponent.IsMucocyst)
                     {
                         container.SlimeJets ??= new List<SlimeJetComponent>();
                         container.SlimeJets.Add(slimeJetComponent);
