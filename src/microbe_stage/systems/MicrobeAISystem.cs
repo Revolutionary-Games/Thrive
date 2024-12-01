@@ -734,7 +734,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
             foreach (var otherMicrobeInfo in entry.Value)
             {
-                // Based on species fear, threshold to be afraid ranges from 0.8 to 1.8 microbe size.
+                // Based on species fear, threshold to be afraid of, ranges from 0.8 to 1.8 microbe size.
                 if (otherMicrobeInfo.EngulfSize > engulfer.EngulfingSize * fleeThreshold)
                 {
                     var distance = position.Position.DistanceSquaredTo(otherMicrobeInfo.Position);
@@ -792,7 +792,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     {
         var ourCompounds = compoundStorage.Compounds;
         control.SetStateColonyAware(entity, MicrobeState.Normal);
-        MicrobeState predatorState = predatorEntity.Get<MicrobeControl>().State;
 
         ai.TargetPosition = (2 * (position.Position - predatorLocation)) + position.Position;
 
@@ -803,6 +802,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         if (position.Position.DistanceSquaredTo(predatorLocation) < 100.0f)
         {
             bool shouldSprint = true;
+
+            var predatorState = predatorEntity.Get<MicrobeControl>().State;
 
             if ((organelles.SlimeJets?.Count ?? 0) > 0 &&
                 RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random))
@@ -815,8 +816,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                          RollCheck(speciesFear, Constants.MAX_SPECIES_FEAR, random) ||
                          predatorState == MicrobeState.Engulf))
             {
-                // If the microbe is exhausted, too close to predator or the predator
-                // starts to engulf use mucus
+                // If the microbe is exhausted, too close to predator or the predator starts to engulf, use mucus
                 control.SetMucocystState(ref organelles, ref compoundStorage, entity, true);
 
                 // Don't take any other action
