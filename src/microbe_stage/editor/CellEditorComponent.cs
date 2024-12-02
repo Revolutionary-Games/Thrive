@@ -244,6 +244,12 @@ public partial class CellEditorComponent :
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
 
+    [Export]
+    private Control organelleSuggestionLoadingIndicator = null!;
+
+    [Export]
+    private Label organelleSuggestionLabel = null!;
+
     private Control autoEvoPredictionPanel = null!;
 
     private Slider rigiditySlider = null!;

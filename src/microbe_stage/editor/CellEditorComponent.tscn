@@ -349,7 +349,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -409,6 +409,8 @@ toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
 growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
+organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
+organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
 atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
@@ -907,8 +909,9 @@ label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
 [node name="RightPanel" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(285, 629)
-layout_mode = 0
+custom_minimum_size = Vector2(285, 640)
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -285.0
@@ -1155,7 +1158,7 @@ text_overrun_behavior = 3
 clip_text = true
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 196)
+custom_minimum_size = Vector2(0, 237)
 layout_mode = 2
 mouse_filter = 1
 
@@ -1281,6 +1284,39 @@ max_lines_visible = 2
 [node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SuggestionLabel" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+mouse_filter = 1
+text = "ORGANELLE_SUGGESTION_COLON"
+label_settings = ExtResource("28_qclxk")
+autowrap_mode = 3
+
+[node name="SugestionLoading" type="TextureRect" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+texture = ExtResource("20")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SuggestionValue" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+mouse_filter = 1
+label_settings = ExtResource("24_ekuel")
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("3")]
 layout_mode = 1
