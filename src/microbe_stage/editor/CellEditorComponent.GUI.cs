@@ -381,7 +381,6 @@ public partial class CellEditorComponent
             {
                 control.Undiscovered = false;
 
-                // This can end up showing non-LAWK organelles in LAWK mode, so this needs a bit of post-processing
                 control.Show();
                 continue;
             }
@@ -392,6 +391,12 @@ public partial class CellEditorComponent
 
             control.Hide();
             control.Undiscovered = true;
+
+            // Skip adding unlock conditions for organelles prevented by LAWK setting
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !organelle.LAWK)
+            {
+                continue;
+            }
 
             var buttonGroup = organelle.EditorButtonGroup;
 

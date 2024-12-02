@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Godot;
 using DirAccess = Godot.DirAccess;
 using FileAccess = Godot.FileAccess;
@@ -19,6 +20,31 @@ public static class FileHelpers
         {
             throw new IOException($"can't create folder: {path}");
         }
+    }
+
+    /// <summary>
+    ///   Makes sure that a parent directory exists for a path. Differs from <see cref="MakeSureDirectoryExists"/> is
+    ///   that this expects a path to a file and not directly to the folder to create. The path should be absolute.
+    /// </summary>
+    public static void MakeSureParentDirectoryExists(string filePath)
+    {
+        bool seen = false;
+        int lastSeparator = -1;
+        for (int i = 0; i < filePath.Length; ++i)
+        {
+            if (filePath[i] == '/' || filePath[i] == '\\')
+            {
+                seen = true;
+                lastSeparator = i;
+            }
+        }
+
+        if (!seen)
+            throw new ArgumentException("File path doesn't have a parent folder in it");
+
+        // 1 needs to be subtracted here so that the substring properly ends at the last separator and not a character
+        // after
+        MakeSureDirectoryExists(filePath.Substring(0, filePath.Length - lastSeparator - 1));
     }
 
     /// <summary>

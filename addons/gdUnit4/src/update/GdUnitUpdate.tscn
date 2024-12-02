@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://2eahgaw88y6q"]
+
+[ext_resource type="Script" path="res://addons/gdUnit4/src/update/GdUnitUpdate.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwxuep3lbnu3p" path="res://addons/gdUnit4/src/update/assets/progress-background.png" id="2_q6rkd"]
+
+[node name="GdUnitUpdate" type="ConfirmationDialog"]
+disable_3d = true
+title = "Update GdUnit4 to new version"
+size = Vector2i(1000, 141)
+visible = true
+extend_to_title = true
+min_size = Vector2i(1000, 140)
+ok_button_text = "Update"
+dialog_hide_on_ok = false
+script = ExtResource("1")
+
+[node name="UpdateProgress" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(0, 80)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -49.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpdateProgress"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UpdateProgress/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="message" type="RichTextLabel" parent="UpdateProgress/VBoxContainer/Panel"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 40)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Panel2" type="Panel" parent="UpdateProgress/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="progress" type="TextureProgressBar" parent="UpdateProgress/VBoxContainer/Panel2"]
+unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(980, 30)
+layout_mode = 0
+offset_left = 2.0
+offset_right = 982.0
+offset_bottom = 36.0
+auto_translate = false
+localize_numeral_system = false
+min_value = 1.0
+max_value = 5.0
+value = 1.0
+rounded = true
+nine_patch_stretch = true
+texture_progress = ExtResource("2_q6rkd")
+texture_progress_offset = Vector2(0, 2)
+
+[connection signal="confirmed" from="." to="." method="_on_confirmed"]

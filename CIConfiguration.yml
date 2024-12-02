@@ -2,7 +2,7 @@ version: 1
 
 jobs:
   build:
-    image: thrive/godot-ci:v25
+    image: thrive/godot-ci:v26
     cache:
       loadFrom:
         - v11-{Branch}-build
@@ -36,7 +36,7 @@ jobs:
           name: Upload devbuilds
           command: dotnet run --project Scripts -- upload
   jetbrains:
-    image: thrive/godot-ci:v25
+    image: thrive/godot-ci:v26
     cache:
       loadFrom:
         - v9-{Branch}-jetbrains
@@ -92,8 +92,8 @@ jobs:
                 echo "No changes made"
                 rm -f cleanup_diff.patch
             fi
-  format_script:
-    image: thrive/godot-ci:v25
+  format_test:
+    image: thrive/godot-ci:v26
     cache:
       loadFrom:
         - v9-{Branch}-format
@@ -110,8 +110,8 @@ jobs:
       - run:
           command: dotnet restore Scripts/Scripts.csproj
       - run:
-          name: Simple Thrive code-only tests
-          command: dotnet test test/code_tests
+          name: Unit tests
+          command: GODOT_BIN=$(which godot) dotnet test
       - run:
           name: files localization steam-build rewrite checks
           command: dotnet run --project Scripts -- check files localization steam-build rewrite
