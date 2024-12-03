@@ -358,6 +358,10 @@ public partial class CellEditorComponent :
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
 
+    private OrganelleSuggestionCalculation? inProgressSuggestion;
+    private bool suggestionDirty;
+    private double suggestionStartTimer;
+
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
     /// </summary>
@@ -880,6 +884,7 @@ public partial class CellEditorComponent :
         }
 
         CheckRunningAutoEvoPrediction();
+        CheckRunningSuggestion(delta);
 
         if (organelleDataDirty)
         {
@@ -2253,6 +2258,7 @@ public partial class CellEditorComponent :
         OnColourChanged();
 
         StartAutoEvoPrediction();
+        suggestionDirty = true;
     }
 
     private void OnRigidityChanged()
@@ -2342,6 +2348,7 @@ public partial class CellEditorComponent :
         UpdateCellVisualization();
 
         StartAutoEvoPrediction();
+        suggestionDirty = true;
 
         UpdateFinishButtonWarningVisibility();
 
@@ -3054,5 +3061,179 @@ public partial class CellEditorComponent :
         }
 
         public bool Finished => AutoEvoRun.Finished;
+    }
+
+    /// <summary>
+    ///   Holds data for the organelle suggestion calculation run
+    /// </summary>
+    private class OrganelleSuggestionCalculation
+    {
+        private readonly List<OrganelleDefinition> availableOrganelles = new();
+        private readonly MicrobeSpecies calculationSpecies;
+        private readonly Action<MicrobeSpecies> applyLatestEditsToSpecies;
+        private readonly GameProperties currentGameProperties;
+        private readonly Species editorOpenedForSpecies;
+
+        private readonly Random random = new();
+        private readonly List<Hex> workMemory1 = new();
+        private readonly List<Hex> workMemory2 = new();
+
+        private AutoEvoRun? currentRun;
+
+        private bool calculatedNoChange;
+        private float bestResult;
+        private OrganelleDefinition? bestOrganelle;
+
+        private bool resultRead;
+
+        public OrganelleSuggestionCalculation(MicrobeSpecies initialSpeciesToCopy,
+            Action<MicrobeSpecies> applyLatestEditsToSpecies, GameProperties currentGameProperties,
+            Species editedSpecies)
+        {
+            calculationSpecies = initialSpeciesToCopy;
+            this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
+            this.currentGameProperties = currentGameProperties;
+            editorOpenedForSpecies = editedSpecies;
+        }
+
+        public bool IsCompleted { get; private set; }
+
+        /// <summary>
+        ///   Setup this for a new suggestion calculation
+        /// </summary>
+        /// <param name="organellesToTry">Valid organelles to try in the suggestion</param>
+        public void StartNew(List<OrganelleDefinition> organellesToTry)
+        {
+            if (currentRun != null)
+            {
+                currentRun.Abort();
+                currentRun = null;
+            }
+
+            availableOrganelles.Clear();
+            availableOrganelles.AddRange(organellesToTry);
+
+            calculatedNoChange = false;
+            bestOrganelle = null;
+            bestResult = -1;
+            resultRead = false;
+            IsCompleted = false;
+
+            StartNextRun();
+        }
+
+        /// <summary>
+        ///   Checks current status (and starts more simulations if still queued)
+        /// </summary>
+        public void CheckProgress()
+        {
+            // When no run in progress need to start the next one
+            if (currentRun != null && !currentRun.Finished)
+                return;
+
+            if (currentRun != null)
+            {
+                if (currentRun.Results == null)
+                    throw new InvalidOperationException("Auto-evo suggestion doesn't have results object");
+
+                var score = currentRun.Results.GetGlobalPopulation(calculationSpecies);
+
+                // Store result of run
+                if (!calculatedNoChange)
+                {
+                    // Calculating no change energy so don't apply any changes
+                    calculatedNoChange = true;
+
+                    // This is always calculated first so we can just directly set the result
+                    bestResult = score;
+                }
+                else
+                {
+                    var last = availableOrganelles[^1];
+                    availableOrganelles.RemoveAt(availableOrganelles.Count - 1);
+
+                    if (score > bestResult)
+                    {
+                        bestResult = score;
+                        bestOrganelle = last;
+                    }
+                }
+
+                currentRun = null;
+            }
+
+            if (!StartNextRun())
+            {
+                // Cannot start next run, this is complete
+                IsCompleted = true;
+            }
+        }
+
+        public OrganelleDefinition? GetResult()
+        {
+            return bestOrganelle;
+        }
+
+        public bool ReadAndResetResultFlag()
+        {
+            if (!resultRead && IsCompleted)
+            {
+                resultRead = true;
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool StartNextRun()
+        {
+            if (currentRun != null && !currentRun.Finished)
+            {
+                GD.PrintErr("Previous run should have been finished before starting next as part of suggestion");
+            }
+
+            // Set up the temporary species for the suggestion run
+            applyLatestEditsToSpecies(calculationSpecies);
+
+            if (!calculatedNoChange)
+            {
+                // Calculating no change energy so don't apply any changes
+            }
+            else
+            {
+                while (true)
+                {
+                    if (availableOrganelles.Count < 1)
+                    {
+                        // Everything is already tested
+                        return false;
+                    }
+
+                    var last = availableOrganelles[^1];
+
+                    if (!CommonMutationFunctions.AddOrganelleWithStrategy(last.SuggestionPlacement, last,
+                            CommonMutationFunctions.Direction.Neutral, calculationSpecies, workMemory1, workMemory2,
+                            random))
+                    {
+                        GD.PrintErr($"Cannot find placement for organelle suggestion test with {last.InternalName}");
+                        availableOrganelles.RemoveAt(availableOrganelles.Count - 1);
+                        continue;
+                    }
+
+                    // Succeeded in adding the organelle to test, can continue to starting the run
+                    break;
+                }
+            }
+
+            currentRun = new EditorAutoEvoRun(currentGameProperties.GameWorld,
+                currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies)
+            {
+                CollectEnergyInfo = false,
+            };
+
+            currentRun.Start();
+
+            return true;
+        }
     }
 }

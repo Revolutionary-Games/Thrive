@@ -192,6 +192,13 @@ public class OrganelleDefinition : IRegistryType
     public OrganelleDefinition? EndosymbiosisUnlocks;
 
     /// <summary>
+    ///   Placement strategy that is used when placing this organelle when calculating an auto-evo organelle suggestion
+    ///   for the player
+    /// </summary>
+    public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
+        CommonMutationFunctions.OrganelleAddStrategy.Spiral;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();

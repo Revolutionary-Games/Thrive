@@ -1006,7 +1006,7 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
     }
 
     protected void UpdateAlreadyPlacedHexes(
-        IEnumerable<(Hex BasePosition, IEnumerable<Hex> Hexes, bool PlacedThisSession)> hexes, List<Hex> islands,
+        IEnumerable<(Hex BasePosition, IReadOnlyList<Hex> Hexes, bool PlacedThisSession)> hexes, List<Hex> islands,
         bool forceHide = false)
     {
         int nextFreeHex = 0;
