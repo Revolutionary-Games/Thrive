@@ -909,13 +909,14 @@ label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
 [node name="RightPanel" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(285, 640)
+custom_minimum_size = Vector2(285, 645)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -285.0
 offset_bottom = 629.0
+grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
@@ -1158,7 +1159,7 @@ text_overrun_behavior = 3
 clip_text = true
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 237)
+custom_minimum_size = Vector2(0, 242)
 layout_mode = 2
 mouse_filter = 1
 
@@ -1281,12 +1282,11 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 4)
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+alignment = 2
 
 [node name="HFlowContainer" type="HFlowContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -1305,7 +1305,7 @@ autowrap_mode = 3
 [node name="SugestionLoading" type="TextureRect" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 0
 tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
 texture = ExtResource("20")
 expand_mode = 1
