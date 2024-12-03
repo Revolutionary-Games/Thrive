@@ -2,6 +2,7 @@
 
 using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Components;
 using DefaultEcs;
 using DefaultEcs.System;
@@ -82,15 +83,8 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
     {
         ref var control = ref entity.Get<MicrobeControl>();
 
-        // Reduce agent emission cooldown
-        // TODO: is it faster to check than to just blindly always subtract delta here?
-        control.AgentEmissionCooldown -= delta;
-        if (control.AgentEmissionCooldown < 0)
-            control.AgentEmissionCooldown = 0;
-
-        control.SlimeSecretionCooldown -= delta;
-        if (control.SlimeSecretionCooldown < 0)
-            control.SlimeSecretionCooldown = 0;
+        DecreaseTimeCountdownValue(ref control.AgentEmissionCooldown, delta);
+        DecreaseTimeCountdownValue(ref control.SlimeSecretionCooldown, delta);
 
         ref var organelles = ref entity.Get<OrganelleContainer>();
         ref var cellProperties = ref entity.Get<CellProperties>();
@@ -348,8 +342,16 @@ public sealed class MicrobeEmissionSystem : AEntitySetSystem<float>
                 jet.Active = false;
         }
 
-        control.QueuedSlimeSecretionTime -= delta;
-        if (control.QueuedSlimeSecretionTime < 0)
-            control.QueuedSlimeSecretionTime = 0;
+        DecreaseTimeCountdownValue(ref control.QueuedSlimeSecretionTime, delta);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void DecreaseTimeCountdownValue(ref float countdownValue, float delta)
+    {
+        // Reduce agent emission cooldown
+        // TODO: is it faster to check than to just blindly always subtract delta here?
+        countdownValue -= delta;
+        if (countdownValue < 0)
+            countdownValue = 0;
     }
 }
