@@ -345,7 +345,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 // even if we are out of ATP and there is microbe nearby, engulf them
                 bool isMicrobeHunting = CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies,
                     ref engulfer, ref cellProperties, ref control, entity, compounds, speciesFocus, speciesAggression,
-                    speciesActivity, strain, speciesOpportunism, random, true);
+                    speciesActivity, speciesOpportunism, strain, random, true);
                 if (isMicrobeHunting)
                     return;
 
