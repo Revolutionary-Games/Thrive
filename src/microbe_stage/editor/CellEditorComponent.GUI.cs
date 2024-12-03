@@ -143,6 +143,7 @@ public partial class CellEditorComponent
                 }
 
                 inProgressSuggestion.StartNew(DetectAvailableOrganelles());
+                suggestionDirty = false;
             }
         }
         else if (inProgressSuggestion != null)
