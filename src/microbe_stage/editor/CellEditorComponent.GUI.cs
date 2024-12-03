@@ -129,9 +129,9 @@ public partial class CellEditorComponent
                             "can't start auto-evo suggestion without current cell properties"),
                         hexTemporaryMemory, hexTemporaryMemory2);
 
-                    // For this use-case it is probably not critical to clone the player species flag (as only comparative
-                    // numbers are used, but if anyone checks this code and writes something based on this, this is done fully
-                    // correctly)
+                    // For this use-case it is probably not critical to clone the player species flag (as only
+                    // comparative numbers are used, but if anyone checks this code and writes something based on this,
+                    // this is done fully correctly)
                     if (Editor.EditedBaseSpecies.PlayerSpecies)
                     {
                         suggestionSpecies.BecomePlayerSpecies();
