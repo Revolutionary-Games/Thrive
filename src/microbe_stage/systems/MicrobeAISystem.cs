@@ -477,7 +477,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // check if species can hunt any prey and if so - engage in chase
         bool isHunting = CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
             ref cellProperties, ref control, entity, compounds, speciesFocus, speciesAggression,
-            speciesActivity, strain, speciesOpportunism, random, false);
+            speciesActivity, speciesOpportunism, strain, random, false);
         if (isHunting)
             return;
 
@@ -526,7 +526,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 10.0f * engulfer.EngulfingSize;
 
             // if out of ATP and the prey is out of reach to engulf, do nothing
-            if (!(outOfAtp && engulfPrey))
+            if (outOfAtp && !engulfPrey)
             {
                 return false;
             }
