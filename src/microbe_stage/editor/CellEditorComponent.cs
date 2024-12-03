@@ -2657,7 +2657,8 @@ public partial class CellEditorComponent :
     /// <param name="target">The species to copy to</param>
     /// <remarks>
     ///   <para>
-    ///     TODO: it would be nice to unify this and the final apply properties to the edited species
+    ///     TODO: it would be nice to unify this and the final apply properties to the edited species. There's also
+    ///     almost a duplicate in OrganelleSuggestionCalculation
     ///   </para>
     /// </remarks>
     private void CopyEditedPropertiesToSpecies(MicrobeSpecies target)
@@ -3070,6 +3071,7 @@ public partial class CellEditorComponent :
     {
         private readonly List<OrganelleDefinition> availableOrganelles = new();
         private readonly MicrobeSpecies calculationSpecies;
+        private readonly MicrobeSpecies pristineSpeciesCopy;
         private readonly Action<MicrobeSpecies> applyLatestEditsToSpecies;
         private readonly GameProperties currentGameProperties;
         private readonly Species editorOpenedForSpecies;
@@ -3090,7 +3092,8 @@ public partial class CellEditorComponent :
             Action<MicrobeSpecies> applyLatestEditsToSpecies, GameProperties currentGameProperties,
             Species editedSpecies)
         {
-            calculationSpecies = initialSpeciesToCopy;
+            pristineSpeciesCopy = initialSpeciesToCopy;
+            calculationSpecies = initialSpeciesToCopy.Clone(true);
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
             this.currentGameProperties = currentGameProperties;
             editorOpenedForSpecies = editedSpecies;
@@ -3106,12 +3109,16 @@ public partial class CellEditorComponent :
         {
             if (currentRun != null)
             {
+                GD.PrintErr("Starting new suggestion run even though there is one in-progress");
                 currentRun.Abort();
                 currentRun = null;
             }
 
             availableOrganelles.Clear();
             availableOrganelles.AddRange(organellesToTry);
+
+            // Refresh the latest edits to our local pristine copy that is then used by a background thread
+            applyLatestEditsToSpecies(pristineSpeciesCopy);
 
             calculatedNoChange = false;
             bestOrganelle = null;
@@ -3185,6 +3192,26 @@ public partial class CellEditorComponent :
             return false;
         }
 
+        private void CopyPristineToCalculation()
+        {
+            // TODO: there is duplication between this and
+            calculationSpecies.Colour = pristineSpeciesCopy.Colour;
+            calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
+            calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
+            calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
+
+            // This can't be undone but should be fine as the species to edit cannot change in the editor
+            if (pristineSpeciesCopy.PlayerSpecies)
+                calculationSpecies.BecomePlayerSpecies();
+
+            calculationSpecies.Organelles.Clear();
+
+            foreach (var entry in pristineSpeciesCopy.Organelles)
+            {
+                calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+            }
+        }
+
         private bool StartNextRun()
         {
             if (currentRun != null && !currentRun.Finished)
@@ -3193,7 +3220,7 @@ public partial class CellEditorComponent :
             }
 
             // Set up the temporary species for the suggestion run
-            applyLatestEditsToSpecies(calculationSpecies);
+            CopyPristineToCalculation();
 
             if (!calculatedNoChange)
             {
