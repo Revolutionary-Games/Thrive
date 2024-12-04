@@ -89,6 +89,9 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
         Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
 
+        Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged += OnBackgroundBlurToggleChanged;
+
         ApplyDistortionEffect();
         ApplyBlurEffect();
     }
@@ -99,7 +102,10 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
 
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
-    }
+
+		Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
+		Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged -= OnBackgroundBlurToggleChanged;
+	}
 
     public void ResolveNodeReferences()
     {
@@ -220,10 +226,20 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
             Settings.Instance.MicrobeDistortionStrength.Value);
     }
 
+    private void OnBackgroundBlurStrengthChanged(float value)
+    {
+        ApplyBlurEffect();
+    }
+
+    private void OnBackgroundBlurToggleChanged(bool value)
+    {
+        ApplyBlurEffect();
+    }
+
     private void ApplyBlurEffect()
     {
-        float blurAmount = Settings.Instance.MicrobeBackgroundBlurStrength;
-        bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0 && blurAmount > 0;
+        float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
+        bool enabled = blurStrength > 0 && Settings.Instance.MicrobeBackgroundBlurEnabled.Value;
 
         if (blurPlane == null)
             return;
@@ -232,8 +248,8 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         {
             blurPlane.Visible = true;
 
-            canvasBlurMaterial.SetShaderParameter(blurAmountParameter, blurAmount);
-            spatialBlurMaterial.SetShaderParameter(blurAmountParameter, blurAmount);
+            canvasBlurMaterial.SetShaderParameter(blurAmountParameter, blurStrength);
+            spatialBlurMaterial.SetShaderParameter(blurAmountParameter, blurStrength);
 
             if (backgroundPlane.GetParent() == this)
             {

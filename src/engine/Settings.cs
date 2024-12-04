@@ -118,6 +118,13 @@ public class Settings
     ///   enabled.
     /// </summary>
     [JsonProperty]
+    public SettingValue<bool> MicrobeBackgroundBlurEnabled { get; private set; } = new(true);
+
+    /// <summary>
+    ///   The amount of blur applied to microbe backgrounds when distortion is on.
+    ///   enabled.
+    /// </summary>
+    [JsonProperty]
     public SettingValue<float> MicrobeBackgroundBlurStrength { get; private set; } = new(3.0f);
 
     /// <summary>
