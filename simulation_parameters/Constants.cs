@@ -1055,6 +1055,8 @@ public static class Constants
     public const float MUTATION_DELETION_RATE = 0.05f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
+    public const int DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE = 500;
+
     // Max fear and aggression and activity
     public const float MAX_SPECIES_AGGRESSION = 400.0f;
     public const float MAX_SPECIES_FEAR = 400.0f;

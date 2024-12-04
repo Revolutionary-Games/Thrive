@@ -16,6 +16,8 @@ public class EditorAutoEvoRun : AutoEvoRun
     public Species OriginalEditedSpecies { get; }
     public Species ModifiedProperties { get; }
 
+    public bool CollectEnergyInfo { get; set; } = true;
+
     protected override void GatherInfo(Queue<IRunStep> steps)
     {
         // Custom run setup for editor's use
@@ -31,7 +33,7 @@ public class EditorAutoEvoRun : AutoEvoRun
 
         steps.Enqueue(new CalculatePopulation(configuration, worldSettings, map,
             new Dictionary<Species, Species>
-                { { OriginalEditedSpecies, ModifiedProperties } }, true));
+                { { OriginalEditedSpecies, ModifiedProperties } }, CollectEnergyInfo));
 
         AddPlayerSpeciesPopulationChangeClampStep(steps, map,
             OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);
