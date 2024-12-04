@@ -82,31 +82,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         ApplyBlurEffect();
     }
 
-    public override void _EnterTree()
-    {
-        base._EnterTree();
-
-        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
-        Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
-
-        Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
-        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged += OnBackgroundBlurToggleChanged;
-
-        ApplyDistortionEffect();
-        ApplyBlurEffect();
-    }
-
-    public override void _ExitTree()
-    {
-        base._ExitTree();
-
-        Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
-        Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
-
-        Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
-        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged -= OnBackgroundBlurToggleChanged;
-    }
-
     public void ResolveNodeReferences()
     {
         if (NodeReferencesResolved)
@@ -125,6 +100,28 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
 
         if (HasNode("SubViewport2"))
             subViewport2 = GetNode<SubViewport>("SubViewport2");
+    }
+
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+
+        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
+        Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
+
+        Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged += OnBackgroundBlurToggleChanged;
+    }
+
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+
+        Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
+        Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
+
+        Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged -= OnBackgroundBlurToggleChanged;
     }
 
     /// <summary>
@@ -214,14 +211,10 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
     private void OnBackgroundDistortionChanged(float value)
     {
         ApplyDistortionEffect();
-        ApplyBlurEffect();
     }
 
     private void ApplyDistortionEffect()
     {
-        if (currentBackgroundMaterial == null)
-            return;
-
         currentBackgroundMaterial.SetShaderParameter(distortionStrengthParameter,
             Settings.Instance.MicrobeDistortionStrength.Value);
     }
@@ -240,9 +233,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
     {
         float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
         bool enabled = blurStrength > 0 && Settings.Instance.MicrobeBackgroundBlurEnabled.Value;
-
-        if (blurPlane == null)
-            return;
 
         if (enabled)
         {
