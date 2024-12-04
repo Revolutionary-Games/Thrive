@@ -1,35 +1,34 @@
-[gd_scene load_steps=20 format=3 uid="uid://bako5jivv1dji"]
+[gd_scene load_steps=19 format=3 uid="uid://dyko4f6a4agwn"]
 
-[ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="1"]
-[ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="2"]
-[ext_resource type="Shader" path="res://shaders/BlurSpatial.gdshader" id="2_70a3p"]
-[ext_resource type="Script" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
-[ext_resource type="Script" path="res://src/microbe_stage/BackgroundPlane.cs" id="3_wwcfn"]
-[ext_resource type="Texture2D" uid="uid://bsvls5moner1g" path="res://assets/textures/background/Thrive_vent3.png" id="4"]
-[ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="5"]
-[ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="6"]
-[ext_resource type="Shader" path="res://shaders/Blur.gdshader" id="8_qrk01"]
+[ext_resource type="Shader" path="res://shaders/BlurSpatial.gdshader" id="1_iyjvf"]
+[ext_resource type="Script" path="res://src/microbe_stage/BackgroundPlane.cs" id="2_eprmh"]
+[ext_resource type="Shader" path="res://shaders/Blur.gdshader" id="3_s3lms"]
+[ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="4_5y6kw"]
+[ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="5_waqnb"]
+[ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="6_qx2cp"]
+[ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="7_g3bc7"]
+[ext_resource type="Texture2D" uid="uid://bsvls5moner1g" path="res://assets/textures/background/Thrive_vent3.png" id="8_yxu5g"]
 
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(800, 400)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
-viewport_path = NodePath("BackgroundPlane/SubViewport2")
+viewport_path = NodePath("SubViewport2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
 resource_local_to_scene = true
 render_priority = -100
-shader = ExtResource("2_70a3p")
+shader = ExtResource("1_iyjvf")
 shader_parameter/blurStep = Vector2(0, 1)
 shader_parameter/applyBlur = true
 shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
-viewport_path = NodePath("BackgroundPlane/SubViewport")
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
 resource_local_to_scene = true
-shader = ExtResource("8_qrk01")
+shader = ExtResource("3_s3lms")
 shader_parameter/blurStep = Vector2(1, 0)
 shader_parameter/applyBlur = true
 shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
@@ -52,48 +51,37 @@ noise = SubResource("FastNoiseLite_ve355")
 [sub_resource type="ShaderMaterial" id="2"]
 resource_local_to_scene = true
 render_priority = -100
-shader = ExtResource("5")
+shader = ExtResource("4_5y6kw")
 shader_parameter/lightLevel = 1.0
 shader_parameter/repeats = Vector2(2, 1)
 shader_parameter/distortionFactor = 0.0
 shader_parameter/distortionSpeed = 0.0025
 shader_parameter/layerAnimateSpeed = 0.4
 shader_parameter/worldPos = Vector2(0, 0)
-shader_parameter/layer0 = ExtResource("6")
-shader_parameter/layer1 = ExtResource("1")
-shader_parameter/layer2 = ExtResource("2")
-shader_parameter/layer3 = ExtResource("4")
+shader_parameter/layer0 = ExtResource("5_waqnb")
+shader_parameter/layer1 = ExtResource("6_qx2cp")
+shader_parameter/layer2 = ExtResource("7_g3bc7")
+shader_parameter/layer3 = ExtResource("8_yxu5g")
 shader_parameter/noiseTex1 = SubResource("NoiseTexture2D_f6pop")
 shader_parameter/noiseTex2 = SubResource("NoiseTexture2D_tsmw6")
 
-[node name="MicrobeCamera" type="Camera3D"]
-process_priority = 100
-transform = Transform3D(1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0)
-current = true
-fov = 90.0
-script = ExtResource("3")
-DefaultCameraHeight = 30.0
-
-[node name="AudioListener3D" type="AudioListener3D" parent="."]
-current = true
-
-[node name="BackgroundPlane" type="CSGMesh3D" parent="."]
+[node name="BackgroundPlane" type="CSGMesh3D"]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("ShaderMaterial_1sr76")
-script = ExtResource("3_wwcfn")
+script = ExtResource("2_eprmh")
 blurPlanePath = NodePath(".")
 blurColorRectPath = NodePath("SubViewport2/ColorRect")
 backgroundPlanePath = NodePath("SubViewport/BackgroundPlane")
 
-[node name="SubViewport2" type="SubViewport" parent="BackgroundPlane"]
+[node name="SubViewport2" type="SubViewport" parent="."]
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="ColorRect" type="ColorRect" parent="BackgroundPlane/SubViewport2"]
+[node name="ColorRect" type="ColorRect" parent="SubViewport2"]
 material = SubResource("ShaderMaterial_tdrj5")
 anchors_preset = 8
 anchor_left = 0.5
@@ -107,18 +95,18 @@ offset_bottom = 500.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="BackgroundPlane"]
+[node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="BackgroundPlane" type="CSGMesh3D" parent="BackgroundPlane/SubViewport"]
+[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("2")
 
-[node name="Camera3D" type="Camera3D" parent="BackgroundPlane/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 fov = 90.0
