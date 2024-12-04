@@ -1,6 +1,6 @@
-﻿using Godot;
+﻿using System;
+using Godot;
 using Newtonsoft.Json;
-using System;
 
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor

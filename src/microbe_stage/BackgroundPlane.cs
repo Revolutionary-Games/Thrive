@@ -4,9 +4,10 @@ using Godot;
 /// <summary>
 ///   Manages the microbe background plane, optionally applies blur.
 /// </summary>
-public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
+public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
 {
-    private readonly StringName applyBlurParameter = new("applyBlur");
+    private readonly StringName blurAmountParameter = new("blurAmount");
+    private readonly StringName textureAlbedoParameter = new("textureAlbedo");
     private readonly StringName worldPositionParameter = new("worldPos");
     private readonly StringName lightLevelParameter = new("lightLevel");
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
@@ -20,6 +21,9 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
     [Export]
     private NodePath backgroundPlanePath = null!;
 
+    [Export]
+    private Texture2D blankTexture = null!;
+
 #pragma warning disable CA2213
 
     /// <summary>
@@ -27,13 +31,19 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
     /// </summary>
     private Node3D backgroundPlane = null!;
 
+    private Node3D blurPlane = null!;
+
     private GpuParticles3D? backgroundParticles;
 
-    private ShaderMaterial? spatialBlurMaterial;
+    private ShaderMaterial spatialBlurMaterial = null!;
 
-    private ShaderMaterial? canvasBlurMaterial;
+    private ShaderMaterial canvasBlurMaterial = null!;
 
-    private ShaderMaterial? currentBackgroundMaterial;
+    private ShaderMaterial currentBackgroundMaterial = null!;
+
+    private SubViewport subViewport1 = null!;
+
+    private SubViewport subViewport2 = null!;
 #pragma warning restore CA2213
 
     public bool NodeReferencesResolved { get; private set; }
@@ -99,6 +109,15 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
 
         if (HasNode(backgroundPlanePath))
             backgroundPlane = GetNode<Node3D>(backgroundPlanePath);
+
+        if (HasNode(blurPlanePath))
+            blurPlane = GetNode<Node3D>(blurPlanePath);
+
+        if (HasNode("SubViewport"))
+            subViewport1 = GetNode<SubViewport>("SubViewport");
+
+        if (HasNode("SubViewport2"))
+            subViewport2 = GetNode<SubViewport>("SubViewport2");
     }
 
     /// <summary>
@@ -107,9 +126,6 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
     public void SetBackground(Background background)
     {
         // TODO: skip duplicate background changes
-
-        if (currentBackgroundMaterial == null)
-            throw new InvalidOperationException("Camera not initialized yet");
 
         for (int i = 0; i < 4; ++i)
         {
@@ -130,7 +146,7 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
 
     public void SetWorldPosition(Vector2 position)
     {
-        currentBackgroundMaterial?.SetShaderParameter(worldPositionParameter, position);
+        currentBackgroundMaterial.SetShaderParameter(worldPositionParameter, position);
     }
 
     public void SetVisibility(bool visible)
@@ -143,18 +159,20 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
 
     public void UpdateLightLevel(float lightLevel)
     {
-        currentBackgroundMaterial?.SetShaderParameter(lightLevelParameter, lightLevel);
+        currentBackgroundMaterial.SetShaderParameter(lightLevelParameter, lightLevel);
     }
 
     protected override void Dispose(bool disposing)
     {
         if (disposing)
         {
-            applyBlurParameter.Dispose();
+            textureAlbedoParameter.Dispose();
+            blurAmountParameter.Dispose();
             lightLevelParameter.Dispose();
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
-
+            blankTexture.Dispose();
+            
             if (blurPlanePath != null)
             {
                 blurPlanePath.Dispose();
@@ -194,14 +212,40 @@ public partial class BackgroundPlane : CsgMesh3D, IGodotEarlyNodeResolve
 
     private void ApplyDistortionEffect()
     {
-        currentBackgroundMaterial?.SetShaderParameter(distortionStrengthParameter,
+        if (currentBackgroundMaterial == null)
+            return;
+
+        currentBackgroundMaterial.SetShaderParameter(distortionStrengthParameter,
             Settings.Instance.MicrobeDistortionStrength.Value);
     }
 
     private void ApplyBlurEffect()
     {
-        bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0.0f;
-        canvasBlurMaterial?.SetShaderParameter(applyBlurParameter, enabled);
-        spatialBlurMaterial?.SetShaderParameter(applyBlurParameter, enabled);
+        float blurAmount = Settings.Instance.MicrobeBackgroundBlurStrength;
+        bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0 && blurAmount > 0;
+
+        if (enabled)
+        {
+            blurPlane.Visible = true;
+            canvasBlurMaterial.SetShaderParameter(blurAmountParameter, blurAmount);
+            spatialBlurMaterial.SetShaderParameter(blurAmountParameter, blurAmount);
+
+            RemoveChild(backgroundPlane);
+            subViewport1.AddChild(backgroundPlane);
+
+            canvasBlurMaterial.SetShaderParameter(textureAlbedoParameter, subViewport1.GetTexture());
+            spatialBlurMaterial.SetShaderParameter(textureAlbedoParameter, subViewport2.GetTexture());
+        }
+        else
+        {
+            blurPlane.Visible = false;
+
+            subViewport1.RemoveChild(backgroundPlane);
+            AddChild(backgroundPlane);
+
+            // Remove viewport textures from shaders, so that the viewports aren't rendered
+            canvasBlurMaterial.SetShaderParameter(textureAlbedoParameter, blankTexture);
+            spatialBlurMaterial.SetShaderParameter(textureAlbedoParameter, blankTexture);
+        }
     }
 }
