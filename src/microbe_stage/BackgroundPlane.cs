@@ -21,9 +21,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
     [Export]
     private NodePath backgroundPlanePath = null!;
 
-    [Export]
-    private Texture2D blankTexture = null!;
-
 #pragma warning disable CA2213
 
     /// <summary>
@@ -175,7 +172,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
             lightLevelParameter.Dispose();
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
-            blankTexture.Dispose();
 
             if (blurPlanePath != null)
             {
@@ -247,8 +243,8 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
                 subViewport1.AddChild(backgroundPlane);
             }
 
-            canvasBlurMaterial.SetShaderParameter(textureAlbedoParameter, subViewport1.GetTexture());
-            spatialBlurMaterial.SetShaderParameter(textureAlbedoParameter, subViewport2.GetTexture());
+            subViewport1.RenderTargetUpdateMode = SubViewport.UpdateMode.WhenVisible;
+            subViewport2.RenderTargetUpdateMode = SubViewport.UpdateMode.WhenVisible;
         }
         else
         {
@@ -258,9 +254,8 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
                 AddChild(backgroundPlane);
             }
 
-            // Remove viewport textures from shaders, so that the viewports aren't rendered
-            canvasBlurMaterial.SetShaderParameter(textureAlbedoParameter, blankTexture);
-            spatialBlurMaterial.SetShaderParameter(textureAlbedoParameter, blankTexture);
+            subViewport1.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
+            subViewport2.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
 
             blurPlane.Visible = false;
         }

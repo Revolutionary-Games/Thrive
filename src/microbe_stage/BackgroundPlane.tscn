@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyko4f6a4agwn"]
+[gd_scene load_steps=19 format=3 uid="uid://dyko4f6a4agwn"]
 
 [ext_resource type="Shader" path="res://shaders/BlurSpatial.gdshader" id="1_iyjvf"]
 [ext_resource type="Script" path="res://src/microbe_stage/BackgroundPlane.cs" id="2_eprmh"]
-[ext_resource type="Texture2D" uid="uid://dtvbg17mj0i35" path="res://assets/textures/blank.png" id="2_ortq4"]
 [ext_resource type="Shader" path="res://shaders/Blur.gdshader" id="3_s3lms"]
 [ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="4_5y6kw"]
 [ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="5_waqnb"]
@@ -71,7 +70,6 @@ script = ExtResource("2_eprmh")
 blurPlanePath = NodePath("BlurPlane")
 blurColorRectPath = NodePath("SubViewport2/ColorRect")
 backgroundPlanePath = NodePath("SubViewport/BackgroundPlane")
-blankTexture = ExtResource("2_ortq4")
 
 [node name="BlurPlane" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
@@ -83,7 +81,6 @@ material = SubResource("ShaderMaterial_1sr76")
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_update_mode = 4
 
 [node name="ColorRect" type="ColorRect" parent="SubViewport2"]
 material = SubResource("ShaderMaterial_tdrj5")
@@ -103,7 +100,6 @@ grow_vertical = 2
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_update_mode = 4
 
 [node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
