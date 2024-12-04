@@ -3075,15 +3075,17 @@ public partial class CellEditorComponent :
         private readonly Action<MicrobeSpecies> applyLatestEditsToSpecies;
         private readonly GameProperties currentGameProperties;
         private readonly Species editorOpenedForSpecies;
+        private readonly SimulationCache simulationCache;
 
         private readonly Random random = new();
         private readonly List<Hex> workMemory1 = new();
         private readonly List<Hex> workMemory2 = new();
 
         private AutoEvoRun? currentRun;
+        private BiomeConditions? biome;
 
         private bool calculatedNoChange;
-        private float bestResult;
+        private double bestResult;
         private OrganelleDefinition? bestOrganelle;
 
         private bool resultRead;
@@ -3097,16 +3099,28 @@ public partial class CellEditorComponent :
             this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
             this.currentGameProperties = currentGameProperties;
             editorOpenedForSpecies = editedSpecies;
+
+            simulationCache = new SimulationCache(currentGameProperties.GameWorld.WorldSettings);
         }
 
         public bool IsCompleted { get; private set; }
+
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        /// <summary>
+        ///   If true then pure population numbers are used as the score for the suggestions (if false an energy
+        ///   estimation is used). This value can be changed to experiment with the results.
+        /// </summary>
+        public bool UsePurePopulationScore { get; set; }
 
         /// <summary>
         ///   Setup this for a new suggestion calculation
         /// </summary>
         /// <param name="organellesToTry">Valid organelles to try in the suggestion</param>
-        public void StartNew(List<OrganelleDefinition> organellesToTry)
+        /// <param name="selectedPatch">Patch conditions to simulate in</param>
+        public void StartNew(List<OrganelleDefinition> organellesToTry, Patch selectedPatch)
         {
+            biome = selectedPatch.Biome;
+
             if (currentRun != null)
             {
                 GD.PrintErr("Starting new suggestion run even though there is one in-progress");
@@ -3143,7 +3157,24 @@ public partial class CellEditorComponent :
                 if (currentRun.Results == null)
                     throw new InvalidOperationException("Auto-evo suggestion doesn't have results object");
 
-                var score = currentRun.Results.GetGlobalPopulation(calculationSpecies);
+                if (biome == null)
+                    throw new InvalidOperationException("Biome not initialized for suggestion");
+
+                double score;
+                if (UsePurePopulationScore)
+                {
+                    score = currentRun.Results.GetGlobalPopulation(calculationSpecies);
+                }
+                else
+                {
+                    // Need to clear cache as we re-use the species objects so caching would be incorrect
+                    simulationCache.Clear();
+
+                    var individualCost =
+                        MichePopulation.CalculateMicrobeIndividualCost(calculationSpecies, biome, simulationCache);
+
+                    score = currentRun.Results.GetGlobalPopulation(calculationSpecies) * individualCost;
+                }
 
                 // Store result of run
                 if (!calculatedNoChange)

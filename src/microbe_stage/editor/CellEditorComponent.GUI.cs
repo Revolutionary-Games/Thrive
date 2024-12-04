@@ -142,7 +142,7 @@ public partial class CellEditorComponent
                             Editor.CurrentGame, Editor.EditedBaseSpecies);
                 }
 
-                inProgressSuggestion.StartNew(DetectAvailableOrganelles());
+                inProgressSuggestion.StartNew(DetectAvailableOrganelles(), Editor.CurrentPatch);
                 suggestionDirty = false;
             }
         }
