@@ -103,9 +103,9 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
 
-		Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
-		Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged -= OnBackgroundBlurToggleChanged;
-	}
+        Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
+        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged -= OnBackgroundBlurToggleChanged;
+    }
 
     public void ResolveNodeReferences()
     {
