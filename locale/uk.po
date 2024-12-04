@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-04 13:09+0200\n"
 "PO-Revision-Date: 2024-11-19 19:46+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -614,6 +614,10 @@ msgstr "Целюлоза"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, внаслідок чого краще захищає від пошкоджень, особливо від фізичних. Вона також витрачає менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішою. [b]Целюлаза здатна перетравлювати цю стінку[/b], роблячи її вразливою для поглинання хижаками."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
@@ -4011,6 +4015,10 @@ msgstr "Не знайдено каталог скріншотів"
 msgid "NO_SELECTED_MOD"
 msgstr "Немає вибраного моду"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Роздільна здатність:"
+
 msgid "NUCLEUS"
 msgstr "Ядро"
 
@@ -4177,6 +4185,14 @@ msgstr "{0} органели"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} органела"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Завантажити раніше збережену гру"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Ввімкнено відкриття органел"
@@ -8148,10 +8164,6 @@ msgstr "Віддалитись"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16х"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Роздільна здатність:"
 
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""

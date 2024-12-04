@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-04 13:09+0200\n"
 "PO-Revision-Date: 2023-10-12 00:43+0000\n"
 "Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
@@ -621,6 +621,10 @@ msgstr "Celiuliozė"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ši membrana turi sienelę, todėl geriau apsaugo nuo bendros žalos ir ypač nuo fizinės žalos. Be to, jos formai išlaikyti reikia mažiau energijos, tačiau ji negali greitai įsisavinti išteklių ir yra lėtesnė. [b]Šią sienelę gali suvirškinti celiulazė[/b], todėl ji tampa pažeidžiama plėšrūnų."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Ląstelės Tipo Pavadinimas"
@@ -3891,6 +3895,10 @@ msgstr ""
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Aprašymas:"
+
 msgid "NUCLEUS"
 msgstr ""
 
@@ -4054,6 +4062,14 @@ msgstr ""
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Įkelti anksčiau išsaugotus žaidimus"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
@@ -7791,10 +7807,6 @@ msgstr ""
 
 #~ msgid "BASSUP"
 #~ msgstr "Didinti Žemus Dažnius"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Aprašymas:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-04 13:09+0200\n"
 "PO-Revision-Date: 2024-11-16 19:09+0000\n"
 "Last-Translator: Adam David <adabab0909@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -621,6 +621,10 @@ msgstr "Celulóza"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což způsobuje lepší ochranu proti poškození, a obzvláště fyzickému poškození. Také potřebuje méně energie k zachování své formy, ale je pomalejší jak v pohybu tak v absorbování živin. [b]Celuláza může tuto stěnu strávit[/b], což ji dělá bezbrannou vůči vstřebání predátorem."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
@@ -4245,6 +4249,10 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozlišení:"
+
 msgid "NUCLEUS"
 msgstr "Jádro"
 
@@ -4426,6 +4434,14 @@ msgstr "Dravý/útočný Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Dravý/útočný Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Načíst předešlé uložené hry"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -8464,10 +8480,6 @@ msgstr "Oddálit"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlišení:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

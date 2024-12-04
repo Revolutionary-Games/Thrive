@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-04 13:09+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -618,6 +618,10 @@ msgstr "Zellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur langsam absorbieren und ist langsamer."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze Zahl sein.)"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
@@ -4156,6 +4160,10 @@ msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 msgid "NO_SELECTED_MOD"
 msgstr "Kein Mod ausgewählt"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Auflösung:"
+
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
@@ -4336,6 +4344,14 @@ msgstr "Raubtier-Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Raubtier-Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organellen"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Ein zuvor gespeichertes Spiel laden"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -8382,10 +8398,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Auflösung:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

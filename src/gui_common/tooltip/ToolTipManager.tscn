@@ -158,6 +158,7 @@ layout_mode = 0
 DisplayName = "MEMBRANE_RIGIDITY"
 Description = "RIGIDITY_MEMBRANE_DESCRIPTION"
 MutationPointCost = 2
+ShowOsmoregulation = false
 
 [node name="RequiresNucleus" parent="GroupHolder/editor/rigiditySlider/MarginContainer/VBoxContainer" index="1"]
 visible = false
@@ -349,13 +350,13 @@ layout_mode = 2
 DisplayName = "PHYSICAL_RESISTANCE"
 ModifierIcon = ExtResource("15")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/cellulose/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
@@ -397,13 +398,13 @@ layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="4" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
 ShowValue = false
 
-[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="engulfInvulnerable" parent="GroupHolder/membraneSelection/chitin/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "RESISTANT_TO_BASIC_ENGULFMENT"
 ModifierNameFont = ExtResource("17_ftkue")
@@ -450,7 +451,7 @@ layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/calciumCarbonate/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")
@@ -498,7 +499,7 @@ layout_mode = 2
 DisplayName = "TOXIN_RESISTANCE"
 ModifierIcon = ExtResource("16")
 
-[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="5" instance=ExtResource("2")]
+[node name="canEngulf" parent="GroupHolder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList" index="6" instance=ExtResource("2")]
 layout_mode = 2
 DisplayName = "CANNOT_ENGULF"
 ModifierNameFont = ExtResource("16_dd0bc")

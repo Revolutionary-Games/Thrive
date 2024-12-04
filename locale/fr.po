@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-04 13:09+0200\n"
 "PO-Revision-Date: 2024-10-31 16:02+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -615,6 +615,10 @@ msgstr "Cellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane est dotée d'un mur, ce qui lui confère une meilleure protection contre les dégâts généraux et surtout contre les dégâts physiques. Elle coûte également moins d'énergie pour conserver sa forme, mais ne peut absorber les ressources rapidement et est plus lente. [b]La cellulase peut digérer cette paroi[/b], ce qui la rend vulnérable à l'engloutissement par les prédateurs."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
@@ -4069,6 +4073,10 @@ msgstr "Pas de dossier de captures d'écrans trouvé"
 msgid "NO_SELECTED_MOD"
 msgstr "Aucun mod sélectionné"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Résolution :"
+
 msgid "NUCLEUS"
 msgstr "Noyau"
 
@@ -4238,6 +4246,14 @@ msgstr "{0} organites"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organite"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axone"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Charger les sauvegardes précédentes"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Déverrouillage des organites activé"
@@ -8288,10 +8304,6 @@ msgstr "Dézoomer"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Résolution :"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"
