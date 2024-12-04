@@ -77,6 +77,7 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         canvasBlurMaterial = (ShaderMaterial)colorRectBlurMaterial;
 
         ResolveNodeReferences();
+
         ApplyDistortionEffect();
         ApplyBlurEffect();
     }
@@ -172,7 +173,7 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
             blankTexture.Dispose();
-            
+
             if (blurPlanePath != null)
             {
                 blurPlanePath.Dispose();
@@ -224,28 +225,38 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         float blurAmount = Settings.Instance.MicrobeBackgroundBlurStrength;
         bool enabled = Settings.Instance.MicrobeDistortionStrength.Value > 0 && blurAmount > 0;
 
+        if (blurPlane == null)
+            return;
+
         if (enabled)
         {
             blurPlane.Visible = true;
+
             canvasBlurMaterial.SetShaderParameter(blurAmountParameter, blurAmount);
             spatialBlurMaterial.SetShaderParameter(blurAmountParameter, blurAmount);
 
-            RemoveChild(backgroundPlane);
-            subViewport1.AddChild(backgroundPlane);
+            if (backgroundPlane.GetParent() == this)
+            {
+                RemoveChild(backgroundPlane);
+                subViewport1.AddChild(backgroundPlane);
+            }
 
             canvasBlurMaterial.SetShaderParameter(textureAlbedoParameter, subViewport1.GetTexture());
             spatialBlurMaterial.SetShaderParameter(textureAlbedoParameter, subViewport2.GetTexture());
         }
         else
         {
-            blurPlane.Visible = false;
-
-            subViewport1.RemoveChild(backgroundPlane);
-            AddChild(backgroundPlane);
+            if (backgroundPlane.GetParent() != this)
+            {
+                subViewport1.RemoveChild(backgroundPlane);
+                AddChild(backgroundPlane);
+            }
 
             // Remove viewport textures from shaders, so that the viewports aren't rendered
             canvasBlurMaterial.SetShaderParameter(textureAlbedoParameter, blankTexture);
             spatialBlurMaterial.SetShaderParameter(textureAlbedoParameter, blankTexture);
+
+            blurPlane.Visible = false;
         }
     }
 }

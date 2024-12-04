@@ -1,19 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bako5jivv1dji"]
+[gd_scene load_steps=3 format=3 uid="uid://bako5jivv1dji"]
 
-[ext_resource type="Shader" path="res://shaders/BlurSpatial.gdshader" id="2_70a3p"]
 [ext_resource type="PackedScene" uid="uid://dyko4f6a4agwn" path="res://src/microbe_stage/BackgroundPlane.tscn" id="2_yrakl"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_ihdi7"]
-viewport_path = NodePath("SubViewport2")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a4fno"]
-resource_local_to_scene = true
-render_priority = -100
-shader = ExtResource("2_70a3p")
-shader_parameter/blurStep = Vector2(0, 1)
-shader_parameter/blurAmount = 1.0
-shader_parameter/textureAlbedo = SubResource("ViewportTexture_ihdi7")
 
 [node name="MicrobeCamera" type="Camera3D"]
 process_priority = 100
@@ -27,4 +15,3 @@ DefaultCameraHeight = 30.0
 current = true
 
 [node name="BackgroundPlane" parent="." instance=ExtResource("2_yrakl")]
-material = SubResource("ShaderMaterial_a4fno")
