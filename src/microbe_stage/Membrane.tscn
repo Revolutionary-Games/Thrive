@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://jgcbwcrqbblv"]
+[gd_scene load_steps=13 format=3 uid="uid://jgcbwcrqbblv"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/Membrane.cs" id="1"]
 [ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dnxx08njuvfha" path="res://assets/textures/SingleMembraneDamaged.png" id="4_yioiy"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="5"]
 [ext_resource type="Shader" path="res://shaders/EngulfEffect.gdshader" id="6_vljlr"]
+[ext_resource type="Texture2D" uid="uid://bvxwsysj3kj2j" path="res://assets/textures/MembraneNormals.png" id="6_wjsrx"]
 [ext_resource type="Shader" path="res://shaders/MucocystEffect.gdshader" id="7_grw0d"]
 
 [sub_resource type="BoxMesh" id="1"]
@@ -22,6 +23,7 @@ shader_parameter/healthFraction = 0.25
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/albedoTexture = ExtResource("3_mj630")
 shader_parameter/damagedTexture = ExtResource("4_yioiy")
+shader_parameter/normal2Texture = ExtResource("6_wjsrx")
 shader_parameter/dissolveTexture = ExtResource("5")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p8cmc"]

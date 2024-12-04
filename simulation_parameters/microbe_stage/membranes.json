@@ -1,4 +1,4 @@
-﻿{
+{
   "single": {
     "Name": "NORMAL",
     "CellWall": false,
@@ -58,9 +58,9 @@
     "Name": "CHITIN",
     "CellWall": true,
     "DissolverEnzyme": "chitinase",
-    "AlbedoTexture": "res://assets/textures/ChitinCellWallGradient.png",
-    "NormalTexture": "res://assets/textures/DoubleMembrane_normal.png",
-    "DamagedTexture": "res://assets/textures/ChitinCellWallGradientDamaged.png",
+    "AlbedoTexture": "res://assets/textures/ChitinMembrane.png",
+    "NormalTexture": "res://assets/textures/ChitinMembrane_normal.png",
+    "DamagedTexture": "res://assets/textures/ChitinMembraneDamaged.png",
     "MovementFactor": 0.9,
     "BaseWigglyness": 0.45,
     "MovementWigglyness": 0.85,
@@ -81,7 +81,7 @@
     "DamagedTexture": "res://assets/textures/CarbonateMembraneDamaged.png",
     "MovementFactor": 0.8,
     "BaseWigglyness": 0.3,
-    "MovementWigglyness": 0.4,
+    "MovementWigglyness": 0.5,
     "OsmoregulationFactor": 0.6,
     "ResourceAbsorptionFactor": 0.6,
     "Hitpoints": 140,
@@ -99,7 +99,7 @@
     "DamagedTexture": "res://assets/textures/SilicaMembraneDamaged.png",
     "MovementFactor": 0.8,
     "BaseWigglyness": 0.25,
-    "MovementWigglyness": 0.4,
+    "MovementWigglyness": 0.45,
     "OsmoregulationFactor": 0.6,
     "ResourceAbsorptionFactor": 0.6,
     "Hitpoints": 140,
