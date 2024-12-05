@@ -41,17 +41,19 @@ public partial class BackgroundPlane : Node3D
     private ShaderMaterial canvasBlurMaterial = null!;
 #pragma warning restore CA2213
 
+    private bool blurEnabledLastTime = true;
+
     public bool NodeReferencesResolved { get; private set; }
 
     public float PlaneOffset
     {
         get
         {
-            return backgroundPlane.Position.Z + 15;
+            return backgroundPlane.Position.Z;
         }
         set
         {
-            backgroundPlane.Position = new Vector3(0, 0, -15 + value);
+            backgroundPlane.Position = new Vector3(0, 0, value);
         }
     }
 
@@ -63,7 +65,7 @@ public partial class BackgroundPlane : Node3D
 
         if (material == null || planeBlurMaterial == null || colorRectBlurMaterial == null)
         {
-            GD.PrintErr("MicrobeCamera didn't find material to update");
+            GD.PrintErr("BackgroundPlane didn't find material to update");
             return;
         }
 
@@ -162,7 +164,7 @@ public partial class BackgroundPlane : Node3D
     {
         if (backgroundParticles == null)
         {
-            GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
+            GD.PrintErr("BackgroundPlane didn't find background particles on settings change");
             return;
         }
 
@@ -204,12 +206,16 @@ public partial class BackgroundPlane : Node3D
         float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
         bool enabled = blurStrength > 0;
 
+        if (blurEnabledLastTime == enabled)
+            return;
+
+        blurEnabledLastTime = enabled;
+
         if (enabled)
         {
             blurPlane.Visible = true;
 
-            canvasBlurMaterial.SetShaderParameter(blurAmountParameter, blurStrength);
-            spatialBlurMaterial.SetShaderParameter(blurAmountParameter, blurStrength);
+            SetBlurStrength(blurStrength);
 
             if (backgroundPlane.GetParent() == this)
             {
@@ -217,8 +223,8 @@ public partial class BackgroundPlane : Node3D
                 subViewport1.AddChild(backgroundPlane);
             }
 
-            subViewport1.RenderTargetUpdateMode = SubViewport.UpdateMode.WhenVisible;
-            subViewport2.RenderTargetUpdateMode = SubViewport.UpdateMode.WhenVisible;
+            subViewport1.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
+            subViewport2.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
         }
         else
         {
@@ -233,5 +239,11 @@ public partial class BackgroundPlane : Node3D
 
             blurPlane.Visible = false;
         }
+    }
+
+    private void SetBlurStrength(float value)
+    {
+        canvasBlurMaterial.SetShaderParameter(blurAmountParameter, value);
+        spatialBlurMaterial.SetShaderParameter(blurAmountParameter, value);
     }
 }
