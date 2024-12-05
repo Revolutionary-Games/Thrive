@@ -138,6 +138,14 @@ public static class NativeInterop
         {
             var result = CheckCPUFeaturesFull();
 
+            // Apple doesn't support x86 extensions so we nudge things on the right track here
+            if (OperatingSystem.IsMacOS())
+            {
+                GD.Print("Mac detected so skipping CPU check and not trying to use AVX");
+                disableAvx = true;
+                return true;
+            }
+
             // If the CPU can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
             {
