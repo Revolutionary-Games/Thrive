@@ -107,7 +107,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
-        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged += OnBackgroundBlurToggleChanged;
     }
 
     public override void _ExitTree()
@@ -118,7 +117,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
-        Settings.Instance.MicrobeBackgroundBlurEnabled.OnChanged -= OnBackgroundBlurToggleChanged;
     }
 
     /// <summary>
@@ -228,7 +226,7 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
     private void ApplyBlurEffect()
     {
         float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
-        bool enabled = blurStrength > 0 && Settings.Instance.MicrobeBackgroundBlurEnabled.Value;
+        bool enabled = blurStrength > 0;
 
         if (enabled)
         {

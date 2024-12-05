@@ -389,9 +389,6 @@ public partial class OptionsMenu : ControlWithInput
     private Slider bloomSlider = null!;
 
     [Export]
-    private Button blurEffectToggle = null!;
-
-    [Export]
     private Slider blurSlider = null!;
 
     private Label gpuName = null!;
@@ -859,9 +856,7 @@ public partial class OptionsMenu : ControlWithInput
         bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
         bloomSlider.Value = settings.BloomStrength;
         bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
-        blurEffectToggle.ButtonPressed = settings.MicrobeBackgroundBlurEnabled;
         blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
-        blurSlider.Editable = settings.MicrobeBackgroundBlurEnabled || !DisableInactiveSliders;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -2085,14 +2080,6 @@ public partial class OptionsMenu : ControlWithInput
     private void OnBloomStrengthChanged(float value)
     {
         Settings.Instance.BloomStrength.Value = value;
-
-        UpdateResetSaveButtonState();
-    }
-
-    private void OnBlurToggled(bool toggle)
-    {
-        Settings.Instance.MicrobeBackgroundBlurEnabled.Value = toggle;
-        blurSlider.Editable = toggle || !DisableInactiveSliders;
 
         UpdateResetSaveButtonState();
     }
