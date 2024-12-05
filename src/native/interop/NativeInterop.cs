@@ -11,6 +11,7 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using DevCenterCommunication.Models.Enums;
 using Godot;
+using SharedBase.Models;
 using SharedBase.Utilities;
 
 /// <summary>
@@ -460,27 +461,66 @@ public static class NativeInterop
 
         if (library == NativeConstants.Library.ThriveExtension)
         {
-            // Special GDExtension handling, we assume Godot has already loaded it
-
-            var modules = Process.GetCurrentProcess().Modules;
-            var count = modules.Count;
-
-            for (var i = 0; i < count; ++i)
+            if (!OperatingSystem.IsMacOS())
             {
-                var module = modules[i];
+                // Special GDExtension handling, we assume Godot has already loaded it
 
-                if (module.ModuleName.Contains("thrive_extension"))
+                var modules = Process.GetCurrentProcess().Modules;
+                var count = modules.Count;
+
+                for (var i = 0; i < count; ++i)
                 {
+                    var module = modules[i];
+
+                    if (module.ModuleName.Contains("thrive_extension"))
+                    {
 #if DEBUG_LIBRARY_LOAD
-                    GD.Print($"Trying to use already loaded module path: {module.FileName}");
+                        GD.Print($"Trying to use already loaded module path: {module.FileName}");
 #endif
 
-                    return NativeLibrary.Load(module.FileName);
+                        return NativeLibrary.Load(module.FileName);
+                    }
                 }
-            }
 
-            GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
-                "will likely fail");
+                GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
+                    "will likely fail");
+            }
+            else
+            {
+                // For some reason the modules list stays at one item on a Mac so we need to do some special assuming
+                // here
+                // TODO: this will be problematic in the future if debug specific version of libraries are added as
+                // supported in the .gdextension files
+
+                var file = NativeConstants.GetLibraryDllName(NativeConstants.Library.ThriveExtension,
+                    PackagePlatform.Mac, PrecompiledTag.WithoutAvx);
+
+                if (File.Exists(file))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {file}");
+#endif
+
+                    return NativeLibrary.Load(file);
+                }
+
+                file = Path.Combine("lib", file);
+
+                if (File.Exists(file))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {file}");
+#endif
+
+                    return NativeLibrary.Load(file);
+                }
+
+                // TODO: does the .app packaging need special handling?
+
+                GD.PrintErr(
+                    "Mac GDExtension special load logic failed, falling back to default library load but this " +
+                    "will likely fail");
+            }
 
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
