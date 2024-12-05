@@ -13,6 +13,7 @@ add_library(thrive_extension SHARED
   core/ThriveConfig.cpp core/ThriveConfig.hpp
   interop/ExtensionInterop.cpp interop/ExtensionInterop.h
   nodes/DebugDrawer.cpp nodes/DebugDrawer.hpp
+  nodes/Ripple.cpp nodes/Ripple.hpp
   core/GodotJoltConversions.hpp
 )
 
