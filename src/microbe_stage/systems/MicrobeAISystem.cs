@@ -280,6 +280,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         ref var control = ref entity.Get<MicrobeControl>();
 
+        ref var cellHealth = ref entity.Get<Health>();
+
         var compounds = entity.Get<CompoundStorage>().Compounds;
 
         // Adjusted behaviour values (calculated here as these are needed by various methods)
@@ -317,8 +319,10 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             return;
         }
 
+        float atpLevel = compounds.GetCompoundAmount(Compound.ATP);
+
         // If this microbe is out of ATP, pick an amount of time to rest
-        if (compounds.GetCompoundAmount(Compound.ATP) < 1.0f)
+        if (atpLevel < 1.0f)
         {
             // Keep the maximum at 95% full, as there is flickering when near full
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
@@ -326,15 +330,19 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         if (ai.ATPThreshold > MathUtils.EPSILON)
         {
-            if (compounds.GetCompoundAmount(Compound.ATP) <
-                compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
+            if (atpLevel < atpLevel * ai.ATPThreshold)
             {
-                // even if we are out of ATP and there is microbe nearby, engulf them
-                bool isMicrobeHunting = CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies,
-                    ref engulfer, ref cellProperties, ref control, entity, compounds, speciesFocus, speciesAggression,
-                    speciesActivity, speciesOpportunism, strain, random, true);
-                if (isMicrobeHunting)
-                    return;
+                if (cellHealth.CurrentHealth > 2 * Constants.ENGULF_NO_ATP_DAMAGE)
+                {
+                    // even if we are out of ATP and there is microbe nearby, engulf them.
+                    // make sure engulfing doesn't kill the cell
+                    bool isMicrobeHunting = CheckForHuntingConditions(ref ai, ref position, ref organelles,
+                        ref ourSpecies, ref engulfer, ref cellProperties, ref control, entity, compounds,
+                        speciesFocus, speciesAggression, speciesActivity, speciesOpportunism, strain,
+                        random, true);
+                    if (isMicrobeHunting)
+                        return;
+                }
 
                 bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
