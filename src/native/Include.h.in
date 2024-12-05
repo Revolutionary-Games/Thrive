@@ -73,7 +73,16 @@
 #if _MSC_VER
 #define HYPER_THREAD_YIELD _mm_pause()
 #else
+// Apple clang doesn't have this so it needs a different approach
+#ifdef __apple_build_version__
+#ifdef __aarch64__
+#define HYPER_THREAD_YIELD __asm__ ( "isb;" );
+#else
+#define HYPER_THREAD_YIELD __asm__ ( "pause;" );
+#endif // ARM
+#else
 #define HYPER_THREAD_YIELD __builtin_ia32_pause()
+#endif // __apple_build_version__
 #endif
 
 // 64-bit pointers. TODO: support for 32-bit compiling?
