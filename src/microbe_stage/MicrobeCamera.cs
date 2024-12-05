@@ -79,6 +79,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
 #pragma warning disable CA2213
     [JsonIgnore]
+    [Export]
     private BackgroundPlane backgroundPlane = null!;
 #pragma warning restore CA2213
 
@@ -152,8 +153,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     public override void _Ready()
     {
-        backgroundPlane = GetNode<BackgroundPlane>("BackgroundPlane");
-
         ResolveNodeReferences();
 
         if (!IsLoadedFromSave)

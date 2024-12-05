@@ -3,13 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://dyko4f6a4agwn" path="res://src/microbe_stage/BackgroundPlane.tscn" id="2_yrakl"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeCamera.cs" id="3"]
 
-[node name="MicrobeCamera" type="Camera3D"]
+[node name="MicrobeCamera" type="Camera3D" node_paths=PackedStringArray("backgroundPlane")]
 process_priority = 100
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0)
 current = true
 fov = 90.0
 script = ExtResource("3")
 DefaultCameraHeight = 30.0
+backgroundPlane = NodePath("BackgroundPlane")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="."]
 current = true

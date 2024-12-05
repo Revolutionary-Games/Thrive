@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Manages the microbe background plane, optionally applies blur.
 /// </summary>
-public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
+public partial class BackgroundPlane : Node3D
 {
     private readonly StringName blurAmountParameter = new("blurAmount");
     private readonly StringName textureAlbedoParameter = new("textureAlbedo");
@@ -12,35 +12,33 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
     private readonly StringName lightLevelParameter = new("lightLevel");
     private readonly StringName distortionStrengthParameter = new("distortionFactor");
 
-    [Export]
-    private NodePath? blurPlanePath;
-
-    [Export]
-    private NodePath blurColorRectPath = null!;
-
-    [Export]
-    private NodePath backgroundPlanePath = null!;
-
 #pragma warning disable CA2213
 
     /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
-    private Node3D backgroundPlane = null!;
+    [Export]
+    private CsgMesh3D backgroundPlane = null!;
 
-    private Node3D blurPlane = null!;
+    [Export]
+    private CsgMesh3D blurPlane = null!;
+
+    [Export]
+    private ColorRect blurColorRect = null!;
 
     private GpuParticles3D? backgroundParticles;
+
+    [Export]
+    private SubViewport subViewport1 = null!;
+
+    [Export]
+    private SubViewport subViewport2 = null!;
+
+    private ShaderMaterial currentBackgroundMaterial = null!;
 
     private ShaderMaterial spatialBlurMaterial = null!;
 
     private ShaderMaterial canvasBlurMaterial = null!;
-
-    private ShaderMaterial currentBackgroundMaterial = null!;
-
-    private SubViewport subViewport1 = null!;
-
-    private SubViewport subViewport2 = null!;
 #pragma warning restore CA2213
 
     public bool NodeReferencesResolved { get; private set; }
@@ -59,9 +57,9 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
 
     public override void _Ready()
     {
-        var material = GetNode<CsgMesh3D>(backgroundPlanePath).Material;
-        var planeBlurMaterial = GetNode<CsgMesh3D>(blurPlanePath).Material;
-        var colorRectBlurMaterial = GetNode<CanvasItem>(blurColorRectPath).Material;
+        var material = backgroundPlane.Material;
+        var planeBlurMaterial = blurPlane.Material;
+        var colorRectBlurMaterial = blurColorRect.Material;
 
         if (material == null || planeBlurMaterial == null || colorRectBlurMaterial == null)
         {
@@ -73,30 +71,8 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
         spatialBlurMaterial = (ShaderMaterial)planeBlurMaterial;
         canvasBlurMaterial = (ShaderMaterial)colorRectBlurMaterial;
 
-        ResolveNodeReferences();
-
         ApplyDistortionEffect();
         ApplyBlurEffect();
-    }
-
-    public void ResolveNodeReferences()
-    {
-        if (NodeReferencesResolved)
-            return;
-
-        NodeReferencesResolved = true;
-
-        if (HasNode(backgroundPlanePath))
-            backgroundPlane = GetNode<Node3D>(backgroundPlanePath);
-
-        if (HasNode(blurPlanePath))
-            blurPlane = GetNode<Node3D>(blurPlanePath);
-
-        if (HasNode("SubViewport"))
-            subViewport1 = GetNode<SubViewport>("SubViewport");
-
-        if (HasNode("SubViewport2"))
-            subViewport2 = GetNode<SubViewport>("SubViewport2");
     }
 
     public override void _EnterTree()
@@ -170,13 +146,6 @@ public partial class BackgroundPlane : Node3D, IGodotEarlyNodeResolve
             lightLevelParameter.Dispose();
             distortionStrengthParameter.Dispose();
             worldPositionParameter.Dispose();
-
-            if (blurPlanePath != null)
-            {
-                blurPlanePath.Dispose();
-                blurColorRectPath.Dispose();
-                backgroundPlanePath.Dispose();
-            }
         }
 
         base.Dispose(disposing);

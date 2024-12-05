@@ -65,11 +65,13 @@ shader_parameter/layer3 = ExtResource("8_yxu5g")
 shader_parameter/noiseTex1 = SubResource("NoiseTexture2D_f6pop")
 shader_parameter/noiseTex2 = SubResource("NoiseTexture2D_tsmw6")
 
-[node name="BackgroundPlane" type="Node3D"]
+[node name="BackgroundPlane" type="Node3D" node_paths=PackedStringArray("backgroundPlane", "blurPlane", "blurColorRect", "subViewport1", "subViewport2")]
 script = ExtResource("2_eprmh")
-blurPlanePath = NodePath("BlurPlane")
-blurColorRectPath = NodePath("SubViewport2/ColorRect")
-backgroundPlanePath = NodePath("SubViewport/BackgroundPlane")
+backgroundPlane = NodePath("SubViewport/BackgroundPlane")
+blurPlane = NodePath("BlurPlane")
+blurColorRect = NodePath("SubViewport2/ColorRect")
+subViewport1 = NodePath("SubViewport")
+subViewport2 = NodePath("SubViewport2")
 
 [node name="BlurPlane" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
