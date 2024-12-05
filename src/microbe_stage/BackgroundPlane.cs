@@ -75,6 +75,13 @@ public partial class BackgroundPlane : Node3D
         ApplyBlurEffect();
     }
 
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        SetWorldPosition(new Vector2(Position.X, Position.Z));
+    }
+
     public override void _EnterTree()
     {
         base._EnterTree();
