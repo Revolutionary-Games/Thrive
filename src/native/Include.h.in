@@ -76,7 +76,7 @@
 // Apple clang doesn't have this so it needs a different approach
 #ifdef __apple_build_version__
 #ifdef __aarch64__
-#define HYPER_THREAD_YIELD __asm__ ( "isb;" );
+#define HYPER_THREAD_YIELD __asm__ ( "isb SY;" );
 #else
 #define HYPER_THREAD_YIELD __asm__ ( "pause;" );
 #endif // ARM
