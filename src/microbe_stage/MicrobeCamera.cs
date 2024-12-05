@@ -299,16 +299,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         backgroundPlane.SetBackground(background);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            // Nothing to dispose
-        }
-
-        base.Dispose(disposing);
-    }
-
     private void UpdateBackgroundVisibility()
     {
         backgroundPlane.SetVisibility(Current);
