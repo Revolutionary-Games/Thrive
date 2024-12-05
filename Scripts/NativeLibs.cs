@@ -71,6 +71,10 @@ public class NativeLibs
         earlyCheckPrecompiledId = new Lazy<Task<long>>(GetEarlyCheckLibraryId);
         thriveExtensionPrecompiledId = new Lazy<Task<long>>(GetThriveExtensionLibraryId);
 
+        // Mac doesn't support AVX so it's force disabled
+        if (OperatingSystem.IsMacOS())
+            options.DisableLocalAvx = true;
+
         if (options.Libraries is { Count: < 1 })
         {
             options.Libraries = null;
