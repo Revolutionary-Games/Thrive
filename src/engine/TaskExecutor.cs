@@ -232,7 +232,7 @@ public class TaskExecutor : IParallelRunner
             }
 
             // Reduce hyperthreading resource use while waiting
-            X86Base.Pause();
+            CPUHelpers.HyperThreadPause();
         }
 
 #if DEBUG
@@ -476,7 +476,7 @@ public class TaskExecutor : IParallelRunner
                     ++noWorkCounter;
 
                     // Reduce hyperthreading resource use while just busy looping
-                    X86Base.Pause();
+                    CPUHelpers.HyperThreadPause();
                 }
             }
         }
