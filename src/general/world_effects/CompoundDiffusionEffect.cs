@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -27,14 +26,10 @@ public class CompoundDiffusionEffect : IWorldEffect
         HandlePatchCompoundDiffusion();
     }
 
-    private static (float Ambient, float Density) CalculateWantedMoveAmounts(Patch sourcePatch, Patch adjacent,
+    private static (float Ambient, float Density) CalculateWantedMoveAmounts(Patch adjacent,
         KeyValuePair<Compound, BiomeCompoundProperties> compound)
     {
-        // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
-        // resources like oxygen)
-        // TODO: improve the formula here as sqrt isn't the best
-        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT /
-            MathF.Sqrt(Constants.COMPOUND_DIFFUSE_BASE_DISTANCE + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
+        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT;
 
         adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
             out var destinationAmount);
@@ -74,7 +69,7 @@ public class CompoundDiffusionEffect : IWorldEffect
 
                 foreach (var adjacent in patch.Value.Adjacent)
                 {
-                    var (ambient, density) = CalculateWantedMoveAmounts(patch.Value, adjacent, compound);
+                    var (ambient, density) = CalculateWantedMoveAmounts(adjacent, compound);
 
                     // If there's nothing really to move, then skip (or if negative as those moves are added by the
                     // other patch)
@@ -95,7 +90,7 @@ public class CompoundDiffusionEffect : IWorldEffect
 
                 foreach (var adjacent in patch.Value.Adjacent)
                 {
-                    var (ambient, density) = CalculateWantedMoveAmounts(patch.Value, adjacent, compound);
+                    var (ambient, density) = CalculateWantedMoveAmounts(adjacent, compound);
                     if (ambient < MathUtils.EPSILON && density < MathUtils.EPSILON)
                         continue;
 
