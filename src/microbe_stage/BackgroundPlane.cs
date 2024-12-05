@@ -87,13 +87,6 @@ public partial class BackgroundPlane : Node3D
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged += OnBackgroundBlurStrengthChanged;
     }
 
-    public override void _Process(double delta)
-    {
-        base._Process(delta);
-
-        SetWorldPosition(new Vector2(Position.X, Position.Z));
-    }
-
     public override void _ExitTree()
     {
         base._ExitTree();
@@ -102,6 +95,13 @@ public partial class BackgroundPlane : Node3D
         Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
 
         Settings.Instance.MicrobeBackgroundBlurStrength.OnChanged -= OnBackgroundBlurStrengthChanged;
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        SetWorldPosition(new Vector2(Position.X, Position.Z));
     }
 
     /// <summary>
