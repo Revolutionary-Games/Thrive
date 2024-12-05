@@ -63,6 +63,12 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [Export]
     public float LightLevelInterpolateSpeed = 4;
 
+#pragma warning disable CA2213
+    [JsonIgnore]
+    [Export]
+    private BackgroundPlane backgroundPlane = null!;
+#pragma warning restore CA2213
+
     /// <summary>
     ///   Used to manually tween the light level to the target value
     /// </summary>
@@ -76,12 +82,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     [JsonProperty]
     private float lightLevel = 1.0f;
-
-#pragma warning disable CA2213
-    [JsonIgnore]
-    [Export]
-    private BackgroundPlane backgroundPlane = null!;
-#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnZoomChangedEventHandler(float zoom);
