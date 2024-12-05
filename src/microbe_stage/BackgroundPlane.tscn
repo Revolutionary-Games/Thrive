@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://dyko4f6a4agwn"]
 
-[ext_resource type="Shader" path="res://shaders/BlurSpatial.gdshader" id="1_iyjvf"]
+[ext_resource type="Shader" path="res://shaders/GaussianBlurSpatial.gdshader" id="1_iyjvf"]
 [ext_resource type="Script" path="res://src/microbe_stage/BackgroundPlane.cs" id="2_eprmh"]
-[ext_resource type="Shader" path="res://shaders/Blur.gdshader" id="3_s3lms"]
+[ext_resource type="Shader" path="res://shaders/GaussianBlur.gdshader" id="3_s3lms"]
 [ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="4_5y6kw"]
 [ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="5_waqnb"]
 [ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="6_qx2cp"]
