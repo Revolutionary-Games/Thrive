@@ -199,9 +199,7 @@ public partial class BackgroundPlane : Node3D
         SetBlurStrength(blurStrength);
 
         if (blurEnabledLastTime == enabled)
-        {
             return;
-        }
 
         blurEnabledLastTime = enabled;
 
