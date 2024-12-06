@@ -196,9 +196,10 @@ public partial class BackgroundPlane : Node3D
         float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
         bool enabled = blurStrength > 0;
 
+        SetBlurStrength(blurStrength);
+
         if (blurEnabledLastTime == enabled)
         {
-            SetBlurStrength(blurStrength);
             return;
         }
 
@@ -207,8 +208,6 @@ public partial class BackgroundPlane : Node3D
         if (enabled)
         {
             blurPlane.Visible = true;
-
-            SetBlurStrength(blurStrength);
 
             if (backgroundPlane.GetParent() == this)
             {
