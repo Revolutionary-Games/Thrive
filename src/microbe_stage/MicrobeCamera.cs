@@ -235,10 +235,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             Position = target;
         }
 
-        if (backgroundPlane != null)
-        {
-            backgroundPlane.PlaneOffset = float.Lerp(backgroundPlane.PlaneOffset, -CameraHeight - 15, InterpolateZoomSpeed);
-        }
+        backgroundPlane.PlaneOffset = float.Lerp(backgroundPlane.PlaneOffset, -CameraHeight - 15, InterpolateZoomSpeed);
 
         cursorDirty = true;
         cursorVisualDirty = true;
