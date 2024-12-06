@@ -44,14 +44,8 @@ public partial class BackgroundPlane : Node3D
 
     public float PlaneOffset
     {
-        get
-        {
-            return backgroundPlane.Position.Z;
-        }
-        set
-        {
-            backgroundPlane.Position = new Vector3(0, 0, value);
-        }
+        get => backgroundPlane.Position.Z;
+        set => backgroundPlane.Position = new Vector3(0, 0, value);
     }
 
     public override void _Ready()
