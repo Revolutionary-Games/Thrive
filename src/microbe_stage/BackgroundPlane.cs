@@ -196,18 +196,16 @@ public partial class BackgroundPlane : Node3D
         ApplyBlurEffect();
     }
 
-    private void OnBackgroundBlurToggleChanged(bool value)
-    {
-        ApplyBlurEffect();
-    }
-
     private void ApplyBlurEffect()
     {
         float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
         bool enabled = blurStrength > 0;
 
         if (blurEnabledLastTime == enabled)
+        {
+            SetBlurStrength(blurStrength);
             return;
+        }
 
         blurEnabledLastTime = enabled;
 
