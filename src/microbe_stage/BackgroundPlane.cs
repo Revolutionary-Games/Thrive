@@ -97,8 +97,6 @@ public partial class BackgroundPlane : Node3D
     public override void _Process(double delta)
     {
         base._Process(delta);
-
-        SetWorldPosition(new Vector2(Position.X, Position.Z));
     }
 
     /// <summary>

@@ -198,6 +198,8 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         {
             UpdateCameraPosition(delta, null);
         }
+
+        backgroundPlane.SetWorldPosition(new Vector2(Position.X, Position.Z));
     }
 
     public void UpdateCameraPosition(double delta, Vector3? followedObject)
