@@ -40,7 +40,7 @@ public partial class BackgroundPlane : Node3D
     private ShaderMaterial canvasBlurMaterial = null!;
 #pragma warning restore CA2213
 
-    private bool blurEnabledLastTime = true;
+    private bool blurEnabledLastTime = false;
 
     public float PlaneOffset
     {

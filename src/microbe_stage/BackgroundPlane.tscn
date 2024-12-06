@@ -12,27 +12,6 @@
 [sub_resource type="PlaneMesh" id="1"]
 size = Vector2(800, 400)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
-viewport_path = NodePath("SubViewport2")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
-resource_local_to_scene = true
-render_priority = -100
-shader = ExtResource("1_iyjvf")
-shader_parameter/blurStep = Vector2(0, 1)
-shader_parameter/blurAmount = 1.0
-shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
-resource_local_to_scene = true
-shader = ExtResource("3_s3lms")
-shader_parameter/blurStep = Vector2(1, 0)
-shader_parameter/blurAmount = 1.0
-shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
-
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dor76"]
 frequency = 0.0035
 
@@ -65,16 +44,44 @@ shader_parameter/layer3 = ExtResource("8_yxu5g")
 shader_parameter/noiseTex1 = SubResource("NoiseTexture2D_f6pop")
 shader_parameter/noiseTex2 = SubResource("NoiseTexture2D_tsmw6")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
+resource_local_to_scene = true
+render_priority = -100
+shader = ExtResource("1_iyjvf")
+shader_parameter/blurStep = Vector2(0, 1)
+shader_parameter/blurAmount = 1.0
+shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
+resource_local_to_scene = true
+shader = ExtResource("3_s3lms")
+shader_parameter/blurStep = Vector2(1, 0)
+shader_parameter/blurAmount = 1.0
+shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
+
 [node name="BackgroundPlane" type="Node3D" node_paths=PackedStringArray("backgroundPlane", "blurPlane", "blurColorRect", "subViewport1", "subViewport2")]
 script = ExtResource("2_eprmh")
-backgroundPlane = NodePath("SubViewport/BackgroundPlane")
+backgroundPlane = NodePath("BackgroundPlane")
 blurPlane = NodePath("BlurPlane")
 blurColorRect = NodePath("SubViewport2/ColorRect")
 subViewport1 = NodePath("SubViewport")
 subViewport2 = NodePath("SubViewport2")
 
+[node name="BackgroundPlane" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
+cast_shadow = 0
+mesh = SubResource("1")
+material = SubResource("2")
+
 [node name="BlurPlane" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
+visible = false
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("ShaderMaterial_1sr76")
@@ -83,6 +90,7 @@ material = SubResource("ShaderMaterial_1sr76")
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
+render_target_clear_mode = 1
 
 [node name="ColorRect" type="ColorRect" parent="SubViewport2"]
 material = SubResource("ShaderMaterial_tdrj5")
@@ -102,12 +110,7 @@ grow_vertical = 2
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
-
-[node name="BackgroundPlane" type="CSGMesh3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
-cast_shadow = 0
-mesh = SubResource("1")
-material = SubResource("2")
+render_target_clear_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
