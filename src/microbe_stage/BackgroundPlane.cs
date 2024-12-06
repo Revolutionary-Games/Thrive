@@ -42,8 +42,6 @@ public partial class BackgroundPlane : Node3D
 
     private bool blurEnabledLastTime = true;
 
-    public bool NodeReferencesResolved { get; private set; }
-
     public float PlaneOffset
     {
         get

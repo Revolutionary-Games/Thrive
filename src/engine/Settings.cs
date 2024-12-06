@@ -118,7 +118,7 @@ public class Settings
     ///   enabled.
     /// </summary>
     [JsonProperty]
-    public SettingValue<float> MicrobeBackgroundBlurStrength { get; private set; } = new(3.0f);
+    public SettingValue<float> MicrobeBackgroundBlurStrength { get; private set; } = new(2.0f);
 
     /// <summary>
     ///   Type of controller button prompts to show
