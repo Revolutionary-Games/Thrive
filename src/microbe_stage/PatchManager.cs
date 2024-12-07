@@ -28,6 +28,11 @@ public class PatchManager : IChildPropertiesLoadCallback
     /// <summary>
     ///   Used to detect when an old save is loaded, and we can't rely on the new logic for despawning things
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: remove this as it should be safe as there's been save breakage points added since this was added
+    ///   </para>
+    /// </remarks>
     private bool skipDespawn;
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,

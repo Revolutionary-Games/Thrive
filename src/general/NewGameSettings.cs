@@ -190,6 +190,10 @@ public partial class NewGameSettings : ControlWithInput
     private LineEdit osmoregulationMultiplierReadout = null!;
     private OptionButton fogOfWarModeDropdown = null!;
     private Label fogOfWarModeDescription = null!;
+
+    [Export]
+    private OptionButton reproductionCompoundsDropdown = null!;
+
     private Button freeGlucoseCloudButton = null!;
     private Button passiveReproductionButton = null!;
 
@@ -256,6 +260,9 @@ public partial class NewGameSettings : ControlWithInput
         Planet,
         Miscellaneous,
     }
+
+    private ReproductionCompoundHandling SelectedReproductionCompounds =>
+        (ReproductionCompoundHandling)reproductionCompoundsDropdown.GetItemId(reproductionCompoundsDropdown.Selected);
 
     public override void _Ready()
     {
@@ -343,6 +350,9 @@ public partial class NewGameSettings : ControlWithInput
                 (int)mode);
         }
 
+        // Reproduction compounds mode is done in the Godot Editor. Not sure why the FogOfWar ended up being done here
+        // in the code -hhyyrylainen
+
         // Do this in case default values in NewGameSettings.tscn don't match the normal preset
         InitialiseToPreset(normal);
 
@@ -410,6 +420,14 @@ public partial class NewGameSettings : ControlWithInput
         glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
         fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
+
+        var reproductionIndex = reproductionCompoundsDropdown.GetItemIndex((int)difficulty.ReproductionCompounds);
+
+        // If unknown fallback to 0 for safety
+        if (reproductionIndex < 0)
+            reproductionIndex = 0;
+
+        reproductionCompoundsDropdown.Selected = reproductionIndex;
         freeGlucoseCloudButton.ButtonPressed = difficulty.FreeGlucoseCloud;
         passiveReproductionButton.ButtonPressed = difficulty.PassiveReproduction;
         switchSpeciesOnExtinctionButton.ButtonPressed = difficulty.SwitchSpeciesOnExtinction;
@@ -604,6 +622,7 @@ public partial class NewGameSettings : ControlWithInput
                 PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value,
                 GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f,
                 OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value,
+                ReproductionCompounds = SelectedReproductionCompounds,
                 FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
                 PassiveReproduction = passiveReproductionButton.ButtonPressed,
@@ -743,6 +762,8 @@ public partial class NewGameSettings : ControlWithInput
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
         fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
+        reproductionCompoundsDropdown.Selected =
+            reproductionCompoundsDropdown.GetItemIndex((int)preset.ReproductionCompounds);
         freeGlucoseCloudButton.ButtonPressed = preset.FreeGlucoseCloud;
         passiveReproductionButton.ButtonPressed = preset.PassiveReproduction;
         switchSpeciesOnExtinctionButton.ButtonPressed = preset.SwitchSpeciesOnExtinction;
@@ -782,6 +803,9 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
+                continue;
+
+            if (SelectedReproductionCompounds != preset.ReproductionCompounds)
                 continue;
 
             if (freeGlucoseCloudButton.ButtonPressed != preset.FreeGlucoseCloud)
@@ -862,6 +886,12 @@ public partial class NewGameSettings : ControlWithInput
     {
         var mode = (FogOfWarMode)index;
         UpdateFogOfWarModeDescription(mode);
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnReproductionCompoundModeChanged(int index)
+    {
+        _ = index;
         UpdateSelectedDifficultyPresetControl();
     }
 

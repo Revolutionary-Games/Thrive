@@ -326,6 +326,23 @@ public class CompoundBag : ICompoundStorage
         Compounds[compound] = Math.Min(existingAmount + amount, GetCapacityForCompound(compound, true));
     }
 
+    /// <summary>
+    ///   Tops up on a compound to be at least at the minimum value (ignores usefulness but takes capacity into
+    ///   account)
+    /// </summary>
+    /// <param name="compound">Compound type to add</param>
+    /// <param name="wantedMinimumAmount">Minimum level of the compound that should be reached</param>
+    public void TopUpCompound(Compound compound, float wantedMinimumAmount)
+    {
+        if (wantedMinimumAmount <= 0)
+            return;
+
+        Compounds.TryGetValue(compound, out var existingAmount);
+
+        Compounds[compound] = Math.Min(Math.Max(existingAmount, wantedMinimumAmount),
+            GetCapacityForCompound(compound, true));
+    }
+
     public void ClampNegativeCompoundAmounts()
     {
         foreach (var entry in Compounds)
