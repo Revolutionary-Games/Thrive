@@ -343,7 +343,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
         if (ai.ATPThreshold > MathUtils.EPSILON)
         {
-            if (atpLevel < atpLevel * ai.ATPThreshold)
+            if (atpLevel < compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
             {
                 if (cellHealth.CurrentHealth > 2 * Constants.ENGULF_NO_ATP_DAMAGE)
                 {
