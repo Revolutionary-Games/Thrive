@@ -608,6 +608,15 @@ layout_mode = 2
 
 [node name="ReproductionCompounds" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer"]
 layout_mode = 2
+selected = 0
+item_count = 4
+popup/item_0/text = "COMPOUND_HANDLE_SPLIT_SISTER"
+popup/item_1/text = "COMPOUND_HANDLE_KEEP"
+popup/item_1/id = 1
+popup/item_2/text = "COMPOUND_HANDLE_TOP_UP"
+popup/item_2/id = 2
+popup/item_3/text = "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+popup/item_3/id = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14"]
 custom_minimum_size = Vector2(200, 0)
