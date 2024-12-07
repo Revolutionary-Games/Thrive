@@ -182,6 +182,9 @@ public static class MicrobeControlHelpers
                     }
                 }
             }
+
+            // TODO: should there be a return here? The below extra call acts on the lead cell again but that shouldn't
+            // cause a real issue (as it should do nothing) but would be good to fix the logic
         }
 
         ForceStateApplyIfRequired(ref control, ref health, ref compoundStorage, entity, MicrobeState.Engulf, true, atp);
@@ -378,7 +381,9 @@ public static class MicrobeControlHelpers
         if (control.State == targetState)
             return;
 
-        if (NeedsToUseForcedState(ref compoundStorage, atp))
+        // Only use forced mode if not already in forced mode so that a very rapid toggle cannot deal damage multiple
+        // times
+        if (NeedsToUseForcedState(ref compoundStorage, atp) && control.ForcedStateRemaining < MathUtils.EPSILON)
         {
             // Don't force if the damage would kill the cell to avoid state change being a death button
             float damage = Constants.ENGULF_NO_ATP_DAMAGE;
@@ -403,9 +408,19 @@ public static class MicrobeControlHelpers
 
     public static bool NeedsToUseForcedState(ref CompoundStorage compoundStorage, Compound atp)
     {
-        if (compoundStorage.Compounds.GetCompoundAmount(atp) > Constants.ENGULF_NO_ATP_TRIGGER_THRESHOLD)
+        var atpAmount = compoundStorage.Compounds.GetCompoundAmount(atp);
+        if (atpAmount > Constants.ENGULF_NO_ATP_TRIGGER_THRESHOLD)
         {
             // If cell has good amount of ATP, don't force it into engulf mode
+            return false;
+        }
+
+        var capacity = compoundStorage.Compounds.GetCapacityForCompound(atp);
+
+        // Also guard against dealing damage to very small cells that enter engulf mode by ensuring that the ATP amount
+        // is not a large percentage of available storage
+        if (atpAmount / capacity > Constants.ENGULF_NO_ATP_FRACTION_OF_STORAGE_BELOW)
+        {
             return false;
         }
 

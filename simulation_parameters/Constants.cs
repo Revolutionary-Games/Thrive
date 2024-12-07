@@ -855,6 +855,12 @@ public static class Constants
     public const float ENGULF_NO_ATP_TRIGGER_THRESHOLD = 0.7f;
 
     /// <summary>
+    ///   On top of <see cref="ENGULF_NO_ATP_TRIGGER_THRESHOLD"/> ATP needs to be less than this fraction of storage.
+    ///   This is to protect small cells that have only like max of 1 storage.
+    /// </summary>
+    public const float ENGULF_NO_ATP_FRACTION_OF_STORAGE_BELOW = 0.45f;
+
+    /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell
     /// </summary>
     public const float TOXIN_DIGESTION_DAMAGE_CHECK_INTERVAL = 0.9f;
