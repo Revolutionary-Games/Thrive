@@ -156,8 +156,16 @@ public sealed class OsmoregulationAndHealingSystem : AEntitySetSystem<float>
             if (health.CurrentHealth >= health.MaxHealth)
                 return;
 
-            if (compounds.GetCompoundAmount(Compound.ATP) < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
-                return;
+            var atpAmount = compounds.GetCompoundAmount(Compound.ATP);
+            if (atpAmount < Constants.HEALTH_REGENERATION_ATP_THRESHOLD)
+            {
+                // Allow small cells to heal if they are almost full on ATP
+                if (atpAmount / compounds.GetCapacityForCompound(Compound.ATP) <
+                    Constants.HEALTH_REGENERATION_ALTERNATIVE_ATP_FRACTION)
+                {
+                    return;
+                }
+            }
 
             health.CurrentHealth += Constants.HEALTH_REGENERATION_RATE * delta;
             if (health.CurrentHealth > health.MaxHealth)

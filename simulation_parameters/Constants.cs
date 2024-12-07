@@ -706,6 +706,12 @@ public static class Constants
     public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
+    ///   If a cell doesn't fulfil <see cref="HEALTH_REGENERATION_ATP_THRESHOLD"/> it can still be allowed if it is
+    ///   this full on ATP (this allows small cells to heal with just 0.5 storage).
+    /// </summary>
+    public const float HEALTH_REGENERATION_ALTERNATIVE_ATP_FRACTION = 0.9f;
+
+    /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
