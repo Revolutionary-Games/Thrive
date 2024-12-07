@@ -745,8 +745,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             {
                 // Copy each compound but ignore is useful setting to ensure all are copied and nothing is accidentally
                 // wasted (but also don't allow adding past capacity so this specific add method is used)
-                playerCompounds.AddExtraInitialCompoundIfUnderStorageLimit(originalCompound.Key,
-                    originalCompound.Value);
+                playerCompounds.TopUpCompound(originalCompound.Key, originalCompound.Value);
             }
         }
 
