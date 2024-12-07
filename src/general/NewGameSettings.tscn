@@ -28,7 +28,7 @@ font = ExtResource("5_otvf3")
 
 [sub_resource type="StyleBoxEmpty" id="4"]
 
-[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("switchSpeciesOnExtinctionButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
+[node name="NewGameSettings" type="Control" node_paths=PackedStringArray("reproductionCompoundsDropdown", "switchSpeciesOnExtinctionButton", "experimentalFeatures", "experimentalExplanation", "experimentalWarning")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,6 +83,7 @@ IncludeMulticellularButtonPath = NodePath("CenterContainer/VBoxContainer/Advance
 EasterEggsButtonPath = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3/EasterEggs")
 StartButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Start")
 CheckOptionsMenuAdviceContainerPath = NodePath("CenterContainer/VBoxContainer/BasicOptions/Main/VBoxContainer/CheckPerformanceSettingsContainer")
+reproductionCompoundsDropdown = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds")
 switchSpeciesOnExtinctionButton = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13/SwitchOnExtinct")
 experimentalFeatures = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalFeatures")
 experimentalExplanation = NodePath("CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4/ExperimentalLabel")
@@ -589,6 +590,33 @@ text = "OSMOREGULATION_COST_MULTIPLIER_EXPLANATION"
 label_settings = ExtResource("5_rnvau")
 autowrap_mode = 3
 
+[node name="VBoxContainer14" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "REPRODUCTION_COMPOUNDS_MODE"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer"]
+layout_mode = 2
+
+[node name="ReproductionCompounds" type="OptionButton" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+label_settings = ExtResource("5_rnvau")
+autowrap_mode = 3
+
 [node name="VBoxContainer11" type="VBoxContainer" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -1019,6 +1047,7 @@ text = "START_GAME"
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer3/HBoxContainer/HBoxContainer/PopulationPenalty" to="." method="OnPlayerDeathPopulationPenaltyValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer4/HBoxContainer/HBoxContainer/GlucoseDecayRate" to="." method="OnGlucoseDecayRateValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer7/HBoxContainer/HBoxContainer/OsmoregulationMultiplier" to="." method="OnOsmoregulationMultiplierValueChanged"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer14/HBoxContainer/HBoxContainer/ReproductionCompounds" to="." method="OnReproductionCompoundModeChanged"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer11/HBoxContainer/HBoxContainer/FogOfWarMode" to="." method="OnFogOfWarModeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5/FreeGlucoseCloud" to="." method="OnFreeGlucoseCloudToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9/PassiveReproductionProgress" to="." method="OnPassiveReproductionToggled"]
