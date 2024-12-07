@@ -17,6 +17,10 @@ public class CustomDifficulty : IDifficulty
     public float OsmoregulationMultiplier { get; set; }
     public bool FreeGlucoseCloud { get; set; }
     public bool PassiveReproduction { get; set; }
+
+    public ReproductionCompoundHandling ReproductionCompounds { get; set; } =
+        ReproductionCompoundHandling.TopUpOnPatchChange;
+
     public bool SwitchSpeciesOnExtinction { get; set; }
 
     public bool LimitGrowthRate
