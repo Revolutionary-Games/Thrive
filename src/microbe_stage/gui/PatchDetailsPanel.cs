@@ -175,6 +175,7 @@ public partial class PatchDetailsPanel : PanelContainer
         {
             currentPatch = value;
             playerHere.Visible = CurrentPatch == SelectedPatch;
+            ChemicalEquation.AutoRefreshProcess = true;
 
             if (SelectedPatch != null)
                 UpdateConditionDifferencesBetweenPatches();
