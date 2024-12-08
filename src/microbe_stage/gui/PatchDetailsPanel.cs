@@ -595,6 +595,7 @@ public partial class PatchDetailsPanel : PanelContainer
             return;
         }
 
+        GetTree().CallGroup("ChemicalEquations", "UpdateEquation");
         OnMoveToPatchClicked.Invoke(SelectedPatch);
     }
 
