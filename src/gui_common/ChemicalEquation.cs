@@ -140,11 +140,6 @@ public partial class ChemicalEquation : VBoxContainer
         }
     }
 
-    /// <summary>
-    ///   If true this will automatically check the set process for changes
-    /// </summary>
-    public static bool AutoRefreshProcess { get; set; } = false;
-
     public float SpinnerBaseSpeed { get; set; } = Constants.DEFAULT_PROCESS_SPINNER_SPEED;
 
     /// <summary>
@@ -180,12 +175,6 @@ public partial class ChemicalEquation : VBoxContainer
 
             spinner!.RotationDegrees = (int)currentSpinnerRotation % 360;
         }
-
-        if (AutoRefreshProcess)
-        {
-            AutoRefreshProcess = false;
-            UpdateEquation();
-        }
     }
 
     private void OnTranslationsChanged()
@@ -208,7 +197,6 @@ public partial class ChemicalEquation : VBoxContainer
 
     private void UpdateEquation()
     {
-        GD.Print("Updating equation");
         if (title == null)
             return;
 

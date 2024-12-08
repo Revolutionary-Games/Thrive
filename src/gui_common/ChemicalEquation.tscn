@@ -12,7 +12,7 @@
 default_font = ExtResource("5_wdgi7")
 default_font_size = 18
 
-[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer")]
+[node name="ChemicalEquation" type="VBoxContainer" node_paths=PackedStringArray("title", "toggleProcess", "spinner", "firstLineContainer") groups=["ChemicalEquations"]]
 process_priority = 7
 anchors_preset = 15
 anchor_right = 1.0
