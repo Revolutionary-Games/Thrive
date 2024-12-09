@@ -90,7 +90,7 @@ material = SubResource("ShaderMaterial_1sr76")
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_clear_mode = 1
+render_target_update_mode = 0
 
 [node name="ColorRect" type="ColorRect" parent="SubViewport2"]
 material = SubResource("ShaderMaterial_tdrj5")
@@ -110,7 +110,7 @@ grow_vertical = 2
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
-render_target_clear_mode = 1
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
