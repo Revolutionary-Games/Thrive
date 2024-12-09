@@ -65,13 +65,13 @@ shader_parameter/blurStep = Vector2(1, 0)
 shader_parameter/blurAmount = 1.0
 shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
 
-[node name="BackgroundPlane" type="Node3D" node_paths=PackedStringArray("backgroundPlane", "blurPlane", "blurColorRect", "subViewport1", "subViewport2")]
+[node name="BackgroundPlane" type="Node3D" node_paths=PackedStringArray("backgroundPlane", "blurResultPlane", "blurColorRect", "backgroundSubViewport", "partialBlurSubViewport")]
 script = ExtResource("2_eprmh")
 backgroundPlane = NodePath("BackgroundPlane")
-blurPlane = NodePath("BlurResultPlane")
+blurResultPlane = NodePath("BlurResultPlane")
 blurColorRect = NodePath("PartialBlurViewport/ColorRect")
-subViewport1 = NodePath("BackgroundViewport")
-subViewport2 = NodePath("PartialBlurViewport")
+backgroundSubViewport = NodePath("BackgroundViewport")
+partialBlurSubViewport = NodePath("PartialBlurViewport")
 
 [node name="BackgroundPlane" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
