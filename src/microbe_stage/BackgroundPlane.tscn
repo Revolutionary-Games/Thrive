@@ -45,7 +45,7 @@ shader_parameter/noiseTex1 = SubResource("NoiseTexture2D_f6pop")
 shader_parameter/noiseTex2 = SubResource("NoiseTexture2D_tsmw6")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
-viewport_path = NodePath("SubViewport2")
+viewport_path = NodePath("PartialBlurViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
 resource_local_to_scene = true
@@ -56,7 +56,7 @@ shader_parameter/blurAmount = 1.0
 shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("BackgroundViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
 resource_local_to_scene = true
@@ -68,10 +68,10 @@ shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
 [node name="BackgroundPlane" type="Node3D" node_paths=PackedStringArray("backgroundPlane", "blurPlane", "blurColorRect", "subViewport1", "subViewport2")]
 script = ExtResource("2_eprmh")
 backgroundPlane = NodePath("BackgroundPlane")
-blurPlane = NodePath("BlurPlane")
-blurColorRect = NodePath("SubViewport2/ColorRect")
-subViewport1 = NodePath("SubViewport")
-subViewport2 = NodePath("SubViewport2")
+blurPlane = NodePath("BlurResultPlane")
+blurColorRect = NodePath("PartialBlurViewport/ColorRect")
+subViewport1 = NodePath("BackgroundViewport")
+subViewport2 = NodePath("PartialBlurViewport")
 
 [node name="BackgroundPlane" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
@@ -79,20 +79,20 @@ cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("2")
 
-[node name="BlurPlane" type="CSGMesh3D" parent="."]
+[node name="BlurResultPlane" type="CSGMesh3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
 visible = false
 cast_shadow = 0
 mesh = SubResource("1")
 material = SubResource("ShaderMaterial_1sr76")
 
-[node name="SubViewport2" type="SubViewport" parent="."]
+[node name="PartialBlurViewport" type="SubViewport" parent="."]
 disable_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 0
 
-[node name="ColorRect" type="ColorRect" parent="SubViewport2"]
+[node name="ColorRect" type="ColorRect" parent="PartialBlurViewport"]
 material = SubResource("ShaderMaterial_tdrj5")
 anchors_preset = 8
 anchor_left = 0.5
@@ -106,12 +106,12 @@ offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="BackgroundViewport" type="SubViewport" parent="."]
 own_world_3d = true
 handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 0
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="BackgroundViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 fov = 90.0

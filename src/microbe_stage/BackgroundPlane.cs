@@ -20,7 +20,7 @@ public partial class BackgroundPlane : Node3D
     private CsgMesh3D backgroundPlane = null!;
 
     [Export]
-    private CsgMesh3D blurPlane = null!;
+    private CsgMesh3D blurResultPlane = null!;
 
     [Export]
     private ColorRect blurColorRect = null!;
@@ -28,10 +28,10 @@ public partial class BackgroundPlane : Node3D
     private GpuParticles3D? backgroundParticles;
 
     [Export]
-    private SubViewport subViewport1 = null!;
+    private SubViewport backgroundSubViewport = null!;
 
     [Export]
-    private SubViewport subViewport2 = null!;
+    private SubViewport partialBlurSubViewport = null!;
 
     private ShaderMaterial currentBackgroundMaterial = null!;
 
@@ -51,7 +51,7 @@ public partial class BackgroundPlane : Node3D
     public override void _Ready()
     {
         var material = backgroundPlane.Material;
-        var planeBlurMaterial = blurPlane.Material;
+        var planeBlurMaterial = blurResultPlane.Material;
         var colorRectBlurMaterial = blurColorRect.Material;
 
         if (material == null || planeBlurMaterial == null || colorRectBlurMaterial == null)
@@ -201,29 +201,29 @@ public partial class BackgroundPlane : Node3D
 
         if (enabled)
         {
-            blurPlane.Visible = true;
+            blurResultPlane.Visible = true;
 
             if (backgroundPlane.GetParent() == this)
             {
                 RemoveChild(backgroundPlane);
-                subViewport1.AddChild(backgroundPlane);
+                backgroundSubViewport.AddChild(backgroundPlane);
             }
 
-            subViewport1.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
-            subViewport2.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
+            backgroundSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
+            partialBlurSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
         }
         else
         {
             if (backgroundPlane.GetParent() != this)
             {
-                subViewport1.RemoveChild(backgroundPlane);
+                backgroundSubViewport.RemoveChild(backgroundPlane);
                 AddChild(backgroundPlane);
             }
 
-            subViewport1.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
-            subViewport2.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
+            backgroundSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
+            partialBlurSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
 
-            blurPlane.Visible = false;
+            blurResultPlane.Visible = false;
         }
     }
 
