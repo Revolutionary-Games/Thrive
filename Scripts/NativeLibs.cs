@@ -289,7 +289,7 @@ public class NativeLibs
                     return await OperateOnAllPlatforms(BuildPackageWithPodman, cancellationToken);
                 }
 
-                throw new NotImplementedException("Creating release packages for mac is not done");
+                return await PackageForMac(cancellationToken);
 
             case Program.NativeLibOptions.OperationMode.Upload:
                 if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
@@ -642,19 +642,8 @@ public class NativeLibs
         // Ensure Godot doesn't try to import anything funny from the build folder
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(buildFolder);
 
-        var apiFolder = Path.Join(buildFolder, APIFolderName);
-        Directory.CreateDirectory(apiFolder);
-
-        if (!scriptsAPIFileCreated.Contains(apiFolder))
-        {
-            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
-            {
-                ColourConsole.WriteErrorLine("API file could not be created");
-                return false;
-            }
-
-            scriptsAPIFileCreated.Add(apiFolder);
-        }
+        if (!await CreateAPIFolderForBuild(buildFolder, cancellationToken))
+            return false;
 
         var startInfo = new ProcessStartInfo("cmake")
         {
@@ -798,6 +787,25 @@ public class NativeLibs
             return false;
 
         ColourConsole.WriteSuccessLine($"Successfully compiled library {library}");
+        return true;
+    }
+
+    private async Task<bool> CreateAPIFolderForBuild(string buildFolder, CancellationToken cancellationToken)
+    {
+        var apiFolder = Path.Join(buildFolder, APIFolderName);
+        Directory.CreateDirectory(apiFolder);
+
+        if (!scriptsAPIFileCreated.Contains(apiFolder))
+        {
+            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("API file could not be created");
+                return false;
+            }
+
+            scriptsAPIFileCreated.Add(apiFolder);
+        }
+
         return true;
     }
 
@@ -1089,6 +1097,175 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
 
+        return true;
+    }
+
+    private async Task<bool> PackageForMac(CancellationToken cancellationToken)
+    {
+        if (!OperatingSystem.IsMacOS())
+            throw new InvalidOperationException("This platform is not supported (only mac can create mac builds)");
+
+        ColourConsole.WriteWarningLine(
+            "Creating Mac builds is only supported on Apple Silicon (M1 and newer) and may " +
+            "not work on other Macs");
+
+        if (!options.DisableLocalAvx)
+        {
+            ColourConsole.WriteNormalLine("Mac builds never use AVX");
+        }
+
+        var platform = PackagePlatform.Mac;
+        var compileBaseFolder = Path.GetFullPath(GetDistributableBuildFolderBase(platform));
+
+        var armInstallFolder = Path.Join(compileBaseFolder, "install", "arm");
+        var intelInstallFolder = Path.Join(compileBaseFolder, "install", "intel");
+
+        // Setup all the needed folders
+        Directory.CreateDirectory(compileBaseFolder);
+        Directory.CreateDirectory(armInstallFolder);
+        Directory.CreateDirectory(intelInstallFolder);
+
+        await CreateAPIFolderForBuild(compileBaseFolder, cancellationToken);
+
+        ColourConsole.WriteNormalLine("Performing build for Intel architecture");
+
+        // ReSharper disable StringLiteralTypo
+        var cmakeCommon = new List<string>
+        {
+            "-DTHRIVE_AVX=OFF",
+            options.DebugLibrary == true ? "-DCMAKE_BUILD_TYPE=Debug" : "-DCMAKE_BUILD_TYPE=Distribution",
+        };
+
+        if (!string.IsNullOrEmpty(options.Compiler))
+            cmakeCommon.Add($"-DCMAKE_CXX_COMPILER={options.Compiler}");
+
+        if (!string.IsNullOrEmpty(options.CCompiler))
+            cmakeCommon.Add($"-DCMAKE_C_COMPILER={options.CCompiler}");
+
+        // ReSharper restore StringLiteralTypo
+
+        if (!string.IsNullOrEmpty(options.CmakeGenerator))
+        {
+            cmakeCommon.Add("-G");
+            cmakeCommon.Add(options.CmakeGenerator);
+        }
+
+        cmakeCommon.Add(Path.GetFullPath("."));
+
+        var startInfo = new ProcessStartInfo("cmake")
+        {
+            WorkingDirectory = compileBaseFolder,
+        };
+
+        foreach (var common in cmakeCommon)
+        {
+            startInfo.ArgumentList.Add(common);
+        }
+
+        // ReSharper disable StringLiteralTypo
+        startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={intelInstallFolder}");
+        startInfo.ArgumentList.Add("-DCMAKE_OSX_ARCHITECTURES=x86_64");
+        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=-march=sandybridge");
+
+        // ReSharper restore StringLiteralTypo
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
+                "Do you have the required build tools installed?");
+
+            return false;
+        }
+
+        ColourConsole.WriteInfoLine("Compiling Intel version");
+
+        if (!await RunMacIndividualBuild(compileBaseFolder, cancellationToken))
+            return false;
+
+        ColourConsole.WriteSuccessLine("Compiled mac libraries for Intel architecture");
+
+        // Apple Silicon build next
+        ColourConsole.WriteNormalLine("Performing build for Apple Silicon (ARM) architecture");
+
+        startInfo = new ProcessStartInfo("cmake")
+        {
+            WorkingDirectory = compileBaseFolder,
+        };
+
+        foreach (var common in cmakeCommon)
+        {
+            startInfo.ArgumentList.Add(common);
+        }
+
+        // ReSharper disable StringLiteralTypo
+        startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={armInstallFolder}");
+        startInfo.ArgumentList.Add("-DCMAKE_OSX_ARCHITECTURES=arm64");
+        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=");
+
+        // ReSharper restore StringLiteralTypo
+
+        result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
+                "Do you have the required build tools installed?");
+
+            return false;
+        }
+
+        ColourConsole.WriteInfoLine("Compiling Arm version");
+
+        if (!await RunMacIndividualBuild(compileBaseFolder, cancellationToken))
+            return false;
+
+        ColourConsole.WriteSuccessLine("Compiled mac libraries for Apple Silicon (ARM) architecture");
+        ColourConsole.WriteInfoLine("All architectures compiled, will combine into single files next");
+
+        // Then some lipo action
+        ColourConsole.WriteNormalLine("Combining builds");
+
+        throw new NotImplementedException("Add lipo use");
+
+        ColourConsole.WriteNormalLine("Handling debug symbols");
+
+        ColourConsole.WriteNormalLine("Copying final build results");
+
+        ColourConsole.WriteSuccessLine("Successfully created Mac distributable library builds");
+        return true;
+    }
+
+    private async Task<bool> RunMacIndividualBuild(string folder, CancellationToken cancellationToken)
+    {
+        var startInfo = new ProcessStartInfo("cmake")
+        {
+            WorkingDirectory = folder,
+        };
+
+        startInfo.ArgumentList.Add("--build");
+
+        startInfo.ArgumentList.Add(".");
+
+        startInfo.ArgumentList.Add("--config");
+        startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "Distribution");
+
+        startInfo.ArgumentList.Add("--target");
+        startInfo.ArgumentList.Add("install");
+
+        startInfo.ArgumentList.Add("-j");
+        startInfo.ArgumentList.Add(Environment.ProcessorCount.ToString());
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"CMake build failed (exit: {result.ExitCode})");
+            return false;
+        }
+
+        ColourConsole.WriteNormalLine("Part of mac compile succeeded");
         return true;
     }
 
