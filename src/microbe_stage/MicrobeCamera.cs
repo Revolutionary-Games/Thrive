@@ -255,7 +255,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     public void SetCustomCurrentStatus(bool current)
     {
         Current = current;
-        backgroundPlane.SetVisibility(Current);
+        UpdateBackgroundVisibility();
 
         // TODO: set listener node current status
     }
