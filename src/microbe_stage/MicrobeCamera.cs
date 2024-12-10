@@ -191,7 +191,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         // ReSharper disable once CompareOfFloatsByEqualityOperator
         if (lastSetLightLevel != lightLevel)
         {
-            backgroundPlane.UpdateLightLevel((float)delta);
+            UpdateLightLevel((float)delta);
         }
 
         if (AutoProcessWhilePaused && PauseManager.Instance.Paused)
