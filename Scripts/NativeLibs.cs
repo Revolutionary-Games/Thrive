@@ -102,7 +102,17 @@ public class NativeLibs
         }
 
         // Set sensible default platform definitions
-        if (OperatingSystem.IsMacOS())
+        if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Fetch))
+        {
+            // Fetching libraries is required for all platforms so all are specified here
+            ColourConsole.WriteNormalLine(
+                "Fetch is needed for all platforms so enabling all (when combined with other " +
+                "operations this may cause issues)");
+
+            platforms = new List<PackagePlatform>
+                { PackagePlatform.Linux, PackagePlatform.Windows, PackagePlatform.Mac };
+        }
+        else if (OperatingSystem.IsMacOS())
         {
             // Mac stuff only can be done on a Mac
             platforms = new List<PackagePlatform> { PackagePlatform.Mac };
@@ -235,6 +245,12 @@ public class NativeLibs
         }
 
         if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Windows,
+                true, false))
+        {
+            return false;
+        }
+
+        if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
                 true, false))
         {
             return false;
@@ -1791,6 +1807,13 @@ public class NativeLibs
 
         foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
+            // Mac doesn't have AVX-using builds
+            if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
+            {
+                ColourConsole.WriteDebugLine("Mac doesn't have AVX builds, skipping");
+                continue;
+            }
+
             var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
             if (File.Exists(file))
