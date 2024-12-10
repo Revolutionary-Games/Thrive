@@ -296,35 +296,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         backgroundPlane.SetBackground(background);
     }
 
-    private void UpdateBackgroundVisibility()
-    {
-        backgroundPlane.SetVisibility(Current);
-    }
-
-    private void UpdateLightLevel(float delta)
-    {
-        if (lastSetLightLevel < lightLevel)
-        {
-            lastSetLightLevel += LightLevelInterpolateSpeed * delta;
-
-            if (lastSetLightLevel > lightLevel)
-                lastSetLightLevel = lightLevel;
-        }
-        else if (lastSetLightLevel > lightLevel)
-        {
-            lastSetLightLevel -= LightLevelInterpolateSpeed * delta;
-
-            if (lastSetLightLevel < lightLevel)
-                lastSetLightLevel = lightLevel;
-        }
-        else
-        {
-            lastSetLightLevel = lightLevel;
-        }
-
-        backgroundPlane.UpdateLightLevel(lastSetLightLevel);
-    }
-
     private void UpdateCursorWorldPos()
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
@@ -386,5 +357,34 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
         }
 
         return mousePos;
+    }
+
+    private void UpdateBackgroundVisibility()
+    {
+        backgroundPlane.SetVisibility(Current);
+    }
+
+    private void UpdateLightLevel(float delta)
+    {
+        if (lastSetLightLevel < lightLevel)
+        {
+            lastSetLightLevel += LightLevelInterpolateSpeed * delta;
+
+            if (lastSetLightLevel > lightLevel)
+                lastSetLightLevel = lightLevel;
+        }
+        else if (lastSetLightLevel > lightLevel)
+        {
+            lastSetLightLevel -= LightLevelInterpolateSpeed * delta;
+
+            if (lastSetLightLevel < lightLevel)
+                lastSetLightLevel = lightLevel;
+        }
+        else
+        {
+            lastSetLightLevel = lightLevel;
+        }
+
+        backgroundPlane.UpdateLightLevel(lastSetLightLevel);
     }
 }
