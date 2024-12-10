@@ -1228,12 +1228,13 @@ public class NativeLibs
         // Then some lipo action
         ColourConsole.WriteNormalLine("Combining builds");
 
+        var libraries = options.Libraries ?? DefaultLibraries;
         var tag = PrecompiledTag.WithoutAvx;
 
         if (options.DebugLibrary == true)
             tag |= PrecompiledTag.Debug;
 
-        foreach (var library in options.Libraries ?? DefaultLibraries)
+        foreach (var library in libraries)
         {
             var name = NativeConstants.GetLibraryDllName(library, platform, tag);
 
@@ -1243,6 +1244,9 @@ public class NativeLibs
 
             Directory.CreateDirectory(Path.GetDirectoryName(target) ??
                 throw new Exception("Couldn't detect target folder"));
+
+            if (File.Exists(target))
+                File.Delete(target);
 
             startInfo = new ProcessStartInfo("lipo");
             startInfo.ArgumentList.Add("-create");
@@ -1260,15 +1264,75 @@ public class NativeLibs
                 ColourConsole.WriteErrorLine($"Failed to run lipo to combine libraries (exit: {result.ExitCode})");
                 return false;
             }
+
+            cancellationToken.ThrowIfCancellationRequested();
         }
 
         ColourConsole.WriteSuccessLine("Successfully combined libraries");
 
         ColourConsole.WriteNormalLine("Handling debug symbols");
 
-        throw new NotImplementedException();
+        if (options.DebugLibrary != true)
+        {
+            ColourConsole.WriteInfoLine(
+                "Extracting symbols (requires compiled Breakpad to be compiled) and stripping binaries");
 
-        ColourConsole.WriteNormalLine("Copying final build results");
+            foreach (var library in libraries)
+            {
+                // There isn't a foreach loop here as mac never uses avx
+
+                var source = Path.Join(baseInstallFolder, LibraryBuildInstallPath(library, platform, tag));
+
+                ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
+
+                if (!await symbolHandler.ExtractSymbols(source, "./", false, cancellationToken))
+                {
+                    ColourConsole.WriteErrorLine(
+                        "Symbol extraction failed. Are Breakpad tools built at the expected path?");
+
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            ColourConsole.WriteNormalLine("Skipping symbol extraction for debug build");
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        ColourConsole.WriteInfoLine("Copying built libraries to the right folder");
+
+        foreach (var library in libraries)
+        {
+            var version = NativeConstants.GetLibraryVersion(library);
+
+            // Mac has only non-avx variants so need to copy just one thing per library
+
+            var target = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
+
+            var targetFolder = Path.GetDirectoryName(target) ??
+                throw new Exception("Couldn't get folder from library install path");
+
+            Directory.CreateDirectory(targetFolder);
+
+            var source = Path.Join(baseInstallFolder, LibraryBuildInstallPath(library, platform, tag));
+
+            File.Copy(source, target, true);
+
+            ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
+
+            if (options.DebugLibrary != true)
+            {
+                await BinaryHelpers.Strip(target, cancellationToken);
+
+                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+            }
+            else
+            {
+                ColourConsole.WriteDebugLine("Not stripping a debug library");
+            }
+        }
 
         ColourConsole.WriteSuccessLine("Successfully created Mac distributable library builds");
         return true;
