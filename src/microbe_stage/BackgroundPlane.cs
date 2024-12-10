@@ -203,22 +203,16 @@ public partial class BackgroundPlane : Node3D
         {
             blurResultPlane.Visible = true;
 
-            if (backgroundPlane.GetParent() == this)
-            {
-                RemoveChild(backgroundPlane);
-                backgroundSubViewport.AddChild(backgroundPlane);
-            }
+            RemoveChild(backgroundPlane);
+            backgroundSubViewport.AddChild(backgroundPlane);
 
             backgroundSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
             partialBlurSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Always;
         }
         else
         {
-            if (backgroundPlane.GetParent() != this)
-            {
-                backgroundSubViewport.RemoveChild(backgroundPlane);
-                AddChild(backgroundPlane);
-            }
+            backgroundSubViewport.RemoveChild(backgroundPlane);
+            AddChild(backgroundPlane);
 
             backgroundSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
             partialBlurSubViewport.RenderTargetUpdateMode = SubViewport.UpdateMode.Disabled;
