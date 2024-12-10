@@ -1116,9 +1116,10 @@ public class NativeLibs
 
         var platform = PackagePlatform.Mac;
         var compileBaseFolder = Path.GetFullPath(GetDistributableBuildFolderBase(platform));
+        var baseInstallFolder = Path.Join(compileBaseFolder, "install");
 
-        var armInstallFolder = Path.Join(compileBaseFolder, "install", "arm");
-        var intelInstallFolder = Path.Join(compileBaseFolder, "install", "intel");
+        var armInstallFolder = Path.Join(baseInstallFolder, "arm");
+        var intelInstallFolder = Path.Join(baseInstallFolder, "intel");
 
         // Setup all the needed folders
         Directory.CreateDirectory(compileBaseFolder);
@@ -1227,9 +1228,45 @@ public class NativeLibs
         // Then some lipo action
         ColourConsole.WriteNormalLine("Combining builds");
 
-        throw new NotImplementedException("Add lipo use");
+        var tag = PrecompiledTag.WithoutAvx;
+
+        if (options.DebugLibrary == true)
+            tag |= PrecompiledTag.Debug;
+
+        foreach (var library in options.Libraries ?? DefaultLibraries)
+        {
+            var name = NativeConstants.GetLibraryDllName(library, platform, tag);
+
+            ColourConsole.WriteNormalLine($"Lipo-ing: {name}");
+
+            var target = Path.Join(baseInstallFolder, LibraryBuildInstallPath(library, platform, tag));
+
+            Directory.CreateDirectory(Path.GetDirectoryName(target) ??
+                throw new Exception("Couldn't detect target folder"));
+
+            startInfo = new ProcessStartInfo("lipo");
+            startInfo.ArgumentList.Add("-create");
+            startInfo.ArgumentList.Add("-output");
+            startInfo.ArgumentList.Add(Path.GetFullPath(target));
+            startInfo.ArgumentList.Add(Path.GetFullPath(Path.Join(armInstallFolder,
+                LibraryBuildInstallPath(library, platform, tag))));
+            startInfo.ArgumentList.Add(Path.GetFullPath(Path.Join(intelInstallFolder,
+                LibraryBuildInstallPath(library, platform, tag))));
+
+            result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine($"Failed to run lipo to combine libraries (exit: {result.ExitCode})");
+                return false;
+            }
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully combined libraries");
 
         ColourConsole.WriteNormalLine("Handling debug symbols");
+
+        throw new NotImplementedException();
 
         ColourConsole.WriteNormalLine("Copying final build results");
 
