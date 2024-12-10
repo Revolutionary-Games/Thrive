@@ -391,17 +391,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
-        var expectedFile = Path.Join(folder, ThriveProperties.GetThriveExecutableName(platform));
-
-        if (!File.Exists(expectedFile))
-        {
-            ColourConsole.WriteErrorLine($"Expected Thrive executable ({expectedFile}) was not created on export. " +
-                "Are export templates installed?");
-            return false;
-        }
-
         if (platform != PackagePlatform.Mac)
         {
+            var expectedFile = Path.Join(folder, ThriveProperties.GetThriveExecutableName(platform));
+
+            if (!File.Exists(expectedFile))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected Thrive executable ({expectedFile}) was not created on export. " +
+                    "Are export templates installed?");
+                return false;
+            }
+
             // Check .pck file exists
             var expectedPck = Path.Join(folder, EXPECTED_THRIVE_PCK_FILE);
 
@@ -418,6 +419,15 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             {
                 ColourConsole.WriteErrorLine($"Expected data folder ({expectedDataFolder}) was not created on " +
                     $"export. Are export templates installed? Or did code build fail?");
+                return false;
+            }
+        }
+        else
+        {
+            if (!File.Exists(MacZipInFolder(folder)))
+            {
+                ColourConsole.WriteErrorLine("Expected Thrive .zip for Mac was not created on export. " +
+                    "Are export templates installed?");
                 return false;
             }
         }
@@ -514,6 +524,16 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             if (!success)
             {
                 ColourConsole.WriteErrorLine("Could not copy native libraries for release, this release won't work");
+                return false;
+            }
+        }
+
+        if (platform == PackagePlatform.Mac)
+        {
+            ColourConsole.WriteNormalLine("Copying native libraries into Thrive Mac .zip");
+            if (!await nativeLibraryTool.MoveInstalledLibrariesToZip(folder, MacZipInFolder(folder), cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to move native libraries into zip");
                 return false;
             }
         }

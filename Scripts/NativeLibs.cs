@@ -222,6 +222,13 @@ public class NativeLibs
 
             foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
             {
+                // Mac doesn't have an avx variant
+                if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
+                {
+                    ColourConsole.WriteDebugLine("Skipping trying to copy AVX library that won't exist for Mac");
+                    continue;
+                }
+
                 if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder, tag))
                 {
                     ColourConsole.WriteErrorLine($"Error copying library {library}");
@@ -233,6 +240,52 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine($"Native libraries for {platform} copied to {releaseFolder}");
+        return true;
+    }
+
+    /// <summary>
+    ///   Handles copying libraries installed by <see cref="CopyToThriveRelease"/> into a zip. Assumes zip is in
+    ///   <see cref="folder"/> (probably fails otherwise)
+    /// </summary>
+    /// <returns>True on success</returns>
+    public async Task<bool> MoveInstalledLibrariesToZip(string folder, string releaseZip,
+        CancellationToken cancellationToken)
+    {
+        var libFolder = Path.Join(folder, NativeConstants.PackagedLibraryFolder);
+
+        if (!Directory.Exists(libFolder))
+        {
+            ColourConsole.WriteErrorLine(
+                "Couldn't find the library folder at expected path (this copy-to-zip requires " +
+                "library install to be used first)");
+            return false;
+        }
+
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = folder,
+        };
+        startInfo.ArgumentList.Add("-9");
+        startInfo.ArgumentList.Add("-u");
+
+        // Assume the zip is in the folder (need to add it recursively)
+        startInfo.ArgumentList.Add("-r");
+        startInfo.ArgumentList.Add(Path.GetFileName(releaseZip));
+
+        // And assume all libraries are just written to the lib folder so we can add it entirely
+        startInfo.ArgumentList.Add(NativeConstants.PackagedLibraryFolder);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"Running zip update failed (exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        Directory.Delete(libFolder, true);
+
+        ColourConsole.WriteSuccessLine("Native libraries moved to target zip");
         return true;
     }
 
