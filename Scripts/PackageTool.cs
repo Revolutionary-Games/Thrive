@@ -711,11 +711,10 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     /// <summary>
     ///   The Godot engine export for some reason doesn't put the extension to the right place on Mac, so we do that
-    ///   ourselves. This method can only be called once the library copy method has been run already and this takes
-    ///   and moves the extension file.
+    ///   ourselves.
     /// </summary>
     /// <param name="folder">
-    ///   The prepared Mac release folder that needs to already contain the Thrive.zip and lib folder
+    ///   The prepared Mac release folder that needs to already contain the Thrive.zip
     /// </param>
     /// <param name="cancellationToken">Cancellation</param>
     /// <returns>True on success</returns>
@@ -731,7 +730,11 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         var name = NativeConstants.GetLibraryDllName(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
             PrecompiledTag.WithoutAvx);
 
-        File.Move(Path.Join(NativeConstants.PackagedLibraryFolder, name), Path.Join(targetPath, name));
+        // As the normal library install doesn't uselessly copy the extension file, we copy it here from the real
+        // storage location
+        File.Copy(NativeConstants.GetPathToLibraryDll(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
+                NativeConstants.ExtensionVersion.ToString(), true, PrecompiledTag.WithoutAvx),
+            Path.Join(targetPath, name));
 
         var startInfo = new ProcessStartInfo("zip")
         {
