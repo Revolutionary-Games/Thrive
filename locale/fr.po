@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-07 15:22+0200\n"
 "PO-Revision-Date: 2024-10-31 16:02+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -616,6 +616,10 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane est dotée d'un mur, ce qui lui confère une meilleure protection contre les dégâts généraux et surtout contre les dégâts physiques. Elle coûte également moins d'énergie pour conserver sa forme, mais ne peut absorber les ressources rapidement et est plus lente. [b]La cellulase peut digérer cette paroi[/b], ce qui la rend vulnérable à l'engloutissement par les prédateurs."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
 
@@ -897,6 +901,24 @@ msgstr "La concentration de {0} a diminué de {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consommation de {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Équilibre des composés"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Équilibre des composés"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densité des nuages de composés"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -4069,6 +4091,10 @@ msgstr "Pas de dossier de captures d'écrans trouvé"
 msgid "NO_SELECTED_MOD"
 msgstr "Aucun mod sélectionné"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Résolution :"
+
 msgid "NUCLEUS"
 msgstr "Noyau"
 
@@ -4238,6 +4264,14 @@ msgstr "{0} organites"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organite"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axone"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Charger les sauvegardes précédentes"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Déverrouillage des organites activé"
@@ -4645,6 +4679,14 @@ msgstr "Asexuel"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Bourgeonnement"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduction :"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction :"
@@ -8288,10 +8330,6 @@ msgstr "Dézoomer"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Résolution :"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

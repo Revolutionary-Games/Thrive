@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-07 15:22+0200\n"
 "PO-Revision-Date: 2024-10-19 21:07+0000\n"
 "Last-Translator: Paradox Edge <xxzemonxx@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -637,6 +637,10 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Detta membran har en vägg, vilket leder till bättre skydd mot allmän skada och särskilt mot fysisk skada. Den kostar också mindre energi för att bibehålla sin form, men kan inte ta upp resurser lika snabbt och är trögare. [b]Cellulas kan smälta denna vägg[/b] vilket gör den sårbar mot uppslukning av rovdjur."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Fortsätt"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -937,6 +941,22 @@ msgstr "{0} koncentrationer har minskat med {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} konsumtion"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Molekylmoln"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -4192,6 +4212,10 @@ msgstr "Hittade ingen screenshots mapp"
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Upplösning:"
+
 msgid "NUCLEUS"
 msgstr "Kärna"
 
@@ -4373,6 +4397,14 @@ msgstr "Rov Tagg"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Rov Tagg"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organeller"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Hjälp"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4813,6 +4845,14 @@ msgstr "Fortplantning"
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "Producerar"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
@@ -8389,10 +8429,6 @@ msgstr "Zooma ut"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Upplösning:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
-"PO-Revision-Date: 2024-11-19 19:46+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-12-07 15:22+0200\n"
+"PO-Revision-Date: 2024-12-05 05:22+0000\n"
+"Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -160,7 +160,7 @@ msgstr ""
 "[b]Ogólne Dane Ogranelli:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "Już dokonałeś wniebowstąpienia"
 
 msgid "ALT"
 msgstr "Alt"
@@ -221,10 +221,16 @@ msgstr "Gratulacje!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Dokonałeś wniebowstąpienia i ukończyłeś grę. Gratulujemy Ci dotarcia do końca!\n"
+"\n"
+"Możesz kontynuować rozgrywkę w Etapie Kosmosu z odblokowanymi Narzędziami Boga do zabawy w sandboksie.\n"
+"\n"
+"Istnieje również możliwość opuszczenia boskości i powrotu to Etapu Mikroba w tym zapisie, co pozwala ponownie przejść przez wszystkie etapy z dodatkowymi bonusami.\n"
+"\n"
+"Całkowita liczba wniebowstąpień w tym zapisie: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Wersja:"
+msgstr "Etap Boskości"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Klasa Mod assembly jest wymagana, jeśli klasa assembly jest określona"
@@ -610,6 +616,10 @@ msgstr "Celulozowa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nazwa Rodzaju Komórki"
 
@@ -889,6 +899,24 @@ msgstr "Stężenie {0} zmniejszyło się o {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Konsumpcja {0}"
 
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Bilanse Związków"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Bilanse Związków"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Ta część pokazuje bilans całkowity (produkcja - konsumpcja) dla każdego związku.\n"
+"Na przykład by stworzyć komórkę roślinną, bilans glukozy powinien być pozytywny z zapasem."
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Benchmark Chmury Związków"
+
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(nie wystarczy by przetrwać noc która trwa {0} s)"
 
@@ -929,12 +957,16 @@ msgstr "Potwierdź Wyjście"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Potwierdź Nadpisanie"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr "Przejść do Fazy Cywilizacji?"
+msgstr "Przejść do Etapu Boskości?"
 
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
+"Możesz teraz dokonać wniebowstąpienia i osiągnąć Etap Boskości poprzez uruchomienie Bramy Wniebowstąpiennej.\n"
+"\n"
+"To odblokuje nieograniczoną moc w postaci nowych Narzędzi Boga, które będziesz mógł wykorzystywać w tym zapisie.\n"
+"\n"
+"Wniebowstąpienie oznacza również wygranie gry, jednak będziesz mógł kontynuować swoją rozgrywkę. Dokonać wniebowstąpienia?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Przejść do Fazy Przemysłowej?"
@@ -1424,6 +1456,11 @@ msgstr "Usunięcia zapisu nie można cofnąć, jesteś pewien że chcesz to zrob
 
 msgid "DESCEND_CONFIRMATION_EXPLANATION"
 msgstr ""
+"Opuszczenie boskości usunie twój status boskości i przywróci cię do Etapu Mikroba. Stąd możesz dokonać ponownej rozgrywki w obecnym zapisie.\n"
+"\n"
+"Dla tej nowej rozgrywki otrzymasz bonus opuszczenia boskości. W przyszłej wersji będzie mieć możliwość wybrania bonusu samodzielnie, ale na razie zawsze nim będzie 20% obniżenie kosztów osmoregulacji.\n"
+"\n"
+"Potwierdziwszy opuszczenie boskości możesz edytować ustawienia gry, by np. wybrać nowe ziarno (by grać na innej mapie) albo wyłączyć ŻJZ."
 
 msgid "DESCRIPTION"
 msgstr "Opis:"
@@ -2505,13 +2542,11 @@ msgstr "Podgląd"
 msgid "INSPECTOR"
 msgstr "Inspektor"
 
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Zbierz"
+msgstr "Uruchom Bramę Wniebowstąpienną"
 
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Zbierz"
+msgstr "Uruchom Bramę Wniebowstąpienną (BRAKUJE ENERGII)"
 
 msgid "INTERACTION_CONSTRUCT"
 msgstr "Zakończ Budowę"
@@ -4053,6 +4088,10 @@ msgstr "Nie znaleziono katalogu zrzutów ekranu"
 msgid "NO_SELECTED_MOD"
 msgstr "Nie wybrano Modów"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozdzielczość:"
+
 msgid "NUCLEUS"
 msgstr "Jądro Komórkowe"
 
@@ -4228,6 +4267,14 @@ msgstr "{0} organelle"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organella"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Akson"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Załaduj poprzednio zapisane gry"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
@@ -4630,6 +4677,14 @@ msgstr "Aseksualne"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pączkowanie"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Metoda Rozmnażania:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Metoda Rozmnażania:"
@@ -5344,7 +5399,7 @@ msgid "STRUCTURE"
 msgstr "Struktura"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr ""
+msgstr "Brama Wniebowstąpienna"
 
 #, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
@@ -5432,7 +5487,7 @@ msgid "TARGET_TYPE_COLON"
 msgstr "Typ:"
 
 msgid "TECHNOLOGY_ASCENSION"
-msgstr ""
+msgstr "Wniebowstąpienie"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr ""
@@ -6332,32 +6387,29 @@ msgstr ""
 msgid "WIKI_8_BRACKET_16"
 msgstr "Obróć w lewo"
 
-#, fuzzy
 msgid "WIKI_ASCENSION"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Wniebowstąpienie"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
-msgstr "Obecni Developerzy"
+msgstr "Praca nad Wniebowstąpieniem jeszcze się nie rozpoczęła."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Jeszcze niedostępne."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "W skrócie: Jest to końcowa rozgrywka, gdzie możesz do woli przemieszczać się po galaktyce jako metafizyczny byt, obserwując i przekształcając co zechcesz. To była długa podróż, więc na to zasługujesz."
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
+"Wniebowstąpienie jest kluczowym konceptem w Thrive, porównywalnym do \"wygrania gry\" w innych grach wideo. Świadomy organizm, który go dokona, jest przekształcany do postaci energetycznej przez Bramę Wniebowstąpienną, w wyniku czego uzyskuje boskie moce, wykorzystując energię wszechświata (w zasadzie czyniąc cudy za darmo).\n"
+"\n"
+"Jeśli zbadałeś technologię Narzędzi Boga, w dowolnym momencie rozgrywki będziesz mieć dostęp do nowego panelu \"Narzędzia Boga\", z którego pomocą będziesz mógł zmienić cokolwiek zechcesz. Od tworzenia całych systemów gwiezdnych do najmniejszych bakterii, od niszczenia całych cywilizacji do opętywania pojedynczego jej członka, wszystko możliwe."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
-msgstr "Gratulacje!"
+msgstr "Dokonasz wniebowstąpienia, gdy twój gatunek przejdzie przez Bramę Wniebowstąpienną. Prawdopodobnie będziemy chcieli pokazać napisy końcowe gry po cutscence wchodzenia w etap boskości. Po zakończeniu napisów gracz jest ponownie wrzucany do rozgrywki, w Etapie Boskości, z gratulującą wiadomością. By uczynić to ostatnią przeszkodą w grze, do stworzenia i operowania Brama Wniebowstąpienna będzie wymagać mnóstwa badań (w tym wspomnianych powyżej Narzędzi Boga) oraz ogromnej ilości energii, wielokrotnie większej od energii słońca. Inne potencjalnie wrogie gatunki będą miały swoją ostatnią szansę, by zaatakować gracza, zanim uzyska on nieskończoną moc i będzie mógł po prostu usunąć konkurujące międzygwiezdne imperia."
 
-#, fuzzy
 msgid "WIKI_ASCENSION_UI"
-msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+msgstr "Jeszcze niedostępne."
 
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr "Prace nad Etapem Boskości jeszcze nie zostały rozpoczęte."
@@ -7284,9 +7336,8 @@ msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Synteza OxyToxy"
 
-#, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
-msgstr "Rustycyjanina"
+msgstr "Wniebowstąpienie"
 
 #, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
@@ -7646,28 +7697,21 @@ msgstr ""
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr "Gruczoł Śluzowy"
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_INTRO"
-msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
-msgstr "Etap Mikroba"
+msgstr ""
 
-#, fuzzy
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
-msgstr "Azotaza"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr "Etap Mikroba"
 
-#, fuzzy
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
-"Wyciąga energię w formie [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Eukariotyczny variant mniej wydajnej [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosyntazy[/url][/color][/b].\n"
-"\n"
-"Organella spekulacyjna nie wykryta w prawdziwym życiu. Niedostępne w grach z włączonym trybem ŻTJZ (Życie Takie Jakie Znamy)."
 
 #, fuzzy
 msgid "WIKI_TBA"
@@ -8137,10 +8181,6 @@ msgstr "Oddal"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozdzielczość:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

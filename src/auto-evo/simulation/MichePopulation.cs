@@ -61,7 +61,12 @@ public static class MichePopulation
         return (int)(leafNodes.Sum(x => x.Pressure.GetEnergy(patch)) / individualCost);
     }
 
-    private static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
+    /// <summary>
+    ///   Calculates the energy cost of an individual of a species. Used to calculate populations from total gained
+    ///   energy per species.
+    /// </summary>
+    /// <returns>Cost of individual population unit of a species</returns>
+    public static float CalculateMicrobeIndividualCost(Species species, BiomeConditions biomeConditions,
         SimulationCache cache)
     {
         if (species is not MicrobeSpecies microbeSpecies)

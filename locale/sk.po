@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-07 15:22+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -620,6 +620,10 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Názov typu bunky"
 
@@ -903,6 +907,22 @@ msgstr "{0} koncentrácie sa znížili o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} spotreba"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Hustota oblaku zlúčenín"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -4004,6 +4024,10 @@ msgstr "Priečinok snímkov obrazovky nebol nájdený"
 msgid "NO_SELECTED_MOD"
 msgstr "Žiadny vybraný mod"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozlíšenie:"
+
 msgid "NUCLEUS"
 msgstr "Jadro"
 
@@ -4179,6 +4203,14 @@ msgstr "Dravý Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Dravý Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Načítať predošlé uložené hry"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4599,6 +4631,14 @@ msgstr "Asexuálne"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučanie"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukcia:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukcia:"
@@ -7967,10 +8007,6 @@ msgstr "Oddialiť"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlíšenie:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

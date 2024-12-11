@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-29 11:19+0200\n"
+"POT-Creation-Date: 2024-12-07 15:22+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -623,6 +623,10 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
 
@@ -902,6 +906,22 @@ msgstr "La concentrazione di {0} è diminuita del {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo di {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostra/nascondi i composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densità delle nuvole di composti"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(non abbastanza per sopravvivere alla notte che è lunga {0}s)"
@@ -4171,6 +4191,10 @@ msgstr "Cartella degli screenshot non trovata"
 msgid "NO_SELECTED_MOD"
 msgstr "Nessuna mod selezionata"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Risoluzione:"
+
 msgid "NUCLEUS"
 msgstr "Nucleo"
 
@@ -4352,6 +4376,14 @@ msgstr "Pilo predatoriale"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilo predatoriale"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organuli"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carica partite salvate precedentemente"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4772,6 +4804,14 @@ msgstr "Asessuale"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmazione"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Riproduzione:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Riproduzione:"
@@ -8381,10 +8421,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Risoluzione:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"
