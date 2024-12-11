@@ -1572,6 +1572,12 @@ public class NativeLibs
 
         foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
+            if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
+            {
+                ColourConsole.WriteNormalLine("Not trying to upload Mac with AVX as that is an unused configuration");
+                continue;
+            }
+
             var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
             if (!File.Exists(file))
