@@ -2,26 +2,27 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b0vcomsrlf04l"
-path="res://.godot/imported/ChitinCellWallGradient.png-15f47981bf154377ced43265b96fd81a.ctex"
+uid="uid://qks687uh6hxn"
+path.s3tc="res://.godot/imported/CelluloseMembraneDamaged.png-09beee4c3bdcf5a2f2cd0752eae3c6ea.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://assets/textures/ChitinCellWallGradient.png"
-dest_files=["res://.godot/imported/ChitinCellWallGradient.png-15f47981bf154377ced43265b96fd81a.ctex"]
+source_file="res://assets/textures/CelluloseMembraneDamaged.png"
+dest_files=["res://.godot/imported/CelluloseMembraneDamaged.png-09beee4c3bdcf5a2f2cd0752eae3c6ea.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
