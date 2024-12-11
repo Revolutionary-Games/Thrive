@@ -38,6 +38,8 @@ public class NativeLibs
     private const string ExtensionInstallFolder = "lib";
     private const string ExtensionInstallFolderDebug = "lib/debug";
 
+    private static readonly string[] MacArchitectures = ["x86_64", "arm64"];
+
     /// <summary>
     ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
     ///   library as a pure C# solution is used instead.
@@ -1108,16 +1110,8 @@ public class NativeLibs
                 {
                     var source = GetPathToDistributableTempDll(library, platform, tag);
 
-                    ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
-
-                    if (!await symbolHandler.ExtractSymbols(source, "./",
-                            platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
-                    {
-                        ColourConsole.WriteErrorLine(
-                            "Symbol extraction failed. Are breakpad tools installed at the expected path?");
-
+                    if (!await ExtractSymbols(source, platform, cancellationToken))
                         return false;
-                    }
                 }
             }
         }
@@ -1165,6 +1159,45 @@ public class NativeLibs
         }
 
         ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
+
+        return true;
+    }
+
+    private async Task<bool> ExtractSymbols(string binary, PackagePlatform platform,
+        CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteDebugLine($"Performing extraction on library: {binary}");
+
+        if (platform == PackagePlatform.Mac)
+        {
+            // Mac needs to run extraction separately for each architecture
+
+            foreach (var architecture in MacArchitectures)
+            {
+                symbolHandler.ExtractSpecificArchitecture = architecture;
+
+                if (!await symbolHandler.ExtractSymbols(binary, "./", false, cancellationToken))
+                {
+                    ColourConsole.WriteErrorLine($"Symbol extraction failed (mac architecture: {architecture}. " +
+                        "Are breakpad tools installed at the expected path?");
+
+                    return false;
+                }
+            }
+
+            symbolHandler.ExtractSpecificArchitecture = null;
+        }
+        else
+        {
+            if (!await symbolHandler.ExtractSymbols(binary, "./",
+                    platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine(
+                    "Symbol extraction failed. Are breakpad tools installed at the expected path?");
+
+                return false;
+            }
+        }
 
         return true;
     }
@@ -1344,7 +1377,7 @@ public class NativeLibs
         if (options.DebugLibrary != true)
         {
             ColourConsole.WriteInfoLine(
-                "Extracting symbols (requires compiled Breakpad to be compiled) and stripping binaries");
+                "Extracting symbols (requires compiled Breakpad installed) and stripping binaries");
 
             foreach (var library in libraries)
             {
@@ -1354,11 +1387,8 @@ public class NativeLibs
 
                 ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
 
-                if (!await symbolHandler.ExtractSymbols(source, "./", false, cancellationToken))
+                if (!await ExtractSymbols(source, platform, cancellationToken))
                 {
-                    ColourConsole.WriteErrorLine(
-                        "Symbol extraction failed. Are Breakpad tools built at the expected path?");
-
                     return false;
                 }
             }
