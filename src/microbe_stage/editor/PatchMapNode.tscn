@@ -94,6 +94,7 @@ size_flags_vertical = 0
 mouse_filter = 2
 
 [node name="Eruption" type="TextureRect" parent="EventIcons"]
+visible = false
 custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 tooltip_text = "EVENT_ERUPTION_TOOLTIP"
