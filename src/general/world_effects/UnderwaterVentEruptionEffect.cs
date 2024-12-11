@@ -70,6 +70,7 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
 
             // Patch specific log
+            // TODO: should these events be highlighted always? It'll get busy when there are a lot of events.
             patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
                 true, true, "EruptionEvent.svg");
 
