@@ -71,13 +71,13 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
 
             // Patch specific log
             patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
-                true, true, "IrruptionEvent.svg");
+                true, true, "EruptionEvent.svg");
 
             if (patch.Visibility == MapElementVisibility.Shown)
             {
                 // Global log, but only if patch is known to the player
                 targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
-                    true, true, "IrruptionEvent.svg");
+                    true, true, "EruptionEvent.svg");
             }
 
             patch.AddPatchEventRecord(WorldEffectVisuals.UnderwaterVentEruption, totalTimePassed);
