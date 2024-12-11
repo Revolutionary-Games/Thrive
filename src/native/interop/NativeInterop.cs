@@ -504,18 +504,49 @@ public static class NativeInterop
                     return NativeLibrary.Load(file);
                 }
 
-                file = Path.Combine("lib", file);
+                var adjustedFile = Path.Combine("lib", file);
 
-                if (File.Exists(file))
+                if (File.Exists(adjustedFile))
                 {
 #if DEBUG_LIBRARY_LOAD
-                    GD.Print($"Loading Mac GDExtension from: {file}");
+                    GD.Print($"Loading Mac GDExtension from: {adjustedFile}");
 #endif
 
-                    return NativeLibrary.Load(file);
+                    return NativeLibrary.Load(adjustedFile);
                 }
 
-                // TODO: does the .app packaging need special handling?
+                // Special case needed for .app packaging
+                var location = GetExecutableFolder();
+
+                adjustedFile = Path.Combine(location, file);
+
+                if (File.Exists(adjustedFile))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {adjustedFile}");
+#endif
+
+                    return NativeLibrary.Load(adjustedFile);
+                }
+
+#if DEBUG_LIBRARY_LOAD
+                GD.Print($"Attempted Mac GDExtension: {adjustedFile}");
+#endif
+
+                adjustedFile = Path.Combine(location, "lib", file);
+
+                if (File.Exists(adjustedFile))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {adjustedFile}");
+#endif
+
+                    return NativeLibrary.Load(adjustedFile);
+                }
+
+#if DEBUG_LIBRARY_LOAD
+                GD.Print($"Last attempted Mac GDExtension: {adjustedFile}");
+#endif
 
                 GD.PrintErr(
                     "Mac GDExtension special load logic failed, falling back to default library load but this " +
@@ -598,14 +629,19 @@ public static class NativeInterop
                 throw new Exception("Entry assembly location is empty");
             }
 
-            if (location.StartsWith("file://"))
-            {
-                location = location.Substring("file://".Length);
-            }
+            location = RemoveFilePrefix(location);
 
             // Remove one folder level if this is likely an internal Godot path (when packaged)
             if (location.Contains(GODOT_INTERNAL_PATH_LIKELY_MARKER))
+            {
+                // On Mac handle .app folder usage
+                if (Path.GetFullPath(location).Contains(".app/"))
+                {
+                    return Path.Join(location, "../../MacOS");
+                }
+
                 return Path.Join(location, "..");
+            }
 
             return location;
         }
@@ -620,6 +656,16 @@ public static class NativeInterop
 
             return string.Empty;
         }
+    }
+
+    private static string RemoveFilePrefix(string location)
+    {
+        if (location.StartsWith("file://"))
+        {
+            location = location.Substring("file://".Length);
+        }
+
+        return location;
     }
 
     private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)
