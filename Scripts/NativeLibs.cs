@@ -250,7 +250,7 @@ public class NativeLibs
     ///   <see cref="folder"/> (probably fails otherwise)
     /// </summary>
     /// <returns>True on success</returns>
-    public async Task<bool> MoveInstalledLibrariesToZip(string folder, string releaseZip,
+    public async Task<bool> MoveInstalledLibrariesToZip(string folder, string releaseZip, string pathPrefixInZip,
         CancellationToken cancellationToken)
     {
         var libFolder = Path.Join(folder, NativeConstants.PackagedLibraryFolder);
@@ -263,6 +263,17 @@ public class NativeLibs
             return false;
         }
 
+        // Assume all libraries are just written to the lib folder so we can add it entirely after moving the lib
+        // folder so that it has the prefix in front of it when put in the zip
+        var zipRelativePath = Path.Join(pathPrefixInZip, NativeConstants.PackagedLibraryFolder);
+        var localCopyParentFolder = Path.Combine(folder, pathPrefixInZip);
+
+        if (Directory.Exists(localCopyParentFolder))
+            Directory.Delete(localCopyParentFolder, true);
+
+        Directory.CreateDirectory(localCopyParentFolder);
+        Directory.Move(libFolder, Path.Join(localCopyParentFolder, NativeConstants.PackagedLibraryFolder));
+
         var startInfo = new ProcessStartInfo("zip")
         {
             WorkingDirectory = folder,
@@ -274,8 +285,7 @@ public class NativeLibs
         startInfo.ArgumentList.Add("-r");
         startInfo.ArgumentList.Add(Path.GetFileName(releaseZip));
 
-        // And assume all libraries are just written to the lib folder so we can add it entirely
-        startInfo.ArgumentList.Add(NativeConstants.PackagedLibraryFolder);
+        startInfo.ArgumentList.Add(zipRelativePath);
 
         var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
 
@@ -285,7 +295,8 @@ public class NativeLibs
             return false;
         }
 
-        Directory.Delete(libFolder, true);
+        // Delete the no longer useful non-zip contents
+        Directory.Delete(localCopyParentFolder, true);
 
         ColourConsole.WriteSuccessLine("Native libraries moved to target zip");
         return true;

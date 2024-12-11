@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using DevCenterCommunication.Models.Enums;
 using DevCenterCommunication.Utilities;
 using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
@@ -27,6 +28,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string STEAM_README_TEMPLATE = "doc/steam_license_readme.txt";
 
     private const string MONO_IDENTIFIER = ".mono.";
+
+    private const string MAC_ZIP_LIBRARIES_PATH = "Thrive.app/Contents/MacOS";
+    private const string MAC_ZIP_GD_EXTENSION_TARGET_PATH = "Thrive.app/Contents/MacOS";
 
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
 
@@ -530,12 +534,24 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
         if (platform == PackagePlatform.Mac)
         {
+            ColourConsole.WriteNormalLine("Fixing Mac GDExtension by ourselves copying it into the .zip");
+
+            if (!await CopyGdExtensionToZip(folder, cancellationToken))
+                return false;
+
             ColourConsole.WriteNormalLine("Copying native libraries into Thrive Mac .zip");
-            if (!await nativeLibraryTool.MoveInstalledLibrariesToZip(folder, MacZipInFolder(folder), cancellationToken))
+            if (!await nativeLibraryTool.MoveInstalledLibrariesToZip(folder, MacZipInFolder(folder),
+                    MAC_ZIP_LIBRARIES_PATH, cancellationToken))
             {
                 ColourConsole.WriteErrorLine("Failed to move native libraries into zip");
                 return false;
             }
+
+            // Make sure there isn't a confusing Thrive.app folder remaining
+            var unwantedApp = Path.Join(folder, "Thrive.app");
+
+            if (Directory.Exists(unwantedApp))
+                Directory.Delete(unwantedApp, true);
         }
 
         ColourConsole.WriteSuccessLine("Native library operations succeeded");
@@ -668,6 +684,56 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private static string MacZipInFolder(string folder)
     {
         return Path.Join(folder, "Thrive.zip");
+    }
+
+    /// <summary>
+    ///   The Godot engine export for some reason doesn't put the extension to the right place on Mac, so we do that
+    ///   ourselves. This method can only be called once the library copy method has been run already and this takes
+    ///   and moves the extension file.
+    /// </summary>
+    /// <param name="folder">
+    ///   The prepared Mac release folder that needs to already contain the Thrive.zip and lib folder
+    /// </param>
+    /// <param name="cancellationToken">Cancellation</param>
+    /// <returns>True on success</returns>
+    private async Task<bool> CopyGdExtensionToZip(string folder, CancellationToken cancellationToken)
+    {
+        var targetPath = Path.Join(folder, MAC_ZIP_GD_EXTENSION_TARGET_PATH);
+
+        if (Directory.Exists(targetPath))
+            Directory.Delete(targetPath, true);
+
+        Directory.CreateDirectory(targetPath);
+
+        var name = NativeConstants.GetLibraryDllName(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
+            PrecompiledTag.WithoutAvx);
+
+        File.Move(Path.Join(NativeConstants.PackagedLibraryFolder, name), Path.Join(targetPath, name));
+
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = folder,
+        };
+        startInfo.ArgumentList.Add("-9");
+        startInfo.ArgumentList.Add("-u");
+        startInfo.ArgumentList.Add(Path.GetFileName(MacZipInFolder(folder)));
+
+        // Relative path to working directory to ensure correct copying
+        startInfo.ArgumentList.Add(Path.Join(MAC_ZIP_GD_EXTENSION_TARGET_PATH, name));
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        // Delete the temporary folder as the data either failed or is in the zip now
+        Directory.Delete(targetPath, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"Running zip update for GDExtension include failed " +
+                $"(exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        return true;
     }
 
     private async Task<bool> PrepareDehydratedFolder(PackagePlatform platform, string folder,
