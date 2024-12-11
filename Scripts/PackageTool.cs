@@ -32,6 +32,8 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string MAC_ZIP_LIBRARIES_PATH = "Thrive.app/Contents/MacOS";
     private const string MAC_ZIP_GD_EXTENSION_TARGET_PATH = "Thrive.app/Contents/MacOS";
 
+    private const string MAC_ENTITLEMENTS = "Scripts/Thrive.entitlements";
+
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
 
     private static readonly IReadOnlyList<PackagePlatform> ThrivePlatforms = new List<PackagePlatform>
@@ -585,6 +587,27 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             var sourceZip = MacZipInFolder(folder);
 
             File.Move(sourceZip, archiveFile);
+
+            ColourConsole.WriteInfoLine("Performing final signing for Mac build");
+
+            if (string.IsNullOrEmpty(options.MacSigningKey))
+            {
+                ColourConsole.WriteWarningLine(
+                    "Signing without a specific key for mac (this should work but in an optimal case " +
+                    "a signing key would be set)");
+            }
+            else
+            {
+                ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
+            }
+
+            if (!await BinaryHelpers.SignFileForMac(archiveFile, MAC_ENTITLEMENTS, options.MacSigningKey,
+                    cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to sign Mac build");
+                return false;
+            }
+
             return true;
         }
 

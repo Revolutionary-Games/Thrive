@@ -435,6 +435,10 @@ public class Program
             HelpText = "Fallback to using native library only meant for local play (not recommended for release)")]
         public bool FallbackToLocalNative { get; set; }
 
+        [Option("mac-signing-key", Default = null,
+            HelpText = "Use a specific signing key for mac builds (defaults to 'SelfSigned')")]
+        public string? MacSigningKey { get; set; }
+
         [Option("skip-godot-check", Default = false,
             HelpText = "Skip checking if godot is installed and correct version and just try to use it")]
         public bool SkipGodotCheck { get; set; }
