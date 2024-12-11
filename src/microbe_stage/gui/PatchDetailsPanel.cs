@@ -583,6 +583,9 @@ public partial class PatchDetailsPanel : PanelContainer
             phosphateSituation.Texture = null;
         }
     }
+    
+    [Signal]
+    public delegate void OnPatchSelectedEventHandler();
 
     private void MoveToPatchClicked()
     {
@@ -595,7 +598,7 @@ public partial class PatchDetailsPanel : PanelContainer
             return;
         }
 
-        GetTree().CallGroup("ChemicalEquations", "UpdateEquation");
+        EmitSignal(nameof(OnPatchSelectedEventHandler));
         OnMoveToPatchClicked.Invoke(SelectedPatch);
     }
 
