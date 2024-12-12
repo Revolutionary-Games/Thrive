@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdm8ocmn6s0w7"
 path.s3tc="res://.godot/imported/PlanetClouds_Normal.png-48af57bca4dc9d611493585e40ca3821.s3tc.ctex"
+path.etc2="res://.godot/imported/PlanetClouds_Normal.png-48af57bca4dc9d611493585e40ca3821.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/menu_backgrounds/PlanetClouds_Normal.png"
-dest_files=["res://.godot/imported/PlanetClouds_Normal.png-48af57bca4dc9d611493585e40ca3821.s3tc.ctex"]
+dest_files=["res://.godot/imported/PlanetClouds_Normal.png-48af57bca4dc9d611493585e40ca3821.s3tc.ctex", "res://.godot/imported/PlanetClouds_Normal.png-48af57bca4dc9d611493585e40ca3821.etc2.ctex"]
 
 [params]
 
@@ -24,7 +25,7 @@ compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
+roughness/mode=0
 roughness/src_normal="res://assets/textures/menu_backgrounds/PlanetClouds_Normal..png"
 process/fix_alpha_border=true
 process/premult_alpha=false

@@ -65,7 +65,8 @@ func _scan_patches(path :String) -> PackedStringArray:
 		var next := "."
 		while next != "":
 			next = dir.get_next()
-			if next.is_empty() or next == "." or next == "..":
+			# step over directory links and .uid files
+			if next.is_empty() or next == "." or next == ".." or next.ends_with(".uid"):
 				continue
 			patches.append(next)
 	# make sorted from lowest to high version

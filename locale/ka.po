@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-05 15:05+0200\n"
-"PO-Revision-Date: 2024-11-22 10:08+0000\n"
-"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -604,9 +604,8 @@ msgstr "ცელულოზა"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
-msgstr "სამყაროს გენერაციისთვის გამოყენებული მნიშვნელობა, რომელიც დადებითი მთელი რიცხვი უნდა იყოს"
+msgstr ""
 
 msgid "CELL_TYPE_NAME"
 msgstr "უჯრედის ტიპის სახელი"
@@ -870,6 +869,18 @@ msgstr "{0}-ის კონცენტრაცია შემცირდა
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} მოხმარება"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "ყველას შენარჩუნება"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "გაყოფა და უჯრედთან"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "ყოველთვის თავში ასვლა"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "შევსება ბიომის ცვლილებისას"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(არასაკმარისია, რომ გაუძლოთ ღამეს, რომლის სიგრძეა {0})"
@@ -1798,6 +1809,10 @@ msgstr "ჩატვირთვის შეცდომა"
 msgid "ERROR_SAVING"
 msgstr "შენახვის შეცდომა"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "ჩატვირთვის შეცდომა"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2016,6 +2031,7 @@ msgstr "ინტენსიური ომის ნისლი"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(გამოჩენილი იქნება, მხოლოდ, ბიომები, სადაც მომხმარებელი უკვე ნამყოფია)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "ომის ნისლის რეჟიმი"
 
@@ -3699,9 +3715,8 @@ msgstr "ეკრანის ანაბეჭდების საქაღ�
 msgid "NO_SELECTED_MOD"
 msgstr "მოდი არჩეული არაა"
 
-#, fuzzy
 msgid "NO_SUGGESTION"
-msgstr "იდეის შეთავაზება"
+msgstr "არცერთი"
 
 msgid "NUCLEUS"
 msgstr "ბირთვი"
@@ -3860,13 +3875,11 @@ msgstr "{0} ორგანელა"
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} ორგანელა"
 
-#, fuzzy
 msgid "ORGANELLE_SUGGESTION_COLON"
-msgstr "ორგანელები"
+msgstr "ორგანელის მინიშნება:"
 
-#, fuzzy
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
-msgstr "შენახული თამაშების ჩატვირთვა"
+msgstr ""
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "ორგანელების განბლოკვა ჩართულია"
@@ -4267,6 +4280,12 @@ msgstr "ასექსუალური"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "გამრავლება"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "ნაერთები რედაქტორიდან გასვლისას:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(რა მოხდება, როცა მოთამაშის ნაერთები დამახსოვრებულია, როცა რედაქტორიდან ფაზაზე ბრუნდებით)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "რეპროდუქცია:"

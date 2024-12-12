@@ -38,8 +38,8 @@ func start(host :String, port :int) -> GdUnitResult:
 		var err := _stream.connect_to_host(host, port)
 		#prints("connect_to_host", host, port, err)
 		if err != OK:
-			return GdUnitResult.error("GdUnit3: Can't establish client, error code: %s" % err)
-	return GdUnitResult.success("GdUnit3: Client connected checked port %d" % port)
+			return GdUnitResult.error("GdUnit4: Can't establish client, error code: %s" % err)
+	return GdUnitResult.success("GdUnit4: Client connected checked port %d" % port)
 
 
 func _process(_delta :float) -> void:

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-05 15:05+0200\n"
-"PO-Revision-Date: 2024-11-19 19:46+0000\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
@@ -885,6 +885,24 @@ msgstr "Концентрация {0} снизилась на {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Эта секция показывает общий баланс ( производство - потребление) каждого соединения\n"
+"К примеру, для создания клетки-растения баланс глюкозы должен быть положительным"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Тест производительности на Облаках Соединений"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -1882,6 +1900,10 @@ msgstr "Ошибка Загрузки"
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Ошибка Загрузки"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2106,6 +2128,7 @@ msgstr "Сильный туман войны"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(Игрок будет обладать информацией лишь о тех биомах в коих он был)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Режим тумана войны"
 
@@ -4533,6 +4556,14 @@ msgstr "Бесполое"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Размножение"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Воспроизведение:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"

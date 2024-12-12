@@ -566,43 +566,52 @@ public partial class ModUploader : Control
             notes = changeNotes.Text;
         }
 
-        SteamHandler.Instance.UpdateWorkshopItem(updateData, notes, result =>
+        try
         {
+            SteamHandler.Instance.UpdateWorkshopItem(updateData, notes, result =>
+            {
+                SetProcessingStatus(false);
+
+                if (!result.Success)
+                {
+                    SetError(result.TranslatedError);
+                    return;
+                }
+
+                uploadedItemId = updateData.Id;
+
+                GD.Print($"Workshop item updated for \"{selectedMod.InternalName}\"");
+
+                // Save the details in workshopData so that the uploaded info can be pre-filled when uploading an update
+                workshopData.PreviouslyUploadedItemData[selectedMod.InternalName] = updateData;
+
+                if (!SaveWorkshopData())
+                    return;
+
+                ClearError();
+                uploadDialog.Hide();
+
+                // Doesn't work inside Translate method calls for text extraction
+                // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
+                if (result.TermsOfServiceSigningRequired)
+                {
+                    uploadSucceededText.ExtendedBbcode =
+                        Localization.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
+                }
+                else
+                {
+                    uploadSucceededText.ExtendedBbcode = Localization.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
+                }
+
+                uploadSucceededDialog.PopupCenteredShrink();
+            });
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Exception happened when trying to upload workshop item: " + e);
             SetProcessingStatus(false);
-
-            if (!result.Success)
-            {
-                SetError(result.TranslatedError);
-                return;
-            }
-
-            uploadedItemId = updateData.Id;
-
-            GD.Print($"Workshop item updated for \"{selectedMod.InternalName}\"");
-
-            // Save the details in workshopData so that the uploaded info can be pre-filled when uploading an update
-            workshopData.PreviouslyUploadedItemData[selectedMod.InternalName] = updateData;
-
-            if (!SaveWorkshopData())
-                return;
-
-            ClearError();
-            uploadDialog.Hide();
-
-            // Doesn't work inside Translate method calls for text extraction
-            // ReSharper disable once ConvertIfStatementToConditionalTernaryExpression
-            if (result.TermsOfServiceSigningRequired)
-            {
-                uploadSucceededText.ExtendedBbcode =
-                    Localization.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED");
-            }
-            else
-            {
-                uploadSucceededText.ExtendedBbcode = Localization.Translate("WORKSHOP_ITEM_UPLOAD_SUCCEEDED");
-            }
-
-            uploadSucceededDialog.PopupCenteredShrink();
-        });
+            SetError(Localization.Translate("ERROR_UPLOADING_EXCEPTION").FormatSafe(e.Message));
+        }
     }
 
     private void SetProcessingStatus(bool newStatus)

@@ -232,7 +232,9 @@ layout_mode = 2
 ExtendedBbcode = "MOD_UPLOADER"
 
 [node name="Error" type="Label" parent="Dialog/VBoxContainer2/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+autowrap_mode = 3
 
 [node name="ButtonOverlapPreventer" type="Control" parent="Dialog/VBoxContainer2"]
 custom_minimum_size = Vector2(0, 40)
