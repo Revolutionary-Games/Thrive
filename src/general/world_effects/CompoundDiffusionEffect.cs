@@ -19,6 +19,11 @@ public class CompoundDiffusionEffect : IWorldEffect
         this.targetWorld = targetWorld;
     }
 
+    /// <summary>
+    ///   If true this uses a more complex move modifier formula based on the square root distance between patches
+    /// </summary>
+    public bool UseDistanceMoveModifier { get; set; }
+
     public void OnRegisterToWorld()
     {
     }
@@ -26,27 +31,6 @@ public class CompoundDiffusionEffect : IWorldEffect
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
         HandlePatchCompoundDiffusion();
-    }
-
-    private static (float Ambient, float Density) CalculateWantedMoveAmounts(Patch sourcePatch, Patch adjacent,
-        KeyValuePair<Compound, BiomeCompoundProperties> compound)
-    {
-        // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
-        // resources like oxygen)
-        // TODO: improve the formula here as sqrt isn't the best
-        float moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT /
-            MathF.Sqrt(Constants.COMPOUND_DIFFUSE_BASE_DISTANCE + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
-
-        adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
-            out var destinationAmount);
-
-        // Calculate compound amounts to move
-        // At most half of the surplus can move as otherwise the source patch may end up with fewer compounds than
-        // the destination
-        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * 0.5f;
-
-        float density = (compound.Value.Density - destinationAmount.Density) * 0.5f;
-        return (ambient * moveModifier, density * moveModifier);
     }
 
     private void HandlePatchCompoundDiffusion()
@@ -159,6 +143,40 @@ public class CompoundDiffusionEffect : IWorldEffect
 
             patch.Value.Biome.ApplyLongTermCompoundChanges(patch.Value.BiomeTemplate, changesToApplyAtOnce, cloudSizes);
         }
+    }
+
+    private (float Ambient, float Density) CalculateWantedMoveAmounts(Patch sourcePatch, Patch adjacent,
+        KeyValuePair<Compound, BiomeCompoundProperties> compound)
+    {
+        // Apply patch distance to diminish how much to move (to make ocean bottoms receive less surface
+        // resources like oxygen)
+
+        float moveModifier;
+        if (UseDistanceMoveModifier)
+        {
+            // TODO: improve the formula here as sqrt isn't the best
+            moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT /
+                MathF.Sqrt(
+                    Constants.COMPOUND_DIFFUSE_BASE_DISTANCE + Math.Abs(sourcePatch.Depth[0] - adjacent.Depth[0]));
+        }
+        else
+        {
+            // TODO: as this is basically just a constraint on how many patches away something is, should cases where
+            // patches are "skipped" in a vertical stack be divided by the number of skipped patches here to have the
+            // same end result?
+            moveModifier = Constants.COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT_SIMPLE;
+        }
+
+        adjacent.Biome.TryGetCompound(compound.Key, CompoundAmountType.Biome,
+            out var destinationAmount);
+
+        // Calculate compound amounts to move
+        // At most half of the surplus can move as otherwise the source patch may end up with fewer compounds than
+        // the destination
+        float ambient = (compound.Value.Ambient - destinationAmount.Ambient) * 0.5f;
+
+        float density = (compound.Value.Density - destinationAmount.Density) * 0.5f;
+        return (ambient * moveModifier, density * moveModifier);
     }
 
     private void AddMove(Compound compound, Patch patch, BiomeCompoundProperties amount,
