@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-07 15:22+0200\n"
+"POT-Creation-Date: 2024-12-12 10:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,7 +161,7 @@ msgstr ""
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:348
+#: ../simulation_parameters/common/gallery.json:353
 #: ../src/gui_common/art_gallery/GalleryViewer.cs:413
 msgid "ALL"
 msgstr ""
@@ -439,14 +439,14 @@ msgstr ""
 msgid "AVAILABLE_MODS"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:539
+#: ../simulation_parameters/common/gallery.json:544
 #: ../simulation_parameters/common/wiki.json:2473
 #: ../simulation_parameters/common/wiki.json:2571
 #: ../ThriveScriptsShared/Stage.cs:23
 msgid "AWAKENING_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:528
+#: ../simulation_parameters/common/gallery.json:533
 #: ../simulation_parameters/common/wiki.json:2422
 #: ../simulation_parameters/common/wiki.json:2520
 #: ../ThriveScriptsShared/Stage.cs:20
@@ -845,7 +845,7 @@ msgstr ""
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:368 ../src/steam/SteamClient.cs:265
+#: ../src/modding/ModUploader.cs:368 ../src/steam/SteamClient.cs:267
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
 msgstr ""
 
@@ -2394,7 +2394,7 @@ msgstr ""
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/components/MicrobeControl.cs:397
+#: ../src/microbe_stage/components/MicrobeControl.cs:402
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
 msgstr ""
 
@@ -2474,11 +2474,15 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
+#: ../src/modding/ModUploader.cs:613
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr ""
+
 #: ../src/engine/input/key_mapping/KeyNames.cs:155
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1449
+#: ../src/microbe_stage/MicrobeStage.cs:1448
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2802,7 +2806,7 @@ msgstr ""
 msgid "FORGET_MOD_DETAILS_TOOLTIP"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:697 ../src/modding/NewModGUI.cs:339
+#: ../src/modding/ModUploader.cs:706 ../src/modding/NewModGUI.cs:339
 msgid "FORM_ERROR_MESSAGE"
 msgstr ""
 
@@ -2900,7 +2904,7 @@ msgstr ""
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:96
+#: ../simulation_parameters/common/gallery.json:101
 msgid "GENERAL"
 msgstr ""
 
@@ -3149,7 +3153,7 @@ msgstr ""
 msgid "INDICATOR_SPECIES_MUTATED"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:567
+#: ../simulation_parameters/common/gallery.json:572
 #: ../simulation_parameters/common/wiki.json:2575
 #: ../simulation_parameters/common/wiki.json:2673
 #: ../ThriveScriptsShared/Stage.cs:29
@@ -4420,7 +4424,7 @@ msgstr ""
 msgid "MEMBRANE_TYPES"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:359
+#: ../simulation_parameters/common/gallery.json:364
 msgid "MENU"
 msgstr ""
 
@@ -4529,7 +4533,7 @@ msgstr ""
 msgid "MICROBE_BENCHMARK"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:441
+#: ../simulation_parameters/common/gallery.json:446
 #: ../simulation_parameters/common/wiki.json:2371
 msgid "MICROBE_EDITOR"
 msgstr ""
@@ -4572,8 +4576,8 @@ msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:6
-#: ../simulation_parameters/common/gallery.json:151
-#: ../simulation_parameters/common/gallery.json:382
+#: ../simulation_parameters/common/gallery.json:156
+#: ../simulation_parameters/common/gallery.json:387
 #: ../simulation_parameters/common/wiki.json:2418
 #: ../ThriveScriptsShared/Stage.cs:14
 msgid "MICROBE_STAGE"
@@ -4796,7 +4800,7 @@ msgstr ""
 msgid "MODDING_INSTRUCTIONS_ON"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:148
+#: ../simulation_parameters/common/gallery.json:153
 msgid "MODELS"
 msgstr ""
 
@@ -5092,7 +5096,7 @@ msgstr ""
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:517
+#: ../simulation_parameters/common/gallery.json:522
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -5101,7 +5105,7 @@ msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:66
-#: ../simulation_parameters/common/gallery.json:476
+#: ../simulation_parameters/common/gallery.json:481
 #: ../simulation_parameters/common/wiki.json:2367
 #: ../simulation_parameters/common/wiki.json:2469
 #: ../ThriveScriptsShared/Stage.cs:17
@@ -5136,7 +5140,7 @@ msgstr ""
 msgid "MUSEUM_WELCOME_TEXT"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:345
+#: ../simulation_parameters/common/gallery.json:350
 msgid "MUSIC"
 msgstr ""
 
@@ -6553,7 +6557,7 @@ msgstr ""
 msgid "SAVE_UPGRADE_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:683
+#: ../src/modding/ModUploader.cs:692
 msgid "SAVING_DATA_FAILED_DUE_TO"
 msgstr ""
 
@@ -6880,7 +6884,7 @@ msgstr ""
 msgid "SNOWFLAKE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:550
+#: ../simulation_parameters/common/gallery.json:555
 #: ../simulation_parameters/common/wiki.json:2524
 #: ../simulation_parameters/common/wiki.json:2622
 #: ../ThriveScriptsShared/Stage.cs:26
@@ -6907,7 +6911,7 @@ msgstr ""
 msgid "SPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/gallery.json:578
+#: ../simulation_parameters/common/gallery.json:583
 #: ../simulation_parameters/common/wiki.json:2626
 #: ../simulation_parameters/common/wiki.json:2724
 #: ../ThriveScriptsShared/Stage.cs:32
@@ -6934,7 +6938,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1141
+#: ../src/microbe_stage/MicrobeStage.cs:1140
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7072,59 +7076,59 @@ msgstr ""
 msgid "STEAM_CLIENT_INIT_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:553
+#: ../src/steam/SteamClient.cs:555
 msgid "STEAM_ERROR_ACCOUNT_DOES_NOT_OWN_PRODUCT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:551
+#: ../src/steam/SteamClient.cs:553
 msgid "STEAM_ERROR_ACCOUNT_READ_ONLY"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:547
+#: ../src/steam/SteamClient.cs:549
 msgid "STEAM_ERROR_ALREADY_UPLOADED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:533
+#: ../src/steam/SteamClient.cs:535
 msgid "STEAM_ERROR_BANNED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:543
+#: ../src/steam/SteamClient.cs:545
 msgid "STEAM_ERROR_CLOUD_LIMIT_EXCEEDED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:549
+#: ../src/steam/SteamClient.cs:551
 msgid "STEAM_ERROR_DUPLICATE_NAME"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:545
+#: ../src/steam/SteamClient.cs:547
 msgid "STEAM_ERROR_FILE_NOT_FOUND"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:531
+#: ../src/steam/SteamClient.cs:533
 msgid "STEAM_ERROR_INSUFFICIENT_PRIVILEGE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:541
+#: ../src/steam/SteamClient.cs:543
 msgid "STEAM_ERROR_INVALID_PARAMETER"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:555
+#: ../src/steam/SteamClient.cs:557
 msgid "STEAM_ERROR_LOCKING_FAILED"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:537
+#: ../src/steam/SteamClient.cs:539
 msgid "STEAM_ERROR_NOT_LOGGED_IN"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:535
+#: ../src/steam/SteamClient.cs:537
 msgid "STEAM_ERROR_TIMEOUT"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:539
+#: ../src/steam/SteamClient.cs:541
 msgid "STEAM_ERROR_UNAVAILABLE"
 msgstr ""
 
-#: ../src/steam/SteamClient.cs:557
+#: ../src/steam/SteamClient.cs:559
 msgid "STEAM_ERROR_UNKNOWN"
 msgstr ""
 
@@ -7230,11 +7234,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1447
+#: ../src/microbe_stage/MicrobeStage.cs:1446
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1448
+#: ../src/microbe_stage/MicrobeStage.cs:1447
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -7915,11 +7919,11 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:73
+#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:74
 msgid "UNDERWATER_VENT_ERUPTION"
 msgstr ""
 
-#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:79
+#: ../src/general/world_effects/UnderwaterVentEruptionEffect.cs:80
 msgid "UNDERWATER_VENT_ERUPTION_IN"
 msgstr ""
 
@@ -10288,15 +10292,15 @@ msgstr ""
 msgid "WORKSHOP_ITEM_TITLE"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:601
+#: ../src/modding/ModUploader.cs:603
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:597
+#: ../src/modding/ModUploader.cs:599
 msgid "WORKSHOP_ITEM_UPLOAD_SUCCEEDED_TOS_REQUIRED"
 msgstr ""
 
-#: ../src/modding/ModUploader.cs:659
+#: ../src/modding/ModUploader.cs:668
 msgid "WORKSHOP_TERMS_OF_SERVICE_NOTICE"
 msgstr ""
 

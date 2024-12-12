@@ -235,9 +235,11 @@ public sealed class SteamClient : ISteamClient
         if (!File.Exists(previewImage))
             throw new ArgumentException("preview image doesn't exist");
 
-        if (!SteamHandler.RecommendedFileEndings.Contains(Path.GetExtension(previewImage)))
+        var extension = Path.GetExtension(previewImage);
+        if (!SteamHandler.RecommendedFileEndings.Contains(extension))
         {
-            throw new ArgumentException("Non-recommended image type given as preview image");
+            throw new ArgumentException($"Non-recommended image type ({extension}) given as preview image, " +
+                "please try another file");
         }
 
         return SteamUGC.SetItemPreview(new UGCUpdateHandle_t(updateHandle), Path.GetFullPath(previewImage));
