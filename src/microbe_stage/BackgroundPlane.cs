@@ -119,11 +119,6 @@ public partial class BackgroundPlane : Node3D
         OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
     }
 
-    public void SetWorldPosition(Vector2 position)
-    {
-        currentBackgroundMaterial.SetShaderParameter(worldPositionParameter, position);
-    }
-
     public void SetVisibility(bool visible)
     {
         Visible = visible;
@@ -149,6 +144,11 @@ public partial class BackgroundPlane : Node3D
         }
 
         base.Dispose(disposing);
+    }
+
+    private void SetWorldPosition(Vector2 position)
+    {
+        currentBackgroundMaterial.SetShaderParameter(worldPositionParameter, position);
     }
 
     private void OnDisplayBackgroundParticlesChanged(bool displayed)
