@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -31,6 +32,7 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
 
     private const string MAC_ZIP_LIBRARIES_PATH = "Thrive.app/Contents/MacOS";
     private const string MAC_ZIP_GD_EXTENSION_TARGET_PATH = "Thrive.app/Contents/MacOS";
+    private const string MAC_MAIN_EXECUTABLE = "Thrive.app/Contents/MacOS/Thrive";
 
     private const string MAC_ENTITLEMENTS = "Scripts/Thrive.entitlements";
 
@@ -430,6 +432,9 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
         }
         else
         {
+            // TODO: it would be pretty nice to create a plain .app folder if possible as we need to re-zip it
+            // ourselves anyway for signing to work so one extra compression is a bit of an unnecessary step
+
             if (!File.Exists(MacZipInFolder(folder)))
             {
                 ColourConsole.WriteErrorLine("Expected Thrive .zip for Mac was not created on export. " +
@@ -579,34 +584,13 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (platform == PackagePlatform.Mac)
         {
-            ColourConsole.WriteInfoLine("Mac target is already zipped, moving it instead");
+            ColourConsole.WriteInfoLine("Mac target is already zipped, will create a signed zip");
 
             if (File.Exists(archiveFile))
                 File.Delete(archiveFile);
 
-            var sourceZip = MacZipInFolder(folder);
-
-            File.Move(sourceZip, archiveFile);
-
-            ColourConsole.WriteInfoLine("Performing final signing for Mac build");
-
-            if (string.IsNullOrEmpty(options.MacSigningKey))
-            {
-                ColourConsole.WriteWarningLine(
-                    "Signing without a specific key for mac (this should work but in an optimal case " +
-                    "a signing key would be set)");
-            }
-            else
-            {
-                ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
-            }
-
-            if (!await BinaryHelpers.SignFileForMac(archiveFile, MAC_ENTITLEMENTS, options.MacSigningKey,
-                    cancellationToken))
-            {
-                ColourConsole.WriteErrorLine("Failed to sign Mac build");
+            if (!await CreateAndSignMacZip(folder, archiveFile, cancellationToken))
                 return false;
-            }
 
             return true;
         }
@@ -759,6 +743,121 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
+        return true;
+    }
+
+    /// <summary>
+    ///   Unzips the Godot-created zip, signs everything and then re-creates a new zip at the target location. This is
+    ///   required as macOS otherwise detects the game as a broken app (due to signatures).
+    /// </summary>
+    /// <returns>True on success</returns>
+    private async Task<bool> CreateAndSignMacZip(string folder, string archiveFile,
+        CancellationToken cancellationToken)
+    {
+        var sourceZip = MacZipInFolder(folder);
+
+        var parentFolder = Path.GetDirectoryName(archiveFile) ??
+            throw new Exception("Unknown folder to create archive in");
+
+        var tempFolder = Path.Combine(parentFolder, "mac_temp_uncompressed");
+
+        if (Directory.Exists(tempFolder))
+            Directory.Delete(tempFolder, true);
+
+        Directory.CreateDirectory(tempFolder);
+
+        ColourConsole.WriteDebugLine($"Using C# zip library to extract to temporary folder: {tempFolder}");
+        using var archiveZip = new ZipArchive(File.OpenRead(sourceZip), ZipArchiveMode.Read, false);
+        archiveZip.ExtractToDirectory(tempFolder);
+
+        ColourConsole.WriteInfoLine("Performing final signing for Mac build");
+
+        if (string.IsNullOrEmpty(options.MacSigningKey))
+        {
+            ColourConsole.WriteWarningLine(
+                "Signing without a specific key for mac (this should work but in an optimal case " +
+                "a signing key would be set)");
+        }
+        else
+        {
+            ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
+        }
+
+        ColourConsole.WriteInfoLine("Signing all parts of the Mac build");
+        ColourConsole.WriteNormalLine("This may take a while as there are many items");
+
+        foreach (var item in Directory.EnumerateFiles(tempFolder, "*.*", SearchOption.AllDirectories))
+        {
+            // Skip stuff that shouldn't be signed
+            // TODO: would it offer any extra security if the .pck file was signed as well?
+            if (item.EndsWith(".txt") || item.EndsWith(".pck") || item.EndsWith(".md") || item.EndsWith(".7z"))
+            {
+                continue;
+            }
+
+            // Main executable must be signed last
+            if (item.EndsWith(MAC_MAIN_EXECUTABLE))
+                continue;
+
+            if (!await BinaryHelpers.SignFileForMac(item, MAC_ENTITLEMENTS, options.MacSigningKey,
+                    cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Failed to sign part of Mac build: {item}");
+                return false;
+            }
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully signed individual parts");
+
+        // Sign the main file last
+        if (!await BinaryHelpers.SignFileForMac(Path.Join(tempFolder, MAC_MAIN_EXECUTABLE), MAC_ENTITLEMENTS,
+                options.MacSigningKey,
+                cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Failed to sign main of Mac build");
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Signed the main file");
+
+        ColourConsole.WriteInfoLine("Creating final archive file from signed items");
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = tempFolder,
+        };
+        startInfo.ArgumentList.Add("-9");
+        startInfo.ArgumentList.Add("-r");
+
+        startInfo.ArgumentList.Add(Path.GetFullPath(archiveFile));
+
+        foreach (var item in Directory.EnumerateFileSystemEntries(tempFolder))
+        {
+            // Need to remove prefix to have items in relative path to the temp folder for zip process to work
+            startInfo.ArgumentList.Add(item.Substring(tempFolder.Length + 1));
+        }
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        // Delete the temp folder
+        Directory.Delete(tempFolder, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine("Running final zip create failed " +
+                $"(exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        ColourConsole.WriteInfoLine("Signing final zip");
+
+        if (!await BinaryHelpers.SignFileForMac(archiveFile, MAC_ENTITLEMENTS, options.MacSigningKey,
+                cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Failed to sign Mac build");
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Signed Mac zip created");
         return true;
     }
 
