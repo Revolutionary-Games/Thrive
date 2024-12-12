@@ -34,13 +34,13 @@ const SETTINGS_SHORTCUT_MAPPING := {
 var _runner_config := GdUnitRunnerConfig.new()
 
 # holds the current connected gdUnit runner client id
-var _client_id :int
+var _client_id: int
 # if no debug mode we have an process id
-var _current_runner_process_id :int = 0
+var _current_runner_process_id: int = 0
 # hold is current an test running
-var _is_running :bool = false
+var _is_running: bool = false
 # holds if the current running tests started in debug mode
-var _running_debug_mode :bool
+var _running_debug_mode: bool
 
 var _commands := {}
 var _shortcuts := {}
@@ -82,7 +82,7 @@ func _init() -> void:
 		timer.timeout.connect(cmd_discover_tests)
 
 
-func _notification(what :int) -> void:
+func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		_commands.clear()
 		_shortcuts.clear()
@@ -104,16 +104,16 @@ func is_test_running_but_stop_pressed() -> bool:
 	return _running_debug_mode and _is_running and not EditorInterface.is_playing_scene()
 
 
-func assert_shortcut_mappings(mappings :Dictionary) -> void:
-	for shortcut :int in GdUnitShortcut.ShortCut.values():
+func assert_shortcut_mappings(mappings: Dictionary) -> void:
+	for shortcut: int in GdUnitShortcut.ShortCut.values():
 		assert(mappings.values().has(shortcut), "missing settings mapping for shortcut '%s'!" % GdUnitShortcut.ShortCut.keys()[shortcut])
 
 
 func init_shortcuts() -> void:
-	for shortcut :int in GdUnitShortcut.ShortCut.values():
+	for shortcut: int in GdUnitShortcut.ShortCut.values():
 		if shortcut == GdUnitShortcut.ShortCut.NONE:
 			continue
-		var property_name :String = SETTINGS_SHORTCUT_MAPPING.find_key(shortcut)
+		var property_name: String = SETTINGS_SHORTCUT_MAPPING.find_key(shortcut)
 		var property := GdUnitSettings.get_property(property_name)
 		var keys := GdUnitShortcut.default_keys(shortcut)
 		if property != null:
@@ -123,7 +123,7 @@ func init_shortcuts() -> void:
 
 
 func create_shortcut_input_even(key_codes: PackedInt32Array) -> InputEventKey:
-	var inputEvent :InputEventKey = InputEventKey.new()
+	var inputEvent := InputEventKey.new()
 	inputEvent.pressed = true
 	for key_code in key_codes:
 		match key_code:
@@ -139,35 +139,35 @@ func create_shortcut_input_even(key_codes: PackedInt32Array) -> InputEventKey:
 	return inputEvent
 
 
-func register_shortcut(p_shortcut :GdUnitShortcut.ShortCut, p_input_event :InputEvent) -> void:
+func register_shortcut(p_shortcut: GdUnitShortcut.ShortCut, p_input_event: InputEvent) -> void:
 	GdUnitTools.prints_verbose("register shortcut: '%s' to '%s'" % [GdUnitShortcut.ShortCut.keys()[p_shortcut], p_input_event.as_text()])
 	var shortcut := Shortcut.new()
 	shortcut.set_events([p_input_event])
-	var command_name :String = get_shortcut_command(p_shortcut)
+	var command_name := get_shortcut_command(p_shortcut)
 	_shortcuts[p_shortcut] = GdUnitShortcutAction.new(p_shortcut, shortcut, command_name)
 
 
-func get_shortcut(shortcut_type :GdUnitShortcut.ShortCut) -> Shortcut:
+func get_shortcut(shortcut_type: GdUnitShortcut.ShortCut) -> Shortcut:
 	return get_shortcut_action(shortcut_type).shortcut
 
 
-func get_shortcut_action(shortcut_type :GdUnitShortcut.ShortCut) -> GdUnitShortcutAction:
+func get_shortcut_action(shortcut_type: GdUnitShortcut.ShortCut) -> GdUnitShortcutAction:
 	return _shortcuts.get(shortcut_type)
 
 
-func get_shortcut_command(p_shortcut :GdUnitShortcut.ShortCut) -> String:
+func get_shortcut_command(p_shortcut: GdUnitShortcut.ShortCut) -> String:
 	return GdUnitShortcut.CommandMapping.get(p_shortcut, "unknown command")
 
 
-func register_command(p_command :GdUnitCommand) -> void:
+func register_command(p_command: GdUnitCommand) -> void:
 	_commands[p_command.name] = p_command
 
 
-func command(cmd_name :String) -> GdUnitCommand:
+func command(cmd_name: String) -> GdUnitCommand:
 	return _commands.get(cmd_name)
 
 
-func cmd_run_test_suites(test_suite_paths :PackedStringArray, debug :bool, rerun := false) -> void:
+func cmd_run_test_suites(test_suite_paths: PackedStringArray, debug: bool, rerun := false) -> void:
 	# create new runner runner_config for fresh run otherwise use saved one
 	if not rerun:
 		var result := _runner_config.clear()\
@@ -179,7 +179,7 @@ func cmd_run_test_suites(test_suite_paths :PackedStringArray, debug :bool, rerun
 	cmd_run(debug)
 
 
-func cmd_run_test_case(test_suite_resource_path :String, test_case :String, test_param_index :int, debug :bool, rerun := false) -> void:
+func cmd_run_test_case(test_suite_resource_path: String, test_case: String, test_param_index: int, debug: bool, rerun := false) -> void:
 	# create new runner config for fresh run otherwise use saved one
 	if not rerun:
 		var result := _runner_config.clear()\
@@ -191,8 +191,8 @@ func cmd_run_test_case(test_suite_resource_path :String, test_case :String, test
 	cmd_run(debug)
 
 
-func cmd_run_overall(debug :bool) -> void:
-	var test_suite_paths :PackedStringArray = GdUnitCommandHandler.scan_test_directorys("res://" , GdUnitSettings.test_root_folder(), [])
+func cmd_run_overall(debug: bool) -> void:
+	var test_suite_paths: PackedStringArray = GdUnitCommandHandler.scan_all_test_directories(GdUnitSettings.test_root_folder())
 	var result := _runner_config.clear()\
 		.add_test_suites(test_suite_paths)\
 		.save_config()
@@ -202,7 +202,7 @@ func cmd_run_overall(debug :bool) -> void:
 	cmd_run(debug)
 
 
-func cmd_run(debug :bool) -> void:
+func cmd_run(debug: bool) -> void:
 	# don't start is already running
 	if _is_running:
 		return
@@ -223,7 +223,7 @@ func cmd_run(debug :bool) -> void:
 		run_release_mode()
 
 
-func cmd_stop(client_id :int) -> void:
+func cmd_stop(client_id: int) -> void:
 	# don't stop if is already stopped
 	if not _is_running:
 		return
@@ -231,7 +231,7 @@ func cmd_stop(client_id :int) -> void:
 	gdunit_runner_stop.emit(client_id)
 	if _running_debug_mode:
 		EditorInterface.stop_playing_scene()
-	else: if _current_runner_process_id > 0:
+	elif _current_runner_process_id > 0:
 		if OS.is_process_running(_current_runner_process_id):
 			var result := OS.kill(_current_runner_process_id)
 			if result != OK:
@@ -239,7 +239,7 @@ func cmd_stop(client_id :int) -> void:
 	_current_runner_process_id = -1
 
 
-func cmd_editor_run_test(debug :bool) -> void:
+func cmd_editor_run_test(debug: bool) -> void:
 	var cursor_line := active_base_editor().get_caret_line()
 	#run test case?
 	var regex := RegEx.new()
@@ -273,8 +273,14 @@ func cmd_create_test() -> void:
 func cmd_discover_tests() -> void:
 	await GdUnitTestDiscoverer.run()
 
+static func scan_all_test_directories(root: String) -> PackedStringArray:
+	var base_directory := "res://"
+	# If the test root folder is configured as blank, "/", or "res://", use the root folder as described in the settings panel
+	if root.is_empty() or root == "/" or root == base_directory:
+		return [base_directory]
+	return scan_test_directories(base_directory, root, [])
 
-static func scan_test_directorys(base_directory :String, test_directory: String, test_suite_paths :PackedStringArray) -> PackedStringArray:
+static func scan_test_directories(base_directory: String, test_directory: String, test_suite_paths: PackedStringArray) -> PackedStringArray:
 	print_verbose("Scannning for test directory '%s' at %s" % [test_directory, base_directory])
 	for directory in DirAccess.get_directories_at(base_directory):
 		if directory.begins_with("."):
@@ -287,15 +293,15 @@ static func scan_test_directorys(base_directory :String, test_directory: String,
 			test_suite_paths.append(current_directory)
 		else:
 			@warning_ignore("return_value_discarded")
-			scan_test_directorys(current_directory, test_directory, test_suite_paths)
+			scan_test_directories(current_directory, test_directory, test_suite_paths)
 	return test_suite_paths
 
 
-static func normalize_path(path :String) -> String:
+static func normalize_path(path: String) -> String:
 	return path.replace("///", "//")
 
 
-static func match_test_directory(directory :String, test_directory: String) -> bool:
+static func match_test_directory(directory: String, test_directory: String) -> bool:
 	return directory == test_directory or test_directory.is_empty() or test_directory == "/" or test_directory == "res://"
 
 
@@ -328,7 +334,7 @@ func active_script() -> Script:
 ################################################################################
 # signals handles
 ################################################################################
-func _on_event(event :GdUnitEvent) -> void:
+func _on_event(event: GdUnitEvent) -> void:
 	if event.type() == GdUnitEvent.STOP:
 		cmd_stop(_client_id)
 
@@ -345,7 +351,7 @@ func _on_run_overall_pressed(_debug := false) -> void:
 	cmd_run_overall(true)
 
 
-func _on_settings_changed(property :GdUnitProperty) -> void:
+func _on_settings_changed(property: GdUnitProperty) -> void:
 	if SETTINGS_SHORTCUT_MAPPING.has(property.name()):
 		var shortcut :GdUnitShortcut.ShortCut = SETTINGS_SHORTCUT_MAPPING.get(property.name())
 		var value: PackedInt32Array = property.value()
@@ -361,11 +367,11 @@ func _on_settings_changed(property :GdUnitProperty) -> void:
 ################################################################################
 # Network stuff
 ################################################################################
-func _on_client_connected(client_id :int) -> void:
+func _on_client_connected(client_id: int) -> void:
 	_client_id = client_id
 
 
-func _on_client_disconnected(client_id :int) -> void:
+func _on_client_disconnected(client_id: int) -> void:
 	# only stops is not in debug mode running and the current client
 	if not _running_debug_mode and _client_id == client_id:
 		cmd_stop(client_id)

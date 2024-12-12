@@ -11,7 +11,7 @@ static func run() -> void:
 	var t:= Thread.new()
 	@warning_ignore("return_value_discarded")
 	t.start(func () -> void:
-		var test_suite_directories :PackedStringArray = GdUnitCommandHandler.scan_test_directorys("res://" , GdUnitSettings.test_root_folder(), [])
+		var test_suite_directories :PackedStringArray = GdUnitCommandHandler.scan_all_test_directories(GdUnitSettings.test_root_folder())
 		var scanner := GdUnitTestSuiteScanner.new()
 		var _test_suites_to_process :Array[Node] = []
 

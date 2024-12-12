@@ -12,7 +12,7 @@ signal stop_pressed()
 @onready var _button_run: Button = %run
 @onready var _button_run_debug: Button = %debug
 @onready var _button_stop: Button = %stop
-@onready var settings_dlg := preload("res://addons/gdUnit4/src/ui/settings/GdUnitSettingsDialog.tscn").instantiate()
+
 
 
 const SETTINGS_SHORTCUT_MAPPING := {
@@ -35,7 +35,7 @@ func _ready() -> void:
 	GdUnitSignals.instance().gdunit_settings_changed.connect(_on_gdunit_settings_changed)
 	init_buttons()
 	init_shortcuts(command_handler)
-	EditorInterface.get_base_control().add_child(settings_dlg)
+
 
 
 func init_buttons() -> void:
@@ -94,6 +94,10 @@ func _on_wiki_pressed() -> void:
 
 
 func _on_btn_tool_pressed() -> void:
+	var settings_dlg: Window = EditorInterface.get_base_control().find_child("GdUnitSettingsDialog", false, false)
+	if settings_dlg == null:
+		settings_dlg = preload("res://addons/gdUnit4/src/ui/settings/GdUnitSettingsDialog.tscn").instantiate()
+		EditorInterface.get_base_control().add_child(settings_dlg, true)
 	settings_dlg.popup_centered_ratio(.60)
 
 

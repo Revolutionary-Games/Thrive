@@ -608,7 +608,8 @@ func create_tree_item(test_suite: GdUnitTestSuiteDto) -> TreeItem:
 	var elements := test_relative_path.split("/")
 	if elements[0] == "res://" or elements[0] == "":
 		elements.remove_at(0)
-	elements.remove_at(elements.size() - 1)
+	if elements.size() > 0:
+		elements.remove_at(elements.size() - 1)
 	for element in elements:
 		test_base_path += "/" + element
 		parent = create_or_find_item(parent, test_base_path, element)
