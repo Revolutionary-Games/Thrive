@@ -4,7 +4,7 @@ using Systems;
 
 /// <summary>
 ///   Creates oxygen based on photosynthesizers (and removes carbon). And does the vice versa for oxygen consumption
-///   to balance things out. This is kind of a simplified version of <see cref="CompoundProductionEffect"/>
+///   to balance things out.
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class PhotosynthesisProductionEffect : IWorldEffect

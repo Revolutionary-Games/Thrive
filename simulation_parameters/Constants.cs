@@ -1188,6 +1188,9 @@ public static class Constants
     public const float GLUCOSE_MIN = 0.0f;
 
     // Tweak variable for how fast compounds diffuse between patches
+    public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT_SIMPLE = 0.8f;
+
+    // More complex square root distance movement calculation variables:
     public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 1;
     public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
 
