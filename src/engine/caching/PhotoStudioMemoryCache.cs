@@ -39,11 +39,13 @@ public class PhotoStudioMemoryCache : IComputeCache<ImageTask>
 
         if (timeSinceClean >= Constants.MEMORY_PHOTO_CACHE_CLEAN_INTERVAL)
         {
+            var timeThreshold = time - Settings.Instance.MemoryOnlyCacheTime;
+
             timeSinceClean = 0;
 
             foreach (var entry in cache)
             {
-                if (time - entry.Value.LastAccess > Constants.MEMORY_PHOTO_CACHE_TIME)
+                if (entry.Value.LastAccess < timeThreshold)
                 {
                     keysToClear.Add(entry.Key);
                 }
@@ -57,7 +59,7 @@ public class PhotoStudioMemoryCache : IComputeCache<ImageTask>
 
             keysToClear.Clear();
         }
-        else if (cache.Count > Constants.MEMORY_PHOTO_CACHE_MAX_ITEMS)
+        else if (cache.Count > Settings.Instance.MemoryCacheMaxSize.Value)
         {
             // Clear items if there are too many total items even when it isn't time to clean yet otherwise
             float oldest = float.MaxValue;

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -518,6 +518,24 @@ msgstr "Di:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Di Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Memoria video utilizzata al momento:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Memoria video utilizzata al momento:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Il titolo è mancante"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato di calcio"
 
@@ -604,6 +622,10 @@ msgstr "Cellulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
@@ -722,6 +744,9 @@ msgstr "Pop: {0} Cibo: {1} Scienza: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Pulisci i vecchi salvataggi"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -881,6 +906,22 @@ msgstr "La concentrazione di {0} è diminuita del {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo di {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostra/nascondi i composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densità delle nuvole di composti"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(non abbastanza per sopravvivere alla notte che è lunga {0}s)"
@@ -1251,6 +1292,14 @@ msgstr "Ringraziamenti"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Secerni mucillagine"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Sviluppatori attuali"
 
@@ -1521,6 +1570,10 @@ msgstr ""
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Esci dal gioco"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -1891,6 +1944,10 @@ msgstr "Errore di caricamento"
 
 msgid "ERROR_SAVING"
 msgstr "Errore di salvataggio"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Errore di caricamento"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -3171,11 +3228,19 @@ msgstr "Neve marina"
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Secerni mucillagine"
+
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Illimitati"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Dimensioni:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Numero massimo di entità:"
@@ -4130,6 +4195,10 @@ msgstr "Cartella degli screenshot non trovata"
 msgid "NO_SELECTED_MOD"
 msgstr "Nessuna mod selezionata"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Risoluzione:"
+
 msgid "NUCLEUS"
 msgstr "Nucleo"
 
@@ -4311,6 +4380,14 @@ msgstr "Pilo predatoriale"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilo predatoriale"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organuli"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carica partite salvate precedentemente"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4731,6 +4808,14 @@ msgstr "Asessuale"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmazione"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Riproduzione:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Riproduzione:"
@@ -6343,6 +6428,9 @@ msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di spec
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza un nome utente personalizzato"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Imposta manualmente il numero di thread in background"
@@ -8337,10 +8425,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Risoluzione:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

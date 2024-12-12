@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -518,6 +518,24 @@ msgstr "От:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "От „Revolutionary Games Studio“"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Използвана графична памет:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Използвана графична памет:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Заглавието липсва"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Калциево-карбонатна"
 
@@ -604,6 +622,10 @@ msgstr "Целулозна"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества. [b]Целулазата[/b] може да разгради стената на тази мембрана."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
@@ -742,6 +764,9 @@ msgstr ""
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Изтриване на старите записи"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Затваряне"
@@ -903,6 +928,22 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Превключване на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Гъстота на облаците"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1316,6 +1357,14 @@ msgstr "Екип"
 msgid "CTRL"
 msgstr "Клавиш „Ctrl“"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Наименования на органелите"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Освобождаване на слуз"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Текущи разработчици"
 
@@ -1600,6 +1649,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Отваряне на сървъра ни в „Discord“"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Отваряне на страницата ни в „Itch.io“"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отхвърлени съобщения:"
@@ -1966,6 +2019,10 @@ msgstr "Грешка по време на зареждането"
 
 msgid "ERROR_SAVING"
 msgstr "Грешка по време на запазването"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Грешка по време на зареждането"
 
 msgid "ESCAPE"
 msgstr "Клавиш „Esc“"
@@ -3202,11 +3259,19 @@ msgstr "Морски сняг"
 msgid "MASTER_VOLUME"
 msgstr "Основен звук"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Освобождаване на слуз"
+
 msgid "MAX_FPS"
 msgstr "Максимална ЧКС:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Неограничена"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Размер:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимален брой на обектите:"
@@ -4134,6 +4199,10 @@ msgstr "Папката със снимки не съществува"
 msgid "NO_SELECTED_MOD"
 msgstr "Няма"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "?"
+
 msgid "NUCLEUS"
 msgstr "Ядро"
 
@@ -4311,6 +4380,14 @@ msgstr "Пробивен пилус"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Пробивен пилус"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Зареждане на запазените игри"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4730,6 +4807,14 @@ msgstr "Асексуално"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Пъпкуване"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Видове:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Видове:"
@@ -6329,6 +6414,9 @@ msgstr "Автоматично зареждане на „Harmony“ от „Ass
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Персонализирано потребителско име"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ръчно определяне на броя на фоновите нишки"
@@ -8344,9 +8432,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16 пъти"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

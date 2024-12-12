@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -525,6 +525,22 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Šūnas procesi"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcija Karbonāts"
 
@@ -616,6 +632,10 @@ msgstr "Celuloze"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Atsākt spēli"
 
 msgid "CELL_TYPE_NAME"
 msgstr ""
@@ -743,6 +763,9 @@ msgstr "Organisma statistika"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Dzēst vecos saglabāšanas failus"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Aizvērt"
@@ -902,6 +925,22 @@ msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} Patēriņš"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Savienojumu mākonis"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1277,6 +1316,14 @@ msgstr ""
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Atsākt spēli"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1545,6 +1592,10 @@ msgstr ""
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Atsākt spēli"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -1917,6 +1968,14 @@ msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr ""
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -3195,11 +3254,19 @@ msgstr "Jūras sniegs"
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Atsākt spēli"
+
 msgid "MAX_FPS"
 msgstr "Augstākais FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Bezgalīgi"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Izmērs:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -4110,6 +4177,10 @@ msgstr "Nav atrasta ekrānuzņēmuma direktorija"
 msgid "NO_SELECTED_MOD"
 msgstr "Nav atlasīto modifikāciju"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Izšķirtspēja:"
+
 msgid "NUCLEUS"
 msgstr "Kodols"
 
@@ -4298,6 +4369,14 @@ msgstr "Pīluss"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pīluss"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organoīdi"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4734,6 +4813,16 @@ msgstr "ATP ražošana"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -6345,6 +6434,9 @@ msgstr ""
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Izmantot pielāgotu lietotājvārdu"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
@@ -8242,10 +8334,6 @@ msgstr "Attālināt"
 
 #~ msgid "TREBLEDOWN"
 #~ msgstr "Treble Down (taustiņš)"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Izšķirtspēja:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

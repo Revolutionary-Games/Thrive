@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
-"PO-Revision-Date: 2024-10-31 16:02+0000\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -511,6 +511,24 @@ msgstr "Par :"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Par Revolutionary Game Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Mémoire vidéo actuellement utilisée :"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Mémoire vidéo actuellement utilisée :"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Fabrication"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonate de calcium"
 
@@ -597,6 +615,10 @@ msgstr "Cellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane est dotée d'un mur, ce qui lui confère une meilleure protection contre les dégâts généraux et surtout contre les dégâts physiques. Elle coûte également moins d'énergie pour conserver sa forme, mais ne peut absorber les ressources rapidement et est plus lente. [b]La cellulase peut digérer cette paroi[/b], ce qui la rend vulnérable à l'engloutissement par les prédateurs."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "La valeur utilisée pour générer le monde doit être un entier positif"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nom du type de cellule"
@@ -715,6 +737,9 @@ msgstr "Population : {0} Nourriture : {1} Science : {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Suppression des anciennes sauvegardes"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Fermer"
@@ -876,6 +901,24 @@ msgstr "La concentration de {0} a diminué de {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consommation de {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Équilibre des composés"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Équilibre des composés"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Cette section montre la balance totale (production - consommation) pour chaque composé.\n"
+"Par exemple, pour former une cellule végétale, le bilan du glucose doit être très positif."
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densité des nuages de composés"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1246,6 +1289,14 @@ msgstr "Crédits"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Aucune recherche en cours"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Sécréter du mucilage pour augmenter votre vitesse ou pour engluer des cellules et les ralentir"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Développeurs actuels"
 
@@ -1532,6 +1583,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Rejoignez notre serveur Discord de la communauté"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Visitez notre page Itch.io"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Popups désactivées :"
@@ -1884,6 +1939,10 @@ msgstr "Erreur de chargement"
 msgid "ERROR_SAVING"
 msgstr "Erreur de sauvegarde"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Erreur de chargement"
+
 msgid "ESCAPE"
 msgstr "Échap"
 
@@ -2119,6 +2178,7 @@ msgstr "Brouillard de guerre intense"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Mode brouillard de guerre"
 
@@ -3083,11 +3143,19 @@ msgstr "Neige marine"
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Sécréter du mucilage pour augmenter votre vitesse ou pour engluer des cellules et les ralentir"
+
 msgid "MAX_FPS"
 msgstr "FPS max. :"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Illimitées"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Taille :"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Nombre maximum d'entités :"
@@ -4028,6 +4096,10 @@ msgstr "Pas de dossier de captures d'écrans trouvé"
 msgid "NO_SELECTED_MOD"
 msgstr "Aucun mod sélectionné"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Résolution :"
+
 msgid "NUCLEUS"
 msgstr "Noyau"
 
@@ -4197,6 +4269,14 @@ msgstr "{0} organites"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organite"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axone"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Charger les sauvegardes précédentes"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Déverrouillage des organites activé"
@@ -4604,6 +4684,14 @@ msgstr "Asexuel"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Bourgeonnement"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduction :"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(obtenir passivement des composés de reproduction de l'environnement sans avoir à faire quoi que ce soit)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction :"
@@ -6175,6 +6263,9 @@ msgstr "Chargement automatique des patchs Harmony à partir de l'Assembleur (ne 
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utiliser un nom d'utilisateur personnalisé"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Saisie manuelle du nombre de thread en arrière-plan"
@@ -8244,10 +8335,6 @@ msgstr "Dézoomer"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Résolution :"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

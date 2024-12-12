@@ -314,8 +314,8 @@ public abstract class Species : ICloneable
     /// <returns>The visual hash code</returns>
     public virtual ulong GetVisualHashCode()
     {
-        return (ulong)Genus.GetHashCode() * 599 ^ (ulong)Epithet.GetHashCode() * 601 ^
-            (ulong)Colour.GetHashCode() * 607;
+        // Name does not impact the visuals at all so do not use it here
+        return Colour.GetVisualHashCode() * 67;
     }
 
     public virtual string GetDetailString()

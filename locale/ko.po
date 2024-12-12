@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -533,6 +533,22 @@ msgstr "요인:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "번영했습니다!"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "탄산 칼슘"
 
@@ -624,6 +640,10 @@ msgstr "섬유소"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "재개"
 
 msgid "CELL_TYPE_NAME"
 msgstr ""
@@ -756,6 +776,9 @@ msgstr "생체 상태창"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "닫기"
@@ -927,6 +950,22 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr "화합물 구름"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "화합물 구름"
 
 #, fuzzy
@@ -1304,6 +1343,14 @@ msgstr "크레딧"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "능력"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "점액 분비"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1577,6 +1624,10 @@ msgstr ""
 
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #, fuzzy
@@ -1955,6 +2006,10 @@ msgstr "불러오기 오류"
 
 msgid "ERROR_SAVING"
 msgstr "저장 오류"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "불러오기 오류"
 
 msgid "ESCAPE"
 msgstr ""
@@ -3229,12 +3284,20 @@ msgstr "바다눈"
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "점액 분비"
+
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "최대 FPS:"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "크기:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -4146,6 +4209,10 @@ msgstr "스크린샷 폴더 열기"
 msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "해상도:"
+
 msgid "NUCLEUS"
 msgstr "핵"
 
@@ -4329,6 +4396,14 @@ msgstr "포식자 선모"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "포식자 선모"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "세포 기관"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4764,6 +4839,14 @@ msgstr "ATP 생산"
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "생산"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "생산"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
 
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -6424,6 +6507,9 @@ msgstr "새로운 키 배치 추가"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
@@ -8395,10 +8481,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "마우스 미확인 키"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "해상도:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

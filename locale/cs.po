@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
-"PO-Revision-Date: 2024-11-16 19:09+0000\n"
-"Last-Translator: Adam David <adabab0909@gmail.com>\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -517,6 +517,24 @@ msgstr "Podle:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Vytvořeno týmem Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Právě využitá video paměť:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Právě využitá video paměť:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Chybí název"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
@@ -603,6 +621,10 @@ msgstr "Celulóza"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což způsobuje lepší ochranu proti poškození, a obzvláště fyzickému poškození. Také potřebuje méně energie k zachování své formy, ale je pomalejší jak v pohybu tak v absorbování živin. [b]Celuláza může tuto stěnu strávit[/b], což ji dělá bezbrannou vůči vstřebání predátorem."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
@@ -722,6 +744,9 @@ msgstr "Statistika organizmu"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Zavřít"
@@ -883,6 +908,22 @@ msgstr "{0} koncentrace se snížily o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Hustota oblaků sloučenin"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1300,6 +1341,14 @@ msgstr "Poděkování"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Zobrazit panel schopností"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Vyměšuj sliz"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Současní vývojáři"
 
@@ -1597,6 +1646,10 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Opustit hru"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -1974,6 +2027,10 @@ msgstr "Chyba v načítání"
 msgid "ERROR_SAVING"
 msgstr "Chyba při ukládání"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Chyba v načítání"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2240,6 +2297,7 @@ msgstr "Intensita mlhy války"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Režim Mlhy Války"
 
@@ -3257,11 +3315,19 @@ msgstr "Mořský sníh"
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Vyměšuj sliz"
+
 msgid "MAX_FPS"
 msgstr "Maximální FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neomezené"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Velikost:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximální počet entit:"
@@ -4204,6 +4270,10 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozlišení:"
+
 msgid "NUCLEUS"
 msgstr "Jádro"
 
@@ -4385,6 +4455,14 @@ msgstr "Dravý/útočný Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Dravý/útočný Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Načíst předešlé uložené hry"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4801,6 +4879,14 @@ msgstr "Asexuální"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučení"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
@@ -6414,6 +6500,9 @@ msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikov
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij vlastní jméno"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
@@ -8420,10 +8509,6 @@ msgstr "Oddálit"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlišení:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

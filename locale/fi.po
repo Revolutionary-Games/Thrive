@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
 "PO-Revision-Date: 2024-11-04 07:58+0000\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
@@ -543,6 +543,22 @@ msgstr "Tekijä:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Tehnyt Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Otsikko puuttuu"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiumkarbonaatti"
 
@@ -633,6 +649,10 @@ msgstr "Selluloosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Laita peli tauolle"
 
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
@@ -760,6 +780,9 @@ msgstr "Statistiikkaa organismista"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Siivoa vanhat tallennukset"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sulje"
@@ -933,6 +956,22 @@ msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}:n kulutus"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Yhdistepilvet"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1328,6 +1367,14 @@ msgstr "Tekijät"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Jatka"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nykyiset kehittäjät"
 
@@ -1618,6 +1665,10 @@ msgstr ""
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Lisää uusi syöte"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Kuole"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -2022,6 +2073,10 @@ msgstr "Virhe ladattaessa"
 
 msgid "ERROR_SAVING"
 msgstr "Virhe tallennettaessa"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Virhe ladattaessa"
 
 msgid "ESCAPE"
 msgstr "ESC"
@@ -3307,11 +3362,19 @@ msgstr "Leijuvat hiukkaset"
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Jatka"
+
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Rajoittamaton"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Koko:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -4255,6 +4318,10 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "NO_SELECTED_MOD"
 msgstr "Ei valittua Modia"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "?"
+
 msgid "NUCLEUS"
 msgstr "Tuma"
 
@@ -4441,6 +4508,14 @@ msgstr "Saalistusihokarva"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Saalistusihokarva"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Soluelin"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Pysäytysmenu"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4879,6 +4954,14 @@ msgstr "Lisääntyminen"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Lisääntyminen:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
@@ -6540,6 +6623,9 @@ msgstr "Lisää uusi syöte"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
@@ -8596,9 +8682,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

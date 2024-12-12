@@ -58,6 +58,9 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     public bool PassiveReproduction { get; private set; }
 
     [JsonProperty]
+    public ReproductionCompoundHandling ReproductionCompounds { get; private set; }
+
+    [JsonProperty]
     public bool SwitchSpeciesOnExtinction { get; private set; }
 
     [JsonProperty]

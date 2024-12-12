@@ -995,7 +995,8 @@ public partial class CellBodyPlanEditorComponent :
         editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2, islandsWorkMemory3);
 
         // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
+        IReadOnlyList<Hex> positionZeroList = [new(0, 0)];
+        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, positionZeroList,
             Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islandResults);
 
         int nextFreeCell = 0;

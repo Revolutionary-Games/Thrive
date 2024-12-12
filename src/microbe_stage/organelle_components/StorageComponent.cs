@@ -59,4 +59,10 @@ public class StorageComponentUpgrades : IComponentSpecificUpgrades
     {
         return int.RotateLeft(SpecializedFor.GetHashCode(), 7);
     }
+
+    public ulong GetVisualHashCode()
+    {
+        // Specialization doesn't affect the visuals
+        return 7;
+    }
 }

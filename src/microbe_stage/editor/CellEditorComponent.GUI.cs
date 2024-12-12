@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Godot;
 using UnlockConstraints;
 
@@ -20,6 +21,8 @@ public partial class CellEditorComponent
     private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
 
     private StringBuilder atpToolTipTextBuilder = new();
+
+    private bool inProgressSuggestionCheckRunning;
 
     [Signal]
     public delegate void ClickedEventHandler();
@@ -106,6 +109,108 @@ public partial class CellEditorComponent
 
         OnAutoEvoPredictionComplete(waitingForPrediction);
         waitingForPrediction = null;
+    }
+
+    private void CheckRunningSuggestion(double delta)
+    {
+        suggestionStartTimer += delta;
+
+        if (suggestionStartTimer > 1)
+        {
+            suggestionStartTimer = 0;
+
+            if (suggestionDirty || inProgressSuggestion == null)
+            {
+                if (inProgressSuggestion == null)
+                {
+                    var suggestionSpecies = new MicrobeSpecies(Editor.EditedBaseSpecies,
+                        Editor.EditedCellProperties ??
+                        throw new InvalidOperationException(
+                            "can't start auto-evo suggestion without current cell properties"),
+                        hexTemporaryMemory, hexTemporaryMemory2);
+
+                    // For this use-case it is probably not critical to clone the player species flag (as only
+                    // comparative numbers are used, but if anyone checks this code and writes something based on this,
+                    // this is done fully correctly)
+                    if (Editor.EditedBaseSpecies.PlayerSpecies)
+                    {
+                        suggestionSpecies.BecomePlayerSpecies();
+                    }
+
+                    inProgressSuggestion ??=
+                        new OrganelleSuggestionCalculation(suggestionSpecies, CopyEditedPropertiesToSpecies,
+                            Editor.CurrentGame, Editor.EditedBaseSpecies);
+                }
+
+                inProgressSuggestion.StartNew(DetectAvailableOrganelles(), Editor.CurrentPatch);
+                suggestionDirty = false;
+            }
+        }
+        else if (inProgressSuggestion != null)
+        {
+            if (inProgressSuggestion.IsCompleted)
+            {
+                if (inProgressSuggestion.ReadAndResetResultFlag())
+                {
+                    organelleSuggestionLoadingIndicator.Visible = false;
+                    organelleSuggestionLabel.Visible = true;
+
+                    var result = inProgressSuggestion.GetResult();
+
+                    if (result == null)
+                    {
+                        organelleSuggestionLabel.Text = Localization.Translate("NO_SUGGESTION");
+                    }
+                    else
+                    {
+                        organelleSuggestionLabel.Text = result.UntranslatedName;
+                    }
+                }
+            }
+            else
+            {
+                // This uses background checking as some pretty expensive organelle positioning logic can be triggered
+                if (!inProgressSuggestionCheckRunning)
+                {
+                    inProgressSuggestionCheckRunning = true;
+
+                    // This allocates a task each frame, but as this would be hard to workaround and is in the editor,
+                    // this is just left like this
+                    TaskExecutor.Instance.AddTask(new Task(CheckSuggestionProgress));
+                }
+            }
+        }
+    }
+
+    private void CheckSuggestionProgress()
+    {
+        try
+        {
+            // This should only be queued when this is not null
+            inProgressSuggestion!.CheckProgress();
+        }
+        finally
+        {
+            inProgressSuggestionCheckRunning = false;
+        }
+    }
+
+    /// <summary>
+    ///   Checks the GUI button statuses to find the organelles available to the player
+    /// </summary>
+    private List<OrganelleDefinition> DetectAvailableOrganelles()
+    {
+        var result = new List<OrganelleDefinition>();
+
+        foreach (var entry in placeablePartSelectionElements)
+        {
+            if (entry.Value.Undiscovered || entry.Value.Locked)
+                continue;
+
+            result.Add(entry.Key);
+        }
+
+        return result;
     }
 
     private void SetMembraneTooltips(MembraneType referenceMembrane)
@@ -381,7 +486,6 @@ public partial class CellEditorComponent
             {
                 control.Undiscovered = false;
 
-                // This can end up showing non-LAWK organelles in LAWK mode, so this needs a bit of post-processing
                 control.Show();
                 continue;
             }
@@ -392,6 +496,12 @@ public partial class CellEditorComponent
 
             control.Hide();
             control.Undiscovered = true;
+
+            // Skip adding unlock conditions for organelles prevented by LAWK setting
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !organelle.LAWK)
+            {
+                continue;
+            }
 
             var buttonGroup = organelle.EditorButtonGroup;
 

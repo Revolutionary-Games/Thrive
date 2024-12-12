@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
 using Xoshiro.PRNG64;
-using Thread = System.Threading.Thread;
 
 /// <summary>
 ///   A single run of the auto-evo system happening in a background thread
@@ -108,7 +107,7 @@ public class AutoEvoRun
         }
     }
 
-    public int CompleteSteps => Thread.VolatileRead(ref completeSteps);
+    public int CompleteSteps => Volatile.Read(ref completeSteps);
 
     public bool WasSuccessful => Finished && !Aborted;
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
-"PO-Revision-Date: 2024-11-22 10:08+0000\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-10 07:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -504,6 +504,21 @@ msgstr "Oluşturan:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Revolutionary Games Studio Tarafından"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr "Öğeleri diskten silmeden önce geçecek maksimum süre"
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr "Bellekte tutulacak maksimum önbellek öğesi"
+
+msgid "CACHE_TIME_MEMORY"
+msgstr "Önbellek öğelerinin bellekte tutulacağı süre"
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Yalnızca belleğe önbellekleme kullanıldığında geçecek önbellekleme süresi"
+
+msgid "CACHING_TITLE"
+msgstr "Önbellekleme"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiyum Karbonat"
 
@@ -590,6 +605,12 @@ msgstr "Selüloz"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
+
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Hücrenin hızı. Bu hızı hesaplayan algoritmanın sınırlamaları nedeniyle, bu değerin bir tahmin olduğunu lütfen unutmayın.\n"
+"Örneğin, kamçı uzunluğunu değiştirdiğinizde, hız değerleri tamamen anlamlı olmayabilir ve evrede meydana gelen olaylar ile uyuşmayabilir.\n"
+"Bu sorun, bilinen bir sorundur. Ancak, diğer birçok sorun ve yeni özelliğe göre daha düşük öncelikte olduğu için bu sorun henüz düzeltilmemiştir."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
@@ -710,6 +731,9 @@ msgstr "Nüfus: {0} Gıda: {1} Bilim: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Eski Kayıtları Temizle"
+
+msgid "CLEAR_CACHE"
+msgstr "Önbelleği Temizle"
 
 msgid "CLOSE"
 msgstr "Kapat"
@@ -864,6 +888,18 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tüketimi"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Hepsini Tut"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Kardeş Hücre ile Bölün"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Her Zaman Baştakinin Üzerine Ekle"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Arazi Değişiminde Üzerine Ekle"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -1229,6 +1265,14 @@ msgstr "Jenerik"
 msgid "CTRL"
 msgstr "CTRL"
 
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mevcut boyut:"
+
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"Diskte mevcut olarak depolanan bütün önbellek öğelerinin boyutu. Bu öğeler, herhangi bir zamanda, güvenle temizlenebilir.\n"
+"Ancak, önbellekte bulunması gereken bir öğeye bir sonraki sefer ihtiyaç duyulduğunda, bu öğenin yeniden oluşturulması daha uzun sürer."
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Mevcut Oyun Geliştiricileri"
 
@@ -1511,6 +1555,11 @@ msgstr ""
 
 msgid "DISCORD_TOOLTIP"
 msgstr "Discord topluluk sunucumuza katılın"
+
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Etkinleştirildiğinde, oluşturulması zahmetli bazı veriler diske yazılır. Böylece, bu verilere yeniden ihtiyaç duyulduğunda yüklenmeleri daha hızlı olur.\n"
+"Eğer devre dışı bırakılırsa, yalnızca bellek içi önbellekleme kullanılır."
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Atlanan pencereler:"
@@ -1848,6 +1897,10 @@ msgstr "Yükleme Hatası"
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Yükleme Hatası"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2074,7 +2127,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(yalnızca oyuncunun bulunmuş olduğu araziler gösterilir)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Savaş Sisi Modu"
+msgstr "Savaş sisi modu"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normal Savaş Sisi"
@@ -2522,7 +2575,7 @@ msgid "ITCH_TOOLTIP"
 msgstr "Itch.io sayfamızı ziyaret edin"
 
 msgid "ITEM_AT_2D_COORDINATES"
-msgstr "{0} ({1}, {2} konumunda)"
+msgstr "{0}, ({1}, {2}) konumunda"
 
 msgid "ITEM_NAME_SEPARATOR"
 msgstr ":"
@@ -3015,11 +3068,17 @@ msgstr "Deniz karı"
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Diskteki önbelleğin alabileceği maksimum boyut (eğer önbellek aşırı artarsa, öğeler otomatik olarak kaldırılır)"
+
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Sınırsız"
+
+msgid "MAX_SIZE_COLON"
+msgstr "Maksimum boyut:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksimum varlık sayısı:"
@@ -3907,6 +3966,9 @@ msgstr "Ekran görüntüsü dizini bulunamadı"
 msgid "NO_SELECTED_MOD"
 msgstr "Seçilen Mod Yok"
 
+msgid "NO_SUGGESTION"
+msgstr "Yok"
+
 msgid "NUCLEUS"
 msgstr "Çekirdek"
 
@@ -4070,6 +4132,16 @@ msgstr "{0} organel"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organel"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organel Önerisi:"
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"Bu gösterge, hücreye eklenebilecek bir önerilen organeli gösterir.\n"
+"Öneri, eklenecek organellerden hangisinin en fazla enerji artışı sağlayacağı esas alınarak, oto-evrim tarafından hesaplanır.\n"
+"Bazen, eklenebilecek tek bir iyi organel olmayabilir. Ama daha fazla organel ile daha büyük düzenlemeler uzun vadede faydalı olabilir.\n"
+"Bunun haricinde, mevcut organelleri kaldırmak da çoğu zaman faydalı bir strateji olabilir."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organellerin kilidini açma etkin"
@@ -4470,6 +4542,12 @@ msgstr "Eşeysiz"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Editörden çıkışta bileşikler:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(editörden evreye geri dönüldüğünde, oyuncunun depoladığı bileşikler ile yapacağı eylem)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
@@ -5979,6 +6057,9 @@ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı 
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
+
+msgid "USE_DISK_CACHE"
+msgstr "Disk önbelleğini kullan"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
@@ -8332,10 +8413,6 @@ msgstr "Uzaklaştır"
 #~ "\n"
 #~ "CO2: Karbondioksit"
 
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Çözünürlük:"
-
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""
 #~ "0.6.0'dan önceki sürümlerde başlatılan kayıtlarda veya 0.6.1'den önceki sürümlerde başlatılan serbest derleme kayıtlarında henüz görüntülenemiyor.\n"
@@ -8751,3 +8828,7 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "RATE"
 #~ msgstr "Oran"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Çözünürlük:"

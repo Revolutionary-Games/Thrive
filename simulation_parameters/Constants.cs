@@ -431,10 +431,20 @@ public static class Constants
     /// </summary>
     public const float DEFAULT_SOUND_CACHE_TIME = 30;
 
-    public const float MEMORY_PHOTO_CACHE_TIME = 300;
+    public const float MEMORY_BEFORE_DISK_CACHE_TIME = 120;
+    public const float MEMORY_ONLY_CACHE_TIME = 300;
     public const int MEMORY_PHOTO_CACHE_MAX_ITEMS = 250;
 
     public const float MEMORY_PHOTO_CACHE_CLEAN_INTERVAL = 37;
+    public const float DISK_CACHE_CHECK_INTERVAL = 47;
+    public const float DISK_CACHE_IDLE_SAVE_INTERVAL = 53;
+    public const int DISK_CACHE_IDLE_SAVE_ITEMS = 3;
+
+    public const int DISK_CACHE_SAVES_PER_RUN = 5;
+    public const float DISK_CACHE_SAVE_RESUME_CHECK_INTERVAL = 1.17f;
+
+    public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
+    public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
 
     // Base randomness for visual hashes to make different types not conflict
     public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
@@ -696,6 +706,12 @@ public static class Constants
     public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
+    ///   If a cell doesn't fulfil <see cref="HEALTH_REGENERATION_ATP_THRESHOLD"/> it can still be allowed if it is
+    ///   this full on ATP (this allows small cells to heal with just 0.5 storage).
+    /// </summary>
+    public const float HEALTH_REGENERATION_ALTERNATIVE_ATP_FRACTION = 0.9f;
+
+    /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
@@ -843,6 +859,12 @@ public static class Constants
     ///   <see cref="Components.MicrobeControlHelpers.EnterEngulfModeForcedState"/>
     /// </summary>
     public const float ENGULF_NO_ATP_TRIGGER_THRESHOLD = 0.7f;
+
+    /// <summary>
+    ///   On top of <see cref="ENGULF_NO_ATP_TRIGGER_THRESHOLD"/> ATP needs to be less than this fraction of storage.
+    ///   This is to protect small cells that have only like max of 1 storage.
+    /// </summary>
+    public const float ENGULF_NO_ATP_FRACTION_OF_STORAGE_BELOW = 0.45f;
 
     /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell
@@ -1044,6 +1066,8 @@ public static class Constants
     public const float MUTATION_NEW_ORGANELLE_CHANCE = 0.25f;
     public const float MUTATION_DELETION_RATE = 0.05f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
+
+    public const int DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE = 500;
 
     // Max fear and aggression and activity
     public const float MAX_SPECIES_AGGRESSION = 400.0f;
@@ -1377,6 +1401,9 @@ public static class Constants
     public const string SAVE_FOLDER = "user://saves";
     public const string FOSSILISED_SPECIES_FOLDER = "user://fossils";
     public const string AUTO_EVO_EXPORT_FOLDER = "user://auto-evo_exports";
+
+    public const string CACHE_FOLDER = "user://cache";
+    public const string CACHE_IMAGES_FOLDER = "user://cache/img";
 
     public const string EXPLICIT_PATH_PREFIX = "file://";
 

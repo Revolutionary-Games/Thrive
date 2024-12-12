@@ -15,7 +15,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
-config/version="0.7.1.0"
+config/version="0.8.0.0"
 run/main_scene="res://src/general/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
@@ -50,6 +50,7 @@ FullScreenToggle="*res://src/engine/FullScreenToggle.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
 FileDropHandler="*res://src/engine/FileDropHandler.cs"
+DiskCache="*res://src/engine/caching/DiskCache.cs"
 ProceduralDataCache="*res://src/engine/ProceduralDataCache.cs"
 PhotoStudio="*res://src/engine/PhotoStudio.tscn"
 PauseManager="*res://src/engine/PauseManager.cs"
@@ -81,6 +82,10 @@ project/assembly_name="Thrive"
 [editor]
 
 search_in_file_extensions=PackedStringArray("gd", "shader", "cs")
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 [global]
 
@@ -544,6 +549,7 @@ limits/message_queue/max_size_kb=8192
 [rendering]
 
 textures/canvas_textures/default_texture_filter=2
+textures/vram_compression/import_etc2_astc=true
 textures/default_filters/anisotropic_filtering_level=3
 anti_aliasing/quality/msaa_2d=1
 anti_aliasing/quality/msaa_3d=1

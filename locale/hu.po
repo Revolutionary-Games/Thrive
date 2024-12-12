@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-20 09:06+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -520,6 +520,22 @@ msgstr "Származás:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "A Revolutionary Games Studio-tól"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Nincs cím"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kálcium-karbonát"
 
@@ -610,6 +626,10 @@ msgstr "Cellulóz"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
@@ -733,6 +753,9 @@ msgstr "Organizmus statisztikái"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Régi mentések törlése"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Bezár"
@@ -896,6 +919,22 @@ msgstr "{0} töménysége ennyivel csökkent: {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Vegyületfelhők sűrűsége"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1264,6 +1303,14 @@ msgstr "Stáblista"
 msgid "CTRL"
 msgstr "Ctrl"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Képesség sáv megjelenítése"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Játék folytatása"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Jelenlegi fejlesztők"
 
@@ -1538,6 +1585,10 @@ msgstr ""
 #, fuzzy
 msgid "DISCORD_TOOLTIP"
 msgstr "Segítség"
+
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Kilépés a játékból"
 
 #, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
@@ -1910,6 +1961,10 @@ msgstr "Betöltési hiba"
 
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Betöltési hiba"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -3202,11 +3257,19 @@ msgstr "Tengeri hó"
 msgid "MASTER_VOLUME"
 msgstr "Fő hangerő"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Játék folytatása"
+
 msgid "MAX_FPS"
 msgstr "Maximum FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Végtelen"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Méret:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Entitások maximális száma:"
@@ -4154,6 +4217,10 @@ msgstr "A képernyőképmappa nem található"
 msgid "NO_SELECTED_MOD"
 msgstr "Egy mod sincs kijelölve"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Felbontás:"
+
 msgid "NUCLEUS"
 msgstr "Sejtmag"
 
@@ -4336,6 +4403,14 @@ msgstr "Ragadozói pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Ragadozói pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Sejtszervecskék"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Korábbi mentett játékok betöltése"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4759,6 +4834,14 @@ msgstr "Reprodukció"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Bimbózás"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
@@ -6375,6 +6458,9 @@ msgstr "Öngyilkosság"
 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Adj meg egy saját felhasználónevet"
+
+msgid "USE_DISK_CACHE"
+msgstr ""
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "A háttérben futó szálak számának manuális beállítása"
@@ -8326,10 +8412,6 @@ msgstr "Távolodás"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Felbontás:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

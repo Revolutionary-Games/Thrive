@@ -50,4 +50,11 @@ public class OrganelleUpgrades : ICloneable, IEquatable<OrganelleUpgrades>
         return UnlockedFeatures.GetHashCode() * 3 ^
             (CustomUpgradeData != null ? CustomUpgradeData.GetHashCode() : 1) * 1151;
     }
+
+    public ulong GetVisualHashCode()
+    {
+        // This assumes all unlocks affect the visuals, but that isn't really true
+        return ulong.RotateRight(PersistentStringHash.GetHash(UnlockedFeatures), 5) ^
+            (CustomUpgradeData != null ? CustomUpgradeData.GetVisualHashCode() : 1) * 1151;
+    }
 }
