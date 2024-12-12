@@ -38,6 +38,7 @@ public partial class ProcessList : VBoxContainer
     ///   if it has any limiting compounds.
     /// </summary>
     public bool MarkRedOnLimitingCompounds { get; set; }
+    public bool UpdateEquationAutomatically { get; set; } = true;
 
     public override void _Ready()
     {
@@ -85,6 +86,7 @@ public partial class ProcessList : VBoxContainer
         equation.ShowSpinner = ShowSpinners;
         equation.ShowToggle = ShowToggles;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
+        equation.AutoRefreshProcess = UpdateEquationAutomatically;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
 

@@ -265,6 +265,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation>? processes)
     {
         processList.ProcessesTitleColour = processTitleFont;
+        processList.UpdateEquationAutomatically = false;
 
         if (processes == null || processes.Count <= 0)
         {
