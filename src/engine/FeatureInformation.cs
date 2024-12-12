@@ -11,8 +11,7 @@ public static class FeatureInformation
     private const string PlatformWindows = "windows";
     private const string PlatformLinux = "linux";
 
-    // TODO: check that this is correct for Godot 4
-    private const string PlatformMac = "osx";
+    private const string PlatformMac = "macos";
 
     private static readonly Lazy<OS.RenderingDriver> CachedDriver = new(DetectRenderer);
 
