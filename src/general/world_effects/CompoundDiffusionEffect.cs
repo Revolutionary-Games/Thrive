@@ -4,8 +4,9 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   An effect diffusing specially marked compounds between patches (and also takes ocean depth into account) in
-///   contrast to <see cref="AllCompoundDiffusionEffect"/>
+///   An effect diffusing specially marked compounds between patches (and also takes ocean depth into account). This
+///   operates on specific compounds as it causes a bit of a mess and unintended effects if all compounds are always
+///   allowed to move.
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class CompoundDiffusionEffect : IWorldEffect
