@@ -29,11 +29,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
     private void ApplyCompoundsAddition()
     {
         // These affect the final balance
-        var outputModifier = 1.5f;
+        var outputModifier = 1.0f;
         var inputModifier = 1.0f;
-
-        // This affects how fast the conditions change, but also the final balance somewhat
-        var modifier = 0.00015f;
 
         List<TweakedProcess> microbeProcesses = [];
 
@@ -49,8 +46,10 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             if (patch.SpeciesInPatch.Count < 1)
                 continue;
 
-            float oxygenBalance = 0;
-            float co2Balance = 0;
+            float oxygenConsumed = 0;
+            float oxygenProduced = 0;
+            float co2Consumed = 0;
+            float co2Produced = 0;
 
             foreach (var species in patch.SpeciesInPatch)
             {
@@ -73,6 +72,7 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                 microbeProcesses.Clear();
                 ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
 
+                // Iterate over each process and determine compounds produced and consumed
                 foreach (var process in microbeProcesses)
                 {
                     if (process.Process.InternalName == "protein_respiration")
@@ -101,11 +101,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (input.Key.ID is Compound.Oxygen)
                         {
-                            oxygenBalance -= input.Value * inputModifier * effectiveSpeed * species.Value;
+                            oxygenConsumed += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                         else if (input.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Balance -= input.Value * inputModifier * effectiveSpeed * species.Value;
+                            co2Consumed += input.Value * inputModifier * effectiveSpeed * species.Value;
                         }
                     }
 
@@ -114,27 +114,57 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     {
                         if (output.Key.ID is Compound.Oxygen)
                         {
-                            oxygenBalance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            oxygenProduced += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                         else if (output.Key.ID is Compound.Carbondioxide)
                         {
-                            co2Balance += output.Value * outputModifier * effectiveSpeed * species.Value;
+                            co2Produced += output.Value * outputModifier * effectiveSpeed * species.Value;
                         }
                     }
                 }
             }
 
-            // Scale the balances to make the changes less drastic
-            oxygenBalance *= modifier;
-            co2Balance *= modifier;
+            patch.Biome.TryGetCompound(Compound.Oxygen, CompoundAmountType.Biome, out var existingOxygen);
+            patch.Biome.TryGetCompound(Compound.Carbondioxide, CompoundAmountType.Biome, out var existingCo2);
 
-            changesToApply.Clear();
+            // Unless something else changes it, compound values stay the same
+            float oxygenTarget = existingOxygen.Ambient;
+            float co2Target = existingCo2.Ambient;
 
-            if (oxygenBalance != 0)
-                changesToApply[Compound.Oxygen] = oxygenBalance;
+            float total = existingOxygen.Ambient + existingCo2.Ambient;
 
-            if (co2Balance != 0)
-                changesToApply[Compound.Carbondioxide] = co2Balance;
+            // Special (but common) case where zero oxygen is being produced
+            if (oxygenProduced == 0 && oxygenConsumed > 0)
+            {
+                oxygenTarget = 0.0f;
+
+                if (co2Produced > 0)
+                {
+                    co2Target = total;
+                }
+            }
+
+            // Special (but common) case where zero carbon dioxide is being produced
+            if (co2Produced == 0 && co2Consumed > 0)
+            {
+                co2Target = 0.0f;
+
+                if (oxygenProduced > 0)
+                {
+                    oxygenTarget = total;
+                }
+            }
+
+            // if both compounds are being produced, calculate an aproximate steady state value
+            if (oxygenProduced > 0 && co2Produced > 0)
+            {
+                // Calculate long-term equilibrium balances based on production and consumption ratio
+                oxygenTarget = oxygenProduced / (oxygenConsumed + co2Consumed + MathUtils.EPSILON) * total;
+                co2Target = co2Produced / (oxygenConsumed + co2Consumed + MathUtils.EPSILON) * total;
+            }
+
+            changesToApply[Compound.Oxygen] = (oxygenTarget - existingOxygen.Ambient) * 0.5f;
+            changesToApply[Compound.Carbondioxide] = (co2Target - existingCo2.Ambient) * 0.5f;
 
             if (changesToApply.Count > 0)
                 patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
