@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-07 15:22+0200\n"
-"PO-Revision-Date: 2024-12-05 05:22+0000\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-10 07:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -889,23 +889,17 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tüketimi"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "Bileşik Tutarları"
+msgstr "Hepsini Tut"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "Bileşik Tutarları"
+msgstr "Kardeş Hücre ile Bölün"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr ""
-"Bu bölüm, her bir bileşik için toplam tutarı (üretim - tüketim) gösterir.\n"
-"Örneğin, bir bitki hücresi oluşturmak için glukoz tutarının oldukça pozitif olması gerekir."
+msgstr "Her Zaman Baştakinin Üzerine Ekle"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
-msgstr "Bileşik Bulutu Performansı"
+msgstr "Arazi Değişiminde Üzerine Ekle"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -1903,6 +1897,10 @@ msgstr "Yükleme Hatası"
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Yükleme Hatası"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2129,7 +2127,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(yalnızca oyuncunun bulunmuş olduğu araziler gösterilir)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Savaş Sisi Modu"
+msgstr "Savaş sisi modu"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normal Savaş Sisi"
@@ -4545,13 +4543,11 @@ msgstr "Eşeysiz"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
 
-#, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE"
-msgstr "Üreme:"
+msgstr "Editörden çıkışta bileşikler:"
 
-#, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
-msgstr "(hiçbir şey yapmadan çevreden pasif olarak üreme bileşenleri elde et)"
+msgstr "(editörden evreye geri dönüldüğünde, oyuncunun depoladığı bileşikler ile yapacağı eylem)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
