@@ -857,6 +857,7 @@ public partial class OptionsMenu : ControlWithInput
         bloomSlider.Value = settings.BloomStrength;
         bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
         blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
+        blurSlider.Editable = Settings.Instance.MicrobeDistortionStrength > 0 || !DisableInactiveSliders;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -2044,6 +2045,8 @@ public partial class OptionsMenu : ControlWithInput
         {
             Settings.Instance.MicrobeDistortionStrength.Value = 0;
         }
+
+        blurSlider.Editable = !toggle || !DisableInactiveSliders;
 
         UpdateResetSaveButtonState();
     }
