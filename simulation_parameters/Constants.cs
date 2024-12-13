@@ -1227,7 +1227,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00008f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     // These control how many game entities can exist at once
