@@ -1205,7 +1205,7 @@ public static class Constants
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
     public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
-    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.000000015;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
 
     /// <summary>
     ///   Below this value oxygen doesn't cause iron chunks to become less common
