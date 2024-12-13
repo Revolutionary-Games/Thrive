@@ -1195,14 +1195,25 @@ public static class Constants
     public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
 
     // Volcanism co2 production configuration
-    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.15f;
+    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.19f;
     public const float VOLCANISM_VENTS_CO2_THRESHOLD = 0.3f;
 
-    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.025f;
+    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.050f;
     public const float VOLCANISM_SURFACE_CO2_THRESHOLD = 0.15f;
 
-    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.005f;
+    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
+
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+
+    /// <summary>
+    ///   Below this value oxygen doesn't cause iron chunks to become less common
+    /// </summary>
+    public const float MIN_OXYGEN_BEFORE_OXIDATION = 0.01f;
+
+    public const float MIN_IRON_DENSITY_OXIDATION = 0.35f;
+    public const float CHUNK_OXIDATION_SPEED = 0.3f;
 
     // These control the safe levels of nitrogen in a patch (due to other effects the max is also not really an
     // absolute)
@@ -1216,7 +1227,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00008f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     // These control how many game entities can exist at once
