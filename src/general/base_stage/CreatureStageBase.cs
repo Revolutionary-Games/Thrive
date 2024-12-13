@@ -208,6 +208,10 @@ public partial class CreatureStageBase<TPlayer, TSimulation> : StageBase, ICreat
             wantsToSave = true;
 
         pauseMenu.SetNewSaveNameFromSpeciesName();
+
+        // Collect any accumulated garbage before running the main game stage which is much more framerate-sensitive
+        // than the scene switching process
+        GC.Collect();
     }
 
     public virtual void MoveToEditor()
