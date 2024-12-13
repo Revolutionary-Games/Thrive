@@ -1195,13 +1195,13 @@ public static class Constants
     public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
 
     // Volcanism co2 production configuration
-    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.15f;
+    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.19f;
     public const float VOLCANISM_VENTS_CO2_THRESHOLD = 0.3f;
 
-    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.025f;
+    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.050f;
     public const float VOLCANISM_SURFACE_CO2_THRESHOLD = 0.15f;
 
-    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.005f;
+    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
     // These control the safe levels of nitrogen in a patch (due to other effects the max is also not really an
