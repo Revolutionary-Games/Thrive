@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using Godot;
 using Newtonsoft.Json;
 
@@ -26,7 +28,28 @@ public class TimedWorldOperations
 
         foreach (var effect in effects)
         {
-            effect.OnTimePassed(timePassed, totalPassed);
+            try
+            {
+                effect.OnTimePassed(timePassed, totalPassed);
+            }
+            catch (Exception e)
+            {
+#if DEBUG
+                if (Debugger.IsAttached)
+                    Debugger.Break();
+
+                throw;
+#endif
+
+                // ReSharper disable HeuristicUnreachableCode
+#pragma warning disable CS0162 // Unreachable code detected
+
+                GD.PrintErr("Error in applying a world effect! Some timed effect will not apply properly. " +
+                    "Exception: " + e);
+
+                // ReSharper restore HeuristicUnreachableCode
+#pragma warning restore CS0162 // Unreachable code detected
+            }
         }
     }
 
