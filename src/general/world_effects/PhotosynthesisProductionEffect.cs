@@ -75,9 +75,6 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
                 foreach (var process in microbeProcesses)
                 {
-                    if (process.Process.InternalName == "protein_respiration")
-                        _ = 1;
-
                     // Only handle relevant processes
                     if (!IsProcessRelevant(process.Process))
                         continue;
