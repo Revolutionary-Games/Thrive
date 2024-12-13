@@ -7,6 +7,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bludk160icv7b" path="res://assets/models/SulfurChunkSmall1.mesh" id="5_0sloc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmyp7"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1_l3fwd")
 shader_parameter/roughness = 0.85
