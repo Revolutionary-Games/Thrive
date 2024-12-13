@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Reduces amount of iron (down to a minimum) when oxygen goes up to simulate oxidation making iron less available
 /// </summary>
+[JSONDynamicTypeAllowed]
 public class IronOxidationEffect : IWorldEffect
 {
     [JsonProperty]
