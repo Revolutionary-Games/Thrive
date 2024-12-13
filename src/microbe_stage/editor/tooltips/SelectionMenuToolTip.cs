@@ -260,7 +260,8 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     }
 
     /// <summary>
-    ///   Creates UI elements for the processes info in a specific patch
+    ///   Creates UI elements for the processes info in a specific patch. Note that this doesn't refresh so this must
+    ///   be always called again when the process speed information has changed.
     /// </summary>
     public void WriteOrganelleProcessList(List<ProcessSpeedInformation>? processes)
     {

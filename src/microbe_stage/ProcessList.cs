@@ -38,6 +38,10 @@ public partial class ProcessList : VBoxContainer
     ///   if it has any limiting compounds.
     /// </summary>
     public bool MarkRedOnLimitingCompounds { get; set; }
+
+    /// <summary>
+    ///   If true the created process objects have <see cref="ChemicalEquation.AutoRefreshProcess"/> set to true
+    /// </summary>
     public bool UpdateEquationAutomatically { get; set; } = true;
 
     public override void _Ready()
