@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 23:03+0300\n"
+"POT-Creation-Date: 2024-12-13 18:38+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -331,12 +331,12 @@ msgstr ""
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:584
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:589
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:689
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:694
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:590
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:695
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1163 ../src/general/OptionsMenu.tscn:334
+#: ../src/general/OptionsMenu.cs:1164 ../src/general/OptionsMenu.tscn:334
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -456,7 +456,7 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:524 ../src/general/MainMenu.tscn:827
-#: ../src/general/NewGameSettings.tscn:968 ../src/general/OptionsMenu.tscn:1913
+#: ../src/general/NewGameSettings.tscn:1005 ../src/general/OptionsMenu.tscn:1913
 #: ../src/general/PauseMenu.tscn:291
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
@@ -464,7 +464,7 @@ msgstr ""
 msgid "BACK"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:402
+#: ../src/general/OptionsMenu.tscn:467
 msgid "BACKGROUND_BLUR"
 msgstr ""
 
@@ -506,7 +506,7 @@ msgstr ""
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:703
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:808
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -642,7 +642,7 @@ msgstr ""
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:456
+#: ../src/general/OptionsMenu.tscn:434
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
@@ -968,7 +968,7 @@ msgstr ""
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:431
+#: ../src/general/OptionsMenu.tscn:409
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
@@ -1822,7 +1822,7 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1637
+#: ../src/general/OptionsMenu.cs:1638
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -2064,19 +2064,19 @@ msgstr ""
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:482
+#: ../src/general/OptionsMenu.tscn:460
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:477
+#: ../src/general/OptionsMenu.tscn:455
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1180
+#: ../src/general/OptionsMenu.cs:1181
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1177
+#: ../src/general/OptionsMenu.cs:1178
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
@@ -2366,19 +2366,19 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:644
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:749
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:714
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:819
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:676
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:781
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:666
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:771
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
@@ -3935,15 +3935,15 @@ msgstr ""
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1689
+#: ../src/general/OptionsMenu.cs:1690
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1685
+#: ../src/general/OptionsMenu.cs:1686
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1681
+#: ../src/general/OptionsMenu.cs:1682
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -4458,7 +4458,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:172
-#: ../src/general/OptionsMenu.cs:1765 ../src/general/OptionsMenu.cs:2313
+#: ../src/general/OptionsMenu.cs:1766 ../src/general/OptionsMenu.cs:2316
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
@@ -4755,7 +4755,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:270 ../src/general/OptionsMenu.tscn:227
+#: ../src/general/NewGameSettings.tscn:271 ../src/general/OptionsMenu.tscn:227
 msgid "MISC"
 msgstr ""
 
@@ -5624,7 +5624,7 @@ msgstr ""
 msgid "ORGANELLES_BUTTON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:423
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:528
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -5699,7 +5699,7 @@ msgstr ""
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:697
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:802
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -7264,7 +7264,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:207
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:758
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:470
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:505
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:214
 msgid "SUNLIGHT"
@@ -7923,7 +7923,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1779
+#: ../src/general/OptionsMenu.cs:1780
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -7977,7 +7977,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1184
+#: ../src/general/OptionsMenu.cs:1185
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -7998,7 +7998,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1794
+#: ../src/general/OptionsMenu.cs:1795
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -8066,7 +8066,7 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:405
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:510
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
@@ -8222,7 +8222,7 @@ msgstr ""
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1194 ../src/general/OptionsMenu.tscn:539
+#: ../src/general/OptionsMenu.cs:1195 ../src/general/OptionsMenu.tscn:539
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
