@@ -14,13 +14,14 @@
 resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("1_0qsxg")
-shader_parameter/albedo = Color(0.09, 0.347833, 1, 1)
+shader_parameter/albedo = Color(0.262745, 0.309804, 1, 1)
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.261
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.65
 shader_parameter/metallic = 0.15
-shader_parameter/emission = Color(0.0105999, 0.004, 0.4, 0.956863)
-shader_parameter/emissionEnergy = 0.0
+shader_parameter/emission = Color(0.0195242, 0.00734134, 0.53186, 0.956863)
+shader_parameter/emissionEnergy = 0.25
 shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.8
 shader_parameter/outlineWidth = 0.02

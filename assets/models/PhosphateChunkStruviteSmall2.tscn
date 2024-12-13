@@ -13,6 +13,7 @@ shader = ExtResource("1_6d2xb")
 shader_parameter/albedo = Color(0.91, 0.87997, 0.8281, 0.67451)
 shader_parameter/useNormal = false
 shader_parameter/roughness = 0.75
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.59
 shader_parameter/metallic = 0.59
 shader_parameter/emission = Color(0.1, 0.1, 0.1, 1)
