@@ -1204,6 +1204,17 @@ public static class Constants
     public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.000000015;
+
+    /// <summary>
+    ///   Below this value oxygen doesn't cause iron chunks to become less common
+    /// </summary>
+    public const float MIN_OXYGEN_BEFORE_OXIDATION = 0.01f;
+
+    public const float MIN_IRON_DENSITY_OXIDATION = 0.35f;
+    public const float CHUNK_OXIDATION_SPEED = 0.3f;
+
     // These control the safe levels of nitrogen in a patch (due to other effects the max is also not really an
     // absolute)
     public const float MAX_NITROGEN_LEVEL = 0.75f;
