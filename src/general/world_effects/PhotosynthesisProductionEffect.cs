@@ -54,24 +54,8 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
             foreach (var species in patch.SpeciesInPatch)
             {
-                // Only microbial photosynthesis and respiration are taken into account
-                if (species.Key is not MicrobeSpecies microbeSpecies)
-                    continue;
-
-                var balance = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles, patch.Biome,
-                    microbeSpecies.MembraneType, false, false, targetWorld.WorldSettings, CompoundAmountType.Average,
-                    false);
-
-                float balanceModifier = 1;
-
-                // Scale processes to not consume excess oxygen than what is actually needed. Though, see below which
-                // actual processes use this modifier.
-                if (balance.TotalConsumption < balance.TotalProduction)
-                    balanceModifier = balance.TotalConsumption / balance.TotalProduction;
-
-                // Cleared for efficiency
-                microbeProcesses.Clear();
-                ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
+                var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
+                    microbeProcesses, patch.Biome, targetWorld.WorldSettings);
 
                 foreach (var process in microbeProcesses)
                 {
@@ -79,17 +63,11 @@ public class PhotosynthesisProductionEffect : IWorldEffect
                     if (!IsProcessRelevant(process.Process))
                         continue;
 
-                    var rate = ProcessSystem.CalculateProcessMaximumSpeed(process,
-                        patch.Biome, CompoundAmountType.Biome, true);
-
-                    // Skip checking processes that cannot run
-                    if (rate.CurrentSpeed <= 0)
-                        continue;
-
-                    // For metabolic processes the speed is at most to reach ATP equilibrium in order to not
-                    // unnecessarily consume environmental oxygen
                     var effectiveSpeed =
-                        (process.Process.IsMetabolismProcess ? balanceModifier : 1) * rate.CurrentSpeed;
+                        ProcessSystem.CalculateEffectiveProcessSpeedForEffect(process, balanceModifier, patch.Biome);
+
+                    if (effectiveSpeed <= 0)
+                        continue;
 
                     // TODO: maybe photosynthesis should also only try to reach glucose balance of +0?
 
