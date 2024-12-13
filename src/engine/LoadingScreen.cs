@@ -242,6 +242,10 @@ public partial class LoadingScreen : Control
     private void OnBecomeHidden()
     {
         artworkRect.Texture = null;
+
+        // The loading screen is still visible, so a lag spike from GC here should be not noticeable so we do a
+        // collection here so that during gameplay it is less likely to run garbage collection
+        GC.Collect();
     }
 
     private void UpdateMessage()

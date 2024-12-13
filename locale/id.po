@@ -653,6 +653,10 @@ msgstr "Selulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -947,6 +951,22 @@ msgstr "Konsentrasi {0} menurun sebanyak {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Awan senyawa"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1984,6 +2004,10 @@ msgstr "Error Memuat"
 
 msgid "ERROR_SAVING"
 msgstr "Error Menyimpan"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Error Memuat"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4215,6 +4239,10 @@ msgstr "Buka Folder Tangkapan Layar"
 msgid "NO_SELECTED_MOD"
 msgstr "Terpilih:"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolusi:"
+
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
@@ -4395,6 +4423,14 @@ msgstr "Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organel"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Muat permainan yang sudah disimpan"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4828,6 +4864,14 @@ msgstr "Produksi ATP"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tunas"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduksi:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
@@ -5342,6 +5386,10 @@ msgstr "Potongan Besi Kecil"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Potongan Besi Kecil"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Potongan Besi Kecil"
 
 msgid "SNOWFLAKE"
@@ -8483,10 +8531,6 @@ msgstr "Perkecil"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Tidak diketahui di Windows"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolusi:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

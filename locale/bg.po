@@ -626,6 +626,10 @@ msgstr "Целулозна"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Това е мембрана със стена, която осигурява по-добра цялостна защита и се нуждае от по-малко енергия за да не се деформира. Недостатъците ѝ са, че клетката става още по-бавна, както и усвояването на хранителните вещества. [b]Целулазата[/b] може да разгради стената на тази мембрана."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Идентификаторът трябва да е положително цяло число"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Наименование на клетката"
 
@@ -927,6 +931,22 @@ msgstr "Концентрацията на {0} се понижи с {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Баланс на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Превключване на химичните съединения"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Гъстота на облаците"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2002,6 +2022,10 @@ msgstr "Грешка по време на зареждането"
 
 msgid "ERROR_SAVING"
 msgstr "Грешка по време на запазването"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Грешка по време на зареждането"
 
 msgid "ESCAPE"
 msgstr "Клавиш „Esc“"
@@ -4178,6 +4202,10 @@ msgstr "Папката със снимки не съществува"
 msgid "NO_SELECTED_MOD"
 msgstr "Няма"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "?"
+
 msgid "NUCLEUS"
 msgstr "Ядро"
 
@@ -4355,6 +4383,14 @@ msgstr "Пробивен пилус"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Пробивен пилус"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Зареждане на запазените игри"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4774,6 +4810,14 @@ msgstr "Асексуално"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Пъпкуване"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Видове:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(създанията усвояват хранителните вещества от околната среда)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Видове:"
@@ -5252,6 +5296,10 @@ msgstr "Малък железен фрагмент"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Малък железен фрагмент"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Малък железен фрагмент"
 
 msgid "SNOWFLAKE"
@@ -8391,9 +8439,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16 пъти"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

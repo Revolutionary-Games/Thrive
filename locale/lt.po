@@ -625,6 +625,10 @@ msgstr "Celiuliozė"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ši membrana turi sienelę, todėl geriau apsaugo nuo bendros žalos ir ypač nuo fizinės žalos. Be to, jos formai išlaikyti reikia mažiau energijos, tačiau ji negali greitai įsisavinti išteklių ir yra lėtesnė. [b]Šią sienelę gali suvirškinti celiulazė[/b], todėl ji tampa pažeidžiama plėšrūnų."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Ląstelės Tipo Pavadinimas"
 
@@ -905,6 +909,22 @@ msgstr "{0} koncentracija sumažėjo {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} suvartojimas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Junginių Balansai"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Junginių Balansai"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Rodyti / slėpti junginius"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Junginių debesies tankis"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1929,6 +1949,10 @@ msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr ""
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "(pradžios vieta)"
 
 msgid "ESCAPE"
 msgstr ""
@@ -3894,6 +3918,10 @@ msgstr ""
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Aprašymas:"
+
 msgid "NUCLEUS"
 msgstr ""
 
@@ -4057,6 +4085,14 @@ msgstr ""
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Daugialąstis"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Įkelti anksčiau išsaugotus žaidimus"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
@@ -4458,6 +4494,14 @@ msgstr ""
 
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "ATP GAMYBA PER MAŽA!"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(greitis, kuriuo DI rūšys mutuoja)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -4914,6 +4958,9 @@ msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr ""
+
+msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
 msgid "SNOWFLAKE"
@@ -7794,10 +7841,6 @@ msgstr ""
 
 #~ msgid "BASSUP"
 #~ msgstr "Didinti Žemus Dažnius"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Aprašymas:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

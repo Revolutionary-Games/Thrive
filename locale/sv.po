@@ -640,6 +640,10 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Detta membran har en vägg, vilket leder till bättre skydd mot allmän skada och särskilt mot fysisk skada. Den kostar också mindre energi för att bibehålla sin form, men kan inte ta upp resurser lika snabbt och är trögare. [b]Cellulas kan smälta denna vägg[/b] vilket gör den sårbar mot uppslukning av rovdjur."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Fortsätt"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -940,6 +944,22 @@ msgstr "{0} koncentrationer har minskat med {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} konsumtion"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Molekylmoln"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1990,6 +2010,10 @@ msgstr "Laddningsfel"
 
 msgid "ERROR_SAVING"
 msgstr "Sparningsfel"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Laddningsfel"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4195,6 +4219,10 @@ msgstr "Hittade ingen screenshots mapp"
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Upplösning:"
+
 msgid "NUCLEUS"
 msgstr "Kärna"
 
@@ -4376,6 +4404,14 @@ msgstr "Rov Tagg"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Rov Tagg"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organeller"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Hjälp"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4816,6 +4852,14 @@ msgstr "Fortplantning"
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "Producerar"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
@@ -5328,6 +5372,10 @@ msgstr "Liten Järnbit"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Liten Järnbit"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Liten Järnbit"
 
 msgid "SNOWFLAKE"
@@ -8392,10 +8440,6 @@ msgstr "Zooma ut"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Upplösning:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

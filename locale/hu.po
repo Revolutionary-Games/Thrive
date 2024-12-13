@@ -630,6 +630,10 @@ msgstr "Cellulóz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
 
@@ -918,6 +922,22 @@ msgstr "{0} töménysége ennyivel csökkent: {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Vegyületfelhők sűrűsége"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1944,6 +1964,10 @@ msgstr "Betöltési hiba"
 
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Betöltési hiba"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4196,6 +4220,10 @@ msgstr "A képernyőképmappa nem található"
 msgid "NO_SELECTED_MOD"
 msgstr "Egy mod sincs kijelölve"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Felbontás:"
+
 msgid "NUCLEUS"
 msgstr "Sejtmag"
 
@@ -4378,6 +4406,14 @@ msgstr "Ragadozói pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Ragadozói pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Sejtszervecskék"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Korábbi mentett játékok betöltése"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4801,6 +4837,14 @@ msgstr "Reprodukció"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Bimbózás"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
@@ -5299,6 +5343,10 @@ msgstr "Kis vasdarab"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Kis vasdarab"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Kis vasdarab"
 
 msgid "SNOWFLAKE"
@@ -8371,10 +8419,6 @@ msgstr "Távolodás"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Felbontás:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

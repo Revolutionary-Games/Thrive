@@ -625,6 +625,10 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což způsobuje lepší ochranu proti poškození, a obzvláště fyzickému poškození. Také potřebuje méně energie k zachování své formy, ale je pomalejší jak v pohybu tak v absorbování živin. [b]Celuláza může tuto stěnu strávit[/b], což ji dělá bezbrannou vůči vstřebání predátorem."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
 
@@ -907,6 +911,22 @@ msgstr "{0} koncentrace se snížily o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Hustota oblaků sloučenin"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2010,6 +2030,10 @@ msgstr "Chyba v načítání"
 msgid "ERROR_SAVING"
 msgstr "Chyba při ukládání"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Chyba v načítání"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2276,6 +2300,7 @@ msgstr "Intensita mlhy války"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Režim Mlhy Války"
 
@@ -4248,6 +4273,10 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozlišení:"
+
 msgid "NUCLEUS"
 msgstr "Jádro"
 
@@ -4429,6 +4458,14 @@ msgstr "Dravý/útočný Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Dravý/útočný Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Načíst předešlé uložené hry"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4845,6 +4882,14 @@ msgstr "Asexuální"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučení"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
@@ -5332,6 +5377,10 @@ msgstr "Malý kus železa"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Malý kus železa"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Malý kus železa"
 
 msgid "SNOWFLAKE"
@@ -8467,10 +8516,6 @@ msgstr "Oddálit"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlišení:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

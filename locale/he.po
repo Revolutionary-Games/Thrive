@@ -619,6 +619,10 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -901,6 +905,22 @@ msgstr "ריכוזי ה{0} ירדו ב{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "הראה/החבא תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "ריכוז ענני תרכובת"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1959,6 +1979,10 @@ msgstr "טוען שגיאה"
 
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "טוען שגיאה"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4178,6 +4202,10 @@ msgstr "לא נמצאה ספריית צילומי מסך"
 msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "רזולוציה:"
+
 msgid "NUCLEUS"
 msgstr "גרעין התא"
 
@@ -4358,6 +4386,14 @@ msgstr "פילוס טורף"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "פילוס טורף"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "אברונים"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "טען שמירות שנשמרו"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4777,6 +4813,14 @@ msgstr "א-מינית"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "הנצה"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
@@ -5258,6 +5302,10 @@ msgstr "גוש ברזל קטן"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "גוש ברזל קטן"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "גוש ברזל קטן"
 
 msgid "SNOWFLAKE"
@@ -8390,10 +8438,6 @@ msgstr "זום החוצה"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "רזולוציה:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

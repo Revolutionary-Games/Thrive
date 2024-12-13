@@ -622,6 +622,10 @@ msgstr "Celulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Essa membrana tem uma parede feita de celulose, resultando em uma melhor proteção contra danos, especialmente contra danos físicos. Ela requer menos energia para manter sua forma, mas não absorve recursos rapidamente e deixa a célula mais lenta. [b]A celulase pode digerir essa parede[/b], fazendo o organismo ficar mais vulnerável à fagocitose por parte dos predadores."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "O valor usado para gerar o mundo, que deve ser um número inteiro positivo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do Tipo de Célula"
 
@@ -900,6 +904,24 @@ msgstr "As concentrações de {0} diminuíram em {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "consumo de {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
+"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densidade das nuvens de compostos"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(não é o suficiente para suportar a noite, que dura {0} segundos)"
@@ -1926,6 +1948,10 @@ msgstr "Erro ao carregar"
 msgid "ERROR_SAVING"
 msgstr "Erro ao salvar"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Erro ao carregar"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2156,6 +2182,7 @@ msgstr "Fog Of War Intenso"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(somente regiões em que o jogador já visitou serão mostradas)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Modo De Fog Of War"
 
@@ -4062,6 +4089,10 @@ msgstr "O diretório de capturas de tela não foi encontrado"
 msgid "NO_SELECTED_MOD"
 msgstr "Nenhum Mod Selecionado"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolução:"
+
 msgid "NUCLEUS"
 msgstr "Núcleo"
 
@@ -4228,6 +4259,14 @@ msgstr "{0} organelas"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organela"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axônio"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carrega jogos salvos anteriormente"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Desbloqueio de organelas ativado"
@@ -4638,6 +4677,14 @@ msgstr "Assexual"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemulação"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodução:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(ganhar os compostos necessários para a reprodução do ambiente sem ter que fazer nada)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
@@ -5101,6 +5148,10 @@ msgstr "Pedaço de ferro pequeno"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pedaço de ferro pequeno"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Pedaço de ferro pequeno"
 
 msgid "SNOWFLAKE"
@@ -8248,10 +8299,6 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Respiração celular aeróbica (glicose -> ATP)"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolução:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

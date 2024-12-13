@@ -72,7 +72,7 @@ public class VolcanismEffect : IWorldEffect
             return;
 
         // TODO: should this clamp or not?
-        addedCo2[Compound.Carbondioxide] = Math.Clamp(amount.Ambient + co2Strength, 0, threshold);
+        addedCo2[Compound.Carbondioxide] = Math.Clamp(co2Strength, 0, threshold);
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, addedCo2, cloudSizesDummy);
     }

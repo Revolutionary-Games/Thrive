@@ -5,10 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://deb04cuns82jr" path="res://assets/textures/Mitochondrion.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://b0rm6imau0jjv" path="res://assets/models/organelles/Chemoplast.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://qh7cokct60go" path="res://assets/textures/Chemoplast.png" id="5"]
-[ext_resource type="Texture2D" uid="uid://lei41d7q7tgk" path="res://assets/textures/FresnelGradientDamaged.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://c3fla17itmoba" path="res://assets/textures/FresnelGradient.png" id="7"]
 [ext_resource type="PackedScene" uid="uid://jgcbwcrqbblv" path="res://src/microbe_stage/Membrane.tscn" id="8"]
+[ext_resource type="Texture2D" uid="uid://c4abs1j47umma" path="res://assets/textures/SingleMembrane.png" id="8_gq526"]
 [ext_resource type="Shader" path="res://shaders/Membrane.gdshader" id="9"]
+[ext_resource type="Texture2D" uid="uid://dnxx08njuvfha" path="res://assets/textures/SingleMembraneDamaged.png" id="9_x1sig"]
 [ext_resource type="PackedScene" uid="uid://d0o560vbcgswt" path="res://assets/models/organelles/SlimeJet.tscn" id="10"]
 [ext_resource type="PackedScene" uid="uid://bexhhxecb6yu2" path="res://assets/models/organelles/Rusticyanin.tscn" id="11"]
 [ext_resource type="Shader" path="res://shaders/EngulfEffect.gdshader" id="11_n3xav"]
@@ -20,12 +20,12 @@
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
-shader_parameter/dissolveValue = null
+shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 shader_parameter/texture = ExtResource("3")
@@ -34,12 +34,12 @@ shader_parameter/texture = ExtResource("3")
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("1")
-shader_parameter/dissolveValue = null
+shader_parameter/dissolveValue = 0.0
 shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
 shader_parameter/texture = ExtResource("5")
@@ -53,8 +53,8 @@ shader_parameter/movementWigglyNess = 1.0
 shader_parameter/dissolveValue = 0.0
 shader_parameter/healthFraction = 0.25
 shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/albedoTexture = ExtResource("7")
-shader_parameter/damagedTexture = ExtResource("6")
+shader_parameter/albedoTexture = ExtResource("8_gq526")
+shader_parameter/damagedTexture = ExtResource("9_x1sig")
 shader_parameter/dissolveTexture = ExtResource("13")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_04a7v"]

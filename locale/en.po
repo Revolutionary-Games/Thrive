@@ -609,6 +609,12 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower. [b]Cellulase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Speed of the cell. Please note that due to limitations of the algorithm calculating this, the value is an approximation.\n"
+"And for example when modifying flagellum length the speed values don't fully make sense and don't match what will happen in the stage.\n"
+"This is a known problem but is not fixed yet due to being lower priority than many other problems and new features."
+
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
 
@@ -885,6 +891,18 @@ msgstr "{0} concentrations have decreased by {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Keep All"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Split With Sister Cell"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Always Top Up To Initial"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Top Up On Patch Change"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(not enough to last the night which is {0} s long)"
@@ -1882,6 +1900,9 @@ msgstr "Error Loading"
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
 
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "An exception happened: {0}"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2108,7 +2129,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(only patches the player has been to will be revealed)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Fog Of War Mode"
+msgstr "Fog of war mode"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Regular Fog Of War"
@@ -3947,6 +3968,9 @@ msgstr "No screenshot directory found"
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
 
+msgid "NO_SUGGESTION"
+msgstr "None"
+
 msgid "NUCLEUS"
 msgstr "Nucleus"
 
@@ -4110,6 +4134,16 @@ msgstr "{0} organelles"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organelle"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organelle Suggestion:"
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"This indicator shows a suggested organelle that can be added to the cell.\n"
+"The suggestion is calculated by auto-evo based on which added organelle gives the biggest increase in gained energy.\n"
+"Sometimes there is no single good organelle to add, but bigger edits with more organelles may still be beneficial in the long run.\n"
+"Or removing existing organelles is also quite often a useful strategy."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organelle unlocks enabled"
@@ -4510,6 +4544,12 @@ msgstr "Asexual"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Budding"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Compounds on editor exit:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(what to do with the compounds the player had stored when returning to the stage from the editor)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
@@ -4967,6 +5007,9 @@ msgstr "Small Iron Chunk"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Small Phosphate Chunk"
+
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Small Sulfur Chunk"
 
 msgid "SNOWFLAKE"
 msgstr "Snowflake"
@@ -8318,9 +8361,6 @@ msgstr "Zoom out"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #~ msgid "SPEED_BELOW"
 #~ msgstr "speed falls below {0}"

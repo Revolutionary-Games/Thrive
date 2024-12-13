@@ -653,6 +653,10 @@ msgstr "Selluloosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
 
@@ -955,6 +959,22 @@ msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}:n kulutus"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Yhdistepilvet"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2056,6 +2076,10 @@ msgstr "Virhe ladattaessa"
 
 msgid "ERROR_SAVING"
 msgstr "Virhe tallennettaessa"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Virhe ladattaessa"
 
 msgid "ESCAPE"
 msgstr "ESC"
@@ -4297,6 +4321,10 @@ msgstr "Avaa Näyttökuva kansio"
 msgid "NO_SELECTED_MOD"
 msgstr "Ei valittua Modia"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "?"
+
 msgid "NUCLEUS"
 msgstr "Tuma"
 
@@ -4483,6 +4511,14 @@ msgstr "Saalistusihokarva"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Saalistusihokarva"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Soluelin"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Pysäytysmenu"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4921,6 +4957,14 @@ msgstr "Lisääntyminen"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Lisääntyminen:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
@@ -5427,6 +5471,10 @@ msgstr "Pieni rautalohkare"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pieni rautalohkare"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Pieni rautalohkare"
 
 msgid "SNOWFLAKE"
@@ -8641,9 +8689,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

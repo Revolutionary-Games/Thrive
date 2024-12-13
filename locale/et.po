@@ -659,6 +659,10 @@ msgstr "Tselluloos"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Peata mäng"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
@@ -955,6 +959,22 @@ msgstr "{0} kontsentratsioon on vähenenud {1} võrra"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tarbimine"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Näita/peida keskkonda ja ühendeid"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Liitpilved"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -2017,6 +2037,10 @@ msgstr "Viga laadimisel"
 
 msgid "ERROR_SAVING"
 msgstr "Viga salvestamisel"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Viga laadimisel"
 
 msgid "ESCAPE"
 msgstr "esc"
@@ -4313,6 +4337,10 @@ msgstr "Ekraanitõmmiste kataloogi ei leitud"
 msgid "NO_SELECTED_MOD"
 msgstr "Modifikatsiooni pole valitud"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolutsioon:"
+
 msgid "NUCLEUS"
 msgstr "Tuum"
 
@@ -4497,6 +4525,14 @@ msgstr "Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organellid"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Pausi menüü"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4928,6 +4964,14 @@ msgstr "Paljundamine"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "lootustandev"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Paljundamine:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Paljundamine:"
@@ -5427,6 +5471,10 @@ msgstr "Väike raua tükk"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Väike raua tükk"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Väike raua tükk"
 
 msgid "SNOWFLAKE"
@@ -8661,10 +8709,6 @@ msgstr "Suumi välja"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolutsioon:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

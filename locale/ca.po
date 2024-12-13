@@ -629,6 +629,10 @@ msgstr "Cel·lulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
 
@@ -916,6 +920,22 @@ msgstr "{0} concentrations han disminuït per {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consum"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densitat de núvols de Compostos"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1941,6 +1961,10 @@ msgstr "Error durant la càrrega"
 
 msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Error durant la càrrega"
 
 msgid "ESCAPE"
 msgstr "Tecla Esc"
@@ -4199,6 +4223,10 @@ msgstr "No s'ha trobat cap directori de captures de pantalla"
 msgid "NO_SELECTED_MOD"
 msgstr "Cap Mod Seleccionat"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolució:"
+
 msgid "NUCLEUS"
 msgstr "Nucli"
 
@@ -4381,6 +4409,14 @@ msgstr "Fibló"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Fibló"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Orgànuls"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carregar arxius de guardat previs"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4804,6 +4840,14 @@ msgstr "Asexual"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmació"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproducció:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
@@ -5295,6 +5339,10 @@ msgstr "Petit tros de Ferro"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Petit tros de Ferro"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Petit tros de Ferro"
 
 msgid "SNOWFLAKE"
@@ -8391,10 +8439,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolució:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

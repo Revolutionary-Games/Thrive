@@ -630,6 +630,10 @@ msgstr "เซลลูโลส"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "ดำเนินการต่อ"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -920,6 +924,22 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr "สารประกอบของเมฆ"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "ดำเนินการต่อ"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "สารประกอบของเมฆ"
 
 #, fuzzy
@@ -1911,6 +1931,10 @@ msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr ""
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4080,6 +4104,10 @@ msgstr "เปิดโฟลเดอร์สกรีนช็อต"
 msgid "NO_SELECTED_MOD"
 msgstr ""
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "ความละเอียด:"
+
 msgid "NUCLEUS"
 msgstr "นิวเคลียส"
 
@@ -4261,6 +4289,14 @@ msgstr "สัตว์นักล่า"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "สัตว์นักล่า"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "สัตว์นักล่า"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Nitrogenase เป็นโปรตีนที่สามารถใช้ก๊าซไนโตรเจนและพลังงานของเซลล์ในรูปแบบของ ATP เพื่อผลิตแอมโมเนียซึ่งเป็นสารอาหารที่สำคัญในการเจริญเติบโตของเซลล์ นี่คือกระบวนการที่เรียกว่าการตรึงไนโตรเจนแบบไม่ใช้ออกซิเจน เนื่องจากไนโตรเจนเนสถูกแขวนอยู่ในไซโทพลาสซึมโดยตรงของเหลวที่อยู่รอบ ๆ จึงทำปฏิกิริยาไกลโคไลซิส"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4685,6 +4721,14 @@ msgstr "ความละเอียด:"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "ความละเอียด:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} ประชากรเปลี่ยนแปลงโดย {1} เนื่องจาก: {2}"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -5202,6 +5246,10 @@ msgstr "ก้อนเหล็กขนาดเล็ก"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "ก้อนเหล็กขนาดเล็ก"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "ก้อนเหล็กขนาดเล็ก"
 
 msgid "SNOWFLAKE"
@@ -8226,10 +8274,6 @@ msgstr "ซูมออก"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "เมาส์ที่ไม่รู้จัก"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "ความละเอียด:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

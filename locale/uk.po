@@ -618,6 +618,10 @@ msgstr "Целюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ця мембрана має стінку, внаслідок чого краще захищає від пошкоджень, особливо від фізичних. Вона також витрачає менше енергії на збереження форми, але не так швидко поглинає ресурси і є повільнішою. [b]Целюлаза здатна перетравлювати цю стінку[/b], роблячи її вразливою для поглинання хижаками."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Значення, яке використовує для генерації світу, що мусить бути дадатним, цілим числом"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Назва типу клітини"
 
@@ -893,6 +897,22 @@ msgstr "{0} концентрація зменшилась на {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} поглинуто"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Баланс сполук"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Баланс сполук"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Показати/ приховати сполуки"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Щільність хмари сполук"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1902,6 +1922,10 @@ msgstr "Помилка завантаження"
 msgid "ERROR_SAVING"
 msgstr "Помилка збереження"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Помилка завантаження"
+
 msgid "ESCAPE"
 msgstr "Вийти з повноекрання"
 
@@ -2132,6 +2156,7 @@ msgstr "Інтенсивний туман війни"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(тільки ділянки, де був гравець, буде розкрито)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Режим туману війни"
 
@@ -4014,6 +4039,10 @@ msgstr "Не знайдено каталог скріншотів"
 msgid "NO_SELECTED_MOD"
 msgstr "Немає вибраного моду"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Роздільна здатність:"
+
 msgid "NUCLEUS"
 msgstr "Ядро"
 
@@ -4180,6 +4209,14 @@ msgstr "{0} органели"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} органела"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Аксон"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Завантажити раніше збережену гру"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Ввімкнено відкриття органел"
@@ -4588,6 +4625,14 @@ msgstr "Нестатевий"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Брункування"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Розмножено:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(пасивно збільшувати сполуки для розмноження з середовища без дій )"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Розмножено:"
@@ -5051,6 +5096,10 @@ msgstr "Малий шматок заліза"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Малий шматок заліза"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Малий шматок заліза"
 
 msgid "SNOWFLAKE"
@@ -8151,10 +8200,6 @@ msgstr "Віддалитись"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16х"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Роздільна здатність:"
 
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""

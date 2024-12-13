@@ -615,6 +615,10 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "用于生成世界的随机数种子，必须为正整数"
+
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
@@ -889,6 +893,24 @@ msgstr "{0}的浓度已减少了{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
+"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "化合物云密度"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（无法熬过{0}秒长的夜晚）"
@@ -1886,6 +1908,10 @@ msgstr "载入时出错"
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "载入时出错"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2113,6 +2139,7 @@ msgstr "强烈战争迷雾"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "只有玩家去过的地方才会显示出来"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "战争迷雾模式"
 
@@ -3967,6 +3994,10 @@ msgstr "找不到截图目录"
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "分辨率："
+
 msgid "NUCLEUS"
 msgstr "细胞核"
 
@@ -4132,6 +4163,14 @@ msgstr "{0}个细胞器"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0}个细胞器"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "载入之前保存的游戏"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "已启用细胞器解锁"
@@ -4534,6 +4573,14 @@ msgstr "无性繁殖"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "出芽"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "繁殖："
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -4992,6 +5039,10 @@ msgstr "小铁块"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸盐碎块"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "小铁块"
 
 msgid "SNOWFLAKE"
 msgstr "雪花"
@@ -8207,10 +8258,6 @@ msgstr "缩小"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "分辨率："
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

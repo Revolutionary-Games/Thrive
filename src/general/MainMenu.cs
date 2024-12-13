@@ -749,6 +749,9 @@ public partial class MainMenu : NodeWithInput
         // Report to cache that we are in the main menu and that it'd be a good time to clean stuff without affecting
         // game performance
         DiskCache.Instance.InMainMenu();
+
+        // Any lag spike here from GC should not be visible
+        GC.Collect();
     }
 
     private void CheckStartupSuccess()

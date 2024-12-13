@@ -612,6 +612,10 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
@@ -884,6 +888,24 @@ msgstr "Концентрация {0} снизилась на {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Эта секция показывает общий баланс ( производство - потребление) каждого соединения\n"
+"К примеру, для создания клетки-растения баланс глюкозы должен быть положительным"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Тест производительности на Облаках Соединений"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -1881,6 +1903,10 @@ msgstr "Ошибка Загрузки"
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Ошибка Загрузки"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2105,6 +2131,7 @@ msgstr "Сильный туман войны"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(Игрок будет обладать информацией лишь о тех биомах в коих он был)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Режим тумана войны"
 
@@ -3954,6 +3981,10 @@ msgstr "Папка скриншотов не найдена"
 msgid "NO_SELECTED_MOD"
 msgstr "Ни одного мода не выбрано"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Разрешение:"
+
 msgid "NUCLEUS"
 msgstr "Ядро"
 
@@ -4119,6 +4150,14 @@ msgstr "{0} органелл"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} органелла"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Органеллы"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Загрузить сохраненные игры"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Разблокировка органелл включена"
@@ -4520,6 +4559,14 @@ msgstr "Бесполое"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Размножение"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Воспроизведение:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
@@ -4978,6 +5025,10 @@ msgstr "Маленький кусок железа"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Маленький Фрагмент Фосфата"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Маленький кусок железа"
 
 msgid "SNOWFLAKE"
 msgstr "Снежинка"
@@ -8030,10 +8081,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Аэробное клеточное дыхание (Глюкоза -> АТФ)"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Разрешение:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -706,6 +706,12 @@ public static class Constants
     public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
+    ///   If a cell doesn't fulfil <see cref="HEALTH_REGENERATION_ATP_THRESHOLD"/> it can still be allowed if it is
+    ///   this full on ATP (this allows small cells to heal with just 0.5 storage).
+    /// </summary>
+    public const float HEALTH_REGENERATION_ALTERNATIVE_ATP_FRACTION = 0.9f;
+
+    /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
@@ -853,6 +859,12 @@ public static class Constants
     ///   <see cref="Components.MicrobeControlHelpers.EnterEngulfModeForcedState"/>
     /// </summary>
     public const float ENGULF_NO_ATP_TRIGGER_THRESHOLD = 0.7f;
+
+    /// <summary>
+    ///   On top of <see cref="ENGULF_NO_ATP_TRIGGER_THRESHOLD"/> ATP needs to be less than this fraction of storage.
+    ///   This is to protect small cells that have only like max of 1 storage.
+    /// </summary>
+    public const float ENGULF_NO_ATP_FRACTION_OF_STORAGE_BELOW = 0.45f;
 
     /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell
@@ -1055,6 +1067,8 @@ public static class Constants
     public const float MUTATION_DELETION_RATE = 0.05f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
+    public const int DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE = 500;
+
     // Max fear and aggression and activity
     public const float MAX_SPECIES_AGGRESSION = 400.0f;
     public const float MAX_SPECIES_FEAR = 400.0f;
@@ -1174,18 +1188,32 @@ public static class Constants
     public const float GLUCOSE_MIN = 0.0f;
 
     // Tweak variable for how fast compounds diffuse between patches
+    public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT_SIMPLE = 0.8f;
+
+    // More complex square root distance movement calculation variables:
     public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 1;
     public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
 
     // Volcanism co2 production configuration
-    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.15f;
+    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.19f;
     public const float VOLCANISM_VENTS_CO2_THRESHOLD = 0.3f;
 
-    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.025f;
+    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.050f;
     public const float VOLCANISM_SURFACE_CO2_THRESHOLD = 0.15f;
 
-    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.005f;
+    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
+
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+
+    /// <summary>
+    ///   Below this value oxygen doesn't cause iron chunks to become less common
+    /// </summary>
+    public const float MIN_OXYGEN_BEFORE_OXIDATION = 0.01f;
+
+    public const float MIN_IRON_DENSITY_OXIDATION = 0.35f;
+    public const float CHUNK_OXIDATION_SPEED = 0.3f;
 
     // These control the safe levels of nitrogen in a patch (due to other effects the max is also not really an
     // absolute)
@@ -1199,7 +1227,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00008f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     // These control how many game entities can exist at once

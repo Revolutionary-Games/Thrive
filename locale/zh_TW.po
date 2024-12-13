@@ -508,22 +508,19 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由 Revolutionary Games Studio 製作"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "項目刪除前保留在磁碟上的最長時間"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "記憶體中保留的最大快取項目量"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY"
-msgstr "目前使用的視訊記憶體："
+msgstr "快取項目在記憶體中保留多長時間"
 
-#, fuzzy
 msgid "CACHE_TIME_MEMORY_ONLY"
-msgstr "目前使用的視訊記憶體："
+msgstr "僅使用記憶體快取時的快取時間"
 
-#, fuzzy
 msgid "CACHING_TITLE"
-msgstr "製作"
+msgstr "快取"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸鈣"
@@ -611,6 +608,12 @@ msgstr "纖維素"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對物理的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]纖維素酶可以消化這堵牆[/b]，使其容易被掠食者吞噬。"
+
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"細胞的速度。請注意，由於計算演算法的限制，該值為近似值。\n"
+"例如，當修改鞭毛長度時，速度值可能無法完全反映實際情況，並且可能與遊戲中的實際表現不完全一致。\n"
+"這是一個已知問題，但由於其優先級低於其他許多問題與新功能，因此尚未修復。"
 
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
@@ -733,7 +736,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "清除快取"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -888,6 +891,18 @@ msgstr "{0}的濃度降低了 {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "保留全部"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "均分至姊妹細胞"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "始終補充至初始值"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "區域更改時補充"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（不足以維持 {0} 秒長的夜晚）"
@@ -1253,13 +1268,13 @@ msgstr "製作人員"
 msgid "CTRL"
 msgstr "CTRL"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "未研究任何內容"
+msgstr "目前大小："
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
-msgstr "噴射黏液以提高速度並減緩困在黏液中細胞的速度"
+msgstr ""
+"目前儲存在磁碟上的所有快取項目的大小。可以隨時安全清除，\n"
+"但是當下次需要快取中的項目時，需要更長的時間才能產生。"
 
 msgid "CURRENT_DEVELOPERS"
 msgstr "當前開發人員"
@@ -1544,9 +1559,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我們的社群 Discord 伺服器"
 
-#, fuzzy
 msgid "DISK_CACHE_TOOLTIP"
-msgstr "造訪我們的 Itch.io 頁面"
+msgstr ""
+"啟用後，一些高時間成本的生成資料將寫入磁碟，以便再次需要時更快載入。\n"
+"如果停用，則僅使用記憶體快取。"
 
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的彈出視窗："
@@ -1883,6 +1899,9 @@ msgstr "載入時發生錯誤"
 
 msgid "ERROR_SAVING"
 msgstr "存檔時發生錯誤"
+
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "發生錯誤：{0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -3051,9 +3070,8 @@ msgstr "海洋雪"
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
-#, fuzzy
 msgid "MAX_CACHE_SIZE_TOOLTIP"
-msgstr "噴射黏液以提高速度並減緩困在黏液中細胞的速度"
+msgstr "磁碟快取應佔用的最大大小（如果快取變得太大，項目將自動刪除）"
 
 msgid "MAX_FPS"
 msgstr "最大 FPS："
@@ -3061,9 +3079,8 @@ msgstr "最大 FPS："
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "無限"
 
-#, fuzzy
 msgid "MAX_SIZE_COLON"
-msgstr "大小："
+msgstr "最大大小："
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "實體數量上限："
@@ -3951,6 +3968,9 @@ msgstr "找不到截圖目錄"
 msgid "NO_SELECTED_MOD"
 msgstr "無選取模組"
 
+msgid "NO_SUGGESTION"
+msgstr "無"
+
 msgid "NUCLEUS"
 msgstr "細胞核"
 
@@ -4114,6 +4134,16 @@ msgstr "{0}細胞器"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0}細胞器"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "細胞器建議："
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"此指示器顯示了一個建議添加到細胞中的細胞器。\n"
+"該建議由 Auto-Evo 計算，基於添加哪個細胞器能帶來最大的能量收益。\n"
+"有時，可能沒有單一的最佳細胞器可供添加，但進行包含多個細胞器的大規模調整，從長遠來看可能仍然是有益的。\n"
+"此外，移除現有的細胞器通常也是一種有效的策略。"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "啟用細胞器解鎖"
@@ -4514,6 +4544,12 @@ msgstr "無性繁殖"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "出芽生殖"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "退出編輯器時的化合物："
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "（從編輯器返回遊戲時如何處理玩家儲存的化合物）"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -4971,6 +5007,10 @@ msgstr "小鐵塊"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸鹽塊"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "小鐵塊"
 
 msgid "SNOWFLAKE"
 msgstr "雪花"
@@ -6025,7 +6065,7 @@ msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自訂使用者名稱"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "使用磁碟快取"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設定後台執行緒數"
@@ -8376,10 +8416,6 @@ msgstr "縮小"
 #~ "\n"
 #~ "CO2：二氧化碳（Carbon Dioxide）"
 
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "解析度："
-
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""
 #~ "無法在 0.6.0 版本之前開始的存檔中或在 0.6.1 版本之前開始的自由構建存檔中顯示。\n"
@@ -8687,3 +8723,7 @@ msgstr "縮小"
 
 #~ msgid "PLASTID"
 #~ msgstr "膠體"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "解析度："

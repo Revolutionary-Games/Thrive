@@ -17,26 +17,24 @@ const GdUnitUpdateClient = preload ("res://addons/gdUnit4/src/update/GdUnitUpdat
 @onready var _properties_report: Node = % "report-content"
 @onready var _input_capture: GdUnitInputCapture = %GdUnitInputCapture
 @onready var _property_error: Window = % "propertyError"
+@onready var _tab_container: TabContainer = %Properties
+@onready var _update_tab: = %Update
 
 var _font_size: float
 
 
 func _ready() -> void:
+	set_name("GdUnitSettingsDialog")
 	# initialize for testing
 	if not Engine.is_editor_hint():
 		GdUnitSettings.setup()
 	GdUnit4Version.init_version_label(_version_label)
 	_font_size = GdUnitFonts.init_fonts(_version_label)
-	@warning_ignore("return_value_discarded")
-	about_to_popup.connect(_do_setup_properties)
-
-
-# do setup the dialog with given settings
-func _do_setup_properties() -> void:
 	setup_properties(_properties_common, GdUnitSettings.COMMON_SETTINGS)
 	setup_properties(_properties_ui, GdUnitSettings.UI_SETTINGS)
 	setup_properties(_properties_report, GdUnitSettings.REPORT_SETTINGS)
 	setup_properties(_properties_shortcuts, GdUnitSettings.SHORTCUT_SETTINGS)
+	check_for_update()
 
 
 func _sort_by_key(left: GdUnitProperty, right: GdUnitProperty) -> bool:
@@ -85,7 +83,6 @@ func setup_properties(properties_parent: Node, property_category: String) -> voi
 		reset_btn.icon = _get_btn_icon("Reload")
 		reset_btn.disabled = property.value() == property.default()
 		grid.add_child(reset_btn)
-		min_size_ += reset_btn.size.x
 
 		# property type specific input element
 		var input: Node = _create_input_element(property, reset_btn)
@@ -100,6 +97,7 @@ func setup_properties(properties_parent: Node, property_category: String) -> voi
 		grid.add_child(info)
 		if min_size_overall < min_size_:
 			min_size_overall = min_size_
+
 	for controls: Array in [labels, inputs, info_labels]:
 		var _size: float = controls.map(func(c: Control) -> float: return c.size.x).max()
 		min_size_overall += _size
@@ -215,6 +213,21 @@ func rescan(update_scripts:=false) -> void:
 		await get_tree().create_timer(1).timeout
 	if update_scripts:
 		EditorInterface.get_resource_filesystem().update_script_classes()
+
+
+func check_for_update() -> void:
+	if not GdUnitSettings.is_update_notification_enabled():
+		return
+	var response :GdUnitUpdateClient.HttpResponse = await _update_client.request_latest_version()
+	if response.status() != 200:
+		printerr("Latest version information cannot be retrieved from GitHub!")
+		printerr("Error:  %s" % response.response())
+		return
+	var latest_version := _update_client.extract_latest_version(response)
+	if latest_version.is_greater(GdUnit4Version.current()):
+		var tab_index := _tab_container.get_tab_idx_from_control(_update_tab)
+		_tab_container.set_tab_button_icon(tab_index, GdUnitUiTools.get_icon("Notification", Color.YELLOW))
+		_tab_container.set_tab_tooltip(tab_index, "An new update is available.")
 
 
 func _on_btn_report_bug_pressed() -> void:

@@ -622,6 +622,10 @@ msgstr "Celulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana possui uma parede, resultando em uma melhor proteção contra danos gerais e principalmente contra danos físicos. Também custa menos energia para manter a forma, mas não consegue absorver recursos rapidamente e é mais lenta.[b]Celulase consegue digerir esta parede[/b] tornando-a vulnerável a absorção por predadores."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positivo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do tipo de célula"
 
@@ -902,6 +906,22 @@ msgstr "Concentrações de {0} diminuíram em {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumo"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Equilíbrio de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Equilíbrio de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostrar / ocultar compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densidade da nuvem de compostos"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1928,6 +1948,10 @@ msgstr "Erro ao carregar"
 msgid "ERROR_SAVING"
 msgstr "Erro ao gravar"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Erro ao carregar"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2158,6 +2182,7 @@ msgstr "Neblina de Guerra Intensa"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(apenas regiões que o jogador esteve serão reveladas)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Modo Neblina de Guerra"
 
@@ -4036,6 +4061,10 @@ msgstr "Nenhum diretório de captura de ecrã encontrado"
 msgid "NO_SELECTED_MOD"
 msgstr "Nenhum mod selecionado"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolução:"
+
 msgid "NUCLEUS"
 msgstr "Núcleo"
 
@@ -4206,6 +4235,14 @@ msgstr "{0} organelos"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organelo"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axónio"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carregar jogos previamente guardados"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Desbloqueio de organelos ativado"
@@ -4621,6 +4658,14 @@ msgstr "Assexuada"
 #, fuzzy
 msgid "REPRODUCTION_BUDDING"
 msgstr "reproduzido"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodução:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
@@ -5092,6 +5137,10 @@ msgstr "Pequeno Pedaço de Ferro"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pequeno Pedaço de Ferro"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Pequeno Pedaço de Ferro"
 
 msgid "SNOWFLAKE"
@@ -8141,10 +8190,6 @@ msgstr "Reduzir"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolução:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

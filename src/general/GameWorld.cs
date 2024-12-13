@@ -77,16 +77,6 @@ public class GameWorld : ISaveLoadable
 
         // Create timed effects for the world that happen when generations pass
         TimedEffects = new TimedWorldOperations();
-
-        if (settings.ExperimentalFeatures)
-        {
-            GD.Print("Using experimental world effects");
-
-            // Register compound production and diffusion
-            TimedEffects.RegisterEffect("compound_production", new CompoundProductionEffect(this));
-            TimedEffects.RegisterEffect("all_compound_diffusion", new AllCompoundDiffusionEffect(this));
-        }
-        else
         {
             // A limited photosynthesis-only compound production effects that were added as these are much simpler than
             // the full effect to get balanced well enough
@@ -95,7 +85,10 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
             TimedEffects.RegisterEffect("underwater_vent_eruption",
                 new UnderwaterVentEruptionEffect(this, random.Next64()));
+
+            TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+            TimedEffects.RegisterEffect("iron_oxidation", new IronOxidationEffect(this));
 
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));

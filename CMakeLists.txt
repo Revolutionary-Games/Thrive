@@ -1,10 +1,17 @@
 # Native code side of Thrive
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.13)
+
+# Configuration types. Jolt requires a "Distribution" build type
+# Need to be defined before project()
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution")
 
 project(Thrive)
 
 # If you want to get compile commands run cmake with
 # "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+
+# Extra CMake module load path
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/Scripts/CMake")
 
 # Options
 # Building either the faster variant with AVX or without for older CPU support
@@ -39,16 +46,24 @@ option(USE_ATOMIC_COLLISION_WRITE
   "If on uses atomic write to collision data that multiple threads might want to read/write"
   OFF)
 
-option(WARNINGS_AS_ERRORS "When on treat compiler warnings as errors" ON)
+option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" ON)
 
 option(NULL_HAS_UNUSUAL_REPRESENTATION
   "When on it is not assumed that null equals numeric 0" OFF)
 
-# Extra CMake module load path if we ever need those for Thrive
-# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMake")
-
 option(THRIVE_GODOT_API_FILE "Set to override folder Godot API file is looked for in"
   "")
+
+# End of options section
+
+include(CMakeHelperFunctions)
+
+# 32-bit detection
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+else()
+  message(WARNING
+    "32-bit build detected. Probably won't work correctly as this is untested")
+endif()
 
 # Also use a lib prefix on windows for consistency
 if(WIN32)
@@ -64,9 +79,6 @@ endif()
 # static building (on Linux)
 set(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 set(BUILD_SHARED_LIBS OFF)
-
-# Configuration types. Jolt requires a "Distribution" build type
-set(CMAKE_CONFIGURATION_TYPES "Debug;Release;RelWithDebInfo;Distribution")
 
 # Set flags for Distribution configuration
 # These are based on relwithdebinfo as we want symbols for eventual crash reporting

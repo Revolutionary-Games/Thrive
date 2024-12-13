@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using AutoEvo;
 using Godot;
 
@@ -48,11 +49,25 @@ public static class CommonMutationFunctions
         Hex.HexSide.BottomRight, Hex.HexSide.BottomLeft, Hex.HexSide.Bottom,
     ];
 
+    /// <summary>
+    ///   Direction bias for <see cref="OrganelleAddStrategy.Realistic"/>
+    /// </summary>
     public enum Direction
     {
         Front,
         Neutral,
         Rear,
+    }
+
+    /// <summary>
+    ///   Controls the overall used strategy to place an organelle
+    /// </summary>
+    public enum OrganelleAddStrategy
+    {
+        Realistic = 0,
+        Spiral,
+        Front,
+        Back,
     }
 
     public static MicrobeSpecies GenerateRandomSpecies(MicrobeSpecies mutated, MutationWorkMemory workMemory,
@@ -94,11 +109,37 @@ public static class CommonMutationFunctions
         return mutated;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
         List<Hex> workMemory1, List<Hex> workMemory2, Random random)
     {
-        var position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory2,
-            random);
+        return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, newSpecies, workMemory1,
+            workMemory2, random);
+    }
+
+    public static bool AddOrganelleWithStrategy(OrganelleAddStrategy strategy, OrganelleDefinition organelle,
+        Direction direction, MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2, Random random)
+    {
+        OrganelleTemplate? position;
+
+        switch (strategy)
+        {
+            case OrganelleAddStrategy.Realistic:
+                position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory2,
+                    random);
+                break;
+            case OrganelleAddStrategy.Spiral:
+                position = GetSpiralPosition(organelle, newSpecies.Organelles, workMemory1, workMemory2);
+                break;
+            case OrganelleAddStrategy.Front:
+                position = GetFrontPosition(organelle, newSpecies.Organelles, workMemory1, workMemory2);
+                break;
+            case OrganelleAddStrategy.Back:
+                position = GetBackPosition(organelle, newSpecies.Organelles, workMemory1, workMemory2);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
+        }
 
         // We return early as not being able to add an organelle is not a critical failure
         if (position == null)
@@ -205,9 +246,12 @@ public static class CommonMutationFunctions
         {
             // The otherOrganelle is the organelle we wish to be next to
             // Loop its hexes and check positions next to them
-            // TODO: and here
-            foreach (var hex in otherOrganelle.RotatedHexes)
+            var rotated = otherOrganelle.RotatedHexes;
+            var rotatedCount = rotated.Count;
+            for (int i = 0; i < rotatedCount; ++i)
             {
+                var hex = rotated[i];
+
                 // Offset by hexes in organelle we are looking at
                 var pos = otherOrganelle.Position + hex;
 
@@ -245,6 +289,82 @@ public static class CommonMutationFunctions
                         }
                     }
                 }
+            }
+        }
+
+        return null;
+    }
+
+    private static OrganelleTemplate? GetSpiralPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1,
+        List<Hex> workMemory2)
+    {
+        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        // Assume can't be placed at 0,0 so start at distance 1 (which is 2 as we divide by two in the real search
+        // coordinates)
+        for (int q = 2; q <= Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE * 2; ++q)
+        {
+            int realQ = q / 2;
+            int checkQ;
+
+            if (q % 2 == 1)
+            {
+                // Alternative checking the negative distance
+                checkQ = -realQ;
+            }
+            else
+            {
+                checkQ = realQ;
+            }
+
+            for (int r = -realQ; r <= checkQ; ++r)
+            {
+                result.Position = new Hex(checkQ, r);
+
+                if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+                {
+                    return result;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private static OrganelleTemplate? GetFrontPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1,
+        List<Hex> workMemory2)
+    {
+        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        // Assume can't be placed at 0,0 so start at -1
+        for (int r = -1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; --r)
+        {
+            result.Position = new Hex(0, r);
+
+            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+            {
+                return result;
+            }
+        }
+
+        return null;
+    }
+
+    private static OrganelleTemplate? GetBackPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, List<Hex> workMemory2)
+    {
+        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        // Assume can't be placed at 0,0 so start at 1
+        for (int r = 1; r < Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
+        {
+            result.Position = new Hex(0, r);
+
+            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+            {
+                return result;
             }
         }
 

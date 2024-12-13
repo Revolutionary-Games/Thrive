@@ -622,6 +622,10 @@ msgstr "Zellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur langsam absorbieren und ist langsamer."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze Zahl sein.)"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
@@ -904,6 +908,22 @@ msgstr "{0}konzentrationen sind um {1} gesunken"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}-Verbrauch"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Substanzen ein-/ausblenden"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Wolkendichte"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1962,6 +1982,10 @@ msgstr "Fehler beim Laden"
 
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Fehler beim Laden"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4159,6 +4183,10 @@ msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 msgid "NO_SELECTED_MOD"
 msgstr "Kein Mod ausgewählt"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Auflösung:"
+
 msgid "NUCLEUS"
 msgstr "Nukleus"
 
@@ -4339,6 +4367,14 @@ msgstr "Raubtier-Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Raubtier-Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organellen"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Ein zuvor gespeichertes Spiel laden"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4760,6 +4796,14 @@ msgstr "Asexuell"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Knospend"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
@@ -5246,6 +5290,10 @@ msgstr "Kleiner Eisenbrocken"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Kleiner Eisenbrocken"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Kleiner Eisenbrocken"
 
 msgid "SNOWFLAKE"
@@ -8385,10 +8433,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Auflösung:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

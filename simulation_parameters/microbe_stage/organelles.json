@@ -55,7 +55,8 @@
           "ScenePath": "res://assets/models/organelles/PilusInjector.tscn"
         }
       }
-    }
+    },
+    "SuggestionPlacement": "Front"
   },
   "rusticyanin": {
     "MPCost": 45,
@@ -588,7 +589,8 @@
     ],
     "UpgradeGUI": "res://src/microbe_stage/editor/upgrades/FlagellumUpgradeGUI.tscn",
     "EditorButtonGroup": "External",
-    "EditorButtonOrder": 1
+    "EditorButtonOrder": 1,
+    "SuggestionPlacement": "Back"
   },
   "vacuole": {
     "MPCost": 50,
@@ -1047,7 +1049,8 @@
           "ScenePath": "res://assets/models/organelles/Mucocyst.tscn"
         }
       }
-    }
+    },
+    "SuggestionPlacement": "Back"
   },
   "signalingAgent": {
     "MPCost": 45,

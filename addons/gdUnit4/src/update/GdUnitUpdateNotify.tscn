@@ -1,30 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://0xyeci1tqebj"]
+[gd_scene load_steps=4 format=3 uid="uid://0xyeci1tqebj"]
 
 [ext_resource type="Script" path="res://addons/gdUnit4/src/update/GdUnitUpdateNotify.gd" id="1_112wo"]
 [ext_resource type="Script" path="res://addons/gdUnit4/src/update/GdUnitUpdateClient.gd" id="2_18asx"]
+[ext_resource type="PackedScene" uid="uid://2eahgaw88y6q" path="res://addons/gdUnit4/src/update/GdUnitUpdate.tscn" id="3_x87h6"]
 
-[node name="Control" type="Window"]
-disable_3d = true
-gui_embed_subwindows = true
-initial_position = 1
-title = "GdUnit Update Notification"
-size = Vector2i(800, 400)
-visible = false
-wrap_controls = true
-transient = true
-exclusive = true
-min_size = Vector2i(800, 400)
+[node name="Control" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_112wo")
 
 [node name="GdUnitUpdateClient" type="Node" parent="."]
 script = ExtResource("2_18asx")
 
 [node name="Panel" type="Panel" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 
 [node name="GridContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
@@ -45,6 +39,7 @@ theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
 [node name="header" type="Label" parent="Panel/GridContainer/PanelContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 9
 
@@ -61,10 +56,6 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-theme_override_constants/margin_bottom = 4
 
 [node name="content" type="RichTextLabel" parent="Panel/GridContainer/PanelContainer2/ScrollContainer/MarginContainer"]
 layout_mode = 2
@@ -72,9 +63,16 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 
+[node name="update_banner" parent="Panel/GridContainer" instance=ExtResource("3_x87h6")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 8
+
 [node name="Panel" type="MarginContainer" parent="Panel/GridContainer"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 8
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -85,30 +83,15 @@ use_parent_material = true
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="show_next" type="CheckBox" parent="Panel/GridContainer/Panel/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-text = "show next time"
-
 [node name="update" type="Button" parent="Panel/GridContainer/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-disabled = true
 text = "Update"
 
-[node name="close" type="Button" parent="Panel/GridContainer/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_vertical = 4
-text = "Close"
-
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="meta_clicked" from="Panel/GridContainer/PanelContainer2/ScrollContainer/MarginContainer/content" to="." method="_on_content_meta_clicked"]
 [connection signal="meta_hover_ended" from="Panel/GridContainer/PanelContainer2/ScrollContainer/MarginContainer/content" to="." method="_on_content_meta_hover_ended"]
 [connection signal="meta_hover_started" from="Panel/GridContainer/PanelContainer2/ScrollContainer/MarginContainer/content" to="." method="_on_content_meta_hover_started"]
-[connection signal="toggled" from="Panel/GridContainer/Panel/HBoxContainer/show_next" to="." method="_on_show_next_toggled"]
 [connection signal="pressed" from="Panel/GridContainer/Panel/HBoxContainer/update" to="." method="_on_update_pressed"]
-[connection signal="pressed" from="Panel/GridContainer/Panel/HBoxContainer/close" to="." method="_on_cancel_pressed"]

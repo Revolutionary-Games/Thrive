@@ -627,6 +627,10 @@ msgstr "Celulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana tiene una pared celular, resultando en mejor protección, especialmente contra el daño físico. También cuesta menos energía, pero absorbe recursos y se mueve muy lentamente."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "El valor usado para generar el planeta, debe ser un numero positivo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nombre del tipo de célula"
 
@@ -911,6 +915,24 @@ msgstr "Las concentraciones de {0} han descendido por un {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo de: {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Balance de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Balance de compuestos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Esta sección muestra el balance total (lo producido - lo consumido) por cada compuesto.\n"
+"Por ejemplo, para hacer una célula vegetal el balance de glucosa tiene que ser positivo."
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densidad de las nubes de compuestos"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(no es suficiente para soportar la noche, que dura {0}s)"
@@ -1984,6 +2006,10 @@ msgstr "Error al cargar"
 msgid "ERROR_SAVING"
 msgstr "Error al guardar"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Error al cargar"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2252,6 +2278,7 @@ msgstr "Intensa niebla de guerra"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Modo de niebla de guerra"
 
@@ -4211,6 +4238,10 @@ msgstr "Abrir carpeta de capturas de pantalla"
 msgid "NO_SELECTED_MOD"
 msgstr "Ningún Mod Seleccionado"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolución:"
+
 msgid "NUCLEUS"
 msgstr "Núcleo"
 
@@ -4392,6 +4423,14 @@ msgstr "Pilus predatorio"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilus predatorio"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Orgánulos"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Cargar una partida guardada"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4817,6 +4856,14 @@ msgstr "Asexual"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemación"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproducción:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(recibe compuestos del ambiente de forma pasiva sin tener que realizar acciones)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducción:"
@@ -5304,6 +5351,10 @@ msgstr "Fragmento de hierro pequeño"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Fragmento de hierro pequeño"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Fragmento de hierro pequeño"
 
 msgid "SNOWFLAKE"
@@ -8479,10 +8530,6 @@ msgstr "Alejar el zoom"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolución:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

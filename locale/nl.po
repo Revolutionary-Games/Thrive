@@ -615,6 +615,10 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, waardoor het beter beschermd is tegen schade en specifiek tegen fysieke schade. Het kost ook minder energie om zijn vorm te houden, maar kan grondstoffen minder snel absorberen. [b]Cellulase kan deze celwand verteren[/b] waardoor het vatbaar is voor verzwelging door roofdieren."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
 
@@ -895,6 +899,22 @@ msgstr "{0}concentratie is met {1} gedaald"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Toon / verberg stoffen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Dichtheid van stofwolken"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1963,6 +1983,10 @@ msgstr "Fout met het Laden"
 
 msgid "ERROR_SAVING"
 msgstr "Fout Opslaan"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Fout met het Laden"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -4111,6 +4135,10 @@ msgstr "Geen screenshot directory gevonden"
 msgid "NO_SELECTED_MOD"
 msgstr "Geen Mod Geselecteerd"
 
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolutie:"
+
 msgid "NUCLEUS"
 msgstr "Kern"
 
@@ -4281,6 +4309,14 @@ msgstr "Jagende Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Jagende Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axon"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Laad eerder opgeslagen spellen"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4695,6 +4731,14 @@ msgstr "Aseksueel"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Ontkiemen"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproductiemethode:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproductiemethode:"
@@ -5160,6 +5204,10 @@ msgstr "Klein stuk ijzer"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Klein stuk ijzer"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Klein stuk ijzer"
 
 msgid "SNOWFLAKE"
@@ -8284,10 +8332,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolutie:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"
