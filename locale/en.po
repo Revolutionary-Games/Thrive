@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-05 15:05+0200\n"
-"PO-Revision-Date: 2024-12-04 13:16+0200\n"
+"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"PO-Revision-Date: 2024-12-12 10:28+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -888,6 +888,18 @@ msgstr "{0} concentrations have decreased by {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Keep All"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Split With Sister Cell"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Always Top Up To Initial"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Top Up On Patch Change"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(not enough to last the night which is {0} s long)"
@@ -1885,6 +1897,9 @@ msgstr "Error Loading"
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
 
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "An exception happened: {0}"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -2111,7 +2126,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(only patches the player has been to will be revealed)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Fog Of War Mode"
+msgstr "Fog of war mode"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Regular Fog Of War"
@@ -4526,6 +4541,12 @@ msgstr "Asexual"
 
 msgid "REPRODUCTION_BUDDING"
 msgstr "Budding"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Compounds on editor exit:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(what to do with the compounds the player had stored when returning to the stage from the editor)"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"

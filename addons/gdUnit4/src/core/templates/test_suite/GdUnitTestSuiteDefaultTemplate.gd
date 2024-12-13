@@ -18,7 +18,7 @@ const DEFAULT_TEMP_TS_CS = """
 	// GdUnit generated TestSuite
 
 	using Godot;
-	using GdUnit3;
+	using GdUnit4;
 
 	namespace ${name_space}
 	{

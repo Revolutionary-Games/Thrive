@@ -1,6 +1,7 @@
 @tool
 extends Control
 
+const GdUnitUpdateClient = preload("res://addons/gdUnit4/src/update/GdUnitUpdateClient.gd")
 const TITLE = "gdUnit4 ${version} Console"
 
 @onready var header := $VBoxContainer/Header
@@ -102,6 +103,38 @@ func println_message(message: String, color: Color=_text_color, indent:=-1) -> v
 
 func line_number(report: GdUnitReport) -> String:
 	return str(report._line_number) if report._line_number != -1 else "<n/a>"
+
+
+func setup_update_notification(control: Button) -> void:
+	if not GdUnitSettings.is_update_notification_enabled():
+		print_message("The search for updates is deactivated.", Color.CORNFLOWER_BLUE)
+		return
+
+	println_message("Searching for updates.", Color.CORNFLOWER_BLUE)
+	var update_client := GdUnitUpdateClient.new()
+	add_child(update_client)
+	var response :GdUnitUpdateClient.HttpResponse = await update_client.request_latest_version()
+	if response.status() != 200:
+		println_message("Information cannot be retrieved from GitHub!", Color.INDIAN_RED)
+		println_message("Error:  %s" % response.response(), Color.INDIAN_RED)
+		return
+	var latest_version := update_client.extract_latest_version(response)
+	if not latest_version.is_greater(GdUnit4Version.current()):
+		println_message("GdUnit4 is up-to-date.", Color.FOREST_GREEN)
+		return
+
+	println_message("A new update is available %s" % latest_version, Color.YELLOW)
+	println_message("Open the GdUnit4 settings and check the update tab.", Color.YELLOW)
+
+	control.icon = GdUnitUiTools.get_icon("Notification", Color.YELLOW)
+	var tween :=create_tween()
+	tween.tween_property(control, "self_modulate", Color.VIOLET, .2).set_trans(Tween.TransitionType.TRANS_LINEAR)
+	tween.tween_property(control, "self_modulate", Color.YELLOW, .2).set_trans(Tween.TransitionType.TRANS_BOUNCE)
+	tween.parallel()
+	tween.tween_property(control, "scale", Vector2.ONE*1.05, .4).set_trans(Tween.TransitionType.TRANS_LINEAR)
+	tween.tween_property(control, "scale", Vector2.ONE, .4).set_trans(Tween.TransitionType.TRANS_BOUNCE)
+	tween.set_loops(-1)
+	tween.play()
 
 
 func _on_gdunit_event(event: GdUnitEvent) -> void:

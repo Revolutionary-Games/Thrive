@@ -396,7 +396,7 @@ static func migrate_property(old_property :String, new_property :String, default
 	ProjectSettings.set_initial_value(new_property, default_value)
 	set_help(new_property, value, help)
 	ProjectSettings.clear(old_property)
-	prints("Succesfull migrated property '%s' -> '%s' value: %s" % [old_property, new_property, value])
+	prints("Successfully migrated property '%s' -> '%s' value: %s" % [old_property, new_property, value])
 
 
 static func dump_to_tmp() -> void:

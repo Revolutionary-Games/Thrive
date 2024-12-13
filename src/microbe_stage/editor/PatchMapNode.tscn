@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/microbe_stage/editor/PatchMapNode.cs" id="2"]
 [ext_resource type="Texture2D" uid="uid://rckgbb1e3ia7" path="res://assets/textures/gui/bevel/PatchVents.svg" id="2_e0cfn"]
-[ext_resource type="Texture2D" uid="uid://dui1qqyh4jn7t" path="res://assets/textures/gui/bevel/HydrogenSulfide.svg" id="4_asr5c"]
+[ext_resource type="Texture2D" uid="uid://c8mvyi3d47yvq" path="res://assets/textures/gui/bevel/Eruption.svg" id="4_t22aw"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="4_tygy2"]
 
 [sub_resource type="StyleBoxFlat" id="3"]
@@ -99,7 +99,7 @@ custom_minimum_size = Vector2(16, 16)
 layout_mode = 2
 tooltip_text = "EVENT_ERUPTION_TOOLTIP"
 mouse_filter = 0
-texture = ExtResource("4_asr5c")
+texture = ExtResource("4_t22aw")
 expand_mode = 2
 stretch_mode = 4
 

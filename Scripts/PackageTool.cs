@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using DevCenterCommunication.Models.Enums;
 using DevCenterCommunication.Utilities;
 using ScriptsBase.Models;
 using ScriptsBase.ToolBases;
@@ -27,6 +29,12 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private const string STEAM_README_TEMPLATE = "doc/steam_license_readme.txt";
 
     private const string MONO_IDENTIFIER = ".mono.";
+
+    private const string MAC_ZIP_LIBRARIES_PATH = "Thrive.app/Contents/MacOS";
+    private const string MAC_ZIP_GD_EXTENSION_TARGET_PATH = "Thrive.app/Contents/MacOS";
+    private const string MAC_MAIN_EXECUTABLE = "Thrive.app/Contents/MacOS/Thrive";
+
+    private const string MAC_ENTITLEMENTS = "Scripts/Thrive.entitlements";
 
     private static readonly Regex GodotVersionRegex = new(@"([\d\.]+)\..*mono");
 
@@ -391,17 +399,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             return false;
         }
 
-        var expectedFile = Path.Join(folder, ThriveProperties.GetThriveExecutableName(platform));
-
-        if (!File.Exists(expectedFile))
-        {
-            ColourConsole.WriteErrorLine($"Expected Thrive executable ({expectedFile}) was not created on export. " +
-                "Are export templates installed?");
-            return false;
-        }
-
         if (platform != PackagePlatform.Mac)
         {
+            var expectedFile = Path.Join(folder, ThriveProperties.GetThriveExecutableName(platform));
+
+            if (!File.Exists(expectedFile))
+            {
+                ColourConsole.WriteErrorLine(
+                    $"Expected Thrive executable ({expectedFile}) was not created on export. " +
+                    "Are export templates installed?");
+                return false;
+            }
+
             // Check .pck file exists
             var expectedPck = Path.Join(folder, EXPECTED_THRIVE_PCK_FILE);
 
@@ -418,6 +427,18 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             {
                 ColourConsole.WriteErrorLine($"Expected data folder ({expectedDataFolder}) was not created on " +
                     $"export. Are export templates installed? Or did code build fail?");
+                return false;
+            }
+        }
+        else
+        {
+            // TODO: it would be pretty nice to create a plain .app folder if possible as we need to re-zip it
+            // ourselves anyway for signing to work so one extra compression is a bit of an unnecessary step
+
+            if (!File.Exists(MacZipInFolder(folder)))
+            {
+                ColourConsole.WriteErrorLine("Expected Thrive .zip for Mac was not created on export. " +
+                    "Are export templates installed?");
                 return false;
             }
         }
@@ -518,6 +539,28 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
             }
         }
 
+        if (platform == PackagePlatform.Mac)
+        {
+            ColourConsole.WriteNormalLine("Fixing Mac GDExtension by ourselves copying it into the .zip");
+
+            if (!await CopyGdExtensionToZip(folder, cancellationToken))
+                return false;
+
+            ColourConsole.WriteNormalLine("Copying native libraries into Thrive Mac .zip");
+            if (!await nativeLibraryTool.MoveInstalledLibrariesToZip(folder, MacZipInFolder(folder),
+                    MAC_ZIP_LIBRARIES_PATH, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("Failed to move native libraries into zip");
+                return false;
+            }
+
+            // Make sure there isn't a confusing Thrive.app folder remaining
+            var unwantedApp = Path.Join(folder, "Thrive.app");
+
+            if (Directory.Exists(unwantedApp))
+                Directory.Delete(unwantedApp, true);
+        }
+
         ColourConsole.WriteSuccessLine("Native library operations succeeded");
 
         return true;
@@ -541,14 +584,14 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     {
         if (platform == PackagePlatform.Mac)
         {
-            ColourConsole.WriteInfoLine("Mac target is already zipped, moving it instead");
+            ColourConsole.WriteInfoLine("Mac target is already zipped, will create a signed zip");
 
             if (File.Exists(archiveFile))
                 File.Delete(archiveFile);
 
-            var sourceZip = MacZipInFolder(folder);
+            if (!await CreateAndSignMacZip(folder, archiveFile, cancellationToken))
+                return false;
 
-            File.Move(sourceZip, archiveFile);
             return true;
         }
 
@@ -648,6 +691,174 @@ public class PackageTool : PackageToolBase<Program.PackageOptions>
     private static string MacZipInFolder(string folder)
     {
         return Path.Join(folder, "Thrive.zip");
+    }
+
+    /// <summary>
+    ///   The Godot engine export for some reason doesn't put the extension to the right place on Mac, so we do that
+    ///   ourselves.
+    /// </summary>
+    /// <param name="folder">
+    ///   The prepared Mac release folder that needs to already contain the Thrive.zip
+    /// </param>
+    /// <param name="cancellationToken">Cancellation</param>
+    /// <returns>True on success</returns>
+    private async Task<bool> CopyGdExtensionToZip(string folder, CancellationToken cancellationToken)
+    {
+        var targetPath = Path.Join(folder, MAC_ZIP_GD_EXTENSION_TARGET_PATH);
+
+        if (Directory.Exists(targetPath))
+            Directory.Delete(targetPath, true);
+
+        Directory.CreateDirectory(targetPath);
+
+        var name = NativeConstants.GetLibraryDllName(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
+            PrecompiledTag.WithoutAvx);
+
+        // As the normal library install doesn't uselessly copy the extension file, we copy it here from the real
+        // storage location
+        File.Copy(NativeConstants.GetPathToLibraryDll(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
+                NativeConstants.ExtensionVersion.ToString(), true, PrecompiledTag.WithoutAvx),
+            Path.Join(targetPath, name));
+
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = folder,
+        };
+        startInfo.ArgumentList.Add("-9");
+        startInfo.ArgumentList.Add("-u");
+        startInfo.ArgumentList.Add(Path.GetFileName(MacZipInFolder(folder)));
+
+        // Relative path to working directory to ensure correct copying
+        startInfo.ArgumentList.Add(Path.Join(MAC_ZIP_GD_EXTENSION_TARGET_PATH, name));
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        // Delete the temporary folder as the data either failed or is in the zip now
+        Directory.Delete(targetPath, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"Running zip update for GDExtension include failed " +
+                $"(exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   Unzips the Godot-created zip, signs everything and then re-creates a new zip at the target location. This is
+    ///   required as macOS otherwise detects the game as a broken app (due to signatures).
+    /// </summary>
+    /// <returns>True on success</returns>
+    private async Task<bool> CreateAndSignMacZip(string folder, string archiveFile,
+        CancellationToken cancellationToken)
+    {
+        var sourceZip = MacZipInFolder(folder);
+
+        var parentFolder = Path.GetDirectoryName(archiveFile) ??
+            throw new Exception("Unknown folder to create archive in");
+
+        var tempFolder = Path.Combine(parentFolder, "mac_temp_uncompressed");
+
+        if (Directory.Exists(tempFolder))
+            Directory.Delete(tempFolder, true);
+
+        Directory.CreateDirectory(tempFolder);
+
+        ColourConsole.WriteDebugLine($"Using C# zip library to extract to temporary folder: {tempFolder}");
+        using var archiveZip = new ZipArchive(File.OpenRead(sourceZip), ZipArchiveMode.Read, false);
+        archiveZip.ExtractToDirectory(tempFolder);
+
+        ColourConsole.WriteInfoLine("Performing final signing for Mac build");
+
+        if (string.IsNullOrEmpty(options.MacSigningKey))
+        {
+            ColourConsole.WriteWarningLine(
+                "Signing without a specific key for mac (this should work but in an optimal case " +
+                "a signing key would be set)");
+        }
+        else
+        {
+            ColourConsole.WriteInfoLine($"Signing mac build with key {options.MacSigningKey}");
+        }
+
+        ColourConsole.WriteInfoLine("Signing all parts of the Mac build");
+        ColourConsole.WriteNormalLine("This may take a while as there are many items");
+
+        foreach (var item in Directory.EnumerateFiles(tempFolder, "*.*", SearchOption.AllDirectories))
+        {
+            // Skip stuff that shouldn't be signed
+            // TODO: would it offer any extra security if the .pck file was signed as well?
+            if (item.EndsWith(".txt") || item.EndsWith(".pck") || item.EndsWith(".md") || item.EndsWith(".7z"))
+            {
+                continue;
+            }
+
+            // Main executable must be signed last
+            if (item.EndsWith(MAC_MAIN_EXECUTABLE))
+                continue;
+
+            if (!await BinaryHelpers.SignFileForMac(item, MAC_ENTITLEMENTS, options.MacSigningKey,
+                    cancellationToken))
+            {
+                ColourConsole.WriteErrorLine($"Failed to sign part of Mac build: {item}");
+                return false;
+            }
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully signed individual parts");
+
+        // Sign the main file last
+        if (!await BinaryHelpers.SignFileForMac(Path.Join(tempFolder, MAC_MAIN_EXECUTABLE), MAC_ENTITLEMENTS,
+                options.MacSigningKey,
+                cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Failed to sign main of Mac build");
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Signed the main file");
+
+        ColourConsole.WriteInfoLine("Creating final archive file from signed items");
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = tempFolder,
+        };
+        startInfo.ArgumentList.Add("-9");
+        startInfo.ArgumentList.Add("-r");
+
+        startInfo.ArgumentList.Add(Path.GetFullPath(archiveFile));
+
+        foreach (var item in Directory.EnumerateFileSystemEntries(tempFolder))
+        {
+            // Need to remove prefix to have items in relative path to the temp folder for zip process to work
+            startInfo.ArgumentList.Add(item.Substring(tempFolder.Length + 1));
+        }
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        // Delete the temp folder
+        Directory.Delete(tempFolder, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine("Running final zip create failed " +
+                $"(exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        ColourConsole.WriteInfoLine("Signing final zip");
+
+        if (!await BinaryHelpers.SignFileForMac(archiveFile, MAC_ENTITLEMENTS, options.MacSigningKey,
+                cancellationToken))
+        {
+            ColourConsole.WriteErrorLine("Failed to sign Mac build");
+            return false;
+        }
+
+        ColourConsole.WriteSuccessLine("Signed Mac zip created");
+        return true;
     }
 
     private async Task<bool> PrepareDehydratedFolder(PackagePlatform platform, string folder,

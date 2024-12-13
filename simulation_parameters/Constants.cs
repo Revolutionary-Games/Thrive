@@ -706,6 +706,12 @@ public static class Constants
     public const float HEALTH_REGENERATION_ATP_THRESHOLD = 0.9f;
 
     /// <summary>
+    ///   If a cell doesn't fulfil <see cref="HEALTH_REGENERATION_ATP_THRESHOLD"/> it can still be allowed if it is
+    ///   this full on ATP (this allows small cells to heal with just 0.5 storage).
+    /// </summary>
+    public const float HEALTH_REGENERATION_ALTERNATIVE_ATP_FRACTION = 0.9f;
+
+    /// <summary>
     ///   How often in seconds ATP damage is checked and applied if cell has no ATP
     /// </summary>
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
@@ -853,6 +859,12 @@ public static class Constants
     ///   <see cref="Components.MicrobeControlHelpers.EnterEngulfModeForcedState"/>
     /// </summary>
     public const float ENGULF_NO_ATP_TRIGGER_THRESHOLD = 0.7f;
+
+    /// <summary>
+    ///   On top of <see cref="ENGULF_NO_ATP_TRIGGER_THRESHOLD"/> ATP needs to be less than this fraction of storage.
+    ///   This is to protect small cells that have only like max of 1 storage.
+    /// </summary>
+    public const float ENGULF_NO_ATP_FRACTION_OF_STORAGE_BELOW = 0.45f;
 
     /// <summary>
     ///   How often in seconds damage is checked and applied when cell digests a toxic cell
@@ -1176,6 +1188,9 @@ public static class Constants
     public const float GLUCOSE_MIN = 0.0f;
 
     // Tweak variable for how fast compounds diffuse between patches
+    public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT_SIMPLE = 0.8f;
+
+    // More complex square root distance movement calculation variables:
     public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 1;
     public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
 

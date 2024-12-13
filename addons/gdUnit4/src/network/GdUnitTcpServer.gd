@@ -126,8 +126,8 @@ func start() -> GdUnitResult:
 			break
 	if err != OK:
 		if err == ERR_ALREADY_IN_USE:
-			return GdUnitResult.error("GdUnit3: Can't establish server, the server is already in use. Error: %s, " % error_string(err))
-		return GdUnitResult.error("GdUnit3: Can't establish server. Error: %s." % error_string(err))
+			return GdUnitResult.error("GdUnit4: Can't establish server, the server is already in use. Error: %s, " % error_string(err))
+		return GdUnitResult.error("GdUnit4: Can't establish server. Error: %s." % error_string(err))
 	prints("GdUnit4: Test server successfully started checked port: %d" % server_port)
 	return GdUnitResult.success(server_port)
 
