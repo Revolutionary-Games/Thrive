@@ -16,10 +16,6 @@ uniform float metallic : hint_range(0, 1) = 0.57f;
 uniform vec4 emission : source_color = vec4(0.1f, 0.1f, 0.1f, 1.0f);
 uniform float emissionEnergy = 0.25f;
 
-uniform bool useClearcoat = false;
-uniform float clearcoat : hint_range(0, 1) = 0.3f;
-uniform float clearcoatRoughness : hint_range(0, 1) = 0.1f;
-
 uniform sampler2D dissolveTexture : source_color;
 uniform float dissolveValue : hint_range(0, 1) = 0.0f;
 uniform float dissolveScale : hint_range(0.5f, 5.0f, 0.1f) = 1.0f;
@@ -58,10 +54,4 @@ void fragment() {
     //EMISSION = emissionAlpha * dissolveOutline + (emission.rgb * emissionEnergy);
     vec4 emissionTex = texture(roughnessTexture, UV);
     EMISSION = (dissolveOutline + (emission.rgb * emissionTex.rgb) * emissionEnergy) * emissionTex.a;
-
-    if (useClearcoat == true)
-    {
-        CLEARCOAT = clearcoat;
-        CLEARCOAT_ROUGHNESS = clearcoatRoughness;
-    }
 }
