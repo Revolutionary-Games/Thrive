@@ -144,7 +144,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         reportTabPatchSelector.Clear();
 
-        foreach (var patch in patchSelected.GetClosestConnectedPatches())
+        foreach (var patch in patchSelected.GetAllConnectedPatches())
         {
             if (patch.Visibility != MapElementVisibility.Shown)
                 continue;
