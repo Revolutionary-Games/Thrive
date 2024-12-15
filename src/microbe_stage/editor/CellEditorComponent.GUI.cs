@@ -204,7 +204,9 @@ public partial class CellEditorComponent
 
         foreach (var entry in placeablePartSelectionElements)
         {
-            if (entry.Value.Undiscovered || entry.Value.Locked)
+            // Skipping invisible controls here doesn't seem to really exclude anything, but it is kept here so that
+            // if in the future there are hidden buttons they won't be suggested as the player couldn't select them
+            if (entry.Value.Undiscovered || entry.Value.Locked || !entry.Value.Visible)
                 continue;
 
             result.Add(entry.Key);
