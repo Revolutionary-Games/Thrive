@@ -29,6 +29,8 @@ public class AutoEvoGlobalCache
 
     public readonly PredatorRoot PredatorRoot;
 
+    public readonly bool HasTemperature;
+
     public AutoEvoGlobalCache(WorldGenerationSettings worldSettings)
     {
         RootPressure = new RootPressure();
@@ -60,6 +62,7 @@ public class AutoEvoGlobalCache
         TemperatureConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Temperature, Compound.ATP, 1.0f);
         TemperatureCompoundPressure = new EnvironmentalCompoundPressure(Compound.Temperature, Compound.ATP, 100, 1.0f);
+        HasTemperature = !worldSettings.LAWK;
 
         PredatorRoot = new PredatorRoot(1.0f);
     }
