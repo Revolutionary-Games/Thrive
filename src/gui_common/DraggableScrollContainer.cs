@@ -189,9 +189,16 @@ public partial class DraggableScrollContainer : ScrollContainer
             tween.TweenCallback(Callable.From(onPanned));
     }
 
-    public void ResetZoom()
+    public void ResetZoom(bool smoothed = true)
     {
-        Zoom(1, 1.0f);
+        if (smoothed)
+        {
+            Zoom(1, 1.0f);
+        }
+        else
+        {
+            ImmediateZoom(1);
+        }
     }
 
     public void CenterTo(Vector2 coordinates, bool smoothed)
@@ -208,7 +215,7 @@ public partial class DraggableScrollContainer : ScrollContainer
             ImmediatePan(viewCoords);
         }
 
-        ResetZoom();
+        ResetZoom(smoothed);
     }
 
     protected override void Dispose(bool disposing)
