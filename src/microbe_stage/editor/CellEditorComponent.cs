@@ -306,6 +306,9 @@ public partial class CellEditorComponent :
     [Export]
     private CustomWindow processListWindow = null!;
 
+    [Export]
+    private PopupMicheViewer micheViewer = null!;
+
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
@@ -3046,6 +3049,22 @@ public partial class CellEditorComponent :
     private void ToggleProcessList()
     {
         processListWindow.Visible = !processListWindow.Visible;
+    }
+
+    private void OnMicheViewRequested()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (Editor.PreviousAutoEvoResults == null)
+        {
+            GD.PrintErr("Missing auto-evo results, can't show miches");
+            return;
+        }
+
+        var patch = Editor.CurrentPatch;
+
+        micheViewer.ShowMiches(patch, Editor.PreviousAutoEvoResults.GetMicheForPatch(patch),
+            Editor.CurrentGame.GameWorld.WorldSettings);
     }
 
     private class PendingAutoEvoPrediction
