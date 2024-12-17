@@ -9,12 +9,12 @@ uniform float roughness = 0.85f;
 uniform vec4 metallicTextureChannel = vec4(1.0f, 0.0f, 0.0f, 0.0f);
 
 // Increase to fade the iron out of the rock
-uniform float depletion : hint_range(0, 1);
+uniform float depletion : hint_range(0, 1) = 0.0f;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1);
-uniform float outlineWidth;
-uniform vec4 growColor : source_color;
+uniform float dissolveValue : hint_range(0, 1) = 0.0f;
+uniform float outlineWidth = 0.0f;
+uniform vec4 growColor : source_color = vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
 void fragment() {
     vec4 fullTex = texture(fullTexture, UV);

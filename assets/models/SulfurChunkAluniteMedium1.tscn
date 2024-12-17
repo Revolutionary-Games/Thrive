@@ -8,14 +8,14 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rmyp7"]
 resource_local_to_scene = true
-render_priority = 0
+render_priority = 17
 shader = ExtResource("1_odumb")
 shader_parameter/roughness = 0.8
 shader_parameter/metallicTextureChannel = Vector4(0, 0, 0, 0.15)
-shader_parameter/depletion = null
+shader_parameter/depletion = 0.0
 shader_parameter/dissolveValue = 0.0
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0, 0, 0, 1)
 shader_parameter/fullTexture = ExtResource("2_8v5hb")
 shader_parameter/depletedTexture = ExtResource("2_8v5hb")
 shader_parameter/normalTexture = ExtResource("4_mt8qe")
