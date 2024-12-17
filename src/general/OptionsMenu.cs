@@ -388,6 +388,9 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private Slider bloomSlider = null!;
 
+    [Export]
+    private Slider blurSlider = null!;
+
     private Label gpuName = null!;
     private Label usedRendererName = null!;
     private Label videoMemory = null!;
@@ -853,6 +856,8 @@ public partial class OptionsMenu : ControlWithInput
         bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
         bloomSlider.Value = settings.BloomStrength;
         bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
+        blurSlider.Value = settings.MicrobeBackgroundBlurStrength;
+        blurSlider.Editable = Settings.Instance.MicrobeDistortionStrength > 0 || !DisableInactiveSliders;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -2041,6 +2046,8 @@ public partial class OptionsMenu : ControlWithInput
             Settings.Instance.MicrobeDistortionStrength.Value = 0;
         }
 
+        blurSlider.Editable = !toggle || !DisableInactiveSliders;
+
         UpdateResetSaveButtonState();
     }
 
@@ -2076,6 +2083,13 @@ public partial class OptionsMenu : ControlWithInput
     private void OnBloomStrengthChanged(float value)
     {
         Settings.Instance.BloomStrength.Value = value;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnBlurStrengthChanged(float value)
+    {
+        Settings.Instance.MicrobeBackgroundBlurStrength.Value = value;
 
         UpdateResetSaveButtonState();
     }
