@@ -1313,11 +1313,6 @@ tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
 mouse_filter = 1
 label_settings = ExtResource("24_ekuel")
 
-[node name="MichesViewButton" type="Button" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "VIEW_PATCH_MICHES"
-
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("3")]
 layout_mode = 1
 offset_top = -53.0
@@ -1507,6 +1502,11 @@ text = "AUTO-EVO_EXPLANATION_EXPLANATION"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
+[node name="MichesViewButton" type="Button" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "VIEW_PATCH_MICHES"
+
 [node name="Close" type="Button" parent="PredictionExplanation/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1540,7 +1540,6 @@ layout_mode = 1
 [connection signal="BalanceTypeChanged" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay" to="." method="OnCompoundBalanceTypeChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton" to="." method="ToggleProcessList"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
-[connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
 [connection signal="OnRedo" from="EditorComponentBottomLeftButtons" to="." method="Redo"]
@@ -1559,6 +1558,7 @@ layout_mode = 1
 [connection signal="EndosymbiosisCancelled" from="EndosymbiosisPopup" to="." method="OnAbandonEndosymbiosisOperation"]
 [connection signal="EndosymbiosisFinished" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisFinished"]
 [connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
+[connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
 
 [editable path="CompleteEndosymbiosisWarning"]
