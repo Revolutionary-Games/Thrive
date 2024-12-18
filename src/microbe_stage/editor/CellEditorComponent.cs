@@ -361,6 +361,8 @@ public partial class CellEditorComponent :
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
 
+    private Miche? predictionMiches;
+
     private OrganelleSuggestionCalculation? inProgressSuggestion;
     private bool suggestionDirty;
     private double suggestionStartTimer;
@@ -2977,6 +2979,8 @@ public partial class CellEditorComponent :
         {
             UpdateAutoEvoPredictionDetailsText();
         }
+
+        predictionMiches = results.GetMicheForPatch(Editor.CurrentPatch);
     }
 
     private void CreateAutoEvoPredictionDetailsText(
@@ -3055,16 +3059,13 @@ public partial class CellEditorComponent :
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (Editor.PreviousAutoEvoResults == null)
+        if (predictionMiches == null)
         {
-            GD.PrintErr("Missing auto-evo results, can't show miches");
+            GD.PrintErr("Missing miches data, can't show the popup");
             return;
         }
 
-        var patch = Editor.CurrentPatch;
-
-        micheViewer.ShowMiches(patch, Editor.PreviousAutoEvoResults.GetMicheForPatch(patch),
-            Editor.CurrentGame.GameWorld.WorldSettings);
+        micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
     }
 
     private class PendingAutoEvoPrediction
