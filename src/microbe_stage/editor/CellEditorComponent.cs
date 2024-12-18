@@ -3066,6 +3066,8 @@ public partial class CellEditorComponent :
         }
 
         micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
+
+        autoEvoPredictionExplanationPopup.Hide();
     }
 
     private class PendingAutoEvoPrediction
