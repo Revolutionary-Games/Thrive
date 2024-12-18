@@ -74,9 +74,9 @@ public class RunResults
         {
             if (!micheByPatch.TryAdd(patch, miche))
                 throw new InvalidOperationException("Patch already has a miche");
-        }
 
-        miche.Lock();
+            miche.Lock();
+        }
     }
 
     public void AddMutationResultForSpecies(Species species, Species? mutated,
