@@ -62,6 +62,12 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
     // Other variables
     private double currentTime;
+
+    /// <summary>
+    ///   Only full seconds part of <see cref="currentTime"/> (for faster access)
+    /// </summary>
+    private int currentTimeFullSeconds;
+
     private double timeSinceLastCheck;
     private double timeSinceLastSave;
     private double saveResumeTime;
@@ -181,6 +187,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         currentTime += delta;
 
+        currentTimeFullSeconds = (int)currentTime;
+
         CleanCacheIfTime(delta);
 
         saveResumeTime += delta;
@@ -221,7 +229,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 }
 
                 Interlocked.Increment(ref cacheHits);
-                cacheItem.LastAccessTime = currentTime;
+                cacheItem.LastAccessTime = currentTimeFullSeconds;
 
                 if (cacheItem.LoadedItem != null)
                 {
@@ -290,7 +298,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             cacheItem.LoadedItem = item;
             cacheItem.Status = CacheItemInfo.OperationStatus.None;
             cacheItem.Path = path;
-            cacheItem.LastAccessTime = currentTime;
+            cacheItem.LastAccessTime = currentTimeFullSeconds;
             cacheItem.WrittenToDisk = false;
             cacheItem.Size = 0;
         }
@@ -468,7 +476,15 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             // we want to parse
             cacheEntry.Hash = GetHashFromPathName(path.Length + 1, entry);
 
-            cacheEntry.LastAccessTime = modifiedLast;
+            // In the unlikely case that file timestamps are like 60+ years old (or in the future) use a fallback value
+            if (modifiedLast is < int.MinValue or > int.MaxValue)
+            {
+                cacheEntry.LastAccessTime = int.MinValue;
+            }
+            else
+            {
+                cacheEntry.LastAccessTime = (int)modifiedLast;
+            }
 
             cacheEntry.Size = entryFileData.Length;
             Interlocked.Add(ref totalCacheSize, entryFileData.Length);
@@ -553,7 +569,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             result.Path = forPath;
             result.ItemType = type;
 
-            result.LastAccessTime = currentTime;
+            result.LastAccessTime = currentTimeFullSeconds;
 
             // Clear some state for safety to ensure incorrect data is not set
             result.Hash = 0;
@@ -582,8 +598,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             infoLock.EnterUpgradeableReadLock();
             try
             {
-                var cutoff = currentTime - cacheItemKeepTime;
-                var unloadCutoff = currentTime - cacheItemMemoryTime;
+                // Comparisons done as ints to hopefully be slightly faster than double comparisons
+                var cutoff = (int)(currentTime - cacheItemKeepTime);
+                var unloadCutoff = (int)(currentTime - cacheItemMemoryTime);
 
                 int itemsLeft = maxMemoryItems;
 
@@ -922,7 +939,11 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
         public ulong Hash;
         public long Size;
 
-        public double LastAccessTime;
+        /// <summary>
+        ///   Last access of this item since the start of the game process. This should be way more than enough for
+        ///   anything as this is in seconds (so over 60 years until rollover)
+        /// </summary>
+        public int LastAccessTime;
 
         [JsonIgnore]
         public ISavableCacheItem? LoadedItem;
