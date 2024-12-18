@@ -98,7 +98,7 @@ public class MigrateSpecies : IRunStep
                 var moveAmount = (long)random.Next(population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
                     population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
-                if (moveAmount > 0 && targetMiche.InsertSpecies(species, patch, null, cache, true, insertWorkingMemory))
+                if (moveAmount > 0 && targetMiche.InsertSpecies(species, target, null, cache, true, insertWorkingMemory))
                 {
                     results.AddMigrationResultForSpecies(species, new SpeciesMigration(patch, target, moveAmount));
                     usedTargets.Add(target);
