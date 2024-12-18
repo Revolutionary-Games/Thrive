@@ -20,6 +20,8 @@ public class AutoEvoGlobalCache
 
     public readonly CompoundConversionEfficiencyPressure HydrogenSulfideConversionEfficiencyPressure;
     public readonly CompoundCloudPressure HydrogenSulfideCloudPressure;
+    public readonly ChunkCompoundPressure SmallSulfurChunkPressure;
+    public readonly ChunkCompoundPressure MediumSulfurChunkPressure;
 
     public readonly CompoundConversionEfficiencyPressure SunlightConversionEfficiencyPressure;
     public readonly EnvironmentalCompoundPressure SunlightCompoundPressure;
@@ -54,6 +56,10 @@ public class AutoEvoGlobalCache
             Compound.Glucose, 1.0f);
         HydrogenSulfideCloudPressure = new CompoundCloudPressure(Compound.Hydrogensulfide,
             worldSettings.DayNightCycleEnabled, 1.0f);
+        SmallSulfurChunkPressure = new ChunkCompoundPressure("sulfurSmallChunk",
+            new LocalizedString("SMALL_SULFUR_CHUNK"), Compound.Hydrogensulfide, 1.0f);
+        MediumSulfurChunkPressure = new ChunkCompoundPressure("sulfurMediumChunk",
+            new LocalizedString("MEDIUM_SULFUR_CHUNK"), Compound.Hydrogensulfide, 1.0f);
 
         SunlightConversionEfficiencyPressure =
             new CompoundConversionEfficiencyPressure(Compound.Sunlight, Compound.Glucose, 1.0f);

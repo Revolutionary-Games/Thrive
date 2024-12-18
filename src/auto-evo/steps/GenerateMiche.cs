@@ -69,17 +69,31 @@ public class GenerateMiche : IRunStep
             generatedMiche.AddChild(ironMiche);
         }
 
+        var hasSmallSulfurChunk =
+            patch.Biome.Chunks.TryGetValue("sulfurSmallChunk", out var smallSulfurChunk) &&
+            smallSulfurChunk.Density > 0;
+
+        var hasMediumSulfurChunk = patch.Biome.Chunks.TryGetValue("sulfurMediumChunk", out var mediumSulfurChunk) &&
+            mediumSulfurChunk.Density > 0;
+
         // Hydrogen Sulfide
-        if (patch.Biome.TryGetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome,
-                out var hydrogenSulfideAmount) &&
-            hydrogenSulfideAmount.Amount > 0)
+        if ((patch.Biome.TryGetCompound(Compound.Hydrogensulfide, CompoundAmountType.Biome,
+                    out var hydrogenSulfideAmount) &&
+                hydrogenSulfideAmount.Amount > 0) || hasSmallSulfurChunk || hasMediumSulfurChunk)
         {
             var hydrogenSulfideMiche = new Miche(globalCache.HydrogenSulfideConversionEfficiencyPressure);
             var generateATP = new Miche(globalCache.MinorGlucoseConversionEfficiencyPressure);
             var maintainGlucose = new Miche(globalCache.MaintainGlucose);
-            var envPressure = new Miche(globalCache.HydrogenSulfideCloudPressure);
 
-            maintainGlucose.AddChild(envPressure);
+            if (hydrogenSulfideAmount.Amount > 0)
+                maintainGlucose.AddChild(new Miche(globalCache.HydrogenSulfideCloudPressure));
+
+            if (hasSmallSulfurChunk)
+                maintainGlucose.AddChild(new Miche(globalCache.SmallSulfurChunkPressure));
+
+            if (hasMediumSulfurChunk)
+                maintainGlucose.AddChild(new Miche(globalCache.MediumSulfurChunkPressure));
+
             generateATP.AddChild(maintainGlucose);
             hydrogenSulfideMiche.AddChild(generateATP);
             generatedMiche.AddChild(hydrogenSulfideMiche);
