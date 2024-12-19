@@ -469,7 +469,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             // Convert back to Godot path
             itemPathTemp.Append(Constants.CACHE_IMAGES_FOLDER);
             itemPathTemp.Append('/');
-            itemPathTemp.Append(entry, path.Length, entry.Length - path.Length);
+
+            // +1 needs to be added here to avoid a duplicate '/'
+            itemPathTemp.Append(entry, path.Length + 1, entry.Length - 1 - path.Length);
 
             var cacheEntry = GetCacheItemEntryToUse(itemPathTemp.ToString(), CacheItemType.Png);
             itemPathTemp.Clear();
