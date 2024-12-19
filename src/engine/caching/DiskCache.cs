@@ -359,6 +359,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
         objectsPendingLoad.Clear();
         deleteQueue.Clear();
 
+        // TODO: does this need to wait for delete queue to become empty?
+
         // Apparently Godot doesn't have a method to permanently delete a folder recursively
         try
         {
@@ -610,6 +612,10 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     if (value.LastAccessTime < cutoff)
                     {
                         cacheItemsToRemove.Add(itemInfo.Key);
+
+                        // Don't queue a ridiculous number of deletes at once
+                        if (cacheItemsToRemove.Count > Constants.DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE)
+                            break;
                     }
                     else if ((value.LastAccessTime < unloadCutoff || itemsLeft < 0) && value.LoadedItem != null)
                     {
@@ -914,6 +920,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 if (error != Error.DoesNotExist)
                     GD.PrintErr($"Failed to delete cache item: {path}");
             }
+
+            // TODO: should the delete task only run up to some max limit at once? Maybe unnecessary as delete
+            // filesystem entries calls are pretty fast
         }
 
         lock (generalLock)
