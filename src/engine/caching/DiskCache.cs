@@ -35,6 +35,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     private readonly Dictionary<ulong, CacheItemInfo> cacheInfo = new();
 
     private readonly List<ulong> cacheItemsToRemove = new();
+    private readonly List<CacheItemInfo> oldestCacheItems = new();
 
     private readonly ConcurrentQueue<CacheItemInfo> objectsPendingSave = new();
     private readonly ConcurrentQueue<CacheItemInfo> objectsPendingLoad = new();
@@ -50,6 +51,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     /// </summary>
     private readonly StringBuilder itemPathTemp = new();
 
+    private readonly ItemAccessComparer accessTimeComparer = new();
+
     // Variables for CalculateCachePath
     private readonly object pathBuildLock = new();
     private readonly byte[] pathBuilderRaw = new byte[256];
@@ -62,6 +65,12 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
     // Other variables
     private double currentTime;
+
+    /// <summary>
+    ///   Only full seconds part of <see cref="currentTime"/> (for faster access)
+    /// </summary>
+    private int currentTimeFullSeconds;
+
     private double timeSinceLastCheck;
     private double timeSinceLastSave;
     private double saveResumeTime;
@@ -181,6 +190,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         currentTime += delta;
 
+        currentTimeFullSeconds = (int)currentTime;
+
         CleanCacheIfTime(delta);
 
         saveResumeTime += delta;
@@ -221,7 +232,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 }
 
                 Interlocked.Increment(ref cacheHits);
-                cacheItem.LastAccessTime = currentTime;
+                cacheItem.LastAccessTime = currentTimeFullSeconds;
 
                 if (cacheItem.LoadedItem != null)
                 {
@@ -290,7 +301,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             cacheItem.LoadedItem = item;
             cacheItem.Status = CacheItemInfo.OperationStatus.None;
             cacheItem.Path = path;
-            cacheItem.LastAccessTime = currentTime;
+            cacheItem.LastAccessTime = currentTimeFullSeconds;
             cacheItem.WrittenToDisk = false;
             cacheItem.Size = 0;
         }
@@ -350,6 +361,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
         objectsPendingSave.Clear();
         objectsPendingLoad.Clear();
         deleteQueue.Clear();
+
+        // TODO: does this need to wait for delete queue to become empty?
 
         // Apparently Godot doesn't have a method to permanently delete a folder recursively
         try
@@ -459,7 +472,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             // Convert back to Godot path
             itemPathTemp.Append(Constants.CACHE_IMAGES_FOLDER);
             itemPathTemp.Append('/');
-            itemPathTemp.Append(entry, path.Length, entry.Length - path.Length);
+
+            // +1 needs to be added here to avoid a duplicate '/'
+            itemPathTemp.Append(entry, path.Length + 1, entry.Length - 1 - path.Length);
 
             var cacheEntry = GetCacheItemEntryToUse(itemPathTemp.ToString(), CacheItemType.Png);
             itemPathTemp.Clear();
@@ -468,10 +483,18 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             // we want to parse
             cacheEntry.Hash = GetHashFromPathName(path.Length + 1, entry);
 
-            cacheEntry.LastAccessTime = modifiedLast;
+            // In the unlikely case that file timestamps are like 60+ years old (or in the future) use a fallback value
+            if (modifiedLast is < int.MinValue or > int.MaxValue)
+            {
+                cacheEntry.LastAccessTime = int.MinValue;
+            }
+            else
+            {
+                cacheEntry.LastAccessTime = (int)modifiedLast;
+            }
 
             cacheEntry.Size = entryFileData.Length;
-            Interlocked.Add(ref totalCacheSize, entryFileData.Length);
+            Interlocked.Add(ref totalCacheSize, cacheEntry.Size);
 
             if (!entry.EndsWith(".png"))
                 GD.PrintErr("Other image types in the cache aren't handled currently (other than PNG)");
@@ -553,7 +576,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             result.Path = forPath;
             result.ItemType = type;
 
-            result.LastAccessTime = currentTime;
+            result.LastAccessTime = currentTimeFullSeconds;
 
             // Clear some state for safety to ensure incorrect data is not set
             result.Hash = 0;
@@ -582,8 +605,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             infoLock.EnterUpgradeableReadLock();
             try
             {
-                var cutoff = currentTime - cacheItemKeepTime;
-                var unloadCutoff = currentTime - cacheItemMemoryTime;
+                // Comparisons done as ints to hopefully be slightly faster than double comparisons
+                var cutoff = (int)(currentTime - cacheItemKeepTime);
+                var unloadCutoff = (int)(currentTime - cacheItemMemoryTime);
 
                 int itemsLeft = maxMemoryItems;
 
@@ -593,6 +617,10 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     if (value.LastAccessTime < cutoff)
                     {
                         cacheItemsToRemove.Add(itemInfo.Key);
+
+                        // Don't queue a ridiculous number of deletes at once
+                        if (cacheItemsToRemove.Count > Constants.DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE)
+                            break;
                     }
                     else if ((value.LastAccessTime < unloadCutoff || itemsLeft < 0) && value.LoadedItem != null)
                     {
@@ -637,24 +665,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     {
                         if (cacheInfo.Remove(toRemove, out var value))
                         {
-                            Interlocked.Add(ref totalCacheSize, -value.Size);
-
-                            QueueDeleteItemPath(value);
-
-                            // If the object is currently being processed, don't put it into the reuse buffer
-                            if (value.Status != CacheItemInfo.OperationStatus.None)
-                            {
-                                if (value.LoadedItem is ILoadableCacheItem loadableItem)
-                                {
-                                    // This doesn't really matter for current unloadable objects but might in the
-                                    // future matter for some type
-                                    loadableItem.Unload();
-                                }
-
-                                // Let go of this potentially expensive object reference
-                                value.LoadedItem = null;
-                                unusedCacheInfoObjects.Push(value);
-                            }
+                            OnItemRemovedFromInfo(value);
                         }
                         else
                         {
@@ -680,6 +691,109 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         if (startWrites)
             StartSaveIfRequired();
+
+        if (totalCacheSize > maxTotalCacheSize)
+        {
+            Invoke.Instance.QueueForObject(DeleteItemsToReachTargetSize, this);
+        }
+    }
+
+    private void OnItemRemovedFromInfo(CacheItemInfo value)
+    {
+        QueueDeleteItemPath(value);
+
+        // If the object is currently being processed, don't put it into the reuse buffer
+        if (value.Status != CacheItemInfo.OperationStatus.None)
+        {
+            if (value.LoadedItem is ILoadableCacheItem loadableItem)
+            {
+                // This doesn't really matter for current unloadable objects but might in the
+                // future matter for some type
+                loadableItem.Unload();
+            }
+
+            // Let go of this potentially expensive object reference
+            value.LoadedItem = null;
+            unusedCacheInfoObjects.Push(value);
+        }
+    }
+
+    private void DeleteItemsToReachTargetSize()
+    {
+        var itemsToDelete = totalCacheSize - maxTotalCacheSize;
+
+        if (itemsToDelete <= 0)
+            return;
+
+        int itemsDeleted = 0;
+
+        lock (oldestCacheItems)
+        {
+            oldestCacheItems.Clear();
+
+            infoLock.EnterUpgradeableReadLock();
+            try
+            {
+                oldestCacheItems.AddRange(cacheInfo.Values);
+
+                // TODO: hopefully this cannot get too slow if there are like a hundred thousand items
+                oldestCacheItems.Sort(accessTimeComparer);
+
+                infoLock.EnterWriteLock();
+
+                try
+                {
+                    while (itemsToDelete > 0)
+                    {
+                        if (oldestCacheItems.Count < 1)
+                        {
+                            // Somehow ran out of stuff to delete while there still should be some cache size left
+                            break;
+                        }
+
+                        // Delete oldest items first
+                        var toDelete = oldestCacheItems[^1];
+                        oldestCacheItems.RemoveAt(oldestCacheItems.Count - 1);
+
+                        // Can't delete items that are currently reading or writing
+                        if (toDelete.Status != CacheItemInfo.OperationStatus.None)
+                            continue;
+
+                        itemsToDelete -= toDelete.Size;
+                        ++itemsDeleted;
+
+                        if (cacheInfo.Remove(toDelete.Hash, out var value))
+                        {
+                            OnItemRemovedFromInfo(value);
+                        }
+                        else
+                        {
+                            GD.PrintErr("Unable to remove item from cache to get size under control");
+                        }
+                    }
+                }
+                finally
+                {
+                    infoLock.ExitWriteLock();
+                }
+            }
+            finally
+            {
+                infoLock.ExitUpgradeableReadLock();
+            }
+
+            oldestCacheItems.Clear();
+        }
+
+        if (itemsDeleted > 0)
+        {
+            StartDeleteIfRequired();
+
+            // This allocates a delegate, but it's probably better that way to print from the main thread and take that
+            // memory allocation hit here
+            Invoke.Instance.Perform(() =>
+                GD.Print($"Deleted {itemsDeleted} items from disk cache to keep its size under the limit"));
+        }
     }
 
     private void RunPeriodicSmallSave()
@@ -810,8 +924,6 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 {
                     if (cacheInfo.Remove(item.Hash))
                     {
-                        Interlocked.Add(ref totalCacheSize, -item.Size);
-
                         // We rely on the occasional triggering of the delete queue so we don't need to trigger one
                         // here
                         QueueDeleteItemPath(item);
@@ -863,8 +975,11 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 if (item.Size < 1)
                 {
                     var fileInfo = new FileInfo(ProjectSettings.GlobalizePath(item.Path));
+
+                    // If the item was previously saved then need to only increment by the change in size
+                    var oldSize = Math.Max(0, item.Size);
                     item.Size = fileInfo.Length;
-                    Interlocked.Add(ref totalCacheSize, item.Size);
+                    Interlocked.Add(ref totalCacheSize, item.Size - oldSize);
                 }
             }
             catch (Exception e)
@@ -897,6 +1012,9 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 if (error != Error.DoesNotExist)
                     GD.PrintErr($"Failed to delete cache item: {path}");
             }
+
+            // TODO: should the delete task only run up to some max limit at once? Maybe unnecessary as delete
+            // filesystem entries calls are pretty fast
         }
 
         lock (generalLock)
@@ -922,7 +1040,11 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
         public ulong Hash;
         public long Size;
 
-        public double LastAccessTime;
+        /// <summary>
+        ///   Last access of this item since the start of the game process. This should be way more than enough for
+        ///   anything as this is in seconds (so over 60 years until rollover)
+        /// </summary>
+        public int LastAccessTime;
 
         [JsonIgnore]
         public ISavableCacheItem? LoadedItem;
@@ -1024,6 +1146,23 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
             WrittenToDisk = true;
             Status = OperationStatus.None;
+        }
+    }
+
+    /// <summary>
+    ///   Sorts most recently accessed items to be first
+    /// </summary>
+    private class ItemAccessComparer : IComparer<CacheItemInfo>
+    {
+        public int Compare(CacheItemInfo? x, CacheItemInfo? y)
+        {
+            // Might be safe to exclude these null checks if we need a tiny bit more performance
+            if (y is null)
+                return 1;
+            if (x is null)
+                return -1;
+
+            return y.LastAccessTime.CompareTo(x.LastAccessTime);
         }
     }
 }

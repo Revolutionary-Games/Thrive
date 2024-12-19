@@ -445,6 +445,7 @@ public static class Constants
 
     public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
     public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
+    public const int DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE = 500;
 
     // Base randomness for visual hashes to make different types not conflict
     public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
