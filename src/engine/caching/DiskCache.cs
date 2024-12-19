@@ -489,7 +489,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
             }
 
             cacheEntry.Size = entryFileData.Length;
-            Interlocked.Add(ref totalCacheSize, entryFileData.Length);
+            Interlocked.Add(ref totalCacheSize, cacheEntry.Size);
 
             if (!entry.EndsWith(".png"))
                 GD.PrintErr("Other image types in the cache aren't handled currently (other than PNG)");
@@ -660,8 +660,6 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     {
                         if (cacheInfo.Remove(toRemove, out var value))
                         {
-                            Interlocked.Add(ref totalCacheSize, -value.Size);
-
                             QueueDeleteItemPath(value);
 
                             // If the object is currently being processed, don't put it into the reuse buffer
@@ -833,8 +831,6 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 {
                     if (cacheInfo.Remove(item.Hash))
                     {
-                        Interlocked.Add(ref totalCacheSize, -item.Size);
-
                         // We rely on the occasional triggering of the delete queue so we don't need to trigger one
                         // here
                         QueueDeleteItemPath(item);
@@ -886,8 +882,11 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                 if (item.Size < 1)
                 {
                     var fileInfo = new FileInfo(ProjectSettings.GlobalizePath(item.Path));
+
+                    // If the item was previously saved then need to only increment by the change in size
+                    var oldSize = Math.Max(0, item.Size);
                     item.Size = fileInfo.Length;
-                    Interlocked.Add(ref totalCacheSize, item.Size);
+                    Interlocked.Add(ref totalCacheSize, item.Size - oldSize);
                 }
             }
             catch (Exception e)
