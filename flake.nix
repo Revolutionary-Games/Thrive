@@ -33,20 +33,29 @@
               ];
             };
           };
+
+          llvmPackages = pkgs.llvmPackages_18;
         in
         {
-          default = pkgs.mkShell {
+          default = pkgs.mkShell.override { stdenv = llvmPackages.stdenv; } {
+            hardeningDisable = [ "fortify" ];
+
             packages = with pkgs; [
               # Godot
-              godot_4-mono
+              (godot_4.override {
+                withMono = true;
+                dotnet-sdk_8 = dotnet-sdk_9;
+              })
 
               # Make "godot" be callable from path
               (pkgs.writeShellScriptBin "godot" "exec -a $0 ${godot_4-mono}/bin/godot4-mono $@")
 
               # For compiling native libraries
               cmake
-              clang_14
-              lld_17
+              llvmPackages.clang
+              llvmPackages.lld
+              llvmPackages.libcxx
+              boost
 
               # For packaging manually
               zip
@@ -61,8 +70,10 @@
 
               # Runtime Deps
               mono
-              dotnet-sdk_8
+              dotnet-sdk_9
             ];
+
+            CMAKE_INSTALL_PREFIX = "install";
           };
         }
       );
