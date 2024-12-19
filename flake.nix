@@ -2,35 +2,46 @@
   description = "Nix Flake for Thrive Development";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-
-    # PR for godot4-mono 4.2.1 https://github.com/NixOS/nixpkgs/pull/285941
-    # TODO: switch to master once merged
-    nixpkgs-godot.url = "github:GameDungeon/nixpkgs/Godot-4.2.2";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-godot,
-    flake-utils,
-  }:
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-        pkgs-godot = import nixpkgs-godot {inherit system;};
-        fhs = pkgs.buildFHSUserEnv {
-          name = "fhs-shell";
-
-          targetPkgs = pkgs:
-            with pkgs; [
+  outputs =
+    {
+      nixpkgs,
+      ...
+    }:
+    let
+      supportedSystems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+    in
+    {
+      # Launch into the shell environment with `nix develop`
+      # Building and running is possible by following setup_instructions.md
+      devShells = forAllSystems (
+        system:
+        let
+          pkgs = import nixpkgs {
+            inherit system;
+            config = {
+              permittedInsecurePackages = [
+                "dotnet-sdk-6.0.428"
+              ];
+            };
+          };
+        in
+        {
+          default = pkgs.mkShell {
+            packages = with pkgs; [
               # Godot
-              dotnet-sdk_8
-              ((pkgs-godot.callPackage "${nixpkgs-godot}/pkgs/development/tools/godot/4/mono" {}).override {
-                withTouch = false;
-                withDebug = "yes"; # Set to yes if you wish to do profiling
-              })
+              godot_4-mono
+
+              # Make "godot" be callable from path
+              (pkgs.writeShellScriptBin "godot" "exec -a $0 ${godot_4-mono}/bin/godot4-mono $@")
 
               # For compiling native libraries
               cmake
@@ -48,28 +59,12 @@
               # Profiling
               flamegraph
 
-              # Runtime dependencies
-              xorg.libX11
-              xorg.libXcursor
-              xorg.libXext
-              fontconfig
-              libxkbcommon
-              xorg.libXrandr
-              xorg.libXrender
-              xorg.libXinerama
-              xorg.libXi
-              mesa
-              vulkan-loader
-              vulkan-headers
-              libglvnd
-              dbus
-              alsaLib
-              pulseaudio
-              icu
+              # Runtime Deps
+              mono
+              dotnet-sdk_8
             ];
-        };
-      in {
-        devShell = fhs.env;
-      }
-    );
+          };
+        }
+      );
+    };
 }
