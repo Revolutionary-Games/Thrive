@@ -35,6 +35,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     private readonly Dictionary<ulong, CacheItemInfo> cacheInfo = new();
 
     private readonly List<ulong> cacheItemsToRemove = new();
+    private readonly List<CacheItemInfo> oldestCacheItems = new();
 
     private readonly ConcurrentQueue<CacheItemInfo> objectsPendingSave = new();
     private readonly ConcurrentQueue<CacheItemInfo> objectsPendingLoad = new();
@@ -49,6 +50,8 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
     ///   mode.
     /// </summary>
     private readonly StringBuilder itemPathTemp = new();
+
+    private readonly ItemAccessComparer accessTimeComparer = new();
 
     // Variables for CalculateCachePath
     private readonly object pathBuildLock = new();
@@ -662,22 +665,7 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
                     {
                         if (cacheInfo.Remove(toRemove, out var value))
                         {
-                            QueueDeleteItemPath(value);
-
-                            // If the object is currently being processed, don't put it into the reuse buffer
-                            if (value.Status != CacheItemInfo.OperationStatus.None)
-                            {
-                                if (value.LoadedItem is ILoadableCacheItem loadableItem)
-                                {
-                                    // This doesn't really matter for current unloadable objects but might in the
-                                    // future matter for some type
-                                    loadableItem.Unload();
-                                }
-
-                                // Let go of this potentially expensive object reference
-                                value.LoadedItem = null;
-                                unusedCacheInfoObjects.Push(value);
-                            }
+                            OnItemRemovedFromInfo(value);
                         }
                         else
                         {
@@ -703,6 +691,109 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
         if (startWrites)
             StartSaveIfRequired();
+
+        if (totalCacheSize > maxTotalCacheSize)
+        {
+            Invoke.Instance.QueueForObject(DeleteItemsToReachTargetSize, this);
+        }
+    }
+
+    private void OnItemRemovedFromInfo(CacheItemInfo value)
+    {
+        QueueDeleteItemPath(value);
+
+        // If the object is currently being processed, don't put it into the reuse buffer
+        if (value.Status != CacheItemInfo.OperationStatus.None)
+        {
+            if (value.LoadedItem is ILoadableCacheItem loadableItem)
+            {
+                // This doesn't really matter for current unloadable objects but might in the
+                // future matter for some type
+                loadableItem.Unload();
+            }
+
+            // Let go of this potentially expensive object reference
+            value.LoadedItem = null;
+            unusedCacheInfoObjects.Push(value);
+        }
+    }
+
+    private void DeleteItemsToReachTargetSize()
+    {
+        var itemsToDelete = totalCacheSize - maxTotalCacheSize;
+
+        if (itemsToDelete <= 0)
+            return;
+
+        int itemsDeleted = 0;
+
+        lock (oldestCacheItems)
+        {
+            oldestCacheItems.Clear();
+
+            infoLock.EnterUpgradeableReadLock();
+            try
+            {
+                oldestCacheItems.AddRange(cacheInfo.Values);
+
+                // TODO: hopefully this cannot get too slow if there are like a hundred thousand items
+                oldestCacheItems.Sort(accessTimeComparer);
+
+                infoLock.EnterWriteLock();
+
+                try
+                {
+                    while (itemsToDelete > 0)
+                    {
+                        if (oldestCacheItems.Count < 1)
+                        {
+                            // Somehow ran out of stuff to delete while there still should be some cache size left
+                            break;
+                        }
+
+                        // Delete oldest items first
+                        var toDelete = oldestCacheItems[^1];
+                        oldestCacheItems.RemoveAt(oldestCacheItems.Count - 1);
+
+                        // Can't delete items that are currently reading or writing
+                        if (toDelete.Status != CacheItemInfo.OperationStatus.None)
+                            continue;
+
+                        itemsToDelete -= toDelete.Size;
+                        ++itemsDeleted;
+
+                        if (cacheInfo.Remove(toDelete.Hash, out var value))
+                        {
+                            OnItemRemovedFromInfo(value);
+                        }
+                        else
+                        {
+                            GD.PrintErr("Unable to remove item from cache to get size under control");
+                        }
+                    }
+                }
+                finally
+                {
+                    infoLock.ExitWriteLock();
+                }
+            }
+            finally
+            {
+                infoLock.ExitUpgradeableReadLock();
+            }
+
+            oldestCacheItems.Clear();
+        }
+
+        if (itemsDeleted > 0)
+        {
+            StartDeleteIfRequired();
+
+            // This allocates a delegate, but it's probably better that way to print from the main thread and take that
+            // memory allocation hit here
+            Invoke.Instance.Perform(() =>
+                GD.Print($"Deleted {itemsDeleted} items from disk cache to keep its size under the limit"));
+        }
     }
 
     private void RunPeriodicSmallSave()
@@ -1055,6 +1146,23 @@ public partial class DiskCache : Node, IComputeCache<IImageTask>
 
             WrittenToDisk = true;
             Status = OperationStatus.None;
+        }
+    }
+
+    /// <summary>
+    ///   Sorts most recently accessed items to be first
+    /// </summary>
+    private class ItemAccessComparer : IComparer<CacheItemInfo>
+    {
+        public int Compare(CacheItemInfo? x, CacheItemInfo? y)
+        {
+            // Might be safe to exclude these null checks if we need a tiny bit more performance
+            if (y is null)
+                return 1;
+            if (x is null)
+                return -1;
+
+            return y.LastAccessTime.CompareTo(x.LastAccessTime);
         }
     }
 }
