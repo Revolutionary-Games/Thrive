@@ -110,7 +110,8 @@ installer for that from: https://dotnet.microsoft.com/en-us/download
 On mac you can install the dotnet sdk by downloading an installer from
 Microsoft's website. Important note for M1 mac users, you need to
 install the arm version, the x64 version doesn't work out of the box,
-so it is very much not recommended to be used.
+so it is very much not recommended to be used. It is recommended to
+use the official mac installer from the .NET website.
 
 The SDK is also available through Homebrew but it will install the
 latest version (even if that's not yet officially the version used by
@@ -363,7 +364,9 @@ needs to be installed (package name is probably something like
 `binutils-gold`). On Windows Visual Studio probably works best, but
 technically clang should work (please send us a PR if you can tweak it
 to work). On Mac Xcode (or at least the command line tools for it)
-should be used.
+should be used. The command line tools can be installed with
+`xcode-select --install`. Homebrew is again recommended to get the
+other tools on mac, like cmake (`brew install cmake`).
 
 For the gdextension to be compiled, `godot` must be available in PATH
 to generate the required binding files. And when compiling outside the
@@ -408,6 +411,15 @@ Debug versions offer easier native code development / more robust
 error condition checking. And the GDExtension library is required in
 debug mode when running Thrive through Godot without exporting the
 game.
+
+Note that the way to prepare the libraries for distribution requires
+two computers: a computer with Linux (a virtual machine likely works),
+and a mac (requires Apple hardware). On Linux with the above packaging
+commands the binaries can be made for Linux and Windows. Then on a mac
+the binaries for mac can be compiled (it is recommended to have the
+oldest stil supported mac OS version to ensure maximum compatibility).
+Note that an Apple Silicon Mac is likely required for everythign to
+work correctly.
 
 
 ## Using Development Environments
@@ -660,6 +672,17 @@ with those instructions until the downloaded image files can be
 opened. After that Godot should be able to import all the assets
 properly.
 
+### Native build issues on Mac
+
+First make sure that command line tools are installed with
+`xcode-select --install` and then make sure homebrew packages are
+updated: `brew upgrade`.
+
+If the build still doesn't work, double check that all correct
+packages are installed and homebrew didn't report any caveats with
+PATH or something like that that would prevent the tools from being
+found.
+
 ### Troubleshooting regarding Godot automatically breaking
 
 Godot sometimes likes to break your files for no reason. If you keep
@@ -728,6 +751,24 @@ On Linux these folders are:
 ```
 
 On Windows the cache folders are somewhere in your APPDATA folders.
+
+### Export issues on Mac (or .NET Assemblies not found popup)
+
+As Godot is installed as an .app a symbolic link to the actual Godot
+executable within it needs to be created in the `~/bin` folder (and
+also the shell profile needs to be updated to make sure that the user
+bin folder is in PATH). Also the .NET resources need a symbolic link
+to work.
+
+For example:
+```sh
+cd ~/bin
+ln -s /Applications/Godot_mono.app/Contents/MacOS/Godot godot
+ln -s /Applications/Godot_mono.app/Contents/Resources/GodotSharp GodotSharp
+```
+
+Then restart the terminal / reboot to get the new PATH to definitely
+apply.
 
 ## Exporting the game
 

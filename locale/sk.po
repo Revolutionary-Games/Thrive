@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -516,6 +516,22 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Od Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Chýba názov"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
@@ -604,6 +620,10 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota, ktorá sa používa pri generovaní sveta (musí kladné byť číslo)"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Názov typu bunky"
 
@@ -644,7 +664,15 @@ msgstr "Chemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Minimálne množstvo na detekciu:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+msgstr "Chemoreceptor umožňuje detegovať zlúčeniny z väčšej vzdialenosti. Po umiestnení je možné upraviť typ zlúčeniny a farbu vodiacej čiary."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr "Chemoreceptor umožňuje detegovať zlúčeniny z väčšej vzdialenosti. Po umiestnení je možné upraviť typ zlúčeniny a farbu vodiacej čiary."
 
 #, fuzzy
@@ -713,6 +741,9 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Štatistika organizmu"
 
 msgid "CLEAN_UP_OLD_SAVES"
+msgstr ""
+
+msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLOSE"
@@ -876,6 +907,22 @@ msgstr "{0} koncentrácie sa znížili o {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} spotreba"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Zobraziť / skryť prostredie a zlúčeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Hustota oblaku zlúčenín"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1240,6 +1287,14 @@ msgstr "Poďakovanie"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Zobraziť názvy tlačidiel pri výbere častí"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Súčasní vývojári"
 
@@ -1497,6 +1552,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Uplynulý čas: {0:#,#} rokov"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Opustiť hru"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rýchlosť trávenia:"
 
@@ -1554,6 +1613,9 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr "Dvojitým kliknutím zobraziť na celej obrazovke"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
 msgid "DUMP_SCENE_TREE"
@@ -1813,6 +1875,10 @@ msgstr "(proporcia glukózy v prostredí každú generáciu"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobraziť / skryť prostredie a zlúčeniny"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Životné prostredie"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagiál"
 
@@ -1845,6 +1911,10 @@ msgstr "Chyba v načítaní"
 msgid "ERROR_SAVING"
 msgstr "Chyba pri ukladaní"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Chyba v načítaní"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1854,6 +1924,10 @@ msgstr "uniknúť pohlteniu"
 
 msgid "ESTUARY"
 msgstr "Ústie"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Vrátiť sa k základnému zobrazeniu nastavení"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -1897,6 +1971,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(rýchlosť, akou druhy AI mutujú)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2257,6 +2335,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Normálny"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2578,6 +2660,13 @@ msgstr "Chemolitoautotrofia železa"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Opustiť hru"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "@"
 
 msgid "JANUARY"
 msgstr "Január"
@@ -3077,11 +3166,19 @@ msgstr "Morský sneh"
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitosť"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Pozastaviť hru"
+
 msgid "MAX_FPS"
 msgstr "Maximálny počet snímkov za sekundu:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neobmedzené"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Veľkosť:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximálny počet entít:"
@@ -3110,6 +3207,10 @@ msgstr "Nahrať"
 
 msgid "MEDIASTOP"
 msgstr "Zastaviť"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Malý kus železa"
 
 msgid "MEGA_YEARS"
 msgstr "Miliónov rokov"
@@ -3166,6 +3267,10 @@ msgstr "{0} MiB (mebibyte)"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Presunúť sa na toto miesto"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3644,6 +3749,14 @@ msgstr "Pohyb dole alebo čupieť"
 msgid "MOVE_FORWARD"
 msgstr "Pohyb dopredu"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod na nahranie:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Pohyb doprava"
+
 msgid "MOVE_LEFT"
 msgstr "Pohyb doľava"
 
@@ -3829,13 +3942,13 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Premieňa [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Množstvo závisí od koncentrácie[thrive:compound type=\"nitrogen\"]dusíka[/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastid fixujúci dusík"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NONE"
@@ -3918,6 +4031,10 @@ msgstr "Priečinok snímkov obrazovky nebol nájdený"
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Žiadny vybraný mod"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozlíšenie:"
 
 msgid "NUCLEUS"
 msgstr "Jadro"
@@ -4066,6 +4183,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Mnohobunkový"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Dravý Pilus"
 
@@ -4090,6 +4211,14 @@ msgstr "Dravý Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Dravý Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Načítať predošlé uložené hry"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4388,6 +4517,10 @@ msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
 #, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Identifikačné číslo"
+
+#, fuzzy
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Dravosť {0}"
 
@@ -4507,6 +4640,14 @@ msgstr "Asexuálne"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučanie"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukcia:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(rýchlosť, akou druhy AI mutujú)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukcia:"
 
@@ -4528,6 +4669,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Obnoviť predvolené nastavenia ovládania?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Obnoviť predvolené nastavenia ovládania?"
 
 #, fuzzy
@@ -4986,6 +5131,10 @@ msgstr "Malý kus železa"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Malý kus železa"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Malý kus železa"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5409,9 +5558,6 @@ msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] pomocou teplo
 msgid "THERMOSYNTHESIS"
 msgstr "Termosyntéza"
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -5796,6 +5942,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Podvodná jaskyňa"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Podvodná jaskyňa"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Podvodná jaskyňa"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Odpojené organely"
 
@@ -5971,6 +6125,9 @@ msgstr ""
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použiť vlastné používateľské meno"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ručne nastaviť počet vlákien na pozadí"
 
@@ -6035,6 +6192,10 @@ msgstr "Zvyšuje rýchlosť otáčania veľkých buniek."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Zakázať všetko"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6904,38 +7065,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Zapni editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenáza"
 
@@ -6964,6 +7093,38 @@ msgstr "Nitrogenáza"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastid fixujúci dusík"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7141,12 +7302,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Dravý Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastid fixujúci dusík"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastid fixujúci dusík"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7702,6 +7863,14 @@ msgstr "Priblížiť"
 msgid "ZOOM_OUT"
 msgstr "Oddialiť"
 
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Pučanie"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
 #~ msgid "THYLAKOID"
 #~ msgstr "Tylakoid"
 
@@ -7850,10 +8019,6 @@ msgstr "Oddialiť"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlíšenie:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

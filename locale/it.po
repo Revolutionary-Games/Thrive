@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
@@ -518,6 +518,24 @@ msgstr "Di:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Di Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Memoria video utilizzata al momento:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Memoria video utilizzata al momento:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Il titolo è mancante"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato di calcio"
 
@@ -605,6 +623,10 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Questa membrana possiede una parete. Ciò le conferisce una migliore protezione ai danni, specialmente ai danni fisici. Inoltre, consuma meno energia per mantenere la propria forma, ma è più lenta nei movimenti e nell'assorbire le risorse. [b]La cellulasi è in grado di digerire tale parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei predatori."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Il valore usato per generare il mondo; deve essere un numero intero positivo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
 
@@ -645,8 +667,16 @@ msgstr "Chemiorecettore"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "La \"vista\" delle cellule è in realtà chemioricezione. È così che loro acquisiscono informazioni sui loro dintorni. Di conseguenza, quello che vedi in gioco è una rappresentazione di ciò che la tua cellula può percepire. L'aggiunta di questo organulo alla tua cellula le conferisce una chemioricezione ancora più potente: con esso, avrai a disposizione una linea che ti indicherà la posizione di un composto anche fuori del tuo campo visivo."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Quantità minima da cercare:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Il chemiorecettore permette di percepire i composti anche a grandi distanze. Una volta posizionato, modificalo per scegliere quale composto tracciare e con quale colore indicare la strada."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "La \"vista\" delle cellule è in realtà chemioricezione. È così che loro acquisiscono informazioni sui loro dintorni. Di conseguenza, quello che vedi in gioco è una rappresentazione di ciò che la tua cellula può percepire. L'aggiunta di questo organulo alla tua cellula le conferisce una chemioricezione ancora più potente: con esso, avrai a disposizione una linea che ti indicherà la posizione di un composto anche fuori del tuo campo visivo."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -714,6 +744,9 @@ msgstr "Pop: {0} Cibo: {1} Scienza: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Pulisci i vecchi salvataggi"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Chiudi"
@@ -873,6 +906,22 @@ msgstr "La concentrazione di {0} è diminuita del {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo di {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Bilancio dei composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostra/nascondi i composti"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densità delle nuvole di composti"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(non abbastanza per sopravvivere alla notte che è lunga {0}s)"
@@ -1243,6 +1292,14 @@ msgstr "Ringraziamenti"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mostra i nomi dei pulsanti di selezione delle parti"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Secerni mucillagine"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Sviluppatori attuali"
 
@@ -1515,6 +1572,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Tempo trascorso: {0:#,#} anni"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Esci dal gioco"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Velocità di digestione:"
 
@@ -1576,6 +1637,9 @@ msgstr "Fai doppio click per visualizzare a schermo pieno"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana a due strati. Offre una migliore protezione ai danni e richiede meno energia per non deformarsi. Tuttavia, rallenta un po' la cellula e la sua capacità di assorbire i nutrienti."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr ""
@@ -1845,6 +1909,10 @@ msgstr "(proporzione di glucosio conservata nell'ambiente all'inizio di ciascuna
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostra/nascondi l'ambiente"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Ambiente"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagico"
 
@@ -1877,6 +1945,10 @@ msgstr "Errore di caricamento"
 msgid "ERROR_SAVING"
 msgstr "Errore di salvataggio"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Errore di caricamento"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1885,6 +1957,10 @@ msgstr "fuga dalla fagocitosi"
 
 msgid "ESTUARY"
 msgstr "Estuario"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di specificare la classe della mod)"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Albero evolutivo"
@@ -1927,6 +2003,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2300,6 +2380,10 @@ msgstr "Grafica"
 msgid "GRAPHICS_TEAM"
 msgstr "Squadra Grafici"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Normale"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2635,6 +2719,13 @@ msgstr "Chemiolitoautotrofia del ferro"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Esci dal gioco"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Completa una generazione"
 
 msgid "JANUARY"
 msgstr "Gennaio"
@@ -3137,11 +3228,19 @@ msgstr "Neve marina"
 msgid "MASTER_VOLUME"
 msgstr "Volume principale"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Secerni mucillagine"
+
 msgid "MAX_FPS"
 msgstr "FPS massimi:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Illimitati"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Dimensioni:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Numero massimo di entità:"
@@ -3170,6 +3269,10 @@ msgstr "⏺ Registra (tasto multimediale)"
 
 msgid "MEDIASTOP"
 msgstr "⏸Ferma (tasto multimediale)"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Frammento di ferro piccolo"
 
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -3227,6 +3330,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Estinto nella zona"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3774,6 +3881,14 @@ msgstr "Muoviti verso il basso o accovacciati"
 msgid "MOVE_FORWARD"
 msgstr "Muoviti avanti"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod da caricare:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Muoviti a destra"
+
 msgid "MOVE_LEFT"
 msgstr "Muoviti a sinistra"
 
@@ -3997,13 +4112,13 @@ msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"ni
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastidio Azotofissante"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Il plastidio azotofissante è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un elemento nutritivo fondamentale per le cellule. Questo processo si chiama [b]azotofissazione aerobica[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound] e di [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4083,6 +4198,10 @@ msgstr "Cartella degli screenshot non trovata"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Nessuna mod selezionata"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Risoluzione:"
 
 msgid "NUCLEUS"
 msgstr "Nucleo"
@@ -4238,6 +4357,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulare"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(velocità di mutazione delle specie controllate dall'intelligenza artificiale)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Pilo predatoriale"
 
@@ -4261,6 +4384,14 @@ msgstr "Pilo predatoriale"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilo predatoriale"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organuli"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carica partite salvate precedentemente"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4559,6 +4690,10 @@ msgstr "popolazione nelle zone:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Numero ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predazione di {0}"
 
@@ -4678,6 +4813,14 @@ msgstr "Asessuale"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmazione"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Riproduzione:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(ottieni composti riproduttivi in modo passivo dall'ambiente, senza dover far nulla)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Riproduzione:"
 
@@ -4699,6 +4842,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Ripristinare i comandi?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Ripristinare i comandi?"
 
 #, fuzzy
@@ -5163,6 +5310,10 @@ msgstr "Frammento di ferro piccolo"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Frammento di ferro piccolo"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Frammento di ferro piccolo"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5590,9 +5741,6 @@ msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumen
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosintesi"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Quantità di glucosio in calo. Attuale: {0} della precedente."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6105,6 +6253,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Caverna sottomarina"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Caverna sottomarina"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Caverna sottomarina"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Organuli non connessi"
 
@@ -6281,6 +6437,9 @@ msgstr "Carica automaticamente patch Harmony dall'Assembly (non richiede di spec
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Utilizza un nome utente personalizzato"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Imposta manualmente il numero di thread in background"
 
@@ -6345,6 +6504,10 @@ msgstr "Aumentano la velocità di viraggio. Utili per cellule molto grandi."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Disattiva tutte"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{1} {0}o/a"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7266,38 +7429,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Editor istantaneo"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastidio Azotofissante"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastidio Azotofissante"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Il plastidio azotofissante è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un elemento nutritivo fondamentale per le cellule. Questo processo si chiama [b]azotofissazione aerobica[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound] e di [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastidio Azotofissante"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Il plastidio azotofissante è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un elemento nutritivo fondamentale per le cellule. Questo processo si chiama [b]azotofissazione aerobica[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastidio Azotofissante"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastidio Azotofissante"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
 
@@ -7327,6 +7458,38 @@ msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"ni
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "La nitrogenasi è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso e l'energia della cellula (in forma di [thrive:compound type=\"atp\"][/thrive:compound]) in [thrive:compound type=\"ammonia\"][/thrive:compound], un nutriente essenziale per la crescita delle cellule. Questo processo si chiama [b]azotofissazione anaerobica[/b]. Siccome la nitrogenasi è sospesa direttamente nel citoplasma, il fuido circostante produce piccole quantità di [thrive:compound type=\"atp\"][/thrive:compound] tramite [b]glicolisi[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastidio Azotofissante"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastidio Azotofissante"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Il plastidio azotofissante è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un elemento nutritivo fondamentale per le cellule. Questo processo si chiama [b]azotofissazione aerobica[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Trasforma l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound]. Il tasso aumenta con la concentrazione di [thrive:compound type=\"nitrogen\"][/thrive:compound] e di [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastidio Azotofissante"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Il plastidio azotofissante è una proteina che converte l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un elemento nutritivo fondamentale per le cellule. Questo processo si chiama [b]azotofissazione aerobica[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastidio Azotofissante"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastidio Azotofissante"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7506,12 +7669,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilo predatoriale"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastidio Azotofissante"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenasi"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastidio Azotofissante"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8075,6 +8238,17 @@ msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Gemmazione"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Quantità di glucosio in calo. Attuale: {0} della precedente."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Un metabolosoma modificato. Produce una forma primitiva dell'agente tossico [thrive:compound type=\"oxytoxy\"][/thrive:compound]."
 
@@ -8259,10 +8433,6 @@ msgstr "Zoom indietro"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Risoluzione:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

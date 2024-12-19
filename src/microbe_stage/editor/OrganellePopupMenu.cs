@@ -4,20 +4,15 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Manages a custom context menu solely for showing list of options for a placed organelle
-///   in the microbe editor.
+///   Manages a custom context menu solely for showing list of options for a placed organelle in the microbe editor.
 /// </summary>
 public partial class OrganellePopupMenu : HexPopupMenu
 {
     private List<OrganelleTemplate>? selectedOrganelles;
 
     /// <summary>
-    ///   The organelle the user explicitly selected. Other organelles are selected with symmetry.
-    /// </summary>
-    public OrganelleTemplate? MainOrganelle => selectedOrganelles?[0];
-
-    /// <summary>
-    ///   The placed organelles to be shown options of.
+    ///   The placed organelles to be shown options of. The main organelle is at index 0, if there are multiple
+    ///   selected with symmetry. Note that most uses should use <see cref="GetSelectedThatAreStillValid"/> instead.
     /// </summary>
     public List<OrganelleTemplate> SelectedOrganelles
     {
@@ -43,6 +38,18 @@ public partial class OrganellePopupMenu : HexPopupMenu
             UpdateDeleteButton();
             UpdateMoveButton();
         }
+    }
+
+    /// <summary>
+    ///   Filters the list of organelles this is used on to ones that are still within the list of valid ones to
+    ///   prevent removed organelles from being used.
+    /// </summary>
+    /// <param name="allValidOrganelles">Collection of all valid organelles</param>
+    /// <returns>Organelles filtered to just valid ones from <see cref="SelectedOrganelles"/></returns>
+    public IEnumerable<OrganelleTemplate> GetSelectedThatAreStillValid(
+        IReadOnlyCollection<OrganelleTemplate> allValidOrganelles)
+    {
+        return SelectedOrganelles.Where(allValidOrganelles.Contains);
     }
 
     protected override void UpdateTitleLabel()

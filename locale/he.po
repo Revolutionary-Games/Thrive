@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -511,6 +511,24 @@ msgstr "על ידי:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "עלי ידי Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "חסרה כותרת"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "סידן פחמתי"
 
@@ -598,6 +616,10 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -638,8 +660,16 @@ msgstr "כימורצפטור"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "כמות מינימלית למצוא:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "הכימוריצפטור מאפשר לך לאתר תרכובות מרחוק. שנה ברגע שמיקמת בשביל לשנות את סוג התרכובת ואת צבע הקו מכוון."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -708,6 +738,9 @@ msgstr "סטטיסטיקת האורגניזם"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "נקה שמירות ישנות"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "סגור"
@@ -869,6 +902,22 @@ msgstr "ריכוזי ה{0} ירדו ב{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "הראה/החבא תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "ריכוז ענני תרכובת"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1281,6 +1330,14 @@ msgstr "קרדיט"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "הפרש ריר"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "מפתחים נוכחים"
 
@@ -1547,6 +1604,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "ראו את דף Itch.io שלנו"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "מהירות עיכול:"
 
@@ -1608,6 +1669,9 @@ msgstr "לחץ פעמיים בשביל להציג במסך מלא"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "קרום עם שתי שכבות, יש לו הגנה טובה יותר מפני נזק ולוקח פחות אנרגיה על מנת שלא להתעוות. יחד עם זאת, זה מאט את התא במעט ומוריד את הקצב שבו הוא ספוג משאבים מהסביבה."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr "נטוש SceneTree"
@@ -1877,6 +1941,10 @@ msgstr "(כמות הגלוקוז שנשמר בסביבה בכל דור)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא סביבה"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "סביבה"
+
 msgid "EPIPELAGIC"
 msgstr "אפיפלגית"
 
@@ -1909,6 +1977,10 @@ msgstr "טוען שגיאה"
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "טוען שגיאה"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1917,6 +1989,10 @@ msgstr "בריחה מבליעה"
 
 msgid "ESTUARY"
 msgstr "שפך נהר"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "זוהי מחויבת הקוד המדויקת שממנה הורכבה הגרסה הזו של Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "עץ אבולוציוני"
@@ -1957,6 +2033,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(המהירות המוטציות שנוצרים במיני AI )"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(המהירות המוטציות שנוצרים במיני AI )"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2328,6 +2408,10 @@ msgstr "גרפיקה"
 msgid "GRAPHICS_TEAM"
 msgstr "צוות גרפיקה"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "הגבל שימוש בתרכובות לצורך גידול"
+
 msgid "GUI"
 msgstr "ממשק משתמש"
 
@@ -2661,6 +2745,13 @@ msgstr "כימוליתו-אוטוטרופי מברזל"
 
 msgid "ITCH_TOOLTIP"
 msgstr "ראו את דף Itch.io שלנו"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "סיים דור אחד"
 
 msgid "JANUARY"
 msgstr "ינואר"
@@ -3162,11 +3253,19 @@ msgstr "שלג ימי"
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "הפרש ריר"
+
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "ללא הגבלה"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "גודל:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
@@ -3195,6 +3294,10 @@ msgstr "מקש Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "מקש Media Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "גוש ברזל קטן"
 
 msgid "MEGA_YEARS"
 msgstr "מיליון שנה"
@@ -3252,6 +3355,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "נכחד מהאזור"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3802,6 +3909,14 @@ msgstr "נוע מטה או תתכופף"
 msgid "MOVE_FORWARD"
 msgstr "זוז קדימה"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "עבור ליבשה"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "זוז ימינה"
+
 msgid "MOVE_LEFT"
 msgstr "זוז שמאלה"
 
@@ -4002,13 +4117,13 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "פלסטיד מקבע חנקן"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4087,6 +4202,10 @@ msgstr "לא נמצאה ספריית צילומי מסך"
 
 msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "רזולוציה:"
 
 msgid "NUCLEUS"
 msgstr "גרעין התא"
@@ -4241,6 +4360,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "רב תאים"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "פילוס טורף"
 
@@ -4264,6 +4387,14 @@ msgstr "פילוס טורף"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "פילוס טורף"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "אברונים"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "טען שמירות שנשמרו"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4563,6 +4694,10 @@ msgstr "אכלוסיה באזורים:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "מספר ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "טריפה של {0}"
 
@@ -4680,6 +4815,14 @@ msgstr "א-מינית"
 msgid "REPRODUCTION_BUDDING"
 msgstr "הנצה"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
 
@@ -4700,6 +4843,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "איפוס קלטים לברירת מחדל?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "איפוס קלטים לברירת מחדל?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5158,6 +5305,10 @@ msgstr "גוש ברזל קטן"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "גוש ברזל קטן"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "גוש ברזל קטן"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5584,9 +5735,6 @@ msgstr "מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעזרת �
 
 msgid "THERMOSYNTHESIS"
 msgstr "תרמוסינתזה"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6102,6 +6250,14 @@ msgid "UNDERWATERCAVE"
 msgstr "מערה תת-מימית"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "מערה תת-מימית"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "מערה תת-מימית"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "אברונים מנותקים"
 
@@ -6277,6 +6433,9 @@ msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחל�
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "הגדר ידנית את מספר נושאי הרקע"
 
@@ -6339,6 +6498,10 @@ msgstr "מגדיל את מהירות הסיבוב של תאים גדולים."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "השבת הכל"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7268,38 +7431,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "הפעל את העורך"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
 
@@ -7329,6 +7460,38 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "פלסטיד מקבע חנקן"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7508,12 +7671,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "פילוס טורף"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "ניטרוגנאז"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "פלסטיד מקבע חנקן"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8077,6 +8240,17 @@ msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "הנצה"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: {1}+ ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "כמות הגלוקוז ירד ל{0} מהכמות הקודמת."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "מטבולוזום שונה אחראי לייצור צורה פרימיטיבית של החומר הרעיל \"אוקסיטוקסי נ\"ט\"."
 
@@ -8265,10 +8439,6 @@ msgstr "זום החוצה"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "רזולוציה:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

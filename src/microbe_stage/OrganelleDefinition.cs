@@ -192,6 +192,13 @@ public class OrganelleDefinition : IRegistryType
     public OrganelleDefinition? EndosymbiosisUnlocks;
 
     /// <summary>
+    ///   Placement strategy that is used when placing this organelle when calculating an auto-evo organelle suggestion
+    ///   for the player
+    /// </summary>
+    public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
+        CommonMutationFunctions.OrganelleAddStrategy.Spiral;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -334,6 +341,22 @@ public class OrganelleDefinition : IRegistryType
 
         modelInfo = loadedCorpseScene;
         return true;
+    }
+
+    public Vector3 GetUpgradesSizeModification(OrganelleUpgrades? upgrades)
+    {
+        var scale = Constants.DEFAULT_HEX_SIZE;
+        var scaleZ = scale;
+
+        if (upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            var flagellumLength = flagellumUpgrades.LengthFraction;
+
+            scaleZ = Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH * flagellumLength
+                + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH;
+        }
+
+        return new Vector3(scale, scale, scaleZ);
     }
 
     public bool ContainsHex(Hex hex)
@@ -709,6 +732,16 @@ public class OrganelleDefinition : IRegistryType
         {
             availableUpgrade.ApplyTranslations();
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return unchecked((int)PersistentStringHash.GetHash(InternalName));
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        return PersistentStringHash.GetHash(InternalName);
     }
 
     public override string ToString()

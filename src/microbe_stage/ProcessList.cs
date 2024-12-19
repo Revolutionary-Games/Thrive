@@ -39,6 +39,11 @@ public partial class ProcessList : VBoxContainer
     /// </summary>
     public bool MarkRedOnLimitingCompounds { get; set; }
 
+    /// <summary>
+    ///   If true the created process objects have <see cref="ChemicalEquation.AutoRefreshProcess"/> set to true
+    /// </summary>
+    public bool UpdateEquationAutomatically { get; set; } = true;
+
     public override void _Ready()
     {
         chemicalEquationScene = GD.Load<PackedScene>("res://src/gui_common/ChemicalEquation.tscn");
@@ -85,10 +90,9 @@ public partial class ProcessList : VBoxContainer
         equation.ShowSpinner = ShowSpinners;
         equation.ShowToggle = ShowToggles;
         equation.MarkRedOnLimitingCompounds = MarkRedOnLimitingCompounds;
+        equation.AutoRefreshProcess = UpdateEquationAutomatically;
 
         equation.Connect(SignalName.ToggleProcessPressed, new Callable(this, nameof(HandleToggleProcess)));
-
-        equation.ProcessEnabled = process.DisplayInfo.CurrentSpeed > 0;
 
         if (ProcessesTitleColour != null)
             equation.DefaultTitleFont = ProcessesTitleColour;
@@ -99,8 +103,8 @@ public partial class ProcessList : VBoxContainer
         return equation;
     }
 
-    private void HandleToggleProcess(ChemicalEquation equation)
+    private void HandleToggleProcess(ChemicalEquation equation, bool enabled)
     {
-        EmitSignal(SignalName.ToggleProcessPressed, equation);
+        EmitSignal(SignalName.ToggleProcessPressed, equation, enabled);
     }
 }

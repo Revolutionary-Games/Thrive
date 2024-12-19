@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjrneb14m22dj"]
+
+[ext_resource type="LabelSettings" uid="uid://b6c60ljn172wp" path="res://src/gui_common/fonts/Body-Bold-Smaller.tres" id="1_0f41o"]
+
+[node name="ReportEventLabelTemplate" type="Label"]
+custom_minimum_size = Vector2(150, 0)
+label_settings = ExtResource("1_0f41o")
+autowrap_mode = 3

@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="15"]
+[ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="18"]
@@ -122,9 +123,6 @@ region_rect = Rect2(0, 0, 258, 1)
 [sub_resource type="StyleBoxEmpty" id="37"]
 
 [sub_resource type="StyleBoxEmpty" id="36"]
-
-[sub_resource type="StyleBoxFlat" id="5"]
-bg_color = Color(0.745098, 0.356863, 0.921569, 1)
 
 [sub_resource type="StyleBoxFlat" id="23"]
 content_margin_left = 5.0
@@ -348,7 +346,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "processListWindow")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -384,10 +382,10 @@ DigestionSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxCont
 DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
 GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
-TotalEnergyLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Total")
-AutoEvoPredictionFailedLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Failed")
-WorstPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst/Value")
-BestPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best/Value")
+TotalEnergyLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Total")
+AutoEvoPredictionFailedLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Failed")
+WorstPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst/Value")
+BestPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best/Value")
 MembraneColorPickerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
 ATPBalancePanelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
 ATPProductionLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
@@ -403,6 +401,13 @@ OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
 RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer")
 ATPBalanceNormalText = ExtResource("24_ekuel")
 ATPBalanceNotEnoughText = ExtResource("4_fhdek")
+growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
+toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
+growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
+growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker")
+toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
+organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
+organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
 atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
@@ -414,6 +419,7 @@ compoundStorageLastingTimes = NodePath("RightPanel/VBoxContainer/Statistics/VBox
 notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
 processListButton = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
 processList = NodePath("ProcessPanel/ScrollContainer/ProcessList")
+growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 processListWindow = NodePath("ProcessPanel")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
@@ -421,6 +427,16 @@ ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+
+[node name="GrowthOrderNumberContainer" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="TopPanel" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -453,6 +469,7 @@ size_flags_vertical = 4
 tooltip_text = "SUNLIGHT"
 texture = ExtResource("15")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="Control" type="Control" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -635,6 +652,44 @@ action_mode = 0
 button_group = SubResource("ButtonGroup_xodoa")
 text = "BEHAVIOUR"
 
+[node name="Growth" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_07qd0")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_xodoa")
+text = "GROWTH_ORDER"
+
+[node name="Tolerances" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+mouse_filter = 1
+theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_07qd0")
+theme_override_font_sizes/font_size = 14
+theme_override_styles/disabled = SubResource("11")
+theme_override_styles/hover = SubResource("9")
+theme_override_styles/pressed = SubResource("10")
+theme_override_styles/normal = SubResource("12")
+toggle_mode = true
+action_mode = 0
+button_group = SubResource("ButtonGroup_xodoa")
+text = "ENVIRONMENT_TOLERANCE"
+
 [node name="Structure" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -801,13 +856,64 @@ visible = false
 layout_mode = 2
 FinishOrNextButtonPath = NodePath("")
 
+[node name="Growth" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("14")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_right = 10
+
+[node name="GrowthContainer" type="VBoxContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GrowthOrderPicker" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer" instance=ExtResource("15_krpbw")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+layout_mode = 2
+
+[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+label_settings = ExtResource("28_qclxk")
+autowrap_mode = 3
+
+[node name="Tolerance" type="PanelContainer" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 1
+theme_override_styles/panel = SubResource("14")
+
+[node name="Explanation" type="Label" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance"]
+editor_description = "PLACEHOLDER"
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "In the future this tab will have controls to change the environmental tolerances of the cell to better adapt it to different patch coditions"
+label_settings = ExtResource("28_qclxk")
+autowrap_mode = 3
+
 [node name="RightPanel" type="MarginContainer" parent="."]
-custom_minimum_size = Vector2(285, 629)
-layout_mode = 0
+custom_minimum_size = Vector2(285, 657)
+layout_mode = 1
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 offset_left = -285.0
 offset_bottom = 629.0
+grow_horizontal = 0
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 
@@ -885,6 +991,7 @@ layout_mode = 2
 
 [node name="Speed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
 layout_mode = 2
+tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
 Icon = ExtResource("28")
 Description = "SPEED_COLON"
 
@@ -1050,13 +1157,14 @@ text_overrun_behavior = 3
 clip_text = true
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 196)
+custom_minimum_size = Vector2(0, 236)
 layout_mode = 2
 mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel"]
 layout_mode = 2
 tooltip_text = "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
+theme_override_constants/separation = 0
 
 [node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
 layout_mode = 2
@@ -1090,60 +1198,51 @@ texture_hover = ExtResource("13")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-theme_override_styles/separator = SubResource("5")
-
-[node name="Body" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 150)
+[node name="Body" type="ScrollContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
 
-[node name="ScrollContainer" type="ScrollContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 0
+size_flags_vertical = 3
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Failed" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Failed" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.301961, 0.301961, 1)
 text = "FAILED"
 label_settings = ExtResource("24_ekuel")
 
-[node name="Total" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
+[node name="Total" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("12")]
 layout_mode = 2
 tooltip_text = "GATHERED_ENERGY_TOOLTIP"
 InvalidIcon = ExtResource("20")
 Description = "TOTAL_GATHERED_ENERGY_COLON"
 
-[node name="Best" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Best" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "BEST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
 
-[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Best"]
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -1153,17 +1252,17 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Worst" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Worst" type="VBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 text = "WORST_PATCH_COLON"
 label_settings = ExtResource("24_ekuel")
 autowrap_mode = 3
 
-[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Worst"]
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst"]
 editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -1173,9 +1272,44 @@ label_settings = ExtResource("25_68vjv")
 autowrap_mode = 3
 max_lines_visible = 2
 
-[node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 4)
+[node name="Spacer" type="Control" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+alignment = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SuggestionLabel" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+mouse_filter = 1
+text = "ORGANELLE_SUGGESTION_COLON"
+label_settings = ExtResource("28_qclxk")
+autowrap_mode = 2
+
+[node name="SugestionLoading" type="TextureRect" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_vertical = 0
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+texture = ExtResource("20")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SuggestionValue" type="Label" parent="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer"]
+visible = false
+layout_mode = 2
+tooltip_text = "ORGANELLE_SUGGESTION_TOOLTIP"
+mouse_filter = 1
+label_settings = ExtResource("24_ekuel")
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("3")]
 layout_mode = 1
@@ -1383,10 +1517,13 @@ text = "CLOSE"
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= ["Membrane"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth" to="." method="SetSelectionMenuTab" binds= ["GrowthOrder"]]
+[connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances" to="." method="SetSelectionMenuTab" binds= ["Tolerance"]]
 [connection signal="text_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection/SearchBar" to="." method="OnSearchBoxTextChanged"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis" to="." method="OnEndosymbiosisButtonPressed"]
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
+[connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
 [connection signal="item_selected" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceMode" to="." method="SelectATPBalanceMode"]
 [connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
 [connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving" to="." method="OnBalanceShowOptionsChanged"]

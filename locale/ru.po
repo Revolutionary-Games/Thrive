@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
-"PO-Revision-Date: 2024-10-21 16:34+0000\n"
-"Last-Translator: Sentry Primis <sentryprime92@gmail.com>\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -228,9 +228,8 @@ msgstr ""
 "\n"
 "Количество вознесений в данном сохранении:{0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Версия:"
+msgstr "Стадия Возвышения"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Класс сборки необходим для мода, если указана сборка"
@@ -476,7 +475,7 @@ msgid "BIOME_LABEL"
 msgstr "Биом: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Эффект Свечения"
+msgstr "Эффект Свечения:"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Нейрон"
@@ -504,6 +503,24 @@ msgstr "Создано:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Автор: Revolutionary Games Studio"
+
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Используемая видеопамять:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Используемая видеопамять:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "\"Ремесло\""
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Карбонат кальция"
@@ -592,6 +609,10 @@ msgstr "Целлюлоза"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Эта мембрана имеет стенку, что обеспечивает лучшую защиту от общих повреждений и, особенно, от физических повреждений. Она также требует меньше энергии для сохранения своей формы, но не может быстро поглощать ресурсы и двигается медленнее. [b]Целлюлаза может растворить эту стенку,[/b] делая её уязвимой к поглощению хищниками."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Это значение используется для генерации мира, оно должно быть положительным целым числом"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Название вида клеток"
 
@@ -631,8 +652,16 @@ msgstr "Хеморецептор"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Минимальное количество для обнаружения:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Хеморецептор позволяет обнаруживать соединения на большем расстоянии. Модифицируйте после размещения, чтобы выбрать тип соединения и цвет линии направления."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Все клетки \"видят\" только с помощью хеморецепции. Именно так клетки получают информацию о своем окружении. Добавление этой органеллы представляет собой развитие более тонкой хеморецепции. Поскольку игроку дается видение даже на стадии клетки, это представлено линией, указывающей за пределы видимой области экрана, показывая близлежащие соединения, которые игрок еще не мог видеть."
 
 msgid "CHEMOSYNTHESIS"
 msgstr "Хемосинтез"
@@ -699,6 +728,9 @@ msgstr "Популяция: {0} Еда: {1} Наука: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Удалить устаревшие сохранения"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Закрыть"
@@ -853,6 +885,24 @@ msgstr "Концентрация {0} снизилась на {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} потребления"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Компонентный Баланс"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Эта секция показывает общий баланс ( производство - потребление) каждого соединения\n"
+"К примеру, для создания клетки-растения баланс глюкозы должен быть положительным"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Тест производительности на Облаках Соединений"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(недостаточно для того, чтобы прожить ночь, что длится {0} секунд)"
@@ -1218,6 +1268,14 @@ msgstr "Титры"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Ничего не исследуется"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Выпускает слизь, на некоторое время повышая вашу скорость, одновременно с этим замедляя клетки, что попали в слизь"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Текущие Разработчики"
 
@@ -1501,6 +1559,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Присоединяйтесь к нашему Discord серверу"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Посетить нашу страницу на itch.io"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Отклоненные всплывающие окна:"
 
@@ -1556,6 +1618,9 @@ msgstr "Двойной клик для полноэкранного режима
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана с двумя слоями, имеет лучшую защиту от повреждений и требует меньше энергии, чтобы не деформироваться. Однако, несколько замедляет скорость клетки и снижает скорость, с которой она может поглощать ресурсы."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr "Выбросить SceneTree"
@@ -1801,6 +1866,10 @@ msgstr "(доля глюкозы, остающейся в окружающей �
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Показать/скрыть окружение"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Окружающая среда"
+
 msgid "EPIPELAGIC"
 msgstr "Эпипелагический"
 
@@ -1831,6 +1900,10 @@ msgstr "Ошибка Загрузки"
 msgid "ERROR_SAVING"
 msgstr "Ошибка Сохранения"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Ошибка Загрузки"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1839,6 +1912,10 @@ msgstr "избежали поглощение"
 
 msgid "ESTUARY"
 msgstr "Устье реки"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Код коммита, с которого была скомпилирована эта версия Thrive"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Эволюционное древо"
@@ -1878,6 +1955,9 @@ msgstr "Экспериментальные особенности"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr "( включает дополнительные фичи, что недостаточно отполированы для того, чтобы быть включёнными изначально, если вы будете играть с ними, то, пожалуйста, делитесь обратной связью о них)"
+
+msgid "EXPERIMENTAL_FEATURES_WARNING"
+msgstr "(ВНИМАНИЕ: экспериментальные фичи могут ухудшить игровой баланс и другие аспекты игры. Они рекомендуются лишь для опытных игроков Thrive. Если вы сообщаете о багах, то вам нужно уточнить, что вы играли с включенными экспериментальными фичами.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Экспорт всех миров"
@@ -2048,6 +2128,7 @@ msgstr "Сильный туман войны"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(Игрок будет обладать информацией лишь о тех биомах в коих он был)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Режим тумана войны"
 
@@ -2196,6 +2277,10 @@ msgstr "Графика"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Графическая Команда"
+
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Ограничить использование соединений роста"
 
 msgid "GUI"
 msgstr "Графический интерфейс"
@@ -2492,6 +2577,16 @@ msgstr "Железная хемолитоавтотрофия"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Посетить нашу страницу на itch.io"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Координаты позиции: {0}\n"
+"Курсор на:{1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Взаимодействовать с объектом"
 
 msgid "JANUARY"
 msgstr "Январь"
@@ -2981,11 +3076,19 @@ msgstr "Морской снег"
 msgid "MASTER_VOLUME"
 msgstr "Общая громкость"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Выпускает слизь, на некоторое время повышая вашу скорость, одновременно с этим замедляя клетки, что попали в слизь"
+
 msgid "MAX_FPS"
 msgstr "Макс. FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Бесконечно"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Размер:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Максимальное количество сущностей:"
@@ -3013,6 +3116,10 @@ msgstr "MediaRec"
 
 msgid "MEDIASTOP"
 msgstr "MediaStop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Маленький кусок железа"
 
 msgid "MEGA_YEARS"
 msgstr "млн. лет"
@@ -3067,6 +3174,10 @@ msgstr "{0} МиБ"
 
 msgid "MICHE"
 msgstr "Мульти-Ниша"
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Вымерли из биома"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3588,6 +3699,14 @@ msgstr "Двигаться вниз или пригнуться"
 msgid "MOVE_FORWARD"
 msgstr "Перемещение вперед"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Переместиться на сушу"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Перемещение вправо"
+
 msgid "MOVE_LEFT"
 msgstr "Перемещение влево"
 
@@ -3779,13 +3898,13 @@ msgstr "Нитрогеназа - это белок, способный испо�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Азотфиксирующая пластида"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Азотфиксирующий пластид — белок, способный использовать газообразный [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] и [thrive:compound type=\"atp\"][/thrive:compound] для производства [thrive:compound type=\"ammonia\"][/thrive:compound], ключевого питательного вещества для роста клеток. Это процесс, называемый [b]аэробная азотфиксация[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound]. Скорость увеличивается при повышении концентрации [thrive:compound type=\"nitrogen\"][/thrive:compound] и [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -3862,6 +3981,10 @@ msgstr "Папка скриншотов не найдена"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Ни одного мода не выбрано"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Разрешение:"
 
 msgid "NUCLEUS"
 msgstr "Ядро"
@@ -3991,6 +4114,7 @@ msgstr "Органеллы"
 msgid "ORGANELLES_BUTTON"
 msgstr "Органеллы"
 
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "Условия разблокировки проверяются только один раз за поколение при входе в редактор"
 
@@ -4002,6 +4126,10 @@ msgstr "Аксоны - нервные волокна, что использую�
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Многоклеточный"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(При включенном ограничении вещества роста будут постепенно наполняться и уже затем использоваться, при выключенной функции вещества роста будут автоматически использованы)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Миофибрилла"
@@ -4023,6 +4151,14 @@ msgstr "{0} органелл"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} органелла"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Органеллы"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Загрузить сохраненные игры"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Разблокировка органелл включена"
@@ -4305,6 +4441,10 @@ msgstr "Популяция в биомах:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Номер ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Истребление {0}"
 
@@ -4421,6 +4561,14 @@ msgstr "Бесполое"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Размножение"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Воспроизведение:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(пассивно получать необходимые для репродукции вещества из окружающей среды)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Воспроизведение:"
 
@@ -4440,6 +4588,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Сброс отклоненных всплывающих окон"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Сбросить настройки ввода до значений по умолчанию?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Сбросить настройки ввода до значений по умолчанию?"
 
 msgid "RESET_KEYBINDINGS"
@@ -4875,6 +5027,10 @@ msgstr "Маленький кусок железа"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Маленький Фрагмент Фосфата"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Маленький кусок железа"
+
 msgid "SNOWFLAKE"
 msgstr "Снежинка"
 
@@ -5284,9 +5440,6 @@ msgstr "Производит [thrive:compound type=\"atp\"][/thrive:compound] и
 
 msgid "THERMOSYNTHESIS"
 msgstr "Термосинтез"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
 
 msgid "THE_DISTURBANCE"
 msgstr "Беспорядок"
@@ -5769,6 +5922,14 @@ msgstr "Это отладочная сборка, где приведенная 
 msgid "UNDERWATERCAVE"
 msgstr "Подводная пещера"
 
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Подводная пещера"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Подводная пещера"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Не открыто"
 
@@ -5927,6 +6088,9 @@ msgstr "Автоматически загружать патчи для сбор
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Использовать кастомное имя пользователя"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Установить вручную количество фоновых потоков"
 
@@ -5983,6 +6147,10 @@ msgstr "Просмотреть Клеточные Процессы"
 
 msgid "VIEW_ONLINE"
 msgstr "Просмотреть онлайн"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Просмотреть Заметки Обновления"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Просмотреть Заметки Обновления"
@@ -6905,36 +7073,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Включить редактор"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Никаких улучшений"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "TBA"
 
@@ -6964,6 +7102,36 @@ msgstr "TBA"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "TBA"
+
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Никаких улучшений"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7148,12 +7316,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Миофибрилла"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Азотфиксирующая пластида"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Азотфиксирующая пластида"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7719,6 +7887,17 @@ msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Размножение"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} АТФ"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Количество глюкозы было уменьшено до {0} по сравнению с предыдущим количеством."
+
+#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Цитоплазматический гликолиз"
 
@@ -7903,10 +8082,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "WIKI_HEADING_AEROBIC_CELLULAR_RESPIRATION_(GLUCOSE_->_ATP)"
 #~ msgstr "Аэробное клеточное дыхание (Глюкоза -> АТФ)"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Разрешение:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

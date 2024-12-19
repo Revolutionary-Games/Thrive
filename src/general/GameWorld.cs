@@ -73,24 +73,22 @@ public class GameWorld : ISaveLoadable
     /// <param name="startingSpecies">Starting species for the player</param>
     public GameWorld(WorldGenerationSettings settings, Species? startingSpecies = null) : this(settings)
     {
+        var random = new XoShiRo256starstar();
+
         // Create timed effects for the world that happen when generations pass
         TimedEffects = new TimedWorldOperations();
-
-        if (settings.ExperimentalFeatures)
-        {
-            GD.Print("Using experimental world effects");
-
-            // Register compound production and diffusion
-            TimedEffects.RegisterEffect("compound_production", new CompoundProductionEffect(this));
-            TimedEffects.RegisterEffect("all_compound_diffusion", new AllCompoundDiffusionEffect(this));
-        }
-        else
         {
             // A limited photosynthesis-only compound production effects that were added as these are much simpler than
             // the full effect to get balanced well enough
             TimedEffects.RegisterEffect("photosynthesis_production", new PhotosynthesisProductionEffect(this));
             TimedEffects.RegisterEffect("volcanism", new VolcanismEffect(this));
+            TimedEffects.RegisterEffect("nitrogen_control", new NitrogenControlEffect(this));
+            TimedEffects.RegisterEffect("underwater_vent_eruption",
+                new UnderwaterVentEruptionEffect(this, random.Next64()));
+
+            TimedEffects.RegisterEffect("sulfide_consumption", new HydrogenSulfideConsumptionEffect(this));
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
+            TimedEffects.RegisterEffect("iron_oxidation", new IronOxidationEffect(this));
 
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
@@ -377,6 +375,12 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
+        // TODO: switch patches to keep an event history and remove this clear
+        foreach (var patch in Map.Patches)
+        {
+            patch.Value.ClearPatchNodeEventVisuals();
+        }
+
         TotalPassedTime += timePassed * Constants.EDITOR_TIME_JUMP_MILLION_YEARS * 1000000;
 
         TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
@@ -812,8 +816,10 @@ public class GameWorld : ISaveLoadable
     /// </summary>
     /// <param name="description">The event's description</param>
     /// <param name="highlight">If true, the event will be highlighted in the timeline UI</param>
+    /// <param name="showInReport">If true, the event will be shown on report tab main page</param>
     /// <param name="iconPath">Resource path to the icon of the event</param>
-    public void LogEvent(LocalizedString description, bool highlight = false, string? iconPath = null)
+    public void LogEvent(LocalizedString description, bool highlight = false,
+        bool showInReport = false, string? iconPath = null)
     {
         if (eventsLog.Count > Constants.GLOBAL_EVENT_LOG_CAP)
         {
@@ -830,7 +836,7 @@ public class GameWorld : ISaveLoadable
             return;
         }
 
-        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight));
+        eventsLog[TotalPassedTime].Add(new GameEventDescription(description, iconPath, highlight, showInReport));
     }
 
     /// <summary>

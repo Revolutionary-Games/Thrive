@@ -132,10 +132,15 @@ public class Settings
         new(StrainBarVisibility.VisibleWhenOverZero);
 
     /// <summary>
-    ///   Enable or disable bloom
+    ///   Controls if bloom is on or off, bloom strength is stored separately in <see cref="BloomStrength"/>
+    /// </summary>
+    public SettingValue<bool> BloomEnabled { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Bloom effect strength (if 0 bloom option should be set disabled)
     /// </summary>
     [JsonProperty]
-    public SettingValue<bool> BloomEnabled { get; private set; } = new(false);
+    public SettingValue<float> BloomStrength { get; private set; } = new(0.65f);
 
     /// <summary>
     ///   Display or hide the abilities hotbar in the microbe stage HUD.
@@ -306,6 +311,44 @@ public class Settings
     /// </summary>
     [JsonProperty(PropertyName = "MaxSpawnedEntitiesV2")]
     public SettingValue<int> MaxSpawnedEntities { get; private set; } = new(Constants.NORMAL_MAX_SPAWNED_ENTITIES);
+
+    /// <summary>
+    ///   If true a disk cache is used for generated things
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<bool> UseDiskCache { get; private set; } = new(true);
+
+    /// <summary>
+    ///   Maximum size of a disk cache
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<long> DiskCacheSize { get; private set; } = new(Constants.DISK_CACHE_DEFAULT_MAX_SIZE);
+
+    /// <summary>
+    ///   How long the disk cache keeps items in memory before removing them from memory (and only keeping them on
+    ///   disk)
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> DiskMemoryCachePortionTime { get; private set; } =
+        new(Constants.MEMORY_BEFORE_DISK_CACHE_TIME);
+
+    /// <summary>
+    ///   How long disk cache items are kept at most
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> DiskCacheMaxTime { get; private set; } = new(Constants.DISK_CACHE_DEFAULT_KEEP);
+
+    /// <summary>
+    ///   How long items stay in a memory-only cache (that is not backed by disk)
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<float> MemoryOnlyCacheTime { get; private set; } = new(Constants.MEMORY_ONLY_CACHE_TIME);
+
+    /// <summary>
+    ///   How many items are allowed to be cached in-memory at once
+    /// </summary>
+    [JsonProperty]
+    public SettingValue<int> MemoryCacheMaxSize { get; private set; } = new(Constants.MEMORY_PHOTO_CACHE_MAX_ITEMS);
 
     // Misc Properties
 

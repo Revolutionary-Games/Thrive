@@ -63,6 +63,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
     private bool appliedUnlimitGrowthSpeed;
 
+    /// <summary>
+    ///   Used to ferry data between the patch change logic and handling the player cell splitting (as I couldn't
+    ///   figure out another way to fit this into the code architecture -hhyyrylainen)
+    /// </summary>
+    private bool switchedPatchInEditorForCompounds;
+
     // Because this is a scene loaded class, we can't do the following to avoid a temporary unused world simulation
     // from being created
     // [JsonConstructor]
@@ -484,11 +490,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // Log becoming multicellular in the timeline
         GameWorld.LogEvent(new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR",
-            previousSpecies.FormattedNameBbCodeUnstyled), true, "multicellularTimelineMembraneTouch.png");
+            previousSpecies.FormattedNameBbCodeUnstyled), true, false, "multicellularTimelineMembraneTouch.png");
 
         GameWorld.Map.CurrentPatch!.LogEvent(
             new LocalizedString("TIMELINE_SPECIES_BECAME_MULTICELLULAR", previousSpecies.FormattedNameBbCodeUnstyled),
-            true, "multicellularTimelineMembraneTouch.png");
+            true, false, "multicellularTimelineMembraneTouch.png");
 
         if (WorldSimulation.Processing)
             throw new Exception("This shouldn't be ran while world is in the middle of a simulation");
@@ -659,7 +665,39 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 workData1, workData2);
         }
 
+        var playerCompounds = Player.Get<CompoundStorage>().Compounds;
+
         var playerPosition = Player.Get<WorldPosition>().Position;
+
+        // Setup handling for what happens to compounds after reproduction
+        Dictionary<Compound, float>? topUpToCustom = null;
+        bool topUp = false;
+
+        switch (GameWorld.WorldSettings.Difficulty.ReproductionCompounds)
+        {
+            case ReproductionCompoundHandling.SplitWithSister:
+                // Default handling
+                break;
+            case ReproductionCompoundHandling.KeepAsIs:
+                topUpToCustom = playerCompounds.Compounds.CloneShallow();
+                break;
+            case ReproductionCompoundHandling.TopUpWithInitial:
+                topUp = true;
+                break;
+            case ReproductionCompoundHandling.TopUpOnPatchChange:
+                if (switchedPatchInEditorForCompounds)
+                {
+                    topUp = true;
+                }
+
+                break;
+            default:
+                GD.PrintErr("Unknown handling of reproduction compounds mode: " +
+                    $"{GameWorld.WorldSettings.Difficulty.ReproductionCompounds}");
+                break;
+        }
+
+        switchedPatchInEditorForCompounds = false;
 
         // Spawn another cell from the player species
         // This needs to be done after updating the player so that multicellular organisms are accurately separated
@@ -694,6 +732,22 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
             WorldSimulation.SpawnSystem.EnsureEntityLimitAfterPlayerReproduction(playerPosition, doNotDespawn);
         });
+
+        // Handle the compound modes
+        if (topUp)
+        {
+            // Top up with the player species definitions of the initial compounds
+            playerCompounds.AddInitialCompounds(playerSpecies.InitialCompounds);
+        }
+        else if (topUpToCustom != null)
+        {
+            foreach (var originalCompound in topUpToCustom)
+            {
+                // Copy each compound but ignore is useful setting to ensure all are copied and nothing is accidentally
+                // wasted (but also don't allow adding past capacity so this specific add method is used)
+                playerCompounds.TopUpCompound(originalCompound.Key, originalCompound.Value);
+            }
+        }
 
         if (!CurrentGame.TutorialState.Enabled)
         {
@@ -948,6 +1002,12 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
                 engulfer.DeleteEngulfedObjects(WorldSimulation);
             }
+
+            switchedPatchInEditorForCompounds = true;
+        }
+        else
+        {
+            switchedPatchInEditorForCompounds = false;
         }
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch!.Biome);

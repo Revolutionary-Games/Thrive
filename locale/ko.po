@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -533,6 +533,22 @@ msgstr "요인:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "번영했습니다!"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "탄산 칼슘"
 
@@ -625,6 +641,10 @@ msgstr "섬유소"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "이 세포막에는 벽이 있어 전반적인 손상, 특히 물리적 손상에 대해 더 나은 보호를 제공합니다. 또한 형태를 유지하는 데 에너지가 덜 들지만 자원을 빠르게 흡수 할 수 없고 속도가 더 느려집니다."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "재개"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -670,7 +690,15 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "화학 수용체"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr "화학 세포는 황화수소 화학 합성 이라는 과정을 통해 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 단백질을 포함하는 이중 막 구조입니다. 포도당 생산 속도는 이산화탄소의 농도에 따라 달라집니다."
 
 #, fuzzy
@@ -748,6 +776,9 @@ msgstr "생체 상태창"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "닫기"
@@ -919,6 +950,22 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr "화합물 구름"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "성분 비율"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "화합물 구름"
 
 #, fuzzy
@@ -1296,6 +1343,14 @@ msgstr "크레딧"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "능력"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "점액 분비"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1572,6 +1627,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "새로운 키 배치 추가"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "속도:"
 
@@ -1631,6 +1690,9 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "두 개의 층이있는 막으로써 피해로부터 더 잘 보호되고 무너지지 않는데 더 적은 에너지를 사용합니다. 그러나 세포의 속도와 자원 흡수 또한 더욱 느려집니다 ."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr ""
@@ -1908,6 +1970,10 @@ msgstr "(매 세대마다 환경에 남는 포도당의 비율)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "환경"
+
 msgid "EPIPELAGIC"
 msgstr "표해수층"
 
@@ -1941,6 +2007,10 @@ msgstr "불러오기 오류"
 msgid "ERROR_SAVING"
 msgstr "저장 오류"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "불러오기 오류"
+
 msgid "ESCAPE"
 msgstr ""
 
@@ -1949,6 +2019,10 @@ msgstr "삼키기 탈출"
 
 msgid "ESTUARY"
 msgstr "어귀"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "진화 계보"
@@ -1992,6 +2066,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(AI 종이 변이하는 속도)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(AI 종이 변이하는 속도)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2341,6 +2419,10 @@ msgstr "그래픽"
 msgid "GRAPHICS_TEAM"
 msgstr "그래픽"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "확인"
+
 msgid "GUI"
 msgstr ""
 
@@ -2674,6 +2756,13 @@ msgstr "철 화학합성독립영양"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "새로운 키 배치 추가"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "한 세대 끝내기"
 
 msgid "JANUARY"
 msgstr ""
@@ -3195,12 +3284,20 @@ msgstr "바다눈"
 msgid "MASTER_VOLUME"
 msgstr "주 음량"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "점액 분비"
+
 msgid "MAX_FPS"
 msgstr "최대 FPS:"
 
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "최대 FPS:"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "크기:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3231,6 +3328,10 @@ msgstr ""
 
 msgid "MEDIASTOP"
 msgstr ""
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "작은 철 덩어리"
 
 msgid "MEGA_YEARS"
 msgstr "백만 년"
@@ -3273,6 +3374,10 @@ msgstr ""
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "지역에서 멸종"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3815,6 +3920,14 @@ msgstr "아래로 움직이거나 쭈그리기"
 msgid "MOVE_FORWARD"
 msgstr "앞으로 이동"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "육지로 이주"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "오른쪽으로 이동"
+
 msgid "MOVE_LEFT"
 msgstr "왼쪽으로 이동"
 
@@ -4007,14 +4120,14 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "질소 고정 색소체"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
 #, fuzzy
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
 msgid "NONE"
@@ -4099,6 +4212,10 @@ msgstr "스크린샷 폴더 열기"
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "선택됨:"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "해상도:"
 
 msgid "NUCLEUS"
 msgstr "핵"
@@ -4255,6 +4372,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "세포 기관 배치"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(활성화하면 성장 속도를 제한하며, 비활성화하면 성장 속도가 오직 사용할 수 있는 화합물의 양에 영향을 받음)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "포식자 선모"
 
@@ -4279,6 +4400,14 @@ msgstr "포식자 선모"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "포식자 선모"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "세포 기관"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "새로운 키 배치 추가"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4586,6 +4715,9 @@ msgstr "지역 내 개체수:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "개체수:"
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -4713,6 +4845,14 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "생산"
 
 #, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "생산"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(번식에 필요한 화합물을 아무 것도 하지 않아도 환경에서 자동으로 수집)"
+
+#, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "생산"
 
@@ -4735,6 +4875,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "키 입력을 기본값으로 초기화하시겠습니까?"
 
 #, fuzzy
@@ -5234,6 +5378,10 @@ msgstr "작은 철 덩어리"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "작은 철 덩어리"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "작은 철 덩어리"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5658,9 +5806,6 @@ msgstr "열 세포는 감 열성 안료가 막질 주머니에 함께 쌓여있�
 
 msgid "THERMOSYNTHESIS"
 msgstr "열합성"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6181,6 +6326,14 @@ msgid "UNDERWATERCAVE"
 msgstr "수중 동굴"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "수중 동굴"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "수중 동굴"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "단절된 세포기관"
 
@@ -6363,6 +6516,9 @@ msgstr "새로운 키 배치 추가"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "임의 사용자 이름 사용"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
@@ -6427,6 +6583,10 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "연대"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "동굴"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7345,38 +7505,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "편집기 활성화"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
@@ -7406,6 +7534,38 @@ msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "질소 고정 색소체"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "질소 고정 색소체"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7584,12 +7744,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "포식자 선모"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "질소 고정 색소체"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "니트로게나아제"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "질소 고정 색소체"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8155,6 +8315,17 @@ msgid "ZOOM_OUT"
 msgstr "축소"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "생산"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "수중 동굴"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "포도당의 양이 이전 양보다 {0} 만큼 감소되었습니다."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "원시적인 독소 [thrive:compound type=\"oxytoxy\"][/thrive:compound]의 생성을 담당하는 변형된 대사체."
 
@@ -8318,10 +8489,6 @@ msgstr "축소"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "마우스 미확인 키"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "해상도:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

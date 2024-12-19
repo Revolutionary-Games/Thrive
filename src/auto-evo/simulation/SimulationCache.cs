@@ -15,17 +15,18 @@ using Systems;
 /// </remarks>
 /// <remarks>
 ///   <para>
-///     TODO: would be better to reuse instances of this class after clearing them for next use
+///     TODO: would be better to reuse instances of this class after clearing them for next use (there's now a Clear
+///     method for this future usecase)
 ///   </para>
 /// </remarks>
 public class SimulationCache
 {
-    private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
-
     private readonly CompoundDefinition oxytoxy = SimulationParameters.GetCompound(Compound.Oxytoxy);
     private readonly CompoundDefinition mucilage = SimulationParameters.GetCompound(Compound.Mucilage);
 
     private readonly WorldGenerationSettings worldSettings;
+
+    private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
     private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
@@ -357,6 +358,25 @@ public class SimulationCache
     public bool MatchesSettings(WorldGenerationSettings checkAgainst)
     {
         return worldSettings.Equals(checkAgainst);
+    }
+
+    /// <summary>
+    ///   Clears all data in this cache. Can be used to re-use a cache object *but should not be called* while anything
+    ///   might still be using this cache currently!
+    /// </summary>
+    public void Clear()
+    {
+        cachedPressureScores.Clear();
+        cachedEnergyBalances.Clear();
+        cachedBaseSpeeds.Clear();
+        cachedBaseHexSizes.Clear();
+        cachedCompoundScores.Clear();
+        cachedGeneratedCompound.Clear();
+        predationScores.Clear();
+        cachedProcessSpeeds.Clear();
+        cachedPredationToolsRawScores.Clear();
+        cachedUsesVaryingCompounds.Clear();
+        cachedStorageScores.Clear();
     }
 
     public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(

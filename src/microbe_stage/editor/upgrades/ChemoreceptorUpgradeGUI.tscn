@@ -28,10 +28,9 @@ text = "TARGET_TYPE_COLON"
 
 [node name="TargetType" type="OptionButton" parent="."]
 layout_mode = 2
-item_count = 2
 selected = 0
+item_count = 2
 popup/item_0/text = "COMPOUNDS"
-popup/item_0/id = 0
 popup/item_1/text = "SPECIES"
 popup/item_1/id = 1
 
@@ -55,11 +54,14 @@ layout_mode = 2
 
 [node name="Label3" type="Label" parent="."]
 layout_mode = 2
+tooltip_text = "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+mouse_filter = 0
 text = "SEARCH_RADIUS"
 
 [node name="Distance" type="HSlider" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 rounded = true
 scrollable = false
 tick_count = 8
@@ -71,11 +73,14 @@ layout_mode = 2
 
 [node name="MinimumAmountLabel" type="Label" parent="."]
 layout_mode = 2
+tooltip_text = "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+mouse_filter = 0
 text = "MINIMUM_AMOUNT_TO_FIND"
 
 [node name="MinimumAmount" type="HSlider" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
 step = 50.0
 scrollable = false
 tick_count = 8

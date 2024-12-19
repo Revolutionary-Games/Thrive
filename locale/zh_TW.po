@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
-"PO-Revision-Date: 2024-10-24 12:08+0000\n"
-"Last-Translator: Xzihnago <xzihnago@gmail.com>\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -475,7 +475,7 @@ msgid "BIOME_LABEL"
 msgstr "生物群系：{0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "光暈效果"
+msgstr "光暈效果："
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "神經元"
@@ -503,6 +503,21 @@ msgstr "創建者："
 
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由 Revolutionary Games Studio 製作"
+
+msgid "CACHE_DISK_MAX_TIME"
+msgstr "項目刪除前保留在磁碟上的最長時間"
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr "記憶體中保留的最大快取項目量"
+
+msgid "CACHE_TIME_MEMORY"
+msgstr "快取項目在記憶體中保留多長時間"
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "僅使用記憶體快取時的快取時間"
+
+msgid "CACHING_TITLE"
+msgstr "快取"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸鈣"
@@ -591,6 +606,12 @@ msgstr "纖維素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "這種細胞膜有一層額外的細胞壁，這意味著它對整體傷害有更好的保護，特別是對物理的傷害。它保持形態所需的能量也較少，但速度較慢且無法快速吸收資源。[b]纖維素酶可以消化這堵牆[/b]，使其容易被掠食者吞噬。"
 
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"細胞的速度。請注意，由於計算演算法的限制，該值為近似值。\n"
+"例如，當修改鞭毛長度時，速度值可能無法完全反映實際情況，並且可能與遊戲中的實際表現不完全一致。\n"
+"這是一個已知問題，但由於其優先級低於其他許多問題與新功能，因此尚未修復。"
+
 msgid "CELL_TYPE_NAME"
 msgstr "細胞類型名稱"
 
@@ -630,8 +651,20 @@ msgstr "化學感受器"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "所有細胞只能透過化學感受來「看」。這就是細胞獲取周圍環境資訊的方式。添加這種細胞器代表著演化出更精細的化學感受。由於即使在細胞階段玩家也能獲得視覺，這將表現為一條指向螢幕可見區域外的線，顯示玩家尚未看到的附近化合物。"
 
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr ""
+"設定化合物檢測閾值。較低的數值可能會指向非常微弱的化合物痕跡，但這些痕跡可能不具有實際用途。\n"
+"一種策略是增加搜尋半徑與最低濃度，從而檢測到最近且濃度足夠的雲團。\n"
+"化學感受器會嗅探化合物雲中的個別點，而非單個雲團的總濃度。"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化學感受器可以探測更遠距離的化合物。放置後進行修改以選擇化合物類型與引導線顏色。"
+
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr ""
+"設定此化學感受器搜尋目標物的最大距離。\n"
+"例如，對於移動速度較慢的細胞，可以降低搜尋距離，以避免指向可能在細胞抵達前就消失的資源。\n"
+"相對地，增加搜尋距離可以讓化學感受器指向更遠的目標物，但這些目標物可能在細胞到達前變得難以取得或已經消失。"
 
 msgid "CHEMOSYNTHESIS"
 msgstr "化能合成"
@@ -698,6 +731,9 @@ msgstr "人口：{0} 食物：{1} 科學：{2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除舊存檔"
+
+msgid "CLEAR_CACHE"
+msgstr "清除快取"
 
 msgid "CLOSE"
 msgstr "關閉"
@@ -852,6 +888,18 @@ msgstr "{0}的濃度降低了 {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "保留全部"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "均分至姊妹細胞"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "始終補充至初始值"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "區域更改時補充"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（不足以維持 {0} 秒長的夜晚）"
@@ -1217,6 +1265,14 @@ msgstr "製作人員"
 msgid "CTRL"
 msgstr "CTRL"
 
+msgid "CURRENT_CACHE_SIZE"
+msgstr "目前大小："
+
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"目前儲存在磁碟上的所有快取項目的大小。可以隨時安全清除，\n"
+"但是當下次需要快取中的項目時，需要更長的時間才能產生。"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "當前開發人員"
 
@@ -1500,6 +1556,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我們的社群 Discord 伺服器"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"啟用後，一些高時間成本的生成資料將寫入磁碟，以便再次需要時更快載入。\n"
+"如果停用，則僅使用記憶體快取。"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的彈出視窗："
 
@@ -1555,6 +1616,9 @@ msgstr "雙擊即可全螢幕檢視"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有兩層的細胞膜，對傷害有更好的防護能力，並且花費更少能量來維持外型。然而，它會減慢細胞的移動速度並降低其吸收資源的速率。"
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr "用滑鼠拖曳以重新排序"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "傾印 SceneTree"
@@ -1800,6 +1864,9 @@ msgstr "（每一代保留的環境葡萄糖比例）"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "顯示／隱藏環境"
 
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "耐受"
+
 msgid "EPIPELAGIC"
 msgstr "表層帶"
 
@@ -1830,6 +1897,9 @@ msgstr "載入時發生錯誤"
 msgid "ERROR_SAVING"
 msgstr "存檔時發生錯誤"
 
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "發生錯誤：{0}"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1838,6 +1908,11 @@ msgstr "逃離吞噬"
 
 msgid "ESTUARY"
 msgstr "河口灣"
+
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr ""
+"區域事件：噴發\n"
+"產生額外的硫化氫與二氧化碳"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "演化樹"
@@ -1849,7 +1924,7 @@ msgstr ""
 "請通知開發團隊並提供遊戲記錄檔。"
 
 msgid "EXACT_VERSION_COLON"
-msgstr "確切的 Thrive 版本："
+msgstr "詳細的 Thrive 版本："
 
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr "這是編譯此版本 Thrive 的確切程式碼提交"
@@ -1877,6 +1952,9 @@ msgstr "實驗性功能"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr "（啟用遊戲中尚未完善的額外功能，如果您使用這些功能，請分享您對這些功能的任何反饋）"
+
+msgid "EXPERIMENTAL_FEATURES_WARNING"
+msgstr "（警告：實驗性功能可能會破壞遊戲平衡與其他方面，因此僅建議經驗豐富的 Thrive 玩家使用。如果您回報任何錯誤，則需要在回報前說明實驗性功能已啟用。）"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "匯出所有世界"
@@ -2196,6 +2274,9 @@ msgstr "圖形"
 msgid "GRAPHICS_TEAM"
 msgstr "圖形團隊"
 
+msgid "GROWTH_ORDER"
+msgstr "生長順序"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2491,6 +2572,12 @@ msgstr "鐵化能自養"
 
 msgid "ITCH_TOOLTIP"
 msgstr "造訪我們的 Itch.io 頁面"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr "{0} at ({1}, {2})"
+
+msgid "ITEM_NAME_SEPARATOR"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "一月"
@@ -2980,11 +3067,17 @@ msgstr "海洋雪"
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "磁碟快取應佔用的最大大小（如果快取變得太大，項目將自動刪除）"
+
 msgid "MAX_FPS"
 msgstr "最大 FPS："
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "無限"
+
+msgid "MAX_SIZE_COLON"
+msgstr "最大大小："
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "實體數量上限："
@@ -3012,6 +3105,10 @@ msgstr "Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "Media Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "小鐵塊"
 
 msgid "MEGA_YEARS"
 msgstr "百萬年"
@@ -3066,6 +3163,9 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr "演化食源"
+
+msgid "MICHES_FOR_PATCH"
+msgstr "區域 {0}的演化食源"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "避免捕食選擇壓力"
@@ -3588,6 +3688,12 @@ msgstr "向下移動或蹲下"
 msgid "MOVE_FORWARD"
 msgstr "前進"
 
+msgid "MOVE_ITEM_DOWN"
+msgstr "向下移動此項目"
+
+msgid "MOVE_ITEM_UP"
+msgstr "向上移動此項目"
+
 msgid "MOVE_LEFT"
 msgstr "左移"
 
@@ -3779,13 +3885,13 @@ msgstr "固氮酶是一種蛋白質，能夠利用氣態[thrive:compound type=\"
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與[thrive:compound type=\"nitrogen\"][/thrive:compound] 的濃度成正比。"
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "固氮體"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "固氮體是一種能夠使用氣態[thrive:compound type=\"nitrogen\"][/thrive:compound]、[thrive:compound type=\"oxygen\"][/thrive:compound] 與[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，細胞生長的關鍵營養物質。此過程被稱為[b]有氧固氮[/b]。"
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
 msgid "NONE"
@@ -3862,6 +3968,9 @@ msgstr "找不到截圖目錄"
 
 msgid "NO_SELECTED_MOD"
 msgstr "無選取模組"
+
+msgid "NO_SUGGESTION"
+msgstr "無"
 
 msgid "NUCLEUS"
 msgstr "細胞核"
@@ -3992,7 +4101,7 @@ msgid "ORGANELLES_BUTTON"
 msgstr "細胞器"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "進入編輯器時，每代僅檢查一次解鎖條件"
+msgstr "進入編輯器時，每代僅檢查一次解鎖條件。部分細胞器也可以透過內共生來解鎖。"
 
 msgid "ORGANELLE_AXON"
 msgstr "軸突"
@@ -4002,6 +4111,9 @@ msgstr "軸突是神經元用來相互連結與溝通的神經纖維。放置這
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多細胞生物"
+
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "此分頁允許設定細胞器生長的順序。這對於在生長過程中 ATP 生產不穩定的細胞非常重要。生長順序也會對生物代謝的運作順序造成影響。建議僅在完成結構編輯後進行修改，因為可以如同結構編輯一樣取消此處所做的變更。"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纖維"
@@ -4023,6 +4135,16 @@ msgstr "{0}細胞器"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0}細胞器"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "細胞器建議："
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"此指示器顯示了一個建議添加到細胞中的細胞器。\n"
+"該建議由 Auto-Evo 計算，基於添加哪個細胞器能帶來最大的能量收益。\n"
+"有時，可能沒有單一的最佳細胞器可供添加，但進行包含多個細胞器的大規模調整，從長遠來看可能仍然是有益的。\n"
+"此外，移除現有的細胞器通常也是一種有效的策略。"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "啟用細胞器解鎖"
@@ -4305,6 +4427,9 @@ msgstr "區域中的種群數量："
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0}（{1}）"
 
+msgid "POSITION_NUMBER"
+msgstr "{0}."
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食 {0}"
 
@@ -4421,6 +4546,12 @@ msgstr "無性繁殖"
 msgid "REPRODUCTION_BUDDING"
 msgstr "出芽生殖"
 
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "退出編輯器時的化合物："
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "（從編輯器返回遊戲時如何處理玩家儲存的化合物）"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
@@ -4441,6 +4572,9 @@ msgstr "重置已關閉的彈出視窗"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "將輸入重設為預設值？"
+
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
+msgstr "將項目順序重設為預設值"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "重置按鍵綁定"
@@ -4875,6 +5009,10 @@ msgstr "小鐵塊"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸鹽塊"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "小鐵塊"
+
 msgid "SNOWFLAKE"
 msgstr "雪花"
 
@@ -5284,9 +5422,6 @@ msgstr "利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]
 
 msgid "THERMOSYNTHESIS"
 msgstr "熱合成"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "環境葡萄糖量已減少至先前的 {0}。"
 
 msgid "THE_DISTURBANCE"
 msgstr "干擾"
@@ -5766,6 +5901,12 @@ msgstr "這是一個除錯版本，以下資訊可能不是最新的"
 msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "海底熱泉噴發"
+
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "噴發於 {0}"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "未發現"
 
@@ -5924,6 +6065,9 @@ msgstr "自動從 Assembly 載入 Harmony 補丁（不需要指定模組類別�
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自訂使用者名稱"
 
+msgid "USE_DISK_CACHE"
+msgstr "使用磁碟快取"
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手動設定後台執行緒數"
 
@@ -5980,6 +6124,9 @@ msgstr "查看細胞代謝過程"
 
 msgid "VIEW_ONLINE"
 msgstr "在網路上查看"
+
+msgid "VIEW_PATCH_MICHES"
+msgstr "查看演化食源"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "查看更新說明"
@@ -6430,7 +6577,7 @@ msgid "WIKI_COMPOUNDS_BUTTON"
 msgstr "化合物"
 
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
-msgstr "有關化合物的實現與理論的資訊，請查看 [color=#3796e1][url=thriveopedia:CompoundSystemDevelopment]化合物系統開發[/url][/color]。"
+msgstr "有關化合物的實現與理論的資訊，請查看[color=#3796e1][url=thriveopedia:CompoundSystemDevelopment]化合物系統開發[/url][/color]。"
 
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "對於前幾個階段，Thrive 中的主要資源是[b]化合物[/b]。化合物在代謝過程中用於生產其他化合物或以其他方式消耗。"
@@ -7077,7 +7224,7 @@ msgstr ""
 "\n"
 "[indent]—   [b]葡萄糖：[/b]細胞的主要 ATP 儲存與玩家的初始食物來源。葡萄糖被多種細胞器與蛋白質消耗以生產 ATP，其中最值得注意的是代謝體與粒線體，因為它們專門用於葡萄糖。當玩家死亡時，它們將會以細胞內儲存的葡萄糖重新生成，使它們可以在不擔心飢餓的情況下輕鬆恢復遊戲。如果玩家依賴環境中容易獲得的葡萄糖，則必須小心，因為隨著每一代，環境中可用的葡萄糖總量會減少 80%。葡萄糖雲呈白色。[/indent]\n"
 "\n"
-"[indent]—   [b]氨：[/b]細胞繁殖所需的化合物。氨被用來生長並複製細胞內的蛋白質與細胞器，並且可以在環境中隨處找到。像固氮酶與固氮質體這樣的部件可以從 ATP 與氮中製造氨，這樣可以節省玩家在環境中主動尋找氨的時間。氨雲呈橙色。[/indent]\n"
+"[indent]—   [b]氨：[/b]細胞繁殖所需的化合物。氨被用來生長並複製細胞內的蛋白質與細胞器，並且可以在環境中隨處找到。像固氮酶與固氮體這樣的部件可以從 ATP 與氮中製造氨，這樣可以節省玩家在環境中主動尋找氨的時間。氨雲呈橙色。[/indent]\n"
 "\n"
 "[indent]—   [b]磷酸鹽：[/b]與氨的用途相同，磷酸鹽也是繁殖所需的化合物。然而，與氨不同的是，沒有合成磷酸鹽的方法，因此它只能從環境或捕食中獲得。磷酸鹽雲呈紫色。[/indent]\n"
 "\n"
@@ -7195,36 +7342,6 @@ msgstr "無升級"
 msgid "WIKI_NATION_EDITOR"
 msgstr "國家編輯器"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "無效果。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 與[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "無修改。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-"[b]有氧固氮[/b]\n"
-"\n"
-"透過消耗能量將大氣中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與環境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。效率高於[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同種代謝。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]固氮體[/b]。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-"我們建議您在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後用[b]固氮體[/b]取代[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]，因為後者可以更有效地產生繁殖所需的資源。\n"
-"\n"
-"與[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]一樣，如果您有多餘的[thrive:compound type=\"atp\"][/thrive:compound]，[b]固氮體[/b]是明智的選擇。自行生產繁殖所需資源可以讓您消除限制傳代的因素。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "無升級。"
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "無效果。"
 
@@ -7263,6 +7380,41 @@ msgstr ""
 "由於[b]厭氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您應該在將此細胞器添加到您的細胞之前檢查是否有多餘的[thrive:compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]進行的少量[b]糖解[/b]不足以抵銷其自身的滲透調節成本。"
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "無升級。"
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "無效果。"
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "進行[b]厭氧固氮[/b]，消耗氣態[thrive:compound type=\"nitrogen\"][/thrive:compound] 與[thrive:compound type=\"atp\"][/thrive:compound] 生產[thrive:compound type=\"ammonia\"][/thrive:compound]，產生細胞繁殖生長所需的成分之一。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "無修改。"
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+"[b]有氧固氮[/b]\n"
+"\n"
+"透過消耗能量將大氣中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]。速率與環境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。效率高於[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同種代謝。"
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "細胞必須有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化出[b]固氮體[/b]。"
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"固氮體已被證明是從真核細胞的內共生體演化而來的。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitroplast]https://en.wikipedia.org/wiki/Nitroplast[/url][/color]\n"
+"\n"
+"https://www.science.org/doi/10.1126/science.ado8571"
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+"我們建議您在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後用[b]固氮體[/b]取代[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]，因為後者可以更有效地產生繁殖所需的資源。\n"
+"\n"
+"與[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]一樣，如果您有多餘的[thrive:compound type=\"atp\"][/thrive:compound]，[b]固氮體[/b]是明智的選擇。自行生產繁殖所需資源可以讓您消除限制傳代的因素。"
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr "無升級。"
 
 msgid "WIKI_NO"
@@ -7444,11 +7596,11 @@ msgstr "多細胞階段"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纖維"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "固氮體"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "固氮酶"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "固氮體"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "細胞核"
@@ -8091,6 +8243,17 @@ msgid "ZOOM_OUT"
 msgstr "縮小"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "出芽生殖"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}：+{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "環境葡萄糖量已減少至先前的 {0}。"
+
+#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "細胞質糖解"
 
@@ -8253,10 +8416,6 @@ msgstr "縮小"
 #~ "CoA：輔酶A（Coenzyme A）\n"
 #~ "\n"
 #~ "CO2：二氧化碳（Carbon Dioxide）"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "解析度："
 
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""
@@ -8565,3 +8724,7 @@ msgstr "縮小"
 
 #~ msgid "PLASTID"
 #~ msgstr "膠體"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "解析度："

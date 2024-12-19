@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvp0yex8rwygn"
 path.s3tc="res://.godot/imported/Crystal_rough_emit.png-293d6eb9c72378a421d5574a28c9c8b3.s3tc.ctex"
+path.etc2="res://.godot/imported/Crystal_rough_emit.png-293d6eb9c72378a421d5574a28c9c8b3.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/Crystal_rough_emit.png"
-dest_files=["res://.godot/imported/Crystal_rough_emit.png-293d6eb9c72378a421d5574a28c9c8b3.s3tc.ctex"]
+dest_files=["res://.godot/imported/Crystal_rough_emit.png-293d6eb9c72378a421d5574a28c9c8b3.s3tc.ctex", "res://.godot/imported/Crystal_rough_emit.png-293d6eb9c72378a421d5574a28c9c8b3.etc2.ctex"]
 
 [params]
 
@@ -24,7 +25,7 @@ compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=6
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false

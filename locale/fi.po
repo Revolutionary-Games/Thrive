@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"PO-Revision-Date: 2024-11-04 07:58+0000\n"
+"Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: Finnish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -240,9 +240,8 @@ msgstr "Lajien populaatiot"
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Versio:"
+msgstr "Nousemusvaihe"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Modin assembly-luokka on vaadittu kun assembly on määritelty"
@@ -544,6 +543,22 @@ msgstr "Tekijä:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Tehnyt Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Otsikko puuttuu"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiumkarbonaatti"
 
@@ -635,6 +650,10 @@ msgstr "Selluloosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Laita peli tauolle"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Solutyypin Nimi"
 
@@ -678,7 +697,15 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Pistä muita soluja tällä."
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Kemoreseptori"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+msgstr "Pistä muita soluja tällä."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr "Pistä muita soluja tällä."
 
 #, fuzzy
@@ -753,6 +780,9 @@ msgstr "Statistiikkaa organismista"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Siivoa vanhat tallennukset"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sulje"
@@ -926,6 +956,22 @@ msgstr "{0}:n pitoisuudet ovat laskeneet {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}:n kulutus"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Yhdisteiden tasapainopisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Näytä / piilota ympäristö ja yhdisteet"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Yhdistepilvet"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1321,6 +1367,14 @@ msgstr "Tekijät"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Näytä kykypalkki"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Jatka"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nykyiset kehittäjät"
 
@@ -1613,6 +1667,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Lisää uusi syöte"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Kuole"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Nopeus:"
 
@@ -1674,6 +1732,9 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
 msgid "DUMP_SCENE_TREE"
@@ -1972,6 +2033,10 @@ msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Laji
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näytä / piilota ympäristö ja yhdisteet"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Ympäristö"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelaginen vyöhyke"
 
@@ -2009,6 +2074,10 @@ msgstr "Virhe ladattaessa"
 msgid "ERROR_SAVING"
 msgstr "Virhe tallennettaessa"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Virhe ladattaessa"
+
 msgid "ESCAPE"
 msgstr "ESC"
 
@@ -2017,6 +2086,10 @@ msgstr "pakeni nielaisulta"
 
 msgid "ESTUARY"
 msgstr "Estuaari"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Lisää uusi syöte"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -2061,6 +2134,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2431,6 +2508,10 @@ msgstr "Grafiikat"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafiikkatiimi"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "VAHVISTA"
+
 msgid "GUI"
 msgstr "Käyttöliittymä"
 
@@ -2647,13 +2728,11 @@ msgstr ""
 msgid "INSPECTOR"
 msgstr ""
 
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION"
-msgstr "Mutaatiopisteet"
+msgstr "Aktivoi nousemusportti"
 
-#, fuzzy
 msgid "INTERACTION_ACTIVATE_ASCENSION_MISSING_ENERGY"
-msgstr "Mutaatiopisteet"
+msgstr "Aktivoi nousemusportti (ENERGIAA PUUTTUU)"
 
 #, fuzzy
 msgid "INTERACTION_CONSTRUCT"
@@ -2757,6 +2836,13 @@ msgstr "Rautakemolitoautotrofia"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Kuole"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "konsentraatiosta riippuen"
 
 msgid "JANUARY"
 msgstr "Tammikuu"
@@ -3276,11 +3362,19 @@ msgstr "Leijuvat hiukkaset"
 msgid "MASTER_VOLUME"
 msgstr "Pää äänitaso"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Jatka"
+
 msgid "MAX_FPS"
 msgstr "Maksimi kuvia sekunnissa:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Rajoittamaton"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Koko:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3309,6 +3403,10 @@ msgstr ""
 
 msgid "MEDIASTOP"
 msgstr "Pysäytä"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Pieni rautalohkare"
 
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -3349,6 +3447,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "sukupuuttoon planeetalta"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3924,6 +4026,14 @@ msgstr "Liiku alaspäin tai kyykisty"
 msgid "MOVE_FORWARD"
 msgstr "Liiku eteenpäin"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Lähetettävä Modi:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Liiku oikealle"
+
 msgid "MOVE_LEFT"
 msgstr "Liiku vasemmalle"
 
@@ -4122,13 +4232,13 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:n [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpipitoisuudesta[/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Typpeä sitova plastidi"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
 
 msgid "NONE"
@@ -4211,6 +4321,10 @@ msgstr "Avaa Näyttökuva kansio"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Ei valittua Modia"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "?"
 
 msgid "NUCLEUS"
 msgstr "Tuma"
@@ -4371,6 +4485,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Lisää soluelin"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Saalistusihokarva"
 
@@ -4394,6 +4512,14 @@ msgstr "Saalistusihokarva"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Saalistusihokarva"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Soluelin"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Pysäytysmenu"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4705,6 +4831,10 @@ msgstr "populaatio alueilla:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID-Numero"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Lajin {0} saalistus"
 
@@ -4829,6 +4959,14 @@ msgstr "Lisääntyminen"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Orastuminen"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Lisääntyminen:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "Tämä paneeli kertoo mistä luvuista auto-evo simuloi ennusteensa. Lajin selviytymiseen vaikuttaa sen onnistuminen energian haalimisessa ja muut tarpeet. Auto-evo käyttää yksinkertaistettua mallia laskeakseen lajin menestymisen perustaen sen lajin hankkimaan energiaan. Jokaisen ravintotyypin kohdalla voi nähdä kuinka paljon siitä saa energiaa. Lajin sopivuus kertoo kuinka hyvin lajin jäsenet pystyvät käyttämään kyseisiä ravinnon lähteitä."
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Lisääntyminen:"
 
@@ -4851,6 +4989,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Palauta näppäimien oletukset?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Palauta näppäimien oletukset?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5332,6 +5474,10 @@ msgstr "Pieni rautalohkare"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Pieni rautalohkare"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Pieni rautalohkare"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5600,7 +5746,7 @@ msgid "STRUCTURE"
 msgstr "Rakenne"
 
 msgid "STRUCTURE_ASCENSION_GATE"
-msgstr ""
+msgstr "Nousemusportti"
 
 #, fuzzy
 msgid "STRUCTURE_DYSON_SWARM"
@@ -5688,7 +5834,7 @@ msgid "TARGET_TYPE_COLON"
 msgstr "Terv.:"
 
 msgid "TECHNOLOGY_ASCENSION"
-msgstr ""
+msgstr "Nousemus"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
 msgstr ""
@@ -5783,9 +5929,6 @@ msgstr "Tuottaa [thrive:compound type=\"glucose\"]glukoosia[/thrive:compound]. T
 #, fuzzy
 msgid "THERMOSYNTHESIS"
 msgstr "Kemosynteesi"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6300,6 +6443,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Vedenalainen luola"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Vedenalainen luola"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Vedenalainen luola"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Irtonaiset soluelimet"
 
@@ -6481,6 +6632,9 @@ msgstr "Lisää uusi syöte"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Käytä annettua käyttäjänimeä"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Määritä manuaalisesti taustalla pyörivien suorittajien määrä"
 
@@ -6545,6 +6699,10 @@ msgstr "Muuntaa [thrive:compound type=\"glucose\"]a [/thrive:compound] [thrive:c
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Ei käytössä"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6644,17 +6802,15 @@ msgstr "Yleinen editori ja strategia-vaiheet"
 msgid "WIKI_8_BRACKET_16"
 msgstr "["
 
-#, fuzzy
 msgid "WIKI_ASCENSION"
-msgstr "Rustisyaniini on proteiini, joka käyttää hiilidioksiidia ja happea muuntaakseen raudan toiseksi aineeksi. Tätä kutsutaan hapettumiseksi ja se vapauttaa energiaa, jonka solu voi hyödyntää."
+msgstr "Nousemus"
 
 #, fuzzy
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr "Nykyiset kehittäjät"
 
-#, fuzzy
 msgid "WIKI_ASCENSION_FEATURES"
-msgstr "Ulkoiset vaikutukset:"
+msgstr "Tulossa pian."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_INTRO"
@@ -7490,38 +7646,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Avaa editorin lukitus"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Typpeä sitova plastidi"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Typpeä sitova plastidi"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Typpeä sitova plastidi"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Typpeä sitova plastidi"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Typpeä sitova plastidi"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
 
@@ -7551,6 +7675,38 @@ msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelki
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenaasi on entsyymikompleksi, joka katalysoi typpimolekyylien pelkistymistä ammoniakiksi käyttäen ATP:tä. Ammoniakki on tärkeä aine solun kasvulle. Tätä prosessia kutsutaan anaerobiseksi typpifiksaatioksi. Nitrogenaasi sijaitsee soluliman ympäröimänä, joka puolestaan toteuttaa osaltaan glykolyysia."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Typpeä sitova plastidi"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Typpeä sitova plastidi"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Typpeä sitova plastidi"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Muuntaa [thrive:compound type=\"atp\"][/thrive:compound]:tä [thrive:compound type=\"ammonia\"]ammoniakiksi[/thrive:compound]. Muunnosnopeus riippuu ympäristön [thrive:compound type=\"nitrogen\"]typpi-[/thrive:compound] ja [thrive:compound type=\"oxygen\"]happipitoisuudesta[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Typpeä sitova plastidi"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Typpeä sitova plastidi"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7622,9 +7778,8 @@ msgstr "Happimyrkkysomi"
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr "Happimyrkkysynteesi"
 
-#, fuzzy
 msgid "WIKI_PAGE_ASCENSION"
-msgstr "Ruostesyaniini"
+msgstr "Nousemus"
 
 #, fuzzy
 msgid "WIKI_PAGE_AWAKENING_STAGE"
@@ -7735,12 +7890,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Saalistusihokarva"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Typpeä sitova plastidi"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenaasi"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Typpeä sitova plastidi"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8356,6 +8511,17 @@ msgstr "Zoomaa sisään"
 msgid "ZOOM_OUT"
 msgstr "Zoomaa ulospäin"
 
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Orastuminen"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Glukoosin määrä on vähentynyt {0}:iin edellisestä määrästä."
+
 #~ msgid "THYLAKOID"
 #~ msgstr "Tylakoidi"
 
@@ -8524,9 +8690,6 @@ msgstr "Zoomaa ulospäin"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#~ msgid "QUESTION"
-#~ msgstr "?"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

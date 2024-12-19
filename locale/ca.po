@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -523,6 +523,22 @@ msgstr "Per:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Per Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Falta un nom"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonat de Calci"
 
@@ -610,6 +626,10 @@ msgstr "Cel·lulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nom del Tipus de Cèl·lula"
 
@@ -650,8 +670,16 @@ msgstr "Quimioreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Quantitat mínima a detectar:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "El Quimioreceptor permet detectar compostos a gran distància. Modifica'l un cop l'hagis col·locat per seleccionar el compost concret que vols detectar i el color de la línia que n'indicarà la direcció."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Les cèl·lules només poden \"veure\" el món exterior a través de la Quimiorecepció, que els permet obtenir informació del seu entorn. Afegir aquest orgànul representa evolucionar una quimiorecepció més afinada. Com que al jugador se li ofereix visió fins i tot a l'estadi de Microbi, això es representa amb una línia que apunta fora de l'àrea visible, mostrant la posició de compostos que el jugador encara no podia veure."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -720,6 +748,9 @@ msgstr "Estadístiques de la Cèl·lula"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Netejar els arxius de guardat antics"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tancar"
@@ -886,6 +917,22 @@ msgstr "{0} concentrations han disminuït per {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consum"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Equilibri de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostrar / amagar l'entorn i els compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densitat de núvols de Compostos"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1258,6 +1305,14 @@ msgstr "Crèdits"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mostrar noms de botons de selecció de parts"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Secretar mucílag"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolupadors Actuals"
 
@@ -1530,6 +1585,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Han passat: {0:#,#} anys"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Sortir del joc"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Velocitat de Digestió:"
 
@@ -1591,6 +1650,9 @@ msgstr "Doble clic per mostrar en pantalla completa"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Una membrana cel·lular formada per dues capes, que ofereix millor protecció i consumeix menys energia. No obstant, fa que la cèl·lula esdevingui més lenta. També redueix la velocitat a la qual s'absorbeixen els nutrients en entrar-hi en contacte."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr ""
@@ -1861,6 +1923,10 @@ msgstr "Proporció de glucosa retinguda al medi ambient cada generació"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / amagar l'entorn i els compostos"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Entorn"
+
 msgid "EPIPELAGIC"
 msgstr "Zona epipelàgica"
 
@@ -1893,6 +1959,10 @@ msgstr "Error durant la càrrega"
 msgid "ERROR_SAVING"
 msgstr "Error amb l'acció de guardat"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Error durant la càrrega"
+
 msgid "ESCAPE"
 msgstr "Tecla Esc"
 
@@ -1901,6 +1971,10 @@ msgstr "evasió d'un intent d'engolició"
 
 msgid "ESTUARY"
 msgstr "Estuari"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no requereix especificar una classe de mod)"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -1944,6 +2018,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2319,6 +2397,10 @@ msgstr "Gràfics"
 msgid "GRAPHICS_TEAM"
 msgstr "Equip de gràfics"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Normal"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2653,6 +2735,13 @@ msgstr "Quimiolitoautotròfia basada en Ferro"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Sortir del joc"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Acaba una Generació"
 
 msgid "JANUARY"
 msgstr "Gener"
@@ -3156,11 +3245,19 @@ msgstr "Neu marina"
 msgid "MASTER_VOLUME"
 msgstr "Volum General"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Secretar mucílag"
+
 msgid "MAX_FPS"
 msgstr "Màxims FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Il·limitat"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Mida:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Màxim nombre d'entitats:"
@@ -3189,6 +3286,10 @@ msgstr "Gravar"
 
 msgid "MEDIASTOP"
 msgstr "Aturar Reproducció Multimèdia"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Petit tros de Ferro"
 
 msgid "MEGA_YEARS"
 msgstr "Milions d'anys"
@@ -3246,6 +3347,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "s'ha extingit del planeta"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3798,6 +3903,14 @@ msgstr "Moure cap avall o ajupir-se"
 msgid "MOVE_FORWARD"
 msgstr "Moure cap endavant"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod a Carregar:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Moure cap a la dreta"
+
 msgid "MOVE_LEFT"
 msgstr "Moure cap a l'esquerra"
 
@@ -4023,13 +4136,13 @@ msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient b
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastidi Fixador de Nitrogen"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4110,6 +4223,10 @@ msgstr "No s'ha trobat cap directori de captures de pantalla"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Cap Mod Seleccionat"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolució:"
 
 msgid "NUCLEUS"
 msgstr "Nucli"
@@ -4266,6 +4383,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicel·lular"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Fibló"
 
@@ -4289,6 +4410,14 @@ msgstr "Fibló"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Fibló"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Orgànuls"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carregar arxius de guardat previs"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4589,6 +4718,10 @@ msgstr "població a les zones:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Nombre d'ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predació de {0}"
 
@@ -4709,6 +4842,14 @@ msgstr "Asexual"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Gemmació"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproducció:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(velocitat a la qual les espècies de la IA muten)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
 
@@ -4730,6 +4871,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Resetejar els inputs a valors per defecte?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Resetejar els inputs a valors per defecte?"
 
 #, fuzzy
@@ -5197,6 +5342,10 @@ msgstr "Petit tros de Ferro"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Petit tros de Ferro"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Petit tros de Ferro"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5626,9 +5775,6 @@ msgstr "Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gr
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosíntesi"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "La quantitat de Glucosa s'ha reduït un percentatge de {0} respecte a la Generació anterior."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6139,6 +6285,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Cova submarina"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Cova submarina"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Cova submarina"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Orgànuls Desconnectats"
 
@@ -6316,6 +6470,9 @@ msgstr "Automàticament carregar els ecosistemes Harmony de l'Ensamblatge (no re
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Fer servir un nom d'usuari propi"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manualment establir nombre de fils del fons"
 
@@ -6380,6 +6537,10 @@ msgstr "Augmenta la velocitat de gir de grans cèl·lules."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Inhabilitar Tot"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7308,38 +7469,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Habilitar l'editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastidi Fixador de Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastidi Fixador de Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastidi Fixador de Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastidi Fixador de Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastidi Fixador de Nitrogen"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
@@ -7369,6 +7498,38 @@ msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient b
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastidi Fixador de Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastidi Fixador de Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound type=\"nitrogen\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastidi Fixador de Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "El Plast de Fixació de Nitrogen és una proteïna que produeix Amoníac, un component important en el creixement i reproducció de les cèl·lules, mitjançant Nitrogen, Oxigen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Aeròbica."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastidi Fixador de Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastidi Fixador de Nitrogen"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7548,12 +7709,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Fibló"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastidi Fixador de Nitrogen"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastidi Fixador de Nitrogen"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8117,6 +8278,17 @@ msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Gemmació"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "La quantitat de Glucosa s'ha reduït un percentatge de {0} respecte a la Generació anterior."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Un Metabolosoma modificat que és responsable de la producció d'una forma primitiva de l'agent tòxic OxyToxy NT."
 
@@ -8268,10 +8440,6 @@ msgstr "Zoom enfora"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolució:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

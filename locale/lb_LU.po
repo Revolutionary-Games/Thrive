@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -515,6 +515,21 @@ msgstr "Vum:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Vun Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+msgid "CACHING_TITLE"
+msgstr ""
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalziumkarbonat"
 
@@ -602,6 +617,10 @@ msgstr "Zellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Di hei Membran huet eng Mauer, di bessere Schutz géint all Schued, mee speziell géint physeschen Schued, bitt. Et kascht et och manner Energie fir d'Form ze behalen, me kann Ressourcen net séier absorbéieren an d'Zell ass méi lues. [b]Cellulase kann d'Mauer verdauen[/b], wat et verwondbar géint verschlécken mëscht."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Sättegung vun der Faarf"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Numm vun der Zellen Zort"
 
@@ -641,8 +660,16 @@ msgstr "Chemorezeptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "All d'Zellen \"gesinn\" nëmmen duerch Chemorezeptioun. Dat ass wéi Zellen Informatioune iwwert hiert Ëmfeld kréien. D'Organelle representéiert d'Evolutioun vu méi raffinéierter Chemorezeptioun. Well de Spiller schonn op der Zelle Stuf gesinn kann, gëtt d'Organell mat engem Stréch representéiert deen ausserhalb vun Bildschierm op Stoffer weist déi de Spiller nach net gesinn kann."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "De Chemorezeptor erlaabt d'Erkennung vu Stoffer vu méi wäit fort. Modifizéier en nodeems de e placéiert hues fir d'Stoffzort and d'Faarf vum Stréch ze wielen."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "All d'Zellen \"gesinn\" nëmmen duerch Chemorezeptioun. Dat ass wéi Zellen Informatioune iwwert hiert Ëmfeld kréien. D'Organelle representéiert d'Evolutioun vu méi raffinéierter Chemorezeptioun. Well de Spiller schonn op der Zelle Stuf gesinn kann, gëtt d'Organell mat engem Stréch representéiert deen ausserhalb vun Bildschierm op Stoffer weist déi de Spiller nach net gesinn kann."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -711,6 +738,9 @@ msgstr "Populatioun: {0} Iessen: {1} Wëssenschaft {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Al Späicherdateien raumen"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Zoumaachen"
@@ -866,6 +896,23 @@ msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr ""
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Stoff-Niveauen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Stoff-Niveauen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+"Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1210,6 +1257,13 @@ msgstr "Oofspann"
 msgid "CTRL"
 msgstr "Strg/Ctrl"
 
+msgid "CURRENT_CACHE_SIZE"
+msgstr ""
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Sättegung vun der Faarf"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1445,6 +1499,12 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+"Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
@@ -1497,6 +1557,9 @@ msgid "DOUBLE_CLICK_TO_VIEW_IN_FULLSCREEN"
 msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
 msgstr ""
 
 msgid "DUMP_SCENE_TREE"
@@ -1733,6 +1796,9 @@ msgstr ""
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr ""
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagial"
 
@@ -1763,6 +1829,9 @@ msgstr ""
 msgid "ERROR_SAVING"
 msgstr ""
 
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr ""
+
 msgid "ESCAPE"
 msgstr ""
 
@@ -1771,6 +1840,10 @@ msgstr ""
 
 msgid "ESTUARY"
 msgstr "Ästuar"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Nei Tastebindung bäifügen"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr ""
@@ -1808,6 +1881,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2121,6 +2198,9 @@ msgstr "Graphiken"
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
+msgid "GROWTH_ORDER"
+msgstr ""
+
 msgid "GUI"
 msgstr ""
 
@@ -2411,6 +2491,12 @@ msgid "IRON_CHEMOLITHOAUTOTROPHY"
 msgstr "Eisen Chemolithoautotrophie"
 
 msgid "ITCH_TOOLTIP"
+msgstr ""
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+msgid "ITEM_NAME_SEPARATOR"
 msgstr ""
 
 msgid "JANUARY"
@@ -2890,11 +2976,21 @@ msgstr "Mieresschnéi"
 msgid "MASTER_VOLUME"
 msgstr "Haapt-Lautstäerkt"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"Di hei Sektioun weist di total Balance (Produktioun - Verbrauch) fier all Stoff.\n"
+"Vier zum Beispill eng Planzenzell ze maachen muss d'Glucose Balance wäit positiv sinn."
+
 msgid "MAX_FPS"
 msgstr "Maximalen FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Mëttel:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -2922,6 +3018,10 @@ msgstr ""
 
 msgid "MEDIASTOP"
 msgstr ""
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Klengt Stéck Eisen"
 
 msgid "MEGA_YEARS"
 msgstr ""
@@ -2960,6 +3060,9 @@ msgid "MIB_VALUE"
 msgstr ""
 
 msgid "MICHE"
+msgstr ""
+
+msgid "MICHES_FOR_PATCH"
 msgstr ""
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3415,6 +3518,13 @@ msgstr ""
 msgid "MOVE_FORWARD"
 msgstr "Vijenzeg beweegen"
 
+msgid "MOVE_ITEM_DOWN"
+msgstr ""
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "No riets beweegen"
+
 msgid "MOVE_LEFT"
 msgstr "No Lenks beweegen"
 
@@ -3587,13 +3697,13 @@ msgstr "Nitrogenase ass een Eewäiss dat fäeg ass gasfërmeg [thrive:compound t
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Stéckstoff-Fixéierend Plastiden"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NONE"
@@ -3670,6 +3780,10 @@ msgstr ""
 
 msgid "NO_SELECTED_MOD"
 msgstr ""
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Halbeier Populatioun"
 
 msgid "NUCLEUS"
 msgstr "Nukleus"
@@ -3800,6 +3914,10 @@ msgstr ""
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr ""
 
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr ""
 
@@ -3820,6 +3938,14 @@ msgstr ""
 
 msgid "ORGANELLE_SINGULAR"
 msgstr ""
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Halbeier Populatioun"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Nei Tastebindung bäifügen"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
@@ -4093,6 +4219,9 @@ msgstr ""
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -4207,6 +4336,14 @@ msgstr ""
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(Geschwindegkeet mat der dei kënschtlech Intelligenz hier Arten mutéieren)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
@@ -4226,6 +4363,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Agaben zerécksetzen?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Agaben zerécksetzen?"
 
 msgid "RESET_KEYBINDINGS"
@@ -4648,6 +4789,10 @@ msgstr "Klengt Stéck Eisen"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Klengt Stéck Eisen"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5039,9 +5184,6 @@ msgstr ""
 msgid "THERMOSYNTHESIS"
 msgstr ""
 
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr ""
-
 msgid "THE_DISTURBANCE"
 msgstr ""
 
@@ -5397,6 +5539,14 @@ msgstr ""
 msgid "UNDERWATERCAVE"
 msgstr "Ënnerwaasser Hiel"
 
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Ënnerwaasser Hiel"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Ënnerwaasser Hiel"
+
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr ""
 
@@ -5555,6 +5705,9 @@ msgstr ""
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Benotz een personaliséierten Benotzernumm"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
@@ -5610,6 +5763,9 @@ msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
 msgid "VIEW_ONLINE"
+msgstr ""
+
+msgid "VIEW_PATCH_MICHES"
 msgstr ""
 
 msgid "VIEW_PATCH_NOTES"
@@ -6439,31 +6595,6 @@ msgstr ""
 msgid "WIKI_NATION_EDITOR"
 msgstr "3D Editor"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr ""
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Anaerobe Stéckstofffixeirung"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr ""
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr ""
 
@@ -6489,6 +6620,31 @@ msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Anaerobe Stéckstofffixeirung"
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr ""
 
 msgid "WIKI_NO"
@@ -6658,11 +6814,11 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr ""
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
+msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Anaerobe Stéckstofffixeirung"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGENASE"
+msgid "WIKI_PAGE_NITROPLAST"
 msgstr "Anaerobe Stéckstofffixeirung"
 
 #, fuzzy
@@ -7177,6 +7333,10 @@ msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "Ënnerwaasser Hiel"
 
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Ee modifizéierten Metabolosome responsabel fir d'Produktioun vun enger primitiver form un Gëftstoff [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Ka modifizéiert ginn fir de generéiert Zort u Gëftstoff ze änneren fir aner Effekter."

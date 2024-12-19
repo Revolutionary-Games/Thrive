@@ -7,11 +7,14 @@ reloadable = true
 [libraries]
 
 # As this cannot load different ones for different CPUs, we always use the
-# non-avx variant
+# non-avx variant. If support is ever added the NativeInterop class needs
+# also get the fix.
 
-# TODO: mac version
-# macos.debug = "res://lib/debug/libthrive_extension_without_avx.framework"
-# macos.release = "res://lib/libthrive_extension_without_avx.framework"
+# For some reason mac doesn't have debug variants
+# macos.debug.arm64 = "res://lib/debug/libthrive_extension_without_avx.dylib"
+macos.arm64 = "res://lib/libthrive_extension_without_avx.dylib"
+# macos.debug.x86_64 = "res://lib/debug/libthrive_extension_without_avx.dylib"
+macos.x86_64 = "res://lib/libthrive_extension_without_avx.dylib"
 
 # 32-bit version if we ever want to support that again
 # windows.debug.x86_32 = "res://lib/debug/libthrive_extension_without_avx.x86_32.dll"

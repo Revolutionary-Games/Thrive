@@ -57,6 +57,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         };
 
         FilePathsToAlwaysIgnore.Add(new Regex("/?third_party/", RegexOptions.IgnoreCase));
+        FilePathsToAlwaysIgnore.Add(new Regex("/?addons/", RegexOptions.IgnoreCase));
         FilePathsToAlwaysIgnore.Add(new Regex(@"mono_crash\..+"));
         FilePathsToAlwaysIgnore.Add(new Regex(@"RevolutionaryGamesCommon\/"));
 
@@ -85,6 +86,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "src/native/**.hpp",
         "third_party/**.hpp",
         "Scripts/GodotAPIData/*",
+        "addons/**",
     ];
 
     protected override IEnumerable<string> ExtraIgnoredJetbrainsCleanUpWildcards =>
@@ -94,6 +96,7 @@ public class CodeChecks : CodeChecksBase<Program.CheckOptions>
         "third_party/JoltPhysics/**",
         "third_party/godot-cpp/**",
         "Scripts/GodotAPIData/*",
+        "addons/**",
     ];
 
     protected override string MainSolutionFile => "Thrive.sln";

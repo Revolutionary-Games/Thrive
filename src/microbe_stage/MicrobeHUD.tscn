@@ -350,9 +350,9 @@ anchors_preset = -1
 anchor_top = -0.139
 anchor_bottom = 1.0
 offset_left = 2.0
-offset_top = 5.848
+offset_top = 2.848
 offset_right = 258.0
-offset_bottom = -50.0
+offset_bottom = -53.0
 grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -451,6 +451,7 @@ size_flags_horizontal = 3
 theme_override_styles/normal = SubResource("28")
 text = "100"
 label_settings = ExtResource("39_2oma1")
+horizontal_alignment = 1
 
 [node name="DataValue" type="PanelContainer" parent="BottomRight"]
 layout_mode = 1

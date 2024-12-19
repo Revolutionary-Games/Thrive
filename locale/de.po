@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -514,6 +514,24 @@ msgstr "Von:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Von Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Derzeit belegter Grafikspeicher:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Derzeit belegter Grafikspeicher:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Titel fehlt"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalziumkarbonat"
 
@@ -601,6 +619,10 @@ msgstr "Zellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Diese Membran hat eine Wand, was zu einem besseren Schutz gegen Gesamtschäden und insbesondere gegen physische Schäden führt. Sie kostet auch weniger Energie, um ihre Form zu behalten, kann aber Ressourcen nur langsam absorbieren und ist langsamer."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Der Zahlenwert zum Generieren der Zufallswelt. (Muss eine positive ganze Zahl sein.)"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Zellentypname"
 
@@ -641,8 +663,16 @@ msgstr "Chemorezeptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten die Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser Organelle bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der Spieler schon im Zellstadium sehen kann, wird dies durch eine Linie dargestellt, die über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Mindestmenge zur Erkennung:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Der Chemorezeptor ermöglicht die Erkennung von Substanzen aus größerer Entfernung. Nach der Platzierung können Sie die Art der Substanz und die Farbe der Führungslinie auswählen."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Alle Zellen \"sehen\" nur durch Chemorezeption. Auf diese Weise erhalten die Zellen Informationen über ihre Umgebung. Das Hinzufügen dieser Organelle bedeutet, dass die Chemorezeption weiter verfeinert wird. Da der Spieler schon im Zellstadium sehen kann, wird dies durch eine Linie dargestellt, die über den sichtbaren Bildschirmbereich hinausgeht und nahe gelegene Verbindungen anzeigt, die der Spieler noch nicht sehen konnte."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -711,6 +741,9 @@ msgstr "Organismus-Statistik"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Alte Speicherstände aufräumen"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Schließen"
@@ -872,6 +905,22 @@ msgstr "{0}konzentrationen sind um {1} gesunken"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}-Verbrauch"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Verbindungsbalance"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Substanzen ein-/ausblenden"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Wolkendichte"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1284,6 +1333,14 @@ msgstr "Abspann"
 msgid "CTRL"
 msgstr "Strg"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Fähigkeitenleiste anzeigen"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Schleim absondern"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Aktuelle Entwickler(innen)"
 
@@ -1552,6 +1609,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Tritt unserem Discord Server bei"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Besuche unsere Itch.io Seite"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Versteckte Pop-ups:"
 
@@ -1613,6 +1674,9 @@ msgstr "Doppelklicken zum Betrachten"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Als zweischichtige Membran bietet sie besseren Schutz vor Beschädigungen und benötigt weniger Energie, um sich nicht zu verformen. Allerdings verlangsamt sie die Zelle etwas und senkt die Geschwindigkeit, mit der sie Ressourcen absorbieren kann."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree ausgeben"
@@ -1880,6 +1944,10 @@ msgstr "(Anteil an Glukose in der Umwelt, welcher jede Generation erhalten bleib
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Umgebung und Substanzen ein-/ausblenden"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Umgebung"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagial"
 
@@ -1912,6 +1980,10 @@ msgstr "Fehler beim Laden"
 msgid "ERROR_SAVING"
 msgstr "Fehler beim Speichern"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Fehler beim Laden"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1920,6 +1992,10 @@ msgstr "Verschlingung entflohen"
 
 msgid "ESTUARY"
 msgstr "Ästuar"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Dies ist die exakte Version dieser Thrive Instanz"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evolutionsbaum"
@@ -1962,6 +2038,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(Geschwindigkeit mit der die künstliche Intelligenz Ihre Arten mutieren läßt)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2330,6 +2410,10 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikteam"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Beschränke die Nutzung von Wachstums-Substanzen"
+
 msgid "GUI"
 msgstr "Benutzeroberfläche"
 
@@ -2662,6 +2746,13 @@ msgstr "Eisen-Chemolithoautotrophie"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Besuche unsere Itch.io Seite"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Beende eine Generation"
 
 msgid "JANUARY"
 msgstr "Januar"
@@ -3162,11 +3253,19 @@ msgstr "Meeresschnee"
 msgid "MASTER_VOLUME"
 msgstr "Gesamtlautstärke"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Schleim absondern"
+
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Maximale FPS"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Größe:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximale Anzahl an Entitäten:"
@@ -3195,6 +3294,10 @@ msgstr "Aufnehmen"
 
 msgid "MEDIASTOP"
 msgstr "Stopp"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Kleiner Eisenbrocken"
 
 msgid "MEGA_YEARS"
 msgstr "Mya"
@@ -3252,6 +3355,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "ist im Gebiet ausgestorben"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3784,6 +3891,14 @@ msgstr "Nach unten bewegen oder bücken/schleichen"
 msgid "MOVE_FORWARD"
 msgstr "Vorwärts bewegen"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Landgang"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Nach rechts bewegen"
+
 msgid "MOVE_LEFT"
 msgstr "Nach links bewegen"
 
@@ -3983,13 +4098,13 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Rate skaliert mit der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Stickstofffixier-Plastid"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
 
 msgid "NONE"
@@ -4068,6 +4183,10 @@ msgstr "Kein Bildschirmfotoverzeichnis gefunden"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Kein Mod ausgewählt"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Auflösung:"
 
 msgid "NUCLEUS"
 msgstr "Nukleus"
@@ -4222,6 +4341,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Makroskopischer Mehrzeller"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(Aktivierung beschränkt die Wachstums-Geschwindigkeit; Deaktivierung lässt nur die verfügbaren Substanzen das Wachstum beeinflussen)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Raubtier-Pilus"
 
@@ -4245,6 +4368,14 @@ msgstr "Raubtier-Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Raubtier-Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organellen"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Ein zuvor gespeichertes Spiel laden"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4546,6 +4677,10 @@ msgstr "Bevölkerung in Gebieten:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID-Nummer"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Beute von {0}"
 
@@ -4663,6 +4798,14 @@ msgstr "Asexuell"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Knospend"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(Erhalte passiv Reproduktionsfortschritt, auch wenn Du keine Ressourcen aktiv einsammelst)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
 
@@ -4683,6 +4826,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Versteckte Pop-ups zurücksetzen"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Standardeingaben laden?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Standardeingaben laden?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5146,6 +5293,10 @@ msgstr "Kleiner Eisenbrocken"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Kleiner Eisenbrocken"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Kleiner Eisenbrocken"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5573,9 +5724,6 @@ msgstr "Produziert [thrive:compound type=\"atp\"][/thrive:compound] mithilfe von
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthese"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
 
 msgid "THE_DISTURBANCE"
 msgstr "Die Verstörung (Thrive Maskottchen)"
@@ -6094,6 +6242,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Unterwasser-Höhle"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Unterwasser-Höhle"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Unterwasser-Höhle"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Getrennte Organellen"
 
@@ -6269,6 +6425,9 @@ msgstr "Harmony Updates automatisch vom Assembler laden (Mod class muss nicht sp
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Eigenen Nutzernamen verwenden"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Anzahl der Hintergrund-Threads manuell einstellen"
 
@@ -6331,6 +6490,10 @@ msgstr "Erhöht die Wendigkeit von großen Zellen."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Alle deaktivieren"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7263,38 +7426,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Editor aktivieren"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
 
@@ -7324,6 +7455,38 @@ msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstof
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase ist ein Protein, das in der Lage ist, gasförmigen Stickstoff und zelluläre Energie in Form von ATP zu nutzen, um Ammoniak, einen wichtigen Wachstumsnährstoff für Zellen, zu produzieren. Dies ist ein Prozess, der als anaerobe Stickstofffixierung bezeichnet wird. Da die Nitrogenase direkt im Zytoplasma untergebracht ist, führt die umgebende Flüssigkeit glykolyse durch."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Wandelt [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um. Die Rate hängt von der Konzentration von [thrive:compound type=\"nitrogen\"][/thrive:compound] und [thrive:compound type=\"oxygen\"][/thrive:compound] ab."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Das Stickstofffixier-Plastid ist ein Protein, das gasförmigen Stickstoff und Sauerstoff sowie zelluläre Energie in Form von ATP zur Produktion von Ammoniak, einem wichtigen Wachstumsnährstoff für Zellen, nutzen kann. Dies ist ein Prozess, der als aerobe Stickstofffixierung bezeichnet wird."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Stickstofffixier-Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Stickstofffixier-Plastid"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7503,12 +7666,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Raubtier-Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Stickstofffixier-Plastid"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Stickstofffixier-Plastid"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8072,6 +8235,17 @@ msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Knospend"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Die Glukosemenge wurde auf {0} der vorherigen Menge reduziert."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Ein modifiziertes Metabolosom, das für die Produktion einer primitiven Form des Giftstoffes OxyToxy NT verantwortlich ist."
 
@@ -8260,10 +8434,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Auflösung:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

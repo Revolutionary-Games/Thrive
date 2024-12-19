@@ -81,9 +81,19 @@
             "ResourcePath": "res://assets/concept_art/multicellular-scene.jpg"
           },
           {
+            "Title": "Oxalic Roots",
+            "Artist": "Mr42",
+            "ResourcePath": "res://assets/concept_art/Oxalic_Roots.png"
+          },
+          {
             "Title": "Tree Creature",
             "Artist": "MirrorMonkey2",
             "ResourcePath": "res://assets/concept_art/tree-creature.jpg"
+          },
+          {
+            "Title": "Mud Slugs",
+            "Artist": "Bolsa",
+            "ResourcePath": "res://assets/concept_art/MudSlug.jpg"
           }
         ]
       },
@@ -244,7 +254,7 @@
           {
             "ResourcePath": "res://assets/models/organelles/Cilia.tscn",
             "Type": "ModelScene",
-            "MeshNodePath": "Armature/Skeleton3D/Cube_003"
+            "MeshNodePath": "Armature/Skeleton3D/CiliaMesh"
           },
           {
             "ResourcePath": "res://assets/models/organelles/Cytoplasm.tscn",
@@ -253,7 +263,7 @@
           {
             "ResourcePath": "res://assets/models/organelles/Flagellum.tscn",
             "Type": "ModelScene",
-            "MeshNodePath": "Armature_001/Skeleton3D/flagella"
+            "MeshNodePath": "Armature_001/Skeleton3D/FlagellumMesh"
           },
           {
             "ResourcePath": "res://assets/models/organelles/Lysosome.tscn",
@@ -314,7 +324,7 @@
           {
             "ResourcePath": "res://assets/models/organelles/SlimeJet.tscn",
             "Type": "ModelScene",
-            "MeshNodePath": "Armature/Skeleton3D/Cube"
+            "MeshNodePath": "Armature/Skeleton3D/Mesh"
           },
           {
             "ResourcePath": "res://assets/models/organelles/Thermoplast.tscn",

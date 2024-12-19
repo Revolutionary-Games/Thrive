@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
 "Language: cs\n"
@@ -48,7 +48,7 @@ msgid "ABYSSOPELAGIC"
 msgstr "Abysopelagiál (hloubka oceánu do 6000m)"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "Přijmout"
 
 msgid "ACTION_AWAKEN"
 msgstr "Probudit se ({0:F1}/{1:F1})"
@@ -261,10 +261,10 @@ msgid "ATP_BALANCE_TOOLTIP"
 msgstr "Zobrazit / skrýt sloučeniny"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Bez externích zdrojů"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Bez glukózy"
 
 #, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
@@ -275,7 +275,7 @@ msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr "Zůstatek ATP"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Se všemi požadovanými sloučeninami"
 
 msgid "ATP_PRODUCTION"
 msgstr "Produkce ATP"
@@ -327,8 +327,9 @@ msgstr "Nástroj Průzkumu Auto-Evo"
 msgid "AUTO_EVO_FAILED"
 msgstr "Nezdařilo se spustit Auto-evo"
 
+#, fuzzy
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Chybí výsledky Auto-evo. Pokud jste načetli starší uloženou hru (save), očekává se, že bude chybět. Pokud jste nenačetli starší uloženou hru (save), nahlaste nám to jako chybu a pošlete nám svůj soubor protokolu hry."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Výsledky Auto-evo:"
@@ -380,14 +381,16 @@ msgstr "Backspace"
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "Termosyntéza"
 
+#, fuzzy
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "Počítat jako by byl den"
 
+#, fuzzy
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "Při zaškrtnutí se čísla vypočítaná v tomto panelu počítají, jako by byl vždy den"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "Zahrnout náklady na pohyb"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
@@ -514,6 +517,24 @@ msgstr "Podle:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Vytvořeno týmem Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Právě využitá video paměť:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Právě využitá video paměť:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Chybí název"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Uhličitan vápenatý"
 
@@ -601,6 +622,10 @@ msgstr "Celulóza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Tato membrána má stěnu, což způsobuje lepší ochranu proti poškození, a obzvláště fyzickému poškození. Také potřebuje méně energie k zachování své formy, ale je pomalejší jak v pohybu tak v absorbování živin. [b]Celuláza může tuto stěnu strávit[/b], což ji dělá bezbrannou vůči vstřebání predátorem."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Hodnota použita pro generování světa, která musí být pozitivní celé číslo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Název typu buňky"
 
@@ -641,8 +666,16 @@ msgstr "Chemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem buňky získávají informace o svém okolí. Přidání této organely představuje vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující blízké sloučeniny, které hráč ještě nemohl vidět."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Minimální množství k detekci:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Chemoreceptor umožňuje detekovat sloučeniny z větší vzdálenosti. Po umístění upravte výběr typu sloučeniny a barvu naváděcí čáry."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Všechny buňky \"vidí\" pouze prostřednictvím chemorecepce. Tímto způsobem buňky získávají informace o svém okolí. Přidání této organely představuje vývoj jemnější chemorecepce. Protože hráč získá zrak i ve fázi buněk, je to znázorněno čárou směřující mimo viditelnou oblast obrazovky a ukazující blízké sloučeniny, které hráč ještě nemohl vidět."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -712,14 +745,18 @@ msgstr "Statistika organizmu"
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vyčistit stará uložení"
 
+msgid "CLEAR_CACHE"
+msgstr ""
+
 msgid "CLOSE"
 msgstr "Zavřít"
 
 msgid "CLOSE_OPTIONS"
 msgstr "Zavřít možnosti?"
 
+#, fuzzy
 msgid "CLOSTRIDIAL_FERMENTATION"
-msgstr ""
+msgstr "Klostridiová fermentace"
 
 #, fuzzy
 msgid "CLOUD_BENCHMARK"
@@ -873,11 +910,27 @@ msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Spotřeba {0}"
 
 #, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Balanc sloučenin"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Zobrazit / skrýt sloučeniny"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Hustota oblaků sloučenin"
+
+#, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Balanc sloučenin"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Během dne lze generovat pouze {1} [thrive:compound type=\"{0}\"][/thrive:compound], ale k přežití noci je vyžadována {2}."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
@@ -1031,7 +1084,7 @@ msgid "CONTROLLER_BUTTON_DPAD_LEFT"
 msgstr "Dezónové zóny ovladače"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "D-pad vpravo"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
@@ -1125,8 +1178,9 @@ msgstr "Vizualizéry osy ovladače:"
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr "Tlačítko Controller zobrazí výzvu typu:"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Dotyková destička"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_UNKNOWN"
@@ -1141,10 +1195,10 @@ msgid "CONTROLLER_BUTTON_XBOX_B"
 msgstr "Mrtvá zóna:"
 
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "Zpět"
 
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Návod"
 
 #, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
@@ -1287,6 +1341,14 @@ msgstr "Poděkování"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Zobrazit panel schopností"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Vyměšuj sliz"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Současní vývojáři"
 
@@ -1381,8 +1443,9 @@ msgstr ""
 "Souřadnice polohy: {0}\n"
 "Při pohledu na souřadnice: {1}"
 
+#, fuzzy
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
-msgstr ""
+msgstr "Vykreslování ladění fyziky není v tomto typu sestavení k dispozici"
 
 msgid "DEBUG_PANEL"
 msgstr "Debugovací Panel"
@@ -1585,6 +1648,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Připoj se na náš komunitní Discord server"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Opustit hru"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Rychlost trávení:"
 
@@ -1646,6 +1713,9 @@ msgstr "Dvojklikem zobrazíte v celé obrazovce"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrána se dvěma vrstvami má lepší ochranu proti poškození a potřebuje méně energie k zabránění deformace. Avšak zpomaluje buňku a snižuje rychlost, kterou může absorbovat zdroje."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr "Vyhoď SceneTree"
@@ -1799,21 +1869,24 @@ msgstr "Zapnout editor"
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr "Povolit světelné efekty rozhraní"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_ENGULFED_ALREADY_DONE"
-msgstr ""
+msgstr "Proces endosymbiózy je již dokončen, dokončete jej v editoru"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_ENGULFED_PROGRESS"
-msgstr ""
+msgstr "Cíl endosymbiózy se změnil na dočasnou organelu, pokud se dostanete do editoru, bude endosymbióza pokračovat"
 
+#, fuzzy
 msgid "ENDOSYMBIONT_TYPE_ALREADY_PRESENT"
-msgstr ""
+msgstr "Typ endosymbionta je již přítomen, vstupte do editoru a pokračujte v procesu endosymbiózy"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr "Více organel"
 
 msgid "ENDOSYMBIOSIS_BUTTON"
-msgstr ""
+msgstr "Endosymbióza"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_CANCEL_TOOLTIP"
@@ -1831,8 +1904,9 @@ msgstr ""
 "Mírumilovní mikrobi se na větší vzdálenosti nezapojují do boje s ostatními\n"
 "a je méně pravděpodobné, že budou používat toxiny proti predátorům."
 
+#, fuzzy
 msgid "ENDOSYMBIOSIS_NOTHING_ENGULFED"
-msgstr ""
+msgstr "Dosud nebyly pohlceny žádné vhodné druhy k přeměně v endosymbionty"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_NO_CANDIDATE_ORGANELLES"
@@ -1845,8 +1919,9 @@ msgstr ""
 "a mohou být mnohem náročnější na kusy.\n"
 "Reagující mikroby se dříve přepnou na nové cíle."
 
+#, fuzzy
 msgid "ENDOSYMBIOSIS_PROKARYOTIC_LIMIT_EXPLANATION"
-msgstr ""
+msgstr "Prokaryota mohou mít nejvýše jednoho endosymbionta"
 
 #, fuzzy
 msgid "ENDOSYMBIOSIS_SINGLE_SPECIES_PROGRESS_DESCRIPTION"
@@ -1887,8 +1962,9 @@ msgstr "Zdroje energie:"
 msgid "ENERGY_SUMMARY_LINE"
 msgstr "Celková získaná energie je {0} s individuálními náklady {1}, což vede k nekorigované populaci {2}"
 
+#, fuzzy
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Poškozen vstupem do režimu pohlcení bez ATP"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Zadejte existující ID"
@@ -1915,6 +1991,10 @@ msgstr "(poměr glukózy ponecháno v prostředí za každou generaci)"
 #, fuzzy
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Zobrazit / skrýt prostředí a sloučeniny"
+
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Životní prostředí"
 
 msgid "EPIPELAGIC"
 msgstr "Epipelagický"
@@ -1947,6 +2027,10 @@ msgstr "Chyba v načítání"
 msgid "ERROR_SAVING"
 msgstr "Chyba při ukládání"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Chyba v načítání"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1955,6 +2039,10 @@ msgstr "uniknout pohlcení"
 
 msgid "ESTUARY"
 msgstr "Ústí"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikování třídy modu)"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evoluční strom"
@@ -1993,10 +2081,14 @@ msgid "EXIT_TO_LAUNCHER"
 msgstr "Spustit E"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Experimentální funkce"
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(rychlost mutací AI druhů)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(rychlost mutací AI druhů)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2199,17 +2291,18 @@ msgid "FOG_OF_WAR_DISABLED_DESCRIPTION"
 msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli následující chybě:"
 
 msgid "FOG_OF_WAR_INTENSE"
-msgstr ""
+msgstr "Intensita mlhy války"
 
 #, fuzzy
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
-msgstr ""
+msgstr "Režim Mlhy Války"
 
 msgid "FOG_OF_WAR_REGULAR"
-msgstr ""
+msgstr "Pravidelná mlha války"
 
 #, fuzzy
 msgid "FOG_OF_WAR_REGULAR_DESCRIPTION"
@@ -2253,8 +2346,9 @@ msgstr "Převod vybrané uložené hry na novější verzi selhal kvůli násled
 msgid "FOSSILISATION_HINT"
 msgstr "Zkamenění tohoto druhu"
 
+#, fuzzy
 msgid "FOSSILISATION_HINT_ALREADY_FOSSILISED"
-msgstr ""
+msgstr "Fosilizovat tento druh (již zkamenělý)"
 
 #, fuzzy
 msgid "FOSSILISE"
@@ -2368,6 +2462,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafici"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Limit využití růstových sloučenin"
+
 msgid "GUI"
 msgstr "GUI"
 
@@ -2464,10 +2562,10 @@ msgid "ICESHELF"
 msgstr "Šelfový ledovec"
 
 msgid "ICE_CHUNK_BIG"
-msgstr ""
+msgstr "Velý kus ledu"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr ""
+msgstr "Malý kus ledu"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID není platné číslo"
@@ -2498,7 +2596,7 @@ msgid "INDICATOR_SPECIES_MUTATED"
 msgstr "Dovolit druhu aby neprocházel mutací (pokud není nalezena žádná dobrá mutace)"
 
 msgid "INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "Průmyslová etapa"
 
 msgid "INFINITE_COMPOUNDS"
 msgstr "Nekonečné sloučeniny"
@@ -2514,8 +2612,9 @@ msgstr "PROSPERUJEŠ!"
 msgid "INFO_BOX_EDITORS"
 msgstr "PROSPERUJEŠ!"
 
+#, fuzzy
 msgid "INFO_BOX_ENZYMES"
-msgstr ""
+msgstr "Enzymy"
 
 #, fuzzy
 msgid "INFO_BOX_GAMEPLAY_TYPE"
@@ -2561,7 +2660,7 @@ msgid "INFO_BOX_UNIQUE"
 msgstr "PROSPERUJEŠ!"
 
 msgid "INFO_BOX_UPGRADES"
-msgstr ""
+msgstr "Vylepšení"
 
 msgid "INGESTED_MATTER"
 msgstr "Strávená hmota"
@@ -2605,7 +2704,7 @@ msgid "INTERACTION_CONSTRUCT"
 msgstr "Rychlost mutace AI"
 
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
-msgstr ""
+msgstr "Dokončit stavbu (chybí požadované materiály)"
 
 #, fuzzy
 msgid "INTERACTION_CRAFT"
@@ -2616,7 +2715,7 @@ msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr "Rychlost mutace AI"
 
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
-msgstr ""
+msgstr "Vložit materiály (žádné vhodné přepravované předměty)"
 
 #, fuzzy
 msgid "INTERACTION_DESTROY"
@@ -2631,13 +2730,13 @@ msgid "INTERACTION_HARVEST"
 msgstr "Rychlost mutace AI"
 
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
-msgstr ""
+msgstr "Sklidit (CHYBĚJÍCÍ VYBAVENÍ: {0})"
 
 msgid "INTERACTION_PICK_UP"
-msgstr ""
+msgstr "Vzít"
 
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
-msgstr ""
+msgstr "Vzít (PLNÉ)"
 
 msgid "INTERNALS"
 msgstr "Vnitřnosti"
@@ -2673,20 +2772,20 @@ msgid "INVALID_URL_SCHEME"
 msgstr "Neplatné schéma adresy URL"
 
 msgid "INVENTORY_ITEMS_ON_GROUND"
-msgstr ""
+msgstr "Předměty na zemi"
 
 #, fuzzy
 msgid "INVENTORY_TITLE"
 msgstr "\"{0}\" - {1}"
 
 msgid "INVENTORY_TOGGLE_CRAFTING"
-msgstr ""
+msgstr "Výroba"
 
 msgid "INVENTORY_TOGGLE_GROUND"
-msgstr ""
+msgstr "Země"
 
 msgid "INVERTED"
-msgstr ""
+msgstr "Převrácené"
 
 msgid "IN_PROTOTYPE"
 msgstr ""
@@ -2704,6 +2803,16 @@ msgstr "Chemolithoautotrofie železa"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Opustit hru"
+
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Souřadnice polohy: {0}\n"
+"Při pohledu na souřadnice: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Dokončit jednu generaci"
 
 msgid "JANUARY"
 msgstr "Leden"
@@ -2743,7 +2852,7 @@ msgstr ""
 "Chcete odstranit vstup z {1}?"
 
 msgid "KEY_BRING_UP_KEYBOARD"
-msgstr ""
+msgstr "Otevřít klávesnici"
 
 msgid "KEY_CLEAR"
 msgstr "Clear (smazat)"
@@ -3043,14 +3152,14 @@ msgid "LIGHT"
 msgstr "Světlo"
 
 msgid "LIGHT_LEVEL_AVERAGE"
-msgstr ""
+msgstr "Průměr"
 
 #, fuzzy
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr "Kolečkem vpravo"
 
 msgid "LIGHT_LEVEL_DAY"
-msgstr ""
+msgstr "Den"
 
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
@@ -3206,11 +3315,19 @@ msgstr "Mořský sníh"
 msgid "MASTER_VOLUME"
 msgstr "Celková hlasitost"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Vyměšuj sliz"
+
 msgid "MAX_FPS"
 msgstr "Maximální FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Neomezené"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Velikost:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximální počet entit:"
@@ -3239,6 +3356,10 @@ msgstr "Nahrát"
 
 msgid "MEDIASTOP"
 msgstr "Zastavit"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Malý kus železa"
 
 msgid "MEGA_YEARS"
 msgstr "Myry"
@@ -3296,6 +3417,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Vyhynul v této oblasti"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3831,6 +3956,14 @@ msgstr "Pohyb dolů nebo skrčení"
 msgid "MOVE_FORWARD"
 msgstr "Pohyb dopředu"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod k nahrání:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Pohyb vpravo"
+
 msgid "MOVE_LEFT"
 msgstr "Pohyb vlevo"
 
@@ -4054,13 +4187,13 @@ msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastid fixující dusík"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] a [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčová živina pro růst buněk. Tento proces se nazývá [b]biologická fixace dusíku[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4140,6 +4273,10 @@ msgstr "Složka se snímky obrazovky nebyla nalezena"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Žádný vybraný mod"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rozlišení:"
 
 msgid "NUCLEUS"
 msgstr "Jádro"
@@ -4295,6 +4432,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Umístit organelu"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(zapnutí limituje rychlost růstu, při vypnutí na rychlost růstu mají efekt pouze dostupné sloučeniny)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Dravý/útočný Pilus"
 
@@ -4318,6 +4459,14 @@ msgstr "Dravý/útočný Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Dravý/útočný Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organely"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Načíst předešlé uložené hry"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4614,6 +4763,10 @@ msgstr "populace v prostředích:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID číslo"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predace {0}"
 
@@ -4731,6 +4884,14 @@ msgstr "Asexuální"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Pučení"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukce:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(pasivní příjem reprodukčních sloučenin z prostředí bez toho aniž byste něco museli dělat)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukce:"
 
@@ -4751,6 +4912,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Resetovat ovládání ?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Resetovat ovládání ?"
 
 #, fuzzy
@@ -5215,6 +5380,10 @@ msgstr "Malý kus železa"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Malý kus železa"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Malý kus železa"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5643,9 +5812,6 @@ msgstr "Produkuje [thrive:compound type=\"atp\"][/thrive:compound] skrze teplotn
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosyntéza"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6159,6 +6325,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Podvodní jeskyně"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Podvodní jeskyně"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Podvodní jeskyně"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Odpojené organely"
 
@@ -6335,6 +6509,9 @@ msgstr "Automaticky načítat Harmony patche ze sestavy (nepotřebuje specifikov
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Použij vlastní jméno"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manuálně nastavit počet vláken procesoru na pozadí"
 
@@ -6398,6 +6575,10 @@ msgstr "Zvyšuje rychlost otáčení velkých buněk."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Zakázat vše"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7327,38 +7508,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Zapnout editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastid fixující dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastid fixující dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] a [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčová živina pro růst buněk. Tento proces se nazývá [b]biologická fixace dusíku[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastid fixující dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] a [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčová živina pro růst buněk. Tento proces se nazývá [b]biologická fixace dusíku[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastid fixující dusík"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastid fixující dusík"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
 
@@ -7388,6 +7537,38 @@ msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenáza je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound] a buněčnou energii ve formě [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčové růstové živiny pro buňky. Tento proces se nazíva [b]anaerobní fixace dusíku[/b]. Jelikož jsou nitrogenázy obaleny cytoplazmou, tato okolní tekutina stále provádí nějakou [b]glykolýzu[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastid fixující dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastid fixující dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] a [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčová živina pro růst buněk. Tento proces se nazývá [b]biologická fixace dusíku[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Přeměňuje [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]. Rychlost je úměrná koncentraci [thrive:compound type=\"nitrogen\"][/thrive:compound] a [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastid fixující dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Dusík fixující plastid je protein schopný využít plynný [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] a [thrive:compound type=\"atp\"][/thrive:compound] k produkci [thrive:compound type=\"ammonia\"][/thrive:compound], klíčová živina pro růst buněk. Tento proces se nazývá [b]biologická fixace dusíku[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastid fixující dusík"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastid fixující dusík"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7567,12 +7748,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Dravý/útočný Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastid fixující dusík"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastid fixující dusík"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8137,6 +8318,17 @@ msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Pučení"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Množství glukózy bylo sníženo na {0} z předchozího množství."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Modifikovaný metabolozom je zodpovědný za produkci primitivní formy toxického činidla OxyToxy NT."
 
@@ -8325,10 +8517,6 @@ msgstr "Oddálit"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rozlišení:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

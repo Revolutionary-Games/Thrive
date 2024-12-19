@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
-"PO-Revision-Date: 2024-10-24 12:08+0000\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"PO-Revision-Date: 2024-12-10 07:47+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -475,7 +475,7 @@ msgid "BIOME_LABEL"
 msgstr "Biyom: {0}"
 
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Kamaşma efekti"
+msgstr "Kamaşma efekti:"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Nöron"
@@ -503,6 +503,21 @@ msgstr "Oluşturan:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Revolutionary Games Studio Tarafından"
+
+msgid "CACHE_DISK_MAX_TIME"
+msgstr "Öğeleri diskten silmeden önce geçecek maksimum süre"
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr "Bellekte tutulacak maksimum önbellek öğesi"
+
+msgid "CACHE_TIME_MEMORY"
+msgstr "Önbellek öğelerinin bellekte tutulacağı süre"
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Yalnızca belleğe önbellekleme kullanıldığında geçecek önbellekleme süresi"
+
+msgid "CACHING_TITLE"
+msgstr "Önbellekleme"
 
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiyum Karbonat"
@@ -591,6 +606,12 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Hücrenin hızı. Bu hızı hesaplayan algoritmanın sınırlamaları nedeniyle, bu değerin bir tahmin olduğunu lütfen unutmayın.\n"
+"Örneğin, kamçı uzunluğunu değiştirdiğinizde, hız değerleri tamamen anlamlı olmayabilir ve evrede meydana gelen olaylar ile uyuşmayabilir.\n"
+"Bu sorun, bilinen bir sorundur. Ancak, diğer birçok sorun ve yeni özelliğe göre daha düşük öncelikte olduğu için bu sorun henüz düzeltilmemiştir."
+
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
@@ -630,8 +651,20 @@ msgstr "Kemoreseptör"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için, kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
 
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr ""
+"Bileşik algılama eşiğini ayarlar. Düşük değerler, yararlı miktarda bileşik içermeyebilecek, çok az miktarda bulunan bileşiklere işaret edebilir.\n"
+"Örnek bir strateji, arama yarıçapını ve minimum miktarı arttırmaktır. Böylece, en yakın olan, yararlı derecede yoğun bir bulut algılanabilir.\n"
+"Kemoreseptör, bir tek \"bileşik bulutundaki\" noktaların toplamını değil, bir bileşik bulutundaki tek bir noktayı algılar."
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoreseptör, bileşikleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
+
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr ""
+"Bu kemoreseptörün işaret edeceği şeyleri arayacağı maksimum mesafeyi ayarlar.\n"
+"Örneğin, mesafeyi azaltmak, yavaş hücrelerin ulaştığı anda büyük olasılıkla kaybolacak olan kaynaklara işaret etmemesi için kullanılabilir.\n"
+"Alternatif olarak, mesafeyi arttırmak, çok daha uzaktaki şeylere işaret edebilir. Ancak, bu kaynaklara kaybolmadan ulaşmak zor olabilir."
 
 msgid "CHEMOSYNTHESIS"
 msgstr "Kemosentez"
@@ -698,6 +731,9 @@ msgstr "Nüfus: {0} Gıda: {1} Bilim: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Eski Kayıtları Temizle"
+
+msgid "CLEAR_CACHE"
+msgstr "Önbelleği Temizle"
 
 msgid "CLOSE"
 msgstr "Kapat"
@@ -852,6 +888,18 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tüketimi"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Hepsini Tut"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Kardeş Hücre ile Bölün"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Her Zaman Baştakinin Üzerine Ekle"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Arazi Değişiminde Üzerine Ekle"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -1217,6 +1265,14 @@ msgstr "Jenerik"
 msgid "CTRL"
 msgstr "CTRL"
 
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mevcut boyut:"
+
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"Diskte mevcut olarak depolanan bütün önbellek öğelerinin boyutu. Bu öğeler, herhangi bir zamanda, güvenle temizlenebilir.\n"
+"Ancak, önbellekte bulunması gereken bir öğeye bir sonraki sefer ihtiyaç duyulduğunda, bu öğenin yeniden oluşturulması daha uzun sürer."
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Mevcut Oyun Geliştiricileri"
 
@@ -1500,6 +1556,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Discord topluluk sunucumuza katılın"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Etkinleştirildiğinde, oluşturulması zahmetli bazı veriler diske yazılır. Böylece, bu verilere yeniden ihtiyaç duyulduğunda yüklenmeleri daha hızlı olur.\n"
+"Eğer devre dışı bırakılırsa, yalnızca bellek içi önbellekleme kullanılır."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Atlanan pencereler:"
 
@@ -1555,6 +1616,9 @@ msgstr "Tam ekranda görüntülemek için çift tıklayın"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "İki katmanlı bir hücre zarı. Hasara karşı koruyuculuğu daha iyidir ve şeklinin bozulmaması için daha az enerji harcar. Ancak hücreyi biraz yavaşlatır ve kaynakların emilim oranını düşürür."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr "Fare ile öğeleri yeniden sıralamak için bunu taşıyın"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree dökümünü al"
@@ -1800,6 +1864,9 @@ msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Ortamı göster / gizle"
 
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Tolerans"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelajik"
 
@@ -1830,6 +1897,10 @@ msgstr "Yükleme Hatası"
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Yükleme Hatası"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1838,6 +1909,11 @@ msgstr "yutulmaktan kurtulma"
 
 msgid "ESTUARY"
 msgstr "Haliç"
+
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr ""
+"Yanardağ Patlaması Arazi Olayı\n"
+"Fazladan hidrojen sülfür ve karbondioksit oluşturur"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
@@ -1876,7 +1952,10 @@ msgid "EXPERIMENTAL_FEATURES"
 msgstr "Deneysel özellikler"
 
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
-msgstr "(oyunda varsayılan olarak bulunmak üzere yeterince düzenlenmemiş ek özellikleri etkinleştir; eğer bu özellikler ile oyunu oynarsanız, lütfen bize bunlarla ilgili geri bildirimlerinizi paylaşın)"
+msgstr "(oyunda varsayılan olarak bulunmak üzere yeterince tamamlanmamış ek özellikleri etkinleştir; eğer bu özellikler ile oyunu oynarsanız, geri bildiriminizi almak isteriz)"
+
+msgid "EXPERIMENTAL_FEATURES_WARNING"
+msgstr "(UYARI: Deneysel özellikler oyun dengesini ve diğer unsurları bozabilir, bu nedenle, bu seçenek yalnızca deneyimli Thrive oyuncuları için önerilmektedir. Herhangi bir hatayı bildirirken, raporunuzun başında deneysel özelliklerin etkinleştirildiğini belirtmeniz gerekir.)"
 
 msgid "EXPORT_ALL_WORLDS"
 msgstr "Tüm Dünyaları Dışa Aktar"
@@ -2048,7 +2127,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(yalnızca oyuncunun bulunmuş olduğu araziler gösterilir)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Savaş Sisi Modu"
+msgstr "Savaş sisi modu"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normal Savaş Sisi"
@@ -2195,6 +2274,9 @@ msgstr "Görüntü"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik Ekibi"
+
+msgid "GROWTH_ORDER"
+msgstr "Büyüme Sırası"
 
 msgid "GUI"
 msgstr "Arayüz"
@@ -2491,6 +2573,12 @@ msgstr "Demir Kemolitoototrofisi"
 
 msgid "ITCH_TOOLTIP"
 msgstr "Itch.io sayfamızı ziyaret edin"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr "{0}, ({1}, {2}) konumunda"
+
+msgid "ITEM_NAME_SEPARATOR"
+msgstr ":"
 
 msgid "JANUARY"
 msgstr "Ocak"
@@ -2980,11 +3068,17 @@ msgstr "Deniz karı"
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Diskteki önbelleğin alabileceği maksimum boyut (eğer önbellek aşırı artarsa, öğeler otomatik olarak kaldırılır)"
+
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Sınırsız"
+
+msgid "MAX_SIZE_COLON"
+msgstr "Maksimum boyut:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksimum varlık sayısı:"
@@ -3012,6 +3106,10 @@ msgstr "Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "Media Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Küçük Demir Parçası"
 
 msgid "MEGA_YEARS"
 msgstr "Mn. Yıl"
@@ -3066,6 +3164,9 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr "Miche"
+
+msgid "MICHES_FOR_PATCH"
+msgstr "Arazideki Miche'ler {0}"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Yırtıcı Seçilim Baskısını Önle"
@@ -3588,6 +3689,12 @@ msgstr "Aşağı doğru git ya da çömel"
 msgid "MOVE_FORWARD"
 msgstr "İleriye doğru git"
 
+msgid "MOVE_ITEM_DOWN"
+msgstr "Bu öğeyi aşağıya taşı"
+
+msgid "MOVE_ITEM_UP"
+msgstr "Bu öğeyi yukarıya taşı"
+
 msgid "MOVE_LEFT"
 msgstr "Sola doğru git"
 
@@ -3779,13 +3886,13 @@ msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compou
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Azot Fiksasyon Plastidi"
+msgid "NITROPLAST"
+msgstr "Nitroplast"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
+msgid "NITROPLAST_DESCRIPTION"
+msgstr "Nitroplast, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan zarlı bir organeldir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "NONE"
@@ -3862,6 +3969,9 @@ msgstr "Ekran görüntüsü dizini bulunamadı"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Seçilen Mod Yok"
+
+msgid "NO_SUGGESTION"
+msgstr "Yok"
 
 msgid "NUCLEUS"
 msgstr "Çekirdek"
@@ -3992,7 +4102,7 @@ msgid "ORGANELLES_BUTTON"
 msgstr "Organeller"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "Kilit açma koşulları, editöre girerken her kuşakta yalnızca bir kez kontrol edilir"
+msgstr "Kilit açma koşulları, editöre girerken her kuşakta yalnızca bir kez kontrol edilir. Alternatif olarak, bazı organellerin kilidi endosimbiyoz aracılığıyla açılabilir."
 
 msgid "ORGANELLE_AXON"
 msgstr "Akson"
@@ -4002,6 +4112,9 @@ msgstr "Aksonlar, nöronların birbirlerine bağlanmak ve birbiriyle iletişim k
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Çok Hücreli"
+
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miyofibril"
@@ -4023,6 +4136,16 @@ msgstr "{0} organel"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organel"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organel Önerisi:"
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"Bu gösterge, hücreye eklenebilecek bir önerilen organeli gösterir.\n"
+"Öneri, eklenecek organellerden hangisinin en fazla enerji artışı sağlayacağı esas alınarak, oto-evrim tarafından hesaplanır.\n"
+"Bazen, eklenebilecek tek bir iyi organel olmayabilir. Ama daha fazla organel ile daha büyük düzenlemeler uzun vadede faydalı olabilir.\n"
+"Bunun haricinde, mevcut organelleri kaldırmak da çoğu zaman faydalı bir strateji olabilir."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organellerin kilidini açma etkin"
@@ -4149,7 +4272,7 @@ msgid "PATCH_NAME"
 msgstr "{0} {1}"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO"
-msgstr "En son Thrive'ın {0} sürümünü oynadınız, bu sürümden itibaren yeni bir sürüm mevcut"
+msgstr "En son Thrive'ın {0} sürümünü oynadınız, o zamandan beri yeni bir sürüm mevcut"
 
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr "En son Thrive'i {0} oynadınız, o zamandan beri {1} yeni sürüm yayınlandı"
@@ -4305,6 +4428,9 @@ msgstr "arazideki popülasyon:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+msgid "POSITION_NUMBER"
+msgstr "{0}."
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} türünün yenilmesi"
 
@@ -4421,6 +4547,12 @@ msgstr "Eşeysiz"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
 
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Editörden çıkışta bileşikler:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(editörden evreye geri dönüldüğünde, oyuncunun depoladığı bileşikler ile yapacağı eylem)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
 
@@ -4441,6 +4573,9 @@ msgstr "Atlanan Pencereleri Sıfırla"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Girişler varsayılana sıfırlansın mı?"
+
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
+msgstr "Öğe sırasını varsayılana sıfırla"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "Tuş atamalarını sıfırla"
@@ -4875,6 +5010,10 @@ msgstr "Küçük Demir Parçası"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Küçük Fosfat Parçası"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Küçük Demir Parçası"
+
 msgid "SNOWFLAKE"
 msgstr "Kar Tanesi"
 
@@ -5284,9 +5423,6 @@ msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/th
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosentez"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
 
 msgid "THE_DISTURBANCE"
 msgstr "Disturbance"
@@ -5764,7 +5900,13 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Bu bir hata ayıklama sürümü, bu yüzden aşağıdaki bilgi muhtemelen güncel değil"
 
 msgid "UNDERWATERCAVE"
-msgstr "Yeraltı Mağarası"
+msgstr "Denizaltı Mağarası"
+
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Denizaltı yanardağ bacası patlaması"
+
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "{0} arazisinde volkanik patlama"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Keşfedilmemiş"
@@ -5924,6 +6066,9 @@ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
 
+msgid "USE_DISK_CACHE"
+msgstr "Disk önbelleğini kullan"
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
 
@@ -5980,6 +6125,9 @@ msgstr "Hücre İşlemlerini İncele"
 
 msgid "VIEW_ONLINE"
 msgstr "Online Olarak Görüntüle"
+
+msgid "VIEW_PATCH_MICHES"
+msgstr "Miche'leri İncele"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Yama Notlarını Görüntüle"
@@ -7079,7 +7227,7 @@ msgstr ""
 "\n"
 "[indent]—   [b]Glukoz:[/b] Hücreler için birincil ATP depolama kaynağı ve oyuncunun ilk besin kaynağıdır. Glukoz, ATP üretmek için birkaç organel ve protein tarafından tüketilir. Bunlar arasında en dikkat çekici olanlar metabolozomlar ve mitokondrilerdir, çünkü özellikle glukoz için kullanılırlar. Oyuncu öldüğünde, hücresinde bir glukoz rezerviyle yeniden doğar ve açlık korkusu olmadan oyuna rahatlıkla devam edebilir. Oyuncu, ortamda bulunan kolayca erişilebilir glukoza güveniyorsa dikkatli olmalıdır, çünkü her kuşakta genel glukoz miktarı %80 oranında azalır. Glukoz bulutları beyaz renktedir.[/indent]\n"
 "\n"
-"[indent]—   [b]Amonyak:[/b] Üreme için önemli bir bileşiktir. Amonyak, hücre içindeki proteinlerin ve organellerin büyümesi ve çoğaltılması için kullanılır ve ortamda kolaylıkla bolca bulunabilir. Nitrojenaz ve azot fiksasyon plastidi gibi parçalar, ATP ve azottan amonyak üretebilir. Bu da oyuncuyu, kendisinin çoğalması için, ortamda aktif olarak amonyak arama zorunluluğundan kurtarır. Amonyak bulutları turuncu renktedir.[/indent]\n"
+"[indent]—   [b]Amonyak:[/b] Üreme için önemli bir bileşiktir. Amonyak, hücre içindeki proteinlerin ve organellerin büyümesi ve çoğaltılması için kullanılır ve ortamda kolaylıkla bolca bulunabilir. Nitrojenaz ve Nitroplast gibi parçalar, ATP ve azottan amonyak üretebilir. Bu da oyuncuyu, kendisinin çoğalması için, ortamda aktif olarak amonyak arama zorunluluğundan kurtarır. Amonyak bulutları turuncu renktedir.[/indent]\n"
 "\n"
 "[indent]—   [b]Fosfat:[/b] Amonyak ile aynı amaca hizmet eden fosfat da üreme için gereklidir. Ancak amonyaktan farklı olarak fosfatın sentezlenmesi için herhangi bir yöntem yoktur. Bu nedenle, fosfat yalnızca ortamda bulunabilir veya avlanma ile elde edilebilir. Fosfat bulutları mor renktedir.[/indent]\n"
 "\n"
@@ -7198,42 +7346,12 @@ msgstr "Geliştirme yok"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Ulus Editörü"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Etki yok."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Değişiklikler yok."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-"[b]Oksijenli Azot Fiksasyonu[/b]\n"
-"\n"
-"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Bir hücre, [b]Azot Fiksasyon Plastitlerini[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-"Hücreniz bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] geliştirdiğinde, [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazı[/url][/color][/b], [b]Azot Fiksasyon Plastitleri[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi, üreme için gerekli kaynakları daha etkili bir şekilde oluşturur.\n"
-"\n"
-"[b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenaz[/url][/color][/b] ile karşılaştırıldığında; eğer fazladan [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] varsa, [b]Azot Fiksasyon Plastitleri[/b] mantıklı bir seçimdir. Kendi üreme kaynaklarınızı oluşturmanız, kuşaklar arasında daha hızlı ilerlemede sınırlayıcı bir etkeni ortadan kaldırır."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Geliştirme yok."
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinden[/url][/color][/b] daha verimsizdir.\n"
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplasttan[/url][/color][/b] daha verimsizdir.\n"
 "\n"
 "Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
 
@@ -7244,7 +7362,7 @@ msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]Oksijensiz Azot Fiksasyonu[/b]: [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] → [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
 "\n"
-"Enerji harcayarak atmosferik [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinde[/url][/color][/b] bulunan benzer işlemden daha verimsizdir.\n"
+"Enerji harcayarak atmosferik [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplastta[/url][/color][/b] bulunan benzer işlemden daha verimsizdir.\n"
 "\n"
 "[b]Glikoliz[/b]\n"
 "\n"
@@ -7266,6 +7384,41 @@ msgstr ""
 "[b]Oksijensiz Azot Fiksasyonu[/b], [thrive:compound type=\"atp\"]ATP[/thrive:compound] tükettiği için bu organeli hücrenize eklemeden önce fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sahip olmanız gerekir. [b]Nitrojenaz[/b] tarafından yapılan küçük miktarda [b]Glikoliz[/b], bu organelin kendi ozmoregülasyon maliyetini dengelemek için yeterli değildir."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "Geliştirme yok."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Etki yok."
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Oksijensiz Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Değişiklikler yok."
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+"[b]Oksijenli Azot Fiksasyonu[/b]\n"
+"\n"
+"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Bir hücre, [b]Nitroplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"Nitroplastların, ökaryotik hücrelerde, endosimbiyontlardan evrimleştiği gösterilmiştir.\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitroplast]https://en.wikipedia.org/wiki/Nitroplast[/url][/color]\n"
+"\n"
+"https://www.science.org/doi/10.1126/science.ado8571"
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+"Hücreniz bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] geliştirdiğinde, [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazı[/url][/color][/b], [b]Nitroplastlar[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi, üreme için gerekli kaynakları daha etkili bir şekilde oluşturur.\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] olduğu gibi, eğer fazladan [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] varsa, [b]Nitroplastlar[/b] mantıklı bir seçimdir. Kendi üreme kaynaklarınızı oluşturmanız, kuşaklar arasında daha hızlı ilerleme becerinizdeki sınırlayıcı bir etkeni ortadan kaldırır. Ayrıca bu, fazladan [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplamayı da gerektirir; fosfatlar, yüzen kristal parçalar veya mor bulutlardan elde edilebilir."
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_NO"
@@ -7447,11 +7600,11 @@ msgstr "Çok Hücreli Evresi"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miyofibril"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Azot Fiksasyon Plastidi"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrojenaz"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Nitroplast"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Çekirdek"
@@ -8094,6 +8247,17 @@ msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Tomurcuklanma"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Glukoz miktarı, önceki miktarın {0} kadarı düştü."
+
+#, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
 #~ msgstr "Sitoplazma Glikolizi"
 
@@ -8256,10 +8420,6 @@ msgstr "Uzaklaştır"
 #~ "CoA: Koenzim A\n"
 #~ "\n"
 #~ "CO2: Karbondioksit"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Çözünürlük:"
 
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""
@@ -8676,3 +8836,7 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "RATE"
 #~ msgstr "Oran"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Çözünürlük:"

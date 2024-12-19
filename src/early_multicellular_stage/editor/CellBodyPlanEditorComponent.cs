@@ -259,16 +259,18 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         // Show the cell that is about to be placed
-        if (activeActionName != null && Editor.ShowHover)
+        if (Editor.ShowHover)
         {
             GetMouseHex(out int q, out int r);
 
             var effectiveSymmetry = Symmetry;
 
-            var cellType = CellTypeFromName(activeActionName);
+            CellType? cellType = null;
 
-            if (MovingPlacedHex == null)
+            if (MovingPlacedHex == null && activeActionName != null)
             {
+                cellType = CellTypeFromName(activeActionName);
+
                 // Can place stuff at all?
                 // TODO: should placementRotation be used here in some way?
                 isPlacementProbablyValid = IsValidPlacement(new HexWithData<CellTemplate>(new CellTemplate(cellType))
@@ -276,17 +278,29 @@ public partial class CellBodyPlanEditorComponent :
                     Position = new Hex(q, r),
                 });
             }
-            else
+            else if (MovingPlacedHex != null)
             {
                 isPlacementProbablyValid = IsMoveTargetValid(new Hex(q, r), placementRotation, MovingPlacedHex);
+
+                if (MovingPlacedHex.Data != null)
+                {
+                    cellType = MovingPlacedHex.Data.CellType;
+                }
+                else
+                {
+                    GD.PrintErr("Moving placed hex has no cell data");
+                }
 
                 if (!Settings.Instance.MoveOrganellesWithSymmetry)
                     effectiveSymmetry = HexEditorSymmetry.None;
             }
 
-            RunWithSymmetry(q, r,
-                (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
-                effectiveSymmetry);
+            if (cellType != null)
+            {
+                RunWithSymmetry(q, r,
+                    (finalQ, finalR, rotation) => RenderHighlightedCell(finalQ, finalR, rotation, cellType),
+                    effectiveSymmetry);
+            }
         }
         else if (forceUpdateCellGraphics)
         {
@@ -833,26 +847,37 @@ public partial class CellBodyPlanEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the cells symmetrical to the clicked cell.
-            StartHexMoveWithSymmetry(cellPopupMenu.SelectedCells);
+            StartHexMoveWithSymmetry(cellPopupMenu.GetSelectedThatAreStillValid(editedMicrobeCells));
         }
         else
         {
-            StartHexMove(cellPopupMenu.SelectedCells.First());
+            StartHexMove(cellPopupMenu.GetSelectedThatAreStillValid(editedMicrobeCells).FirstOrDefault());
         }
     }
 
     private void OnDeletePressed()
     {
         int alreadyDeleted = 0;
-        var action =
-            new CombinedEditorAction(cellPopupMenu.SelectedCells
-                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
+        var targets = cellPopupMenu.GetSelectedThatAreStillValid(editedMicrobeCells)
+            .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull().ToList();
+
+        if (targets.Count < 1)
+        {
+            GD.PrintErr("No targets found to delete");
+            return;
+        }
+
+        var action = new CombinedEditorAction(targets);
+
         EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        EmitSignal(SignalName.OnCellTypeToEditSelected, cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
+        // This should be fine to trigger even when the cell is no longer in the layout as the other code should
+        // prevent editing invalid cell types
+        EmitSignal(SignalName.OnCellTypeToEditSelected,
+            cellPopupMenu.SelectedCells.First().Data!.CellType.TypeName,
             true);
     }
 
@@ -970,7 +995,8 @@ public partial class CellBodyPlanEditorComponent :
         editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2, islandsWorkMemory3);
 
         // Build the entities to show the current microbe
-        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, new[] { new Hex(0, 0) }.AsEnumerable(),
+        IReadOnlyList<Hex> positionZeroList = [new(0, 0)];
+        UpdateAlreadyPlacedHexes(editedMicrobeCells.Select(o => (o.Position, positionZeroList,
             Editor.HexPlacedThisSession<HexWithData<CellTemplate>, EarlyMulticellularSpecies>(o))), islandResults);
 
         int nextFreeCell = 0;

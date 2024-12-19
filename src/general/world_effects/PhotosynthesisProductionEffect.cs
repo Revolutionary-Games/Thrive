@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Godot;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 using Systems;
 
 /// <summary>
 ///   Creates oxygen based on photosynthesizers (and removes carbon). And does the vice versa for oxygen consumption
-///   to balance things out. This is kind of a simplified version of <see cref="CompoundProductionEffect"/>
+///   to balance things out.
 /// </summary>
 [JSONDynamicTypeAllowed]
 public class PhotosynthesisProductionEffect : IWorldEffect
@@ -39,6 +37,10 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
         List<TweakedProcess> microbeProcesses = [];
 
+        var cloudSizes = new Dictionary<Compound, float>();
+
+        var changesToApply = new Dictionary<Compound, float>();
+
         foreach (var patchKeyValue in targetWorld.Map.Patches)
         {
             var patch = patchKeyValue.Value;
@@ -52,43 +54,20 @@ public class PhotosynthesisProductionEffect : IWorldEffect
 
             foreach (var species in patch.SpeciesInPatch)
             {
-                // Only microbial photosynthesis and respiration are taken into account
-                if (species.Key is not MicrobeSpecies microbeSpecies)
-                    continue;
-
-                var balance = ProcessSystem.ComputeEnergyBalance(microbeSpecies.Organelles, patch.Biome,
-                    microbeSpecies.MembraneType, false, false, targetWorld.WorldSettings, CompoundAmountType.Average,
-                    false);
-
-                float balanceModifier = 1;
-
-                // Scale processes to not consume excess oxygen than what is actually needed. Though, see below which
-                // actual processes use this modifier.
-                if (balance.TotalConsumption < balance.TotalProduction)
-                    balanceModifier = balance.TotalConsumption / balance.TotalProduction;
-
-                ProcessSystem.ComputeActiveProcessList(microbeSpecies.Organelles, ref microbeProcesses);
+                var balanceModifier = ProcessSystem.CalculateSpeciesActiveProcessListForEffect(species.Key,
+                    microbeProcesses, patch.Biome, targetWorld.WorldSettings);
 
                 foreach (var process in microbeProcesses)
                 {
-                    if (process.Process.InternalName == "protein_respiration")
-                        _ = 1;
-
                     // Only handle relevant processes
                     if (!IsProcessRelevant(process.Process))
                         continue;
 
-                    var rate = ProcessSystem.CalculateProcessMaximumSpeed(process,
-                        patch.Biome, CompoundAmountType.Biome, true);
-
-                    // Skip checking processes that cannot run
-                    if (rate.CurrentSpeed <= 0)
-                        continue;
-
-                    // For metabolic processes the speed is at most to reach ATP equilibrium in order to not
-                    // unnecessarily consume environmental oxygen
                     var effectiveSpeed =
-                        (process.Process.IsMetabolismProcess ? balanceModifier : 1) * rate.CurrentSpeed;
+                        ProcessSystem.CalculateEffectiveProcessSpeedForEffect(process, balanceModifier, patch.Biome);
+
+                    if (effectiveSpeed <= 0)
+                        continue;
 
                     // TODO: maybe photosynthesis should also only try to reach glucose balance of +0?
 
@@ -124,49 +103,17 @@ public class PhotosynthesisProductionEffect : IWorldEffect
             oxygenBalance *= modifier;
             co2Balance *= modifier;
 
-            // TODO: add patch volumes, calculate absolute values and after that go back to fractional values
+            changesToApply.Clear();
 
             if (oxygenBalance != 0)
-                ApplyCompoundChanges(patch, Compound.Oxygen, oxygenBalance);
+                changesToApply[Compound.Oxygen] = oxygenBalance;
 
             if (co2Balance != 0)
-                ApplyCompoundChanges(patch, Compound.Carbondioxide, co2Balance);
-        }
-    }
+                changesToApply[Compound.Carbondioxide] = co2Balance;
 
-    private void ApplyCompoundChanges(Patch patch, Compound compound, float change)
-    {
-        if (patch.Biome.TryGetCompound(compound, CompoundAmountType.Biome, out var tweakedBiomeConditions))
-        {
-            if (SimulationParameters.Instance.GetCompoundDefinition(compound).IsEnvironmental)
-            {
-                tweakedBiomeConditions.Ambient = Math.Clamp(tweakedBiomeConditions.Ambient + change, 0, 1);
-            }
-            else
-            {
-                tweakedBiomeConditions.Density = Math.Clamp(tweakedBiomeConditions.Density + change, 0, 1);
-            }
+            if (changesToApply.Count > 0)
+                patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changesToApply, cloudSizes);
         }
-        else
-        {
-            // New compound added to this patch
-            if (change <= 0)
-            {
-                // If trying to add negative compound balance initially, it doesn't make sense so this is just skipped
-                return;
-            }
-
-            if (SimulationParameters.Instance.GetCompoundDefinition(compound).IsEnvironmental)
-            {
-                tweakedBiomeConditions.Ambient = Math.Clamp(change, 0, 1);
-            }
-            else
-            {
-                GD.PrintErr("This effect doesn't handle adding new non-environmental compounds");
-            }
-        }
-
-        patch.Biome.ModifyLongTermCondition(compound, tweakedBiomeConditions);
     }
 
     private bool IsProcessRelevant(BioProcess process)

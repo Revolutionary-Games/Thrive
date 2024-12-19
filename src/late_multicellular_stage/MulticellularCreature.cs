@@ -32,7 +32,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     private ISpawnSystem? spawnSystem;
 
 #pragma warning disable CA2213
-    private MulticellularConvolutionDispayer metaballDisplayer = null!;
+    private MulticellularConvolutionDisplayer metaballDisplayer = null!;
 
     private Node3D? buildingToPlaceGhost;
 #pragma warning restore CA2213
@@ -70,6 +70,9 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
     [JsonProperty]
     private float upDownSwimSpeed = 3;
+
+    [JsonProperty]
+    private float jumpStrength = 60;
 
     private bool actionHasSucceeded;
 
@@ -159,7 +162,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     {
         base._Ready();
 
-        metaballDisplayer = GetNode<MulticellularConvolutionDispayer>("MetaballDisplayer");
+        metaballDisplayer = GetNode<MulticellularConvolutionDisplayer>("MetaballDisplayer");
     }
 
     /// <summary>
@@ -377,7 +380,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
             // TODO: only allow jumping when touching the ground
             // TODO: suppress jump when the user just interacted with a dialog to confirm something, maybe jump should
             // use the on press key thing to only trigger jumping once?
-            ApplyCentralImpulse(new Vector3(0, 1, 0) * (float)delta * 12000);
+            ApplyCentralImpulse(new Vector3(0, 1, 0) * (float)delta * jumpStrength * Mass);
         }
     }
 

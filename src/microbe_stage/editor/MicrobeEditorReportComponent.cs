@@ -41,9 +41,6 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     private Label timeIndicator = null!;
 
     [Export]
-    private Label glucoseReductionLabel = null!;
-
-    [Export]
     private CustomRichTextLabel externalEffectsLabel = null!;
 
     [Export]
@@ -72,6 +69,11 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
     [Export]
     private LabelSettings autoEvoReportSegmentTitleFont = null!;
+
+    [Export]
+    private VBoxContainer majorEventsList = null!;
+
+    private PackedScene eventTemplate = null!;
 
     private HBoxContainer physicalConditionsIconLegends = null!;
     private LineChart temperatureChart = null!;
@@ -119,6 +121,8 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         reportTabPatchSelector.GetPopup().HideOnCheckableItemSelection = false;
 
+        eventTemplate = GD.Load<PackedScene>("res://src/microbe_stage/editor/ReportEventLabelTemplate.tscn");
+
         temperatureIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/Temperature.svg");
 
         speciesResultButtonScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/SpeciesResultButton.tscn");
@@ -140,7 +144,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
 
         reportTabPatchSelector.Clear();
 
-        foreach (var patch in patchSelected.GetClosestConnectedPatches())
+        foreach (var patch in patchSelected.GetAllConnectedPatches())
         {
             if (patch.Visibility != MapElementVisibility.Shown)
                 continue;
@@ -209,13 +213,32 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             .FormatSafe(Editor.CurrentGame.GameWorld.TotalPassedTime);
     }
 
-    public void UpdateGlucoseReduction(float value)
+    public void UpdateEvents(IReadOnlyDictionary<double, List<GameEventDescription>> events, double currentTime)
     {
-        var percentage = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(Math.Round(value * 100));
+        foreach (var currentLabel in majorEventsList.GetChildren())
+        {
+            // TODO: could reuse the label objects, especially when needing to rebuild on locale change this would help
+            currentLabel.QueueFree();
+        }
 
-        // The amount of glucose has been reduced to {0} of the previous amount.
-        glucoseReductionLabel.Text = Localization.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED")
-            .FormatSafe(percentage);
+        foreach (var registeredEvent in events)
+        {
+            // For now our time points are exact
+            // ReSharper disable once CompareOfFloatsByEqualityOperator
+            if (registeredEvent.Key != currentTime)
+                continue;
+
+            foreach (var eventDescription in registeredEvent.Value)
+            {
+                if (!eventDescription.ShowInReport)
+                    continue;
+
+                var label = eventTemplate.Instantiate<Label>();
+
+                majorEventsList.AddChild(label);
+                label.Text = eventDescription.Description.ToString();
+            }
+        }
     }
 
     public void UpdateAutoEvoResults(RunResults results, string external)
@@ -291,7 +314,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
     {
         Editor.SendAutoEvoResultsToReportComponent();
         UpdateTimeIndicator(Editor.CurrentGame.GameWorld.TotalPassedTime);
-        UpdateGlucoseReduction(Editor.CurrentGame.GameWorld.WorldSettings.GlucoseDecay);
+        UpdateEvents(Editor.CurrentGame.GameWorld.EventsLog, Editor.CurrentGame.GameWorld.TotalPassedTime);
         UpdateTimeline();
         UpdateReportTabPatchSelector();
         UpdateReportTabStatistics();

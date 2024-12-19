@@ -11,6 +11,7 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using DevCenterCommunication.Models.Enums;
 using Godot;
+using SharedBase.Models;
 using SharedBase.Utilities;
 
 /// <summary>
@@ -137,6 +138,14 @@ public static class NativeInterop
         try
         {
             var result = CheckCPUFeaturesFull();
+
+            // Apple doesn't support x86 extensions so we nudge things on the right track here
+            if (OperatingSystem.IsMacOS())
+            {
+                GD.Print("Mac detected so skipping CPU check and not trying to use AVX");
+                disableAvx = true;
+                return true;
+            }
 
             // If the CPU can support the full speed library all is well
             if (result == CPUCheckResult.CPUCheckSuccess)
@@ -452,27 +461,97 @@ public static class NativeInterop
 
         if (library == NativeConstants.Library.ThriveExtension)
         {
-            // Special GDExtension handling, we assume Godot has already loaded it
-
-            var modules = Process.GetCurrentProcess().Modules;
-            var count = modules.Count;
-
-            for (var i = 0; i < count; ++i)
+            if (!OperatingSystem.IsMacOS())
             {
-                var module = modules[i];
+                // Special GDExtension handling, we assume Godot has already loaded it
 
-                if (module.ModuleName.Contains("thrive_extension"))
+                var modules = Process.GetCurrentProcess().Modules;
+                var count = modules.Count;
+
+                for (var i = 0; i < count; ++i)
                 {
+                    var module = modules[i];
+
+                    if (module.ModuleName.Contains("thrive_extension"))
+                    {
 #if DEBUG_LIBRARY_LOAD
-                    GD.Print($"Trying to use already loaded module path: {module.FileName}");
+                        GD.Print($"Trying to use already loaded module path: {module.FileName}");
 #endif
 
-                    return NativeLibrary.Load(module.FileName);
+                        return NativeLibrary.Load(module.FileName);
+                    }
                 }
-            }
 
-            GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
-                "will likely fail");
+                GD.PrintErr("GDExtension was not loaded by Godot, falling back to default library load but this " +
+                    "will likely fail");
+            }
+            else
+            {
+                // For some reason the modules list stays at one item on a Mac so we need to do some special assuming
+                // here
+                // TODO: this will be problematic in the future if debug specific version of libraries are added as
+                // supported in the .gdextension files
+
+                var file = NativeConstants.GetLibraryDllName(NativeConstants.Library.ThriveExtension,
+                    PackagePlatform.Mac, PrecompiledTag.WithoutAvx);
+
+                if (File.Exists(file))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {file}");
+#endif
+
+                    return NativeLibrary.Load(file);
+                }
+
+                var adjustedFile = Path.Combine("lib", file);
+
+                if (File.Exists(adjustedFile))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {adjustedFile}");
+#endif
+
+                    return NativeLibrary.Load(adjustedFile);
+                }
+
+                // Special case needed for .app packaging
+                var location = GetExecutableFolder();
+
+                adjustedFile = Path.Combine(location, file);
+
+                if (File.Exists(adjustedFile))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {adjustedFile}");
+#endif
+
+                    return NativeLibrary.Load(adjustedFile);
+                }
+
+#if DEBUG_LIBRARY_LOAD
+                GD.Print($"Attempted Mac GDExtension: {adjustedFile}");
+#endif
+
+                adjustedFile = Path.Combine(location, "lib", file);
+
+                if (File.Exists(adjustedFile))
+                {
+#if DEBUG_LIBRARY_LOAD
+                    GD.Print($"Loading Mac GDExtension from: {adjustedFile}");
+#endif
+
+                    return NativeLibrary.Load(adjustedFile);
+                }
+
+#if DEBUG_LIBRARY_LOAD
+                GD.Print($"Last attempted Mac GDExtension: {adjustedFile}");
+#endif
+
+                GD.PrintErr(
+                    "Mac GDExtension special load logic failed, falling back to default library load but this " +
+                    "will likely fail");
+            }
 
             return NativeLibrary.Load(libraryName, assembly, searchPath);
         }
@@ -550,14 +629,19 @@ public static class NativeInterop
                 throw new Exception("Entry assembly location is empty");
             }
 
-            if (location.StartsWith("file://"))
-            {
-                location = location.Substring("file://".Length);
-            }
+            location = RemoveFilePrefix(location);
 
             // Remove one folder level if this is likely an internal Godot path (when packaged)
             if (location.Contains(GODOT_INTERNAL_PATH_LIKELY_MARKER))
+            {
+                // On Mac handle .app folder usage
+                if (Path.GetFullPath(location).Contains(".app/"))
+                {
+                    return Path.Join(location, "../../MacOS");
+                }
+
                 return Path.Join(location, "..");
+            }
 
             return location;
         }
@@ -572,6 +656,16 @@ public static class NativeInterop
 
             return string.Empty;
         }
+    }
+
+    private static string RemoveFilePrefix(string location)
+    {
+        if (location.StartsWith("file://"))
+        {
+            location = location.Substring("file://".Length);
+        }
+
+        return location;
     }
 
     private static bool LoadLibraryIfExists(string libraryPath, out IntPtr loaded)

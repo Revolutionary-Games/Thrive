@@ -386,9 +386,17 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
     public Species? GetActiveSpeciesData(uint speciesId)
     {
+        return GetSpeciesDataFromGeneration(generationDisplayed, speciesId);
+    }
+
+    /// <summary>
+    ///   Returns a record of the species from the given generation or earlier
+    /// </summary>
+    public Species? GetSpeciesDataFromGeneration(int generation, uint speciesId)
+    {
         var gameWorld = world.GameProperties.GameWorld;
 
-        for (int i = generationDisplayed; i >= 0; --i)
+        for (int i = generation; i >= 0; --i)
         {
             gameWorld.GenerationHistory[i].AllSpeciesData
                 .TryGetValue(speciesId, out var speciesRecord);
@@ -823,6 +831,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateSpeciesList();
         SpeciesListMenuIndexChanged(0);
         UpdateCurrentWorldStatistics();
+        patchMapDrawer.UpdatePatchEvents();
 
         if (patchMapDrawer.PlayerPatch != null)
             PatchListMenuUpdate(patchMapDrawer.PlayerPatch);
@@ -847,6 +856,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateAutoEvoReport();
         UpdateSpeciesList();
         UpdatePatchDetailPanel(patchMapDrawer);
+        patchMapDrawer.UpdatePatchEvents();
     }
 
     private void UpdateAutoEvoReport()
@@ -880,16 +890,31 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         UpdateSpeciesPreview(species);
     }
 
-    private void UpdateSpeciesPreview(Species species)
+    private void UpdateSpeciesPreview(Species? species)
     {
+        if (species == null)
+        {
+            ResetSpeciesPreview();
+            return;
+        }
+
         speciesListMenu.Text = species.FormattedName;
         speciesDetailsPanelWithFossilisation.PreviewSpecies = species;
+    }
+
+    private void ResetSpeciesPreview()
+    {
+        speciesListMenu.Text = string.Empty;
+        speciesDetailsPanelWithFossilisation.PreviewSpecies = null;
     }
 
     private void EvolutionaryTreeNodeSelected(int generation, uint id)
     {
         HistoryListMenuIndexChanged(generation);
-        UpdateSpeciesPreview(world.SpeciesHistoryList[generation][id]);
+
+        var species = GetSpeciesDataFromGeneration(generation, id);
+
+        UpdateSpeciesPreview(species);
     }
 
     private void PatchListMenuIndexChanged(int index)

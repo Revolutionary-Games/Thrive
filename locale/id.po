@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -544,6 +544,22 @@ msgstr "Oleh:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Oleh Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsium Karbonat"
 
@@ -634,6 +650,10 @@ msgstr "Selulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -678,8 +698,16 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Kemoreseptor"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -752,6 +780,9 @@ msgstr "Statistika Organisme"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Bersihkan Save Lama"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tutup"
@@ -917,6 +948,22 @@ msgstr "Konsentrasi {0} menurun sebanyak {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Awan senyawa"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1291,6 +1338,14 @@ msgstr "Kredit"
 msgid "CTRL"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Pengembang Masa Ini"
 
@@ -1571,6 +1626,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Tambah keybind baru"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Keluar dari permainan"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Kecepatan:"
 
@@ -1629,6 +1688,9 @@ msgstr ""
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap kerusakan dan memerlukan lebih sedikit energi agar tak berubah bentuk. Namun, memperlambat sel dan mengurangi laju kemampuannya menyerap sumber daya."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr ""
@@ -1903,6 +1965,10 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Lingkungan"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagik"
 
@@ -1936,6 +2002,10 @@ msgstr "Error Memuat"
 msgid "ERROR_SAVING"
 msgstr "Error Menyimpan"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Error Memuat"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1944,6 +2014,10 @@ msgstr "lolos dari penelanan"
 
 msgid "ESTUARY"
 msgstr "Muara"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Tambah keybind baru"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Pohon Evolusi"
@@ -1988,6 +2062,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(kecepatan mutasi spesies AI)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(kecepatan mutasi spesies AI)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2365,6 +2443,10 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "KONFIRMASI"
+
 msgid "GUI"
 msgstr ""
 
@@ -2700,6 +2782,13 @@ msgstr "Kemolitoautotrofi Besi"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Keluar dari permainan"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Selesaikan Satu Generasi"
 
 msgid "JANUARY"
 msgstr ""
@@ -3216,12 +3305,20 @@ msgstr "Salju laut"
 msgid "MASTER_VOLUME"
 msgstr "Volume master"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "MAX_FPS"
 msgstr "FPS Maks:"
 
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "FPS Maks:"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Ukuran:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3250,6 +3347,10 @@ msgstr "Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "Media Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Potongan Besi Kecil"
 
 msgid "MEGA_YEARS"
 msgstr "Juta tahun"
@@ -3307,6 +3408,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "telah punah dari planet"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3847,6 +3952,14 @@ msgstr "Gerak kebawah atau jongkok"
 msgid "MOVE_FORWARD"
 msgstr "Gerak depan"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Pindah ke Daerah Ini"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Gerak kanan"
+
 msgid "MOVE_LEFT"
 msgstr "Gerak kiri"
 
@@ -4036,13 +4149,13 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastida Pengikat Nitrogen"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 msgid "NONE"
@@ -4126,6 +4239,10 @@ msgstr "Buka Folder Tangkapan Layar"
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Terpilih:"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolusi:"
 
 msgid "NUCLEUS"
 msgstr "Nukleus"
@@ -4279,6 +4396,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Letakkan organel"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Pilus"
 
@@ -4303,6 +4424,14 @@ msgstr "Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organel"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Muat permainan yang sudah disimpan"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4612,6 +4741,9 @@ msgstr "populasi di daerah-daerah:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULASI:"
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predasi {0}"
 
@@ -4734,6 +4866,14 @@ msgstr "Produksi ATP"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tunas"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduksi:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
 
@@ -4756,6 +4896,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Setel ulang input ke semula?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Setel ulang input ke semula?"
 
 #, fuzzy
@@ -5245,6 +5389,10 @@ msgstr "Potongan Besi Kecil"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Potongan Besi Kecil"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Potongan Besi Kecil"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5685,9 +5833,6 @@ msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju b
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosintesis"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "Jumlah glukosa telah dikurang menjadi {0} dari jumlah sebelumya."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6208,6 +6353,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Gua Bawah Laut"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Gua Bawah Laut"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Gua Bawah Laut"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Organel Terputus"
 
@@ -6390,6 +6543,9 @@ msgstr "Tambah keybind baru"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Atur jumlah background thread secara manual"
 
@@ -6454,6 +6610,10 @@ msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [t
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Alur Waktu"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Gua"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7368,38 +7528,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Aktifkan editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
 
@@ -7429,6 +7557,38 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastida Pengikat Nitrogen"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7607,12 +7767,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastida Pengikat Nitrogen"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8179,6 +8339,17 @@ msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
 #, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Tunas"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "Jumlah glukosa telah dikurang menjadi {0} dari jumlah sebelumya."
+
+#, fuzzy
 #~ msgid "OXYTOXISOME_DESC"
 #~ msgstr "Metabolosom termodifikasi yang bertanggung jawab atas produksi sebuah bentuk primitif dari agen racun OksiToksi NT."
 
@@ -8361,10 +8532,6 @@ msgstr "Perkecil"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Tidak diketahui di Windows"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolusi:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

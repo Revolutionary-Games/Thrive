@@ -182,12 +182,29 @@ public partial class CellEditorComponent :
     private Button appearanceTabButton = null!;
     private Button behaviourTabButton = null!;
 
+    [Export]
+    private Button growthOrderTabButton = null!;
+
+    [Export]
+    private Button toleranceTabButton = null!;
+
     private PanelContainer structureTab = null!;
     private PanelContainer appearanceTab = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private BehaviourEditorSubComponent behaviourEditor = null!;
+
+    [Export]
+    private PanelContainer growthOrderTab = null!;
+
+    [Export]
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private GrowthOrderPicker growthOrderGUI = null!;
+
+    [Export]
+    private PanelContainer toleranceTab = null!;
 
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
@@ -226,6 +243,12 @@ public partial class CellEditorComponent :
     private Label autoEvoPredictionFailedLabel = null!;
     private Label bestPatchLabel = null!;
     private Label worstPatchLabel = null!;
+
+    [Export]
+    private Control organelleSuggestionLoadingIndicator = null!;
+
+    [Export]
+    private Label organelleSuggestionLabel = null!;
 
     private Control autoEvoPredictionPanel = null!;
 
@@ -276,6 +299,9 @@ public partial class CellEditorComponent :
 
     [Export]
     private ProcessList processList = null!;
+
+    [Export]
+    private Control growthOrderNumberContainer = null!;
 
     [Export]
     private CustomWindow processListWindow = null!;
@@ -332,6 +358,10 @@ public partial class CellEditorComponent :
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
 
+    private OrganelleSuggestionCalculation? inProgressSuggestion;
+    private bool suggestionDirty;
+    private double suggestionStartTimer;
+
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
     /// </summary>
@@ -380,18 +410,22 @@ public partial class CellEditorComponent :
 
     /// <summary>
     ///   Similar to organelleDataDirty but with the exception that this is only set false when the editor
-    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuild every time when
+    ///   membrane mesh has been redone. Used so the membrane doesn't have to be rebuilt every time when
     ///   switching back and forth between structure and membrane tab (without editing organelle placements).
     /// </summary>
     private bool microbeVisualizationOrganellePositionsAreDirty = true;
 
     private bool microbePreviewMode;
 
+    private bool showGrowthOrderNumbers;
+
     public enum SelectionMenuTab
     {
         Structure,
         Membrane,
         Behaviour,
+        GrowthOrder,
+        Tolerance,
     }
 
     public enum LightLevelOption
@@ -500,6 +534,20 @@ public partial class CellEditorComponent :
         }
     }
 
+    /// <summary>
+    ///   When enabled numbers are shown above the organelles to indicate their growth order
+    /// </summary>
+    public bool ShowGrowthOrder
+    {
+        get => showGrowthOrderNumbers;
+        set
+        {
+            showGrowthOrderNumbers = value;
+
+            UpdateGrowthOrderButtons();
+        }
+    }
+
     [JsonIgnore]
     public bool HasNucleus => PlacedUniqueOrganelles.Any(d => d == nucleus);
 
@@ -590,19 +638,7 @@ public partial class CellEditorComponent :
             new Basis(MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation)),
             organelle.OrganelleModelPosition);
 
-        if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-        {
-            var flagellumLength = flagellumUpgrades.LengthFraction;
-
-            // TODO: shouldn't this also use Constants.DEFAULT_HEX_SIZE here as the base scale?
-            organelleModel.Scale = new Vector3(1, 1, Constants.FLAGELLA_MAX_UPGRADE_VISUAL_LENGTH *
-                flagellumLength + Constants.FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH);
-        }
-        else
-        {
-            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
-        }
+        organelleModel.Scale = organelle.Definition.GetUpgradesSizeModification(organelle.Upgrades);
     }
 
     /// <summary>
@@ -809,6 +845,10 @@ public partial class CellEditorComponent :
             // In multicellular the body plan editor handles this
             behaviourTabButton.Visible = false;
             behaviourEditor.Visible = false;
+            growthOrderTab.Visible = false;
+            growthOrderTabButton.Visible = false;
+
+            // Tolerances are visible for now
         }
 
         UpdateMicrobePartSelections();
@@ -844,6 +884,7 @@ public partial class CellEditorComponent :
         }
 
         CheckRunningAutoEvoPrediction();
+        CheckRunningSuggestion(delta);
 
         if (organelleDataDirty)
         {
@@ -856,6 +897,13 @@ public partial class CellEditorComponent :
         {
             // Init being called is checked at the start of this method
             previewSimulation!.ProcessAll((float)delta);
+        }
+
+        // Update the growth order number positions each frame so that the camera moving doesn't get them out of sync
+        // could do this with a dirty-flag approach for saving on performance but for now this is probably fine
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            UpdateGrowthOrderNumbers();
         }
 
         // Show the organelle that is about to be placed
@@ -1016,7 +1064,8 @@ public partial class CellEditorComponent :
         // It is easiest to just replace all
         editedProperties.Organelles.Clear();
 
-        foreach (var organelle in editedMicrobeOrganelles.Organelles)
+        // Even in multicellular context, it should always be safe to apply the organelle growth order
+        foreach (var organelle in growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles))
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
             editedProperties.Organelles.AddFast(organelleToAdd, hexTemporaryMemory, hexTemporaryMemory2);
@@ -2040,8 +2089,7 @@ public partial class CellEditorComponent :
             organelleModel.Transform = new Transform3D(new Basis(MathUtils.CreateRotationForOrganelle(rotation)),
                 cartesianPosition + shownOrganelleDefinition.ModelOffset);
 
-            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
+            organelleModel.Scale = shownOrganelleDefinition.GetUpgradesSizeModification(upgrades);
 
             organelleModel.Visible = true;
 
@@ -2210,6 +2258,7 @@ public partial class CellEditorComponent :
         OnColourChanged();
 
         StartAutoEvoPrediction();
+        suggestionDirty = true;
     }
 
     private void OnRigidityChanged()
@@ -2299,11 +2348,14 @@ public partial class CellEditorComponent :
         UpdateCellVisualization();
 
         StartAutoEvoPrediction();
+        suggestionDirty = true;
 
         UpdateFinishButtonWarningVisibility();
 
         // Updated here to make sure everything else has been updated first so tooltips are accurate
         UpdateOrganelleUnlockTooltips(false);
+
+        UpdateGrowthOrderButtons();
     }
 
     /// <summary>
@@ -2377,26 +2429,41 @@ public partial class CellEditorComponent :
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
             // Start moving the organelles symmetrical to the clicked organelle.
-            StartHexMoveWithSymmetry(organelleMenu.SelectedOrganelles);
+            StartHexMoveWithSymmetry(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles));
         }
         else
         {
-            StartHexMove(organelleMenu.SelectedOrganelles.First());
+            StartHexMove(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles).FirstOrDefault());
         }
     }
 
     private void OnDeletePressed()
     {
         int alreadyDeleted = 0;
-        var action =
-            new CombinedEditorAction(organelleMenu.SelectedOrganelles
-                .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull());
+        var targets = organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles)
+            .Select(o => TryCreateRemoveHexAtAction(o.Position, ref alreadyDeleted)).WhereNotNull().ToList();
+
+        if (targets.Count < 1)
+        {
+            GD.PrintErr("No targets found to delete");
+            return;
+        }
+
+        var action = new CombinedEditorAction(targets);
+
         EnqueueAction(action);
     }
 
     private void OnModifyPressed()
     {
-        var targetOrganelle = organelleMenu.SelectedOrganelles.First();
+        var targetOrganelle = organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles).FirstOrDefault();
+
+        if (targetOrganelle == null)
+        {
+            GD.PrintErr("Target to modify has disappeared");
+            return;
+        }
+
         var upgradeGUI = targetOrganelle.Definition.UpgradeGUI;
 
         if (!IsUpgradingPossibleFor(targetOrganelle.Definition))
@@ -2590,7 +2657,8 @@ public partial class CellEditorComponent :
     /// <param name="target">The species to copy to</param>
     /// <remarks>
     ///   <para>
-    ///     TODO: it would be nice to unify this and the final apply properties to the edited species
+    ///     TODO: it would be nice to unify this and the final apply properties to the edited species. There's also
+    ///     almost a duplicate in OrganelleSuggestionCalculation
     ///   </para>
     /// </remarks>
     private void CopyEditedPropertiesToSpecies(MicrobeSpecies target)
@@ -2694,6 +2762,8 @@ public partial class CellEditorComponent :
         structureTab.Hide();
         appearanceTab.Hide();
         behaviourEditor.Hide();
+        growthOrderTab.Hide();
+        toleranceTab.Hide();
 
         // Show selected
         switch (selectedSelectionMenuTab)
@@ -2703,6 +2773,7 @@ public partial class CellEditorComponent :
                 structureTab.Show();
                 structureTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2711,6 +2782,7 @@ public partial class CellEditorComponent :
                 appearanceTab.Show();
                 appearanceTabButton.ButtonPressed = true;
                 MicrobePreviewMode = true;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2719,6 +2791,27 @@ public partial class CellEditorComponent :
                 behaviourEditor.Show();
                 behaviourTabButton.ButtonPressed = true;
                 MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
+                break;
+            }
+
+            case SelectionMenuTab.GrowthOrder:
+            {
+                growthOrderTab.Show();
+                growthOrderTabButton.ButtonPressed = true;
+                MicrobePreviewMode = false;
+                ShowGrowthOrder = true;
+
+                UpdateGrowthOrderButtons();
+                break;
+            }
+
+            case SelectionMenuTab.Tolerance:
+            {
+                toleranceTab.Show();
+                toleranceTabButton.ButtonPressed = true;
+                MicrobePreviewMode = false;
+                ShowGrowthOrder = false;
                 break;
             }
 
@@ -2969,5 +3062,236 @@ public partial class CellEditorComponent :
         }
 
         public bool Finished => AutoEvoRun.Finished;
+    }
+
+    /// <summary>
+    ///   Holds data for the organelle suggestion calculation run
+    /// </summary>
+    private class OrganelleSuggestionCalculation
+    {
+        private readonly List<OrganelleDefinition> availableOrganelles = new();
+        private readonly MicrobeSpecies calculationSpecies;
+        private readonly MicrobeSpecies pristineSpeciesCopy;
+        private readonly Action<MicrobeSpecies> applyLatestEditsToSpecies;
+        private readonly GameProperties currentGameProperties;
+        private readonly Species editorOpenedForSpecies;
+        private readonly SimulationCache simulationCache;
+
+        private readonly Random random = new();
+        private readonly List<Hex> workMemory1 = new();
+        private readonly List<Hex> workMemory2 = new();
+
+        private AutoEvoRun? currentRun;
+        private BiomeConditions? biome;
+
+        private bool calculatedNoChange;
+        private double bestResult;
+        private OrganelleDefinition? bestOrganelle;
+
+        private bool resultRead;
+
+        public OrganelleSuggestionCalculation(MicrobeSpecies initialSpeciesToCopy,
+            Action<MicrobeSpecies> applyLatestEditsToSpecies, GameProperties currentGameProperties,
+            Species editedSpecies)
+        {
+            pristineSpeciesCopy = initialSpeciesToCopy;
+            calculationSpecies = initialSpeciesToCopy.Clone(true);
+            this.applyLatestEditsToSpecies = applyLatestEditsToSpecies;
+            this.currentGameProperties = currentGameProperties;
+            editorOpenedForSpecies = editedSpecies;
+
+            simulationCache = new SimulationCache(currentGameProperties.GameWorld.WorldSettings);
+        }
+
+        public bool IsCompleted { get; private set; }
+
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        /// <summary>
+        ///   If true then pure population numbers are used as the score for the suggestions (if false an energy
+        ///   estimation is used). This value can be changed to experiment with the results.
+        /// </summary>
+        public bool UsePurePopulationScore { get; set; }
+
+        /// <summary>
+        ///   Setup this for a new suggestion calculation
+        /// </summary>
+        /// <param name="organellesToTry">Valid organelles to try in the suggestion</param>
+        /// <param name="selectedPatch">Patch conditions to simulate in</param>
+        public void StartNew(List<OrganelleDefinition> organellesToTry, Patch selectedPatch)
+        {
+            biome = selectedPatch.Biome;
+
+            if (currentRun != null)
+            {
+                GD.PrintErr("Starting new suggestion run even though there is one in-progress");
+                currentRun.Abort();
+                currentRun = null;
+            }
+
+            availableOrganelles.Clear();
+            availableOrganelles.AddRange(organellesToTry);
+
+            // Refresh the latest edits to our local pristine copy that is then used by a background thread
+            applyLatestEditsToSpecies(pristineSpeciesCopy);
+
+            calculatedNoChange = false;
+            bestOrganelle = null;
+            bestResult = -1;
+            resultRead = false;
+            IsCompleted = false;
+
+            StartNextRun();
+        }
+
+        /// <summary>
+        ///   Checks current status (and starts more simulations if still queued)
+        /// </summary>
+        public void CheckProgress()
+        {
+            // When no run in progress need to start the next one
+            if (currentRun != null && !currentRun.Finished)
+                return;
+
+            if (currentRun != null)
+            {
+                if (currentRun.Results == null)
+                    throw new InvalidOperationException("Auto-evo suggestion doesn't have results object");
+
+                if (biome == null)
+                    throw new InvalidOperationException("Biome not initialized for suggestion");
+
+                double score;
+                if (UsePurePopulationScore)
+                {
+                    score = currentRun.Results.GetGlobalPopulation(calculationSpecies);
+                }
+                else
+                {
+                    // Need to clear cache as we re-use the species objects so caching would be incorrect
+                    simulationCache.Clear();
+
+                    var individualCost =
+                        MichePopulation.CalculateMicrobeIndividualCost(calculationSpecies, biome, simulationCache);
+
+                    score = currentRun.Results.GetGlobalPopulation(calculationSpecies) * individualCost;
+                }
+
+                // Store result of run
+                if (!calculatedNoChange)
+                {
+                    // Calculating no change energy so don't apply any changes
+                    calculatedNoChange = true;
+
+                    // This is always calculated first so we can just directly set the result
+                    bestResult = score;
+                }
+                else
+                {
+                    var last = availableOrganelles[^1];
+                    availableOrganelles.RemoveAt(availableOrganelles.Count - 1);
+
+                    if (score > bestResult)
+                    {
+                        bestResult = score;
+                        bestOrganelle = last;
+                    }
+                }
+
+                currentRun = null;
+            }
+
+            if (!StartNextRun())
+            {
+                // Cannot start next run, this is complete
+                IsCompleted = true;
+            }
+        }
+
+        public OrganelleDefinition? GetResult()
+        {
+            return bestOrganelle;
+        }
+
+        public bool ReadAndResetResultFlag()
+        {
+            if (!resultRead && IsCompleted)
+            {
+                resultRead = true;
+                return true;
+            }
+
+            return false;
+        }
+
+        private void CopyPristineToCalculation()
+        {
+            // TODO: there is duplication between this and
+            calculationSpecies.Colour = pristineSpeciesCopy.Colour;
+            calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
+            calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
+            calculationSpecies.IsBacteria = pristineSpeciesCopy.IsBacteria;
+
+            // This can't be undone but should be fine as the species to edit cannot change in the editor
+            if (pristineSpeciesCopy.PlayerSpecies)
+                calculationSpecies.BecomePlayerSpecies();
+
+            calculationSpecies.Organelles.Clear();
+
+            foreach (var entry in pristineSpeciesCopy.Organelles)
+            {
+                calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
+            }
+        }
+
+        private bool StartNextRun()
+        {
+            if (currentRun != null && !currentRun.Finished)
+            {
+                GD.PrintErr("Previous run should have been finished before starting next as part of suggestion");
+            }
+
+            // Set up the temporary species for the suggestion run
+            CopyPristineToCalculation();
+
+            if (!calculatedNoChange)
+            {
+                // Calculating no change energy so don't apply any changes
+            }
+            else
+            {
+                while (true)
+                {
+                    if (availableOrganelles.Count < 1)
+                    {
+                        // Everything is already tested
+                        return false;
+                    }
+
+                    var last = availableOrganelles[^1];
+
+                    if (!CommonMutationFunctions.AddOrganelleWithStrategy(last.SuggestionPlacement, last,
+                            CommonMutationFunctions.Direction.Neutral, calculationSpecies, workMemory1, workMemory2,
+                            random))
+                    {
+                        GD.PrintErr($"Cannot find placement for organelle suggestion test with {last.InternalName}");
+                        availableOrganelles.RemoveAt(availableOrganelles.Count - 1);
+                        continue;
+                    }
+
+                    // Succeeded in adding the organelle to test, can continue to starting the run
+                    break;
+                }
+            }
+
+            currentRun = new EditorAutoEvoRun(currentGameProperties.GameWorld,
+                currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies)
+            {
+                CollectEnergyInfo = false,
+            };
+
+            currentRun.Start();
+
+            return true;
+        }
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-10-25 10:31+0300\n"
+"POT-Creation-Date: 2024-12-17 00:10+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -520,6 +520,22 @@ msgstr "Származás:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "A Revolutionary Games Studio-tól"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Nincs cím"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kálcium-karbonát"
 
@@ -611,6 +627,10 @@ msgstr "Cellulóz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ez a membrán egy fallal rendelkezik, ami jobb védelmet jelent a sérülések ellen, főleg a fizikai sérülések ellen. Kevesebb energia szükséges neki formája megtartásához, viszont lassú a bekebelezése és lassítja magát a sejtet is."
 
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Az az érték, ami a világok generálásáért felelős. Ennek az értéknek pozitívnak kell lennie."
+
 msgid "CELL_TYPE_NAME"
 msgstr "Sejttípus neve"
 
@@ -652,8 +672,16 @@ msgstr "Kemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Minimális detektálandó mennyiség:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "A kemoreceptor segítségével messzebbi vegyületeket detektálhatsz. Az elhelyezése után módosítsd a kemoreceptort a vegyület kiválasztásával, és a segédvonal színének beállításával."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Minden sejt csak kemoreceptorok segítségével képes \"látni\", így tudnak információt gyűjteni a környezetükről. Ezen sejtszervecske hozzáadásával sokkal finomhangoltabb lesz a sejted kemorecepciója. Egy vonal fog megjelenni játékon belül, mely jelképezi a sejt \"látását\", és a sejt közelében található vegyületekre mutat."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -725,6 +753,9 @@ msgstr "Organizmus statisztikái"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Régi mentések törlése"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Bezár"
@@ -888,6 +919,22 @@ msgstr "{0} töménysége ennyivel csökkent: {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} fogyasztás"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Az összetevők mutatása / elrejtése"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Vegyületfelhők sűrűsége"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1256,6 +1303,14 @@ msgstr "Stáblista"
 msgid "CTRL"
 msgstr "Ctrl"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Képesség sáv megjelenítése"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Játék folytatása"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Jelenlegi fejlesztők"
 
@@ -1532,6 +1587,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Segítség"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Kilépés a játékból"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Sebesség:"
 
@@ -1593,6 +1652,9 @@ msgstr "Dupla kattintás a teljes képernyő nézetért"
 
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Egy membrán, ami két rétegből áll. Jobb védelmet nyújt sérülések ellen, és kevesebb energia szükséges ahhoz, hogy ne deformálódjon el. Hátránya viszont, hogy lassítja a sejt bekebelező képességét."
+
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
 
 msgid "DUMP_SCENE_TREE"
 msgstr ""
@@ -1864,6 +1926,10 @@ msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel, emiatt
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "A környezet és a vegyületek mutatása / elrejtése"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Környezet"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagikus"
 
@@ -1896,6 +1962,10 @@ msgstr "Betöltési hiba"
 msgid "ERROR_SAVING"
 msgstr "Mentési hiba"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Betöltési hiba"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1904,6 +1974,10 @@ msgstr ""
 
 msgid "ESTUARY"
 msgstr "Torkolat"
+
+#, fuzzy
+msgid "EVENT_ERUPTION_TOOLTIP"
+msgstr "Öngyilkosság"
 
 #, fuzzy
 msgid "EVOLUTIONARY_TREE"
@@ -1947,6 +2021,10 @@ msgstr ""
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
+msgstr "(a sebesség, mely alatt az AI fajok mutálódnak)"
+
+#, fuzzy
+msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr "(a sebesség, mely alatt az AI fajok mutálódnak)"
 
 msgid "EXPORT_ALL_WORLDS"
@@ -2330,6 +2408,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikus csapat"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Elfogad"
+
 msgid "GUI"
 msgstr ""
 
@@ -2660,6 +2742,13 @@ msgstr "Vas oxidálása"
 #, fuzzy
 msgid "ITCH_TOOLTIP"
 msgstr "Kilépés a játékból"
+
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Több sejthez való kapcsolódást teszi lehetővé. Ez a legelső lépés a többsejtűség felé. Amikor a sejted egy kolónia tagja, akkor a vegyületek eloszlanak a sejtek között. Ameddig egy kolónia tagja vagy, addig nem léphetsz be a sejtszerkesztőbe, emiatt el kell válnod a kolóniától miután elegendő vegyületet gyűjtöttél."
 
 msgid "JANUARY"
 msgstr "Január"
@@ -3168,11 +3257,19 @@ msgstr "Tengeri hó"
 msgid "MASTER_VOLUME"
 msgstr "Fő hangerő"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Játék folytatása"
+
 msgid "MAX_FPS"
 msgstr "Maximum FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Végtelen"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Méret:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Entitások maximális száma:"
@@ -3201,6 +3298,10 @@ msgstr "Felvétel"
 
 msgid "MEDIASTOP"
 msgstr "Média stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Kis vasdarab"
 
 msgid "MEGA_YEARS"
 msgstr "Myr"
@@ -3258,6 +3359,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "kihalt a bolygón"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3793,6 +3898,14 @@ msgstr "Mozgás lefelé vagy guggolás"
 msgid "MOVE_FORWARD"
 msgstr "Mozgás előre"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Feltöltendő mod:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Mozgás jobbra"
+
 msgid "MOVE_LEFT"
 msgstr "Mozgás balra"
 
@@ -4020,13 +4133,13 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ az [thrive:compound type=\"nitrogen\"][/thrive:compound] koncentrációjától."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Nitrifikáló színtest"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
 
 msgid "NONE"
@@ -4107,6 +4220,10 @@ msgstr "A képernyőképmappa nem található"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Egy mod sincs kijelölve"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Felbontás:"
 
 msgid "NUCLEUS"
 msgstr "Sejtmag"
@@ -4262,6 +4379,10 @@ msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Sejtszervecske elhelyezése"
 
 #, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
+#, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Ragadozói pilus"
 
@@ -4286,6 +4407,14 @@ msgstr "Ragadozói pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Ragadozói pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Sejtszervecskék"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Korábbi mentett játékok betöltése"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4585,6 +4714,10 @@ msgstr "Populáció a patch-ekben:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID száma"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} ragadozása"
 
@@ -4706,6 +4839,14 @@ msgstr "Reprodukció"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Bimbózás"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodukció:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(a sebesség, mely alatt az MI fajok mutálódnak)"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodukció:"
 
@@ -4728,6 +4869,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Vissza akarod állítani a bemeneteket az alapokra?"
 
 #, fuzzy
@@ -5201,6 +5346,10 @@ msgstr "Kis vasdarab"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Kis vasdarab"
 
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Kis vasdarab"
+
 msgid "SNOWFLAKE"
 msgstr ""
 
@@ -5636,9 +5785,6 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t állít elő. Hat
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termoszintézis"
-
-msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
-msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."
 
 msgid "THE_DISTURBANCE"
 msgstr ""
@@ -6134,6 +6280,14 @@ msgid "UNDERWATERCAVE"
 msgstr "Víz alatti barlang"
 
 #, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION"
+msgstr "Víz alatti barlang"
+
+#, fuzzy
+msgid "UNDERWATER_VENT_ERUPTION_IN"
+msgstr "Víz alatti barlang"
+
+#, fuzzy
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Levált sejtszervecskék"
 
@@ -6313,6 +6467,9 @@ msgstr "Öngyilkosság"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Adj meg egy saját felhasználónevet"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "A háttérben futó szálak számának manuális beállítása"
 
@@ -6378,6 +6535,10 @@ msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thri
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Az összes tiltása"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -7292,38 +7453,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Szerkesztő engedélyezése"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
@@ -7353,6 +7482,38 @@ msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktároz�
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:compound type=\"ammonia\"][/thrive:compound]-vá. Hatékonysága függ a [thrive:compound type=\"nitrogen\"][/thrive:compound] és az [thrive:compound type=\"oxygen\"][/thrive:compound] koncentrációjától."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Nitrifikáló színtest"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Nitrifikáló színtest"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7530,12 +7691,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Ragadozói pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Nitrifikáló színtest"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenáz"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Nitrifikáló színtest"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8101,6 +8262,17 @@ msgstr "Közelítés"
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
 
+#, fuzzy
+#~ msgid "ERUPTION_IN"
+#~ msgstr "Bimbózás"
+
+#, fuzzy
+#~ msgid "EVENT_TOOLTIP_ERUPTION"
+#~ msgstr "{0}: +{1} ATP"
+
+#~ msgid "THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"
+#~ msgstr "A glükóz mennyisége {0}-ra/-re redukálódott az előző mennyiséghez képest."
+
 #~ msgid "THYLAKOID"
 #~ msgstr "Thilakoid"
 
@@ -8248,10 +8420,6 @@ msgstr "Távolodás"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Felbontás:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

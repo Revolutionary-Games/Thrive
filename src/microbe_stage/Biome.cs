@@ -39,6 +39,11 @@ public class Biome : IRegistryType
 
     public float CompoundCloudBrightness = 1.0f;
 
+    /// <summary>
+    ///   Total gas volume of this biome when it is a single patch.
+    /// </summary>
+    public float GasVolume = 1;
+
     public MusicContext[]? ActiveMusicContexts = null;
 
     [JsonIgnore]

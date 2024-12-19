@@ -16,6 +16,14 @@ using Saving;
 /// </remarks>
 public partial class OptionsMenu : ControlWithInput
 {
+    /// <summary>
+    ///   Sliders aren't disabled by default (or at least the ones most recently added) when the relevant option is
+    ///   disabled as navigation focus isn't super clear in those cases due to:
+    ///   TODO: https://github.com/Revolutionary-Games/Thrive/issues/4010
+    /// </summary>
+    [Export]
+    public bool DisableInactiveSliders;
+
     // GUI Control Paths
 
     // Options control buttons.
@@ -377,6 +385,9 @@ public partial class OptionsMenu : ControlWithInput
     [Export]
     private Button bloomEffectToggle = null!;
 
+    [Export]
+    private Slider bloomSlider = null!;
+
     private Label gpuName = null!;
     private Label usedRendererName = null!;
     private Label videoMemory = null!;
@@ -413,6 +424,43 @@ public partial class OptionsMenu : ControlWithInput
     private CheckBox useManualNativeThreadCount = null!;
     private Slider nativeThreadCountSlider = null!;
     private OptionButton maxSpawnedEntities = null!;
+
+    [Export]
+    private CheckBox useDiskCaching = null!;
+
+    [Export]
+    private Slider maxCacheSizeSlider = null!;
+
+    [Export]
+    private Label maxCacheSizeLabel = null!;
+
+    [Export]
+    private Label currentCacheSize = null!;
+
+    // Advanced cache settings
+    [Export]
+    private Slider maxMemoryCacheTimeSlider = null!;
+
+    [Export]
+    private Label maxMemoryCacheTimeLabel = null!;
+
+    [Export]
+    private Slider maxDiskCacheTimeSlider = null!;
+
+    [Export]
+    private Label maxDiskCacheTimeLabel = null!;
+
+    [Export]
+    private Slider maxMemoryItemsSlider = null!;
+
+    [Export]
+    private Label maxMemoryItemsLabel = null!;
+
+    [Export]
+    private Slider maxMemoryOnlyCacheTimeSlider = null!;
+
+    [Export]
+    private Label maxMemoryOnlyCacheTimeLabel = null!;
 
     // Inputs tab
     private Control inputsTab = null!;
@@ -491,6 +539,8 @@ public partial class OptionsMenu : ControlWithInput
     private bool nodeReferencesResolved;
 
     private bool elementItemSelectionsInitialized;
+
+    private double displayedCacheSize = -1;
 
     // Signals
 
@@ -705,6 +755,17 @@ public partial class OptionsMenu : ControlWithInput
     }
 
     /// <summary>
+    ///   A few checks need to re-run periodically so this does that. This uses physics process purely to run less
+    ///   often than on each frame.
+    /// </summary>
+    public override void _PhysicsProcess(double delta)
+    {
+        base._PhysicsProcess(delta);
+
+        UpdateCurrentCacheSize();
+    }
+
+    /// <summary>
     ///   Opens the options menu with main menu configuration settings.
     /// </summary>
     public void OpenFromMainMenu()
@@ -779,6 +840,7 @@ public partial class OptionsMenu : ControlWithInput
         colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.ButtonPressed = settings.ChromaticEnabled;
+        chromaticAberrationSlider.Editable = settings.ChromaticEnabled || !DisableInactiveSliders;
         controllerPromptType.Selected = ControllerPromptTypeToIndex(settings.ControllerPromptType);
         displayAbilitiesHotBarToggle.ButtonPressed = settings.DisplayAbilitiesHotBar;
         damageEffect.ButtonPressed = settings.ScreenDamageEffect;
@@ -789,6 +851,8 @@ public partial class OptionsMenu : ControlWithInput
         displayPartNamesToggle.ButtonPressed = settings.DisplayPartNames;
         displayMenu3DBackgroundsToggle.ButtonPressed = settings.Menu3DBackgroundEnabled;
         bloomEffectToggle.ButtonPressed = settings.BloomEnabled;
+        bloomSlider.Value = settings.BloomStrength;
+        bloomSlider.Editable = settings.BloomEnabled || !DisableInactiveSliders;
         DisplayResolution();
         DisplayGpuInfo();
 
@@ -824,8 +888,22 @@ public partial class OptionsMenu : ControlWithInput
         nativeThreadCountSlider.Value = settings.NativeThreadCount;
         nativeThreadCountSlider.Editable = settings.UseManualNativeThreadCount;
         maxSpawnedEntities.Selected = MaxEntitiesValueToIndex(settings.MaxSpawnedEntities);
+        useDiskCaching.ButtonPressed = settings.UseDiskCache;
+        maxCacheSizeSlider.Value = settings.DiskCacheSize;
+        maxMemoryCacheTimeSlider.Value = settings.DiskMemoryCachePortionTime;
+        maxDiskCacheTimeSlider.Value = settings.DiskCacheMaxTime;
+        maxMemoryItemsSlider.Value = settings.MemoryCacheMaxSize;
+        maxMemoryOnlyCacheTimeSlider.Value = settings.MemoryOnlyCacheTime;
 
         UpdateDetectedCPUCount();
+        UpdateMaxCacheSize();
+        UpdateMaxDiskCacheItemTime();
+        UpdateMaxMemoryItems();
+        UpdateDiskMemoryPortionCacheTime();
+        UpdateMemoryOnlyCacheTime();
+        ApplyCacheSliderEnabledStates();
+
+        UpdateCurrentCacheSize();
 
         // Input
         mouseAxisSensitivitiesBound.ButtonPressed =
@@ -1673,6 +1751,17 @@ public partial class OptionsMenu : ControlWithInput
         activeThreadCount.Text = $"{threads}+{nativeThreads}";
     }
 
+    private void UpdateCurrentCacheSize()
+    {
+        var wantedDisplay = Math.Round((double)DiskCache.Instance.TotalCacheSize / Constants.MEBIBYTE, 1);
+
+        if (Math.Abs(wantedDisplay - displayedCacheSize) > 0.01)
+        {
+            displayedCacheSize = wantedDisplay;
+            currentCacheSize.Text = Localization.Translate("MIB_VALUE").FormatSafe(wantedDisplay);
+        }
+    }
+
     private void UpdateDismissedNoticeCount()
     {
         dismissedNoticeCount.Text = Settings.Instance.PermanentlyDismissedNotices.Value.Count.ToString();
@@ -1863,6 +1952,7 @@ public partial class OptionsMenu : ControlWithInput
     private void OnChromaticAberrationToggled(bool toggle)
     {
         Settings.Instance.ChromaticEnabled.Value = toggle;
+        chromaticAberrationSlider.Editable = toggle || !DisableInactiveSliders;
 
         UpdateResetSaveButtonState();
     }
@@ -1978,6 +2068,14 @@ public partial class OptionsMenu : ControlWithInput
     private void OnBloomToggled(bool toggle)
     {
         Settings.Instance.BloomEnabled.Value = toggle;
+        bloomSlider.Editable = toggle || !DisableInactiveSliders;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnBloomStrengthChanged(float value)
+    {
+        Settings.Instance.BloomStrength.Value = value;
 
         UpdateResetSaveButtonState();
     }
@@ -2160,6 +2258,101 @@ public partial class OptionsMenu : ControlWithInput
 
         UpdateResetSaveButtonState();
         UpdateDetectedCPUCount();
+    }
+
+    private void OnClearDiskCachePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        GD.Print("Clearing disk cache due to clear button press");
+        DiskCache.Instance.Clear();
+
+        UpdateCurrentCacheSize();
+    }
+
+    private void OnDiskCachingToggled(bool pressed)
+    {
+        Settings.Instance.UseDiskCache.Value = pressed;
+
+        UpdateResetSaveButtonState();
+        ApplyCacheSliderEnabledStates();
+    }
+
+    private void ApplyCacheSliderEnabledStates()
+    {
+        bool diskEnabled = Settings.Instance.UseDiskCache.Value;
+
+        maxCacheSizeSlider.Editable = diskEnabled;
+        maxMemoryCacheTimeSlider.Editable = diskEnabled;
+        maxDiskCacheTimeSlider.Editable = diskEnabled;
+        maxMemoryCacheTimeSlider.Editable = diskEnabled;
+        maxMemoryOnlyCacheTimeSlider.Editable = !diskEnabled;
+    }
+
+    private void OnMaxCacheSizeChanged(float value)
+    {
+        Settings.Instance.DiskCacheSize.Value = (long)(Math.Round(value / 1024.0f) * 1024);
+
+        UpdateResetSaveButtonState();
+        UpdateMaxCacheSize();
+    }
+
+    private void UpdateMaxCacheSize()
+    {
+        maxCacheSizeLabel.Text = Localization.Translate("MIB_VALUE")
+            .FormatSafe(Math.Round((double)Settings.Instance.DiskCacheSize.Value / Constants.MEBIBYTE));
+    }
+
+    private void OnDiskCacheDurationChanged(float value)
+    {
+        Settings.Instance.DiskCacheMaxTime.Value = (float)Math.Round(value);
+
+        UpdateResetSaveButtonState();
+        UpdateMaxDiskCacheItemTime();
+    }
+
+    private void UpdateMaxDiskCacheItemTime()
+    {
+        maxDiskCacheTimeLabel.Text = Math.Round(Settings.Instance.DiskCacheMaxTime.Value / 3600.0, 1) + "h";
+    }
+
+    private void OnMemoryMaxItemsChanged(float value)
+    {
+        Settings.Instance.MemoryCacheMaxSize.Value = (int)value;
+
+        UpdateResetSaveButtonState();
+        UpdateMaxMemoryItems();
+    }
+
+    private void UpdateMaxMemoryItems()
+    {
+        maxMemoryItemsLabel.Text = Settings.Instance.MemoryCacheMaxSize.Value.ToString(CultureInfo.CurrentCulture);
+    }
+
+    private void OnMemoryDiskCacheTimeChanged(float value)
+    {
+        Settings.Instance.DiskMemoryCachePortionTime.Value = (float)Math.Round(value);
+
+        UpdateResetSaveButtonState();
+        UpdateDiskMemoryPortionCacheTime();
+    }
+
+    private void UpdateDiskMemoryPortionCacheTime()
+    {
+        maxMemoryCacheTimeLabel.Text = Math.Round(Settings.Instance.DiskMemoryCachePortionTime.Value) + "s";
+    }
+
+    private void OnMemoryOnlyCacheTimeChanged(float value)
+    {
+        Settings.Instance.MemoryOnlyCacheTime.Value = (float)Math.Round(value);
+
+        UpdateResetSaveButtonState();
+        UpdateMemoryOnlyCacheTime();
+    }
+
+    private void UpdateMemoryOnlyCacheTime()
+    {
+        maxMemoryOnlyCacheTimeLabel.Text = Math.Round(Settings.Instance.MemoryOnlyCacheTime.Value) + "s";
     }
 
     private void OnMaxSpawnedEntitiesSelected(int index)

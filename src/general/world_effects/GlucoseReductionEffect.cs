@@ -15,12 +15,16 @@ public class GlucoseReductionEffect : IWorldEffect
         this.targetWorld = targetWorld;
     }
 
+    public bool IncludeAllPatchesInGlucoseReductionDisplay { get; set; }
+
     public void OnRegisterToWorld()
     {
     }
 
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
+        bool includeAllPatches = IncludeAllPatchesInGlucoseReductionDisplay;
+
         var glucoseDefinition = SimulationParameters.GetCompound(Compound.Glucose);
 
         var totalAmount = 0.0f;
@@ -39,9 +43,13 @@ public class GlucoseReductionEffect : IWorldEffect
                 return;
             }
 
-            totalAmount += glucoseValue.Amount;
-            initialTotalDensity += glucoseValue.Density;
-            totalChunkAmount += patch.GetTotalChunkCompoundAmount(Compound.Glucose);
+            // Change stats are calculated either for all patches or only patches the player has discovered already
+            if (includeAllPatches || patch.Visibility == MapElementVisibility.Shown)
+            {
+                totalAmount += glucoseValue.Amount;
+                initialTotalDensity += glucoseValue.Density;
+                totalChunkAmount += patch.GetTotalChunkCompoundAmount(Compound.Glucose);
+            }
 
             // If there are microbes to be eating up the primordial soup, reduce the milk
             if (patch.SpeciesInPatch.Count > 0)
@@ -59,12 +67,16 @@ public class GlucoseReductionEffect : IWorldEffect
 
                 var localReduction = Math.Round((initialGlucose - finalGlucose) / initialGlucose * 100, 1);
 
+                // TODO: improve how the glucose reduction is shown for the patch the player is in
+                // as right now the reduction percentages aren't super drastic anymore (like under 1%) rather than
+                // the 20% it used to say.
                 patch.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
-                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false,
+                        glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", localReduction)), false, false,
                     "glucoseDown.png");
             }
 
-            finalTotalDensity += patch.Biome.ChangeableCompounds[Compound.Glucose].Density;
+            if (includeAllPatches || patch.Visibility == MapElementVisibility.Shown)
+                finalTotalDensity += patch.Biome.ChangeableCompounds[Compound.Glucose].Density;
         }
 
         var initialTotalGlucose = Math.Round(initialTotalDensity * totalAmount + totalChunkAmount, 3);
@@ -79,13 +91,13 @@ public class GlucoseReductionEffect : IWorldEffect
         if (globalReduction >= 50)
         {
             targetWorld.LogEvent(new LocalizedString("GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"),
-                false, "glucoseDown.png");
+                false, true, "glucoseDown.png");
         }
         else if (globalReduction > 0)
         {
             targetWorld.LogEvent(new LocalizedString("COMPOUND_CONCENTRATIONS_DECREASED",
                     glucoseDefinition.Name, new LocalizedString("PERCENTAGE_VALUE", globalReduction)), false,
-                "glucoseDown.png");
+                true, "glucoseDown.png");
         }
     }
 }
