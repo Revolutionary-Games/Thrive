@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-20 10:00+0200\n"
+"POT-Creation-Date: 2024-12-20 10:56+0200\n"
 "PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -6720,6 +6720,52 @@ msgstr "（每一代后环境葡萄糖保留的比例）"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"利用环境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]。\n"
+"\n"
+"这是未在现实中发现的猜想中的细胞器。 在开启仅限已知生命形式选项的游戏中不可用。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]热合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"利用周围环境[thrive:compound type=\"temperature\"][/thrive:compound] 被动生成能量。 效率高于[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]中的[b]细菌热合成[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"[b]热能体[/b]仅出现在关闭仅限已知生命形式(LAWK)选项的游戏中。\n"
+"\n"
+"如果在游戏设定中启用了细胞器解锁，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"由于[b]热合成[/b]除了环境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何输入，因此它本质上是免费能量。 此外，[b]热能体[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]更高效，这使得 它们可以说是游戏中最简单的能量产生方法，前提是您愿意留在海底热泉等炎热地区。\n"
+"\n"
+"启用细胞器解锁后，需要在细胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]进行多次繁殖，意味着玩家演化[b]热能体[/b]时，他们可能已经非常专注于[b]热合成[/b]以获得[b]热能体[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "无升级。"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每个[b]鞭毛[/b]提供与其方向相反的方向的定向推力。 它们也在接近完全相反的方向上提供部分推力（准确地说，是那些与完全相反的向量的分量（内积）为正的方向）。 每当[b]鞭毛[/b]处于活动状态时，它就会消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -7432,6 +7478,10 @@ msgstr "线粒体"
 #, fuzzy
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "线粒体"
+
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "热能体"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
