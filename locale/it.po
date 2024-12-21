@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-12-21 18:30+0000\n"
-"Last-Translator: Waspox <busettiandrea@protonmail.com>\n"
+"PO-Revision-Date: 2024-12-22 18:32+0000\n"
+"Last-Translator: Giacomo Volta <furbogiaco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -986,22 +986,22 @@ msgstr "(riempie lo stoccaggio in {0} s che è un tempo maggiore della luce diur
 
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr ""
-"Modalità per il calcolo del bilanciamento dei composti, per esempio velocità massima calcola assumendo che tutti i processi funzionino alla velocità massima\n"
-"invece per equilibrio i processi vengono calcolati alla solo velocità necessaria per impedire ad avere un bilancio negativo di ATP"
+"Modalità per il calcolo del bilanciamento dei composti, per esempio la \"velocità massima\" calcola assumendo che tutti i processi funzionino alla massima velocità.\n"
+"Invece per \"equilibrio\" i processi vengono calcolati alla solo velocità necessaria per impedire ad avere un bilancio negativo di ATP."
 
 msgid "COMPOUND_BALANCE_TITLE"
 msgstr "Bilancio dei composti"
 
-#, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
-msgstr "Mostra/nascondi i composti"
+msgstr ""
+"In questa sezione è riportato il bilancio totale (produzione - consumo) per ciascun composto.\n"
+"Ad esempio, per creare una cellula vegetale, il bilancio del glucosio deve essere abbastanza positivo."
 
 msgid "COMPOUND_CLOUDS"
 msgstr "Nuvole di composti"
 
-#, fuzzy
 msgid "COMPOUND_CLOUD_BENCHMARK"
-msgstr "Densità delle nuvole di composti"
+msgstr "Benchmark delle nuvole"
 
 msgid "COMPOUND_CLOUD_DENSITY"
 msgstr "Densità delle nuvole di composti"
@@ -1015,17 +1015,15 @@ msgstr "La concentrazione di {0} è diminuita del {1}"
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Consumo di {0}"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "Bilancio dei composti"
+msgstr "Tieni tutto"
 
-#, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
-msgstr "Bilancio dei composti"
+msgstr "Dividi con la cellula sorella"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP"
-msgstr "Mostra/nascondi i composti"
+msgstr "Riempire sempre fino all'iniziale"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
@@ -1040,17 +1038,18 @@ msgstr ""
 "generato durante il giorno ma per sopravvivere durante la notte ne sono "
 "richiesti {2}."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
-msgstr "Consumo di {0}"
+msgstr "Non c'è abbastanza spazio di archiviazione per [thrive:compound type=\"{0}\"][/thrive:compound] poiché la notte dura {2} s ma lo spazio di archiviazione può contenere solo {1} s di composti."
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TITLE"
-msgstr "Bilancio dei composti"
+msgstr "Dimensioni dello stoccaggio"
 
-#, fuzzy
 msgid "COMPOUND_STORAGE_STATS_TOOLTIP"
-msgstr "Bilancio dei composti"
+msgstr ""
+"Questa sezione mostra quanto tempo impiega la cellula per utilizzare ciascun tipo di composto quando si parte dallo stoccaggio pieno.\n"
+"Questi numeri vengono sempre calcolati come se fosse notte e possono essere utilizzati per verificare se la cellula ha abbastanza spazio di stoccaggio\n"
+"per sopravvivere tutta la notte. La disattivazione del costo di movimento con la casella fornisce i numeri minimi per sopravvivere\n"
+"quando si resta fermi tutta la notte per risparmiare energia."
 
 msgid "COMPOUND_TO_FIND"
 msgstr "Composto da trovare:"
@@ -1064,9 +1063,8 @@ msgstr "Configurazione"
 msgid "CONFIRM_CAPITAL"
 msgstr "CONFERMA"
 
-#, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Conferma uscita"
+msgstr "Conferma eliminazione"
 
 msgid "CONFIRM_EXIT"
 msgstr "Conferma uscita"
@@ -1074,38 +1072,33 @@ msgstr "Conferma uscita"
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
 msgstr "Conferma sovrascrittura"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
-msgstr ""
-"(velocità di mutazione delle specie controllate dall'intelligenza "
-"artificiale)"
+msgstr "Spostarsi alla Fase di Ascensione?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr ""
-"(velocità di mutazione delle specie controllate dall'intelligenza "
-"artificiale)"
+"Ora puoi ascendere e raggiungere la Fase di Ascensione attivando la Porta dell'Ascensione.\n"
+"\n"
+"Ciò sbloccherà un potere illimitato sotto forma di alcuni nuovi strumenti divini che puoi utilizzare in questo salvataggio.\n"
+"\n"
+"Ascendere significherà anche finire il gioco, ma sarai in grado di continuare a giocare. Vuoi ascendere?"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
 msgstr "Spostarsi allo Stadio Industriale?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
-msgstr ""
-"(velocità di mutazione delle specie controllate dall'intelligenza "
-"artificiale)"
+msgstr "Posizionando una fabbrica avanzerai alla fase industriale. Passare alla fase successiva?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE"
-msgstr ""
-"(velocità di mutazione delle specie controllate dall'intelligenza "
-"artificiale)"
+msgstr "Spostarsi alla Fase Spaziale?"
 
-#, fuzzy
 msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
-"(velocità di mutazione delle specie controllate dall'intelligenza "
-"artificiale)"
+"Ora puoi avanzare alla Fase Spaziale lanciando la tua prima navicella.\n"
+"\n"
+"Per ora nei prototipi non è possibile tornare sul proprio pianeta, ma il piano finale è quello di consentire lo zoom avanti e indietro sui pianeti senza problemi nella fase spaziale.\n"
+"\n"
+"L'annullamento del lancio distruggerà l'unità della navicella. Sei sicuro di lanciare la navicella spaziale?"
 
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr "Avvia la partita con queste impostazioni"
@@ -1113,16 +1106,14 @@ msgstr "Avvia la partita con queste impostazioni"
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "Alcune impostazioni non sono valide"
 
-#, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Tritanopica (Blu-Giallo)"
+msgstr "Unità: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "I contenuti del Workshop saranno caricati da questa cartella: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "Continua a prosperare"
+msgstr "Continua"
 
 #, fuzzy
 msgid "CONTINUE_AS_SPECIES"
@@ -1164,25 +1155,11 @@ msgstr "Analogico sinistro orizzontale"
 msgid "CONTROLLER_AXIS_LEFT_Y"
 msgstr "Analogico sinistro verticale"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr ""
-"Il plastidio azotofissante è una proteina che converte l'[thrive:compound "
-"type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound "
-"type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/"
-"thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un "
-"elemento nutritivo fondamentale per le cellule. Questo processo si chiama "
-"[b]azotofissazione aerobica[/b]."
+msgstr "Direzione negativa"
 
-#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr ""
-"Il plastidio azotofissante è una proteina che converte l'[thrive:compound "
-"type=\"nitrogen\"][/thrive:compound] gassoso, l'[thrive:compound "
-"type=\"oxygen\"][/thrive:compound] e l'[thrive:compound type=\"atp\"][/"
-"thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound], un "
-"elemento nutritivo fondamentale per le cellule. Questo processo si chiama "
-"[b]azotofissazione aerobica[/b]."
+msgstr "Direzione positiva"
 
 msgid "CONTROLLER_AXIS_R2"
 msgstr "R2"
@@ -1307,19 +1284,10 @@ msgstr "Y"
 msgid "CONTROLLER_DEADZONES"
 msgstr "Zone morte del controller"
 
-#, fuzzy
 msgid "CONTROLLER_DEADZONE_CALIBRATION_EXPLANATION"
 msgstr ""
-"Questo pannello mostra i numeri in base ai quali l'Auto-Evo fa la sua "
-"previsione. La popolazione è determinata dall'energia totale che una specie "
-"è in grado di catturare e il costo energetico per esemplare. Questo è un "
-"modello semplificato della realtà, che calcola le prestazioni di ciascuna "
-"specie in base all'energia che è in grado di raccogliere. Per ogni fonte di "
-"cibo è mostrata la quantità di energia derivata. In più, è mostrata "
-"l'energia totale disponibile da quella fonte. La frazione che la specie "
-"guadagna rispetto all'energia totale dipende dal valore di idoneità rispetto "
-"all'idoneità totale. L'idoneità è una misura di quanto bene la specie sa "
-"utilizzare quella fonte di cibo."
+"Questo strumento consente di configurare le zone morte dell'asse del controller. Le dimensioni della zona morta controllano di quanto è necessario spostare uno stick di controllo (o un pulsante analogico) prima che il movimento venga rilevato come input.\n"
+"Prima di iniziare la calibrazione, spostare tutti gli stick del controller e rilasciarli, nonché premere e rilasciare qualsiasi pulsante analogico (ad esempio i grilletti) sul controller."
 
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr "Zona morta:"
@@ -1336,9 +1304,8 @@ msgstr "Asse sconosciuto"
 msgid "COPY_ERROR_TO_CLIPBOARD"
 msgstr "Copia Errore negli Appunti"
 
-#, fuzzy
 msgid "COPY_RESULTS"
-msgstr "Risultati dell'Auto-Evo:"
+msgstr "Copia i risultati"
 
 msgid "CORRECTION_PROTANOPE"
 msgstr "Protanopica (Rosso-Verde)"
@@ -1346,9 +1313,8 @@ msgstr "Protanopica (Rosso-Verde)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanopica (Blu-Giallo)"
 
-#, fuzzy
 msgid "CPU_THREADS"
-msgstr "Thread:"
+msgstr "Threads"
 
 msgid "CRAFTING_CLEAR_INPUTS"
 msgstr "Rimuovi gli input selezionati"
@@ -1356,9 +1322,8 @@ msgstr "Rimuovi gli input selezionati"
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr "Errore: bug interno nel consumo degli oggetti di creazione"
 
-#, fuzzy
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
-msgstr "Il titolo è mancante"
+msgstr "Mancano gli item necessari richiesti in input"
 
 msgid "CRAFTING_FILTER_INPUTS"
 msgstr "Inputs"
@@ -1375,16 +1340,14 @@ msgstr "Prima seleziona una ricetta qui sopra da realizzare"
 msgid "CRAFTING_NO_ROOM_TO_TAKE_CRAFTING_RESULTS"
 msgstr "Non c'è abbastanza spazio per ottenere tutti i risultati del crafting"
 
-#, fuzzy
 msgid "CRAFTING_RECIPE_DISPLAY"
-msgstr "Risultati dell'Auto-Evo:"
+msgstr "{0} ({1})"
 
 msgid "CRAFTING_RECIPE_HAND_AXE"
 msgstr "Ascia di pietra"
 
-#, fuzzy
 msgid "CRAFTING_RESULTS"
-msgstr "Risultati dell'Auto-Evo:"
+msgstr "Risultati"
 
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
