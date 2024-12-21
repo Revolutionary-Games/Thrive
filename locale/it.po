@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-12-21 18:20+0000\n"
+"PO-Revision-Date: 2024-12-21 18:28+0000\n"
 "Last-Translator: Giacomo Volta <furbogiaco@gmail.com>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -418,7 +418,7 @@ msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Include il costo del movimento"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Quando visualizzi, il bilanciamento e gli altri numeri vengono calcolati assumendo che la cellula sia in movimento costante"
+msgstr "Quando selezionato, il bilanciamento e gli altri numeri vengono calcolati assumendo che la cellula sia in movimento costante"
 
 msgid "BASE_MOBILITY"
 msgstr "Mobilità di base"
@@ -669,10 +669,11 @@ msgstr ""
 "parete[/b], rendendo la membrana vulnerabile alla fagocitosi da parte dei "
 "predatori."
 
-#, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
-"Il valore usato per generare il mondo; deve essere un numero intero positivo"
+"Velocità della cellula. Tieni presente che a causa delle limitazioni dell'algoritmo che calcola questo valore, il valore è approssimativo.\n"
+"E, ad esempio, quando si modifica la lunghezza del flagello, i valori di velocità non corrispondono a ciò che accadrà nella fase.\n"
+"Questo è un problema noto ma non è stato ancora risolto poiché ha una priorità inferiore rispetto a molti altri problemi e nuove funzionalità."
 
 msgid "CELL_TYPE_NAME"
 msgstr "Nome del tipo di cellula"
@@ -730,9 +731,11 @@ msgstr ""
 "che ti indicherà la posizione di un composto anche fuori del tuo campo "
 "visivo."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
-msgstr "Quantità minima da cercare:"
+msgstr ""
+"Imposta la soglia di rilevamento del composto. Valori bassi possono indicare tracce molto deboli di composti che potrebbero non contenere alcuna quantità utile di quel composto.\n"
+"Un esempio di strategia consiste nell'aumentare il raggio di ricerca e la quantità minima in modo da rilevare la nuvola più vicina e sufficientemente densa.\n"
+"Il chemiorecettore sente i singoli componenti di una \"nuvola\" composta e non il totale di una singola \"nuvola\"."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr ""
@@ -740,18 +743,12 @@ msgstr ""
 "Una volta posizionato, modificalo per scegliere quale composto tracciare e "
 "con quale colore indicare la strada."
 
-#, fuzzy
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr ""
-"La \"vista\" delle cellule è in realtà chemioricezione. È così che loro "
-"acquisiscono informazioni sui loro dintorni. Di conseguenza, quello che vedi "
-"in gioco è una rappresentazione di ciò che la tua cellula può percepire. "
-"L'aggiunta di questo organulo alla tua cellula le conferisce una "
-"chemioricezione ancora più potente: con esso, avrai a disposizione una linea "
-"che ti indicherà la posizione di un composto anche fuori del tuo campo "
-"visivo."
+"Imposta la distanza massima all'interno della quale questo chemiorecettore cercherà oggetti.\n"
+"Può essere utilizzato, ad esempio, per le cellule lente per non puntare a risorse che potrebbero essere esaurite nel momento in cui la cellula arrivi, riducendo la distanza.\n"
+"In alternativa, aumentare la distanza può puntare a cose molto più lontane, ma potrebbero essere difficili da raggiungere prima che scompaiano."
 
-#, fuzzy
 msgid "CHEMOSYNTHESIS"
 msgstr "Chemiosintesi"
 
@@ -882,9 +879,8 @@ msgstr "Divisore risoluzione nuvole:"
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr "Intervallo minimo simulazione nuvole:"
 
-#, fuzzy
 msgid "CLOUD_SIMULATION_MULTIPLIER"
-msgstr "Moltiplicatore costo di osmoregolazione"
+msgstr "Moltiplicatore di simulazione:"
 
 msgid "COASTAL"
 msgstr "Costiero"
