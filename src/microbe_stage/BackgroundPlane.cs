@@ -174,7 +174,6 @@ public partial class BackgroundPlane : Node3D
     private void OnBackgroundDistortionChanged(float value)
     {
         ApplyDistortionEffect();
-        ApplyBlurEffect();
     }
 
     private void ApplyDistortionEffect()
@@ -191,7 +190,7 @@ public partial class BackgroundPlane : Node3D
     private void ApplyBlurEffect()
     {
         float blurStrength = Settings.Instance.MicrobeBackgroundBlurStrength;
-        bool enabled = blurStrength > 0 && Settings.Instance.MicrobeDistortionStrength > 0;
+        bool enabled = blurStrength > 0;
 
         SetBlurStrength(blurStrength);
 
