@@ -146,6 +146,8 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         /// </summary>
         public string ScenePath;
 
+        public VisualResourceIdentifier VisualResource;
+
         /// <summary>
         ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
         /// </summary>
