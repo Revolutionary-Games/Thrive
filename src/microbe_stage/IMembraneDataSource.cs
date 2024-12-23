@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Buffers;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -9,6 +10,9 @@ using Godot;
 public interface IMembraneDataSource
 {
     public Vector2[] HexPositions { get; }
+
+    public Vector2[]? MulticellularPositions { get; }
+
     public int HexPositionCount { get; }
     public MembraneType Type { get; }
 }
@@ -18,14 +22,18 @@ public interface IMembraneDataSource
 /// </summary>
 public struct MembraneGenerationParameters : IMembraneDataSource
 {
-    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type)
+    public MembraneGenerationParameters(Vector2[] hexPositions, int hexPositionCount, MembraneType type, Vector2[]? multicellularPositions, Vector2? thisCellPosition)
     {
         HexPositions = hexPositions;
+        MulticellularPositions = multicellularPositions;
+        CellPositionInMulticellular = thisCellPosition;
         HexPositionCount = hexPositionCount;
         Type = type;
     }
 
     public Vector2[] HexPositions { get; }
+    public Vector2[]? MulticellularPositions { get; }
+    public Vector2? CellPositionInMulticellular { get; }
     public int HexPositionCount { get; }
 
     public MembraneType Type { get; }
@@ -89,7 +97,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(hexes, length, membraneType);
+        var hash = ComputeMembraneDataHash(hexes, length, membraneType, false);
 
         var result = cache.ReadMembraneData(hash);
 
@@ -108,14 +116,14 @@ public static class MembraneComputationHelpers
 
         lock (generator)
         {
-            result = generator.GenerateShape(hexes, length, membraneType);
+            result = generator.GenerateShape(hexes, length, membraneType, null, null);
         }
 
         cache.WriteMembraneData(ref result);
         return result;
     }
 
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type)
+    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type, bool multicellular)
     {
         var nameHash = type.InternalName.GetHashCode();
 
@@ -129,9 +137,10 @@ public static class MembraneComputationHelpers
             for (int i = 0; i < count; ++i)
             {
                 var posHash = positions[i].GetHashCode();
+                var multicellularityAdd = multicellular ? 1 : 0;
 
                 // TODO: switch to using rotate left here once we can (after Godot 4)
-                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
+                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash + multicellularityAdd) << 32);
                 ++hashMultiply;
             }
 
@@ -141,16 +150,17 @@ public static class MembraneComputationHelpers
 
     public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type);
+        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
+            dataSource.MulticellularPositions == null ? false : dataSource.MulticellularPositions.Length > 0);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type, other.MulticellularPositions);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType)
+        int otherPointCount, MembraneType otherType, Vector2[]? multicellularPositions)
     {
         if (!dataSource.Type.Equals(otherType))
             return false;
@@ -161,6 +171,25 @@ public static class MembraneComputationHelpers
         var count = dataSource.HexPositionCount;
 
         var sourcePoints = dataSource.HexPositions;
+
+        if (dataSource.MulticellularPositions != null)
+        {
+            if (multicellularPositions == null)
+                return false;
+
+            if (!dataSource.MulticellularPositions.SequenceEqual(multicellularPositions))
+            {
+                return false;
+            }
+        }
+        else
+        {
+            if (multicellularPositions != null)
+            {
+                return false;
+
+            }
+        }
 
         for (int i = 0; i < count; ++i)
         {
