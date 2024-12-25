@@ -10,6 +10,7 @@ namespace Thrive
 {
 
 class DebugDrawer;
+class CompoundCloudPlane;
 
 /// \brief Manages forwarding C# side configuration and other runtime data between Thrive parts into this module
 class ThriveConfig : public godot::Object
@@ -44,6 +45,7 @@ public:
     [[nodiscard]] bool IsDebugDrawSupported() const noexcept;
 
     void RegisterDebugDrawReceiver(DebugDrawer* drawer) noexcept;
+    void RegisterCompoundCloudPlaneReceiver(CompoundCloudPlane* receiver) noexcept;
 
     // ------------------------------------ //
     // C# interop methods
