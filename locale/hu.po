@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-12-27 09:42+0000\n"
+"Last-Translator: Noel Mathias <mcdougless17@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -188,9 +188,8 @@ msgstr "Megtartható gyorsmentések száma:"
 msgid "ANAEROBIC_NITROGEN_FIXATION"
 msgstr "Anaerob Nitrifikáció"
 
-#, fuzzy
 msgid "AND_UNLOCK_CONDITION"
-msgstr "Fizikai körülmények"
+msgstr "és"
 
 msgid "APPEARANCE"
 msgstr "Kinézet"
@@ -225,6 +224,7 @@ msgstr "Rajz galéria"
 msgid "ASCENSION_CONGRATULATIONS"
 msgstr "Gratulálok!"
 
+#, fuzzy
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 "Felemelkedtél és befejezted a játékot. Gratulálunk, hogy elérted a játék végét!\n"
@@ -245,6 +245,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
+#, fuzzy
 msgid "ASSUME_HYPERTHREADING"
 msgstr "A CPU hyperthread engedélyezésének feltételezése"
 
@@ -267,21 +268,19 @@ msgid "ATP_BALANCE_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Külső erőforrások nélkül"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Glükóz nélkül"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Hidrogén-szulfid"
+msgstr "Hidrogén-szulfid nélkül"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "ATP egyensúly"
+msgstr "Vas nélkül"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Minden szükséges vegyülettel"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP előállítás"
@@ -311,7 +310,7 @@ msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr "A {0} populációjának egyedszáma megváltozott {1}-értékkel,{2}-n belül, mert: {3}"
 
 msgid "AUTO-EVO_PREDICTION"
-msgstr "Auto-evo becslés"
+msgstr "Auto-Evo becslés"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
@@ -339,9 +338,8 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-Evo eredmények:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Auto-Evo eredmények:"
+msgstr "Globális eredmények"
 
 #, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
@@ -365,6 +363,7 @@ msgstr "Elérhető építési projektek"
 msgid "AVAILABLE_MODS"
 msgstr "Elérhető modok"
 
+#, fuzzy
 msgid "AWAKENING_STAGE"
 msgstr "Felkelési fázis"
 
@@ -453,7 +452,7 @@ msgid "BENCHMARK_PHASE"
 msgstr "Teljesítmény teszt fázis:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr "Eredméynek:"
+msgstr "Eredmények:"
 
 msgid "BEST_PATCH_COLON"
 msgstr "Legjobb patch:"
@@ -461,13 +460,13 @@ msgstr "Legjobb patch:"
 msgid "BIG_IRON_CHUNK"
 msgstr "Nagy vasdarab"
 
-#, fuzzy
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Nagy vasdarab"
+msgstr "Nagy foszfátdarab"
 
 msgid "BILLION_ABBREVIATION"
 msgstr "{0} B"
 
+#, fuzzy
 msgid "BINDING_AGENT"
 msgstr "Kötőszövet"
 
@@ -478,7 +477,7 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Tengelyek összekötése"
 
 msgid "BIOLUMINESCENT_VACUOLE"
 msgstr "Foszforeszkáló vakuólum"
@@ -491,7 +490,7 @@ msgid "BLOOM_RENDER_EFFECT"
 msgstr "Külső effektek:"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "Neuron"
 
 msgid "BRAVE"
 msgstr "Bátor"
@@ -502,17 +501,15 @@ msgstr "Böngészés"
 msgid "BROWSE_WORKSHOP"
 msgstr "A műhely böngészése"
 
-#, fuzzy
 msgid "BUILD_CITY"
-msgstr "Struktúra"
+msgstr "Város építése"
 
 #, fuzzy
 msgid "BUILD_QUEUE"
 msgstr "Struktúra"
 
-#, fuzzy
 msgid "BUILD_STRUCTURE"
-msgstr "Struktúra"
+msgstr "Struktúra építése"
 
 msgid "BY"
 msgstr "Származás:"
@@ -591,9 +588,8 @@ msgstr "bőséges mennyiség"
 msgid "CATEGORY_A_FAIR_AMOUNT"
 msgstr "elég sok"
 
-#, fuzzy
 msgid "CATEGORY_LITTLE"
-msgstr "Elméleti csapat"
+msgstr "kevés"
 
 msgid "CATEGORY_QUITE_A_BIT"
 msgstr "kis mennyiség"
@@ -607,15 +603,14 @@ msgstr "nagyon kicsi mennyiség"
 msgid "CAUTIOUS"
 msgstr "Gyanakvó"
 
-#, fuzzy
 msgid "CELL"
-msgstr "Cellulóz"
+msgstr "Sejt"
 
 msgid "CELLS"
 msgstr "Sejtek"
 
 msgid "CELLULASE"
-msgstr "Cellulóz"
+msgstr "Celluláz"
 
 #, fuzzy
 msgid "CELLULASE_DESCRIPTION"
@@ -703,7 +698,7 @@ msgid "CHITIN"
 msgstr "Kitin"
 
 msgid "CHITINASE"
-msgstr "Kitin"
+msgstr "Kitináz"
 
 #, fuzzy
 msgid "CHITINASE_DESCRIPTION"
@@ -743,9 +738,8 @@ msgstr "Csilló"
 msgid "CILIA_DESCRIPTION"
 msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
 
-#, fuzzy
 msgid "CILIA_PROCESSES_DESCRIPTION"
-msgstr "[thrive:compound type=\"glucose\"][/thrive:compound]-t alakít át [thrive:compound type=\"atp\"][/thrive:compound]-vé."
+msgstr "Nagyméretű sejtek fordulási sebességét növeli."
 
 #, fuzzy
 msgid "CITY_SHORT_STATISTICS"
@@ -755,7 +749,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Régi mentések törlése"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "Gyorsítótár törlése"
 
 msgid "CLOSE"
 msgstr "Bezár"
@@ -783,6 +777,7 @@ msgstr "Ozmoreguláció költségének szorzója"
 msgid "COASTAL"
 msgstr "Partvidéki"
 
+#, fuzzy
 msgid "COLLISION_SHAPE"
 msgstr "Entitások lerakása ütközési alakzatokkal"
 
@@ -792,6 +787,7 @@ msgstr "Szín"
 msgid "COLOURBLIND_CORRECTION"
 msgstr "Színvakság javító:"
 
+#, fuzzy
 msgid "COLOUR_PICKER_ADD_PRESET"
 msgstr "Szín beállítása előre beállítottra"
 
@@ -845,11 +841,10 @@ msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "Közösségi Fórum"
 
-#, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
-msgstr "Segítség"
+msgstr "Csatlakozz a Thrive közösségéhez a közösségi fórumunkon"
 
 #, fuzzy
 msgid "COMMUNITY_WIKI"
@@ -863,9 +858,8 @@ msgstr "Kilépés a játékból"
 msgid "COMPILED_AT_COLON"
 msgstr "Vegyületek:"
 
-#, fuzzy
 msgid "COMPLETE_ACTION"
-msgstr "Vegyületek:"
+msgstr "Befejezés"
 
 msgid "COMPOUNDS"
 msgstr "Vegyületek"
@@ -876,7 +870,7 @@ msgstr "Megtalálható vegyületek:"
 
 #, fuzzy
 msgid "COMPOUNDS_AT_MAX_SPEED"
-msgstr "Megtalálható vegyületek:"
+msgstr "Egyensúly max sebességnél"
 
 msgid "COMPOUNDS_BUTTON_MICROBE_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
@@ -894,13 +888,15 @@ msgstr ""
 msgid "COMPOUND_BALANCE_MODE_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
 
+#, fuzzy
 msgid "COMPOUND_BALANCE_TITLE"
-msgstr ""
+msgstr "Vegyület egyensúlyok"
 
 #, fuzzy
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr "Az összetevők mutatása / elrejtése"
 
+#, fuzzy
 msgid "COMPOUND_CLOUDS"
 msgstr "Vegyületfelhők"
 
@@ -922,7 +918,7 @@ msgstr "{0} fogyasztás"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_KEEP"
-msgstr "Az összetevők mutatása / elrejtése"
+msgstr "Összes megtartása"
 
 #, fuzzy
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
@@ -968,13 +964,14 @@ msgstr "ELFOGAD"
 
 #, fuzzy
 msgid "CONFIRM_DELETE"
-msgstr "Kilépés elfogadása"
+msgstr "Törlés megerősítése"
 
 msgid "CONFIRM_EXIT"
 msgstr "Kilépés elfogadása"
 
+#, fuzzy
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "Felülírás megerősítése"
 
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
@@ -1007,14 +1004,13 @@ msgstr "Egyes beállítások érvénytelenek"
 
 #, fuzzy
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr "Tritanóp (Kék-Citrom)"
+msgstr "Egység: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
 msgstr "A műhely tartalom ebből a mappából lesz feltöltve: {0}"
 
-#, fuzzy
 msgid "CONTINUE"
-msgstr "A túlélés kezdése"
+msgstr "Folytatás"
 
 #, fuzzy
 msgid "CONTINUE_AS_SPECIES"
@@ -1036,53 +1032,65 @@ msgstr ""
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Folytatod a fázis prototípusokkal?"
 
+#, fuzzy
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr ""
+msgstr "Bármely eszköz"
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr ""
+msgstr "L2"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
-msgstr ""
+msgstr "Bal ravasz"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_X"
-msgstr ""
+msgstr "Bal Joystick Horizontális"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_LEFT_Y"
-msgstr ""
+msgstr "Bal Joystick Vertikális"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_NEGATIVE_DIRECTION"
-msgstr ""
+msgstr "Negatív irány"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
-msgstr ""
+msgstr "Pozitív irány"
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr ""
+msgstr "R2"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
-msgstr ""
+msgstr "Jobb ravasz"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_X"
-msgstr ""
+msgstr "Jobb Joystick Horizontális"
 
+#, fuzzy
 msgid "CONTROLLER_AXIS_RIGHT_Y"
-msgstr ""
+msgstr "Jobb Joystick Vertikális"
 
 msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr ""
+msgstr "D-pad le"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr ""
+msgstr "D-pad balra"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "D-pad jobbra"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr ""
+msgstr "D-pad fel"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
 msgstr ""
@@ -1105,44 +1113,53 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr ""
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "Kiválasztás"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr ""
+msgstr "Start"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr ""
+msgstr "Kör"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr ""
+msgstr "Kereszt"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr ""
+msgstr "L1"
 
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr ""
+msgstr "L3"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "Options"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr ""
+msgstr "R1"
 
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr ""
+msgstr "R3"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr ""
+msgstr "Share"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
-msgstr ""
+msgstr "Logo gomb"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_SQUARE"
-msgstr ""
+msgstr "Négyzet"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_PS_TRIANGLE"
-msgstr ""
+msgstr "Háromszög"
 
 msgid "CONTROLLER_BUTTON_RIGHT_SHOULDER"
 msgstr ""
@@ -1150,32 +1167,36 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_RIGHT_STICK"
 msgstr ""
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_TOUCH_PAD"
-msgstr ""
+msgstr "Érintőpad"
 
 msgid "CONTROLLER_BUTTON_UNKNOWN"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_XBOX_A"
-msgstr ""
+msgstr "A"
 
 msgid "CONTROLLER_BUTTON_XBOX_B"
-msgstr ""
+msgstr "B"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_BACK"
-msgstr ""
+msgstr "Back"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_GUIDE"
-msgstr ""
+msgstr "Guide"
 
+#, fuzzy
 msgid "CONTROLLER_BUTTON_XBOX_START"
-msgstr ""
+msgstr "Start"
 
 msgid "CONTROLLER_BUTTON_XBOX_X"
-msgstr ""
+msgstr "X"
 
 msgid "CONTROLLER_BUTTON_XBOX_Y"
-msgstr ""
+msgstr "Y"
 
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
@@ -1190,8 +1211,9 @@ msgstr ""
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
+#, fuzzy
 msgid "CONTROLLER_SENSITIVITY"
-msgstr ""
+msgstr "Kontroller érzékenység"
 
 msgid "CONTROLLER_UNKNOWN_AXIS"
 msgstr ""
@@ -1208,12 +1230,12 @@ msgstr "Protanóp (Piros-Zöld)"
 msgid "CORRECTION_TRITANOPE"
 msgstr "Tritanóp (Kék-Citrom)"
 
-#, fuzzy
 msgid "CPU_THREADS"
-msgstr "Szálak:"
+msgstr "Szálak"
 
+#, fuzzy
 msgid "CRAFTING_CLEAR_INPUTS"
-msgstr ""
+msgstr "Kiválasztott bemenetek törlése"
 
 msgid "CRAFTING_ERROR_INTERNAL_CONSUME_PROBLEM"
 msgstr ""
@@ -1222,11 +1244,13 @@ msgstr ""
 msgid "CRAFTING_ERROR_TAKING_ITEMS"
 msgstr "Nincs cím"
 
+#, fuzzy
 msgid "CRAFTING_FILTER_INPUTS"
-msgstr ""
+msgstr "Bemenetek"
 
+#, fuzzy
 msgid "CRAFTING_KNOWN_ITEMS"
-msgstr ""
+msgstr "Ismert receptek"
 
 msgid "CRAFTING_NOT_ENOUGH_MATERIAL"
 msgstr ""
@@ -1240,8 +1264,9 @@ msgstr ""
 msgid "CRAFTING_RECIPE_DISPLAY"
 msgstr "{0} ({1})"
 
+#, fuzzy
 msgid "CRAFTING_RECIPE_HAND_AXE"
-msgstr ""
+msgstr "Kő balta"
 
 msgid "CRAFTING_RESULTS"
 msgstr "Eredmények"
@@ -1249,12 +1274,13 @@ msgstr "Eredmények"
 msgid "CRAFTING_SELECT_RECIPE_OR_ITEMS_TO_FILTER"
 msgstr ""
 
+#, fuzzy
 msgid "CRAFTING_TAKE_ALL"
-msgstr ""
+msgstr "Mindent elvesz"
 
 #, fuzzy
 msgid "CRAFTING_TITLE"
-msgstr "Nincs cím"
+msgstr "Barkácsolás"
 
 msgid "CREATE"
 msgstr "Létrehozás"
