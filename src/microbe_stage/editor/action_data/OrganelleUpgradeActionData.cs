@@ -41,13 +41,8 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        if (other is OrganelleUpgradeActionData upgradeActionData)
-        {
-            if (ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle))
-                return ActionInterferenceMode.Combinable;
-        }
-
-        // The replacing action is in the remove organelle action
+        // Organelle upgrades can never combine since the user will have already been refunded for the cost of the old choice.
+        // https://github.com/Revolutionary-Games/Thrive/issues/5524
 
         return ActionInterferenceMode.NoInterference;
     }
