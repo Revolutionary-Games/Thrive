@@ -277,10 +277,10 @@ public class SimulationCache
             engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
         }
 
-        var (pilusScore, oxytoxyScore, mucilageScore) = GetPredationToolsRawScores(microbeSpecies);
-
-        // TODO: Support mucilage in predation score
-        mucilageScore *= 0;
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore) = GetPredationToolsRawScores(microbeSpecies);
+        var (_, _, preySlimeJetScore) = GetPredationToolsRawScores(prey);
+        var slimeJetScore = predatorSlimeJetScore - preySlimeJetScore;
+        slimeJetScore = slimeJetScore < 0 ? 0 : slimeJetScore;
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
@@ -317,7 +317,7 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        cached = scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) /
+        cached = scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + slimeJetScore) /
             GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
@@ -379,7 +379,7 @@ public class SimulationCache
         cachedStorageScores.Clear();
     }
 
-    public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(
+    public (float PilusScore, float OxytoxyScore, float SlimeJetScore) GetPredationToolsRawScores(
         MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
@@ -387,19 +387,34 @@ public class SimulationCache
 
         var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
-        var mucilageScore = 0.0f;
+        var slimeJetScore = 0.0f;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
+        var slimeJetsCount = 0;
+        var topPosition = 0;
+        var bottomPosition = 0;
+        List<int> slimeJetsHorizontalPositions = new List<int>();
 
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
 
+            // TODO: Is there better option for calculating/storing cells boundaries?
+            topPosition = organelle.Position.R < topPosition ? organelle.Position.R : topPosition;
+            bottomPosition = organelle.Position.R > bottomPosition ? organelle.Position.R : bottomPosition;
+
             if (organelle.Definition.HasPilusComponent)
             {
                 pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
                 continue;
+            }
+
+            if (organelle.Definition.HasSlimeJetComponent)
+            {
+                slimeJetsHorizontalPositions.Add(organelle.Position.R);
+                slimeJetsCount++;
+                slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
             }
 
             foreach (var process in organelle.Definition.RunnableProcesses)
@@ -408,15 +423,29 @@ public class SimulationCache
                 {
                     oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
-
-                if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                {
-                    mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
-                }
             }
         }
 
-        var predationToolsRawScores = (pilusScore, oxytoxyScore, mucilageScore);
+        // Make sure that slime jets are positioned at the back of the cell, because otherwise they will push the cell
+        // backwards (into the predator or away from the prey) or to the side
+        foreach (var slimeJetPosition in slimeJetsHorizontalPositions)
+        {
+            // Range of [0,1] (front to back)
+            var mucilageMultiplier = (float)(slimeJetPosition - topPosition) / (bottomPosition - topPosition);
+            if (mucilageMultiplier <= 0.5)
+            {
+                slimeJetScore *= 0;
+            }
+            else
+            {
+                slimeJetScore += mucilageMultiplier;
+            }
+        }
+
+        // Having lots of extra slime jets really doesn't help you that much
+        slimeJetScore *= MathF.Sqrt(slimeJetsCount);
+
+        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
