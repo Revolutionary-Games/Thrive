@@ -413,7 +413,7 @@ public class SimulationCache
             if (organelle.Definition.HasSlimeJetComponent)
             {
                 slimeJetsHorizontalPositions.Add(organelle.Position.R);
-                slimeJetsCount++;
+                ++slimeJetsCount;
                 slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
             }
 
