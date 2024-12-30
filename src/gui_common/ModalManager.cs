@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Nito.Collections;
@@ -85,7 +85,13 @@ public partial class ModalManager : NodeWithInput
         if (modalStack.Contains(popup))
             return;
 
-        originalParents[popup] = popup.GetParent();
+        var parent = popup.GetParent();
+        originalParents[popup] = parent;
+
+        // Listen for when the parent is removed from the tree so the modal can be removed as well.
+        parent.Connect(Node.SignalName.TreeExiting, Callable.From(() => OnParentLost(popup)),
+            (uint)ConnectFlags.OneShot);
+
         modalStack.AddToFront(popup);
         modalsDirty = true;
 
@@ -269,6 +275,26 @@ public partial class ModalManager : NodeWithInput
         }
 
         demotedModals.Enqueue(popup);
+
+        modalsDirty = true;
+    }
+
+    /// <summary>
+    ///   Called when the parent of a <paramref name="popup"/> is deleted from the scene tree.
+    /// </summary>
+    /// <remarks>
+    ///   If a popup is demoted but its parent is invalid, an exception will occur.
+    ///   Deleting the modal here and removing references to it will avoid the exception.
+    /// </remarks>
+    private void OnParentLost(TopLevelContainer popup)
+    {
+        // Remove the original parent since the reference will now be invalid
+        originalParents.Remove(popup);
+
+        // Delete the popup
+        popup.Close();
+        modalStack.Remove(popup);
+        popup.QueueFree();
 
         modalsDirty = true;
     }
