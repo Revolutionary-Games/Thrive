@@ -394,7 +394,7 @@ public class SimulationCache
         var slimeJetsCount = 0;
         var topPosition = 0;
         var bottomPosition = 0;
-        List<int> slimeJetsHorizontalPositions = new List<int>();
+        List<int> slimeJetsVerticalPositions = new List<int>();
 
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -412,7 +412,7 @@ public class SimulationCache
 
             if (organelle.Definition.HasSlimeJetComponent)
             {
-                slimeJetsHorizontalPositions.Add(organelle.Position.R);
+                slimeJetsVerticalPositions.Add(organelle.Position.R);
                 ++slimeJetsCount;
                 slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
             }
@@ -428,17 +428,22 @@ public class SimulationCache
 
         // Make sure that slime jets are positioned at the back of the cell, because otherwise they will push the cell
         // backwards (into the predator or away from the prey) or to the side
-        foreach (var slimeJetPosition in slimeJetsHorizontalPositions)
+        foreach (var slimeJetPosition in slimeJetsVerticalPositions)
         {
-            // Range of [0,1] (front to back)
-            var mucilageMultiplier = (float)(slimeJetPosition - topPosition) / (bottomPosition - topPosition);
+            var mucilageMultiplier = 1.0f;
+            if (bottomPosition != topPosition)
+            {
+                // Range of [0,1] (front to back)
+                mucilageMultiplier = (float)(slimeJetPosition - topPosition) / (bottomPosition - topPosition);
+            }
+
             if (mucilageMultiplier <= 0.5)
             {
                 slimeJetScore *= 0;
             }
             else
             {
-                slimeJetScore += mucilageMultiplier;
+                slimeJetScore *= mucilageMultiplier;
             }
         }
 
