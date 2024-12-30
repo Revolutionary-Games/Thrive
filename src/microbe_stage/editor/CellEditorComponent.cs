@@ -1281,6 +1281,8 @@ public partial class CellEditorComponent :
             return;
         }
 
+        // Make sure that if there are no mutation points the player cannot drag the slider
+        // when the cost is rounded to zero
         if (Editor.MutationPoints == 0 && cost == 0)
         {
             UpdateRigiditySlider(previousRigidity);
