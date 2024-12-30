@@ -27,8 +27,12 @@ public class SimulationCache
     private readonly WorldGenerationSettings worldSettings;
 
     private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
-    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
+
+    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfoSimple>
+        cachedSimpleEnergyBalances = [];
+
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
+
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions, CompoundDefinition, CompoundDefinition), float>
@@ -68,25 +72,27 @@ public class SimulationCache
         return cached;
     }
 
-    public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, IBiomeConditions biomeConditions)
+    public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(MicrobeSpecies species, IBiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
         // different species but with same organelles to be able to use the same cache value) would be nice here
         var key = (species, biomeConditions);
 
-        if (cachedEnergyBalances.TryGetValue(key, out var cached))
+        if (cachedSimpleEnergyBalances.TryGetValue(key, out var cached))
         {
             return cached;
         }
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.Organelles);
 
+        cached = new EnergyBalanceInfoSimple();
+
         // Auto-evo uses the average values of compound during the course of a simulated day
-        cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
+        ProcessSystem.ComputeEnergyBalance(cached, species.Organelles, biomeConditions, species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, false,
             this);
 
-        cachedEnergyBalances.Add(key, cached);
+        cachedSimpleEnergyBalances.Add(key, cached);
         return cached;
     }
 
@@ -367,7 +373,7 @@ public class SimulationCache
     public void Clear()
     {
         cachedPressureScores.Clear();
-        cachedEnergyBalances.Clear();
+        cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
         cachedBaseHexSizes.Clear();
         cachedCompoundScores.Clear();

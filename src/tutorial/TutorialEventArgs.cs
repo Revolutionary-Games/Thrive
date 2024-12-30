@@ -136,12 +136,12 @@ public class MicrobeColonyEventArgs : TutorialEventArgs
 
 public class EnergyBalanceEventArgs : TutorialEventArgs
 {
-    public EnergyBalanceEventArgs(EnergyBalanceInfo energyBalanceInfo)
+    public EnergyBalanceEventArgs(EnergyBalanceInfoFull energyBalanceInfo)
     {
         EnergyBalanceInfo = energyBalanceInfo;
     }
 
-    public EnergyBalanceInfo EnergyBalanceInfo { get; }
+    public EnergyBalanceInfoFull EnergyBalanceInfo { get; }
 }
 
 public class OrganellePlacedEventArgs : TutorialEventArgs

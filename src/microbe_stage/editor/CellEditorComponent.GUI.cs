@@ -682,7 +682,7 @@ public partial class CellEditorComponent
             warningTime, fillingUpTime, notEnoughStorageWarning);
     }
 
-    private void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
+    private void UpdateEnergyBalance(EnergyBalanceInfoFull energyBalance)
     {
         energyBalanceInfo = energyBalance;
 
@@ -717,7 +717,7 @@ public partial class CellEditorComponent
         UpdateEnergyBalanceToolTips(energyBalance);
     }
 
-    private void UpdateEnergyBalanceToolTips(EnergyBalanceInfo energyBalance)
+    private void UpdateEnergyBalanceToolTips(EnergyBalanceInfoFull energyBalance)
     {
         var simulationParameters = SimulationParameters.Instance;
 

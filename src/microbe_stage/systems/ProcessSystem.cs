@@ -193,20 +193,25 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Computes the energy balance for the given organelles in biome and at a given time during the day (or type
     ///   can be specified to be a different type of value)
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    public static EnergyBalanceInfoFull ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
+        EnergyBalanceInfoFull result = new();
+        ComputeEnergyBalance(result, organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
             isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null);
+        return result;
     }
 
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
+    /// <param name="result">
+    ///   The energy balance info that is returned. This may be an EnergyBalanceSimple or an EnergyBalanceFull.
+    /// </param>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
     /// <param name="membrane">The membrane type to adjust the energy balance with</param>
@@ -227,15 +232,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   If true, then the required input compounds to run at the given energy balance are stored per energy producer
     /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    public static void ComputeEnergyBalance(EnergyBalanceInfoSimple result, IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache)
     {
-        // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
-        // further items
-        var result = new EnergyBalanceInfo();
-
         if (calculateRequiredResources)
         {
             result.SetupTrackingForRequiredCompounds();
@@ -333,8 +334,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
-
-        return result;
     }
 
     /// <summary>
@@ -406,7 +405,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
         IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance)
+        EnergyBalanceInfoFull energyBalance)
     {
         var result = new Dictionary<Compound, CompoundBalance>();
 
@@ -464,7 +463,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
         IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance)
+        EnergyBalanceInfoFull energyBalance)
     {
         return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
             energyBalance);
@@ -498,7 +497,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   input compounds present in the biome can run)
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
-        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
+        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoSimple? result)
     {
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;

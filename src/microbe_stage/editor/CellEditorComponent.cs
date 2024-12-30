@@ -325,7 +325,7 @@ public partial class CellEditorComponent :
 
     private OrganelleDefinition cytoplasm = null!;
 
-    private EnergyBalanceInfo? energyBalanceInfo;
+    private EnergyBalanceInfoFull? energyBalanceInfo;
 
     private ResourceLimitingMode balanceMode;
 
@@ -2013,7 +2013,7 @@ public partial class CellEditorComponent :
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
+        IBiomeConditions biome, EnergyBalanceInfoFull energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData;
@@ -2036,7 +2036,7 @@ public partial class CellEditorComponent :
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
-    private void HandleProcessList(EnergyBalanceInfo energyBalance, IBiomeConditions biome)
+    private void HandleProcessList(EnergyBalanceInfoFull energyBalance, IBiomeConditions biome)
     {
         var processes = new List<TweakedProcess>();
 
