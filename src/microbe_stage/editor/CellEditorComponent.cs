@@ -1084,11 +1084,6 @@ public partial class CellEditorComponent :
         editedProperties.Colour = Colour;
         editedProperties.MembraneRigidity = Rigidity;
 
-        // The organelle menu may still be open if using keyboard/controler navigation.
-        // https://github.com/Revolutionary-Games/Thrive/issues/4470
-        // Since the organelle menu will be reparented to the ModalManager, it is necessary close it manually.
-        organelleMenu.Close();
-
         if (!IsMulticellularEditor)
         {
             GD.Print("MicrobeEditor: updated organelles for species: ", editedSpecies.FormattedName);
