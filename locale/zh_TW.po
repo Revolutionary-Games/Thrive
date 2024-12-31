@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-12-27 09:42+0000\n"
+"PO-Revision-Date: 2025-01-01 12:32+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -7279,14 +7279,13 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "微生物階段有一個包含更多細節的單獨的遊戲設計方案：微生物階段遊戲設計方案"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 "上一階段：沒有更早的階段。\n"
 "\n"
 "下一階段：[color=#3796e1][url=thriveopedia:multicellular_stage]多細胞階段[/url][/color]\n"
 "\n"
-"微生物階段是遊戲的第一個階段。該階段從世界上最早出現的物種開始，它們剛從生命的原始起源中誕生，探索營養豐富的海底熱泉。在這裡，玩家扮演一個微小的原核細胞質團塊，它是其物種中為數不多的個體之一。此時，玩家必須完全依賴尋找散落的葡萄糖來生存，因為他們尚未擁有處理其他營養物質的能力，並且需要尋找磷酸鹽與氨來成長壯大，以準備進行繁殖。一旦玩家達到足夠的大小，他們將能夠進行繁殖，並帶領玩家進入微生物編輯器。隨著遊戲的進行，玩家將逐漸改造自己的細胞，以更好地在一個每一代都逐漸變得更加嚴酷的世界中生存，並與由玩家物種演化而來的新物種競爭。"
+"微生物階段是遊戲的第一個階段。該階段從世界上最早出現的物種開始，它們剛從生命的原始起源中誕生，探索營養豐富的海底熱泉。在這裡，玩家扮演一個微小的原核細胞質團塊，它是其物種中為數不多的個體之一。此時，玩家必須完全依賴尋找散落的[thrive:compound type=\"glucose\"][/thrive:compound] 來生存，因為他們尚未擁有處理其他營養物質的能力，並且需要尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 與[thrive:compound type=\"ammonia\"][/thrive:compound] 來成長壯大，以準備進行繁殖。一旦玩家達到足夠的大小，他們將能夠進行繁殖，並帶領玩家進入微生物編輯器。隨著遊戲的進行，玩家將逐漸改造自己的細胞，以更好地在一個每一代都逐漸變得更加嚴酷的世界中生存，並與由玩家物種演化而來的新物種競爭。"
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "無效果。"
@@ -7297,10 +7296,9 @@ msgstr "細胞的發電廠。[b]粒線體[/b]進行[b]有氧呼吸[/b]，使用[
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
-"[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound]\n"
 "\n"
 "能量產生的主要方法之一，優於[color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color]。需要穩定[thrive:compound type=\"glucose\"][/thrive:compound] 流入。速率與環境中[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -7420,10 +7418,9 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
-"[b]固氮酶[/b]生產的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助於儲存用於繁殖的資源。因此，具有[b]固氮酶[/b]的細胞只需要從環境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在當前遊戲選項中停用了被動繁殖進度，則基本速率為零）。\n"
+"[b]固氮酶[/b]生產的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助於儲存用於繁殖的資源。因此，具有[b]固氮酶[/b]的細胞只需要從環境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在當前遊戲選項中停用了被動繁殖進度，則基本速率為零）。一種好的策略是尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 塊來吞噬或停留在附近。\n"
 "\n"
 "由於[b]厭氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您應該在將此細胞器添加到您的細胞之前檢查是否有多餘的[thrive:compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]進行的少量[b]糖解[/b]不足以抵銷其自身的滲透調節成本。"
 
@@ -7614,9 +7611,8 @@ msgstr "編輯器與突變"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "環境條件"
 
-#, fuzzy
 msgid "WIKI_PAGE_FERROPLAST"
-msgstr "熱能體"
+msgstr "鐵能體"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
@@ -7836,16 +7832,17 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "無要求。"
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"[b]鐵氧化藍蛋白[/b]存在於一些細菌與古菌的細胞膜中。它從[b]鐵[/b]轉移電子，並利用電子將離子泵入細胞中，以幫助製造新的 [b]ATP[/b] 分子。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] 是一種有價值的替代資源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因為它不會在環境中腐爛。吃鐵鏽的細胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 豐富的區域中享受豐富的營養。\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] 是一種有價值的替代資源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因為它在環境中的衰變速度要慢得多。以鐵為食的細胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 豐富的區域中享受豐富的營養。\n"
 "\n"
-"攝取[thrive:compound type=\"iron\"][/thrive:compound] 塊可能很誘人，但通常您會透過靠近一塊來獲得更多[thrive:compound type=\"iron\"][/thrive:compound]，因為它會產生更多雲狀化合物。"
+"攝取[thrive:compound type=\"iron\"][/thrive:compound] 塊可能很誘人，但通常情況下，靠近更大的塊可以獲得更多的[thrive:compound type=\"iron\"][/thrive:compound]，因為它會產生更多雲狀化合物。然而，吞下[thrive:compound type=\"iron\"][/thrive:compound] 塊可以讓您攜帶更多的[thrive:compound type=\"iron\"][/thrive:compound] 以進行長途旅行。"
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "無升級。"
