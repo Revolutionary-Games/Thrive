@@ -280,7 +280,7 @@ public class SimulationCache
         var (pilusScore, oxytoxyScore, predatorSlimeJetScore) = GetPredationToolsRawScores(microbeSpecies);
         var (_, _, preySlimeJetScore) = GetPredationToolsRawScores(prey);
         var slimeJetScore = predatorSlimeJetScore - preySlimeJetScore;
-        slimeJetScore = slimeJetScore < 0 ? 0 : slimeJetScore;
+        slimeJetScore = Math.Max(slimeJetScore, 0);
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
@@ -401,8 +401,8 @@ public class SimulationCache
             var organelle = organelles[i];
 
             // TODO: Is there better option for calculating/storing cells boundaries?
-            topPosition = organelle.Position.R < topPosition ? organelle.Position.R : topPosition;
-            bottomPosition = organelle.Position.R > bottomPosition ? organelle.Position.R : bottomPosition;
+            topPosition = Math.Min(organelle.Position.R, topPosition);
+            bottomPosition = Math.Max(organelle.Position.R, bottomPosition);
 
             if (organelle.Definition.HasPilusComponent)
             {
