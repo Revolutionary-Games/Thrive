@@ -1270,7 +1270,7 @@ public partial class CellEditorComponent :
 
         var cost = Editor.WhatWouldActionsCost(new[] { data });
 
-        if (cost > Editor.MutationPoints)
+        if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
         {
             int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
@@ -1283,7 +1283,7 @@ public partial class CellEditorComponent :
 
         // Make sure that if there are no mutation points the player cannot drag the slider
         // when the cost is rounded to zero
-        if (Editor.MutationPoints == 0 && cost == 0)
+        if (cost >= 0 && (Editor.MutationPoints - cost < 0 || costPerStep > Editor.MutationPoints))
         {
             UpdateRigiditySlider(previousRigidity);
             return;
