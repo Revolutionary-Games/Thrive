@@ -1261,7 +1261,7 @@ public partial class CellEditorComponent :
         if (previousRigidity == desiredRigidity)
             return;
 
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+        var costPerStep = Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
         var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
         {
@@ -1270,14 +1270,22 @@ public partial class CellEditorComponent :
 
         var cost = Editor.WhatWouldActionsCost(new[] { data });
 
-        if (cost > Editor.MutationPoints)
+        if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
         {
-            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
+            int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
                 Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
             // Action is enqueued or canceled here, so we don't need to go on.
             UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            return;
+        }
+
+        // Make sure that if there are no mutation points the player cannot drag the slider
+        // when the cost is rounded to zero
+        if (cost >= 0 && (Editor.MutationPoints - cost < 0 || costPerStep > Editor.MutationPoints))
+        {
+            UpdateRigiditySlider(previousRigidity);
             return;
         }
 
