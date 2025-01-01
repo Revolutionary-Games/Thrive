@@ -416,7 +416,8 @@ public partial class PatchMapDrawer : Control
         return sideCenterPoints.OrderBy(point => point.DistanceSquaredTo(pointPos)).First();
     }
 
-    private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor, int zIndex = 1, float width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH)
+    private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor, int zIndex = 1,
+        float width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH)
     {
         var link = new Line2D
         {
@@ -517,7 +518,7 @@ public partial class PatchMapDrawer : Control
         if (size1 >= 4)
             priority += 4;
 
-        // Usually if regions are 1x3 or 2x3. In the second example prioritize connection to the size od length 2
+        // Some regions are 1x3 or 2x3. In the second case prioritize connection with the side of length 2
         if (size1 == 3)
             priority -= 3;
 
@@ -624,7 +625,8 @@ public partial class PatchMapDrawer : Control
     ///   </para>
     /// </remarks>
     /// <returns>Path represented in a Vector2 array</returns>
-    private (Vector2[] Path, bool StartVertical, bool EndVertical) GetLeastIntersectingPath(PatchRegion start, PatchRegion end)
+    private (Vector2[] Path, bool StartVertical, bool EndVertical) GetLeastIntersectingPath(PatchRegion start,
+        PatchRegion end)
     {
         var startCenter = RegionCenter(start);
         var startRect = new Rect2(start.ScreenCoordinates, start.Size);
@@ -671,32 +673,39 @@ public partial class PatchMapDrawer : Control
         // 3-segment line, Z shape
         var middlePoint = new Vector2(left.End.X + right.Position.X, upper.End.Y + lower.Position.Y) / 2.0f;
 
-        (intermediate1, intermediate2, priority) = GetZShapePathCharacteristics(start, end, startCenter, endCenter, middlePoint);
+        (intermediate1, intermediate2, priority) =
+            GetZShapePathCharacteristics(start, end, startCenter, endCenter, middlePoint);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-        (intermediate1, intermediate2, priority) = GetZShapePathCharacteristics(start, end, startCenter, endCenter, middlePoint, true);
+        (intermediate1, intermediate2, priority) =
+            GetZShapePathCharacteristics(start, end, startCenter, endCenter, middlePoint, true);
         if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
 
         // 3-segment line, U shape
         for (int i = 1; i <= 3; ++i)
         {
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect, startCenter, endCenter, "lower", i);
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+                startCenter, endCenter, "lower", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect, startCenter, endCenter, "upper", i);
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+                startCenter, endCenter, "upper", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect, startCenter, endCenter, "right", i);
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+                startCenter, endCenter, "right", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect, startCenter, endCenter, "left", i);
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+                startCenter, endCenter, "left", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
         }
 
         // Choose a best path
-        var bestPath = probablePaths.Select(p => (p.Path, CalculatePathPriorityTuple((p.Path, p.Priority)), p.StartVertical, p.EndVertical))
+        var bestPath = probablePaths.Select(p =>
+                (p.Path, CalculatePathPriorityTuple((p.Path, p.Priority)), p.StartVertical, p.EndVertical))
             .OrderBy(p => p.Item2.RegionIntersectionCount)
             .ThenBy(p => p.Item2.PathIntersectionCount)
             .ThenByDescending(p => p.Item2.Priority)
@@ -717,8 +726,8 @@ public partial class PatchMapDrawer : Control
             var connectionEndHere = connections.Where(p => p.Key.Y == regionId);
 
             var connectionTupleList = connectionStartHere.Select(c => (c.Value.Item1, 0, 1)).ToList();
-            connectionTupleList.AddRange(
-                connectionEndHere.Select(c => (c.Value.Item1, c.Value.Item1.Length - 1, c.Value.Item1.Length - 2)));
+            connectionTupleList.AddRange(connectionEndHere.Select(c =>
+                (c.Value.Item1, c.Value.Item1.Length - 1, c.Value.Item1.Length - 2)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             // TODO: refactor this to use an enum
@@ -961,7 +970,8 @@ public partial class PatchMapDrawer : Control
                     var start = PatchCenter(patch.ScreenCoordinates);
                     var end = PatchCenter(adjacent.ScreenCoordinates);
 
-                    CreateConnectionLine(new[] { start, end }, DefaultConnectionColor, 2, Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
+                    CreateConnectionLine(new[] { start, end }, DefaultConnectionColor, 2,
+                        Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
                 }
             }
         }
@@ -1039,7 +1049,8 @@ public partial class PatchMapDrawer : Control
         nodes.Add(node.Patch, node);
     }
 
-    private void BuildPatchToRegionConnections(PatchRegion region1, PatchRegion region2, Vector2 regionPoint, bool isVertical, MapElementVisibility regionVisibility)
+    private void BuildPatchToRegionConnections(PatchRegion region1, PatchRegion region2, Vector2 regionPoint,
+        bool isVertical, MapElementVisibility regionVisibility)
     {
         foreach (var adjacent in region1.PatchAdjacencies[region2.ID])
         {
@@ -1057,8 +1068,9 @@ public partial class PatchMapDrawer : Control
                 zIndex = 3;
             }
 
-            Vector2 closesPatchSideCenter = ClosestPatchSideCenter(adjacent.ScreenCoordinates, regionPoint, isVertical);
-            CreateConnectionLine([PatchCenter(adjacent.ScreenCoordinates), closesPatchSideCenter, regionPoint], color, zIndex);
+            var closesPatchSideCenter = ClosestPatchSideCenter(adjacent.ScreenCoordinates, regionPoint, isVertical);
+            CreateConnectionLine([PatchCenter(adjacent.ScreenCoordinates), closesPatchSideCenter, regionPoint], color,
+                zIndex);
         }
     }
 
