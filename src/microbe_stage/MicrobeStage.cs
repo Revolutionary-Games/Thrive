@@ -1036,8 +1036,6 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var currentPatch = GameWorld.Map.CurrentPatch;
 
-        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
-        // light cycle in it.
         patchManager.UpdatePatchBiome(currentPatch);
         patchManager.UpdateAllPatchLightLevels(currentPatch.BiomeTemplate);
 
