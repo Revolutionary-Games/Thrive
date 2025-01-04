@@ -296,6 +296,15 @@ public partial class ModalManager : NodeWithInput
         modalStack.Remove(popup);
         popup.QueueFree();
 
+        // Remove the popup from the demoted modals since it is now destroyed
+        var demotedModalsCount = demotedModals.Count;
+        for (int i = 0; i < demotedModalsCount; i++)
+        {
+            var item = demotedModals.Dequeue();
+            if (item != popup)
+                demotedModals.Enqueue(item);
+        }
+
         modalsDirty = true;
     }
 }
