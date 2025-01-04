@@ -1046,8 +1046,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             // This might need to be refactored for efficiency, but it works for now
             var lightLevel =
-                currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
-                GameWorld.LightCycle.DayLightFraction;
+                currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightLevel / maxLightLevel;

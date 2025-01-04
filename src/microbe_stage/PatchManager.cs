@@ -145,8 +145,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         gameWorld.UpdateGlobalLightLevels();
 
-        var multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
-            gameWorld.LightCycle.DayLightFraction;
+        var multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
         UpdateLight(biome);
     }
