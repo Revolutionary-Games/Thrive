@@ -143,9 +143,11 @@ public class PatchManager : IChildPropertiesLoadCallback
         if (!gameWorld.WorldSettings.DayNightCycleEnabled)
             return;
 
-        var multiplier = gameWorld.LightCycle.DayLightFraction;
-        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
         gameWorld.UpdateGlobalLightLevels();
+
+        var multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
+            gameWorld.LightCycle.DayLightFraction;
+        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
         UpdateLight(biome);
     }
 
