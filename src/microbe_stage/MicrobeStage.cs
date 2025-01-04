@@ -1046,7 +1046,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Updates the background lighting and does various post-effects
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
-            // This might need to be refactored for efficiency but, it works for now
+            // This might need to be refactored for efficiency, but it works for now
             var lightLevel =
                 currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
                 GameWorld.LightCycle.DayLightFraction;
