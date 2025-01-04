@@ -145,9 +145,23 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         gameWorld.UpdateGlobalLightLevels();
 
-        var multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
+        var maxLightLevel = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+
+        float multiplier;
+
+        if (maxLightLevel > 0.0f)
+        {
+            multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient * biome.;
+        }
+        else
+        {
+            multiplier = 1.0f;
+        }
+
+        GD.Print(multiplier, biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient);
+
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
-        UpdateLight(biome);
+        UpdateLight(biome, multiplier);
     }
 
     public void ApplySaveState(Patch? patch, float brightness)
@@ -305,7 +319,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    private void UpdateLight(Biome biome)
+    private void UpdateLight(Biome biome, float lightLevel)
     {
         worldLight.Position = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
@@ -313,7 +327,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         worldLight.ShadowEnabled = biome.Sunlight.Shadows;
 
         worldLight.LightColor = biome.Sunlight.Colour;
-        worldLight.LightEnergy = biome.Sunlight.Energy * CurrentGame!.GameWorld.LightCycle.DayLightFraction;
+        worldLight.LightEnergy = biome.Sunlight.Energy * lightLevel;
         worldLight.LightSpecular = biome.Sunlight.Specular;
     }
 
