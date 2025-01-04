@@ -151,14 +151,13 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         if (maxLightLevel > 0.0f)
         {
-            multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient * biome.;
+            multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
+                CurrentGame!.GameWorld.LightCycle.DayLightFraction;
         }
         else
         {
             multiplier = 1.0f;
         }
-
-        GD.Print(multiplier, biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient);
 
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
         UpdateLight(biome, multiplier);
