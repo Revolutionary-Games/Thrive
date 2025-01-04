@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Nito.Collections;
@@ -283,8 +283,10 @@ public partial class ModalManager : NodeWithInput
     ///   Called when the parent of a <paramref name="popup"/> is deleted from the scene tree.
     /// </summary>
     /// <remarks>
-    ///   If a popup is demoted but its parent is invalid, an exception will occur.
-    ///   Deleting the modal here and removing references to it will avoid the exception.
+    ///   <para>
+    ///     If a popup is demoted but its parent is invalid, an exception will occur.
+    ///     Deleting the modal here and removing references to it will avoid the exception.
+    ///   </para>
     /// </remarks>
     private void OnParentLost(TopLevelContainer popup)
     {
