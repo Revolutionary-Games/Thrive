@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-12-30 11:32+0000\n"
+"PO-Revision-Date: 2025-01-05 14:32+0000\n"
 "Last-Translator: Jorge Maldonado Ventura <jorgesumle@freakspot.net>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -96,9 +96,8 @@ msgstr "Avanzado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abre las opciones avanzadas"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fijación de Nitrógeno Anaeróbica"
+msgstr "Fijación de nitrógeno anaeróbica"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fijación de Nitrógeno Aeróbica"
@@ -134,18 +133,15 @@ msgstr "(Velocidad con la cual las species de la AI mutan)"
 msgid "ALL"
 msgstr "Todos"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Permitir que las especies no tengan mutaciones (en caso que no se encuentren buenas mutaciones)"
+msgstr "Permitir cambiar a especies en extinción relacionadas"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
+msgstr "(permite continuar la partida con una especie en extinción diferente en vez de finalizar la partida)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadísticas genéricas de todos los mundos"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaciones:[/b]\n"
@@ -232,9 +228,8 @@ msgstr ""
 "\n"
 "Total de veces que has ascendido en esta partida guardada: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Versión:"
+msgstr "Estadio de ascenso"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
@@ -259,25 +254,25 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Balance de ATP"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
-"Esta sección muestra el balance total (lo producido - lo consumido) por cada compuesto.\n"
-"Por ejemplo, para hacer una célula vegetal el balance de glucosa tiene que ser positivo."
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para sobrevivir el balance debe ser positivo. En el caso de las células sésiles, pueden considerar que el balance es positivo si se excluye el movimiento.\n"
+"El desplegable que aparece a continuación puede utilizarse para comprobar qué ocurriría si la célula no dispusiera de algún recurso con el que fabricar ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiplos tipos de compuestos con los que fabricar ATP a la vez.\n"
+"Es más difícil jugar con ese tipo de células, dado que requieren tener varios tipos de compuestos almacenados a la vez para sobrevivir."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Sin recursos externos"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Sin glucosa"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Ácido Sulfhídrico"
+msgstr "Sin sulfuro de hidrógeno"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "Balance de ATP"
+msgstr "Sin hierro"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
