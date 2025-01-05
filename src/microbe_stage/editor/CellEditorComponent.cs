@@ -1268,7 +1268,9 @@ public partial class CellEditorComponent :
             CostMultiplier = CostMultiplier,
         };
 
-        var cost = Editor.WhatWouldActionsCost(new[] { data });
+        // In some cases "theoreticalCost" might get rounded improperly
+        var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
+        var cost = (int)Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
 
         if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
         {
