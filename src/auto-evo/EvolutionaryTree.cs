@@ -73,7 +73,7 @@ public partial class EvolutionaryTree : Control
     /// <summary>
     ///   Additional padding to ensure some part of the tree remains on the screen
     /// </summary>
-    private static readonly Vector2 TREE_PADDING = new(GENERATION_SEPARATION, SPECIES_SEPARATION);
+    private static readonly Vector2 TreePadding = new(GENERATION_SEPARATION, SPECIES_SEPARATION);
 
     /// <summary>
     ///   Stores the created nodes for species by the species ids
@@ -479,7 +479,7 @@ public partial class EvolutionaryTree : Control
         // The drag offset should go past the edge of the tree to allow zooming around the cursor:
         // https://github.com/Revolutionary-Games/Thrive/issues/3716
         // However some part of the tree should remain visible as determined by TREE_PADDING.
-        dragOffset = dragOffset.Max(-TreeSize + TREE_PADDING).Min(tree.Size / sizeFactor - TREE_PADDING);
+        dragOffset = dragOffset.Max(-TreeSize + TreePadding).Min(tree.Size / sizeFactor - TreePadding);
     }
 
     /// <summary>
