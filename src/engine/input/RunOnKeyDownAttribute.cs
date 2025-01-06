@@ -18,8 +18,11 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        var before = HeldDown;
-        if (base.OnInput(@event) && !before && HeldDown)
+        // Only trigger if the input was pressed this frame. It isn't possible to use !HeldDown since its value is
+        // incorrect if a mouse release event is marked as handled e.g. when opening a popup.
+        // https://github.com/Revolutionary-Games/Thrive/issues/5217
+        var justPressed = Input.IsActionJustPressed(InputName);
+        if (base.OnInput(@event) && justPressed && HeldDown)
         {
             if (TrackInputMethod)
             {
