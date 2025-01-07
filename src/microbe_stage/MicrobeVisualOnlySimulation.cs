@@ -242,15 +242,29 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // Calculate cell center graphics position for more accurate photographing
         if (organelles.CreatedOrganelleVisuals is { Count: > 0 })
         {
-            foreach (var node in organelles.CreatedOrganelleVisuals.Values)
+            foreach (var pair in organelles.CreatedOrganelleVisuals)
             {
+                // We don't need to account for internal organelles as they are located within the cell's radius
+                if (!pair.Key.Definition.PositionedExternally)
+                    continue;
+
                 // TODO: is there another way to not need to call so many Godot data access methods here
                 // Organelle positions might be usable as the visual positions are derived from them, but this requires
                 // using the global translation for some reason as translation gives just 0 here and doesn't help.
-                center += node.GlobalPosition;
-            }
 
-            center /= organelles.CreatedOrganelleVisuals.Count;
+                // Assume that the organelle's radius is 1
+                float organelleRadius = 1.0f;
+                float distance = (pair.Value.GlobalPosition - center).Length();
+
+                if (distance + organelleRadius < radius)
+                    continue;
+
+                var normalized = (pair.Value.GlobalPosition - center).Normalized();
+                var newRadius = (radius + organelleRadius + distance) * 0.5f;
+
+                center = center - normalized * radius + normalized * newRadius;
+                radius = newRadius;
+            }
         }
         else if (organelles.CreatedOrganelleVisuals != null)
         {
