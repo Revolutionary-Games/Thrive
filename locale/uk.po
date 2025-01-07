@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-12-20 15:12+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-01-04 05:57+0000\n"
+"Last-Translator: Ihor Shovtenko <ihor.shovtenko@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -330,7 +330,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Авто-ево не почалась"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Авто-ево результат відсутній. Це трапилось в результаті завантаження старого збереження. Якщо ж ви не завантажували старе збереження, будь ласка, повідомте нас про помилку і відправте нам лог-файли своєї гри."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Результати Авто-ево:"
@@ -511,10 +511,10 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Виробництва Revolutionary Games Studio"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "Максимальний час зберігання елементів на диску перед видаленням"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
-msgstr ""
+msgstr "Максимальна кількість елементів кешу, які потрібно зберігати в пам’яті"
 
 #, fuzzy
 msgid "CACHE_TIME_MEMORY"
@@ -738,7 +738,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Очистити старі збереження"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "Почистити кеш"
 
 msgid "CLOSE"
 msgstr "Закрити"
@@ -916,7 +916,7 @@ msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "Баланс сполук"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "Тільки {1} [thrive:compound type=\"{0}\"][/thrive:compound] може бути згенеровано протягом дня, але для виживання вночі необхідний {2} ."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
@@ -1636,7 +1636,7 @@ msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Мембрана з двома шарами, що має кращий захист від пошкоджень, та потребує менше енергії для збереження форми. Проте вона уповільнює клітину та поглинання ресурсів."
 
 msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
-msgstr ""
+msgstr "Потяніть мишкою щоб змінити порядок"
 
 msgid "DUMP_SCENE_TREE"
 msgstr "Вивантаження ДереваСцен"
@@ -1858,7 +1858,7 @@ msgid "ENERGY_SUMMARY_LINE"
 msgstr "Загальна зібрана енергія становить {0} з індивідуальною вартістю {1}, результатом чого є нескоригована популяція кількістю в {2}"
 
 msgid "ENGULF_NO_ATP_DAMAGE_MESSAGE"
-msgstr ""
+msgstr "Пошкоджено входом у режим поглинання при відсутності АТФ"
 
 msgid "ENTER_EXISTING_ID"
 msgstr "Введіть існуючий ID"
@@ -1971,7 +1971,7 @@ msgid "EXIT_TO_LAUNCHER"
 msgstr "Вийти до лаунчера"
 
 msgid "EXPERIMENTAL_FEATURES"
-msgstr ""
+msgstr "Експериментальні функції"
 
 #, fuzzy
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
@@ -2396,10 +2396,10 @@ msgid "ICESHELF"
 msgstr "Льодовиковий шельф"
 
 msgid "ICE_CHUNK_BIG"
-msgstr ""
+msgstr "Великий фрагмент льоду"
 
 msgid "ICE_CHUNK_SMALL"
-msgstr ""
+msgstr "Малий фрагмент льоду"
 
 msgid "ID_IS_NOT_A_NUMBER"
 msgstr "ID з недійсним номером"
@@ -3225,14 +3225,15 @@ msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "[b][u]{0}[/u][/b] відокремились від [b][u]{1}[/u][/b] як новий вид через різні утиски відбору"
 
 msgid "MICHE_CHUNK_PRESSURE"
-msgstr ""
+msgstr "Вплив фрагменту"
 
 #, fuzzy
 msgid "MICHE_COMPOUND_CLOUD_PRESSURE"
 msgstr "Хмари сполук"
 
+#, fuzzy
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
-msgstr ""
+msgstr "Сполука ефективного перетворення тиску"
 
 #, fuzzy
 msgid "MICHE_DETAIL_TEXT"
@@ -3249,19 +3250,19 @@ msgstr ""
 "  {5}"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
-msgstr ""
+msgstr "Тиск навколишнього середовища"
 
 msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr ""
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Вплив матаболічної стабільності"
 
 msgid "MICHE_NO_OP_PRESSURE"
 msgstr ""
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "Вплив ефективності хижацтва"
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
@@ -3538,7 +3539,7 @@ msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr "Різні типи токсинів мають різноманітні ефекти, кожен з яких є ефективним проти тих чи інших типів клітин. Якщо клітина має декілька типів токсинів, вони випорскуватимуться послідовно, а не водночас."
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "За сеанс редактора можна виконати лише одну міграцію. Ви можете переглянути міграцію в черзі нижче та зберегти її або скасувати, щоб створити іншу міграцію"
 
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
 msgstr "Оберіть, як багато популяції мігруватиме з відправної ділянки до місця призначення"
@@ -3995,7 +3996,7 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "Замало простору поглинутої матерії для поглинання цілі"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "Вироблення АТФ пригнічується токсином"
 
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
@@ -4074,7 +4075,7 @@ msgid "OCTOBER"
 msgstr "Жовтень"
 
 msgid "OFF"
-msgstr ""
+msgstr "Вимкнути"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Офіційний сайт"
@@ -5104,7 +5105,7 @@ msgid "SMALL_SULFUR_CHUNK"
 msgstr "Малий шматок заліза"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Сніжинка"
 
 msgid "SOCIETY_STAGE"
 msgstr "Стадія суспільства"
@@ -5320,13 +5321,13 @@ msgid "STORAGE_COLON"
 msgstr "Збереження:"
 
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "секунд"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Ви увійшли як:{0}"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Видимість деформаційної планки"
 
 msgid "STRATEGY_STAGES"
 msgstr "Стратегічні стадії"
@@ -5389,7 +5390,7 @@ msgid "SUPPORTER_PATRONS"
 msgstr "Ті, що підтримали"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Виживання"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Перемкнути на вигляд передньої камери"
@@ -5678,7 +5679,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "Ручна сокира"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "Не відображаються всі останні версії, оскільки їх забагато"
 
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr "Зібрано енергії:"
@@ -5687,7 +5688,7 @@ msgid "TOTAL_SAVES"
 msgstr "Загальні збереження:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr "Канальний інгібітор"
+msgstr "Інгібітор каналу"
 
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
 msgstr "Сповільнює продукування АТФ враженої клітини, внаслідок заважаючи їй рухатися швидко, а також може змусити клітину без залишків продукованого АТФ померти."
@@ -5756,9 +5757,8 @@ msgstr "Токсинова вакуоля– це вакуоля модифік�
 msgid "TOXIN_VACUOLE_PROCESSES_DESCRIPTION"
 msgstr "Перетворює [thrive:compound type=\"atp\"][/thrive:compound] на [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"oxygen\"][/thrive:compound]. Може пирснути токсини при натисканні [thrive:input]g_fire_toxin[/thrive:input]. Коли [thrive:compound type=\"oxytoxy\"][/thrive:compound] недостатньо, то постріл можливий, але шкода буде незначною."
 
-#, fuzzy
 msgid "TOXISOME"
-msgstr "Окситоксисома"
+msgstr "Токсосома"
 
 #, fuzzy
 msgid "TOXISOME_DESCRIPTION"
@@ -6026,7 +6026,7 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "Рухатися"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Удосконалений космічний корабель"
 
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr "Проста ракета"
@@ -6169,7 +6169,7 @@ msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Використовувати звичайне ім'я користувача"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "Використовуйте дисковий кеш"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Встановити кількість фонових потоків вручну"
@@ -6240,7 +6240,7 @@ msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "Показати останні з усіх новин про зміни Thrive зараз"
 
 msgid "VIEW_PENDING_ACTIONS"
-msgstr ""
+msgstr "Переглянути зараз"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Перегляд вихідного коду"
@@ -6252,10 +6252,10 @@ msgid "VISIBLE"
 msgstr "Видимий"
 
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
-msgstr ""
+msgstr "Видно, коли майже заповнений"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
-msgstr ""
+msgstr "Видно, коли вище нуля"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Запропунувати функцію"
@@ -6307,14 +6307,14 @@ msgid "WIKI_2D"
 msgstr "Наша Wiki"
 
 msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
+msgstr "2D (ранній), 3D (пізній)"
 
 #, fuzzy
 msgid "WIKI_3D"
 msgstr "Наша Wiki"
 
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "3D, пісочниця"
 
 #, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
@@ -6325,7 +6325,7 @@ msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr "Загальний редактор та стратегічні стадії"
 
 msgid "WIKI_8_BRACKET_16"
-msgstr ""
+msgstr "8 (16)"
 
 #, fuzzy
 msgid "WIKI_ASCENSION"
@@ -6517,7 +6517,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Біолюмінесцентна вакуоля"
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "Редактор тіла, Редактор клітини"
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -6655,17 +6655,17 @@ msgid "WIKI_CILIA_EFFECTS"
 msgstr "Кожен гекс [b]Війок[/b] підвищує швидкість обертання клітини, споживаючи [thrive:compound type=\"atp\"][/thrive:compound] в обмін на додаткову мобільність. Точне покращення залежить від розташування органели: ті, що розташовані більш далеко від центру клітини виявляють більший момент інерції, надаючи більше підвищення швидкості обертання."
 
 msgid "WIKI_CILIA_INTRO"
-msgstr ""
+msgstr "Маленькі волоски на зовнішній стороні клітини, які використовують [thrive:compound type=\"atp\"][/thrive:compound] для збільшення швидкості обертання клітини. Можна покращити, щоб генерувати струми, які затягують клітини здобичі та інші об’єкти."
 
 msgid "WIKI_CILIA_MODIFICATIONS"
-msgstr ""
+msgstr "Жодних модифікацій."
 
 #, fuzzy
 msgid "WIKI_CILIA_PROCESSES"
 msgstr "Збільшує швидкість обертання великих клітин."
 
 msgid "WIKI_CILIA_REQUIREMENTS"
-msgstr ""
+msgstr "Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] для розвитку [b]Війок[/b]."
 
 msgid "WIKI_CILIA_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -6692,7 +6692,7 @@ msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
-msgstr ""
+msgstr "Щоб отримати повний список сполук на стадії мікробів, перегляньте таблицю сполук на сторінці додатків стадії мікробів."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
 msgstr ""
@@ -6720,7 +6720,7 @@ msgid "WIKI_CYTOPLASM_PROCESSES"
 msgstr "Перетворює [thrive:compound type=\"glucose\"][/thrive:compound] на [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "WIKI_CYTOPLASM_REQUIREMENTS"
-msgstr ""
+msgstr "Жодних вимог."
 
 msgid "WIKI_CYTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
@@ -6729,7 +6729,7 @@ msgid "WIKI_CYTOPLASM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_CYTOPLASM_UPGRADES"
-msgstr ""
+msgstr "Жодних покращень."
 
 #, fuzzy
 msgid "WIKI_DEVELOPMENT"
@@ -6825,7 +6825,7 @@ msgid "WIKI_FLAGELLUM_STRATEGY"
 msgstr ""
 
 msgid "WIKI_FLAGELLUM_UPGRADES"
-msgstr ""
+msgstr "Жодних покращень."
 
 #, fuzzy
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
@@ -6856,7 +6856,7 @@ msgid "WIKI_HEADING_EDITOR"
 msgstr "Загальний редактор та стратегічні стадії"
 
 msgid "WIKI_HEADING_EFFECTS"
-msgstr ""
+msgstr "Ефекти"
 
 #, fuzzy
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
@@ -6879,17 +6879,17 @@ msgid "WIKI_HEADING_GDD"
 msgstr "Загальний редактор та стратегічні стадії"
 
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
-msgstr ""
+msgstr "Покоління та сесії редактора"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Загальний редактор та стратегічні стадії"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
-msgstr ""
+msgstr "Модифікації"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
-msgstr ""
+msgstr "Мутації та очки мутації"
 
 #, fuzzy
 msgid "WIKI_HEADING_OVERVIEW"
@@ -6904,16 +6904,16 @@ msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr "Фізичні умови"
 
 msgid "WIKI_HEADING_PROCESSES"
-msgstr ""
+msgstr "Процеси"
 
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
-msgstr ""
+msgstr "Розмноження в Мікробній стадії"
 
 msgid "WIKI_HEADING_REQUIREMENTS"
-msgstr ""
+msgstr "Вимоги"
 
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Наукова підготовка"
 
 #, fuzzy
 msgid "WIKI_HEADING_STRATEGY"
@@ -6940,7 +6940,7 @@ msgid "WIKI_HEADING_UI"
 msgstr "Загальний редактор та стратегічні стадії"
 
 msgid "WIKI_HEADING_UPGRADES"
-msgstr ""
+msgstr "Покращення"
 
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Жодних ефектів."
@@ -7007,7 +7007,7 @@ msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr "Індустріальна стадія"
 
 msgid "WIKI_INJECTISOME_PILUS"
-msgstr ""
+msgstr "Ін’єкційна трубка"
 
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""

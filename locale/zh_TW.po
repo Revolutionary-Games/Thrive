@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2024-12-20 18:52+0200\n"
-"PO-Revision-Date: 2024-12-20 15:12+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-01-01 12:32+0000\n"
+"Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -3106,9 +3106,8 @@ msgstr "Media Rec"
 msgid "MEDIASTOP"
 msgstr "Media Stop"
 
-#, fuzzy
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "小鐵塊"
+msgstr "中硫磺塊"
 
 msgid "MEGA_YEARS"
 msgstr "百萬年"
@@ -6581,7 +6580,6 @@ msgstr "有關化合物的實現與理論的資訊，請查看[color=#3796e1][ur
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr "對於前幾個階段，Thrive 中的主要資源是[b]化合物[/b]。化合物在代謝過程中用於生產其他化合物或以其他方式消耗。"
 
-#, fuzzy
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 "Thrive 中有許多不同的[b]化合物[/b]。\n"
@@ -6603,6 +6601,14 @@ msgstr ""
 "[indent]—   [thrive:compound type=\"oxygen\"][/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]浮動塊化合物[/u][/b]\n"
+"\n"
+"這些化合物存在於一些漂浮的礦物塊中。\n"
+"\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
 "\n"
 "[b][u]作用劑[/u][/b]\n"
 "\n"
@@ -6840,49 +6846,41 @@ msgstr ""
 "\n"
 "這會導致[b]光合作用[/b]變得更加不可靠且更難生存。利用[thrive:compound type=\"sunlight\"][/thrive:compound] 的自養生物需要演化出[b]儲存[/b]能力（例如[color=#3796e1][url=thriveopedia:vacuole]液泡[/url][/color]）以度過夜晚。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr "無效果。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_INTRO"
 msgstr ""
-"利用環境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。效率高於原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。\n"
+"一個金屬發電廠。[b]鐵能體[/b]使用[thrive:compound type=\"iron\"][/thrive:compound] 與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 來生產[thrive:compound type=\"atp\"][/thrive:compound]，此過程被稱為[b]鐵化能自養[/b]。這涉及氧化[thrive:compound type=\"iron\"][/thrive:compound]，將其從一種化學狀態轉變為另一種化學狀態。此效應與[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比，因此環境中較低的[thrive:compound type=\"carbondioxide\"][/thrive:compound] 濃度會降低其[thrive:compound type=\"atp\"][/thrive:compound] 生產速率。\n"
 "\n"
-"現實中未發現的推測細胞器。在開啟僅限已知生命形式選項的遊戲中不可用。"
+"[b]鐵能體[/b]是一種充滿蛋白質與酶的雙層膜結構。它是一種已被其真核宿主同化的原核生物。其效率比[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]更高"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
-"[b]熱合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]鐵化能自養[/b]：[thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
 "\n"
-"利用周圍環境[thrive:compound type=\"temperature\"][/thrive:compound] 被動生成能量。效率高於[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]中的[b]細菌熱合成[/b]。"
+"一種無需[thrive:compound type=\"glucose\"][/thrive:compound] 產生能量的方法。消耗[thrive:compound type=\"iron\"][/thrive:compound] 並與環境[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的濃度成正比。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
-"[b]熱能體[/b]僅出現在關閉僅限已知生命形式選項的遊戲中。\n"
+"細胞必須擁有[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]才能演化[b]鐵能體[/b]。\n"
 "\n"
-"如果在遊戲設定中啟用了細胞器解鎖，則[i]玩家細胞[/i]必須滿足以下條件：\n"
+"如果在遊戲設定中啟用了細胞器升級，則[i]玩家細胞[/i]必須滿足以下條件：\n"
 "\n"
-"[indent]—   至少連續 [b]5[/b] 代中包含 [b]3[/b] 個[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]。[/indent]"
+"[indent]—   至少連續 [b]6[/b] 代中包含[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]。[/indent]"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr "[b]鐵能體[/b]尚未在現實生活中被發現，但基於內共生演化與[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]的能量生產能力，理論上是完全可能的（例如[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]）。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
-"由於[b]熱合成[/b]除了環境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何輸入，因此它本質上是免費能量。此外，[b]熱能體[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]更高效，這使得它們可以說是遊戲中最簡單的能量產生方法，前提是您願意留在海底熱泉等炎熱地區。\n"
+"在含有大量[thrive:compound type=\"iron\"][/thrive:compound] 與高濃度[thrive:compound type=\"carbondioxide\"][/thrive:compound] 的環境中，[b]鐵能體[/b]是優秀的主要或次要能量來源。請注意，隨著遊戲的進行，兩種化合物的濃度都會降低，因此我們建議在您的細胞開始掙扎之前使用其他的能量來源。\n"
 "\n"
-"啟用細胞器解鎖後，需要在細胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]熱合成酶[/url][/color][/b]進行多次繁殖，意味著玩家演化[b]熱能體[/b]時，他們可能已經非常專注於[b]熱合成[/b]以獲得[b]熱能體[/b]。"
+"我們也建議在演化[b][color=#3796e1][url=thriveopedia:nucleus]細胞核[/url][/color][/b]後，將[b][color=#3796e1][url=thriveopedia:rusticyanin]鐵氧化藍蛋白[/url][/color][/b]替換為[b]鐵能體[/b]以獲得更高的效率。"
 
-#, fuzzy
 msgid "WIKI_FERROPLAST_UPGRADES"
 msgstr "無升級。"
 
@@ -7028,14 +7026,13 @@ msgstr ""
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
 msgstr "起始部件，無要求。"
 
-#, fuzzy
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 "梭菌發酵存在於梭菌中，這是依據其代謝過程進行劃分的一類多樣且定義鬆散的原核生物群。它常用於生化、食品與生質燃料製造，以及廢水處理與土壤復育工作。雖然在不同細菌群中，梭菌發酵的表現有所不同，但其一般公式為：\n"
 "\n"
 "C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
 "\n"
-"即葡萄糖被轉化為兩個乙醇分子、兩個二氧化碳分子與兩個氫氣分子。葡萄糖透過受質階層磷酸化分解，並且與其他發酵方法一樣，即使在厭氧條件下也可以維持糖解作用的重要反應。發酵可能是地球上非常古老的代謝策略。儘管氫化酶在梭菌發酵中起到廢物管理與氫氣生產的作用，但技術上來說，它並不是該過程的關鍵酶。其他酶，如丙酮酸：鐵氧還蛋白氧化還原酶（POR），在厭氧發酵中發揮更獨特與核心的作用；然而，由於這些酶在遊戲中相對較難表現，因此選擇了更熟悉且易於管理的酶名稱。"
+"即葡萄糖被轉化為兩個乙醇分子、兩個二氧化碳分子與兩個氫氣分子。葡萄糖透過受質階層磷酸化分解，並且與其他發酵方法一樣，即使在厭氧條件下也可以維持糖解作用的重要反應。發酵可能是地球上非常古老的代謝策略。儘管氫化酶在梭菌發酵中起到廢物管理與氫氣生產的作用，但技術上來說，它並不是該過程的關鍵酶。其他酶，如丙酮酸：鐵氧還蛋白氧化還原酶（POR），在厭氧發酵中發揮更獨特與核心的作用；然而，由於這些酶在遊戲中相對較難表現，因此選擇了更熟悉的酶與易於管理的名稱。"
 
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr ""
@@ -7145,10 +7142,9 @@ msgstr "[b]代謝體[/b]執行[b]蛋白質呼吸[/b]，這是一種等級次於[
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
-"[b]蛋白質呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]蛋白質呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound]\n"
 "\n"
 "一種能量生產方法，優於[b][color=#3796e1][url=thriveopedia:cytoplasm]細胞質[/url][/color][/b]，但次於[b][color=#3796e1][url=thriveopedia:mitochondrion]粒線體[/url][/color][/b]。需要穩定[thrive:compound type=\"glucose\"][/thrive:compound] 流入。速率與環境中[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -7180,7 +7176,6 @@ msgstr "微生物階段附錄中收集了一些表格與其他事物"
 msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr "微生物階段"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr ""
 "編輯器是微生物階段的戰略部分，玩家在繁殖時可以進入編輯器。在此編輯器中，玩家可以透過從可用的蛋白質或細胞器清單中選擇部件，將它們放置到自己的細胞上，以演化其物種。每一代，玩家會獲得 100 突變點數（MP），作為購買這些部件的貨幣。編輯器目前分為三個不同的視窗：報告頁面、區域地圖，最後是編輯器本身。\n"
@@ -7215,7 +7210,7 @@ msgstr ""
 "\n"
 "[b][u]細胞編輯器[/u][/b]\n"
 "\n"
-"編輯器頁面是玩家可以逐步自訂細胞的地方。大部分編輯器被六邊形網格佔據，玩家當前的細胞位於網格的中心。網格左側是部件列表，玩家可以從中選擇部件放置到細胞上，或者更改其他屬性，如顏色或細胞膜類型。右上角顯示了細胞的統計數據，包括 ATP 平衡條，它告訴玩家產生的 ATP 量與消耗的 ATP 量。玩家應確保紅條比綠條短，否則他們將會因自己的設計錯誤而過早滅亡。右下角是 Auto-Evo 預測面板，其中詳細說明了他們的物種根據 Auto-Evo 算法預測物種在變更後的表現。最後，編輯器的左上角包含用於在頁面之間切換的標籤，以及顯示當前 MP 量的 MP 條。\n"
+"編輯器頁面是玩家可以逐步自訂細胞的地方。大部分編輯器被六邊形網格佔據，玩家當前的細胞位於網格的中心。網格左側是部件列表，玩家可以從中選擇部件放置到細胞上，或者更改其他屬性，如顏色或細胞膜類型。右上角顯示了細胞的統計數據，包括[thrive:compound type=\"atp\"][/thrive:compound] 平衡條，顯示玩家的[thrive:compound type=\"atp\"][/thrive:compound] 生產量與消耗量。玩家應確保紅條比綠條短，否則他們將會因自己的設計錯誤而過早滅亡。右下角是 Auto-Evo 預測面板，其中詳細說明了他們的物種根據 Auto-Evo 算法預測物種在變更後的表現。最後，編輯器的左上角包含用於在頁面之間切換的標籤，以及顯示當前 MP 量的 MP 條。\n"
 "\n"
 "玩家可以在任何已佔用的六邊形網格旁邊放置新的部件，或直接覆蓋掉已存在的細胞質。如果玩家希望刪除細胞的某些部分，可以右鍵點擊已放置的部件，每次刪除將花費 10 MP。或者，玩家可以使用編輯器畫面底部的箭頭按鈕來撤銷或重做先前的操作，該功能僅適用於當前編輯器會話中所做的變更。中間的按鈕是對稱模式鍵，點擊後將改變玩家當前的對稱模式。除了三個例外（細胞核、連接器與細胞最後一個六邊形）外，所有部件都可以刪除。不過，這些部件仍然可以移動，因此如果您不喜歡它們的位置，也不用太過擔心！\n"
 "\n"
@@ -7284,14 +7279,13 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "微生物階段有一個包含更多細節的單獨的遊戲設計方案：微生物階段遊戲設計方案"
 
-#, fuzzy
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 "上一階段：沒有更早的階段。\n"
 "\n"
 "下一階段：[color=#3796e1][url=thriveopedia:multicellular_stage]多細胞階段[/url][/color]\n"
 "\n"
-"微生物階段是遊戲的第一個階段。該階段從世界上最早出現的物種開始，它們剛從生命的原始起源中誕生，探索營養豐富的海底熱泉。在這裡，玩家扮演一個微小的原核細胞質團塊，它是其物種中為數不多的個體之一。此時，玩家必須完全依賴尋找散落的葡萄糖來生存，因為他們尚未擁有處理其他營養物質的能力，並且需要尋找磷酸鹽與氨來成長壯大，以準備進行繁殖。一旦玩家達到足夠的大小，他們將能夠進行繁殖，並帶領玩家進入微生物編輯器。隨著遊戲的進行，玩家將逐漸改造自己的細胞，以更好地在一個每一代都逐漸變得更加嚴酷的世界中生存，並與由玩家物種演化而來的新物種競爭。"
+"微生物階段是遊戲的第一個階段。該階段從世界上最早出現的物種開始，它們剛從生命的原始起源中誕生，探索營養豐富的海底熱泉。在這裡，玩家扮演一個微小的原核細胞質團塊，它是其物種中為數不多的個體之一。此時，玩家必須完全依賴尋找散落的[thrive:compound type=\"glucose\"][/thrive:compound] 來生存，因為他們尚未擁有處理其他營養物質的能力，並且需要尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 與[thrive:compound type=\"ammonia\"][/thrive:compound] 來成長壯大，以準備進行繁殖。一旦玩家達到足夠的大小，他們將能夠進行繁殖，並帶領玩家進入微生物編輯器。隨著遊戲的進行，玩家將逐漸改造自己的細胞，以更好地在一個每一代都逐漸變得更加嚴酷的世界中生存，並與由玩家物種演化而來的新物種競爭。"
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "無效果。"
@@ -7302,10 +7296,9 @@ msgstr "細胞的發電廠。[b]粒線體[/b]進行[b]有氧呼吸[/b]，使用[
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "無修改。"
 
-#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
-"[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound]\n"
 "\n"
 "能量產生的主要方法之一，優於[color=#3796e1][url=thriveopedia:metabolosome]代謝體[/url][/color]。需要穩定[thrive:compound type=\"glucose\"][/thrive:compound] 流入。速率與環境中[thrive:compound type=\"oxygen\"][/thrive:compound] 的濃度成正比。"
 
@@ -7425,10 +7418,9 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
-#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
-"[b]固氮酶[/b]生產的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助於儲存用於繁殖的資源。因此，具有[b]固氮酶[/b]的細胞只需要從環境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在當前遊戲選項中停用了被動繁殖進度，則基本速率為零）。\n"
+"[b]固氮酶[/b]生產的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助於儲存用於繁殖的資源。因此，具有[b]固氮酶[/b]的細胞只需要從環境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在當前遊戲選項中停用了被動繁殖進度，則基本速率為零）。一種好的策略是尋找[thrive:compound type=\"phosphates\"][/thrive:compound] 塊來吞噬或停留在附近。\n"
 "\n"
 "由於[b]厭氧固氮[/b]消耗[thrive:compound type=\"atp\"][/thrive:compound]，您應該在將此細胞器添加到您的細胞之前檢查是否有多餘的[thrive:compound type=\"atp\"][/thrive:compound] 可用。 [b]固氮酶[/b]進行的少量[b]糖解[/b]不足以抵銷其自身的滲透調節成本。"
 
@@ -7619,9 +7611,8 @@ msgstr "編輯器與突變"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "環境條件"
 
-#, fuzzy
 msgid "WIKI_PAGE_FERROPLAST"
-msgstr "熱能體"
+msgstr "鐵能體"
 
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
@@ -7841,16 +7832,17 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "無要求。"
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
+msgstr ""
+"[b]鐵氧化藍蛋白[/b]存在於一些細菌與古菌的細胞膜中。它從[b]鐵[/b]轉移電子，並利用電子將離子泵入細胞中，以幫助製造新的 [b]ATP[/b] 分子。\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
-#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] 是一種有價值的替代資源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因為它不會在環境中腐爛。吃鐵鏽的細胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 豐富的區域中享受豐富的營養。\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] 是一種有價值的替代資源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因為它在環境中的衰變速度要慢得多。以鐵為食的細胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 豐富的區域中享受豐富的營養。\n"
 "\n"
-"攝取[thrive:compound type=\"iron\"][/thrive:compound] 塊可能很誘人，但通常您會透過靠近一塊來獲得更多[thrive:compound type=\"iron\"][/thrive:compound]，因為它會產生更多雲狀化合物。"
+"攝取[thrive:compound type=\"iron\"][/thrive:compound] 塊可能很誘人，但通常情況下，靠近更大的塊可以獲得更多的[thrive:compound type=\"iron\"][/thrive:compound]，因為它會產生更多雲狀化合物。然而，吞下[thrive:compound type=\"iron\"][/thrive:compound] 塊可以讓您攜帶更多的[thrive:compound type=\"iron\"][/thrive:compound] 以進行長途旅行。"
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "無升級。"
