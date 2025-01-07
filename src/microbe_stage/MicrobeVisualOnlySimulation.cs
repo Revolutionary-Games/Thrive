@@ -259,10 +259,10 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
                 if (distance + organelleRadius < radius)
                     continue;
 
-                var normalized = (pair.Value.GlobalPosition - center).Normalized();
+                var normalized = (pair.Value.GlobalPosition - center) / distance;
                 var newRadius = (radius + organelleRadius + distance) * 0.5f;
 
-                center = center - normalized * radius + normalized * newRadius;
+                center += normalized * (newRadius - radius);
                 radius = newRadius;
             }
         }
