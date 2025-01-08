@@ -94,14 +94,14 @@ https://www.youtube.com/watch?v=HVsySz-h9r4
 .NET SDK
 ----------
 
-Next you need, .NET SDK. Recommended version currently is 8.0, but a
-newer version may also work. You also need *runtime* 6.0 to run Thrive
-tests. This can be installed either with the sdk version 6.0 or just
+Next you need, .NET SDK. Recommended version currently is 9.0, but a
+newer version may also work. You also need *runtime* 8.0 to run Thrive
+tests. This can be installed either with the sdk version 8.0 or just
 the plain runtime which saves some disk space.
 
 On Linux you can use your package manager to install .NET. The package
-might be called `dotnet-sdk-8.0`. For example on Fedora this can be
-installed with: `sudo dnf install dotnet-sdk-8.0 dotnet-runtime-6.0`
+might be called `dotnet-sdk-9.0`. For example on Fedora this can be
+installed with: `sudo dnf install dotnet-sdk-9.0 dotnet-runtime-8.0`
 
 On Windows don't install Mono or MonoDevelop, it will break
 things. Dotnet is a good tool to use on Windows. You can download an

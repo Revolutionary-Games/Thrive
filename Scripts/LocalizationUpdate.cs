@@ -61,6 +61,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "th_TH",
         "tok",
         "tr",
+        "tt",
         "uk",
         "vi",
         "lt",
