@@ -3119,6 +3119,239 @@
       }
     }
   },
+  "banana": {
+    "Name": "COASTAL",
+    "Background": "banana",
+    "Panorama": "res://assets/textures/background/panoramas/Epipelagic.png",
+    "Icon": "res://assets/models/easter_eggs/PatchBanana.svg",
+    "Sunlight": {
+      "Colour": {
+        "r": 1,
+        "g": 0.9,
+        "b": 0.3,
+        "a": 1
+      },
+      "Energy": 1,
+      "Specular": 0.5,
+      "Shadows": true,
+      "Direction": {
+        "x": 0.25,
+        "y": -0.3,
+        "z": 0.75
+      }
+    },
+    "CompoundCloudBrightness": 2.2,
+    "GasVolume": 1,
+    "Conditions": {
+      "Chunks": {
+        "floatingToxin": {
+          "Name": "FLOATING_HAZARD",
+          "Meshes": [
+            {
+              "ScenePath": "res://src/microbe_stage/ToxinCloud.tscn",
+              "IsParticles": true
+            }
+          ],
+          "Density": 0.00007,
+          "Dissolves": false,
+          "Radius": 2,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1000,
+          "Size": 10000,
+          "Damages": 10,
+          "DeleteOnTouch": true,
+          "Compounds": {},
+          "DamageType": "toxin"
+        },
+        "ironSmallChunk": {
+          "Name": "SMALL_IRON_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/IronRock2.tscn",
+              "ConvexShapePath": "res://assets/models/IronRock2.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanan.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanan.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+            }
+          ],
+          "Density": 0.00008,
+          "Dissolves": true,
+          "Radius": 1,
+          "ChunkScale": 1,
+          "PhysicsDensity": 4000,
+          "Size": 3,
+          "VentAmount": 0.1,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "iron": {
+              "Amount": 15
+            }
+          },
+          "DissolverEnzyme": "rusticyanin"
+        },
+        "ironBigChunk": {
+          "Name": "BIG_IRON_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/easter_eggs/IronRockBigBanan.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/BigBanan.shape"
+            }
+          ],
+          "Density": 0.00005,
+          "Dissolves": true,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1400,
+          "Size": 65,
+          "VentAmount": 6,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "iron": {
+              "Amount": 6000
+            }
+          },
+          "DissolverEnzyme": "rusticyanin"
+        },
+        "phosphateSmallChunk": {
+          "Name": "SMALL_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/PhosphateChunkStruviteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanan.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanan.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+            }
+          ],
+          "Density": 0.00005,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 8,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 50
+            }
+          }
+        },
+        "phosphateBigChunk": {
+          "Name": "BIG_PHOSPHATE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockBigBanan.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/BigBanan.shape"
+            }
+          ],
+          "Density": 0.000001,
+          "Dissolves": true,
+          "Radius": 6,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2100,
+          "Size": 65,
+          "VentAmount": 4,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "phosphates": {
+              "Amount": 6000
+            }
+          }
+        },
+        "marineSnow": {
+          "Name": "MARINE_SNOW",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
+            }
+          ],
+          "Density": 0.0001,
+          "Dissolves": true,
+          "Radius": 1,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1000,
+          "Size": 2,
+          "Damages": 0,
+          "VentAmount": 2,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "ammonia": {
+              "Amount": 50
+            },
+            "phosphates": {
+              "Amount": 50
+            },
+            "glucose": {
+              "Amount": 100
+            }
+          }
+        }
+      },
+      "Compounds": {
+        "ammonia": {
+          "Amount": 180000,
+          "Density": 0.00006,
+          "Ambient": 0
+        },
+        "glucose": {
+          "Amount": 112500,
+          "Density": 0.00004,
+          "Ambient": 0
+        },
+        "phosphates": {
+          "Amount": 225000,
+          "Density": 0.00006,
+          "Ambient": 0
+        },
+        "hydrogensulfide": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0
+        },
+        "oxygen": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0
+        },
+        "carbondioxide": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0.09
+        },
+        "nitrogen": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 0.6
+        },
+        "sunlight": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 1
+        },
+        "temperature": {
+          "Amount": 0,
+          "Density": 0,
+          "Ambient": 17
+        }
+      }
+    }
+  },
   "speciesInitialCompoundsBiome": {
     "Name": "VOLCANIC_VENT",
     "Background": "vent",

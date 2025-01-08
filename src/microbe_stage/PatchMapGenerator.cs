@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -174,6 +174,8 @@ public static class PatchMapGenerator
         {
             entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
         }
+
+        AddBananaBiome(map, random);
 
         return map;
     }
@@ -787,6 +789,17 @@ public static class PatchMapGenerator
                 },
                 ScreenCoordinates = new Vector2(100, 400),
             },
+
+            BiomeType.Banana => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
+                id, GetBiomeTemplate("banana"), BiomeType.Banana, region)
+            {
+                Depth =
+                {
+                    [0] = 0,
+                    [1] = 200,
+                },
+                ScreenCoordinates = new Vector2(100, 100),
+            },
             _ => throw new InvalidOperationException($"{nameof(biome)} is not a valid biome enum value."),
         };
 
@@ -824,5 +837,40 @@ public static class PatchMapGenerator
     private static LocalizedString GetPatchLocalizedName(string regionName, string biomeType)
     {
         return new LocalizedString("PATCH_NAME", regionName, new LocalizedString(biomeType));
+    }
+
+    private static void AddBananaBiome(PatchMap map, Random random)
+    {
+        // Check Easter eggs
+        if (!ICurrentGameInfo.CurrentGame.GameWorld.WorldSettings.EasterEggs)
+            return;
+
+        // 1% chance
+        bool changePatch = random.Next(0, 100) == 0;
+
+        if (!changePatch)
+        {
+            return;
+        }
+
+        // Make list of coast patches
+        List<int> coasts = [];
+
+        foreach (var entry in map.Patches)
+        {
+            if (entry.Value.BiomeType == BiomeType.Coastal)
+            {
+                coasts.Add(entry.Key);
+            }
+        }
+
+        // replace random coastal patch's biome type with the banana one
+        int rand = random.Next(coasts.Count);
+
+        Patch selectedPatch = map.Patches[coasts[rand]];
+
+        // !! This part isn't right - the patch either isn't created or referenced properly
+        var bananaPatch = NewPredefinedPatch(BiomeType.Banana, coasts[rand], selectedPatch.Region, selectedPatch.Region.Name);
+        map.Patches[coasts[rand]] = bananaPatch;
     }
 }
