@@ -256,7 +256,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
                 float organelleRadius = 1.0f;
                 float squaredDistance = (pair.Value.GlobalPosition - center).LengthSquared();
 
-                if (squaredDistance < MathF.Pow(radius, 2) - 2 * organelleRadius * radius + MathF.Pow(organelleRadius, 2))
+                if (squaredDistance <
+                    MathF.Pow(radius, 2) - 2 * organelleRadius * radius + MathF.Pow(organelleRadius, 2))
                     continue;
 
                 float distance = MathF.Sqrt(squaredDistance);
