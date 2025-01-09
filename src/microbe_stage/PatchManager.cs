@@ -106,7 +106,7 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         // Change the lighting
         compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
-        UpdateAllPatchLightLevels(currentPatch.BiomeTemplate);
+        UpdateAllPatchLightLevels(currentPatch);
 
         return patchIsChanged;
     }
@@ -133,7 +133,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         processSystem.SetBiome(currentPatch.Biome);
     }
 
-    public void UpdateAllPatchLightLevels(Biome biome)
+    public void UpdateAllPatchLightLevels(Patch currentPatch)
     {
         if (CurrentGame == null)
             throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
@@ -145,14 +145,13 @@ public class PatchManager : IChildPropertiesLoadCallback
 
         gameWorld.UpdateGlobalLightLevels();
 
-        var maxLightLevel = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+        var maxLightLevel = currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
 
         float multiplier;
 
         if (maxLightLevel > 0.0f)
         {
-            multiplier = biome.Conditions.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
-                CurrentGame!.GameWorld.LightCycle.DayLightFraction;
+            multiplier = currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
         }
         else
         {
@@ -160,7 +159,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
-        UpdateLight(biome, multiplier);
+        UpdateLight(currentPatch.BiomeTemplate, multiplier);
     }
 
     public void ApplySaveState(Patch? patch, float brightness)
