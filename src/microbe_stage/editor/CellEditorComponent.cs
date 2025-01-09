@@ -20,6 +20,9 @@ public partial class CellEditorComponent :
     public bool IsMulticellularEditor;
 
     [Export]
+    public bool IsMacroscopicEditor;
+
+    [Export]
     public NodePath? TopPanelPath;
 
     [Export]
@@ -2579,8 +2582,15 @@ public partial class CellEditorComponent :
         }
 
         // Multicellular parts only available (visible) in multicellular
+        // For now there aren't any multicellular specific organelles so the section is hidden
         partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Multicellular.ToString())
-            .Visible = IsMulticellularEditor;
+            .Visible = false;
+
+        // TODO: put this code back in if we get multicellular specific organelles
+        // .Visible = IsMulticellularEditor;
+
+        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Macroscopic.ToString())
+            .Visible = IsMacroscopicEditor;
     }
 
     private void OnSpeciesNameChanged(string newText)
