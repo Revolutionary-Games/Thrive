@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     Note that as currently this is only used in top down view, this doesn't have the billboard part that this is
+///     Note that as currently this is only used in top-down view, this doesn't have the billboard part that this is
 ///     always rotated towards the camera. That will be needed if this is to be used in some new context.
 ///   </para>
 /// </remarks>

@@ -750,6 +750,11 @@ layout_mode = 2
 DisplayName = "ORGANELLE_CATEGORY_MULTICELLULAR"
 Columns = 3
 
+[node name="Macroscopic" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection" instance=ExtResource("45")]
+layout_mode = 2
+DisplayName = "ORGANELLE_CATEGORY_MACROSCOPIC"
+Columns = 3
+
 [node name="Endosymbiosis" type="Button" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer"]
 layout_mode = 2
 size_flags_vertical = 8

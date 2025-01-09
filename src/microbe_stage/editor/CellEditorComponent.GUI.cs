@@ -209,6 +209,20 @@ public partial class CellEditorComponent
             if (entry.Value.Undiscovered || entry.Value.Locked || !entry.Value.Visible)
                 continue;
 
+            // As non-multicellular editor can hide entire sections of organelle buttons, we need to skip those
+            // entirely here with this special logic
+            if (entry.Key.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Multicellular &&
+                !IsMulticellularEditor)
+            {
+                continue;
+            }
+
+            if (entry.Key.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Macroscopic && !IsMacroscopicEditor)
+            {
+                continue;
+            }
+
+            // Should be fine to show this organelle in a suggestion
             result.Add(entry.Key);
         }
 
