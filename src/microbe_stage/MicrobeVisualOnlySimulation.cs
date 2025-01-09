@@ -253,17 +253,19 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
                 // TODO: is there another way to not need to call so many Godot data access methods here
                 // Organelle positions might be usable as the visual positions are derived from them, but this requires
                 // using the global translation for some reason as translation gives just 0 here and doesn't help.
+                var position = pair.Value.GlobalPosition;
 
                 // Assume that the organelle's radius is 1
-                float organelleRadius = 1.0f;
-                float squaredDistance = (pair.Value.GlobalPosition - center).LengthSquared();
+                const float organelleRadius = 1.0f;
+                float organelleRadiusSquared = organelleRadius * organelleRadius;
+                float squaredDistance = (position - center).LengthSquared();
 
-                if (squaredDistance < squaredRadius - 2 * organelleRadius * radius + organelleRadius * organelleRadius)
+                if (squaredDistance < squaredRadius - 2 * organelleRadius * radius + organelleRadiusSquared)
                     continue;
 
                 float distance = MathF.Sqrt(squaredDistance);
 
-                var normalized = (pair.Value.GlobalPosition - center) / distance;
+                var normalized = (position - center) / distance;
                 var newRadius = (radius + organelleRadius + distance) * 0.5f;
 
                 center += normalized * (newRadius - radius);
