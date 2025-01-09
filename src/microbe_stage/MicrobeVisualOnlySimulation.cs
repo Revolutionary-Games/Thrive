@@ -242,6 +242,8 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
         // Calculate cell center graphics position for more accurate photographing
         if (organelles.CreatedOrganelleVisuals is { Count: > 0 })
         {
+            float squaredRadius = radius * radius;
+
             foreach (var pair in organelles.CreatedOrganelleVisuals)
             {
                 // We don't need to account for internal organelles as they are located within the cell's radius
@@ -256,8 +258,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
                 float organelleRadius = 1.0f;
                 float squaredDistance = (pair.Value.GlobalPosition - center).LengthSquared();
 
-                if (squaredDistance <
-                    MathF.Pow(radius, 2) - 2 * organelleRadius * radius + MathF.Pow(organelleRadius, 2))
+                if (squaredDistance < squaredRadius - 2 * organelleRadius * radius + organelleRadius * organelleRadius)
                     continue;
 
                 float distance = MathF.Sqrt(squaredDistance);
@@ -267,6 +268,7 @@ public sealed class MicrobeVisualOnlySimulation : WorldSimulation
 
                 center += normalized * (newRadius - radius);
                 radius = newRadius;
+                squaredRadius = radius * radius;
             }
         }
         else if (organelles.CreatedOrganelleVisuals != null)
