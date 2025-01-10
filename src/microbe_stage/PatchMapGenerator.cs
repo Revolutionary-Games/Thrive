@@ -27,6 +27,20 @@ public static class PatchMapGenerator
         // Potential starting patches, which must be set by the end of the generating process
         Patch? vents = null;
         Patch? tidepool = null;
+        Patch? banana = null;
+
+        bool useRarePatch = false;
+
+        if (settings.EasterEggs)
+        {
+            // 1% chance for rare biome to spawn (!!CURRENTLY SET TO 1 IN 3 FOR TESTING!!)
+            int rand = random.Next(0, 3);
+
+            if (rand == 0)
+            {
+                useRarePatch = true;
+            }
+        }
 
         // Create the graph's random regions
         // i is used as region id. They need to start at 0 for the hardcoded triangulation algorithm below to work
@@ -55,8 +69,15 @@ public static class PatchMapGenerator
 
             if (regionType == PatchRegion.RegionType.Continent)
             {
-                // All continents must have at least one coastal patch.
-                NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName);
+                // All continents must have at least one coastal or banana patch.
+                if (useRarePatch && banana == null)
+                {
+                    banana = NewPredefinedPatch(BiomeType.Banana, ++currentPatchId, region, regionName);
+                }
+                else
+                {
+                    NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName);
+                }
 
                 // Ensure the region is non-empty if we need a tidepool.
                 // Region should not have duplicate biomes, so at most 2 patches will be added.
@@ -170,14 +191,10 @@ public static class PatchMapGenerator
         // Fix up initial average sunlight values. Note that in the future if there are things that update the biome
         // available sunlight in a patch, this needs to be done again
         float daytimeMultiplier = DayNightCycle.CalculateDayTimeMultiplier(settings.DaytimeFraction);
+
         foreach (var entry in map.Patches)
         {
             entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
-        }
-
-        if (settings.EasterEggs)
-        {
-            AddBananaBiome(map, random);
         }
 
         return map;
@@ -840,36 +857,5 @@ public static class PatchMapGenerator
     private static LocalizedString GetPatchLocalizedName(string regionName, string biomeType)
     {
         return new LocalizedString("PATCH_NAME", regionName, new LocalizedString(biomeType));
-    }
-
-    private static void AddBananaBiome(PatchMap map, Random random)
-    {
-        // 1% chance
-        bool changePatch = random.Next(0, 100) == 0;
-
-        if (!changePatch)
-        {
-            return;
-        }
-
-        // Make list of coast patches
-        List<int> coasts = [];
-
-        foreach (var entry in map.Patches)
-        {
-            if (entry.Value.BiomeType == BiomeType.Coastal)
-            {
-                coasts.Add(entry.Key);
-            }
-        }
-
-        // replace random coastal patch's biome type with the banana one
-        int rand = random.Next(coasts.Count);
-
-        Patch selectedPatch = map.Patches[coasts[rand]];
-
-        // !! This part isn't right - the patch either isn't created or referenced properly
-        var bananaPatch = NewPredefinedPatch(BiomeType.Banana, coasts[rand], selectedPatch.Region, selectedPatch.Region.Name);
-        map.Patches[coasts[rand]] = bananaPatch;
     }
 }
