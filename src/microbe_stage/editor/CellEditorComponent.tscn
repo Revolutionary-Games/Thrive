@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=66 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="42"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
 [ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="44"]
+[ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
 [ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
 
@@ -346,7 +347,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow", "micheViewer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -421,6 +422,7 @@ processListButton = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/
 processList = NodePath("ProcessPanel/ScrollContainer/ProcessList")
 growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 processListWindow = NodePath("ProcessPanel")
+micheViewer = NodePath("PopupMicheViewer")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -1506,11 +1508,19 @@ text = "AUTO-EVO_EXPLANATION_EXPLANATION"
 label_settings = ExtResource("28_qclxk")
 autowrap_mode = 3
 
+[node name="MichesViewButton" type="Button" parent="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "VIEW_PATCH_MICHES"
+
 [node name="Close" type="Button" parent="PredictionExplanation/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 14
 text = "CLOSE"
+
+[node name="PopupMicheViewer" parent="." instance=ExtResource("44_bxafd")]
+layout_mode = 1
 
 [connection signal="Clicked" from="." to="EditorComponentBottomLeftButtons" method="OnClickedOffName"]
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
@@ -1554,6 +1564,7 @@ text = "CLOSE"
 [connection signal="EndosymbiosisCancelled" from="EndosymbiosisPopup" to="." method="OnAbandonEndosymbiosisOperation"]
 [connection signal="EndosymbiosisFinished" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisFinished"]
 [connection signal="SpeciesSelected" from="EndosymbiosisPopup" to="." method="OnEndosymbiosisSelected"]
+[connection signal="pressed" from="PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MichesViewButton" to="." method="OnMicheViewRequested"]
 [connection signal="pressed" from="PredictionExplanation/VBoxContainer/Close" to="." method="CloseAutoEvoPrediction"]
 
 [editable path="CompleteEndosymbiosisWarning"]
