@@ -44,6 +44,12 @@ public partial class PatchMapDrawer : Control
 
     private readonly List<Vector2[]> highlightedPaths = new();
 
+#pragma warning disable CA2213
+    private PackedScene nodeScene = null!;
+    private Control patchNodeContainer = null!;
+    private Control lineContainer = null!;
+#pragma warning restore CA2213
+
     private PatchMap map = null!;
 
     private bool dirty = true;
