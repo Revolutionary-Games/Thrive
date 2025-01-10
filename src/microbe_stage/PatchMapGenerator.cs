@@ -175,7 +175,10 @@ public static class PatchMapGenerator
             entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
         }
 
-        AddBananaBiome(map, random);
+        if (settings.EasterEggs)
+        {
+            AddBananaBiome(map, random);
+        }
 
         return map;
     }
@@ -841,10 +844,6 @@ public static class PatchMapGenerator
 
     private static void AddBananaBiome(PatchMap map, Random random)
     {
-        // Check Easter eggs
-        if (!ICurrentGameInfo.CurrentGame.GameWorld.WorldSettings.EasterEggs)
-            return;
-
         // 1% chance
         bool changePatch = random.Next(0, 100) == 0;
 
