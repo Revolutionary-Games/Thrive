@@ -20,6 +20,9 @@ public partial class CellEditorComponent :
     public bool IsMulticellularEditor;
 
     [Export]
+    public bool IsMacroscopicEditor;
+
+    [Export]
     public NodePath? TopPanelPath;
 
     [Export]
@@ -306,6 +309,9 @@ public partial class CellEditorComponent :
     [Export]
     private CustomWindow processListWindow = null!;
 
+    [Export]
+    private PopupMicheViewer micheViewer = null!;
+
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
 
@@ -357,6 +363,8 @@ public partial class CellEditorComponent :
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
+
+    private Miche? predictionMiches;
 
     private OrganelleSuggestionCalculation? inProgressSuggestion;
     private bool suggestionDirty;
@@ -2579,8 +2587,15 @@ public partial class CellEditorComponent :
         }
 
         // Multicellular parts only available (visible) in multicellular
+        // For now there aren't any multicellular specific organelles so the section is hidden
         partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Multicellular.ToString())
-            .Visible = IsMulticellularEditor;
+            .Visible = false;
+
+        // TODO: put this code back in if we get multicellular specific organelles
+        // .Visible = IsMulticellularEditor;
+
+        partsSelectionContainer.GetNode<CollapsibleList>(OrganelleDefinition.OrganelleGroup.Macroscopic.ToString())
+            .Visible = IsMacroscopicEditor;
     }
 
     private void OnSpeciesNameChanged(string newText)
@@ -2974,6 +2989,8 @@ public partial class CellEditorComponent :
         {
             UpdateAutoEvoPredictionDetailsText();
         }
+
+        predictionMiches = results.GetMicheForPatch(Editor.CurrentPatch);
     }
 
     private void CreateAutoEvoPredictionDetailsText(
@@ -3046,6 +3063,21 @@ public partial class CellEditorComponent :
     private void ToggleProcessList()
     {
         processListWindow.Visible = !processListWindow.Visible;
+    }
+
+    private void OnMicheViewRequested()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (predictionMiches == null)
+        {
+            GD.PrintErr("Missing miches data, can't show the popup");
+            return;
+        }
+
+        micheViewer.ShowMiches(Editor.CurrentPatch, predictionMiches, Editor.CurrentGame.GameWorld.WorldSettings);
+
+        autoEvoPredictionExplanationPopup.Hide();
     }
 
     private class PendingAutoEvoPrediction
@@ -3183,7 +3215,9 @@ public partial class CellEditorComponent :
                     calculatedNoChange = true;
 
                     // This is always calculated first so we can just directly set the result
-                    // TODO: maybe add like 1-2% extra here to ensure that very marginal improvements aren't suggested?
+                    // Maybe add like 1-2% extra here to ensure that very marginal improvements aren't suggested?
+                    // But that's probably not needed anymore with this issue closed:
+                    // https://github.com/Revolutionary-Games/Thrive/issues/5799
                     bestResult = score;
                 }
                 else
@@ -3287,6 +3321,10 @@ public partial class CellEditorComponent :
             currentRun = new EditorAutoEvoRun(currentGameProperties.GameWorld,
                 currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies)
             {
+                // Needed in order for the suggestion to not suggest slapping down a nucleus just to benefit from the
+                // player population clamp and increase in individual cost (which would unfairly give score in
+                // individual-adjusted scoring mode)
+                ApplyPlayerPopulationChangeClamp = UsePurePopulationScore,
                 CollectEnergyInfo = false,
             };
 

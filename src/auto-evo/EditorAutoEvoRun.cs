@@ -18,6 +18,12 @@ public class EditorAutoEvoRun : AutoEvoRun
 
     public bool CollectEnergyInfo { get; set; } = true;
 
+    /// <summary>
+    ///   Set to false in order to disable the player species population change cap which can skew the results
+    ///   depending on the previous population
+    /// </summary>
+    public bool ApplyPlayerPopulationChangeClamp { get; set; } = true;
+
     protected override void GatherInfo(Queue<IRunStep> steps)
     {
         // Custom run setup for editor's use
@@ -35,7 +41,10 @@ public class EditorAutoEvoRun : AutoEvoRun
             new Dictionary<Species, Species>
                 { { OriginalEditedSpecies, ModifiedProperties } }, CollectEnergyInfo));
 
-        AddPlayerSpeciesPopulationChangeClampStep(steps, map,
-            OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);
+        if (ApplyPlayerPopulationChangeClamp)
+        {
+            AddPlayerSpeciesPopulationChangeClampStep(steps, map,
+                OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);
+        }
     }
 }
