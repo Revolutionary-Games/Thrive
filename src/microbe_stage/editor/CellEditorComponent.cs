@@ -3193,7 +3193,9 @@ public partial class CellEditorComponent :
                     calculatedNoChange = true;
 
                     // This is always calculated first so we can just directly set the result
-                    // TODO: maybe add like 1-2% extra here to ensure that very marginal improvements aren't suggested?
+                    // Maybe add like 1-2% extra here to ensure that very marginal improvements aren't suggested?
+                    // But that's probably not needed anymore with this issue closed:
+                    // https://github.com/Revolutionary-Games/Thrive/issues/5799
                     bestResult = score;
                 }
                 else
@@ -3297,6 +3299,10 @@ public partial class CellEditorComponent :
             currentRun = new EditorAutoEvoRun(currentGameProperties.GameWorld,
                 currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies)
             {
+                // Needed in order for the suggestion to not suggest slapping down a nucleus just to benefit from the
+                // player population clamp and increase in individual cost (which would unfairly give score in
+                // individual-adjusted scoring mode)
+                ApplyPlayerPopulationChangeClamp = UsePurePopulationScore,
                 CollectEnergyInfo = false,
             };
 
