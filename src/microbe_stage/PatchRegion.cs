@@ -16,8 +16,6 @@ public class PatchRegion
         Name = name;
         Height = 0;
         Width = 0;
-        Rows = 0;
-        Columns = 0;
         Type = regionType;
         ScreenCoordinates = screenCoordinates;
     }
@@ -103,9 +101,6 @@ public class PatchRegion
 
     [JsonProperty]
     public MapElementVisibility Visibility { get; set; } = MapElementVisibility.Hidden;
-
-    public int Rows { get; set; }
-    public int Columns { get; set; }
 
     /// <summary>
     ///   Adds a connection to region

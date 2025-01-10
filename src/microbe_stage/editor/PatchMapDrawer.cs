@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -10,6 +11,9 @@ public partial class PatchMapDrawer : Control
 {
     [Export]
     public bool DrawDefaultMapIfEmpty;
+
+    // [Export(PropertyHint.ColorNoAlpha)]
+    // public Color InterConnectionColor = new Color(Colors.DimGray.R, Colors.DimGray.G, Colors.DimGray.B, 0.5f);
 
     [Export(PropertyHint.ColorNoAlpha)]
     public Color InterConnectionColor = Colors.DimGray;
@@ -36,7 +40,7 @@ public partial class PatchMapDrawer : Control
     /// <summary>
     ///   The representation of connections between regions, so we won't draw the same connection multiple times
     /// </summary>
-    private readonly Dictionary<Vector2I, (Vector2[], bool, bool)> connections = new();
+    private readonly Dictionary<Vector2I, (Vector2[] Path, bool StartVertical, bool EndVertical)> connections = new();
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
@@ -55,6 +59,8 @@ public partial class PatchMapDrawer : Control
     private Patch? selectedPatch;
 
     private Patch? playerPatch;
+
+    private List<Vector2[]> highlightedPaths = new List<Vector2[]>();
 
     [Signal]
     public delegate void OnCurrentPatchCenteredEventHandler(Vector2 coordinates, bool smoothed);
@@ -416,7 +422,7 @@ public partial class PatchMapDrawer : Control
         return sideCenterPoints.OrderBy(point => point.DistanceSquaredTo(pointPos)).First();
     }
 
-    private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor, int zIndex = 1,
+    private Line2D CreateConnectionLine(Vector2[] points, Color connectionColor,
         float width = Constants.PATCH_REGION_CONNECTION_LINE_WIDTH)
     {
         var link = new Line2D
@@ -426,7 +432,6 @@ public partial class PatchMapDrawer : Control
             Width = width,
             BeginCapMode = Line2D.LineCapMode.Round,
             EndCapMode = Line2D.LineCapMode.Round,
-            ZIndex = zIndex,
         };
 
         lineContainer.AddChild(link);
@@ -515,12 +520,7 @@ public partial class PatchMapDrawer : Control
     private int ReducePriority(int size1, int size2, int priority)
     {
         // Prioritize connections to the longer sides
-        if (size1 >= 4)
-            priority += 4;
-
-        // Some regions are 1x3 or 2x3. In the second case prioritize connection with the side of length 2
-        if (size1 == 3)
-            priority -= 3;
+        priority += (int)Math.Pow(size1, 1.5);
 
         // Don't connect to the sides of length 1 because connections overlap
         if (size1 == 1 && size1 != size2)
@@ -528,31 +528,32 @@ public partial class PatchMapDrawer : Control
         return priority;
     }
 
-    private int GetIShapePathCharacteristics(PatchRegion start, PatchRegion end, bool flip = false)
+    private int GetIShapePathCharacteristics(int startRows, int startColumns, int endRows, int endColumns, bool flip = false)
     {
-        var priority = 3;
+        var priority = 5;
 
         // Flip: false -> # of Columns, Flip: true -> # of Rows
-        priority = ReducePriority(flip ? start.Rows : start.Columns, flip ? start.Columns : start.Rows, priority);
-        priority = ReducePriority(flip ? end.Rows : end.Columns, flip ? end.Columns : end.Rows, priority);
+        priority = ReducePriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
+        priority = ReducePriority(flip ? endRows : endColumns, flip ? endColumns : endRows, priority);
         return priority;
     }
 
-    private (Vector2 Intermediate, int Priority) GetLShapePathCharacteristics(PatchRegion start, PatchRegion end)
+    private int GetLShapePathCharacteristics(int startRows, int startColumns, int endRows,
+        int endColumns)
     {
-        var intermediate = new Vector2(RegionCenter(start).X, RegionCenter(end).Y);
-        var priority = 2;
-        priority = ReducePriority(start.Columns, start.Rows, priority);
-        priority = ReducePriority(end.Rows, end.Columns, priority);
-        return (intermediate, priority);
+        var priority = 3;
+        priority = ReducePriority(startColumns, startRows, priority);
+        priority = ReducePriority(endRows, endColumns, priority);
+        return priority;
     }
 
-    private (Vector2 Intermediate1, Vector2 Intermediate2, int Priority) GetZShapePathCharacteristics(PatchRegion start,
-        PatchRegion end, Vector2 startCenter, Vector2 endCenter, Vector2 middlePoint, bool flip = false)
+    private (Vector2 Intermediate1, Vector2 Intermediate2, int Priority) GetZShapePathCharacteristics(int startRows,
+        int startColumns, int endRows, int endColumns, Vector2 startCenter, Vector2 endCenter,
+        Vector2 middlePoint, bool isTrueMiddle, bool flip = false)
     {
         Vector2 intermediate1;
         Vector2 intermediate2;
-        int priority = 1;
+        int priority = isTrueMiddle ? 2 : 1;
         if (!flip)
         {
             // Columns
@@ -566,13 +567,14 @@ public partial class PatchMapDrawer : Control
             intermediate2 = new Vector2(middlePoint.X, endCenter.Y);
         }
 
-        priority = ReducePriority(flip ? start.Rows : start.Columns, flip ? start.Columns : start.Rows, priority);
-        priority = ReducePriority(flip ? end.Rows : end.Columns, flip ? start.Columns : start.Rows, priority);
+        priority = ReducePriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
+        priority = ReducePriority(flip ? endRows : endColumns, flip ? startColumns : startRows, priority);
         return (intermediate1, intermediate2, priority);
     }
 
-    private (Vector2 Intermediate1, Vector2 Intermediate2, int Priority) GetUShapePathCharacteristics(PatchRegion start,
-        PatchRegion end, Rect2 startRect, Rect2 endRect, Vector2 startCenter, Vector2 endCenter, string shape, int i)
+    private (Vector2 Intermediate1, Vector2 Intermediate2, int Priority) GetUShapePathCharacteristics(int startRows,
+        int startColumns, int endRows, int endColumns, Rect2 startRect, Rect2 endRect, Vector2 startCenter, Vector2 endCenter,
+        string shape, int i)
     {
         var upper = startRect.Position.Y < endRect.Position.Y ? startRect : endRect;
         var lower = startRect.End.Y > endRect.End.Y ? startRect : endRect;
@@ -584,29 +586,41 @@ public partial class PatchMapDrawer : Control
         switch (shape)
         {
             case "lower":
+            {
                 intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 50);
                 intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 50);
-                priority = ReducePriority(start.Columns, start.Rows, priority);
-                priority = ReducePriority(end.Columns, start.Rows, priority);
+                priority = ReducePriority(startColumns, startRows, priority);
+                priority = ReducePriority(endColumns, startRows, priority);
                 break;
+            }
+
             case "upper":
+            {
                 intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 50);
                 intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 50);
-                priority = ReducePriority(start.Columns, start.Rows, priority);
-                priority = ReducePriority(end.Columns, start.Rows, priority);
+                priority = ReducePriority(startColumns, startRows, priority);
+                priority = ReducePriority(endColumns, startRows, priority);
                 break;
+            }
+
             case "right":
+            {
                 intermediate1 = new Vector2(right.End.X + i * 50, startCenter.Y);
                 intermediate2 = new Vector2(right.End.X + i * 50, endCenter.Y);
-                priority = ReducePriority(start.Rows, start.Columns, priority);
-                priority = ReducePriority(end.Rows, start.Columns, priority);
+                priority = ReducePriority(startRows, startColumns, priority);
+                priority = ReducePriority(endRows, startColumns, priority);
                 break;
+            }
+
             case "left":
+            {
                 intermediate1 = new Vector2(left.Position.X - i * 50, startCenter.Y);
                 intermediate2 = new Vector2(left.Position.X - i * 50, endCenter.Y);
-                priority = ReducePriority(start.Rows, start.Columns, priority);
-                priority = ReducePriority(end.Rows, start.Columns, priority);
+                priority = ReducePriority(startRows, startColumns, priority);
+                priority = ReducePriority(endRows, startColumns, priority);
                 break;
+            }
+
             default:
                 throw new Exception("Invalid side provided in GetUShapePathCharacteristics");
         }
@@ -632,37 +646,46 @@ public partial class PatchMapDrawer : Control
         var startRect = new Rect2(start.ScreenCoordinates, start.Size);
         var endCenter = RegionCenter(end);
         var endRect = new Rect2(end.ScreenCoordinates, end.Size);
-        int priority;
         Vector2 intermediate1;
         Vector2 intermediate2;
+
+        const float offset = Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN;
+        const float margin = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN;
+        int startRows = (int)Math.Round((start.Height - margin) / offset);
+        var startColumns = (int)Math.Round((start.Width - margin) / offset);
+        int endRows = (int)Math.Round((end.Height - margin) / offset);
+        var endColumns = (int)Math.Round((end.Width - margin) / offset);
 
         // TODO: it would be pretty nice to be able to use a buffer pool for the path points here as a ton of memory
         // is re-allocated here each time the map needs drawing
         var probablePaths = new List<(Vector2[] Path, int Priority, bool StartVertical, bool EndVertical)>();
+        int priority;
 
         // Direct line, I shape, highest priority
         if (Math.Abs(startCenter.X - endCenter.X) < MathUtils.EPSILON)
         {
-            priority = GetIShapePathCharacteristics(start, end);
+            priority = GetIShapePathCharacteristics(startRows, startColumns, endRows, endColumns);
             probablePaths.Add((new[] { startCenter, endCenter }, priority, true, true));
         }
 
         if (Math.Abs(startCenter.Y - endCenter.Y) < MathUtils.EPSILON)
         {
-            priority = GetIShapePathCharacteristics(start, end, true);
+            priority = GetIShapePathCharacteristics(startRows, startColumns, endRows, endColumns, true);
             probablePaths.Add((new[] { startCenter, endCenter }, priority, false, false));
         }
 
+        var intermediate = new Vector2(RegionCenter(start).X, RegionCenter(end).Y);
+
         // 2-segment line, L shape
-        (intermediate1, priority) = GetLShapePathCharacteristics(start, end);
-        if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate1))
+        priority = GetLShapePathCharacteristics(startRows, startColumns, endRows, endColumns);
+        if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
         {
-            probablePaths.Add((new[] { startCenter, intermediate1, endCenter }, priority, true, false));
+            probablePaths.Add((new[] { startCenter, intermediate, endCenter }, priority, true, false));
         }
 
-        (intermediate1, priority) = GetLShapePathCharacteristics(end, start);
-        if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate1))
-            probablePaths.Add((new[] { startCenter, intermediate1, endCenter }, priority, false, true));
+        priority = GetLShapePathCharacteristics(startRows, startColumns, endRows, endColumns);
+        if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
+            probablePaths.Add((new[] { startCenter, intermediate, endCenter }, priority, false, true));
 
         // 3-segment lines consider relative position
         var upper = startRect.Position.Y < endRect.Position.Y ? startRect : endRect;
@@ -671,34 +694,46 @@ public partial class PatchMapDrawer : Control
         var right = startRect.End.X > endRect.End.X ? startRect : endRect;
 
         // 3-segment line, Z shape
-        var middlePoint = new Vector2(left.End.X + right.Position.X, upper.End.Y + lower.Position.Y) / 2.0f;
+        for (int i = -2; i <= 2; ++i)
+        {
+            var middlePoint =
+                new Vector2(left.End.X + right.Position.X + i * 50, upper.End.Y + lower.Position.Y + i * 50) / 2.0f;
 
-        (intermediate1, intermediate2, priority) =
-            GetZShapePathCharacteristics(start, end, startCenter, endCenter, middlePoint);
-        if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
-            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
+            (intermediate1, intermediate2, priority) =
+                GetZShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startCenter, endCenter,
+                    middlePoint, i == 0);
+            if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
+            {
+                probablePaths.Add(
+                    (new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
+            }
 
-        (intermediate1, intermediate2, priority) =
-            GetZShapePathCharacteristics(start, end, startCenter, endCenter, middlePoint, true);
-        if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
-            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
+            (intermediate1, intermediate2, priority) =
+                GetZShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startCenter, endCenter,
+                    middlePoint, i == 0, true);
+            if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
+            {
+                probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false,
+                    false));
+            }
+        }
 
         // 3-segment line, U shape
         for (int i = 1; i <= 3; ++i)
         {
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
                 startCenter, endCenter, "lower", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
                 startCenter, endCenter, "upper", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
                 startCenter, endCenter, "right", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(start, end, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
                 startCenter, endCenter, "left", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
         }
@@ -727,7 +762,7 @@ public partial class PatchMapDrawer : Control
 
             var connectionTupleList = connectionStartHere.Select(c => (c.Value.Item1, 0, 1)).ToList();
             connectionTupleList.AddRange(connectionEndHere.Select(c =>
-                (c.Value.Item1, c.Value.Item1.Length - 1, c.Value.Item1.Length - 2)));
+                (c.Value.Path, c.Value.Path.Length - 1, c.Value.Path.Length - 2)));
 
             // Separate connection by directions: 0 -> Left, 1 -> Up, 2 -> Right, 3 -> Down
             // TODO: refactor this to use an enum
@@ -779,7 +814,7 @@ public partial class PatchMapDrawer : Control
             }
 
             // Separation
-            const float lineSeparation = 4 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
+            const float lineSeparation = 8 * Constants.PATCH_REGION_CONNECTION_LINE_WIDTH;
 
             for (int direction = 0; direction < 4; ++direction)
             {
@@ -869,7 +904,7 @@ public partial class PatchMapDrawer : Control
         // Calculate line-to-line intersections
         foreach (var value in connections.Values)
         {
-            var target = value.Item1;
+            var target = value.Path;
             for (int i = 1; i < path.Length; ++i)
             {
                 var startPoint = path[i - 1];
@@ -970,7 +1005,7 @@ public partial class PatchMapDrawer : Control
                     var start = PatchCenter(patch.ScreenCoordinates);
                     var end = PatchCenter(adjacent.ScreenCoordinates);
 
-                    CreateConnectionLine(new[] { start, end }, DefaultConnectionColor, 2,
+                    CreateConnectionLine([start, end], DefaultConnectionColor,
                         Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
                 }
             }
@@ -1041,7 +1076,6 @@ public partial class PatchMapDrawer : Control
         node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
-        node.ZIndex = 10;
 
         patch.ApplyPatchEventVisuals(node);
 
@@ -1057,31 +1091,32 @@ public partial class PatchMapDrawer : Control
             if (adjacent.Visibility == MapElementVisibility.Hidden ||
                 (adjacent.Visibility == MapElementVisibility.Unknown &&
                     regionVisibility == MapElementVisibility.Unknown))
-                continue;
-
-            var color = InterConnectionColor;
-            var zIndex = 1;
-            if ((ContainsSelectedPatch(region1) && SelectedPatch?.Adjacent?.Contains(adjacent) == true) ||
-                (ContainsSelectedPatch(region2) && SelectedPatch?.ID == adjacent.ID))
             {
-                color = HighlightedConnectionColor;
-                zIndex = 3;
+                continue;
             }
 
+            bool highlight = (ContainsSelectedPatch(region1) && SelectedPatch?.Adjacent?.Contains(adjacent) == true) ||
+                (ContainsSelectedPatch(region2) && SelectedPatch?.ID == adjacent.ID);
             var closesPatchSideCenter = ClosestPatchSideCenter(adjacent.ScreenCoordinates, regionPoint, isVertical);
-            CreateConnectionLine([PatchCenter(adjacent.ScreenCoordinates), closesPatchSideCenter, regionPoint], color,
-                zIndex);
+            Vector2[] path = [PatchCenter(adjacent.ScreenCoordinates), closesPatchSideCenter, regionPoint];
+
+            // If the path is highlighted then create it later to be on top of other paths
+            if (!highlight)
+                CreateConnectionLine(path, InterConnectionColor);
+            else
+                highlightedPaths.Add(path);
         }
     }
 
     private void RebuildRegionConnections()
     {
+        highlightedPaths.Clear();
         foreach (var entry in connections)
         {
             var region1 = map.Regions[entry.Key.X];
             var region2 = map.Regions[entry.Key.Y];
-            var startVertical = entry.Value.Item2;
-            var endVertical = entry.Value.Item3;
+            var startVertical = entry.Value.StartVertical;
+            var endVertical = entry.Value.EndVertical;
 
             var visibility1 = region1.Visibility;
             var visibility2 = region2.Visibility;
@@ -1097,10 +1132,10 @@ public partial class PatchMapDrawer : Control
             var color = highlight ? HighlightedConnectionColor : InterConnectionColor;
 
             // Create the main connection line
-            var points = entry.Value.Item1;
+            var points = entry.Value.Path;
             var line = CreateConnectionLine(points, color);
             var regionPoint1 = points[0];
-            var regionPoint2 = points[points.Length - 1];
+            var regionPoint2 = points[^1];
             BuildPatchToRegionConnections(region1, region2, regionPoint2, endVertical, visibility2);
             BuildPatchToRegionConnections(region2, region1, regionPoint1, startVertical, visibility1);
 
@@ -1114,6 +1149,11 @@ public partial class PatchMapDrawer : Control
 
             if (visibility2 == MapElementVisibility.Unknown)
                 BuildUnknownRegionConnections(line, region2, region1, color, true);
+        }
+
+        foreach (Vector2[] path in highlightedPaths)
+        {
+            CreateConnectionLine(path, HighlightedConnectionColor);
         }
     }
 

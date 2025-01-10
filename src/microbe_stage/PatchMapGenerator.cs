@@ -533,7 +533,6 @@ public static class PatchMapGenerator
             {
                 region.Width += offset;
                 region.Height += offset;
-                region.Columns = region.Rows = 1;
 
                 var cave = region.Patches.FirstOrDefault(p => p.BiomeType == BiomeType.Cave);
 
@@ -543,22 +542,15 @@ public static class PatchMapGenerator
                 {
                     --waterPatchCount;
                     region.Width += offset;
-                    region.Columns += 1;
                 }
 
                 // Have 3 columns
                 if (waterPatchCount > 1)
-                {
                     region.Width += offset;
-                    region.Columns += 1;
-                }
 
                 // Have 2 rows
                 if (waterPatchCount > 2)
-                {
                     region.Height += offset;
-                    region.Rows += 1;
-                }
 
                 break;
             }
@@ -568,17 +560,12 @@ public static class PatchMapGenerator
                 int verticalPatchCount = region.Patches.Count(IsWaterPatch);
 
                 region.Width += offset;
-                region.Columns += 1;
 
                 // If a cave or vent is present
                 if (verticalPatchCount != region.Patches.Count)
-                {
                     region.Width += offset;
-                    region.Columns += 1;
-                }
 
                 region.Height += verticalPatchCount * offset;
-                region.Rows += verticalPatchCount;
 
                 break;
             }
