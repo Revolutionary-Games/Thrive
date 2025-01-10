@@ -42,11 +42,7 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private readonly Dictionary<Vector2I, (Vector2[] Path, bool StartVertical, bool EndVertical)> connections = new();
 
-#pragma warning disable CA2213
-    private PackedScene nodeScene = null!;
-    private Control patchNodeContainer = null!;
-    private Control lineContainer = null!;
-#pragma warning restore CA2213
+    private readonly List<Vector2[]> highlightedPaths = new();
 
     private PatchMap map = null!;
 
@@ -59,8 +55,6 @@ public partial class PatchMapDrawer : Control
     private Patch? selectedPatch;
 
     private Patch? playerPatch;
-
-    private List<Vector2[]> highlightedPaths = new List<Vector2[]>();
 
     [Signal]
     public delegate void OnCurrentPatchCenteredEventHandler(Vector2 coordinates, bool smoothed);
@@ -528,7 +522,8 @@ public partial class PatchMapDrawer : Control
         return priority;
     }
 
-    private int GetIShapePathCharacteristics(int startRows, int startColumns, int endRows, int endColumns, bool flip = false)
+    private int GetIShapePathCharacteristics(int startRows, int startColumns, int endRows, int endColumns,
+        bool flip = false)
     {
         var priority = 5;
 
@@ -573,7 +568,8 @@ public partial class PatchMapDrawer : Control
     }
 
     private (Vector2 Intermediate1, Vector2 Intermediate2, int Priority) GetUShapePathCharacteristics(int startRows,
-        int startColumns, int endRows, int endColumns, Rect2 startRect, Rect2 endRect, Vector2 startCenter, Vector2 endCenter,
+        int startColumns, int endRows, int endColumns, Rect2 startRect, Rect2 endRect, Vector2 startCenter,
+        Vector2 endCenter,
         string shape, int i)
     {
         var upper = startRect.Position.Y < endRect.Position.Y ? startRect : endRect;
@@ -721,19 +717,23 @@ public partial class PatchMapDrawer : Control
         // 3-segment line, U shape
         for (int i = 1; i <= 3; ++i)
         {
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
+                endColumns, startRect, endRect,
                 startCenter, endCenter, "lower", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
+                endColumns, startRect, endRect,
                 startCenter, endCenter, "upper", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
+                endColumns, startRect, endRect,
                 startCenter, endCenter, "right", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
 
-            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startRect, endRect,
+            (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
+                endColumns, startRect, endRect,
                 startCenter, endCenter, "left", i);
             probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
         }
