@@ -159,7 +159,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
-        UpdateLight(currentPatch.BiomeTemplate, 0.2f + 0.8f * multiplier);
+        UpdateWorldLighting(currentPatch.BiomeTemplate, 0.2f + 0.8f * multiplier);
     }
 
     public void ApplySaveState(Patch? patch, float brightness)
@@ -317,7 +317,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    private void UpdateLight(Biome biome, float lightLevel)
+    private void UpdateWorldLighting(Biome biome, float lightLevel)
     {
         worldLight.Position = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
