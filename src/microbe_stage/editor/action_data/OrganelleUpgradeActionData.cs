@@ -25,24 +25,26 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
 
         // TODO: allow custom upgrades to have a cost
 
-        // Calculate the costs of the selected new general upgrades (minus the cost of removed upgrades)
+        // Calculate the costs of the selected new general upgrades
         var availableUpgrades = UpgradedOrganelle.Definition.AvailableUpgrades;
 
         var newUpgrades = NewUpgrades.UnlockedFeatures.Except(OldUpgrades.UnlockedFeatures)
             .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
-        var removedUpgrades = OldUpgrades.UnlockedFeatures.Except(NewUpgrades.UnlockedFeatures)
-            .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
 
         cost += newUpgrades.Sum(u => u.MPCost);
-        cost -= removedUpgrades.Sum(u => u.MPCost);
 
         return cost;
     }
 
     protected override ActionInterferenceMode GetInterferenceModeWithGuaranteed(CombinableActionData other)
     {
-        // Organelle upgrades can never combine since the old choice will have already been refunded.
-        // https://github.com/Revolutionary-Games/Thrive/issues/5524
+        if (other is OrganelleUpgradeActionData upgradeActionData)
+        {
+            if (ReferenceEquals(UpgradedOrganelle, upgradeActionData.UpgradedOrganelle))
+                return ActionInterferenceMode.Combinable;
+        }
+
+        // The replacing action is in the remove organelle action
 
         return ActionInterferenceMode.NoInterference;
     }
