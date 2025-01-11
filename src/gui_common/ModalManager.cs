@@ -17,6 +17,11 @@ public partial class ModalManager : NodeWithInput
     /// </summary>
     private readonly Dictionary<TopLevelContainer, Node> originalParents = new();
 
+    /// <summary>
+    ///   Contains the callable that is used to delete the modal when the parent leaves the tree.
+    /// </summary>
+    private readonly Dictionary<TopLevelContainer, Callable> parentLostCallables = new();
+
     private readonly Deque<TopLevelContainer> modalStack = new();
     private readonly Queue<TopLevelContainer> demotedModals = new();
 
@@ -89,8 +94,10 @@ public partial class ModalManager : NodeWithInput
         originalParents[popup] = parent;
 
         // Listen for when the parent is removed from the tree so the modal can be removed as well.
-        parent.Connect(Node.SignalName.TreeExiting, Callable.From(() => OnParentLost(popup)),
+        var parentLostCallable = Callable.From(() => OnParentLost(popup));
+        parent.Connect(Node.SignalName.TreeExiting, parentLostCallable,
             (uint)ConnectFlags.OneShot);
+        parentLostCallables[popup] = parentLostCallable;
 
         modalStack.AddToFront(popup);
         modalsDirty = true;
@@ -159,11 +166,27 @@ public partial class ModalManager : NodeWithInput
         base.Dispose(disposing);
     }
 
+    /// <summary>
+    ///   Parent lost signals are added when a modal is created so that the modal can be automatically deleted.
+    /// </summary>
+    private void DeleteParentLostSignal(TopLevelContainer modal)
+    {
+        if (!originalParents.TryGetValue(modal, out var parent))
+            return;
+        if (!parentLostCallables.TryGetValue(modal, out var parentLostCallable))
+            return;
+
+        parent.Disconnect(Node.SignalName.TreeExiting, parentLostCallable);
+        parentLostCallables.Remove(modal);
+    }
+
     private void UpdateModals()
     {
         while (demotedModals.Count > 0)
         {
             var modal = demotedModals.Dequeue();
+
+            DeleteParentLostSignal(modal);
 
             if (!originalParents.TryGetValue(modal, out var parent))
             {
@@ -291,16 +314,21 @@ public partial class ModalManager : NodeWithInput
     private void OnParentLost(TopLevelContainer popup)
     {
         // Remove the original parent since the reference will now be invalid
-        originalParents.Remove(popup);
+        var popupWasInDictionary = originalParents.Remove(popup);
+
+        // Guard against duplicate signals
+        if (!popupWasInDictionary)
+            return;
 
         // Delete the popup
         popup.Close();
         modalStack.Remove(popup);
         popup.QueueFree();
+        DeleteParentLostSignal(popup);
 
         // Remove the popup from the demoted modals since it is now destroyed
         var demotedModalsCount = demotedModals.Count;
-        for (int i = 0; i < demotedModalsCount; i++)
+        for (int i = 0; i < demotedModalsCount; ++i)
         {
             var item = demotedModals.Dequeue();
             if (item != popup)
