@@ -159,7 +159,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
 
         compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
-        UpdateLight(currentPatch.BiomeTemplate, multiplier);
+        UpdateLight(currentPatch.BiomeTemplate, 0.2f + 0.8f * multiplier);
     }
 
     public void ApplySaveState(Patch? patch, float brightness)
