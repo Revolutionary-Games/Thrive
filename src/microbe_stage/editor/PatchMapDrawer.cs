@@ -12,14 +12,11 @@ public partial class PatchMapDrawer : Control
     [Export]
     public bool DrawDefaultMapIfEmpty;
 
-    // [Export(PropertyHint.ColorNoAlpha)]
-    // public Color InterConnectionColor = new Color(Colors.DimGray.R, Colors.DimGray.G, Colors.DimGray.B, 0.5f);
+    [Export(PropertyHint.ColorNoAlpha)]
+    public Color InterConnectionColor = Colors.WebGreen;
 
     [Export(PropertyHint.ColorNoAlpha)]
-    public Color InterConnectionColor = Colors.DimGray;
-
-    [Export(PropertyHint.ColorNoAlpha)]
-    public Color DefaultConnectionColor = Colors.ForestGreen;
+    public Color DefaultConnectionColor = (Colors.LimeGreen + Colors.ForestGreen) / 2;
 
     [Export(PropertyHint.ColorNoAlpha)]
     public Color HighlightedConnectionColor = Colors.Cyan;
@@ -433,7 +430,6 @@ public partial class PatchMapDrawer : Control
             BeginCapMode = Line2D.LineCapMode.Round,
             EndCapMode = Line2D.LineCapMode.Round,
         };
-
         lineContainer.AddChild(link);
 
         return link;
@@ -517,10 +513,10 @@ public partial class PatchMapDrawer : Control
         AdjustPathEndpoints();
     }
 
-    private int ReducePriority(int size1, int size2, int priority)
+    private int AdjustPriority(int size1, int size2, int priority)
     {
         // Prioritize connections to the longer sides
-        priority += (int)Math.Pow(size1, 1.5);
+        priority += size1 * size1;
 
         // Don't connect to the sides of length 1 because connections overlap
         if (size1 == 1 && size1 != size2)
@@ -534,8 +530,8 @@ public partial class PatchMapDrawer : Control
         var priority = 5;
 
         // Flip: false -> # of Columns, Flip: true -> # of Rows
-        priority = ReducePriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
-        priority = ReducePriority(flip ? endRows : endColumns, flip ? endColumns : endRows, priority);
+        priority = AdjustPriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
+        priority = AdjustPriority(flip ? endRows : endColumns, flip ? endColumns : endRows, priority);
         return priority;
     }
 
@@ -543,8 +539,8 @@ public partial class PatchMapDrawer : Control
         int endColumns)
     {
         var priority = 3;
-        priority = ReducePriority(startColumns, startRows, priority);
-        priority = ReducePriority(endRows, endColumns, priority);
+        priority = AdjustPriority(startColumns, startRows, priority);
+        priority = AdjustPriority(endRows, endColumns, priority);
         return priority;
     }
 
@@ -568,8 +564,8 @@ public partial class PatchMapDrawer : Control
             intermediate2 = new Vector2(middlePoint.X, endCenter.Y);
         }
 
-        priority = ReducePriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
-        priority = ReducePriority(flip ? endRows : endColumns, flip ? startColumns : startRows, priority);
+        priority = AdjustPriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
+        priority = AdjustPriority(flip ? endRows : endColumns, flip ? startColumns : startRows, priority);
         return (intermediate1, intermediate2, priority);
     }
 
@@ -591,8 +587,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 50);
                 intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 50);
-                priority = ReducePriority(startColumns, startRows, priority);
-                priority = ReducePriority(endColumns, startRows, priority);
+                priority = AdjustPriority(startColumns, startRows, priority);
+                priority = AdjustPriority(endColumns, startRows, priority);
                 break;
             }
 
@@ -600,8 +596,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 50);
                 intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 50);
-                priority = ReducePriority(startColumns, startRows, priority);
-                priority = ReducePriority(endColumns, startRows, priority);
+                priority = AdjustPriority(startColumns, startRows, priority);
+                priority = AdjustPriority(endColumns, startRows, priority);
                 break;
             }
 
@@ -609,8 +605,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(right.End.X + i * 50, startCenter.Y);
                 intermediate2 = new Vector2(right.End.X + i * 50, endCenter.Y);
-                priority = ReducePriority(startRows, startColumns, priority);
-                priority = ReducePriority(endRows, startColumns, priority);
+                priority = AdjustPriority(startRows, startColumns, priority);
+                priority = AdjustPriority(endRows, startColumns, priority);
                 break;
             }
 
@@ -618,8 +614,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(left.Position.X - i * 50, startCenter.Y);
                 intermediate2 = new Vector2(left.Position.X - i * 50, endCenter.Y);
-                priority = ReducePriority(startRows, startColumns, priority);
-                priority = ReducePriority(endRows, startColumns, priority);
+                priority = AdjustPriority(startRows, startColumns, priority);
+                priority = AdjustPriority(endRows, startColumns, priority);
                 break;
             }
 
@@ -1012,7 +1008,7 @@ public partial class PatchMapDrawer : Control
                     var end = PatchCenter(adjacent.ScreenCoordinates);
 
                     CreateConnectionLine([start, end], DefaultConnectionColor,
-                        Constants.PATCH_REGION_CONNECTION_LINE_WIDTH);
+                        Constants.PATCH_REGION_CONNECTION_LINE_WIDTH * 1.5f);
                 }
             }
         }
