@@ -763,7 +763,7 @@ public partial class PatchMapDrawer : Control
             var connectionStartHere = connections.Where(p => p.Key.X == regionId);
             var connectionEndHere = connections.Where(p => p.Key.Y == regionId);
 
-            var connectionTupleList = connectionStartHere.Select(c => (c.Value.Item1, 0, 1)).ToList();
+            var connectionTupleList = connectionStartHere.Select(c => (c.Value.Path, 0, 1)).ToList();
             connectionTupleList.AddRange(connectionEndHere.Select(c =>
                 (c.Value.Path, c.Value.Path.Length - 1, c.Value.Path.Length - 2)));
 
