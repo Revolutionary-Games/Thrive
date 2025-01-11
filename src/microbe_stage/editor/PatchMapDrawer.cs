@@ -185,6 +185,7 @@ public partial class PatchMapDrawer : Control
         }
 
         DrawPatchLinks();
+        DrawHighlightedConnections();
         DrawRegionBorders();
 
         // Scroll to player patch only when first drawn
@@ -518,9 +519,6 @@ public partial class PatchMapDrawer : Control
         // Prioritize connections to the longer sides
         priority += size1 * size1;
 
-        // Don't connect to the sides of length 1 because connections overlap
-        if (size1 == 1 && size1 != size2)
-            priority -= 7;
         return priority;
     }
 
@@ -585,8 +583,8 @@ public partial class PatchMapDrawer : Control
         {
             case "lower":
             {
-                intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 50);
-                intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 50);
+                intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 30);
+                intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 30);
                 priority = AdjustPriority(startColumns, startRows, priority);
                 priority = AdjustPriority(endColumns, startRows, priority);
                 break;
@@ -594,8 +592,8 @@ public partial class PatchMapDrawer : Control
 
             case "upper":
             {
-                intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 50);
-                intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 50);
+                intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 30);
+                intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 30);
                 priority = AdjustPriority(startColumns, startRows, priority);
                 priority = AdjustPriority(endColumns, startRows, priority);
                 break;
@@ -603,8 +601,8 @@ public partial class PatchMapDrawer : Control
 
             case "right":
             {
-                intermediate1 = new Vector2(right.End.X + i * 50, startCenter.Y);
-                intermediate2 = new Vector2(right.End.X + i * 50, endCenter.Y);
+                intermediate1 = new Vector2(right.End.X + i * 30, startCenter.Y);
+                intermediate2 = new Vector2(right.End.X + i * 30, endCenter.Y);
                 priority = AdjustPriority(startRows, startColumns, priority);
                 priority = AdjustPriority(endRows, startColumns, priority);
                 break;
@@ -612,8 +610,8 @@ public partial class PatchMapDrawer : Control
 
             case "left":
             {
-                intermediate1 = new Vector2(left.Position.X - i * 50, startCenter.Y);
-                intermediate2 = new Vector2(left.Position.X - i * 50, endCenter.Y);
+                intermediate1 = new Vector2(left.Position.X - i * 30, startCenter.Y);
+                intermediate2 = new Vector2(left.Position.X - i * 30, endCenter.Y);
                 priority = AdjustPriority(startRows, startColumns, priority);
                 priority = AdjustPriority(endRows, startColumns, priority);
                 break;
@@ -692,10 +690,13 @@ public partial class PatchMapDrawer : Control
         var right = startRect.End.X > endRect.End.X ? startRect : endRect;
 
         // 3-segment line, Z shape
-        for (int i = -2; i <= 2; ++i)
+        for (int i = -3; i <= 3; ++i)
         {
             var middlePoint =
-                new Vector2(left.End.X + right.Position.X + i * 50, upper.End.Y + lower.Position.Y + i * 50) / 2.0f;
+                new Vector2(left.End.X + right.Position.X + i * 25, upper.End.Y + lower.Position.Y + i * 25) / 2.0f;
+
+            if (Math.Abs(middlePoint.X - left.End.X) <= 3 || Math.Abs(middlePoint.Y - upper.End.Y) <= 3)
+                continue;
 
             (intermediate1, intermediate2, priority) =
                 GetZShapePathCharacteristics(startRows, startColumns, endRows, endColumns, startCenter, endCenter,
@@ -717,7 +718,7 @@ public partial class PatchMapDrawer : Control
         }
 
         // 3-segment line, U shape
-        for (int i = 1; i <= 3; ++i)
+        for (int i = 1; i <= 4; ++i)
         {
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
                 endColumns, startRect, endRect,
@@ -1110,6 +1111,14 @@ public partial class PatchMapDrawer : Control
         }
     }
 
+    private void DrawHighlightedConnections()
+    {
+        foreach (Vector2[] path in highlightedPaths)
+        {
+            CreateConnectionLine(path, HighlightedConnectionColor);
+        }
+    }
+
     private void RebuildRegionConnections()
     {
         highlightedPaths.Clear();
@@ -1151,11 +1160,6 @@ public partial class PatchMapDrawer : Control
 
             if (visibility2 == MapElementVisibility.Unknown)
                 BuildUnknownRegionConnections(line, region2, region1, color, true);
-        }
-
-        foreach (Vector2[] path in highlightedPaths)
-        {
-            CreateConnectionLine(path, HighlightedConnectionColor);
         }
     }
 
@@ -1287,6 +1291,7 @@ public partial class PatchMapDrawer : Control
             // Also needs to update the lines connecting patches for those to display properly
             RebuildRegionConnections();
             DrawPatchLinks();
+            DrawHighlightedConnections();
         }
     }
 }
