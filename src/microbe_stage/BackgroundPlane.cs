@@ -42,6 +42,10 @@ public partial class BackgroundPlane : Node3D
 
     private bool blurEnabledLastTime;
 
+    private double elapsed;
+
+    private Vector2 previousWindowSize;
+
     public float PlaneOffset
     {
         get => backgroundPlane.Position.Z;
@@ -93,6 +97,15 @@ public partial class BackgroundPlane : Node3D
         base._Process(delta);
 
         SetWorldPosition(new Vector2(GlobalPosition.X, GlobalPosition.Z));
+
+        elapsed += delta;
+
+        if (elapsed > 1.0f)
+        {
+            UpdateSubViewportResolution();
+
+            elapsed = 0.0f;
+        }
     }
 
     /// <summary>
@@ -144,6 +157,18 @@ public partial class BackgroundPlane : Node3D
         }
 
         base.Dispose(disposing);
+    }
+
+    private void UpdateSubViewportResolution()
+    {
+        var newSize = GetWindow().Size;
+        if (previousWindowSize != newSize)
+        {
+            previousWindowSize = newSize;
+            backgroundSubViewport.Size = newSize;
+            partialBlurSubViewport.Size = newSize;
+            blurColorRect.Size = newSize;
+        }
     }
 
     private void SetWorldPosition(Vector2 position)
