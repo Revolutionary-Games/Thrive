@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Godot;
 using Systems;
 
 /// <summary>
@@ -392,17 +393,11 @@ public class SimulationCache
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
         var slimeJetsCount = 0;
-        var topPosition = 0;
-        var bottomPosition = 0;
-        List<int> slimeJetsVerticalPositions = new List<int>();
+        var mucilageMultiplier = 1.0f;
 
         for (int i = 0; i < organelleCount; ++i)
         {
             var organelle = organelles[i];
-
-            // TODO: Is there better option for calculating/storing cells boundaries?
-            topPosition = Math.Min(organelle.Position.R, topPosition);
-            bottomPosition = Math.Max(organelle.Position.R, bottomPosition);
 
             if (organelle.Definition.HasPilusComponent)
             {
@@ -412,9 +407,12 @@ public class SimulationCache
 
             if (organelle.Definition.HasSlimeJetComponent)
             {
-                slimeJetsVerticalPositions.Add(organelle.Position.R);
-                ++slimeJetsCount;
                 slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                ++slimeJetsCount;
+
+                // Make sure that slime jets are positioned at the back of the cell, because otherwise they will push the cell
+                // backwards (into the predator or away from the prey) or to the side
+                mucilageMultiplier *= CalculateAngleMultiplier(organelle.Position);
             }
 
             foreach (var process in organelle.Definition.RunnableProcesses)
@@ -426,29 +424,9 @@ public class SimulationCache
             }
         }
 
-        // Make sure that slime jets are positioned at the back of the cell, because otherwise they will push the cell
-        // backwards (into the predator or away from the prey) or to the side
-        foreach (var slimeJetPosition in slimeJetsVerticalPositions)
-        {
-            var mucilageMultiplier = 1.0f;
-            if (bottomPosition != topPosition)
-            {
-                // Range of [0,1] (front to back)
-                mucilageMultiplier = (float)(slimeJetPosition - topPosition) / (bottomPosition - topPosition);
-            }
-
-            if (mucilageMultiplier <= 0.5)
-            {
-                slimeJetScore *= 0;
-            }
-            else
-            {
-                slimeJetScore *= mucilageMultiplier;
-            }
-        }
-
         // Having lots of extra slime jets really doesn't help you that much
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
+        slimeJetScore *= mucilageMultiplier;
 
         var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore);
 
@@ -529,5 +507,18 @@ public class SimulationCache
         }
 
         return Math.Clamp(cacheScore, 0, Constants.AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE);
+    }
+
+    /// <summary>
+    ///   Calculates cos of angle between the organelle and vertical axis
+    /// </summary>
+    private float CalculateAngleMultiplier(Hex pos)
+    {
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
+        Vector3 verticalAxis = Hex.AxialToCartesian(new Hex(0, 1));
+        float angleCos = organellePosition.Dot(verticalAxis) / (organellePosition.Length() * verticalAxis.Length());
+
+        // If degrees is higher than 40 then return 0
+        return angleCos >= 0.75 ? angleCos : 0;
     }
 }
