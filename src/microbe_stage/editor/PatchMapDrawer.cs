@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Godot;
 
@@ -514,7 +513,7 @@ public partial class PatchMapDrawer : Control
         AdjustPathEndpoints();
     }
 
-    private int AdjustPriority(int size1, int size2, int priority)
+    private int AdjustPriority(int size1, int priority)
     {
         // Prioritize connections to the longer sides
         priority += size1 * size1;
@@ -528,8 +527,8 @@ public partial class PatchMapDrawer : Control
         var priority = 5;
 
         // Flip: false -> # of Columns, Flip: true -> # of Rows
-        priority = AdjustPriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
-        priority = AdjustPriority(flip ? endRows : endColumns, flip ? endColumns : endRows, priority);
+        priority = AdjustPriority(flip ? startRows : startColumns, priority);
+        priority = AdjustPriority(flip ? endRows : endColumns, priority);
         return priority;
     }
 
@@ -537,8 +536,8 @@ public partial class PatchMapDrawer : Control
         int endColumns)
     {
         var priority = 3;
-        priority = AdjustPriority(startColumns, startRows, priority);
-        priority = AdjustPriority(endRows, endColumns, priority);
+        priority = AdjustPriority(startColumns, priority);
+        priority = AdjustPriority(endRows, priority);
         return priority;
     }
 
@@ -562,8 +561,8 @@ public partial class PatchMapDrawer : Control
             intermediate2 = new Vector2(middlePoint.X, endCenter.Y);
         }
 
-        priority = AdjustPriority(flip ? startRows : startColumns, flip ? startColumns : startRows, priority);
-        priority = AdjustPriority(flip ? endRows : endColumns, flip ? startColumns : startRows, priority);
+        priority = AdjustPriority(flip ? startRows : startColumns, priority);
+        priority = AdjustPriority(flip ? endRows : endColumns, priority);
         return (intermediate1, intermediate2, priority);
     }
 
@@ -585,8 +584,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 30);
                 intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 30);
-                priority = AdjustPriority(startColumns, startRows, priority);
-                priority = AdjustPriority(endColumns, startRows, priority);
+                priority = AdjustPriority(startColumns, priority);
+                priority = AdjustPriority(endColumns, priority);
                 break;
             }
 
@@ -594,8 +593,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 30);
                 intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 30);
-                priority = AdjustPriority(startColumns, startRows, priority);
-                priority = AdjustPriority(endColumns, startRows, priority);
+                priority = AdjustPriority(startColumns, priority);
+                priority = AdjustPriority(endColumns, priority);
                 break;
             }
 
@@ -603,8 +602,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(right.End.X + i * 30, startCenter.Y);
                 intermediate2 = new Vector2(right.End.X + i * 30, endCenter.Y);
-                priority = AdjustPriority(startRows, startColumns, priority);
-                priority = AdjustPriority(endRows, startColumns, priority);
+                priority = AdjustPriority(startRows, priority);
+                priority = AdjustPriority(endRows, priority);
                 break;
             }
 
@@ -612,8 +611,8 @@ public partial class PatchMapDrawer : Control
             {
                 intermediate1 = new Vector2(left.Position.X - i * 30, startCenter.Y);
                 intermediate2 = new Vector2(left.Position.X - i * 30, endCenter.Y);
-                priority = AdjustPriority(startRows, startColumns, priority);
-                priority = AdjustPriority(endRows, startColumns, priority);
+                priority = AdjustPriority(startRows, priority);
+                priority = AdjustPriority(endRows, priority);
                 break;
             }
 
