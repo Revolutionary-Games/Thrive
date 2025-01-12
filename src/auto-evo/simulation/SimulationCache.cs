@@ -410,8 +410,8 @@ public class SimulationCache
                 slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
                 ++slimeJetsCount;
 
-                // Make sure that slime jets are positioned at the back of the cell, because otherwise they will push the cell
-                // backwards (into the predator or away from the prey) or to the side
+                // Make sure that slime jets are positioned at the back of the cell, because otherwise they will
+                // push the cell backwards (into the predator or away from the prey) or to the side
                 mucilageMultiplier *= CalculateAngleMultiplier(organelle.Position);
             }
 
