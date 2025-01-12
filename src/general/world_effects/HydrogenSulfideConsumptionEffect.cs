@@ -7,6 +7,7 @@ using Systems;
 ///   <see cref="UnderwaterVentEruptionEffect"/> otherwise adding infinite hydrogen sulfide. This has a minimum floor
 ///   to ensure that if eruptions don't happen enough that hydrogen sulfide eaters aren't completely nonviable.
 /// </summary>
+[JSONDynamicTypeAllowed]
 public class HydrogenSulfideConsumptionEffect : IWorldEffect
 {
     [JsonProperty]

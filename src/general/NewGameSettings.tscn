@@ -657,8 +657,8 @@ layout_mode = 2
 
 [node name="FreeGlucoseCloud" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "FREE_GLUCOSE_CLOUD"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer5"]
 custom_minimum_size = Vector2(200, 0)
@@ -673,8 +673,8 @@ layout_mode = 2
 
 [node name="PassiveReproductionProgress" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "PASSIVE_REPRODUCTION_PROGRESS"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer9"]
 custom_minimum_size = Vector2(200, 0)
@@ -689,8 +689,8 @@ layout_mode = 2
 
 [node name="SwitchOnExtinct" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer13"]
 custom_minimum_size = Vector2(200, 0)
@@ -705,8 +705,8 @@ layout_mode = 2
 
 [node name="LimitGrowthRate" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "LIMIT_GROWTH_RATE"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer10"]
 custom_minimum_size = Vector2(200, 0)
@@ -721,8 +721,8 @@ layout_mode = 2
 
 [node name="OrganelleUnlocksEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "ORGANELLE_UNLOCKS_ENABLED"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Difficulty/ScrollContainer/HBoxContainer/VBoxContainer/VBoxContainer12"]
 custom_minimum_size = Vector2(200, 0)
@@ -755,9 +755,9 @@ layout_mode = 2
 
 [node name="LAWKAdvanced" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
 button_pressed = true
 text = "LAWK_ONLY"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -807,9 +807,9 @@ layout_mode = 2
 
 [node name="DayNightCycleEnabled" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 0
 button_pressed = true
 text = "DAY_NIGHT_CYCLE_ENABLED"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Planet/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
@@ -940,9 +940,9 @@ layout_mode = 2
 
 [node name="IncludeMulticellular" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-size_flags_horizontal = 0
 button_pressed = true
 text = "INCLUDE_MULTICELLULAR_PROTOTYPE"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
@@ -957,9 +957,9 @@ layout_mode = 2
 
 [node name="EasterEggs" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
 layout_mode = 2
-size_flags_horizontal = 0
 button_pressed = true
 text = "EASTER_EGGS"
+autowrap_mode = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer3"]
 custom_minimum_size = Vector2(200, 0)
@@ -974,8 +974,8 @@ layout_mode = 2
 
 [node name="ExperimentalFeatures" type="CheckBox" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
 layout_mode = 2
-size_flags_horizontal = 0
 text = "EXPERIMENTAL_FEATURES"
+autowrap_mode = 3
 
 [node name="ExperimentalWarningLabel" type="Label" parent="CenterContainer/VBoxContainer/AdvancedOptions/Misc/VBoxContainer/VBoxContainer4"]
 custom_minimum_size = Vector2(200, 0)

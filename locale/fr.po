@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-13 18:38+0300\n"
-"PO-Revision-Date: 2024-10-31 16:02+0000\n"
+"POT-Creation-Date: 2025-01-08 12:44+0200\n"
+"PO-Revision-Date: 2024-12-20 15:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -1292,9 +1292,8 @@ msgstr "Crédits"
 msgid "CTRL"
 msgstr "CTRL"
 
-#, fuzzy
 msgid "CURRENT_CACHE_SIZE"
-msgstr "Aucune recherche en cours"
+msgstr "Taille actuelle :"
 
 #, fuzzy
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
@@ -2181,7 +2180,6 @@ msgstr "Brouillard de guerre intense"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "La nitrogénase est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux et l'énergie cellulaire sous forme d'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammoniaque\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation anaérobie de l'azote[/b]. Comme la nitrogénase est suspendue directement dans le cytoplasme, le liquide environnant effectue une partie de la [b]glycolyse[/b]."
 
-#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Mode brouillard de guerre"
 
@@ -3156,9 +3154,8 @@ msgstr "FPS max. :"
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Illimitées"
 
-#, fuzzy
 msgid "MAX_SIZE_COLON"
-msgstr "Taille :"
+msgstr "Taille max :"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Nombre maximum d'entités :"
@@ -3187,6 +3184,10 @@ msgstr "MedEnreg"
 
 msgid "MEDIASTOP"
 msgstr "Interrompre lecture"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Petit fragment de fer"
 
 msgid "MEGA_YEARS"
 msgstr "Ma"
@@ -4010,7 +4011,7 @@ msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforme l'[thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound]. Taux proportionnels à la concentration de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
 msgid "NITROPLAST"
-msgstr "Plaste fixateur d'azote"
+msgstr "Nitroplaste"
 
 msgid "NITROPLAST_DESCRIPTION"
 msgstr "Le plaste fixateur d'azote est une protéine capable d'utiliser l'[thrive:compound type=\"nitrogen\"][/thrive:compound] gazeux, l'[thrive:compound type=\"oxygen\"][/thrive:compound] et l'[thrive:compound type=\"atp\"][/thrive:compound] pour produire de l'[thrive:compound type=\"ammonia\"][/thrive:compound], un nutriment essentiel à la croissance des cellules. Il s'agit d'un processus appelé [b]fixation aérobique de l'azote[/b]."
@@ -4099,9 +4100,8 @@ msgstr "Pas de dossier de captures d'écrans trouvé"
 msgid "NO_SELECTED_MOD"
 msgstr "Aucun mod sélectionné"
 
-#, fuzzy
 msgid "NO_SUGGESTION"
-msgstr "Résolution :"
+msgstr "Aucune"
 
 msgid "NUCLEUS"
 msgstr "Noyau"
@@ -4568,9 +4568,8 @@ msgstr "population dans les secteurs :"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
-#, fuzzy
 msgid "POSITION_NUMBER"
-msgstr "Identifiant numérique"
+msgstr "{0}."
 
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Prédation de {0}"
@@ -5142,7 +5141,7 @@ msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr "Cette membrane possède une paroi solide de silice. Elle résiste bien aux dégâts globaux et très bien aux dégâts physiques. Elle requiert aussi moins d'énergie pour maintenir sa forme. Cependant, elle ralentit sensiblement la cellule et celle-ci absorbe les ressources à un taux réduit."
 
 msgid "SIZE_COLON"
-msgstr "Taille :"
+msgstr "Taille :"
 
 msgid "SLIDESHOW"
 msgstr "Diaporama"
@@ -6916,6 +6915,38 @@ msgstr "(proportion de glucose retenue dans l'environnement à chaque générati
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Pas d'effets."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Pas de modifications."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plaste Fixateur d'Azote"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "À venir"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire [thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production de [thrive:compound type=\"atp\"][/thrive:compound] varie avec [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Pas d'améliorations."
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Chaque [b]flagelle[/b] exerce une poussée en sens inverse de son orientation. Il fournit également une petite poussée dans les directions proches du sens opposé (plus précisément, les directions pour lesquelles la composante du vecteur opposé est positive). Lorsqu'un [b]flagelle[/b] est actif, il consomme de l'[/thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -7179,6 +7210,7 @@ msgstr "Les [b]Métabolosomes[/b] assurent la [b]respiration protéique[/b], une
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "Pas de modifications."
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 "[b]Respiration protéique[/b] : [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7547,6 +7579,10 @@ msgstr "Mitochondrie"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitochondrie"
 
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Thermoplaste"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelle"
 
@@ -7582,9 +7618,8 @@ msgstr "Myofibrille"
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogénase"
 
-#, fuzzy
 msgid "WIKI_PAGE_NITROPLAST"
-msgstr "Plaste Fixateur d'Azote"
+msgstr "Nitroplaste"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Noyau"
@@ -7771,6 +7806,7 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "Pas de conditions."
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "À venir"
 

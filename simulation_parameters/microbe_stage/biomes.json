@@ -37,7 +37,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1200,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -220,7 +220,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -296,20 +296,47 @@
             {
               "ScenePath": "res://assets/models/SulfurChunkSmall1.tscn",
               "ConvexShapePath": "res://assets/models/SulfurChunkSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
             }
           ],
-          "Density": 0.00007,
+          "Density": 0.000045,
           "Dissolves": true,
-          "Radius": 2,
+          "Radius": 3,
           "ChunkScale": 1,
-          "PhysicsDensity": 2100,
+          "PhysicsDensity": 2500,
           "Size": 10,
           "VentAmount": 0.3,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "hydrogensulfide": {
-              "Amount": 100
+              "Amount": 60
+            }
+          }
+        },
+        "sulfurMediumChunk": {
+          "Name": "MEDIUM_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
+            }
+          ],
+          "Density": 0.00002,
+          "Dissolves": true,
+          "Radius": 5,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 40,
+          "VentAmount": 0.8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 4000
             }
           }
         },
@@ -559,7 +586,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -801,7 +828,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -1067,7 +1094,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -1136,29 +1163,6 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
-        },
-        "sulfurSmallChunk": {
-          "Name": "SMALL_SULFUR_CHUNK",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/SulfurChunkSmall1.tscn",
-              "ConvexShapePath": "res://assets/models/SulfurChunkSmall1.shape"
-            }
-          ],
-          "Density": 0.000005,
-          "Dissolves": true,
-          "Radius": 2,
-          "ChunkScale": 1,
-          "PhysicsDensity": 2100,
-          "Size": 10,
-          "VentAmount": 0.3,
-          "Damages": 0,
-          "DeleteOnTouch": false,
-          "Compounds": {
-            "hydrogensulfide": {
-              "Amount": 100
-            }
-          }
         },
         "phosphateSmallChunk": {
           "Name": "SMALL_PHOSPHATE_CHUNK",
@@ -1406,7 +1410,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -1669,7 +1673,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -1738,29 +1742,6 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
-        },
-        "sulfurSmallChunk": {
-          "Name": "SMALL_SULFUR_CHUNK",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/SulfurChunkSmall1.tscn",
-              "ConvexShapePath": "res://assets/models/SulfurChunkSmall1.shape"
-            }
-          ],
-          "Density": 0.00003,
-          "Dissolves": true,
-          "Radius": 2,
-          "ChunkScale": 1,
-          "PhysicsDensity": 2100,
-          "Size": 10,
-          "VentAmount": 0.3,
-          "Damages": 0,
-          "DeleteOnTouch": false,
-          "Compounds": {
-            "hydrogensulfide": {
-              "Amount": 100
-            }
-          }
         },
         "phosphateSmallChunk": {
           "Name": "SMALL_PHOSPHATE_CHUNK",
@@ -1934,7 +1915,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -2010,20 +1991,47 @@
             {
               "ScenePath": "res://assets/models/SulfurChunkSmall1.tscn",
               "ConvexShapePath": "res://assets/models/SulfurChunkSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
             }
           ],
-          "Density": 0.00006,
+          "Density": 0.000040,
           "Dissolves": true,
-          "Radius": 2,
+          "Radius": 3,
           "ChunkScale": 1,
-          "PhysicsDensity": 2100,
+          "PhysicsDensity": 2500,
           "Size": 10,
           "VentAmount": 0.3,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "hydrogensulfide": {
-              "Amount": 100
+              "Amount": 60
+            }
+          }
+        },
+        "sulfurMediumChunk": {
+          "Name": "MEDIUM_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
+            }
+          ],
+          "Density": 0.00002,
+          "Dissolves": true,
+          "Radius": 5,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 40,
+          "VentAmount": 0.8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 4000
             }
           }
         },
@@ -2195,7 +2203,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -2474,7 +2482,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -2543,6 +2551,52 @@
             }
           },
           "DissolverEnzyme": "rusticyanin"
+        },
+        "sulfurSmallChunk": {
+          "Name": "SMALL_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
+            }
+          ],
+          "Density": 0.00002,
+          "Dissolves": true,
+          "Radius": 3,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2500,
+          "Size": 10,
+          "VentAmount": 0.3,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 60
+            }
+          }
+        },
+        "sulfurMediumChunk": {
+          "Name": "MEDIUM_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
+            }
+          ],
+          "Density": 0.000005,
+          "Dissolves": true,
+          "Radius": 5,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 40,
+          "VentAmount": 0.8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 4000
+            }
+          }
         },
         "phosphateSmallChunk": {
           "Name": "SMALL_PHOSPHATE_CHUNK",
@@ -2651,8 +2705,8 @@
           "Ambient": 0
         },
         "hydrogensulfide": {
-          "Amount": 0,
-          "Density": 0,
+          "Amount": 25000,
+          "Density": 0.00003,
           "Ambient": 0
         },
         "oxygen": {
@@ -2720,7 +2774,7 @@
           "Radius": 2,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
-          "Size": 10000,
+          "Size": 0,
           "Damages": 10,
           "DeleteOnTouch": true,
           "Compounds": {},
@@ -2796,20 +2850,51 @@
             {
               "ScenePath": "res://assets/models/SulfurChunkSmall1.tscn",
               "ConvexShapePath": "res://assets/models/SulfurChunkSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteSmall1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteSmall1.shape"
             }
           ],
-          "Density": 0.00006,
+          "Density": 0.00004,
           "Dissolves": true,
-          "Radius": 2,
+          "Radius": 3,
           "ChunkScale": 1,
-          "PhysicsDensity": 2100,
+          "PhysicsDensity": 2500,
           "Size": 10,
           "VentAmount": 0.3,
           "Damages": 0,
           "DeleteOnTouch": false,
           "Compounds": {
             "hydrogensulfide": {
-              "Amount": 100
+              "Amount": 60
+            }
+          }
+        },
+        "sulfurMediumChunk": {
+          "Name": "MEDIUM_SULFUR_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/SulfurChunkAluniteMedium1.tscn",
+              "ConvexShapePath": "res://assets/models/SulfurChunkAluniteMedium1.shape"
+            }
+          ],
+          "Density": 0.000015,
+          "Dissolves": true,
+          "Radius": 5,
+          "ChunkScale": 1,
+          "PhysicsDensity": 1500,
+          "Size": 40,
+          "VentAmount": 0.8,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "hydrogensulfide": {
+              "Amount": 4000
             }
           }
         },

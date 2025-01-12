@@ -3183,6 +3183,7 @@ public partial class CellEditorComponent :
                     calculatedNoChange = true;
 
                     // This is always calculated first so we can just directly set the result
+                    // TODO: maybe add like 1-2% extra here to ensure that very marginal improvements aren't suggested?
                     bestResult = score;
                 }
                 else

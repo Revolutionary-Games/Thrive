@@ -391,9 +391,11 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "MOD_LOAD_UNLOAD_CAVEATS"
 label_settings = ExtResource("5_b1wkc")
+autowrap_mode = 3
 
 [node name="Spacer4" type="Control" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 5)
@@ -435,7 +437,6 @@ ConfirmText = "DISCARD_CHANGES"
 WindowTitle = "UNAPPLIED_MOD_CHANGES"
 
 [node name="ModFullInfo" parent="." instance=ExtResource("4")]
-anchors_preset = 0
 offset_left = -580.0
 offset_top = -416.0
 offset_right = 0.0

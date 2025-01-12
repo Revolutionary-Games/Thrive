@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-13 18:38+0300\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-01-08 12:44+0200\n"
+"PO-Revision-Date: 2025-01-05 14:32+0000\n"
+"Last-Translator: Jose Mendoza <mendozaknmgarcia22@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -40,9 +40,8 @@ msgstr "Abortar"
 msgid "ABORTED_DOT"
 msgstr "Abortado."
 
-#, fuzzy
 msgid "ABSORBERS_COUNT"
-msgstr "Microbio"
+msgstr "Absorbentes:"
 
 msgid "ABYSSOPELAGIC"
 msgstr "Abisopelágico"
@@ -97,9 +96,8 @@ msgstr "Avanzado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abre las opciones avanzadas"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fijación de Nitrógeno Anaeróbica"
+msgstr "Fijación de nitrógeno anaeróbica"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fijación de Nitrógeno Aeróbica"
@@ -135,18 +133,15 @@ msgstr "(Velocidad con la cual las species de la AI mutan)"
 msgid "ALL"
 msgstr "Todos"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "Permitir que las especies no tengan mutaciones (en caso que no se encuentren buenas mutaciones)"
+msgstr "Permitir cambiar a especies en extinción relacionadas"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
+msgstr "(permite continuar la partida con una especie en extinción diferente en vez de finalizar la partida)"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadísticas genéricas de todos los mundos"
 
-#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaciones:[/b]\n"
@@ -169,9 +164,8 @@ msgstr "Ya has ascendido"
 msgid "ALT"
 msgstr "Alt"
 
-#, fuzzy
 msgid "ALWAYS_VISIBLE"
-msgstr "Visible"
+msgstr "Siempre visible"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "Volumen de ambiente"
@@ -234,9 +228,8 @@ msgstr ""
 "\n"
 "Total de veces que has ascendido en esta partida guardada: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Versión:"
+msgstr "Estadio de ascenso"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Se requiere la clase del ensamblaje del mod cuando se especifica el ensamblaje"
@@ -261,28 +254,28 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Balance de ATP"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
-"Esta sección muestra el balance total (lo producido - lo consumido) por cada compuesto.\n"
-"Por ejemplo, para hacer una célula vegetal el balance de glucosa tiene que ser positivo."
+"Esta sección muestra el balance total de ATP (energía) de la célula actual.\n"
+"Para sobrevivir el balance debe ser positivo. En el caso de las células sésiles, pueden considerar que el balance es positivo si se excluye el movimiento.\n"
+"El desplegable que aparece a continuación puede utilizarse para comprobar qué ocurriría si la célula no dispusiera de algún recurso con el que fabricar ATP.\n"
+"Por ejemplo, algunas células solo pueden mantener un balance de ATP positivo cuando tienen múltiplos tipos de compuestos con los que fabricar ATP a la vez.\n"
+"Es más difícil jugar con ese tipo de células, dado que requieren tener varios tipos de compuestos almacenados a la vez para sobrevivir."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Sin recursos externos"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Sin glucosa"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Ácido Sulfhídrico"
+msgstr "Sin sulfuro de hidrógeno"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "Balance de ATP"
+msgstr "Sin hierro"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Con todos los compuestos requeridos"
 
 msgid "ATP_PRODUCTION"
 msgstr "Producción de ATP"
@@ -335,14 +328,13 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo falló"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Los resultados de Auto-evo faltan. Si cargaste una partida anterior esto deberia suceder. Si no cargaste una partida anterior por favor reportanos este error y envianos tu archivo de registro."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados de auto-evo:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Resultados de auto-evo:"
+msgstr "Resultados Globales"
 
 #, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
@@ -3335,6 +3327,10 @@ msgstr "Grabar multimedia"
 msgid "MEDIASTOP"
 msgstr "Detener reproducción"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Fragmento de hierro pequeño"
+
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
@@ -3538,7 +3534,7 @@ msgstr "Editor libre de microbios"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
-msgstr "Estadísticas del Organismo"
+msgstr "  Estadísticas del Organismo"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -4197,9 +4193,8 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Movimiento Base"
 
-#, fuzzy
 msgid "NOTICE_READY_TO_EDIT"
-msgstr "El editor ahora está listo para acceder"
+msgstr "Ya se puede acceder al editor"
 
 msgid "NOT_STARTED_DOT"
 msgstr "Sin iniciar."
@@ -7096,6 +7091,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Nitroplasto"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Los flagelos son grupos de fibras de proteínas en forma de látigo que se extienden desde la membrana de la célula. Usan ATP para propulsar a la célula en la dirección contraria a la que apuntan, efecto similar a la cola de un pez. Así pues, un flagelo del lado izquierdo, dará un impulso hacia la derecha."
 
@@ -7713,6 +7740,10 @@ msgstr "Mitocondria"
 #, fuzzy
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitocondria"
+
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplasto"
 
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"

@@ -445,6 +445,7 @@ public static class Constants
 
     public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
     public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
+    public const int DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE = 500;
 
     // Base randomness for visual hashes to make different types not conflict
     public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
@@ -1558,7 +1559,7 @@ public static class Constants
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
-    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.50f;
 
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
