@@ -29,12 +29,13 @@ public static class PatchMapGenerator
         Patch? tidepool = null;
         Patch? banana = null;
 
-        bool useRarePatch = false;
+        // This random is outside the Easter Eggs toggle to make it not majorly affect the generated map layout
         float easterEggRoll = (float)random.NextDouble();
+        bool useRarePatch = false;
 
         if (settings.EasterEggs)
         {
-            if (easterEggRoll < Constants.PATCH_GENERATION_MAX_RETRIES)
+            if (easterEggRoll < Constants.PATCH_GENERATION_CHANCE_BANANA_BIOME)
             {
                 useRarePatch = true;
             }
