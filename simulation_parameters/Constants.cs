@@ -1629,6 +1629,8 @@ public static class Constants
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
+
     /// <summary>
     ///   If set to true then physics debug draw gets enabled when the game starts
     /// </summary>

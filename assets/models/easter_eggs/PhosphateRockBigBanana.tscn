@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://yp1ccaql8i38"]
+
+[ext_resource type="Shader" path="res://shaders/Crystal.gdshader" id="1_d4ik7"]
+[ext_resource type="Texture2D" uid="uid://c4givkmxrlllx" path="res://assets/textures/Crystal.png" id="2_3gcdv"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_4w8r1"]
+[ext_resource type="Texture2D" uid="uid://dvp0yex8rwygn" path="res://assets/textures/Crystal_rough_emit.png" id="4_43y7x"]
+[ext_resource type="ArrayMesh" uid="uid://blnkud7b7hl4r" path="res://assets/models/easter_eggs/PhosphateRockLittleBanana.mesh" id="5_b38yi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nih3b"]
+resource_local_to_scene = true
+render_priority = 17
+shader = ExtResource("1_d4ik7")
+shader_parameter/albedo = Color(0, 0.580392, 1, 0.87451)
+shader_parameter/useNormal = false
+shader_parameter/roughness = 0.4
+shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.83
+shader_parameter/metallic = 0.44
+shader_parameter/emission = Color(0.321569, 0.192157, 0.811765, 1)
+shader_parameter/emissionEnergy = 0.25
+shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 5.0
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.1, 0.1, 0.1, 1)
+shader_parameter/albedoTexture = ExtResource("2_3gcdv")
+shader_parameter/roughnessTexture = ExtResource("4_43y7x")
+shader_parameter/dissolveTexture = ExtResource("3_4w8r1")
+
+[node name="BigBanan" type="MeshInstance3D"]
+transform = Transform3D(10.241, 0, -0.355943, 0, 8.5, 0, 0.429225, 0, 8.49254, 0.4, 0, 0.5)
+material_override = SubResource("ShaderMaterial_nih3b")
+mesh = ExtResource("5_b38yi")
