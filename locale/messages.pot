@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-12 23:10+0300\n"
+"POT-Creation-Date: 2025-01-13 16:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -599,7 +599,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2347
 #: ../simulation_parameters/microbe_stage/biomes.json:2528
 #: ../simulation_parameters/microbe_stage/biomes.json:2820
-#: ../simulation_parameters/microbe_stage/biomes.json:3183
+#: ../simulation_parameters/microbe_stage/biomes.json:3199
+#: ../simulation_parameters/microbe_stage/biomes.json:3416
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:50
 msgid "BIG_IRON_CHUNK"
 msgstr ""
@@ -611,6 +612,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2070
 #: ../simulation_parameters/microbe_stage/biomes.json:2641
 #: ../simulation_parameters/microbe_stage/biomes.json:2937
+#: ../simulation_parameters/microbe_stage/biomes.json:3254
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -1059,6 +1061,7 @@ msgid "CLOUD_SIMULATION_MULTIPLIER"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:1639
+#: ../simulation_parameters/microbe_stage/biomes.json:3123
 msgid "COASTAL"
 msgstr ""
 
@@ -2252,7 +2255,11 @@ msgstr ""
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1583
+#: ../src/microbe_stage/PatchMapGenerator.cs:811
+msgid "EASTER_EGG_BANANA_BIOME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1560
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
@@ -2490,7 +2497,7 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1448
+#: ../src/microbe_stage/MicrobeStage.cs:1447
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
@@ -2751,6 +2758,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2194
 #: ../simulation_parameters/microbe_stage/biomes.json:2473
 #: ../simulation_parameters/microbe_stage/biomes.json:2765
+#: ../simulation_parameters/microbe_stage/biomes.json:3148
 msgid "FLOATING_HAZARD"
 msgstr ""
 
@@ -4363,6 +4371,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:1218
 #: ../simulation_parameters/microbe_stage/biomes.json:1484
 #: ../simulation_parameters/microbe_stage/biomes.json:2964
+#: ../simulation_parameters/microbe_stage/biomes.json:3277
 msgid "MARINE_SNOW"
 msgstr ""
 
@@ -5872,7 +5881,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:175
-#: ../src/microbe_stage/PatchMapGenerator.cs:826
+#: ../src/microbe_stage/PatchMapGenerator.cs:857
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -6902,7 +6911,8 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2311
 #: ../simulation_parameters/microbe_stage/biomes.json:2492
 #: ../simulation_parameters/microbe_stage/biomes.json:2784
-#: ../simulation_parameters/microbe_stage/biomes.json:3147
+#: ../simulation_parameters/microbe_stage/biomes.json:3167
+#: ../simulation_parameters/microbe_stage/biomes.json:3380
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:48
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
@@ -6914,6 +6924,7 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:2039
 #: ../simulation_parameters/microbe_stage/biomes.json:2602
 #: ../simulation_parameters/microbe_stage/biomes.json:2902
+#: ../simulation_parameters/microbe_stage/biomes.json:3223
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -6982,7 +6993,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1140
+#: ../src/microbe_stage/MicrobeStage.cs:1139
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -7278,11 +7289,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1446
+#: ../src/microbe_stage/MicrobeStage.cs:1445
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1447
+#: ../src/microbe_stage/MicrobeStage.cs:1446
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -8317,7 +8328,7 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:184
-#: ../simulation_parameters/microbe_stage/biomes.json:3123
+#: ../simulation_parameters/microbe_stage/biomes.json:3356
 msgid "VOLCANIC_VENT"
 msgstr ""
 

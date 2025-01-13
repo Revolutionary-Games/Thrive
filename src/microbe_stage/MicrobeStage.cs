@@ -1034,20 +1034,19 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (GameWorld.Map.CurrentPatch == null)
             return;
 
-        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
-        // light cycle in it.
-        patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-        GameWorld.UpdateGlobalLightLevels();
+        var currentPatch = GameWorld.Map.CurrentPatch;
+
+        patchManager.UpdatePatchBiome(currentPatch);
+        patchManager.UpdateAllPatchLightLevels(currentPatch);
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         // Updates the background lighting and does various post-effects
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
-            // This might need to be refactored for efficiency but, it works for now
+            // This might need to be refactored for efficiency, but it works for now
             var lightLevel =
-                GameWorld.Map.CurrentPatch!.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
-                GameWorld.LightCycle.DayLightFraction;
+                currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightLevel / maxLightLevel;
