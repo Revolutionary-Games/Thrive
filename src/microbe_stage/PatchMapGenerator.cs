@@ -30,13 +30,11 @@ public static class PatchMapGenerator
         Patch? banana = null;
 
         bool useRarePatch = false;
+        float easterEggRoll = (float)random.NextDouble();
 
         if (settings.EasterEggs)
         {
-            // 1% chance for rare biome to spawn (!!CURRENTLY SET TO 1 IN 3 FOR TESTING!!)
-            int rand = random.Next(0, 3);
-
-            if (rand == 0)
+            if (easterEggRoll < Constants.PATCH_GENERATION_MAX_RETRIES)
             {
                 useRarePatch = true;
             }
@@ -72,7 +70,7 @@ public static class PatchMapGenerator
                 // All continents must have at least one coastal or banana patch.
                 if (useRarePatch && banana == null)
                 {
-                    banana = NewPredefinedPatch(BiomeType.BananaBiome, ++currentPatchId, region, regionName);
+                    banana = NewPredefinedPatch(BiomeType.Banana, ++currentPatchId, region, regionName);
                 }
                 else
                 {
@@ -810,8 +808,8 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(100, 400),
             },
 
-            BiomeType.BananaBiome => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
-                id, GetBiomeTemplate("banana_biome"), BiomeType.BananaBiome, region)
+            BiomeType.Banana => new Patch(new LocalizedString("EASTER_EGG_BANANA_BIOME"),
+                id, GetBiomeTemplate("banana"), BiomeType.Banana, region)
             {
                 Depth =
                 {
