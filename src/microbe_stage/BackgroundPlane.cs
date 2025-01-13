@@ -44,7 +44,7 @@ public partial class BackgroundPlane : Node3D
 
     private double elapsed;
 
-    private Vector2 previousWindowSize;
+    private Vector2 previousWindowSize = new Vector2(1280, 720);
 
     public float PlaneOffset
     {
@@ -68,6 +68,7 @@ public partial class BackgroundPlane : Node3D
         spatialBlurMaterial = (ShaderMaterial)planeBlurMaterial;
         canvasBlurMaterial = (ShaderMaterial)colorRectBlurMaterial;
 
+        UpdateSubViewportResolution();
         ApplyDistortionEffect();
         ApplyBlurEffect();
     }
