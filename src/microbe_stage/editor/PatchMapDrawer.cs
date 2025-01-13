@@ -61,6 +61,14 @@ public partial class PatchMapDrawer : Control
     [Signal]
     public delegate void OnCurrentPatchCenteredEventHandler(Vector2 coordinates, bool smoothed);
 
+    private enum Side
+    {
+        Upper,
+        Right,
+        Lower,
+        Left,
+    }
+
     public PatchMap? Map
     {
         get => map;
@@ -567,8 +575,7 @@ public partial class PatchMapDrawer : Control
 
     private (Vector2 Intermediate1, Vector2 Intermediate2, int Priority) GetUShapePathCharacteristics(int startRows,
         int startColumns, int endRows, int endColumns, Rect2 startRect, Rect2 endRect, Vector2 startCenter,
-        Vector2 endCenter,
-        string shape, int i)
+        Vector2 endCenter, Side side, int i)
     {
         var upper = startRect.Position.Y < endRect.Position.Y ? startRect : endRect;
         var lower = startRect.End.Y > endRect.End.Y ? startRect : endRect;
@@ -577,9 +584,9 @@ public partial class PatchMapDrawer : Control
         Vector2 intermediate1;
         Vector2 intermediate2;
         int priority = 0;
-        switch (shape)
+        switch (side)
         {
-            case "lower":
+            case Side.Lower:
             {
                 intermediate1 = new Vector2(startCenter.X, lower.End.Y + i * 30);
                 intermediate2 = new Vector2(endCenter.X, lower.End.Y + i * 30);
@@ -588,7 +595,7 @@ public partial class PatchMapDrawer : Control
                 break;
             }
 
-            case "upper":
+            case Side.Upper:
             {
                 intermediate1 = new Vector2(startCenter.X, upper.Position.Y - i * 30);
                 intermediate2 = new Vector2(endCenter.X, upper.Position.Y - i * 30);
@@ -597,7 +604,7 @@ public partial class PatchMapDrawer : Control
                 break;
             }
 
-            case "right":
+            case Side.Right:
             {
                 intermediate1 = new Vector2(right.End.X + i * 30, startCenter.Y);
                 intermediate2 = new Vector2(right.End.X + i * 30, endCenter.Y);
@@ -606,7 +613,7 @@ public partial class PatchMapDrawer : Control
                 break;
             }
 
-            case "left":
+            case Side.Left:
             {
                 intermediate1 = new Vector2(left.Position.X - i * 30, startCenter.Y);
                 intermediate2 = new Vector2(left.Position.X - i * 30, endCenter.Y);
@@ -719,23 +726,19 @@ public partial class PatchMapDrawer : Control
         for (int i = 1; i <= 4; ++i)
         {
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
-                endColumns, startRect, endRect,
-                startCenter, endCenter, "lower", i);
+                endColumns, startRect, endRect, startCenter, endCenter, Side.Lower, i);
             probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
 
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
-                endColumns, startRect, endRect,
-                startCenter, endCenter, "upper", i);
+                endColumns, startRect, endRect, startCenter, endCenter, Side.Upper, i);
             probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
 
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
-                endColumns, startRect, endRect,
-                startCenter, endCenter, "right", i);
+                endColumns, startRect, endRect, startCenter, endCenter, Side.Right, i);
             probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, false, false));
 
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
-                endColumns, startRect, endRect,
-                startCenter, endCenter, "left", i);
+                endColumns, startRect, endRect, startCenter, endCenter, Side.Left, i);
             probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, false, false));
         }
 
