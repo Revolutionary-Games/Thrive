@@ -72,7 +72,7 @@ public static class PatchMapGenerator
                 // All continents must have at least one coastal or banana patch.
                 if (useRarePatch && banana == null)
                 {
-                    banana = NewPredefinedPatch(BiomeType.Banana, ++currentPatchId, region, regionName);
+                    banana = NewPredefinedPatch(BiomeType.BananaBiome, ++currentPatchId, region, regionName);
                 }
                 else
                 {
@@ -810,8 +810,8 @@ public static class PatchMapGenerator
                 ScreenCoordinates = new Vector2(100, 400),
             },
 
-            BiomeType.Banana => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
-                id, GetBiomeTemplate("banana"), BiomeType.Banana, region)
+            BiomeType.BananaBiome => new Patch(GetPatchLocalizedName(regionName, "COASTAL"),
+                id, GetBiomeTemplate("banana_biome"), BiomeType.BananaBiome, region)
             {
                 Depth =
                 {

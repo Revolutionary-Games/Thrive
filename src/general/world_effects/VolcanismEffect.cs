@@ -40,7 +40,7 @@ public class VolcanismEffect : IWorldEffect
                     Constants.VOLCANISM_VENTS_CO2_THRESHOLD);
             }
             else if (patchKeyValue.Value.BiomeType is BiomeType.Epipelagic or BiomeType.Coastal or BiomeType.Estuary
-                     or BiomeType.Tidepool or BiomeType.IceShelf or BiomeType.Banana)
+                     or BiomeType.Tidepool or BiomeType.IceShelf or BiomeType.BananaBiome)
             {
                 // Ice shelf gets co2 here as it seems to be pretty often the driver for early oxygen in the world
 

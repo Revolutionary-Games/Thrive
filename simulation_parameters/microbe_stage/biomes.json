@@ -3119,9 +3119,9 @@
       }
     }
   },
-  "banana": {
+  "banana_biome": {
     "Name": "COASTAL",
-    "Background": "banana",
+    "Background": "banana_biome",
     "Panorama": "res://assets/textures/background/panoramas/Epipelagic.png",
     "Icon": "res://assets/models/easter_eggs/PatchBanana.svg",
     "Sunlight": {
@@ -3171,12 +3171,12 @@
               "ConvexShapePath": "res://assets/models/IronRock2.shape"
             },
             {
-              "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanan.tscn",
-              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+              "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanana.shape"
             },
             {
-              "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanan.tscn",
-              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+              "ScenePath": "res://assets/models/easter_eggs/IronRockLittleBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanana.shape"
             }
           ],
           "Density": 0.00008,
@@ -3199,8 +3199,8 @@
           "Name": "BIG_IRON_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/easter_eggs/IronRockBigBanan.tscn",
-              "ConvexShapePath": "res://assets/models/easter_eggs/BigBanan.shape"
+              "ScenePath": "res://assets/models/easter_eggs/IronRockBigBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/BigBanana.shape"
             }
           ],
           "Density": 0.00005,
@@ -3227,12 +3227,12 @@
               "ConvexShapePath": "res://assets/models/PhosphateChunkStruviteSmall1.shape"
             },
             {
-              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanan.tscn",
-              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanana.shape"
             },
             {
-              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanan.tscn",
-              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanan.shape"
+              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockLittleBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/LittleBanana.shape"
             }
           ],
           "Density": 0.00005,
@@ -3254,8 +3254,8 @@
           "Name": "BIG_PHOSPHATE_CHUNK",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockBigBanan.tscn",
-              "ConvexShapePath": "res://assets/models/easter_eggs/BigBanan.shape"
+              "ScenePath": "res://assets/models/easter_eggs/PhosphateRockBigBanana.tscn",
+              "ConvexShapePath": "res://assets/models/easter_eggs/BigBanana.shape"
             }
           ],
           "Density": 0.000001,
@@ -3281,24 +3281,24 @@
               "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
             }
           ],
-          "Density": 0.0001,
+          "Density": 0.00008,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
           "Size": 2,
           "Damages": 0,
-          "VentAmount": 2,
+          "VentAmount": 1.5,
           "DeleteOnTouch": false,
           "Compounds": {
             "ammonia": {
-              "Amount": 50
+              "Amount": 40
             },
             "phosphates": {
-              "Amount": 50
+              "Amount": 40
             },
             "glucose": {
-              "Amount": 100
+              "Amount": 80
             }
           }
         }
