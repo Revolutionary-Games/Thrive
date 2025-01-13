@@ -708,8 +708,7 @@ public partial class PatchMapDrawer : Control
                     middlePoint, i == 0);
             if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             {
-                probablePaths.Add(
-                    ([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
+                probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
             }
 
             (intermediate1, intermediate2, priority) =
