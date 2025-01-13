@@ -76,6 +76,7 @@ EditorGroundPath = NodePath("../../EditorWorld/Ground")
 visible = false
 layout_mode = 1
 IsMulticellularEditor = true
+IsMacroscopicEditor = true
 CameraPath = NodePath("../../MicrobeEditorWorld/PrimaryCamera")
 EditorArrowPath = NodePath("../../MicrobeEditorWorld/EditorArrow")
 EditorGridPath = NodePath("../../MicrobeEditorWorld/Grid")
@@ -104,6 +105,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="LateMulticellularEditorGUI/NoCellSelected"]
@@ -112,7 +115,6 @@ text = "SELECT_TISSUE_TYPE_FROM_EDITOR"
 horizontal_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("2")]
-HelpCategory = "MicrobeEditor"
 
 [connection signal="OnCellTypeToEditSelected" from="LateMulticellularEditorGUI/MetaballBodyEditorComponent" to="." method="OnStartEditingCellType"]
 [connection signal="OnTabSelected" from="LateMulticellularEditorGUI/MicrobeEditorTabButtons" to="." method="SetEditorTab"]

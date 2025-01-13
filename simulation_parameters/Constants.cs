@@ -1306,7 +1306,7 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 1.8f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
@@ -1559,7 +1559,7 @@ public static class Constants
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
-    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.50f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.1f;
 
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
