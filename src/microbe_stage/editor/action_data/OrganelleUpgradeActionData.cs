@@ -31,6 +31,11 @@ public class OrganelleUpgradeActionData : EditorCombinableActionData<CellType>
         var newUpgrades = NewUpgrades.UnlockedFeatures.Except(OldUpgrades.UnlockedFeatures)
             .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
 
+        // TODO: Removals should cost MP: https://github.com/Revolutionary-Games/Thrive/issues/4095
+        // var removedUpgrades = OldUpgrades.UnlockedFeatures.Except(NewUpgrades.UnlockedFeatures)
+        //     .Where(u => availableUpgrades.ContainsKey(u)).Select(u => availableUpgrades[u]);
+        // ? removedUpgrades.Sum(u => u.MPCost);
+
         cost += newUpgrades.Sum(u => u.MPCost);
 
         return cost;
