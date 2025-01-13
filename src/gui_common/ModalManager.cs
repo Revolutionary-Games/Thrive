@@ -94,10 +94,17 @@ public partial class ModalManager : NodeWithInput
         originalParents[popup] = parent;
 
         // Listen for when the parent is removed from the tree so the modal can be removed as well.
-        var parentLostCallable = Callable.From(() => OnParentLost(popup));
-        parent.Connect(Node.SignalName.TreeExiting, parentLostCallable,
-            (uint)ConnectFlags.OneShot);
-        parentLostCallables[popup] = parentLostCallable;
+        // But only if not registered already to avoid a duplicate connection
+        if (!parentLostCallables.ContainsKey(popup))
+        {
+            var parentLostCallable = Callable.From(() => OnParentLost(popup));
+            parent.Connect(Node.SignalName.TreeExiting, parentLostCallable, (uint)ConnectFlags.OneShot);
+            parentLostCallables[popup] = parentLostCallable;
+        }
+        else
+        {
+            GD.PrintErr("Modal is becoming modal again without being closed, not registering exit signal");
+        }
 
         modalStack.AddToFront(popup);
         modalsDirty = true;
@@ -245,7 +252,7 @@ public partial class ModalManager : NodeWithInput
     {
         if (@event is InputEventMouseButton mouseButton && mouseButton.Pressed)
         {
-            // User has pressed somewhere outside of the popup's area
+            // User has pressed somewhere outside the popup's area
 
             // Don't count mouse wheel, this is the original Godot behavior
             if (modalStack.Count <= 0 || mouseButton.ButtonIndex is
