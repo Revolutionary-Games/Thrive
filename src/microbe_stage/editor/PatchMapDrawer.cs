@@ -532,8 +532,7 @@ public partial class PatchMapDrawer : Control
         return priority;
     }
 
-    private int GetLShapePathCharacteristics(int startRows, int startColumns, int endRows,
-        int endColumns)
+    private int GetLShapePathCharacteristics(int startColumns, int endRows)
     {
         var priority = 3;
         priority = AdjustPriority(startColumns, priority);
@@ -660,27 +659,27 @@ public partial class PatchMapDrawer : Control
         if (Math.Abs(startCenter.X - endCenter.X) < MathUtils.EPSILON)
         {
             priority = GetIShapePathCharacteristics(startRows, startColumns, endRows, endColumns);
-            probablePaths.Add((new[] { startCenter, endCenter }, priority, true, true));
+            probablePaths.Add(([startCenter, endCenter], priority, true, true));
         }
 
         if (Math.Abs(startCenter.Y - endCenter.Y) < MathUtils.EPSILON)
         {
             priority = GetIShapePathCharacteristics(startRows, startColumns, endRows, endColumns, true);
-            probablePaths.Add((new[] { startCenter, endCenter }, priority, false, false));
+            probablePaths.Add(([startCenter, endCenter], priority, false, false));
         }
 
         var intermediate = new Vector2(RegionCenter(start).X, RegionCenter(end).Y);
 
         // 2-segment line, L shape
-        priority = GetLShapePathCharacteristics(startRows, startColumns, endRows, endColumns);
+        priority = GetLShapePathCharacteristics(startColumns, endRows);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
         {
-            probablePaths.Add((new[] { startCenter, intermediate, endCenter }, priority, true, false));
+            probablePaths.Add(([startCenter, intermediate, endCenter], priority, true, false));
         }
 
-        priority = GetLShapePathCharacteristics(startRows, startColumns, endRows, endColumns);
+        priority = GetLShapePathCharacteristics(startColumns, endRows);
         if (!startRect.HasPoint(intermediate) && !endRect.HasPoint(intermediate))
-            probablePaths.Add((new[] { startCenter, intermediate, endCenter }, priority, false, true));
+            probablePaths.Add(([startCenter, intermediate, endCenter], priority, false, true));
 
         // 3-segment lines consider relative position
         var upper = startRect.Position.Y < endRect.Position.Y ? startRect : endRect;
@@ -703,7 +702,7 @@ public partial class PatchMapDrawer : Control
             if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             {
                 probablePaths.Add(
-                    (new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
+                    ([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
             }
 
             (intermediate1, intermediate2, priority) =
@@ -711,7 +710,7 @@ public partial class PatchMapDrawer : Control
                     middlePoint, i == 0, true);
             if (!startRect.HasPoint(intermediate1) && !endRect.HasPoint(intermediate2))
             {
-                probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false,
+                probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, false,
                     false));
             }
         }
@@ -722,25 +721,25 @@ public partial class PatchMapDrawer : Control
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
                 endColumns, startRect, endRect,
                 startCenter, endCenter, "lower", i);
-            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
+            probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
 
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
                 endColumns, startRect, endRect,
                 startCenter, endCenter, "upper", i);
-            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, true, true));
+            probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, true, true));
 
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
                 endColumns, startRect, endRect,
                 startCenter, endCenter, "right", i);
-            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
+            probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, false, false));
 
             (intermediate1, intermediate2, priority) = GetUShapePathCharacteristics(startRows, startColumns, endRows,
                 endColumns, startRect, endRect,
                 startCenter, endCenter, "left", i);
-            probablePaths.Add((new[] { startCenter, intermediate1, intermediate2, endCenter }, priority, false, false));
+            probablePaths.Add(([startCenter, intermediate1, intermediate2, endCenter], priority, false, false));
         }
 
-        // Choose a best path
+        // Choose the best path
         var bestPath = probablePaths.Select(p =>
                 (p.Path, CalculatePathPriorityTuple((p.Path, p.Priority)), p.StartVertical, p.EndVertical))
             .OrderBy(p => p.Item2.RegionIntersectionCount)
