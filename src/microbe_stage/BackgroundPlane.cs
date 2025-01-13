@@ -44,7 +44,7 @@ public partial class BackgroundPlane : Node3D
 
     private double elapsed;
 
-    private Vector2 previousWindowSize = new Vector2(1280, 720);
+    private Vector2 previousWindowSize = new(1280, 720);
 
     public float PlaneOffset
     {
