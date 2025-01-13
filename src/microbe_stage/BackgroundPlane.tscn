@@ -94,8 +94,11 @@ render_target_update_mode = 0
 
 [node name="ColorRect" type="ColorRect" parent="PartialBlurViewport"]
 material = SubResource("ShaderMaterial_tdrj5")
-offset_right = 1280.0
-offset_bottom = 720.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="BackgroundViewport" type="SubViewport" parent="."]
 own_world_3d = true

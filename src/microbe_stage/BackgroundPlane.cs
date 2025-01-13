@@ -167,7 +167,6 @@ public partial class BackgroundPlane : Node3D
             previousWindowSize = newSize;
             backgroundSubViewport.Size = newSize;
             partialBlurSubViewport.Size = newSize;
-            blurColorRect.Size = newSize;
         }
     }
 
