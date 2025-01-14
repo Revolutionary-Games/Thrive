@@ -35,7 +35,7 @@ public partial class SpeciesPreview : PhotographablePreview
             return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority);
         }
 
-        GD.PrintErr("Unknown species type to preview: ", previewSpecies);
+        GD.PrintErr("Unknown species type to preview: ", previewSpecies, " (", previewSpecies.GetType().Name, ")");
         return null;
     }
 }
