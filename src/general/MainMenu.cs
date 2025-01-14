@@ -907,7 +907,7 @@ public partial class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (EarlyMulticellularEditor)SceneManager.Instance
+            var editor = (MulticellularEditor)SceneManager.Instance
                 .LoadScene(MainGameState.MulticellularEditor).Instantiate();
 
             // Start freebuild game

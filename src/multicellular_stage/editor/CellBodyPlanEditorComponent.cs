@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public partial class CellBodyPlanEditorComponent :
-    HexEditorComponentBase<EarlyMulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
+    HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IGodotEarlyNodeResolve
 {
     [Export]
@@ -198,7 +198,7 @@ public partial class CellBodyPlanEditorComponent :
         cellPopupMenu = GetNode<CellPopupMenu>(CellPopupMenuPath);
     }
 
-    public override void Init(EarlyMulticellularEditor owningEditor, bool fresh)
+    public override void Init(MulticellularEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);

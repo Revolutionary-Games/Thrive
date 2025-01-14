@@ -432,7 +432,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
             sceneInstance = scene.Instantiate();
-            var editor = (EarlyMulticellularEditor)sceneInstance;
+            var editor = (MulticellularEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
@@ -544,7 +544,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
-        var editor = scene.Instantiate<EarlyMulticellularEditor>();
+        var editor = scene.Instantiate<MulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
