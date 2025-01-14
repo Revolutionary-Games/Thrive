@@ -193,6 +193,7 @@ public partial class LoadingScreen : Control
             return;
         }
 
+        // TODO: multicellular specific tips when the game state is microbe stage but we are in multicellular
         var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
         var selectedTip = tips.Messages.Random(random).Message;
         Tip = selectedTip;
