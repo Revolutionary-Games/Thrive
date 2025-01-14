@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel;
 
 /// <summary>
-///   Contains all the game stages. Used for the Thriveopedia.
-///   Includes <b>only</b> stages, not editors.
+///   Contains all the game stages. Used for the Thriveopedia. Includes <b>only</b> stages, not editors.
 /// </summary>
 /// <remarks>
 ///   <para>
@@ -17,21 +16,24 @@ public enum Stage
     [Description("MULTICELLULAR_STAGE")]
     MulticellularStage = 1,
 
+    [Description("MACROSCOPIC_STAGE")]
+    MacroscopicStage = 2,
+
     [Description("AWARE_STAGE")]
-    AwareStage = 2,
+    AwareStage = 3,
 
     [Description("AWAKENING_STAGE")]
-    AwakeningStage = 3,
+    AwakeningStage = 4,
 
     [Description("SOCIETY_STAGE")]
-    SocietyStage = 4,
+    SocietyStage = 5,
 
     [Description("INDUSTRIAL_STAGE")]
-    IndustrialStage = 5,
+    IndustrialStage = 6,
 
     [Description("SPACE_STAGE")]
-    SpaceStage = 6,
+    SpaceStage = 7,
 
     [Description("ASCENSION_STAGE")]
-    AscensionStage = 7,
+    AscensionStage = 8,
 }

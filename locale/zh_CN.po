@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 15:12+0200\n"
+"POT-Creation-Date: 2025-01-14 15:53+0200\n"
 "PO-Revision-Date: 2025-01-05 14:32+0000\n"
 "Last-Translator: Sasasegawa_ <liuyanMckkk@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -3080,6 +3080,10 @@ msgstr "大环内酯物合成"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "成为宏观生物（{0}/{1}）"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "微生物阶段"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "手动设置时间"
@@ -6258,9 +6262,6 @@ msgstr "Wiki"
 msgid "WIKI_2D"
 msgstr "2D"
 
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
 msgid "WIKI_3D"
 msgstr "3D"
 
@@ -7068,6 +7069,47 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "无升级。"
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
+"\n"
+"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
+"\n"
+"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
+"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "黏液喷嘴"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "太空阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "固氮酶"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "太空阶段"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "细胞器"
 
@@ -7521,6 +7563,10 @@ msgstr "工业阶段"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶体"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "固氮酶"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8186,6 +8232,10 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "微生物阶段"
+
 #~ msgid "EARLY_MULTICELLULAR"
 #~ msgstr "多细胞生物"
 
@@ -8242,10 +8292,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "微生物编辑器"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "微生物阶段"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

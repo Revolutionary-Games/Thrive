@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 15:12+0200\n"
+"POT-Creation-Date: 2025-01-14 15:53+0200\n"
 "PO-Revision-Date: 2025-01-04 05:57+0000\n"
 "Last-Translator: Ihor Shovtenko <ihor.shovtenko@gmail.com>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
@@ -3110,6 +3110,10 @@ msgstr "Синтез слизу"
 #, fuzzy
 msgid "MACROSCOPIC"
 msgstr "Стати макроскопічним ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Мікробна стадія"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Установити час доби вручну"
@@ -6329,9 +6333,6 @@ msgstr "Наша Wiki"
 msgid "WIKI_2D"
 msgstr "Наша Wiki"
 
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr "2D (ранній), 3D (пізній)"
-
 #, fuzzy
 msgid "WIKI_3D"
 msgstr "Наша Wiki"
@@ -7060,6 +7061,47 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Покращень немає."
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Багатоклітинна стадія"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"Клітина повинна мати [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b], щоб розвинути собі [b]Зв'язувальні агенти[/b].\n"
+"\n"
+"Якщо покращення органел увімкнено у налаштуваннях гри, [i]обидві[/i] умови мають бути виконані [i]для клітини гравця[/i]:\n"
+"\n"
+"[indent]—   Містить [b][color=#3796e1][url=thriveopedia:nucleus]Ядро[/url][/color][/b] протягом щонайменш [b]5[/b] поколінь.[/indent]\n"
+"[indent]—   Має баланс [thrive:compound type=\"atp\"][/thrive:compound] щонайменш [b]+15[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Поросома"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"На далекій чужій планеті еони вулканічної активності та метеоритних дощів призвели до нового феномену у Всесвіті.\n"
+"\n"
+"Життя.\n"
+"\n"
+"Примітивні мікроби живуть в глибоких областях океану. Ви останній спільний універсальний предок(ОСУП) на цій планеті.\n"
+"\n"
+"Щоб вижити в цьому суворуму світі, ви маєте збирати сполуки, які лише знайдете, та еволюціонувати протягом поколінь, аби конкурувати з іншими видами мікробів."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Космічна стадія"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Нітрогеназа"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Космічна стадія"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Місце для органели"
 
@@ -7468,6 +7510,10 @@ msgstr "Індустріальна стадія"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Лізосома"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Нітрогеназа"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8061,6 +8107,13 @@ msgstr "Приблизитись"
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
 
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Мікробна стадія"
+
+#~ msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+#~ msgstr "2D (ранній), 3D (пізній)"
+
 #~ msgid "EARLY_MULTICELLULAR"
 #~ msgstr "Багатоклітинність"
 
@@ -8124,10 +8177,6 @@ msgstr "Віддалитись"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Мікробний редактор"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Мікробна стадія"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
