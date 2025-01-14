@@ -7,7 +7,7 @@ using System;
 /// </summary>
 [ComponentIsReadByDefault]
 [JSONDynamicTypeAllowed]
-public struct EarlyMulticellularSpeciesMember
+public struct MulticellularSpeciesMember
 {
     public MulticellularSpecies Species;
 
@@ -28,7 +28,7 @@ public struct EarlyMulticellularSpeciesMember
     // /// </summary>
     // public bool SpeciesApplied;
 
-    public EarlyMulticellularSpeciesMember(MulticellularSpecies species, CellType cellType,
+    public MulticellularSpeciesMember(MulticellularSpecies species, CellType cellType,
         int cellBodyPlanIndex)
     {
         if (cellBodyPlanIndex < 0 || cellBodyPlanIndex >= species.Cells.Count)

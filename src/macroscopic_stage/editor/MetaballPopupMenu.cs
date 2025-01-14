@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public partial class MetaballPopupMenu : HexPopupMenu
 {
-    private List<MulticellularMetaball>? selectedMetaballs;
+    private List<MacroscopicMetaball>? selectedMetaballs;
 
     public override bool EnableModifyOption
     {
@@ -20,7 +20,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
         }
     }
 
-    public List<MulticellularMetaball> SelectedMetaballs
+    public List<MacroscopicMetaball> SelectedMetaballs
     {
         get => selectedMetaballs ??
             throw new InvalidOperationException($"{nameof(MetaballPopupMenu)} was not opened with cells set");
@@ -44,8 +44,8 @@ public partial class MetaballPopupMenu : HexPopupMenu
         }
     }
 
-    public IEnumerable<MulticellularMetaball> GetSelectedThatAreStillValid(
-        IReadOnlyCollection<MulticellularMetaball> allValidMetaballs)
+    public IEnumerable<MacroscopicMetaball> GetSelectedThatAreStillValid(
+        IReadOnlyCollection<MacroscopicMetaball> allValidMetaballs)
     {
         return SelectedMetaballs.Where(allValidMetaballs.Contains);
     }
@@ -75,7 +75,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
 
         var mpCost = GetActionPrice?.Invoke(SelectedMetaballs
                 .Select(o =>
-                    (EditorCombinableActionData)new MetaballRemoveActionData<MulticellularMetaball>(o, null))) ??
+                    (EditorCombinableActionData)new MetaballRemoveActionData<MacroscopicMetaball>(o, null))) ??
             throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 
         var mpLabel = deleteButton.GetNode<Label>("MarginContainer/HBoxContainer/MpCost");
@@ -91,7 +91,7 @@ public partial class MetaballPopupMenu : HexPopupMenu
             return;
 
         var mpCost = GetActionPrice?.Invoke(SelectedMetaballs.Select(o =>
-            (EditorCombinableActionData)new MetaballMoveActionData<MulticellularMetaball>(o, o.Position,
+            (EditorCombinableActionData)new MetaballMoveActionData<MacroscopicMetaball>(o, o.Position,
                 o.Position + Vector3.One, o.Parent,
                 o.Parent, null))) ?? throw new ArgumentException($"{nameof(GetActionPrice)} not set");
 

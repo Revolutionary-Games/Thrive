@@ -25,7 +25,7 @@ using World = DefaultEcs.World;
 ///   </para>
 /// </remarks>
 [With(typeof(ReproductionStatus))]
-[With(typeof(EarlyMulticellularSpeciesMember))]
+[With(typeof(MulticellularSpeciesMember))]
 [With(typeof(MulticellularGrowth))]
 [With(typeof(CompoundStorage))]
 [With(typeof(MicrobeStatus))]
@@ -103,7 +103,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     private void HandleMulticellularReproduction(ref MulticellularGrowth multicellularGrowth, in Entity entity,
         float elapsedSinceLastUpdate)
     {
-        ref var speciesData = ref entity.Get<EarlyMulticellularSpeciesMember>();
+        ref var speciesData = ref entity.Get<MulticellularSpeciesMember>();
 
         var compounds = entity.Get<CompoundStorage>().Compounds;
 
@@ -305,11 +305,11 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
             // Total cost may have changed so recalculate that
             multicellularGrowth.CalculateTotalBodyPlanCompounds(species);
 
-            SpawnEarlyMulticellularOffspring(ref organelles, in entity, species);
+            SpawnMulticellularOffspring(ref organelles, in entity, species);
         }
     }
 
-    private void SpawnEarlyMulticellularOffspring(ref OrganelleContainer organelles, in Entity entity,
+    private void SpawnMulticellularOffspring(ref OrganelleContainer organelles, in Entity entity,
         MulticellularSpecies species)
     {
         // Skip reproducing if we would go too much over the entity limit

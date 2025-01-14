@@ -39,7 +39,7 @@ public struct MulticellularGrowth
     /// </summary>
     public int? ResumeBodyPlanAfterReplacingLost;
 
-    // TODO: MulticellularBodyPlanPartIndex used to be here, now it is in EarlyMulticellularSpeciesMember
+    // TODO: MulticellularBodyPlanPartIndex used to be here, now it is in MulticellularSpeciesMember
     // which means that a new system is needed to create MulticellularGrowth components on ejected cells that
     // should be allowed to resume growing
 
@@ -142,9 +142,9 @@ public static class MulticellularGrowthHelpers
         ref OrganelleContainer organelleContainer, CompoundBag compoundRefundLocation, in Entity colonyEntity,
         in Entity lostCell)
     {
-        var species = colonyEntity.Get<EarlyMulticellularSpeciesMember>().Species;
+        var species = colonyEntity.Get<MulticellularSpeciesMember>().Species;
 
-        var lostPartIndex = lostCell.Get<EarlyMulticellularSpeciesMember>().MulticellularBodyPlanPartIndex;
+        var lostPartIndex = lostCell.Get<MulticellularSpeciesMember>().MulticellularBodyPlanPartIndex;
 
         // If the lost index is the first cell, then it should be disbanding the colony. We don't need to keep
         // track of when that will regrow as entirely new colonies will be created for the surviving members.

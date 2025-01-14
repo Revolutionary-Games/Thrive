@@ -757,7 +757,7 @@ public static class MicrobeColonyHelpers
 
     public static void ReportReproductionStatusOnAddToColony(in Entity entity)
     {
-        if (entity.Has<MicrobeEventCallbacks>() && !entity.Has<EarlyMulticellularSpeciesMember>())
+        if (entity.Has<MicrobeEventCallbacks>() && !entity.Has<MulticellularSpeciesMember>())
         {
             ref var callbacks = ref entity.Get<MicrobeEventCallbacks>();
 

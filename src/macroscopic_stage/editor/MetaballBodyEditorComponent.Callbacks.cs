@@ -8,19 +8,19 @@ using Godot;
 public partial class MetaballBodyEditorComponent
 {
     [DeserializedCallbackAllowed]
-    private void OnMetaballAdded(MulticellularMetaball metaball)
+    private void OnMetaballAdded(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
     }
 
     [DeserializedCallbackAllowed]
-    private void OnMetaballRemoved(MulticellularMetaball metaball)
+    private void OnMetaballRemoved(MacroscopicMetaball metaball)
     {
         metaballDisplayDataDirty = true;
     }
 
     [DeserializedCallbackAllowed]
-    private void DoMetaballRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
+    private void DoMetaballRemoveAction(MetaballRemoveActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Remove(data.RemovedMetaball);
 
@@ -35,7 +35,7 @@ public partial class MetaballBodyEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoMetaballRemoveAction(MetaballRemoveActionData<MulticellularMetaball> data)
+    private void UndoMetaballRemoveAction(MetaballRemoveActionData<MacroscopicMetaball> data)
     {
         if (data.ReParentedMetaballs != null)
         {
@@ -49,19 +49,19 @@ public partial class MetaballBodyEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void DoMetaballPlaceAction(MetaballPlacementActionData<MulticellularMetaball> data)
+    private void DoMetaballPlaceAction(MetaballPlacementActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Add(data.PlacedMetaball);
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoMetaballPlaceAction(MetaballPlacementActionData<MulticellularMetaball> data)
+    private void UndoMetaballPlaceAction(MetaballPlacementActionData<MacroscopicMetaball> data)
     {
         editedMetaballs.Remove(data.PlacedMetaball);
     }
 
     [DeserializedCallbackAllowed]
-    private void DoMetaballMoveAction(MetaballMoveActionData<MulticellularMetaball> data)
+    private void DoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.NewPosition;
         data.MovedMetaball.Parent = data.NewParent;
@@ -99,7 +99,7 @@ public partial class MetaballBodyEditorComponent
     }
 
     [DeserializedCallbackAllowed]
-    private void UndoMetaballMoveAction(MetaballMoveActionData<MulticellularMetaball> data)
+    private void UndoMetaballMoveAction(MetaballMoveActionData<MacroscopicMetaball> data)
     {
         data.MovedMetaball.Position = data.OldPosition;
         data.MovedMetaball.Parent = data.OldParent;

@@ -31,8 +31,8 @@ public class BecomeMulticellularTutorial : TutorialPhase
             }
 
             // Make sure the tutorial doesn't trigger after it is no longer relevant
-            case TutorialEventType.EnteredEarlyMulticellularStage:
-            case TutorialEventType.EnteredEarlyMulticellularEditor:
+            case TutorialEventType.EnteredMulticellularStage:
+            case TutorialEventType.EnteredMulticellularEditor:
             {
                 Inhibit();
                 break;

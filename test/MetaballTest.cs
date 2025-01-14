@@ -33,7 +33,7 @@ public partial class MetaballTest : Node
         {
             // Create the test layout for display
             currentLayout = wantedLayout;
-            var layout = new MetaballLayout<MulticellularMetaball>();
+            var layout = new MetaballLayout<MacroscopicMetaball>();
 
             switch (currentLayout)
             {
@@ -42,7 +42,7 @@ public partial class MetaballTest : Node
                 case DisplayLayout.Simple:
                 {
                     var cellType = CreateDummyCellType(Colors.Azure);
-                    var root = new MulticellularMetaball(cellType)
+                    var root = new MacroscopicMetaball(cellType)
                     {
                         Parent = null,
                         Position = new Vector3(0, 0, 0),
@@ -50,7 +50,7 @@ public partial class MetaballTest : Node
                     };
 
                     layout.Add(root);
-                    layout.Add(new MulticellularMetaball(cellType)
+                    layout.Add(new MacroscopicMetaball(cellType)
                     {
                         Parent = root,
                         Position = new Vector3(1, 0, 0),
@@ -65,7 +65,7 @@ public partial class MetaballTest : Node
                     var cellType1 = CreateDummyCellType(Colors.Azure);
                     var cellType2 = CreateDummyCellType(Colors.Chocolate);
 
-                    var root = new MulticellularMetaball(cellType1)
+                    var root = new MacroscopicMetaball(cellType1)
                     {
                         Parent = null,
                         Position = new Vector3(0, 0, 0),
@@ -82,7 +82,7 @@ public partial class MetaballTest : Node
                             if (x == 0 && z == 0)
                                 continue;
 
-                            layout.Add(new MulticellularMetaball(type1 ? cellType1 : cellType2)
+                            layout.Add(new MacroscopicMetaball(type1 ? cellType1 : cellType2)
                             {
                                 // Could set the parents more intelligently here...
                                 Parent = root,

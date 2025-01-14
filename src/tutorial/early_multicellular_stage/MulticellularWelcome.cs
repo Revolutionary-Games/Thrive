@@ -5,9 +5,9 @@ using System;
 /// <summary>
 ///   Welcome to multicellular explaining budding to reduce the amount of complaints about it not working
 /// </summary>
-public class EarlyMulticellularWelcome : TutorialPhase
+public class MulticellularWelcome : TutorialPhase
 {
-    public EarlyMulticellularWelcome()
+    public MulticellularWelcome()
     {
         Pauses = true;
     }
@@ -16,7 +16,7 @@ public class EarlyMulticellularWelcome : TutorialPhase
 
     public override void ApplyGUIState(MicrobeTutorialGUI gui)
     {
-        gui.EarlyMulticellularWelcomeVisible = ShownCurrently;
+        gui.MulticellularWelcomeVisible = ShownCurrently;
     }
 
     public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
@@ -24,7 +24,7 @@ public class EarlyMulticellularWelcome : TutorialPhase
     {
         switch (eventType)
         {
-            case TutorialEventType.EnteredEarlyMulticellularStage:
+            case TutorialEventType.EnteredMulticellularStage:
             {
                 if (!HasBeenShown && CanTrigger)
                 {

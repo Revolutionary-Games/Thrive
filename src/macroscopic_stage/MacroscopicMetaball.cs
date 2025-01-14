@@ -3,9 +3,9 @@ using Godot;
 using Newtonsoft.Json;
 
 [UseThriveConverter]
-public class MulticellularMetaball : Metaball
+public class MacroscopicMetaball : Metaball
 {
-    public MulticellularMetaball(CellType cellType)
+    public MacroscopicMetaball(CellType cellType)
     {
         CellType = cellType;
     }
@@ -21,7 +21,7 @@ public class MulticellularMetaball : Metaball
 
     public override bool MatchesDefinition(Metaball other)
     {
-        if (other is MulticellularMetaball asMulticellular)
+        if (other is MacroscopicMetaball asMulticellular)
         {
             return CellType == asMulticellular.CellType;
         }
@@ -38,7 +38,7 @@ public class MulticellularMetaball : Metaball
         if (obj.GetType() != GetType())
             return false;
 
-        return Equals((MulticellularMetaball)obj);
+        return Equals((MacroscopicMetaball)obj);
     }
 
     /// <summary>
@@ -48,9 +48,9 @@ public class MulticellularMetaball : Metaball
     ///   Where to find new reference to parent nodes. This will also add the newly cloned object here.
     /// </param>
     /// <returns>The clone of this</returns>
-    public MulticellularMetaball Clone(Dictionary<Metaball, MulticellularMetaball> oldToNewMapping)
+    public MacroscopicMetaball Clone(Dictionary<Metaball, MacroscopicMetaball> oldToNewMapping)
     {
-        var clone = new MulticellularMetaball(CellType)
+        var clone = new MacroscopicMetaball(CellType)
         {
             Position = Position,
             Parent = Parent,
@@ -75,7 +75,7 @@ public class MulticellularMetaball : Metaball
         return CellType.GetHashCode() * 29 ^ base.GetHashCode();
     }
 
-    protected bool Equals(MulticellularMetaball other)
+    protected bool Equals(MacroscopicMetaball other)
     {
         // This seems to cause infinite recursion, so this is not done for now and parents need to equal references
         // and not values

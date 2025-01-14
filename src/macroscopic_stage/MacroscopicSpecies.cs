@@ -20,7 +20,7 @@ public class MacroscopicSpecies : Species
     }
 
     [JsonProperty]
-    public MulticellularMetaballLayout BodyLayout { get; private set; } = new();
+    public MacroscopicMetaballLayout BodyLayout { get; private set; } = new();
 
     [JsonProperty]
     public List<CellType> CellTypes { get; private set; } = new();
@@ -44,7 +44,7 @@ public class MacroscopicSpecies : Species
     public ReproductionLocation ReproductionLocation { get; set; }
 
     [JsonProperty]
-    public MulticellularSpeciesType MulticellularType { get; private set; }
+    public MacroscopicSpeciesType MacroscopicType { get; private set; }
 
     /// <summary>
     ///   All organelles in all the species' placed metaballs (there can be a lot of duplicates in this list)
@@ -56,22 +56,22 @@ public class MacroscopicSpecies : Species
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
-    public static MulticellularSpeciesType CalculateMulticellularTypeFromLayout(
-        MetaballLayout<MulticellularMetaball> layout, float scale)
+    public static MacroscopicSpeciesType CalculateMacroscopicTypeFromLayout(
+        MetaballLayout<MacroscopicMetaball> layout, float scale)
     {
         var brainPower = CalculateBrainPowerFromLayout(layout, scale);
 
         if (brainPower >= Constants.BRAIN_POWER_REQUIRED_FOR_AWAKENING)
         {
-            return MulticellularSpeciesType.Awakened;
+            return MacroscopicSpeciesType.Awakened;
         }
 
         if (brainPower >= Constants.BRAIN_POWER_REQUIRED_FOR_AWARE)
         {
-            return MulticellularSpeciesType.Aware;
+            return MacroscopicSpeciesType.Aware;
         }
 
-        return MulticellularSpeciesType.LateMulticellular;
+        return MacroscopicSpeciesType.Macroscopic;
     }
 
     public override void OnEdited()
@@ -137,7 +137,7 @@ public class MacroscopicSpecies : Species
 
         BodyLayout.Clear();
 
-        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+        var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
         // Make sure we process things with parents first
         // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
@@ -159,13 +159,13 @@ public class MacroscopicSpecies : Species
     /// </summary>
     public void MovePlayerToAwakenedStatus()
     {
-        MulticellularType = MulticellularSpeciesType.Awakened;
+        MacroscopicType = MacroscopicSpeciesType.Awakened;
     }
 
     public void KeepPlayerInAwareStage()
     {
-        if (MulticellularType == MulticellularSpeciesType.Awakened)
-            MulticellularType = MulticellularSpeciesType.Aware;
+        if (MacroscopicType == MacroscopicSpeciesType.Awakened)
+            MacroscopicType = MacroscopicSpeciesType.Aware;
     }
 
     public override object Clone()
@@ -179,7 +179,7 @@ public class MacroscopicSpecies : Species
             result.CellTypes.Add((CellType)cellType.Clone());
         }
 
-        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+        var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
         foreach (var metaball in BodyLayout)
         {
@@ -189,7 +189,7 @@ public class MacroscopicSpecies : Species
         return result;
     }
 
-    private static float CalculateBrainPowerFromLayout(MetaballLayout<MulticellularMetaball> layout, float scale)
+    private static float CalculateBrainPowerFromLayout(MetaballLayout<MacroscopicMetaball> layout, float scale)
     {
         float result = 0;
 
@@ -206,7 +206,7 @@ public class MacroscopicSpecies : Species
         return result;
     }
 
-    private static float CalculateMuscularPowerFromLayout(MetaballLayout<MulticellularMetaball> layout, float scale)
+    private static float CalculateMuscularPowerFromLayout(MetaballLayout<MacroscopicMetaball> layout, float scale)
     {
         float result = 0;
 
@@ -224,7 +224,7 @@ public class MacroscopicSpecies : Species
 
     private void SetTypeFromBrainPower()
     {
-        MulticellularType = CalculateMulticellularTypeFromLayout(BodyLayout, Scale);
+        MacroscopicType = CalculateMacroscopicTypeFromLayout(BodyLayout, Scale);
     }
 
     private void SetInitialCompoundsForDefault()

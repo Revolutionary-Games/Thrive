@@ -488,9 +488,9 @@ public static class SpawnHelpers
 
         MulticellularSpecies? multicellular = null;
 
-        if (species is MulticellularSpecies earlyMulticellularSpecies)
+        if (species is MulticellularSpecies multicellularSpecies)
         {
-            multicellular = earlyMulticellularSpecies;
+            multicellular = multicellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularData.MulticellularCellType != null)
@@ -518,22 +518,22 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
+                resolvedCellType = multicellularSpecies.Cells[0].CellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
-                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
+                entity.Set(new MulticellularGrowth(multicellularSpecies));
             }
 
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= earlyMulticellularSpecies.Cells.Count)
+            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.Cells.Count)
                 throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
-            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType,
+            entity.Set(new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
                 multicellularData.CellBodyPlanIndex));
         }
         else if (species is MicrobeSpecies microbeSpecies)

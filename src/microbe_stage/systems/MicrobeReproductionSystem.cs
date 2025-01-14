@@ -35,7 +35,7 @@ using World = DefaultEcs.World;
 [With(typeof(BioProcesses))]
 [With(typeof(WorldPosition))]
 [Without(typeof(AttachedToEntity))]
-[Without(typeof(EarlyMulticellularSpeciesMember))]
+[Without(typeof(MulticellularSpeciesMember))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]

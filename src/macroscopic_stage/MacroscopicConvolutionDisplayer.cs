@@ -7,7 +7,7 @@ using Xoshiro.PRNG32;
 /// <summary>
 ///   Displays a creature using convolution surfaces based on a metaball layout
 /// </summary>
-public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
+public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaballDisplayer<MacroscopicMetaball>
 {
     private const float AABBMargin = 0.1f;
 
@@ -49,7 +49,7 @@ public partial class MulticellularConvolutionDisplayer : MeshInstance3D, IMetaba
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromLayout(IReadOnlyCollection<MulticellularMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
     {
         Vector3 minExtends = Vector3.Zero;
         Vector3 maxExtends = Vector3.Zero;

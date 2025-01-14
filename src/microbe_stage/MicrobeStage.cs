@@ -256,7 +256,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
                     new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
-                        Player.Has<EarlyMulticellularSpeciesMember>()), this);
+                        Player.Has<MulticellularSpeciesMember>()), this);
 
                 if (playerAlive && GameWorld.PlayerSpecies is MulticellularSpecies)
                 {
@@ -357,7 +357,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
         else
         {
-            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
+            TutorialState.SendEvent(TutorialEventType.EnteredMulticellularStage, EventArgs.Empty, this);
         }
     }
 
@@ -380,7 +380,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
 
         Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is MulticellularSpecies ?
-            "EarlyMulticellularStage" :
+            "MulticellularStage" :
             "MicrobeStage", biome.ActiveMusicContexts);
     }
 
@@ -425,7 +425,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         Node sceneInstance;
 
-        if (Player.Has<EarlyMulticellularSpeciesMember>())
+        if (Player.Has<MulticellularSpeciesMember>())
         {
             // Player is a multicellular species, go to multicellular editor
 
@@ -526,7 +526,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
             microbe.Set(
-                new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
+                new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
 
             microbe.Set(new MulticellularGrowth(multicellularSpecies));
 
@@ -590,7 +590,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
         // underwater in the awakening stage
-        if (modifiedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        if (modifiedSpecies.MacroscopicType == MacroscopicSpeciesType.Awakened)
         {
             GD.Print("Preventing player from becoming awakened too soon");
             modifiedSpecies.KeepPlayerInAwareStage();
@@ -600,7 +600,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
 
-        var editor = scene.Instantiate<LateMulticellularEditor>();
+        var editor = scene.Instantiate<MacroscopicEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 
@@ -646,11 +646,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
 
-        bool playerIsMulticellular = Player.Has<EarlyMulticellularSpeciesMember>();
+        bool playerIsMulticellular = Player.Has<MulticellularSpeciesMember>();
 
         if (playerIsMulticellular)
         {
-            ref var earlySpeciesType = ref Player.Get<EarlyMulticellularSpeciesMember>();
+            ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
@@ -959,7 +959,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!canEdit)
             return;
 
-        if (!Player.Has<EarlyMulticellularSpeciesMember>())
+        if (!Player.Has<MulticellularSpeciesMember>())
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 

@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Displays a layout of metaballs using multimeshing for more efficient rendering
 /// </summary>
-public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMetaballDisplayer<MulticellularMetaball>
+public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMetaballDisplayer<MacroscopicMetaball>
 {
     private const float AABBMargin = 0.1f;
 
@@ -74,7 +74,7 @@ public partial class MulticellularMetaballDisplayer : MultiMeshInstance3D, IMeta
         ExtraCullMargin = AABBMargin;
     }
 
-    public void DisplayFromLayout(IReadOnlyCollection<MulticellularMetaball> layout)
+    public void DisplayFromLayout(IReadOnlyCollection<MacroscopicMetaball> layout)
     {
         var mesh = Multimesh;
 

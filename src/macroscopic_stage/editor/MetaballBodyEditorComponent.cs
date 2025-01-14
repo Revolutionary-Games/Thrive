@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [SceneLoadedClass("res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn")]
 public partial class MetaballBodyEditorComponent :
-    MetaballEditorComponentBase<LateMulticellularEditor, CombinedEditorAction, EditorAction, MulticellularMetaball>,
+    MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>,
     IGodotEarlyNodeResolve
 {
     [Export]
@@ -202,7 +202,7 @@ public partial class MetaballBodyEditorComponent :
         cannotReduceBrainPowerPopup = GetNode<CustomConfirmationDialog>(CannotReduceBrainPowerPopupPath);
     }
 
-    public override void Init(LateMulticellularEditor owningEditor, bool fresh)
+    public override void Init(MacroscopicEditor owningEditor, bool fresh)
     {
         base.Init(owningEditor, fresh);
         behaviourEditor.Init(owningEditor, fresh);
@@ -270,7 +270,7 @@ public partial class MetaballBodyEditorComponent :
 
         behaviourEditor.OnEditorSpeciesSetup(species);
 
-        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+        var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
         foreach (var metaball in Editor.EditedSpecies.BodyLayout)
         {
@@ -290,7 +290,7 @@ public partial class MetaballBodyEditorComponent :
 
         editedSpecies.BodyLayout.Clear();
 
-        var metaballMapping = new Dictionary<Metaball, MulticellularMetaball>();
+        var metaballMapping = new Dictionary<Metaball, MacroscopicMetaball>();
 
         // Make sure we process things with parents first
         // TODO: if the tree depth calculation is too expensive here, we'll need to cache the values in the metaball
@@ -300,13 +300,13 @@ public partial class MetaballBodyEditorComponent :
             editedSpecies.BodyLayout.Add(metaball.Clone(metaballMapping));
         }
 
-        var previousStage = editedSpecies.MulticellularType;
+        var previousStage = editedSpecies.MacroscopicType;
 
         editedSpecies.OnEdited();
 
         // Make awakening an explicit step instead of automatic
-        if (previousStage != editedSpecies.MulticellularType &&
-            editedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        if (previousStage != editedSpecies.MacroscopicType &&
+            editedSpecies.MacroscopicType == MacroscopicSpeciesType.Awakened)
         {
             GD.Print("Player is now eligible for awakening, preventing automatic move there");
             editedSpecies.KeepPlayerInAwareStage();
@@ -326,10 +326,10 @@ public partial class MetaballBodyEditorComponent :
         // TODO: hook this up once we have editing the creature scale in the editor
         var creatureScale = 1.0f;
         var newTypeWouldBe =
-            MacroscopicSpecies.CalculateMulticellularTypeFromLayout(editedMetaballs, creatureScale);
+            MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(editedMetaballs, creatureScale);
 
         // Disallow going back stages
-        if (newTypeWouldBe < Editor.EditedSpecies.MulticellularType)
+        if (newTypeWouldBe < Editor.EditedSpecies.MacroscopicType)
         {
             GD.Print("Reducing brain power would go back a stage, not allowing");
             cannotReduceBrainPowerPopup.PopupCenteredShrink();
@@ -373,7 +373,7 @@ public partial class MetaballBodyEditorComponent :
 
         GetMouseMetaball(out _, out var metaball);
 
-        var metaballs = new List<MulticellularMetaball>();
+        var metaballs = new List<MacroscopicMetaball>();
 
         if (metaball != null)
             metaballs.Add(metaball);
@@ -415,7 +415,7 @@ public partial class MetaballBodyEditorComponent :
 
         var positions = MouseHoverPositions.ToList();
 
-        var cellTemplates = positions.Select(p => new MulticellularMetaball(cellType)
+        var cellTemplates = positions.Select(p => new MacroscopicMetaball(cellType)
         {
             Position = p.Position,
             Parent = p.Parent,
@@ -432,7 +432,7 @@ public partial class MetaballBodyEditorComponent :
         else
         {
             moveOccupancies = GetMultiActionWithOccupancies(positions.Take(1).ToList(),
-                new List<MulticellularMetaball> { MovingPlacedMetaball }, true);
+                new List<MacroscopicMetaball> { MovingPlacedMetaball }, true);
         }
 
         return Editor.WhatWouldActionsCost(moveOccupancies.Data);
@@ -448,19 +448,19 @@ public partial class MetaballBodyEditorComponent :
             GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn");
     }
 
-    protected override MetaballLayout<MulticellularMetaball> CreateLayout()
+    protected override MetaballLayout<MacroscopicMetaball> CreateLayout()
     {
-        return new MetaballLayout<MulticellularMetaball>(OnMetaballAdded, OnMetaballRemoved);
+        return new MetaballLayout<MacroscopicMetaball>(OnMetaballAdded, OnMetaballRemoved);
     }
 
-    protected override IMetaballDisplayer<MulticellularMetaball> CreateVisualMetaballDisplayer()
+    protected override IMetaballDisplayer<MacroscopicMetaball> CreateVisualMetaballDisplayer()
     {
         var displayer = visualMetaballDisplayerScene.Instantiate<MulticellularConvolutionDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }
 
-    protected override IMetaballDisplayer<MulticellularMetaball> CreateStructuralMetaballDisplayer()
+    protected override IMetaballDisplayer<MacroscopicMetaball> CreateStructuralMetaballDisplayer()
     {
         var displayer = structuralMetaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
@@ -469,7 +469,7 @@ public partial class MetaballBodyEditorComponent :
 
     protected override void PerformActiveAction()
     {
-        var metaball = new MulticellularMetaball(CellTypeFromName(
+        var metaball = new MacroscopicMetaball(CellTypeFromName(
             activeActionName ?? throw new InvalidOperationException("no action active")));
 
         metaball.Size = metaballSize;
@@ -482,7 +482,7 @@ public partial class MetaballBodyEditorComponent :
         }
     }
 
-    protected override void PerformMove(Vector3 position, MulticellularMetaball parent)
+    protected override void PerformMove(Vector3 position, MacroscopicMetaball parent)
     {
         if (!MoveMetaball(MovingPlacedMetaball!, position, parent))
         {
@@ -490,8 +490,8 @@ public partial class MetaballBodyEditorComponent :
         }
     }
 
-    protected override bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? parent,
-        MulticellularMetaball metaball)
+    protected override bool IsMoveTargetValid(Vector3 position, MacroscopicMetaball? parent,
+        MacroscopicMetaball metaball)
     {
         return editedMetaballs.CanAdd(metaball);
     }
@@ -508,7 +508,7 @@ public partial class MetaballBodyEditorComponent :
         editedMetaballs.Remove(MovingPlacedMetaball!);
     }
 
-    protected override EditorAction? TryCreateMetaballRemoveAction(MulticellularMetaball metaball,
+    protected override EditorAction? TryCreateMetaballRemoveAction(MacroscopicMetaball metaball,
         ref int alreadyDeleted)
     {
         // Dont allow deletion of last metaball
@@ -516,10 +516,10 @@ public partial class MetaballBodyEditorComponent :
             return null;
 
         ++alreadyDeleted;
-        return new SingleEditorAction<MetaballRemoveActionData<MulticellularMetaball>>(DoMetaballRemoveAction,
+        return new SingleEditorAction<MetaballRemoveActionData<MacroscopicMetaball>>(DoMetaballRemoveAction,
             UndoMetaballRemoveAction,
-            new MetaballRemoveActionData<MulticellularMetaball>(metaball,
-                MetaballRemoveActionData<MulticellularMetaball>.CreateMovementActionForChildren(metaball,
+            new MetaballRemoveActionData<MacroscopicMetaball>(metaball,
+                MetaballRemoveActionData<MacroscopicMetaball>.CreateMovementActionForChildren(metaball,
                     editedMetaballs)));
     }
 
@@ -587,7 +587,7 @@ public partial class MetaballBodyEditorComponent :
         behaviourEditor.UpdateAllBehaviouralSliders(behaviour);
     }
 
-    private void ShowCellMenu(IEnumerable<MulticellularMetaball> selectedMetaballs)
+    private void ShowCellMenu(IEnumerable<MacroscopicMetaball> selectedMetaballs)
     {
         metaballPopupMenu.SelectedMetaballs = selectedMetaballs.ToList();
         metaballPopupMenu.GetActionPrice = Editor.WhatWouldActionsCost;
@@ -597,7 +597,7 @@ public partial class MetaballBodyEditorComponent :
         metaballPopupMenu.EnableMoveOption = editedMetaballs.Count > 1;
     }
 
-    private Vector3 FinalMetaballPosition(Vector3 position, MulticellularMetaball parent, float? size = null)
+    private Vector3 FinalMetaballPosition(Vector3 position, MacroscopicMetaball parent, float? size = null)
     {
         size ??= metaballSize;
         var direction = (position - parent.Position).Normalized();
@@ -605,12 +605,12 @@ public partial class MetaballBodyEditorComponent :
         return parent.Position + direction * (parent.Radius + size.Value * 0.5f);
     }
 
-    private void RenderHighlightedMetaball(Vector3 position, MulticellularMetaball? parent, CellType cellToPlace)
+    private void RenderHighlightedMetaball(Vector3 position, MacroscopicMetaball? parent, CellType cellToPlace)
     {
         if (MovingPlacedMetaball == null && activeActionName == null)
             return;
 
-        var metaball = new MulticellularMetaball(cellToPlace)
+        var metaball = new MacroscopicMetaball(cellToPlace)
         {
             Parent = parent,
             Position = parent != null ? FinalMetaballPosition(position, parent) : position,
@@ -641,7 +641,7 @@ public partial class MetaballBodyEditorComponent :
     ///   Places a cell of the specified type under the cursor and also applies symmetry to place multiple
     /// </summary>
     /// <returns>True when at least one metaball got placed</returns>
-    private bool AddMetaball(MulticellularMetaball metaball)
+    private bool AddMetaball(MacroscopicMetaball metaball)
     {
         GetMouseMetaball(out var position, out var parentMetaball);
 
@@ -685,9 +685,9 @@ public partial class MetaballBodyEditorComponent :
     ///   Helper for AddMetaball
     /// </summary>
     private EditorAction? CreatePlaceActionIfPossible(CellType cellType, Vector3 position, float size,
-        MulticellularMetaball parent)
+        MacroscopicMetaball parent)
     {
-        var metaball = new MulticellularMetaball(cellType)
+        var metaball = new MacroscopicMetaball(cellType)
         {
             Position = FinalMetaballPosition(position, parent, size),
             Parent = parent,
@@ -704,7 +704,7 @@ public partial class MetaballBodyEditorComponent :
         return CreateAddCellAction(metaball, parent);
     }
 
-    private bool IsValidPlacement(MulticellularMetaball metaball)
+    private bool IsValidPlacement(MacroscopicMetaball metaball)
     {
         return IsValidPlacement(metaball.Position, metaball.Parent);
     }
@@ -718,11 +718,11 @@ public partial class MetaballBodyEditorComponent :
         return parent != null;
     }
 
-    private EditorAction CreateAddCellAction(MulticellularMetaball metaball, MulticellularMetaball parent)
+    private EditorAction CreateAddCellAction(MacroscopicMetaball metaball, MacroscopicMetaball parent)
     {
-        return new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(DoMetaballPlaceAction,
+        return new SingleEditorAction<MetaballPlacementActionData<MacroscopicMetaball>>(DoMetaballPlaceAction,
             UndoMetaballPlaceAction,
-            new MetaballPlacementActionData<MulticellularMetaball>(metaball)
+            new MetaballPlacementActionData<MacroscopicMetaball>(metaball)
             {
                 Parent = parent,
             });
@@ -732,13 +732,13 @@ public partial class MetaballBodyEditorComponent :
     ///   See: <see cref="CellEditorComponent.GetOccupancies"/>
     /// </summary>
     private IEnumerable<
-            (Vector3 Position, MulticellularMetaball Metaball, MulticellularMetaball? Parent, bool Occupied)>
-        GetOccupancies(List<(Vector3 Position, MulticellularMetaball? Parent)> metaballPositions,
-            List<MulticellularMetaball> metaballs)
+            (Vector3 Position, MacroscopicMetaball Metaball, MacroscopicMetaball? Parent, bool Occupied)>
+        GetOccupancies(List<(Vector3 Position, MacroscopicMetaball? Parent)> metaballPositions,
+            List<MacroscopicMetaball> metaballs)
     {
         var cellPositions =
             new List<
-                (Vector3 Position, MulticellularMetaball Metaball, MulticellularMetaball? Parent, bool Occupied)>();
+                (Vector3 Position, MacroscopicMetaball Metaball, MacroscopicMetaball? Parent, bool Occupied)>();
 
         for (var i = 0; i < metaballPositions.Count; ++i)
         {
@@ -757,8 +757,8 @@ public partial class MetaballBodyEditorComponent :
     }
 
     private CombinedEditorAction GetMultiActionWithOccupancies(
-        List<(Vector3 Position, MulticellularMetaball? Parent)> metaballPositions,
-        List<MulticellularMetaball> metaballs, bool moving)
+        List<(Vector3 Position, MacroscopicMetaball? Parent)> metaballPositions,
+        List<MacroscopicMetaball> metaballs, bool moving)
     {
         var moveActionData = new List<EditorAction>();
         foreach (var (position, metaball, parent, occupied) in GetOccupancies(metaballPositions, metaballs))
@@ -781,20 +781,20 @@ public partial class MetaballBodyEditorComponent :
                 }
 
                 var childMoves =
-                    MetaballMoveActionData<MulticellularMetaball>.CreateMovementActionForChildren(metaball,
+                    MetaballMoveActionData<MacroscopicMetaball>.CreateMovementActionForChildren(metaball,
                         metaball.Position, position, editedMetaballs);
 
-                var data = new MetaballMoveActionData<MulticellularMetaball>(metaball, metaball.Position, position,
+                var data = new MetaballMoveActionData<MacroscopicMetaball>(metaball, metaball.Position, position,
                     metaball.Parent, parent, childMoves);
-                action = new SingleEditorAction<MetaballMoveActionData<MulticellularMetaball>>(DoMetaballMoveAction,
+                action = new SingleEditorAction<MetaballMoveActionData<MacroscopicMetaball>>(DoMetaballMoveAction,
                     UndoMetaballMoveAction, data);
             }
             else
             {
-                action = new SingleEditorAction<MetaballPlacementActionData<MulticellularMetaball>>(
+                action = new SingleEditorAction<MetaballPlacementActionData<MacroscopicMetaball>>(
                     DoMetaballPlaceAction,
                     UndoMetaballPlaceAction,
-                    new MetaballPlacementActionData<MulticellularMetaball>(metaball, position, metaballSize,
+                    new MetaballPlacementActionData<MacroscopicMetaball>(metaball, position, metaballSize,
                         parent));
             }
 
@@ -804,7 +804,7 @@ public partial class MetaballBodyEditorComponent :
         return new CombinedEditorAction(moveActionData);
     }
 
-    private bool MoveMetaball(MulticellularMetaball metaball, Vector3 newLocation, MulticellularMetaball? newParent)
+    private bool MoveMetaball(MacroscopicMetaball metaball, Vector3 newLocation, MacroscopicMetaball? newParent)
     {
         // Make sure placement is valid
         if (!IsMoveTargetValid(newLocation, newParent, metaball))
@@ -819,8 +819,8 @@ public partial class MetaballBodyEditorComponent :
         }
 
         var multiAction = GetMultiActionWithOccupancies(
-            new List<(Vector3 Position, MulticellularMetaball? Parent)> { (newLocation, newParent) },
-            new List<MulticellularMetaball> { metaball },
+            new List<(Vector3 Position, MacroscopicMetaball? Parent)> { (newLocation, newParent) },
+            new List<MacroscopicMetaball> { metaball },
             true);
 
         // Too low mutation points, cancel move

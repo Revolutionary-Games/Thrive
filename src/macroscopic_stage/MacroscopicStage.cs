@@ -56,7 +56,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     ///   button as it should be only used after moving to land)
     /// </summary>
     [JsonProperty]
-    private MulticellularSpeciesType previousPlayerStage;
+    private MacroscopicSpeciesType previousPlayerStage;
 
     [JsonProperty]
     private double moveToSocietyTimer;
@@ -165,7 +165,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         {
             var playerPosition = Player.GlobalPosition;
 
-            if (Player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            if (Player.Species.MacroscopicType == MacroscopicSpeciesType.Awakened)
             {
                 // TODO: player interaction reach modifier from the species
                 interactableSystem.UpdatePlayerPosition(playerPosition, 0);
@@ -214,22 +214,22 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     public override void StartMusic()
     {
         // Change music based on how far along in the game the player is
-        if (GameWorld.PlayerSpecies is MacroscopicSpecies lateMulticellularSpecies)
+        if (GameWorld.PlayerSpecies is MacroscopicSpecies macroscopicSpecies)
         {
-            if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+            if (macroscopicSpecies.MacroscopicType == MacroscopicSpeciesType.Awakened)
             {
                 Jukebox.Instance.PlayCategory("AwakeningStage");
                 return;
             }
 
-            if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Aware)
+            if (macroscopicSpecies.MacroscopicType == MacroscopicSpeciesType.Aware)
             {
                 Jukebox.Instance.PlayCategory("AwareStage");
                 return;
             }
         }
 
-        Jukebox.Instance.PlayCategory("LateMulticellularStage");
+        Jukebox.Instance.PlayCategory("MacroscopicStage");
     }
 
     public override void OnFinishLoading(Save save)
@@ -271,7 +271,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
 
         Node sceneInstance = scene.Instantiate();
-        var editor = (LateMulticellularEditor)sceneInstance;
+        var editor = (MacroscopicEditor)sceneInstance;
 
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
@@ -318,11 +318,11 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         }
 
         // Update state transition triggers
-        if (Player.Species.MulticellularType != previousPlayerStage)
+        if (Player.Species.MacroscopicType != previousPlayerStage)
         {
-            previousPlayerStage = Player.Species.MulticellularType;
+            previousPlayerStage = Player.Species.MacroscopicType;
 
-            if (previousPlayerStage == MulticellularSpeciesType.Aware)
+            if (previousPlayerStage == MacroscopicSpeciesType.Aware)
             {
                 // Intentionally not translatable as a placeholder prototype text
                 HUD.HUDMessages.ShowMessage(
@@ -506,7 +506,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
             return;
 
         // TODO: we might in the future have somethings that an aware creature can interact with
-        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+        if (Player == null || Player.Species.MacroscopicType != MacroscopicSpeciesType.Awakened)
             return;
 
         if (interactionPopup.SelectCurrentOptionIfOpen())
@@ -529,7 +529,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
     public void PerformBuildOrOpenMenu()
     {
-        if (Player == null || Player.Species.MulticellularType != MulticellularSpeciesType.Awakened)
+        if (Player == null || Player.Species.MacroscopicType != MacroscopicSpeciesType.Awakened)
             return;
 
         if (Player.IsPlacingStructure)

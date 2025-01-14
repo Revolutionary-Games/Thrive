@@ -1,9 +1,17 @@
 ﻿/// <summary>
 ///   Tracks the stage / substage a multicellular species is in
 /// </summary>
-public enum MulticellularSpeciesType
+public enum MacroscopicSpeciesType
 {
-    LateMulticellular,
+    /// <summary>
+    ///   Base macroscopic when the stage starts
+    /// </summary>
+    Macroscopic,
+
+    /// <summary>
+    ///   Brainy enough to be aware
+    /// </summary>
     Aware,
+
     Awakened,
 }

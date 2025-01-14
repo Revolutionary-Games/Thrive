@@ -237,7 +237,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
         base.OnEnterEditor();
 
         if (!IsLoadedFromSave)
-            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularEditor, EventArgs.Empty, this);
+            TutorialState.SendEvent(TutorialEventType.EnteredMulticellularEditor, EventArgs.Empty, this);
     }
 
     protected override void UpdateHistoryCallbackTargets(ActionHistory<EditorAction> actionHistory)

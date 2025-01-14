@@ -20,7 +20,7 @@ public class Scalis : IMeshGeneratingFunction
     ///   Every metaball represents a point in creature's skeleton.
     ///   Each bone is formed between a point and its parent.
     /// </summary>
-    private readonly MulticellularMetaball[] points;
+    private readonly MacroscopicMetaball[] points;
 
     /// <summary>
     ///   Max squared distance from a bone's center for a point to be calculated.
@@ -35,9 +35,9 @@ public class Scalis : IMeshGeneratingFunction
 
     private float surfaceValue = 1.0f;
 
-    public Scalis(IReadOnlyCollection<MulticellularMetaball> metaballs)
+    public Scalis(IReadOnlyCollection<MacroscopicMetaball> metaballs)
     {
-        points = new MulticellularMetaball[metaballs.Count];
+        points = new MacroscopicMetaball[metaballs.Count];
 
         int i = 0;
 

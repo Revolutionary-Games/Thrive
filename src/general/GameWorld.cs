@@ -701,11 +701,11 @@ public class GameWorld : ISaveLoadable
         // TODO: improve this algorithm
 
         // Create metaballs for everything first
-        var metaballs = new List<MulticellularMetaball>();
+        var metaballs = new List<MacroscopicMetaball>();
 
         foreach (var cellTemplate in earlySpecies.Cells)
         {
-            var metaball = new MulticellularMetaball(cellTemplate.CellType)
+            var metaball = new MacroscopicMetaball(cellTemplate.CellType)
             {
                 Position = Hex.AxialToCartesian(cellTemplate.Position),
                 Size = 1,
@@ -756,7 +756,7 @@ public class GameWorld : ISaveLoadable
         // Do this from the root down to not need to process metaballs multiple times
         // TODO: should this logic be in OnEdited for general use?
 
-        var metaballsToPosition = new List<MulticellularMetaball> { Capacity = metaballs.Count };
+        var metaballsToPosition = new List<MacroscopicMetaball> { Capacity = metaballs.Count };
 
         // First build a good order to update the metaballs in
         foreach (var metaball in metaballs.OrderBy(m => m.Position.LengthSquared()))
@@ -936,7 +936,7 @@ public class GameWorld : ISaveLoadable
             PlayerSpecies = newSpecies;
     }
 
-    private void RecursivelyAddBallsToList(ICollection<MulticellularMetaball> list, MulticellularMetaball metaball)
+    private void RecursivelyAddBallsToList(ICollection<MacroscopicMetaball> list, MacroscopicMetaball metaball)
     {
         if (list.Contains(metaball))
             return;
@@ -945,7 +945,7 @@ public class GameWorld : ISaveLoadable
         {
             // Need to recursively add parents first to the list, this is absolutely required for the step where
             // these are added to the layout ultimately
-            RecursivelyAddBallsToList(list, (MulticellularMetaball)metaball.Parent);
+            RecursivelyAddBallsToList(list, (MacroscopicMetaball)metaball.Parent);
         }
 
         list.Add(metaball);

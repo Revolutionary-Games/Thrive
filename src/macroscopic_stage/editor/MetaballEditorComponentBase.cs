@@ -942,7 +942,7 @@ public partial class MetaballEditorComponentBase<TEditor, TCombinedAction, TActi
     /// </param>
     /// <param name="metaball">The move data to try to move to the position</param>
     /// <returns>True if valid</returns>
-    protected virtual bool IsMoveTargetValid(Vector3 position, MulticellularMetaball? rotation, TMetaball metaball)
+    protected virtual bool IsMoveTargetValid(Vector3 position, MacroscopicMetaball? rotation, TMetaball metaball)
     {
         throw new GodotAbstractMethodNotOverriddenException();
     }

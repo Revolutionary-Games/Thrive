@@ -182,15 +182,15 @@ public class GameProperties
         playerSpecies.CellTypes.Add(brainType);
 
         // Place enough of that for becoming aware
-        while (MacroscopicSpecies.CalculateMulticellularTypeFromLayout(playerSpecies.BodyLayout,
-                   playerSpecies.Scale) == MulticellularSpeciesType.LateMulticellular)
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+                   playerSpecies.Scale) == MacroscopicSpeciesType.Macroscopic)
         {
             AddBrainTissue(playerSpecies);
         }
 
         playerSpecies.OnEdited();
 
-        if (playerSpecies.MulticellularType != MulticellularSpeciesType.Aware)
+        if (playerSpecies.MacroscopicType != MacroscopicSpeciesType.Aware)
             throw new Exception("Adding enough brain power to reach aware stage failed");
 
         return game;
@@ -203,15 +203,15 @@ public class GameProperties
         // Further modify the player species to qualify for awakening stage
         var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
-        while (MacroscopicSpecies.CalculateMulticellularTypeFromLayout(playerSpecies.BodyLayout,
-                   playerSpecies.Scale) != MulticellularSpeciesType.Awakened)
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+                   playerSpecies.Scale) != MacroscopicSpeciesType.Awakened)
         {
             AddBrainTissue(playerSpecies);
         }
 
         playerSpecies.OnEdited();
 
-        if (playerSpecies.MulticellularType != MulticellularSpeciesType.Awakened)
+        if (playerSpecies.MacroscopicType != MacroscopicSpeciesType.Awakened)
             throw new Exception("Adding enough brain power to reach awakening stage failed");
 
         return game;
@@ -460,7 +460,7 @@ public class GameProperties
             new Vector3(-1, 0, 0),
         };
 
-        var metaball = new MulticellularMetaball(axonType)
+        var metaball = new MacroscopicMetaball(axonType)
         {
             Size = brainTissueSize,
         };

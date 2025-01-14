@@ -90,7 +90,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
             UpdateAwakenButton(stage.Player!);
 
             // If the player is already in the awakening stage they can't move to land anymore
-            if (stage.Player!.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+            if (stage.Player!.Species.MacroscopicType == MacroscopicSpeciesType.Awakened)
             {
                 toLandButton.Visible = false;
             }
@@ -198,7 +198,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
     protected override void UpdateAbilitiesHotBar()
     {
         // This button is visible when the player is in the awakening stage
-        bool isAwakened = stage?.Player?.Species.MulticellularType == MulticellularSpeciesType.Awakened;
+        bool isAwakened = stage?.Player?.Species.MacroscopicType == MacroscopicSpeciesType.Awakened;
         interactAction.Visible = isAwakened;
         inventoryButton.Visible = isAwakened;
         buildButton.Visible = isAwakened;
@@ -265,7 +265,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
 
     private void UpdateAwakenButton(MulticellularCreature player)
     {
-        if (player.Species.MulticellularType == MulticellularSpeciesType.Awakened)
+        if (player.Species.MacroscopicType == MacroscopicSpeciesType.Awakened)
         {
             awakenButton.Visible = false;
             return;

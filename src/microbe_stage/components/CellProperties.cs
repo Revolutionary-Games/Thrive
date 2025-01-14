@@ -225,13 +225,13 @@ public static class CellPropertiesHelpers
             //
             // distanceRight += ;
         }
-        else if (species is MulticellularSpecies earlyMulticellularSpecies &&
+        else if (species is MulticellularSpecies multicellularSpecies &&
                  multicellularSpawnState != MulticellularSpawnState.Bud)
         {
             // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
             bool first = true;
 
-            foreach (var eventualMember in earlyMulticellularSpecies.Cells)
+            foreach (var eventualMember in multicellularSpecies.Cells)
             {
                 // Skip lead cell
                 if (first)
@@ -562,12 +562,12 @@ public static class CellPropertiesHelpers
         }
 
         // Reset multicellular cost if this is multicellular
-        if (baseReproductionCostFrom is MulticellularSpecies earlyMulticellularSpecies &&
+        if (baseReproductionCostFrom is MulticellularSpecies multicellularSpecies &&
             entity.Has<MulticellularGrowth>())
         {
             ref var growth = ref entity.Get<MulticellularGrowth>();
 
-            growth.CalculateTotalBodyPlanCompounds(earlyMulticellularSpecies);
+            growth.CalculateTotalBodyPlanCompounds(multicellularSpecies);
         }
     }
 

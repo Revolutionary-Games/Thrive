@@ -21,7 +21,7 @@ using World = DefaultEcs.World;
 [WritesToComponent(typeof(CellProperties))]
 [WritesToComponent(typeof(Physics))]
 [WritesToComponent(typeof(OrganelleContainer))]
-[ReadsComponent(typeof(EarlyMulticellularSpeciesMember))]
+[ReadsComponent(typeof(MulticellularSpeciesMember))]
 [ReadsComponent(typeof(WorldPosition))]
 [RunsAfter(typeof(ColonyBindingSystem))]
 [RuntimeCost(0.5f, false)]
@@ -135,7 +135,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     private void GrowColonyMembers(in Entity entity, EntityRecord recorderEntity,
         EntityCommandRecorder recorder, int members)
     {
-        if (!entity.Has<EarlyMulticellularSpeciesMember>())
+        if (!entity.Has<MulticellularSpeciesMember>())
         {
             GD.PrintErr("Only multicellular species members can have delayed colony growth");
             return;
@@ -176,7 +176,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
             colony.EntityWeightApplied = true;
         }
 
-        ref var species = ref entity.Get<EarlyMulticellularSpeciesMember>();
+        ref var species = ref entity.Get<MulticellularSpeciesMember>();
 
         bool added = false;
         var cellsToGrow = species.Species.Cells.Skip(bodyPlanIndex).Take(members);

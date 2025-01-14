@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-public class MulticellularMetaballLayout : MetaballLayout<MulticellularMetaball>
+public class MacroscopicMetaballLayout : MetaballLayout<MacroscopicMetaball>
 {
     /// <summary>
     ///   Repositions the bottom-most metaballs to touch the ground, and the center of all metaballs to be aligned
