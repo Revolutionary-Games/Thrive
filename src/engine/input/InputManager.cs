@@ -582,6 +582,10 @@ public partial class InputManager : Node
                         break;
                 }
             }
+            else
+            {
+                attribute.OnUnprocesedInput(@event);
+            }
         }
 
         // Define input as consumed to Godot if something reacted to it

@@ -59,6 +59,19 @@ public abstract class InputAttribute : Attribute
     public abstract bool OnInput(InputEvent input);
 
     /// <summary>
+    ///   Called for input that is not processed by the <see cref="OnInput"/> method.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This is useful for updating state such as HeldDown which would otherwise become incorrect.
+    ///   </para>
+    /// </remarks>
+    /// <param name="input">The event fired by the user</param>
+    public virtual void OnUnprocesedInput(InputEvent input)
+    {
+    }
+
+    /// <summary>
     ///   Processes input actions that aren't triggered on key events directly
     /// </summary>
     /// <param name="delta">The time since the last call of OnProcess</param>

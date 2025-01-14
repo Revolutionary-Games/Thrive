@@ -18,11 +18,8 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
 
     public override bool OnInput(InputEvent @event)
     {
-        // Only trigger if the input was pressed this frame. It isn't possible to use !HeldDown since its value is
-        // incorrect if a mouse release event is marked as handled e.g. when opening a popup.
-        // https://github.com/Revolutionary-Games/Thrive/issues/5217
-        var justPressed = Input.IsActionJustPressed(InputName);
-        if (base.OnInput(@event) && justPressed && HeldDown)
+        var before = HeldDown;
+        if (base.OnInput(@event) && !before && HeldDown)
         {
             if (TrackInputMethod)
             {
@@ -41,5 +38,13 @@ public class RunOnKeyDownAttribute : RunOnKeyAttribute
 
     public override void OnProcess(double delta)
     {
+    }
+
+    public override void OnUnprocesedInput(InputEvent @event)
+    {
+        // Update the state when the key is released, even if the event is marked as handled.
+        // This can occur for example when a popup is opened when the key is pressed.
+        if (@event.IsActionReleased(InputName, false))
+            HeldDown = false;
     }
 }
