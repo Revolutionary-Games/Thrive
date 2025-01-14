@@ -1272,6 +1272,7 @@ public partial class CellEditorComponent :
         var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
         var cost = (int)Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
 
+        // Cases where mutation points are equal 0 are handled below in the next "if" statement
         if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
         {
             int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
