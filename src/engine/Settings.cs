@@ -114,7 +114,7 @@ public class Settings
     public SettingValue<float> MicrobeDistortionStrength { get; private set; } = new(0.6f);
 
     /// <summary>
-    ///   The amount of blur applied to microbe backgrounds when distortion is on.
+    ///   The amount of blur applied to microbe backgrounds.
     /// </summary>
     [JsonProperty]
     public SettingValue<float> MicrobeBackgroundBlurStrength { get; private set; } = new(2.0f);
