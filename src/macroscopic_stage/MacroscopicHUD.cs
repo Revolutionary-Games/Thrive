@@ -107,7 +107,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         }
     }
 
-    public void OpenInventory(MulticellularCreature creature, IEnumerable<IInteractableEntity> groundObjects,
+    public void OpenInventory(MacroscopicCreature creature, IEnumerable<IInteractableEntity> groundObjects,
         bool playerTechnologies = true)
     {
         inventoryScreen.OpenInventory(creature, playerTechnologies ? stage!.CurrentGame!.TechWeb : null);
@@ -263,7 +263,7 @@ public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
         // TODO: make the cursor visible while this popup is open
     }
 
-    private void UpdateAwakenButton(MulticellularCreature player)
+    private void UpdateAwakenButton(MacroscopicCreature player)
     {
         if (player.Species.MacroscopicType == MacroscopicSpeciesType.Awakened)
         {

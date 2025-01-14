@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
 /// </summary>
-[SceneLoadedClass("res://src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
+[SceneLoadedClass("res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn")]
 public partial class CellBodyPlanEditorComponent :
     HexEditorComponentBase<MulticellularEditor, CombinedEditorAction, EditorAction, HexWithData<CellTemplate>,
         MulticellularSpecies>, IGodotEarlyNodeResolve
@@ -148,9 +148,9 @@ public partial class CellBodyPlanEditorComponent :
         ResolveNodeReferences();
 
         cellTypeSelectionButtonScene =
-            GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/CellTypeSelection.tscn");
+            GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
 
-        billboardScene = GD.Load<PackedScene>("res://src/early_multicellular_stage/CellBillboard.tscn");
+        billboardScene = GD.Load<PackedScene>("res://src/multicellular_stage/CellBillboard.tscn");
 
         ApplySelectionMenuTab();
 

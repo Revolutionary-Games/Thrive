@@ -4,9 +4,9 @@ using Newtonsoft.Json;
 public class CreatureAI
 {
     [JsonProperty]
-    private MulticellularCreature creature;
+    private MacroscopicCreature creature;
 
-    public CreatureAI(MulticellularCreature creature)
+    public CreatureAI(MacroscopicCreature creature)
     {
         this.creature = creature ?? throw new ArgumentException("no creature given", nameof(creature));
     }

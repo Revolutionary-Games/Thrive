@@ -825,11 +825,11 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 
-    public static MulticellularCreature SpawnCreature(Species species, Vector3 location,
+    public static MacroscopicCreature SpawnCreature(Species species, Vector3 location,
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
         GameProperties currentGame)
     {
-        var creature = multicellularScene.Instantiate<MulticellularCreature>();
+        var creature = multicellularScene.Instantiate<MacroscopicCreature>();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
@@ -855,7 +855,7 @@ public static class SpawnHelpers
 
     public static PackedScene LoadMulticellularScene()
     {
-        return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
+        return GD.Load<PackedScene>("res://src/macroscopic_stage/MacroscopicCreature.tscn");
     }
 
     public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform3D location, Node worldNode,

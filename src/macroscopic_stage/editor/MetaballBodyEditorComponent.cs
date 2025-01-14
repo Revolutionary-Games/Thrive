@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Body plan editor component for making body plans from metaballs
 /// </summary>
-[SceneLoadedClass("res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn")]
+[SceneLoadedClass("res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn")]
 public partial class MetaballBodyEditorComponent :
     MetaballEditorComponentBase<MacroscopicEditor, CombinedEditorAction, EditorAction, MacroscopicMetaball>,
     IGodotEarlyNodeResolve
@@ -148,7 +148,7 @@ public partial class MetaballBodyEditorComponent :
         ResolveNodeReferences();
 
         cellTypeSelectionButtonScene =
-            GD.Load<PackedScene>("res://src/early_multicellular_stage/editor/CellTypeSelection.tscn");
+            GD.Load<PackedScene>("res://src/multicellular_stage/editor/CellTypeSelection.tscn");
 
         ApplySelectionMenuTab();
 
@@ -443,9 +443,9 @@ public partial class MetaballBodyEditorComponent :
         base.LoadScenes();
 
         visualMetaballDisplayerScene =
-            GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularConvolutionDisplayer.tscn");
+            GD.Load<PackedScene>("res://src/macroscopic_stage/MacroscopicConvolutionDisplayer.tscn");
         structuralMetaballDisplayerScene =
-            GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn");
+            GD.Load<PackedScene>("res://src/macroscopic_stage/MacroscopicMetaballDisplayer.tscn");
     }
 
     protected override MetaballLayout<MacroscopicMetaball> CreateLayout()
@@ -455,14 +455,14 @@ public partial class MetaballBodyEditorComponent :
 
     protected override IMetaballDisplayer<MacroscopicMetaball> CreateVisualMetaballDisplayer()
     {
-        var displayer = visualMetaballDisplayerScene.Instantiate<MulticellularConvolutionDisplayer>();
+        var displayer = visualMetaballDisplayerScene.Instantiate<MacroscopicConvolutionDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }
 
     protected override IMetaballDisplayer<MacroscopicMetaball> CreateStructuralMetaballDisplayer()
     {
-        var displayer = structuralMetaballDisplayerScene.Instantiate<MulticellularMetaballDisplayer>();
+        var displayer = structuralMetaballDisplayerScene.Instantiate<MacroscopicMetaballDisplayer>();
         Editor.RootOfDynamicallySpawned.AddChild(displayer);
         return displayer;
     }

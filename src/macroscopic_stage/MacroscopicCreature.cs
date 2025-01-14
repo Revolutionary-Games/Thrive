@@ -6,13 +6,13 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Main script on each multicellular creature in the game
+///   Main script on each macroscopic creature in the game
 /// </summary>
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/late_multicellular_stage/MulticellularCreature.tscn", UsesEarlyResolve = false)]
+[SceneLoadedClass("res://src/macroscopic_stage/MacroscopicCreature.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
+public partial class MacroscopicCreature : RigidBody3D, ISaveLoadedTracked, ICharacterInventory, IEntity,
     IStructureSelectionReceiver<StructureDefinition>, IActionProgressSource
 {
     private static readonly Vector3 SwimUpForce = new(0, 10, 0);
@@ -32,7 +32,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     private ISpawnSystem? spawnSystem;
 
 #pragma warning disable CA2213
-    private MulticellularConvolutionDisplayer metaballDisplayer = null!;
+    private MacroscopicConvolutionDisplayer metaballDisplayer = null!;
 
     private Node3D? buildingToPlaceGhost;
 #pragma warning restore CA2213
@@ -92,13 +92,13 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     public bool Dead { get; private set; }
 
     [JsonProperty]
-    public Action<MulticellularCreature>? OnDeath { get; set; }
+    public Action<MacroscopicCreature>? OnDeath { get; set; }
 
     [JsonProperty]
-    public Action<MulticellularCreature, bool>? OnReproductionStatus { get; set; }
+    public Action<MacroscopicCreature, bool>? OnReproductionStatus { get; set; }
 
     [JsonProperty]
-    public Action<MulticellularCreature, IInteractableEntity>? RequestCraftingInterfaceFor { get; set; }
+    public Action<MacroscopicCreature, IInteractableEntity>? RequestCraftingInterfaceFor { get; set; }
 
     /// <summary>
     ///   The species of this creature. It's mandatory to initialize this with <see cref="ApplySpecies"/> otherwise
@@ -162,7 +162,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     {
         base._Ready();
 
-        metaballDisplayer = GetNode<MulticellularConvolutionDisplayer>("MetaballDisplayer");
+        metaballDisplayer = GetNode<MacroscopicConvolutionDisplayer>("MetaballDisplayer");
     }
 
     /// <summary>
@@ -276,7 +276,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
         compounds.AddCompound(Compound.Glucose, 50);
     }
 
-    public MulticellularCreature SpawnOffspring()
+    public MacroscopicCreature SpawnOffspring()
     {
         var currentPosition = GlobalTransform.Origin;
 

@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public partial class SocietyCreature : Node3D, IEntity
 {
 #pragma warning disable CA2213
-    private MulticellularConvolutionDisplayer metaballDisplayer = null!;
+    private MacroscopicConvolutionDisplayer metaballDisplayer = null!;
 #pragma warning restore CA2213
 
     private Vector3? movementTarget;
@@ -38,7 +38,7 @@ public partial class SocietyCreature : Node3D, IEntity
     {
         base._Ready();
 
-        metaballDisplayer = GetNode<MulticellularConvolutionDisplayer>("MetaballDisplayer");
+        metaballDisplayer = GetNode<MacroscopicConvolutionDisplayer>("MetaballDisplayer");
 
         // TODO: determine if it would be better to have this have physics collisions or if overlap avoidance makes
         // more sense to do with another approach

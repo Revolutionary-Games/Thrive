@@ -99,7 +99,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             (hexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
         if (isMulticellular)
-            remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+            remainingFreeCompounds *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
 
         float remainingAllowedCompoundUse = float.MaxValue;
 

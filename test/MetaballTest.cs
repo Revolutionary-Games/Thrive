@@ -7,7 +7,7 @@ using Godot;
 public partial class MetaballTest : Node
 {
 #pragma warning disable CA2213
-    private MulticellularMetaballDisplayer metaballDisplayer = null!;
+    private MacroscopicMetaballDisplayer metaballDisplayer = null!;
 #pragma warning restore CA2213
 
     private DisplayLayout wantedLayout = DisplayLayout.PerformanceTest;
@@ -24,7 +24,7 @@ public partial class MetaballTest : Node
 
     public override void _Ready()
     {
-        metaballDisplayer = GetNode<MulticellularMetaballDisplayer>("MulticellularMetaballDisplayer");
+        metaballDisplayer = GetNode<MacroscopicMetaballDisplayer>("MulticellularMetaballDisplayer");
     }
 
     public override void _Process(double delta)

@@ -9,7 +9,7 @@ using Environment = Godot.Environment;
 ///   Macroscopic main editor class
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/late_multicellular_stage/editor/MacroscopicEditor.tscn")]
+[SceneLoadedClass("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn")]
 [DeserializedCallbackTarget]
 public partial class MacroscopicEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData,
     ICellEditorData
@@ -233,7 +233,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MulticellularS
 
         if (fresh)
         {
-            CurrentGame.SetBool("edited_late_multicellular", true);
+            CurrentGame.SetBool("edited_macroscopic", true);
         }
         else
         {

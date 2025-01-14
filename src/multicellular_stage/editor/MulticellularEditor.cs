@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 ///   The multicellular stage editor main class
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/early_multicellular_stage/editor/MulticellularEditor.tscn")]
+[SceneLoadedClass("res://src/multicellular_stage/editor/MulticellularEditor.tscn")]
 [DeserializedCallbackTarget]
 public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
@@ -93,7 +93,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
 
     protected override string EditorLoadingMessage =>
-        Localization.Translate("LOADING_EARLY_MULTICELLULAR_EDITOR");
+        Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
 
     protected override bool HasInProgressAction => CanCancelAction;
 
@@ -200,7 +200,7 @@ public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage
 
         if (fresh)
         {
-            CurrentGame.SetBool("edited_early_multicellular", true);
+            CurrentGame.SetBool("edited_multicellular", true);
         }
         else
         {

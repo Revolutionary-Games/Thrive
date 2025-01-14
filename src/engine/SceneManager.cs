@@ -188,11 +188,11 @@ public partial class SceneManager : Node
             case MainGameState.MicrobeEditor:
                 return LoadScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
             case MainGameState.MulticellularEditor:
-                return LoadScene("res://src/early_multicellular_stage/editor/MulticellularEditor.tscn");
+                return LoadScene("res://src/multicellular_stage/editor/MulticellularEditor.tscn");
             case MainGameState.MacroscopicStage:
-                return LoadScene("res://src/late_multicellular_stage/MacroscopicStage.tscn");
+                return LoadScene("res://src/macroscopic_stage/MacroscopicStage.tscn");
             case MainGameState.MacroscopicEditor:
-                return LoadScene("res://src/late_multicellular_stage/editor/MacroscopicEditor.tscn");
+                return LoadScene("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn");
             case MainGameState.SocietyStage:
                 return LoadScene("res://src/society_stage/SocietyStage.tscn");
             case MainGameState.IndustrialStage:

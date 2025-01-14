@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 ///   Main class for managing the macroscopic stage
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/late_multicellular_stage/MacroscopicStage.tscn")]
+[SceneLoadedClass("res://src/macroscopic/MacroscopicStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public partial class MulticellularStage : CreatureStageBase<MulticellularCreature, DummyWorldSimulation>
+public partial class MulticellularStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
 {
     [Export]
     public NodePath? InteractableSystemPath;
@@ -850,7 +850,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerDied(MulticellularCreature player)
+    private void OnPlayerDied(MacroscopicCreature player)
     {
         HandlePlayerDeath();
 
@@ -859,7 +859,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     }
 
     [DeserializedCallbackAllowed]
-    private void OnPlayerReproductionStatusChanged(MulticellularCreature player, bool ready)
+    private void OnPlayerReproductionStatusChanged(MacroscopicCreature player, bool ready)
     {
         OnCanEditStatusChanged(ready);
     }
@@ -874,7 +874,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     }
 
     [DeserializedCallbackAllowed]
-    private void OnOpenCraftingInterfaceFor(MulticellularCreature player, IInteractableEntity target)
+    private void OnOpenCraftingInterfaceFor(MacroscopicCreature player, IInteractableEntity target)
     {
         if (!TogglePlayerInventory())
         {

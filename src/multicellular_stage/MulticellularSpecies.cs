@@ -8,7 +8,7 @@ using Saving.Serializers;
 using Systems;
 
 /// <summary>
-///   Represents an early multicellular species that is composed of multiple cells
+///   Represents a multicellular species that is composed of multiple cells
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
@@ -193,7 +193,7 @@ public class MulticellularSpecies : Species
 
         foreach (var entry in baseReproductionCost)
         {
-            result[entry.Key] = entry.Value * Constants.EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
+            result[entry.Key] = entry.Value * Constants.MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER;
         }
 
         return result;
