@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/early_multicellular_stage/editor/MulticellularEditor.tscn")]
 [DeserializedCallbackTarget]
-public partial class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
+public partial class MulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
 {
     [Export]
