@@ -116,7 +116,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MulticellularS
     protected override string MusicCategory => "MacroscopicEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MacroscopicStage;
-    protected override string EditorLoadingMessage => Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
+    protected override string EditorLoadingMessage => Localization.Translate("LOADING_MACROSCOPIC_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
 
     public void SendAutoEvoResultsToReportComponent()

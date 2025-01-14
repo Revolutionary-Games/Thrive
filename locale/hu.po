@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:12+0200\n"
 "PO-Revision-Date: 2024-12-28 10:44+0000\n"
 "Last-Translator: Noel Mathias <mcdougless17@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1723,10 +1723,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Típus megkettőzése"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Sejtszervecske elhelyezése"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Érdekesség: a Didinium és a Papucsállatka kapcsolata egy tankönyvi példa a ragadozó-zsákmányállat kapcsolatra, amit már évtizedek óta tanulmányoznak. És te hova tartozol? A Didiniumhoz, vagy a Papucsállatkához? A ragadozóhoz, vagy a zsákmányhoz?"
 
@@ -3004,10 +3000,6 @@ msgstr "A játék erre a nyelvre még nincs teljesen lefordítva ({0}% kész). K
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Az utolsó sejtalkotót nem lehet törölni"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Sejtszervecske elhelyezése"
-
 msgid "LAUNCH0"
 msgstr "Indítás 0"
 
@@ -3228,11 +3220,12 @@ msgstr "Betöltés"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Betöltés..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Többsejtes szerkesztő betöltése"
-
 msgid "LOADING_GAME"
 msgstr "A játék betöltése"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Sejtszerkesztő betöltése"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Sejtszerkesztő betöltése"
@@ -3301,6 +3294,10 @@ msgstr "[thrive:compound type=\"atp\"][/thrive:compound]-t alakít át [thrive:c
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Nyálka szintézis"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Makroszkopikussá válni ({0}/{1})"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Idő manuális beállítása"
@@ -4064,6 +4061,10 @@ msgstr "Nyálka szintézis"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Játék szüneteltetése"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Sejtszervecske elhelyezése"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Többsejtes szerkesztő"
@@ -6137,10 +6138,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Többsejtes szerkesztő betöltése"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Üdvözöllek a Sejtszerkesztőben.\n"
@@ -6304,6 +6301,10 @@ msgstr ""
 "A sejted irányításához használd azokat a gombokat, amik a sejted közelében vannak (a képernyő közepén), plusz az egeret, hogy irányítsd a sejted irányát.\n"
 "\n"
 "Nyomd meg a képen látható gombokat egyesével egy pár másodpercig a folytatáshoz."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Többsejtes szerkesztő betöltése"
 
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
@@ -8360,6 +8361,13 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Sejtszervecske elhelyezése"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Többsejtes szerkesztő betöltése"
 
 #, fuzzy
 #~ msgid "ERUPTION_IN"

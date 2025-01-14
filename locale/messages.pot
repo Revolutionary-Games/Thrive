@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,19 +57,19 @@ msgstr ""
 msgid "ACCEPT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:289
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:276
+#: ../src/macroscopic_stage/MacroscopicHUD.cs:289
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:276
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:274
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:274
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:440
 #: ../src/general/base_stage/EditorBase.cs:745
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:515
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:515
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:440
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr ""
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:468
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:468
 msgid "APPEARANCE"
 msgstr ""
 
@@ -298,7 +298,7 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:340
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:340
 #: ../src/microbe_stage/MicrobeHUD.tscn:499
 msgid "ATP"
 msgstr ""
@@ -536,9 +536,9 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:440
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:451
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:451
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:655
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:440
 msgid "BEHAVIOUR"
 msgstr ""
 
@@ -648,7 +648,7 @@ msgstr ""
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
-#: ../src/general/GameProperties.cs:159
+#: ../src/general/GameProperties.cs:158
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -673,7 +673,7 @@ msgstr ""
 msgid "BUILD_QUEUE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:452
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:452
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr ""
@@ -732,9 +732,9 @@ msgstr ""
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:573
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:664
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:663
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1362
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:573
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
@@ -743,13 +743,13 @@ msgstr ""
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:736
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:735
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:627
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:737
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:736
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:627
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
@@ -760,15 +760,15 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:817
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:816
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:741
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:740
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:742
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:741
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
@@ -821,8 +821,8 @@ msgstr ""
 msgid "CELL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:528
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:528
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "CELLS"
 msgstr ""
 
@@ -1670,11 +1670,11 @@ msgstr ""
 msgid "CREATE_NEW"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:633
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:633
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:644
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:644
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -1686,11 +1686,11 @@ msgstr ""
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:748
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:747
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:759
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:758
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -1833,9 +1833,9 @@ msgstr ""
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:488
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:175
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:488
 msgid "DELETE"
 msgstr ""
 
@@ -2015,19 +2015,19 @@ msgstr ""
 msgid "DISCARD_MIGRATION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
 msgid "DISCONNECTED_CELLS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:618
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:618
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:732
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:731
 msgid "DISCONNECTED_METABALLS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:731
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:730
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
@@ -2130,13 +2130,9 @@ msgstr ""
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:494
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:557
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:557
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
-msgstr ""
-
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
-msgid "EARLY_MULTICELLULAR"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:145
@@ -2292,7 +2288,7 @@ msgstr ""
 msgid "EJECT_ENGULFED"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:494
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:494
 #: ../src/microbe_stage/MicrobeHUD.tscn:633
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
@@ -2714,7 +2710,7 @@ msgstr ""
 msgid "FIRE_TOXIN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:469
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:469
 #: ../src/microbe_stage/MicrobeHUD.tscn:643
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
@@ -3071,7 +3067,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:193
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:193
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -3591,7 +3587,7 @@ msgstr ""
 msgid "INTERACTION_CONSTRUCT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:459
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:459
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
@@ -3603,7 +3599,7 @@ msgstr ""
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:449
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:449
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
@@ -3619,7 +3615,7 @@ msgstr ""
 msgid "INTERACTION_HARVEST"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:435
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:435
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -3627,11 +3623,11 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:412
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:412
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:435
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:435
 msgid "INTERNALS"
 msgstr ""
 
@@ -3973,10 +3969,6 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-msgid "LATE_MULTICELLULAR"
-msgstr ""
-
 #: ../src/engine/input/key_mapping/KeyNames.cs:230
 msgid "LAUNCH0"
 msgstr ""
@@ -4266,20 +4258,20 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:96
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr ""
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:119
+msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:67
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:119
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:96
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -4352,6 +4344,10 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/bio_processes.json:84
 #: ../simulation_parameters/microbe_stage/bio_processes.json:93
 msgid "MACROLIDE_SYNTHESIS"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:30
+msgid "MACROSCOPIC"
 msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
@@ -4554,7 +4550,7 @@ msgstr ""
 msgid "MICHE_TREE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:24
 msgid "MICROBE"
 msgstr ""
 
@@ -4846,8 +4842,8 @@ msgstr ""
 msgid "MODIFY_ORGANELLE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:541
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:541
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
 msgid "MODIFY_TYPE"
 msgstr ""
 
@@ -5023,7 +5019,7 @@ msgid "MOVE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:8
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:486
 msgid "MOVEMENT"
 msgstr ""
 
@@ -5067,7 +5063,7 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:263
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:263
 msgid "MOVE_TO_LAND"
 msgstr ""
 
@@ -5087,32 +5083,32 @@ msgstr ""
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:581
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:581
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:582
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:582
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:576
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:576
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:577
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:577
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:601
+#: ../src/macroscopic_stage/MacroscopicStage.cs:601
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:83
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:99
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:83
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:100
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:83
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:100
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:87
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:107
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:83
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:99
 msgid "MP_COST"
 msgstr ""
 
@@ -5125,9 +5121,13 @@ msgstr ""
 msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:511
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:511
 #: ../src/microbe_stage/MicrobeHUD.tscn:706
 msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:27
+msgid "MULTICELLULAR"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:522
@@ -5146,11 +5146,11 @@ msgstr ""
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:67
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:67
 msgid "MULTIPLE_CELLS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:67
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:67
 msgid "MULTIPLE_METABALLS"
 msgstr ""
 
@@ -5261,21 +5261,21 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:774
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:773
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 msgid "NEW_NAME"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:654
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:769
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:768
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:654
 msgid "NEW_NAME_COLON"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:673
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1372
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:176
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:554
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEXT_CAPITAL"
 msgstr ""
 
@@ -5397,7 +5397,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:520
+#: ../src/macroscopic_stage/MacroscopicStage.cs:520
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -6099,7 +6099,7 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:289
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:289
 #: ../src/microbe_stage/MicrobeHUD.tscn:444
 #: ../src/society_stage/gui/SocietyHUD.tscn:210
 msgid "POPULATION_CAPITAL"
@@ -6263,21 +6263,21 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
-#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:326
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:610
+#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:326
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:503
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:503
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
 msgid "REPRODUCTION"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:594
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:594
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
@@ -6295,8 +6295,8 @@ msgstr ""
 msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:522
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:585
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:585
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:522
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
@@ -6346,7 +6346,7 @@ msgstr ""
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:720
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:719
 msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
@@ -6683,7 +6683,7 @@ msgstr ""
 msgid "SECRETE_SLIME"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:486
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:486
 #: ../src/microbe_stage/MicrobeHUD.tscn:685
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
@@ -6733,7 +6733,7 @@ msgstr ""
 msgid "SELECT_A_TECHNOLOGY"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:80
+#: ../src/multicellular_stage/editor/MulticellularEditor.tscn:82
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -6757,7 +6757,7 @@ msgstr ""
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:114
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.tscn:114
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -7076,7 +7076,7 @@ msgstr ""
 msgid "SPRINT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:501
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:501
 #: ../src/microbe_stage/MicrobeHUD.tscn:695
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
@@ -7199,7 +7199,7 @@ msgstr ""
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/CellType.cs:43
+#: ../src/multicellular_stage/CellType.cs:43
 msgid "STEM_CELL_NAME"
 msgstr ""
 
@@ -7240,9 +7240,9 @@ msgstr ""
 msgid "STRUCTURAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:408
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:418
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:418
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:408
 msgid "STRUCTURE"
 msgstr ""
 
@@ -7418,7 +7418,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:189
-#: ../src/late_multicellular_stage/MulticellularStage.cs:890
+#: ../src/macroscopic_stage/MacroscopicStage.cs:890
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -7630,8 +7630,8 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:435
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:459
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:435
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:459
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
@@ -7651,7 +7651,7 @@ msgstr ""
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:445
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:445
 msgid "TOGGLE_INVENTORY"
 msgstr ""
 
@@ -7842,10 +7842,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:449
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:449
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -7928,6 +7924,10 @@ msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:323
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:449
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:372

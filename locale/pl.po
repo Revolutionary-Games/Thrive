@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:12+0200\n"
 "PO-Revision-Date: 2024-12-05 05:22+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -1675,9 +1675,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Powiel Typ"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Wielokomórkowy"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Ciekawostka: Didinium i Pantofelek są podręcznikowym przykładem relacji drapieżnika i ofiary, ta relacja była studiowana przez dekady. A ty, jesteś Didinium czy Pantofelkiem? Drapieżnikiem, czy ofiarą?"
 
@@ -2865,10 +2862,6 @@ msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli m
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Wielokomórkowe"
-
 msgid "LAUNCH0"
 msgstr "Uruchom 0"
 
@@ -3077,11 +3070,12 @@ msgstr "Wczytywanie"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Wczytywanie..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
-
 msgid "LOADING_GAME"
 msgstr "Wczytywanie Gry"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Wczytywanie edytora mikrobów"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
@@ -3154,6 +3148,10 @@ msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Synteza śluzu"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3894,6 +3892,9 @@ msgstr "Synteza śluzu"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
+
+msgid "MULTICELLULAR"
+msgstr "Wielokomórkowe"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Edytor Wielokomórkowca"
@@ -5880,18 +5881,6 @@ msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 msgid "TUTORIAL"
 msgstr "Samouczek"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
-"\n"
-"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
-"\n"
-"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
-"\n"
-"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
@@ -6045,6 +6034,19 @@ msgstr ""
 "Wszedłeś w tryb odwiązywania. W tym trybie możesz klikać na członków kolonii aby ich odseparować.\n"
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
+"\n"
+"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
+"\n"
+"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
+"\n"
+"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
@@ -8063,6 +8065,16 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Wielokomórkowy"
+
+#, fuzzy
+#~ msgid "LATE_MULTICELLULAR"
+#~ msgstr "Wielokomórkowe"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pączkowanie"
@@ -8611,9 +8623,6 @@ msgstr "Oddal"
 
 #~ msgid "DIOXIDE"
 #~ msgstr "Dwutlenek"
-
-#~ msgid "MULTICELLULAR"
-#~ msgstr "Wielokomórkowe"
 
 #, fuzzy
 #~ msgid "OPEN_DETAILS"

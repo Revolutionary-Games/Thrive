@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:12+0200\n"
 "PO-Revision-Date: 2024-10-19 21:07+0000\n"
 "Last-Translator: Paradox Edge <xxzemonxx@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1707,10 +1707,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicera Typ"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Placera organell"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett rovdjursförhållande som har studerats i årtionden, är du Didinium eller Paramecium? Rovdjur eller byte?"
 
@@ -2991,10 +2987,6 @@ msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla h
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Placera organell"
-
 msgid "LAUNCH0"
 msgstr "Avfyra 0"
 
@@ -3223,12 +3215,12 @@ msgstr "Laddar"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laddar..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Laddar mikrobredigerare"
-
 msgid "LOADING_GAME"
 msgstr "Laddar Spel"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Laddar mikrobredigerare"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Laddar mikrobredigerare"
@@ -3293,6 +3285,10 @@ msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Mucilagesyntes"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Bli Makroskopisk ({0}/{1})"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4007,6 +4003,10 @@ msgstr "Mucilagesyntes"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Självmord"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Placera organell"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Flercellig Redigerare"
@@ -6136,10 +6136,6 @@ msgid "TUTORIAL"
 msgstr "Handledning"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Laddar mikrobredigerare"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -6272,6 +6268,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Laddar mikrobredigerare"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -8310,6 +8310,14 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Placera organell"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Laddar mikrobredigerare"
 
 #, fuzzy
 #~ msgid "ERUPTION_IN"
