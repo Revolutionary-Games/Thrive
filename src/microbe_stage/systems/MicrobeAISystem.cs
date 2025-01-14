@@ -1293,8 +1293,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 // TODO: should this use the actual cell from the species that is running the AI? This isn't fully
                 // accurate.
                 // TODO: thread local storage for this cache
-                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(
-                    multicellularSpecies.Cells[0].Organelles, patch.Biome, varyingCompoundsTemporary);
+                result = MicrobeInternalCalculations.UsesDayVaryingCompounds(multicellularSpecies.Cells[0].Organelles,
+                    patch.Biome, varyingCompoundsTemporary);
             }
             else
             {

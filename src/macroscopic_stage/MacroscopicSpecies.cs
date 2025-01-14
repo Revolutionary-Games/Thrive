@@ -56,8 +56,8 @@ public class MacroscopicSpecies : Species
     [JsonIgnore]
     public override string StringCode => ThriveJsonConverter.Instance.SerializeObject(this);
 
-    public static MacroscopicSpeciesType CalculateMacroscopicTypeFromLayout(
-        MetaballLayout<MacroscopicMetaball> layout, float scale)
+    public static MacroscopicSpeciesType CalculateMacroscopicTypeFromLayout(MetaballLayout<MacroscopicMetaball> layout,
+        float scale)
     {
         var brainPower = CalculateBrainPowerFromLayout(layout, scale);
 

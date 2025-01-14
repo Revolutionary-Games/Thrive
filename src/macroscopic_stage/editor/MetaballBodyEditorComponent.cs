@@ -791,11 +791,9 @@ public partial class MetaballBodyEditorComponent :
             }
             else
             {
-                action = new SingleEditorAction<MetaballPlacementActionData<MacroscopicMetaball>>(
-                    DoMetaballPlaceAction,
+                action = new SingleEditorAction<MetaballPlacementActionData<MacroscopicMetaball>>(DoMetaballPlaceAction,
                     UndoMetaballPlaceAction,
-                    new MetaballPlacementActionData<MacroscopicMetaball>(metaball, position, metaballSize,
-                        parent));
+                    new MetaballPlacementActionData<MacroscopicMetaball>(metaball, position, metaballSize, parent));
             }
 
             moveActionData.Add(action);
