@@ -526,7 +526,7 @@ public partial class PatchMapDrawer : Control
 
         AdjustPathEndpoints();
     }
-    
+
     /// <summary>
     ///   The next few methods are for calculating path priorities (and some for intermediates). They are needed
     ///   because the paths will be sorted by the priority so that they connect to the longer sides
