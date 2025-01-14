@@ -9,7 +9,7 @@ public partial class AwareStageStarter : ComplexStageStarterBase
 
     protected override void CustomizeLoadedScene(Node scene)
     {
-        var stage = (MulticellularStage)scene;
+        var stage = (MacroscopicStage)scene;
 
         // Setup a new game where the player is specifically an aware creature already
         var game = GameProperties.StartNewAwareStageGame(new WorldGenerationSettings());

@@ -11,7 +11,7 @@ using Environment = Godot.Environment;
 [JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/macroscopic_stage/editor/MacroscopicEditor.tscn")]
 [DeserializedCallbackTarget]
-public partial class MacroscopicEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData,
+public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicStage>, IEditorReportData,
     ICellEditorData
 {
     [Export]

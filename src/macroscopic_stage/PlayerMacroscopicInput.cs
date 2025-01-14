@@ -4,19 +4,19 @@ using Godot;
 /// <summary>
 ///   Handles input for the (late) multicellular stage
 /// </summary>
-public partial class PlayerMulticellularInput : NodeWithInput
+public partial class PlayerMacroscopicInput : NodeWithInput
 {
     private bool autoMove;
     private bool mouseUnCapturePressed;
 
 #pragma warning disable CA2213 // this is our parent object
-    private MulticellularStage stage = null!;
+    private MacroscopicStage stage = null!;
 #pragma warning restore CA2213
 
     public override void _Ready()
     {
         // Not the cleanest that the parent has to be MacroscopicStage type...
-        stage = (MulticellularStage)GetParent();
+        stage = (MacroscopicStage)GetParent();
 
         ProcessMode = ProcessModeEnum.Always;
     }

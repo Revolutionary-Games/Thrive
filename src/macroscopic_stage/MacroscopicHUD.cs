@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Manages the multicellular HUD scene
 /// </summary>
 [JsonObject(MemberSerialization.OptIn)]
-public partial class MulticellularHUD : CreatureStageHUDBase<MulticellularStage>
+public partial class MacroscopicHUD : CreatureStageHUDBase<MacroscopicStage>
 {
     [Export]
     public NodePath? MoveToLandPopupPath;

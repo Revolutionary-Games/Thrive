@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   Camera for handling a 3rd person camera in 3D space
 ///   TODO: implement the camera rotating logic
 /// </summary>
-public partial class MulticellularCamera : Node3D, IGodotEarlyNodeResolve
+public partial class MacroscopicCamera : Node3D, IGodotEarlyNodeResolve
 {
 #pragma warning disable CA2213
     private Camera3D? camera;

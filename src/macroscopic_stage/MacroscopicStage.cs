@@ -7,10 +7,10 @@ using Newtonsoft.Json;
 ///   Main class for managing the macroscopic stage
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/macroscopic/MacroscopicStage.tscn")]
+[SceneLoadedClass("res://src/macroscopic_stage/MacroscopicStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
-public partial class MulticellularStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
+public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, DummyWorldSimulation>
 {
     [Export]
     public NodePath? InteractableSystemPath;
@@ -78,11 +78,11 @@ public partial class MulticellularStage : CreatureStageBase<MacroscopicCreature,
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public MulticellularCamera PlayerCamera { get; private set; } = null!;
+    public MacroscopicCamera PlayerCamera { get; private set; } = null!;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public MulticellularHUD HUD { get; private set; } = null!;
+    public MacroscopicHUD HUD { get; private set; } = null!;
 
     // TODO: create a multicellular equivalent class
     [JsonIgnore]
@@ -128,7 +128,7 @@ public partial class MulticellularStage : CreatureStageBase<MacroscopicCreature,
 
         base.ResolveNodeReferences();
 
-        HUD = GetNode<MulticellularHUD>("MulticellularHUD");
+        HUD = GetNode<MacroscopicHUD>("MacroscopicHUD");
         HoverInfo = GetNode<PlayerInspectInfo>("PlayerLookingAtInfo");
 
         interactableSystem = GetNode<InteractableSystem>(InteractableSystemPath);
@@ -141,7 +141,7 @@ public partial class MulticellularStage : CreatureStageBase<MacroscopicCreature,
         // TODO: implement macroscopic specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
 
-        PlayerCamera = world.GetNode<MulticellularCamera>("PlayerCamera");
+        PlayerCamera = world.GetNode<MacroscopicCamera>("PlayerCamera");
 
         // These need to be created here as well for child property save load to work
         // TODO: systems
