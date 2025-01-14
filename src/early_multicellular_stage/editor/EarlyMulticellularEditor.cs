@@ -444,7 +444,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
         // If there is a null name, that means there is no selected cell,
         // so clear the selectedCellTypeToEdit and return early
-        if (name == null)
+        if (string.IsNullOrEmpty(name))
         {
             selectedCellTypeToEdit = null;
             GD.Print("Cleared editing cell type");
