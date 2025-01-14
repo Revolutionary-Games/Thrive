@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-13 16:26+0200\n"
+"POT-Creation-Date: 2025-01-13 20:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1502
+#: ../src/general/OptionsMenu.tscn:1525
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "3D_MOVEMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1551
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1044
+#: ../src/general/OptionsMenu.tscn:1067
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
@@ -191,11 +191,11 @@ msgstr ""
 msgid "ALT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:614
+#: ../src/general/OptionsMenu.tscn:637
 msgid "ALWAYS_VISIBLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:705
+#: ../src/general/OptionsMenu.tscn:728
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
@@ -204,11 +204,11 @@ msgstr ""
 msgid "AMMONIA"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1654
+#: ../src/general/OptionsMenu.tscn:1677
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1674
+#: ../src/general/OptionsMenu.tscn:1697
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
@@ -237,11 +237,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1950
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1933
+#: ../src/general/OptionsMenu.tscn:1956
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:780
+#: ../src/general/OptionsMenu.tscn:803
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -356,7 +356,7 @@ msgstr ""
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:553 ../src/general/OptionsMenu.tscn:1517
+#: ../src/general/OptionsMenu.tscn:576 ../src/general/OptionsMenu.tscn:1540
 msgid "AUTO"
 msgstr ""
 
@@ -381,7 +381,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1647
+#: ../src/general/OptionsMenu.tscn:1670
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1159 ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.cs:1163 ../src/general/OptionsMenu.tscn:334
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -456,12 +456,16 @@ msgstr ""
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:524 ../src/general/MainMenu.tscn:827
-#: ../src/general/NewGameSettings.tscn:1010 ../src/general/OptionsMenu.tscn:1890
+#: ../src/general/NewGameSettings.tscn:1010 ../src/general/OptionsMenu.tscn:1913
 #: ../src/general/PauseMenu.tscn:291
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:467
+msgid "BACKGROUND_BLUR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:277
@@ -628,7 +632,7 @@ msgstr ""
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1368 ../src/general/OptionsMenu.tscn:1452
+#: ../src/general/OptionsMenu.tscn:1391 ../src/general/OptionsMenu.tscn:1475
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -640,7 +644,7 @@ msgstr ""
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:434
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
@@ -682,23 +686,23 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1245
+#: ../src/general/OptionsMenu.tscn:1268
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1293
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1243
 msgid "CACHE_TIME_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1294
+#: ../src/general/OptionsMenu.tscn:1317
 msgid "CACHE_TIME_MEMORY_ONLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1157
 msgid "CACHING_TITLE"
 msgstr ""
 
@@ -717,7 +721,7 @@ msgstr ""
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:47
-#: ../src/general/OptionsMenu.tscn:1991
+#: ../src/general/OptionsMenu.tscn:2014
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:19
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
@@ -870,7 +874,7 @@ msgstr ""
 msgid "CHEATS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1713
+#: ../src/general/OptionsMenu.tscn:1736
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
@@ -970,7 +974,7 @@ msgstr ""
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:408
+#: ../src/general/OptionsMenu.tscn:409
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
@@ -1010,13 +1014,13 @@ msgstr ""
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1176
+#: ../src/general/OptionsMenu.tscn:1199
 msgid "CLEAR_CACHE"
 msgstr ""
 
 #: ../src/benchmark/microbe/CloudBenchmark.tscn:141
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:112
-#: ../src/general/OptionsMenu.tscn:2047
+#: ../src/general/OptionsMenu.tscn:2070
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
@@ -1031,7 +1035,7 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1939
+#: ../src/general/OptionsMenu.tscn:1962
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
@@ -1044,11 +1048,11 @@ msgstr ""
 msgid "CLOUD_BENCHMARK"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:916
+#: ../src/general/OptionsMenu.tscn:939
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:872
+#: ../src/general/OptionsMenu.tscn:895
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
@@ -1069,7 +1073,7 @@ msgstr ""
 msgid "COLOUR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:377
+#: ../src/general/OptionsMenu.tscn:378
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
@@ -1146,7 +1150,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1871
+#: ../src/general/OptionsMenu.tscn:1894
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
@@ -1199,7 +1203,7 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:878
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
@@ -1542,7 +1546,7 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1495
+#: ../src/general/OptionsMenu.tscn:1518
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1555,11 +1559,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:559
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1442
+#: ../src/general/OptionsMenu.tscn:1465
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1576,15 +1580,15 @@ msgstr ""
 msgid "COPY_RESULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:391
+#: ../src/general/OptionsMenu.tscn:392
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:393
+#: ../src/general/OptionsMenu.tscn:394
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1707,11 +1711,11 @@ msgstr ""
 msgid "CTRL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1186
 msgid "CURRENT_CACHE_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1161 ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1190
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
@@ -1740,7 +1744,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1726
+#: ../src/general/OptionsMenu.tscn:1749
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
@@ -1825,7 +1829,7 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1633
+#: ../src/general/OptionsMenu.cs:1637
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -1899,7 +1903,7 @@ msgstr ""
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1032
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
@@ -1991,7 +1995,7 @@ msgstr ""
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:312
+#: ../src/general/OptionsMenu.tscn:313
 msgid "DISABLED"
 msgstr ""
 
@@ -1999,7 +2003,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1980
+#: ../src/general/OptionsMenu.tscn:2003
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
@@ -2039,15 +2043,15 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1148
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1801
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1782
+#: ../src/general/OptionsMenu.tscn:1799 ../src/general/OptionsMenu.tscn:1805
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
@@ -2059,31 +2063,31 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:466
+#: ../src/general/OptionsMenu.tscn:489
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:572
+#: ../src/general/OptionsMenu.tscn:595
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:459
+#: ../src/general/OptionsMenu.tscn:460
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:454
+#: ../src/general/OptionsMenu.tscn:455
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1176
+#: ../src/general/OptionsMenu.cs:1180
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1173
+#: ../src/general/OptionsMenu.cs:1177
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:587
+#: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
@@ -2251,11 +2255,11 @@ msgstr ""
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:811
+#: ../src/microbe_stage/PatchMapGenerator.cs:812
 msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1560
+#: ../src/general/OptionsMenu.tscn:1583
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
@@ -2280,7 +2284,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:317
+#: ../src/general/OptionsMenu.tscn:318
 msgid "EIGHT_TIMES"
 msgstr ""
 
@@ -2309,7 +2313,7 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:605
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
@@ -2453,7 +2457,7 @@ msgstr ""
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1996 ../src/general/OptionsMenu.tscn:2003
+#: ../src/general/OptionsMenu.tscn:2019 ../src/general/OptionsMenu.tscn:2026
 msgid "ERROR"
 msgstr ""
 
@@ -2465,7 +2469,7 @@ msgstr ""
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2001
+#: ../src/general/OptionsMenu.tscn:2024
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -2513,11 +2517,11 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1855
+#: ../src/general/OptionsMenu.tscn:1878
 msgid "EXACT_VERSION_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1853 ../src/general/OptionsMenu.tscn:1861
+#: ../src/general/OptionsMenu.tscn:1876 ../src/general/OptionsMenu.tscn:1884
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
@@ -2860,7 +2864,7 @@ msgstr ""
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:315
+#: ../src/general/OptionsMenu.tscn:316
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -2891,7 +2895,7 @@ msgstr ""
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:278
 msgid "FULLSCREEN"
 msgstr ""
 
@@ -2932,7 +2936,7 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:501
+#: ../src/general/OptionsMenu.tscn:524
 msgid "GLES3"
 msgstr ""
 
@@ -2993,11 +2997,11 @@ msgstr ""
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.tscn:496
 msgid "GPU_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:190
+#: ../src/general/OptionsMenu.tscn:191
 msgid "GRAPHICS"
 msgstr ""
 
@@ -3009,7 +3013,7 @@ msgstr ""
 msgid "GROWTH_ORDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:546
 msgid "GUI"
 msgstr ""
 
@@ -3021,7 +3025,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:753
+#: ../src/general/OptionsMenu.tscn:776
 msgid "GUI_VOLUME"
 msgstr ""
 
@@ -3043,11 +3047,11 @@ msgstr ""
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:876 ../src/general/OptionsMenu.tscn:920
+#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:943
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:299 ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:300 ../src/general/OptionsMenu.tscn:1001
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
@@ -3079,7 +3083,7 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1377 ../src/general/OptionsMenu.tscn:1461
+#: ../src/general/OptionsMenu.tscn:1400 ../src/general/OptionsMenu.tscn:1484
 msgid "HORIZONTAL_COLON"
 msgstr ""
 
@@ -3551,7 +3555,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:217
+#: ../src/general/OptionsMenu.tscn:218
 msgid "INPUTS"
 msgstr ""
 
@@ -3688,8 +3692,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1387 ../src/general/OptionsMenu.tscn:1402
-#: ../src/general/OptionsMenu.tscn:1471 ../src/general/OptionsMenu.tscn:1487
+#: ../src/general/OptionsMenu.tscn:1410 ../src/general/OptionsMenu.tscn:1425
+#: ../src/general/OptionsMenu.tscn:1494 ../src/general/OptionsMenu.tscn:1510
 msgid "INVERTED"
 msgstr ""
 
@@ -3725,19 +3729,19 @@ msgstr ""
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1801
+#: ../src/general/OptionsMenu.tscn:1824
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1814
+#: ../src/general/OptionsMenu.tscn:1837
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1813
+#: ../src/general/OptionsMenu.tscn:1836
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1839
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -3949,19 +3953,19 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:817
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1685
+#: ../src/general/OptionsMenu.cs:1689
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1681
+#: ../src/general/OptionsMenu.cs:1685
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1677
+#: ../src/general/OptionsMenu.cs:1681
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
@@ -4192,7 +4196,7 @@ msgstr ""
 msgid "LIGHT_MAX"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "LIMIT_EXTREME"
 msgstr ""
 
@@ -4204,31 +4208,31 @@ msgstr ""
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1028
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1001
+#: ../src/general/OptionsMenu.tscn:1024
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:999
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "LIMIT_NORMAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1020
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:994
+#: ../src/general/OptionsMenu.tscn:1017
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1003
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:995
+#: ../src/general/OptionsMenu.tscn:1018
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -4371,28 +4375,28 @@ msgstr ""
 msgid "MARINE_SNOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:642
+#: ../src/general/OptionsMenu.tscn:665
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1190
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1207 ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:341
+#: ../src/general/OptionsMenu.tscn:342
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:367
+#: ../src/general/OptionsMenu.tscn:368
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1209
 msgid "MAX_SIZE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:997
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -4484,7 +4488,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:172
-#: ../src/general/OptionsMenu.cs:1761 ../src/general/OptionsMenu.cs:2302
+#: ../src/general/OptionsMenu.cs:1765 ../src/general/OptionsMenu.cs:2313
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
@@ -4781,7 +4785,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:271 ../src/general/OptionsMenu.tscn:226
+#: ../src/general/NewGameSettings.tscn:271 ../src/general/OptionsMenu.tscn:227
 msgid "MISC"
 msgstr ""
 
@@ -4794,7 +4798,7 @@ msgstr ""
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1847
 msgid "MISC_FUN"
 msgstr ""
 
@@ -5002,15 +5006,15 @@ msgstr ""
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1553
+#: ../src/general/OptionsMenu.tscn:1576
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1352
+#: ../src/general/OptionsMenu.tscn:1375
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -5154,15 +5158,15 @@ msgstr ""
 msgid "MULTIPLE_ORGANELLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:976
 msgid "MULTITHREADED_SIMULATION_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:958
+#: ../src/general/OptionsMenu.tscn:981
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
 msgstr ""
 
@@ -5174,7 +5178,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:681
+#: ../src/general/OptionsMenu.tscn:704
 msgid "MUSIC_VOLUME"
 msgstr ""
 
@@ -5194,9 +5198,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:668 ../src/general/OptionsMenu.tscn:701
-#: ../src/general/OptionsMenu.tscn:725 ../src/general/OptionsMenu.tscn:749
-#: ../src/general/OptionsMenu.tscn:773
+#: ../src/general/OptionsMenu.tscn:691 ../src/general/OptionsMenu.tscn:724
+#: ../src/general/OptionsMenu.tscn:748 ../src/general/OptionsMenu.tscn:772
+#: ../src/general/OptionsMenu.tscn:796
 msgid "MUTE"
 msgstr ""
 
@@ -5217,7 +5221,7 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
@@ -5373,7 +5377,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2367
 #: ../simulation_parameters/common/wiki.json:2387
 #: ../simulation_parameters/common/wiki.json:2442
-#: ../src/general/OptionsMenu.tscn:390
+#: ../src/general/OptionsMenu.tscn:391
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:201
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:210
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:219
@@ -5471,7 +5475,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2011
+#: ../src/general/OptionsMenu.tscn:2034
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
@@ -5526,7 +5530,7 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:609
+#: ../src/general/OptionsMenu.tscn:632
 msgid "OFF"
 msgstr ""
 
@@ -5582,7 +5586,7 @@ msgstr ""
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -5610,7 +5614,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1744
+#: ../src/general/OptionsMenu.tscn:1767
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -5618,7 +5622,7 @@ msgstr ""
 msgid "OPEN_THE_MENU"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:825
+#: ../src/general/OptionsMenu.tscn:848
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
@@ -5877,7 +5881,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:175
-#: ../src/microbe_stage/PatchMapGenerator.cs:857
+#: ../src/microbe_stage/PatchMapGenerator.cs:858
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -5890,7 +5894,7 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2015
+#: ../src/general/OptionsMenu.tscn:2038
 #: ../src/gui_common/PatchNotesDisplayer.tscn:25
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -5972,7 +5976,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:209
 msgid "PERFORMANCE"
 msgstr ""
 
@@ -6059,7 +6063,7 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1541
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -6071,23 +6075,23 @@ msgstr ""
 msgid "PLAYER_SPEED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:560
+#: ../src/general/OptionsMenu.tscn:583
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:585
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:587
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1631
+#: ../src/general/OptionsMenu.tscn:1654
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1636
+#: ../src/general/OptionsMenu.tscn:1659
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
@@ -6304,7 +6308,7 @@ msgstr ""
 msgid "RESEARCH"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:811 ../src/general/OptionsMenu.tscn:1896
+#: ../src/general/OptionsMenu.tscn:834 ../src/general/OptionsMenu.tscn:1919
 #: ../src/microbe_stage/editor/GrowthOrderPicker.tscn:22
 msgid "RESET"
 msgstr ""
@@ -6313,11 +6317,11 @@ msgstr ""
 msgid "RESET_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1794
+#: ../src/general/OptionsMenu.tscn:1817
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1934
+#: ../src/general/OptionsMenu.tscn:1957
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
@@ -6325,15 +6329,15 @@ msgstr ""
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1602
+#: ../src/general/OptionsMenu.tscn:1625
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1922
+#: ../src/general/OptionsMenu.tscn:1945
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1951
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
@@ -6346,7 +6350,7 @@ msgstr ""
 msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:325
+#: ../src/general/OptionsMenu.tscn:326
 msgid "RESOLUTION"
 msgstr ""
 
@@ -6450,7 +6454,7 @@ msgstr ""
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:971
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -6514,11 +6518,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1905 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1997
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
@@ -6619,19 +6623,19 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1417
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1418
+#: ../src/general/OptionsMenu.tscn:1441
 msgid "SCALING_ON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1443
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1855
 msgid "SCREEN_EFFECT"
 msgstr ""
 
@@ -6651,7 +6655,7 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520 ../src/general/OptionsMenu.tscn:1543
+#: ../src/general/OptionsMenu.tscn:1543 ../src/general/OptionsMenu.tscn:1566
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -6773,7 +6777,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:729
+#: ../src/general/OptionsMenu.tscn:752
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -6782,7 +6786,7 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:600
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -6790,11 +6794,11 @@ msgstr ""
 msgid "SHOW_HELP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1761
+#: ../src/general/OptionsMenu.tscn:1784
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1760
+#: ../src/general/OptionsMenu.tscn:1783
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -6802,15 +6806,15 @@ msgstr ""
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1699
+#: ../src/general/OptionsMenu.tscn:1722
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1693
+#: ../src/general/OptionsMenu.tscn:1716
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1705
+#: ../src/general/OptionsMenu.tscn:1728
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
@@ -6818,7 +6822,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -6942,7 +6946,7 @@ msgstr ""
 msgid "SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:199
+#: ../src/general/OptionsMenu.tscn:200
 msgid "SOUND"
 msgstr ""
 
@@ -7220,7 +7224,7 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:619
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -7500,7 +7504,7 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1067 ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1090 ../src/general/OptionsMenu.tscn:1124
 msgid "THREADS"
 msgstr ""
 
@@ -7822,7 +7826,7 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2010
+#: ../src/general/OptionsMenu.tscn:2033
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -7934,7 +7938,7 @@ msgstr ""
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:313
+#: ../src/general/OptionsMenu.tscn:314
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -7962,7 +7966,7 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1775
+#: ../src/general/OptionsMenu.cs:1779
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
@@ -8016,7 +8020,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1180
+#: ../src/general/OptionsMenu.cs:1184
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -8037,7 +8041,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1790
+#: ../src/general/OptionsMenu.cs:1794
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -8109,7 +8113,7 @@ msgstr ""
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:1979
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
@@ -8173,7 +8177,7 @@ msgstr ""
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:493
+#: ../src/general/OptionsMenu.tscn:516
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -8189,23 +8193,23 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1719
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1150
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "USE_DISK_CACHE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1083
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1117
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1453
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -8248,7 +8252,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1391 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1414 ../src/general/OptionsMenu.tscn:1498
 msgid "VERTICAL_COLON"
 msgstr ""
 
@@ -8257,11 +8261,11 @@ msgstr ""
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:531
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1190 ../src/general/OptionsMenu.tscn:516
+#: ../src/general/OptionsMenu.cs:1194 ../src/general/OptionsMenu.tscn:539
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -8287,11 +8291,11 @@ msgstr ""
 msgid "VIEW_PATCH_MICHES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1768
+#: ../src/general/OptionsMenu.tscn:1791
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1766
+#: ../src/general/OptionsMenu.tscn:1789
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -8311,11 +8315,11 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:633
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:612
+#: ../src/general/OptionsMenu.tscn:635
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
@@ -8340,7 +8344,7 @@ msgstr ""
 msgid "VOLUMEUP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:271
 msgid "VSYNC"
 msgstr ""
 
@@ -10422,7 +10426,7 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1544
+#: ../src/general/OptionsMenu.tscn:1567
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -10430,15 +10434,15 @@ msgstr ""
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:577
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:579
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:581
 msgid "XBOX_SERIES"
 msgstr ""
 

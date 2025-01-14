@@ -110,8 +110,14 @@ public class Settings
     ///   Enable or disable microbe background distortion shader. Should be 0 for disabled and around 0.3-0.9 when
     ///   enabled.
     /// </summary>
+    [JsonProperty(PropertyName = "MicrobeDistortionStrengthV2")]
+    public SettingValue<float> MicrobeDistortionStrength { get; private set; } = new(0.6f);
+
+    /// <summary>
+    ///   The amount of blur applied to microbe backgrounds.
+    /// </summary>
     [JsonProperty]
-    public SettingValue<float> MicrobeDistortionStrength { get; private set; } = new(0);
+    public SettingValue<float> MicrobeBackgroundBlurStrength { get; private set; } = new(2.0f);
 
     /// <summary>
     ///   Type of controller button prompts to show
