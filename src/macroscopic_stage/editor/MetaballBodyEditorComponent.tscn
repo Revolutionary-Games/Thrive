@@ -1,8 +1,8 @@
 [gd_scene load_steps=33 format=3 uid="uid://b6at78uxbps1"]
 
-[ext_resource type="Script" path="res://src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
+[ext_resource type="Script" path="res://src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs" id="1"]
 [ext_resource type="Texture2D" uid="uid://bo70v3237p6iv" path="res://assets/textures/gui/bevel/hSeparatorCentered.png" id="2"]
-[ext_resource type="PackedScene" uid="uid://u7xx74aaed4e" path="res://src/late_multicellular_stage/editor/MetaballPopupMenu.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://u7xx74aaed4e" path="res://src/macroscopic_stage/editor/MetaballPopupMenu.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="7_ck2k0"]
@@ -19,17 +19,17 @@
 texture = ExtResource("2")
 region_rect = Rect2(0, 0, 429, 1)
 
-[sub_resource type="StyleBoxFlat" id="5"]
+[sub_resource type="StyleBoxFlat" id="4"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -67,17 +67,17 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="4"]
+[sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.396078, 0.623529, 0.584314, 1)
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -88,22 +88,6 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="8"]
-
-[sub_resource type="StyleBoxFlat" id="14"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.49, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.07, 0.07, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -137,17 +121,33 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="16"]
+[sub_resource type="StyleBoxFlat" id="14"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0, 0.490196, 0.258824, 1)
+bg_color = Color(0.49, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(1, 0.07, 0.07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="41"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -169,17 +169,17 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="41"]
+[sub_resource type="StyleBoxFlat" id="16"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.666667, 1, 0.941176, 1)
+bg_color = Color(0, 0.490196, 0.258824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -339,12 +339,12 @@ DuplicateCellTypeNamePath = NodePath("NewTissueTypeSetup/VBoxContainer2/NewName"
 MetaballPopupMenuPath = NodePath("MetaballPopupMenu")
 CannotReduceBrainPowerPopupPath = NodePath("CannotReduceBrainPowerStage")
 IslandErrorPath = NodePath("IslandError")
-metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
 CancelButtonPath = NodePath("BottomRight/HBoxContainer/CancelButton")
 FinishWarningBadgePath = NodePath("BottomRight/HBoxContainer/ConfirmButton/MarginContainer/WarningBadge")
 FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
+metaballResizeScroll = NodePath("MetaballSizeControls/MetaballSize")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(350, 0)
@@ -404,13 +404,13 @@ LevelOnScreen = 1
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
@@ -421,13 +421,13 @@ text = "STRUCTURE"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -438,13 +438,13 @@ text = "INTERNALS"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
@@ -455,13 +455,13 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
@@ -472,13 +472,13 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 disabled = true
 toggle_mode = true
 action_mode = 0
@@ -490,13 +490,13 @@ visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_vcpf2")
@@ -589,10 +589,9 @@ autowrap_mode = 3
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 disabled = true
-item_count = 1
 selected = 0
+item_count = 1
 popup/item_0/text = "REPRODUCTION_ASEXUAL"
-popup/item_0/id = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("9")]
 visible = false
@@ -655,11 +654,11 @@ visible = false
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
-theme_override_styles/normal = SubResource("14")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("14")
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 
@@ -668,9 +667,9 @@ custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("16")
-theme_override_styles/hover = SubResource("15")
 theme_override_styles/focus = SubResource("41")
+theme_override_styles/hover = SubResource("15")
+theme_override_styles/normal = SubResource("16")
 text = "NEXT_CAPITAL"
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]

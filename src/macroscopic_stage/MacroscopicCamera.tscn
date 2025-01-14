@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2mf4tuokivmm"]
 
-[ext_resource type="Script" path="res://src/late_multicellular_stage/MulticellularCamera.cs" id="1"]
+[ext_resource type="Script" path="res://src/macroscopic_stage/MacroscopicCamera.cs" id="1_q3all"]
 
-[node name="MulticellularCamera" type="Node3D"]
+[node name="MacroscopicCamera" type="Node3D"]
 process_mode = 3
 process_priority = 100
 editor_description = "Base rotation of the camera"
-script = ExtResource("1")
+script = ExtResource("1_q3all")
 Current = true
 
 [node name="CameraPosition" type="Node3D" parent="."]
