@@ -108,6 +108,13 @@ size_flags_vertical = 6
 mouse_filter = 2
 
 [node name="PauseMenu" parent="." instance=ExtResource("11")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="OnInteractButtonPressed" from="MacroscopicHUD" to="PlayerMulticellularInput" method="InteractWithEnvironment"]
 [connection signal="OnOpenBuildPressed" from="MacroscopicHUD" to="PlayerMulticellularInput" method="OpenBuildMenu"]
