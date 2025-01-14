@@ -6,7 +6,7 @@ using Godot;
 ///   Direct starter for multicellular (basically <see cref="MainGameState.MicrobeStage"/> with multicellular
 ///   species)
 /// </summary>
-public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
+public partial class MulticellularStageStarter : ComplexStageStarterBase
 {
     protected override MainGameState SimplyLoadableGameState => MainGameState.MicrobeStage;
 
