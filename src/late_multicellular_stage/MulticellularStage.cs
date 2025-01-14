@@ -4,10 +4,10 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Main class for managing the late multicellular stage
+///   Main class for managing the macroscopic stage
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/late_multicellular_stage/MulticellularStage.tscn")]
+[SceneLoadedClass("res://src/late_multicellular_stage/MacroscopicStage.tscn")]
 [DeserializedCallbackTarget]
 [UseThriveSerializer]
 public partial class MulticellularStage : CreatureStageBase<MulticellularCreature, DummyWorldSimulation>
@@ -91,7 +91,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     [JsonIgnore]
     public override bool HasPlayer => Player != null;
 
-    public override MainGameState GameState => MainGameState.MulticellularStage;
+    public override MainGameState GameState => MainGameState.MacroscopicStage;
 
     // TODO: change when there is dying implemented
     [JsonIgnore]
@@ -138,7 +138,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         worldEnvironmentNode = GetNode<WorldEnvironment>(WorldEnvironmentNodePath);
         worldLightNode = GetNode<DirectionalLight3D>(WorldLightNodePath);
 
-        // TODO: implement late multicellular specific look at info, for now it's disabled by removing it
+        // TODO: implement macroscopic specific look at info, for now it's disabled by removing it
         HoverInfo.Free();
 
         PlayerCamera = world.GetNode<MulticellularCamera>("PlayerCamera");
@@ -214,7 +214,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
     public override void StartMusic()
     {
         // Change music based on how far along in the game the player is
-        if (GameWorld.PlayerSpecies is LateMulticellularSpecies lateMulticellularSpecies)
+        if (GameWorld.PlayerSpecies is MacroscopicSpecies lateMulticellularSpecies)
         {
             if (lateMulticellularSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
             {
@@ -239,7 +239,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
     public override void StartNewGame()
     {
-        CurrentGame = GameProperties.StartNewLateMulticellularGame(new WorldGenerationSettings());
+        CurrentGame = GameProperties.StartNewMacroscopicGame(new WorldGenerationSettings());
 
         UpdatePatchSettings();
 
@@ -268,7 +268,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         if (CurrentGame == null)
             throw new InvalidOperationException("Stage has no current game");
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
 
         Node sceneInstance = scene.Instantiate();
         var editor = (LateMulticellularEditor)sceneInstance;
@@ -293,7 +293,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
 
         base.OnReturnFromEditor();
 
-        ProceduralDataCache.Instance.OnEnterState(MainGameState.MulticellularStage);
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MacroscopicStage);
 
         // TODO:
         // // Spawn free food if difficulty settings call for it
@@ -683,7 +683,7 @@ public partial class MulticellularStage : CreatureStageBase<MulticellularCreatur
         // if (!IsLoadedFromSave)
         //     spawner.Init();
 
-        ProceduralDataCache.Instance.OnEnterState(MainGameState.MulticellularStage);
+        ProceduralDataCache.Instance.OnEnterState(MainGameState.MacroscopicStage);
 
         CurrentGame!.TechWeb.OnTechnologyUnlockedHandler += ShowTechnologyUnlockMessage;
 

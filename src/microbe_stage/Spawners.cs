@@ -486,16 +486,16 @@ public static class SpawnHelpers
         ICellDefinition usedCellDefinition;
         MembraneType membraneType;
 
-        EarlyMulticellularSpecies? multicellular = null;
+        MulticellularSpecies? multicellular = null;
 
-        if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+        if (species is MulticellularSpecies earlyMulticellularSpecies)
         {
             multicellular = earlyMulticellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularData.MulticellularCellType != null)
             {
-                // Non-first cell in an early multicellular colony
+                // Non-first cell in a multicellular colony
                 if (multicellularData.CellBodyPlanIndex == 0)
                 {
                     throw new ArgumentException(

@@ -47,7 +47,7 @@ public struct MulticellularGrowth
 
     public bool EnoughResourcesForBudding;
 
-    public MulticellularGrowth(EarlyMulticellularSpecies species)
+    public MulticellularGrowth(MulticellularSpecies species)
     {
         // Start growing at the cell after the initial bud
         // TODO: this needs changing when other reproduction methods are implemented (this same thing is also
@@ -78,7 +78,7 @@ public static class MulticellularGrowthHelpers
     ///   Adds the next cell missing from this multicellular species' body plan to this microbe's colony
     /// </summary>
     public static void AddMulticellularGrowthCell(this ref MulticellularGrowth multicellularGrowth,
-        in Entity entity, EarlyMulticellularSpecies species, IWorldSimulation worldSimulation,
+        in Entity entity, MulticellularSpecies species, IWorldSimulation worldSimulation,
         IMicrobeSpawnEnvironment spawnEnvironment, EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo)
     {
         if (!entity.Has<MicrobeColony>())
@@ -246,7 +246,7 @@ public static class MulticellularGrowthHelpers
     }
 
     public static Dictionary<Compound, float> GetCompoundsNeededForNextCell(
-        this ref MulticellularGrowth multicellularGrowth, EarlyMulticellularSpecies species)
+        this ref MulticellularGrowth multicellularGrowth, MulticellularSpecies species)
     {
         return species
             .Cells[

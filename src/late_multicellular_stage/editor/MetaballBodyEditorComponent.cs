@@ -326,7 +326,7 @@ public partial class MetaballBodyEditorComponent :
         // TODO: hook this up once we have editing the creature scale in the editor
         var creatureScale = 1.0f;
         var newTypeWouldBe =
-            LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(editedMetaballs, creatureScale);
+            MacroscopicSpecies.CalculateMulticellularTypeFromLayout(editedMetaballs, creatureScale);
 
         // Disallow going back stages
         if (newTypeWouldBe < Editor.EditedSpecies.MulticellularType)
@@ -573,8 +573,7 @@ public partial class MetaballBodyEditorComponent :
 
     private void UpdateGUIAfterLoadingSpecies()
     {
-        GD.Print("Starting early multicellular editor with: ", editedMetaballs.Count,
-            " cells in the microbe");
+        GD.Print("Starting macroscopic editor with: ", editedMetaballs.Count, " metaballs in the species");
 
         SetSpeciesInfo(newName,
             behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));

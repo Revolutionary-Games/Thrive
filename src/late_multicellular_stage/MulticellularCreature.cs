@@ -105,7 +105,7 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
     ///   random stuff in this instance won't work
     /// </summary>
     [JsonProperty]
-    public LateMulticellularSpecies Species { get; private set; } = null!;
+    public MacroscopicSpecies Species { get; private set; } = null!;
 
     /// <summary>
     ///   True when this is the player's creature
@@ -236,8 +236,8 @@ public partial class MulticellularCreature : RigidBody3D, ISaveLoadedTracked, IC
 
     public void ApplySpecies(Species species)
     {
-        if (species is not LateMulticellularSpecies lateSpecies)
-            throw new ArgumentException("Only late multicellular species can be used on creatures");
+        if (species is not MacroscopicSpecies lateSpecies)
+            throw new ArgumentException("Only macroscopic species can be used on creatures");
 
         Species = lateSpecies;
 

@@ -4,7 +4,7 @@
 ///   Stores information for duplicating and deleting cell types.
 /// </summary>
 [JSONAlwaysDynamicType]
-public class DuplicateDeleteCellTypeData : EditorCombinableActionData<EarlyMulticellularSpecies>
+public class DuplicateDeleteCellTypeData : EditorCombinableActionData<MulticellularSpecies>
 {
     public readonly CellType CellType;
 

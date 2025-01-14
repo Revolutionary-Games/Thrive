@@ -1288,7 +1288,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 result = MicrobeInternalCalculations.UsesDayVaryingCompounds(microbeSpecies.Organelles, patch.Biome,
                     varyingCompoundsTemporary);
             }
-            else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+            else if (species is MulticellularSpecies earlyMulticellularSpecies)
             {
                 // TODO: should this use the actual cell from the species that is running the AI? This isn't fully
                 // accurate.

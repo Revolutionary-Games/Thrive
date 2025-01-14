@@ -6,10 +6,10 @@ using Newtonsoft.Json;
 using Environment = Godot.Environment;
 
 /// <summary>
-///   Late multicellular (macroscopic) main editor class
+///   Macroscopic main editor class
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/late_multicellular_stage/editor/LateMulticellularEditor.tscn")]
+[SceneLoadedClass("res://src/late_multicellular_stage/editor/MacroscopicEditor.tscn")]
 [DeserializedCallbackTarget]
 public partial class LateMulticellularEditor : EditorBase<EditorAction, MulticellularStage>, IEditorReportData,
     ICellEditorData
@@ -74,7 +74,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 #pragma warning restore CA2213
 
     [JsonProperty]
-    private LateMulticellularSpecies? editedSpecies;
+    private MacroscopicSpecies? editedSpecies;
 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
@@ -98,7 +98,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
-    public LateMulticellularSpecies EditedSpecies =>
+    public MacroscopicSpecies EditedSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
@@ -113,9 +113,9 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
     [JsonIgnore]
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
-    protected override string MusicCategory => "LateMulticellularEditor";
+    protected override string MusicCategory => "MacroscopicEditor";
 
-    protected override MainGameState ReturnToState => MainGameState.MulticellularStage;
+    protected override MainGameState ReturnToState => MainGameState.MacroscopicStage;
     protected override string EditorLoadingMessage => Localization.Translate("LOADING_MULTICELLULAR_EDITOR");
     protected override bool HasInProgressAction => CanCancelAction;
 
@@ -326,7 +326,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewLateMulticellularGame(new WorldGenerationSettings());
+        return GameProperties.StartNewMacroscopicGame(new WorldGenerationSettings());
     }
 
     protected override void PerformAutoSave()
@@ -382,7 +382,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
                 // See: https://github.com/Revolutionary-Games/Thrive/pull/3457
                 CheckAndApplyCellTypeEdit();
 
-                // This doesn't need to be before CheckAndApplyCellTypeEdit like in early multicellular editor as
+                // This doesn't need to be before CheckAndApplyCellTypeEdit like in multicellular editor as
                 // this doesn't skip anything even if the tab is not visible yet
                 bodyPlanEditorTab.Show();
                 SetEditorObjectVisibility(true);
@@ -430,7 +430,7 @@ public partial class LateMulticellularEditor : EditorBase<EditorAction, Multicel
 
     protected override void SetupEditedSpecies()
     {
-        var species = (LateMulticellularSpecies?)CurrentGame.GameWorld.PlayerSpecies;
+        var species = (MacroscopicSpecies?)CurrentGame.GameWorld.PlayerSpecies;
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
 
         base.SetupEditedSpecies();

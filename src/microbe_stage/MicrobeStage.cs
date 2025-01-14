@@ -258,7 +258,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                     new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
                         Player.Has<EarlyMulticellularSpeciesMember>()), this);
 
-                if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
+                if (playerAlive && GameWorld.PlayerSpecies is MulticellularSpecies)
                 {
                     MakeEditorForFreebuildAvailable();
                 }
@@ -349,7 +349,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         base.OnFinishTransitioning();
 
-        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
+        if (GameWorld.PlayerSpecies is not MulticellularSpecies)
         {
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
                 new AggregateEventArgs(new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())),
@@ -379,7 +379,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
 
-        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
+        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is MulticellularSpecies ?
             "EarlyMulticellularStage" :
             "MicrobeStage", biome.ActiveMusicContexts);
     }
@@ -429,7 +429,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             // Player is a multicellular species, go to multicellular editor
 
-            var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+            var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
             sceneInstance = scene.Instantiate();
             var editor = (EarlyMulticellularEditor)sceneInstance;
@@ -542,7 +542,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Make sure no queued player species can spawn with the old species
         WorldSimulation.SpawnSystem.ClearSpawnQueue();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
         var editor = scene.Instantiate<EarlyMulticellularEditor>();
 
@@ -564,7 +564,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     }
 
     /// <summary>
-    ///   Moves to the late multicellular (macroscopic) editor (the first time)
+    ///   Moves to the macroscopic editor (the first time)
     /// </summary>
     public void MoveToMacroscopic()
     {
@@ -574,7 +574,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             return;
         }
 
-        GD.Print("Becoming late multicellular (macroscopic)");
+        GD.Print("Becoming macroscopic");
 
         // We don't really need to handle the player state or anything like that here as once we go to the late
         // multicellular editor, we never return to the microbe stage. So we don't need that much setup as becoming
@@ -586,7 +586,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         CurrentGame!.EnterPrototypes();
 
-        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Get<SpeciesMember>().Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(Player.Get<SpeciesMember>().Species);
 
         // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
         // underwater in the awakening stage
@@ -598,16 +598,16 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         GameWorld.NotifySpeciesChangedStages();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
 
         var editor = scene.Instantiate<LateMulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 
-        // We'll start off in a brand new stage in the late multicellular part
+        // We'll start off in a brand-new stage in the macroscopic part
         editor.ReturnToStage = null;
 
-        GD.Print("Switching to late multicellular editor");
+        GD.Print("Switching to macroscopic editor");
 
         SceneManager.Instance.SwitchToScene(editor, false);
 

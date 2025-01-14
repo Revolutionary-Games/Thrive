@@ -9,7 +9,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Base properties of a microbe (separate from the species info as early multicellular species object couldn't
+///   Base properties of a microbe (separate from the species info as multicellular species object couldn't
 ///   work there)
 /// </summary>
 [JSONDynamicTypeAllowed]
@@ -225,7 +225,7 @@ public static class CellPropertiesHelpers
             //
             // distanceRight += ;
         }
-        else if (species is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+        else if (species is MulticellularSpecies earlyMulticellularSpecies &&
                  multicellularSpawnState != MulticellularSpawnState.Bud)
         {
             // Add more extra offset between the parent and the divided cell colony if the parent wasn't a colony
@@ -261,14 +261,14 @@ public static class CellPropertiesHelpers
 
         Dictionary<Compound, float> reproductionCompounds;
 
-        // This method only supports microbe and early multicellular species
+        // This method only supports microbe and multicellular species
         if (species is MicrobeSpecies microbeSpecies)
         {
             reproductionCompounds = microbeSpecies.CalculateTotalComposition();
         }
         else
         {
-            reproductionCompounds = ((EarlyMulticellularSpecies)species).Cells[0].CalculateTotalComposition();
+            reproductionCompounds = ((MulticellularSpecies)species).Cells[0].CalculateTotalComposition();
         }
 
         var spawnPosition = currentPosition + direction * width;
@@ -562,7 +562,7 @@ public static class CellPropertiesHelpers
         }
 
         // Reset multicellular cost if this is multicellular
-        if (baseReproductionCostFrom is EarlyMulticellularSpecies earlyMulticellularSpecies &&
+        if (baseReproductionCostFrom is MulticellularSpecies earlyMulticellularSpecies &&
             entity.Has<MulticellularGrowth>())
         {
             ref var growth = ref entity.Get<MulticellularGrowth>();

@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Spawn customization for early multicellular species
+///   Spawn customization for multicellular species
 /// </summary>
 public enum MulticellularSpawnState
 {

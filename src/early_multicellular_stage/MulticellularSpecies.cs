@@ -15,9 +15,9 @@ using Systems;
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class EarlyMulticellularSpecies : Species
+public class MulticellularSpecies : Species
 {
-    public EarlyMulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
+    public MulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
 
@@ -53,7 +53,7 @@ public class EarlyMulticellularSpecies : Species
             // See the comment in CellBodyPlanEditorComponent.OnFinishEditing
             if (cellType.RepositionToOrigin())
             {
-                GD.Print("Repositioned an early multicellular species' cell type. This might break / crash the " +
+                GD.Print("Repositioned a multicellular species' cell type. This might break / crash the " +
                     "body plan layout.");
             }
         }
@@ -110,7 +110,7 @@ public class EarlyMulticellularSpecies : Species
     public override void HandleNightSpawnCompounds(CompoundBag targetStorage, ISpawnEnvironmentInfo spawnEnvironment)
     {
         if (spawnEnvironment is not IMicrobeSpawnEnvironment microbeSpawnEnvironment)
-            throw new ArgumentException("Early multicellular species must have microbe spawn environment info");
+            throw new ArgumentException("Multicellular species must have microbe spawn environment info");
 
         // TODO: this would be excellent to match the actual cell type being used for spawning
         var cellType = Cells[0].CellType;
@@ -129,7 +129,7 @@ public class EarlyMulticellularSpecies : Species
     {
         base.ApplyMutation(mutation);
 
-        var casted = (EarlyMulticellularSpecies)mutation;
+        var casted = (MulticellularSpecies)mutation;
 
         Cells.Clear();
 
@@ -164,7 +164,7 @@ public class EarlyMulticellularSpecies : Species
 
     public override object Clone()
     {
-        var result = new EarlyMulticellularSpecies(ID, Genus, Epithet);
+        var result = new MulticellularSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
 

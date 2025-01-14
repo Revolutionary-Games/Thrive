@@ -1,11 +1,11 @@
 ﻿using Godot;
 
 /// <summary>
-///   Direct starter for aware (basically <see cref="MainGameState.MulticellularStage"/> with aware species)
+///   Direct starter for aware (basically <see cref="MainGameState.MacroscopicStage"/> with aware species)
 /// </summary>
 public partial class AwareStageStarter : ComplexStageStarterBase
 {
-    protected override MainGameState SimplyLoadableGameState => MainGameState.MulticellularStage;
+    protected override MainGameState SimplyLoadableGameState => MainGameState.MacroscopicStage;
 
     protected override void CustomizeLoadedScene(Node scene)
     {

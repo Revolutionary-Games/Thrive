@@ -25,8 +25,7 @@ public struct DelayedMicrobeColony
     ///   Delayed growth of colony members
     /// </summary>
     /// <param name="growAdditionalMembers">
-    ///   How many members to add (should be one less than the early multicellular body plan count for fully
-    ///   grown colony)
+    ///   How many members to add (should be one less than the multicellular body plan count for fully grown colony)
     /// </param>
     public DelayedMicrobeColony(int growAdditionalMembers)
     {

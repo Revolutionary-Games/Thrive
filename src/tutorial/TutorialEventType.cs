@@ -89,12 +89,12 @@ public enum TutorialEventType
     EnteredMicrobeEditor,
 
     /// <summary>
-    ///   Player entered the early multicellular stage
+    ///   Player entered the multicellular stage
     /// </summary>
     EnteredEarlyMulticellularStage,
 
     /// <summary>
-    ///   Player entered the early multicellular editor
+    ///   Player entered the multicellular editor
     /// </summary>
     EnteredEarlyMulticellularEditor,
 

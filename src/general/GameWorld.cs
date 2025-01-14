@@ -650,17 +650,17 @@ public class GameWorld : ISaveLoadable
     ///   Moves a species to the multicellular stage
     /// </summary>
     /// <param name="species">
-    ///   The species to convert to an early multicellular one. No checks are done to make sure the species is
+    ///   The species to convert to a multicellular one. No checks are done to make sure the species is
     ///   actually a valid multicellular one.
     /// </param>
-    public EarlyMulticellularSpecies ChangeSpeciesToMulticellular(Species species)
+    public MulticellularSpecies ChangeSpeciesToMulticellular(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
         if (microbeSpecies.IsBacteria)
             throw new ArgumentException("bacteria can't turn multicellular");
 
-        var multicellularVersion = new EarlyMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        var multicellularVersion = new MulticellularSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(multicellularVersion);
 
         var workMemory1 = new List<Hex>();
@@ -677,20 +677,20 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Moves a species to the late multicellular stage
+    ///   Moves a species to the macroscopic stage
     /// </summary>
     /// <param name="species">
-    ///   The species to convert to a late multicellular one. No checks are done to make sure the species is
+    ///   The species to convert to a macroscopic one. No checks are done to make sure the species is
     ///   actually a valid multicellular one.
     /// </param>
-    public LateMulticellularSpecies ChangeSpeciesToLateMulticellular(Species species)
+    public MacroscopicSpecies ChangeSpeciesToMacroscopic(Species species)
     {
-        var earlySpecies = species as EarlyMulticellularSpecies;
+        var earlySpecies = species as MulticellularSpecies;
 
         if (earlySpecies == null)
-            throw new ArgumentException("Only early multicellular species can become late multicellular species");
+            throw new ArgumentException("Only multicellular species can become macroscopic species");
 
-        var lateVersion = new LateMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        var lateVersion = new MacroscopicSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(lateVersion);
 
         // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages

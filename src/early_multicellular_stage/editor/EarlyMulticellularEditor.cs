@@ -5,10 +5,10 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   The early multicellular stage editor main class
+///   The multicellular stage editor main class
 /// </summary>
 [JsonObject(IsReference = true)]
-[SceneLoadedClass("res://src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn")]
+[SceneLoadedClass("res://src/early_multicellular_stage/editor/MulticellularEditor.tscn")]
 [DeserializedCallbackTarget]
 public partial class EarlyMulticellularEditor : EditorBase<EditorAction, MicrobeStage>, IEditorReportData,
     ICellEditorData
@@ -49,7 +49,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 #pragma warning restore CA2213
 
     [JsonProperty]
-    private EarlyMulticellularSpecies? editedSpecies;
+    private MulticellularSpecies? editedSpecies;
 
     [JsonProperty]
     private CellType? selectedCellTypeToEdit;
@@ -73,7 +73,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
-    public EarlyMulticellularSpecies EditedSpecies =>
+    public MulticellularSpecies EditedSpecies =>
         editedSpecies ?? throw new InvalidOperationException("species not initialized");
 
     [JsonIgnore]
@@ -88,7 +88,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
     [JsonIgnore]
     public ICellDefinition? EditedCellProperties => selectedCellTypeToEdit;
 
-    protected override string MusicCategory => "EarlyMulticellularEditor";
+    protected override string MusicCategory => "MulticellularEditor";
 
     protected override MainGameState ReturnToState => MainGameState.MicrobeStage;
 
@@ -301,7 +301,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
     protected override GameProperties StartNewGameForEditor()
     {
-        return GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings());
+        return GameProperties.StartNewMulticellularGame(new WorldGenerationSettings());
     }
 
     protected override void PerformAutoSave()
@@ -402,7 +402,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
 
     protected override void SetupEditedSpecies()
     {
-        var species = (EarlyMulticellularSpecies?)CurrentGame.GameWorld.PlayerSpecies;
+        var species = (MulticellularSpecies?)CurrentGame.GameWorld.PlayerSpecies;
         editedSpecies = species ?? throw new NullReferenceException("didn't find edited species");
 
         base.SetupEditedSpecies();
@@ -582,7 +582,7 @@ public partial class EarlyMulticellularEditor : EditorBase<EditorAction, Microbe
             EditorCombinableActionData<CellType> => EditorTab.CellTypeEditor,
 
             // If the action was performed on the species as a whole, target the Cell Editor tab
-            EditorCombinableActionData<EarlyMulticellularSpecies> => EditorTab.CellEditor,
+            EditorCombinableActionData<MulticellularSpecies> => EditorTab.CellEditor,
 
             // If the action wasn't performed in any specific context, just stay on the currently selected tab
             _ => selectedEditorTab,

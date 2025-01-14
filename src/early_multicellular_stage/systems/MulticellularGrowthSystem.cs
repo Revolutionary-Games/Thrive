@@ -273,7 +273,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     }
 
     private void ReadyToReproduce(ref OrganelleContainer organelles, ref MulticellularGrowth multicellularGrowth,
-        ref ReproductionStatus baseReproduction, in Entity entity, EarlyMulticellularSpecies species)
+        ref ReproductionStatus baseReproduction, in Entity entity, MulticellularSpecies species)
     {
         Action<Entity, bool>? reproductionCallback;
         if (entity.Has<MicrobeEventCallbacks>())
@@ -310,7 +310,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
     }
 
     private void SpawnEarlyMulticellularOffspring(ref OrganelleContainer organelles, in Entity entity,
-        EarlyMulticellularSpecies species)
+        MulticellularSpecies species)
     {
         // Skip reproducing if we would go too much over the entity limit
         if (!spawnSystem.IsUnderEntityLimitForReproducing())
@@ -338,7 +338,7 @@ public sealed class MulticellularGrowthSystem : AEntitySetSystem<float>
         {
             // This catch helps if a colony member somehow got processed for the reproduction system and causes
             // an exception due to not being allowed to divide
-            GD.PrintErr("Early multicellular cell divide failed: ", e);
+            GD.PrintErr("Multicellular cell divide failed: ", e);
         }
     }
 

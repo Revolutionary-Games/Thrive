@@ -3,7 +3,7 @@ using System.Linq;
 using Godot;
 
 /// <summary>
-///   Direct starter for early multicellular (basically <see cref="MainGameState.MicrobeStage"/> with multicellular
+///   Direct starter for multicellular (basically <see cref="MainGameState.MicrobeStage"/> with multicellular
 ///   species)
 /// </summary>
 public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
@@ -14,11 +14,11 @@ public partial class EarlyMulticellularStageStarter : ComplexStageStarterBase
     {
         var stage = (MicrobeStage)scene;
 
-        // Setup a new game with the player being a simple multicellular species already
-        var game = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings());
+        // Set up a new game with the player being a simple multicellular species already
+        var game = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings());
 
         // Unlike the editor add 2 player cell copies already to make this a bit more realistic as a start
-        var playerSpecies = (EarlyMulticellularSpecies)game.GameWorld.PlayerSpecies;
+        var playerSpecies = (MulticellularSpecies)game.GameWorld.PlayerSpecies;
 
         var cellType = playerSpecies.CellTypes.First();
 

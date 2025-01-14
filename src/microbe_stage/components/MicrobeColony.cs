@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 /// <summary>
 ///   Microbe colony newMember. This component is added to the colony lead cell. This contains the overall info
-///   about the cell colony or early multicellular creature.
+///   about the cell colony or multicellular creature.
 /// </summary>
 [JSONDynamicTypeAllowed]
 public struct MicrobeColony
@@ -797,12 +797,12 @@ public static class MicrobeColonyHelpers
     ///   Makes an entity that is being spawned into a fully grown multicellular colony
     /// </summary>
     /// <returns>How much the added colony members add entity weight</returns>
-    public static float SpawnAsFullyGrownMulticellularColony(EntityRecord entity, EarlyMulticellularSpecies species,
+    public static float SpawnAsFullyGrownMulticellularColony(EntityRecord entity, MulticellularSpecies species,
         float originalWeight)
     {
         int members = species.Cells.Count - 1;
 
-        // Ignore fully spawning early multicellular species that only have one cell in them
+        // Ignore fully spawning multicellular species that only have one cell in them
         if (members < 1)
             return 0;
 

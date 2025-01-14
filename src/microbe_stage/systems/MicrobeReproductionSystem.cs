@@ -242,7 +242,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         if (isInColony)
         {
             // TODO: should the colony just passively get the reproduction compounds in its storage?
-            // Otherwise early multicellular colonies lose the passive reproduction feature
+            // Otherwise multicellular colonies lose the passive reproduction feature
             return;
         }
 

@@ -15,7 +15,7 @@ public partial class PlayerMulticellularInput : NodeWithInput
 
     public override void _Ready()
     {
-        // Not the cleanest that the parent has to be MulticellularStage type...
+        // Not the cleanest that the parent has to be MacroscopicStage type...
         stage = (MulticellularStage)GetParent();
 
         ProcessMode = ProcessModeEnum.Always;

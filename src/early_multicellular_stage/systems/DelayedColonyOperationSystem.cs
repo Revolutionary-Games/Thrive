@@ -41,7 +41,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     }
 
     public static void CreateDelayAttachedMicrobe(ref WorldPosition colonyPosition, in Entity colonyEntity,
-        int colonyTargetIndex, CellTemplate cellTemplate, EarlyMulticellularSpecies species,
+        int colonyTargetIndex, CellTemplate cellTemplate, MulticellularSpecies species,
         IWorldSimulation worldSimulation, IMicrobeSpawnEnvironment spawnEnvironment,
         EntityCommandRecorder recorder, ISpawnSystem notifySpawnTo, bool giveStartingCompounds)
     {
@@ -137,7 +137,7 @@ public sealed class DelayedColonyOperationSystem : AEntitySetSystem<float>
     {
         if (!entity.Has<EarlyMulticellularSpeciesMember>())
         {
-            GD.PrintErr("Only early multicellular species members can have delayed colony growth");
+            GD.PrintErr("Only multicellular species members can have delayed colony growth");
             return;
         }
 

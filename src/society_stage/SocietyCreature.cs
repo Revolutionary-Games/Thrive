@@ -21,7 +21,7 @@ public partial class SocietyCreature : Node3D, IEntity
     ///   random stuff in this instance won't work
     /// </summary>
     [JsonProperty]
-    public LateMulticellularSpecies Species { get; private set; } = null!;
+    public MacroscopicSpecies Species { get; private set; } = null!;
 
     /// <summary>
     ///   When true stops the normal citizen wander around behaviour
@@ -90,7 +90,7 @@ public partial class SocietyCreature : Node3D, IEntity
 
     public void ApplySpecies(Species species)
     {
-        if (species is not LateMulticellularSpecies lateSpecies)
+        if (species is not MacroscopicSpecies lateSpecies)
             throw new ArgumentException("Unsupported type of species");
 
         Species = lateSpecies;

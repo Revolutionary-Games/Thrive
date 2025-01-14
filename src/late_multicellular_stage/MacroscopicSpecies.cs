@@ -6,16 +6,16 @@ using Newtonsoft.Json;
 using Saving.Serializers;
 
 /// <summary>
-///   Represents a late multicellular species that is 3D and composed of placed tissues
+///   Represents a macroscopic species that is 3D and composed of placed tissues
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter($"Saving.Serializers.{nameof(ThriveTypeConverter)}")]
 [JSONDynamicTypeAllowed]
 [UseThriveConverter]
 [UseThriveSerializer]
-public class LateMulticellularSpecies : Species
+public class MacroscopicSpecies : Species
 {
-    public LateMulticellularSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
+    public MacroscopicSpecies(uint id, string genus, string epithet) : base(id, genus, epithet)
     {
     }
 
@@ -126,7 +126,7 @@ public class LateMulticellularSpecies : Species
     {
         base.ApplyMutation(mutation);
 
-        var casted = (LateMulticellularSpecies)mutation;
+        var casted = (MacroscopicSpecies)mutation;
 
         CellTypes.Clear();
 
@@ -150,7 +150,7 @@ public class LateMulticellularSpecies : Species
 
     public override float GetPredationTargetSizeFactor()
     {
-        throw new NotImplementedException("Size factor for auto-evo not implemented for late multicellular species");
+        throw new NotImplementedException("Size factor for auto-evo not implemented for macroscopic species");
     }
 
     /// <summary>
@@ -170,7 +170,7 @@ public class LateMulticellularSpecies : Species
 
     public override object Clone()
     {
-        var result = new LateMulticellularSpecies(ID, Genus, Epithet);
+        var result = new MacroscopicSpecies(ID, Genus, Epithet);
 
         ClonePropertiesTo(result);
 
