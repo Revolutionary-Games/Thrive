@@ -515,8 +515,8 @@ public class SimulationCache
     private float CalculateAngleMultiplier(Hex pos)
     {
         Vector3 organellePosition = Hex.AxialToCartesian(pos);
-        Vector3 verticalAxis = Hex.AxialToCartesian(new Hex(0, 1));
-        float angleCos = organellePosition.Dot(verticalAxis) / (organellePosition.Length() * verticalAxis.Length());
+        Vector3 downVector = new Vector3(0, 0, 1);
+        float angleCos = organellePosition.Normalized().Dot(downVector.Normalized());
 
         // If degrees is higher than 40 then return 0
         return angleCos >= 0.75 ? angleCos : 0;
