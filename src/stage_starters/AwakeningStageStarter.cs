@@ -1,15 +1,15 @@
 ﻿using Godot;
 
 /// <summary>
-///   Direct starter for awakening (basically <see cref="MainGameState.MulticellularStage"/> with awakened species)
+///   Direct starter for awakening (basically <see cref="MainGameState.MacroscopicStage"/> with awakened species)
 /// </summary>
 public partial class AwakeningStageStarter : AwareStageStarter
 {
-    protected override MainGameState SimplyLoadableGameState => MainGameState.MulticellularStage;
+    protected override MainGameState SimplyLoadableGameState => MainGameState.MacroscopicStage;
 
     protected override void CustomizeLoadedScene(Node scene)
     {
-        var stage = (MulticellularStage)scene;
+        var stage = (MacroscopicStage)scene;
 
         var game = GameProperties.StartNewAwakeningStageGame(new WorldGenerationSettings());
 
@@ -20,7 +20,7 @@ public partial class AwakeningStageStarter : AwareStageStarter
     {
         base.CustomizeAttachedScene(scene);
 
-        var stage = (MulticellularStage)scene;
+        var stage = (MacroscopicStage)scene;
 
         // TODO: remove this once the going to land part is implemented properly
         stage.TeleportToLand();

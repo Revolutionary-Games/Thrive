@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b85cpdss2dhf3"]
 
-[ext_resource type="PackedScene" path="res://src/late_multicellular_stage/editor/EditorCamera3D.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://src/macroscopic_stage/editor/EditorCamera3D.tscn" id="1"]
 [ext_resource type="Script" path="res://test/MetaballTest.cs" id="2"]
-[ext_resource type="PackedScene" path="res://src/late_multicellular_stage/MulticellularMetaballDisplayer.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://assets/models/EditorArrow.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://src/macroscopic_stage/MacroscopicMetaballDisplayer.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="4"]
 
 [sub_resource type="PlaneMesh" id="1"]
 

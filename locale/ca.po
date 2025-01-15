@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:53+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1667,10 +1667,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipus"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicel·lular"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium i les cèl·lules Paramecium és un exemple típic i clar, que ha estat estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un depredador, o bé la presa?"
 
@@ -2949,10 +2945,6 @@ msgstr "Aquesta traducció encara és incomplerta ({0}% traduït) siusplau ajuda
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "No es pot eliminar l'últim orgànul"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Multicel·lular"
-
 msgid "LAUNCH0"
 msgstr "Llançar 0"
 
@@ -3166,11 +3158,12 @@ msgstr "Carregant"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Carregant l'Editor Multicel·lular Primerenc"
-
 msgid "LOADING_GAME"
 msgstr "Carregant el joc"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "S'està carregant l'Editor de Microbi"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
@@ -3240,6 +3233,14 @@ msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim q
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Síntesi de mucílag"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Estadi de Microbi"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4015,6 +4016,10 @@ msgstr "Síntesi de mucílag"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Pausar el joc"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Multicel·lular"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicel·lular"
@@ -6084,10 +6089,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Carregant l'Editor Multicel·lular Primerenc"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -6264,6 +6265,10 @@ msgstr ""
 "Has entrat en el \"Mode de Desunió\". En aquest mode, pots clicar a sobre dels membres de la teva colònia per desunir-los.\n"
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Carregant l'Editor Multicel·lular Primerenc"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
@@ -6636,9 +6641,6 @@ msgstr "la nostra Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "la nostra Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7331,6 +7333,43 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Estadi Multicel·lular"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Raig de llim"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Fa molt de temps, en un planeta molt i molt llunyà...\n"
+"\n"
+"S'han esdevingut milions d'anys, eons sencers, d'activitat volcànica i d'impactes de meteorits. Aquesta activitat ha causat l'aparició d'un fenomen inaudit a l'univers.\n"
+"\n"
+"La vida.\n"
+"\n"
+"A les profunditats dels mars i oceans, són a punt d'aparèixer eixams de Microbis, sopes tupides d'organismes vius. De moment, però, en tot el planeta, només hi ha un sol organisme, una petita cèl·lula formada per una fina Membrana plena de Citoplasma i Material Genètic. Aquest primer organisme serà conegut com a 'darrer avantpassat universal comú'. Ets a punt de prendre el control d'aquesta minúscula cèl·lula, per tal de guiar-ne les accions i aconseguir que es pugui reproduir.\n"
+"\n"
+"Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Estadi de Microbi"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Estadi de Microbi"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Col·locar orgànul"
 
@@ -7738,6 +7777,10 @@ msgstr "Agent d'Unió"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosoma"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenasa"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8333,6 +8376,17 @@ msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Estadi de Microbi"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Multicel·lular"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Carregant l'Editor Multicel·lular Primerenc"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemmació"
 
@@ -8389,10 +8443,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Editor de Microbi"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Estadi de Microbi"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

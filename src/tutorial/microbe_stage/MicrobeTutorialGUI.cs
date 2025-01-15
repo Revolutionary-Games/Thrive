@@ -94,7 +94,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
     private CustomWindow engulfedExplanation = null!;
     private CustomWindow engulfmentFullCapacity = null!;
     private CustomWindow leaveColonyTutorial = null!;
-    private CustomWindow earlyMulticellularWelcome = null!;
+    private CustomWindow multicellularWelcome = null!;
     private CustomWindow dayNightTutorial = null!;
     private CustomWindow becomeMulticellularTutorial = null!;
     private CustomWindow organelleDivisionTutorial = null!;
@@ -285,21 +285,21 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         }
     }
 
-    public bool EarlyMulticellularWelcomeVisible
+    public bool MulticellularWelcomeVisible
     {
-        get => earlyMulticellularWelcome.Visible;
+        get => multicellularWelcome.Visible;
         set
         {
-            if (value == earlyMulticellularWelcome.Visible)
+            if (value == multicellularWelcome.Visible)
                 return;
 
             if (value)
             {
-                earlyMulticellularWelcome.PopupCenteredShrink();
+                multicellularWelcome.PopupCenteredShrink();
             }
             else
             {
-                earlyMulticellularWelcome.Hide();
+                multicellularWelcome.Hide();
             }
         }
     }
@@ -450,7 +450,7 @@ public partial class MicrobeTutorialGUI : Control, ITutorialGUI
         engulfedExplanation = GetNode<CustomWindow>(EngulfedExplanationPath);
         engulfmentFullCapacity = GetNode<CustomWindow>(EngulfmentFullCapacityPath);
         leaveColonyTutorial = GetNode<CustomWindow>(LeaveColonyTutorialPath);
-        earlyMulticellularWelcome = GetNode<CustomWindow>(EarlyMulticellularWelcomePath);
+        multicellularWelcome = GetNode<CustomWindow>(EarlyMulticellularWelcomePath);
         dayNightTutorial = GetNode<CustomWindow>(DayNightTutorialPath);
         becomeMulticellularTutorial = GetNode<CustomWindow>(BecomeMulticellularTutorialPath);
         organelleDivisionTutorial = GetNode<CustomWindow>(OrganelleDivisionTutorialPath);

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:53+0200\n"
 "PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1676,9 +1676,6 @@ msgstr "Despejar SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicelular"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Curiosidade: o Didinium e o Paramecium são um exemplo de relação de predador-presa que foi estudado por décadas. Você é o Didinium ou o Paramecium? Predador ou Presa?"
 
@@ -2859,9 +2856,6 @@ msgstr "Esta tradução está muito incompleta ({0}% concluída), por favor, nos
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Não foi possível remover a última organela"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "Multicelular avançado"
-
 msgid "LAUNCH0"
 msgstr "Lançamento 0"
 
@@ -3070,11 +3064,12 @@ msgstr "Carregando"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregando…"
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Carregando Editor Multicelular Inicial"
-
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Carregando Editor de Micróbios"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Carregando Editor de Micróbios"
@@ -3146,6 +3141,14 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enz
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Síntese de mucilagem"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Estágio Microbial"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir Manualmente a Hora do Dia"
@@ -3885,6 +3888,10 @@ msgstr "Síntese de mucilagem"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Visite a nossa página no Patreon"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Multicelular avançado"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicelular"
@@ -5881,18 +5888,6 @@ msgstr "Tente fazer algumas capturas de tela!"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Bem-vindo ao Estágio Multicelular Inicial!\n"
-"\n"
-"Você conseguiu guiar sua espécie pela fase unicelular.\n"
-"\n"
-"O jogo continuará tendo as mecânicas do Estágio Microbial. Ainda será necessário alimentar seu organismo para reproduzir e ir ao editor.\n"
-"\n"
-"Todavia, você poderá projetar sua colônia e especializar suas células para a realização de diferentes funções. Lembre-se de que os membros da colônia não compartilharão [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"Se estiver usando o processo de reprodução gemulação (selecionado por padrão), você começará com uma parte de seu organismo e será preciso crescer o resto das células."
-
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6070,6 +6065,19 @@ msgstr ""
 "Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-los.\n"
 "\n"
 "Para sair da colônia basta clicar em sua própria célula ou pressionar a tecla [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Bem-vindo ao Estágio Multicelular Inicial!\n"
+"\n"
+"Você conseguiu guiar sua espécie pela fase unicelular.\n"
+"\n"
+"O jogo continuará tendo as mecânicas do Estágio Microbial. Ainda será necessário alimentar seu organismo para reproduzir e ir ao editor.\n"
+"\n"
+"Todavia, você poderá projetar sua colônia e especializar suas células para a realização de diferentes funções. Lembre-se de que os membros da colônia não compartilharão [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Se estiver usando o processo de reprodução gemulação (selecionado por padrão), você começará com uma parte de seu organismo e será preciso crescer o resto das células."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
@@ -6430,9 +6438,6 @@ msgstr "nossa Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "nossa Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7142,6 +7147,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Sem melhorias."
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Estágio Multicelular"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Jato de Slime"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Em um planeta distante, éons de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
+"\n"
+"A vida.\n"
+"\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Você é o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"\n"
+"Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Estágio Espacial"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Estágio Espacial"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Colocar organela"
 
@@ -7550,6 +7590,10 @@ msgstr "Estágio Industrial"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisossomo"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenase"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8153,6 +8197,16 @@ msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Estágio Microbial"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Multicelular"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Carregando Editor Multicelular Inicial"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemulação"
 
@@ -8209,10 +8263,6 @@ msgstr "Diminuir o zoom"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Editor de Micróbios"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Estágio Microbial"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

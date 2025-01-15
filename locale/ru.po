@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-14 15:53+0200\n"
 "PO-Revision-Date: 2025-01-10 11:45+0000\n"
 "Last-Translator: Igor Voronov <AnonimusPochtus@inbox.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1636,9 +1636,6 @@ msgstr "Выбросить SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "Дублировать Тип"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Стадия Многоклеточного микроба"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Забавный Факт: Дидинии и Парамеции - наглядный пример взаимоотношений \"хищник - жертва\", которые изучали на протяжении десятилетий. А кто же вы - хищник или жертва?"
 
@@ -2781,9 +2778,6 @@ msgstr "Этот перевод в процессе разработки (зав
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Последняя органелла не может быть удалена"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "Поздний Этап Многоклеточного микроба"
-
 msgid "LAUNCH0"
 msgstr "Запуск 0"
 
@@ -2991,11 +2985,12 @@ msgstr "Загрузка"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Загрузка..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Загрузка Раннего Многоклеточного Редактора"
-
 msgid "LOADING_GAME"
 msgstr "Загрузка Игры"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Загрузка Микробного Редактора"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
@@ -3065,6 +3060,14 @@ msgstr "Содержит пищеварительные ферменты. Тип
 
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Синтез Макролида"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Стать макроскопическим ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Одноклеточная стадия"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Вручную установить время"
@@ -3768,6 +3771,10 @@ msgstr "Синтез Cлизи"
 
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Создать защиту"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Поздний Этап Многоклеточного микроба"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Многоклеточный редактор"
@@ -5707,18 +5714,6 @@ msgstr "Попробуйте сделать скриншоты!"
 msgid "TUTORIAL"
 msgstr "Руководство"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Добро пожаловать в ранний многоклеточный этап!\n"
-"\n"
-"Вы успешно провели свой вид через одноклеточную фазу.\n"
-"\n"
-"Игровой процесс наследует основные механики клеточной стадии. Вам всё ещё надо наращивать свой организм для размножения и редактирования.\n"
-"\n"
-"Однако, теперь вы можете спроектировать дизайн вашей колонии клеток в редакторе и специализировать клетки под определённые роли. Учтите, что члены колонии не могут делиться [thrive:compound type=\"atp\"][/thrive:compound] друг с другом.\n"
-"\n"
-"Если вы используете размножение почкованием (метод по умолчанию), вы начинаете одной клеткой и должны отрастить все остальные."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Шкала производства [thrive:compound type=\"atp\"][/thrive:compound] справа показывает сколько [thrive:compound type=\"atp\"][/thrive:compound] ваша клетка способна производить по отношению к потреблению [thrive:compound type=\"atp\"][/thrive:compound]. Коли верхняя часть меньше нижней, то ваша клетка производит недостаточно [thrive:compound type=\"atp\"][/thrive:compound].\n"
@@ -5890,6 +5885,19 @@ msgstr ""
 "Вы вошли в режим отвязки. В этом режиме вы можете нажимать на членов колонии, чтобы отвязывать их.\n"
 "\n"
 "Чтобы полностью покинуть колонию, вы можете нажать на свою собственную клетку или нажать клавишу [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Добро пожаловать в ранний многоклеточный этап!\n"
+"\n"
+"Вы успешно провели свой вид через одноклеточную фазу.\n"
+"\n"
+"Игровой процесс наследует основные механики клеточной стадии. Вам всё ещё надо наращивать свой организм для размножения и редактирования.\n"
+"\n"
+"Однако, теперь вы можете спроектировать дизайн вашей колонии клеток в редакторе и специализировать клетки под определённые роли. Учтите, что члены колонии не могут делиться [thrive:compound type=\"atp\"][/thrive:compound] друг с другом.\n"
+"\n"
+"Если вы используете размножение почкованием (метод по умолчанию), вы начинаете одной клеткой и должны отрастить все остальные."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Обучение"
@@ -6222,9 +6230,6 @@ msgstr "наша Wiki"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr "2D (ранее), 3D (позднее)"
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6925,6 +6930,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Улучшения отсутствуют."
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Многоклеточная стадия"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Эта Стадия в нынешний момент времени существует лишь в виде очень грубого Прототипа."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Сопло для слизи"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"На далёкой чужой планете эоны вулканической активности и метеоритных ударов привели к развитию нового явления во Вселенной.\n"
+"\n"
+"Жизнь.\n"
+"\n"
+"Простые микробы обитают в глубоких районах океана. Вы — последний универсальный общий предок этой планеты.\n"
+"\n"
+"Чтобы выжить в этом враждебном мире, вам нужно будет собирать любые соединения, которые вы сможете найти, и эволюционировать на протяжении поколений, чтобы конкурировать с другими видами микробов."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Стадия Космоса"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Нитрогеназа"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Стадия Космоса"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Разместить органеллу (или другую вещь)"
 
@@ -7337,6 +7377,10 @@ msgstr "Индустриальная стадия"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Лизосома"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Нитрогеназа"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7934,6 +7978,19 @@ msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Одноклеточная стадия"
+
+#~ msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+#~ msgstr "2D (ранее), 3D (позднее)"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Стадия Многоклеточного микроба"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Загрузка Раннего Многоклеточного Редактора"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Размножение"
 
@@ -7983,10 +8040,6 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Одноклеточный редактор"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Одноклеточная стадия"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

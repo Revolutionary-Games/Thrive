@@ -486,16 +486,16 @@ public static class SpawnHelpers
         ICellDefinition usedCellDefinition;
         MembraneType membraneType;
 
-        EarlyMulticellularSpecies? multicellular = null;
+        MulticellularSpecies? multicellular = null;
 
-        if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+        if (species is MulticellularSpecies multicellularSpecies)
         {
-            multicellular = earlyMulticellularSpecies;
+            multicellular = multicellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularData.MulticellularCellType != null)
             {
-                // Non-first cell in an early multicellular colony
+                // Non-first cell in a multicellular colony
                 if (multicellularData.CellBodyPlanIndex == 0)
                 {
                     throw new ArgumentException(
@@ -518,22 +518,22 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
+                resolvedCellType = multicellularSpecies.Cells[0].CellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
-                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
+                entity.Set(new MulticellularGrowth(multicellularSpecies));
             }
 
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= earlyMulticellularSpecies.Cells.Count)
+            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.Cells.Count)
                 throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
-            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType,
+            entity.Set(new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
                 multicellularData.CellBodyPlanIndex));
         }
         else if (species is MicrobeSpecies microbeSpecies)
@@ -825,11 +825,11 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 
-    public static MulticellularCreature SpawnCreature(Species species, Vector3 location,
+    public static MacroscopicCreature SpawnCreature(Species species, Vector3 location,
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
         GameProperties currentGame)
     {
-        var creature = multicellularScene.Instantiate<MulticellularCreature>();
+        var creature = multicellularScene.Instantiate<MacroscopicCreature>();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
@@ -855,7 +855,7 @@ public static class SpawnHelpers
 
     public static PackedScene LoadMulticellularScene()
     {
-        return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
+        return GD.Load<PackedScene>("res://src/macroscopic_stage/MacroscopicCreature.tscn");
     }
 
     public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform3D location, Node worldNode,
