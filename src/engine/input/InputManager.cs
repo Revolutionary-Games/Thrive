@@ -570,7 +570,10 @@ public partial class InputManager : Node
 
             var attribute = entry.Key;
 
-            if (unhandledInput || !attribute.OnlyUnhandled)
+            // Inputs are passed to the attribute when they should be acted on *or* if the action is a key up action
+            // as up actions must be always processed to avoid attributes getting stuck in down state if they don't
+            // see the key release due to being consumed by something else
+            if (unhandledInput || !attribute.OnlyUnhandled || !isDown)
             {
                 if (attribute.OnInput(@event))
                 {
