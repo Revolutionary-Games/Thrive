@@ -597,20 +597,38 @@ public class NativeLibs
 
             if (!releaseMode)
             {
-                // Using a different AVX variant is fine locally, then try the original tag but distributable version
-                linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
-                        false,
-                        tag | PrecompiledTag.WithoutAvx),
-                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
-                        tag & ~PrecompiledTag.WithoutAvx),
+                // Mac does not support AVX, so we cannot test those variants for it, which is why this if is here
+                if (platform != PackagePlatform.Mac)
+                {
+                    // Using a different AVX variant is fine locally, then try the original tag but distributable version
+                    linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform,
+                            libraryVersion,
+                            false,
+                            tag | PrecompiledTag.WithoutAvx),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
+                            tag & ~PrecompiledTag.WithoutAvx),
 
-                    // Fallback to distributables after checking local variants all first
-                    NativeConstants
-                        .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
-                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
-                        tag | PrecompiledTag.WithoutAvx),
-                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
-                        tag & ~PrecompiledTag.WithoutAvx));
+                        // Fallback to distributables after checking local variants all first
+                        NativeConstants
+                            .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                            tag | PrecompiledTag.WithoutAvx),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                            tag & ~PrecompiledTag.WithoutAvx));
+                }
+                else
+                {
+                    linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform,
+                            libraryVersion,
+                            false,
+                            tag | PrecompiledTag.WithoutAvx),
+
+                        // Fallback to distributables after checking local variants all first
+                        NativeConstants
+                            .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                            tag | PrecompiledTag.WithoutAvx));
+                }
             }
             else
             {
