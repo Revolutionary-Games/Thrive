@@ -364,8 +364,8 @@ public static class PatchMapGenerator
 
         // Base vectors to simplify later calculation
         var topLeftPatchPosition = region.ScreenCoordinates + new Vector2(
-            Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH,
-            Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH);
+            Constants.PATCH_AND_REGION_MARGIN + Constants.PATCH_REGION_CONNECTION_LINE_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH,
+            Constants.PATCH_AND_REGION_MARGIN + Constants.PATCH_REGION_CONNECTION_LINE_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH);
         var offsetHorizontal = new Vector2(Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN, 0);
         var offsetVertical = new Vector2(0, Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN);
 
@@ -521,7 +521,7 @@ public static class PatchMapGenerator
     private static void BuildRegionSize(PatchRegion region)
     {
         // Initial size with no patch in it
-        region.Width = region.Height = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN;
+        region.Width = region.Height = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN + 2 * Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
 
         // Per patch offset
         const float offset = Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN;

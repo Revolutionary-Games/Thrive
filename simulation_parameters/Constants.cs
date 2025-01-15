@@ -1624,7 +1624,8 @@ public static class Constants
 
     // Constants for procedural patch map
     public const float PATCH_NODE_RECT_LENGTH = 64.0f;
-    public const float PATCH_AND_REGION_MARGIN = 8 * 3.0f;
+    public const float PATCH_AND_REGION_MARGIN = 15.0f;
+    public const float PATCH_REGION_CONNECTION_LINE_MARGIN = 30.0f;
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
