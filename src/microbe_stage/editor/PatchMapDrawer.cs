@@ -662,13 +662,12 @@ public partial class PatchMapDrawer : Control
         Vector2 intermediate2;
 
         const float offset = Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN;
-        const float margin = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN + Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
+        const float margin = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN +
+            Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
         int startRows = (int)Math.Round((start.Height - margin) / offset);
         int startColumns = (int)Math.Round((start.Width - margin) / offset);
         int endRows = (int)Math.Round((end.Height - margin) / offset);
         int endColumns = (int)Math.Round((end.Width - margin) / offset);
-        const float margin = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN +
-            Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
 
         // TODO: it would be pretty nice to be able to use a buffer pool for the path points here as a ton of memory
         // is re-allocated here each time the map needs drawing
