@@ -1,30 +1,45 @@
-[gd_scene load_steps=31 format=3 uid="uid://dylo35brdi0js"]
+[gd_scene load_steps=46 format=3 uid="uid://dylo35brdi0js"]
 
 [ext_resource type="Script" path="res://src/multicellular_stage/editor/CellBodyPlanEditorComponent.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://ipvxtakaph16" path="res://src/multicellular_stage/editor/CellPopupMenu.tscn" id="3"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="6_pwhoj"]
 [ext_resource type="PackedScene" uid="uid://cl64wvnxs6ivs" path="res://src/gui_common/dialogs/CustomConfirmationDialog.tscn" id="7"]
+[ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="8_8cf4p"]
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="9_2s8wq"]
+[ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="10_30uyx"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="11"]
+[ext_resource type="Texture2D" uid="uid://b6s4ekosu7unk" path="res://assets/textures/gui/bevel/SizeIcon.png" id="11_vk03w"]
 [ext_resource type="LabelSettings" uid="uid://bx7mw3uvqpo42" path="res://src/gui_common/fonts/Body-Regular-Smaller.tres" id="11_yn8ep"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="12"]
 [ext_resource type="LabelSettings" uid="uid://brgbuduvjby6a" path="res://src/gui_common/fonts/Title-SemiBold-Smaller.tres" id="12_fuxeh"]
+[ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="12_uqstg"]
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="13"]
+[ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="13_51ugs"]
+[ext_resource type="Texture2D" uid="uid://5ivblyrfrfc0" path="res://assets/textures/gui/bevel/RotationIcon.png" id="14_1b5a1"]
 [ext_resource type="PackedScene" uid="uid://dw3ubsraoopin" path="res://src/gui_common/TabButtons.tscn" id="15"]
+[ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="15_8do7j"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="16_vn7bh"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="17_fmo1q"]
+[ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="18_8xj4s"]
+[ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="19_6hgpg"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="20_gwoqg"]
+[ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="21_1xcra"]
+[ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="22_2puie"]
 
-[sub_resource type="StyleBoxFlat" id="5"]
+[sub_resource type="StyleBoxFlat" id="4"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
+bg_color = Color(0.164706, 0.215686, 0.235294, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(0.396078, 0.623529, 0.584314, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -62,17 +77,17 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id="4"]
+[sub_resource type="StyleBoxFlat" id="5"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0.164706, 0.215686, 0.235294, 1)
+bg_color = Color(0.0666667, 0.168627, 0.211765, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.396078, 0.623529, 0.584314, 1)
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -83,22 +98,6 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxEmpty" id="7"]
 
 [sub_resource type="StyleBoxEmpty" id="8"]
-
-[sub_resource type="StyleBoxFlat" id="14"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(0.49, 0, 0, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(1, 0.07, 0.07, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="12"]
 content_margin_left = 5.0
@@ -132,17 +131,33 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="16"]
+[sub_resource type="StyleBoxFlat" id="14"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-bg_color = Color(0, 0.490196, 0.258824, 1)
+bg_color = Color(0.49, 0, 0, 1)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0666667, 1, 0.835294, 1)
+border_color = Color(1, 0.07, 0.07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="41"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 1, 0.941176, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -164,17 +179,17 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxFlat" id="41"]
+[sub_resource type="StyleBoxFlat" id="16"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.666667, 1, 0.941176, 1)
+bg_color = Color(0, 0.490196, 0.258824, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0666667, 1, 0.835294, 1)
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -306,7 +321,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellBodyPlanEditorComponent" type="Control"]
+[node name="CellBodyPlanEditorComponent" type="Control" node_paths=PackedStringArray("storageLabel", "speedLabel", "rotationSpeedLabel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -330,6 +345,9 @@ CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 CellPopupMenuPath = NodePath("CellPopupMenu")
+storageLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
+speedLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed")
+rotationSpeedLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -339,11 +357,13 @@ FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(350, 0)
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 9
 anchor_bottom = 1.0
 offset_top = 40.0
 offset_right = 350.0
 offset_bottom = -50.0
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 theme_override_constants/margin_left = 10
@@ -394,13 +414,13 @@ LevelOnScreen = 1
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 button_pressed = true
 action_mode = 0
@@ -411,13 +431,13 @@ text = "STRUCTURE"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_j7atr")
@@ -427,13 +447,13 @@ text = "REPRODUCTION"
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 1
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 14
-theme_override_styles/normal = SubResource("5")
+theme_override_styles/disabled = SubResource("4")
 theme_override_styles/hover = SubResource("2")
 theme_override_styles/pressed = SubResource("3")
-theme_override_styles/disabled = SubResource("4")
+theme_override_styles/normal = SubResource("5")
 toggle_mode = true
 action_mode = 0
 button_group = SubResource("ButtonGroup_j7atr")
@@ -526,15 +546,272 @@ autowrap_mode = 3
 [node name="OptionButton" type="OptionButton" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Reproduction/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 disabled = true
-item_count = 1
 selected = 0
+item_count = 1
 popup/item_0/text = "REPRODUCTION_BUDDING"
-popup/item_0/id = 0
 
 [node name="Behaviour" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel" instance=ExtResource("9")]
 visible = false
 layout_mode = 2
 FinishOrNextButtonPath = NodePath("")
+
+[node name="RightPanel" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(285, 657)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -285.0
+offset_bottom = 657.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel"]
+layout_mode = 2
+mouse_filter = 0
+mouse_force_pass_scroll_events = false
+
+[node name="Statistics" type="PanelContainer" parent="RightPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics"]
+layout_mode = 2
+
+[node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="Title" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Header"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ORGANISM_STATISTICS"
+label_settings = ExtResource("8_8cf4p")
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Body" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body"]
+layout_mode = 2
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hp" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+visible = false
+layout_mode = 2
+Icon = ExtResource("10_30uyx")
+Description = "HP_COLON"
+
+[node name="Size" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+visible = false
+layout_mode = 2
+Icon = ExtResource("11_vk03w")
+Description = "SIZE_COLON"
+
+[node name="Storage" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+layout_mode = 2
+Icon = ExtResource("12_uqstg")
+Description = "STORAGE_COLON"
+
+[node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Speed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
+Icon = ExtResource("13_51ugs")
+Description = "SPEED_COLON"
+
+[node name="Rotation" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
+Icon = ExtResource("14_1b5a1")
+Description = "ROTATION_COLON"
+
+[node name="HSeparator2" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="DigestionSpeed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+visible = false
+layout_mode = 2
+Icon = ExtResource("15_8do7j")
+Description = "DIGESTION_SPEED_COLON"
+
+[node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("9_2s8wq")]
+visible = false
+layout_mode = 2
+Icon = ExtResource("16_vn7bh")
+Description = "DIGESTION_EFFICIENCY_COLON"
+
+[node name="HSeparator3" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+layout_mode = 2
+text = "GENERATION_COLON"
+label_settings = ExtResource("17_fmo1q")
+
+[node name="Value" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("18_8xj4s")
+
+[node name="ATPBalancePanel" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ATPBalanceTitle" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ATP_BALANCE_TOOLTIP"
+mouse_filter = 1
+text = "ATP_BALANCE"
+label_settings = ExtResource("17_fmo1q")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ATPBarContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="ATPProductionBar" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer" instance=ExtResource("19_6hgpg")]
+custom_minimum_size = Vector2(190, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00000"
+label_settings = ExtResource("6_pwhoj")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="ATPConsumptionBar" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2" instance=ExtResource("19_6hgpg")]
+custom_minimum_size = Vector2(190, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00000"
+label_settings = ExtResource("6_pwhoj")
+
+[node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ATPBalanceMode" type="OptionButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+layout_mode = 2
+text_overrun_behavior = 3
+clip_text = true
+selected = 0
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
+popup/item_1/id = 1
+popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
+popup/item_2/id = 2
+popup/item_3/text = "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+popup/item_3/id = 3
+popup/item_4/text = "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+popup/item_4/id = 4
+
+[node name="StorageNotEnough" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("20_gwoqg")]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.301961, 0.301961, 1)
+fit_content = true
+
+[node name="NumbersAtDay" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+theme_override_font_sizes/font_size = 12
+text = "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+text_overrun_behavior = 4
+clip_text = true
+
+[node name="NumbersWhenMoving" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+theme_override_font_sizes/font_size = 12
+button_pressed = true
+text = "BALANCE_DISPLAY_WHILE_MOVING"
+text_overrun_behavior = 4
+clip_text = true
+
+[node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CompoundBalanceDisplay" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("21_1xcra")]
+layout_mode = 2
+
+[node name="CompoundStorageStatistics" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("22_2puie")]
+layout_mode = 2
+
+[node name="ProcessListButton" type="Button" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "VIEW_CELL_PROCESSES"
+text_overrun_behavior = 3
+clip_text = true
 
 [node name="EditorComponentBottomLeftButtons" parent="." instance=ExtResource("13")]
 layout_mode = 1
@@ -550,6 +827,8 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -158.0
+offset_top = -51.0
 offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
@@ -564,11 +843,11 @@ visible = false
 custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
-theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_disabled_color = Color(0.498039, 0.529412, 0.541176, 1)
-theme_override_styles/normal = SubResource("14")
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_styles/hover = SubResource("12")
 theme_override_styles/pressed = SubResource("13")
+theme_override_styles/normal = SubResource("14")
 shortcut_in_tooltip = false
 text = "CANCEL_ACTION_CAPITAL"
 
@@ -577,9 +856,9 @@ custom_minimum_size = Vector2(140, 40)
 layout_mode = 2
 mouse_force_pass_scroll_events = false
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_styles/normal = SubResource("16")
-theme_override_styles/hover = SubResource("15")
 theme_override_styles/focus = SubResource("41")
+theme_override_styles/hover = SubResource("15")
+theme_override_styles/normal = SubResource("16")
 text = "NEXT_CAPITAL"
 
 [node name="MarginContainer" type="MarginContainer" parent="BottomRight/HBoxContainer/ConfirmButton"]

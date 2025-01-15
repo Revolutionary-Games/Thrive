@@ -340,7 +340,7 @@ public partial class CellEditorComponent
         hpLabel.Value = hp;
     }
 
-    private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
+    private void UpdateStorage(Dictionary<Compound, float> storage, float nominalStorage)
     {
         // Storage values can be as low as 0.25 so 2 decimals are needed
         storageLabel.Value = MathF.Round(nominalStorage, 2);
@@ -1049,7 +1049,7 @@ public partial class CellEditorComponent
         SetSpeciesInfo(newName, Membrane, Colour, Rigidity, behaviourEditor.Behaviour);
         UpdateGeneration(species.Generation);
         UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
+        UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
 
         ApplyLightLevelOption();
 

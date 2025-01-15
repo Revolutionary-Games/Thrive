@@ -1371,15 +1371,9 @@ public partial class CellEditorComponent :
         return maxHitpoints;
     }
 
-    public float GetNominalCapacity()
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return MicrobeInternalCalculations.GetTotalNominalCapacity(editedMicrobeOrganelles);
-    }
-
-    public Dictionary<Compound, float> GetAdditionalCapacities()
-    {
-        // TODO: merge this with nominal get to make this more efficient
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out _);
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -2288,7 +2282,7 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
+        UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
         UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
     }

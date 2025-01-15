@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
 ///   Body plan editor component for making body plans from hexes (that represent cells)
@@ -103,6 +104,21 @@ public partial class CellBodyPlanEditorComponent :
     private CellPopupMenu cellPopupMenu = null!;
 
     private PackedScene billboardScene = null!;
+
+    [Export]
+    private CellStatsIndicator storageLabel = null!;
+
+    [Export]
+    private CellStatsIndicator speedLabel = null!;
+
+    [Export]
+    private CellStatsIndicator rotationSpeedLabel = null!;
+
+    [Export]
+    private CompoundBalanceDisplay compoundBalance = null!;
+
+    [Export]
+    private CompoundStorageStatistics compoundStorageLastingTimes = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -477,13 +493,82 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
+    public float CalculateSpeed()
+    {
+        var leader = editedMicrobeCells[0].Data!;
+
+        float speed = MicrobeInternalCalculations.CalculateSpeed(leader.Organelles, leader.MembraneType,
+            leader.MembraneRigidity, leader.IsBacteria);
+
+        speed *= editedMicrobeCells.Count * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
+        var seriesValue = 1 - 1 / (float)Math.Pow(2, editedMicrobeCells.Count - 1);
+        speed -= speed * 0.15f * seriesValue;
+
+        foreach (var hex in editedMicrobeCells)
+        {
+            var cell = hex.Data!;
+
+            if (cell == leader)
+                continue;
+
+            foreach (var organelle in cell.Organelles)
+            {
+                if (!organelle.Definition.HasMovementComponent)
+                    continue;
+
+                float upgradeForce = 0.0f;
+
+                if (organelle.Upgrades != null && organelle.Upgrades.CustomUpgradeData
+                    is FlagellumUpgrades flagellumUpgrades)
+                {
+                    upgradeForce = Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumUpgrades.LengthFraction;
+                }
+
+                float addedForce = (Constants.FLAGELLA_BASE_FORCE + upgradeForce)
+                    * organelle.Definition.Components.Movement!.Momentum;
+
+                if (!cell.IsBacteria)
+                    addedForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+
+                speed += addedForce;
+            }
+        }
+
+        return speed / editedMicrobeCells.Count;
+    }
+
+    public float CalculateRotationSpeed()
+    {
+        var leader = editedMicrobeCells[0].Data!;
+
+        float colonyRotation = MicrobeInternalCalculations
+            .CalculateRotationSpeed(leader.Organelles);
+
+        Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
+
+        foreach (var colonyMember in editedMicrobeCells)
+        {
+            var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
+
+            var memberRotation = MicrobeInternalCalculations
+                    .CalculateRotationSpeed(colonyMember.Data!.Organelles)
+                * (1 + 0.03f * distanceSquared);
+
+            colonyRotation += memberRotation;
+        }
+
+        return colonyRotation / editedMicrobeCells.Count;
+    }
+
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
+    {
+        // TODO: merge this with nominal get to make this more efficient
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
+    }
+
     protected CellType CellTypeFromName(string name)
     {
         return Editor.EditedSpecies.CellTypes.First(c => c.TypeName == name);
-    }
-
-    protected override void OnTranslationsChanged()
-    {
     }
 
     protected override int CalculateCurrentActionCost()
@@ -983,7 +1068,16 @@ public partial class CellBodyPlanEditorComponent :
     {
         UpdateAlreadyPlacedVisuals();
 
+        UpdateStats();
+
         UpdateArrow();
+    }
+
+    private void UpdateStats()
+    {
+        UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        UpdateSpeed(CalculateSpeed());
+        UpdateRotationSpeed(CalculateRotationSpeed());
     }
 
     /// <summary>
