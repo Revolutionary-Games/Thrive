@@ -18,7 +18,8 @@
         pkgs = import nixpkgs {
           inherit system;
           config = {
-            # Dotnet 6 is EOL, but somthing here still needs it
+            # Dotnet 6 is EOL, but godot still needs it
+            # This can be removed in 4.4
             permittedInsecurePackages = [
               "dotnet-sdk-6.0.428"
             ];
@@ -35,12 +36,10 @@
                 dotnet-sdk_8 = dotnet-sdk_9;
               })
 
-              # Make "godot" be callable from path
-              (pkgs.writeShellScriptBin "godot" "exec -a $0 ${godot_4-mono}/bin/godot4-mono $@")
-
               # For compiling native libraries
               cmake
               clang_18
+              lld_18
 
               # For packaging manually
               zip
@@ -53,8 +52,10 @@
               # Profiling
               flamegraph
 
-              # Runtime dependencies
+              # Dotnet
               dotnet-sdk_9
+
+              # Runtime dependencies
               xorg.libX11
               xorg.libXcursor
               xorg.libXext
