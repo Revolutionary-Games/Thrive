@@ -600,7 +600,8 @@ public class NativeLibs
                 // Mac does not support AVX, so we cannot test those variants for it, which is why this if is here
                 if (platform != PackagePlatform.Mac)
                 {
-                    // Using a different AVX variant is fine locally, then try the original tag but distributable version
+                    // Using a different AVX variant is fine locally, then try the original tag but distributable
+                    // version
                     linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform,
                             libraryVersion,
                             false,
