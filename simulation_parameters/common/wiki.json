@@ -2490,11 +2490,66 @@
       "InfoboxData": [
         {
           "Name": "INFO_BOX_GAMEPLAY_TYPE",
-          "DisplayedValue": "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+          "DisplayedValue": "WIKI_2D"
         },
         {
           "Name": "INFO_BOX_PREVIOUS_STAGE",
           "DisplayedValue": "MICROBE_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_NEXT_STAGE",
+          "DisplayedValue": "MACROSCOPIC_STAGE"
+        },
+        {
+          "Name": "INFO_BOX_EDITORS",
+          "DisplayedValue": "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
+        }
+      ],
+      "NoticeSceneName": null,
+      "RestrictedToStages": null
+    },
+    {
+      "Name": "WIKI_PAGE_MACROSCOPIC_STAGE",
+      "InternalName": "macroscopic_stage",
+      "Url": "https://wiki.revolutionarygamesstudio.com/wiki/Macroscopic_Stage",
+      "Sections": [
+        {
+          "SectionHeading": null,
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_INTRO"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_OVERVIEW",
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_TRANSITIONS",
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_FEATURES",
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_FEATURES"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_UI",
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_UI"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CONCEPT_ART",
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+        },
+        {
+          "SectionHeading": "WIKI_HEADING_CURRENT_DEVELOPMENT",
+          "SectionBody": "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+        }
+      ],
+      "InfoboxData": [
+        {
+          "Name": "INFO_BOX_GAMEPLAY_TYPE",
+          "DisplayedValue": "WIKI_3D"
+        },
+        {
+          "Name": "INFO_BOX_PREVIOUS_STAGE",
+          "DisplayedValue": "MULTICELLULAR_STAGE"
         },
         {
           "Name": "INFO_BOX_NEXT_STAGE",
@@ -2545,7 +2600,7 @@
         },
         {
           "Name": "INFO_BOX_PREVIOUS_STAGE",
-          "DisplayedValue": "MULTICELLULAR_STAGE"
+          "DisplayedValue": "MACROSCOPIC_STAGE"
         },
         {
           "Name": "INFO_BOX_NEXT_STAGE",
@@ -2853,8 +2908,8 @@
       "RestrictedToStages": [
         0,
         1,
-        2,
-        3
+        3,
+        4
       ]
     },
     {

@@ -251,7 +251,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         foreach (var entity in stage!.WorldSimulation.EntitySystem)
         {
-            // TODO: buttons to fossilize early multicellular species
+            // TODO: buttons to fossilize multicellular species
             if (!entity.Has<MicrobeSpeciesMember>())
                 continue;
 
@@ -674,7 +674,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (stage.Player.Get<SpeciesMember>().Species is not EarlyMulticellularSpecies || stage.CurrentGame!.FreeBuild)
+        if (stage.Player.Get<SpeciesMember>().Species is not MulticellularSpecies || stage.CurrentGame!.FreeBuild)
         {
             macroscopicButton.Visible = false;
             return;
@@ -770,10 +770,10 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             return;
         }
 
-        if (!stage.HasPlayer || stage.Player.Get<SpeciesMember>().Species is not EarlyMulticellularSpecies ||
+        if (!stage.HasPlayer || stage.Player.Get<SpeciesMember>().Species is not MulticellularSpecies ||
             playerColonySize is null or < Constants.COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC)
         {
-            GD.Print("Player is no longer eligible to move to late multicellular stage");
+            GD.Print("Player is no longer eligible to move to macroscopic stage");
             return;
         }
 

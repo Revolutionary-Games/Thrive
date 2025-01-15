@@ -305,7 +305,7 @@ public static class OrganelleContainerHelpers
         // used earlier
         status.TimeUntilChemoreceptionUpdate = 0;
 
-        if (entity.Has<EarlyMulticellularSpeciesMember>())
+        if (entity.Has<MulticellularSpeciesMember>())
         {
             ref var growth = ref entity.Get<MulticellularGrowth>();
 

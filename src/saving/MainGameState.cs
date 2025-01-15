@@ -24,14 +24,14 @@ public enum MainGameState
     /// </summary>
     MicrobeEditor,
 
-    EarlyMulticellularEditor,
+    MulticellularEditor,
 
     /// <summary>
-    ///   The late multicellular environment that is 3D
+    ///   The macroscopic environment that is 3D
     /// </summary>
-    MulticellularStage,
+    MacroscopicStage,
 
-    LateMulticellularEditor,
+    MacroscopicEditor,
 
     SocietyStage,
 

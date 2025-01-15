@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Luxembourgish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lb/>\n"
@@ -1578,9 +1578,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-msgid "EARLY_MULTICELLULAR"
-msgstr ""
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
@@ -2700,9 +2697,6 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-msgid "LATE_MULTICELLULAR"
-msgstr ""
-
 msgid "LAUNCH0"
 msgstr ""
 
@@ -2910,10 +2904,10 @@ msgstr "Luedend"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+msgid "LOADING_GAME"
 msgstr ""
 
-msgid "LOADING_GAME"
+msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
@@ -2973,6 +2967,14 @@ msgstr ""
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Chemosythese"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Macroscopech ginn ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3591,6 +3593,10 @@ msgstr ""
 
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr ""
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Multizellular ginn ({0}/{1})"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
@@ -5461,9 +5467,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5525,6 +5528,9 @@ msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
+msgstr ""
+
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
 msgid "TUTORIAL_VIEW_NOW"
@@ -5860,9 +5866,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6515,6 +6518,34 @@ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
 msgid "WIKI_MECHANICS"
 msgstr ""
 
@@ -6847,6 +6878,10 @@ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
+msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
 msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7390,6 +7425,10 @@ msgstr "Eran Zoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Eraus Zoomen"
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "ATP PRODUKTIOUN ZE NIEDREG!"
 
 #, fuzzy
 #~ msgid "EVENT_TOOLTIP_ERUPTION"

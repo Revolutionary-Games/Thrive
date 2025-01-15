@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -97,14 +97,12 @@ msgstr "Avançado"
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr "Abrir as configurações avançadas"
 
-#, fuzzy
 msgid "AEROBIC_NITROGEN_FIXATION"
-msgstr "Fixação Anaeróbica de Nitrogênio"
+msgstr "Fixação Aeróbica de Nitrogênio"
 
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr "Fixação Aeróbica de Nitrogênio"
 
-#, fuzzy
 msgid "AEROBIC_RESPIRATION"
 msgstr "Respiração Aeróbica"
 
@@ -121,7 +119,7 @@ msgid "AGGRESSION_EXPLANATION"
 msgstr ""
 "Micróbios agressivos perseguirão sua presa por mais tempo\n"
 "e são mais propensos a lutar com predadores quando atacados.\n"
-"Entretanto, os micróbios mais pacíficos não vão perseguir outros por tanto tempo\n"
+"Micróbios pacíficos não vão perseguir outros por tanto tempo\n"
 "e são menos inclinados a usar toxinas contra predadores."
 
 msgid "AGGRESSIVE"
@@ -131,7 +129,7 @@ msgid "AI_MUTATION_RATE"
 msgstr "Taxa de mutação da IA"
 
 msgid "AI_MUTATION_RATE_EXPLANATION"
-msgstr "(velocidade que a IA se muta)"
+msgstr "(velocidade de mutação das espécies controladas pela IA)"
 
 msgid "ALL"
 msgstr "Tudo"
@@ -231,9 +229,8 @@ msgstr ""
 "\n"
 "Total de vezes que ascendeu neste salvamento: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Versão:"
+msgstr "Estágio de Ascenção"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr "Classe do assembly do mod é requerida quando o assembly é especificado"
@@ -259,28 +256,28 @@ msgstr "ATP"
 msgid "ATP_BALANCE"
 msgstr "Saldo de ATP"
 
-#, fuzzy
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
-"Esta seção exibe o saldo de cada composto (produção − consumo).\n"
-"Por exemplo, o saldo de glucose precisa ser positivo para uma célula vegetal"
+"Esta seção mostra o equilíbrio total de ATP (energia) da célula atual.\n"
+"Para sobreviver o equilíbrio precisa ser positivo. Para células sésseis, é possível considerar o equilíbrio positivo com o movimento excluído.\n"
+"O menu suspenso abaixo pode ser usado para checar o que aconteceria se a célula não tivesse algum recurso necessário para produzir ATP.\n"
+"Por exemplo, algumas células só podem manter um equilíbrio positivo de ATP quando possuem múltiplos tipos de composto dos quais produzir ATP ao mesmo tempo.\n"
+"Esses tipos de célula são mais difíceis de jogar, já que precisam ter múltiplos tipos de composto armazenados ao mesmo tempo para sobreviver."
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "Sem recursos externos"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "Sem glicose"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-msgstr "Sulfeto de Hidrogênio"
+msgstr "Sem sulfeto de hidrogênio"
 
-#, fuzzy
 msgid "ATP_BALANCE_WITHOUT_IRON"
-msgstr "Saldo de ATP"
+msgstr "Sem ferro"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "Com todos os compostos requeridos"
 
 msgid "ATP_PRODUCTION"
 msgstr "Produção de ATP"
@@ -338,16 +335,14 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultados da Auto-evo:"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
-msgstr "Resultados da Auto-evo:"
+msgstr "Resultados Globais"
 
-#, fuzzy
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
-msgstr "Resultados da Auto-evo:"
+msgstr "Resultados na Região Selecionada"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "Estado da execução:"
+msgstr "estado da execução:"
 
 msgid "AUTO_EVO_STATUS_COLON"
 msgstr "Estado da Auto-Evo:"
@@ -382,9 +377,8 @@ msgstr "Barra Invertida"
 msgid "BACKSPACE"
 msgstr "Backspace"
 
-#, fuzzy
 msgid "BACTERIAL_THERMOSYNTHESIS"
-msgstr "Termossíntese"
+msgstr "Termossíntese Bacteriana"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr "Calcular como se fosse dia"
@@ -1676,9 +1670,6 @@ msgstr "Despejar SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicelular"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Curiosidade: o Didinium e o Paramecium são um exemplo de relação de predador-presa que foi estudado por décadas. Você é o Didinium ou o Paramecium? Predador ou Presa?"
 
@@ -2859,9 +2850,6 @@ msgstr "Esta tradução está muito incompleta ({0}% concluída), por favor, nos
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Não foi possível remover a última organela"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "Multicelular avançado"
-
 msgid "LAUNCH0"
 msgstr "Lançamento 0"
 
@@ -3070,11 +3058,12 @@ msgstr "Carregando"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregando…"
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Carregando Editor Multicelular Inicial"
-
 msgid "LOADING_GAME"
 msgstr "Carregando Jogo"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Carregando Editor de Micróbios"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Carregando Editor de Micróbios"
@@ -3146,6 +3135,14 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enz
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Síntese de mucilagem"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Estágio Microbial"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir Manualmente a Hora do Dia"
@@ -3885,6 +3882,10 @@ msgstr "Síntese de mucilagem"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Visite a nossa página no Patreon"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Multicelular avançado"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicelular"
@@ -5881,18 +5882,6 @@ msgstr "Tente fazer algumas capturas de tela!"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Bem-vindo ao Estágio Multicelular Inicial!\n"
-"\n"
-"Você conseguiu guiar sua espécie pela fase unicelular.\n"
-"\n"
-"O jogo continuará tendo as mecânicas do Estágio Microbial. Ainda será necessário alimentar seu organismo para reproduzir e ir ao editor.\n"
-"\n"
-"Todavia, você poderá projetar sua colônia e especializar suas células para a realização de diferentes funções. Lembre-se de que os membros da colônia não compartilharão [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"Se estiver usando o processo de reprodução gemulação (selecionado por padrão), você começará com uma parte de seu organismo e será preciso crescer o resto das células."
-
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6070,6 +6059,19 @@ msgstr ""
 "Você entrou no modo de desconexão. Nesse modo você pode clicar nos membros da colônia para desconectá-los.\n"
 "\n"
 "Para sair da colônia basta clicar em sua própria célula ou pressionar a tecla [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Bem-vindo ao Estágio Multicelular Inicial!\n"
+"\n"
+"Você conseguiu guiar sua espécie pela fase unicelular.\n"
+"\n"
+"O jogo continuará tendo as mecânicas do Estágio Microbial. Ainda será necessário alimentar seu organismo para reproduzir e ir ao editor.\n"
+"\n"
+"Todavia, você poderá projetar sua colônia e especializar suas células para a realização de diferentes funções. Lembre-se de que os membros da colônia não compartilharão [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Se estiver usando o processo de reprodução gemulação (selecionado por padrão), você começará com uma parte de seu organismo e será preciso crescer o resto das células."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
@@ -6430,9 +6432,6 @@ msgstr "nossa Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "nossa Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7142,6 +7141,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Sem melhorias."
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Estágio Multicelular"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite a ligação com outras células. Este é o primeiro passo até a multicelularidade. Quando sua célula é parte de uma colônia, os compostos são compartilhados entre as células. Você não pode entrar no editor enquanto faz parte de uma colônia, por isso precisa se desconectar após coletar compostos suficientes para dividir sua célula."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Jato de Slime"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Em um planeta distante, éons de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenômeno no universo.\n"
+"\n"
+"A vida.\n"
+"\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Você é o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"\n"
+"Para sobreviver neste mundo hostil, você precisará coletar compostos e evoluir por gerações para competir contra outras espécies de micróbios."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Estágio Espacial"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Estágio Espacial"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Colocar organela"
 
@@ -7550,6 +7584,10 @@ msgstr "Estágio Industrial"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisossomo"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenase"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8153,6 +8191,10 @@ msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Estágio Microbial"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemulação"
 
@@ -8209,10 +8251,6 @@ msgstr "Diminuir o zoom"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Editor de Micróbios"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Estágio Microbial"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8715,3 +8753,7 @@ msgstr "Diminuir o zoom"
 
 #~ msgid "STATUS_COLON"
 #~ msgstr "Estado:"
+
+#, fuzzy
+#~ msgid "WIKI_MICROBE_STAGE"
+#~ msgstr "Estágio Microbial"

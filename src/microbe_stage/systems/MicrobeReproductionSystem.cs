@@ -35,7 +35,7 @@ using World = DefaultEcs.World;
 [With(typeof(BioProcesses))]
 [With(typeof(WorldPosition))]
 [Without(typeof(AttachedToEntity))]
-[Without(typeof(EarlyMulticellularSpeciesMember))]
+[Without(typeof(MulticellularSpeciesMember))]
 [WritesToComponent(typeof(Engulfable))]
 [WritesToComponent(typeof(Engulfer))]
 [WritesToComponent(typeof(TemporaryEndosymbiontInfo))]
@@ -99,7 +99,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             (hexCount * Constants.MICROBE_REPRODUCTION_FREE_RATE_FROM_HEX + 1.0f) * delta;
 
         if (isMulticellular)
-            remainingFreeCompounds *= Constants.EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
+            remainingFreeCompounds *= Constants.MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER;
 
         float remainingAllowedCompoundUse = float.MaxValue;
 
@@ -242,7 +242,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
         if (isInColony)
         {
             // TODO: should the colony just passively get the reproduction compounds in its storage?
-            // Otherwise early multicellular colonies lose the passive reproduction feature
+            // Otherwise multicellular colonies lose the passive reproduction feature
             return;
         }
 

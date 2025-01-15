@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2mf4tuokivmm"]
+
+[ext_resource type="Script" path="res://src/macroscopic_stage/MacroscopicCamera.cs" id="1_q3all"]
+
+[node name="MacroscopicCamera" type="Node3D"]
+process_mode = 3
+process_priority = 100
+editor_description = "Base rotation of the camera"
+script = ExtResource("1_q3all")
+Current = true
+
+[node name="CameraPosition" type="Node3D" parent="."]
+editor_description = "Base camera position offset from the player"
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPosition"]
+spring_length = 3.0
+margin = 0.08
+
+[node name="Camera3D" type="Camera3D" parent="CameraPosition/SpringArm3D"]
+process_priority = 100
+doppler_tracking = 2
+fov = 90.0
+far = 400.0
+
+[node name="AudioListener3D" type="AudioListener3D" parent="CameraPosition/SpringArm3D/Camera3D"]
