@@ -30,12 +30,18 @@ public partial class SpeciesPreview : PhotographablePreview
 
     protected override IImageTask? SetupImageTask()
     {
+        if (previewSpecies == null)
+        {
+            GD.PrintErr("No species set to preview, can't create image task");
+            return null;
+        }
+
         if (previewSpecies is MicrobeSpecies microbeSpecies)
         {
             return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority);
         }
 
-        GD.PrintErr("Unknown species type to preview: ", previewSpecies);
+        GD.PrintErr("Unknown species type to preview: ", previewSpecies, " (", previewSpecies.GetType().Name, ")");
         return null;
     }
 }

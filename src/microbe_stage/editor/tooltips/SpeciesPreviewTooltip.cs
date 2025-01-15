@@ -91,7 +91,7 @@ public partial class SpeciesPreviewTooltip : PanelContainer, ICustomToolTip
         }
         else
         {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies);
+            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
             hexesPreview.PreviewSpecies = null;
         }
     }

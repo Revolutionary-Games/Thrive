@@ -89,14 +89,14 @@ public enum TutorialEventType
     EnteredMicrobeEditor,
 
     /// <summary>
-    ///   Player entered the early multicellular stage
+    ///   Player entered the multicellular stage
     /// </summary>
-    EnteredEarlyMulticellularStage,
+    EnteredMulticellularStage,
 
     /// <summary>
-    ///   Player entered the early multicellular editor
+    ///   Player entered the multicellular editor
     /// </summary>
-    EnteredEarlyMulticellularEditor,
+    EnteredMulticellularEditor,
 
     /// <summary>
     ///   Player changed the microbe editor tab, args is <see cref="StringEventArgs"/>

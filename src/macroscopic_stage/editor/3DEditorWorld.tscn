@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://c1yurukm6a0vq"]
+
+[ext_resource type="PackedScene" path="res://src/macroscopic_stage/editor/EditorCamera3D.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://cpxcni1cii4k8" path="res://assets/models/EditorArrow.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dqiv4qrlqv425" path="res://assets/textures/background/panoramas/HydrothermalVents.png" id="3_usn8f"]
+
+[sub_resource type="PlaneMesh" id="3"]
+size = Vector2(10, 10)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_nliqr"]
+resource_local_to_scene = true
+panorama = ExtResource("3_usn8f")
+
+[sub_resource type="Sky" id="5"]
+resource_local_to_scene = true
+sky_material = SubResource("PanoramaSkyMaterial_nliqr")
+
+[sub_resource type="Environment" id="6"]
+resource_local_to_scene = true
+background_mode = 2
+sky = SubResource("5")
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="3DEditorWorld" type="Node"]
+
+[node name="PrimaryCamera" parent="." instance=ExtResource("1")]
+MinDistance = 1.1
+MaxDistance = 100.0
+SidePresetViewDistances = 15.0
+UpDownMoveSpeed = 2.0
+ZoomSpeed = 0.4
+RotateSpeed = 0.45
+MouseRotateMultiplier = 0.7
+XRotation = -0.658
+YRotation = 3.142
+DefaultXRotation = -0.658
+DefaultYRotation = 3.142
+ViewDistance = 12.0
+DefaultViewDistance = 12.0
+
+[node name="CameraRotationCenter" type="Node3D" parent="."]
+
+[node name="EditorArrow" parent="." instance=ExtResource("2")]
+transform = Transform3D(-0.5, 0, -1.94707e-07, 0, 0.5, 0, 1.94707e-07, 0, -0.5, 0, 0.2, 0)
+
+[node name="EditorLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.420448
+
+[node name="DynamicallySpawned" type="Node3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("6")

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-14 13:42+0200\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: 2024-12-23 20:17+0000\n"
 "Last-Translator: Daniel Horák <danspyhor@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1730,10 +1730,6 @@ msgstr "Vyhoď SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "Duplikovat typ"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Umístit organelu"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Vpíjenka (Didinium) a Trepka (Paramecium) jsou učebnicovým příkladem vztahu predátora a kořisti, který byl studován po celá desetiletí. A co ty, jsi Didinium nebo Paramecium? Predátor nebo kořist?"
 
@@ -3020,10 +3016,6 @@ msgstr "Tento překlad není kompletní ({0}% dokončeno) prosím, pomozte nám 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nelze smazat poslední organelu"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Umístit organelu"
-
 msgid "LAUNCH0"
 msgstr "Spustit 0"
 
@@ -3235,11 +3227,12 @@ msgstr "Načítání"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Nahrávání..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Načítání editoru brzkých mnohobuněčných živočichů"
-
 msgid "LOADING_GAME"
 msgstr "Načítání hry"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Načítání editoru mikrobů"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Načítání editoru mikrobů"
@@ -3310,6 +3303,14 @@ msgstr "Obsahuje trávící enzymy. Může být modifikován pro změnu typu enz
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Syntéza slizů"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Stát se makroskopickým ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Mikrobiální Období"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "ručně nastavený čas dne"
@@ -4071,6 +4072,10 @@ msgstr "Syntéza slizů"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Navštivte náš Patreon"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Umístit organelu"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mnohobuněčný Editor"
@@ -6127,10 +6132,6 @@ msgid "TUTORIAL"
 msgstr "Tutoriál"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Načítání editoru mikrobů"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Toto je mapa prostředí.\n"
@@ -6311,6 +6312,10 @@ msgstr ""
 "Vstoupil/a jsi do odpojovacího módu. V tomto módu můžeš kliknout na členy kolonie, čímž je odpojíš.\n"
 "\n"
 "Na odpuštění kolonie klikni na svou buňku nebo stiskni klávesu [thrive:input]g_unbind_all[/thrive:input]pro odpojení všech."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Načítání editoru mikrobů"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Podívat se na tutoriál"
@@ -6680,9 +6685,6 @@ msgstr "naše Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "naše Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7384,6 +7386,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Mnohobuněčné Období"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Umožňuje spojení s ostatními buňkami. Toto je první krůček k mnohobuněčnému organismu. Když je vaše buňka součástí kolonie, sloučeniny jsou sdíleny mezi členy. Když jste součástí kolonie, nemůžete vstoupit do editoru a musíte se po nasbírání dostatečného množství od kolonie oddělit."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Slizová tryska"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Na vzdálené cizí planetě probíhaly vulkanické činnosti a dopady meteorů, což vedlo k vývoji nového fenoménu ve vesmíru.\n"
+"\n"
+"Života.\n"
+"\n"
+"Jednoduché mikroby se nacházejí v hlubokých oblastech oceánu. Jsi poslední univerzální společný předek (LUCA) na této planetě.\n"
+"\n"
+"Abys v tomto nepřátelském světě přežil/a, budeš muset shromáždit všechny možné sloučeniny, které najdeš a rozvinout další generace, aby konkurovaly ostatním druhům mikrobů."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenáza"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Mikrobiální Období"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Umístit organelu"
 
@@ -7783,6 +7820,10 @@ msgstr "Pojící médium"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysozom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenáza"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8379,6 +8420,17 @@ msgid "ZOOM_OUT"
 msgstr "Oddálit"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Mikrobiální Období"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Umístit organelu"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Načítání editoru brzkých mnohobuněčných živočichů"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pučení"
 
@@ -8435,10 +8487,6 @@ msgstr "Oddálit"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Mikrobiální Editor"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Mikrobiální Období"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

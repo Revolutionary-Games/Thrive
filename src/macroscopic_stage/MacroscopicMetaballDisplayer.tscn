@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dagq5aexbmybf"]
+
+[ext_resource type="Script" path="res://src/macroscopic_stage/MacroscopicMetaballDisplayer.cs" id="1"]
+
+[node name="MacroscopicMetaballDisplayer" type="MultiMeshInstance3D"]
+script = ExtResource("1")

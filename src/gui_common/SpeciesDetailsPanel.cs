@@ -93,7 +93,7 @@ public partial class SpeciesDetailsPanel : MarginContainer
         }
         else
         {
-            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies);
+            GD.PrintErr("Unknown species type to preview: ", PreviewSpecies, " (", PreviewSpecies.GetType().Name, ")");
         }
 
         speciesDetailsLabel!.ExtendedBbcode = PreviewSpecies?.GetDetailString();

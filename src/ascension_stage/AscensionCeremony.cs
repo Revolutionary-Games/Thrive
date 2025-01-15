@@ -66,7 +66,7 @@ public partial class AscensionCeremony : Node
 
     private Camera3D worldCameraToDisable = null!;
 
-    private MulticellularCreature? gateWalker;
+    private MacroscopicCreature? gateWalker;
 #pragma warning restore CA2213
 
     private double stateTimer;
