@@ -516,7 +516,7 @@ public class SimulationCache
     {
         Vector3 organellePosition = Hex.AxialToCartesian(pos);
         Vector3 downVector = new Vector3(0, 0, 1);
-        float angleCos = organellePosition.Normalized().Dot(downVector.Normalized());
+        float angleCos = organellePosition.Normalized().Dot(downVector);
 
         // If degrees is higher than 40 then return 0
         return angleCos >= 0.75 ? angleCos : 0;
