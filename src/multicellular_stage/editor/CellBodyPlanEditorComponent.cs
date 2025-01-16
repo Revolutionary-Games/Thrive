@@ -556,6 +556,13 @@ public partial class CellBodyPlanEditorComponent :
         var seriesValue = 1 - 1 / (float)Math.Pow(2, editedMicrobeCells.Count - 1);
         speed -= speed * 0.15f * seriesValue;
 
+        if (editedMicrobeCells.Count == 1)
+            return speed;
+
+        float massEstimate = 0.0f;
+
+        float addedSpeed = 0.0f;
+
         foreach (var hex in editedMicrobeCells)
         {
             var cell = hex.Data!;
@@ -565,6 +572,8 @@ public partial class CellBodyPlanEditorComponent :
 
             foreach (var organelle in cell.Organelles)
             {
+                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
+
                 if (!organelle.Definition.HasMovementComponent)
                     continue;
 
@@ -576,17 +585,17 @@ public partial class CellBodyPlanEditorComponent :
                     upgradeForce = Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumUpgrades.LengthFraction;
                 }
 
-                float addedForce = (Constants.FLAGELLA_BASE_FORCE + upgradeForce)
+                float flagellumForce = (Constants.FLAGELLA_BASE_FORCE + upgradeForce)
                     * organelle.Definition.Components.Movement!.Momentum;
 
                 if (!cell.IsBacteria)
-                    addedForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
+                    flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
 
-                speed += addedForce;
+                addedSpeed += flagellumForce;
             }
         }
 
-        return speed / editedMicrobeCells.Count;
+        return speed / editedMicrobeCells.Count + addedSpeed / (massEstimate * 1.4f);
     }
 
     public float CalculateRotationSpeed()
