@@ -90,6 +90,8 @@ public class GameWorld : ISaveLoadable
             TimedEffects.RegisterEffect("compound_diffusion", new CompoundDiffusionEffect(this));
             TimedEffects.RegisterEffect("iron_oxidation", new IronOxidationEffect(this));
 
+            TimedEffects.RegisterEffect("marine_snow", new MarineSnowDensityEffect(this));
+
             // Register glucose reduction
             TimedEffects.RegisterEffect("reduce_glucose", new GlucoseReductionEffect(this));
         }
