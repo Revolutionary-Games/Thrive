@@ -304,6 +304,9 @@ public partial class CellEditorComponent :
     private ProcessList processList = null!;
 
     [Export]
+    private CheckBox showGrowthOrderCoordinates = null!;
+
+    [Export]
     private Control growthOrderNumberContainer = null!;
 
     [Export]
@@ -700,6 +703,10 @@ public partial class CellEditorComponent :
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        // TODO: make this setting persistent from somewhere
+        // showGrowthOrderCoordinates.ButtonPressed = true;
+        growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
