@@ -246,7 +246,7 @@ public partial class CellBodyPlanEditorComponent
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
-        // ProcessSystem.ComputeActiveProcessList(organelles, ref processes);
+        ProcessSystem.ComputeActiveProcessList(cells[0].Data!.Organelles, ref processes);
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 
