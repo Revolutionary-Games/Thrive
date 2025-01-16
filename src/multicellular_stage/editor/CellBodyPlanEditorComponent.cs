@@ -1180,7 +1180,6 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        // Handle process list
         HandleProcessList(cells, energyBalance, conditionsData);
     }
 
