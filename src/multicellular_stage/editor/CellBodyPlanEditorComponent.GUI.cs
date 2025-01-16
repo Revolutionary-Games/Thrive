@@ -238,7 +238,7 @@ public partial class CellBodyPlanEditorComponent
             warningTime, fillingUpTime, notEnoughStorageWarning);
     }
 
-    private void HandleProcessList(IReadOnlyList<IPositionedOrganelle> organelles, EnergyBalanceInfo energyBalance,
+    private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfo energyBalance,
         IBiomeConditions biome)
     {
         var processes = new List<TweakedProcess>();
@@ -246,7 +246,7 @@ public partial class CellBodyPlanEditorComponent
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
-        ProcessSystem.ComputeActiveProcessList(organelles, ref processes);
+        // ProcessSystem.ComputeActiveProcessList(organelles, ref processes);
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 

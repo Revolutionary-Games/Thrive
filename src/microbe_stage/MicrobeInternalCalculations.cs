@@ -64,7 +64,7 @@ public static class MicrobeInternalCalculations
         return capacities;
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<HexWithData<CellTemplate>> cells, out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<CellTemplate> cells, out float nominalCapacity)
     {
         nominalCapacity = 0.0f;
 
@@ -72,10 +72,10 @@ public static class MicrobeInternalCalculations
 
         foreach (var cell in cells)
         {
-            var totalNominalCap = GetTotalNominalCapacity(cell.Data!.Organelles);
+            var totalNominalCap = GetTotalNominalCapacity(cell.Organelles);
             nominalCapacity += totalNominalCap;
 
-            AddSpecificCapacity(cell.Data!.Organelles, capacities, totalNominalCap);
+            AddSpecificCapacity(cell.Organelles, capacities, totalNominalCap);
         }
 
         return capacities;

@@ -195,13 +195,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </summary>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
-        WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources)
+        WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources,
+        EnergyBalanceInfo? balanceInfo = null)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null);
+            isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null, balanceInfo);
     }
 
     /// <summary>
@@ -227,18 +228,25 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   If true, then the required input compounds to run at the given energy balance are stored per energy producer
     /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
+    /// <param name="balanceInfo">
+    ///   Energy balance info to add the new info to. Useful for calculating multiple cells' balances
+    /// </param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache)
+        CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache,
+        EnergyBalanceInfo? balanceInfo = null)
     {
         // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
         // further items
-        var result = new EnergyBalanceInfo();
-
-        if (calculateRequiredResources)
+        if (balanceInfo == null)
         {
-            result.SetupTrackingForRequiredCompounds();
+            balanceInfo = new EnergyBalanceInfo();
+
+            if (calculateRequiredResources)
+            {
+                balanceInfo.SetupTrackingForRequiredCompounds();
+            }
         }
 
         float processATPProduction = 0.0f;
@@ -252,7 +260,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
 
-            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, result);
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, balanceInfo);
 
             processATPProduction += production;
             processATPConsumption += consumption;
@@ -276,8 +284,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 if (organelleDirection.Dot(onlyMovementInDirection) > 0)
                 {
                     movementATPConsumption += amount;
-                    result.Flagella += amount;
-                    result.AddConsumption(organelle.Definition.InternalName, amount);
+                    balanceInfo.Flagella += amount;
+                    balanceInfo.AddConsumption(organelle.Definition.InternalName, amount);
                 }
             }
 
@@ -286,55 +294,58 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 var amount = Constants.CILIA_ENERGY_COST;
 
                 movementATPConsumption += amount;
-                result.Cilia += amount;
-                result.AddConsumption(organelle.Definition.InternalName, amount);
+                balanceInfo.Cilia += amount;
+                balanceInfo.AddConsumption(organelle.Definition.InternalName, amount);
             }
 
             // Store hex count
             hexCount += organelle.Definition.HexCount;
         }
 
-        result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        float baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        balanceInfo.BaseMovement += baseMovement;
 
         if (includeMovementCost)
         {
             // Add movement consumption together
-            result.AddConsumption("baseMovement", result.BaseMovement);
-            result.TotalMovement = movementATPConsumption + result.BaseMovement;
+            balanceInfo.AddConsumption("baseMovement", baseMovement);
+            balanceInfo.TotalMovement += movementATPConsumption + baseMovement;
         }
         else
         {
-            result.TotalMovement = -1;
+            balanceInfo.TotalMovement = -1;
         }
 
         // Add osmoregulation
-        result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
+        float osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
 
         if (isPlayerSpecies)
         {
-            result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
+            osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
-        result.AddConsumption("osmoregulation", result.Osmoregulation);
+        balanceInfo.Osmoregulation += osmoregulation;
+
+        balanceInfo.AddConsumption("osmoregulation", osmoregulation);
 
         // Compute totals
-        result.TotalProduction = processATPProduction;
-        result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
+        balanceInfo.TotalProduction += processATPProduction;
+        balanceInfo.TotalConsumptionStationary += processATPConsumption + osmoregulation;
 
         if (includeMovementCost)
         {
-            result.TotalConsumption = result.TotalConsumptionStationary + result.TotalMovement;
+            balanceInfo.TotalConsumption = balanceInfo.TotalConsumptionStationary + balanceInfo.TotalMovement;
         }
         else
         {
-            result.TotalConsumption = result.TotalConsumptionStationary;
+            balanceInfo.TotalConsumption = balanceInfo.TotalConsumptionStationary;
         }
 
-        result.FinalBalance = result.TotalProduction - result.TotalConsumption;
-        result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
+        balanceInfo.FinalBalance = balanceInfo.TotalProduction - balanceInfo.TotalConsumption;
+        balanceInfo.FinalBalanceStationary = balanceInfo.TotalProduction - balanceInfo.TotalConsumptionStationary;
 
-        return result;
+        return balanceInfo;
     }
 
     /// <summary>
@@ -350,9 +361,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
         IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome)
+        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance>? result = null)
     {
-        var result = new Dictionary<Compound, CompoundBalance>();
+        result ??= new Dictionary<Compound, CompoundBalance>();
 
         void MakeSureResultExists(Compound compound)
         {
@@ -388,10 +399,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
         IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome)
+        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance>? result = null)
     {
         return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
-            requireInputCompoundsInBiome);
+            requireInputCompoundsInBiome, result);
     }
 
     /// <summary>
@@ -406,9 +417,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </remarks>
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
         IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance)
+        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance>? result = null)
     {
-        var result = new Dictionary<Compound, CompoundBalance>();
+        result ??= new Dictionary<Compound, CompoundBalance>();
 
         void MakeSureResultExists(Compound compound)
         {
@@ -464,10 +475,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
     public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
         IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance)
+        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance>? result = null)
     {
         return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
-            energyBalance);
+            energyBalance, result);
     }
 
     /// <summary>

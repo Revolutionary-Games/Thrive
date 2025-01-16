@@ -30,7 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="21_1xcra"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="22_2puie"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="30_4y6am"]
-[ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
+[ext_resource type="PackedScene" uid="uid://dhax5i7j5l5b0" path="res://src/microbe_stage/ProcessList.tscn" id="31_iccom"]
 
 [sub_resource type="StyleBoxFlat" id="4"]
 content_margin_left = 5.0
@@ -348,6 +348,8 @@ CannotDeleteInUseTypeDialogPath = NodePath("CannotDeleteInUseType")
 DuplicateCellTypeDialogPath = NodePath("NewCellTypeSetup")
 DuplicateCellTypeNamePath = NodePath("NewCellTypeSetup/VBoxContainer2/NewName")
 CellPopupMenuPath = NodePath("CellPopupMenu")
+ATPBalanceNormalText = ExtResource("17_fmo1q")
+ATPBalanceNotEnoughText = ExtResource("4_70j43")
 storageLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 speedLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed")
 rotationSpeedLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation")
@@ -358,8 +360,6 @@ calculateBalancesWhenMoving = NodePath("RightPanel/VBoxContainer/Statistics/VBox
 notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
 processListButton = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
 processList = NodePath("ProcessPanel/ScrollContainer/ProcessList")
-ATPBalanceNormalText = ExtResource("17_fmo1q")
-ATPBalanceNotEnoughText = ExtResource("4_70j43")
 atpBalancePanel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
 atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
 atpProductionLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
@@ -592,8 +592,8 @@ mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
 [node name="Statistics" type="PanelContainer" parent="RightPanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
+size_flags_vertical = 3
 mouse_filter = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics"]

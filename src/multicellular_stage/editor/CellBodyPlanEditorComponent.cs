@@ -58,6 +58,14 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath CellPopupMenuPath = null!;
 
+#pragma warning disable CA2213
+    [Export]
+    public LabelSettings ATPBalanceNormalText = null!;
+
+    [Export]
+    public LabelSettings ATPBalanceNotEnoughText = null!;
+#pragma warning restore CA2213
+
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -136,12 +144,6 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private ProcessList processList = null!;
-
-    [Export]
-    private LabelSettings ATPBalanceNormalText = null!;
-
-    [Export]
-    private LabelSettings ATPBalanceNotEnoughText = null!;
 
     [Export]
     private Control atpBalancePanel = null!;
@@ -611,7 +613,7 @@ public partial class CellBodyPlanEditorComponent :
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         // TODO: merge this with nominal get to make this more efficient
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells, out nominalCapacity);
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!), out nominalCapacity);
     }
 
     protected CellType CellTypeFromName(string name)
@@ -1147,15 +1149,14 @@ public partial class CellBodyPlanEditorComponent :
             conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
         }
 
-        var organelles = new List<OrganelleTemplate>();
+        var energyBalance = new EnergyBalanceInfo();
+        energyBalance.SetupTrackingForRequiredCompounds();
         foreach (var hex in cells)
         {
-            organelles.AddRange(hex.Data!.Organelles);
+            energyBalance = ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType,
+                moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true, energyBalance);
         }
-
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, cells[0].Data!.MembraneType,
-            moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
 
         UpdateEnergyBalance(energyBalance);
 
@@ -1166,43 +1167,47 @@ public partial class CellBodyPlanEditorComponent :
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
                 calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
-                organelles, conditionsData, energyBalance,
+                cells, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
         var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
-            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
+            CompoundAmountType.Minimum, cells, conditionsData, energyBalance, ref specificStorages,
             ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
         // Handle process list
-        HandleProcessList(organelles, energyBalance, conditionsData);
+        HandleProcessList(cells, energyBalance, conditionsData);
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
-        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions biome,
+        CompoundAmountType amountType, IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome,
         EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
     {
-        Dictionary<Compound, CompoundBalance> compoundBalanceData;
-        switch (calculationType)
+        Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
+        foreach (var cell in cells)
         {
-            case BalanceDisplayType.MaxSpeed:
-                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
-                break;
-            case BalanceDisplayType.EnergyEquilibrium:
-                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-                    amountType, energyBalance);
-                break;
-            default:
-                GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
-                goto case BalanceDisplayType.EnergyEquilibrium;
+            switch (calculationType)
+            {
+                case BalanceDisplayType.MaxSpeed:
+                    compoundBalanceData = ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome,
+                        amountType, true, compoundBalanceData);
+                    break;
+                case BalanceDisplayType.EnergyEquilibrium:
+                    compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
+                        amountType, energyBalance, compoundBalanceData);
+                    break;
+                default:
+                    GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                    goto case BalanceDisplayType.EnergyEquilibrium;
+            }
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!), out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
