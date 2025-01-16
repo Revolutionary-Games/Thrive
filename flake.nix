@@ -4,38 +4,42 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
-
-    # PR for godot4-mono 4.2.1 https://github.com/NixOS/nixpkgs/pull/285941
-    # TODO: switch to master once merged
-    nixpkgs-godot.url = "github:GameDungeon/nixpkgs/Godot-4.2.2";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nixpkgs-godot,
-    flake-utils,
-  }:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+    }:
     flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = import nixpkgs {inherit system;};
-        pkgs-godot = import nixpkgs-godot {inherit system;};
-        fhs = pkgs.buildFHSUserEnv {
+      system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          config = {
+            # Dotnet 6 is EOL, but godot still needs it
+            # This can be removed in 4.4
+            permittedInsecurePackages = [
+              "dotnet-sdk-6.0.428"
+            ];
+          };
+        };
+        fhs = pkgs.buildFHSEnv {
           name = "fhs-shell";
 
-          targetPkgs = pkgs:
-            with pkgs; [
+          targetPkgs =
+            pkgs: with pkgs; [
               # Godot
-              dotnet-sdk_8
-              ((pkgs-godot.callPackage "${nixpkgs-godot}/pkgs/development/tools/godot/4/mono" {}).override {
-                withTouch = false;
-                withDebug = "yes"; # Set to yes if you wish to do profiling
+              (godot_4.override {
+                withMono = true;
+                dotnet-sdk_8 = dotnet-sdk_9;
               })
 
               # For compiling native libraries
               cmake
-              clang_14
-              lld_17
+              clang_18
+              lld_18
 
               # For packaging manually
               zip
@@ -47,6 +51,9 @@
 
               # Profiling
               flamegraph
+
+              # Dotnet
+              dotnet-sdk_9
 
               # Runtime dependencies
               xorg.libX11
@@ -63,12 +70,13 @@
               vulkan-headers
               libglvnd
               dbus
-              alsaLib
+              alsa-lib
               pulseaudio
               icu
             ];
         };
-      in {
+      in
+      {
         devShell = fhs.env;
       }
     );
