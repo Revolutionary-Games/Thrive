@@ -381,10 +381,11 @@ public partial class PatchMapDrawer : Control
 
     private static bool SegmentRectangleIntersects(Vector2 start, Vector2 end, Rect2 rect)
     {
-        var p0 = rect.Position;
-        var p1 = rect.Position + new Vector2(0, rect.Size.Y);
-        var p2 = rect.Position + new Vector2(rect.Size.X, 0);
-        var p3 = rect.End;
+        var margin = Constants.PATCH_REGION_MARGIN;
+        var p0 = rect.Position + new Vector2(-margin, -margin);
+        var p1 = rect.Position + new Vector2(-margin, margin + rect.Size.Y);
+        var p2 = rect.Position + new Vector2(margin + rect.Size.X, -margin);
+        var p3 = rect.End + new Vector2(margin, margin);
 
         return SegmentSegmentIntersects(p0, p1, start, end) ||
             SegmentSegmentIntersects(p0, p2, start, end) ||
@@ -662,8 +663,7 @@ public partial class PatchMapDrawer : Control
         Vector2 intermediate2;
 
         const float offset = Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN;
-        const float margin = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN +
-            Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
+        const float margin = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN * 3;
         int startRows = (int)Math.Round((start.Height - margin) / offset);
         int startColumns = (int)Math.Round((start.Width - margin) / offset);
         int endRows = (int)Math.Round((end.Height - margin) / offset);
@@ -810,26 +810,22 @@ public partial class PatchMapDrawer : Control
             // Endpoint position
             foreach (var (path, endpoint, _, _) in connectionsToDirections[0])
             {
-                path[endpoint].X -= region.Value.Width / 2 + halfBorderWidth -
-                    Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
+                path[endpoint].X -= region.Value.Width / 2 + halfBorderWidth;
             }
 
             foreach (var (path, endpoint, _, _) in connectionsToDirections[1])
             {
-                path[endpoint].Y -= region.Value.Height / 2 + halfBorderWidth -
-                    Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
+                path[endpoint].Y -= region.Value.Height / 2 + halfBorderWidth;
             }
 
             foreach (var (path, endpoint, _, _) in connectionsToDirections[2])
             {
-                path[endpoint].X += region.Value.Width / 2 + halfBorderWidth -
-                    Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
+                path[endpoint].X += region.Value.Width / 2 + halfBorderWidth;
             }
 
             foreach (var (path, endpoint, _, _) in connectionsToDirections[3])
             {
-                path[endpoint].Y += region.Value.Height / 2 + halfBorderWidth -
-                    Constants.PATCH_REGION_CONNECTION_LINE_MARGIN;
+                path[endpoint].Y += region.Value.Height / 2 + halfBorderWidth;
             }
 
             // Separation
@@ -1034,7 +1030,7 @@ public partial class PatchMapDrawer : Control
         {
             foreach (var patch in SelectedPatch.Adjacent)
             {
-                if (patch.Region.ID == SelectedPatch.Region.ID)
+                if (patch.Region.ID == SelectedPatch.Region.ID && patch.Visibility != MapElementVisibility.Hidden)
                 {
                     var start = PatchCenter(SelectedPatch.ScreenCoordinates);
                     var end = PatchCenter(patch.ScreenCoordinates);
@@ -1132,11 +1128,18 @@ public partial class PatchMapDrawer : Control
             bool isHorizontal = Math.Abs(regionPoint.Y - regionPreviousPoint.Y) < MathUtils.EPSILON;
             bool highlight = (ContainsSelectedPatch(region1) && SelectedPatch?.Adjacent?.Contains(adjacent) == true) ||
                 (ContainsSelectedPatch(region2) && SelectedPatch?.ID == adjacent.ID);
+
+            float margin = Constants.PATCH_AND_REGION_MARGIN * 1.5f;
+            if ((isHorizontal && regionPoint.X < regionPreviousPoint.X) || regionPoint.Y < regionPreviousPoint.Y)
+                margin = -margin;
+
             Vector2 patchCenter = PatchCenter(adjacent.ScreenCoordinates);
+            Vector2 intermediate = new Vector2(regionPoint.X + (isHorizontal ? margin : 0),
+                regionPoint.Y + (isHorizontal ? 0 : margin));
             Vector2 middlePoint = isHorizontal ?
-                new Vector2(regionPoint.X, patchCenter.Y) :
-                new Vector2(patchCenter.X, regionPoint.Y);
-            Vector2[] path = [patchCenter, middlePoint, regionPoint];
+                new Vector2(intermediate.X, patchCenter.Y) :
+                new Vector2(patchCenter.X, intermediate.Y);
+            Vector2[] path = [patchCenter, middlePoint, intermediate, regionPoint];
 
             // If the path is highlighted then create it later to be on top of other paths
             if (!highlight)
