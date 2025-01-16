@@ -64,7 +64,7 @@ public static class MicrobeInternalCalculations
         return capacities;
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<HexWithData<CellTemplate>> cells, out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IReadOnlyList<HexWithData<CellTemplate>> cells, out float nominalCapacity)
     {
         nominalCapacity = 0.0f;
 

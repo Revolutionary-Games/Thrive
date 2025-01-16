@@ -69,6 +69,8 @@ public partial class CellBodyPlanEditorComponent :
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
 
+    private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -119,6 +121,48 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private CompoundStorageStatistics compoundStorageLastingTimes = null!;
+
+    [Export]
+    private CheckBox calculateBalancesAsIfDay = null!;
+
+    [Export]
+    private CheckBox calculateBalancesWhenMoving = null!;
+
+    [Export]
+    private CustomRichTextLabel notEnoughStorageWarning = null!;
+
+    [Export]
+    private Button processListButton = null!;
+
+    [Export]
+    private ProcessList processList = null!;
+
+    [Export]
+    private LabelSettings ATPBalanceNormalText = null!;
+
+    [Export]
+    private LabelSettings ATPBalanceNotEnoughText = null!;
+
+    [Export]
+    private Control atpBalancePanel = null!;
+
+    [Export]
+    private Label atpBalanceLabel = null!;
+
+    [Export]
+    private Label atpProductionLabel = null!;
+
+    [Export]
+    private Label atpConsumptionLabel = null!;
+
+    [Export]
+    private SegmentedBar atpProductionBar = null!;
+
+    [Export]
+    private SegmentedBar atpConsumptionBar = null!;
+
+    [Export]
+    private CustomWindow processListWindow = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -136,6 +180,10 @@ public partial class CellBodyPlanEditorComponent :
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
 
     private bool forceUpdateCellGraphics;
+
+    private EnergyBalanceInfo? energyBalanceInfo;
+
+    private ResourceLimitingMode balanceMode;
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -1078,6 +1126,85 @@ public partial class CellBodyPlanEditorComponent :
         UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
+    /// <summary>
+    ///   Calculates the energy balance and compound balance for a colony
+    /// </summary>
+    private void CalculateEnergyAndCompoundBalance(IReadOnlyList<HexWithData<CellTemplate>> cells,
+        BiomeConditions? biome = null)
+    {
+        biome ??= Editor.CurrentPatch.Biome;
+
+        bool moving = calculateBalancesWhenMoving.ButtonPressed;
+
+        IBiomeConditions conditionsData = biome;
+
+        if (balanceMode != ResourceLimitingMode.AllResources)
+        {
+            conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
+        }
+
+        var organelles = new List<OrganelleTemplate>();
+        foreach (var hex in cells)
+        {
+            organelles.AddRange(hex.Data!.Organelles);
+        }
+
+        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, cells[0].Data!.MembraneType,
+            moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
+
+        UpdateEnergyBalance(energyBalance);
+
+        float nominalStorage = 0;
+        Dictionary<Compound, float>? specificStorages = null;
+
+        // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
+        var compoundBalanceData =
+            CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
+                organelles, conditionsData, energyBalance,
+                ref specificStorages, ref nominalStorage);
+
+        UpdateCompoundBalances(compoundBalanceData);
+
+        // TODO: should this skip on being affected by the resource limited?
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+            CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
+            ref nominalStorage);
+
+        UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
+            specificStorages ?? throw new Exception("Special storages should have been calculated"));
+
+        // Handle process list
+        HandleProcessList(organelles, energyBalance, conditionsData);
+    }
+
+    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
+        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions biome,
+        EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
+    {
+        Dictionary<Compound, CompoundBalance> compoundBalanceData;
+        switch (calculationType)
+        {
+            case BalanceDisplayType.MaxSpeed:
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
+                break;
+            case BalanceDisplayType.EnergyEquilibrium:
+                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
+                    amountType, energyBalance);
+                break;
+            default:
+                GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                goto case BalanceDisplayType.EnergyEquilibrium;
+        }
+
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(organelles, out nominalStorage);
+
+        return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
     /// <summary>
