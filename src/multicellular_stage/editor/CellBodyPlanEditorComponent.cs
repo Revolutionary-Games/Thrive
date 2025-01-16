@@ -221,6 +221,10 @@ public partial class CellBodyPlanEditorComponent :
         ApplySelectionMenuTab();
 
         RegisterTooltips();
+
+        atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
+        atpProductionBar.IsProduction = true;
+        atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
     }
 
     public override void ResolveNodeReferences()
