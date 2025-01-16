@@ -29,16 +29,14 @@ public class MarineSnowDensityEffect : IWorldEffect
     public void OnTimePassed(double elapsed, double totalTimePassed)
     {
         var templateBiome = SimulationParameters.Instance.GetBiome(TemplateBiomeForMarineSnow);
-        var fullMarineSnowConfig = templateBiome.Conditions.Chunks[MarineSnowConfiguration];
+        var templateMarineSnowConfig = templateBiome.Conditions.Chunks[MarineSnowConfiguration];
 
-        foreach (var key in targetWorld.Map.Patches.Keys)
+        foreach (var patch in targetWorld.Map.Patches.Values)
         {
-            var patch = targetWorld.Map.Patches[key];
-
             if (patch.Biome.Chunks.TryGetValue(MarineSnowConfiguration, out var snowConfig))
             {
                 // Found a patch with marine snow in it, update the density and available organelles
-                AdjustMarineSnowDensity(patch, snowConfig, fullMarineSnowConfig);
+                AdjustMarineSnowDensity(patch, snowConfig, templateMarineSnowConfig);
             }
         }
     }
