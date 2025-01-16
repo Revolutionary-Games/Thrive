@@ -15,6 +15,7 @@ public partial class CellBodyPlanEditorComponent
 
     protected override void OnTranslationsChanged()
     {
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
 
     private void UpdateStorage(Dictionary<Compound, float> storage, float nominalStorage)

@@ -505,6 +505,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateCellTypeSelections();
 
         RegenerateCellTypeIcon(changedType);
+
+        UpdateStats();
     }
 
     /// <summary>
@@ -614,6 +616,11 @@ public partial class CellBodyPlanEditorComponent :
     {
         // TODO: merge this with nominal get to make this more efficient
         return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!), out nominalCapacity);
+    }
+
+    public void OnCurrentPatchUpdated(Patch patch)
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
 
     protected CellType CellTypeFromName(string name)
