@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -183,22 +183,22 @@ public partial class CellBodyPlanEditorComponent
             switch (subBar.Name)
             {
                 case "osmoregulation":
-                    {
-                        displayName = Localization.Translate("OSMOREGULATION");
-                        break;
-                    }
+                {
+                    displayName = Localization.Translate("OSMOREGULATION");
+                    break;
+                }
 
                 case "baseMovement":
-                    {
-                        displayName = Localization.Translate("BASE_MOVEMENT");
-                        break;
-                    }
+                {
+                    displayName = Localization.Translate("BASE_MOVEMENT");
+                    break;
+                }
 
                 default:
-                    {
-                        displayName = SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name;
-                        break;
-                    }
+                {
+                    displayName = SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name;
+                    break;
+                }
             }
 
             tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")

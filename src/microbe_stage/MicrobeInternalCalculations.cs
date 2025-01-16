@@ -64,7 +64,8 @@ public static class MicrobeInternalCalculations
         return capacities;
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<CellTemplate> cells, out float nominalCapacity)
+    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<CellTemplate> cells,
+        out float nominalCapacity)
     {
         nominalCapacity = 0.0f;
 
@@ -82,7 +83,7 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Variant of <see cref="GetTotalSpecificCapacity"/> to update spawned microbe stats. The used
+    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, out float)"/> to update spawned microbe stats. The used
     ///   <see cref="CompoundBag"/> must already have the correct nominal capacity set for this to work correctly.
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>

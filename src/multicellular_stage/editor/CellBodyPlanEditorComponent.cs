@@ -583,8 +583,7 @@ public partial class CellBodyPlanEditorComponent :
 
                 float upgradeForce = 0.0f;
 
-                if (organelle.Upgrades != null && organelle.Upgrades.CustomUpgradeData
-                    is FlagellumUpgrades flagellumUpgrades)
+                if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
                 {
                     upgradeForce = Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumUpgrades.LengthFraction;
                 }
@@ -628,7 +627,8 @@ public partial class CellBodyPlanEditorComponent :
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         // TODO: merge this with nominal get to make this more efficient
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!), out nominalCapacity);
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!),
+            out nominalCapacity);
     }
 
     public void OnCurrentPatchUpdated(Patch patch)
@@ -1173,9 +1173,10 @@ public partial class CellBodyPlanEditorComponent :
         energyBalance.SetupTrackingForRequiredCompounds();
         foreach (var hex in cells)
         {
-            energyBalance = ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType,
-                moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
-                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true, energyBalance);
+            energyBalance = ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData,
+                hex.Data.MembraneType, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true,
+                energyBalance);
         }
 
         UpdateEnergyBalance(energyBalance);
@@ -1203,9 +1204,10 @@ public partial class CellBodyPlanEditorComponent :
         HandleProcessList(cells, energyBalance, conditionsData);
     }
 
-    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
-        CompoundAmountType amountType, IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome,
-        EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
+    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(
+        BalanceDisplayType calculationType, CompoundAmountType amountType,
+        IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfo energyBalance,
+        ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();
         foreach (var cell in cells)
@@ -1226,7 +1228,8 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!), out nominalStorage);
+        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
+            out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
