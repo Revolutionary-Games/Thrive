@@ -49,7 +49,13 @@ public partial class BackgroundPlane : Node3D
     public float PlaneOffset
     {
         get => backgroundPlane.Position.Z;
-        set => backgroundPlane.Position = new Vector3(0, 0, value);
+        set
+        {
+            backgroundPlane.Position = new Vector3(0, 0, value);
+
+            // Move the result plane too to avoid it occluding something
+            blurResultPlane.Position = new Vector3(0, 0, value);
+        }
     }
 
     public override void _Ready()
