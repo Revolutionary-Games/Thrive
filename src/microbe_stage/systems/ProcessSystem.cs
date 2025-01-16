@@ -196,13 +196,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources,
-        EnergyBalanceInfo? balanceInfo = null)
+        EnergyBalanceInfo? result = null)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null, balanceInfo);
+            isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null, result);
     }
 
     /// <summary>
@@ -228,24 +228,24 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   If true, then the required input compounds to run at the given energy balance are stored per energy producer
     /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
-    /// <param name="balanceInfo">
-    ///   Energy balance info to add the new info to. Useful for calculating multiple cells' balances
+    /// <param name="result">
+    ///   Energy balance info to add the new info to. To be used for calculating multiple cells' balances
     /// </param>
     public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache,
-        EnergyBalanceInfo? balanceInfo = null)
+        EnergyBalanceInfo? result = null)
     {
         // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
         // further items
-        if (balanceInfo == null)
+        if (result == null)
         {
-            balanceInfo = new EnergyBalanceInfo();
+            result = new EnergyBalanceInfo();
 
             if (calculateRequiredResources)
             {
-                balanceInfo.SetupTrackingForRequiredCompounds();
+                result.SetupTrackingForRequiredCompounds();
             }
         }
 
@@ -260,7 +260,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
 
-            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, balanceInfo);
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, result);
 
             processATPProduction += production;
             processATPConsumption += consumption;
@@ -284,8 +284,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 if (organelleDirection.Dot(onlyMovementInDirection) > 0)
                 {
                     movementATPConsumption += amount;
-                    balanceInfo.Flagella += amount;
-                    balanceInfo.AddConsumption(organelle.Definition.InternalName, amount);
+                    result.Flagella += amount;
+                    result.AddConsumption(organelle.Definition.InternalName, amount);
                 }
             }
 
@@ -294,8 +294,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 var amount = Constants.CILIA_ENERGY_COST;
 
                 movementATPConsumption += amount;
-                balanceInfo.Cilia += amount;
-                balanceInfo.AddConsumption(organelle.Definition.InternalName, amount);
+                result.Cilia += amount;
+                result.AddConsumption(organelle.Definition.InternalName, amount);
             }
 
             // Store hex count
@@ -303,17 +303,17 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         float baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
-        balanceInfo.BaseMovement += baseMovement;
+        result.BaseMovement += baseMovement;
 
         if (includeMovementCost)
         {
             // Add movement consumption together
-            balanceInfo.AddConsumption("baseMovement", baseMovement);
-            balanceInfo.TotalMovement += movementATPConsumption + baseMovement;
+            result.AddConsumption("baseMovement", baseMovement);
+            result.TotalMovement += movementATPConsumption + baseMovement;
         }
         else
         {
-            balanceInfo.TotalMovement = -1;
+            result.TotalMovement = -1;
         }
 
         // Add osmoregulation
@@ -325,27 +325,27 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
-        balanceInfo.Osmoregulation += osmoregulation;
+        result.Osmoregulation += osmoregulation;
 
-        balanceInfo.AddConsumption("osmoregulation", osmoregulation);
+        result.AddConsumption("osmoregulation", osmoregulation);
 
         // Compute totals
-        balanceInfo.TotalProduction += processATPProduction;
-        balanceInfo.TotalConsumptionStationary += processATPConsumption + osmoregulation;
+        result.TotalProduction += processATPProduction;
+        result.TotalConsumptionStationary += processATPConsumption + osmoregulation;
 
         if (includeMovementCost)
         {
-            balanceInfo.TotalConsumption = balanceInfo.TotalConsumptionStationary + balanceInfo.TotalMovement;
+            result.TotalConsumption = result.TotalConsumptionStationary + result.TotalMovement;
         }
         else
         {
-            balanceInfo.TotalConsumption = balanceInfo.TotalConsumptionStationary;
+            result.TotalConsumption = result.TotalConsumptionStationary;
         }
 
-        balanceInfo.FinalBalance = balanceInfo.TotalProduction - balanceInfo.TotalConsumption;
-        balanceInfo.FinalBalanceStationary = balanceInfo.TotalProduction - balanceInfo.TotalConsumptionStationary;
+        result.FinalBalance = result.TotalProduction - result.TotalConsumption;
+        result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
 
-        return balanceInfo;
+        return result;
     }
 
     /// <summary>
