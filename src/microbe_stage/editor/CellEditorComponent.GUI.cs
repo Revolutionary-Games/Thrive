@@ -20,7 +20,7 @@ public partial class CellEditorComponent
 {
     private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
 
-    private StringBuilder atpToolTipTextBuilder = new();
+    private readonly StringBuilder atpToolTipTextBuilder = new();
 
     private bool inProgressSuggestionCheckRunning;
 

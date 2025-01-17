@@ -11,7 +11,7 @@ using Systems;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
-    private StringBuilder atpToolTipTextBuilder = new();
+    private readonly StringBuilder atpToolTipTextBuilder = new();
 
     protected override void OnTranslationsChanged()
     {
