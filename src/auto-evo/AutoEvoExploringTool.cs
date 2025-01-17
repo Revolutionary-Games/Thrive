@@ -1263,8 +1263,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             {
                 MicrobeSpeciesUpgradesStatistics[upgradeName] = (
                     MicrobeSpeciesUpgradesStatistics[upgradeName].Name,
-                    microbeSpecies.Average(s => s.Organelles.Any(o => o.Upgrades?.UnlockedFeatures?.Contains(upgradeName) ?? false) ? 1 : 0),
-                    microbeSpecies.Average(s => s.Organelles.Count(o => o.Upgrades?.UnlockedFeatures?.Contains(upgradeName) ?? false)));
+                    microbeSpecies.Average(s =>
+                        s.Organelles.Any(o => o.Upgrades?.UnlockedFeatures?.Contains(upgradeName) ?? false) ? 1 : 0),
+                    microbeSpecies.Average(s =>
+                        s.Organelles.Count(o => o.Upgrades?.UnlockedFeatures?.Contains(upgradeName) ?? false)));
             }
         }
     }
