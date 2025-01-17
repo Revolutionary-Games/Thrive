@@ -304,6 +304,9 @@ public partial class CellEditorComponent :
     private ProcessList processList = null!;
 
     [Export]
+    private CheckBox showGrowthOrderCoordinates = null!;
+
+    [Export]
     private Control growthOrderNumberContainer = null!;
 
     [Export]
@@ -700,6 +703,10 @@ public partial class CellEditorComponent :
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        // TODO: make this setting persistent from somewhere
+        // showGrowthOrderCoordinates.ButtonPressed = true;
+        growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
@@ -1269,23 +1276,34 @@ public partial class CellEditorComponent :
         if (previousRigidity == desiredRigidity)
             return;
 
-        int costPerStep = (int)Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
+        var costPerStep = Math.Min(Constants.MEMBRANE_RIGIDITY_COST_PER_STEP * CostMultiplier, 100);
 
         var data = new RigidityActionData(desiredRigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO, Rigidity)
         {
             CostMultiplier = CostMultiplier,
         };
 
-        var cost = Editor.WhatWouldActionsCost(new[] { data });
+        // In some cases "theoreticalCost" might get rounded improperly
+        var theoreticalCost = Editor.WhatWouldActionsCost(new[] { data });
+        var cost = (int)Math.Ceiling(Math.Ceiling(theoreticalCost / costPerStep) * costPerStep);
 
-        if (cost > Editor.MutationPoints)
+        // Cases where mutation points are equal 0 are handled below in the next "if" statement
+        if (cost > Editor.MutationPoints && Editor.MutationPoints != 0)
         {
-            int stepsToCutOff = (int)Math.Ceiling((float)(cost - Editor.MutationPoints) / costPerStep);
+            int stepsToCutOff = (int)Math.Ceiling((cost - Editor.MutationPoints) / costPerStep);
             data.NewRigidity -= (desiredRigidity - previousRigidity > 0 ? 1 : -1) * stepsToCutOff /
                 Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
             // Action is enqueued or canceled here, so we don't need to go on.
             UpdateRigiditySlider((int)Math.Round(data.NewRigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
+            return;
+        }
+
+        // Make sure that if there are no mutation points the player cannot drag the slider
+        // when the cost is rounded to zero
+        if (theoreticalCost >= 0 && (Editor.MutationPoints - cost < 0 || costPerStep > Editor.MutationPoints))
+        {
+            UpdateRigiditySlider(previousRigidity);
             return;
         }
 

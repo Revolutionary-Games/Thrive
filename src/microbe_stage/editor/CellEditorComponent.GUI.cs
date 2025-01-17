@@ -1138,6 +1138,11 @@ public partial class CellEditorComponent
         UpdateGrowthOrderNumbers();
     }
 
+    private void OnGrowthOrderCoordinatesToggled(bool show)
+    {
+        growthOrderGUI.ShowCoordinates = show;
+    }
+
     /// <summary>
     ///   A simple label showing the growth order of something
     /// </summary>
