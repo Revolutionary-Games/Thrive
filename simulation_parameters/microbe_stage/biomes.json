@@ -386,35 +386,6 @@
             }
           }
         },
-        "marineSnow": {
-          "Name": "MARINE_SNOW",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Hydrogenase.shape"
-            }
-          ],
-          "Density": 0,
-          "Dissolves": true,
-          "Radius": 1,
-          "ChunkScale": 1,
-          "PhysicsDensity": 1000,
-          "Size": 2,
-          "Damages": 0,
-          "VentAmount": 1,
-          "DeleteOnTouch": false,
-          "Compounds": {
-            "ammonia": {
-              "Amount": 60
-            },
-            "phosphates": {
-              "Amount": 60
-            },
-            "glucose": {
-              "Amount": 120
-            }
-          }
-        },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
