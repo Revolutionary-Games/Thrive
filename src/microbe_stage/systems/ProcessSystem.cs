@@ -235,8 +235,18 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache,
-        EnergyBalanceInfo result)
+        EnergyBalanceInfo? result)
     {
+        if (result == null)
+        {
+            result = new EnergyBalanceInfo();
+
+            if (calculateRequiredResources)
+            {
+                result.SetupTrackingForRequiredCompounds();
+            }
+        }
+
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
         float movementATPConsumption = 0.0f;
@@ -345,9 +355,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///     assumed to run at normal speed even without the input compounds being present in the given biome.
     ///   </para>
     /// </remarks>
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+    public static void ComputeCompoundBalance(
         IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance>? result = null)
+        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance>? result)
     {
         result ??= new Dictionary<Compound, CompoundBalance>();
 
@@ -379,15 +389,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
             }
         }
-
-        return result;
     }
 
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+    public static void ComputeCompoundBalance(
         IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance>? result = null)
+        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance>? result)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
+        ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
             requireInputCompoundsInBiome, result);
     }
 
@@ -401,9 +409,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///     input compounds present in <see cref="biome"/>)
     ///   </para>
     /// </remarks>
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
+    public static void ComputeCompoundBalanceAtEquilibrium(
         IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance>? result = null)
+        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance>? result)
     {
         result ??= new Dictionary<Compound, CompoundBalance>();
 
@@ -455,15 +463,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
             }
         }
-
-        return result;
     }
 
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
+    public static void ComputeCompoundBalanceAtEquilibrium(
         IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance>? result = null)
+        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
-        return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
+        ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
             energyBalance, result);
     }
 

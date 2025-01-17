@@ -1215,11 +1215,11 @@ public partial class CellBodyPlanEditorComponent :
             switch (calculationType)
             {
                 case BalanceDisplayType.MaxSpeed:
-                    compoundBalanceData = ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome,
+                    ProcessSystem.ComputeCompoundBalance(cell.Data!.Organelles, biome,
                         amountType, true, compoundBalanceData);
                     break;
                 case BalanceDisplayType.EnergyEquilibrium:
-                    compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
+                    ProcessSystem.ComputeCompoundBalanceAtEquilibrium(cell.Data!.Organelles, biome,
                         amountType, energyBalance, compoundBalanceData);
                     break;
                 default:
