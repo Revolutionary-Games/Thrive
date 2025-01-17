@@ -711,7 +711,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             return 0;
 
         var balance = new EnergyBalanceInfo();
-        balance.SetupTrackingForRequiredCompounds();
 
         ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
             microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average,

@@ -462,7 +462,6 @@ public static class MicrobeInternalCalculations
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
         var energyBalance = new EnergyBalanceInfo();
-        energyBalance.SetupTrackingForRequiredCompounds();
 
         ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
             moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false, energyBalance);
@@ -560,7 +559,6 @@ public static class MicrobeInternalCalculations
         if (dayCompoundBalances == null)
         {
             var energyBalance = new EnergyBalanceInfo();
-            energyBalance.SetupTrackingForRequiredCompounds();
 
             ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
                 moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false, energyBalance);
@@ -572,7 +570,6 @@ public static class MicrobeInternalCalculations
         }
 
         var energyBalanceAtMinimum = new EnergyBalanceInfo();
-        energyBalanceAtMinimum = new EnergyBalanceInfo();
 
         ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType, moving, playerSpecies,
             worldSettings, CompoundAmountType.Minimum, false, energyBalanceAtMinimum);
