@@ -461,8 +461,11 @@ public static class MicrobeInternalCalculations
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false);
+        var energyBalance = new EnergyBalanceInfo();
+        energyBalance.SetupTrackingForRequiredCompounds();
+
+        ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+            moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false, energyBalance);
 
         var compoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
             biomeConditions, CompoundAmountType.Biome, energyBalance);
@@ -552,16 +555,24 @@ public static class MicrobeInternalCalculations
     {
         if (dayCompoundBalances == null)
         {
-            var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-                moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false);
+            var energyBalance = new EnergyBalanceInfo();
+            energyBalance.SetupTrackingForRequiredCompounds();
+
+            ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
+                moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false, energyBalance);
 
             dayCompoundBalances = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
                 biomeConditions, CompoundAmountType.Biome, energyBalance);
         }
 
-        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles,
-            biomeConditions, CompoundAmountType.Minimum, ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions,
-                membraneType, moving, playerSpecies, worldSettings, CompoundAmountType.Minimum, false));
+        var energyBalanceAtMinimum = new EnergyBalanceInfo();
+        energyBalanceAtMinimum = new EnergyBalanceInfo();
+
+        ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType, moving, playerSpecies,
+            worldSettings, CompoundAmountType.Minimum, false, energyBalanceAtMinimum);
+
+        var minimums = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biomeConditions, CompoundAmountType.Minimum,
+            energyBalanceAtMinimum);
 
         var cachedCapacities = GetTotalSpecificCapacity(organelles, out var cachedCapacity);
 

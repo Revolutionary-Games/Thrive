@@ -193,15 +193,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Computes the energy balance for the given organelles in biome and at a given time during the day (or type
     ///   can be specified to be a different type of value)
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources,
-        EnergyBalanceInfo? result = null)
+        EnergyBalanceInfo result)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
+        ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
             isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null, result);
     }
 
@@ -229,26 +229,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     /// <param name="result">
-    ///   Energy balance info to add the new info to. To be used for calculating multiple cells' balances
+    ///   The resulting energy balance. If not null, the results are added to the passed value.
     /// </param>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache,
-        EnergyBalanceInfo? result = null)
+        EnergyBalanceInfo result)
     {
-        // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
-        // further items
-        if (result == null)
-        {
-            result = new EnergyBalanceInfo();
-
-            if (calculateRequiredResources)
-            {
-                result.SetupTrackingForRequiredCompounds();
-            }
-        }
-
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
         float movementATPConsumption = 0.0f;
@@ -344,8 +332,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
-
-        return result;
     }
 
     /// <summary>
@@ -718,9 +704,12 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var balance = ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
+        var balance = new EnergyBalanceInfo();
+        balance.SetupTrackingForRequiredCompounds();
+
+        ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
             microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average,
-            false);
+            false, balance);
 
         float balanceModifier = 1;
 

@@ -1173,7 +1173,7 @@ public partial class CellBodyPlanEditorComponent :
         energyBalance.SetupTrackingForRequiredCompounds();
         foreach (var hex in cells)
         {
-            energyBalance = ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData,
+            ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData,
                 hex.Data.MembraneType, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
                 calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true,
                 energyBalance);
