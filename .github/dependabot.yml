@@ -10,6 +10,13 @@ updates:
     open-pull-requests-limit: 3
     reviewers:
       - "Revolutionary-Games/programming"
+    groups:
+      godot:
+        patterns:
+          - "Godot*"
+      xunit:
+        patterns:
+          - "xunit*"
   - package-ecosystem: gitsubmodule
     directory: "/"
     schedule:
