@@ -553,7 +553,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         var leader = editedMicrobeCells[0].Data!;
 
-        float speed = MicrobeInternalCalculations.CalculateSpeed(leader.Organelles, leader.MembraneType,
+        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.Organelles, leader.MembraneType,
             leader.MembraneRigidity, leader.IsBacteria);
 
         speed *= editedMicrobeCells.Count * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
@@ -563,9 +563,9 @@ public partial class CellBodyPlanEditorComponent :
         if (editedMicrobeCells.Count == 1)
             return speed;
 
-        float massEstimate = 0.0f;
+        var massEstimate = 0.0f;
 
-        float addedSpeed = 0.0f;
+        var addedSpeed = 0.0f;
 
         foreach (var hex in editedMicrobeCells)
         {
@@ -581,14 +581,14 @@ public partial class CellBodyPlanEditorComponent :
                 if (!organelle.Definition.HasMovementComponent)
                     continue;
 
-                float upgradeForce = 0.0f;
+                var upgradeForce = 0.0f;
 
                 if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
                 {
                     upgradeForce = Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumUpgrades.LengthFraction;
                 }
 
-                float flagellumForce = (Constants.FLAGELLA_BASE_FORCE + upgradeForce)
+                var flagellumForce = (Constants.FLAGELLA_BASE_FORCE + upgradeForce)
                     * organelle.Definition.Components.Movement!.Momentum;
 
                 if (!cell.IsBacteria)
@@ -605,7 +605,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         var leader = editedMicrobeCells[0].Data!;
 
-        float colonyRotation = MicrobeInternalCalculations
+        var colonyRotation = MicrobeInternalCalculations
             .CalculateRotationSpeed(leader.Organelles);
 
         Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
