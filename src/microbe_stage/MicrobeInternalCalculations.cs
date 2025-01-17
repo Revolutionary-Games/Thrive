@@ -64,22 +64,31 @@ public static class MicrobeInternalCalculations
         return capacities;
     }
 
-    public static Dictionary<Compound, float> GetTotalSpecificCapacity(IEnumerable<CellTemplate> cells,
-        out float nominalCapacity)
+    public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
+        Dictionary<Compound, float> capacities, float totalNominalCap)
     {
-        nominalCapacity = 0.0f;
+        var count = organelles.Count;
 
-        var capacities = new Dictionary<Compound, float>();
-
-        foreach (var cell in cells)
+        // Update the variant of this logic in UpdateSpecificCapacities if changes are made
+        for (int i = 0; i < count; ++i)
         {
-            var totalNominalCap = GetTotalNominalCapacity(cell.Organelles);
-            nominalCapacity += totalNominalCap;
+            var organelle = organelles[i];
 
-            AddSpecificCapacity(cell.Organelles, capacities, totalNominalCap);
+            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
+
+            if (specificCapacity.Compound == Compound.Invalid)
+                continue;
+
+            // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
+            if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
+            {
+                capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
+            }
+            else
+            {
+                capacities.Add(specificCapacity.Compound, specificCapacity.Capacity + totalNominalCap);
+            }
         }
-
-        return capacities;
     }
 
     /// <summary>
@@ -786,32 +795,5 @@ public static class MicrobeInternalCalculations
         }
 
         return maximumMovementDirection;
-    }
-
-    private static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        Dictionary<Compound, float> capacities, float totalNominalCap)
-    {
-        var count = organelles.Count;
-
-        // Update the variant of this logic in UpdateSpecificCapacities if changes are made
-        for (int i = 0; i < count; ++i)
-        {
-            var organelle = organelles[i];
-
-            var specificCapacity = GetAdditionalCapacityForOrganelle(organelle.Definition, organelle.Upgrades);
-
-            if (specificCapacity.Compound == Compound.Invalid)
-                continue;
-
-            // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
-            if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
-            {
-                capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
-            }
-            else
-            {
-                capacities.Add(specificCapacity.Compound, specificCapacity.Capacity + totalNominalCap);
-            }
-        }
     }
 }

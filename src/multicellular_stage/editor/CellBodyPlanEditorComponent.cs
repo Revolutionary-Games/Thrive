@@ -627,7 +627,7 @@ public partial class CellBodyPlanEditorComponent :
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         // TODO: merge this with nominal get to make this more efficient
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!),
+        return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!),
             out nominalCapacity);
     }
 
@@ -1228,7 +1228,7 @@ public partial class CellBodyPlanEditorComponent :
             }
         }
 
-        specificStorages ??= MicrobeInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
+        specificStorages ??= CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(cells.Select(o => o.Data!),
             out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
