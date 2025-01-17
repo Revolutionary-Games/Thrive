@@ -63,21 +63,10 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     [Export]
     public float LightLevelInterpolateSpeed = 4;
 
-    private readonly StringName lightLevelParameter = new("lightLevel");
-    private readonly StringName distortionStrengthParameter = new("distortionFactor");
-
 #pragma warning disable CA2213
-
-    /// <summary>
-    ///   Background plane that is moved farther away from the camera when zooming out
-    /// </summary>
     [JsonIgnore]
-    private Node3D? backgroundPlane;
-
-    [JsonIgnore]
-    private GpuParticles3D? backgroundParticles;
-
-    private ShaderMaterial? materialToUpdate;
+    [Export]
+    private BackgroundPlane backgroundPlane = null!;
 #pragma warning restore CA2213
 
     /// <summary>
@@ -164,22 +153,12 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     public override void _Ready()
     {
-        var material = GetNode<CsgMesh3D>("BackgroundPlane").Material;
-        if (material == null)
-        {
-            GD.PrintErr("MicrobeCamera didn't find material to update");
-            return;
-        }
-
-        materialToUpdate = (ShaderMaterial)material;
-
         ResolveNodeReferences();
 
         if (!IsLoadedFromSave)
             ResetHeight();
 
         UpdateBackgroundVisibility();
-        ApplyDistortionEffect();
 
         ProcessMode = ProcessModeEnum.Always;
     }
@@ -190,29 +169,18 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             return;
 
         NodeReferencesResolved = true;
-
-        if (HasNode("BackgroundPlane"))
-            backgroundPlane = GetNode<Node3D>("BackgroundPlane");
     }
 
     public override void _EnterTree()
     {
         base._EnterTree();
         InputManager.RegisterReceiver(this);
-
-        Settings.Instance.DisplayBackgroundParticles.OnChanged += OnDisplayBackgroundParticlesChanged;
-        Settings.Instance.MicrobeDistortionStrength.OnChanged += OnBackgroundDistortionChanged;
-
-        ApplyDistortionEffect();
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         InputManager.UnregisterReceiver(this);
-
-        Settings.Instance.DisplayBackgroundParticles.OnChanged -= OnDisplayBackgroundParticlesChanged;
-        Settings.Instance.MicrobeDistortionStrength.OnChanged -= OnBackgroundDistortionChanged;
     }
 
     public override void _Process(double delta)
@@ -267,12 +235,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             Position = target;
         }
 
-        if (backgroundPlane != null)
-        {
-            var target = new Vector3(0, 0, -15 - CameraHeight);
-
-            backgroundPlane.Position = backgroundPlane.Position.Lerp(target, InterpolateZoomSpeed);
-        }
+        backgroundPlane.PlaneOffset = float.Lerp(backgroundPlane.PlaneOffset, -CameraHeight - 15, InterpolateZoomSpeed);
 
         cursorDirty = true;
         cursorVisualDirty = true;
@@ -330,61 +293,7 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
     /// </summary>
     public void SetBackground(Background background)
     {
-        // TODO: skip duplicate background changes
-
-        if (materialToUpdate == null)
-            throw new InvalidOperationException("Camera not initialized yet");
-
-        for (int i = 0; i < 4; ++i)
-        {
-            // TODO: switch this loop away to reuse StringName instances if this causes significant allocations
-            materialToUpdate.SetShaderParameter($"layer{i:n0}", GD.Load<Texture2D>(background.Textures[i]));
-        }
-
-        backgroundParticles?.DetachAndQueueFree();
-
-        backgroundParticles = background.ParticleEffectScene.Instantiate<GpuParticles3D>();
-        backgroundParticles.Rotation = Rotation;
-        backgroundParticles.LocalCoords = false;
-
-        AddChild(backgroundParticles);
-
-        OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
-    }
-
-    protected override void Dispose(bool disposing)
-    {
-        if (disposing)
-        {
-            lightLevelParameter.Dispose();
-            distortionStrengthParameter.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
-    private void OnDisplayBackgroundParticlesChanged(bool displayed)
-    {
-        if (backgroundParticles == null)
-        {
-            GD.PrintErr("MicrobeCamera didn't find background particles on settings change");
-            return;
-        }
-
-        // If we are not current camera, we don't want to display the background particles
-        if (!Current)
-            displayed = false;
-
-        backgroundParticles.Emitting = displayed;
-
-        if (displayed)
-        {
-            backgroundParticles.Show();
-        }
-        else
-        {
-            backgroundParticles.Hide();
-        }
+        backgroundPlane.SetBackground(background);
     }
 
     private void UpdateCursorWorldPos()
@@ -452,21 +361,11 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
 
     private void UpdateBackgroundVisibility()
     {
-        if (backgroundPlane != null)
-            backgroundPlane.Visible = Current;
-
-        if (backgroundParticles != null)
-            OnDisplayBackgroundParticlesChanged(Settings.Instance.DisplayBackgroundParticles);
+        backgroundPlane.SetVisibility(Current);
     }
 
     private void UpdateLightLevel(float delta)
     {
-        if (materialToUpdate == null)
-        {
-            GD.PrintErr($"{nameof(UpdateLightLevel)} called too early, material not ready");
-            return;
-        }
-
         if (lastSetLightLevel < lightLevel)
         {
             lastSetLightLevel += LightLevelInterpolateSpeed * delta;
@@ -486,17 +385,6 @@ public partial class MicrobeCamera : Camera3D, IGodotEarlyNodeResolve, ISaveLoad
             lastSetLightLevel = lightLevel;
         }
 
-        materialToUpdate.SetShaderParameter(lightLevelParameter, lastSetLightLevel);
-    }
-
-    private void OnBackgroundDistortionChanged(float value)
-    {
-        ApplyDistortionEffect();
-    }
-
-    private void ApplyDistortionEffect()
-    {
-        materialToUpdate?.SetShaderParameter(distortionStrengthParameter,
-            Settings.Instance.MicrobeDistortionStrength.Value);
+        backgroundPlane.UpdateLightLevel(lastSetLightLevel);
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -373,6 +373,9 @@ msgstr "Zona: {0}"
 msgid "BACK"
 msgstr "Nazad"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 #, fuzzy
 msgid "BACKSLASH"
 msgstr "Nazad"
@@ -636,6 +639,10 @@ msgstr "Celuloza"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Nastaviti"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1685,10 +1692,6 @@ msgid "DUPLICATE_TYPE"
 msgstr "igrač je umro"
 
 #, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Postavite organelu"
-
-#, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "STVARI KOJE SE MIGOLJITI!!"
 
@@ -1780,6 +1783,10 @@ msgstr "STVARI KOJE SE MIGOLJITI!!"
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
@@ -2920,10 +2927,6 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Postavite organelu"
-
 msgid "LAUNCH0"
 msgstr ""
 
@@ -3145,12 +3148,12 @@ msgstr "Učitavanje"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Traži..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Učitavanje Uređivača Mikroba"
-
 msgid "LOADING_GAME"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Učitavanje Uređivača Mikroba"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
@@ -3216,6 +3219,13 @@ msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u st
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Hemosinteza"
+
+msgid "MACROSCOPIC"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Zona: {0}"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3875,6 +3885,10 @@ msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Postavite organelu"
+
+#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -4245,6 +4259,10 @@ msgstr "Organele"
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Izbodite druge ćelije sa ovo."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Postavite organelu"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4727,6 +4745,10 @@ msgstr "Proizvodi"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Proizvodi"
 
 #, fuzzy
 msgid "REPRODUCTION_METHOD"
@@ -5962,10 +5984,6 @@ msgid "TUTORIAL"
 msgstr ""
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Učitavanje Uređivača Mikroba"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -6046,6 +6064,10 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Učitavanje Uređivača Mikroba"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6420,9 +6442,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6867,6 +6886,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plastid za Fiksiranje Azota"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
 
@@ -7093,6 +7144,34 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Postavite organelu"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Ćelijsko Jezgro"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Zona: {0}"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Zona: {0}"
 
 #, fuzzy
 msgid "WIKI_MECHANICS"
@@ -7451,6 +7530,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitohondrija"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bič"
 
@@ -7467,6 +7550,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "OksiToksizom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenaza"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8073,6 +8160,18 @@ msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Zona: {0}"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Postavite organelu"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Proizvodi"
 
@@ -8130,10 +8229,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Učitavanje Uređivača Mikroba"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Zona: {0}"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

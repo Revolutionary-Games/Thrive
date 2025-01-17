@@ -1,0 +1,111 @@
+[gd_scene load_steps=19 format=3 uid="uid://dyko4f6a4agwn"]
+
+[ext_resource type="Shader" path="res://shaders/GaussianBlurSpatial.gdshader" id="1_iyjvf"]
+[ext_resource type="Script" path="res://src/microbe_stage/BackgroundPlane.cs" id="2_eprmh"]
+[ext_resource type="Shader" path="res://shaders/GaussianBlur.gdshader" id="3_s3lms"]
+[ext_resource type="Shader" path="res://shaders/MicrobeBackground.gdshader" id="4_5y6kw"]
+[ext_resource type="Texture2D" uid="uid://c3i2n4piw6ln0" path="res://assets/textures/background/Thrive_vent0.png" id="5_waqnb"]
+[ext_resource type="Texture2D" uid="uid://d3msr0kfa34w2" path="res://assets/textures/background/Thrive_vent1.png" id="6_qx2cp"]
+[ext_resource type="Texture2D" uid="uid://bddntbgykd7uq" path="res://assets/textures/background/Thrive_vent2.png" id="7_g3bc7"]
+[ext_resource type="Texture2D" uid="uid://bsvls5moner1g" path="res://assets/textures/background/Thrive_vent3.png" id="8_yxu5g"]
+
+[sub_resource type="PlaneMesh" id="1"]
+size = Vector2(800, 400)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_dor76"]
+frequency = 0.0035
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f6pop"]
+seamless = true
+noise = SubResource("FastNoiseLite_dor76")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ve355"]
+seed = 2
+frequency = 0.0017
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tsmw6"]
+seamless = true
+noise = SubResource("FastNoiseLite_ve355")
+
+[sub_resource type="ShaderMaterial" id="2"]
+resource_local_to_scene = true
+render_priority = -100
+shader = ExtResource("4_5y6kw")
+shader_parameter/lightLevel = 1.0
+shader_parameter/repeats = Vector2(2, 1)
+shader_parameter/distortionFactor = 0.0
+shader_parameter/distortionSpeed = 0.0025
+shader_parameter/layerAnimateSpeed = 0.4
+shader_parameter/worldPos = Vector2(0, 0)
+shader_parameter/layer0 = ExtResource("5_waqnb")
+shader_parameter/layer1 = ExtResource("6_qx2cp")
+shader_parameter/layer2 = ExtResource("7_g3bc7")
+shader_parameter/layer3 = ExtResource("8_yxu5g")
+shader_parameter/noiseTex1 = SubResource("NoiseTexture2D_f6pop")
+shader_parameter/noiseTex2 = SubResource("NoiseTexture2D_tsmw6")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_duokn"]
+viewport_path = NodePath("PartialBlurViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sr76"]
+resource_local_to_scene = true
+render_priority = -100
+shader = ExtResource("1_iyjvf")
+shader_parameter/blurStep = Vector2(0, 1)
+shader_parameter/blurAmount = 1.0
+shader_parameter/textureAlbedo = SubResource("ViewportTexture_duokn")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_vbioy"]
+viewport_path = NodePath("BackgroundViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tdrj5"]
+resource_local_to_scene = true
+shader = ExtResource("3_s3lms")
+shader_parameter/blurStep = Vector2(1, 0)
+shader_parameter/blurAmount = 1.0
+shader_parameter/textureAlbedo = SubResource("ViewportTexture_vbioy")
+
+[node name="BackgroundPlane" type="Node3D" node_paths=PackedStringArray("backgroundPlane", "blurResultPlane", "blurColorRect", "backgroundSubViewport", "partialBlurSubViewport")]
+script = ExtResource("2_eprmh")
+backgroundPlane = NodePath("BackgroundPlane")
+blurResultPlane = NodePath("BlurResultPlane")
+blurColorRect = NodePath("PartialBlurViewport/ColorRect")
+backgroundSubViewport = NodePath("BackgroundViewport")
+partialBlurSubViewport = NodePath("PartialBlurViewport")
+
+[node name="BackgroundPlane" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, -15)
+cast_shadow = 0
+mesh = SubResource("1")
+material = SubResource("2")
+
+[node name="BlurResultPlane" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, -20)
+visible = false
+cast_shadow = 0
+mesh = SubResource("1")
+material = SubResource("ShaderMaterial_1sr76")
+
+[node name="PartialBlurViewport" type="SubViewport" parent="."]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="PartialBlurViewport"]
+material = SubResource("ShaderMaterial_tdrj5")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundViewport" type="SubViewport" parent="."]
+own_world_3d = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 0
+
+[node name="Camera3D" type="Camera3D" parent="BackgroundViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+fov = 90.0

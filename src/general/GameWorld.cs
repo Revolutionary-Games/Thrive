@@ -650,17 +650,17 @@ public class GameWorld : ISaveLoadable
     ///   Moves a species to the multicellular stage
     /// </summary>
     /// <param name="species">
-    ///   The species to convert to an early multicellular one. No checks are done to make sure the species is
+    ///   The species to convert to a multicellular one. No checks are done to make sure the species is
     ///   actually a valid multicellular one.
     /// </param>
-    public EarlyMulticellularSpecies ChangeSpeciesToMulticellular(Species species)
+    public MulticellularSpecies ChangeSpeciesToMulticellular(Species species)
     {
         var microbeSpecies = (MicrobeSpecies)species;
 
         if (microbeSpecies.IsBacteria)
             throw new ArgumentException("bacteria can't turn multicellular");
 
-        var multicellularVersion = new EarlyMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        var multicellularVersion = new MulticellularSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(multicellularVersion);
 
         var workMemory1 = new List<Hex>();
@@ -677,20 +677,20 @@ public class GameWorld : ISaveLoadable
     }
 
     /// <summary>
-    ///   Moves a species to the late multicellular stage
+    ///   Moves a species to the macroscopic stage
     /// </summary>
     /// <param name="species">
-    ///   The species to convert to a late multicellular one. No checks are done to make sure the species is
+    ///   The species to convert to a macroscopic one. No checks are done to make sure the species is
     ///   actually a valid multicellular one.
     /// </param>
-    public LateMulticellularSpecies ChangeSpeciesToLateMulticellular(Species species)
+    public MacroscopicSpecies ChangeSpeciesToMacroscopic(Species species)
     {
-        var earlySpecies = species as EarlyMulticellularSpecies;
+        var earlySpecies = species as MulticellularSpecies;
 
         if (earlySpecies == null)
-            throw new ArgumentException("Only early multicellular species can become late multicellular species");
+            throw new ArgumentException("Only multicellular species can become macroscopic species");
 
-        var lateVersion = new LateMulticellularSpecies(species.ID, species.Genus, species.Epithet);
+        var lateVersion = new MacroscopicSpecies(species.ID, species.Genus, species.Epithet);
         species.CopyDataToConvertedSpecies(lateVersion);
 
         // Copy all the cell types, even ones that are unused so the player doesn't lose any when moving stages
@@ -701,11 +701,11 @@ public class GameWorld : ISaveLoadable
         // TODO: improve this algorithm
 
         // Create metaballs for everything first
-        var metaballs = new List<MulticellularMetaball>();
+        var metaballs = new List<MacroscopicMetaball>();
 
         foreach (var cellTemplate in earlySpecies.Cells)
         {
-            var metaball = new MulticellularMetaball(cellTemplate.CellType)
+            var metaball = new MacroscopicMetaball(cellTemplate.CellType)
             {
                 Position = Hex.AxialToCartesian(cellTemplate.Position),
                 Size = 1,
@@ -756,7 +756,7 @@ public class GameWorld : ISaveLoadable
         // Do this from the root down to not need to process metaballs multiple times
         // TODO: should this logic be in OnEdited for general use?
 
-        var metaballsToPosition = new List<MulticellularMetaball> { Capacity = metaballs.Count };
+        var metaballsToPosition = new List<MacroscopicMetaball> { Capacity = metaballs.Count };
 
         // First build a good order to update the metaballs in
         foreach (var metaball in metaballs.OrderBy(m => m.Position.LengthSquared()))
@@ -936,7 +936,7 @@ public class GameWorld : ISaveLoadable
             PlayerSpecies = newSpecies;
     }
 
-    private void RecursivelyAddBallsToList(ICollection<MulticellularMetaball> list, MulticellularMetaball metaball)
+    private void RecursivelyAddBallsToList(ICollection<MacroscopicMetaball> list, MacroscopicMetaball metaball)
     {
         if (list.Contains(metaball))
             return;
@@ -945,7 +945,7 @@ public class GameWorld : ISaveLoadable
         {
             // Need to recursively add parents first to the list, this is absolutely required for the step where
             // these are added to the layout ultimately
-            RecursivelyAddBallsToList(list, (MulticellularMetaball)metaball.Parent);
+            RecursivelyAddBallsToList(list, (MacroscopicMetaball)metaball.Parent);
         }
 
         list.Add(metaball);

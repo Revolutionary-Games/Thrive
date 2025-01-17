@@ -256,9 +256,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             {
                 TutorialState.SendEvent(TutorialEventType.MicrobePlayerColony,
                     new MicrobeColonyEventArgs(true, Player.Get<MicrobeColony>().ColonyMembers.Length,
-                        Player.Has<EarlyMulticellularSpeciesMember>()), this);
+                        Player.Has<MulticellularSpeciesMember>()), this);
 
-                if (playerAlive && GameWorld.PlayerSpecies is EarlyMulticellularSpecies)
+                if (playerAlive && GameWorld.PlayerSpecies is MulticellularSpecies)
                 {
                     MakeEditorForFreebuildAvailable();
                 }
@@ -349,7 +349,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         base.OnFinishTransitioning();
 
-        if (GameWorld.PlayerSpecies is not EarlyMulticellularSpecies)
+        if (GameWorld.PlayerSpecies is not MulticellularSpecies)
         {
             TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage,
                 new AggregateEventArgs(new CallbackEventArgs(() => HUD.ShowPatchName(CurrentPatchName.ToString())),
@@ -357,7 +357,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         }
         else
         {
-            TutorialState.SendEvent(TutorialEventType.EnteredEarlyMulticellularStage, EventArgs.Empty, this);
+            TutorialState.SendEvent(TutorialEventType.EnteredMulticellularStage, EventArgs.Empty, this);
         }
     }
 
@@ -379,8 +379,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     {
         var biome = CurrentGame!.GameWorld.Map.CurrentPatch!.BiomeTemplate;
 
-        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is EarlyMulticellularSpecies ?
-            "EarlyMulticellularStage" :
+        Jukebox.Instance.PlayCategory(GameWorld.PlayerSpecies is MulticellularSpecies ?
+            "MulticellularStage" :
             "MicrobeStage", biome.ActiveMusicContexts);
     }
 
@@ -425,14 +425,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         Node sceneInstance;
 
-        if (Player.Has<EarlyMulticellularSpeciesMember>())
+        if (Player.Has<MulticellularSpeciesMember>())
         {
             // Player is a multicellular species, go to multicellular editor
 
-            var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+            var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
             sceneInstance = scene.Instantiate();
-            var editor = (EarlyMulticellularEditor)sceneInstance;
+            var editor = (MulticellularEditor)sceneInstance;
 
             editor.CurrentGame = CurrentGame;
             editor.ReturnToStage = this;
@@ -525,8 +525,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             // Direct component setting is safe as we verified above we aren't running during a simulation update
             microbe.Remove<MicrobeSpeciesMember>();
             microbe.Set(new SpeciesMember(multicellularSpecies));
-            microbe.Set(
-                new EarlyMulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
+            microbe.Set(new MulticellularSpeciesMember(multicellularSpecies, multicellularSpecies.CellTypes[0], 0));
 
             microbe.Set(new MulticellularGrowth(multicellularSpecies));
 
@@ -542,9 +541,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Make sure no queued player species can spawn with the old species
         WorldSimulation.SpawnSystem.ClearSpawnQueue();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.EarlyMulticellularEditor);
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MulticellularEditor);
 
-        var editor = scene.Instantiate<EarlyMulticellularEditor>();
+        var editor = scene.Instantiate<MulticellularEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
         editor.ReturnToStage = this;
@@ -564,7 +563,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     }
 
     /// <summary>
-    ///   Moves to the late multicellular (macroscopic) editor (the first time)
+    ///   Moves to the macroscopic editor (the first time)
     /// </summary>
     public void MoveToMacroscopic()
     {
@@ -574,7 +573,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             return;
         }
 
-        GD.Print("Becoming late multicellular (macroscopic)");
+        GD.Print("Becoming macroscopic");
 
         // We don't really need to handle the player state or anything like that here as once we go to the late
         // multicellular editor, we never return to the microbe stage. So we don't need that much setup as becoming
@@ -586,11 +585,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         CurrentGame!.EnterPrototypes();
 
-        var modifiedSpecies = GameWorld.ChangeSpeciesToLateMulticellular(Player.Get<SpeciesMember>().Species);
+        var modifiedSpecies = GameWorld.ChangeSpeciesToMacroscopic(Player.Get<SpeciesMember>().Species);
 
         // Similar code as in the MetaballBodyEditorComponent to prevent the player automatically getting stuck
         // underwater in the awakening stage
-        if (modifiedSpecies.MulticellularType == MulticellularSpeciesType.Awakened)
+        if (modifiedSpecies.MacroscopicType == MacroscopicSpeciesType.Awakened)
         {
             GD.Print("Preventing player from becoming awakened too soon");
             modifiedSpecies.KeepPlayerInAwareStage();
@@ -598,16 +597,16 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
 
         GameWorld.NotifySpeciesChangedStages();
 
-        var scene = SceneManager.Instance.LoadScene(MainGameState.LateMulticellularEditor);
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MacroscopicEditor);
 
-        var editor = scene.Instantiate<LateMulticellularEditor>();
+        var editor = scene.Instantiate<MacroscopicEditor>();
 
         editor.CurrentGame = CurrentGame ?? throw new InvalidOperationException("Stage has no current game");
 
-        // We'll start off in a brand new stage in the late multicellular part
+        // We'll start off in a brand-new stage in the macroscopic part
         editor.ReturnToStage = null;
 
-        GD.Print("Switching to late multicellular editor");
+        GD.Print("Switching to macroscopic editor");
 
         SceneManager.Instance.SwitchToScene(editor, false);
 
@@ -646,11 +645,11 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         // Update the player's cell
         ref var cellProperties = ref Player.Get<CellProperties>();
 
-        bool playerIsMulticellular = Player.Has<EarlyMulticellularSpeciesMember>();
+        bool playerIsMulticellular = Player.Has<MulticellularSpeciesMember>();
 
         if (playerIsMulticellular)
         {
-            ref var earlySpeciesType = ref Player.Get<EarlyMulticellularSpeciesMember>();
+            ref var earlySpeciesType = ref Player.Get<MulticellularSpeciesMember>();
 
             // Allow updating the first cell type to reproduce (reproduction order changed)
             earlySpeciesType.MulticellularCellType = earlySpeciesType.Species.Cells[0].CellType;
@@ -959,7 +958,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (!canEdit)
             return;
 
-        if (!Player.Has<EarlyMulticellularSpeciesMember>())
+        if (!Player.Has<MulticellularSpeciesMember>())
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
     }
 
@@ -1034,20 +1033,19 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (GameWorld.Map.CurrentPatch == null)
             return;
 
-        // TODO: it would make more sense for the GameWorld to update its patch map data based on the
-        // light cycle in it.
-        patchManager.UpdatePatchBiome(GameWorld.Map.CurrentPatch);
-        GameWorld.UpdateGlobalLightLevels();
+        var currentPatch = GameWorld.Map.CurrentPatch;
+
+        patchManager.UpdatePatchBiome(currentPatch);
+        patchManager.UpdateAllPatchLightLevels(currentPatch);
 
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
 
         // Updates the background lighting and does various post-effects
         if (templateMaxLightLevel > 0.0f && maxLightLevel > 0.0f)
         {
-            // This might need to be refactored for efficiency but, it works for now
+            // This might need to be refactored for efficiency, but it works for now
             var lightLevel =
-                GameWorld.Map.CurrentPatch!.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient *
-                GameWorld.LightCycle.DayLightFraction;
+                currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
 
             // Normalise by maximum light level in the patch
             Camera.LightLevel = lightLevel / maxLightLevel;

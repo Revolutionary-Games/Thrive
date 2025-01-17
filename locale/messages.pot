@@ -1,14 +1,14 @@
 # Translations template for Thrive.
-# Copyright (C) 2024 Revolutionary Games Studio
+# Copyright (C) 2025 Revolutionary Games Studio
 # This file is distributed under the same license as the Thrive project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Thrive.Scripts 1.2.0.0\n"
 
-#: ../src/general/OptionsMenu.tscn:1502
+#: ../src/general/OptionsMenu.tscn:1525
 msgid "2D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -29,7 +29,7 @@ msgstr ""
 msgid "3D_MOVEMENT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1528
+#: ../src/general/OptionsMenu.tscn:1551
 msgid "3D_MOVEMENT_TYPE_SELECTION"
 msgstr ""
 
@@ -57,19 +57,19 @@ msgstr ""
 msgid "ACCEPT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.cs:289
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:276
+#: ../src/macroscopic_stage/MacroscopicHUD.cs:289
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:276
 msgid "ACTION_AWAKEN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:274
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:274
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:440
 #: ../src/general/base_stage/EditorBase.cs:745
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:515
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:515
 #: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:62
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:440
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr ""
 
@@ -97,7 +97,7 @@ msgstr ""
 msgid "ACTIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1044
+#: ../src/general/OptionsMenu.tscn:1067
 msgid "ACTIVE_THREAD_COUNT"
 msgstr ""
 
@@ -113,15 +113,15 @@ msgstr ""
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1030
+#: ../src/general/NewGameSettings.tscn:1035
 msgid "ADVANCED_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1025
+#: ../src/general/NewGameSettings.tscn:1030
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1336
+#: ../simulation_parameters/common/wiki.json:1415
 msgid "AEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
@@ -129,7 +129,7 @@ msgstr ""
 msgid "AEROBIC_NITROGEN_FIXING"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1099
+#: ../simulation_parameters/common/wiki.json:1178
 msgid "AEROBIC_RESPIRATION"
 msgstr ""
 
@@ -166,11 +166,11 @@ msgstr ""
 msgid "ALL"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:693
+#: ../src/general/NewGameSettings.tscn:697
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:699
+#: ../src/general/NewGameSettings.tscn:704
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
 msgstr ""
 
@@ -191,11 +191,11 @@ msgstr ""
 msgid "ALT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:614
+#: ../src/general/OptionsMenu.tscn:637
 msgid "ALWAYS_VISIBLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:705
+#: ../src/general/OptionsMenu.tscn:728
 msgid "AMBIANCE_VOLUME"
 msgstr ""
 
@@ -204,11 +204,11 @@ msgstr ""
 msgid "AMMONIA"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1654
+#: ../src/general/OptionsMenu.tscn:1677
 msgid "AMOUNT_OF_AUTOSAVE_TO_KEEP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1674
+#: ../src/general/OptionsMenu.tscn:1697
 msgid "AMOUNT_OF_QUICKSAVE_TO_KEEP"
 msgstr ""
 
@@ -220,7 +220,7 @@ msgstr ""
 msgid "AND_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:468
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:468
 msgid "APPEARANCE"
 msgstr ""
 
@@ -237,11 +237,11 @@ msgstr ""
 msgid "APRIL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1927
+#: ../src/general/OptionsMenu.tscn:1950
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1933
+#: ../src/general/OptionsMenu.tscn:1956
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr ""
 
@@ -270,7 +270,7 @@ msgstr ""
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
 
-#: ../ThriveScriptsShared/Stage.cs:35
+#: ../ThriveScriptsShared/Stage.cs:37
 msgid "ASCENSION_STAGE"
 msgstr ""
 
@@ -282,7 +282,7 @@ msgstr ""
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1055
+#: ../src/general/OptionsMenu.tscn:1078
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
 
@@ -298,45 +298,45 @@ msgid "ATMOSPHERIC_GASSES"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:3
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:340
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:340
 #: ../src/microbe_stage/MicrobeHUD.tscn:499
 msgid "ATP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1050
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1058
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1048
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1056
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1114
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1122
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1108
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1116
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1112
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1120
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1110
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1118
 msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1107
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1115
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:691
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:696
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:705
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:710
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:697
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:711
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -348,7 +348,7 @@ msgstr ""
 msgid "AT_CURSOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:780
+#: ../src/general/OptionsMenu.tscn:803
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
@@ -356,11 +356,11 @@ msgstr ""
 msgid "AUGUST"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:553 ../src/general/OptionsMenu.tscn:1517
+#: ../src/general/OptionsMenu.tscn:576 ../src/general/OptionsMenu.tscn:1540
 msgid "AUTO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1499
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1507
 msgid "AUTO-EVO_EXPLANATION_EXPLANATION"
 msgstr ""
 
@@ -368,12 +368,12 @@ msgstr ""
 msgid "AUTO-EVO_POPULATION_CHANGED_2"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1183
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1459
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1191
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1467
 msgid "AUTO-EVO_PREDICTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1166
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1174
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
 
@@ -381,7 +381,7 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1647
+#: ../src/general/OptionsMenu.tscn:1670
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
@@ -406,11 +406,11 @@ msgstr ""
 msgid "AUTO_EVO_RESULTS"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1139
+#: ../src/auto-evo/RunResults.cs:1153
 msgid "AUTO_EVO_RESULTS_GLOBAL_TITLE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1080
+#: ../src/auto-evo/RunResults.cs:1094
 msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr ""
 
@@ -426,7 +426,7 @@ msgstr ""
 msgid "AUTO_MOVE_FORWARDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1159 ../src/general/OptionsMenu.tscn:333
+#: ../src/general/OptionsMenu.cs:1163 ../src/general/OptionsMenu.tscn:334
 msgid "AUTO_RESOLUTION"
 msgstr ""
 
@@ -440,28 +440,32 @@ msgid "AVAILABLE_MODS"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:544
-#: ../simulation_parameters/common/wiki.json:2473
-#: ../simulation_parameters/common/wiki.json:2571
-#: ../ThriveScriptsShared/Stage.cs:23
+#: ../simulation_parameters/common/wiki.json:2607
+#: ../simulation_parameters/common/wiki.json:2705
+#: ../ThriveScriptsShared/Stage.cs:25
 msgid "AWAKENING_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:533
-#: ../simulation_parameters/common/wiki.json:2422
-#: ../simulation_parameters/common/wiki.json:2520
-#: ../ThriveScriptsShared/Stage.cs:20
+#: ../simulation_parameters/common/wiki.json:2556
+#: ../simulation_parameters/common/wiki.json:2654
+#: ../ThriveScriptsShared/Stage.cs:22
 msgid "AWARE_STAGE"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.tscn:685
 #: ../src/general/MainMenu.tscn:417 ../src/general/MainMenu.tscn:476
 #: ../src/general/MainMenu.tscn:524 ../src/general/MainMenu.tscn:827
-#: ../src/general/NewGameSettings.tscn:1005 ../src/general/OptionsMenu.tscn:1890
+#: ../src/general/NewGameSettings.tscn:1010 ../src/general/OptionsMenu.tscn:1913
 #: ../src/general/PauseMenu.tscn:291
 #: ../src/microbe_stage/gui/ExtinctionBox.tscn:72
 #: ../src/modding/ModManager.tscn:83 ../src/saving/NewSaveMenu.tscn:122
 #: ../src/saving/SaveManagerGUI.tscn:110
 msgid "BACK"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:467
+msgid "BACKGROUND_BLUR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:277
@@ -472,23 +476,23 @@ msgstr ""
 msgid "BACKSPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2047
+#: ../simulation_parameters/common/wiki.json:2126
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1128
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1136
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1126
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1137
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1145
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1134
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1142
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
@@ -502,15 +506,15 @@ msgstr ""
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:810
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:824
 msgid "BASE_MOVEMENT"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1020
+#: ../src/general/NewGameSettings.tscn:1025
 msgid "BASIC_VIEW"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1015
+#: ../src/general/NewGameSettings.tscn:1020
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -532,9 +536,9 @@ msgstr ""
 msgid "BEGIN_THRIVING"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:440
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:451
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:653
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:451
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:655
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:440
 msgid "BEHAVIOUR"
 msgstr ""
 
@@ -580,7 +584,7 @@ msgstr ""
 msgid "BENCHMARK_RESULTS_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1241
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1249
 msgid "BEST_PATCH_COLON"
 msgstr ""
 
@@ -589,24 +593,26 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:632
 #: ../simulation_parameters/microbe_stage/biomes.json:874
 #: ../simulation_parameters/microbe_stage/biomes.json:1140
-#: ../simulation_parameters/microbe_stage/biomes.json:1479
-#: ../simulation_parameters/microbe_stage/biomes.json:1742
-#: ../simulation_parameters/microbe_stage/biomes.json:2007
-#: ../simulation_parameters/microbe_stage/biomes.json:2393
-#: ../simulation_parameters/microbe_stage/biomes.json:2574
-#: ../simulation_parameters/microbe_stage/biomes.json:2866
-#: ../simulation_parameters/microbe_stage/biomes.json:3229
+#: ../simulation_parameters/microbe_stage/biomes.json:1456
+#: ../simulation_parameters/microbe_stage/biomes.json:1719
+#: ../simulation_parameters/microbe_stage/biomes.json:1961
+#: ../simulation_parameters/microbe_stage/biomes.json:2347
+#: ../simulation_parameters/microbe_stage/biomes.json:2528
+#: ../simulation_parameters/microbe_stage/biomes.json:2820
+#: ../simulation_parameters/microbe_stage/biomes.json:3199
+#: ../simulation_parameters/microbe_stage/biomes.json:3416
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:50
 msgid "BIG_IRON_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:367
 #: ../simulation_parameters/microbe_stage/biomes.json:695
-#: ../simulation_parameters/microbe_stage/biomes.json:1218
-#: ../simulation_parameters/microbe_stage/biomes.json:1828
-#: ../simulation_parameters/microbe_stage/biomes.json:2116
-#: ../simulation_parameters/microbe_stage/biomes.json:2687
-#: ../simulation_parameters/microbe_stage/biomes.json:2983
+#: ../simulation_parameters/microbe_stage/biomes.json:1195
+#: ../simulation_parameters/microbe_stage/biomes.json:1782
+#: ../simulation_parameters/microbe_stage/biomes.json:2070
+#: ../simulation_parameters/microbe_stage/biomes.json:2641
+#: ../simulation_parameters/microbe_stage/biomes.json:2937
+#: ../simulation_parameters/microbe_stage/biomes.json:3254
 msgid "BIG_PHOSPHATE_CHUNK"
 msgstr ""
 
@@ -626,7 +632,7 @@ msgstr ""
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1368 ../src/general/OptionsMenu.tscn:1452
+#: ../src/general/OptionsMenu.tscn:1391 ../src/general/OptionsMenu.tscn:1475
 msgid "BIND_AXES_SENSITIVITY"
 msgstr ""
 
@@ -638,11 +644,11 @@ msgstr ""
 msgid "BIOME_LABEL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:433
+#: ../src/general/OptionsMenu.tscn:434
 msgid "BLOOM_RENDER_EFFECT"
 msgstr ""
 
-#: ../src/general/GameProperties.cs:159
+#: ../src/general/GameProperties.cs:158
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr ""
 
@@ -667,7 +673,7 @@ msgstr ""
 msgid "BUILD_QUEUE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:452
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:452
 #: ../src/society_stage/gui/SocietyHUD.tscn:129
 msgid "BUILD_STRUCTURE"
 msgstr ""
@@ -680,23 +686,23 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1245
+#: ../src/general/OptionsMenu.tscn:1268
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1270
+#: ../src/general/OptionsMenu.tscn:1293
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1220
+#: ../src/general/OptionsMenu.tscn:1243
 msgid "CACHE_TIME_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1294
+#: ../src/general/OptionsMenu.tscn:1317
 msgid "CACHE_TIME_MEMORY_ONLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1134
+#: ../src/general/OptionsMenu.tscn:1157
 msgid "CACHING_TITLE"
 msgstr ""
 
@@ -715,7 +721,7 @@ msgstr ""
 
 #: ../src/awakening_stage/gui/InteractablePopup.tscn:64
 #: ../src/awakening_stage/gui/SelectBuildingPopup.tscn:47
-#: ../src/general/OptionsMenu.tscn:1991
+#: ../src/general/OptionsMenu.tscn:2014
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:19
 #: ../src/gui_common/dialogs/CustomConfirmationDialog.tscn:71
 #: ../src/microbe_stage/editor/EndosymbiosisProgressDisplay.tscn:67
@@ -726,9 +732,9 @@ msgstr ""
 msgid "CANCEL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:573
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:664
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1354
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:663
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1362
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:573
 msgid "CANCEL_ACTION_CAPITAL"
 msgstr ""
 
@@ -737,13 +743,13 @@ msgstr ""
 msgid "CANCEL_CURRENT_ACTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:736
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:735
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:626
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:627
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:737
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:736
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:627
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
 msgstr ""
 
@@ -754,15 +760,15 @@ msgstr ""
 msgid "CANNOT_ENGULF"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.cs:817
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.cs:814
 msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:741
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:740
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:742
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:741
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
 msgstr ""
 
@@ -815,8 +821,8 @@ msgstr ""
 msgid "CELL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:528
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:528
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:465
 msgid "CELLS"
 msgstr ""
 
@@ -837,11 +843,15 @@ msgstr ""
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:994
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1007
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1001
 msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:841
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:849
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -864,7 +874,7 @@ msgstr ""
 msgid "CHEATS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1713
+#: ../src/general/OptionsMenu.tscn:1736
 msgid "CHEAT_KEYS_ENABLED"
 msgstr ""
 
@@ -964,7 +974,7 @@ msgstr ""
 msgid "CHOSEN_FILENAME_ALREADY_EXISTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:408
+#: ../src/general/OptionsMenu.tscn:409
 msgid "CHROMATIC_ABERRATION"
 msgstr ""
 
@@ -1004,17 +1014,17 @@ msgstr ""
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1176
+#: ../src/general/OptionsMenu.tscn:1199
 msgid "CLEAR_CACHE"
 msgstr ""
 
 #: ../src/benchmark/microbe/CloudBenchmark.tscn:141
 #: ../src/benchmark/microbe/MicrobeBenchmark.tscn:112
-#: ../src/general/OptionsMenu.tscn:2047
+#: ../src/general/OptionsMenu.tscn:2070
 #: ../src/gui_common/art_gallery/GalleryViewer.tscn:95
 #: ../src/gui_common/charts/line/LineChart.tscn:215
 #: ../src/gui_common/dialogs/LicensesDisplay.tscn:93
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1507
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1520
 #: ../src/microbe_stage/editor/EndosymbiosisPopup.tscn:82
 #: ../src/microbe_stage/ProcessPanel.tscn:58 ../src/modding/ModManager.tscn:710
 #: ../src/thriveopedia/Thriveopedia.tscn:293
@@ -1025,11 +1035,11 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1939
+#: ../src/general/OptionsMenu.tscn:1962
 msgid "CLOSE_OPTIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:862
+#: ../simulation_parameters/common/wiki.json:941
 #: ../simulation_parameters/microbe_stage/bio_processes.json:204
 msgid "CLOSTRIDIAL_FERMENTATION"
 msgstr ""
@@ -1038,11 +1048,11 @@ msgstr ""
 msgid "CLOUD_BENCHMARK"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:916
+#: ../src/general/OptionsMenu.tscn:939
 msgid "CLOUD_RESOLUTION_DIVISOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:872
+#: ../src/general/OptionsMenu.tscn:895
 msgid "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 msgstr ""
 
@@ -1050,7 +1060,8 @@ msgstr ""
 msgid "CLOUD_SIMULATION_MULTIPLIER"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1662
+#: ../simulation_parameters/microbe_stage/biomes.json:1639
+#: ../simulation_parameters/microbe_stage/biomes.json:3123
 msgid "COASTAL"
 msgstr ""
 
@@ -1058,11 +1069,11 @@ msgstr ""
 msgid "COLLISION_SHAPE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:842
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:849
 msgid "COLOUR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:377
+#: ../src/general/OptionsMenu.tscn:378
 msgid "COLOURBLIND_CORRECTION"
 msgstr ""
 
@@ -1139,7 +1150,7 @@ msgstr ""
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1871
+#: ../src/general/OptionsMenu.tscn:1894
 msgid "COMPILED_AT_COLON"
 msgstr ""
 
@@ -1192,7 +1203,7 @@ msgstr ""
 msgid "COMPOUND_BALANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:855
+#: ../src/general/OptionsMenu.tscn:878
 msgid "COMPOUND_CLOUDS"
 msgstr ""
 
@@ -1208,8 +1219,8 @@ msgstr ""
 msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr ""
 
-#: ../src/general/world_effects/GlucoseReductionEffect.cs:65
-#: ../src/general/world_effects/GlucoseReductionEffect.cs:89
+#: ../src/general/world_effects/GlucoseReductionEffect.cs:73
+#: ../src/general/world_effects/GlucoseReductionEffect.cs:98
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
 msgstr ""
 
@@ -1217,19 +1228,19 @@ msgstr ""
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:614
+#: ../src/general/NewGameSettings.tscn:617
 msgid "COMPOUND_HANDLE_KEEP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:613
+#: ../src/general/NewGameSettings.tscn:616
 msgid "COMPOUND_HANDLE_SPLIT_SISTER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:616
+#: ../src/general/NewGameSettings.tscn:619
 msgid "COMPOUND_HANDLE_TOP_UP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:618
+#: ../src/general/NewGameSettings.tscn:621
 msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr ""
 
@@ -1308,7 +1319,7 @@ msgid "CONFIRM_MOVE_TO_SPACE_STAGE_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.cs:472
-#: ../src/general/NewGameSettings.tscn:1038
+#: ../src/general/NewGameSettings.tscn:1043
 msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP"
 msgstr ""
 
@@ -1535,7 +1546,7 @@ msgstr ""
 msgid "CONTROLLER_BUTTON_XBOX_Y"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1495
+#: ../src/general/OptionsMenu.tscn:1518
 msgid "CONTROLLER_DEADZONES"
 msgstr ""
 
@@ -1548,11 +1559,11 @@ msgstr ""
 msgid "CONTROLLER_DEADZONE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:536
+#: ../src/general/OptionsMenu.tscn:559
 msgid "CONTROLLER_PROMPT_TYPE_SETTING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1442
+#: ../src/general/OptionsMenu.tscn:1465
 msgid "CONTROLLER_SENSITIVITY"
 msgstr ""
 
@@ -1569,15 +1580,15 @@ msgstr ""
 msgid "COPY_RESULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:391
+#: ../src/general/OptionsMenu.tscn:392
 msgid "CORRECTION_PROTANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:393
+#: ../src/general/OptionsMenu.tscn:394
 msgid "CORRECTION_TRITANOPE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1015
+#: ../src/general/OptionsMenu.tscn:1038
 msgid "CPU_THREADS"
 msgstr ""
 
@@ -1659,11 +1670,11 @@ msgstr ""
 msgid "CREATE_NEW"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:633
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:633
 msgid "CREATE_NEW_CELL_TYPE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:644
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:644
 msgid "CREATE_NEW_CELL_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -1675,11 +1686,11 @@ msgstr ""
 msgid "CREATE_NEW_SAVE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:748
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:747
 msgid "CREATE_NEW_TISSUE_TYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:759
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:758
 msgid "CREATE_NEW_TISSUE_TYPE_DESCRIPTION"
 msgstr ""
 
@@ -1700,11 +1711,11 @@ msgstr ""
 msgid "CTRL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1163
+#: ../src/general/OptionsMenu.tscn:1186
 msgid "CURRENT_CACHE_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1161 ../src/general/OptionsMenu.tscn:1167
+#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1190
 msgid "CURRENT_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
@@ -1733,7 +1744,7 @@ msgstr ""
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1726
+#: ../src/general/OptionsMenu.tscn:1749
 msgid "CUSTOM_USERNAME"
 msgstr ""
 
@@ -1761,19 +1772,19 @@ msgstr ""
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:833
+#: ../src/general/NewGameSettings.tscn:838
 msgid "DAY_LENGTH"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:865
+#: ../src/general/NewGameSettings.tscn:870
 msgid "DAY_LENGTH_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:812
+#: ../src/general/NewGameSettings.tscn:816
 msgid "DAY_NIGHT_CYCLE_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:818
+#: ../src/general/NewGameSettings.tscn:823
 msgid "DAY_NIGHT_CYCLE_ENABLED_EXPLANATION_2"
 msgstr ""
 
@@ -1818,13 +1829,13 @@ msgstr ""
 msgid "DECREASE_ITEM_SIZE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1633
+#: ../src/general/OptionsMenu.cs:1637
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:488
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:551
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:551
 #: ../src/microbe_stage/editor/OrganellePopupMenu.tscn:175
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:488
 msgid "DELETE"
 msgstr ""
 
@@ -1892,7 +1903,7 @@ msgstr ""
 msgid "DESPAWN_ENTITIES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1032
+#: ../src/general/OptionsMenu.tscn:1055
 msgid "DETECTED_CPU_COUNT"
 msgstr ""
 
@@ -1968,7 +1979,7 @@ msgstr ""
 msgid "DIGESTION_EFFICIENCY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1014
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1022
 msgid "DIGESTION_EFFICIENCY_COLON"
 msgstr ""
 
@@ -1976,15 +1987,15 @@ msgstr ""
 msgid "DIGESTION_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1017
 msgid "DIGESTION_SPEED_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:373
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:387
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:312
+#: ../src/general/OptionsMenu.tscn:313
 msgid "DISABLED"
 msgstr ""
 
@@ -1992,7 +2003,7 @@ msgstr ""
 msgid "DISABLE_ALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1980
+#: ../src/general/OptionsMenu.tscn:2003
 msgid "DISCARD_AND_CONTINUE"
 msgstr ""
 
@@ -2004,27 +2015,27 @@ msgstr ""
 msgid "DISCARD_MIGRATION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:619
 msgid "DISCONNECTED_CELLS"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:618
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:618
 msgid "DISCONNECTED_CELLS_TEXT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:732
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:731
 msgid "DISCONNECTED_METABALLS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:731
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:730
 msgid "DISCONNECTED_METABALLS_TEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1417
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1425
 msgid "DISCONNECTED_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1424
 msgid "DISCONNECTED_ORGANELLES_TEXT"
 msgstr ""
 
@@ -2032,15 +2043,15 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1148
+#: ../src/general/OptionsMenu.tscn:1171
 msgid "DISK_CACHE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1778
+#: ../src/general/OptionsMenu.tscn:1801
 msgid "DISMISSED_POPUPS_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1776 ../src/general/OptionsMenu.tscn:1782
+#: ../src/general/OptionsMenu.tscn:1799 ../src/general/OptionsMenu.tscn:1805
 msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr ""
 
@@ -2052,31 +2063,31 @@ msgstr ""
 msgid "DISMISS_WARNING_PERMANENTLY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:466
+#: ../src/general/OptionsMenu.tscn:489
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:572
+#: ../src/general/OptionsMenu.tscn:595
 msgid "DISPLAY_ABILITIES_BAR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:459
+#: ../src/general/OptionsMenu.tscn:460
 msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:454
+#: ../src/general/OptionsMenu.tscn:455
 msgid "DISPLAY_BACKGROUND_PARTICLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1176
+#: ../src/general/OptionsMenu.cs:1180
 msgid "DISPLAY_DRIVER_OPENGL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1173
+#: ../src/general/OptionsMenu.cs:1177
 msgid "DISPLAY_DRIVER_VULKAN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:587
+#: ../src/general/OptionsMenu.tscn:610
 msgid "DISPLAY_PART_NAMES"
 msgstr ""
 
@@ -2119,13 +2130,9 @@ msgstr ""
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:494
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:557
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:557
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:494
 msgid "DUPLICATE_TYPE"
-msgstr ""
-
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:23
-msgid "EARLY_MULTICELLULAR"
 msgstr ""
 
 #: ../simulation_parameters/common/help_texts.json:145
@@ -2236,15 +2243,19 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_9"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:962
+#: ../src/general/NewGameSettings.tscn:966
 msgid "EASTER_EGGS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:968
+#: ../src/general/NewGameSettings.tscn:973
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1560
+#: ../src/microbe_stage/PatchMapGenerator.cs:812
+msgid "EASTER_EGG_BANANA_BIOME"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:1583
 msgid "EDGE_PAN_SPEED"
 msgstr ""
 
@@ -2269,7 +2280,7 @@ msgstr ""
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:317
+#: ../src/general/OptionsMenu.tscn:318
 msgid "EIGHT_TIMES"
 msgstr ""
 
@@ -2277,7 +2288,7 @@ msgstr ""
 msgid "EJECT_ENGULFED"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:494
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:494
 #: ../src/microbe_stage/MicrobeHUD.tscn:633
 msgid "EJECT_ENGULFED_TOOLTIP"
 msgstr ""
@@ -2298,7 +2309,7 @@ msgstr ""
 msgid "ENABLE_EDITOR"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:582
+#: ../src/general/OptionsMenu.tscn:605
 msgid "ENABLE_GUI_LIGHT_EFFECTS"
 msgstr ""
 
@@ -2318,7 +2329,7 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_AVAILABLE_ORGANELLES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:756
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:763
 msgid "ENDOSYMBIOSIS_BUTTON"
 msgstr ""
 
@@ -2362,35 +2373,35 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:751
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:765
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:821
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:835
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:783
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:797
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:773
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:787
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2997
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3014
 msgid "ENERGY_IN_PATCH_FOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2835
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2850
 msgid "ENERGY_IN_PATCH_SHORT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3008
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3025
 msgid "ENERGY_SOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3001
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3018
 msgid "ENERGY_SUMMARY_LINE"
 msgstr ""
 
@@ -2430,7 +2441,7 @@ msgstr ""
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:691
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:693
 msgid "ENVIRONMENT_TOLERANCE"
 msgstr ""
 
@@ -2442,7 +2453,7 @@ msgstr ""
 msgid "EQUIPMENT_TYPE_AXE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1996 ../src/general/OptionsMenu.tscn:2003
+#: ../src/general/OptionsMenu.tscn:2019 ../src/general/OptionsMenu.tscn:2026
 msgid "ERROR"
 msgstr ""
 
@@ -2454,7 +2465,7 @@ msgstr ""
 msgid "ERROR_CREATING_INFO_FILE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2001
+#: ../src/general/OptionsMenu.tscn:2024
 msgid "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 msgstr ""
 
@@ -2482,11 +2493,11 @@ msgstr ""
 msgid "ESCAPE"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1448
+#: ../src/microbe_stage/MicrobeStage.cs:1446
 msgid "ESCAPE_ENGULFING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2494
+#: ../simulation_parameters/microbe_stage/biomes.json:2448
 msgid "ESTUARY"
 msgstr ""
 
@@ -2502,11 +2513,11 @@ msgstr ""
 msgid "EVOLUTIONARY_TREE_BUILD_FAILED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1855
+#: ../src/general/OptionsMenu.tscn:1878
 msgid "EXACT_VERSION_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1853 ../src/general/OptionsMenu.tscn:1861
+#: ../src/general/OptionsMenu.tscn:1876 ../src/general/OptionsMenu.tscn:1884
 msgid "EXACT_VERSION_TOOLTIP"
 msgstr ""
 
@@ -2527,7 +2538,7 @@ msgstr ""
 msgid "EXIT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1408
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1416
 msgid "EXIT_EDITOR"
 msgstr ""
 
@@ -2535,15 +2546,15 @@ msgstr ""
 msgid "EXIT_TO_LAUNCHER"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:978
+#: ../src/general/NewGameSettings.tscn:982
 msgid "EXPERIMENTAL_FEATURES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:992
+#: ../src/general/NewGameSettings.tscn:997
 msgid "EXPERIMENTAL_FEATURES_EXPLANATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:984
+#: ../src/general/NewGameSettings.tscn:989
 msgid "EXPERIMENTAL_FEATURES_WARNING"
 msgstr ""
 
@@ -2559,7 +2570,7 @@ msgstr ""
 msgid "EXPORT_SUCCESS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:740
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:742
 msgid "EXTERNAL"
 msgstr ""
 
@@ -2605,7 +2616,7 @@ msgstr ""
 msgid "FACEBOOK_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1226
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1234
 msgid "FAILED"
 msgstr ""
 
@@ -2699,7 +2710,7 @@ msgstr ""
 msgid "FIRE_TOXIN"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:469
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:469
 #: ../src/microbe_stage/MicrobeHUD.tscn:643
 msgid "FIRE_TOXIN_TOOLTIP"
 msgstr ""
@@ -2737,20 +2748,21 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:577
 #: ../simulation_parameters/microbe_stage/biomes.json:819
 #: ../simulation_parameters/microbe_stage/biomes.json:1085
-#: ../simulation_parameters/microbe_stage/biomes.json:1424
-#: ../simulation_parameters/microbe_stage/biomes.json:1687
-#: ../simulation_parameters/microbe_stage/biomes.json:1952
-#: ../simulation_parameters/microbe_stage/biomes.json:2240
-#: ../simulation_parameters/microbe_stage/biomes.json:2519
-#: ../simulation_parameters/microbe_stage/biomes.json:2811
+#: ../simulation_parameters/microbe_stage/biomes.json:1401
+#: ../simulation_parameters/microbe_stage/biomes.json:1664
+#: ../simulation_parameters/microbe_stage/biomes.json:1906
+#: ../simulation_parameters/microbe_stage/biomes.json:2194
+#: ../simulation_parameters/microbe_stage/biomes.json:2473
+#: ../simulation_parameters/microbe_stage/biomes.json:2765
+#: ../simulation_parameters/microbe_stage/biomes.json:3148
 msgid "FLOATING_HAZARD"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:806
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:813
 msgid "FLUID"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:792
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:799
 msgid "FLUIDITY_RIGIDITY"
 msgstr ""
 
@@ -2778,7 +2790,7 @@ msgstr ""
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:640
+#: ../src/general/NewGameSettings.tscn:645
 msgid "FOG_OF_WAR_MODE"
 msgstr ""
 
@@ -2794,7 +2806,7 @@ msgstr ""
 msgid "FOOD_CHAIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3014
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3031
 msgid "FOOD_SOURCE_ENERGY_INFO"
 msgstr ""
 
@@ -2848,7 +2860,7 @@ msgstr ""
 msgid "FOSSIL_DELETION_FAILED_DESCRIPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:315
+#: ../src/general/OptionsMenu.tscn:316
 msgid "FOUR_TIMES"
 msgstr ""
 
@@ -2871,15 +2883,15 @@ msgstr ""
 msgid "FREEBUILDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:661
+#: ../src/general/NewGameSettings.tscn:665
 msgid "FREE_GLUCOSE_CLOUD"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:667
+#: ../src/general/NewGameSettings.tscn:672
 msgid "FREE_GLUCOSE_CLOUD_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:277
+#: ../src/general/OptionsMenu.tscn:278
 msgid "FULLSCREEN"
 msgstr ""
 
@@ -2899,8 +2911,8 @@ msgstr ""
 msgid "GAME_SYSTEMS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2935
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1231
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2950
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1239
 msgid "GATHERED_ENERGY_TOOLTIP"
 msgstr ""
 
@@ -2912,7 +2924,7 @@ msgstr ""
 msgid "GENERATIONS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1024
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1032
 msgid "GENERATION_COLON"
 msgstr ""
 
@@ -2920,7 +2932,7 @@ msgstr ""
 msgid "GITHUB_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:501
+#: ../src/general/OptionsMenu.tscn:524
 msgid "GLES3"
 msgstr ""
 
@@ -2932,7 +2944,7 @@ msgstr ""
 msgid "GLOBAL_POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1311
+#: ../src/auto-evo/RunResults.cs:1325
 msgid "GLOBAL_TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
@@ -2941,11 +2953,11 @@ msgstr ""
 msgid "GLUCOSE"
 msgstr ""
 
-#: ../src/general/world_effects/GlucoseReductionEffect.cs:84
+#: ../src/general/world_effects/GlucoseReductionEffect.cs:93
 msgid "GLUCOSE_CONCENTRATIONS_DRASTICALLY_DROPPED"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1652
+#: ../simulation_parameters/common/wiki.json:1731
 #: ../simulation_parameters/microbe_stage/bio_processes.json:15
 msgid "GLYCOLYSIS"
 msgstr ""
@@ -2962,13 +2974,13 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:476
 #: ../simulation_parameters/microbe_stage/biomes.json:722
 #: ../simulation_parameters/microbe_stage/biomes.json:988
-#: ../simulation_parameters/microbe_stage/biomes.json:1327
-#: ../simulation_parameters/microbe_stage/biomes.json:1589
-#: ../simulation_parameters/microbe_stage/biomes.json:1855
-#: ../simulation_parameters/microbe_stage/biomes.json:2139
-#: ../simulation_parameters/microbe_stage/biomes.json:2421
-#: ../simulation_parameters/microbe_stage/biomes.json:2714
-#: ../simulation_parameters/microbe_stage/biomes.json:3096
+#: ../simulation_parameters/microbe_stage/biomes.json:1304
+#: ../simulation_parameters/microbe_stage/biomes.json:1566
+#: ../simulation_parameters/microbe_stage/biomes.json:1809
+#: ../simulation_parameters/microbe_stage/biomes.json:2093
+#: ../simulation_parameters/microbe_stage/biomes.json:2375
+#: ../simulation_parameters/microbe_stage/biomes.json:2668
+#: ../simulation_parameters/microbe_stage/biomes.json:3050
 msgid "GOOGLY_EYE_CELL"
 msgstr ""
 
@@ -2981,11 +2993,11 @@ msgstr ""
 msgid "GPL_LICENSE_HEADING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:473
+#: ../src/general/OptionsMenu.tscn:496
 msgid "GPU_NAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:190
+#: ../src/general/OptionsMenu.tscn:191
 msgid "GRAPHICS"
 msgstr ""
 
@@ -2993,11 +3005,11 @@ msgstr ""
 msgid "GRAPHICS_TEAM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:672
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:674
 msgid "GROWTH_ORDER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:523
+#: ../src/general/OptionsMenu.tscn:546
 msgid "GUI"
 msgstr ""
 
@@ -3009,7 +3021,7 @@ msgstr ""
 msgid "GUI_TAB_NAVIGATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:753
+#: ../src/general/OptionsMenu.tscn:776
 msgid "GUI_VOLUME"
 msgstr ""
 
@@ -3031,11 +3043,11 @@ msgstr ""
 msgid "HELP_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:876 ../src/general/OptionsMenu.tscn:920
+#: ../src/general/OptionsMenu.tscn:899 ../src/general/OptionsMenu.tscn:943
 msgid "HIGHER_VALUES_INCREASE_PERFORMANCE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:299 ../src/general/OptionsMenu.tscn:978
+#: ../src/general/OptionsMenu.tscn:300 ../src/general/OptionsMenu.tscn:1001
 msgid "HIGHER_VALUES_WORSEN_PERFORMANCE"
 msgstr ""
 
@@ -3055,7 +3067,7 @@ msgstr ""
 msgid "HOLD_TO_SHOW_CURSOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:193
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:193
 msgid "HOLD_TO_SHOW_CURSOR_ADVICE_TEXT"
 msgstr ""
 
@@ -3067,7 +3079,7 @@ msgstr ""
 msgid "HOME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1377 ../src/general/OptionsMenu.tscn:1461
+#: ../src/general/OptionsMenu.tscn:1400 ../src/general/OptionsMenu.tscn:1484
 msgid "HORIZONTAL_COLON"
 msgstr ""
 
@@ -3076,7 +3088,7 @@ msgstr ""
 msgid "HORIZONTAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:977
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:984
 msgid "HP_COLON"
 msgstr ""
 
@@ -3105,19 +3117,19 @@ msgstr ""
 msgid "HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2259
+#: ../simulation_parameters/microbe_stage/biomes.json:2213
 msgid "ICESHARD"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2212
+#: ../simulation_parameters/microbe_stage/biomes.json:2166
 msgid "ICESHELF"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2303
+#: ../simulation_parameters/microbe_stage/biomes.json:2257
 msgid "ICE_CHUNK_BIG"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2278
+#: ../simulation_parameters/microbe_stage/biomes.json:2232
 msgid "ICE_CHUNK_SMALL"
 msgstr ""
 
@@ -3133,11 +3145,11 @@ msgstr ""
 msgid "IMAGE_FILE_TYPES"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:945
+#: ../src/general/NewGameSettings.tscn:949
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:951
+#: ../src/general/NewGameSettings.tscn:956
 msgid "INCLUDE_MULTICELLULAR_PROTOTYPE_EXPLANATION"
 msgstr ""
 
@@ -3154,9 +3166,9 @@ msgid "INDICATOR_SPECIES_MUTATED"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:572
-#: ../simulation_parameters/common/wiki.json:2575
-#: ../simulation_parameters/common/wiki.json:2673
-#: ../ThriveScriptsShared/Stage.cs:29
+#: ../simulation_parameters/common/wiki.json:2709
+#: ../simulation_parameters/common/wiki.json:2807
+#: ../ThriveScriptsShared/Stage.cs:31
 msgid "INDUSTRIAL_STAGE"
 msgstr ""
 
@@ -3197,18 +3209,20 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2117
 #: ../simulation_parameters/common/wiki.json:2196
 #: ../simulation_parameters/common/wiki.json:2275
+#: ../simulation_parameters/common/wiki.json:2354
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:75
 msgid "INFO_BOX_COST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2370
-#: ../simulation_parameters/common/wiki.json:2425
-#: ../simulation_parameters/common/wiki.json:2476
-#: ../simulation_parameters/common/wiki.json:2527
-#: ../simulation_parameters/common/wiki.json:2578
-#: ../simulation_parameters/common/wiki.json:2629
-#: ../simulation_parameters/common/wiki.json:2680
-#: ../simulation_parameters/common/wiki.json:2731
+#: ../simulation_parameters/common/wiki.json:2449
+#: ../simulation_parameters/common/wiki.json:2504
+#: ../simulation_parameters/common/wiki.json:2559
+#: ../simulation_parameters/common/wiki.json:2610
+#: ../simulation_parameters/common/wiki.json:2661
+#: ../simulation_parameters/common/wiki.json:2712
+#: ../simulation_parameters/common/wiki.json:2763
+#: ../simulation_parameters/common/wiki.json:2814
+#: ../simulation_parameters/common/wiki.json:2865
 #: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:109
 msgid "INFO_BOX_EDITORS"
 msgstr ""
@@ -3242,18 +3256,20 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2129
 #: ../simulation_parameters/common/wiki.json:2208
 #: ../simulation_parameters/common/wiki.json:2287
+#: ../simulation_parameters/common/wiki.json:2366
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:134
 msgid "INFO_BOX_ENZYMES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2358
-#: ../simulation_parameters/common/wiki.json:2413
-#: ../simulation_parameters/common/wiki.json:2464
-#: ../simulation_parameters/common/wiki.json:2515
-#: ../simulation_parameters/common/wiki.json:2566
-#: ../simulation_parameters/common/wiki.json:2617
-#: ../simulation_parameters/common/wiki.json:2668
-#: ../simulation_parameters/common/wiki.json:2719
+#: ../simulation_parameters/common/wiki.json:2437
+#: ../simulation_parameters/common/wiki.json:2492
+#: ../simulation_parameters/common/wiki.json:2547
+#: ../simulation_parameters/common/wiki.json:2598
+#: ../simulation_parameters/common/wiki.json:2649
+#: ../simulation_parameters/common/wiki.json:2700
+#: ../simulation_parameters/common/wiki.json:2751
+#: ../simulation_parameters/common/wiki.json:2802
+#: ../simulation_parameters/common/wiki.json:2853
 #: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:52
 msgid "INFO_BOX_GAMEPLAY_TYPE"
 msgstr ""
@@ -3267,14 +3283,15 @@ msgstr ""
 msgid "INFO_BOX_MASS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2366
-#: ../simulation_parameters/common/wiki.json:2421
-#: ../simulation_parameters/common/wiki.json:2472
-#: ../simulation_parameters/common/wiki.json:2523
-#: ../simulation_parameters/common/wiki.json:2574
-#: ../simulation_parameters/common/wiki.json:2625
-#: ../simulation_parameters/common/wiki.json:2676
-#: ../simulation_parameters/common/wiki.json:2727
+#: ../simulation_parameters/common/wiki.json:2445
+#: ../simulation_parameters/common/wiki.json:2500
+#: ../simulation_parameters/common/wiki.json:2555
+#: ../simulation_parameters/common/wiki.json:2606
+#: ../simulation_parameters/common/wiki.json:2657
+#: ../simulation_parameters/common/wiki.json:2708
+#: ../simulation_parameters/common/wiki.json:2759
+#: ../simulation_parameters/common/wiki.json:2810
+#: ../simulation_parameters/common/wiki.json:2861
 #: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:90
 msgid "INFO_BOX_NEXT_STAGE"
 msgstr ""
@@ -3308,18 +3325,20 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2137
 #: ../simulation_parameters/common/wiki.json:2216
 #: ../simulation_parameters/common/wiki.json:2295
+#: ../simulation_parameters/common/wiki.json:2374
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:191
 msgid "INFO_BOX_OSMOREGULATION_COST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2362
-#: ../simulation_parameters/common/wiki.json:2417
-#: ../simulation_parameters/common/wiki.json:2468
-#: ../simulation_parameters/common/wiki.json:2519
-#: ../simulation_parameters/common/wiki.json:2570
-#: ../simulation_parameters/common/wiki.json:2621
-#: ../simulation_parameters/common/wiki.json:2672
-#: ../simulation_parameters/common/wiki.json:2723
+#: ../simulation_parameters/common/wiki.json:2441
+#: ../simulation_parameters/common/wiki.json:2496
+#: ../simulation_parameters/common/wiki.json:2551
+#: ../simulation_parameters/common/wiki.json:2602
+#: ../simulation_parameters/common/wiki.json:2653
+#: ../simulation_parameters/common/wiki.json:2704
+#: ../simulation_parameters/common/wiki.json:2755
+#: ../simulation_parameters/common/wiki.json:2806
+#: ../simulation_parameters/common/wiki.json:2857
 #: ../src/thriveopedia/pages/wiki/stages/StageInfoBox.tscn:71
 msgid "INFO_BOX_PREVIOUS_STAGE"
 msgstr ""
@@ -3353,6 +3372,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2125
 #: ../simulation_parameters/common/wiki.json:2204
 #: ../simulation_parameters/common/wiki.json:2283
+#: ../simulation_parameters/common/wiki.json:2362
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:115
 msgid "INFO_BOX_PROCESSES"
 msgstr ""
@@ -3386,6 +3406,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2121
 #: ../simulation_parameters/common/wiki.json:2200
 #: ../simulation_parameters/common/wiki.json:2279
+#: ../simulation_parameters/common/wiki.json:2358
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:94
 msgid "INFO_BOX_REQUIRES_NUCLEUS"
 msgstr ""
@@ -3419,6 +3440,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2133
 #: ../simulation_parameters/common/wiki.json:2212
 #: ../simulation_parameters/common/wiki.json:2291
+#: ../simulation_parameters/common/wiki.json:2370
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:172
 msgid "INFO_BOX_SIZE"
 msgstr ""
@@ -3452,6 +3474,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2141
 #: ../simulation_parameters/common/wiki.json:2220
 #: ../simulation_parameters/common/wiki.json:2299
+#: ../simulation_parameters/common/wiki.json:2378
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:210
 msgid "INFO_BOX_STORAGE"
 msgstr ""
@@ -3485,6 +3508,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2145
 #: ../simulation_parameters/common/wiki.json:2224
 #: ../simulation_parameters/common/wiki.json:2303
+#: ../simulation_parameters/common/wiki.json:2382
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:229
 msgid "INFO_BOX_UNIQUE"
 msgstr ""
@@ -3518,6 +3542,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2149
 #: ../simulation_parameters/common/wiki.json:2228
 #: ../simulation_parameters/common/wiki.json:2307
+#: ../simulation_parameters/common/wiki.json:2386
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.tscn:250
 msgid "INFO_BOX_UPGRADES"
 msgstr ""
@@ -3530,7 +3555,7 @@ msgstr ""
 msgid "INIT_NEW_WORLD_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:217
+#: ../src/general/OptionsMenu.tscn:218
 msgid "INPUTS"
 msgstr ""
 
@@ -3566,7 +3591,7 @@ msgstr ""
 msgid "INTERACTION_CONSTRUCT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:459
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:459
 msgid "INTERACTION_CONSTRUCT_MISSING_DEPOSITED_MATERIALS"
 msgstr ""
 
@@ -3578,7 +3603,7 @@ msgstr ""
 msgid "INTERACTION_DEPOSIT_RESOURCES"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:449
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:449
 msgid "INTERACTION_DEPOSIT_RESOURCES_NO_SUITABLE_RESOURCES"
 msgstr ""
 
@@ -3594,7 +3619,7 @@ msgstr ""
 msgid "INTERACTION_HARVEST"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:435
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:435
 msgid "INTERACTION_HARVEST_CANNOT_MISSING_TOOL"
 msgstr ""
 
@@ -3602,11 +3627,11 @@ msgstr ""
 msgid "INTERACTION_PICK_UP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularCreature.cs:412
+#: ../src/macroscopic_stage/MacroscopicCreature.cs:412
 msgid "INTERACTION_PICK_UP_CANNOT_FULL"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:435
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:435
 msgid "INTERNALS"
 msgstr ""
 
@@ -3667,8 +3692,8 @@ msgstr ""
 msgid "INVENTORY_TOGGLE_GROUND"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1387 ../src/general/OptionsMenu.tscn:1402
-#: ../src/general/OptionsMenu.tscn:1471 ../src/general/OptionsMenu.tscn:1487
+#: ../src/general/OptionsMenu.tscn:1410 ../src/general/OptionsMenu.tscn:1425
+#: ../src/general/OptionsMenu.tscn:1494 ../src/general/OptionsMenu.tscn:1510
 msgid "INVERTED"
 msgstr ""
 
@@ -3681,7 +3706,8 @@ msgstr ""
 msgid "IRON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1731
+#: ../simulation_parameters/common/wiki.json:783
+#: ../simulation_parameters/common/wiki.json:1810
 #: ../simulation_parameters/microbe_stage/bio_processes.json:225
 #: ../simulation_parameters/microbe_stage/bio_processes.json:254
 msgid "IRON_CHEMOLITHOAUTOTROPHY"
@@ -3703,19 +3729,19 @@ msgstr ""
 msgid "JANUARY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1801
+#: ../src/general/OptionsMenu.tscn:1824
 msgid "JSON_DEBUG_MODE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1814
+#: ../src/general/OptionsMenu.tscn:1837
 msgid "JSON_DEBUG_MODE_ALWAYS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1813
+#: ../src/general/OptionsMenu.tscn:1836
 msgid "JSON_DEBUG_MODE_AUTO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1816
+#: ../src/general/OptionsMenu.tscn:1839
 msgid "JSON_DEBUG_MODE_NEVER"
 msgstr ""
 
@@ -3927,28 +3953,24 @@ msgstr ""
 msgid "KPSUBTRACT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:794
+#: ../src/general/OptionsMenu.tscn:817
 msgid "LANGUAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1685
+#: ../src/general/OptionsMenu.cs:1689
 msgid "LANGUAGE_TRANSLATION_PROGRESS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1681
+#: ../src/general/OptionsMenu.cs:1685
 msgid "LANGUAGE_TRANSLATION_PROGRESS_LOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1677
+#: ../src/general/OptionsMenu.cs:1681
 msgid "LANGUAGE_TRANSLATION_PROGRESS_REALLY_LOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1760
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1768
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
-msgstr ""
-
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:26
-msgid "LATE_MULTICELLULAR"
 msgstr ""
 
 #: ../src/engine/input/key_mapping/KeyNames.cs:230
@@ -4024,12 +4046,12 @@ msgid "LAUNCHMEDIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:139
-#: ../src/general/NewGameSettings.tscn:760
+#: ../src/general/NewGameSettings.tscn:764
 msgid "LAWK_ONLY"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:144
-#: ../src/general/NewGameSettings.tscn:766
+#: ../src/general/NewGameSettings.tscn:771
 msgid "LAWK_ONLY_EXPLANATION"
 msgstr ""
 
@@ -4110,34 +4132,34 @@ msgid "LICENSES_COVERING_THRIVE"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:163
-#: ../src/general/NewGameSettings.tscn:782
+#: ../src/general/NewGameSettings.tscn:787
 msgid "LIFE_ORIGIN"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:170
-#: ../src/general/NewGameSettings.tscn:788
+#: ../src/general/NewGameSettings.tscn:793
 msgid "LIFE_ORIGIN_EXPLANATION"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:188
-#: ../src/general/NewGameSettings.tscn:802
+#: ../src/general/NewGameSettings.tscn:807
 #: ../src/general/WorldGenerationSettings.cs:48
 msgid "LIFE_ORIGIN_PANSPERMIA"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:186
-#: ../src/general/NewGameSettings.tscn:800
+#: ../src/general/NewGameSettings.tscn:805
 #: ../src/general/WorldGenerationSettings.cs:45
 msgid "LIFE_ORIGIN_POND"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:182
-#: ../src/general/NewGameSettings.tscn:796
+#: ../src/general/NewGameSettings.tscn:801
 msgid "LIFE_ORIGIN_TOOLTIP"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:185
-#: ../src/general/NewGameSettings.tscn:799
+#: ../src/general/NewGameSettings.tscn:804
 #: ../src/general/WorldGenerationSettings.cs:42
 msgid "LIFE_ORIGIN_VENTS"
 msgstr ""
@@ -4146,15 +4168,15 @@ msgstr ""
 msgid "LIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:545
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:547
 msgid "LIGHT_LEVEL_AVERAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:494
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:496
 msgid "LIGHT_LEVEL_CURRENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:511
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:513
 msgid "LIGHT_LEVEL_DAY"
 msgstr ""
 
@@ -4162,7 +4184,7 @@ msgstr ""
 msgid "LIGHT_LEVEL_LABEL_AT_NOON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:528
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:530
 msgid "LIGHT_LEVEL_NIGHT"
 msgstr ""
 
@@ -4170,43 +4192,43 @@ msgstr ""
 msgid "LIGHT_MAX"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1007
+#: ../src/general/OptionsMenu.tscn:1030
 msgid "LIMIT_EXTREME"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:709
+#: ../src/general/NewGameSettings.tscn:713
 msgid "LIMIT_GROWTH_RATE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:715
+#: ../src/general/NewGameSettings.tscn:720
 msgid "LIMIT_GROWTH_RATE_EXPLANATION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1005
+#: ../src/general/OptionsMenu.tscn:1028
 msgid "LIMIT_HUGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1001
+#: ../src/general/OptionsMenu.tscn:1024
 msgid "LIMIT_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:999
+#: ../src/general/OptionsMenu.tscn:1022
 msgid "LIMIT_NORMAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:997
+#: ../src/general/OptionsMenu.tscn:1020
 msgid "LIMIT_SMALL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:994
+#: ../src/general/OptionsMenu.tscn:1017
 msgid "LIMIT_TINY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1003
+#: ../src/general/OptionsMenu.tscn:1026
 msgid "LIMIT_VERY_LARGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:995
+#: ../src/general/OptionsMenu.tscn:1018
 msgid "LIMIT_VERY_SMALL"
 msgstr ""
 
@@ -4218,7 +4240,7 @@ msgstr ""
 msgid "LINKS_TITLE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:945
+#: ../simulation_parameters/common/wiki.json:1024
 #: ../simulation_parameters/microbe_stage/enzymes.json:3
 msgid "LIPASE"
 msgstr ""
@@ -4240,20 +4262,20 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.cs:96
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr ""
-
 #: ../src/saving/InProgressLoad.cs:78 ../src/saving/InProgressLoad.cs:105
 #: ../src/saving/InProgressLoad.cs:159
 msgid "LOADING_GAME"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.cs:119
+msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.cs:67
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.cs:119
+#: ../src/multicellular_stage/editor/MulticellularEditor.cs:96
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -4328,6 +4350,16 @@ msgstr ""
 msgid "MACROLIDE_SYNTHESIS"
 msgstr ""
 
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:30
+msgid "MACROSCOPIC"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2501
+#: ../simulation_parameters/common/wiki.json:2603
+#: ../ThriveScriptsShared/Stage.cs:19
+msgid "MACROSCOPIC_STAGE"
+msgstr ""
+
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:103
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -4342,34 +4374,35 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:390
 #: ../simulation_parameters/microbe_stage/biomes.json:902
-#: ../simulation_parameters/microbe_stage/biomes.json:1241
-#: ../simulation_parameters/microbe_stage/biomes.json:1507
-#: ../simulation_parameters/microbe_stage/biomes.json:3010
+#: ../simulation_parameters/microbe_stage/biomes.json:1218
+#: ../simulation_parameters/microbe_stage/biomes.json:1484
+#: ../simulation_parameters/microbe_stage/biomes.json:2964
+#: ../simulation_parameters/microbe_stage/biomes.json:3277
 msgid "MARINE_SNOW"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:642
+#: ../src/general/OptionsMenu.tscn:665
 msgid "MASTER_VOLUME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1184 ../src/general/OptionsMenu.tscn:1190
-#: ../src/general/OptionsMenu.tscn:1195
+#: ../src/general/OptionsMenu.tscn:1207 ../src/general/OptionsMenu.tscn:1213
+#: ../src/general/OptionsMenu.tscn:1218
 msgid "MAX_CACHE_SIZE_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:341
+#: ../src/general/OptionsMenu.tscn:342
 msgid "MAX_FPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:367
+#: ../src/general/OptionsMenu.tscn:368
 msgid "MAX_FPS_NO_LIMIT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1186
+#: ../src/general/OptionsMenu.tscn:1209
 msgid "MAX_SIZE_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:974
+#: ../src/general/OptionsMenu.tscn:997
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
 
@@ -4407,19 +4440,19 @@ msgid "MEDIASTOP"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:321
-#: ../simulation_parameters/microbe_stage/biomes.json:2062
-#: ../simulation_parameters/microbe_stage/biomes.json:2625
-#: ../simulation_parameters/microbe_stage/biomes.json:2925
+#: ../simulation_parameters/microbe_stage/biomes.json:2016
+#: ../simulation_parameters/microbe_stage/biomes.json:2579
+#: ../simulation_parameters/microbe_stage/biomes.json:2879
 msgid "MEDIUM_SULFUR_CHUNK"
 msgstr ""
 
-#: ../src/auto-evo/EvolutionaryTree.cs:410
+#: ../src/auto-evo/EvolutionaryTree.cs:417
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:205
 #: ../src/microbe_stage/editor/TimelineTab.cs:258
 msgid "MEGA_YEARS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:635
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:637
 msgid "MEMBRANE"
 msgstr ""
 
@@ -4427,7 +4460,7 @@ msgstr ""
 msgid "MEMBRANE_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:779
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:786
 msgid "MEMBRANE_TYPES"
 msgstr ""
 
@@ -4435,7 +4468,7 @@ msgstr ""
 msgid "MENU"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1400
+#: ../simulation_parameters/microbe_stage/biomes.json:1377
 msgid "MESOPELAGIC"
 msgstr ""
 
@@ -4461,7 +4494,7 @@ msgid "METRICS_CONTENT"
 msgstr ""
 
 #: ../src/engine/DebugOverlays.PerformanceMetrics.cs:172
-#: ../src/general/OptionsMenu.cs:1761 ../src/general/OptionsMenu.cs:2302
+#: ../src/general/OptionsMenu.cs:1765 ../src/general/OptionsMenu.cs:2313
 #: ../src/saving/SaveManagerGUI.cs:139
 msgid "MIB_VALUE"
 msgstr ""
@@ -4527,7 +4560,7 @@ msgstr ""
 msgid "MICHE_TREE"
 msgstr ""
 
-#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:20
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:24
 msgid "MICROBE"
 msgstr ""
 
@@ -4541,7 +4574,7 @@ msgid "MICROBE_BENCHMARK"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:446
-#: ../simulation_parameters/common/wiki.json:2371
+#: ../simulation_parameters/common/wiki.json:2450
 msgid "MICROBE_EDITOR"
 msgstr ""
 
@@ -4585,8 +4618,8 @@ msgstr ""
 #: ../simulation_parameters/common/gallery.json:6
 #: ../simulation_parameters/common/gallery.json:156
 #: ../simulation_parameters/common/gallery.json:387
-#: ../simulation_parameters/common/wiki.json:2418
-#: ../ThriveScriptsShared/Stage.cs:14
+#: ../simulation_parameters/common/wiki.json:2497
+#: ../ThriveScriptsShared/Stage.cs:13
 msgid "MICROBE_STAGE"
 msgstr ""
 
@@ -4758,7 +4791,7 @@ msgstr ""
 msgid "MIN_VISIBLE_DATASET_WARNING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:271 ../src/general/OptionsMenu.tscn:226
+#: ../src/general/NewGameSettings.tscn:271 ../src/general/OptionsMenu.tscn:227
 msgid "MISC"
 msgstr ""
 
@@ -4771,7 +4804,7 @@ msgstr ""
 msgid "MISCELLANEOUS_3D_STAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1824
+#: ../src/general/OptionsMenu.tscn:1847
 msgid "MISC_FUN"
 msgstr ""
 
@@ -4799,7 +4832,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:386
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:400
 msgid "MIXED_DOT_DOT_DOT"
 msgstr ""
 
@@ -4819,8 +4852,8 @@ msgstr ""
 msgid "MODIFY_ORGANELLE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:541
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:541
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:478
 msgid "MODIFY_TYPE"
 msgstr ""
 
@@ -4979,15 +5012,15 @@ msgstr ""
 msgid "MORE_INFO_PROMPT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1553
+#: ../src/general/OptionsMenu.tscn:1576
 msgid "MOUSE_EDGE_PANNING_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1352
+#: ../src/general/OptionsMenu.tscn:1375
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1406
+#: ../src/general/OptionsMenu.tscn:1429
 msgid "MOUSE_SENSITIVITY_WINDOW_SIZE_ADJUSTMENT"
 msgstr ""
 
@@ -4996,7 +5029,7 @@ msgid "MOVE"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:8
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:486
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:486
 msgid "MOVEMENT"
 msgstr ""
 
@@ -5040,7 +5073,7 @@ msgstr ""
 msgid "MOVE_TO_ANY_PATCH"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:263
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:263
 msgid "MOVE_TO_LAND"
 msgstr ""
 
@@ -5060,32 +5093,32 @@ msgstr ""
 msgid "MOVE_UP_OR_JUMP"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:581
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:581
 msgid "MOVING_TO_AWAKENING_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:582
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:582
 msgid "MOVING_TO_AWAKENING_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:576
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:576
 msgid "MOVING_TO_LAND_PROTOTYPE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:577
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:577
 msgid "MOVING_TO_LAND_PROTOTYPE_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:601
+#: ../src/macroscopic_stage/MacroscopicStage.cs:601
 msgid "MOVING_TO_SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:83
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:99
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:83
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:100
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:83
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:100
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:87
 #: ../src/microbe_stage/editor/OrganellePopupMenu.cs:107
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:83
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:99
 msgid "MP_COST"
 msgstr ""
 
@@ -5093,14 +5126,18 @@ msgstr ""
 msgid "MUCILAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1889
+#: ../simulation_parameters/common/wiki.json:1968
 #: ../simulation_parameters/microbe_stage/bio_processes.json:140
 msgid "MUCILAGE_SYNTHESIS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:511
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:511
 #: ../src/microbe_stage/MicrobeHUD.tscn:706
 msgid "MUCOCYST_ACTION_TOOLTIP"
+msgstr ""
+
+#: ../src/thriveopedia/fossilisation/FossilisedSpeciesInformation.cs:27
+msgid "MULTICELLULAR"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:522
@@ -5113,17 +5150,17 @@ msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:66
 #: ../simulation_parameters/common/gallery.json:481
-#: ../simulation_parameters/common/wiki.json:2367
-#: ../simulation_parameters/common/wiki.json:2469
-#: ../ThriveScriptsShared/Stage.cs:17
+#: ../simulation_parameters/common/wiki.json:2446
+#: ../simulation_parameters/common/wiki.json:2552
+#: ../ThriveScriptsShared/Stage.cs:16
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellPopupMenu.cs:67
+#: ../src/multicellular_stage/editor/CellPopupMenu.cs:67
 msgid "MULTIPLE_CELLS"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballPopupMenu.cs:67
+#: ../src/macroscopic_stage/editor/MetaballPopupMenu.cs:67
 msgid "MULTIPLE_METABALLS"
 msgstr ""
 
@@ -5131,15 +5168,15 @@ msgstr ""
 msgid "MULTIPLE_ORGANELLES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:295
+#: ../src/general/OptionsMenu.tscn:296
 msgid "MULTISAMPLE_ANTI_ALIASING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:953
+#: ../src/general/OptionsMenu.tscn:976
 msgid "MULTITHREADED_SIMULATION_ENABLED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:958
+#: ../src/general/OptionsMenu.tscn:981
 msgid "MULTITHREADED_SIMULATION_EXPLANATION"
 msgstr ""
 
@@ -5151,7 +5188,7 @@ msgstr ""
 msgid "MUSIC"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:681
+#: ../src/general/OptionsMenu.tscn:704
 msgid "MUSIC_VOLUME"
 msgstr ""
 
@@ -5171,9 +5208,9 @@ msgstr ""
 msgid "MUTATION_POINTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:668 ../src/general/OptionsMenu.tscn:701
-#: ../src/general/OptionsMenu.tscn:725 ../src/general/OptionsMenu.tscn:749
-#: ../src/general/OptionsMenu.tscn:773
+#: ../src/general/OptionsMenu.tscn:691 ../src/general/OptionsMenu.tscn:724
+#: ../src/general/OptionsMenu.tscn:748 ../src/general/OptionsMenu.tscn:772
+#: ../src/general/OptionsMenu.tscn:796
 msgid "MUTE"
 msgstr ""
 
@@ -5194,15 +5231,15 @@ msgstr ""
 msgid "NAME_LABEL_STRUCTURE_UNFINISHED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1093
+#: ../src/general/OptionsMenu.tscn:1116
 msgid "NATIVE_THREAD_ADVICE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1399
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1407
 msgid "NEGATIVE_ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1398
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1406
 msgid "NEGATIVE_ATP_BALANCE_TEXT"
 msgstr ""
 
@@ -5234,21 +5271,21 @@ msgstr ""
 msgid "NEW_MOD_DEFAULT_DESCRIPTION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:774
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:773
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:659
 msgid "NEW_NAME"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:654
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:769
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:768
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:654
 msgid "NEW_NAME_COLON"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:674
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1364
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:673
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1372
 #: ../src/microbe_stage/editor/MicrobeEditorPatchMap.tscn:176
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:554
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:583
 msgid "NEXT_CAPITAL"
 msgstr ""
 
@@ -5304,37 +5341,36 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:629
 #: ../simulation_parameters/common/wiki.json:708
 #: ../simulation_parameters/common/wiki.json:728
-#: ../simulation_parameters/common/wiki.json:783
-#: ../simulation_parameters/common/wiki.json:787
 #: ../simulation_parameters/common/wiki.json:807
+#: ../simulation_parameters/common/wiki.json:862
 #: ../simulation_parameters/common/wiki.json:866
 #: ../simulation_parameters/common/wiki.json:886
-#: ../simulation_parameters/common/wiki.json:941
+#: ../simulation_parameters/common/wiki.json:945
 #: ../simulation_parameters/common/wiki.json:965
-#: ../simulation_parameters/common/wiki.json:1024
+#: ../simulation_parameters/common/wiki.json:1020
 #: ../simulation_parameters/common/wiki.json:1044
 #: ../simulation_parameters/common/wiki.json:1103
 #: ../simulation_parameters/common/wiki.json:1123
-#: ../simulation_parameters/common/wiki.json:1178
 #: ../simulation_parameters/common/wiki.json:1182
 #: ../simulation_parameters/common/wiki.json:1202
+#: ../simulation_parameters/common/wiki.json:1257
 #: ../simulation_parameters/common/wiki.json:1261
 #: ../simulation_parameters/common/wiki.json:1281
 #: ../simulation_parameters/common/wiki.json:1340
 #: ../simulation_parameters/common/wiki.json:1360
-#: ../simulation_parameters/common/wiki.json:1415
 #: ../simulation_parameters/common/wiki.json:1419
 #: ../simulation_parameters/common/wiki.json:1439
+#: ../simulation_parameters/common/wiki.json:1494
 #: ../simulation_parameters/common/wiki.json:1498
 #: ../simulation_parameters/common/wiki.json:1518
-#: ../simulation_parameters/common/wiki.json:1573
 #: ../simulation_parameters/common/wiki.json:1577
+#: ../simulation_parameters/common/wiki.json:1597
+#: ../simulation_parameters/common/wiki.json:1652
 #: ../simulation_parameters/common/wiki.json:1656
-#: ../simulation_parameters/common/wiki.json:1676
+#: ../simulation_parameters/common/wiki.json:1735
 #: ../simulation_parameters/common/wiki.json:1755
-#: ../simulation_parameters/common/wiki.json:1810
-#: ../simulation_parameters/common/wiki.json:1814
 #: ../simulation_parameters/common/wiki.json:1834
+#: ../simulation_parameters/common/wiki.json:1889
 #: ../simulation_parameters/common/wiki.json:1893
 #: ../simulation_parameters/common/wiki.json:1913
 #: ../simulation_parameters/common/wiki.json:1972
@@ -5345,11 +5381,13 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2150
 #: ../simulation_parameters/common/wiki.json:2209
 #: ../simulation_parameters/common/wiki.json:2229
-#: ../simulation_parameters/common/wiki.json:2284
 #: ../simulation_parameters/common/wiki.json:2288
 #: ../simulation_parameters/common/wiki.json:2308
 #: ../simulation_parameters/common/wiki.json:2363
-#: ../src/general/OptionsMenu.tscn:390
+#: ../simulation_parameters/common/wiki.json:2367
+#: ../simulation_parameters/common/wiki.json:2387
+#: ../simulation_parameters/common/wiki.json:2442
+#: ../src/general/OptionsMenu.tscn:391
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:201
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:210
 #: ../src/thriveopedia/pages/wiki/organelles/OrganelleInfoBox.cs:219
@@ -5369,7 +5407,7 @@ msgstr ""
 msgid "NOTHING_HERE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularStage.cs:520
+#: ../src/macroscopic_stage/MacroscopicStage.cs:520
 msgid "NOTHING_TO_INTERACT_WITH"
 msgstr ""
 
@@ -5419,7 +5457,7 @@ msgid "NO_AI"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:3029
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:3046
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
 
@@ -5447,7 +5485,7 @@ msgstr ""
 msgid "NO_SAVE_DIRECTORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2011
+#: ../src/general/OptionsMenu.tscn:2034
 msgid "NO_SCREENSHOT_DIRECTORY"
 msgstr ""
 
@@ -5463,7 +5501,7 @@ msgstr ""
 msgid "NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:1759
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:1767
 msgid "NUCLEUS_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
@@ -5482,8 +5520,8 @@ msgstr ""
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:29
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:39
 #: ../src/gui_common/art_gallery/GalleryDetailsTooltip.cs:49
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2846
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2858
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2861
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2873
 #: ../src/microbe_stage/editor/MicrobePartSelection.tscn:154
 #: ../src/microbe_stage/MicrobeHUD.cs:515
 msgid "N_A"
@@ -5502,7 +5540,7 @@ msgstr ""
 msgid "OCTOBER"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:609
+#: ../src/general/OptionsMenu.tscn:632
 msgid "OFF"
 msgstr ""
 
@@ -5558,7 +5596,7 @@ msgstr ""
 msgid "OPEN_IN_FREEBUILD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1750
+#: ../src/general/OptionsMenu.tscn:1773
 msgid "OPEN_LOGS_FOLDER"
 msgstr ""
 
@@ -5586,7 +5624,7 @@ msgstr ""
 msgid "OPEN_SCIENCE_MENU"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1744
+#: ../src/general/OptionsMenu.tscn:1767
 msgid "OPEN_SCREENSHOT_FOLDER"
 msgstr ""
 
@@ -5594,7 +5632,7 @@ msgstr ""
 msgid "OPEN_THE_MENU"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:825
+#: ../src/general/OptionsMenu.tscn:848
 msgid "OPEN_TRANSLATION_SITE"
 msgstr ""
 
@@ -5618,7 +5656,7 @@ msgstr ""
 msgid "OPTIONS_BUTTON_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:745
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:747
 #: ../src/thriveopedia/pages/wiki/organelles/ThriveopediaOrganellesRootPage.cs:19
 msgid "ORGANELLES"
 msgstr ""
@@ -5627,7 +5665,7 @@ msgstr ""
 msgid "ORGANELLES_BUTTON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:530
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:544
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr ""
 
@@ -5639,11 +5677,15 @@ msgstr ""
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:750
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:757
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:752
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:889
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:896
 msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
 msgstr ""
 
@@ -5675,34 +5717,34 @@ msgstr ""
 msgid "ORGANELLE_SINGULAR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1294
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
 msgid "ORGANELLE_SUGGESTION_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1281
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1292
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1302
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1289
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1300
 #: ../src/microbe_stage/editor/CellEditorComponent.tscn:1310
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1318
 msgid "ORGANELLE_SUGGESTION_TOOLTIP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:725
+#: ../src/general/NewGameSettings.tscn:729
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:731
+#: ../src/general/NewGameSettings.tscn:736
 msgid "ORGANELLE_UNLOCKS_ENABLED_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:942
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:949
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:717
+#: ../src/microbe_stage/OrganelleDefinition.cs:722
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:804
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:818
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -5770,7 +5812,7 @@ msgstr ""
 msgid "OXYTOXY_NT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2205
+#: ../simulation_parameters/common/wiki.json:2284
 #: ../simulation_parameters/microbe_stage/bio_processes.json:64
 #: ../simulation_parameters/microbe_stage/bio_processes.json:74
 msgid "OXYTOXY_SYNTHESIS"
@@ -5816,11 +5858,11 @@ msgstr ""
 msgid "PAN_CAMERA_UP"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:677
+#: ../src/general/NewGameSettings.tscn:681
 msgid "PASSIVE_REPRODUCTION_PROGRESS"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:683
+#: ../src/general/NewGameSettings.tscn:688
 msgid "PASSIVE_REPRODUCTION_PROGRESS_EXPLANATION"
 msgstr ""
 
@@ -5849,7 +5891,7 @@ msgid "PATCH_MAP_NAVIGATION_TOOLTIP"
 msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:175
-#: ../src/microbe_stage/PatchMapGenerator.cs:826
+#: ../src/microbe_stage/PatchMapGenerator.cs:858
 msgid "PATCH_NAME"
 msgstr ""
 
@@ -5862,7 +5904,7 @@ msgstr ""
 msgid "PATCH_NOTES_LAST_PLAYED_INFO_PLURAL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2015
+#: ../src/general/OptionsMenu.tscn:2038
 #: ../src/gui_common/PatchNotesDisplayer.tscn:25
 msgid "PATCH_NOTES_TITLE"
 msgstr ""
@@ -5915,21 +5957,21 @@ msgstr ""
 msgid "PEACEFUL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1406
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1414
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1409
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1417
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
 #: ../src/general/NewGameSettings.cs:872
-#: ../src/general/world_effects/GlucoseReductionEffect.cs:66
-#: ../src/general/world_effects/GlucoseReductionEffect.cs:90
+#: ../src/general/world_effects/GlucoseReductionEffect.cs:74
+#: ../src/general/world_effects/GlucoseReductionEffect.cs:99
 #: ../src/general/WorldGenerationSettings.cs:157
 #: ../src/gui_common/CompoundAmount.cs:247
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:381
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:407
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:395
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:421
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.cs:518
 #: ../src/microbe_stage/editor/upgrades/ToxinUpgradeGUI.cs:54
 #: ../src/microbe_stage/gui/CompoundProgressBar.cs:423
@@ -5944,7 +5986,7 @@ msgstr ""
 msgid "PERCENTAGE_VALUE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:208
+#: ../src/general/OptionsMenu.tscn:209
 msgid "PERFORMANCE"
 msgstr ""
 
@@ -5998,12 +6040,12 @@ msgstr ""
 msgid "PLANET_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:921
+#: ../src/general/NewGameSettings.tscn:926
 msgid "PLANET_GENERATION_TEASER"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:196
-#: ../src/general/NewGameSettings.tscn:875
+#: ../src/general/NewGameSettings.tscn:880
 msgid "PLANET_RANDOM_SEED"
 msgstr ""
 
@@ -6031,7 +6073,7 @@ msgstr ""
 msgid "PLAYER_EXTINCT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1518
+#: ../src/general/OptionsMenu.tscn:1541
 msgid "PLAYER_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -6043,23 +6085,23 @@ msgstr ""
 msgid "PLAYER_SPEED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:560
+#: ../src/general/OptionsMenu.tscn:583
 msgid "PLAYSTATION_3"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:562
+#: ../src/general/OptionsMenu.tscn:585
 msgid "PLAYSTATION_4"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:564
+#: ../src/general/OptionsMenu.tscn:587
 msgid "PLAYSTATION_5"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1631
+#: ../src/general/OptionsMenu.tscn:1654
 msgid "PLAY_INTRO_VIDEO"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1636
+#: ../src/general/OptionsMenu.tscn:1659
 msgid "PLAY_MICROBE_INTRO_ON_NEW_GAME"
 msgstr ""
 
@@ -6067,21 +6109,21 @@ msgstr ""
 msgid "PLAY_WITH_CURRENT_SETTING"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:289
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:289
 #: ../src/microbe_stage/MicrobeHUD.tscn:444
 #: ../src/society_stage/gui/SocietyHUD.tscn:210
 msgid "POPULATION_CAPITAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:803
+#: ../src/auto-evo/RunResults.cs:817
 msgid "POPULATION_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:934
+#: ../src/auto-evo/RunResults.cs:948
 msgid "POPULATION_IN_PATCHES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.cs:2865
+#: ../src/microbe_stage/editor/CellEditorComponent.cs:2880
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr ""
 
@@ -6093,7 +6135,7 @@ msgstr ""
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1192
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1200
 msgid "PREDICTION_DETAILS_OPEN_TOOLTIP"
 msgstr ""
 
@@ -6117,7 +6159,7 @@ msgstr ""
 msgid "PREVIEW_IMAGE_IS_TOO_LARGE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:816
+#: ../src/auto-evo/RunResults.cs:830
 msgid "PREVIOUS_COLON"
 msgstr ""
 
@@ -6129,7 +6171,7 @@ msgstr ""
 msgid "PROCESS_ENVIRONMENT_SEPARATOR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1442
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1450
 #: ../src/microbe_stage/ProcessPanel.tscn:16
 msgid "PROCESS_PANEL_TITLE"
 msgstr ""
@@ -6142,7 +6184,7 @@ msgstr ""
 msgid "PROJECT_MANAGEMENT_TEAM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:735
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:737
 msgid "PROTEINS"
 msgstr ""
 
@@ -6180,7 +6222,7 @@ msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
 #: ../src/general/NewGameSettings.tscn:210
-#: ../src/general/NewGameSettings.tscn:884
+#: ../src/general/NewGameSettings.tscn:889
 msgid "RANDOM_SEED_TOOLTIP"
 msgstr ""
 
@@ -6231,34 +6273,40 @@ msgstr ""
 msgid "REPORT_BUG"
 msgstr ""
 
-#: ../src/early_multicellular_stage/systems/MulticellularGrowthSystem.cs:326
 #: ../src/microbe_stage/systems/MicrobeReproductionSystem.cs:610
+#: ../src/multicellular_stage/systems/MulticellularGrowthSystem.cs:326
 msgid "REPRODUCED"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:503
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:503
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:424
 msgid "REPRODUCTION"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:594
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:594
 msgid "REPRODUCTION_ASEXUAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:531
 msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:603
+#: ../src/general/NewGameSettings.tscn:605
 msgid "REPRODUCTION_COMPOUNDS_MODE"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:625
+#: ../src/general/NewGameSettings.tscn:630
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:522
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:585
+#: ../src/general/NewGameSettings.tscn:603
+#: ../src/general/NewGameSettings.tscn:613
+#: ../src/general/NewGameSettings.tscn:628
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr ""
+
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:585
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:522
 msgid "REPRODUCTION_METHOD"
 msgstr ""
 
@@ -6270,7 +6318,7 @@ msgstr ""
 msgid "RESEARCH"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:811 ../src/general/OptionsMenu.tscn:1896
+#: ../src/general/OptionsMenu.tscn:834 ../src/general/OptionsMenu.tscn:1919
 #: ../src/microbe_stage/editor/GrowthOrderPicker.tscn:22
 msgid "RESET"
 msgstr ""
@@ -6279,11 +6327,11 @@ msgstr ""
 msgid "RESET_DEADZONES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1794
+#: ../src/general/OptionsMenu.tscn:1817
 msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1934
+#: ../src/general/OptionsMenu.tscn:1957
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr ""
 
@@ -6291,15 +6339,15 @@ msgstr ""
 msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1602
+#: ../src/general/OptionsMenu.tscn:1625
 msgid "RESET_KEYBINDINGS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1922
+#: ../src/general/OptionsMenu.tscn:1945
 msgid "RESET_SETTINGS_TO_DEFAULTS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1928
+#: ../src/general/OptionsMenu.tscn:1951
 msgid "RESET_TO_DEFAULTS"
 msgstr ""
 
@@ -6308,11 +6356,11 @@ msgstr ""
 msgid "RESISTANT_TO_BASIC_ENGULFMENT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:720
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:719
 msgid "RESIZE_METABALL_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:325
+#: ../src/general/OptionsMenu.tscn:326
 msgid "RESOLUTION"
 msgstr ""
 
@@ -6396,7 +6444,7 @@ msgstr ""
 msgid "RIGHT_MOUSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:815
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:822
 msgid "RIGID"
 msgstr ""
 
@@ -6412,11 +6460,11 @@ msgstr ""
 msgid "ROTATE_RIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1001
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1009
 msgid "ROTATION_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:948
+#: ../src/general/OptionsMenu.tscn:971
 msgid "RUN_AUTO_EVO_DURING_GAMEPLAY"
 msgstr ""
 
@@ -6424,27 +6472,27 @@ msgstr ""
 msgid "RUN_ONE_STEP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:915
+#: ../src/auto-evo/RunResults.cs:929
 msgid "RUN_RESULT_BY_SENDING_POPULATION"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:896
+#: ../src/auto-evo/RunResults.cs:910
 msgid "RUN_RESULT_GENE_CODE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:847
+#: ../src/auto-evo/RunResults.cs:861
 msgid "RUN_RESULT_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:850
+#: ../src/auto-evo/RunResults.cs:864
 msgid "RUN_RESULT_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:834
+#: ../src/auto-evo/RunResults.cs:848
 msgid "RUN_RESULT_SPLIT_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:867
+#: ../src/auto-evo/RunResults.cs:881
 msgid "RUN_RESULT_SPLIT_OFF_TO"
 msgstr ""
 
@@ -6456,7 +6504,8 @@ msgstr ""
 msgid "RUN_X_WORLDS_TOOLTIP"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1735
+#: ../simulation_parameters/common/wiki.json:787
+#: ../simulation_parameters/common/wiki.json:1814
 #: ../simulation_parameters/microbe_stage/enzymes.json:18
 #: ../simulation_parameters/microbe_stage/organelles.json:89
 msgid "RUSTICYANIN"
@@ -6479,11 +6528,11 @@ msgstr ""
 msgid "SAFE_MODE_TITLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1905 ../src/saving/NewSaveMenu.tscn:80
+#: ../src/general/OptionsMenu.tscn:1928 ../src/saving/NewSaveMenu.tscn:80
 msgid "SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1974
+#: ../src/general/OptionsMenu.tscn:1997
 msgid "SAVE_AND_CONTINUE"
 msgstr ""
 
@@ -6584,19 +6633,19 @@ msgstr ""
 msgid "SAVING_SUCCEEDED"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1417
+#: ../src/general/OptionsMenu.tscn:1440
 msgid "SCALING_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1418
+#: ../src/general/OptionsMenu.tscn:1441
 msgid "SCALING_ON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1420
+#: ../src/general/OptionsMenu.tscn:1443
 msgid "SCALING_ON_INVERSE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1832
+#: ../src/general/OptionsMenu.tscn:1855
 msgid "SCREEN_EFFECT"
 msgstr ""
 
@@ -6616,7 +6665,7 @@ msgstr ""
 msgid "SCREEN_EFFECT_NONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1520 ../src/general/OptionsMenu.tscn:1543
+#: ../src/general/OptionsMenu.tscn:1543 ../src/general/OptionsMenu.tscn:1566
 msgid "SCREEN_RELATIVE_MOVEMENT"
 msgstr ""
 
@@ -6624,7 +6673,7 @@ msgstr ""
 msgid "SCROLLLOCK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:725
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:727
 msgid "SEARCH_DOT_DOT_DOT"
 msgstr ""
 
@@ -6636,7 +6685,7 @@ msgstr ""
 msgid "SEARCH_RADIUS"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2787
+#: ../simulation_parameters/microbe_stage/biomes.json:2741
 msgid "SEA_FLOOR"
 msgstr ""
 
@@ -6644,7 +6693,7 @@ msgstr ""
 msgid "SECRETE_SLIME"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:486
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:486
 #: ../src/microbe_stage/MicrobeHUD.tscn:685
 msgid "SECRETE_SLIME_TOOLTIP"
 msgstr ""
@@ -6694,7 +6743,7 @@ msgstr ""
 msgid "SELECT_A_TECHNOLOGY"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/EarlyMulticellularEditor.tscn:80
+#: ../src/multicellular_stage/editor/MulticellularEditor.tscn:82
 msgid "SELECT_CELL_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -6718,7 +6767,7 @@ msgstr ""
 msgid "SELECT_STRUCTURE_POPUP_TITLE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/editor/LateMulticellularEditor.tscn:111
+#: ../src/macroscopic_stage/editor/MacroscopicEditor.tscn:114
 msgid "SELECT_TISSUE_TYPE_FROM_EDITOR"
 msgstr ""
 
@@ -6738,7 +6787,7 @@ msgstr ""
 msgid "SETTING_ONLY_APPLIES_TO_NEW_GAMES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:729
+#: ../src/general/OptionsMenu.tscn:752
 msgid "SFX_VOLUME"
 msgstr ""
 
@@ -6747,7 +6796,7 @@ msgstr ""
 msgid "SHIFT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:577
+#: ../src/general/OptionsMenu.tscn:600
 msgid "SHOW_DAMAGE_EFFECT"
 msgstr ""
 
@@ -6755,11 +6804,11 @@ msgstr ""
 msgid "SHOW_HELP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1761
+#: ../src/general/OptionsMenu.tscn:1784
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1760
+#: ../src/general/OptionsMenu.tscn:1783
 msgid "SHOW_NEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
@@ -6767,15 +6816,15 @@ msgstr ""
 msgid "SHOW_TUTORIALS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1699
+#: ../src/general/OptionsMenu.tscn:1722
 msgid "SHOW_TUTORIALS_IN_NEW_CURRENT_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1693
+#: ../src/general/OptionsMenu.tscn:1716
 msgid "SHOW_TUTORIALS_IN_NEW_GAMES_OPTION"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1705
+#: ../src/general/OptionsMenu.tscn:1728
 msgid "SHOW_UNSAVED_PROGRESS_WARNING"
 msgstr ""
 
@@ -6783,7 +6832,7 @@ msgstr ""
 msgid "SHOW_UNSAVED_PROGRESS_WARNING_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1755
+#: ../src/general/OptionsMenu.tscn:1778
 msgid "SHOW_WEB_NEWS_FEED"
 msgstr ""
 
@@ -6840,7 +6889,7 @@ msgstr ""
 msgid "SILICA_MEMBRANE_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:982
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:989
 msgid "SIZE_COLON"
 msgstr ""
 
@@ -6866,48 +6915,48 @@ msgstr ""
 #: ../simulation_parameters/microbe_stage/biomes.json:596
 #: ../simulation_parameters/microbe_stage/biomes.json:838
 #: ../simulation_parameters/microbe_stage/biomes.json:1104
-#: ../simulation_parameters/microbe_stage/biomes.json:1443
-#: ../simulation_parameters/microbe_stage/biomes.json:1706
-#: ../simulation_parameters/microbe_stage/biomes.json:1971
-#: ../simulation_parameters/microbe_stage/biomes.json:2357
-#: ../simulation_parameters/microbe_stage/biomes.json:2538
-#: ../simulation_parameters/microbe_stage/biomes.json:2830
-#: ../simulation_parameters/microbe_stage/biomes.json:3193
+#: ../simulation_parameters/microbe_stage/biomes.json:1420
+#: ../simulation_parameters/microbe_stage/biomes.json:1683
+#: ../simulation_parameters/microbe_stage/biomes.json:1925
+#: ../simulation_parameters/microbe_stage/biomes.json:2311
+#: ../simulation_parameters/microbe_stage/biomes.json:2492
+#: ../simulation_parameters/microbe_stage/biomes.json:2784
+#: ../simulation_parameters/microbe_stage/biomes.json:3167
+#: ../simulation_parameters/microbe_stage/biomes.json:3380
 #: ../src/auto-evo/AutoEvoGlobalCache.cs:48
 msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:344
 #: ../simulation_parameters/microbe_stage/biomes.json:660
-#: ../simulation_parameters/microbe_stage/biomes.json:1191
-#: ../simulation_parameters/microbe_stage/biomes.json:1793
-#: ../simulation_parameters/microbe_stage/biomes.json:2085
-#: ../simulation_parameters/microbe_stage/biomes.json:2648
-#: ../simulation_parameters/microbe_stage/biomes.json:2948
+#: ../simulation_parameters/microbe_stage/biomes.json:1168
+#: ../simulation_parameters/microbe_stage/biomes.json:1747
+#: ../simulation_parameters/microbe_stage/biomes.json:2039
+#: ../simulation_parameters/microbe_stage/biomes.json:2602
+#: ../simulation_parameters/microbe_stage/biomes.json:2902
+#: ../simulation_parameters/microbe_stage/biomes.json:3223
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:294
-#: ../simulation_parameters/microbe_stage/biomes.json:1168
-#: ../simulation_parameters/microbe_stage/biomes.json:1770
-#: ../simulation_parameters/microbe_stage/biomes.json:2035
-#: ../simulation_parameters/microbe_stage/biomes.json:2602
-#: ../simulation_parameters/microbe_stage/biomes.json:2894
+#: ../simulation_parameters/microbe_stage/biomes.json:1989
+#: ../simulation_parameters/microbe_stage/biomes.json:2556
+#: ../simulation_parameters/microbe_stage/biomes.json:2848
 msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:2333
+#: ../simulation_parameters/microbe_stage/biomes.json:2287
 msgid "SNOWFLAKE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:555
-#: ../simulation_parameters/common/wiki.json:2524
-#: ../simulation_parameters/common/wiki.json:2622
-#: ../ThriveScriptsShared/Stage.cs:26
+#: ../simulation_parameters/common/wiki.json:2658
+#: ../simulation_parameters/common/wiki.json:2756
+#: ../ThriveScriptsShared/Stage.cs:28
 msgid "SOCIETY_STAGE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:199
+#: ../src/general/OptionsMenu.tscn:200
 msgid "SOUND"
 msgstr ""
 
@@ -6928,9 +6977,9 @@ msgid "SPACE"
 msgstr ""
 
 #: ../simulation_parameters/common/gallery.json:583
-#: ../simulation_parameters/common/wiki.json:2626
-#: ../simulation_parameters/common/wiki.json:2724
-#: ../ThriveScriptsShared/Stage.cs:32
+#: ../simulation_parameters/common/wiki.json:2760
+#: ../simulation_parameters/common/wiki.json:2858
+#: ../ThriveScriptsShared/Stage.cs:34
 msgid "SPACE_STAGE"
 msgstr ""
 
@@ -6954,7 +7003,7 @@ msgstr ""
 msgid "SPAWN_ENEMY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1140
+#: ../src/microbe_stage/MicrobeStage.cs:1138
 msgid "SPAWN_ENEMY_CHEAT_FAIL"
 msgstr ""
 
@@ -6987,7 +7036,7 @@ msgstr ""
 msgid "SPECIES_DETAIL_TEXT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:891
+#: ../src/auto-evo/RunResults.cs:905
 msgid "SPECIES_HAS_A_MUTATION"
 msgstr ""
 
@@ -7025,11 +7074,11 @@ msgstr ""
 msgid "SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:996
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1003
 msgid "SPEED_COLON"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:907
+#: ../src/auto-evo/RunResults.cs:921
 msgid "SPREAD_TO_PATCHES"
 msgstr ""
 
@@ -7037,7 +7086,7 @@ msgstr ""
 msgid "SPRINT"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:501
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:501
 #: ../src/microbe_stage/MicrobeHUD.tscn:695
 msgid "SPRINT_ACTION_TOOLTIP"
 msgstr ""
@@ -7058,7 +7107,7 @@ msgstr ""
 msgid "START_CALIBRATION"
 msgstr ""
 
-#: ../src/general/NewGameSettings.tscn:1041
+#: ../src/general/NewGameSettings.tscn:1046
 msgid "START_GAME"
 msgstr ""
 
@@ -7160,7 +7209,7 @@ msgstr ""
 msgid "STEAM_TOOLTIP"
 msgstr ""
 
-#: ../src/early_multicellular_stage/CellType.cs:43
+#: ../src/multicellular_stage/CellType.cs:43
 msgid "STEM_CELL_NAME"
 msgstr ""
 
@@ -7172,7 +7221,7 @@ msgstr ""
 msgid "STORAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:987
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:994
 msgid "STORAGE_COLON"
 msgstr ""
 
@@ -7185,7 +7234,7 @@ msgstr ""
 msgid "STORE_LOGGED_IN_AS"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:596
+#: ../src/general/OptionsMenu.tscn:619
 msgid "STRAIN_BAR_VISIBILITY"
 msgstr ""
 
@@ -7197,13 +7246,13 @@ msgstr ""
 msgid "STRICT_NICHE_COMPETITION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:730
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:732
 msgid "STRUCTURAL"
 msgstr ""
 
-#: ../src/early_multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:408
-#: ../src/late_multicellular_stage/editor/MetaballBodyEditorComponent.tscn:418
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:617
+#: ../src/macroscopic_stage/editor/MetaballBodyEditorComponent.tscn:418
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:619
+#: ../src/multicellular_stage/editor/CellBodyPlanEditorComponent.tscn:408
 msgid "STRUCTURE"
 msgstr ""
 
@@ -7250,11 +7299,11 @@ msgstr ""
 msgid "STRUCTURE_STEAM_POWERED_FACTORY"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1446
+#: ../src/microbe_stage/MicrobeStage.cs:1444
 msgid "SUCCESSFUL_KILL"
 msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:1447
+#: ../src/microbe_stage/MicrobeStage.cs:1445
 msgid "SUCCESSFUL_SCAVENGE"
 msgstr ""
 
@@ -7268,7 +7317,7 @@ msgstr ""
 
 #: ../simulation_parameters/microbe_stage/compounds.json:207
 #: ../src/gui_common/tooltip/ToolTipManager.tscn:758
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:469
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:471
 #: ../src/microbe_stage/editor/MicrobeEditorReportComponent.tscn:505
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:214
 msgid "SUNLIGHT"
@@ -7379,7 +7428,7 @@ msgid "TECHNOLOGY_STEAM_POWER"
 msgstr ""
 
 #: ../src/general/base_stage/StrategyStageBase.cs:189
-#: ../src/late_multicellular_stage/MulticellularStage.cs:890
+#: ../src/macroscopic_stage/MacroscopicStage.cs:890
 msgid "TECHNOLOGY_UNLOCKED_NOTICE"
 msgstr ""
 
@@ -7439,7 +7488,7 @@ msgstr ""
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1968
+#: ../simulation_parameters/common/wiki.json:2047
 #: ../simulation_parameters/microbe_stage/bio_processes.json:236
 #: ../simulation_parameters/microbe_stage/bio_processes.json:245
 msgid "THERMOSYNTHESIS"
@@ -7465,7 +7514,7 @@ msgstr ""
 msgid "THIS_IS_WORKSHOP_MOD"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1067 ../src/general/OptionsMenu.tscn:1101
+#: ../src/general/OptionsMenu.tscn:1090 ../src/general/OptionsMenu.tscn:1124
 msgid "THREADS"
 msgstr ""
 
@@ -7529,11 +7578,11 @@ msgstr ""
 msgid "TIMELINE_LOCAL_FILTER_TOOLTIP"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1336
+#: ../src/auto-evo/RunResults.cs:1350
 msgid "TIMELINE_NICHE_FILL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1342
+#: ../src/auto-evo/RunResults.cs:1356
 msgid "TIMELINE_SELECTION_PRESSURE_SPLIT"
 msgstr ""
 
@@ -7542,27 +7591,27 @@ msgstr ""
 msgid "TIMELINE_SPECIES_BECAME_MULTICELLULAR"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1257
+#: ../src/auto-evo/RunResults.cs:1271
 msgid "TIMELINE_SPECIES_EXTINCT"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1280
+#: ../src/auto-evo/RunResults.cs:1294
 msgid "TIMELINE_SPECIES_EXTINCT_LOCAL"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1306
+#: ../src/auto-evo/RunResults.cs:1320
 msgid "TIMELINE_SPECIES_MIGRATED_FROM"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1317
+#: ../src/auto-evo/RunResults.cs:1331
 msgid "TIMELINE_SPECIES_MIGRATED_TO"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1273 ../src/auto-evo/RunResults.cs:1294
+#: ../src/auto-evo/RunResults.cs:1287 ../src/auto-evo/RunResults.cs:1308
 msgid "TIMELINE_SPECIES_POPULATION_DECREASE"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1267 ../src/auto-evo/RunResults.cs:1288
+#: ../src/auto-evo/RunResults.cs:1281 ../src/auto-evo/RunResults.cs:1302
 msgid "TIMELINE_SPECIES_POPULATION_INCREASE"
 msgstr ""
 
@@ -7591,8 +7640,8 @@ msgid "TOGGLE_DEBUG_PANEL"
 msgstr ""
 
 #: ../simulation_parameters/common/input_options.json:49
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:435
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:459
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:435
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:459
 msgid "TOGGLE_ENGULF"
 msgstr ""
 
@@ -7612,7 +7661,7 @@ msgstr ""
 msgid "TOGGLE_HUD_HIDE"
 msgstr ""
 
-#: ../src/late_multicellular_stage/MulticellularHUD.tscn:445
+#: ../src/macroscopic_stage/MacroscopicHUD.tscn:445
 msgid "TOGGLE_INVENTORY"
 msgstr ""
 
@@ -7648,7 +7697,7 @@ msgstr ""
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1233
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1241
 msgid "TOTAL_GATHERED_ENERGY_COLON"
 msgstr ""
 
@@ -7787,7 +7836,7 @@ msgstr ""
 msgid "TRY_MAKING_A_SAVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:2010
+#: ../src/general/OptionsMenu.tscn:2033
 msgid "TRY_TAKING_SOME_SCREENSHOTS"
 msgstr ""
 
@@ -7801,10 +7850,6 @@ msgstr ""
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:62
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:345
 msgid "TUTORIAL"
-msgstr ""
-
-#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:449
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
 msgstr ""
 
 #: ../src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn:449
@@ -7891,6 +7936,10 @@ msgstr ""
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
 
+#: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:449
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+
 #: ../src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn:372
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -7899,7 +7948,7 @@ msgstr ""
 msgid "TWITTER_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:313
+#: ../src/general/OptionsMenu.tscn:314
 msgid "TWO_TIMES"
 msgstr ""
 
@@ -7927,11 +7976,11 @@ msgstr ""
 msgid "UNBIND_HELP_TEXT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1775
+#: ../src/general/OptionsMenu.cs:1779
 msgid "UNCERTAIN_VERSION_WARNING"
 msgstr ""
 
-#: ../simulation_parameters/microbe_stage/biomes.json:1928
+#: ../simulation_parameters/microbe_stage/biomes.json:1882
 msgid "UNDERWATERCAVE"
 msgstr ""
 
@@ -7981,7 +8030,7 @@ msgstr ""
 msgid "UNKNOWN"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1180
+#: ../src/general/OptionsMenu.cs:1184
 msgid "UNKNOWN_DISPLAY_DRIVER"
 msgstr ""
 
@@ -8002,7 +8051,7 @@ msgstr ""
 msgid "UNKNOWN_SHORT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1790
+#: ../src/general/OptionsMenu.cs:1794
 msgid "UNKNOWN_VERSION"
 msgstr ""
 
@@ -8070,11 +8119,11 @@ msgstr ""
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:512
+#: ../src/microbe_stage/editor/CellEditorComponent.GUI.cs:526
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1956
+#: ../src/general/OptionsMenu.tscn:1979
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
 
@@ -8138,7 +8187,7 @@ msgstr ""
 msgid "USED_LIBRARIES_LICENSES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:493
+#: ../src/general/OptionsMenu.tscn:516
 msgid "USED_RENDERER_NAME"
 msgstr ""
 
@@ -8154,23 +8203,23 @@ msgstr ""
 msgid "USE_AUTO_HARMONY_TOOLTIP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1719
+#: ../src/general/OptionsMenu.tscn:1742
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1150
+#: ../src/general/OptionsMenu.tscn:1173
 msgid "USE_DISK_CACHE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1060
+#: ../src/general/OptionsMenu.tscn:1083
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1094
+#: ../src/general/OptionsMenu.tscn:1117
 msgid "USE_MANUAL_THREAD_COUNT_NATIVE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1430
+#: ../src/general/OptionsMenu.tscn:1453
 msgid "USE_VIRTUAL_WINDOW_SIZE"
 msgstr ""
 
@@ -8213,7 +8262,7 @@ msgstr ""
 msgid "VERSION_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1391 ../src/general/OptionsMenu.tscn:1475
+#: ../src/general/OptionsMenu.tscn:1414 ../src/general/OptionsMenu.tscn:1498
 msgid "VERTICAL_COLON"
 msgstr ""
 
@@ -8222,11 +8271,11 @@ msgstr ""
 msgid "VERTICAL_WITH_AXIS_NAME_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:508
+#: ../src/general/OptionsMenu.tscn:531
 msgid "VIDEO_MEMORY"
 msgstr ""
 
-#: ../src/general/OptionsMenu.cs:1190 ../src/general/OptionsMenu.tscn:516
+#: ../src/general/OptionsMenu.cs:1194 ../src/general/OptionsMenu.tscn:539
 msgid "VIDEO_MEMORY_MIB"
 msgstr ""
 
@@ -8239,7 +8288,7 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1155
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1163
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
@@ -8247,19 +8296,20 @@ msgstr ""
 msgid "VIEW_ONLINE"
 msgstr ""
 
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1514
 #: ../src/microbe_stage/gui/PatchDetailsPanel.tscn:475
 msgid "VIEW_PATCH_MICHES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1768
+#: ../src/general/OptionsMenu.tscn:1791
 msgid "VIEW_PATCH_NOTES"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1766
+#: ../src/general/OptionsMenu.tscn:1789
 msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1407
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1415
 msgid "VIEW_PENDING_ACTIONS"
 msgstr ""
 
@@ -8275,11 +8325,11 @@ msgstr ""
 msgid "VISIBLE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:610
+#: ../src/general/OptionsMenu.tscn:633
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:612
+#: ../src/general/OptionsMenu.tscn:635
 msgid "VISIBLE_WHEN_OVER_ZERO"
 msgstr ""
 
@@ -8288,7 +8338,7 @@ msgid "VISIT_SUGGESTIONS_SITE"
 msgstr ""
 
 #: ../simulation_parameters/microbe_stage/biomes.json:184
-#: ../simulation_parameters/microbe_stage/biomes.json:3169
+#: ../simulation_parameters/microbe_stage/biomes.json:3356
 msgid "VOLCANIC_VENT"
 msgstr ""
 
@@ -8304,7 +8354,7 @@ msgstr ""
 msgid "VOLUMEUP"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:270
+#: ../src/general/OptionsMenu.tscn:271
 msgid "VSYNC"
 msgstr ""
 
@@ -8316,11 +8366,11 @@ msgstr ""
 msgid "WELCOME_TO_THRIVEOPEDIA"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:1013
+#: ../src/auto-evo/RunResults.cs:1027
 msgid "WENT_EXTINCT_FROM_PLANET"
 msgstr ""
 
-#: ../src/auto-evo/RunResults.cs:812
+#: ../src/auto-evo/RunResults.cs:826
 msgid "WENT_EXTINCT_IN"
 msgstr ""
 
@@ -8344,109 +8394,107 @@ msgstr ""
 msgid "WIKI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2359
+#: ../simulation_parameters/common/wiki.json:2438
+#: ../simulation_parameters/common/wiki.json:2493
 msgid "WIKI_2D"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2414
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2465
-#: ../simulation_parameters/common/wiki.json:2516
+#: ../simulation_parameters/common/wiki.json:2548
+#: ../simulation_parameters/common/wiki.json:2599
+#: ../simulation_parameters/common/wiki.json:2650
 msgid "WIKI_3D"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2720
+#: ../simulation_parameters/common/wiki.json:2854
 msgid "WIKI_3D_COMMA_SANDBOX"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2567
-#: ../simulation_parameters/common/wiki.json:2618
+#: ../simulation_parameters/common/wiki.json:2701
+#: ../simulation_parameters/common/wiki.json:2752
 msgid "WIKI_3D_COMMA_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2669
+#: ../simulation_parameters/common/wiki.json:2803
 msgid "WIKI_3D_COMMA_STRATEGY_COMMA_SPACE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2300
+#: ../simulation_parameters/common/wiki.json:2379
 msgid "WIKI_8_BRACKET_16"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2677
+#: ../simulation_parameters/common/wiki.json:2811
 msgid "WIKI_ASCENSION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2714
+#: ../simulation_parameters/common/wiki.json:2848
 msgid "WIKI_ASCENSION_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2706
+#: ../simulation_parameters/common/wiki.json:2840
 msgid "WIKI_ASCENSION_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2694
+#: ../simulation_parameters/common/wiki.json:2828
 msgid "WIKI_ASCENSION_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2698
+#: ../simulation_parameters/common/wiki.json:2832
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2702
+#: ../simulation_parameters/common/wiki.json:2836
 msgid "WIKI_ASCENSION_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2710
+#: ../simulation_parameters/common/wiki.json:2844
 msgid "WIKI_ASCENSION_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2510
+#: ../simulation_parameters/common/wiki.json:2644
 msgid "WIKI_AWAKENING_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2502
+#: ../simulation_parameters/common/wiki.json:2636
 msgid "WIKI_AWAKENING_STAGE_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2490
+#: ../simulation_parameters/common/wiki.json:2624
 msgid "WIKI_AWAKENING_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2494
+#: ../simulation_parameters/common/wiki.json:2628
 msgid "WIKI_AWAKENING_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2498
+#: ../simulation_parameters/common/wiki.json:2632
 msgid "WIKI_AWAKENING_STAGE_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2506
+#: ../simulation_parameters/common/wiki.json:2640
 msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2459
+#: ../simulation_parameters/common/wiki.json:2593
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2451
+#: ../simulation_parameters/common/wiki.json:2585
 msgid "WIKI_AWARE_STAGE_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2439
+#: ../simulation_parameters/common/wiki.json:2573
 msgid "WIKI_AWARE_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2443
+#: ../simulation_parameters/common/wiki.json:2577
 msgid "WIKI_AWARE_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2447
+#: ../simulation_parameters/common/wiki.json:2581
 msgid "WIKI_AWARE_STAGE_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2455
+#: ../simulation_parameters/common/wiki.json:2589
 msgid "WIKI_AWARE_STAGE_UI"
 msgstr ""
 
@@ -8550,7 +8598,8 @@ msgstr ""
 msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2426
+#: ../simulation_parameters/common/wiki.json:2505
+#: ../simulation_parameters/common/wiki.json:2560
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
 msgstr ""
 
@@ -8682,7 +8731,7 @@ msgstr ""
 msgid "WIKI_CHLOROPLAST_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2126
+#: ../simulation_parameters/common/wiki.json:2205
 msgid "WIKI_CHROMATOPHORE_PHOTOSYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
@@ -8722,31 +8771,31 @@ msgstr ""
 msgid "WIKI_COMPOUNDS_BUTTON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2796
+#: ../simulation_parameters/common/wiki.json:2930
 msgid "WIKI_COMPOUNDS_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2788
+#: ../simulation_parameters/common/wiki.json:2922
 msgid "WIKI_COMPOUNDS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2792
+#: ../simulation_parameters/common/wiki.json:2926
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2911
+#: ../simulation_parameters/common/wiki.json:3045
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2899
+#: ../simulation_parameters/common/wiki.json:3033
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2907
+#: ../simulation_parameters/common/wiki.json:3041
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_MICROBE_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2903
+#: ../simulation_parameters/common/wiki.json:3037
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
 
@@ -8790,101 +8839,135 @@ msgstr ""
 msgid "WIKI_DEVELOPMENT_INFO_BUTTON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2884
+#: ../simulation_parameters/common/wiki.json:3018
 msgid "WIKI_DEVELOPMENT_ROOT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2765
+#: ../simulation_parameters/common/wiki.json:2899
 msgid "WIKI_EDITORS_AND_MUTATIONS_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2761
+#: ../simulation_parameters/common/wiki.json:2895
 msgid "WIKI_EDITORS_AND_MUTATIONS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2769
+#: ../simulation_parameters/common/wiki.json:2903
 msgid "WIKI_EDITORS_AND_MUTATIONS_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2865
+#: ../simulation_parameters/common/wiki.json:2999
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_ENVIRONMENTAL_GASSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2857
+#: ../simulation_parameters/common/wiki.json:2991
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2861
+#: ../simulation_parameters/common/wiki.json:2995
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_PHYSICAL_CONDITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2869
+#: ../simulation_parameters/common/wiki.json:3003
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:757
-msgid "WIKI_FLAGELLUM_EFFECTS"
+msgid "WIKI_FERROPLAST_EFFECTS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:741
-msgid "WIKI_FLAGELLUM_INTRO"
+msgid "WIKI_FERROPLAST_INTRO"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:753
-msgid "WIKI_FLAGELLUM_MODIFICATIONS"
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:749
-msgid "WIKI_FLAGELLUM_PROCESSES"
+msgid "WIKI_FERROPLAST_PROCESSES"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:745
-msgid "WIKI_FLAGELLUM_REQUIREMENTS"
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:769
-msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:765
-msgid "WIKI_FLAGELLUM_STRATEGY"
+msgid "WIKI_FERROPLAST_STRATEGY"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:761
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:836
+msgid "WIKI_FLAGELLUM_EFFECTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:820
+msgid "WIKI_FLAGELLUM_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:832
+msgid "WIKI_FLAGELLUM_MODIFICATIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:828
+msgid "WIKI_FLAGELLUM_PROCESSES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:824
+msgid "WIKI_FLAGELLUM_REQUIREMENTS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:848
+msgid "WIKI_FLAGELLUM_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:844
+msgid "WIKI_FLAGELLUM_STRATEGY"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:840
 msgid "WIKI_FLAGELLUM_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1257
+#: ../simulation_parameters/common/wiki.json:1336
 msgid "WIKI_GLYCOLYSIS_COMMA_ANAEROBIC_NITROGEN_FIXATION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2352
+#: ../simulation_parameters/common/wiki.json:2431
 msgid "WIKI_HEADING_APPENDICES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2910
+#: ../simulation_parameters/common/wiki.json:3044
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2403
+#: ../simulation_parameters/common/wiki.json:2482
+#: ../simulation_parameters/common/wiki.json:2537
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2407
-#: ../simulation_parameters/common/wiki.json:2458
-#: ../simulation_parameters/common/wiki.json:2509
-#: ../simulation_parameters/common/wiki.json:2560
-#: ../simulation_parameters/common/wiki.json:2611
-#: ../simulation_parameters/common/wiki.json:2662
-#: ../simulation_parameters/common/wiki.json:2713
+#: ../simulation_parameters/common/wiki.json:2486
+#: ../simulation_parameters/common/wiki.json:2541
+#: ../simulation_parameters/common/wiki.json:2592
+#: ../simulation_parameters/common/wiki.json:2643
+#: ../simulation_parameters/common/wiki.json:2694
+#: ../simulation_parameters/common/wiki.json:2745
+#: ../simulation_parameters/common/wiki.json:2796
+#: ../simulation_parameters/common/wiki.json:2847
 msgid "WIKI_HEADING_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2795
+#: ../simulation_parameters/common/wiki.json:2929
 msgid "WIKI_HEADING_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2344
+#: ../simulation_parameters/common/wiki.json:2423
 msgid "WIKI_HEADING_EDITOR"
 msgstr ""
 
@@ -8917,40 +9000,42 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2099
 #: ../simulation_parameters/common/wiki.json:2178
 #: ../simulation_parameters/common/wiki.json:2257
+#: ../simulation_parameters/common/wiki.json:2336
 msgid "WIKI_HEADING_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2864
+#: ../simulation_parameters/common/wiki.json:2998
 msgid "WIKI_HEADING_ENVIRONMENTAL_GASSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2395
-#: ../simulation_parameters/common/wiki.json:2450
-#: ../simulation_parameters/common/wiki.json:2501
-#: ../simulation_parameters/common/wiki.json:2552
-#: ../simulation_parameters/common/wiki.json:2603
-#: ../simulation_parameters/common/wiki.json:2654
-#: ../simulation_parameters/common/wiki.json:2705
+#: ../simulation_parameters/common/wiki.json:2474
+#: ../simulation_parameters/common/wiki.json:2529
+#: ../simulation_parameters/common/wiki.json:2584
+#: ../simulation_parameters/common/wiki.json:2635
+#: ../simulation_parameters/common/wiki.json:2686
+#: ../simulation_parameters/common/wiki.json:2737
+#: ../simulation_parameters/common/wiki.json:2788
+#: ../simulation_parameters/common/wiki.json:2839
 msgid "WIKI_HEADING_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2817
+#: ../simulation_parameters/common/wiki.json:2951
 msgid "WIKI_HEADING_FOG_OF_WAR"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2340
+#: ../simulation_parameters/common/wiki.json:2419
 msgid "WIKI_HEADING_GAMEPLAY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2348
+#: ../simulation_parameters/common/wiki.json:2427
 msgid "WIKI_HEADING_GDD"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2764
+#: ../simulation_parameters/common/wiki.json:2898
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2906
+#: ../simulation_parameters/common/wiki.json:3040
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr ""
 
@@ -8983,29 +9068,31 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2095
 #: ../simulation_parameters/common/wiki.json:2174
 #: ../simulation_parameters/common/wiki.json:2253
+#: ../simulation_parameters/common/wiki.json:2332
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2768
+#: ../simulation_parameters/common/wiki.json:2902
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2387
-#: ../simulation_parameters/common/wiki.json:2442
-#: ../simulation_parameters/common/wiki.json:2493
-#: ../simulation_parameters/common/wiki.json:2544
-#: ../simulation_parameters/common/wiki.json:2595
-#: ../simulation_parameters/common/wiki.json:2646
-#: ../simulation_parameters/common/wiki.json:2697
-#: ../simulation_parameters/common/wiki.json:2902
+#: ../simulation_parameters/common/wiki.json:2466
+#: ../simulation_parameters/common/wiki.json:2521
+#: ../simulation_parameters/common/wiki.json:2576
+#: ../simulation_parameters/common/wiki.json:2627
+#: ../simulation_parameters/common/wiki.json:2678
+#: ../simulation_parameters/common/wiki.json:2729
+#: ../simulation_parameters/common/wiki.json:2780
+#: ../simulation_parameters/common/wiki.json:2831
+#: ../simulation_parameters/common/wiki.json:3036
 msgid "WIKI_HEADING_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2821
+#: ../simulation_parameters/common/wiki.json:2955
 msgid "WIKI_HEADING_PATCHES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2860
+#: ../simulation_parameters/common/wiki.json:2994
 msgid "WIKI_HEADING_PHYSICAL_CONDITIONS"
 msgstr ""
 
@@ -9038,10 +9125,11 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2091
 #: ../simulation_parameters/common/wiki.json:2170
 #: ../simulation_parameters/common/wiki.json:2249
+#: ../simulation_parameters/common/wiki.json:2328
 msgid "WIKI_HEADING_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2839
+#: ../simulation_parameters/common/wiki.json:2973
 msgid "WIKI_HEADING_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
@@ -9074,6 +9162,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2087
 #: ../simulation_parameters/common/wiki.json:2166
 #: ../simulation_parameters/common/wiki.json:2245
+#: ../simulation_parameters/common/wiki.json:2324
 msgid "WIKI_HEADING_REQUIREMENTS"
 msgstr ""
 
@@ -9106,6 +9195,7 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2111
 #: ../simulation_parameters/common/wiki.json:2190
 #: ../simulation_parameters/common/wiki.json:2269
+#: ../simulation_parameters/common/wiki.json:2348
 msgid "WIKI_HEADING_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
@@ -9138,38 +9228,41 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2107
 #: ../simulation_parameters/common/wiki.json:2186
 #: ../simulation_parameters/common/wiki.json:2265
+#: ../simulation_parameters/common/wiki.json:2344
 msgid "WIKI_HEADING_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2868
+#: ../simulation_parameters/common/wiki.json:3002
 msgid "WIKI_HEADING_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2813
+#: ../simulation_parameters/common/wiki.json:2947
 msgid "WIKI_HEADING_THE_PATCH_MAP"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2391
-#: ../simulation_parameters/common/wiki.json:2446
-#: ../simulation_parameters/common/wiki.json:2497
-#: ../simulation_parameters/common/wiki.json:2548
-#: ../simulation_parameters/common/wiki.json:2599
-#: ../simulation_parameters/common/wiki.json:2650
-#: ../simulation_parameters/common/wiki.json:2701
+#: ../simulation_parameters/common/wiki.json:2470
+#: ../simulation_parameters/common/wiki.json:2525
+#: ../simulation_parameters/common/wiki.json:2580
+#: ../simulation_parameters/common/wiki.json:2631
+#: ../simulation_parameters/common/wiki.json:2682
+#: ../simulation_parameters/common/wiki.json:2733
+#: ../simulation_parameters/common/wiki.json:2784
+#: ../simulation_parameters/common/wiki.json:2835
 msgid "WIKI_HEADING_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2791
+#: ../simulation_parameters/common/wiki.json:2925
 msgid "WIKI_HEADING_TYPES_OF_COMPOUNDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2399
-#: ../simulation_parameters/common/wiki.json:2454
-#: ../simulation_parameters/common/wiki.json:2505
-#: ../simulation_parameters/common/wiki.json:2556
-#: ../simulation_parameters/common/wiki.json:2607
-#: ../simulation_parameters/common/wiki.json:2658
-#: ../simulation_parameters/common/wiki.json:2709
+#: ../simulation_parameters/common/wiki.json:2478
+#: ../simulation_parameters/common/wiki.json:2533
+#: ../simulation_parameters/common/wiki.json:2588
+#: ../simulation_parameters/common/wiki.json:2639
+#: ../simulation_parameters/common/wiki.json:2690
+#: ../simulation_parameters/common/wiki.json:2741
+#: ../simulation_parameters/common/wiki.json:2792
+#: ../simulation_parameters/common/wiki.json:2843
 msgid "WIKI_HEADING_UI"
 msgstr ""
 
@@ -9202,142 +9295,171 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:2103
 #: ../simulation_parameters/common/wiki.json:2182
 #: ../simulation_parameters/common/wiki.json:2261
+#: ../simulation_parameters/common/wiki.json:2340
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:836
+#: ../simulation_parameters/common/wiki.json:915
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:820
+#: ../simulation_parameters/common/wiki.json:899
 msgid "WIKI_HYDROGENASE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:832
+#: ../simulation_parameters/common/wiki.json:911
 msgid "WIKI_HYDROGENASE_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:828
+#: ../simulation_parameters/common/wiki.json:907
 msgid "WIKI_HYDROGENASE_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:824
+#: ../simulation_parameters/common/wiki.json:903
 msgid "WIKI_HYDROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:848
+#: ../simulation_parameters/common/wiki.json:927
 msgid "WIKI_HYDROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:844
+#: ../simulation_parameters/common/wiki.json:923
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:840
+#: ../simulation_parameters/common/wiki.json:919
 msgid "WIKI_HYDROGENASE_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2612
+#: ../simulation_parameters/common/wiki.json:2746
 msgid "WIKI_INDUSTRIAL_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2604
+#: ../simulation_parameters/common/wiki.json:2738
 msgid "WIKI_INDUSTRIAL_STAGE_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2592
+#: ../simulation_parameters/common/wiki.json:2726
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2596
+#: ../simulation_parameters/common/wiki.json:2730
 msgid "WIKI_INDUSTRIAL_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2600
+#: ../simulation_parameters/common/wiki.json:2734
 msgid "WIKI_INDUSTRIAL_STAGE_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2608
+#: ../simulation_parameters/common/wiki.json:2742
 msgid "WIKI_INDUSTRIAL_STAGE_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1597
+#: ../simulation_parameters/common/wiki.json:1676
 msgid "WIKI_INJECTISOME_PILUS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:915
+#: ../simulation_parameters/common/wiki.json:994
 msgid "WIKI_LYSOSOME_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:899
+#: ../simulation_parameters/common/wiki.json:978
 msgid "WIKI_LYSOSOME_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:911
+#: ../simulation_parameters/common/wiki.json:990
 msgid "WIKI_LYSOSOME_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:907
+#: ../simulation_parameters/common/wiki.json:986
 msgid "WIKI_LYSOSOME_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:903
+#: ../simulation_parameters/common/wiki.json:982
 msgid "WIKI_LYSOSOME_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:927
+#: ../simulation_parameters/common/wiki.json:1006
 msgid "WIKI_LYSOSOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:923
+#: ../simulation_parameters/common/wiki.json:1002
 msgid "WIKI_LYSOSOME_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:919
+#: ../simulation_parameters/common/wiki.json:998
 msgid "WIKI_LYSOSOME_UPGRADES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2538
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2542
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2530
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2518
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2522
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2526
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2534
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
 msgstr ""
 
 #: ../src/thriveopedia/pages/wiki/mechanics/ThriveopediaMechanicsRootPage.cs:9
 msgid "WIKI_MECHANICS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2746
+#: ../simulation_parameters/common/wiki.json:2880
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:994
+#: ../simulation_parameters/common/wiki.json:1073
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:978
+#: ../simulation_parameters/common/wiki.json:1057
 msgid "WIKI_METABOLOSOMES_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:990
+#: ../simulation_parameters/common/wiki.json:1069
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:986
+#: ../simulation_parameters/common/wiki.json:1065
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:982
+#: ../simulation_parameters/common/wiki.json:1061
 msgid "WIKI_METABOLOSOMES_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1006
+#: ../simulation_parameters/common/wiki.json:1085
 msgid "WIKI_METABOLOSOMES_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1002
+#: ../simulation_parameters/common/wiki.json:1081
 msgid "WIKI_METABOLOSOMES_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:998
+#: ../simulation_parameters/common/wiki.json:1077
 msgid "WIKI_METABOLOSOMES_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2353
+#: ../simulation_parameters/common/wiki.json:2432
 msgid "WIKI_MICROBE_STAGE_APPENDICES"
 msgstr ""
 
@@ -9345,180 +9467,180 @@ msgstr ""
 msgid "WIKI_MICROBE_STAGE_BUTTON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2345
+#: ../simulation_parameters/common/wiki.json:2424
 msgid "WIKI_MICROBE_STAGE_EDITOR"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2341
+#: ../simulation_parameters/common/wiki.json:2420
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2349
+#: ../simulation_parameters/common/wiki.json:2428
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2337
+#: ../simulation_parameters/common/wiki.json:2416
 msgid "WIKI_MICROBE_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1073
+#: ../simulation_parameters/common/wiki.json:1152
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1057
+#: ../simulation_parameters/common/wiki.json:1136
 msgid "WIKI_MITOCHONDRION_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1069
+#: ../simulation_parameters/common/wiki.json:1148
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1065
+#: ../simulation_parameters/common/wiki.json:1144
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1061
+#: ../simulation_parameters/common/wiki.json:1140
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1085
+#: ../simulation_parameters/common/wiki.json:1164
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1081
+#: ../simulation_parameters/common/wiki.json:1160
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1077
+#: ../simulation_parameters/common/wiki.json:1156
 msgid "WIKI_MITOCHONDRION_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2404
+#: ../simulation_parameters/common/wiki.json:2483
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2408
+#: ../simulation_parameters/common/wiki.json:2487
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2396
+#: ../simulation_parameters/common/wiki.json:2475
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2384
+#: ../simulation_parameters/common/wiki.json:2463
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2388
+#: ../simulation_parameters/common/wiki.json:2467
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2392
+#: ../simulation_parameters/common/wiki.json:2471
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2400
+#: ../simulation_parameters/common/wiki.json:2479
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1152
+#: ../simulation_parameters/common/wiki.json:1231
 msgid "WIKI_MYOFIBRIL_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1136
+#: ../simulation_parameters/common/wiki.json:1215
 msgid "WIKI_MYOFIBRIL_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1148
+#: ../simulation_parameters/common/wiki.json:1227
 msgid "WIKI_MYOFIBRIL_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1144
+#: ../simulation_parameters/common/wiki.json:1223
 msgid "WIKI_MYOFIBRIL_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1140
+#: ../simulation_parameters/common/wiki.json:1219
 msgid "WIKI_MYOFIBRIL_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1164
+#: ../simulation_parameters/common/wiki.json:1243
 msgid "WIKI_MYOFIBRIL_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1160
+#: ../simulation_parameters/common/wiki.json:1239
 msgid "WIKI_MYOFIBRIL_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1156
+#: ../simulation_parameters/common/wiki.json:1235
 msgid "WIKI_MYOFIBRIL_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2579
-#: ../simulation_parameters/common/wiki.json:2630
+#: ../simulation_parameters/common/wiki.json:2713
+#: ../simulation_parameters/common/wiki.json:2764
 msgid "WIKI_NATION_EDITOR"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1231
+#: ../simulation_parameters/common/wiki.json:1310
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1215
+#: ../simulation_parameters/common/wiki.json:1294
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1227
+#: ../simulation_parameters/common/wiki.json:1306
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1223
+#: ../simulation_parameters/common/wiki.json:1302
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1219
+#: ../simulation_parameters/common/wiki.json:1298
 msgid "WIKI_NITROGENASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1243
+#: ../simulation_parameters/common/wiki.json:1322
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1239
+#: ../simulation_parameters/common/wiki.json:1318
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1235
+#: ../simulation_parameters/common/wiki.json:1314
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1310
+#: ../simulation_parameters/common/wiki.json:1389
 msgid "WIKI_NITROPLAST_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1294
+#: ../simulation_parameters/common/wiki.json:1373
 msgid "WIKI_NITROPLAST_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1306
+#: ../simulation_parameters/common/wiki.json:1385
 msgid "WIKI_NITROPLAST_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1302
+#: ../simulation_parameters/common/wiki.json:1381
 msgid "WIKI_NITROPLAST_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1298
+#: ../simulation_parameters/common/wiki.json:1377
 msgid "WIKI_NITROPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1322
+#: ../simulation_parameters/common/wiki.json:1401
 msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1318
+#: ../simulation_parameters/common/wiki.json:1397
 msgid "WIKI_NITROPLAST_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1314
+#: ../simulation_parameters/common/wiki.json:1393
 msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr ""
 
@@ -9532,72 +9654,73 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:645
 #: ../simulation_parameters/common/wiki.json:700
 #: ../simulation_parameters/common/wiki.json:724
-#: ../simulation_parameters/common/wiki.json:779
 #: ../simulation_parameters/common/wiki.json:803
 #: ../simulation_parameters/common/wiki.json:858
 #: ../simulation_parameters/common/wiki.json:882
+#: ../simulation_parameters/common/wiki.json:937
 #: ../simulation_parameters/common/wiki.json:961
-#: ../simulation_parameters/common/wiki.json:1016
 #: ../simulation_parameters/common/wiki.json:1040
+#: ../simulation_parameters/common/wiki.json:1095
 #: ../simulation_parameters/common/wiki.json:1119
 #: ../simulation_parameters/common/wiki.json:1198
-#: ../simulation_parameters/common/wiki.json:1253
 #: ../simulation_parameters/common/wiki.json:1277
+#: ../simulation_parameters/common/wiki.json:1332
 #: ../simulation_parameters/common/wiki.json:1356
-#: ../simulation_parameters/common/wiki.json:1411
+#: ../simulation_parameters/common/wiki.json:1435
 #: ../simulation_parameters/common/wiki.json:1490
-#: ../simulation_parameters/common/wiki.json:1514
 #: ../simulation_parameters/common/wiki.json:1569
 #: ../simulation_parameters/common/wiki.json:1593
 #: ../simulation_parameters/common/wiki.json:1648
 #: ../simulation_parameters/common/wiki.json:1672
 #: ../simulation_parameters/common/wiki.json:1727
 #: ../simulation_parameters/common/wiki.json:1751
-#: ../simulation_parameters/common/wiki.json:1885
-#: ../simulation_parameters/common/wiki.json:1909
+#: ../simulation_parameters/common/wiki.json:1806
+#: ../simulation_parameters/common/wiki.json:1830
+#: ../simulation_parameters/common/wiki.json:1964
 #: ../simulation_parameters/common/wiki.json:1988
-#: ../simulation_parameters/common/wiki.json:2043
 #: ../simulation_parameters/common/wiki.json:2067
 #: ../simulation_parameters/common/wiki.json:2122
 #: ../simulation_parameters/common/wiki.json:2146
+#: ../simulation_parameters/common/wiki.json:2201
 #: ../simulation_parameters/common/wiki.json:2225
 #: ../simulation_parameters/common/wiki.json:2304
+#: ../simulation_parameters/common/wiki.json:2383
 msgid "WIKI_NO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2728
+#: ../simulation_parameters/common/wiki.json:2862
 msgid "WIKI_NONE_COMMA_THIS_IS_THE_LAST_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1389
+#: ../simulation_parameters/common/wiki.json:1468
 msgid "WIKI_NUCLEUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1373
+#: ../simulation_parameters/common/wiki.json:1452
 msgid "WIKI_NUCLEUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1385
+#: ../simulation_parameters/common/wiki.json:1464
 msgid "WIKI_NUCLEUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1381
+#: ../simulation_parameters/common/wiki.json:1460
 msgid "WIKI_NUCLEUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1377
+#: ../simulation_parameters/common/wiki.json:1456
 msgid "WIKI_NUCLEUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1401
+#: ../simulation_parameters/common/wiki.json:1480
 msgid "WIKI_NUCLEUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1397
+#: ../simulation_parameters/common/wiki.json:1476
 msgid "WIKI_NUCLEUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1393
+#: ../simulation_parameters/common/wiki.json:1472
 msgid "WIKI_NUCLEUS_UPGRADES"
 msgstr ""
 
@@ -9605,51 +9728,51 @@ msgstr ""
 msgid "WIKI_ORGANELLES_ROOT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1468
+#: ../simulation_parameters/common/wiki.json:1547
 msgid "WIKI_OXYTOXISOME_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1452
+#: ../simulation_parameters/common/wiki.json:1531
 msgid "WIKI_OXYTOXISOME_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1464
+#: ../simulation_parameters/common/wiki.json:1543
 msgid "WIKI_OXYTOXISOME_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1460
+#: ../simulation_parameters/common/wiki.json:1539
 msgid "WIKI_OXYTOXISOME_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1456
+#: ../simulation_parameters/common/wiki.json:1535
 msgid "WIKI_OXYTOXISOME_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1480
+#: ../simulation_parameters/common/wiki.json:1559
 msgid "WIKI_OXYTOXISOME_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1476
+#: ../simulation_parameters/common/wiki.json:1555
 msgid "WIKI_OXYTOXISOME_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1472
+#: ../simulation_parameters/common/wiki.json:1551
 msgid "WIKI_OXYTOXISOME_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1494
+#: ../simulation_parameters/common/wiki.json:1573
 msgid "WIKI_OXYTOXY_SYNTHESIS_COMMA_GLYCOLYSIS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2688
+#: ../simulation_parameters/common/wiki.json:2822
 msgid "WIKI_PAGE_ASCENSION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2484
+#: ../simulation_parameters/common/wiki.json:2618
 msgid "WIKI_PAGE_AWAKENING_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2433
+#: ../simulation_parameters/common/wiki.json:2567
 msgid "WIKI_PAGE_AWARE_STAGE"
 msgstr ""
 
@@ -9685,11 +9808,11 @@ msgstr ""
 msgid "WIKI_PAGE_CILIA"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2782
+#: ../simulation_parameters/common/wiki.json:2916
 msgid "WIKI_PAGE_COMPOUNDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2893
+#: ../simulation_parameters/common/wiki.json:3027
 msgid "WIKI_PAGE_COMPOUND_SYSTEM_DEVELOPMENT"
 msgstr ""
 
@@ -9697,67 +9820,75 @@ msgstr ""
 msgid "WIKI_PAGE_CYTOPLASM"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2878
+#: ../simulation_parameters/common/wiki.json:3012
 msgid "WIKI_PAGE_DEVELOPMENT_ROOT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2755
+#: ../simulation_parameters/common/wiki.json:2889
 msgid "WIKI_PAGE_EDITORS_AND_MUTATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2851
+#: ../simulation_parameters/common/wiki.json:2985
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:735
-msgid "WIKI_PAGE_FLAGELLUM"
+msgid "WIKI_PAGE_FERROPLAST"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:814
-msgid "WIKI_PAGE_HYDROGENASE"
-msgstr ""
-
-#: ../simulation_parameters/common/wiki.json:2586
-msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
+msgid "WIKI_PAGE_FLAGELLUM"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:893
-msgid "WIKI_PAGE_LYSOSOME"
+msgid "WIKI_PAGE_HYDROGENASE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2740
-msgid "WIKI_PAGE_MECHANICS_ROOT"
+#: ../simulation_parameters/common/wiki.json:2720
+msgid "WIKI_PAGE_INDUSTRIAL_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:972
-msgid "WIKI_PAGE_METABOLOSOMES"
+msgid "WIKI_PAGE_LYSOSOME"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2331
-msgid "WIKI_PAGE_MICROBE_STAGE"
+#: ../simulation_parameters/common/wiki.json:2512
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2874
+msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1051
-msgid "WIKI_PAGE_MITOCHONDRION"
+msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2378
-msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
+#: ../simulation_parameters/common/wiki.json:2410
+msgid "WIKI_PAGE_MICROBE_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1130
-msgid "WIKI_PAGE_MYOFIBRIL"
+msgid "WIKI_PAGE_MITOCHONDRION"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:2457
+msgid "WIKI_PAGE_MULTICELLULAR_STAGE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1209
-msgid "WIKI_PAGE_NITROGENASE"
+msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1288
-msgid "WIKI_PAGE_NITROPLAST"
+msgid "WIKI_PAGE_NITROGENASE"
 msgstr ""
 
 #: ../simulation_parameters/common/wiki.json:1367
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr ""
+
+#: ../simulation_parameters/common/wiki.json:1446
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr ""
 
@@ -9765,135 +9896,135 @@ msgstr ""
 msgid "WIKI_PAGE_ORGANELLES_ROOT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1446
+#: ../simulation_parameters/common/wiki.json:1525
 msgid "WIKI_PAGE_OXYTOXISOME"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1525
+#: ../simulation_parameters/common/wiki.json:1604
 msgid "WIKI_PAGE_PERFORATOR_PILUS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1604
+#: ../simulation_parameters/common/wiki.json:1683
 msgid "WIKI_PAGE_PROTOPLASM"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2830
+#: ../simulation_parameters/common/wiki.json:2964
 msgid "WIKI_PAGE_REPRODUCTION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1683
+#: ../simulation_parameters/common/wiki.json:1762
 msgid "WIKI_PAGE_RUSTICYANIN"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1762
+#: ../simulation_parameters/common/wiki.json:1841
 msgid "WIKI_PAGE_SIGNALING_AGENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1841
+#: ../simulation_parameters/common/wiki.json:1920
 msgid "WIKI_PAGE_SLIME_JET"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2535
+#: ../simulation_parameters/common/wiki.json:2669
 msgid "WIKI_PAGE_SOCIETY_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2637
+#: ../simulation_parameters/common/wiki.json:2771
 msgid "WIKI_PAGE_SPACE_STAGE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2316
+#: ../simulation_parameters/common/wiki.json:2395
 msgid "WIKI_PAGE_STAGES_ROOT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1920
+#: ../simulation_parameters/common/wiki.json:1999
 msgid "WIKI_PAGE_THERMOPLAST"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1999
+#: ../simulation_parameters/common/wiki.json:2078
 msgid "WIKI_PAGE_THERMOSYNTHASE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2804
+#: ../simulation_parameters/common/wiki.json:2938
 msgid "WIKI_PAGE_THE_PATCH_MAP"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2078
+#: ../simulation_parameters/common/wiki.json:2157
 msgid "WIKI_PAGE_THYLAKOIDS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2157
+#: ../simulation_parameters/common/wiki.json:2236
 msgid "WIKI_PAGE_TOXIN_VACUOLE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2236
+#: ../simulation_parameters/common/wiki.json:2315
 msgid "WIKI_PAGE_VACUOLE"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1547
+#: ../simulation_parameters/common/wiki.json:1626
 msgid "WIKI_PERFORATOR_PILUS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1531
+#: ../simulation_parameters/common/wiki.json:1610
 msgid "WIKI_PERFORATOR_PILUS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1543
+#: ../simulation_parameters/common/wiki.json:1622
 msgid "WIKI_PERFORATOR_PILUS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1539
+#: ../simulation_parameters/common/wiki.json:1618
 msgid "WIKI_PERFORATOR_PILUS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1535
+#: ../simulation_parameters/common/wiki.json:1614
 msgid "WIKI_PERFORATOR_PILUS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1559
+#: ../simulation_parameters/common/wiki.json:1638
 msgid "WIKI_PERFORATOR_PILUS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1555
+#: ../simulation_parameters/common/wiki.json:1634
 msgid "WIKI_PERFORATOR_PILUS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1551
+#: ../simulation_parameters/common/wiki.json:1630
 msgid "WIKI_PERFORATOR_PILUS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1020
+#: ../simulation_parameters/common/wiki.json:1099
 msgid "WIKI_PROTEIN_RESPIRATION"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1626
+#: ../simulation_parameters/common/wiki.json:1705
 msgid "WIKI_PROTOPLASM_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1610
+#: ../simulation_parameters/common/wiki.json:1689
 msgid "WIKI_PROTOPLASM_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1622
+#: ../simulation_parameters/common/wiki.json:1701
 msgid "WIKI_PROTOPLASM_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1618
+#: ../simulation_parameters/common/wiki.json:1697
 msgid "WIKI_PROTOPLASM_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1614
+#: ../simulation_parameters/common/wiki.json:1693
 msgid "WIKI_PROTOPLASM_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1638
+#: ../simulation_parameters/common/wiki.json:1717
 msgid "WIKI_PROTOPLASM_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1634
+#: ../simulation_parameters/common/wiki.json:1713
 msgid "WIKI_PROTOPLASM_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1630
+#: ../simulation_parameters/common/wiki.json:1709
 msgid "WIKI_PROTOPLASM_UPGRADES"
 msgstr ""
 
@@ -9905,11 +10036,11 @@ msgstr ""
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2836
+#: ../simulation_parameters/common/wiki.json:2970
 msgid "WIKI_REPRODUCTION_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2840
+#: ../simulation_parameters/common/wiki.json:2974
 msgid "WIKI_REPRODUCTION_REPRODUCTION_IN_THE_MICROBE_STAGE"
 msgstr ""
 
@@ -9921,334 +10052,334 @@ msgstr ""
 msgid "WIKI_ROOT_HEADING"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1705
+#: ../simulation_parameters/common/wiki.json:1784
 msgid "WIKI_RUSTICYANIN_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1689
+#: ../simulation_parameters/common/wiki.json:1768
 msgid "WIKI_RUSTICYANIN_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1701
+#: ../simulation_parameters/common/wiki.json:1780
 msgid "WIKI_RUSTICYANIN_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1697
+#: ../simulation_parameters/common/wiki.json:1776
 msgid "WIKI_RUSTICYANIN_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1693
+#: ../simulation_parameters/common/wiki.json:1772
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1717
+#: ../simulation_parameters/common/wiki.json:1796
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1713
+#: ../simulation_parameters/common/wiki.json:1792
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1709
+#: ../simulation_parameters/common/wiki.json:1788
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1784
+#: ../simulation_parameters/common/wiki.json:1863
 msgid "WIKI_SIGNALING_AGENT_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1768
+#: ../simulation_parameters/common/wiki.json:1847
 msgid "WIKI_SIGNALING_AGENT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1780
+#: ../simulation_parameters/common/wiki.json:1859
 msgid "WIKI_SIGNALING_AGENT_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1776
+#: ../simulation_parameters/common/wiki.json:1855
 msgid "WIKI_SIGNALING_AGENT_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1772
+#: ../simulation_parameters/common/wiki.json:1851
 msgid "WIKI_SIGNALING_AGENT_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1796
+#: ../simulation_parameters/common/wiki.json:1875
 msgid "WIKI_SIGNALING_AGENT_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1792
+#: ../simulation_parameters/common/wiki.json:1871
 msgid "WIKI_SIGNALING_AGENT_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1788
+#: ../simulation_parameters/common/wiki.json:1867
 msgid "WIKI_SIGNALING_AGENT_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1863
+#: ../simulation_parameters/common/wiki.json:1942
 msgid "WIKI_SLIME_JET_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1847
+#: ../simulation_parameters/common/wiki.json:1926
 msgid "WIKI_SLIME_JET_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1859
+#: ../simulation_parameters/common/wiki.json:1938
 msgid "WIKI_SLIME_JET_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1855
+#: ../simulation_parameters/common/wiki.json:1934
 msgid "WIKI_SLIME_JET_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1851
+#: ../simulation_parameters/common/wiki.json:1930
 msgid "WIKI_SLIME_JET_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1875
+#: ../simulation_parameters/common/wiki.json:1954
 msgid "WIKI_SLIME_JET_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1871
+#: ../simulation_parameters/common/wiki.json:1950
 msgid "WIKI_SLIME_JET_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1867
+#: ../simulation_parameters/common/wiki.json:1946
 msgid "WIKI_SLIME_JET_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2561
+#: ../simulation_parameters/common/wiki.json:2695
 msgid "WIKI_SOCIETY_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2553
+#: ../simulation_parameters/common/wiki.json:2687
 msgid "WIKI_SOCIETY_STAGE_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2541
+#: ../simulation_parameters/common/wiki.json:2675
 msgid "WIKI_SOCIETY_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2545
+#: ../simulation_parameters/common/wiki.json:2679
 msgid "WIKI_SOCIETY_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2549
+#: ../simulation_parameters/common/wiki.json:2683
 msgid "WIKI_SOCIETY_STAGE_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2557
+#: ../simulation_parameters/common/wiki.json:2691
 msgid "WIKI_SOCIETY_STAGE_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2663
+#: ../simulation_parameters/common/wiki.json:2797
 msgid "WIKI_SPACE_STAGE_CURRENT_DEVELOPMENT"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2655
+#: ../simulation_parameters/common/wiki.json:2789
 msgid "WIKI_SPACE_STAGE_FEATURES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2643
+#: ../simulation_parameters/common/wiki.json:2777
 msgid "WIKI_SPACE_STAGE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2647
+#: ../simulation_parameters/common/wiki.json:2781
 msgid "WIKI_SPACE_STAGE_OVERVIEW"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2651
+#: ../simulation_parameters/common/wiki.json:2785
 msgid "WIKI_SPACE_STAGE_TRANSITIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2659
+#: ../simulation_parameters/common/wiki.json:2793
 msgid "WIKI_SPACE_STAGE_UI"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2322
+#: ../simulation_parameters/common/wiki.json:2401
 msgid "WIKI_STAGES_ROOT_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2477
-#: ../simulation_parameters/common/wiki.json:2528
-#: ../simulation_parameters/common/wiki.json:2681
-#: ../simulation_parameters/common/wiki.json:2732
+#: ../simulation_parameters/common/wiki.json:2611
+#: ../simulation_parameters/common/wiki.json:2662
+#: ../simulation_parameters/common/wiki.json:2815
+#: ../simulation_parameters/common/wiki.json:2866
 msgid "WIKI_TBA"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1942
+#: ../simulation_parameters/common/wiki.json:2021
 msgid "WIKI_THERMOPLAST_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1926
+#: ../simulation_parameters/common/wiki.json:2005
 msgid "WIKI_THERMOPLAST_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1938
+#: ../simulation_parameters/common/wiki.json:2017
 msgid "WIKI_THERMOPLAST_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1934
+#: ../simulation_parameters/common/wiki.json:2013
 msgid "WIKI_THERMOPLAST_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1930
+#: ../simulation_parameters/common/wiki.json:2009
 msgid "WIKI_THERMOPLAST_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1954
+#: ../simulation_parameters/common/wiki.json:2033
 msgid "WIKI_THERMOPLAST_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1950
+#: ../simulation_parameters/common/wiki.json:2029
 msgid "WIKI_THERMOPLAST_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:1946
+#: ../simulation_parameters/common/wiki.json:2025
 msgid "WIKI_THERMOPLAST_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2021
+#: ../simulation_parameters/common/wiki.json:2100
 msgid "WIKI_THERMOSYNTHASE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2005
+#: ../simulation_parameters/common/wiki.json:2084
 msgid "WIKI_THERMOSYNTHASE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2017
+#: ../simulation_parameters/common/wiki.json:2096
 msgid "WIKI_THERMOSYNTHASE_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2013
+#: ../simulation_parameters/common/wiki.json:2092
 msgid "WIKI_THERMOSYNTHASE_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2009
+#: ../simulation_parameters/common/wiki.json:2088
 msgid "WIKI_THERMOSYNTHASE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2033
+#: ../simulation_parameters/common/wiki.json:2112
 msgid "WIKI_THERMOSYNTHASE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2029
+#: ../simulation_parameters/common/wiki.json:2108
 msgid "WIKI_THERMOSYNTHASE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2025
+#: ../simulation_parameters/common/wiki.json:2104
 msgid "WIKI_THERMOSYNTHASE_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2818
+#: ../simulation_parameters/common/wiki.json:2952
 msgid "WIKI_THE_PATCH_MAP_FOG_OF_WAR"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2810
+#: ../simulation_parameters/common/wiki.json:2944
 msgid "WIKI_THE_PATCH_MAP_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2822
+#: ../simulation_parameters/common/wiki.json:2956
 msgid "WIKI_THE_PATCH_MAP_PATCHES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2814
+#: ../simulation_parameters/common/wiki.json:2948
 msgid "WIKI_THE_PATCH_MAP_THE_PATCH_MAP"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2100
+#: ../simulation_parameters/common/wiki.json:2179
 msgid "WIKI_THYLAKOIDS_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2084
+#: ../simulation_parameters/common/wiki.json:2163
 msgid "WIKI_THYLAKOIDS_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2096
+#: ../simulation_parameters/common/wiki.json:2175
 msgid "WIKI_THYLAKOIDS_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2092
+#: ../simulation_parameters/common/wiki.json:2171
 msgid "WIKI_THYLAKOIDS_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2088
+#: ../simulation_parameters/common/wiki.json:2167
 msgid "WIKI_THYLAKOIDS_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2112
+#: ../simulation_parameters/common/wiki.json:2191
 msgid "WIKI_THYLAKOIDS_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2108
+#: ../simulation_parameters/common/wiki.json:2187
 msgid "WIKI_THYLAKOIDS_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2104
+#: ../simulation_parameters/common/wiki.json:2183
 msgid "WIKI_THYLAKOIDS_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2179
+#: ../simulation_parameters/common/wiki.json:2258
 msgid "WIKI_TOXIN_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2163
+#: ../simulation_parameters/common/wiki.json:2242
 msgid "WIKI_TOXIN_VACUOLE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2175
+#: ../simulation_parameters/common/wiki.json:2254
 msgid "WIKI_TOXIN_VACUOLE_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2171
+#: ../simulation_parameters/common/wiki.json:2250
 msgid "WIKI_TOXIN_VACUOLE_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2167
+#: ../simulation_parameters/common/wiki.json:2246
 msgid "WIKI_TOXIN_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2191
+#: ../simulation_parameters/common/wiki.json:2270
 msgid "WIKI_TOXIN_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2187
+#: ../simulation_parameters/common/wiki.json:2266
 msgid "WIKI_TOXIN_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2183
+#: ../simulation_parameters/common/wiki.json:2262
 msgid "WIKI_TOXIN_VACUOLE_UPGRADES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2258
+#: ../simulation_parameters/common/wiki.json:2337
 msgid "WIKI_VACUOLE_EFFECTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2242
+#: ../simulation_parameters/common/wiki.json:2321
 msgid "WIKI_VACUOLE_INTRO"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2254
+#: ../simulation_parameters/common/wiki.json:2333
 msgid "WIKI_VACUOLE_MODIFICATIONS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2250
+#: ../simulation_parameters/common/wiki.json:2329
 msgid "WIKI_VACUOLE_PROCESSES"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2246
+#: ../simulation_parameters/common/wiki.json:2325
 msgid "WIKI_VACUOLE_REQUIREMENTS"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2270
+#: ../simulation_parameters/common/wiki.json:2349
 msgid "WIKI_VACUOLE_SCIENTIFIC_BACKGROUND"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2266
+#: ../simulation_parameters/common/wiki.json:2345
 msgid "WIKI_VACUOLE_STRATEGY"
 msgstr ""
 
-#: ../simulation_parameters/common/wiki.json:2262
+#: ../simulation_parameters/common/wiki.json:2341
 msgid "WIKI_VACUOLE_UPGRADES"
 msgstr ""
 
@@ -10259,16 +10390,17 @@ msgstr ""
 #: ../simulation_parameters/common/wiki.json:305
 #: ../simulation_parameters/common/wiki.json:542
 #: ../simulation_parameters/common/wiki.json:621
-#: ../simulation_parameters/common/wiki.json:937
-#: ../simulation_parameters/common/wiki.json:1095
+#: ../simulation_parameters/common/wiki.json:779
+#: ../simulation_parameters/common/wiki.json:1016
 #: ../simulation_parameters/common/wiki.json:1174
-#: ../simulation_parameters/common/wiki.json:1332
-#: ../simulation_parameters/common/wiki.json:1435
-#: ../simulation_parameters/common/wiki.json:1806
-#: ../simulation_parameters/common/wiki.json:1830
-#: ../simulation_parameters/common/wiki.json:1964
-#: ../simulation_parameters/common/wiki.json:2201
+#: ../simulation_parameters/common/wiki.json:1253
+#: ../simulation_parameters/common/wiki.json:1411
+#: ../simulation_parameters/common/wiki.json:1514
+#: ../simulation_parameters/common/wiki.json:1885
+#: ../simulation_parameters/common/wiki.json:1909
+#: ../simulation_parameters/common/wiki.json:2043
 #: ../simulation_parameters/common/wiki.json:2280
+#: ../simulation_parameters/common/wiki.json:2359
 msgid "WIKI_YES"
 msgstr ""
 
@@ -10341,23 +10473,23 @@ msgstr ""
 msgid "WORLD_MISC_DETAILS_STRING"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:1544
+#: ../src/general/OptionsMenu.tscn:1567
 msgid "WORLD_RELATIVE_MOVEMENT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1261
+#: ../src/microbe_stage/editor/CellEditorComponent.tscn:1269
 msgid "WORST_PATCH_COLON"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:554
+#: ../src/general/OptionsMenu.tscn:577
 msgid "XBOX360"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:556
+#: ../src/general/OptionsMenu.tscn:579
 msgid "XBOX_ONE"
 msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:558
+#: ../src/general/OptionsMenu.tscn:581
 msgid "XBOX_SERIES"
 msgstr ""
 

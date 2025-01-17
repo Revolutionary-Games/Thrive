@@ -907,11 +907,11 @@ public partial class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (EarlyMulticellularEditor)SceneManager.Instance
-                .LoadScene(MainGameState.EarlyMulticellularEditor).Instantiate();
+            var editor = (MulticellularEditor)SceneManager.Instance
+                .LoadScene(MainGameState.MulticellularEditor).Instantiate();
 
             // Start freebuild game
-            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
+            editor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

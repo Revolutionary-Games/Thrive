@@ -445,6 +445,7 @@ public static class Constants
 
     public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
     public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
+    public const int DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE = 500;
 
     // Base randomness for visual hashes to make different types not conflict
     public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
@@ -743,9 +744,9 @@ public static class Constants
 
     /// <summary>
     ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> and
-    ///   <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for early multicellular microbes
+    ///   <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for multicellular microbes
     /// </summary>
-    public const float EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
@@ -754,7 +755,7 @@ public static class Constants
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
-    public const float EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -1305,7 +1306,7 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 1.8f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
@@ -1558,7 +1559,7 @@ public static class Constants
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
-    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.1f;
 
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
@@ -1627,6 +1628,8 @@ public static class Constants
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
+
+    public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
 
     /// <summary>
     ///   If set to true then physics debug draw gets enabled when the game starts

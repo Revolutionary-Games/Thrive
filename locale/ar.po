@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: 2023-03-13 09:01+0000\n"
 "Last-Translator: Xradiation <tamimzain@hotmail.com>\n"
 "Language-Team: Arabic <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ar/>\n"
@@ -341,6 +341,9 @@ msgstr "فترة الميكروبات"
 msgid "BACK"
 msgstr ""
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr ""
 
@@ -582,6 +585,10 @@ msgstr ""
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1526,10 +1533,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "فترة الكائنات متعددة الخلايا"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
@@ -1615,6 +1618,9 @@ msgid "EASTER_EGGS"
 msgstr ""
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 
 msgid "EDGE_PAN_SPEED"
@@ -2664,10 +2670,6 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "فترة الكائنات متعددة الخلايا"
-
 msgid "LAUNCH0"
 msgstr ""
 
@@ -2875,11 +2877,12 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr ""
-
 msgid "LOADING_GAME"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "فترة الكائنات متعددة الخلايا"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
@@ -2939,6 +2942,13 @@ msgstr ""
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "عام"
+
+msgid "MACROSCOPIC"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "فترة الميكروبات"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3548,6 +3558,10 @@ msgstr ""
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "استمر إلا مرحلة الاستيقاظ. يصبح متاحًا بمجرد أن تكون قوة العقل كافية (أنسجة مع محاور)."
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "فترة الكائنات متعددة الخلايا"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
@@ -3881,6 +3895,10 @@ msgstr ""
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "فترة الكائنات متعددة الخلايا"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4312,6 +4330,10 @@ msgstr "فترة الميكروبات"
 
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr ""
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "فترة الميكروبات"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -5415,18 +5437,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"مرحبا إلى المرحلة المتعددة الخلايا المبكرة! \n"
-"\n"
-"لقد نجحت في قيادة أنواعك في المرحلة أحادية الخلية. \n"
-"\n"
-"الغايمبلاي يتبع الآليات الأساسية لمرحلة الميكروب. ما زلت بحاجة إلى الاستمرار في تنمية الكائن الحي الخاص بك للتكاثر والوصول إلى المصمم. \n"
-"\n"
-"مع ذلك,يمكنك الآن تصميم مخطط الخلية المستعمرة في المصمم و يمكنك تخصيص خلاياك لعدة أدوار.لا تنسى أن أعضاء المستعمرة لا يستطيعون مشاركة [thrive:compound type=\"atp\"][/thrive:compound]. \n"
-"\n"
-"إذا كنت تستعمل التكاثر بالتبرعم (الطريقة التقليدية), ستبدأ بالتحكم في برعم صغير و ستحتاج لتنمية باقي مخطط الخلية."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5491,6 +5501,19 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"مرحبا إلى المرحلة المتعددة الخلايا المبكرة! \n"
+"\n"
+"لقد نجحت في قيادة أنواعك في المرحلة أحادية الخلية. \n"
+"\n"
+"الغايمبلاي يتبع الآليات الأساسية لمرحلة الميكروب. ما زلت بحاجة إلى الاستمرار في تنمية الكائن الحي الخاص بك للتكاثر والوصول إلى المصمم. \n"
+"\n"
+"مع ذلك,يمكنك الآن تصميم مخطط الخلية المستعمرة في المصمم و يمكنك تخصيص خلاياك لعدة أدوار.لا تنسى أن أعضاء المستعمرة لا يستطيعون مشاركة [thrive:compound type=\"atp\"][/thrive:compound]. \n"
+"\n"
+"إذا كنت تستعمل التكاثر بالتبرعم (الطريقة التقليدية), ستبدأ بالتحكم في برعم صغير و ستحتاج لتنمية باقي مخطط الخلية."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -5823,9 +5846,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6274,6 +6294,38 @@ msgstr ""
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "عام"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "عام"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "عام"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "المصمم ثلاثي الأبعاد"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "فن التصور"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "عام"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -6517,6 +6569,48 @@ msgstr "فترة الميكروبات"
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "فترة الكائنات متعددة الخلايا"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"مرحبا إلى المرحلة المتعددة الخلايا المبكرة! \n"
+"\n"
+"لقد نجحت في قيادة أنواعك في المرحلة أحادية الخلية. \n"
+"\n"
+"الغايمبلاي يتبع الآليات الأساسية لمرحلة الميكروب. ما زلت بحاجة إلى الاستمرار في تنمية الكائن الحي الخاص بك للتكاثر والوصول إلى المصمم. \n"
+"\n"
+"مع ذلك,يمكنك الآن تصميم مخطط الخلية المستعمرة في المصمم و يمكنك تخصيص خلاياك لعدة أدوار.لا تنسى أن أعضاء المستعمرة لا يستطيعون مشاركة [thrive:compound type=\"atp\"][/thrive:compound]. \n"
+"\n"
+"إذا كنت تستعمل التكاثر بالتبرعم (الطريقة التقليدية), ستبدأ بالتحكم في برعم صغير و ستحتاج لتنمية باقي مخطط الخلية."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"ابحث عن قطرات في مقياس ضوء الشمس على لوحة البيئة.\n"
+"\n"
+"يحل الليل عندما تظلم البيئة.\n"
+"التركيب الضوئي غير فعال خلال الليل.\n"
+"لذا تأكد من أنك تملك مدخرات كافية من أجل النجاة في الليل."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "فترة الميكروبات"
 
 msgid "WIKI_MECHANICS"
 msgstr ""
@@ -6902,6 +6996,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "عام"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "فترة الميكروبات"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "فترة الميكروبات"
 
@@ -6916,6 +7014,10 @@ msgstr "فترة الميكروبات"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "عام"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "فترة الميكروبات"
 
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr ""
@@ -7487,6 +7589,14 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "فترة الميكروبات"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "فترة الكائنات متعددة الخلايا"
 
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"

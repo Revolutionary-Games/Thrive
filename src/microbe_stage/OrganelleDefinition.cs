@@ -245,6 +245,11 @@ public class OrganelleDefinition : IRegistryType
         ///   Only available starting in multicellular
         /// </summary>
         Multicellular,
+
+        /// <summary>
+        ///   Only available starting in macroscopic
+        /// </summary>
+        Macroscopic,
     }
 
     /// <summary>

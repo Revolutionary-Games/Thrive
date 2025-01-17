@@ -20,4 +20,5 @@ public enum BiomeType
     Cave,
     IceShelf,
     Vents,
+    Banana,
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-17 00:10+0000\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
 "PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -374,6 +374,9 @@ msgstr "Fase Microbial"
 msgid "BACK"
 msgstr "Voltar"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Barra invertida"
 
@@ -618,6 +621,10 @@ msgstr "Celulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana possui uma parede, resultando em uma melhor proteção contra danos gerais e principalmente contra danos físicos. Também custa menos energia para manter a forma, mas não consegue absorver recursos rapidamente e é mais lenta.[b]Celulase consegue digerir esta parede[/b] tornando-a vulnerável a absorção por predadores."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positivo"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1654,9 +1661,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipo"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicelular"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Curiosidade: o Didinium e o Paramecium são um exemplo clássico de uma relação predador-presa estudada há décadas. Serás o Didinium ou o Paramecium? Predador ou Presa?"
 
@@ -1742,6 +1746,10 @@ msgid "EASTER_EGGS"
 msgstr "Incluir Easter eggs"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(segredos que surgem aleatoriamente no jogo)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(segredos que surgem aleatoriamente no jogo)"
 
 msgid "EDGE_PAN_SPEED"
@@ -2845,10 +2853,6 @@ msgstr "Esta tradução está muito incompleta ({0}% feita) por favor ajude-nos 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Não é possível eliminar o último organelo"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Colocar organelo"
-
 msgid "LAUNCH0"
 msgstr "Launch 0"
 
@@ -3060,12 +3064,12 @@ msgstr "A carregar"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "A carregar..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "A carregar o Editor de Micróbio"
-
 msgid "LOADING_GAME"
 msgstr "A carregar o jogo"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "A carregar o Editor de Micróbio"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
@@ -3136,6 +3140,14 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para alterar o tipo de e
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Quimiossíntese"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Fase Microbial"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir manualmente a hora do dia"
@@ -3842,6 +3854,10 @@ msgstr "Quimiossíntese"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Visite a nossa pagina de Patreon"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Colocar organelo"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor de multicelulas"
 
@@ -4207,6 +4223,10 @@ msgstr "Axónio"
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se ligarem uns aos outros e comunicarem. Colocar este organelo transforma o tipo de célula para tecido cerebral."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Multicelular"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular"
@@ -4667,6 +4687,10 @@ msgstr "Reprodução:"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reprodução:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
@@ -5857,10 +5881,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "A carregar o Editor de Micróbio"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Este é o mapa das regiões.\n"
@@ -6037,6 +6057,10 @@ msgstr ""
 "Entraste no modo de desvinculação. Neste modo podes clicar num membro da colónia para o desvincular.\n"
 "\n"
 "Para abandonar a colónia totalmente podes clicar na tua própria célula ou pressionar o botão Desvincular tudo."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "A carregar o Editor de Micróbio"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
@@ -6385,9 +6409,6 @@ msgstr "Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6819,6 +6840,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "O Flagelo (plural: Flagelos) é um feixe de fibras proteicas em forma de chicote que se estende da membrana da célula e que utiliza ATP para ondular e impulsionar a célula numa direção. A posição do flagelo determina a direção em que fornece impulso para movimentar a célula. A direção de impulso é oposta à direção para a qual o flagelo está direcionado, por exemplo, um flagelo posicionado no lado esquerdo de uma célula fornece impulso quando se move para a direita."
 
@@ -7042,6 +7095,41 @@ msgstr "A ser anunciado"
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Sem melhorias."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Fase multicelular"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite conectar com outras células. Este é o primeiro passo para a multicelularidade. Quando a tua célula pertence a uma colónia, os compostos são partilhados entre células. Não é possível entrar no editor enquanto pertenceres a uma colónia, sendo necessário desconectar-te da mesma assim que tenhas coletado compostos suficientes para dividires a tua célula."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Sem efeitos."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"\n"
+"Vida.\n"
+"\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"\n"
+"Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Fase Espacial"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Fase Espacial"
 
 #, fuzzy
 msgid "WIKI_MECHANICS"
@@ -7415,6 +7503,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitocôndria"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplasto"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
 
@@ -7429,6 +7521,10 @@ msgstr "Agente de Adesão"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oxitoxissoma"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenase"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -8019,6 +8115,17 @@ msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Fase Microbial"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Multicelular"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "reproduzido"
 
@@ -8075,10 +8182,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Editor de Microrganismos"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Fase Microbial"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

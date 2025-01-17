@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-17 00:10+0000\n"
-"PO-Revision-Date: 2024-12-09 13:53+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
+"PO-Revision-Date: 2024-12-20 15:55+0000\n"
+"Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ka/>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -364,6 +364,9 @@ msgstr "გამაზრებელი ფაზა"
 msgid "BACK"
 msgstr "უკან"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "უკუღმა დახრილი ხაზი"
 
@@ -602,6 +605,9 @@ msgid "CELLULOSE"
 msgstr "ცელულოზა"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
+msgstr ""
+
+msgid "CELL_STAT_ROTATION_TOOLTIP"
 msgstr ""
 
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1545,9 +1551,6 @@ msgstr "ScreneTree-ს დამპი"
 msgid "DUPLICATE_TYPE"
 msgstr "ტიპის დუბლირება"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "მრავალუჯრედიანი"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
@@ -1633,6 +1636,10 @@ msgid "EASTER_EGGS"
 msgstr "აღდგომის კვერცხების ჩასმა"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(შემთხვევით აღმოჩენილი საიდუმლოებები თამაშში)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(შემთხვევით აღმოჩენილი საიდუმლოებები თამაშში)"
 
 msgid "EDGE_PAN_SPEED"
@@ -1809,9 +1816,8 @@ msgstr "ჩატვირთვის შეცდომა"
 msgid "ERROR_SAVING"
 msgstr "შენახვის შეცდომა"
 
-#, fuzzy
 msgid "ERROR_UPLOADING_EXCEPTION"
-msgstr "ჩატვირთვის შეცდომა"
+msgstr "აღმოჩენილია გამონაკლისი: {0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2031,7 +2037,6 @@ msgstr "ინტენსიური ომის ნისლი"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(გამოჩენილი იქნება, მხოლოდ, ბიომები, სადაც მომხმარებელი უკვე ნამყოფია)"
 
-#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "ომის ნისლის რეჟიმი"
 
@@ -2666,9 +2671,6 @@ msgstr "ეს თარგმანი დაუსრულებელია 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "ბოლო ორგანელას ვერ წაშლით"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "გვიანი მრავალუჯრედიანი"
-
 msgid "LAUNCH0"
 msgstr "0-ის გაშვება"
 
@@ -2876,11 +2878,12 @@ msgstr "ჩატვირთვა"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "ჩატვირთვა..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "ადრეული მრავალუჯრედიანი რედაქტორის ჩატვირთვა"
-
 msgid "LOADING_GAME"
 msgstr "თამაშის ჩატვირთვა"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "იტვირთება მიკრობის რედაქტორი"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "იტვირთება მიკრობის რედაქტორი"
@@ -2939,6 +2942,14 @@ msgstr ""
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "მაკროლიდის სინთეზი"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "მაკროსკოპულად გახდომა ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "მიკრობის ფაზა"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "დროის ხელით დაყენება"
 
@@ -2993,9 +3004,8 @@ msgstr "MediaRec"
 msgid "MEDIASTOP"
 msgstr "MediaStop"
 
-#, fuzzy
 msgid "MEDIUM_SULFUR_CHUNK"
-msgstr "რკინის პატარა ნაჭერი"
+msgstr "გოგირდის პატარა ნაჭერი"
 
 msgid "MEGA_YEARS"
 msgstr "მილ. წ"
@@ -3514,6 +3524,10 @@ msgstr "ლორწოს სინთეზი"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "ფარის შექმნა"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "გვიანი მრავალუჯრედიანი"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "მრავალუჯრედიანის რედაქტორი"
 
@@ -3851,6 +3865,9 @@ msgstr "აქსონი"
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
+
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "მაკროსკოპული"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "მრავალუჯრედიანი"
@@ -4290,6 +4307,9 @@ msgstr "ნაერთები რედაქტორიდან გას�
 
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(რა მოხდება, როცა მოთამაშის ნაერთები დამახსოვრებულია, როცა რედაქტორიდან ფაზაზე ბრუნდებით)"
+
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr ""
 
 msgid "REPRODUCTION_METHOD"
 msgstr "რეპროდუქცია:"
@@ -4736,9 +4756,8 @@ msgstr "რკინის პატარა ნაჭერი"
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "პატარა ფოსფატის ნაგლეჯი"
 
-#, fuzzy
 msgid "SMALL_SULFUR_CHUNK"
-msgstr "რკინის პატარა ნაჭერი"
+msgstr "გოგირდის პატარა ნაჭერი"
 
 msgid "SNOWFLAKE"
 msgstr "თოვლის ფიფქი"
@@ -5396,9 +5415,6 @@ msgstr "სცადეთ, ეკრანის ანაბეჭდები
 msgid "TUTORIAL"
 msgstr "სახელმძღვანელო"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5477,6 +5493,10 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "მრავალუჯრედიანი ფაზა"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "ნახვა ახლა"
@@ -5809,9 +5829,6 @@ msgstr "ვიკი"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr "2D (ადრე), 3D (გვიან)"
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6164,6 +6181,30 @@ msgstr ""
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "ეფექტების გარეშე."
+
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "ცვლილებების გარეშე."
+
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr ""
+
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "გაუმჯობესებების გარეშე."
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -6349,6 +6390,37 @@ msgstr ""
 
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "გაუმჯობესებების გარეშე."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr ""
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]აღქმის ცნება[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]რედაქტორის ცნება[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]რელიეფის ფონის აცნება[/url][/color] \t\t\t[/indent]"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "კოსმოსის ფაზაზე მუშაობა ჯერ არ დაწყებულა."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "სულ მალე."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "სულ მალე."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "სულ მალე."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "გადასვლები"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "სულ მალე."
 
 msgid "WIKI_MECHANICS"
 msgstr "მექანიკა"
@@ -6637,6 +6709,9 @@ msgstr "მუტაციები და რედაქტორები"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "გარემოს პირობები"
 
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "ფეროპლასტი"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "შოლტი"
 
@@ -6648,6 +6723,10 @@ msgstr "ინდუსტრიული ფაზა"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "ლიზოსომა"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "მიკრობის ფაზა"
 
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "მექანიკა"
@@ -6815,7 +6894,7 @@ msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "მოთხოვნების გარეშე."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr "ჯერ უცნობია"
+msgstr ""
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
@@ -7149,6 +7228,19 @@ msgid "ZOOM_OUT"
 msgstr "დაპატარავება"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "მიკრობის ფაზა"
+
+#~ msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+#~ msgstr "2D (ადრე), 3D (გვიან)"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "მრავალუჯრედიანი"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "ადრეული მრავალუჯრედიანი რედაქტორის ჩატვირთვა"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "გამრავლება"
 
@@ -7203,16 +7295,8 @@ msgstr "დაპატარავება"
 #~ msgstr "მიკრობის რედაქტორი"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "მიკრობის ფაზა"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "ლორწოს სინთეზი"
-
-#, fuzzy
-#~ msgid "WIKI_MULTICELLULAR_STAGE"
-#~ msgstr "მრავალუჯრედიანი ფაზა"
 
 #, fuzzy
 #~ msgid "WIKI_NONE"

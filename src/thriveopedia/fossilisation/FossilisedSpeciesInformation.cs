@@ -15,16 +15,20 @@ public class FossilisedSpeciesInformation
         Type = type;
     }
 
+    /// <summary>
+    ///   Type of this species. This enum should not be reordered as that will break existing fossilized files which
+    ///   can never be done (as there's no process for version upgrading them).
+    /// </summary>
     public enum SpeciesType
     {
         [Description("MICROBE")]
         Microbe,
 
-        [Description("EARLY_MULTICELLULAR")]
-        EarlyMulticellular,
+        [Description("MULTICELLULAR")]
+        Multicellular,
 
-        [Description("LATE_MULTICELLULAR")]
-        LateMulticellular,
+        [Description("MACROSCOPIC")]
+        Macroscopic,
     }
 
     /// <summary>

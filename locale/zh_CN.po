@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-17 00:10+0000\n"
-"PO-Revision-Date: 2024-12-09 13:53+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-01-15 10:33+0200\n"
+"PO-Revision-Date: 2025-01-05 14:32+0000\n"
+"Last-Translator: Sasasegawa_ <liuyanMckkk@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -368,6 +368,9 @@ msgstr "知觉阶段"
 msgid "BACK"
 msgstr "返回"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "反斜杠"
 
@@ -508,7 +511,7 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由Revolutionary Games Studio制作"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "自动存档删除的最大时间"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
@@ -611,6 +614,10 @@ msgstr "纤维素"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "用于生成世界的随机数种子，必须为正整数"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1634,9 +1641,6 @@ msgstr "转储SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "复制类型"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "多细胞生物"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "小知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物的关系研究了几十年。你是栉毛虫还是草履虫？是捕食者还是猎物？"
 
@@ -1722,6 +1726,10 @@ msgid "EASTER_EGGS"
 msgstr "包含彩蛋"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "（游戏中会随机生成彩蛋）"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "（游戏中会随机生成彩蛋）"
 
 msgid "EDGE_PAN_SPEED"
@@ -2786,9 +2794,6 @@ msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "后期多细胞生物"
-
 msgid "LAUNCH0"
 msgstr "Launch 0"
 
@@ -2996,11 +3001,12 @@ msgstr "载入中"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "载入中……"
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "载入早期多细胞编辑器中"
-
 msgid "LOADING_GAME"
 msgstr "载入游戏"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "载入微生物编辑器中"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
@@ -3070,6 +3076,14 @@ msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一
 
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "大环内酯物合成"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "成为宏观生物（{0}/{1}）"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "微生物阶段"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "手动设置时间"
@@ -3784,6 +3798,10 @@ msgstr "黏液合成"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "创造护盾"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "后期多细胞生物"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "多细胞编辑器"
 
@@ -4136,6 +4154,10 @@ msgstr "轴突"
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有该细胞器的细胞会被认定为脑组织。"
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "多细胞生物"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多细胞生物"
@@ -4582,6 +4604,10 @@ msgstr "繁殖："
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "繁殖："
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -5718,18 +5744,6 @@ msgstr "试着截一些图吧！"
 msgid "TUTORIAL"
 msgstr "教程"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"欢迎来到早期多细胞生物阶段!\n"
-"\n"
-"你已经成功带领你的物种度过了单细胞生物阶段.\n"
-"\n"
-"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
-"\n"
-"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -5900,6 +5914,19 @@ msgstr ""
 "你已经进入解连接模式。在这个模式中你可以点击细胞群成员解除连接。\n"
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按[thrive:input]g_unbind_all[/thrive:input]。"
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"欢迎来到早期多细胞生物阶段!\n"
+"\n"
+"你已经成功带领你的物种度过了单细胞生物阶段.\n"
+"\n"
+"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
+"\n"
+"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
@@ -6234,9 +6261,6 @@ msgstr "Wiki"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6720,6 +6744,52 @@ msgstr "（每一代后环境葡萄糖保留的比例）"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"利用环境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]。\n"
+"\n"
+"这是未在现实中发现的猜想中的细胞器。 在开启仅限已知生命形式选项的游戏中不可用。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]热合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"利用周围环境[thrive:compound type=\"temperature\"][/thrive:compound] 被动生成能量。 效率高于[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]中的[b]细菌热合成[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"[b]热能体[/b]仅出现在关闭仅限已知生命形式(LAWK)选项的游戏中。\n"
+"\n"
+"如果在游戏设定中启用了细胞器解锁，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"由于[b]热合成[/b]除了环境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何输入，因此它本质上是免费能量。 此外，[b]热能体[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]更高效，这使得 它们可以说是游戏中最简单的能量产生方法，前提是您愿意留在海底热泉等炎热地区。\n"
+"\n"
+"启用细胞器解锁后，需要在细胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]进行多次繁殖，意味着玩家演化[b]热能体[/b]时，他们可能已经非常专注于[b]热合成[/b]以获得[b]热能体[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "无升级。"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每个[b]鞭毛[/b]提供与其方向相反的方向的定向推力。 它们也在接近完全相反的方向上提供部分推力（准确地说，是那些与完全相反的向量的分量（内积）为正的方向）。 每当[b]鞭毛[/b]处于活动状态时，它就会消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -6999,6 +7069,47 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "无升级。"
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
+"\n"
+"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
+"\n"
+"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
+"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "黏液喷嘴"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "太空阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "固氮酶"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "太空阶段"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "细胞器"
 
@@ -7022,6 +7133,7 @@ msgstr "[b]代谢体[/b]进行[b]蛋白质呼吸[/b]，一种劣于[b][color=#37
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 "[b]蛋白质呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7111,6 +7223,7 @@ msgstr "细胞的发电厂。[b]线粒体[/b]进行[b]有氧呼吸[/b]，或者�
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
 "[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7236,6 +7349,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 "[b]固氮酶[/b]生产的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助于储存用于繁殖的资源。 因此，具有[b]固氮酶[/b]的细胞只需要从环境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在当前游戏选项中停用了被动繁殖进度，则基本速率为零）。\n"
@@ -7433,6 +7547,10 @@ msgstr "线粒体"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "线粒体"
 
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "热能体"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
@@ -7445,6 +7563,10 @@ msgstr "工业阶段"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶体"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "固氮酶"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7664,9 +7786,11 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "无要求"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
 "[thrive:compound type=\"iron\"][/thrive:compound] 是一种有价值的替代资源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因为它不会在环境中腐烂。 以铁为食的细胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 丰富的区域中享受丰富的营养。\n"
@@ -8109,6 +8233,16 @@ msgid "ZOOM_OUT"
 msgstr "缩小"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "微生物阶段"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "多细胞生物"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "载入早期多细胞编辑器中"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽"
 
@@ -8158,10 +8292,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "微生物编辑器"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "微生物阶段"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"

@@ -2,7 +2,7 @@
 using Godot;
 
 /// <summary>
-///   The top level tabs of the <see cref="MicrobeEditor"/> (and <see cref="EarlyMulticellularEditor"/>)
+///   The top level tabs of the <see cref="MicrobeEditor"/> (and <see cref="MulticellularEditor"/>)
 /// </summary>
 public partial class MicrobeEditorTabButtons : MarginContainer
 {
