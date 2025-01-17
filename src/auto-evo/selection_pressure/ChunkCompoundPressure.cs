@@ -28,7 +28,7 @@ public class ChunkCompoundPressure : SelectionPressure
     [JsonProperty(nameof(compound))]
     private readonly Compound compoundRaw;
 
-    [JsonProperty(nameof(compound))]
+    [JsonProperty(nameof(compoundOut))]
     private readonly Compound compoundOutRaw;
 
     public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
