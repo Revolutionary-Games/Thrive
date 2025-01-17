@@ -1074,8 +1074,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
 
         foreach (var stat in world.MicrobeSpeciesUpgradesStatistics.OrderByDescending(s => s.Value.Percentage))
         {
-            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
-                stat.Value.Name,
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(stat.Value.Name,
                 stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture),
                 stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
         }
