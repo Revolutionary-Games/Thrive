@@ -31,8 +31,8 @@ public class ChunkCompoundPressure : SelectionPressure
     [JsonProperty(nameof(compound))]
     private readonly Compound compoundOutRaw;
 
-    public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound, Compound compoundOut, float weight) :
-        base(weight, [])
+    public ChunkCompoundPressure(string chunkType, LocalizedString readableName, Compound compound,
+        Compound compoundOut, float weight) : base(weight, [])
     {
         compoundRaw = compound;
         compoundOutRaw = compoundOut;
@@ -72,7 +72,8 @@ public class ChunkCompoundPressure : SelectionPressure
         float compoundATP;
         if (compoundOut != atp)
         {
-            var compoundOutGenerated = cache.GetCompoundGeneratedFrom(compound, compoundOut, microbeSpecies, patch.Biome);
+            var compoundOutGenerated =
+                cache.GetCompoundGeneratedFrom(compound, compoundOut, microbeSpecies, patch.Biome);
             compoundATP = cache.GetCompoundConversionScoreForSpecies(compoundOut, atp, microbeSpecies, patch.Biome) *
                 compoundOutGenerated;
         }
