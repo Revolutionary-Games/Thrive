@@ -386,92 +386,6 @@
             }
           }
         },
-        "marineSnow": {
-          "Name": "MARINE_SNOW",
-          "Meshes": [
-            {
-              "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature_001/Skeleton3D/FlagellumMesh",
-              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Hydrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
-            }
-          ],
-          "Density": 0,
-          "Dissolves": true,
-          "Radius": 1,
-          "ChunkScale": 1,
-          "PhysicsDensity": 1000,
-          "Size": 2,
-          "Damages": 0,
-          "VentAmount": 2,
-          "DeleteOnTouch": false,
-          "Compounds": {
-            "ammonia": {
-              "Amount": 50
-            },
-            "phosphates": {
-              "Amount": 50
-            },
-            "glucose": {
-              "Amount": 100
-            }
-          }
-        },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
@@ -902,85 +816,28 @@
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature_001/Skeleton3D/FlagellumMesh",
-              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
               "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn",
               "ConvexShapePath": "res://assets/models/organelles/Hydrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
             }
           ],
-          "Density": 0.0001,
+          "Density": 0,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
           "Size": 2,
           "Damages": 0,
-          "VentAmount": 2,
+          "VentAmount": 1,
           "DeleteOnTouch": false,
           "Compounds": {
             "ammonia": {
-              "Amount": 50
+              "Amount": 60
             },
             "phosphates": {
-              "Amount": 50
+              "Amount": 60
             },
             "glucose": {
-              "Amount": 100
+              "Amount": 120
             }
           }
         },
@@ -1218,85 +1075,28 @@
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature_001/Skeleton3D/FlagellumMesh",
-              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
               "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn",
               "ConvexShapePath": "res://assets/models/organelles/Hydrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
             }
           ],
-          "Density": 0.00006,
+          "Density": 0,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
           "Size": 2,
           "Damages": 0,
-          "VentAmount": 2,
+          "VentAmount": 1,
           "DeleteOnTouch": false,
           "Compounds": {
             "ammonia": {
-              "Amount": 50
+              "Amount": 60
             },
             "phosphates": {
-              "Amount": 50
+              "Amount": 60
             },
             "glucose": {
-              "Amount": 100
+              "Amount": 120
             }
           }
         },
@@ -1505,6 +1305,20 @@
               "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
             },
             {
+              "ScenePath": "res://assets/models/organelles/SlimeJet.tscn",
+              "SceneModelPath": "Armature/Skeleton3D/Mesh",
+              "ConvexShapePath": "res://assets/models/organelles/SlimeJet.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/organelles/Cilia.tscn",
+              "SceneModelPath": "Armature/Skeleton3D/CiliaMesh",
+              "ConvexShapePath": "res://assets/models/organelles/Cilia.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/organelles/Pilus.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/Pilus.shape"
+            },
+            {
               "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
               "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
             },
@@ -1515,6 +1329,10 @@
             {
               "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
               "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/Hydrogenase.shape"
             },
             {
               "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
@@ -1539,26 +1357,38 @@
             {
               "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
               "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/organelles/Ferroplast.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/Ferroplast.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/organelles/Chemoreceptor.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/Chemoreceptor.shape"
+            },
+            {
+              "ScenePath": "res://assets/models/organelles/Lysosome.tscn",
+              "ConvexShapePath": "res://assets/models/organelles/Lysosome.shape"
             }
           ],
-          "Density": 0.00004,
+          "Density": 0,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
           "Size": 2,
           "Damages": 0,
-          "VentAmount": 2,
+          "VentAmount": 1,
           "DeleteOnTouch": false,
           "Compounds": {
             "ammonia": {
-              "Amount": 50
+              "Amount": 60
             },
             "phosphates": {
-              "Amount": 50
+              "Amount": 60
             },
             "glucose": {
-              "Amount": 100
+              "Amount": 120
             }
           }
         },
@@ -2964,85 +2794,28 @@
           "Name": "MARINE_SNOW",
           "Meshes": [
             {
-              "ScenePath": "res://assets/models/organelles/Oxytoxy.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ToxinVacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nucleus.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nucleus.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chloroplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chloroplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/OxytoxyProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/OxytoxyProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Flagellum.tscn",
-              "SceneModelPath": "Armature_001/Skeleton3D/FlagellumMesh",
-              "ConvexShapePath": "res://assets/models/organelles/Flagellum.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chemoplast.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chemoplast.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Metabolosome.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Metabolosome.shape"
-            },
-            {
               "ScenePath": "res://assets/models/organelles/Hydrogenase.tscn",
               "ConvexShapePath": "res://assets/models/organelles/Hydrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Chromatophore.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Chromatophore.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Vacuole.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Vacuole.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Mitochondrion.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Mitochondrion.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/ChemoSynthesizingProteins.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Nitrogenase.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Nitrogenase.shape"
-            },
-            {
-              "ScenePath": "res://assets/models/organelles/Rusticyanin.tscn",
-              "ConvexShapePath": "res://assets/models/organelles/Rusticyanin.shape"
             }
           ],
-          "Density": 0.00004,
+          "Density": 0,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
           "Size": 2,
           "Damages": 0,
-          "VentAmount": 2,
+          "VentAmount": 1,
           "DeleteOnTouch": false,
           "Compounds": {
             "ammonia": {
-              "Amount": 50
+              "Amount": 60
             },
             "phosphates": {
-              "Amount": 50
+              "Amount": 60
             },
             "glucose": {
-              "Amount": 100
+              "Amount": 120
             }
           }
         },
@@ -3281,24 +3054,24 @@
               "ConvexShapePath": "res://assets/models/organelles/NitrogenFixingPlastid.shape"
             }
           ],
-          "Density": 0.00008,
+          "Density": 0,
           "Dissolves": true,
           "Radius": 1,
           "ChunkScale": 1,
           "PhysicsDensity": 1000,
           "Size": 2,
           "Damages": 0,
-          "VentAmount": 1.5,
+          "VentAmount": 1,
           "DeleteOnTouch": false,
           "Compounds": {
             "ammonia": {
-              "Amount": 40
+              "Amount": 60
             },
             "phosphates": {
-              "Amount": 40
+              "Amount": 60
             },
             "glucose": {
-              "Amount": 80
+              "Amount": 120
             }
           }
         }
