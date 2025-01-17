@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-12-20 15:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1767,30 +1767,6 @@ msgstr "Забавен факт е, че Дидиний е ресничест в
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Ето един съвет — токсините може да се използват за да спрат токсините на противника, ако сте достатъчно бързи, разбира се."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Ето един съвет — пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Ето един съвет — може да поглъщате големите железни фрагменти, ако Вашата клетка е с размер от 150 шестоъгълника."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционния процес, опитайте се да познаете кои са те!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Забавен факт е, че „Thrive“ е създадена чрез платформата с отворен код „Godot“!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Ето един съвет — осморегулацията струва 1 АТФ на секунда за всеки шестоъгълник на Вашата клетка, всеки празен шестоъгълник от цитоплазма създава 5 АТФ на секунда, с други думи, ако губите АТФ по време на осморегулация, просто добавете няколко празни шестоъгълника цитоплазма или премахнете някои органели."
 
@@ -3468,9 +3444,6 @@ msgstr ""
 "\n"
 "Термосинтаза: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Ензимите на лизозомата подобряват хранителната ефективност на клетката."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Външни органели\n"
@@ -3517,8 +3490,69 @@ msgstr "Всяко поколение разполага със 100 мутаци
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него може да променяте Вашето създание (като добавяте, премествате или премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора е равно на [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] милиона години еволюция."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"Прокариотни структури\n"
+"\n"
+"Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза (произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound])\n"
+"\n"
+"Метаболозоми: Произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
+"\n"
+"Тилакоиди: Произвеждат 1/3 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] като обикновен хлоропласт и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"\n"
+"Хемосинтезиращи протеини: Произвеждат 1/2 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound], чрез хемопласт от [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound] и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
+"\n"
+"Рустицианин: Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
+"\n"
+"Нитрогеназа: Превръща атмософерния азот и [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], чрез анаеробен процес\n"
+"\n"
+"Окситоксизома: Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]\n"
+"\n"
+"Термосинтаза: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Микробен редактор"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Среща се в {1} от създанията, средно по {2}"
@@ -8343,6 +8377,33 @@ msgstr "Приближаване"
 
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Ето един съвет — пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Ето един съвет — може да поглъщате големите железни фрагменти, ако Вашата клетка е с размер от 150 шестоъгълника."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционния процес, опитайте се да познаете кои са те!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Забавен факт е, че „Thrive“ е създадена чрез платформата с отворен код „Godot“!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Ензимите на лизозомата подобряват хранителната ефективност на клетката."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

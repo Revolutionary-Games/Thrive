@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2025-01-05 14:32+0000\n"
 "Last-Translator: Sasasegawa_ <liuyanMckkk@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1677,30 +1677,6 @@ msgstr "趣闻：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "小提示：如果你手速够快，你可以用自己的毒素把其它毒素推开。"
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "趣闻：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "小提示：小心比你更大的细胞，它们会吃你哟，被吃可不有趣。"
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive的声乐团队做了很多还没有被加进游戏里的曲子。你可以在他们的YouTube频道Oliver Lugg上听他们的音乐，或观看他们直播编曲。"
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "小提示：如果你的细胞有超过150个六角格，你将可以吞噬那些大型铁块。"
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive是对外星球生物进化的模拟，所以你遇上的大多数生物其实都是之前遇到的生物的进化型，看看你是否能辨别出来！"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "趣闻：Thrive的开发团队经常做播客，你应该去听听看！"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "趣闻：Thrive是用开源的Godot引擎做的！"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "趣闻：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5个ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或移除一些细胞器就行了。"
 
@@ -3282,9 +3258,6 @@ msgstr ""
 "\n"
 "热合成酶：利用温度梯度产生[thrive:compound type=\"atp\"][/thrive:compound]"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "胞吞完成后，摄入的任何物体都会在细胞内消化。无法消化的物体会被排出，所以请先行确保您具有消化它们所需的突变。溶酶体中的消化酶能辅助消化，所以为了更有效地消化物体，我们建议您进化出该细胞器。"
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "外部细胞器\n"
@@ -3333,8 +3306,69 @@ msgstr "每一代，你都有100个变异点可供花费，任何变化都需要
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]x10⁶年的进化时间。"
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"原核结构\n"
+"\n"
+"细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/thrive:compound]）\n"
+"\n"
+"代谢体：用[thrive:compound type=\"glucose\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"类囊体：跟正常的叶绿体比只能产出1/3的[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
+"\n"
+"化学合成蛋白：跟化学质体比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能产出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
+"\n"
+"铁硫菌蓝蛋白：将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"固氮酶：在无氧环境下将大气中的氮和[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"毒素体：将[thrive:compound type=\"atp\"][/thrive:compound]转化为[thrive:compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
+"\n"
+"热合成酶：利用温度梯度产生[thrive:compound type=\"atp\"][/thrive:compound]"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "在编辑器中按下撤消键以纠正错误"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
@@ -8237,6 +8271,33 @@ msgstr "放大"
 
 msgid "ZOOM_OUT"
 msgstr "缩小"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "趣闻：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "小提示：小心比你更大的细胞，它们会吃你哟，被吃可不有趣。"
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive的声乐团队做了很多还没有被加进游戏里的曲子。你可以在他们的YouTube频道Oliver Lugg上听他们的音乐，或观看他们直播编曲。"
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "小提示：如果你的细胞有超过150个六角格，你将可以吞噬那些大型铁块。"
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive是对外星球生物进化的模拟，所以你遇上的大多数生物其实都是之前遇到的生物的进化型，看看你是否能辨别出来！"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "趣闻：Thrive的开发团队经常做播客，你应该去听听看！"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "趣闻：Thrive是用开源的Godot引擎做的！"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "趣闻：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "胞吞完成后，摄入的任何物体都会在细胞内消化。无法消化的物体会被排出，所以请先行确保您具有消化它们所需的突变。溶酶体中的消化酶能辅助消化，所以为了更有效地消化物体，我们建议您进化出该细胞器。"
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

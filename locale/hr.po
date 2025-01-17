@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-09-17 07:03+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -1581,30 +1581,6 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Jedan savjet: toksini se mogu koristiti za odbacivanje drugih toksina, ako ste dovoljno brzi."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr ""
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Jedan savjet: Osmoregulacija troši 1 ATP po sekundi po šesterokutnoj ćeliji koje vaša stanica ima, ali svaka prazna ćelija citoplazme također generira 5 ATP po sekundi. To znači da ako gubite ATP zbog osmoregulacije, samo dodajte nekoliko praznih ćelija citoplazme ili uklonite neke organele."
 
@@ -3144,9 +3120,6 @@ msgstr ""
 "\n"
 "Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma probava postaje učinkovitija."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Vanjski organeli\n"
@@ -3191,8 +3164,69 @@ msgstr "Za svaku generaciju imate 100 mutacijskih bodova (MP) koje možete potro
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Prilikom svakog razmnožavanja, ući ćete u Uređivač Mikroba, gdje možete mijenjati svoju vrstu (dodavanjem, premještanjem ili uklanjanjem organela) kako biste povećali uspjeh svoje vrste. Svaki posjet uređivaču tijekom Stadija Mikroba predstavlja [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milijuna godina evolucije."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"Prokariotske strukture\n"
+"\n"
+"Citoplazma: ima prostor za pohranu i vrši glikolizu (Proizvodi male količine [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"Metabolosomi: proizvode [thrive:compound type=\"atp\"][/thrive:compound] iz [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Tilakoidi: proizvode trećinu količine [thrive:compound type=\"glucose\"][/thrive:compound] kao normalni kloroplast, ali osim toga obavljaju glikolizu i zauzimaju 1 ćeliju\n"
+"\n"
+"Kemosintetski proteini: Proizvodi upola [thrive:compound type=\"glucose\"][/thrive:compound] iz [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kao kemoplast, ali obavlja glikolizu, zauzima 1 ćeliju\n"
+"\n"
+"Rusticijanin: pretvara [thrive:compound type=\"iron\"][/thrive:compound] u [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenaza: anaerobno pretvara atmosferski dušik i [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"Oksitoksizom: pretvara [thrive:compound type=\"atp\"][/thrive:compound] u [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"Termosintaza: proizvodi [thrive:compound type=\"atp\"][/thrive:compound] pomoću temperaturnih gradijenata"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
@@ -7503,6 +7537,12 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Nakon što je gutanje završeno, bilo koje tvari unutar stanice zadržavaju se unutar membrane kako bi se probavili. Neprobavljive tvari će uvijek biti izbačene iz stanice, ali postoje mutacije koje dozvoljavaju njihovu obradu. Enzimi će pomoći s probavom, a njih proizvodi lizosom. Evolucijom lizosoma probava postaje učinkovitija."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

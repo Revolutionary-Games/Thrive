@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-12-23 20:17+0000\n"
 "Last-Translator: Daniel Horák <danspyhor@gmail.com>\n"
 "Language-Team: Czech <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/cs/>\n"
@@ -1766,30 +1766,6 @@ msgstr "Víte, že Vpíjenka (Didinum) je lovcem Trepek (Paramecia)?"
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Tip - Toxiny mohou být použity k odražení jiných toxinů letících na tebe, tedy pokud jsi dostatečně rychlý(á)."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Víte, že Měnavka (Amoeba) loví a chytá kořist pomocí „nohou“, vytvořených z cytoplazmy, zvaných pseudopody? Eventuálně je chceme do Thrive přidat."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Tip: Dávej pozor na větší buňky a velké bakterie, není příliš zábavné být \"vdechnut\" a stráven."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Vedoucí zvukového oddělení Thrive vytvořil spousty skladeb, které ještě nebyly přidány do hry. Můžete si je poslechnout, nebo se podívat na videa o jejich tvorbě na jeho Youtube kanálu Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Tip - Pokud je tvoje buňka velká 150 Hexů, můžeš pohltit velké železné kusy."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive je zamýšlen jako simulátor mimozemské planety, proto má smysl, že většina tvorů, které najdete, bude příbuzná jednomu nebo dvěma dalším druhům kvůli vývoji, který se děje kolem vás. Zkuste zjistit, jestli je můžete identifikovat!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Tým Thrive dělá občas podcasty, měl bys je tu a tam zkouknout!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Hra Thrive je zamýšlena jako simulátor mimozemské planety, proto většina organizmů, které najdeš, bude podobná jednomu nebo dvěma dalším druhům ve vývoji, který se děje kolem tebe. Zjisti, jestli je dovedeš identifikovat!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Jeden z prvních hratelných prototypů hry vytvořil náš úžasný programátor, samotný untrustedlife!"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Tip - Osmoregulace stojí 1 ATP/sek/Hex tvé buňky, každý prázdný Hex cytoplazmy generuje 5 ATP/sek, což znamená, že pokud ztrácíš ATP kvůli osmoregulaci, stačí přidat pár prázdných Hex cytoplazem nebo odstranit některé organely."
 
@@ -3518,9 +3494,6 @@ msgstr ""
 "\n"
 "Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé množství [thrive:compound type=\"atp\"][/thrive:compound])"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Jakmile pohlcování skončí, jakékoliv pohlcené předměty budou ponechány v membráně k trávení. Jakékoliv nestravitelné předměty vždy budou vyvrženy, takže se ujistěte, že máte mutace potřebné k jejich zpracování. Enzymy pomohou s trávením; vyviňte si organelu lysozom, která je produkuje, abyste si ulehčili trávení."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Vnější organely\n"
@@ -3557,8 +3530,65 @@ msgstr "Každou generaci máte k dispozici 100 bodů mutace (MP) a každá změn
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Vždy, když zahájíš reprodukci, vstoupíš do editoru mikrobů, kde můžeš provádět změny tvého druhu (přidáním, přesunutím nebo odstraněním organel) ke zvýšení úspěšnosti. Každá návštěva editoru v mikrobiální fázi představuje [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionů let evoluce."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"Prokaryotické struktury\n"
+"\n"
+"Metabolosomy: Produkují [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Chemosyntetizující proteiny: Produkují polovinu [thrive:compound type=\"glucose\"][/thrive:compound] ze [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] co chemoplast, ale také provádí glykolýzu, zabírají 1 Hex\n"
+"\n"
+"Thylakoidy: Produkují 1/3 množství [thrive:compound type=\"glucose\"][/thrive:compound] jako normální chloroplast, ale také provádí glykolýzu, zabírají 1 Hex\n"
+"\n"
+"Rusticyanin: Převádí [thrive:compound type=\"iron\"][/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenáza: Anaerobně převádí atmosférický dusík a [thrive:compound type=\"atp\"][/thrive:compound] na [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+"\n"
+"Cytoplazma: Má úložný prostor a provádí glykolýzu (Produkuje malé množství [thrive:compound type=\"atp\"][/thrive:compound])"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor mikrobů"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Chybu opravíš stisknutím tlačítka Zpět v editoru"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -8424,6 +8454,33 @@ msgstr "Přiblížit"
 
 msgid "ZOOM_OUT"
 msgstr "Oddálit"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Víte, že Měnavka (Amoeba) loví a chytá kořist pomocí „nohou“, vytvořených z cytoplazmy, zvaných pseudopody? Eventuálně je chceme do Thrive přidat."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Tip: Dávej pozor na větší buňky a velké bakterie, není příliš zábavné být \"vdechnut\" a stráven."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Vedoucí zvukového oddělení Thrive vytvořil spousty skladeb, které ještě nebyly přidány do hry. Můžete si je poslechnout, nebo se podívat na videa o jejich tvorbě na jeho Youtube kanálu Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Tip - Pokud je tvoje buňka velká 150 Hexů, můžeš pohltit velké železné kusy."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive je zamýšlen jako simulátor mimozemské planety, proto má smysl, že většina tvorů, které najdete, bude příbuzná jednomu nebo dvěma dalším druhům kvůli vývoji, který se děje kolem vás. Zkuste zjistit, jestli je můžete identifikovat!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Tým Thrive dělá občas podcasty, měl bys je tu a tam zkouknout!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Hra Thrive je zamýšlena jako simulátor mimozemské planety, proto většina organizmů, které najdeš, bude podobná jednomu nebo dvěma dalším druhům ve vývoji, který se děje kolem tebe. Zjisti, jestli je dovedeš identifikovat!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Jeden z prvních hratelných prototypů hry vytvořil náš úžasný programátor, samotný untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Jakmile pohlcování skončí, jakékoliv pohlcené předměty budou ponechány v membráně k trávení. Jakékoliv nestravitelné předměty vždy budou vyvrženy, takže se ujistěte, že máte mutace potřebné k jejich zpracování. Enzymy pomohou s trávením; vyviňte si organelu lysozom, která je produkuje, abyste si ulehčili trávení."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

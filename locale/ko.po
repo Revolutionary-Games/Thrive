@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -1744,30 +1744,6 @@ msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "팁 하나, 당신이 충분히 빠르다면 독소를 이용하여 다른 독소를 멀리 떨어 뜨릴 수 있습니다."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, 당신은 흡수당할 것 입니다."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라고 생각됩니다, 맞는지 알아보세요!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, untrustedlife가 만들었습니다!"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "팁 하나, 삼투압 조절은 세포 한 칸에 초당 1의 ATP를 소모하며, 빈 세포질은 초당 5 ATP를 생산하므로, 삼투압 조절 중 ATP를 잃고 있다면 빈 세포질을 추가하거나 세포 기관을 제거하면 됩니다."
 
@@ -3476,9 +3452,6 @@ msgstr ""
 "\n"
 "세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "외부 세포 기관\n"
@@ -3519,8 +3492,65 @@ msgstr "각 세대마다, 100 변이 점수(MP)를 사용할 수 있으며, 각�
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세포 기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니다. 미생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"원핵 구조체\n"
+"\n"
+"대사체: 포도당으로부터 ATP 생산\n"
+"\n"
+"화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
+"\n"
+"틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
+"\n"
+"루스티시아닌: 철을 ATP로 전환\n"
+"\n"
+"니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
+"\n"
+"세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -8411,6 +8441,33 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, 당신은 흡수당할 것 입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라고 생각됩니다, 맞는지 알아보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, untrustedlife가 만들었습니다!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-12-20 15:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch (Belgium) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl_BE/>\n"
@@ -1740,30 +1740,6 @@ msgstr "Leuk Weetje, Het Didinium is een trilhaardiertje dat op pantoffeldiertje
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Hier is een tip, gifstoffen kunnen gebruikt worden om andere gifstoffen van je weg te duwen als je snel genoeg bent."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Leuk weetje, De Amoeben jagen en vangen prooien met 'beentjes' gemaakt van cytoplasma genaamd pseudopodia, uiteindelijk willen we die in Thrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Hier is een tip, Pas op voor grotere cellen en grote bacteriën, het is niet leuk om verteerd te worden, en ze zullen je opeten."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive's hoofd van het geluidsteam heeft veel liedjes gemaakt die nog niet zijn toegevoegd aan het spel. Je kan ze beluisteren of je kan streams bekijken waar hij liedjes componeert op zijn Youtube kanaal, Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Hier is een tip, als je cel 150 zeshoeken groot is, kan je grote brokken ijzer omsluiten."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Het is de bedoeling dat Thrive een simulatie is van een buitenaardse planeet, het is daardoor logisch dat de meeste schepels die je vind verwant zullen zijn met één of twee andere soorten door de evolutie die rondom je gebeurt, kijk maar of je ze kan identificeren!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Leuk Weetje, Het Thrive team doet af en toe aan podcasts, je moet ze maar eens bekijken!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Leuk Weetje, Thrive is gemaakt met de open source Godot engine!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Leuk Weetje, Een van de eerste speelbare game-play prototypes was gemaakt door onze geweldige programmeur, untrustedlife!"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Hier is een tip, osmoregulatie kost 1 ATP per seconde per zeshoek dat je cel heeft. Elke lege zeshoek van cytoplasma genereerd nog 5 ATP per seconde , wat betekend dat als je ATP aan het verliezen bent door osmoregulatie, je gewoon een aantal lege zeshoeken cytoplasma kan toevoegen of enkele organellen verwijderen."
 
@@ -3490,9 +3466,6 @@ msgstr ""
 "\n"
 "Cytoplasma: Heeft opslagruimte en voert glycolise uit (produceert kleine hoeveelheden aan [thrive:compound type=\"atp\"][/thrive:compound])"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Zodra fagocytose klaar is zullen alle gevangen objecten in het celmembraan gehouden worden om verteerd te worden. Onverteerbare objecten zullen altijd uitgescheiden worden, dus zorg ervoor dat je de mutaties hebt die nodig zijn om ze te kunnen verwerken. Enzymen helpen bij de vertering en worden geleverd door het lysozoom. Het is sterk aangeraden om dit organen te evolueren om vertering stukken efficiënter te maken."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
@@ -3529,8 +3502,65 @@ msgstr "Elke generatie heb je 100 mutatiepunten (MP) om uit te geven, en elke ve
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Elke keer dat je reproduceert kom je in de microbe \"editor\" waar je aanpassingen aan je soort kan maken (door het toevoegen, verplaatsen en verwijderen van organellen) om je soort succesvoller te maken. Elk bezoek aan de \"editor\" in de microbe-fase weerspiegelt [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar van evolutie."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"Prokaryotische Structuren\n"
+"\n"
+"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] van [thrive:compound type=\"glucose\"][/thrive:compound].\n"
+"\n"
+"Chemosynthetiserende Proteïnes: Produceren half het aantal [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogen sulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolyse uit, neemt 1 zeshoek in.\n"
+"\n"
+"Thylakoïden: Produceren 1/3de van het aantal [thrive:compound type=\"glucose\"][/thrive:compound] dat een normale chloroplast produceert, maar voert ook glycolyse uit, en neemt 1 zeshoek in.\n"
+"\n"
+"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenase: zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound] anaëroob.\n"
+"\n"
+"Cytoplasma: Heeft opslagruimte en voert glycolise uit (produceert kleine hoeveelheden aan [thrive:compound type=\"atp\"][/thrive:compound])"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Vrij Bouwen in de \"Editor\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Druk op de \"ongedaan maken\" knop in de \"editor\" om een fout te corrigeren"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soort(en), gemiddeld {2} per soort"
@@ -8441,6 +8471,33 @@ msgstr "Inzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Leuk weetje, De Amoeben jagen en vangen prooien met 'beentjes' gemaakt van cytoplasma genaamd pseudopodia, uiteindelijk willen we die in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Hier is een tip, Pas op voor grotere cellen en grote bacteriën, het is niet leuk om verteerd te worden, en ze zullen je opeten."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive's hoofd van het geluidsteam heeft veel liedjes gemaakt die nog niet zijn toegevoegd aan het spel. Je kan ze beluisteren of je kan streams bekijken waar hij liedjes componeert op zijn Youtube kanaal, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Hier is een tip, als je cel 150 zeshoeken groot is, kan je grote brokken ijzer omsluiten."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Het is de bedoeling dat Thrive een simulatie is van een buitenaardse planeet, het is daardoor logisch dat de meeste schepels die je vind verwant zullen zijn met één of twee andere soorten door de evolutie die rondom je gebeurt, kijk maar of je ze kan identificeren!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Leuk Weetje, Het Thrive team doet af en toe aan podcasts, je moet ze maar eens bekijken!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Leuk Weetje, Thrive is gemaakt met de open source Godot engine!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Leuk Weetje, Een van de eerste speelbare game-play prototypes was gemaakt door onze geweldige programmeur, untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Zodra fagocytose klaar is zullen alle gevangen objecten in het celmembraan gehouden worden om verteerd te worden. Onverteerbare objecten zullen altijd uitgescheiden worden, dus zorg ervoor dat je de mutaties hebt die nodig zijn om ze te kunnen verwerken. Enzymen helpen bij de vertering en worden geleverd door het lysozoom. Het is sterk aangeraden om dit organen te evolueren om vertering stukken efficiënter te maken."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

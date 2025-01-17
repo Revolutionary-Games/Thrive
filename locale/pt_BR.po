@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1706,30 +1706,6 @@ msgstr "Curiosidade, o Didinium é um ciliado que caça paramécias."
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Aqui vai uma dica, toxinas podem ser usadas para rebater outras toxinas se você for rápido o suficiente."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Curiosidade, a Ameba caça e pega suas presas com ‘pernas’ feitas de citoplasma chamadas pseudópodes, nós queremos implementá-los no futuro."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Aqui vai uma dica, tome cuidado com células e bactérias grandes, não é divertido ser digerido, e elas vão comer você."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "O líder da equipe sonora do jogo já fez várias músicas que ainda não foram adicionadas. Você pode ouvi-las, ou assistir ele compondo no seu canal do YouTube, Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Aqui vai uma dica, se sua célula é composta por 150 hexágonos, você pode fagocitar pedaços grandes de ferro."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive foi feito com o objetivo de ser uma simulação de um planeta alienígena, por isso faz sentido que a maioria das criaturas que você encontra serão relacionadas com uma ou duas espécies por conta da evolução acontecendo em sua volta, veja se você consegue identificá-las!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Curiosidade, a equipe que desenvolve o jogo faz podcasts de vez em quando, você poderia vê-los!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Curiosidade, Thrive é feito com o motor de código aberto Godot!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Curiosidade, um dos nossos primeiros protótipos jogáveis foi feito pelo nosso programador UntrustedLife!"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Aqui vai uma dica, a osmorregulação custa 1 ATP por segundo por espaço que a sua célula tem. Além disso, cada espaço vazio de citoplasma gera 5 ATP por segundo, o que significa que se você está perdendo ATP por causa do osmorregulação, é só adicionar citoplasma ou remover algumas organelas."
 
@@ -3350,9 +3326,6 @@ msgstr ""
 "\n"
 "Termossintase: Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Assim que a fagocitose terminar, os objetos pegos serão mantidos dentro da membrana para serem digeridos, se possível. Caso contrário, eles serão expulsos, por isso certifique que você tenha as mutações necessárias para processá-los. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolua esta organela para tornar a digestão mais eficiente."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Organelas Externas\n"
@@ -3399,8 +3372,67 @@ msgstr "A cada geração, você tem 100 Pontos de Mutação (PM) para gastar, e 
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Toda vez que reproduzir, você vai entrar no Editor de Micróbios, onde pode fazer mudanças na sua espécie (adicionando, movendo ou removendo organelas) para aumentar o sucesso de sua espécie. Cada visita ao editor no Estágio Microbial representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhões de anos de evolução."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"Estruturas Procarióticas\n"
+"\n"
+"Citoplasma: Tem espaço de armazenamento e realiza a glicólise (Produz pequenas quantidades de [thrive:compound type=\"atp\"][/thrive:compound])\n"
+"\n"
+"Metabolossomos: Produz [thrive:compound type=\"atp\"][/thrive:compound] por meio da [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Proteínas Quimiossintetizantes: Produz metade da [thrive:compound type=\"glucose\"][/thrive:compound] por meio do [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] comparado com o quimioplasto, porém também realiza a glicólise, e ocupa 1 Hexágono\n"
+"\n"
+"Tilacoide: Produz um terço da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] comparado a um cloroplasto, mas também realiza a glicólise, e ocupa um espaço\n"
+"\n"
+"Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Nitrogenase: Converte nitrogênio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
+"\n"
+"Termossintase: Produz [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor de Micróbio Livre"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Aperte o botão de desfazer no editor para corrigir um erro"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Organela encontrada em {1} espécie(s), tendo em média {2} cada"
@@ -8195,6 +8227,33 @@ msgstr "Aumentar o zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Diminuir o zoom"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Curiosidade, a Ameba caça e pega suas presas com ‘pernas’ feitas de citoplasma chamadas pseudópodes, nós queremos implementá-los no futuro."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Aqui vai uma dica, tome cuidado com células e bactérias grandes, não é divertido ser digerido, e elas vão comer você."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "O líder da equipe sonora do jogo já fez várias músicas que ainda não foram adicionadas. Você pode ouvi-las, ou assistir ele compondo no seu canal do YouTube, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Aqui vai uma dica, se sua célula é composta por 150 hexágonos, você pode fagocitar pedaços grandes de ferro."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive foi feito com o objetivo de ser uma simulação de um planeta alienígena, por isso faz sentido que a maioria das criaturas que você encontra serão relacionadas com uma ou duas espécies por conta da evolução acontecendo em sua volta, veja se você consegue identificá-las!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Curiosidade, a equipe que desenvolve o jogo faz podcasts de vez em quando, você poderia vê-los!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Curiosidade, Thrive é feito com o motor de código aberto Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Curiosidade, um dos nossos primeiros protótipos jogáveis foi feito pelo nosso programador UntrustedLife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Assim que a fagocitose terminar, os objetos pegos serão mantidos dentro da membrana para serem digeridos, se possível. Caso contrário, eles serão expulsos, por isso certifique que você tenha as mutações necessárias para processá-los. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolua esta organela para tornar a digestão mais eficiente."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

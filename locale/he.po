@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1721,30 +1721,6 @@ msgstr "עובדה משעשעת: הדידיניום היא ריסנית אשר �
 
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "הנה טיפ: ניתן להשתמש ברעלנים בשביל להדוף רעלנים אחרים אם אתה מהיר מספיק."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "עובדה משעשעת: האמבה צדה ותופסת את טרפה עם 'רגליים' אשר עשויות מציטופלזמה הנקראות פסאודופודים. אנחנו רוצים להוסיף אותם לThrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "הנה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע אותם או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: \"אוליבר לאוג\" (Oliver Lugg)."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "הנה טיפ: אם גודל התא שלך הוא 150 משושים או יותר, אתה תוכל לבלוע את הגוש הברזל הגדול ביותר."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו דומים אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הֶסְכֵּתות), כדאי לבדוק אותם!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "עובדה משעשעת: Thrive נעשתה באמצעות מנוע \"Godot\" בקוד פתוח!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת המדהים שלנו: \"untrustedlife\"!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "הנה טיפ: אוסמורגולציה עולה ATP 1 לשנייה על כל משושה שהתא שלך מכיל, ועל כל משושה ריק של ציטופלזמה מייצר ATP 5 לשנייה גם כן, כלומר שאם אתה מאבד ATP בגלל אוסמורגולציה, רק הוסף עוד משושי ציטופלזמה או הסר אברון כלשהו."
@@ -3461,9 +3437,6 @@ msgstr ""
 "\n"
 "תרמוסינטאז: מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעמצאות שינוי טמפרטורה"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "ברגע שהבליעה הסתיימה, כל אובייקט שנבלע התחיל לעבור עיכול בתוך הממברנה. אובייקטים שלא ניתנים לעיכול תמיד יפלטו, כך שאתה תזדקק למוטציות שיאפשרו לעכל אותם קודם. אנזימים יעזרו עם העיכול והם מופקים בליזוזום; תפתח על מנת ליעל את תהליך העיכול."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "אברונים חיצוניים\n"
@@ -3508,8 +3481,69 @@ msgstr "בכל דור, נוצרים 100 נקודות מוטציה (נקמ\"ו) �
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "בכל פעם שאתה מתרבה, אתה נכנס לעורך המיקרובי. שם תוכל לבצע שינוי במין שלך (על ידי הוספה, העברה או הסרה של אברונים) בכדי להגדיל את הצלחת המין שלך. כל ביקור בעורך בשלב המיקרובי מייצג [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] מיליון שנות אבולוציה."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"מבנים פרוקריוטיים\n"
+"\n"
+"ציטופלזמה: מבצע גליקוליזה ומשומש כשטח אחסון (מייצר כמות קטנה של [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound])\n"
+"\n"
+"מטבולוזומים: מייצר [thrive:compound type=\"atp\"][/thrive:compound] מ[thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"תילקואיד: מפיק שליש מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] שמיוצר בכלורופלסט, אבל גם מבצע גליקוליזה ותופס משושה אחד\n"
+"\n"
+"חלבונים כימוסינתזיים: מפיק מחצית מהכמות ה[thrive:compound type=\"glucose\"][/thrive:compound] מ [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] שמיוצר בכימופלסט, אבל גם מבצע גליקוליזה, ולוקח משושה אחד\n"
+"\n"
+"רוסטיצינין: ממיר [thrive:compound type=\"iron\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"ניטרוגנאז: ממיר חנקן אטמוספרי ו [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound] באופן אנאירובי\n"
+"\n"
+"אוקסיטוקסיזום: הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+"\n"
+"תרמוסינטאז: מייצר [thrive:compound type=\"atp\"][/thrive:compound] בעמצאות שינוי טמפרטורה"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "עורך ארגז חול המיקרובי"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "לחץ על הכפתור \"בטל\" בעורך בשביל לתקן טעויות"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -8339,6 +8373,33 @@ msgstr "להתמקד"
 
 msgid "ZOOM_OUT"
 msgstr "זום החוצה"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "עובדה משעשעת: האמבה צדה ותופסת את טרפה עם 'רגליים' אשר עשויות מציטופלזמה הנקראות פסאודופודים. אנחנו רוצים להוסיף אותם לThrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "הנה טיפ: תזהר מתאים וחיידקים גדולים, זה לא כיף להתעכל, והם יאכלו אותך."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "מוביל צוות המוזיקה של Thrive יצר מלא שירים שטרם נוספו למשחק! ניתן לשמוע אותם או לצפות בסרטונים של המלחין בערוץ היוטיוב שלו: \"אוליבר לאוג\" (Oliver Lugg)."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "הנה טיפ: אם גודל התא שלך הוא 150 משושים או יותר, אתה תוכל לבלוע את הגוש הברזל הגדול ביותר."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "בThrive נועד להיות הדמיה של כוכב חייזרי, ולכן הגיוני שרוב היצורים היו דומים אחד לשני עקב אבולוציה שמתרחש סביבם. נראה אותכם אם תוכלו לזהות אותם!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "עובדה משעשעת: צוות Thrive מדי פעם עושים פודקאסטים (הֶסְכֵּתות), כדאי לבדוק אותם!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "עובדה משעשעת: Thrive נעשתה באמצעות מנוע \"Godot\" בקוד פתוח!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "עובדה משעשעת: אחד מאבות טיפוס הראשונים שנתן לשחק, נוצר על ידי המתכנת המדהים שלנו: \"untrustedlife\"!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "ברגע שהבליעה הסתיימה, כל אובייקט שנבלע התחיל לעבור עיכול בתוך הממברנה. אובייקטים שלא ניתנים לעיכול תמיד יפלטו, כך שאתה תזדקק למוטציות שיאפשרו לעכל אותם קודם. אנזימים יעזרו עם העיכול והם מופקים בליזוזום; תפתח על מנת ליעל את תהליך העיכול."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 12:36+0200\n"
+"POT-Creation-Date: 2025-01-17 19:44+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -1726,30 +1726,6 @@ msgstr "Interessanter Fakt: das Nasentierchen ist ein Wimpertierchen, das Pantof
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Kleiner Tipp, Giftstoffe können andere Giftstoffe von dir wegdrücken, wenn du schnell genug bist."
 
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen Spaß verdaut zu werden. Und sie werden dich fressen."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen Eisenbrocken verschlingen."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - versuche, sie zu identifizieren!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem großartigen Programmierer, untrustedlife, gemacht!"
-
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Kleiner Tipp, Osmoregulierung kostet 1 ATP pro Sekunde und Feld deiner Zelle. Jedes leere Feld Zytoplasma erzeugt 5 ATP pro Sekunde, d.h. wenn Sie ATP durch Osmoregulierung verlieren, fügen Sie einfach ein paar leere Felder Zytoplasma hinzu oder entfernen Sie ein paar Organellen."
 
@@ -3457,9 +3433,6 @@ msgstr ""
 "\n"
 "Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch (Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Sobald die Umschließung abgeschlossen ist, bleibt jedes Objekt, das mit umschlossen wurde, innerhalb der Membran und wird verdaut. Unverdauliche Objekte werden wieder ausgeschieden, also stelle sicher, dass du über die notwendigen Mutationen verfügst, um sie zu verstoffwechseln. Enzyme, die durch Lysome hergestellt werden, helfen bei der Verdauung; entwickle dieses Organell um Verdauungsprozesse erheblich effizienter zu machen."
-
 msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 msgstr ""
 "Externe Organellen\n"
@@ -3496,8 +3469,65 @@ msgstr "Für jede Generation kannst du 100 Mutationspunkte (MP) ausgeben. Jede �
 msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 msgstr "Jedes Mal, wenn du dich reproduzierst, gelangst du in den Mikroben-Editor, wo du Änderungen an deiner Spezies vornehmen kannst (durch Hinzufügen, Verschieben oder Entfernen von Organellen), um den Erfolg deiner Spezies zu steigern. Jeder Besuch des Editors in der Mikrobenphase repräsentiert [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millionen Jahre Evolution."
 
+#, fuzzy
+msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+msgstr ""
+"Prokaryotische Strukturen\n"
+"\n"
+"Metabolismus: Produziert [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+"\n"
+"Chemosynthetisierende Proteine: Produziert die Hälfte der [thrive:compound type=\"glucose\"][/thrive:compound] aus [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als Chemoplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
+"\n"
+"Thylakoide: Produziert 1/3 der [thrive:compound type=\"glucose\"][/thrive:compound] wie ein normaler Chloroplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
+"\n"
+"Rusticyanin: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um\n"
+"\n"
+"Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um\n"
+"\n"
+"Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch (Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikroben-Sandboxeditor"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -8335,6 +8365,33 @@ msgstr "Hereinzoomen"
 
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen Spaß verdaut zu werden. Und sie werden dich fressen."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen Eisenbrocken verschlingen."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - versuche, sie zu identifizieren!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem großartigen Programmierer, untrustedlife, gemacht!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Sobald die Umschließung abgeschlossen ist, bleibt jedes Objekt, das mit umschlossen wurde, innerhalb der Membran und wird verdaut. Unverdauliche Objekte werden wieder ausgeschieden, also stelle sicher, dass du über die notwendigen Mutationen verfügst, um sie zu verstoffwechseln. Enzyme, die durch Lysome hergestellt werden, helfen bei der Verdauung; entwickle dieses Organell um Verdauungsprozesse erheblich effizienter zu machen."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"
