@@ -392,10 +392,12 @@ public class SimulationCache
         var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
         var slimeJetScore = 0.0f;
+        var mucocystsScore = 0.0f;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
         var slimeJetsCount = 0;
+        var mucocystsCount = 0;
         var mucilageMultiplier = 1.0f;
 
         for (int i = 0; i < organelleCount; ++i)
@@ -410,12 +412,21 @@ public class SimulationCache
 
             if (organelle.Definition.HasSlimeJetComponent)
             {
-                slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                // Since slime jets have only one upgrade available we don't need to check what these Upgrades have
+                if (organelle.Upgrades != null)
+                {
+                    mucocystsScore += Constants.AUTO_EVO_MUCOCYST_SCORE;
+                    ++mucocystsCount;
+                    continue;
+                }
+
+                slimeJetScore += Constants.AUTO_EVO_SLIME_JET_SCORE;
                 ++slimeJetsCount;
 
                 // Make sure that slime jets are positioned at the back of the cell, because otherwise they will
                 // push the cell backwards (into the predator or away from the prey) or to the side
                 mucilageMultiplier *= CalculateAngleMultiplier(organelle.Position);
+                continue;
             }
 
             foreach (var process in organelle.Definition.RunnableProcesses)
@@ -430,6 +441,9 @@ public class SimulationCache
         // Having lots of extra slime jets really doesn't help you that much
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
         slimeJetScore *= mucilageMultiplier;
+
+        mucocystsScore *= MathF.Sqrt(mucocystsCount);
+        slimeJetScore += mucocystsScore;
 
         var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore);
 
