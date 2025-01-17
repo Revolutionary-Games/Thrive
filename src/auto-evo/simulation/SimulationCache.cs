@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Godot;
 using Systems;
 
 /// <summary>
@@ -277,15 +278,18 @@ public class SimulationCache
             engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
         }
 
-        var (pilusScore, oxytoxyScore, mucilageScore) = GetPredationToolsRawScores(microbeSpecies);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore) = GetPredationToolsRawScores(microbeSpecies);
+        var (_, _, preySlimeJetScore) = GetPredationToolsRawScores(prey);
+        var slimeJetScore = predatorSlimeJetScore - preySlimeJetScore;
 
-        // TODO: Support mucilage in predation score
-        mucilageScore *= 0;
+        // If the predator is faster than the prey they don't need slime jets that much
+        if (predatorSpeed > preySpeed)
+            slimeJetScore *= 0.5f;
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
-        // Having lots of extra Pili really doesn't help you THAT much
+        // Having lots of extra Pili really doesn't help you THAT much.
         pilusScore = MathF.Pow(pilusScore, 0.4f);
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
@@ -317,7 +321,7 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        cached = scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) /
+        cached = scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + slimeJetScore) /
             GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
@@ -379,7 +383,7 @@ public class SimulationCache
         cachedStorageScores.Clear();
     }
 
-    public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(
+    public (float PilusScore, float OxytoxyScore, float SlimeJetScore) GetPredationToolsRawScores(
         MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
@@ -387,10 +391,12 @@ public class SimulationCache
 
         var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
-        var mucilageScore = 0.0f;
+        var slimeJetScore = 0.0f;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
+        var slimeJetsCount = 0;
+        var mucilageMultiplier = 1.0f;
 
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -402,21 +408,30 @@ public class SimulationCache
                 continue;
             }
 
+            if (organelle.Definition.HasSlimeJetComponent)
+            {
+                slimeJetScore += Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
+                ++slimeJetsCount;
+
+                // Make sure that slime jets are positioned at the back of the cell, because otherwise they will
+                // push the cell backwards (into the predator or away from the prey) or to the side
+                mucilageMultiplier *= CalculateAngleMultiplier(organelle.Position);
+            }
+
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
                 {
                     oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
-
-                if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                {
-                    mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
-                }
             }
         }
 
-        var predationToolsRawScores = (pilusScore, oxytoxyScore, mucilageScore);
+        // Having lots of extra slime jets really doesn't help you that much
+        slimeJetScore *= MathF.Sqrt(slimeJetsCount);
+        slimeJetScore *= mucilageMultiplier;
+
+        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
@@ -495,5 +510,22 @@ public class SimulationCache
         }
 
         return Math.Clamp(cacheScore, 0, Constants.AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE);
+    }
+
+    /// <summary>
+    ///   Calculates cos of angle between the organelle and vertical axis
+    /// </summary>
+    private float CalculateAngleMultiplier(Hex pos)
+    {
+        // Slime jets are biased to go backwards at position (0,0)
+        if (pos.R == 0 && pos.Q == 0)
+            return 1;
+
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
+        Vector3 downVector = new Vector3(0, 0, 1);
+        float angleCos = organellePosition.Normalized().Dot(downVector);
+
+        // If degrees is higher than 40 then return 0
+        return angleCos >= 0.75 ? angleCos : 0;
     }
 }
