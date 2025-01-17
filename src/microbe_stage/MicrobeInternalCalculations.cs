@@ -80,14 +80,8 @@ public static class MicrobeInternalCalculations
                 continue;
 
             // If this is updated the code in CompoundBag.AddSpecificCapacityForCompound must also be updated
-            if (capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity))
-            {
-                capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
-            }
-            else
-            {
-                capacities.Add(specificCapacity.Compound, specificCapacity.Capacity + totalNominalCap);
-            }
+            capacities.TryGetValue(specificCapacity.Compound, out var currentCapacity);
+            capacities[specificCapacity.Compound] = currentCapacity + specificCapacity.Capacity;
         }
     }
 
