@@ -26,6 +26,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                 throw new ArgumentException(organelle.Name + " does not have upgrade: " + upgradeName);
             }
         }
+
         this.upgradeName = upgradeName;
     }
 
