@@ -1983,9 +1983,12 @@ public partial class CellEditorComponent :
             conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
         }
 
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
+        var energyBalance = new EnergyBalanceInfo();
+        energyBalance.SetupTrackingForRequiredCompounds();
+
+        ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
             Editor.CurrentGame.GameWorld.WorldSettings,
-            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
+            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true, energyBalance);
 
         UpdateEnergyBalance(energyBalance);
 
@@ -2017,15 +2020,15 @@ public partial class CellEditorComponent :
         IBiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
-        Dictionary<Compound, CompoundBalance> compoundBalanceData;
+        var compoundBalanceData = new Dictionary<Compound, CompoundBalance>();
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true, compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
-                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-                    amountType, energyBalance);
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, amountType, energyBalance,
+                    compoundBalanceData);
                 break;
             default:
                 GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
