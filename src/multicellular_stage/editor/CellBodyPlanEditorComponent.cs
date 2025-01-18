@@ -549,81 +549,6 @@ public partial class CellBodyPlanEditorComponent :
         return true;
     }
 
-    public float CalculateSpeed()
-    {
-        var leader = editedMicrobeCells[0].Data!;
-
-        var speed = MicrobeInternalCalculations.CalculateSpeed(leader.Organelles, leader.MembraneType,
-            leader.MembraneRigidity, leader.IsBacteria);
-
-        speed *= editedMicrobeCells.Count * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
-        var seriesValue = 1 - 1 / (float)Math.Pow(2, editedMicrobeCells.Count - 1);
-        speed -= speed * 0.15f * seriesValue;
-
-        if (editedMicrobeCells.Count == 1)
-            return speed;
-
-        var massEstimate = 0.0f;
-
-        var addedSpeed = 0.0f;
-
-        foreach (var hex in editedMicrobeCells)
-        {
-            var cell = hex.Data!;
-
-            if (cell == leader)
-                continue;
-
-            foreach (var organelle in cell.Organelles)
-            {
-                massEstimate += organelle.Definition.Density * organelle.Definition.HexCount;
-
-                if (!organelle.Definition.HasMovementComponent)
-                    continue;
-
-                var upgradeForce = 0.0f;
-
-                if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-                {
-                    upgradeForce = Constants.FLAGELLA_MAX_UPGRADE_FORCE * flagellumUpgrades.LengthFraction;
-                }
-
-                var flagellumForce = (Constants.FLAGELLA_BASE_FORCE + upgradeForce)
-                    * organelle.Definition.Components.Movement!.Momentum;
-
-                if (!cell.IsBacteria)
-                    flagellumForce *= Constants.EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER;
-
-                addedSpeed += flagellumForce;
-            }
-        }
-
-        return speed / editedMicrobeCells.Count + addedSpeed / (massEstimate * 1.4f);
-    }
-
-    public float CalculateRotationSpeed()
-    {
-        var leader = editedMicrobeCells[0].Data!;
-
-        var colonyRotation = MicrobeInternalCalculations
-            .CalculateRotationSpeed(leader.Organelles);
-
-        Vector3 leaderPosition = Hex.AxialToCartesian(leader.Position);
-
-        foreach (var colonyMember in editedMicrobeCells)
-        {
-            var distanceSquared = leaderPosition.DistanceSquaredTo(Hex.AxialToCartesian(colonyMember.Position));
-
-            var memberRotation = MicrobeInternalCalculations
-                    .CalculateRotationSpeed(colonyMember.Data!.Organelles)
-                * (1 + 0.03f * distanceSquared);
-
-            colonyRotation += memberRotation;
-        }
-
-        return colonyRotation / editedMicrobeCells.Count;
-    }
-
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
         // TODO: merge this with nominal get to make this more efficient
@@ -1146,8 +1071,8 @@ public partial class CellBodyPlanEditorComponent :
     private void UpdateStats()
     {
         UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
+        UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
+        UpdateRotationSpeed(CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
