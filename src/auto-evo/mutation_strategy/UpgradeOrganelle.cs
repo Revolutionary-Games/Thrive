@@ -19,6 +19,13 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
     public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        foreach (var organelle in allOrganelles)
+        {
+            if (!organelle.AvailableUpgrades.ContainsKey(upgradeName))
+            {
+                throw new ArgumentException(organelle.Name + " does not have upgrade: " + upgradeName);
+            }
+        }
         this.upgradeName = upgradeName;
     }
 

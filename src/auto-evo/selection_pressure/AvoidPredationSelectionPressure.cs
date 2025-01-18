@@ -25,7 +25,7 @@ public class AvoidPredationSelectionPressure : SelectionPressure
             CommonMutationFunctions.Direction.Rear),
         new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
         new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
-        new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, "mucocyst"),
+        new UpgradeOrganelle(organelle => organelle.HasSlimeJetComponent, SlimeJetComponent.MUCOCYST),
         new MoveOrganelleBack(organelle => organelle.HasSlimeJetComponent),
         new MoveOrganelleBack(organelle => organelle.HasMovementComponent),
         new ChangeMembraneType("double"),
@@ -47,9 +47,9 @@ public class AvoidPredationSelectionPressure : SelectionPressure
     {
         var predationScore = cache.GetPredationScore(Predator, species, patch.Biome);
 
-        if (predationScore <= 0)
+        if (predationScore <= 1)
         {
-            return 1.0f;
+            return 2.0f - predationScore;
         }
 
         return 1 / predationScore;

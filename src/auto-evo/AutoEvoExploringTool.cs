@@ -1216,7 +1216,10 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 foreach (var upgrade in organelle.AvailableUpgrades.Keys)
                 {
                     organelle.AvailableUpgrades.TryGetValue(upgrade, out var upgradeName);
-                    MicrobeSpeciesUpgradesStatistics.TryAdd(upgrade, (upgradeName?.Name ?? string.Empty, 0, 0));
+                    if (upgradeName != null)
+                    {
+                        MicrobeSpeciesUpgradesStatistics.TryAdd(upgrade, (upgradeName.Name, 0, 0));
+                    }
                 }
             }
 
