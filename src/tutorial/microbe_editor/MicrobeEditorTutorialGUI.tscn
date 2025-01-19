@@ -145,6 +145,7 @@ anchor_bottom = 0.0
 
 [node name="CellEditorClosingWords" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(360, 390)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -154,6 +155,8 @@ offset_left = -180.0
 offset_top = -185.0
 offset_right = 180.0
 offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("7")
 LabelPath = NodePath("ScrollContainer/VBoxContainer/CustomRichTextLabel")
 Description = "TUTORIAL_MICROBE_EDITOR_ENDING_TEXT"
@@ -235,6 +238,7 @@ PreventsMouseCaptureWhileOpen = true
 
 [node name="FlagellumPlacementTutorial" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 385)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -301,6 +305,7 @@ PreventsMouseCaptureWhileOpen = true
 
 [node name="StaySmall" parent="." instance=ExtResource("9")]
 custom_minimum_size = Vector2(375, 420)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -348,7 +353,8 @@ theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
 [node name="MadeNoChangesTutorial" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(375, 230)
+custom_minimum_size = Vector2(375, 270)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

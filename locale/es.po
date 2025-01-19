@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 19:44+0000\n"
+"POT-Creation-Date: 2025-01-19 16:55+0000\n"
 "PO-Revision-Date: 2025-01-05 14:32+0000\n"
 "Last-Translator: Jose Mendoza <mendozaknmgarcia22@gmail.com>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
@@ -1664,9 +1664,6 @@ msgstr "Dato curioso: ¿sabías que hay mas de 8000 ciliados en el planeta Tierr
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Dato curioso: el Stentor es un ciliado que puede estirarse y atrapar presas. Lo hace con una especie de boca en forma de trompeta, misma que atrae a las presas generando corrientes en el agua con sus cilios."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Dato curioso: el Didinium es un ciliado que caza paramecios."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Un consejo: las toxinas pueden usarse para alejar otras toxinas si eres lo suficientemente rápido."
 
@@ -2190,6 +2187,10 @@ msgstr "Información Completa del Mod"
 msgid "GALLERY_VIEWER"
 msgstr "Ver Galleria"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Sistemas de Juego"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equipo diseño del juego"
 
@@ -2203,6 +2204,30 @@ msgstr ""
 
 msgid "GENERAL"
 msgstr "General"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
 msgid "GENERATIONS"
 msgstr "Generaciones"
@@ -2972,9 +2997,6 @@ msgstr "Cargando Editor de Microbio"
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Cargando Editor de Microbio Multicelular"
 
-msgid "LOADING_TIP"
-msgstr "Presiona el botón de deshacer en el editor para corregir un error"
-
 msgid "LOAD_FINISHED"
 msgstr "Carga terminada"
 
@@ -3222,93 +3244,6 @@ msgstr "Editor de microbio"
 msgid "MICROBE_EDITOR"
 msgstr "Editor de microbio"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Estructuras procarióticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y realiza la glucólisis (produce pequeñas cantidades de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilacoides: Producen un tercio de la [thrive:compound type=\"glucose\"][/thrive:compound] como cloroplastos normales, pero también realizan la glucólisis, y ocupan un solo espacio\n"
-"\n"
-"Proteínas quimiosintetizadoras: Producen la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] como quimioplastos, pero también realizan la glucólisis, y ocupan un solo espacio\n"
-"\n"
-"Rusticianina: Transforma el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenasa: Transforma el nitrógeno atmosférico y el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] de forma anaeróbica\n"
-"\n"
-"Oxitoxisoma: Transforma el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintasa: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando los gradientes térmicos"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Orgánulos externos\n"
-"\n"
-"Flagelos: Dan más velocidad a tu célula, y consumen [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Puede usarse para atacar a otras células o para defenderse de sus toxinas\n"
-"\n"
-"Quimiorreceptor: Aumenta la distancia a la cual se pueden detectar compuestos\n"
-"\n"
-"Turbina de slime: Emite [thrive:compound type=\"mucilage\"][/thrive:compound] (producido a partir de [thrive:compound type=\"glucose\"][/thrive:compound]) para acelerar a tu célula\n"
-"\n"
-"Cilios: Aumentan la velocidad de giro de la célula, haciéndola más ágil"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Orgánulos con membrana\n"
-"\n"
-"Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la membrana, duplicando el tamaño de tu célula y protegiéndola del 50% de los daños (solo puede ser evolucionado una vez).\n"
-"\n"
-"Agente de ligación: Permite ligarte con otras células\n"
-"\n"
-"Mitocondria: Produce [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound y oxígeno atmosférico de forma mucho más eficiente que el citoplasma\n"
-"\n"
-"Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] utilizando luz solar y CO2 atmosférico\n"
-"\n"
-"Termoplasto: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura\n"
-"\n"
-"Lisosoma: Contiene enzimas digestivas, que aceleran la digestión y mejoran su eficacia\n"
-"\n"
-"Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound], nitrógeno y oxígeno\n"
-"\n"
-"Vacuola: Puede almacenar hasta 8 compuestos recolectados\n"
-"\n"
-"Vacuola de toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy\"][/thrive:compound]) y te permite liberarlas, causando daño de forma proporcional a las cantidad de oxitoxinas restantes\n"
-"\n"
-"Agente de señalización: Permite a las células sintetizar químicos a los que otras células pueden reaccionar"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "En cada generación, tienes 100 puntos de mutación (PM) para gastar, y cada cambio (o mutación) tiene un coste determinado de PM. Añadir y quitar orgánulos gasta PM, sin embargo, quitar un orgánulo que fue añadido en la misma sesión devuelve su coste de PM. Puedes mover o eliminar un orgánulo haciendo click derecho en este y seleccionando la acción apropiada. Puedes rotar orgánulos al momento de añadirlos con [thrive:input]e_rotate_left[/thrive:input] y [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando orgánulos) para incrementar tus chances de éxito. Cada visita al editor en el estadio de microbio representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millones de años de evolución."
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-msgstr ""
-"Estructuras procarióticas\n"
-"\n"
-"Citoplasma: Tiene espacio de almacenamiento y realiza la glucólisis (produce pequeñas cantidades de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilacoides: Producen un tercio de la [thrive:compound type=\"glucose\"][/thrive:compound] como cloroplastos normales, pero también realizan la glucólisis, y ocupan un solo espacio\n"
-"\n"
-"Proteínas quimiosintetizadoras: Producen la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] como quimioplastos, pero también realizan la glucólisis, y ocupan un solo espacio\n"
-"\n"
-"Rusticianina: Transforma el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenasa: Transforma el nitrógeno atmosférico y el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] de forma anaeróbica\n"
-"\n"
-"Oxitoxisoma: Transforma el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintasa: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando los gradientes térmicos"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor libre de microbios"
 
@@ -3321,7 +3256,55 @@ msgid "MICROBE_LOADING_TIP_10"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
 msgstr "Presiona el botón de deshacer en el editor para corregir un error"
 
 #, fuzzy
@@ -3414,60 +3397,6 @@ msgstr ""
 "Tu célula muere si se queda sin PS.\n"
 "Mientras tengas ATP, regenerarás tus PS.\n"
 "Asegúrate de conseguir suficiente glucosa para producir ATP."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. Pulsa [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar o desactivar el modo engullir. Puedes acercar y alejar la cámara con la rueda del ratón."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Para que tu célula pueda reproducirse, necesita dividir cada uno de sus orgánulos en dos. Para ello, se necesita amoniaco y fosfato."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Pero, si sobrevives durante veinte generaciones con una población de 300, habrás ganado la partida actual. Tras la victoria, obtienes una ventana emergente y puedes seguir jugando como desees."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Ten cuidado porque tus competidores evolucionan a la vez que tu célula. Cada vez que entras en el editor, ellos también evolucionan."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una misma colonia comparten entre sí todos los compuestos que absorben y producen. Entra en el modo de ligación con [thrive:input]g_toggle_binding[/thrive:input] y acércate a otra célula de tu misma especie. Mientras formes parte de una colonia, no podrás reproducir tu célula para entrar al editor. Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia con [thrive:input]g_unbind_all[/thrive:input] para entrar al editor. Las grandes colonias celulares son el camino hacia la multicelularidad."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Paredes celulares de celulosa y quitina no pueden ser digeridas sin las enzima requeridas que desarman las mismas."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Sin embargo, solo las células eucariotas disponen de lisosomas. Las células procariotas no tienen acceso a este orgánulo, por lo que su digestión es considerablemente menos eficiente. Las células pequeñas no tienen por qué preocuparse; pero, para las células de mayor tamaño, carecer de un lisosoma es problemático."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Tu célula usa [thrive:compound type=\"atp\"][/thrive:compound] como su fuente de energía. Si se agota, morirá."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Para desbloquear el editor y reproducirte necesitas conseguir [thrive:compound type=\"ammonia\"][/thrive:compound] (nubes de color naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (nubes de color púrpura)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "También puedes engullir células, bacterias, pedazos de hierro y trozos de célula de menor tamaño que la tuya al presionar [thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de [thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. No olvides presionar [thrive:input]g_toggle_engulf[/thrive:input] de nuevo para dejar de engullir."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "La osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], lo que significa que cuanto más grande es la célula, más mitocondrias, metabolosomas, rusticianinas (u orgánulos que puedan realizar glicólisis) necesitarás para evitar perder [thrive:compound type=\"atp\"][/thrive:compound] cuando esté inmóvil."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Hay varios orgánulos en el editor para que evoluciones, lo que te permite una amplia diversidad de estilos de juego."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Por ahora, si tu población cae a cero, te extinguirás."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Las nubes de compuestos son:\n"
-"\n"
-"Blanca – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Amarilla – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Naranja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Marrón – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser convertido a [thrive:compound type=\"glucose\"] con quimioplastos y proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:compound] puede ser convertido en [thrive:compound type=\"atp\"][/thrive:compound] con rusticianinas."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -7102,6 +7031,14 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HELPANDTIPS_INTRO"
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
+
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "La Nitrogenasa es una proteína capaz de usar nitrógeno y la energía celular en forma de ATP para producir amoniaco, un nutriente clave para el crecimiento celular. Éste es un proceso llamado Fijación de Nitrógeno Anaeróbica. Cómo la nitrogenasa está directamente suspendida en el citoplasma, éste realiza la glicólisis."
 
@@ -7619,6 +7556,10 @@ msgstr "Termoplasto"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELPANDTIPS"
+msgstr "Quimioplasto"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8235,6 +8176,157 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "HELP_TIPS_TITLE"
+#~ msgstr "Enlaces"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Dato curioso: el Didinium es un ciliado que caza paramecios."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Presiona el botón de deshacer en el editor para corregir un error"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Estructuras procarióticas\n"
+#~ "\n"
+#~ "Citoplasma: Tiene espacio de almacenamiento y realiza la glucólisis (produce pequeñas cantidades de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilacoides: Producen un tercio de la [thrive:compound type=\"glucose\"][/thrive:compound] como cloroplastos normales, pero también realizan la glucólisis, y ocupan un solo espacio\n"
+#~ "\n"
+#~ "Proteínas quimiosintetizadoras: Producen la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] como quimioplastos, pero también realizan la glucólisis, y ocupan un solo espacio\n"
+#~ "\n"
+#~ "Rusticianina: Transforma el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenasa: Transforma el nitrógeno atmosférico y el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] de forma anaeróbica\n"
+#~ "\n"
+#~ "Oxitoxisoma: Transforma el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintasa: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando los gradientes térmicos"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Orgánulos externos\n"
+#~ "\n"
+#~ "Flagelos: Dan más velocidad a tu célula, y consumen [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Puede usarse para atacar a otras células o para defenderse de sus toxinas\n"
+#~ "\n"
+#~ "Quimiorreceptor: Aumenta la distancia a la cual se pueden detectar compuestos\n"
+#~ "\n"
+#~ "Turbina de slime: Emite [thrive:compound type=\"mucilage\"][/thrive:compound] (producido a partir de [thrive:compound type=\"glucose\"][/thrive:compound]) para acelerar a tu célula\n"
+#~ "\n"
+#~ "Cilios: Aumentan la velocidad de giro de la célula, haciéndola más ágil"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Orgánulos con membrana\n"
+#~ "\n"
+#~ "Núcleo: Ocupa 11 espacios y permite la evolución de orgánulos unidos a la membrana, duplicando el tamaño de tu célula y protegiéndola del 50% de los daños (solo puede ser evolucionado una vez).\n"
+#~ "\n"
+#~ "Agente de ligación: Permite ligarte con otras células\n"
+#~ "\n"
+#~ "Mitocondria: Produce [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound y oxígeno atmosférico de forma mucho más eficiente que el citoplasma\n"
+#~ "\n"
+#~ "Cloroplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] utilizando luz solar y CO2 atmosférico\n"
+#~ "\n"
+#~ "Termoplasto: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando gradientes de temperatura\n"
+#~ "\n"
+#~ "Lisosoma: Contiene enzimas digestivas, que aceleran la digestión y mejoran su eficacia\n"
+#~ "\n"
+#~ "Quimioplasto: Sintetiza [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitroplasto: Sintetiza [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound], nitrógeno y oxígeno\n"
+#~ "\n"
+#~ "Vacuola: Puede almacenar hasta 8 compuestos recolectados\n"
+#~ "\n"
+#~ "Vacuola de toxinas: Produce toxinas (llamadas [thrive:compound type=\"oxytoxy\"][/thrive:compound]) y te permite liberarlas, causando daño de forma proporcional a las cantidad de oxitoxinas restantes\n"
+#~ "\n"
+#~ "Agente de señalización: Permite a las células sintetizar químicos a los que otras células pueden reaccionar"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "En cada generación, tienes 100 puntos de mutación (PM) para gastar, y cada cambio (o mutación) tiene un coste determinado de PM. Añadir y quitar orgánulos gasta PM, sin embargo, quitar un orgánulo que fue añadido en la misma sesión devuelve su coste de PM. Puedes mover o eliminar un orgánulo haciendo click derecho en este y seleccionando la acción apropiada. Puedes rotar orgánulos al momento de añadirlos con [thrive:input]e_rotate_left[/thrive:input] y [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Cada vez que tu célula se reproduce, entrarás al editor de microbio, donde puedes hacerle cambios a tu especie (añadiendo, moviendo y/o quitando orgánulos) para incrementar tus chances de éxito. Cada visita al editor en el estadio de microbio representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millones de años de evolución."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Estructuras procarióticas\n"
+#~ "\n"
+#~ "Citoplasma: Tiene espacio de almacenamiento y realiza la glucólisis (produce pequeñas cantidades de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomas: Producen [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilacoides: Producen un tercio de la [thrive:compound type=\"glucose\"][/thrive:compound] como cloroplastos normales, pero también realizan la glucólisis, y ocupan un solo espacio\n"
+#~ "\n"
+#~ "Proteínas quimiosintetizadoras: Producen la mitad de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] como quimioplastos, pero también realizan la glucólisis, y ocupan un solo espacio\n"
+#~ "\n"
+#~ "Rusticianina: Transforma el [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenasa: Transforma el nitrógeno atmosférico y el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] de forma anaeróbica\n"
+#~ "\n"
+#~ "Oxitoxisoma: Transforma el [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintasa: Produce [thrive:compound type=\"atp\"][/thrive:compound] usando los gradientes térmicos"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "Usa [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input], [thrive:input]g_move_right[/thrive:input] y el ratón para mover tu célula. Pulsa [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tienes una vacuola de toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para activar o desactivar el modo engullir. Puedes acercar y alejar la cámara con la rueda del ratón."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Para que tu célula pueda reproducirse, necesita dividir cada uno de sus orgánulos en dos. Para ello, se necesita amoniaco y fosfato."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Pero, si sobrevives durante veinte generaciones con una población de 300, habrás ganado la partida actual. Tras la victoria, obtienes una ventana emergente y puedes seguir jugando como desees."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Ten cuidado porque tus competidores evolucionan a la vez que tu célula. Cada vez que entras en el editor, ellos también evolucionan."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Al ligarte con otras células puedes crear una colonia. Las células de una misma colonia comparten entre sí todos los compuestos que absorben y producen. Entra en el modo de ligación con [thrive:input]g_toggle_binding[/thrive:input] y acércate a otra célula de tu misma especie. Mientras formes parte de una colonia, no podrás reproducir tu célula para entrar al editor. Una vez que hayas adquirido suficientes compuestos para reproducirte tendrás que abandonar la colonia con [thrive:input]g_unbind_all[/thrive:input] para entrar al editor. Las grandes colonias celulares son el camino hacia la multicelularidad."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Paredes celulares de celulosa y quitina no pueden ser digeridas sin las enzima requeridas que desarman las mismas."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Sin embargo, solo las células eucariotas disponen de lisosomas. Las células procariotas no tienen acceso a este orgánulo, por lo que su digestión es considerablemente menos eficiente. Las células pequeñas no tienen por qué preocuparse; pero, para las células de mayor tamaño, carecer de un lisosoma es problemático."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Tu célula usa [thrive:compound type=\"atp\"][/thrive:compound] como su fuente de energía. Si se agota, morirá."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Para desbloquear el editor y reproducirte necesitas conseguir [thrive:compound type=\"ammonia\"][/thrive:compound] (nubes de color naranja) y [thrive:compound type=\"phosphates\"][/thrive:compound] (nubes de color púrpura)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "También puedes engullir células, bacterias, pedazos de hierro y trozos de célula de menor tamaño que la tuya al presionar [thrive:input]g_toggle_engulf[/thrive:input]. Esto aumentará el coste de [thrive:compound type=\"atp\"][/thrive:compound] y también ralentizará tu célula. No olvides presionar [thrive:input]g_toggle_engulf[/thrive:input] de nuevo para dejar de engullir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "La osmorregulación cuesta [thrive:compound type=\"atp\"][/thrive:compound], lo que significa que cuanto más grande es la célula, más mitocondrias, metabolosomas, rusticianinas (u orgánulos que puedan realizar glicólisis) necesitarás para evitar perder [thrive:compound type=\"atp\"][/thrive:compound] cuando esté inmóvil."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Hay varios orgánulos en el editor para que evoluciones, lo que te permite una amplia diversidad de estilos de juego."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Por ahora, si tu población cae a cero, te extinguirás."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Las nubes de compuestos son:\n"
+#~ "\n"
+#~ "Blanca – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Amarilla – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Naranja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Púrpura – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Marrón – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "La [thrive:compound type=\"glucose\"][/thrive:compound] se usa para generar [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "El [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] puede ser convertido a [thrive:compound type=\"glucose\"] con quimioplastos y proteínas quimiosintetizadoras. El [thrive:compound type=\"iron\"][/thrive:compound] puede ser convertido en [thrive:compound type=\"atp\"][/thrive:compound] con rusticianinas."
 
 #~ msgid "EASTEREGG_MESSAGE_20"
 #~ msgstr "Dato curioso: la Ameba caza y atrapa presas con 'piernas' hechas de citoplasma llamadas pseudópodos. Eventualmente los agregaremos a Thrive."

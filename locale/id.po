@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 19:44+0000\n"
+"POT-Creation-Date: 2025-01-19 16:55+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -1735,9 +1735,6 @@ msgstr "Fakta Menarik, Tahukah kamu bahwa ada lebih dari 8000 spesies ciliata di
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Fakta Menarik, Stentor adalah ciliata yang dapat meregangkan dirinya sendiri dan menangkap mangsanya dari mulut berbentuk seperti terompet yang menarik mangsa kedalamnya dengan menimbulkan arus air dengan cilia."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fakta Menarik, Didinium adalah ciliata yang memburu paramecia."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Berikut tipsnya, toksin dapat digunakan untuk menangkis toksin lain di sekitarmu jika kamu cepat menangkisnya."
 
@@ -2353,6 +2350,10 @@ msgid "GALLERY_VIEWER"
 msgstr ""
 
 #, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Kepala Desainer Game"
+
+#, fuzzy
 msgid "GAME_DESIGN_TEAM"
 msgstr "Kepala Desainer Game"
 
@@ -2366,6 +2367,30 @@ msgstr "Tambah keybind baru"
 
 msgid "GENERAL"
 msgstr "Umum"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 
 msgid "GENERATIONS"
 msgstr "Generasi"
@@ -3201,9 +3226,6 @@ msgstr "Memuat Editor Mikroba"
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Memuat Editor Mikroba"
 
-msgid "LOADING_TIP"
-msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
-
 msgid "LOAD_FINISHED"
 msgstr "Selesai memuat"
 
@@ -3468,71 +3490,6 @@ msgstr "Editor Mikrob"
 msgid "MICROBE_EDITOR"
 msgstr "Editor Mikrob"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Struktur Prokariotik\n"
-"\n"
-"Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
-"\n"
-"Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
-"\n"
-"Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
-"\n"
-"Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Organel Eksternal\n"
-"\n"
-"Flagelum: Menggerakkan sel kamu dengan lebih cepat dengan mengonsumsi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Dapat digunakan untuk menusuk sel lain"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Organel Terikat Membran\n"
-"\n"
-"Nukleus: Memerlukan 11 heksa dan memungkinkan evolusi organel terikat membran yang juga menggandakan ukuran sel kamu sebesar dua kali lipat. (Hanya dapat berevolusi sekali saja)\n"
-"\n"
-"Mitokondria: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound] dan gas CO2. Jauh lebih efisien dari sitoplasma.\n"
-"\n"
-"Kloroplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari sinar matahari dan gas CO2.\n"
-"\n"
-"Kemoplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound].\n"
-"\n"
-"Pengikat Nitrogen Plastida: Membuat [thrive:compound type=\"ammonia\"][/thrive:compound] dari [thrive:compound type=\"atp\"][/thrive:compound] serta atmosfer Nitrogen dan Oksigen\n"
-"\n"
-"Vakula: Menyimpan senyawa yang dikumpulkan sebesar 15\n"
-"\n"
-"Vakula Toksin: Menghasilkan toksin (Disebut [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP sebesar organel yang kamu tambahkan/lepas. Menambah dan melepas organel juga membutuhkan MP, tetapi melepas organel yang sudah ditempatkan di sesi mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu bisa melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. Kamu bisa memutar organelmu dengan cara mengklik [thrive:input]e_rotate_left[/thrive:input] dan [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] juta tahun evolusi."
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-msgstr ""
-"Struktur Prokariotik\n"
-"\n"
-"Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
-"\n"
-"Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
-"\n"
-"Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
-"\n"
-"Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Mikroba Bangun-bebas"
 
@@ -3545,7 +3502,55 @@ msgid "MICROBE_LOADING_TIP_10"
 msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
 msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 
 #, fuzzy
@@ -3638,60 +3643,6 @@ msgstr ""
 "Selmu mati jika kehabisan health.\n"
 "Kamu memperbarui health ketika memiliki ATP.\n"
 "Pastikan telah mengumpulkan glukosa yang cukup untuk memproduksi ATP."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Namun jika kamu dapat bertahan hingga 20 generasi dengan populasi sebesar 300, kamu dianggap telah memenangkan sesi permainan yang sedang berlangsung, saat kamu menang sebuah popup muncul dan kamu dapat melanjutkan permainan semau kamu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut berkembang."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Dengan melekat bersama sel lain, kamu dapat membentuk sebuah koloni sel dimana setiap sel membagi senyawa-senyawa yang mereka peroleh dan memproduksi bersama-sama. Agar bisa melekat dengan sel lain, kamu memerlukan organel agen pelekat dan kemudian bergerak mendekati sel tersebut setelah menyalakan mode lekat. Kamu hanya bisa melekat dengan sel satu spesies kamu. Ketika dalam koloni, kamu tidak dapat melakukan pembelahan sel dan memasuki editor (untuk saat ini). Untuk memasuki editor, pertama kamu perlu keluar dari koloni setelah mengumpulkan senyawa yang cukup dan kemudian masuk ke editor. Koloni sel yang besar adalah jalan menuju multiseluleritas (saat ini tidak ada di game)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Dinding sel selulosa dan kitin khususnya tidak dapat dicerna tanpa enzim yang dapat merusak dinding tersebut terlebih dahulu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Namun, lisosom eksklusif hanya untuk eukariota. Prokariota tidak memiliki organel ini dan mereka cukup tidak efisien mencerna makanan. Untuk sel-sel kecil ini tidak masalah, tetapi untuk sel-sel yang lebih besar, tidak memiliki lisosom sangatlah merugikan."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Sel kamu menggunakan [thrive:compound type=\"atp\"][/thrive:compound] sebagai sumber energinya, jika habis maka kamu akan mati."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah [thrive:compound type=\"ammonia\"][/thrive:compound] (Awan Oranye) dan [thrive:compound type=\"phosphates\"][/thrive:compound] (Awan Ungu)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol [thrive:input]g_toggle_engulf[/thrive:input]. Proses ini membutuhkan [thrive:compound type=\"atp\"][/thrive:compound] dan memperlambat sel kamu. Jangan lupa tekan lagi [thrive:input]g_toggle_engulf[/thrive:input] untuk menghentikan penelanan."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulasi memerlukan [thrive:compound type=\"atp\"][/thrive:compound], yang berarti semakin besar sel kamu, semakin banyak Mitokondria, Metabolosom, atau Rusticyanin (atau sitoplasma, yang melakukan proses Glikolisis) yang kamu butuhkan agar terhindar dari kehilangan [thrive:compound type=\"atp\"][/thrive:compound] saat kamu tidak bergerak."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Ada banyak organel di editor yang dapat kamu gunakan untuk mengembangkan selmu, memungkinkan gaya permainan yang luas."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Jenis-jenis awan senyawa adalah sebagai berikut:\n"
-"\n"
-"Putih - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Kuning - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Oranye - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Ungu - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Coklat Karat - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"]Glukosa-lah[/thrive:compound] yang membuat [thrive:compound type=\"atp\"][/thrive:compound]"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"glucose\"][/thrive:compound] melalui kemoplas dan protein pengkemosintesis. [thrive:compound type=\"iron\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"atp\"][/thrive:compound] melalui rustisianin."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -7348,6 +7299,14 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HELPANDTIPS_INTRO"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
 
@@ -7854,6 +7813,10 @@ msgstr "Termoplas"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagela"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELPANDTIPS"
+msgstr "Kemoplas"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8466,6 +8429,135 @@ msgstr "Perbesar"
 
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
+
+#, fuzzy
+#~ msgid "HELP_TIPS_TITLE"
+#~ msgstr "KAMU TELAH BERKEMBANG!"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Fakta Menarik, Didinium adalah ciliata yang memburu paramecia."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Struktur Prokariotik\n"
+#~ "\n"
+#~ "Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
+#~ "\n"
+#~ "Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
+#~ "\n"
+#~ "Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
+#~ "\n"
+#~ "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Organel Eksternal\n"
+#~ "\n"
+#~ "Flagelum: Menggerakkan sel kamu dengan lebih cepat dengan mengonsumsi [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Dapat digunakan untuk menusuk sel lain"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Organel Terikat Membran\n"
+#~ "\n"
+#~ "Nukleus: Memerlukan 11 heksa dan memungkinkan evolusi organel terikat membran yang juga menggandakan ukuran sel kamu sebesar dua kali lipat. (Hanya dapat berevolusi sekali saja)\n"
+#~ "\n"
+#~ "Mitokondria: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound] dan gas CO2. Jauh lebih efisien dari sitoplasma.\n"
+#~ "\n"
+#~ "Kloroplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari sinar matahari dan gas CO2.\n"
+#~ "\n"
+#~ "Kemoplas: Membuat [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound].\n"
+#~ "\n"
+#~ "Pengikat Nitrogen Plastida: Membuat [thrive:compound type=\"ammonia\"][/thrive:compound] dari [thrive:compound type=\"atp\"][/thrive:compound] serta atmosfer Nitrogen dan Oksigen\n"
+#~ "\n"
+#~ "Vakula: Menyimpan senyawa yang dikumpulkan sebesar 15\n"
+#~ "\n"
+#~ "Vakula Toksin: Menghasilkan toksin (Disebut [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Setiap generasi, kamu mendapat 100 mutation points/poin mutasi (MP) untuk digunakan, dan setiap perubahan (atau mutasi) membutuhkan MP sebesar organel yang kamu tambahkan/lepas. Menambah dan melepas organel juga membutuhkan MP, tetapi melepas organel yang sudah ditempatkan di sesi mutasi saat ini akan mengembalikan MP dari organel tersebut. Kamu bisa melepas sebuah organel dengan cara mengklik kanan pada organel tersebut. Kamu bisa memutar organelmu dengan cara mengklik [thrive:input]e_rotate_left[/thrive:input] dan [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] juta tahun evolusi."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Struktur Prokariotik\n"
+#~ "\n"
+#~ "Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
+#~ "\n"
+#~ "Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
+#~ "\n"
+#~ "Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
+#~ "\n"
+#~ "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Untuk melakukan reproduksi kamu harus membelah setiap organelmu menjadi dua. Diperlukan amonia dan fosfat untuk membelah semua organel menjadi dua."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Namun jika kamu dapat bertahan hingga 20 generasi dengan populasi sebesar 300, kamu dianggap telah memenangkan sesi permainan yang sedang berlangsung, saat kamu menang sebuah popup muncul dan kamu dapat melanjutkan permainan semau kamu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Tetap berhati-hati karena kompetitor (sel lain) berkembang di sekitar kamu. Setiap kamu memasuki sesi editor, para kompetitor juga ikut berkembang."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Dengan melekat bersama sel lain, kamu dapat membentuk sebuah koloni sel dimana setiap sel membagi senyawa-senyawa yang mereka peroleh dan memproduksi bersama-sama. Agar bisa melekat dengan sel lain, kamu memerlukan organel agen pelekat dan kemudian bergerak mendekati sel tersebut setelah menyalakan mode lekat. Kamu hanya bisa melekat dengan sel satu spesies kamu. Ketika dalam koloni, kamu tidak dapat melakukan pembelahan sel dan memasuki editor (untuk saat ini). Untuk memasuki editor, pertama kamu perlu keluar dari koloni setelah mengumpulkan senyawa yang cukup dan kemudian masuk ke editor. Koloni sel yang besar adalah jalan menuju multiseluleritas (saat ini tidak ada di game)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Dinding sel selulosa dan kitin khususnya tidak dapat dicerna tanpa enzim yang dapat merusak dinding tersebut terlebih dahulu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Namun, lisosom eksklusif hanya untuk eukariota. Prokariota tidak memiliki organel ini dan mereka cukup tidak efisien mencerna makanan. Untuk sel-sel kecil ini tidak masalah, tetapi untuk sel-sel yang lebih besar, tidak memiliki lisosom sangatlah merugikan."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Sel kamu menggunakan [thrive:compound type=\"atp\"][/thrive:compound] sebagai sumber energinya, jika habis maka kamu akan mati."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Untuk membuka editor dan reproduksi kamu perlu mengumpulkan sejumlah [thrive:compound type=\"ammonia\"][/thrive:compound] (Awan Oranye) dan [thrive:compound type=\"phosphates\"][/thrive:compound] (Awan Ungu)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Kamu bisa juga menelan (engulf) sel dan bakteri serta potongan besi dan potongan sel yang lebih kecil dari sel kamu dengan cara menekan tombol [thrive:input]g_toggle_engulf[/thrive:input]. Proses ini membutuhkan [thrive:compound type=\"atp\"][/thrive:compound] dan memperlambat sel kamu. Jangan lupa tekan lagi [thrive:input]g_toggle_engulf[/thrive:input] untuk menghentikan penelanan."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulasi memerlukan [thrive:compound type=\"atp\"][/thrive:compound], yang berarti semakin besar sel kamu, semakin banyak Mitokondria, Metabolosom, atau Rusticyanin (atau sitoplasma, yang melakukan proses Glikolisis) yang kamu butuhkan agar terhindar dari kehilangan [thrive:compound type=\"atp\"][/thrive:compound] saat kamu tidak bergerak."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Ada banyak organel di editor yang dapat kamu gunakan untuk mengembangkan selmu, memungkinkan gaya permainan yang luas."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Untuk saat ini jika populasi turun menjadi nol maka kamu akan punah."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Jenis-jenis awan senyawa adalah sebagai berikut:\n"
+#~ "\n"
+#~ "Putih - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Kuning - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Oranye - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Ungu - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Coklat Karat - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"]Glukosa-lah[/thrive:compound] yang membuat [thrive:compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"glucose\"][/thrive:compound] melalui kemoplas dan protein pengkemosintesis. [thrive:compound type=\"iron\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"atp\"][/thrive:compound] melalui rustisianin."
 
 #~ msgid "EASTEREGG_MESSAGE_20"
 #~ msgstr "Fakta menarik, Amoeba memburu dan menangkap mangsa dengan 'kaki' terbuat dari sitoplasma yang disebut pseudopoda, kami nantinya juga ingin menambahkan 'kaki' tersebut dalam Thrive."

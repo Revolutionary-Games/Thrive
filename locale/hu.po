@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 19:44+0000\n"
+"POT-Creation-Date: 2025-01-19 16:55+0000\n"
 "PO-Revision-Date: 2024-12-28 10:44+0000\n"
 "Last-Translator: Noel Mathias <mcdougless17@gmail.com>\n"
 "Language-Team: Hungarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hu/>\n"
@@ -1753,9 +1753,6 @@ msgstr "Érdekesség: Tudtad, hogy a Földön több, mint 8000 csillós faj él?
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Érdekesség: A Stentor egy olyan csillós egysejtű, mely képes megnyúlni, és elkapni zsákmányát a trombitaszerű sejtszájával úgy, hogy a sejtszáj körüli csillókkal áramlatot generál."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Itt egy kis tanács. A mérgek arra is használhatók, hogy más mérgeket üss el magad elől, ha elég gyors vagy."
 
@@ -2366,6 +2363,10 @@ msgstr "Teljes mod infó"
 msgid "GALLERY_VIEWER"
 msgstr "Galéria nézet"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Játéktervező csapat"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Játéktervező csapat"
 
@@ -2380,6 +2381,30 @@ msgstr ""
 
 msgid "GENERAL"
 msgstr "Alap"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
 msgid "GENERATIONS"
 msgstr "Generációk"
@@ -3210,9 +3235,6 @@ msgstr "Sejtszerkesztő betöltése"
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Többsejtes szerkesztő betöltése"
 
-msgid "LOADING_TIP"
-msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
-
 msgid "LOAD_FINISHED"
 msgstr "Betöltés befejezve"
 
@@ -3469,75 +3491,6 @@ msgstr "Sejtszerkesztő"
 msgid "MICROBE_EDITOR"
 msgstr "Sejtszerkesztő"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokarióta szerkezetek\n"
-"\n"
-"Metaboloszómák: A gülkózból ATP-t állít elő.\n"
-"\n"
-"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
-"\n"
-"Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
-"\n"
-"Rusticyanin: A vasat ATP-vé alakítja át\n"
-"\n"
-"Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
-"\n"
-"Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Külső sejtszervecskék\n"
-"\n"
-"Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
-"\n"
-"Pilus: Más sejtek megszúrására használható\n"
-"\n"
-"Kemoreceptor: Messzebbi vegyületek észlelésére képes"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Eukarióta sejtszervecskék\n"
-"\n"
-"Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted meg)\n"
-"\n"
-"Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
-"\n"
-"Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal hatékonyabban, mint egy citoplazma\n"
-"\n"
-"Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) segítségével\n"
-"\n"
-"Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
-"\n"
-"Nitrifikáló színtest: Ammóniát állít elő ATP-ből, és az atmoszférából gyűjtött oxigénből és nitrogénből\n"
-"\n"
-"Sejtüreg: 8 egységnyi vegyületet tud raktározni\n"
-"\n"
-"Mérget tartalmazó sejtüreg: Mérget állít elő (Neve [thrive:compound type=\"oxytoxy\"][/thrive:compound]) és lehetővé teszi, hogy ezt a mérget kilőve megsebezz más sejteket a méreg mennyisége alapján"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod is a sejtszervecskéket, miközben lerakod őket a [thrive:input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/thrive:input] megnyomásával."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-msgstr ""
-"Prokarióta szerkezetek\n"
-"\n"
-"Metaboloszómák: A gülkózból ATP-t állít elő.\n"
-"\n"
-"Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
-"\n"
-"Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
-"\n"
-"Rusticyanin: A vasat ATP-vé alakítja át\n"
-"\n"
-"Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
-"\n"
-"Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Sejtszerkesztő"
 
@@ -3550,7 +3503,55 @@ msgid "MICROBE_LOADING_TIP_10"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
 msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
 
 #, fuzzy
@@ -3642,60 +3643,6 @@ msgstr ""
 "A sejted meghal, ha elfogy az életereje.\n"
 "Addig regenerálódik a sejted, amíg rendelkezik ATP-vel.\n"
 "Figyelj arra, hogy elegendő glükózt gyűjts az ATP előállításához."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a [thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és távolodni a sejtedtől."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, melyek egymással vegyületeket osztanak meg, amiket elnyelnek és előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a játékban)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "A cellulóz és kitin sejtfal nem emészthető a sejt számára mindaddig, amíg nem rendelkezik a szükséges enzimmel, ami ezen anyagok lebontásához szükséges."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Azonban a lizoszómák csak az eukarióták számára elérhetőek. A prokariótáknak nincsenek ilyen szerveik, és nem a leghatékonyabban emésztik meg a táplálékot. Kisebb sejteknél a lizoszóma hiánya nem befolyásol semmit, viszont a nagyobb sejteknél ez hátráltató tényező."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor elpusztul."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a [thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés befejezéséhez."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra (vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz halni."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"A különböző vegyületfelhők lehetnek:\n"
-"\n"
-"Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
-"Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/thrive:compound]\n"
-"Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:compound]\n"
-"Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
-"Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
-"\n"
-"A glükózból ATP készül."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és kemoszintetizáló fehérjék segítségével. A vasat rusticyanin segítségével pedig ATP-vé tudod alakítani."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -7321,6 +7268,14 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HELPANDTIPS_INTRO"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "A ragacsos belseje a sejtnek. A citoplazma (sejtplazma) ionok, proteinek, víz és még más anyagok egyszerű keveréke, ami kitölti egy sejt belsejét. Az egyik funkciója a glikolízis, ami a glükóz ATP-vé alakítását takarja. Azoknak az organizmusoknak, melyeknek nincsenek különböző sejtszervecskéi, hogy fejlettebb anyagcserét tudjanak végezni, nekik ez az egyetlen támaszuk az energia előállítására. A sejtek még használják molekulák raktáraként, és hogy ezzel növelni tudják méretüket."
+
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "A nitrogenáz egy enzim, mely nitrogéngázból a sejt energiaraktározó ATP molekulájának segítségével képes ammóniát előállítani, ami a sejtnek egy elég fontos tápanyaga. Ez a folyamat anaerob nitrogén-rögzítés néven ismert. Mivel a nitrogenáz a citoplazmában helyezkedik el, ezért a környékén elhelyezkedő folyadék glikolízist végez."
 
@@ -7823,6 +7778,10 @@ msgstr "Termoplasztisz"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Ostor"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELPANDTIPS"
+msgstr "Kemoplasztisz"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8435,6 +8394,139 @@ msgstr "Közelítés"
 
 msgid "ZOOM_OUT"
 msgstr "Távolodás"
+
+#, fuzzy
+#~ msgid "HELP_TIPS_TITLE"
+#~ msgstr "Nincs cím"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Érdekesség: a Didinium egy olyan csillós, mely papucsállatkákra vadászik."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "A szerkesztőben a visszavonás gomb lenyomásával kíjavíthatsz egy véletlen elkövetett hibát"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokarióta szerkezetek\n"
+#~ "\n"
+#~ "Metaboloszómák: A gülkózból ATP-t állít elő.\n"
+#~ "\n"
+#~ "Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
+#~ "\n"
+#~ "Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
+#~ "\n"
+#~ "Rusticyanin: A vasat ATP-vé alakítja át\n"
+#~ "\n"
+#~ "Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
+#~ "\n"
+#~ "Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Külső sejtszervecskék\n"
+#~ "\n"
+#~ "Ostor: Gyorsabbá teszi a sejtedet ATP-t használva a folyamat során\n"
+#~ "\n"
+#~ "Pilus: Más sejtek megszúrására használható\n"
+#~ "\n"
+#~ "Kemoreceptor: Messzebbi vegyületek észlelésére képes"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Eukarióta sejtszervecskék\n"
+#~ "\n"
+#~ "Sejtmag: 11 hexagonnyi helyet foglal, és a sejtszervecskéket teszi elérhetővé, plusz megduplázza a sejted méretét (ezt csak egyszer teheted meg)\n"
+#~ "\n"
+#~ "Kötőszövet: Ezzel más sejtekhez tudsz kapcsolódni\n"
+#~ "\n"
+#~ "Mitokondrium: Glükózból és oxigénből (O2) állít elő ATP-t, méghozzá sokkal hatékonyabban, mint egy citoplazma\n"
+#~ "\n"
+#~ "Kloroplasztisz: Glükózt állít elő napfény és szén-dioxid (CO2) segítségével\n"
+#~ "\n"
+#~ "Kemoplasztisz: Glükózt állít elő hidrogén-szulfidból\n"
+#~ "\n"
+#~ "Nitrifikáló színtest: Ammóniát állít elő ATP-ből, és az atmoszférából gyűjtött oxigénből és nitrogénből\n"
+#~ "\n"
+#~ "Sejtüreg: 8 egységnyi vegyületet tud raktározni\n"
+#~ "\n"
+#~ "Mérget tartalmazó sejtüreg: Mérget állít elő (Neve [thrive:compound type=\"oxytoxy\"][/thrive:compound]) és lehetővé teszi, hogy ezt a mérget kilőve megsebezz más sejteket a méreg mennyisége alapján"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Minden egyes generációban 100 mutáció pont (MP) áll rendelkezésedre, melyet mutációkra, és változtatásokra tudsz elkölteni, amik bizonyos mennyiségű MP-be kerülnek. Viszont ha azt a sejtszervecskét törlöd ki, amit éppen abban a mutációs szekcióban raktál le, akkor annyi pontot kapsz vissza, amennyit ráköltöttél. Áthelyezhetsz, vagy akár teljesen ki is törölhetsz egy sejtszervecskét úgy, hogy a jobb egérgombbal rákattintasz, és kiválasztod a neked megfelelő műveletet a felugró ablakban. Forgathatod is a sejtszervecskéket, miközben lerakod őket a [thrive:input]e_rotate_left[/thrive:input] vagy a [thrive:input]e_rotate_right[/thrive:input] megnyomásával."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Minden egyes alkalommal, amikor osztódsz, a sejtszerkesztőbe fogsz belépni, ahol változtatásokat végezhetsz a fajod setjein (úgy, hogy hozzáadsz, áthelyezel, vagy eltörölsz sejtszervecskéket), hogy növeld túlélési esélyüket. Minden egyes látogatás a szerkesztőben [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millió évnyi fejlődést jelent a fajod számára."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Prokarióta szerkezetek\n"
+#~ "\n"
+#~ "Metaboloszómák: A gülkózból ATP-t állít elő.\n"
+#~ "\n"
+#~ "Kemoszintetizáló proteinek: A hidrogén-szulfidnak a felét glükózzá alakítja, mint egy kemoplasztisz, és glikolízist is végez. 1 hexagon területet foglal el\n"
+#~ "\n"
+#~ "Thilakoidok: 1/3-adnyi glükózt termel, mint egy normál kloroplasztisz, de glikolízist is végez, és 1 hexagon helyet foglal\n"
+#~ "\n"
+#~ "Rusticyanin: A vasat ATP-vé alakítja át\n"
+#~ "\n"
+#~ "Nitrogenáz: ATP-t és az atmoszférából gyűjtött nitrogént alakítja át ammóniává anaerob módon\n"
+#~ "\n"
+#~ "Citoplazma: Több tárhelyet ad a sejtednek, és glikolízist végez (Kis mennyiségű ATP-t termel)"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "A mozgáshoz használd a [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] gombokat, és az egeret a forduláshoz. Használd [thrive:input]g_fire_toxin[/thrive:input] gombot a [thrive:compound type=\"oxytoxy\"][/thrive:compound] lövéséhez, ha rendelkezel mérget tartalmazó sejtnedvüreggel. A [thrive:input]g_toggle_engulf[/thrive:input] gombbal tudod az elnyelést be-, vagy kikapcsolni. Az egér görgőjével tudsz közelíteni a sejtedhez, és távolodni a sejtedtől."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "A szaporodáshoz a sejtszervecskéidnek osztódnia kell. Ammóniára és foszfátra van szüksége ezeknek a szervecskéknek, hogy osztódni tudjanak."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "De ha túlélsz 20 generációt 300 fős egyedszámmal, akkor megnyerted a játékot (a pillanatnyi verziót). Ha nyersz, akkor egy felugró ablak jelenik meg, és utána még addig játszhatsz tovább, ameddig csak akarsz."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Légy óvatos, mert vetélytársaid is haladnak előre az evolúció rögös ösvényén. Amikor belépsz a szerkesztőbe, akkor ők is fejlődnek."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Több sejthez való kapcsolódás által ki tudsz alakítani egy sejtkolóniát, melyek egymással vegyületeket osztanak meg, amiket elnyelnek és előállítanak közösen. Egy másik sejthez való csatlakozáshoz egy kötőszövetre lesz szükséged. Ha ez megvan, akkor át kell váltanod összekapcsolás módba, és neki kell menned a másik sejtnek. Csak a saját fajod egyedeivel tudsz összekapcsolódni. Amíg egy kolóniában vagy, addig nem tudsz osztódni, és belépni a szerkesztőbe (perpillanat). Hogy a szerkesztőbe beléphess, ahhoz először hagyd el a kolóniát akkor, amikor elegendő nyersanyagot gyűjtöttél, és utána lépj be. A nagy sejtkolóniák fognak majd előrevinni a többsejtűség felé (perpillanat még nincs a játékban)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "A cellulóz és kitin sejtfal nem emészthető a sejt számára mindaddig, amíg nem rendelkezik a szükséges enzimmel, ami ezen anyagok lebontásához szükséges."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Azonban a lizoszómák csak az eukarióták számára elérhetőek. A prokariótáknak nincsenek ilyen szerveik, és nem a leghatékonyabban emésztik meg a táplálékot. Kisebb sejteknél a lizoszóma hiánya nem befolyásol semmit, viszont a nagyobb sejteknél ez hátráltató tényező."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "A sejted ATP-t használ energiaforrásként, ha kifogy belőle, akkor elpusztul."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Ha a szerkesztőhöz hozzá akarsz férni, és szaporodni akarsz, akkor ammóniát (Narancssárga Felhő) és foszfátot (Lila Felhő) kell gyűjtened."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Kisebb sejteket, baktériumokat és vasdarabokat is el tudsz nyelni a [thrive:input]g_toggle_engulf[/thrive:input] lenyomásával. Ezzel több ATP-t használsz, és lassabb is leszel. Ne felejtsd el a [thrive:input]g_toggle_engulf[/thrive:input]-t lenyomni még egyszer az elnyelés befejezéséhez."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Az ozmoreguláció ATP-be kerül, ami azt jelenti, hogy minél nagyobb a sejted, annál több mitokondriumra, metaboloszómára vagy rusticyanin-ra (vagy citoplazmára, mely a glikolízist végzi) van szükséged, hogy minél kevesebb ATP-t veszíts, amikor egy helyhez vagy kötve."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Sok sejtszervecske érhető el a szerkesztőben, ezzel megadva neked a lehetőséget arra, hogy a saját tetszésed szerint játszd a játékot."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Perpillanat, ha a populációd egyedszáma a nullára esik, akkor ki fogsz halni."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "A különböző vegyületfelhők lehetnek:\n"
+#~ "\n"
+#~ "Fehérek – [thrive:compound type=\"glucose\"]Glükóz[/thrive:compound]\n"
+#~ "Citromsárgák – [thrive:compound type=\"hydrogensulfide\"]Hidrogén-szulfid[/thrive:compound]\n"
+#~ "Narancssárgák – [thrive:compound type=\"ammonia\"]Ammónia[/thrive:compound]\n"
+#~ "Lilák – [thrive:compound type=\"phosphates\"]Foszfátok[/thrive:compound]\n"
+#~ "Rozsdabarnák – [thrive:compound type=\"iron\"]Vas[/thrive:compound]\n"
+#~ "\n"
+#~ "A glükózból ATP készül."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "A hidrogén-szulfidot glükózzá tudod alakítani kemoplasztiszok és kemoszintetizáló fehérjék segítségével. A vasat rusticyanin segítségével pedig ATP-vé tudod alakítani."
 
 #~ msgid "EASTEREGG_MESSAGE_20"
 #~ msgstr "Érdekesség: Az amőbák műlábakkal vadásznak prédáikra, amiket pseudopodia-nak neveznek. Ezt mindenképpen szeretnénk, hogy a Thrive-ban benne legyen."

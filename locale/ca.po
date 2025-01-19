@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 19:44+0000\n"
+"POT-Creation-Date: 2025-01-19 16:55+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -1697,9 +1697,6 @@ msgstr "A mode de curiositat, sabies que hi ha més de 8000 espècies d'organism
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, genera corrents d'aigua que atrapen a les preses."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies toxines per a bloquejar-ne d'altres."
 
@@ -2307,6 +2304,10 @@ msgstr "Informació Completa del Mod"
 msgid "GALLERY_VIEWER"
 msgstr "Visor de la Galeria"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Equip de disseny del joc"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equip de disseny del joc"
 
@@ -2320,6 +2321,30 @@ msgstr "Pausar el joc"
 
 msgid "GENERAL"
 msgstr "General"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -3147,9 +3172,6 @@ msgstr "S'està carregant l'Editor de Microbi"
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Carregant l'Editor Multicel·lular"
 
-msgid "LOADING_TIP"
-msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
-
 msgid "LOAD_FINISHED"
 msgstr "Càrrega completada"
 
@@ -3408,91 +3430,6 @@ msgstr "Editor de Microbi"
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Microbi"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Estructures Procariòtiques\n"
-"\n"
-"Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
-"\n"
-"Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
-"\n"
-"Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
-"\n"
-"Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Orgànuls externs\n"
-"\n"
-"Flagel: Fa que la teva cèl·lula sigui més ràpida consumint [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Estructura per punxar altres cèl·lules\n"
-"\n"
-"Quimioreceptor: Permet detectar compostos a distància.\n"
-"\n"
-"Cili: Augment la velocitat de gir de les cèl·lules"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Orgànuls adherits a la membrana\n"
-"\n"
-"Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un 50% (només es pot evolucionar una vegada)\n"
-"\n"
-"Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
-"\n"
-"Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 atmosfèric de manera molt més eficient que el citoplasma\n"
-"\n"
-"Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de llum solar i CO2 atmosfèric\n"
-"\n"
-"Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura\n"
-"\n"
-"Lysosome: Conté enzims digestius\n"
-"\n"
-"Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
-"\n"
-"Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
-"\n"
-"Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal en funció de la quantitat de toxines disponibles\n"
-"\n"
-"Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-msgstr ""
-"Estructures Procariòtiques\n"
-"\n"
-"Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
-"\n"
-"Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
-"\n"
-"Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
-"\n"
-"Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
@@ -3505,7 +3442,55 @@ msgid "MICROBE_LOADING_TIP_10"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
 msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
 #, fuzzy
@@ -3602,60 +3587,6 @@ msgstr ""
 "Si la teva cèl·lula es queda sense energia, es morirà.\n"
 "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\" prement [thrive:input]g_toggle_binding[/thrive:input]. Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia prement [thrive:input]g_unbind_all[/thrive:input]. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Les parets cel·lulars de Cel·lulose i Quitina, en particular, no es poden digerir si no es compta amb un enzim especial que les pot trencar."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "No obstant, els Lisosomes són exclusius dels organismes eucariotes. Els procariotes, en canvi, no poden tenir aquest orgànul, de manera que digereixen el menjar de manera bastant ineficient. Per cèl·lules petites no hi ha cap problema, però per cèl·lules més grans no tenir Lisosomes és un gran desavantatge."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Els diferents núvols de compostos són:\n"
-"\n"
-"Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -7286,6 +7217,14 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HELPANDTIPS_INTRO"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "La Nitrogenasa és una proteïna capaç de produïr Amoníac, nutrient bàsic per al desenvolupament i reproducció de les cèl·lules, mitjançant Nitrogen i mol·lècules d'ATP. Aquest procés s'anomena Fixació de Nitrogen Anaeròbica. Com que la Nitrogenasa està suspesa en el Citoplasma, aquest fluid duu a terme una certa Glicòlisi."
 
@@ -7803,6 +7742,10 @@ msgstr "Termoplast"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagel"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELPANDTIPS"
+msgstr "Quimioplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8412,6 +8355,155 @@ msgstr "Enfocar la visió de la càmera"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
+
+#, fuzzy
+#~ msgid "HELP_TIPS_TITLE"
+#~ msgstr "Falta un nom"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Estructures Procariòtiques\n"
+#~ "\n"
+#~ "Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
+#~ "\n"
+#~ "Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
+#~ "\n"
+#~ "Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
+#~ "\n"
+#~ "Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Orgànuls externs\n"
+#~ "\n"
+#~ "Flagel: Fa que la teva cèl·lula sigui més ràpida consumint [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Estructura per punxar altres cèl·lules\n"
+#~ "\n"
+#~ "Quimioreceptor: Permet detectar compostos a distància.\n"
+#~ "\n"
+#~ "Cili: Augment la velocitat de gir de les cèl·lules"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Orgànuls adherits a la membrana\n"
+#~ "\n"
+#~ "Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un 50% (només es pot evolucionar una vegada)\n"
+#~ "\n"
+#~ "Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
+#~ "\n"
+#~ "Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 atmosfèric de manera molt més eficient que el citoplasma\n"
+#~ "\n"
+#~ "Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de llum solar i CO2 atmosfèric\n"
+#~ "\n"
+#~ "Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura\n"
+#~ "\n"
+#~ "Lysosome: Conté enzims digestius\n"
+#~ "\n"
+#~ "Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
+#~ "\n"
+#~ "Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
+#~ "\n"
+#~ "Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal en funció de la quantitat de toxines disponibles\n"
+#~ "\n"
+#~ "Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Estructures Procariòtiques\n"
+#~ "\n"
+#~ "Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
+#~ "\n"
+#~ "Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
+#~ "\n"
+#~ "Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
+#~ "\n"
+#~ "Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\" prement [thrive:input]g_toggle_binding[/thrive:input]. Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia prement [thrive:input]g_unbind_all[/thrive:input]. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Les parets cel·lulars de Cel·lulose i Quitina, en particular, no es poden digerir si no es compta amb un enzim especial que les pot trencar."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "No obstant, els Lisosomes són exclusius dels organismes eucariotes. Els procariotes, en canvi, no poden tenir aquest orgànul, de manera que digereixen el menjar de manera bastant ineficient. Per cèl·lules petites no hi ha cap problema, però per cèl·lules més grans no tenir Lisosomes és un gran desavantatge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Els diferents núvols de compostos són:\n"
+#~ "\n"
+#~ "Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #~ msgid "EASTEREGG_MESSAGE_20"
 #~ msgstr "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran implementades al joc."

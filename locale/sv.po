@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-17 19:44+0000\n"
+"POT-Creation-Date: 2025-01-19 16:55+0000\n"
 "PO-Revision-Date: 2024-10-19 21:07+0000\n"
 "Last-Translator: Paradox Edge <xxzemonxx@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -1737,9 +1737,6 @@ msgstr "Rolig Fakta, visste du att det finns över 8000 ciliatarter på planeten
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Rolig fakta, The Stentor är ett ciliat som kan sträcka sig och fånga byten i en slags trumpet som mun som drar in byten genom att generera vattenströmmar med cilia."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Här är ett tips, gifter kan användas för att putta andra gifter ifrån dig om du är snabb nog."
 
@@ -2350,6 +2347,10 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Spel Design"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
 
@@ -2363,6 +2364,30 @@ msgstr "Självmord"
 
 msgid "GENERAL"
 msgstr "Allmän"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -3205,9 +3230,6 @@ msgstr "Laddar mikrobredigerare"
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Laddar mikrobredigerare"
 
-msgid "LOADING_TIP"
-msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
-
 msgid "LOAD_FINISHED"
 msgstr "Färdigladdat"
 
@@ -3446,71 +3468,6 @@ msgstr "Mikrobredigerare"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobredigerare"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryota strukturer\n"
-"\n"
-"Metabolosomer: Producerar ATP från glukos\n"
-"\n"
-"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
-"\n"
-"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
-"\n"
-"Rusticyanin: Omvandlar järn till ATP\n"
-"\n"
-"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
-"\n"
-"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Externa organeller\n"
-"\n"
-"Flagellum: Flyttar din cell snabbare genom att förbruka ATP.\n"
-"\n"
-"Pilus: Kan användas för att sticka andra celler"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membranbundna organeller\n"
-"\n"
-"Nucleus: Tar upp 11 plattor och möjliggör utveckling av membranbundna organeller. Och fördubblar också cellens storlek. (Kan bara utvecklas en gång)\n"
-"\n"
-"Mitokondrion: Producerar ATP ur glukos och atmosfärisk O2. Mycket mer effektivt än cytoplasma\n"
-"\n"
-"Kloroplast: Gör glukos ur solljus och atmosfärisk CO2\n"
-"\n"
-"Chemoplast: Gör glukos ur vätesulfid\n"
-"\n"
-"Kvävefixerande plastid: Tillverkar ammoniak från ATP och atmosfäriskt kväve och syre\n"
-"\n"
-"Vacuole: Lagrar 15 samlade molekyler\n"
-"\n"
-"Toxin Vacuoles: Producerar gifter (kallas OxyToxy NT)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Varje generation får du 100 mutationspoäng (MP), och varje förändring (eller mutation) kostar en viss summa av den MP. Att lägga till och ta bort organeller kostar MP, men att ta bort organeller som placerades i den aktuella mutationssessionen återbetalar MP för den organellen. Du kan flytta eller ta bort en organell genom att högerklicka på den och välja lämplig åtgärd i popup-menyn. Du kan rotera dina organeller medan du placerar dem med A och D."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-msgstr ""
-"Prokaryota strukturer\n"
-"\n"
-"Metabolosomer: Producerar ATP från glukos\n"
-"\n"
-"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
-"\n"
-"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
-"\n"
-"Rusticyanin: Omvandlar järn till ATP\n"
-"\n"
-"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
-"\n"
-"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -3523,7 +3480,55 @@ msgid "MICROBE_LOADING_TIP_10"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
 msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
@@ -3619,60 +3624,6 @@ msgstr ""
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "För att reproducera måste du dela alla dina organeller i två. Organeller behöver ammonium och fosfat för att dela på sig."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Men om du överlever i tjugo generationer med 300 av din art så anses du ha vunnit spelet, efter du vunnit får du en popup ruta och kan fortsätta spela så länge du vill."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje gång du öppnar Cellredigeraren utvecklas de också."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Genom att binda dig till andra celler, kan du bygga en cell koloni där cellerna delar de resurser dem absorberar och producerar med varandra. För att kunna binda dig till en annan cell, behöver du ha bindemedels organellen och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara binda med celler av din egen art. Medans du är i en koloni, kan du inte dela din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, först lämna din koloni när du har samlat nog med resurser, och gå sen in i redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i spelet än)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det nödvändiga enzymet som kan bryta ned dem först."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte sådana organeller och smälter sin mat tämligen ineffektivt. För små celler är det här okej, men för större celler är det en stor nackdel att inte ha några lysosomer."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Din cell använder ATP som sin energikälla, om det tar slut börjar du ta skada."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "För att låsa upp redigeraren och föröka dig måste du samla Ammoniak (Orange moln) och Fosfat (Lila Moln)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka på G en andra gång för att stänga av uppslukarläge."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulering kostar ATP, vilket innebär att ju större din cell är, desto fler mitrokondrier, metabolosomer eller Rusticyanin (eller cytoplasmer som utför Glykolys) behövs för att undvika att förlora ATP när du inte rör dig."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Det finns många Organeller i redigeraren som du kan utveckla, vilket tillåter mycket variation av olika spelstilar."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "För tillfället utrotas du om din population går ner till 0 individer."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"De olika molekylmolnen (resurser) är:\n"
-"\n"
-"Vit – Glukos\n"
-"Gul – Svavelväte\n"
-"Orange – Ammoniak\n"
-"Lila – Fosfat\n"
-"Rödaktig – Järn\n"
-"\n"
-"Glukos används till att bilda ATP"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande proteiner. Järn kan omvandlas till ATP via rusticyanin."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -7286,6 +7237,14 @@ msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_HELPANDTIPS_INTRO"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
@@ -7766,6 +7725,10 @@ msgstr "Termoplast"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagell"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELPANDTIPS"
+msgstr "Kemoplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8377,6 +8340,135 @@ msgstr "Zooma in"
 
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
+
+#, fuzzy
+#~ msgid "HELP_TIPS_TITLE"
+#~ msgstr "DU HAR FRODATS!"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."
+
+#~ msgid "LOADING_TIP"
+#~ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryota strukturer\n"
+#~ "\n"
+#~ "Metabolosomer: Producerar ATP från glukos\n"
+#~ "\n"
+#~ "Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+#~ "\n"
+#~ "Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: Omvandlar järn till ATP\n"
+#~ "\n"
+#~ "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+#~ "\n"
+#~ "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Externa organeller\n"
+#~ "\n"
+#~ "Flagellum: Flyttar din cell snabbare genom att förbruka ATP.\n"
+#~ "\n"
+#~ "Pilus: Kan användas för att sticka andra celler"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membranbundna organeller\n"
+#~ "\n"
+#~ "Nucleus: Tar upp 11 plattor och möjliggör utveckling av membranbundna organeller. Och fördubblar också cellens storlek. (Kan bara utvecklas en gång)\n"
+#~ "\n"
+#~ "Mitokondrion: Producerar ATP ur glukos och atmosfärisk O2. Mycket mer effektivt än cytoplasma\n"
+#~ "\n"
+#~ "Kloroplast: Gör glukos ur solljus och atmosfärisk CO2\n"
+#~ "\n"
+#~ "Chemoplast: Gör glukos ur vätesulfid\n"
+#~ "\n"
+#~ "Kvävefixerande plastid: Tillverkar ammoniak från ATP och atmosfäriskt kväve och syre\n"
+#~ "\n"
+#~ "Vacuole: Lagrar 15 samlade molekyler\n"
+#~ "\n"
+#~ "Toxin Vacuoles: Producerar gifter (kallas OxyToxy NT)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Varje generation får du 100 mutationspoäng (MP), och varje förändring (eller mutation) kostar en viss summa av den MP. Att lägga till och ta bort organeller kostar MP, men att ta bort organeller som placerades i den aktuella mutationssessionen återbetalar MP för den organellen. Du kan flytta eller ta bort en organell genom att högerklicka på den och välja lämplig åtgärd i popup-menyn. Du kan rotera dina organeller medan du placerar dem med A och D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
+#~ msgstr ""
+#~ "Prokaryota strukturer\n"
+#~ "\n"
+#~ "Metabolosomer: Producerar ATP från glukos\n"
+#~ "\n"
+#~ "Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+#~ "\n"
+#~ "Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: Omvandlar järn till ATP\n"
+#~ "\n"
+#~ "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+#~ "\n"
+#~ "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "För att reproducera måste du dela alla dina organeller i två. Organeller behöver ammonium och fosfat för att dela på sig."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Men om du överlever i tjugo generationer med 300 av din art så anses du ha vunnit spelet, efter du vunnit får du en popup ruta och kan fortsätta spela så länge du vill."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje gång du öppnar Cellredigeraren utvecklas de också."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Genom att binda dig till andra celler, kan du bygga en cell koloni där cellerna delar de resurser dem absorberar och producerar med varandra. För att kunna binda dig till en annan cell, behöver du ha bindemedels organellen och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara binda med celler av din egen art. Medans du är i en koloni, kan du inte dela din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, först lämna din koloni när du har samlat nog med resurser, och gå sen in i redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i spelet än)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det nödvändiga enzymet som kan bryta ned dem först."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte sådana organeller och smälter sin mat tämligen ineffektivt. För små celler är det här okej, men för större celler är det en stor nackdel att inte ha några lysosomer."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Din cell använder ATP som sin energikälla, om det tar slut börjar du ta skada."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "För att låsa upp redigeraren och föröka dig måste du samla Ammoniak (Orange moln) och Fosfat (Lila Moln)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka på G en andra gång för att stänga av uppslukarläge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulering kostar ATP, vilket innebär att ju större din cell är, desto fler mitrokondrier, metabolosomer eller Rusticyanin (eller cytoplasmer som utför Glykolys) behövs för att undvika att förlora ATP när du inte rör dig."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Det finns många Organeller i redigeraren som du kan utveckla, vilket tillåter mycket variation av olika spelstilar."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "För tillfället utrotas du om din population går ner till 0 individer."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "De olika molekylmolnen (resurser) är:\n"
+#~ "\n"
+#~ "Vit – Glukos\n"
+#~ "Gul – Svavelväte\n"
+#~ "Orange – Ammoniak\n"
+#~ "Lila – Fosfat\n"
+#~ "Rödaktig – Järn\n"
+#~ "\n"
+#~ "Glukos används till att bilda ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande proteiner. Järn kan omvandlas till ATP via rusticyanin."
 
 #~ msgid "EASTEREGG_MESSAGE_20"
 #~ msgstr "Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som kallas pseudopoder, vi vill så småningom ha dem i Thrive."
