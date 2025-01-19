@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 ///   Adjusts marine snow densities in patches to correlate with populations of species (so that it makes sense for
 ///   it to appear only after there are microbes that are assumed to have died to create the marine snow)
 /// </summary>
+[JSONDynamicTypeAllowed]
 public class MarineSnowDensityEffect : IWorldEffect
 {
     private const string MarineSnowConfiguration = "marineSnow";
