@@ -67,7 +67,7 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                         organelle.Upgrades.CustomUpgradeData = customUpgrade;
                     }
 
-                    if (upgradeName != null)
+                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
                     {
                         organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
                     }

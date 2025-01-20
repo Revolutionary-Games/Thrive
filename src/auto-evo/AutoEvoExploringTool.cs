@@ -1169,13 +1169,13 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         public readonly List<LocalizedStringBuilder> RunResultsList = new();
 
         /// <summary>
-        ///   Used to generate world statistics
+        ///   Used to generate organelle statistics
         /// </summary>
         public readonly Dictionary<OrganelleDefinition, (double Percentage, double Average)>
             MicrobeSpeciesOrganelleStatistics = new();
 
         /// <summary>
-        ///   Used to generate world statistics
+        ///   Used to generate organelle upgrade statistics
         /// </summary>
         public readonly Dictionary<string, (string Name, double Percentage, double Average)>
             MicrobeSpeciesUpgradesStatistics = new();

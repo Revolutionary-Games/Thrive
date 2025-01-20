@@ -412,7 +412,7 @@ public class SimulationCache
 
             if (organelle.Definition.HasSlimeJetComponent)
             {
-                if (organelle.Upgrades?.UnlockedFeatures.Contains(SlimeJetComponent.MUCOCYST) ?? false)
+                if (organelle.Upgrades?.UnlockedFeatures.Contains(SlimeJetComponent.MUCOCYST_UPGRADE_NAME) == true)
                 {
                     ++mucocystsCount;
                     continue;
