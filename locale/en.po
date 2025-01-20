@@ -2225,6 +2225,9 @@ msgstr "When Auto-Evo predicts your population dropping, you can still raise it 
 msgid "GENERAL_LOADING_TIP_6"
 msgstr "Don't forget, you can use the panel at the top right of the screen to see what's under the cursor."
 
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "If your population drops to zero, you go extinct."
+
 msgid "GENERATIONS"
 msgstr "Generations"
 
@@ -3244,13 +3247,13 @@ msgid "MICROBE_LOADING_TIP_12"
 msgstr "You can engulf things that are smaller than you to feed on them by pressing [thrive:input]g_toggle_engulf[/thrive:input]. This will cost extra [thrive:compound type=\"atp\"][/thrive:compound] and slow you down. Don't forget to press [thrive:input]g_toggle_engulf[/thrive:input] again to stop engulfing."
 
 msgid "MICROBE_LOADING_TIP_13"
-msgstr "Osmoregulation costs [thrive:compound type=\"atp\"][/thrive:compound], so the bigger your cell is, the more [thrive:compound type=\"atp\"][/thrive:compound]-producing parts you need just to stay alive. Mitochondria, metabolosomes, rusticyanin, ferroplasts, hydrogenase and even cytoplasm produce [thrive:compound type=\"atp\"][/thrive:compound]."
+msgstr "Every hex of your cell has an osmoregulation cost, so the bigger your cell is, the more [thrive:compound type=\"atp\"][/thrive:compound]-producing parts you need just to stay alive. Metabolosomes, rusticyanin, hydrogenase and even cytoplasm produce [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_LOADING_TIP_14"
 msgstr "There are many organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
 
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "If your population drops to zero, you go extinct."
+msgstr "There are limited reources available to each species, so increasing the size of your cells will also decrease your maximum population."
 
 msgid "MICROBE_LOADING_TIP_16"
 msgstr "Use [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input] and [thrive:input]g_move_right[/thrive:input] to move, and the mouse to rotate. Use [thrive:input]g_fire_toxin[/thrive:input] to shoot [thrive:compound type=\"oxytoxy\"][/thrive:compound] if you have a toxin vacuole. Press [thrive:input]g_toggle_engulf[/thrive:input] to toggle engulf mode. You can zoom in and out with the mouse wheel."
@@ -3286,7 +3289,7 @@ msgid "MICROBE_LOADING_TIP_5"
 msgstr "Toxins can be used to knock other toxins away from you if you are quick enough."
 
 msgid "MICROBE_LOADING_TIP_6"
-msgstr "If a cell is about half your size, that's when you can engulf them."
+msgstr "If a cell is about half the size of yours, that's when you can engulf them."
 
 msgid "MICROBE_LOADING_TIP_7"
 msgstr "Biomes are more than just different backgrounds - the compounds and floating chunks in different biomes spawn at different rates."
@@ -3295,7 +3298,7 @@ msgid "MICROBE_LOADING_TIP_8"
 msgstr "Place flagella or slime jets symmetrically at the back of your cell. Otherwise, you'll be wasting energy."
 
 msgid "MICROBE_LOADING_TIP_9"
-msgstr "It matters where you place parts! The shape of your cell impacts your movement and turning speed."
+msgstr "It matters where you place parts. The shape of your cell impacts your movement and turning speed."
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Found in {1} species, averaging {2} each"
@@ -3713,6 +3716,9 @@ msgstr "Multicellular Editor"
 
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "Multicellular Freebuild Editor"
+
+msgid "MULTICELLULAR_LOADING_TIP_1"
+msgstr "While your cells share compounds, each cell needs its own [thrive:compound type=\"atp\"][/thrive:compound]. Any cell that runs out of this will die."
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Multicellular Stage"
