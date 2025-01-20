@@ -18,8 +18,6 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
-    private const float AUTO_EVO_PREDICTION_START_DELAY = 1.0f;
-
     private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
 
     private StringBuilder atpToolTipTextBuilder = new();
@@ -188,7 +186,7 @@ public partial class CellEditorComponent
     {
         autoEvoPredictionStartTimer += delta;
 
-        if (autoEvoPredictionStartTimer > AUTO_EVO_PREDICTION_START_DELAY)
+        if (autoEvoPredictionStartTimer > Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
         {
             autoEvoPredictionStartTimer = 0;
 

@@ -2010,7 +2010,7 @@ public partial class CellEditorComponent :
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
         var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
-            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
+            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies, Editor.TargetPatch);
         run.Start();
         autoEvoPredictionDirty = false;
 
@@ -3171,6 +3171,7 @@ public partial class CellEditorComponent :
 
         private AutoEvoRun? currentRun;
         private BiomeConditions? biome;
+        private Patch? patch;
 
         private bool calculatedNoChange;
         private double bestResult;
@@ -3208,6 +3209,7 @@ public partial class CellEditorComponent :
         public void StartNew(List<OrganelleDefinition> organellesToTry, Patch selectedPatch)
         {
             biome = selectedPatch.Biome;
+            patch = selectedPatch;
 
             if (currentRun != null)
             {
@@ -3377,7 +3379,7 @@ public partial class CellEditorComponent :
             }
 
             currentRun = new EditorAutoEvoRun(currentGameProperties.GameWorld,
-                currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies)
+                currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies, patch)
             {
                 // Needed in order for the suggestion to not suggest slapping down a nucleus just to benefit from the
                 // player population clamp and increase in individual cost (which would unfairly give score in

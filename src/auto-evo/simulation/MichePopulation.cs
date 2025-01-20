@@ -7,7 +7,7 @@ using Godot;
 using Xoshiro.PRNG64;
 
 /// <summary>
-///   Main class for miche based population simulation.
+///   Main class for miche-based population simulation.
 ///   This contains the algorithm for determining how much population species gain or lose
 /// </summary>
 public static class MichePopulation
@@ -85,7 +85,7 @@ public static class MichePopulation
     {
         var species = new List<Species>();
 
-        // Copy non excluded species
+        // Copy non-excluded species
         foreach (var candidateSpecies in parameters.OriginalMap.FindAllSpeciesWithPopulation())
         {
             if (parameters.ReplacedSpecies.TryGetValue(candidateSpecies, out var replacement))
@@ -119,6 +119,8 @@ public static class MichePopulation
 
         var results = parameters.Results;
 
+        var ensuredPatches = parameters.EnsurePatchesHaveSpecies;
+
         foreach (var currentSpecies in species)
         {
             var currentResult = results.GetSpeciesResultForInternalUse(currentSpecies);
@@ -127,7 +129,7 @@ public static class MichePopulation
             {
                 long currentPopulation = patch.GetSpeciesSimulationPopulation(currentSpecies);
 
-                // If this is a replacement species, this instead takes the
+                // If this is a replacement species, this instead takes the original species' population
                 if (currentPopulation == 0)
                 {
                     Species? isExtraFor = null;
@@ -163,7 +165,17 @@ public static class MichePopulation
                     }
                 }
 
-                // All species even ones not in a patch need to have their population numbers added
+                // Apply ensured population amounts for the simulation to add species to patches it is not normally in
+                if (ensuredPatches != null)
+                {
+                    if (ensuredPatches.TryGetValue(patch, out var speciesToEnsure) && speciesToEnsure == currentSpecies)
+                    {
+                        currentPopulation = Math.Max(currentPopulation,
+                            Constants.AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION);
+                    }
+                }
+
+                // All species, even ones not in a patch, need to have their population numbers added
                 // as the simulation expects to be able to get the populations
                 currentResult.NewPopulationInPatches[patch] = currentPopulation;
             }
