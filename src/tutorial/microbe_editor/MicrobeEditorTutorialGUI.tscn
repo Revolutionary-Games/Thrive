@@ -237,17 +237,17 @@ ShowCloseButton = false
 PreventsMouseCaptureWhileOpen = true
 
 [node name="FlagellumPlacementTutorial" parent="." instance=ExtResource("9")]
-custom_minimum_size = Vector2(375, 385)
+custom_minimum_size = Vector2(390, 395)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 221.474
-offset_top = -142.0
-offset_right = 596.474
-offset_bottom = 243.0
+offset_left = 205.0
+offset_top = -160.0
+offset_right = 595.0
+offset_bottom = 235.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7")
