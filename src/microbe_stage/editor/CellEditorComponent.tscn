@@ -1,8 +1,7 @@
-[gd_scene load_steps=66 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=56 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
-[ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="4_fhdek"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
 [ext_resource type="FontVariation" uid="uid://cik4lxxj7fi2t" path="res://assets/fonts/variants/Jura-Regular.tres" id="8_07qd0"]
@@ -16,6 +15,7 @@
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
 [ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="15"]
 [ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
+[ext_resource type="PackedScene" uid="uid://olpir0vkwcsi" path="res://src/microbe_stage/OrganismStatisticsPanel.tscn" id="15_tdiis"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
 [ext_resource type="Texture2D" uid="uid://dglc11477jgka" path="res://assets/textures/gui/bevel/helpButtonActive.png" id="17"]
 [ext_resource type="Texture2D" uid="uid://cxqnywb8xdvnb" path="res://assets/textures/gui/bevel/helpButton.png" id="18"]
@@ -23,24 +23,14 @@
 [ext_resource type="Texture2D" uid="uid://ddrj66x85n0tb" path="res://assets/textures/gui/bevel/autoEvoPending.png" id="20"]
 [ext_resource type="Texture2D" uid="uid://ckrug48v4bimt" path="res://assets/textures/gui/bevel/warningBadge.png" id="21"]
 [ext_resource type="Texture2D" uid="uid://bsg6xcrlspkdt" path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" id="22"]
-[ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="24"]
 [ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="24_ekuel"]
 [ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="25_68vjv"]
-[ext_resource type="Texture2D" uid="uid://b6s4ekosu7unk" path="res://assets/textures/gui/bevel/SizeIcon.png" id="26"]
-[ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="27"]
-[ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="28"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="28_qclxk"]
-[ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="28_vnd4w"]
-[ext_resource type="Texture2D" uid="uid://5ivblyrfrfc0" path="res://assets/textures/gui/bevel/RotationIcon.png" id="29"]
 [ext_resource type="PackedScene" uid="uid://c0ihn5gix4eyp" path="res://src/microbe_stage/editor/upgrades/OrganelleUpgradeGUI.tscn" id="30"]
-[ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="31"]
-[ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="32"]
 [ext_resource type="PackedScene" uid="uid://c6e83y3bsdx4q" path="res://src/microbe_stage/editor/EndosymbiosisPopup.tscn" id="38_e0n84"]
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="39"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/ProcessList.tscn" id="41_n2bpg"]
-[ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="42"]
 [ext_resource type="PackedScene" uid="uid://cwe0bjv8qtrtr" path="res://src/gui_common/TweakedColourPicker.tscn" id="43"]
-[ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="44"]
 [ext_resource type="PackedScene" uid="uid://ci8lopfc3lodh" path="res://src/microbe_stage/editor/PopupMicheViewer.tscn" id="44_bxafd"]
 [ext_resource type="PackedScene" uid="uid://bq6aee8pw8y3m" path="res://src/gui_common/CollapsibleList.tscn" id="45"]
 [ext_resource type="PackedScene" uid="uid://jdsjx1iyga8d" path="res://src/microbe_stage/editor/OrganellePopupMenu.tscn" id="47"]
@@ -347,7 +337,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "atpBalanceLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "processListButton", "processList", "growthOrderNumberContainer", "processListWindow", "micheViewer")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -360,10 +350,6 @@ pivot_offset = Vector2(1705, 266)
 theme = ExtResource("6")
 script = ExtResource("4")
 TopPanelPath = NodePath("TopPanel")
-DayButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
-NightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")
-AverageLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton")
-CurrentLightButtonPath = NodePath("TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton")
 TabButtonsPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons")
 StructureTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure")
 AppearanceTabButtonPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane")
@@ -373,35 +359,19 @@ AppearanceTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/
 BehaviourTabPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Behaviour")
 PartsSelectionContainerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/PartsSelection")
 MembraneTypeSelectionPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes")
-SizeLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size")
-OrganismStatisticsPath = NodePath("RightPanel/VBoxContainer/Statistics")
-SpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed")
-RotationSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation")
-HpLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Hp")
-StorageLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
-DigestionSpeedLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
-DigestionEfficiencyLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
-GenerationLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 AutoEvoPredictionPanelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel")
 TotalEnergyLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Total")
 AutoEvoPredictionFailedLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Failed")
 WorstPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Worst/Value")
 BestPatchLabelPath = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/VBoxContainer/Best/Value")
 MembraneColorPickerPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker")
-ATPBalancePanelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
-ATPProductionLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
-ATPConsumptionLabelPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/Label")
-ATPProductionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
-ATPConsumptionBarPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 RigiditySliderPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("NegativeAtpWarning")
 OrganelleMenuPath = NodePath("OrganellePopupMenu")
 AutoEvoPredictionExplanationPopupPath = NodePath("PredictionExplanation")
 AutoEvoPredictionExplanationLabelPath = NodePath("PredictionExplanation/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/ExplanationText")
 OrganelleUpgradeGUIPath = NodePath("OrganelleUpgradeGUI")
-RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer")
-ATPBalanceNormalText = ExtResource("24_ekuel")
-ATPBalanceNotEnoughText = ExtResource("4_fhdek")
+RightPanelScrollContainerPath = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel/VBoxContainer/Body/ScrollContainer")
 growthOrderTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Growth")
 toleranceTabButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Tolerances")
 growthOrderTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth")
@@ -409,20 +379,12 @@ growthOrderGUI = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/Edi
 toleranceTab = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Tolerance")
 organelleSuggestionLoadingIndicator = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SugestionLoading")
 organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Body/MarginContainer/VBoxContainer/HBoxContainer/HFlowContainer/SuggestionValue")
-atpBalanceLabel = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
 endosymbiosisPopup = NodePath("EndosymbiosisPopup")
-calculateBalancesAsIfDay = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay")
-calculateBalancesWhenMoving = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving")
-compoundBalance = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
-compoundStorageLastingTimes = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundStorageStatistics")
-notEnoughStorageWarning = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
-processListButton = NodePath("RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
-processList = NodePath("ProcessPanel/ScrollContainer/ProcessList")
 growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
-processListWindow = NodePath("ProcessPanel")
 micheViewer = NodePath("PopupMicheViewer")
+organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
 IslandErrorPath = NodePath("IslandError")
 MutationPointsBarPath = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar")
 ComponentBottomLeftButtonsPath = NodePath("EditorComponentBottomLeftButtons")
@@ -929,240 +891,15 @@ layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="Statistics" type="PanelContainer" parent="RightPanel/VBoxContainer"]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("topPanel", "dayButton", "nightButton", "averageLightButton", "currentLightButton", "processList", "processListWindow") instance=ExtResource("15_tdiis")]
 layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics"]
-layout_mode = 2
-
-[node name="Header" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 10
-
-[node name="Title" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Header"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "ORGANISM_STATISTICS"
-label_settings = ExtResource("14_fllwv")
-autowrap_mode = 3
-
-[node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Body" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="ScrollContainer" type="ScrollContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body"]
-layout_mode = 2
-follow_focus = true
-
-[node name="MarginContainer" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 0
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Hp" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-Icon = ExtResource("24")
-Description = "HP_COLON"
-
-[node name="Size" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-Icon = ExtResource("26")
-Description = "SIZE_COLON"
-
-[node name="Storage" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-Icon = ExtResource("27")
-Description = "STORAGE_COLON"
-
-[node name="HSeparator" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Speed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
-Icon = ExtResource("28")
-Description = "SPEED_COLON"
-
-[node name="Rotation" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
-Icon = ExtResource("29")
-Description = "ROTATION_COLON"
-
-[node name="HSeparator2" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="DigestionSpeed" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-Icon = ExtResource("32")
-Description = "DIGESTION_SPEED_COLON"
-
-[node name="DigestionEfficiency" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("12")]
-layout_mode = 2
-Icon = ExtResource("31")
-Description = "DIGESTION_EFFICIENCY_COLON"
-
-[node name="HSeparator3" type="HSeparator" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Generation" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Description" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
-layout_mode = 2
-text = "GENERATION_COLON"
-label_settings = ExtResource("24_ekuel")
-
-[node name="Value" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
-editor_description = "PLACEHOLDER"
-layout_mode = 2
-text = "n/a"
-label_settings = ExtResource("25_68vjv")
-
-[node name="ATPBalancePanel" type="MarginContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel"]
-layout_mode = 2
-theme_override_constants/separation = 0
-
-[node name="ATPBalanceTitle" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "ATP_BALANCE_TOOLTIP"
-mouse_filter = 1
-text = "ATP_BALANCE"
-label_settings = ExtResource("24_ekuel")
-autowrap_mode = 3
-
-[node name="Separator" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ATPBarContainer" type="VBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-
-[node name="ATPProductionBar" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer" instance=ExtResource("44")]
-custom_minimum_size = Vector2(190, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "00000"
-label_settings = ExtResource("28_qclxk")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
-custom_minimum_size = Vector2(240, 0)
-layout_mode = 2
-
-[node name="ATPConsumptionBar" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2" instance=ExtResource("44")]
-custom_minimum_size = Vector2(190, 30)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[node name="Label" type="Label" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "00000"
-label_settings = ExtResource("28_qclxk")
-
-[node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-custom_minimum_size = Vector2(0, 5)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="ATPBalanceMode" type="OptionButton" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
-layout_mode = 2
-text_overrun_behavior = 3
-clip_text = true
-selected = 0
-fit_to_longest_item = false
-item_count = 5
-popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
-popup/item_1/id = 1
-popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
-popup/item_2/id = 2
-popup/item_3/text = "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
-popup/item_3/id = 3
-popup/item_4/text = "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-popup/item_4/id = 4
-
-[node name="StorageNotEnough" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("11")]
-visible = false
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/default_color = Color(1, 0.301961, 0.301961, 1)
-fit_content = true
-
-[node name="NumbersAtDay" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-theme_override_font_sizes/font_size = 12
-text = "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-text_overrun_behavior = 4
-clip_text = true
-
-[node name="NumbersWhenMoving" type="CheckBox" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-tooltip_text = "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-theme_override_font_sizes/font_size = 12
-button_pressed = true
-text = "BALANCE_DISPLAY_WHILE_MOVING"
-text_overrun_behavior = 4
-clip_text = true
-
-[node name="Separator2" type="Control" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-mouse_filter = 1
-
-[node name="CompoundBalanceDisplay" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("42")]
-layout_mode = 2
-
-[node name="CompoundStorageStatistics" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("28_vnd4w")]
-layout_mode = 2
-
-[node name="ProcessListButton" type="Button" parent="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "VIEW_CELL_PROCESSES"
-text_overrun_behavior = 3
-clip_text = true
+topPanel = NodePath("../../../TopPanel")
+dayButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
+nightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")
+averageLightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton")
+currentLightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton")
+processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
+processListWindow = NodePath("../../../ProcessPanel")
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 236)
@@ -1526,10 +1263,10 @@ layout_mode = 1
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="." method="OnLightLevelButtonPressed" binds= ["Current"]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="." method="OnLightLevelButtonPressed" binds= ["Day"]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="." method="OnLightLevelButtonPressed" binds= ["Night"]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="." method="OnLightLevelButtonPressed" binds= ["Average"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Current"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Day"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Night"]]
+[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Average"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= ["Membrane"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]
@@ -1540,11 +1277,9 @@ layout_mode = 1
 [connection signal="value_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider" to="." method="OnRigidityChanged"]
 [connection signal="color_changed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/TweakedColourPicker" to="." method="OnColorChanged"]
 [connection signal="OrderReset" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/GrowthOrderPicker" to="." method="OnResetGrowthOrderPressed"]
-[connection signal="item_selected" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceMode" to="." method="SelectATPBalanceMode"]
-[connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
-[connection signal="toggled" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving" to="." method="OnBalanceShowOptionsChanged"]
-[connection signal="BalanceTypeChanged" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay" to="." method="OnCompoundBalanceTypeChanged"]
-[connection signal="pressed" from="RightPanel/VBoxContainer/Statistics/VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton" to="." method="ToggleProcessList"]
+[connection signal="OnEnergyBalanceOptionsChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnEnergyBalanceOptionsChanged"]
+[connection signal="OnLightLevelChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="SetLightLevelOption"]
+[connection signal="OnResourceLimitingModeChanged" from="RightPanel/VBoxContainer/OrganismStatisticsPanel" to="." method="OnResourceLimitingModeChanged"]
 [connection signal="pressed" from="RightPanel/VBoxContainer/AutoEvoInfoPanel/VBoxContainer/Header/HBoxContainer/Details" to="." method="OpenAutoEvoPredictionDetails"]
 [connection signal="OnNameSet" from="EditorComponentBottomLeftButtons" to="." method="OnSpeciesNameChanged"]
 [connection signal="OnNewClicked" from="EditorComponentBottomLeftButtons" to="." method="CreateNewMicrobe"]
