@@ -116,55 +116,7 @@ public partial class CellBodyPlanEditorComponent :
     private PackedScene billboardScene = null!;
 
     [Export]
-    private CellStatsIndicator storageLabel = null!;
-
-    [Export]
-    private CellStatsIndicator speedLabel = null!;
-
-    [Export]
-    private CellStatsIndicator rotationSpeedLabel = null!;
-
-    [Export]
-    private CompoundBalanceDisplay compoundBalance = null!;
-
-    [Export]
-    private CompoundStorageStatistics compoundStorageLastingTimes = null!;
-
-    [Export]
-    private CheckBox calculateBalancesAsIfDay = null!;
-
-    [Export]
-    private CheckBox calculateBalancesWhenMoving = null!;
-
-    [Export]
-    private CustomRichTextLabel notEnoughStorageWarning = null!;
-
-    [Export]
-    private Button processListButton = null!;
-
-    [Export]
-    private ProcessList processList = null!;
-
-    [Export]
-    private Control atpBalancePanel = null!;
-
-    [Export]
-    private Label atpBalanceLabel = null!;
-
-    [Export]
-    private Label atpProductionLabel = null!;
-
-    [Export]
-    private Label atpConsumptionLabel = null!;
-
-    [Export]
-    private SegmentedBar atpProductionBar = null!;
-
-    [Export]
-    private SegmentedBar atpConsumptionBar = null!;
-
-    [Export]
-    private CustomWindow processListWindow = null!;
+    private OrganismStatisticsPanel organismStatisticsPanel = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -221,10 +173,6 @@ public partial class CellBodyPlanEditorComponent :
         ApplySelectionMenuTab();
 
         RegisterTooltips();
-
-        atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
-        atpProductionBar.IsProduction = true;
-        atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
     }
 
     public override void ResolveNodeReferences()
@@ -303,6 +251,9 @@ public partial class CellBodyPlanEditorComponent :
                 GD.Print("Loaded body plan editor with no cell to edit set");
             }
         }
+
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         UpdateCancelButtonVisibility();
     }
@@ -559,6 +510,32 @@ public partial class CellBodyPlanEditorComponent :
     public void OnCurrentPatchUpdated(Patch patch)
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+    }
+
+    public override void OnLightLevelChanged(float dayLightFraction)
+    {
+        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+        var templateMaxLightLevel =
+            Editor.CurrentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
+
+        // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
+        // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
+        // reduce light level in such patches without things looking bad. So we have to check the template light level
+        // is non-zero too.
+        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
+        {
+            camera!.LightLevel = dayLightFraction;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            camera!.LightLevel = 1.0f;
+        }
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
 
     protected CellType CellTypeFromName(string name)
@@ -698,6 +675,40 @@ public partial class CellBodyPlanEditorComponent :
         }
 
         base.Dispose(disposing);
+    }
+
+    private void SetLightLevelOption(int option)
+    {
+        // Show selected light level
+        switch ((OrganismStatisticsPanel.LightLevelOption)option)
+        {
+            case OrganismStatisticsPanel.LightLevelOption.Day:
+                {
+                    Editor.DayLightFraction = 1;
+                    break;
+                }
+
+            case OrganismStatisticsPanel.LightLevelOption.Night:
+                {
+                    Editor.DayLightFraction = 0;
+                    break;
+                }
+
+            case OrganismStatisticsPanel.LightLevelOption.Average:
+                {
+                    Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
+                    break;
+                }
+
+            case OrganismStatisticsPanel.LightLevelOption.Current:
+                {
+                    Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
+                    break;
+                }
+
+            default:
+                throw new Exception("Invalid light level option");
+        }
     }
 
     private void UpdateGUIAfterLoadingSpecies()
@@ -1059,6 +1070,18 @@ public partial class CellBodyPlanEditorComponent :
         EmitSignal(SignalName.OnCellTypeToEditSelected, default(Variant), false);
     }
 
+    private void OnEnergyBalanceOptionsChanged()
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
+    private void OnResourceLimitingModeChanged(int index)
+    {
+        balanceMode = (ResourceLimitingMode)index;
+
+        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+    }
+
     private void OnCellsChanged()
     {
         UpdateAlreadyPlacedVisuals();
@@ -1070,9 +1093,9 @@ public partial class CellBodyPlanEditorComponent :
 
     private void UpdateStats()
     {
-        UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
-        UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
-        UpdateRotationSpeed(CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateRotationSpeed(CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
@@ -1085,7 +1108,7 @@ public partial class CellBodyPlanEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        bool moving = calculateBalancesWhenMoving.ButtonPressed;
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving();
 
         IBiomeConditions conditionsData = biome;
 
@@ -1099,27 +1122,26 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var hex in cells)
         {
             ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType, moving,
-                true, Editor.CurrentGame.GameWorld.WorldSettings,
-                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true,
-                energyBalance);
+                true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.GetCompoundAmountType(),
+                true, energyBalance);
         }
 
-        UpdateEnergyBalance(energyBalance);
+        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
 
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
 
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
-            CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
-                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
+            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
+                organismStatisticsPanel.GetCompoundAmountType(),
                 cells, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
-        var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
             CompoundAmountType.Minimum, cells, conditionsData, energyBalance, ref specificStorages,
             ref nominalStorage);
 
@@ -1148,7 +1170,7 @@ public partial class CellBodyPlanEditorComponent :
                         amountType, energyBalance, compoundBalanceData);
                     break;
                 default:
-                    GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                    GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.GetBalanceDisplayType());
                     goto case BalanceDisplayType.EnergyEquilibrium;
             }
         }
