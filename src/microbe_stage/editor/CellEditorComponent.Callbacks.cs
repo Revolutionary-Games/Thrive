@@ -379,7 +379,7 @@ public partial class CellEditorComponent
                 GD.Print("Resetting active action as it is an organelle type that will be locked now");
             }
 
-            // NOTE: if we ever add support for unlock condition re-check after entering the editor, this needs to be
+            // NOTE: if we ever add support for unlock-condition re-check after entering the editor, this needs to be
             // re-thought out to make sure this doesn't interact badly with such a feature
             Editor.CurrentGame.GameWorld.UnlockProgress.UndoOrganelleUnlock(data.PlacedOrganelle.Definition);
 
@@ -389,6 +389,17 @@ public partial class CellEditorComponent
         // Need to restore the previous endosymbiosis action
         data.OverriddenEndosymbiosisOnUndo =
             Editor.EditedBaseSpecies.Endosymbiosis.ResumeEndosymbiosisProcess(data.RelatedEndosymbiosisAction);
+    }
+
+    private void OnEmbeddedBehaviourEditorChangedData()
+    {
+        if (behaviourEditor.Behaviour == null)
+        {
+            GD.PrintErr("Expected behaviour editor to have a behaviour set, but it didn't");
+            return;
+        }
+
+        OnBehaviourDataUpdated(behaviourEditor.Behaviour);
     }
 
     /// <summary>
