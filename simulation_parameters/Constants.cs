@@ -1178,7 +1178,7 @@ public static class Constants
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
     /// <summary>
-    ///   How much auto-evo affects the player species compared to the normal amount
+    ///   Configures how much auto-evo affects the player species compared to the normal amount
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 

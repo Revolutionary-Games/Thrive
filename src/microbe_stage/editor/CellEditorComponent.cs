@@ -373,6 +373,9 @@ public partial class CellEditorComponent :
     private bool suggestionDirty;
     private double suggestionStartTimer;
 
+    private bool autoEvoPredictionDirty;
+    private double autoEvoPredictionStartTimer;
+
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
     /// </summary>
@@ -414,7 +417,7 @@ public partial class CellEditorComponent :
     private OrganelleLayout<OrganelleTemplate> editedMicrobeOrganelles = null!;
 
     /// <summary>
-    ///   When this is true, on next process this will handle added and removed organelles and update stats etc.
+    ///   When this is true, on the next process this will handle added and removed organelles and update stats etc.
     ///   This is done to make adding a bunch of organelles at once more efficient.
     /// </summary>
     private bool organelleDataDirty = true;
@@ -900,6 +903,7 @@ public partial class CellEditorComponent :
 
         CheckRunningAutoEvoPrediction();
         CheckRunningSuggestion(delta);
+        TriggerDelayedPredictionUpdateIfNeeded(delta);
 
         if (organelleDataDirty)
         {
@@ -1138,7 +1142,7 @@ public partial class CellEditorComponent :
             return false;
         }
 
-        // Show warning popup if trying to exit with negative atp production
+        // Show a warning popup if trying to exit with negative atp production
         // Not shown in multicellular as the popup would happen in kind of weird place
         if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
@@ -1148,13 +1152,13 @@ public partial class CellEditorComponent :
         }
 
         // This is triggered when no changes have been made. A more accurate way would be to check the action history
-        // for any undoable action, but that isn't accessible here currently so this is probably good enough.
+        // for any undoable action, but that isn't accessible here currently, so this is probably good enough.
         if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
         {
             var tutorialState = Editor.CurrentGame.TutorialState;
 
-            // In the multicellular editor the cell editor might not be visible so preventing exiting the editor
-            // without explanation is not a good idea so that's why this check is here
+            // In the multicellular editor the cell editor might not be visible, so preventing exiting the editor
+            // without explanation is not a good idea, so that's why this check is here
             if (tutorialState.Enabled && !IsMulticellularEditor)
             {
                 tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
@@ -1178,6 +1182,11 @@ public partial class CellEditorComponent :
         ApplyLightLevelOption();
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
+
+        // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
+        // not really changing)
+        autoEvoPredictionDirty = true;
+        suggestionDirty = true;
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1950,13 +1959,17 @@ public partial class CellEditorComponent :
             new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
+    /// <summary>
+    ///   Immediately start a new auto-evo prediction run. For actions that can trigger quickly in a sequence prefer
+    ///   setting <see cref="autoEvoPredictionDirty"/> to false to prevent rapid restarts of the prediction.
+    /// </summary>
     private void StartAutoEvoPrediction()
     {
         // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
         if (IsMulticellularEditor)
             return;
 
-        // First prediction can be made only after population numbers from previous run are applied
+        // The first prediction can be made only after population numbers from previous run are applied
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
         if (!Editor.EditorReady)
@@ -1965,7 +1978,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object
+        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object,
         // which may cause occasional background task errors
         CancelPreviousAutoEvoPrediction();
 
@@ -1986,6 +1999,7 @@ public partial class CellEditorComponent :
         var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
             Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
         run.Start();
+        autoEvoPredictionDirty = false;
 
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
     }
@@ -2294,6 +2308,10 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
+
+        // Osmoregulation efficiency may play a role in the suggestion, so queue a new one
+        suggestionDirty = true;
+        autoEvoPredictionDirty = true;
     }
 
     private void OnColourChanged()

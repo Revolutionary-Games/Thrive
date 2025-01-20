@@ -122,7 +122,7 @@ public partial class CellEditorComponent
         {
             UpdateAlreadyPlacedVisuals();
 
-            // Organelle placement *might* affect auto-evo in the future so this is here for that reason
+            // Organelle placement *might* affect auto-evo in the future, so this is here for that reason
             StartAutoEvoPrediction();
 
             // Suggestion is not restarted as the overall shape / movement speed is likely not significant enough to
@@ -317,7 +317,7 @@ public partial class CellEditorComponent
     [DeserializedCallbackAllowed]
     private void DoEndosymbiontPlaceAction(EndosymbiontPlaceActionData data)
     {
-        // Perform unlock to make the endosymbiont placeable for later
+        // Perform the unlocking to make the endosymbiont placeable for later
         if (Editor.CurrentGame.GameWorld.UnlockProgress.UnlockOrganelle(data.PlacedOrganelle.Definition,
                 Editor.CurrentGame))
         {
@@ -392,8 +392,8 @@ public partial class CellEditorComponent
     }
 
     /// <summary>
-    ///   In the case of the multicellular editor some actions need to work even if the editor has been reinitialized
-    ///   in the meantime since they were performed. For sanity checking sake we throw an exception in those cases
+    ///   In the case of the multicellular editor, some actions need to work even if the editor has been reinitialized
+    ///   in the meantime since they were performed. For sanity checking sake, we throw an exception in those cases
     ///   if they are reached in non-multicellular editor mode.
     /// </summary>
     /// <exception cref="InvalidOperationException">The exception thrown if we aren't in multicellular</exception>
