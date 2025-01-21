@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Intrinsics.X86;
 using System.Threading;
 
 /// <summary>
@@ -67,7 +66,7 @@ public class SimpleBarrier
                     if (readCount == threadCount)
                         break;
 
-                    X86Base.Pause();
+                    CPUHelpers.HyperThreadPause();
                 }
 
                 if (readCount == threadCount)
@@ -116,7 +115,7 @@ public class SimpleBarrier
             // All threads should be releasing very fast, so just keep trying to read the variable
             readCount = blockedThreads;
 
-            X86Base.Pause();
+            CPUHelpers.HyperThreadPause();
         }
 
         // Ensure that after the barrier all thread writes and reads are seen by all threads

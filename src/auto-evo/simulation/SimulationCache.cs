@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using Godot;
 using Systems;
 
 /// <summary>
@@ -15,17 +16,18 @@ using Systems;
 /// </remarks>
 /// <remarks>
 ///   <para>
-///     TODO: would be better to reuse instances of this class after clearing them for next use
+///     TODO: would be better to reuse instances of this class after clearing them for next use (there's now a Clear
+///     method for this future usecase)
 ///   </para>
 /// </remarks>
 public class SimulationCache
 {
-    private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
-
     private readonly CompoundDefinition oxytoxy = SimulationParameters.GetCompound(Compound.Oxytoxy);
     private readonly CompoundDefinition mucilage = SimulationParameters.GetCompound(Compound.Mucilage);
 
     private readonly WorldGenerationSettings worldSettings;
+
+    private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
     private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
@@ -41,7 +43,7 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float)> cachedPredationToolsRawScores = new();
+    private readonly Dictionary<MicrobeSpecies, (float, float, float, float)> cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -276,15 +278,17 @@ public class SimulationCache
             engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
         }
 
-        var (pilusScore, oxytoxyScore, mucilageScore) = GetPredationToolsRawScores(microbeSpecies);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) = GetPredationToolsRawScores(microbeSpecies);
+        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
-        // TODO: Support mucilage in predation score
-        mucilageScore *= 0;
+        // If the predator is faster than the prey they don't need slime jets that much
+        if (predatorSpeed > preySpeed)
+            predatorSlimeJetScore *= 0.5f;
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
-        // Having lots of extra Pili really doesn't help you THAT much
+        // Having lots of extra Pili really doesn't help you THAT much.
         pilusScore = MathF.Pow(pilusScore, 0.4f);
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
@@ -316,7 +320,8 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        cached = scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + mucilageScore) /
+        cached = (scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore) -
+                (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
@@ -359,7 +364,26 @@ public class SimulationCache
         return worldSettings.Equals(checkAgainst);
     }
 
-    public (float PilusScore, float OxytoxyScore, float MucilageScore) GetPredationToolsRawScores(
+    /// <summary>
+    ///   Clears all data in this cache. Can be used to re-use a cache object *but should not be called* while anything
+    ///   might still be using this cache currently!
+    /// </summary>
+    public void Clear()
+    {
+        cachedPressureScores.Clear();
+        cachedEnergyBalances.Clear();
+        cachedBaseSpeeds.Clear();
+        cachedBaseHexSizes.Clear();
+        cachedCompoundScores.Clear();
+        cachedGeneratedCompound.Clear();
+        predationScores.Clear();
+        cachedProcessSpeeds.Clear();
+        cachedPredationToolsRawScores.Clear();
+        cachedUsesVaryingCompounds.Clear();
+        cachedStorageScores.Clear();
+    }
+
+    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore) GetPredationToolsRawScores(
         MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
@@ -367,10 +391,14 @@ public class SimulationCache
 
         var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
-        var mucilageScore = 0.0f;
+        var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
+        var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
+        var slimeJetsCount = 0;
+        var mucocystsCount = 0;
+        var slimeJetsMultiplier = 1.0f;
 
         for (int i = 0; i < organelleCount; ++i)
         {
@@ -382,21 +410,38 @@ public class SimulationCache
                 continue;
             }
 
+            if (organelle.Definition.HasSlimeJetComponent)
+            {
+                if (organelle.Upgrades?.UnlockedFeatures.Contains(SlimeJetComponent.MUCOCYST_UPGRADE_NAME) == true)
+                {
+                    ++mucocystsCount;
+                    continue;
+                }
+
+                ++slimeJetsCount;
+
+                // Make sure that slime jets are positioned at the back of the cell, because otherwise they will
+                // push the cell backwards (into the predator or away from the prey) or to the side
+                slimeJetsMultiplier *= CalculateAngleMultiplier(organelle.Position);
+                continue;
+            }
+
             foreach (var process in organelle.Definition.RunnableProcesses)
             {
                 if (process.Process.Outputs.TryGetValue(oxytoxy, out var oxytoxyAmount))
                 {
                     oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
-
-                if (process.Process.Outputs.TryGetValue(mucilage, out var mucilageAmount))
-                {
-                    mucilageScore += mucilageAmount * Constants.AUTO_EVO_MUCILAGE_PREDATION_SCORE;
-                }
             }
         }
 
-        var predationToolsRawScores = (pilusScore, oxytoxyScore, mucilageScore);
+        // Having lots of extra slime jets and mucocysts really doesn't help you that much
+        slimeJetScore *= MathF.Sqrt(slimeJetsCount);
+        slimeJetScore *= slimeJetsMultiplier;
+
+        mucocystsScore *= MathF.Sqrt(mucocystsCount);
+
+        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
@@ -475,5 +520,22 @@ public class SimulationCache
         }
 
         return Math.Clamp(cacheScore, 0, Constants.AUTO_EVO_MAX_BONUS_FROM_ENVIRONMENTAL_STORAGE);
+    }
+
+    /// <summary>
+    ///   Calculates cos of angle between the organelle and vertical axis
+    /// </summary>
+    private float CalculateAngleMultiplier(Hex pos)
+    {
+        // Slime jets are biased to go backwards at position (0,0)
+        if (pos.R == 0 && pos.Q == 0)
+            return 1;
+
+        Vector3 organellePosition = Hex.AxialToCartesian(pos);
+        Vector3 downVector = new Vector3(0, 0, 1);
+        float angleCos = organellePosition.Normalized().Dot(downVector);
+
+        // If degrees is higher than 40 then return 0
+        return angleCos >= 0.75 ? angleCos : 0;
     }
 }

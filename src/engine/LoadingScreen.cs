@@ -193,6 +193,7 @@ public partial class LoadingScreen : Control
             return;
         }
 
+        // TODO: multicellular specific tips when the game state is microbe stage but we are in multicellular
         var tips = SimulationParameters.Instance.GetHelpTexts(CurrentlyLoadingGameState + "Tips");
         var selectedTip = tips.Messages.Random(random).Message;
         Tip = selectedTip;
@@ -242,6 +243,10 @@ public partial class LoadingScreen : Control
     private void OnBecomeHidden()
     {
         artworkRect.Texture = null;
+
+        // The loading screen is still visible, so a lag spike from GC here should be not noticeable so we do a
+        // collection here so that during gameplay it is less likely to run garbage collection
+        GC.Collect();
     }
 
     private void UpdateMessage()

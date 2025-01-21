@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Godot;
 using UnlockConstraints;
 
@@ -17,7 +18,11 @@ using UnlockConstraints;
 /// </remarks>
 public partial class CellEditorComponent
 {
+    private readonly Dictionary<int, GrowthOrderLabel> createdGrowthOrderLabels = new();
+
     private StringBuilder atpToolTipTextBuilder = new();
+
+    private bool inProgressSuggestionCheckRunning;
 
     [Signal]
     public delegate void ClickedEventHandler();
@@ -104,6 +109,140 @@ public partial class CellEditorComponent
 
         OnAutoEvoPredictionComplete(waitingForPrediction);
         waitingForPrediction = null;
+    }
+
+    private void CheckRunningSuggestion(double delta)
+    {
+        suggestionStartTimer += delta;
+
+        if (suggestionStartTimer > 1)
+        {
+            suggestionStartTimer = 0;
+
+            if (suggestionDirty || inProgressSuggestion == null)
+            {
+                if (inProgressSuggestion == null)
+                {
+                    var suggestionSpecies = new MicrobeSpecies(Editor.EditedBaseSpecies,
+                        Editor.EditedCellProperties ??
+                        throw new InvalidOperationException(
+                            "can't start auto-evo suggestion without current cell properties"),
+                        hexTemporaryMemory, hexTemporaryMemory2);
+
+                    // For this use-case it is probably not critical to clone the player species flag (as only
+                    // comparative numbers are used, but if anyone checks this code and writes something based on this,
+                    // this is done fully correctly)
+                    if (Editor.EditedBaseSpecies.PlayerSpecies)
+                    {
+                        suggestionSpecies.BecomePlayerSpecies();
+                    }
+
+                    inProgressSuggestion ??=
+                        new OrganelleSuggestionCalculation(suggestionSpecies, CopyEditedPropertiesToSpecies,
+                            Editor.CurrentGame, Editor.EditedBaseSpecies);
+                }
+
+                inProgressSuggestion.StartNew(DetectAvailableOrganelles(), Editor.CurrentPatch);
+                suggestionDirty = false;
+            }
+        }
+        else if (inProgressSuggestion != null)
+        {
+            if (inProgressSuggestion.IsCompleted)
+            {
+                if (inProgressSuggestion.ReadAndResetResultFlag())
+                {
+                    organelleSuggestionLoadingIndicator.Visible = false;
+                    organelleSuggestionLabel.Visible = true;
+
+                    var result = inProgressSuggestion.GetResult();
+
+                    if (result == null)
+                    {
+                        organelleSuggestionLabel.Text = Localization.Translate("NO_SUGGESTION");
+                    }
+                    else
+                    {
+                        organelleSuggestionLabel.Text = result.UntranslatedName;
+                    }
+                }
+            }
+            else
+            {
+                // This uses background checking as some pretty expensive organelle positioning logic can be triggered
+                if (!inProgressSuggestionCheckRunning)
+                {
+                    inProgressSuggestionCheckRunning = true;
+
+                    // This allocates a task each frame, but as this would be hard to work around and is in the editor,
+                    // this is just left like this
+                    TaskExecutor.Instance.AddTask(new Task(CheckSuggestionProgress));
+                }
+            }
+        }
+    }
+
+    private void TriggerDelayedPredictionUpdateIfNeeded(double delta)
+    {
+        autoEvoPredictionStartTimer += delta;
+
+        if (autoEvoPredictionStartTimer > Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
+        {
+            autoEvoPredictionStartTimer = 0;
+
+            if (autoEvoPredictionDirty)
+            {
+                StartAutoEvoPrediction();
+                autoEvoPredictionDirty = false;
+            }
+        }
+    }
+
+    private void CheckSuggestionProgress()
+    {
+        try
+        {
+            // This should only be queued when this is not null
+            inProgressSuggestion!.CheckProgress();
+        }
+        finally
+        {
+            inProgressSuggestionCheckRunning = false;
+        }
+    }
+
+    /// <summary>
+    ///   Checks the GUI button statuses to find the organelles available to the player
+    /// </summary>
+    private List<OrganelleDefinition> DetectAvailableOrganelles()
+    {
+        var result = new List<OrganelleDefinition>();
+
+        foreach (var entry in placeablePartSelectionElements)
+        {
+            // Skipping invisible controls here doesn't seem to really exclude anything, but it is kept here so that
+            // if in the future there are hidden buttons they won't be suggested as the player couldn't select them
+            if (entry.Value.Undiscovered || entry.Value.Locked || !entry.Value.Visible)
+                continue;
+
+            // As non-multicellular editor can hide entire sections of organelle buttons, we need to skip those
+            // entirely here with this special logic
+            if (entry.Key.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Multicellular &&
+                !IsMulticellularEditor)
+            {
+                continue;
+            }
+
+            if (entry.Key.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Macroscopic && !IsMacroscopicEditor)
+            {
+                continue;
+            }
+
+            // Should be fine to show this organelle in a suggestion
+            result.Add(entry.Key);
+        }
+
+        return result;
     }
 
     private void SetMembraneTooltips(MembraneType referenceMembrane)
@@ -219,7 +358,8 @@ public partial class CellEditorComponent
 
     private void UpdateStorage(float nominalStorage, Dictionary<Compound, float> storage)
     {
-        storageLabel.Value = (float)Math.Round(nominalStorage, 1);
+        // Storage values can be as low as 0.25 so 2 decimals are needed
+        storageLabel.Value = MathF.Round(nominalStorage, 2);
 
         if (storage.Count == 0)
         {
@@ -378,7 +518,6 @@ public partial class CellEditorComponent
             {
                 control.Undiscovered = false;
 
-                // This can end up showing non-LAWK organelles in LAWK mode, so this needs a bit of post-processing
                 control.Show();
                 continue;
             }
@@ -389,6 +528,12 @@ public partial class CellEditorComponent
 
             control.Hide();
             control.Undiscovered = true;
+
+            // Skip adding unlock conditions for organelles prevented by LAWK setting
+            if (Editor.CurrentGame.GameWorld.WorldSettings.LAWK && !organelle.LAWK)
+            {
+                continue;
+            }
 
             var buttonGroup = organelle.EditorButtonGroup;
 
@@ -925,6 +1070,110 @@ public partial class CellEditorComponent
         ApplyLightLevelOption();
 
         UpdateCancelButtonVisibility();
+    }
+
+    private void UpdateGrowthOrderNumbers()
+    {
+        if (!ShowGrowthOrder)
+        {
+            growthOrderNumberContainer.Visible = false;
+            return;
+        }
+
+        if (camera == null)
+        {
+            GD.PrintErr("Camera must be set for growth order numbers");
+            return;
+        }
+
+        growthOrderNumberContainer.Visible = true;
+
+        // Setup tracking for what gets used
+        foreach (var orderLabel in createdGrowthOrderLabels.Values)
+        {
+            orderLabel.Marked = false;
+        }
+
+        var orderList = growthOrderGUI.GetCurrentOrder();
+        var orderListCount = orderList.Count;
+
+        var organelles = editedMicrobeOrganelles.Organelles;
+        var organellesCount = organelles.Count;
+
+        for (int i = 0; i < organellesCount; ++i)
+        {
+            var editedMicrobeOrganelle = organelles[i];
+
+            // TODO: fallback numbers if item not found?
+            var order = -1;
+
+            for (int j = 0; j < orderListCount; ++j)
+            {
+                if (ReferenceEquals(orderList[j], editedMicrobeOrganelle))
+                {
+                    // +1 to be user readable numbers
+                    order = j + 1;
+                    break;
+                }
+            }
+
+            if (!createdGrowthOrderLabels.TryGetValue(order, out var graphicalLabel))
+            {
+                graphicalLabel = GrowthOrderLabel.Create(order);
+                growthOrderNumberContainer.AddChild(graphicalLabel);
+                createdGrowthOrderLabels.Add(order, graphicalLabel);
+            }
+
+            graphicalLabel.Position = camera.UnprojectPosition(Hex.AxialToCartesian(editedMicrobeOrganelle.Position));
+            graphicalLabel.Visible = true;
+            graphicalLabel.Marked = true;
+        }
+
+        // Hide unused labels
+        foreach (var orderLabel in createdGrowthOrderLabels.Values)
+        {
+            if (!orderLabel.Marked)
+                orderLabel.Visible = false;
+        }
+    }
+
+    private void UpdateGrowthOrderButtons()
+    {
+        // To save on performance, only update this when it is actually visible to the player
+        if (selectedSelectionMenuTab == SelectionMenuTab.GrowthOrder)
+        {
+            growthOrderGUI.UpdateItems(growthOrderGUI.ApplyOrderingToItems(editedMicrobeOrganelles.Organelles));
+        }
+
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnResetGrowthOrderPressed()
+    {
+        growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
+        UpdateGrowthOrderNumbers();
+    }
+
+    private void OnGrowthOrderCoordinatesToggled(bool show)
+    {
+        growthOrderGUI.ShowCoordinates = show;
+    }
+
+    /// <summary>
+    ///   A simple label showing the growth order of something
+    /// </summary>
+    private partial class GrowthOrderLabel : Label
+    {
+        public bool Marked { get; set; }
+
+        public static GrowthOrderLabel Create(int number)
+        {
+            return new GrowthOrderLabel
+            {
+                Text = number.ToString(),
+                Marked = true,
+            };
+        }
     }
 
     private class ATPComparer : IComparer<string>

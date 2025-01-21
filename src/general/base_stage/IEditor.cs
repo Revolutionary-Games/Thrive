@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using AutoEvo;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Interface extracted to make GUI generic parameters work
@@ -46,6 +48,13 @@ public interface IEditor : ISaveLoadedTracked
     ///   that don't need to care about the concrete type of species being edited
     /// </summary>
     public Species EditedBaseSpecies { get; }
+
+    /// <summary>
+    ///   Access to the auto-evo results of the previous run that ended before entering the current editor session.
+    ///   May be null in unusual circumstances or before the editor has fully loaded.
+    /// </summary>
+    [JsonIgnore]
+    public RunResults? PreviousAutoEvoResults { get; }
 
     /// <summary>
     ///   True once auto-evo (and possibly other stuff) the editor needs to wait for is ready

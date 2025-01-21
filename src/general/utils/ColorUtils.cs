@@ -28,4 +28,15 @@ public static class ColorUtils
     {
         return colour.R > 1 || colour.G > 1 || colour.B > 1;
     }
+
+    /// <summary>
+    ///   Computes a visual hash that is consistent between runs of the game, unlike the default hash for a colour.
+    /// </summary>
+    /// <param name="colour">Colour to hash</param>
+    /// <returns>A persistent visual hash</returns>
+    public static ulong GetVisualHashCode(this Color colour)
+    {
+        return (ulong)colour.R.GetHashCode() ^ (ulong)colour.G.GetHashCode() << 8 ^
+            (ulong)colour.B.GetHashCode() << 16 ^ (ulong)colour.A.GetHashCode() << 32;
+    }
 }

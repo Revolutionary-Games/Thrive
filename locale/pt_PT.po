@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
-"PO-Revision-Date: 2024-10-17 07:24+0000\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
+"PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
 "Language: pt_PT\n"
@@ -374,6 +374,9 @@ msgstr "Fase Microbial"
 msgid "BACK"
 msgstr "Voltar"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Barra invertida"
 
@@ -516,6 +519,22 @@ msgstr "Por:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Da Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Criação"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Carbonato de Cálcio"
 
@@ -603,6 +622,14 @@ msgstr "Celulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Esta membrana possui uma parede, resultando em uma melhor proteção contra danos gerais e principalmente contra danos físicos. Também custa menos energia para manter a forma, mas não consegue absorver recursos rapidamente e é mais lenta.[b]Celulase consegue digerir esta parede[/b] tornando-a vulnerável a absorção por predadores."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positivo"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Valor utilizado para gerar o mundo, tem de ser um número inteiro positivo"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Nome do tipo de célula"
 
@@ -643,8 +670,16 @@ msgstr "Quimiorreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Todas as células apenas \"veem\" através da quimiorrecepção. É assim que as células adquirem informações sobre seus arredores. A adição deste organelo representa a evolução da quimiorrecepção mais afinada. Como o jogador recebe visão, mesmo no estágio de célula, isso é representado por uma linha apontando para fora da área visível da tela, mostrando compostos próximos que o jogador ainda não podia ver."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Quantidade Mínima a Detectar:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "O quimiorrecetor permite detetar compostos de mais longe. Modifique-o quando colocado para selecionar o tipo de composto e a cor da linha usada para indicar o caminho."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Todas as células apenas \"veem\" através da quimiorrecepção. É assim que as células adquirem informações sobre seus arredores. A adição deste organelo representa a evolução da quimiorrecepção mais afinada. Como o jogador recebe visão, mesmo no estágio de célula, isso é representado por uma linha apontando para fora da área visível da tela, mostrando compostos próximos que o jogador ainda não podia ver."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -712,6 +747,9 @@ msgstr "Pop: {0} Comida: {1} Ciência: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Limpar os jogos guardados antigos"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Fechar"
@@ -872,6 +910,22 @@ msgstr "Concentrações de {0} diminuíram em {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumo"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Equilíbrio de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Equilíbrio de Compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Mostrar / ocultar compostos"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Densidade da nuvem de compostos"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1264,6 +1318,14 @@ msgstr "Créditos"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Nenhuma pesquisa a decorrer"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Retomar o jogo"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Desenvolvedores Actuais"
 
@@ -1525,6 +1587,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Junte-se ao nosso servidor comunitário de Discord"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Visite a nossa página Itch.io"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Popups dispensados:"
 
@@ -1586,14 +1652,14 @@ msgstr "Clique duas vezes para ver em ecrã completo"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Uma membrana com duas camadas, tem uma melhor proteção contra danos e consome menos energia para não se deformar. No entanto, abranda um pouco a célula e diminui a taxa de absorção de recursos."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipo"
-
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicelular"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Curiosidade: o Didinium e o Paramecium são um exemplo clássico de uma relação predador-presa estudada há décadas. Serás o Didinium ou o Paramecium? Predador ou Presa?"
@@ -1680,6 +1746,10 @@ msgid "EASTER_EGGS"
 msgstr "Incluir Easter eggs"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(segredos que surgem aleatoriamente no jogo)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(segredos que surgem aleatoriamente no jogo)"
 
 msgid "EDGE_PAN_SPEED"
@@ -1849,6 +1919,10 @@ msgstr "(proporção de glicose retida no ambiente a cada geração)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Mostrar / ocultar ambiente"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Ambiente"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelágica"
 
@@ -1878,6 +1952,10 @@ msgstr "Erro ao carregar"
 
 msgid "ERROR_SAVING"
 msgstr "Erro ao gravar"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Erro ao carregar"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2109,6 +2187,7 @@ msgstr "Neblina de Guerra Intensa"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(apenas regiões que o jogador esteve serão reveladas)"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "Modo Neblina de Guerra"
 
@@ -2257,6 +2336,10 @@ msgstr "Gráficos"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Equipa dos Gráficos"
+
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "CONFIRMAR"
 
 msgid "GUI"
 msgstr "GUI"
@@ -2568,6 +2651,13 @@ msgstr "Quimiolitoautotrofia Férrica"
 msgid "ITCH_TOOLTIP"
 msgstr "Visite a nossa página Itch.io"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Interagir com objetos"
+
 msgid "JANUARY"
 msgstr "Janeiro"
 
@@ -2762,10 +2852,6 @@ msgstr "Esta tradução está muito incompleta ({0}% feita) por favor ajude-nos 
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Não é possível eliminar o último organelo"
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Colocar organelo"
 
 msgid "LAUNCH0"
 msgstr "Launch 0"
@@ -2978,12 +3064,12 @@ msgstr "A carregar"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "A carregar..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "A carregar o Editor de Micróbio"
-
 msgid "LOADING_GAME"
 msgstr "A carregar o jogo"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "A carregar o Editor de Micróbio"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "A carregar o Editor de Micróbio"
@@ -3055,6 +3141,14 @@ msgstr "Contém enzimas digestivas. Pode ser modificado para alterar o tipo de e
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Quimiossíntese"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Tornar-se Macroscópico ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Fase Microbial"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Definir manualmente a hora do dia"
 
@@ -3070,11 +3164,19 @@ msgstr "Neve marinha"
 msgid "MASTER_VOLUME"
 msgstr "Volume principal"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Retomar o jogo"
+
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ilimitado"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Tamanho:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Número máximo de entidades:"
@@ -3103,6 +3205,10 @@ msgstr "Gravar"
 
 msgid "MEDIASTOP"
 msgstr "Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Pequeno Pedaço de Ferro"
 
 msgid "MEGA_YEARS"
 msgstr "milhões de anos"
@@ -3142,6 +3248,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Extinguiram-se na região"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3267,6 +3377,10 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor livre para micróbios"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3673,6 +3787,14 @@ msgstr "Mover para baixo ou agachar"
 msgid "MOVE_FORWARD"
 msgstr "Mover para a frente"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Mod a Carregar:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Mover para a direita"
+
 msgid "MOVE_LEFT"
 msgstr "Mover para a esquerda"
 
@@ -3735,6 +3857,10 @@ msgstr "Quimiossíntese"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Visite a nossa pagina de Patreon"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Colocar organelo"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor de multicelulas"
@@ -3870,13 +3996,13 @@ msgstr "Nitrogenase é uma proteína capaz de utilizar o [thrive:compound type=\
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastídeo Fixador de Nitrogénio"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar [thrive:compound type=\"nitrogen\"][/thrive:compound] gasoso, [thrive:compound type=\"oxygen\"][/thrive:compound] e [thrive:compound type=\"atp\"][/thrive:compound] para produzir [thrive:compound type=\"ammonia\"][/thrive:compound], um nutriente essencial para o crescimento das células. Este é um processo chamado [b]Fixação Aeróbica de Nitrogénio[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -3955,6 +4081,10 @@ msgstr "Nenhum diretório de captura de ecrã encontrado"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Nenhum mod selecionado"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolução:"
 
 msgid "NUCLEUS"
 msgstr "Núcleo"
@@ -4098,8 +4228,16 @@ msgstr "Axónio"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Os axónios são as fibras nervosas que os neurónios utilizam para se ligarem uns aos outros e comunicarem. Colocar este organelo transforma o tipo de célula para tecido cerebral."
 
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Multicelular"
+
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicelular"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Este painel mostra os números a partir dos quais a previsão de auto-evo funciona. A energia total que uma espécie é capaz de capturar e o custo por indivíduo da espécie determinam a população final. O Auto-evo usa um modelo simplificado da realidade para calcular o desempenho das espécies com base na energia que conseguem obter. Para cada fonte de alimento, mostra quanta energia é que a espécie ganha com isso. Além disso, aparece o total de energia disponível na fonte. A fração que a espécie ganha da energia total é baseada em quão grande a aptidão é comparada com a aptidão total. A aptidão é uma métrica de quão bem a espécie pode utilizar essa fonte de alimento."
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miofibrilha"
@@ -4122,6 +4260,14 @@ msgstr "{0} organelos"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organelo"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axónio"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Carregar jogos previamente guardados"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Desbloqueio de organelos ativado"
@@ -4417,6 +4563,10 @@ msgstr "população em regiões:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Número de ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predação de {0}"
 
@@ -4534,6 +4684,18 @@ msgstr "Assexuada"
 msgid "REPRODUCTION_BUDDING"
 msgstr "reproduzido"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reprodução:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(obter passivamente compostos de reprodução do ambiente sem ter de fazer nada)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reprodução:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reprodução:"
 
@@ -4553,6 +4715,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Repor as entradas por defeito?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Repor as entradas por defeito?"
 
 msgid "RESET_KEYBINDINGS"
@@ -4911,6 +5077,10 @@ msgid "SHOW_HELP"
 msgstr "Mostrar ajuda"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Mostrar tutoriais"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Caverna"
 
@@ -5000,6 +5170,10 @@ msgstr "Pequeno Pedaço de Ferro"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Pequeno Pedaço de Ferro"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Pequeno Pedaço de Ferro"
 
 msgid "SNOWFLAKE"
@@ -5715,10 +5889,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "A carregar o Editor de Micróbio"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Este é o mapa das regiões.\n"
@@ -5895,6 +6065,10 @@ msgstr ""
 "Entraste no modo de desvinculação. Neste modo podes clicar num membro da colónia para o desvincular.\n"
 "\n"
 "Para abandonar a colónia totalmente podes clicar na tua própria célula ou pressionar o botão Desvincular tudo."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "A carregar o Editor de Micróbio"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Ver Agora"
@@ -6103,6 +6277,9 @@ msgstr "Suicídio"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use um username personalizado"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Escolher manualmente o número de threads"
 
@@ -6161,6 +6338,10 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 
 msgid "VIEW_ONLINE"
 msgstr "Ver Online"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Caverna"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6236,9 +6417,6 @@ msgstr "Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6670,6 +6848,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produz [thrive:compound type=\"glucose\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"carbondioxide\"][/thrive:compound] e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "O termoplasto é uma estrutura de membrana dupla que contém pigmentos termossensíveis. É um procariota que foi reconhecido para uso do seu hospedeiro eucariótico. Os pigmentos nos termoplastos conseguem utilizar a energia das diferenças de calor no ambiente para produzir glicose da água e gás carbónico num processo chamado Termossíntese. A taxa da sua produção de glicose aumenta com a concentração de dióxido de carbono e temperatura."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "O Flagelo (plural: Flagelos) é um feixe de fibras proteicas em forma de chicote que se estende da membrana da célula e que utiliza ATP para ondular e impulsionar a célula numa direção. A posição do flagelo determina a direção em que fornece impulso para movimentar a célula. A direção de impulso é oposta à direção para a qual o flagelo está direcionado, por exemplo, um flagelo posicionado no lado esquerdo de uma célula fornece impulso quando se move para a direita."
 
@@ -6895,6 +7105,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Sem melhorias."
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Fase multicelular"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permite conectar com outras células. Este é o primeiro passo para a multicelularidade. Quando a tua célula pertence a uma colónia, os compostos são partilhados entre células. Não é possível entrar no editor enquanto pertenceres a uma colónia, sendo necessário desconectar-te da mesma assim que tenhas coletado compostos suficientes para dividires a tua célula."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Sem efeitos."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Num planeta alienígena distante, eras de atividades vulcânicas e impactos de meteoros causaram o desenvolvimento de um novo fenómeno no universo.\n"
+"\n"
+"Vida.\n"
+"\n"
+"Micróbios simples moram nas regiões mais profundas do oceano. Tu és o Último Ancestral Comum Universal (LUCA) no planeta.\n"
+"\n"
+"Para sobreviver neste mundo hostil, precisarás de acumular compostos e evoluir para competir contra outras espécies de micróbios."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Fase Espacial"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Fase Espacial"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Colocar organelo"
 
@@ -7068,38 +7313,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Ativar o editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
 
@@ -7129,6 +7342,38 @@ msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a 
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase é uma proteína capaz de utilizar o nitrogénio gasoso e a energia celular na forma de ATP para produzir amoníaco, um nutriente chave para o crescimento das células. Isto é um processo referido como Fixação Anaeróbica de Nitrogénio. Uma vez que Nitrogenase está suspenso diretamente no citoplasma, o fluído envolvente efetua alguma glicólise."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Transforma [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound]. A taxa aumenta com a concentração de [thrive:compound type=\"nitrogen\"][/thrive:compound] e [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "O Plastídeo Fixador de Nitrogénio é uma proteína capaz de usar nitrogénio gasoso, oxigénio e energia celular em forma de ATP para produzir amoníaco, um nutriente essencial para o crescimento das células. Este é um processo chamado Fixação Aeróbica de Nitrogénio."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastídeo Fixador de Nitrogénio"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastídeo Fixador de Nitrogénio"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7266,6 +7511,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitocôndria"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplasto"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagelo"
 
@@ -7280,6 +7529,10 @@ msgstr "Agente de Adesão"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oxitoxissoma"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenase"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7305,12 +7558,12 @@ msgstr "Fase multicelular"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilo Predatório"
 
-#, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastídeo Fixador de Nitrogénio"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastídeo Fixador de Nitrogénio"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7870,6 +8123,17 @@ msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Fase Microbial"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Multicelular"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "A carregar o Editor de Micróbio"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "reproduzido"
 
@@ -7926,10 +8190,6 @@ msgstr "Reduzir"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Editor de Microrganismos"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Fase Microbial"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8042,10 +8302,6 @@ msgstr "Reduzir"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolução:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

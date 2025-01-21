@@ -6,13 +6,6 @@ using Godot;
 /// <summary>
 ///   Creates images of game resources by rendering them in a separate viewport
 /// </summary>
-/// <remarks>
-///   <para>
-///     TODO: implement a persistent resource cache class that can store these created images (it should be cleared
-///     if game version changes to avoid bugs and size limited to not take too many gigabytes of space, and also
-///     delete old resources after like 30 days)
-///   </para>
-/// </remarks>
 [GodotAutoload]
 public partial class PhotoStudio : SubViewport
 {
@@ -51,11 +44,11 @@ public partial class PhotoStudio : SubViewport
     /// </summary>
     private int lastTaskIndex;
 
-    private int cacheMissesDueToImageSave;
-
     private bool waitingForBackgroundOperation;
 
 #pragma warning disable CA2213
+
+    private DiskCache? diskCache;
 
     /// <summary>
     ///   This holds the final rendered image across some steps, this is not disposed as this is passed out as the
@@ -110,11 +103,9 @@ public partial class PhotoStudio : SubViewport
         if (radius <= 0)
             throw new ArgumentException("radius needs to be over 0");
 
-        // TODO: figure out if the camera FOV or FOV / 2 is the right thing to use here
-        float angle = Constants.PHOTO_STUDIO_CAMERA_FOV;
+        float angle = Constants.PHOTO_STUDIO_CAMERA_HALF_ANGLE;
 
-        // Some right angle triangle math that's hopefully right
-        return MathF.Tan(MathUtils.DEGREES_TO_RADIANS * angle) * radius;
+        return MathF.Tan(MathF.PI * 0.5f - MathUtils.DEGREES_TO_RADIANS * angle) * radius;
     }
 
     public override void _Ready()
@@ -136,6 +127,9 @@ public partial class PhotoStudio : SubViewport
         camera.Fov = Constants.PHOTO_STUDIO_CAMERA_FOV;
 
         ProcessMode = ProcessModeEnum.Always;
+
+        diskCache = Settings.Instance.UseDiskCache.Value ? DiskCache.Instance : null;
+        Settings.Instance.UseDiskCache.OnChanged += DiskCachingChanged;
     }
 
     public override void _ExitTree()
@@ -144,6 +138,8 @@ public partial class PhotoStudio : SubViewport
 
         // Let go of memory resources that were cached as the game should be shutting down
         memoryCache.Clear();
+
+        Settings.Instance.UseDiskCache.OnChanged -= DiskCachingChanged;
     }
 
     public override void _Process(double delta)
@@ -364,49 +360,35 @@ public partial class PhotoStudio : SubViewport
         base._Process(delta);
     }
 
-    public ImageTask GenerateImage(IScenePhotographable photographable, int priority = 1,
-        bool requirePlainImageVariant = false)
+    public IImageTask GenerateImage(IScenePhotographable photographable, int priority = 1)
     {
         var cacheKey = photographable.GetVisualHashCode();
 
-        var image = TryGetFromCache(cacheKey, requirePlainImageVariant);
+        var image = TryGetFromCache(cacheKey);
 
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, requirePlainImageVariant, priority));
+        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority));
     }
 
-    public ImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1,
-        bool requirePlainImageVariant = false)
+    public IImageTask GenerateImage(ISimulationPhotographable photographable, int priority = 1)
     {
         var cacheKey = photographable.GetVisualHashCode();
 
-        var image = TryGetFromCache(cacheKey, requirePlainImageVariant);
+        var image = TryGetFromCache(cacheKey);
 
         if (image != null)
             return image;
 
-        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, requirePlainImageVariant, priority));
+        return HandleTaskSubmit(cacheKey, new ImageTask(photographable, priority));
     }
 
-    public ImageTask? TryGetFromCache(ulong hashCode, bool requirePlainImageVariant = false)
+    public IImageTask? TryGetFromCache(ulong hashCode)
     {
-        var image = memoryCache.Get(hashCode);
-
-        if (image == null)
-            return null;
-
-        if (requirePlainImageVariant && !image.WillStorePlainImage)
-        {
-            // Wrong variant of storing plain image, need to regenerate the cache entry
-            ++cacheMissesDueToImageSave;
-            return null;
-        }
+        var image = diskCache != null ? diskCache.Get(hashCode) : memoryCache.Get(hashCode);
 
         return image;
-
-        // TODO: an on-disk cache: https://github.com/Revolutionary-Games/Thrive/issues/3156
     }
 
     protected override void Dispose(bool disposing)
@@ -446,7 +428,16 @@ public partial class PhotoStudio : SubViewport
     private ImageTask HandleTaskSubmit(ulong hash, ImageTask imageTask)
     {
         SubmitTask(imageTask);
-        memoryCache.Insert(hash, imageTask);
+
+        if (diskCache != null)
+        {
+            diskCache.Insert(hash, imageTask);
+        }
+        else
+        {
+            memoryCache.Insert(hash, imageTask);
+        }
+
         return imageTask;
     }
 
@@ -531,6 +522,23 @@ public partial class PhotoStudio : SubViewport
         simulationWorldRoots[worldSimulation] = node;
 
         return node;
+    }
+
+    private void DiskCachingChanged(bool value)
+    {
+        // Clear memory cache when swapping to disk cache
+        if (value)
+        {
+            GD.Print("Clearing memory image cache as disk caching is being enabled");
+            memoryCache.Clear();
+
+            diskCache = DiskCache.Instance;
+        }
+        else
+        {
+            GD.Print("Disk caching disabled");
+            diskCache = null;
+        }
     }
 
     private class TaskComparer : IComparer<(int, int)>

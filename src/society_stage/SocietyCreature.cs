@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 public partial class SocietyCreature : Node3D, IEntity
 {
 #pragma warning disable CA2213
-    private MulticellularConvolutionDispayer metaballDisplayer = null!;
+    private MacroscopicConvolutionDisplayer metaballDisplayer = null!;
 #pragma warning restore CA2213
 
     private Vector3? movementTarget;
@@ -21,7 +21,7 @@ public partial class SocietyCreature : Node3D, IEntity
     ///   random stuff in this instance won't work
     /// </summary>
     [JsonProperty]
-    public LateMulticellularSpecies Species { get; private set; } = null!;
+    public MacroscopicSpecies Species { get; private set; } = null!;
 
     /// <summary>
     ///   When true stops the normal citizen wander around behaviour
@@ -38,7 +38,7 @@ public partial class SocietyCreature : Node3D, IEntity
     {
         base._Ready();
 
-        metaballDisplayer = GetNode<MulticellularConvolutionDispayer>("MetaballDisplayer");
+        metaballDisplayer = GetNode<MacroscopicConvolutionDisplayer>("MetaballDisplayer");
 
         // TODO: determine if it would be better to have this have physics collisions or if overlap avoidance makes
         // more sense to do with another approach
@@ -90,7 +90,7 @@ public partial class SocietyCreature : Node3D, IEntity
 
     public void ApplySpecies(Species species)
     {
-        if (species is not LateMulticellularSpecies lateSpecies)
+        if (species is not MacroscopicSpecies lateSpecies)
             throw new ArgumentException("Unsupported type of species");
 
         Species = lateSpecies;

@@ -192,6 +192,13 @@ public class OrganelleDefinition : IRegistryType
     public OrganelleDefinition? EndosymbiosisUnlocks;
 
     /// <summary>
+    ///   Placement strategy that is used when placing this organelle when calculating an auto-evo organelle suggestion
+    ///   for the player
+    /// </summary>
+    public CommonMutationFunctions.OrganelleAddStrategy SuggestionPlacement =
+        CommonMutationFunctions.OrganelleAddStrategy.Spiral;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private readonly Dictionary<int, List<Hex>> rotatedHexesCache = new();
@@ -238,6 +245,11 @@ public class OrganelleDefinition : IRegistryType
         ///   Only available starting in multicellular
         /// </summary>
         Multicellular,
+
+        /// <summary>
+        ///   Only available starting in macroscopic
+        /// </summary>
+        Macroscopic,
     }
 
     /// <summary>
@@ -296,11 +308,11 @@ public class OrganelleDefinition : IRegistryType
     ///   Gets the visual scene that should be used to represent this organelle (if there is one)
     /// </summary>
     /// <param name="upgrades">
-    ///   Some upgrades alter organelle visuals so when upgrades are set for this organelle they should be passed here
+    ///   Some upgrades alter organelle visuals, so when upgrades are set for this organelle they should be passed here
     ///   to get the right visuals
     /// </param>
     /// <param name="modelInfo">
-    ///   The model info returned like this (as it may be a struct type this can't return a nullable reference without
+    ///   The model info returned like this (as it may be a struct type, this can't return a nullable reference without
     ///   boxing)
     /// </param>
     /// <returns>True when this has a scene</returns>
@@ -334,6 +346,27 @@ public class OrganelleDefinition : IRegistryType
 
         modelInfo = loadedCorpseScene;
         return true;
+    }
+
+    /// <summary>
+    ///   True if a chunk's visuals can be the result of this organelle being in a species that died
+    /// </summary>
+    /// <returns>True if the <see cref="chunk"/> matches visuals of this</returns>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this doesn't check upgrade visuals as those can't be used in marine snow.
+    ///   </para>
+    /// </remarks>
+    public bool MatchesMarineSnow(ChunkConfiguration.ChunkScene chunk)
+    {
+        if (graphics.ScenePath == chunk.ScenePath)
+            return true;
+
+        // For performance, we could probably skip this check, but let's avoid a future bug here by also checking this
+        if (corpseChunkGraphics.ScenePath == chunk.ScenePath)
+            return true;
+
+        return false;
     }
 
     public Vector3 GetUpgradesSizeModification(OrganelleUpgrades? upgrades)
@@ -725,6 +758,16 @@ public class OrganelleDefinition : IRegistryType
         {
             availableUpgrade.ApplyTranslations();
         }
+    }
+
+    public override int GetHashCode()
+    {
+        return unchecked((int)PersistentStringHash.GetHash(InternalName));
+    }
+
+    public ulong GetVisualHashCode()
+    {
+        return PersistentStringHash.GetHash(InternalName);
     }
 
     public override string ToString()

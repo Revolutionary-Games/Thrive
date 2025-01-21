@@ -22,6 +22,8 @@ uniform float distortionSpeed : hint_range(0.0, 0.01, 0.0001) = 0.001f;
 
 uniform float layerAnimateSpeed : hint_range(0.0, 2.0, 0.1) = 1.0f;
 
+uniform vec2 worldPos;
+
 const vec2 speed0 = vec2(3300.0f);
 const vec2 speed1 = vec2(2550.0f);
 const vec2 speed2 = vec2(1800.0f);
@@ -51,7 +53,6 @@ vec3 LightInfluence(float amount)
 
 void vertex(){
     vec2 offset = (repeats - 1.0f) / 2.0f;
-    vec2 worldPos = (INV_VIEW_MATRIX * vec4(0.0f, 0.0f, 0.0f, 1.0f)).xz;
 
     UV = (UV + worldPos / (speed0 * repeats)) * repeats - offset;
     UV2 = (0.12f + UV + worldPos / (speed1));
@@ -63,7 +64,7 @@ void fragment(){
     // Application of noise textures on parallax layers, creating distortion.
     // Subtracting time results in a flip of the direction of distortion, and multiplying by factor amplifies speed.
     vec2 noiseUV1 = UV + TIME * distortionSpeed;
-	vec2 noise1 = vec2(texture(noiseTex1, noiseUV1).r, texture(noiseTex2, noiseUV1).r);
+    vec2 noise1 = vec2(texture(noiseTex1, noiseUV1).r, texture(noiseTex2, noiseUV1).r);
     vec2 distortedUV0 = UV + noise1 * distortionFactor;
 
 #ifdef DISTORT_ALL_LAYERS

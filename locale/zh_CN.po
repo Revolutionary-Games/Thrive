@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
-"PO-Revision-Date: 2024-10-31 16:02+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
+"PO-Revision-Date: 2025-01-05 14:32+0000\n"
+"Last-Translator: Sasasegawa_ <liuyanMckkk@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -368,6 +368,9 @@ msgstr "知觉阶段"
 msgid "BACK"
 msgstr "返回"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "反斜杠"
 
@@ -507,6 +510,24 @@ msgstr "创建者："
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由Revolutionary Games Studio制作"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr "自动存档删除的最大时间"
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "当前使用的视频内存："
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "当前使用的视频内存："
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "合成"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "碳酸钙"
 
@@ -594,6 +615,14 @@ msgstr "纤维素"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "用于生成世界的随机数种子，必须为正整数"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "用于生成世界的随机数种子，必须为正整数"
+
 msgid "CELL_TYPE_NAME"
 msgstr "细胞类型名称"
 
@@ -633,8 +662,16 @@ msgstr "化学感受器"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "化学感知是细胞的视觉。是细胞获得有关其周围环境信息的方式。添加这个细胞器代表着进化出更精细的化学感知。由于玩家即使在细胞阶段也被赋予了视觉，这表现为一条指向屏幕可见区域之外的线，显示玩家还看不到的附近的化合物。"
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "检测的最小数量："
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "化学感受器可以从更远的地方探测到化合物。放置后可以修改，以选择化合物类型和引导线颜色。"
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "化学感知是细胞的视觉。是细胞获得有关其周围环境信息的方式。添加这个细胞器代表着进化出更精细的化学感知。由于玩家即使在细胞阶段也被赋予了视觉，这表现为一条指向屏幕可见区域之外的线，显示玩家还看不到的附近的化合物。"
 
 msgid "CHEMOSYNTHESIS"
 msgstr "化能合成"
@@ -701,6 +738,9 @@ msgstr "种群数量：{0} 食物：{1} 科学：{2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "清除旧存档"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "关闭"
@@ -857,6 +897,24 @@ msgstr "{0}的浓度已减少了{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0}消耗"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "化合物收支"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr ""
+"这个区域显示了各化合物的总平衡情况（生产 - 消耗）\n"
+"比如说对植物细胞而言葡萄糖的平衡情况需要是一个不小的正数。"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "化合物云密度"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "（无法熬过{0}秒长的夜晚）"
@@ -1222,6 +1280,14 @@ msgstr "制作人名单"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "没有搜索到任何内容"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "喷射黏液以提高速度并减缓困在黏液中细胞的速度"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "当前开发人员"
 
@@ -1505,6 +1571,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "加入我们社区的Discord服务器"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "访问我们在Itch.io上的页面"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "被禁用的弹出窗口："
 
@@ -1562,14 +1632,14 @@ msgstr "双击可全屏查看"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "有两层的细胞膜，对伤害有更好的防护能力，也不需要花费那么多能量避免变形。不管怎样，它也会减缓细胞的移动速度，并降低其吸收营养的速率。"
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "转储SceneTree"
 
 msgid "DUPLICATE_TYPE"
 msgstr "复制类型"
-
-msgid "EARLY_MULTICELLULAR"
-msgstr "多细胞生物"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "小知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物的关系研究了几十年。你是栉毛虫还是草履虫？是捕食者还是猎物？"
@@ -1656,6 +1726,10 @@ msgid "EASTER_EGGS"
 msgstr "包含彩蛋"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "（游戏中会随机生成彩蛋）"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "（游戏中会随机生成彩蛋）"
 
 msgid "EDGE_PAN_SPEED"
@@ -1805,6 +1879,10 @@ msgstr "（每一代后环境葡萄糖保留的比例）"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "显示/隐藏环境"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "环境"
+
 msgid "EPIPELAGIC"
 msgstr "上远洋带"
 
@@ -1835,6 +1913,10 @@ msgstr "载入时出错"
 msgid "ERROR_SAVING"
 msgstr "存档时出错"
 
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "载入时出错"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1844,9 +1926,10 @@ msgstr "逃脱被吞噬的命运"
 msgid "ESTUARY"
 msgstr "河口"
 
-#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
-msgstr "这是编译此版本 Thrive 的确切 Commit"
+msgstr ""
+"地区事件：喷发\n"
+"产生额外的硫化氢与二氧化碳"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "进化树"
@@ -2061,6 +2144,7 @@ msgstr "强烈战争迷雾"
 msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "只有玩家去过的地方才会显示出来"
 
+#, fuzzy
 msgid "FOG_OF_WAR_MODE"
 msgstr "战争迷雾模式"
 
@@ -2210,6 +2294,10 @@ msgstr "图像"
 
 msgid "GRAPHICS_TEAM"
 msgstr "图形团队"
+
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "限制繁殖化合物使用"
 
 msgid "GUI"
 msgstr "GUI"
@@ -2508,6 +2596,16 @@ msgstr "铁化能无机自养"
 msgid "ITCH_TOOLTIP"
 msgstr "访问我们在Itch.io上的页面"
 
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"位置坐标：{0}\n"
+"朝向坐标：{1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "与物体交互"
+
 msgid "JANUARY"
 msgstr "一月"
 
@@ -2695,9 +2793,6 @@ msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
-
-msgid "LATE_MULTICELLULAR"
-msgstr "后期多细胞生物"
 
 msgid "LAUNCH0"
 msgstr "Launch 0"
@@ -2906,11 +3001,12 @@ msgstr "载入中"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "载入中……"
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "载入早期多细胞编辑器中"
-
 msgid "LOADING_GAME"
 msgstr "载入游戏"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "载入微生物编辑器中"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
@@ -2981,6 +3077,14 @@ msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "大环内酯物合成"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "成为宏观生物（{0}/{1}）"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "微生物阶段"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "手动设置时间"
 
@@ -2996,11 +3100,19 @@ msgstr "海洋雪"
 msgid "MASTER_VOLUME"
 msgstr "主音量"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "喷射黏液以提高速度并减缓困在黏液中细胞的速度"
+
 msgid "MAX_FPS"
 msgstr "最高FPS："
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "不受限"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "大小："
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "实体数量限制："
@@ -3029,6 +3141,10 @@ msgstr "媒体录制"
 
 msgid "MEDIASTOP"
 msgstr "媒体停止"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "小铁块"
 
 msgid "MEGA_YEARS"
 msgstr "*10⁶年"
@@ -3083,6 +3199,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr "生态导向源"
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "在这个地区里灭绝了"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "避免自然捕食选择的压力"
@@ -3217,6 +3337,10 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3606,6 +3730,14 @@ msgstr "向下走或蹲下"
 msgid "MOVE_FORWARD"
 msgstr "前进"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "成为陆地生物"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "右移"
+
 msgid "MOVE_LEFT"
 msgstr "左移"
 
@@ -3669,6 +3801,10 @@ msgstr "黏液合成"
 
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "创造护盾"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "后期多细胞生物"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "多细胞编辑器"
@@ -3797,13 +3933,13 @@ msgstr "固氮酶是一种能用ATP和氮来产出氨的蛋白质，氨对细胞
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]浓度成正比。"
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "固氮质体"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "固氮质体是一种可以用氮和氧还有ATP制造氨的蛋白质，氨对细胞生长至关重要。这个过程被称为[b]有氧固氮[/b]。"
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "将[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]。速率跟[thrive:compound type=\"nitrogen\"][/thrive:compound]与[thrive:compound type=\"oxygen\"][/thrive:compound]浓度成正比。"
 
 msgid "NONE"
@@ -3880,6 +4016,10 @@ msgstr "找不到截图目录"
 
 msgid "NO_SELECTED_MOD"
 msgstr "未选择Mod"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "分辨率："
 
 msgid "NUCLEUS"
 msgstr "细胞核"
@@ -4009,6 +4149,7 @@ msgstr "细胞器"
 msgid "ORGANELLES_BUTTON"
 msgstr "细胞器"
 
+#, fuzzy
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
 msgstr "在进入编辑器时，解锁条件每世代只会被检查一次"
 
@@ -4018,8 +4159,16 @@ msgstr "轴突"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有该细胞器的细胞会被认定为脑组织。"
 
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "多细胞生物"
+
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多细胞生物"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "（启用时会限制生长速度，如果关闭的话那么生长速度便仅受可用的化合物数量的影响）"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "肌原纤维"
@@ -4041,6 +4190,14 @@ msgstr "{0}个细胞器"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0}个细胞器"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "载入之前保存的游戏"
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "已启用细胞器解锁"
@@ -4324,6 +4481,10 @@ msgstr "地区中的种群数量："
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} （{1}）"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "编号"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "捕食{0}"
 
@@ -4440,6 +4601,18 @@ msgstr "无性繁殖"
 msgid "REPRODUCTION_BUDDING"
 msgstr "出芽"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "繁殖："
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "繁殖："
+
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
 
@@ -4459,6 +4632,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "重置被禁用的弹出窗口"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "将输入重置为默认值？"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "将输入重置为默认值？"
 
 msgid "RESET_KEYBINDINGS"
@@ -4810,6 +4987,12 @@ msgstr "在屏幕上显示伤害效果"
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+"位置坐标：{0}\n"
+"朝向坐标：{1}"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自动显示新的补丁说明"
 
@@ -4893,6 +5076,10 @@ msgstr "小铁块"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸盐碎块"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "小铁块"
 
 msgid "SNOWFLAKE"
 msgstr "雪花"
@@ -5567,18 +5754,6 @@ msgstr "试着截一些图吧！"
 msgid "TUTORIAL"
 msgstr "教程"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"欢迎来到早期多细胞生物阶段!\n"
-"\n"
-"你已经成功带领你的物种度过了单细胞生物阶段.\n"
-"\n"
-"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
-"\n"
-"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -5750,6 +5925,19 @@ msgstr ""
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按[thrive:input]g_unbind_all[/thrive:input]。"
 
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"欢迎来到早期多细胞生物阶段!\n"
+"\n"
+"你已经成功带领你的物种度过了单细胞生物阶段.\n"
+"\n"
+"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
+"\n"
+"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
@@ -5783,9 +5971,8 @@ msgstr "这是一个调试版本，下面的信息可能不是最新的"
 msgid "UNDERWATERCAVE"
 msgstr "水下洞穴"
 
-#, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION"
-msgstr "水下洞穴"
+msgstr "深海热泉喷发"
 
 #, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION_IN"
@@ -5949,6 +6136,9 @@ msgstr "从Assembly中自动加载Harmony补丁（不需要指定mod class）"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "使用自定义用户名"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "手动设置后台线程数"
 
@@ -6005,6 +6195,10 @@ msgstr "查看细胞代谢过程"
 
 msgid "VIEW_ONLINE"
 msgstr "在互联网上查看"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "查看补丁说明"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "查看补丁说明"
@@ -6077,9 +6271,6 @@ msgstr "Wiki"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6563,6 +6754,52 @@ msgstr "（每一代后环境葡萄糖保留的比例）"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"利用环境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]。\n"
+"\n"
+"这是未在现实中发现的猜想中的细胞器。 在开启仅限已知生命形式选项的游戏中不可用。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]热合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"利用周围环境[thrive:compound type=\"temperature\"][/thrive:compound] 被动生成能量。 效率高于[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]中的[b]细菌热合成[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"[b]热能体[/b]仅出现在关闭仅限已知生命形式(LAWK)选项的游戏中。\n"
+"\n"
+"如果在游戏设定中启用了细胞器解锁，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"由于[b]热合成[/b]除了环境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何输入，因此它本质上是免费能量。 此外，[b]热能体[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]更高效，这使得 它们可以说是游戏中最简单的能量产生方法，前提是您愿意留在海底热泉等炎热地区。\n"
+"\n"
+"启用细胞器解锁后，需要在细胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]进行多次繁殖，意味着玩家演化[b]热能体[/b]时，他们可能已经非常专注于[b]热合成[/b]以获得[b]热能体[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "无升级。"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每个[b]鞭毛[/b]提供与其方向相反的方向的定向推力。 它们也在接近完全相反的方向上提供部分推力（准确地说，是那些与完全相反的向量的分量（内积）为正的方向）。 每当[b]鞭毛[/b]处于活动状态时，它就会消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -6842,6 +7079,47 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "无升级。"
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
+"\n"
+"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
+"\n"
+"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
+"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "黏液喷嘴"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "太空阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "固氮酶"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "太空阶段"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "细胞器"
 
@@ -6865,6 +7143,7 @@ msgstr "[b]代谢体[/b]进行[b]蛋白质呼吸[/b]，一种劣于[b][color=#37
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 "[b]蛋白质呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -6954,6 +7233,7 @@ msgstr "细胞的发电厂。[b]线粒体[/b]进行[b]有氧呼吸[/b]，或者�
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
 "[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7046,39 +7326,10 @@ msgstr "无升级"
 msgid "WIKI_NATION_EDITOR"
 msgstr "启用编辑器"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "无效果"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "无修改。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-"[b]有氧固氮[/b]\n"
-"\n"
-"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的量成正比。 效率高于[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同种代谢。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "细胞必须有[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能演化出[b]固氮质体[/b]。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "待定"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-"我们建议您在进化出[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]后用[b]固氮质体[/b]取代[b] [color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]，因为后者可以更有效地产生繁殖所需的资源。\n"
-"\n"
-"与[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]一样，如果您有多余的[thrive:compound type=\"atp\"][/ thrive:compound]，[b]固氮质体[/b]是明智的选择。 自行生产繁殖所需资源可以让您消除限制传代的因素。"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "无升级"
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "无效果。"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
 "进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率低于真核版本的[b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]固氮质体[/url][/color][/b]。\n"
@@ -7088,6 +7339,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]厌氧固氮[/b]：[thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type =\"ammonia\"][/thrive:compound]\n"
@@ -7107,6 +7359,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 "[b]固氮酶[/b]生产的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助于储存用于繁殖的资源。 因此，具有[b]固氮酶[/b]的细胞只需要从环境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在当前游戏选项中停用了被动繁殖进度，则基本速率为零）。\n"
@@ -7115,6 +7368,36 @@ msgstr ""
 
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "无升级。"
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "无效果"
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "进行[b]厌氧固氮[/b]，消耗气态[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"atp\"][/thrive:compound] 生产[thrive :compound type=\"ammonia\"][/thrive:compound]，产生细胞繁殖生长所需的成分之一。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]。"
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "无修改。"
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+"[b]有氧固氮[/b]\n"
+"\n"
+"透过消耗能量将大气中的[thrive:compound type=\"nitrogen\"][/thrive:compound] 转化为[thrive:compound type=\"ammonia\"][/thrive:compound]。 速率与环境中[thrive:compound type=\"nitrogen\"][/thrive:compound] 和[thrive:compound type=\"oxygen\"][/thrive:compound] 的量成正比。 效率高于[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]中的同种代谢。"
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "细胞必须有[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能演化出[b]固氮质体[/b]。"
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+"我们建议您在进化出[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]后用[b]固氮质体[/b]取代[b] [color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]，因为后者可以更有效地产生繁殖所需的资源。\n"
+"\n"
+"与[b][color=#3796e1][url=thriveopedia:nitrogenase]固氮酶[/url][/color][/b]一样，如果您有多余的[thrive:compound type=\"atp\"][/ thrive:compound]，[b]固氮质体[/b]是明智的选择。 自行生产繁殖所需资源可以让您消除限制传代的因素。"
+
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "无升级"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7274,6 +7557,10 @@ msgstr "线粒体"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "线粒体"
 
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "热能体"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
 
@@ -7286,6 +7573,10 @@ msgstr "工业阶段"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶体"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "固氮酶"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7308,11 +7599,11 @@ msgstr "多细胞阶段"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "肌原纤维"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "固氮质体"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "固氮酶"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "固氮质体"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "细胞核"
@@ -7505,9 +7796,11 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "无要求"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
 "[thrive:compound type=\"iron\"][/thrive:compound] 是一种有价值的替代资源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因为它不会在环境中腐烂。 以铁为食的细胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 丰富的区域中享受丰富的营养。\n"
@@ -7950,6 +8243,16 @@ msgid "ZOOM_OUT"
 msgstr "缩小"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "微生物阶段"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "多细胞生物"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "载入早期多细胞编辑器中"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽"
 
@@ -7999,10 +8302,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "微生物编辑器"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "微生物阶段"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8100,10 +8399,6 @@ msgstr "缩小"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "分辨率："
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

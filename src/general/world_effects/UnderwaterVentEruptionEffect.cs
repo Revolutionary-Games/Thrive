@@ -70,14 +70,15 @@ public class UnderwaterVentEruptionEffect : IWorldEffect
             patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, changes, cloudSizes);
 
             // Patch specific log
+            // TODO: should these events be highlighted always? It'll get busy when there are a lot of events.
             patch.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION"),
-                true, true, "PatchVents.svg");
+                true, true, "EruptionEvent.svg");
 
             if (patch.Visibility == MapElementVisibility.Shown)
             {
                 // Global log, but only if patch is known to the player
                 targetWorld.LogEvent(new LocalizedString("UNDERWATER_VENT_ERUPTION_IN", patch.Name),
-                    true, true, "PatchVents.svg");
+                    true, true, "EruptionEvent.svg");
             }
 
             patch.AddPatchEventRecord(WorldEffectVisuals.UnderwaterVentEruption, totalTimePassed);

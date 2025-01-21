@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
-"PO-Revision-Date: 2024-11-01 09:44+0000\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
+"PO-Revision-Date: 2025-01-17 10:20+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -366,6 +366,9 @@ msgstr "Farkındalık Evresi"
 msgid "BACK"
 msgstr "Geri"
 
+msgid "BACKGROUND_BLUR"
+msgstr "Arkaplan bulanıklığı:"
+
 msgid "BACKSLASH"
 msgstr "Ters Eğik Çizgi"
 
@@ -504,6 +507,21 @@ msgstr "Oluşturan:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Revolutionary Games Studio Tarafından"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr "Öğeleri diskten silmeden önce geçecek maksimum süre"
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr "Bellekte tutulacak maksimum önbellek öğesi"
+
+msgid "CACHE_TIME_MEMORY"
+msgstr "Önbellek öğelerinin bellekte tutulacağı süre"
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Yalnızca belleğe önbellekleme kullanıldığında geçecek önbellekleme süresi"
+
+msgid "CACHING_TITLE"
+msgstr "Önbellekleme"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsiyum Karbonat"
 
@@ -591,6 +609,17 @@ msgstr "Selüloz"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Bu hücre zarı, genel hasara ve özellikle fiziksel hasara karşı daha iyi dayanıklılık sağlayan bir duvara sahip. Ayrıca şeklini korumak için daha az enerjiye mal olur. Ama kaynakları çabucak ememez ve daha yavaştır. [b]Selülaz, bu duvarı sindirebilir.[/b] Böylece bu duvarı yırtıcılara karşı savunmasız hale getirir."
 
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr ""
+"Hücrenin dönme hızı. Hücreler ne kadar büyükse, o kadar yavaş döner. Ancak, siller bunu karşılamak için eklenebilir.\n"
+"Organel yerleşimi, dönmeyi etkiler; merkezden daha uzakta bulunan organeller, dönmeyi daha fazla azaltır."
+
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Hücrenin hızı. Bu hızı hesaplayan algoritmanın sınırlamaları nedeniyle, bu değerin bir tahmin olduğunu lütfen unutmayın.\n"
+"Örneğin, kamçı uzunluğunu değiştirdiğinizde, hız değerleri tamamen anlamlı olmayabilir ve evrede meydana gelen olaylar ile uyuşmayabilir.\n"
+"Bu sorun, bilinen bir sorundur. Ancak, diğer birçok sorun ve yeni özelliğe göre daha düşük öncelikte olduğu için bu sorun henüz düzeltilmemiştir."
+
 msgid "CELL_TYPE_NAME"
 msgstr "Hücre Türü İsmi"
 
@@ -630,8 +659,20 @@ msgstr "Kemoreseptör"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için, kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
 
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr ""
+"Bileşik algılama eşiğini ayarlar. Düşük değerler, yararlı miktarda bileşik içermeyebilecek, çok az miktarda bulunan bileşiklere işaret edebilir.\n"
+"Örnek bir strateji, arama yarıçapını ve minimum miktarı arttırmaktır. Böylece, en yakın olan, yararlı derecede yoğun bir bulut algılanabilir.\n"
+"Kemoreseptör, bir tek \"bileşik bulutundaki\" noktaların toplamını değil, bir bileşik bulutundaki tek bir noktayı algılar."
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "Kemoreseptör, bileşikleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
+msgstr "Kemoreseptör, bileşikleri ya da diğer hücreleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
+
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr ""
+"Bu kemoreseptörün işaret edeceği şeyleri arayacağı maksimum mesafeyi ayarlar.\n"
+"Örneğin, mesafeyi azaltmak, yavaş hücrelerin ulaştığı anda büyük olasılıkla kaybolacak olan kaynaklara işaret etmemesi için kullanılabilir.\n"
+"Alternatif olarak, mesafeyi arttırmak, çok daha uzaktaki şeylere işaret edebilir. Ancak, bu kaynaklara kaybolmadan ulaşmak zor olabilir."
 
 msgid "CHEMOSYNTHESIS"
 msgstr "Kemosentez"
@@ -698,6 +739,9 @@ msgstr "Nüfus: {0} Gıda: {1} Bilim: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Eski Kayıtları Temizle"
+
+msgid "CLEAR_CACHE"
+msgstr "Önbelleği Temizle"
 
 msgid "CLOSE"
 msgstr "Kapat"
@@ -852,6 +896,18 @@ msgstr "{0} konsantrasyonu {1} azaldı"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tüketimi"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Hepsini Tut"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Kardeş Hücre ile Bölün"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Her Zaman Baştakinin Üzerine Ekle"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Arazi Değişiminde Üzerine Ekle"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "({0} s uzun bir gece vaktine dayanmak için yeterli değil)"
@@ -1217,6 +1273,14 @@ msgstr "Jenerik"
 msgid "CTRL"
 msgstr "CTRL"
 
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Mevcut boyut:"
+
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"Diskte mevcut olarak depolanan bütün önbellek öğelerinin boyutu. Bu öğeler, herhangi bir zamanda, güvenle temizlenebilir.\n"
+"Ancak, önbellekte bulunması gereken bir öğeye bir sonraki sefer ihtiyaç duyulduğunda, bu öğenin yeniden oluşturulması daha uzun sürer."
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Mevcut Oyun Geliştiricileri"
 
@@ -1500,6 +1564,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Discord topluluk sunucumuza katılın"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"Etkinleştirildiğinde, oluşturulması zahmetli bazı veriler diske yazılır. Böylece, bu verilere yeniden ihtiyaç duyulduğunda yüklenmeleri daha hızlı olur.\n"
+"Eğer devre dışı bırakılırsa, yalnızca bellek içi önbellekleme kullanılır."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Atlanan pencereler:"
 
@@ -1556,14 +1625,14 @@ msgstr "Tam ekranda görüntülemek için çift tıklayın"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "İki katmanlı bir hücre zarı. Hasara karşı koruyuculuğu daha iyidir ve şeklinin bozulmaması için daha az enerji harcar. Ancak hücreyi biraz yavaşlatır ve kaynakların emilim oranını düşürür."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr "Fare ile öğeleri yeniden sıralamak için bunu taşıyın"
+
 msgid "DUMP_SCENE_TREE"
 msgstr "SceneTree dökümünü al"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Türü Kopyala"
-
-msgid "EARLY_MULTICELLULAR"
-msgstr "Çok Hücreli"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "İlginç Gerçek: Didinyum ve Paramesyum on yıllardır araştırılan av-avcı ilişkisinin bir ders kitabı örneği. Şimdi, sen Paramesyum musun yoksa Didinyum mu? Av mısın yoksa avcı mı?"
@@ -1651,6 +1720,9 @@ msgstr "Sürpriz yumurtaları dahil et"
 
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(oyunda rastgele oluşan gizemli şeyler)"
+
+msgid "EASTER_EGG_BANANA_BIOME"
+msgstr "Muz Biyomu"
 
 msgid "EDGE_PAN_SPEED"
 msgstr "Kaydırma hızı:"
@@ -1800,6 +1872,9 @@ msgstr "(her kuşakta boyunca ortamda tutulan glukoz oranı)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Ortamı göster / gizle"
 
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Tolerans"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelajik"
 
@@ -1830,6 +1905,9 @@ msgstr "Yükleme Hatası"
 msgid "ERROR_SAVING"
 msgstr "Kaydetme Hatası"
 
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Bir sorun oluştu: {0}"
+
 msgid "ESCAPE"
 msgstr "Esc"
 
@@ -1839,9 +1917,10 @@ msgstr "yutulmaktan kurtulma"
 msgid "ESTUARY"
 msgstr "Haliç"
 
-#, fuzzy
 msgid "EVENT_ERUPTION_TOOLTIP"
-msgstr "Thrive'ın mevcut sürümünden derlenen tam kod işlemesi"
+msgstr ""
+"Yanardağ Patlaması Arazi Olayı\n"
+"Fazladan hidrojen sülfür ve karbondioksit oluşturur"
 
 msgid "EVOLUTIONARY_TREE"
 msgstr "Evrim Ağacı"
@@ -2055,7 +2134,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(yalnızca oyuncunun bulunmuş olduğu araziler gösterilir)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Savaş Sisi Modu"
+msgstr "Savaş sisi modu"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Normal Savaş Sisi"
@@ -2202,6 +2281,9 @@ msgstr "Görüntü"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik Ekibi"
+
+msgid "GROWTH_ORDER"
+msgstr "Büyüme Sırası"
 
 msgid "GUI"
 msgstr "Arayüz"
@@ -2499,6 +2581,12 @@ msgstr "Demir Kemolitoototrofisi"
 msgid "ITCH_TOOLTIP"
 msgstr "Itch.io sayfamızı ziyaret edin"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr "{0}, ({1}, {2}) konumunda"
+
+msgid "ITEM_NAME_SEPARATOR"
+msgstr ":"
+
 msgid "JANUARY"
 msgstr "Ocak"
 
@@ -2686,9 +2774,6 @@ msgstr "Bu çeviri henüz bitmemiş (%{0} tamamlandı), lütfen tamamlamamıza y
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Son organel silinemez"
-
-msgid "LATE_MULTICELLULAR"
-msgstr "İleri Çok Hücreli"
 
 msgid "LAUNCH0"
 msgstr "Launch 0"
@@ -2897,11 +2982,11 @@ msgstr "Yükleniyor"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Yükleniyor..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "İlk Çok Hücreli Editörü Yükleniyor"
-
 msgid "LOADING_GAME"
 msgstr "Oyun Yükleniyor"
+
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Makroskopik Editörü Yükleniyor"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikrop Editörü Yükleniyor"
@@ -2972,6 +3057,12 @@ msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek i�
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Makrolid Sentezi"
 
+msgid "MACROSCOPIC"
+msgstr "Makroskopik"
+
+msgid "MACROSCOPIC_STAGE"
+msgstr "Makroskopik Evresi"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Günün Saatini Manuel Olarak Ayarla"
 
@@ -2987,11 +3078,17 @@ msgstr "Deniz karı"
 msgid "MASTER_VOLUME"
 msgstr "Ana ses"
 
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Diskteki önbelleğin alabileceği maksimum boyut (eğer önbellek aşırı artarsa, öğeler otomatik olarak kaldırılır)"
+
 msgid "MAX_FPS"
 msgstr "Maksimum FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Sınırsız"
+
+msgid "MAX_SIZE_COLON"
+msgstr "Maksimum boyut:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maksimum varlık sayısı:"
@@ -3019,6 +3116,9 @@ msgstr "Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "Media Stop"
+
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Orta Büyüklükte Kükürt Parçası"
 
 msgid "MEGA_YEARS"
 msgstr "Mn. Yıl"
@@ -3073,6 +3173,9 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr "Miche"
+
+msgid "MICHES_FOR_PATCH"
+msgstr "Arazideki Miche'ler {0}"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Yırtıcı Seçilim Baskısını Önle"
@@ -3206,6 +3309,10 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Serbest Mikrop Yapım Editörü"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3595,6 +3702,12 @@ msgstr "Aşağı doğru git ya da çömel"
 msgid "MOVE_FORWARD"
 msgstr "İleriye doğru git"
 
+msgid "MOVE_ITEM_DOWN"
+msgstr "Bu öğeyi aşağıya taşı"
+
+msgid "MOVE_ITEM_UP"
+msgstr "Bu öğeyi yukarıya taşı"
+
 msgid "MOVE_LEFT"
 msgstr "Sola doğru git"
 
@@ -3658,6 +3771,9 @@ msgstr "Müsilaj Sentezi"
 
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Kalkan oluştur"
+
+msgid "MULTICELLULAR"
+msgstr "Çok Hücreli"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Çok Hücreli Editörü"
@@ -3786,13 +3902,13 @@ msgstr "Nitrojenaz, hücrelerde temel gelişim yapı maddesi olan [thrive:compou
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
-msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Azot Fiksasyon Plastidi"
+msgid "NITROPLAST"
+msgstr "Nitroplast"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "Azot Fiksasyon Plastidi, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan bir proteindir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
+msgid "NITROPLAST_DESCRIPTION"
+msgstr "Nitroplast, hücrelerde ana gelişim yapı maddesi olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı, [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] ve [thrive:compound type=\"atp\"]ATP[/thrive:compound] formundaki hücresel enerjiyi kullanan zarlı bir organeldir. Bu işlem, [b]oksijenli azot fiksasyonu[/b] olarak anılır."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "[thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "NONE"
@@ -3869,6 +3985,9 @@ msgstr "Ekran görüntüsü dizini bulunamadı"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Seçilen Mod Yok"
+
+msgid "NO_SUGGESTION"
+msgstr "Yok"
 
 msgid "NUCLEUS"
 msgstr "Çekirdek"
@@ -3999,7 +4118,7 @@ msgid "ORGANELLES_BUTTON"
 msgstr "Organeller"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "Kilit açma koşulları, editöre girerken her kuşakta yalnızca bir kez kontrol edilir"
+msgstr "Kilit açma koşulları, editöre girerken her kuşakta yalnızca bir kez kontrol edilir. Alternatif olarak, bazı organellerin kilidi endosimbiyoz aracılığıyla açılabilir."
 
 msgid "ORGANELLE_AXON"
 msgstr "Akson"
@@ -4007,8 +4126,14 @@ msgstr "Akson"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Aksonlar, nöronların birbirlerine bağlanmak ve birbiriyle iletişim kurmak için kullandığı sinir lifleridir. Bu organeli yerleştirmek, bir hücre türünü beyin dokusuna dönüştürür."
 
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Makroskopik"
+
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Çok Hücreli"
+
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Bu sekme, organellerin büyüme sırasının ayarlanmasını sağlar. Bu ayar, büyüme aşamasındayken kararsız ATP üretimi olan hücreler için önemli olabilir. Ayrıca, organel sırasının biyoişlem çalıştırma sırasına bir etkisi vardır. Bu ayarın düzenlenmesi yalnızca yapı düzenlemesi bittikten sonra önerilir. Çünkü yapı düzenlemeleri bu ayardaki değişiklikleri geri alabilir."
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Miyofibril"
@@ -4030,6 +4155,16 @@ msgstr "{0} organel"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organel"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organel Önerisi:"
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"Bu gösterge, hücreye eklenebilecek bir önerilen organeli gösterir.\n"
+"Öneri, eklenecek organellerden hangisinin en fazla enerji artışı sağlayacağı esas alınarak, oto-evrim tarafından hesaplanır.\n"
+"Bazen, eklenebilecek tek bir iyi organel olmayabilir. Ama daha fazla organel ile daha büyük düzenlemeler uzun vadede faydalı olabilir.\n"
+"Bunun haricinde, mevcut organelleri kaldırmak da çoğu zaman faydalı bir strateji olabilir."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organellerin kilidini açma etkin"
@@ -4312,6 +4447,9 @@ msgstr "arazideki popülasyon:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+msgid "POSITION_NUMBER"
+msgstr "{0}."
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} türünün yenilmesi"
 
@@ -4428,6 +4566,20 @@ msgstr "Eşeysiz"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tomurcuklanma"
 
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Editörden çıkışta bileşikler:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(editörden evreye geri dönüldüğünde, oyuncunun depoladığı bileşikler ile yapacağı eylem)"
+
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr ""
+"Editöre gidildiğinde, depolanan bileşiklere ne olacağını ayarlar.\n"
+"Kardeş hücre ile ayrılma seçeneği, editörden çıkıldığında, depolanan bileşiklerin yarısını kardeş hücreye verir.\n"
+"Hepsini tutma seçeneği, tüm depolanan bileşikleri olduğu gibi tutan çıkarcı bir seçenektir.\n"
+"Her zaman tamamen doldurma seçeneği, hücrenin başlangıçta sahip olduğu bileşik miktarı kadar bileşik ile hücreyi doldurur.\n"
+"Arazi değişikliğinde tamamen doldurma seçeneği, yalnızca arazi değiştirildiğinde başlangıçtaki bileşikler ile hücreyi doldurur."
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Üreme:"
 
@@ -4448,6 +4600,9 @@ msgstr "Atlanan Pencereleri Sıfırla"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Girişler varsayılana sıfırlansın mı?"
+
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
+msgstr "Öğe sırasını varsayılana sıfırla"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "Tuş atamalarını sıfırla"
@@ -4798,6 +4953,9 @@ msgstr "Ekran üzerindeki hasar efektini göster"
 msgid "SHOW_HELP"
 msgstr "Yardım menüsünü göster"
 
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Koordinatları göster"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Yeni yama notlarını otomatik olarak göster"
 
@@ -4881,6 +5039,9 @@ msgstr "Küçük Demir Parçası"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Küçük Fosfat Parçası"
+
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Küçük Kükürt Parçası"
 
 msgid "SNOWFLAKE"
 msgstr "Kar Tanesi"
@@ -5554,18 +5715,6 @@ msgstr "Bir ekran görüntüsü almayı deneyin!"
 msgid "TUTORIAL"
 msgstr "Oyun Rehberi"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"İlk Çok Hücreli Evresi'ne hoş geldiniz!\n"
-"\n"
-"Tek hücreli aşamada türünüze rehberlik ederek başarıya ulaştınız.\n"
-"\n"
-"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Çoğalmak ve editöre girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
-"\n"
-"Ancak, artık editörde koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
-"\n"
-"Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsanız, ufak bir tomurcuğu kontrol etmeye başlarsınız ve hücre düzeninin geri kalanını büyütmeniz gerekir."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Sağdaki ATP Üretim çubuğu, tüketilen ATP'ye nazaran, hücrenizin ne kadar [thrive:compound type=\"atp\"]ATP[/thrive:compound] ürettiğini gösterir. Eğer üstteki çubuk alttakinden daha kısa ise, bu yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmiyorsunuz demektir.\n"
@@ -5737,6 +5886,18 @@ msgstr ""
 "\n"
 "Koloniden tamamen ayrılmak için kendi hücrenize tıklayabilir veya [thrive:input]g_unbind_all[/thrive:input] tuşuna basabilirsiniz."
 
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Çok Hücreli Evresi'ne hoş geldiniz!\n"
+"\n"
+"Tek hücreli aşamada türünüze rehberlik ederek başarıya ulaştınız.\n"
+"\n"
+"Bu kısım, Mikrop Evresi'nin ana mekaniğini takip ediyor. Çoğalmak ve editöre girmek için yine organizmanızı geliştirmeye devam etmeniz gerekiyor.\n"
+"\n"
+"Ancak, artık editörde koloninizin hücre düzenini tasarlayabilir ve hücrelerinizi çeşitli görevler için özelleştirebilirsiniz. Unutmayın, koloni üyeleri [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] paylaşamaz.\n"
+"\n"
+"Eğer tomorcuklanma ile üremeyi (varsayılan yöntem) kullanıyorsanız, ufak bir tomurcuğu kontrol etmeye başlarsınız ve hücre düzeninin geri kalanını büyütmeniz gerekir."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Şimdi İnceleyin"
 
@@ -5768,15 +5929,13 @@ msgid "UNCERTAIN_VERSION_WARNING"
 msgstr "Bu bir hata ayıklama sürümü, bu yüzden aşağıdaki bilgi muhtemelen güncel değil"
 
 msgid "UNDERWATERCAVE"
-msgstr "Yeraltı Mağarası"
+msgstr "Denizaltı Mağarası"
 
-#, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION"
-msgstr "Yeraltı Mağarası"
+msgstr "Denizaltı yanardağ bacası patlaması"
 
-#, fuzzy
 msgid "UNDERWATER_VENT_ERUPTION_IN"
-msgstr "Yeraltı Mağarası"
+msgstr "{0} arazisinde volkanik patlama"
 
 msgid "UNDISCOVERED_ORGANELLES"
 msgstr "Keşfedilmemiş"
@@ -5936,6 +6095,9 @@ msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı 
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Özel bir kullanıcı adı kullan"
 
+msgid "USE_DISK_CACHE"
+msgstr "Disk önbelleğini kullan"
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Arkaplanda çalışan iş parçacığı sayısını manuel olarak ayarla"
 
@@ -5992,6 +6154,9 @@ msgstr "Hücre İşlemlerini İncele"
 
 msgid "VIEW_ONLINE"
 msgstr "Online Olarak Görüntüle"
+
+msgid "VIEW_PATCH_MICHES"
+msgstr "Miche'leri İncele"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Yama Notlarını Görüntüle"
@@ -6064,9 +6229,6 @@ msgstr "Viki"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr "2D (ilk), 3D (ileri)"
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6469,6 +6631,14 @@ msgstr ""
 "[indent]—   [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound][/indent]\n"
 "\n"
+"[b][u]Yüzen Bileşik Parçaları[/u][/b]\n"
+"\n"
+"Bu bileşikler, bazı arazilerde mineral parçaları olarak yüzer halde bulunur.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"iron\"]Demir[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound][/indent]\n"
+"\n"
 "[b][u]Ajanlar[/u][/b]\n"
 "\n"
 "Bu Bileşikler özel [color=#3796e1][url=thriveopedia:OrganellesRoot]organellerde[/url][/color] üretilir ve özel kullanım alanlarına sahiptir.\n"
@@ -6705,6 +6875,44 @@ msgstr ""
 "\n"
 "Bu durum [b]Fotosentezi[/b] çok daha güvenilmez hale getirir ve bu şekilde hayatta kalmayı zorlaştırır. [thrive:compound type=\"sunlight\"]Güneş ışığı[/thrive:compound] kullanan ototrofların, gece hayatta kalabilmek için, [b]depolamayı[/b] (örneğin, [color=#3796e1][url=thriveopedia:vacoule]Kofullar[/url][/color] kullanarak) evrimleştirmesi gerekir."
 
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Etki yok."
+
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"Metalik bir güç merkezidir. [b]Ferroplast[/b], [b]Demir Kemolitoototrofisi[/b] işlemi ile [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için [thrive:compound type=\"iron\"]demir[/thrive:compound] ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] kullanır. Bu etki, [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] konsantrasyonu ile doğru orantılıdır. Böylece, ortamda daha düşük seviyelerde bulunan [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound], [thrive:compound type=\"atp\"]ATP'nin[/thrive:compound] daha az üretilmesine neden olur.\n"
+"\n"
+"[b]Ferroplast[/b], protein ve enzim ağı içeren çift zarlı bir yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Bu organel, [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] ile elde edilenden daha fazla verimlilikte çalışır."
+
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Değişiklikler yok."
+
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]Demir Kemolitoototrofisi[/b]: [thrive:compound type=\"iron\"]Demir[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"\n"
+"Bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] olmadan enerji üretme yöntemidir. [thrive:compound type=\"iron\"]Demir[/thrive:compound] tüketir ve çevresel [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] miktarı ile doğru orantılıdır."
+
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"Bir hücre, [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeği[/url][/color][/b] evrimleştirmek için [b]Ferroplastlara[/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşul [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   Üst üste en az [b]6[/b] kuşak boyunca, [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] içermek.[/indent]"
+
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "[b]Ferroplastlar[/b], gerçek hayatta keşfedilmemiştir. Ancak, endosimbiyotların ([b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondri[/url][/color][/b]) ve enerji sağlama yeteneği olan [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] gibi) evrimine bağlı olarak, teorik olarak tamamen mümkündürler."
+
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"[thrive:compound type=\"iron\"]Demirin[/thrive:compound] bol ve [thrive:compound type=\"carbondioxide\"]karbondioksitin[/thrive:compound] yüksek seviyelerde olduğu ortamlarda, [b]Ferroplastlar[/b] mükemmel birincil veya ikincil enerji kaynağıdır. Yine de oyun ilerledikçe, iki bileşiğin de konsantrasyonunun düşebileceğini bilin. Bu yüzden, hücreniz mücadele etmeden önce ek enerji kaynaklarından faydalanmanızı öneriyoruz.\n"
+"\n"
+"Ayrıca, bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] evrimleştirdikten sonra, [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanini[/url][/color][/b], [b]Ferroplast[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi çok daha fazla verimlidir."
+
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Geliştirme yok."
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Her [b]Kamçı[/b], bulunduğu yönün tersine doğru yönlü itiş sağlar. Bu organel ayrıca yönün tam tersine yakın doğrultulara doğru kısmi olarak itiş sağlar (daha kesin olmak gerekirse, vektörün tam tersi bileşeni pozitif olan doğrultular). Bir [b]Kamçı[/b] etkin olduğunda, [thrive:compound type=\"atp\"]ATP[/thrive:compound] tüketir."
 
@@ -6874,7 +7082,7 @@ msgstr "Çok yakında."
 
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"Sanayi Evresi, Thrive'ın yedi oyun evresinden altıncısıdır ve [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi'nden[/url][/color] sonra, sanayi makinelerinin icadıyla başlar. Teknoloji ve kültür artık çok daha gelişmiş durumdadır ve medeniyet kendini sürdürebilmek için makinelere büyük ölçüde bağımlıdır. Artık tüm gezegen büyük oranda keşfedilmiş ve nüfuslanmış olup, neredeyse her yerde iletişim kurmak ya da savaş açmak mümkündür. Diplomasi ve liderlik becerileri her zamankinden daha çok gereklidir.\n"
+"Sanayi Evresi, Thrive'ın dokuz oyun evresinden yedincisidir ve [color=#3796e1][url=thriveopedia:society_stage]Topluluk Evresi'nden[/url][/color] sonra, sanayi makinelerinin icadıyla başlar. Teknoloji ve kültür artık çok daha gelişmiş durumdadır ve medeniyet kendini sürdürebilmek için makinelere büyük ölçüde bağımlıdır. Artık tüm gezegen büyük oranda keşfedilmiş ve nüfuslanmış olup, neredeyse her yerde iletişim kurmak ya da savaş açmak mümkündür. Diplomasi ve liderlik becerileri her zamankinden daha çok gereklidir.\n"
 "\n"
 "Teknolojik gelişme hızla artmakta ve karmaşık makineler eskiden yüzlerce yılda icat edilirken, şimdi onlarca yıl içinde üretilmektedir. Yeni motorlu araçlar, tıbbi yöntemler, sanayi makineleri ve kitle imha silahları da dahil olmak üzere yeni teknolojiler ortaya çıkmaktadır.\n"
 "\n"
@@ -6945,6 +7153,40 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr ""
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editör konsepti[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Arazi rengi konsepti[/url][/color] \t\t\t[/indent]"
+
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Makroskopik Evresi'nin prototip düzeyinde çalışma başladı."
+
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr ""
+"Bu evrede oyuncu, hücre türlerini düzenlemeye devam edebilir. Ancak, bu türler bir beden planına yerleştirilmez. Hücre türleri artık doku parçaları olarak kullanılır ve tamamen 3D makroskopik beden planı editöründe yerleştirilir. Editör, türün yapısını temsil eden damla formların yerleştirilmesi ve düzenlenmesine dayanır.\n"
+"\n"
+"Oyuncu, makroskopik bir canlı haline gelir. Bu durum oyunun ölçeğini, mikroorganizmaların artık görünür olmadığı ve oyuncunun tekil hücreler yerleştirmek yerine dokuları şekillendirmeye geçtiği yere kaydırır.\n"
+"\n"
+"Makroskopik Evresi GDD'si için, evre mekaniklerini daha detaylı olarak açıklayan ayrı bir sayfa bulunmaktadır."
+
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Makroskopik Evresi'nde, hücre koloniniz 3D bir ortamda varolan bir doku yığınına dönüşür. Bu evre, canlınız ilk olarak belli bir bilinç düzeyi geliştirdiğinde sona erer."
+
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr ""
+"Okyanuslarda yaşam zenginleşiyor. Burada çok sayıda çeşitlilik var. Dünya bir anda oyuncu için çok daha büyük bir hale geldi.\n"
+"\n"
+"Oyuncu artık dokulardan oluşan düzgün bir canlıyı kontrol edebilir. Ölçek, santimetre boyutunda başlayıp buradan yukarılara çıkacak. Bu evrede, tekil hücreler artık görünür ya da simüle edilir halde değil."
+
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr ""
+"Bu evre, bir çok hücreli hücre kolonisinin yeterince büyük hale geldiğinde bir doku koleksiyonu olmaya geçebilmesiyle başlar. Şu anda, bu olayın yaklaşık 20 hücre büyüklüğünde olması planlanmaktadır.\n"
+"\n"
+"Bu evre, oyuncu türünün yeterince karmaşık bir sinir sistemi geliştirmesiyle sona erer."
+
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Henüz bir şey tartışılmadı."
+
 msgid "WIKI_MECHANICS"
 msgstr "Mekanikler"
 
@@ -6965,7 +7207,7 @@ msgstr "Değişiklikler yok."
 
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
-"[b]Protein Solunumu:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"[b]Protein Solunumu:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound]\n"
 "\n"
 "[b][color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazmadan[/url][/color][/b] üstün ama [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondriden[/url][/color][/b] aşağı bir enerji üretim yöntemidir. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir. Bu oran, ortamdaki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
@@ -7031,7 +7273,7 @@ msgstr ""
 "\n"
 "[b][u]Hücre Editörü[/u][/b]\n"
 "\n"
-"Editör sayfası, oyuncunun hücresini parça parça özelleştirebileceği bir yerdir. Editörün büyük bir kısmı, hücre parçalarının yerleştirildiği altıgen bir alandan oluşur ve merkezde oyuncunun mevcut hücresi yer alır. Bu geniş alanın sol tarafında, oyuncunun hücresine eklemek istediği parçaları seçebileceği parça listesi veya renk ya da zar türü gibi özellikleri değiştirebileceği bir sekme bulunur. Sağ üst alan, hücrenin neler yapabileceğini tanımlayan organizma istatistiklerini ve de oyuncuya, ürettiği ATP miktarı ile tükettiği miktar arasındaki dengeyi gösteren ATP tutarı çubuğunu içerir. Oyuncu, her zaman kırmızı çubuğun yeşil çubuktan daha kısa olduğundan emin olmalıdır. Aksi takdirde, oyuncular kendi canlılarının zamansız ölümü ile karşılaşabilir. Sağ altta, oyuncular, oto-evrim algoritmasına göre yaptıkları değişikliklerle türlerinin performansının ne kadar iyi olacağını tahmini olarak detaylandıran oto-evrim tahmin ekranını bulacaktır. Son olarak, editörün sol üstü, önceki sayfalar arasında gezinmek için kullanılan sekmeler ve oyuncunun mevcut MP miktarını gösteren MP çubuğunu içerir.\n"
+"Editör sayfası, oyuncunun hücresini parça parça özelleştirebileceği bir yerdir. Editörün büyük bir kısmı, hücre parçalarının yerleştirildiği altıgen bir alandan oluşur ve merkezde oyuncunun mevcut hücresi yer alır. Bu geniş alanın sol tarafında, oyuncunun hücresine eklemek istediği parçaları seçebileceği parça listesi veya renk ya da zar türü gibi özellikleri değiştirebileceği bir sekme bulunur. Sağ üst alan, hücrenin neler yapabileceğini tanımlayan organizma istatistiklerini ve de oyuncuya, ürettiği [thrive:compound type=\"atp\"]ATP[/thrive:compound] miktarı ile tükettiği miktar arasındaki dengeyi gösteren [thrive:compound type=\"atp\"]ATP[/thrive:compound] tutarı çubuğunu içerir. Oyuncu, her zaman kırmızı çubuğun yeşil çubuktan daha kısa olduğundan emin olmalıdır. Aksi takdirde, oyuncular kendi canlılarının zamansız ölümü ile karşılaşabilir. Sağ altta, oyuncular, oto-evrim algoritmasına göre yaptıkları değişikliklerle türlerinin performansının ne kadar iyi olacağını tahmini olarak detaylandıran oto-evrim tahmin ekranını bulacaktır. Son olarak, editörün sol üstü, önceki sayfalar arasında gezinmek için kullanılan sekmeler ve oyuncunun mevcut MP miktarını gösteren MP çubuğunu içerir.\n"
 "\n"
 "Oyuncu, mevcut ve dolu olan herhangi bir altıgenin bitişiğine veya bir sitoplazma altıgeninin üzerine yeni parçalar yerleştirerek, eski parçayı yenisiyle değiştirebilir. Oyuncu isterse, yerleştirilen parçaları 10 MP silme maliyeti ile sağ tıklayarak silebilir. Alternatif olarak oyuncu, editör ekranının altındaki ok butonlarını kullanarak önceki eylemleri geri alabilir veya yineleyebilir. Ancak bu işlev, yalnızca mevcut editör sürecinde yapılan değişiklikler için geçerlidir. Ok butonlarının ortasındaki buton simetri tuşudur ve bu buton tıklandığında oyuncunun mevcut simetri modunu değiştirir. Üç istisna hariç, tüm parçalar silinebilir: Çekirdek, bağlayıcı ajanlar ve hücrenin son altıgeni. Ama bu parçalar yine de taşınabilir, bu yüzden parçaların mevcut konumunu beğenmiyorsanız endişelenmeyin!\n"
 "\n"
@@ -7053,7 +7295,7 @@ msgstr ""
 
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
-"Mikrop Evresi, mikroskoptan bakılıyormuş gibi 2D bir perspektiften görülen 3D bir ortamda gerçekleşir. Burada oyuncu, hücresini renkli bileşik bulutlarına yönlendirerek, çoğalabilecek hale gelene kadar hücresini yaşatmalı ve büyütmelidir. Oyunun başında hiçbir yırtıcı canlı yoktur, tek tehlike açlık ve ara sıra karşılaşılan toksinlerdir. Ancak oyuncu çoğaldıkça, rakip türler oyuncu türünden dallanarak ayrılırlar ve oyuncunun üstesinden gelmesi gereken giderek daha tehlikeli engeller haline gelirler. Oyuncu, ilk başta sadece glukoz, amonyak ve fosfat tüketebilen küçük bir hücreyken, her çoğalma sonrası hücresini istediği şekilde uyarlayabilir, böylece zamanla yeni yetenekler ve seçenekler kazanabilir. Ancak, bu bir bedelle gelir; oyuncu hücresi büyüdükçe ve daha karmaşık hale geldikçe, kendini sürdürmek için daha fazla besine ihtiyaç duyar. Oyuncu, hücresinin her zaman sürdürülebilir olduğundan emin olmalıdır, aksi takdirde hücre çabucak açlıktan ölür. Ayrıca, oyuncu türünden türeyen türler, oyuncunun adaptasyonlarını miras alacakları için, oyuncu silahlanma gibi özellikleri ne zaman geliştireceğine dikkat etmelidir.\n"
+"Mikrop Evresi, mikroskoptan bakılıyormuş gibi 2D bir perspektiften görülen 3D bir ortamda gerçekleşir. Burada oyuncu, hücresini renkli bileşik bulutlarına yönlendirerek, çoğalabilecek hale gelene kadar hücresini yaşatmalı ve büyütmelidir. Oyunun başında hiçbir yırtıcı canlı yoktur, tek tehlike açlık ve ara sıra karşılaşılan toksinlerdir. Ancak oyuncu çoğaldıkça, rakip türler oyuncu türünden dallanarak ayrılırlar ve oyuncunun üstesinden gelmesi gereken giderek daha tehlikeli engeller haline gelirler. Oyuncu, ilk başta sadece [thrive:compound type=\"glucose\"]glukoz[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] tüketebilen küçük bir hücreyken, her çoğalma sonrası hücresini istediği şekilde uyarlayabilir, böylece zamanla yeni yetenekler ve seçenekler kazanabilir. Ancak, bu bir bedelle gelir; oyuncu hücresi büyüdükçe ve daha karmaşık hale geldikçe, kendini sürdürmek için daha fazla besine ihtiyaç duyar. Oyuncu, hücresinin her zaman sürdürülebilir olduğundan emin olmalıdır, aksi takdirde hücre çabucak açlıktan ölür. Ayrıca, oyuncu türünden türeyen türler, oyuncunun adaptasyonlarını miras alacakları için, oyuncu silahlanma gibi özellikleri ne zaman geliştireceğine dikkat etmelidir.\n"
 "\n"
 "[b][u]Kontroller[/u][/b]\n"
 "\n"
@@ -7079,25 +7321,23 @@ msgstr ""
 "\n"
 "Aşağıdaki gazlar, bir arazi içerisinde bulunan ve oyun dünyasında fiziksel bir varlığı olmayan gazlardır. Bu elementler, hücrelerin çeşitli işlemleri üzerinde pasif bir etki yaratır ve bazı proteinlerin ve organellerin çalışması için gerekli olabilir.\n"
 "\n"
-"Şu an için, oksijenin hücreler üzerinde başka bir etkisi yoktur ve tüm arazilerde %21'lik bir sabit konsantrasyonda bulunur.\n"
+"[thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] [b]Oksijen:[/b] Oksijenli solunum için önemli bir gazdır. [b]Oksijen[/b], [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] gibi parçaların işlevlerini yerine getirmesi için kullanılır. Bir arazide ne kadar çok [b]Oksijen[/b] varsa, bu parçalar o kadar iyi çalışır. Şu an için, [b]Oksijenin[/b] hücreler üzerinde başka bir etkisi yoktur. Konsantrasyon, bütün arazilerde %0'da başlar, fotosentez sıklığı ile artar ve solunum, oksijenli [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] fiksasyonu ve bazı toksin sentezlerinin sıklığı ile azalır.\n"
 "\n"
-"[indent]—   [b]Oksijen:[/b] Oksijenli solunum için önemli bir gazdır. Oksijen, metabolozomlar gibi parçaların işlevlerini yerine getirmesi için kullanılır. Bir arazide ne kadar çok oksijen varsa, bu parçalar o kadar iyi çalışır. Şu an için, oksijenin hücreler üzerinde başka bir etkisi yoktur ve tüm arazilerde sabit %21'lik bir konsantrasyonda bulunur.[/indent]\n"
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] [b]Azot:[/b] [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] sentezinde, [b]Azot[/b] fiksasyonu için hücreler tarafından kullanılan bir gazdır. Şu an için, [b]Azotun[/b] hücreler üzerinde başka bir etkisi yoktur. Konsantrasyon, [b]Azot[/b] fiksasyonu sıklığı ile azalır.\n"
 "\n"
-"[indent]—   [b]Azot:[/b] Amonyak sentezinde, azot fiksasyonu için hücreler tarafından kullanılan bir gazdır. Şu an için, azotun hücreler üzerinde başka bir etkisi yoktur ve tüm arazilerde sabit %70'lik bir konsantrasyonda bulunur.[/indent]\n"
-"\n"
-"[indent]—   [b]Karbondioksit:[/b] Kemosentez ve fotosentez için önemli bir gazdır. Karbondioksit, şu an için, tüm arazilerde sabit %9'luk bir konsantrasyonda bulunur.[/indent]\n"
+"[thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound] [b]Karbondioksit:[/b] Kemosentez ve fotosentez için önemli bir gazdır. [b]Karbondioksit[/b], şu an için, farklı arazilerde %8 ila %30 arasında değişen bir konsantrasyonda başlar. Konsantrasyon, fotosentez ve [thrive:compound type=\"iron\"]Demir[/thrive:compound] ya da [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound] kemosentezi sıklığı ile azalır ve solunum sıklığı ile artar.\n"
 "\n"
 "Mikrop Evresi'nde bulunan birçok bileşik vardır. Aşağıda, tüm bileşiklerin ve kullanım amaçlarının bir listesi bulunmaktadır.\n"
 "\n"
-"[indent]—   [b]Glukoz:[/b] Hücreler için birincil ATP depolama kaynağı ve oyuncunun ilk besin kaynağıdır. Glukoz, ATP üretmek için birkaç organel ve protein tarafından tüketilir. Bunlar arasında en dikkat çekici olanlar metabolozomlar ve mitokondrilerdir, çünkü özellikle glukoz için kullanılırlar. Oyuncu öldüğünde, hücresinde bir glukoz rezerviyle yeniden doğar ve açlık korkusu olmadan oyuna rahatlıkla devam edebilir. Oyuncu, ortamda bulunan kolayca erişilebilir glukoza güveniyorsa dikkatli olmalıdır, çünkü her kuşakta genel glukoz miktarı %80 oranında azalır. Glukoz bulutları beyaz renktedir.[/indent]\n"
+"[thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] [b]Glukoz:[/b] Hücreler için birincil [thrive:compound type=\"atp\"]ATP[/thrive:compound] depolama kaynağı ve oyuncunun ilk besin kaynağıdır. [b]Glukoz[/b], ATP üretmek için birkaç organel ve protein tarafından tüketilir. Bunlar arasında en dikkat çekici olanlar [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitokondrilerdir[/url][/color][/b], çünkü özellikle [b]Glukoz[/b] için kullanılırlar. Oyuncu öldüğünde, hücresinde bir [b]Glukoz[/b] rezerviyle yeniden doğar ve açlık korkusu olmadan oyuna rahatlıkla devam edebilir. Oyuncu, ortamda bulunan kolayca erişilebilir [b]Glukoza[/b] güveniyorsa dikkatli olmalıdır, çünkü her kuşakta genel [b]Glukoz[/b] miktarı azalır. [b]Glukoz[/b] bulutları beyaz renktedir.\n"
 "\n"
-"[indent]—   [b]Amonyak:[/b] Üreme için önemli bir bileşiktir. Amonyak, hücre içindeki proteinlerin ve organellerin büyümesi ve çoğaltılması için kullanılır ve ortamda kolaylıkla bolca bulunabilir. Nitrojenaz ve azot fiksasyon plastidi gibi parçalar, ATP ve azottan amonyak üretebilir. Bu da oyuncuyu, kendisinin çoğalması için, ortamda aktif olarak amonyak arama zorunluluğundan kurtarır. Amonyak bulutları turuncu renktedir.[/indent]\n"
+"[thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] [b]Amonyak:[/b] Üreme için önemli bir bileşiktir. [b]Amonyak[/b], hücre içindeki proteinlerin ve organellerin büyümesi ve çoğaltılması için kullanılır ve ortamda kolaylıkla bolca bulunabilir. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenaz[/url][/color][/b] ve [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b] gibi parçalar, [thrive:compound type=\"atp\"]ATP[/thrive:compound] ve [thrive:compound type=\"nitrogen\"]Azottan[/thrive:compound] [b]Amonyak[/b] üretebilir. Bu da oyuncuyu, kendisinin çoğalması için, ortamda aktif olarak bu bileşiği arama zorunluluğundan kurtarır. [b]Amonyak[/b] bulutları turuncu renktedir.\n"
 "\n"
-"[indent]—   [b]Fosfat:[/b] Amonyak ile aynı amaca hizmet eden fosfat da üreme için gereklidir. Ancak amonyaktan farklı olarak fosfatın sentezlenmesi için herhangi bir yöntem yoktur. Bu nedenle, fosfat yalnızca ortamda bulunabilir veya avlanma ile elde edilebilir. Fosfat bulutları mor renktedir.[/indent]\n"
+"[thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound] [b]Fosfat:[/b] [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] ile aynı amaca hizmet eden, [b]Fosfat[/b] da üreme için gereklidir. Ancak [thrive:compound type=\"ammonia\"]Amonyaktan[/thrive:compound] farklı olarak [b]Fosfatın[/b] sentezlenmesi için herhangi bir yöntem yoktur. Bu nedenle, bu bileşik yalnızca ortamda bulunabilir veya avlanma ile elde edilebilir. [b]Fosfat[/b] bulutları mor renktedir. [b]Fosfat[/b] kristalleri mavi yada mavi-yeşil renktedir.\n"
 "\n"
-"[indent]—   [b]Hidrojen Sülfür:[/b] Hücreler için alternatif bir glukoz kaynağıdır ve yalnızca birkaç arazide bol miktarda bulunabilir. Eğer oyuncu enerji için hidrojen sülfür kullanmayı düşünüyorsa, bulunduğu arazinin bu bileşiği içerdiğinden emin olmalıdır. Hidrojen sülfür yalnızca, eğer oyuncu kemosentez yapan proteinlere sahipse, kullanılabilir. Aksi takdirde, oyuncu bu bileşiği alamaz ve hücre içinde halihazırda depolanan hidrojen sülfür hızla dışarı atılır. Hidrojen sülfür bulutları sarı renktedir.[/indent]\n"
+"[thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound] [b]Hidrojen Sülfür:[/b] Hücreler için alternatif bir [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] kaynağıdır ve yalnızca birkaç arazide bol miktarda bulunabilir. Eğer oyuncu enerji için [b]Hidrojen Sülfür[/b] kullanmayı düşünüyorsa, bulunduğu arazinin bu bileşiği içerdiğinden emin olmalıdır. [b]Hidrojen Sülfür[/b] yalnızca, eğer oyuncu [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinlere[/url][/color][/b] sahipse, kullanılabilir. Aksi takdirde, oyuncu bu bileşiği alamaz ve hücre içinde halihazırda depolanan bu bileşik hızla dışarı atılır.\n"
 "\n"
-"[indent]—   [b]Demir:[/b] Alternatif bir ATP kaynağı olan demir, dünyadaki hemen hemen her arazi içinde bulunabilen ancak nispeten nadir bir bileşiktir. Diğer bileşiklerden farklı olarak, demir yalnızca bulutlar halinde değil, aynı zamanda demir bulutlarını takip eden ve sürüklenen farklı büyüklükteki demir parçaları olarak da bulunabilir. Demir yalnızca hücrede rustisiyanin varsa kullanılabilir. Demir bulutları kahverengi olarak görünür. Demir parçalar, önemli miktarda demir kaynağı almak için yutulabilir.[/indent]"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound] [b]Demir:[/b] Alternatif bir [thrive:compound type=\"atp\"]ATP[/thrive:compound] kaynağı olan [b]Demir[/b], dünyadaki hemen hemen her arazi içinde bulunabilen ancak nispeten nadir bir bileşiktir. Diğer bileşiklerden farklı olarak, [b]Demir[/b] yalnızca bulutlar halinde değil, aynı zamanda [b]Demir[/b] bulutlarını takip eden ve sürüklenen farklı büyüklükteki parçalar olarak da bulunabilir. [b]Demir[/b] yalnızca hücrede [b][color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color][/b] varsa kullanılabilir. [b]Demir[/b] bulutları kahverengi olarak görünür. Bu parçalar, önemli miktarda [b]Demir[/b] kaynağı almak için yutulabilir."
 
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "Mikrop evresi için daha ayrıntılı bilgiler içeren ayrı bir oyun tasarım belgesi bulunmaktadır: Mikrop Evresi GDD'si"
@@ -7108,7 +7348,7 @@ msgstr ""
 "\n"
 "Sonraki evre: [color=#3796e1][url=thriveopedia:multicellular_stage]Çok Hücreli Evresi[/url][/color]\n"
 "\n"
-"Mikrop Evresi, oyunun ilk evresidir. Bu evre, yaşamın ilk kökenlerinden canlı olarak çıkan ve dünyada var olan ilk türün besin açısından zengin Pangonian Bacaları'nı keşfetmesiyle başlar. Bu noktada oyuncu, türünün birkaç bireyinden biri olan küçük bir prokaryotik sitoplazma parçasının kontrolünü üstlenir. Oyuncu, henüz diğer besin maddelerini işleme yollarına sahip olmadığından, tamamen serbest halde bulunan glukozu bulmaya muhtaçtır ve büyüyüp üremeye hazırlanmak için fosfat ve amonyak aramak zorundadır. Oyuncu, yeterli büyüklüğe ulaştığında üreyebilecek ve isterse mikrop editörüne geçebilecektir. Oyun ilerledikçe, oyuncu her kuşakta git gide daha sert hale gelen bir dünyada kendi hücresinin hayatta kalma yeteneğini sürekli geliştirecek ve kendi türünden türeyen yeni türlerle rekabet edecektir."
+"Mikrop Evresi, oyunun ilk evresidir. Bu evre, yaşamın ilk kökenlerinden canlı olarak çıkan ve dünyada var olan ilk türün besin açısından zengin Pangonian Bacaları'nı keşfetmesiyle başlar. Bu noktada oyuncu, türünün birkaç bireyinden biri olan küçük bir prokaryotik sitoplazma parçasının kontrolünü üstlenir. Oyuncu, henüz diğer besin maddelerini işleme yollarına sahip olmadığından, tamamen serbest halde duran [thrive:compound type=\"glucose\"]glukozu[/thrive:compound] bulmaya muhtaçtır ve büyüyüp üremeye hazırlanmak için [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] ve [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] aramak zorundadır. Oyuncu, yeterli büyüklüğe ulaştığında üreyebilecek ve isterse mikrop editörüne geçebilecektir. Oyun ilerledikçe, oyuncu her kuşakta git gide daha sert hale gelen bir dünyada kendi hücresinin hayatta kalma yeteneğini sürekli geliştirecek ve kendi türünden türeyen yeni türlerle rekabet edecektir."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "Etki yok."
@@ -7121,9 +7361,9 @@ msgstr "Değişiklikler yok."
 
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
-"[b]Oksijenli Solunum:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
+"[b]Oksijenli Solunum:[/b] [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound] + [thrive:compound type=\"oxygen\"]Oksijen[/thrive:compound] → [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"carbondioxide\"]Karbondioksit[/thrive:compound]\n"
 "\n"
-"[color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlardakinden[/url][/color] daha üstün olan ana enerji üretim yöntemlerinden biridir. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir. Bu oran, ortamdaki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
+"[b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlardakinden[/url][/color][/b] daha üstün olan ana enerji üretim yöntemlerinden biridir. Düzenli bir [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] girişi gerektirir. Bu oran, ortamdaki [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] konsantrasyonu ile doğru orantılıdır."
 
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
@@ -7131,9 +7371,10 @@ msgstr ""
 "\n"
 "Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşulların [i]her ikisi de[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
 "\n"
-"[indent]—   Üst üste en az [b]7[/b] kuşak boyunca [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] içermek.[/indent]\n"
+"[indent]—   Üst üste en az [b]5[/b] kuşak boyunca, en az [b]4[/b] [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color][/b] içermek.[/indent]\n"
 "[indent]—   En az [b]+20[/b] [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek.[/indent]"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
@@ -7149,36 +7390,35 @@ msgstr "Geliştirme yok."
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 "[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]Algı konsepti[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editör konsepti[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Arazi rengi konsepti[/url][/color] \t\t\t[/indent]"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editör konsepti[/url][/color] \t\t\t[/indent]"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
-msgstr "Çok Hücreli Evresi'nin geliştirilmesinde prototip aşamasına geçildi. İlk çok hücreli evresi büyük ölçüde oynanabilir durumdadır. İleri çok hücreli evresi ise daha çok deneysel bir prototiptir."
+msgstr "Çok Hücreli Evresi'nde geliştirme süreci başladı. Ancak, bu evre henüz çok detaylandırılmadı."
 
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr ""
-"Bu evrenin ilk bölümünün oynanışı büyük ölçüde Mikrop Evresi'ne benzeyecek. Oyun yine diğer hücrelerle 2D düzleminde devam edecek. Ama fark şu ki, oyuncu artık büyüyen bir koloniyi kontrol edecek. Mikrop evresinin sonundan farklı olarak, koloni artık birbirinden ayrılamayacak. Bunun yerine bu koloni, kalıcı olarak birbirine yapışmış, tek bir organizma gibi hareket edecek. Mikrop ortamının hala kullanıldığı ve oyuncunun mikroplarla etkileşim kurabildiği bu bölüm, çok hücreli evresinin ilk bölümüdür.\n"
+"Çok hücreli evrenin oynanışı büyük ölçüde Mikrop Evresi'ne benzeyecek. Oyun yine diğer hücrelerle 2D düzleminde devam edecek. Ama fark şu ki, oyuncu artık büyüyen bir koloniyi kontrol edecek. Mikrop evresinin sonundan farklı olarak, koloni artık birbirinden ayrılamayacak. Bunun yerine bu koloni, kalıcı olarak birbirine yapışmış, tek bir organizma gibi hareket edecek. Mikrop ortamı hala kullanılmakta ve oyuncu mikroplarla etkileşim kurabilmektedir.\n"
 "\n"
 "Editörde, oyuncu artık hücrelerin yapısını ve organellerini değiştirmekle kalmayıp, hücre türleri de oluşturup düzenleyebilecek. Kolonide bir hücre türünde yapılan herhangi bir değişiklik, o türdeki tüm hücrelere otomatik olarak uygulanacak. Oyuncu, farklı hücre türlerini kullanarak, kolonideki hücreleri farklı işlevlere yönelik olacak şekilde özelleştirebilecek. Böylece bu onlara, tek hücreli organizmalara karşı, büyük bir avantaj sağlayacak.\n"
 "\n"
-"Çok hücreli evresinin ilerleyen bölümlerinde, oyuncu makroskobik bir canlı haline gelir. Bu bölüm, oyunun ölçeğini değiştirir; mikroplar artık görünmez olur ve oyuncu, tek tek hücreler yerleştirmek yerine, dokuları şekillendirmeye başlar.\n"
+"Bu evrenin sonunda, oyuncu mikroskopik dünyaya hakim olan büyük bir hücre kolonisini kontrol eder. Ardından, oyuncu daha da büyüyerek makroskobik bir canlıya dönüşür.\n"
 "\n"
 "Evre mekaniğini daha ayrıntılı açıklayan Çok Hücreli Evresi GDD'si için ayrı bir sayfa bulunmaktadır."
 
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
-msgstr "Çok Hücreli Evresi'nde koloniniz, makroskopik bir çok hücreli organizmaya dönüşene dek, 3D bir ortama geçişi deneyimlemekle birlikte, daha karmaşık ve özelleşmiş hale gelir. Bu evre, canlınız ilk önce belli bir bilinç seviyesi edindiğinde sona erer."
+msgstr "Çok Hücreli Evresi'nde koloniniz, makroskopik bir çok hücreli organizmaya dönüşene dek, daha karmaşık ve özelleşmiş hale gelir. Bu evre, türünüz makroskopik olacak kadar yeterince büyük hale geldiğinde sona erer ve türünüz [color=#3796e1][url=thriveopedia:macroscopic_stage]Makroskopik Evresi'ne[/url][/color] geçiş yapar."
 
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr ""
-"Okyanuslarda yaşam zenginleşiyor. Burada çok sayıda çeşitlilik var. Dünya bir anda oyuncu için çok daha büyük bir hale geldi.\n"
+"Okyanuslarda yaşam zenginleşiyor. Burada çok sayıda çeşitlilik var. Dünya bir anda oyuncu için çok daha küçük bir hale geldi. Çünkü, oyuncu türü mikroskopik ortamdaki en büyük şey.\n"
 "\n"
-"Oyuncu artık daha büyük bir organizmayı oluşturan bir hücre kolonisini kontrol edebilir. Ölçek, kademeli olarak büyüyecek."
+"Oyuncu artık daha büyük bir organizmayı oluşturan bir hücre kolonisini kontrol edebilir. Koloni büyüklüğü, makroskopik evreye geçişe hazırlanmak için, daha özelleşmiş hücre türleri ile kademeli olarak büyüyecek."
 
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr ""
-"Bu evre, Bağlayıcı Ajanlar (Adezyon Proteinleri) kullanılarak hücreler birbirine bağlandığında ve hücreler artık bağını koparamadığında (bu hücreler esasında tek bir organizmaya dönüşür) başlar. Çok hücreliye geçiş için yeterince büyük bir hücre kolonisi ön koşuldur.\n"
+"Bu evre, Bağlayıcı Ajanlar (Adezyon Proteinleri) kullanılarak hücreler birbirine bağlandığında ve hücreler artık bağını koparamadığında (bu hücreler esasında tek bir organizmaya dönüşür) başlar.\n"
 "\n"
-"Bu evre, oyuncu türü bir sinir sistemi evrimleştirdiğinde sona erer."
+"Bu evre, oyuncu türü makroskopik büyüklüğe varacağı yeterince büyük bir hücre grubuna evrimleştiğinde sona erer."
 
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Henüz bir şey tartışılmadı."
@@ -7210,42 +7450,12 @@ msgstr "Geliştirme yok"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Ulus Editörü"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Etki yok."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Değişiklikler yok."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-"[b]Oksijenli Azot Fiksasyonu[/b]\n"
-"\n"
-"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Bir hücre, [b]Azot Fiksasyon Plastitlerini[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-"Hücreniz bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] geliştirdiğinde, [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazı[/url][/color][/b], [b]Azot Fiksasyon Plastitleri[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi, üreme için gerekli kaynakları daha etkili bir şekilde oluşturur.\n"
-"\n"
-"[b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenaz[/url][/color][/b] ile karşılaştırıldığında; eğer fazladan [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] varsa, [b]Azot Fiksasyon Plastitleri[/b] mantıklı bir seçimdir. Kendi üreme kaynaklarınızı oluşturmanız, kuşaklar arasında daha hızlı ilerlemede sınırlayıcı bir etkeni ortadan kaldırır."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Geliştirme yok."
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Etki yok."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinden[/url][/color][/b] daha verimsizdir.\n"
+"[thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], hücresel üreme için gerekli büyüme bileşenlerinden biri olan [thrive:compound type=\"ammonia\"]amonyağı[/thrive:compound] üretmek için [b]Oksijensiz Azot Fiksasyonu[/b] gerçekleştirir. Bu organel, ökaryotik [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplasttan[/url][/color][/b] daha verimsizdir.\n"
 "\n"
 "Ayrıca [thrive:compound type=\"atp\"]ATP'den[/thrive:compound], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [b]Glikoliz[/b] yapar."
 
@@ -7256,7 +7466,7 @@ msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]Oksijensiz Azot Fiksasyonu[/b]: [thrive:compound type=\"atp\"]ATP[/thrive:compound] + [thrive:compound type=\"nitrogen\"]Azot[/thrive:compound] → [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
 "\n"
-"Enerji harcayarak atmosferik [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Azot Fiksasyon Plastidinde[/url][/color][/b] bulunan benzer işlemden daha verimsizdir.\n"
+"Enerji harcayarak atmosferik [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplastta[/url][/color][/b] bulunan benzer işlemden daha verimsizdir.\n"
 "\n"
 "[b]Glikoliz[/b]\n"
 "\n"
@@ -7273,11 +7483,46 @@ msgstr "TBA"
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
-"[b]Nitrojenaz[/b] tarafından üretilen [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], üreme için saklanan kaynaklara katkı sağlar. Bu yüzden, [b]Nitrojenazlı[/b] hücrelerin ortamda yalnızca [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] bulması gerekir. Bu işlem, temelinden daha hızlı bir üreme sağlar (eğer pasif olarak üreme gelişimi mevcut oyun için ayarlardan devre dışı bırakıldıysa, temel hız sıfırdır).\n"
+"[b]Nitrojenaz[/b] tarafından üretilen [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound], üreme için saklanan kaynaklara katkı sağlar. Bu yüzden, [b]Nitrojenazlı[/b] hücrelerin ortamda yalnızca [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] bulması gerekir. Bu işlem, temelinden daha hızlı bir üreme sağlar (eğer pasif olarak üreme gelişimi mevcut oyun için ayarlardan devre dışı bırakıldıysa, temel hız sıfırdır). Yutmak veya yakınında durmak için [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] parçaları aramak iyi bir stratejidir.\n"
 "\n"
 "[b]Oksijensiz Azot Fiksasyonu[/b], [thrive:compound type=\"atp\"]ATP[/thrive:compound] tükettiği için bu organeli hücrenize eklemeden önce fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] sahip olmanız gerekir. [b]Nitrojenaz[/b] tarafından yapılan küçük miktarda [b]Glikoliz[/b], bu organelin kendi ozmoregülasyon maliyetini dengelemek için yeterli değildir."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "Geliştirme yok."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Etki yok."
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Nitroplast, hücresel üreme için büyüme bileşenlerinden biri olan [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound] üretmek için kullanılan zarlı bir organeldir. Bu organel, [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] gazı ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürmek için [b]Oksijensiz Azot Fiksasyonu[/b] yapar. Bu organel, prokaryotik [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazdan[/url][/color][/b] daha verimlidir."
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Değişiklikler yok."
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+"[b]Oksijenli Azot Fiksasyonu[/b]\n"
+"\n"
+"Enerji harcayarak [thrive:compound type=\"nitrogen\"]azotu[/thrive:compound], [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] dönüştürür. Bu oran, ortamdaki [thrive:compound type=\"nitrogen\"]azot[/thrive:compound] ve [thrive:compound type=\"oxygen\"]oksijen[/thrive:compound] miktarı ile doğru orantılıdır. [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] bulunan benzer işlemden daha verimlidir."
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Bir hücre, [b]Nitroplastları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır."
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"Nitroplastların, ökaryotik hücrelerde, endosimbiyontlardan evrimleştiği gösterilmiştir.\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitroplast]https://en.wikipedia.org/wiki/Nitroplast[/url][/color]\n"
+"\n"
+"https://www.science.org/doi/10.1126/science.ado8571"
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+"Hücreniz bir [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color][/b] geliştirdiğinde, [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazı[/url][/color][/b], [b]Nitroplastlar[/b] ile değiştirmenizi öneriyoruz. Çünkü ikincisi, üreme için gerekli kaynakları daha etkili bir şekilde oluşturur.\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenazda[/url][/color][/b] olduğu gibi, eğer fazladan [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] varsa, [b]Nitroplastlar[/b] mantıklı bir seçimdir. Kendi üreme kaynaklarınızı oluşturmanız, kuşaklar arasında daha hızlı ilerleme becerinizdeki sınırlayıcı bir etkeni ortadan kaldırır. Ayrıca bu, fazladan [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplamayı da gerektirir; fosfatlar, yüzen kristal parçalar veya mor bulutlardan elde edilebilir."
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr "Geliştirme yok."
 
 msgid "WIKI_NO"
@@ -7429,6 +7674,9 @@ msgstr "Editörler ve Mutasyonlar"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Çevresel Koşullar"
 
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Ferroplast"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Kamçı"
 
@@ -7440,6 +7688,9 @@ msgstr "Sanayi Evresi"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizozom"
+
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Makroskopik Evresi"
 
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Mekanikler"
@@ -7459,11 +7710,11 @@ msgstr "Çok Hücreli Evresi"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Miyofibril"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Azot Fiksasyon Plastidi"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrojenaz"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Nitroplast"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Çekirdek"
@@ -7648,13 +7899,16 @@ msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "Gereksinimler yok."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[b]Rustisiyanin[/b], bazı bakteri ve arkelerin hücre zarında bulunabilir. Bu organel, [b]Demirdeki[/b] elektronları aktarır ve bu elektronları hücre içine çekerek bunları yeni [b]ATP[/b] moleküllerinin oluşturmasına yardımcı olmak için kullanır.\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamdan azalmadığı için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanmak için değerli bir alternatif kaynaktır. Pas yiyen hücreler, [thrive:compound type=\"iron\"]demirin[/thrive:compound] bol olduğu arazilerde bol bol besinlerin keyfini çıkarabilirler.\n"
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound], ortamda çok geç bozunduğu için, [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yerine kullanmak için değerli bir alternatif kaynaktır. Pas yiyen hücreler, [thrive:compound type=\"iron\"]demirin[/thrive:compound] bol olduğu arazilerde bol bol besinlerin keyfini çıkarabilirler.\n"
 "\n"
-"[thrive:compound type=\"iron\"]Demir[/thrive:compound] parçaları yutmak cezbedici olabilir. Ama bu bileşiğin çoğu, bulut halindeyken üretildiği için bir parçanın yakınında durarak daha fazla [thrive:compound type=\"iron\"]demir[/thrive:compound] alabilirsiniz."
+"[thrive:compound type=\"iron\"]Demir[/thrive:compound] parçaları yutmak cezbedici olabilir. Ama bu bileşiğin çoğu, bulut halindeyken üretildiği için daha büyük bir parçanın yakınında durarak daha fazla [thrive:compound type=\"iron\"]demir[/thrive:compound] alabilirsiniz. Ancak, yutulan bir [thrive:compound type=\"iron\"]demir[/thrive:compound] parçası, daha uzun yolculuklarda, daha fazla [thrive:compound type=\"iron\"]demiri[/thrive:compound] yanınızda taşımanızı sağlar."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "Geliştirme yok."
@@ -8106,6 +8360,19 @@ msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Mikrop Evresi"
+
+#~ msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+#~ msgstr "2D (ilk), 3D (ileri)"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Çok Hücreli"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "İlk Çok Hücreli Editörü Yükleniyor"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tomurcuklanma"
 
@@ -8155,10 +8422,6 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Mikrop Editörü"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Mikrop Evresi"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8279,10 +8542,6 @@ msgstr "Uzaklaştır"
 #~ "CoA: Koenzim A\n"
 #~ "\n"
 #~ "CO2: Karbondioksit"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Çözünürlük:"
 
 #~ msgid "EVOLUTIONARY_TREE_DISABLED_LABEL"
 #~ msgstr ""
@@ -8699,3 +8958,7 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "RATE"
 #~ msgstr "Oran"
+
+#, fuzzy
+#~ msgid "QUESTION"
+#~ msgstr "Çözünürlük:"

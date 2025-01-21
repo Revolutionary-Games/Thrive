@@ -155,6 +155,11 @@ public sealed class PhysicsBodyCreationSystem : AEntitySetSystem<float>
 
         physics.Body = body;
         shapeHolder.UpdateBodyShapeIfCreated = false;
+
+#if DEBUG
+        if (physics.Body.IsDetached)
+            throw new Exception("Physics body created in detached state");
+#endif
     }
 
     protected override void PostUpdate(float delta)

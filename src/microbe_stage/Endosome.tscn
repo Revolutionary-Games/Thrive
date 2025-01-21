@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/microbe_stage/Endosome.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://de8ucwdxwykbx" path="res://assets/models/organelles/Vacuole.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3"]
-[ext_resource type="Texture2D" uid="uid://2hbye6cfsiaf" path="res://assets/textures/vacuole.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://2hbye6cfsiaf" path="res://assets/textures/Vacuole.png" id="4"]
 [ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="5"]
 
 [sub_resource type="ShaderMaterial" id="1"]
@@ -11,6 +11,7 @@ resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("5")
 shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 0.5
 shader_parameter/fresnelActive = true
 shader_parameter/outlineWidth = 0.05

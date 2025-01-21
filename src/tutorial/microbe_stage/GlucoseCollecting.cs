@@ -76,9 +76,9 @@ public class GlucoseCollecting : TutorialPhase
                     Show();
                 }
 
-                if (data.EntityPosition.HasValue && ShownCurrently)
+                if (ShownCurrently)
                 {
-                    glucosePosition = data.EntityPosition.Value;
+                    glucosePosition = data.EntityPosition;
                     return true;
                 }
 
@@ -107,11 +107,8 @@ public class GlucoseCollecting : TutorialPhase
         return false;
     }
 
-    public override Vector3 GetPositionGuidance()
+    public override Vector3? GetPositionGuidance()
     {
-        if (glucosePosition != null)
-            return glucosePosition.Value;
-
-        throw new InvalidOperationException("glucose tutorial doesn't have position set");
+        return glucosePosition;
     }
 }

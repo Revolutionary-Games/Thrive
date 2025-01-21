@@ -1,49 +1,26 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0bkckjg8jqfa"]
+[gd_scene load_steps=6 format=3 uid="uid://c0bkckjg8jqfa"]
 
-[ext_resource type="ArrayMesh" uid="uid://dpigtne4r5bvi" path="res://assets/models/organelles/LysosomeMembrane.mesh" id="1"]
-[ext_resource type="ArrayMesh" uid="uid://t304m2estesa" path="res://assets/models/organelles/LysosomeInsides.mesh" id="2"]
-[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="4"]
-[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="5"]
-[ext_resource type="Texture2D" uid="uid://b8abovvhln8w5" path="res://assets/textures/LysosomeInsidesAlbedoAlpha.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://cu1mowuf8uf83" path="res://assets/textures/LysosomeMembraneAlbedoAlpha.png" id="7"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="1_d0l32"]
+[ext_resource type="ArrayMesh" uid="uid://vc7ghifv2htv" path="res://assets/models/organelles/Lysosome.mesh" id="1_ov5jm"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="2_g5t7g"]
+[ext_resource type="Texture2D" uid="uid://dmwdx5hfmr0ip" path="res://assets/textures/Lysosome.png" id="3_dbsut"]
 
-[sub_resource type="ShaderMaterial" id="3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78kbi"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("4")
+shader = ExtResource("1_d0l32")
 shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
+shader_parameter/dissolveScale = 1.0
+shader_parameter/fresnelValue = 0.5
 shader_parameter/fresnelActive = true
 shader_parameter/outlineWidth = 0.0
-shader_parameter/growColor = Color(0, 0, 0, 1)
+shader_parameter/growColor = Color(0.439216, 0.631373, 0.188235, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
 shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("7")
-shader_parameter/dissolveTexture = ExtResource("3")
-
-[sub_resource type="ShaderMaterial" id="2"]
-resource_local_to_scene = true
-render_priority = -1
-shader = ExtResource("4")
-shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
-shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("6")
-shader_parameter/dissolveTexture = ExtResource("3")
+shader_parameter/texture = ExtResource("3_dbsut")
+shader_parameter/dissolveTexture = ExtResource("2_g5t7g")
 
 [node name="Lysosome" type="MeshInstance3D"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
-material_override = SubResource("3")
-mesh = ExtResource("1")
-script = ExtResource("5")
-
-[node name="LysosomeInsides" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0425044, -0.0774988, -0.0573722)
-material_override = SubResource("2")
-mesh = ExtResource("2")
-skeleton = NodePath("")
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_78kbi")
+mesh = ExtResource("1_ov5jm")

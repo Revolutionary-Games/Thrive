@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-21 20:20+0000\n"
 "Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
@@ -368,6 +368,9 @@ msgstr "Bewustzijnsfase"
 msgid "BACK"
 msgstr "Terug"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Backslash"
 
@@ -507,6 +510,24 @@ msgstr "Door:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Door Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "Videogeheugen nu in gebruik:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Videogeheugen nu in gebruik:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Vervaardigen"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Calciumcarbonaat"
 
@@ -594,6 +615,14 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, waardoor het beter beschermd is tegen schade en specifiek tegen fysieke schade. Het kost ook minder energie om zijn vorm te houden, maar kan grondstoffen minder snel absorberen. [b]Cellulase kan deze celwand verteren[/b] waardoor het vatbaar is voor verzwelging door roofdieren."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Celtypenaam"
 
@@ -634,8 +663,16 @@ msgstr "Chemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Alle cellen kunnen alleen \"zien\" via chemoreceptie. Dit is hoe cellen informatie over hun omgeving verkrijgen. Het toevoegen van dit organel zorgt voor een beter afgestelde chemoroceptie. Het betere zicht in de celfase wordt vertegenwoordigd door een lijn die naar stoffen buiten het zichtbare scherm wijst."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Minimum Hoeveelheid om te Detecteren:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "De chemoroceptor maakt het mogelijk om stoffen van verder te detecteren. Eenmaal geplaatst kan de gedetecteerde stoftype en bijbehorende lijnkleur worden gekozen."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Alle cellen kunnen alleen \"zien\" via chemoreceptie. Dit is hoe cellen informatie over hun omgeving verkrijgen. Het toevoegen van dit organel zorgt voor een beter afgestelde chemoroceptie. Het betere zicht in de celfase wordt vertegenwoordigd door een lijn die naar stoffen buiten het zichtbare scherm wijst."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -703,6 +740,9 @@ msgstr "Bevolking: {0} Voedsel: {1} Wetenschap: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Oude Opslagbestanden Opschonen"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sluiten"
@@ -863,6 +903,22 @@ msgstr "{0}concentratie is met {1} gedaald"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "Verbruik van {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Stofbalanzen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Toon / verberg stoffen"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Dichtheid van stofwolken"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1274,6 +1330,14 @@ msgstr "Credits"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Er wordt niets onderzocht"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Slijm vrijlaten"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Huidige Ontwikkelaars"
 
@@ -1561,6 +1625,10 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Word lid van onze gemeenschapsdiscordserver"
 
+#, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Bezoek onze Itch.io pagina"
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Afgewezen popupvensters:"
 
@@ -1620,14 +1688,14 @@ msgstr "Dubbelklikken om in volledige schermweergave te zien"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Een membraan met twee lagen, waardoor het beter beschermd is tegen schade en minder energie kost om zijn vorm te houden. Echter wordt de cel wel langzamer en grondstoffen worden iets minder snel opgenomen."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Dump SceneTree"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Dupliceer type"
-
-msgid "EARLY_MULTICELLULAR"
-msgstr "Meercellig"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een nakomeling van het roofdier of de prooi?"
@@ -1714,6 +1782,10 @@ msgid "EASTER_EGGS"
 msgstr "Voeg Paaseieren toe"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(willekeurig geplaatste geheimen in het spel)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(willekeurig geplaatste geheimen in het spel)"
 
 msgid "EDGE_PAN_SPEED"
@@ -1883,6 +1955,10 @@ msgstr "(proportie van de glucose die overblijft in de omgeving elke generatie)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Toon / verberg omgeving"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Omgeving"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelechisch"
 
@@ -1912,6 +1988,10 @@ msgstr "Fout met het Laden"
 
 msgid "ERROR_SAVING"
 msgstr "Fout Opslaan"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Fout met het Laden"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2300,6 +2380,10 @@ msgstr "Grafische Kwaliteit"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafisch Team"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "Beperk groei stofgebruik"
+
 msgid "GUI"
 msgstr "GGI"
 
@@ -2610,6 +2694,16 @@ msgstr "Ijzer-chemolithoautotrofie"
 msgid "ITCH_TOOLTIP"
 msgstr "Bezoek onze Itch.io pagina"
 
+#, fuzzy
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+"Coordinaten positie: {0}\n"
+"Kijkend naar coordinaten: {1}"
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Reageer op object"
+
 msgid "JANUARY"
 msgstr "Januari"
 
@@ -2804,9 +2898,6 @@ msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublie
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Kan laatste organel niet verwijderen"
-
-msgid "LATE_MULTICELLULAR"
-msgstr "Late Meercellige"
 
 msgid "LAUNCH0"
 msgstr "Lanceren 0"
@@ -3016,11 +3107,12 @@ msgstr "Laden"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laden..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Vroege Multicellulaire bewerker laden"
-
 msgid "LOADING_GAME"
 msgstr "Spel Wordt Geladen"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Microbe-editor Laden"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
@@ -3093,6 +3185,14 @@ msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke 
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Slijmsynthese"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Wordt Macrosopisch ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Microbieel Stage"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Stel Handmatig Tijd In"
 
@@ -3108,11 +3208,19 @@ msgstr "Mariene sneeuw"
 msgid "MASTER_VOLUME"
 msgstr "Master Volume"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Slijm vrijlaten"
+
 msgid "MAX_FPS"
 msgstr "Maximale FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Ongelimiteerd"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Grootte:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum hoeveelheid entiteiten:"
@@ -3141,6 +3249,10 @@ msgstr "Media Opnemen"
 
 msgid "MEDIASTOP"
 msgstr "Media Stoppen"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Klein stuk ijzer"
 
 msgid "MEGA_YEARS"
 msgstr "Mjr"
@@ -3198,6 +3310,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Uitgestorven in gebied"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3338,6 +3454,10 @@ msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3742,6 +3862,14 @@ msgstr "Neerwaarts bewegen of bukken"
 msgid "MOVE_FORWARD"
 msgstr "Beweeg naar voren"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Beweeg naar Land"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Beweeg naar rechts"
+
 msgid "MOVE_LEFT"
 msgstr "Beweeg naar links"
 
@@ -3808,6 +3936,10 @@ msgstr "Slijmsynthese"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Bezoek onze Patreonpagina"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Late Meercellige"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Meercellige Bewerker"
@@ -3941,13 +4073,13 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentratie van [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Stikstofbindende plastide"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstofbinding[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4025,6 +4157,10 @@ msgstr "Geen screenshot directory gevonden"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Geen Mod Geselecteerd"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolutie:"
 
 msgid "NUCLEUS"
 msgstr "Kern"
@@ -4167,8 +4303,16 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axonen zijn zenuwvezel die neuronen gebruiken om met elkaar te verbinden en communiceren. Het plaatsen van dit organel verandert het celtype naar breinweefsel."
 
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Multicellulair"
+
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulair"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(wanneer aangezet wordt de groeisnelheid gelimiteerd, anders heeft alleen de beschikbaarheid van stoffen effect op groeisnelheid)"
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibril"
@@ -4192,6 +4336,14 @@ msgstr "Jagende Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Jagende Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Axon"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Laad eerder opgeslagen spellen"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4487,6 +4639,10 @@ msgstr "bevolking in gebieden:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "ID Nummer"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predatie van {0}"
 
@@ -4603,6 +4759,18 @@ msgstr "Aseksueel"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Ontkiemen"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproductiemethode:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reproductiemethode:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproductiemethode:"
 
@@ -4622,6 +4790,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr "Herstel Afgewezen Vensters"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Invoer resetten?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Invoer resetten?"
 
 msgid "RESET_KEYBINDINGS"
@@ -4978,6 +5150,12 @@ msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdra
 msgid "SHOW_HELP"
 msgstr "Open hulp"
 
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+"Coordinaten positie: {0}\n"
+"Kijkend naar coordinaten: {1}"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
 
@@ -5063,6 +5241,10 @@ msgstr "Klein stuk ijzer"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Klein stuk ijzer"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Klein stuk ijzer"
 
 msgid "SNOWFLAKE"
@@ -5775,18 +5957,6 @@ msgstr "Maak een screenshot!"
 msgid "TUTORIAL"
 msgstr "Instructie"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Welkom bij de Vroege Meercellige Fase!\n"
-"\n"
-"Het is je gelukt om je soort door de eencellige fase te leiden.\n"
-"\n"
-"Het spel volgt dezelfde kernmechanieken als de Microbenfase. Je moet nog steeds je organisme laten groeien en reproduceren om de bewerker te openen.\n"
-"\n"
-"Echter, je kunt nu in de bewerker vorm geven aan een celkolonie. Je kunt verschillende cellen specializeren in verschillende rollen. Houdt er rekening mee dat leden van koloniën geen [thrive:compound type=\"atp\"][/thrive:compound] kunnen delen.\n"
-"\n"
-"Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
-
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -5965,6 +6135,19 @@ msgstr ""
 "Je hebt de ontbindingsmodus aangezet. In deze modus kun je op kolonieleden klikken om ze te ontkoppelen.\n"
 "\n"
 "Om de kolonie geheel te verlaten klik je op je eigen cel of druk je de knop [thrive:input]g_unbind_all[/thrive:input] in."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Welkom bij de Vroege Meercellige Fase!\n"
+"\n"
+"Het is je gelukt om je soort door de eencellige fase te leiden.\n"
+"\n"
+"Het spel volgt dezelfde kernmechanieken als de Microbenfase. Je moet nog steeds je organisme laten groeien en reproduceren om de bewerker te openen.\n"
+"\n"
+"Echter, je kunt nu in de bewerker vorm geven aan een celkolonie. Je kunt verschillende cellen specializeren in verschillende rollen. Houdt er rekening mee dat leden van koloniën geen [thrive:compound type=\"atp\"][/thrive:compound] kunnen delen.\n"
+"\n"
+"Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Bekijk Nu"
@@ -6178,6 +6361,9 @@ msgstr "Laad Harmony patches automatisch uit Assembly (mod klasse hoeft niet ges
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gebruik een eigen naam"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Stel handmatig de nummers van achtergrond threads in"
 
@@ -6237,6 +6423,10 @@ msgstr "Verhoogt de draaisnelheid van grote cellen."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Toon alle"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Zie Patchnotities"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "Zie Patchnotities"
@@ -6310,9 +6500,6 @@ msgstr "Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6752,6 +6939,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] aan de hand van temperatuurverschillen. Snelheid schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Stikstofbindende plastide"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
 
@@ -6981,6 +7200,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Slijmstraal"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Ruimtefase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Stikstofase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Ruimtefase"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Plaats organellen"
 
@@ -7171,38 +7425,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Schakel de editor in"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Stikstofbindende plastide"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Stikstofbindende plastide"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstofbinding[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Stikstofbindende plastide"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstofbinding[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Stikstofbindende plastide"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Stikstofbindende plastide"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
 
@@ -7232,6 +7454,38 @@ msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase is een eiwet dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound] en celenergie in de vorm van [thrive:compound type=\"atp\"][/thrive:compound] om kan zetten om [thrive:compound type=\"ammonia\"][/thrive:compound] te vormen. Dit is een essentiele voedingsstof voor de groei van cellen. Dit proces wordt ook wel [b]stikstoffixatie[/b] genoemd. Aangezien nitrogenase zich in suspensie in het cytoplasma bevind, voert de vloeistof er omheen enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Stikstofbindende plastide"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Stikstofbindende plastide"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstofbinding[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"ammonia\"][/thrive:compound]. Snelheid schaalt met de concentractie van [thrive:compound type=\"nitrogen\"][/thrive:compound] en [thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Stikstofbindende plastide"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Het Stikstofbindende Plastide is een eiwit dat gasvormig [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound], en [thrive:compound type=\"atp\"][/thrive:compound] gebruikt om [thrive:compound type=\"ammonia\"][/thrive:compound] te maken. Dit is een essentiële voedingsstof voor cellen. Dit proces heet [b]aerobe stikstofbinding[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Stikstofbindende plastide"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Stikstofbindende plastide"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7371,6 +7625,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitochondrion"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Thermoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagellum"
 
@@ -7385,6 +7643,10 @@ msgstr "Industriële Fase"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysozoom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Stikstofase"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7411,12 +7673,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Myofibril"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Stikstofbindende plastide"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Stikstofase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Stikstofbindende plastide"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7981,6 +8243,16 @@ msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Microbieel Stage"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Meercellig"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Vroege Multicellulaire bewerker laden"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Ontkiemen"
 
@@ -8037,10 +8309,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Microbe Bewerker"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Microbieel Stage"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8180,10 +8448,6 @@ msgstr "Uitzoomen"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolutie:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -7,8 +7,8 @@ using Godot;
 /// </summary>
 public class SlimeJetComponent : IOrganelleComponent
 {
-    private const string SlimeJetAnimationName = "SlimeJet";
-    private const string MUCOCYST_UPGRADE_NAME = "mucocyst";
+    public const string MUCOCYST_UPGRADE_NAME = "mucocyst";
+    private const string SlimeJetAnimationName = "SlimeSpurt";
 
     private bool animationActive;
     private bool animationDirty = true;
@@ -55,7 +55,7 @@ public class SlimeJetComponent : IOrganelleComponent
     public void UpdateAsync(ref OrganelleContainer organelleContainer, in Entity microbeEntity,
         IWorldSimulation worldSimulation, float delta)
     {
-        // All of the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
+        // All the logic for this ended up in MicrobeEmissionSystem and MicrobeMovementSystem, just the animation
         // applying is here anymore...
     }
 

@@ -38,6 +38,8 @@ public class NativeLibs
     private const string ExtensionInstallFolder = "lib";
     private const string ExtensionInstallFolderDebug = "lib/debug";
 
+    private static readonly string[] MacArchitectures = ["x86_64", "arm64"];
+
     /// <summary>
     ///   Default libraries to operate on when nothing is explicitly selected. This no longer includes the early checks
     ///   library as a pure C# solution is used instead.
@@ -71,6 +73,10 @@ public class NativeLibs
         earlyCheckPrecompiledId = new Lazy<Task<long>>(GetEarlyCheckLibraryId);
         thriveExtensionPrecompiledId = new Lazy<Task<long>>(GetThriveExtensionLibraryId);
 
+        // Mac doesn't support AVX so it's force disabled
+        if (OperatingSystem.IsMacOS())
+            options.DisableLocalAvx = true;
+
         if (options.Libraries is { Count: < 1 })
         {
             options.Libraries = null;
@@ -98,7 +104,17 @@ public class NativeLibs
         }
 
         // Set sensible default platform definitions
-        if (OperatingSystem.IsMacOS())
+        if (this.options.Operations.Any(o => o == Program.NativeLibOptions.OperationMode.Fetch))
+        {
+            // Fetching libraries is required for all platforms so all are specified here
+            ColourConsole.WriteNormalLine(
+                "Fetch is needed for all platforms so enabling all (when combined with other " +
+                "operations this may cause issues)");
+
+            platforms = new List<PackagePlatform>
+                { PackagePlatform.Linux, PackagePlatform.Windows, PackagePlatform.Mac };
+        }
+        else if (OperatingSystem.IsMacOS())
         {
             // Mac stuff only can be done on a Mac
             platforms = new List<PackagePlatform> { PackagePlatform.Mac };
@@ -208,6 +224,13 @@ public class NativeLibs
 
             foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
             {
+                // Mac doesn't have an avx variant
+                if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
+                {
+                    ColourConsole.WriteDebugLine("Skipping trying to copy AVX library that won't exist for Mac");
+                    continue;
+                }
+
                 if (!CopyLibraryFiles(library, platform, useDistributableLibraries, targetFolder, tag))
                 {
                     ColourConsole.WriteErrorLine($"Error copying library {library}");
@@ -222,6 +245,63 @@ public class NativeLibs
         return true;
     }
 
+    /// <summary>
+    ///   Handles copying libraries installed by <see cref="CopyToThriveRelease"/> into a zip. Assumes zip is in
+    ///   <see cref="folder"/> (probably fails otherwise)
+    /// </summary>
+    /// <returns>True on success</returns>
+    public async Task<bool> MoveInstalledLibrariesToZip(string folder, string releaseZip, string pathPrefixInZip,
+        CancellationToken cancellationToken)
+    {
+        var libFolder = Path.Join(folder, NativeConstants.PackagedLibraryFolder);
+
+        if (!Directory.Exists(libFolder))
+        {
+            ColourConsole.WriteErrorLine(
+                "Couldn't find the library folder at expected path (this copy-to-zip requires " +
+                "library install to be used first)");
+            return false;
+        }
+
+        // Assume all libraries are just written to the lib folder so we can add it entirely after moving the lib
+        // folder so that it has the prefix in front of it when put in the zip
+        var zipRelativePath = Path.Join(pathPrefixInZip, NativeConstants.PackagedLibraryFolder);
+        var localCopyParentFolder = Path.Combine(folder, pathPrefixInZip);
+
+        if (Directory.Exists(localCopyParentFolder))
+            Directory.Delete(localCopyParentFolder, true);
+
+        Directory.CreateDirectory(localCopyParentFolder);
+        Directory.Move(libFolder, Path.Join(localCopyParentFolder, NativeConstants.PackagedLibraryFolder));
+
+        var startInfo = new ProcessStartInfo("zip")
+        {
+            WorkingDirectory = folder,
+        };
+        startInfo.ArgumentList.Add("-9");
+        startInfo.ArgumentList.Add("-u");
+
+        // Assume the zip is in the folder (need to add it recursively)
+        startInfo.ArgumentList.Add("-r");
+        startInfo.ArgumentList.Add(Path.GetFileName(releaseZip));
+
+        startInfo.ArgumentList.Add(zipRelativePath);
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, true);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"Running zip update failed (exit: {result.ExitCode}): {result.FullOutput}");
+            return false;
+        }
+
+        // Delete the no longer useful non-zip contents
+        Directory.Delete(localCopyParentFolder, true);
+
+        ColourConsole.WriteSuccessLine("Native libraries moved to target zip");
+        return true;
+    }
+
     public async Task<bool> InstallEditorLibrariesBeforeRelease()
     {
         if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Linux, true,
@@ -231,6 +311,12 @@ public class NativeLibs
         }
 
         if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Windows,
+                true, false))
+        {
+            return false;
+        }
+
+        if (!await PerformLibraryInstallForEditor(NativeConstants.Library.ThriveExtension, PackagePlatform.Mac,
                 true, false))
         {
             return false;
@@ -285,7 +371,7 @@ public class NativeLibs
                     return await OperateOnAllPlatforms(BuildPackageWithPodman, cancellationToken);
                 }
 
-                throw new NotImplementedException("Creating release packages for mac is not done");
+                return await PackageForMac(cancellationToken);
 
             case Program.NativeLibOptions.OperationMode.Upload:
                 if (await OperateOnAllLibrariesWithResult(CheckAndUpload, cancellationToken) == true)
@@ -511,20 +597,39 @@ public class NativeLibs
 
             if (!releaseMode)
             {
-                // Using a different AVX variant is fine locally, then try the original tag but distributable version
-                linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion,
-                        false,
-                        tag | PrecompiledTag.WithoutAvx),
-                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
-                        tag & ~PrecompiledTag.WithoutAvx),
+                // Mac does not support AVX, so we cannot test those variants for it, which is why this if is here
+                if (platform != PackagePlatform.Mac)
+                {
+                    // Using a different AVX variant is fine locally, then try the original tag but distributable
+                    // version
+                    linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform,
+                            libraryVersion,
+                            false,
+                            tag | PrecompiledTag.WithoutAvx),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, false,
+                            tag & ~PrecompiledTag.WithoutAvx),
 
-                    // Fallback to distributables after checking local variants all first
-                    NativeConstants
-                        .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
-                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
-                        tag | PrecompiledTag.WithoutAvx),
-                    NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
-                        tag & ~PrecompiledTag.WithoutAvx));
+                        // Fallback to distributables after checking local variants all first
+                        NativeConstants
+                            .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                            tag | PrecompiledTag.WithoutAvx),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                            tag & ~PrecompiledTag.WithoutAvx));
+                }
+                else
+                {
+                    linkTo = TryToFindInstallSource(NativeConstants.GetPathToLibraryDll(library, platform,
+                            libraryVersion,
+                            false,
+                            tag | PrecompiledTag.WithoutAvx),
+
+                        // Fallback to distributables after checking local variants all first
+                        NativeConstants
+                            .GetPathToLibraryDll(library, platform, libraryVersion, true, tag),
+                        NativeConstants.GetPathToLibraryDll(library, platform, libraryVersion, true,
+                            tag | PrecompiledTag.WithoutAvx));
+                }
             }
             else
             {
@@ -638,19 +743,8 @@ public class NativeLibs
         // Ensure Godot doesn't try to import anything funny from the build folder
         await PackageTool.EnsureGodotIgnoreFileExistsInFolder(buildFolder);
 
-        var apiFolder = Path.Join(buildFolder, APIFolderName);
-        Directory.CreateDirectory(apiFolder);
-
-        if (!scriptsAPIFileCreated.Contains(apiFolder))
-        {
-            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
-            {
-                ColourConsole.WriteErrorLine("API file could not be created");
-                return false;
-            }
-
-            scriptsAPIFileCreated.Add(apiFolder);
-        }
+        if (!await CreateAPIFolderForBuild(buildFolder, cancellationToken))
+            return false;
 
         var startInfo = new ProcessStartInfo("cmake")
         {
@@ -794,6 +888,25 @@ public class NativeLibs
             return false;
 
         ColourConsole.WriteSuccessLine($"Successfully compiled library {library}");
+        return true;
+    }
+
+    private async Task<bool> CreateAPIFolderForBuild(string buildFolder, CancellationToken cancellationToken)
+    {
+        var apiFolder = Path.Join(buildFolder, APIFolderName);
+        Directory.CreateDirectory(apiFolder);
+
+        if (!scriptsAPIFileCreated.Contains(apiFolder))
+        {
+            if (!await CreateGodotAPIFileInFolder(apiFolder, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine("API file could not be created");
+                return false;
+            }
+
+            scriptsAPIFileCreated.Add(apiFolder);
+        }
+
         return true;
     }
 
@@ -1027,16 +1140,8 @@ public class NativeLibs
                 {
                     var source = GetPathToDistributableTempDll(library, platform, tag);
 
-                    ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
-
-                    if (!await symbolHandler.ExtractSymbols(source, "./",
-                            platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
-                    {
-                        ColourConsole.WriteErrorLine(
-                            "Symbol extraction failed. Are breakpad tools installed at the expected path?");
-
+                    if (!await ExtractSymbols(source, platform, cancellationToken))
                         return false;
-                    }
                 }
             }
         }
@@ -1085,6 +1190,312 @@ public class NativeLibs
 
         ColourConsole.WriteSuccessLine("Successfully prepared native libraries for distribution");
 
+        return true;
+    }
+
+    private async Task<bool> ExtractSymbols(string binary, PackagePlatform platform,
+        CancellationToken cancellationToken)
+    {
+        ColourConsole.WriteDebugLine($"Performing extraction on library: {binary}");
+
+        if (platform == PackagePlatform.Mac)
+        {
+            // Mac needs to run extraction separately for each architecture
+
+            foreach (var architecture in MacArchitectures)
+            {
+                symbolHandler.ExtractSpecificArchitecture = architecture;
+
+                if (!await symbolHandler.ExtractSymbols(binary, "./", false, cancellationToken))
+                {
+                    ColourConsole.WriteErrorLine($"Symbol extraction failed (mac architecture: {architecture}. " +
+                        "Are breakpad tools installed at the expected path?");
+
+                    return false;
+                }
+            }
+
+            symbolHandler.ExtractSpecificArchitecture = null;
+        }
+        else
+        {
+            if (!await symbolHandler.ExtractSymbols(binary, "./",
+                    platform is PackagePlatform.Windows or PackagePlatform.Windows32, cancellationToken))
+            {
+                ColourConsole.WriteErrorLine(
+                    "Symbol extraction failed. Are breakpad tools installed at the expected path?");
+
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private async Task<bool> PackageForMac(CancellationToken cancellationToken)
+    {
+        if (!OperatingSystem.IsMacOS())
+            throw new InvalidOperationException("This platform is not supported (only mac can create mac builds)");
+
+        ColourConsole.WriteWarningLine(
+            "Creating Mac builds is only supported on Apple Silicon (M1 and newer) and may " +
+            "not work on other Macs");
+
+        if (!options.DisableLocalAvx)
+        {
+            ColourConsole.WriteNormalLine("Mac builds never use AVX");
+        }
+
+        var platform = PackagePlatform.Mac;
+        var compileBaseFolder = Path.GetFullPath(GetDistributableBuildFolderBase(platform));
+        var baseInstallFolder = Path.Join(compileBaseFolder, "install");
+
+        var armInstallFolder = Path.Join(baseInstallFolder, "arm");
+        var intelInstallFolder = Path.Join(baseInstallFolder, "intel");
+
+        // Setup all the needed folders
+        Directory.CreateDirectory(compileBaseFolder);
+        Directory.CreateDirectory(armInstallFolder);
+        Directory.CreateDirectory(intelInstallFolder);
+
+        await CreateAPIFolderForBuild(compileBaseFolder, cancellationToken);
+
+        ColourConsole.WriteNormalLine("Performing build for Intel architecture");
+
+        // ReSharper disable StringLiteralTypo
+        var cmakeCommon = new List<string>
+        {
+            "-DTHRIVE_AVX=OFF",
+            options.DebugLibrary == true ? "-DCMAKE_BUILD_TYPE=Debug" : "-DCMAKE_BUILD_TYPE=Distribution",
+        };
+
+        if (!string.IsNullOrEmpty(options.Compiler))
+            cmakeCommon.Add($"-DCMAKE_CXX_COMPILER={options.Compiler}");
+
+        if (!string.IsNullOrEmpty(options.CCompiler))
+            cmakeCommon.Add($"-DCMAKE_C_COMPILER={options.CCompiler}");
+
+        // ReSharper restore StringLiteralTypo
+
+        if (!string.IsNullOrEmpty(options.CmakeGenerator))
+        {
+            cmakeCommon.Add("-G");
+            cmakeCommon.Add(options.CmakeGenerator);
+        }
+
+        cmakeCommon.Add(Path.GetFullPath("."));
+
+        var startInfo = new ProcessStartInfo("cmake")
+        {
+            WorkingDirectory = compileBaseFolder,
+        };
+
+        foreach (var common in cmakeCommon)
+        {
+            startInfo.ArgumentList.Add(common);
+        }
+
+        // ReSharper disable StringLiteralTypo
+        startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={intelInstallFolder}");
+        startInfo.ArgumentList.Add("-DCMAKE_OSX_ARCHITECTURES=x86_64");
+        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=-march=sandybridge");
+
+        // ReSharper restore StringLiteralTypo
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
+                "Do you have the required build tools installed?");
+
+            return false;
+        }
+
+        ColourConsole.WriteInfoLine("Compiling Intel version");
+
+        if (!await RunMacIndividualBuild(compileBaseFolder, cancellationToken))
+            return false;
+
+        ColourConsole.WriteSuccessLine("Compiled mac libraries for Intel architecture");
+
+        // Apple Silicon build next
+        ColourConsole.WriteNormalLine("Performing build for Apple Silicon (ARM) architecture");
+
+        startInfo = new ProcessStartInfo("cmake")
+        {
+            WorkingDirectory = compileBaseFolder,
+        };
+
+        foreach (var common in cmakeCommon)
+        {
+            startInfo.ArgumentList.Add(common);
+        }
+
+        // ReSharper disable StringLiteralTypo
+        startInfo.ArgumentList.Add($"-DCMAKE_INSTALL_PREFIX={armInstallFolder}");
+        startInfo.ArgumentList.Add("-DCMAKE_OSX_ARCHITECTURES=arm64");
+        startInfo.ArgumentList.Add("-DCMAKE_CXX_FLAGS=");
+
+        // ReSharper restore StringLiteralTypo
+
+        result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"CMake configuration failed (exit: {result.ExitCode}). " +
+                "Do you have the required build tools installed?");
+
+            return false;
+        }
+
+        ColourConsole.WriteInfoLine("Compiling Arm version");
+
+        if (!await RunMacIndividualBuild(compileBaseFolder, cancellationToken))
+            return false;
+
+        ColourConsole.WriteSuccessLine("Compiled mac libraries for Apple Silicon (ARM) architecture");
+        ColourConsole.WriteInfoLine("All architectures compiled, will combine into single files next");
+
+        // Then some lipo action
+        ColourConsole.WriteNormalLine("Combining builds");
+
+        var libraries = options.Libraries ?? DefaultLibraries;
+        var tag = PrecompiledTag.WithoutAvx;
+
+        if (options.DebugLibrary == true)
+            tag |= PrecompiledTag.Debug;
+
+        foreach (var library in libraries)
+        {
+            var name = NativeConstants.GetLibraryDllName(library, platform, tag);
+
+            ColourConsole.WriteNormalLine($"Lipo-ing: {name}");
+
+            var target = Path.Join(baseInstallFolder, LibraryBuildInstallPath(library, platform, tag));
+
+            Directory.CreateDirectory(Path.GetDirectoryName(target) ??
+                throw new Exception("Couldn't detect target folder"));
+
+            if (File.Exists(target))
+                File.Delete(target);
+
+            startInfo = new ProcessStartInfo("lipo");
+            startInfo.ArgumentList.Add("-create");
+            startInfo.ArgumentList.Add("-output");
+            startInfo.ArgumentList.Add(Path.GetFullPath(target));
+            startInfo.ArgumentList.Add(Path.GetFullPath(Path.Join(armInstallFolder,
+                LibraryBuildInstallPath(library, platform, tag))));
+            startInfo.ArgumentList.Add(Path.GetFullPath(Path.Join(intelInstallFolder,
+                LibraryBuildInstallPath(library, platform, tag))));
+
+            result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+            if (result.ExitCode != 0)
+            {
+                ColourConsole.WriteErrorLine($"Failed to run lipo to combine libraries (exit: {result.ExitCode})");
+                return false;
+            }
+
+            cancellationToken.ThrowIfCancellationRequested();
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully combined libraries");
+
+        ColourConsole.WriteNormalLine("Handling debug symbols");
+
+        if (options.DebugLibrary != true)
+        {
+            ColourConsole.WriteInfoLine(
+                "Extracting symbols (requires compiled Breakpad installed) and stripping binaries");
+
+            foreach (var library in libraries)
+            {
+                // There isn't a foreach loop here as mac never uses avx
+
+                var source = Path.Join(baseInstallFolder, LibraryBuildInstallPath(library, platform, tag));
+
+                ColourConsole.WriteDebugLine($"Performing extraction on library: {source}");
+
+                if (!await ExtractSymbols(source, platform, cancellationToken))
+                {
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            ColourConsole.WriteNormalLine("Skipping symbol extraction for debug build");
+        }
+
+        cancellationToken.ThrowIfCancellationRequested();
+
+        ColourConsole.WriteInfoLine("Copying built libraries to the right folder");
+
+        foreach (var library in libraries)
+        {
+            var version = NativeConstants.GetLibraryVersion(library);
+
+            // Mac has only non-avx variants so need to copy just one thing per library
+
+            var target = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
+
+            var targetFolder = Path.GetDirectoryName(target) ??
+                throw new Exception("Couldn't get folder from library install path");
+
+            Directory.CreateDirectory(targetFolder);
+
+            var source = Path.Join(baseInstallFolder, LibraryBuildInstallPath(library, platform, tag));
+
+            File.Copy(source, target, true);
+
+            ColourConsole.WriteDebugLine($"Copied {source} -> {target}");
+
+            if (options.DebugLibrary != true)
+            {
+                await BinaryHelpers.Strip(target, cancellationToken);
+
+                ColourConsole.WriteNormalLine($"Stripped installed library at {target}");
+            }
+            else
+            {
+                ColourConsole.WriteDebugLine("Not stripping a debug library");
+            }
+        }
+
+        ColourConsole.WriteSuccessLine("Successfully created Mac distributable library builds");
+        return true;
+    }
+
+    private async Task<bool> RunMacIndividualBuild(string folder, CancellationToken cancellationToken)
+    {
+        var startInfo = new ProcessStartInfo("cmake")
+        {
+            WorkingDirectory = folder,
+        };
+
+        startInfo.ArgumentList.Add("--build");
+
+        startInfo.ArgumentList.Add(".");
+
+        startInfo.ArgumentList.Add("--config");
+        startInfo.ArgumentList.Add(options.DebugLibrary == true ? "Debug" : "Distribution");
+
+        startInfo.ArgumentList.Add("--target");
+        startInfo.ArgumentList.Add("install");
+
+        startInfo.ArgumentList.Add("-j");
+        startInfo.ArgumentList.Add(Environment.ProcessorCount.ToString());
+
+        var result = await ProcessRunHelpers.RunProcessAsync(startInfo, cancellationToken, false);
+
+        if (result.ExitCode != 0)
+        {
+            ColourConsole.WriteErrorLine($"CMake build failed (exit: {result.ExitCode})");
+            return false;
+        }
+
+        ColourConsole.WriteNormalLine("Part of mac compile succeeded");
         return true;
     }
 
@@ -1180,6 +1591,12 @@ public class NativeLibs
 
         foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
+            if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
+            {
+                ColourConsole.WriteNormalLine("Not trying to upload Mac with AVX as that is an unused configuration");
+                continue;
+            }
+
             var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
             if (!File.Exists(file))
@@ -1509,6 +1926,13 @@ public class NativeLibs
 
         foreach (var tag in new[] { baseTag, baseTag | PrecompiledTag.WithoutAvx })
         {
+            // Mac doesn't have AVX-using builds
+            if (platform == PackagePlatform.Mac && (tag & PrecompiledTag.WithoutAvx) == 0)
+            {
+                ColourConsole.WriteDebugLine("Mac doesn't have AVX builds, skipping");
+                continue;
+            }
+
             var file = NativeConstants.GetPathToLibraryDll(library, platform, version, true, tag);
 
             if (File.Exists(file))

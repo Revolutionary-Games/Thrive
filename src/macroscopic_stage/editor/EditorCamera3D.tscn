@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource type="Script" path="res://src/macroscopic_stage/editor/EditorCamera3D.cs" id="1"]
+
+[node name="EditorCamera3D" type="Camera3D"]
+fov = 90.0
+near = 0.01
+script = ExtResource( 1 )

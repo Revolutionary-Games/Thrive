@@ -11,7 +11,7 @@ public class NativeConstants
 {
     public const int Version = 19;
     public const int EarlyCheck = 2;
-    public const int ExtensionVersion = 5;
+    public const int ExtensionVersion = 6;
 
     public const string LibraryFolder = "native_libs";
     public const string DistributableFolderName = "distributable";
@@ -97,7 +97,10 @@ public class NativeConstants
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:
-                        throw new NotImplementedException("TODO: name for this");
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_native_without_avx.dylib";
+
+                        throw new NotImplementedException("Mac cannot support AVX currently");
                     default:
                         throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
                 }
@@ -114,7 +117,7 @@ public class NativeConstants
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:
-                        throw new NotImplementedException("TODO: name for this");
+                        throw new NotImplementedException("Early check is not used on Mac");
                     default:
                         throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
                 }
@@ -135,7 +138,10 @@ public class NativeConstants
                     case PackagePlatform.Windows32:
                         throw new NotSupportedException("32-bit support is not done currently");
                     case PackagePlatform.Mac:
-                        throw new NotImplementedException("TODO: name for this");
+                        if ((tags & PrecompiledTag.WithoutAvx) != 0)
+                            return "libthrive_extension_without_avx.dylib";
+
+                        throw new NotImplementedException("Mac cannot support AVX currently");
                     default:
                         throw new ArgumentOutOfRangeException(nameof(platform), platform, null);
                 }

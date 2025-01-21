@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
-"PO-Revision-Date: 2024-11-08 15:19+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
+"PO-Revision-Date: 2025-01-16 11:06+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -155,7 +155,7 @@ msgstr ""
 "[b]Per-patch Total Population:[/b]\n"
 "  Average {7}; Standard deviation {8}\n"
 "[b]Microbe Species Average Hex Size:[/b]\n"
-"  Average {9}; Standard deviation {10}\n"
+"  Average {9}; Standard deviation {10}\n\n"
 "[b]Generic Organelle Data:[/b]"
 
 msgid "ALREADY_ASCENDED"
@@ -366,6 +366,9 @@ msgstr "Aware Stage"
 msgid "BACK"
 msgstr "Back"
 
+msgid "BACKGROUND_BLUR"
+msgstr "Background blur:"
+
 msgid "BACKSLASH"
 msgstr "Backslash"
 
@@ -504,6 +507,21 @@ msgstr "By:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "By Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr "Maximum time to keep items on disk before deleting"
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr "Max cache items to keep in memory"
+
+msgid "CACHE_TIME_MEMORY"
+msgstr "How long to keep cache items in memory"
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "Cache time when using only memory caching"
+
+msgid "CACHING_TITLE"
+msgstr "Caching"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Calcium Carbonate"
 
@@ -591,6 +609,17 @@ msgstr "Cellulose"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower. [b]Cellulase can digest this wall[/b] making it vulnerable to engulfment from predators."
 
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr ""
+"Rotation rate of the cell. Bigger cells rotate slower, but cilia can be added to compensate.\n"
+"Organelle placement affects rotation with organelles farther away from the center reducing rotation more."
+
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr ""
+"Speed of the cell. Please note that due to limitations of the algorithm calculating this, the value is an approximation.\n"
+"And for example when modifying flagellum length the speed values don't fully make sense and don't match what will happen in the stage.\n"
+"This is a known problem but is not fixed yet due to being lower priority than many other problems and new features."
+
 msgid "CELL_TYPE_NAME"
 msgstr "Cell Type Name"
 
@@ -630,8 +659,20 @@ msgstr "Chemoreceptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "All cells only \"see\" through chemoreception. That is how cells acquire information about their surroundings. Adding this organelle represents evolving more fine tuned chemoreception. As the player is given vision even in the cell stage this is represented by a line pointing outside the visible screen area showing nearby compounds that the player couldn't see yet."
 
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr ""
+"Sets the compound detection threshold. Low values can point to very faint traces of compounds which may not have any useful amount of that compound.\n"
+"One example strategy is to increase the search radius and minimum amount so that the closest, usefully dense cloud is detected.\n"
+"The chemoreceptor smells individual points in a compound cloud and not the total in a single \"cloud.\""
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "The chemoreceptor allows detecting compounds from farther away. Modify once placed to select the compound type and guidance line colour."
+msgstr "The chemoreceptor allows detecting compounds or other cells from farther away. Modify once placed to select the compound type and guidance line colour."
+
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr ""
+"Sets the maximum distance this chemoreceptor looks within for things to point at.\n"
+"Can be used, for example, for slow cells to not point to resources that are likely to be gone by the time the cell gets there by lowering the distance.\n"
+"Alternatively increasing the distance can point to much farther away things, but they may be hard to reach before they are gone."
 
 msgid "CHEMOSYNTHESIS"
 msgstr "Chemosynthesis"
@@ -698,6 +739,9 @@ msgstr "Pop: {0} Food: {1} Science: {2}"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Clean Up Old Saves"
+
+msgid "CLEAR_CACHE"
+msgstr "Clear Cache"
 
 msgid "CLOSE"
 msgstr "Close"
@@ -852,6 +896,18 @@ msgstr "{0} concentrations have decreased by {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} consumption"
+
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Keep All"
+
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Split With Sister Cell"
+
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Always Top Up To Initial"
+
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Top Up On Patch Change"
 
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "(not enough to last the night which is {0} s long)"
@@ -1217,6 +1273,14 @@ msgstr "Credits"
 msgid "CTRL"
 msgstr "CTRL"
 
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Current size:"
+
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr ""
+"Size of all of the cache items currently stored on disk. Can be cleared safely at any time,\n"
+"but when an item is next needed that would have been in the cache it takes longer to generate."
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Current Developers"
 
@@ -1251,7 +1315,7 @@ msgstr ""
 "[b]Most Populous Species:[/b]\n"
 "  {8}\n"
 "[b]Basic Microbe Species Data:[/b]\n"
-"  Average hex size: {9}\n"
+"  Average hex size: {9}\n\n"
 "[b]Generic Organelle Data:[/b]"
 
 msgid "CUSTOM_USERNAME"
@@ -1500,6 +1564,11 @@ msgstr ""
 msgid "DISCORD_TOOLTIP"
 msgstr "Join our community Discord server"
 
+msgid "DISK_CACHE_TOOLTIP"
+msgstr ""
+"When enabled some expensive to generate data is written to disk so that it is faster to load when needed again.\n"
+"If disabled only in-memory caching is used."
+
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Dismissed popups:"
 
@@ -1556,14 +1625,14 @@ msgstr "Double click to view in fullscreen"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr "Drag this to reorder items with the mouse"
+
 msgid "DUMP_SCENE_TREE"
 msgstr "Dump SceneTree"
 
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicate Type"
-
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicellular"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Fun Fact: the Didinium and Paramecium are a textbook example of a predator-prey relationship that has been studied for decades. Now, are you the Didinium or the Paramecium? Predator or Prey?"
@@ -1651,6 +1720,9 @@ msgstr "Include Easter eggs"
 
 msgid "EASTER_EGGS_EXPLANATION"
 msgstr "(randomly spawned secrets in the game)"
+
+msgid "EASTER_EGG_BANANA_BIOME"
+msgstr "Banana Biome"
 
 msgid "EDGE_PAN_SPEED"
 msgstr "Pan speed:"
@@ -1800,6 +1872,9 @@ msgstr "(proportion of glucose retained in the environment each generation)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Show / hide environment"
 
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Tolerance"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagic"
 
@@ -1829,6 +1904,9 @@ msgstr "Error Loading"
 
 msgid "ERROR_SAVING"
 msgstr "Error Saving"
+
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "An exception happened: {0}"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2056,7 +2134,7 @@ msgid "FOG_OF_WAR_INTENSE_DESCRIPTION"
 msgstr "(only patches the player has been to will be revealed)"
 
 msgid "FOG_OF_WAR_MODE"
-msgstr "Fog Of War Mode"
+msgstr "Fog of war mode"
 
 msgid "FOG_OF_WAR_REGULAR"
 msgstr "Regular Fog Of War"
@@ -2203,6 +2281,9 @@ msgstr "Graphics"
 
 msgid "GRAPHICS_TEAM"
 msgstr "Graphics Team"
+
+msgid "GROWTH_ORDER"
+msgstr "Growth Order"
 
 msgid "GUI"
 msgstr "GUI"
@@ -2500,6 +2581,12 @@ msgstr "Iron Chemolithoautotrophy"
 msgid "ITCH_TOOLTIP"
 msgstr "Visit our Itch.io page"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr "{0} at ({1}, {2})"
+
+msgid "ITEM_NAME_SEPARATOR"
+msgstr ":"
+
 msgid "JANUARY"
 msgstr "January"
 
@@ -2687,9 +2774,6 @@ msgstr "This translation is very incomplete ({0}% done) please help us with it!"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Can't delete the last organelle"
-
-msgid "LATE_MULTICELLULAR"
-msgstr "Late Multicellular"
 
 msgid "LAUNCH0"
 msgstr "Launch 0"
@@ -2898,11 +2982,11 @@ msgstr "Loading"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Loading..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Loading Early Multicellular Editor"
-
 msgid "LOADING_GAME"
 msgstr "Loading Game"
+
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Loading Macroscopic Editor"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Loading Microbe Editor"
@@ -2973,6 +3057,12 @@ msgstr "Contains digestive enzymes. Can be modified to change the type of enzyme
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Macrolide Synthesis"
 
+msgid "MACROSCOPIC"
+msgstr "Macroscopic"
+
+msgid "MACROSCOPIC_STAGE"
+msgstr "Macroscopic Stage"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Manually Set Time of Day"
 
@@ -2988,11 +3078,17 @@ msgstr "Marine snow"
 msgid "MASTER_VOLUME"
 msgstr "Master volume"
 
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Maximum size the on-disk cache should take (items will be automatically removed if the cache grows too large)"
+
 msgid "MAX_FPS"
 msgstr "Max FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Unlimited"
+
+msgid "MAX_SIZE_COLON"
+msgstr "Max size:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "Maximum number of entities:"
@@ -3020,6 +3116,9 @@ msgstr "Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "Media Stop"
+
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Medium Sulfur Chunk"
 
 msgid "MEGA_YEARS"
 msgstr "Myr"
@@ -3074,6 +3173,9 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr "Miche"
+
+msgid "MICHES_FOR_PATCH"
+msgstr "Miches For Patch {0}"
 
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
 msgstr "Avoid Predation Selection Pressure"
@@ -3208,6 +3310,9 @@ msgstr "Microbe Freebuild Editor"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Found in {1} species, averaging {2} each"
+
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "[b]Organelle Upgrades Data:[/b]"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
@@ -3596,6 +3701,12 @@ msgstr "Move down or crouch"
 msgid "MOVE_FORWARD"
 msgstr "Move forward"
 
+msgid "MOVE_ITEM_DOWN"
+msgstr "Move this item down"
+
+msgid "MOVE_ITEM_UP"
+msgstr "Move this item up"
+
 msgid "MOVE_LEFT"
 msgstr "Move left"
 
@@ -3659,6 +3770,9 @@ msgstr "Mucilage Synthesis"
 
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Create a shield"
+
+msgid "MULTICELLULAR"
+msgstr "Multicellular"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Multicellular Editor"
@@ -3787,13 +3901,13 @@ msgstr "Nitrogenase is a protein able to use gaseous [thrive:compound type=\"nit
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
-msgstr "Nitrogen-Fixing Plastid"
+msgid "NITROPLAST"
+msgstr "Nitroplast"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
-msgstr "The Nitrogen-Fixing Plastid is a protein able to use gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound] to produce [thrive:compound type=\"ammonia\"][/thrive:compound], a key growth nutrient for cells. This is a process referred to as [b]aerobic nitrogen fixation[/b]."
+msgid "NITROPLAST_DESCRIPTION"
+msgstr "The Nitroplast is a membrane-bound organelle able to use gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound], [thrive:compound type=\"oxygen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound] to produce [thrive:compound type=\"ammonia\"][/thrive:compound], a key growth nutrient for cells. This is a process referred to as [b]aerobic nitrogen fixation[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Turns [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. Rate scales with concentration of [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -3870,6 +3984,9 @@ msgstr "No screenshot directory found"
 
 msgid "NO_SELECTED_MOD"
 msgstr "No Selected Mod"
+
+msgid "NO_SUGGESTION"
+msgstr "None"
 
 msgid "NUCLEUS"
 msgstr "Nucleus"
@@ -4000,7 +4117,7 @@ msgid "ORGANELLES_BUTTON"
 msgstr "Organelles"
 
 msgid "ORGANELLES_WILL_BE_UNLOCKED_NEXT_GENERATION"
-msgstr "Unlock conditions are checked only once per generation when entering the editor"
+msgstr "Unlock conditions are checked only once per generation when entering the editor. Some organelles can alternatively be unlocked through endosymbiosis."
 
 msgid "ORGANELLE_AXON"
 msgstr "Axon"
@@ -4008,8 +4125,14 @@ msgstr "Axon"
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axons are the nerve fibers that neurons use to connect to each other and communicate. Placing this organelle turns a cell type into brain tissue."
 
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Macroscopic"
+
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellular"
+
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "This tab allows setting the order organelles grow in. This can be important for cells that have unstable ATP production while in the progress of growing. Organelle order also has an impact on bio process run order. This is recommended to be edited only after finishing structure editing as structure edits can revert changes made here."
 
 msgid "ORGANELLE_MYOFIBRIL"
 msgstr "Myofibril"
@@ -4031,6 +4154,16 @@ msgstr "{0} organelles"
 
 msgid "ORGANELLE_SINGULAR"
 msgstr "{0} organelle"
+
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organelle Suggestion:"
+
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr ""
+"This indicator shows a suggested organelle that can be added to the cell.\n"
+"The suggestion is calculated by auto-evo based on which added organelle gives the biggest increase in gained energy.\n"
+"Sometimes there is no single good organelle to add, but bigger edits with more organelles may still be beneficial in the long run.\n"
+"Or removing existing organelles is also quite often a useful strategy."
 
 msgid "ORGANELLE_UNLOCKS_ENABLED"
 msgstr "Organelle unlocks enabled"
@@ -4313,6 +4446,9 @@ msgstr "population in patches:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+msgid "POSITION_NUMBER"
+msgstr "{0}."
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predation of {0}"
 
@@ -4429,6 +4565,20 @@ msgstr "Asexual"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Budding"
 
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Compounds on editor exit:"
+
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(what to do with the compounds the player had stored when returning to the stage from the editor)"
+
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr ""
+"Configures what happens to the stored compounds when going to the editor.\n"
+"Splitting with sister cell gives half of the stored compounds to it on exiting the editor.\n"
+"Keep all is the selfish option of keeping all stored compounds as-is.\n"
+"Always top up fills any compounds up to the amount the cell spawns initially with.\n"
+"Top up on patch change tops up to initial compounds but only if patch was changed."
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduction:"
 
@@ -4449,6 +4599,9 @@ msgstr "Reset Dismissed Popups"
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
 msgstr "Reset inputs to defaults?"
+
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
+msgstr "Reset item order to the default"
 
 msgid "RESET_KEYBINDINGS"
 msgstr "Reset Keybindings"
@@ -4799,6 +4952,9 @@ msgstr "Show on-screen damage effect"
 msgid "SHOW_HELP"
 msgstr "Show help"
 
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Show coordinates"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Show new patch notes automatically"
 
@@ -4882,6 +5038,9 @@ msgstr "Small Iron Chunk"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "Small Phosphate Chunk"
+
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "Small Sulfur Chunk"
 
 msgid "SNOWFLAKE"
 msgstr "Snowflake"
@@ -5555,18 +5714,6 @@ msgstr "Try taking some screenshots!"
 msgid "TUTORIAL"
 msgstr "Tutorial"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Welcome to the Early Multicellular Stage!\n"
-"\n"
-"You have succeeded in guiding your species through the unicellular phase.\n"
-"\n"
-"The gameplay follows the core mechanics of the Microbe Stage. You still need to keep growing your organism to reproduce and get to the editor.\n"
-"\n"
-"However, you can now design your colony cell layout in the editor and you can specialize your cells for various roles. Keep in mind that colony members cannot share [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"If you are using budding reproduction (the default method), you start off controlling a small bud and need to grow the rest of your cell layout."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "The ATP Production bar on the right indicates how much [thrive:compound type=\"atp\"][/thrive:compound] your cell produces compared to how much is consumed. If the top bar is shorter than the bottom one, then you are not producing enough [thrive:compound type=\"atp\"][/thrive:compound].\n"
@@ -5737,6 +5884,18 @@ msgstr ""
 "You have entered unbind mode. In this mode you can click on colony members to unbind them.\n"
 "\n"
 "To leave the colony entirely you can click on your own cell or press the [thrive:input]g_unbind_all[/thrive:input] key."
+
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Welcome to the Multicellular Stage!\n"
+"\n"
+"You have succeeded in guiding your species through the unicellular phase.\n"
+"\n"
+"The gameplay follows the core mechanics of the Microbe Stage. You still need to keep growing your organism to reproduce and get to the editor.\n"
+"\n"
+"However, you can now design your colony cell layout in the editor and you can specialize your cells for various roles. Keep in mind that colony members cannot share [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"If you are using budding reproduction (the default method), you start off controlling a small bud and need to grow the rest of your cell layout."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "View Now"
@@ -5935,6 +6094,9 @@ msgstr "Automatically load Harmony patches from Assembly (doesn't require specif
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Use a custom username"
 
+msgid "USE_DISK_CACHE"
+msgstr "Use disk cache"
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Manually set number of background threads"
 
@@ -5991,6 +6153,9 @@ msgstr "View Cell Processes"
 
 msgid "VIEW_ONLINE"
 msgstr "View Online"
+
+msgid "VIEW_PATCH_MICHES"
+msgstr "View Miches"
 
 msgid "VIEW_PATCH_NOTES"
 msgstr "View Patch Notes"
@@ -6063,9 +6228,6 @@ msgstr "Wiki"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr "2D (early), 3D (late)"
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6468,6 +6630,14 @@ msgstr ""
 "[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
 "[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
 "\n"
+"[b][u]Floating Chunk Compounds[/u][/b]\n"
+"\n"
+"These Compounds are found in chunks of minerals floating about in some patches. \n"
+"\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
 "[b][u]Agents[/u][/b]\n"
 "\n"
 "These Compounds are created in special [color=#3796e1][url=thriveopedia:OrganellesRoot]organelles[/url][/color] and have special uses.\n"
@@ -6704,6 +6874,44 @@ msgstr ""
 "\n"
 "This causes [b]Photosynthesis[/b] to become much more unreliable and harder to survive with. Autotrophs using [thrive:compound type=\"sunlight\"][/thrive:compound] need to evolve [b]storage[/b] (for example by using [color=#3796e1][url=thriveopedia:vacuole]Vacuoles[/url][/color]) to survive the night."
 
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "No effects."
+
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"A metallic powerhouse. The [b]Ferroplast[/b] uses [thrive:compound type=\"iron\"][/thrive:compound] and [thrive:compound type=\"carbondioxide\"][/thrive:compound] to produce [thrive:compound type=\"atp\"][/thrive:compound] by the process of [b]Iron Chemolithoautotrophy[/b]. This involves oxidizing [thrive:compound type=\"iron\"][/thrive:compound], changing it from one chemical state to another. The effect scales with [thrive:compound type=\"carbondioxide\"][/thrive:compound] concentration, so lower levels of [thrive:compound type=\"carbondioxide\"][/thrive:compound] in the environment will lead to less [thrive:compound type=\"atp\"][/thrive:compound] being produced.\n"
+"\n"
+"A [b]Ferroplast[/b] is a double-membrane structure containing a network of proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It works at a much higher efficiency than can be achieved with [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]."
+
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "No modifications."
+
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]Iron Chemolithoautotrophy[/b]: [thrive:compound type=\"iron\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"A method of generating energy without [thrive:compound type=\"glucose\"][/thrive:compound]. Consumes [thrive:compound type=\"iron\"][/thrive:compound] and scales with the amount of environmental [thrive:compound type=\"carbondioxide\"][/thrive:compound]."
+
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Ferroplasts[/b].\n"
+"\n"
+"If organelle upgrades are enabled in game settings, the following condition must be true [i]for the player cell[/i]:\n"
+"\n"
+"[indent]—   Contains [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] for at least [b]6[/b] generations in a row.[/indent]"
+
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "[b]Ferroplasts[/b] have not been discovered in real life, but are theorised to be entirely possible, based on the evolution of endosymbiotes (such as the [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b]) and the energy-yielding capabilities of [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]."
+
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"In environments with plentiful [thrive:compound type=\"iron\"][/thrive:compound] and high levels of [thrive:compound type=\"carbondioxide\"][/thrive:compound], [b]Ferroplasts[/b] are excellent primary or secondary energy sources. Be aware though that concentrations of both compounds can decrease as the game progresses, so we recommend making use of additional energy sources before your cell starts to struggle.\n"
+"\n"
+"We also recommend replacing [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b] with [b]Ferroplasts[/b] after evolving a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] for far greater efficiency."
+
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "No upgrades."
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Each [b]Flagellum[/b] provides directional thrust in the direction opposite its orientation. They also provide partial thrust in directions near the exact opposite direction (to be precise, those for which the component of that exact opposite vector is positive). Whenever a [b]Flagellum[/b] is active, it consumes [thrive:compound type=\"atp\"][/thrive:compound]."
 
@@ -6852,7 +7060,7 @@ msgstr ""
 "\n"
 "C6​H12​O6​→2C2​H5​OH+2CO2​+2H2​\n"
 "\n"
-"Or, glucose being turned to two ethanol, two carbon dioxide, and two hydrogen. Glucose is broken down through substrate-level phosphorylation, and like other fermentation methods, important aspects of gylcolysis can be maintained even under anaerobic conditions. Fermentation is likely a very ancient metabolic strategy on Earth. Though hydrogenase does play a role in clostridial fermentation, responsible for waste management and the production of hydrogen, it technically isn’t the fundamental enzyme for the process. Other enzymes, such as pyruvate:ferredoxin oxidoreductase (POR), play a more unique and central role in anaerobic fermentation; though, due to their relative difficulty to represent in game, a more familiar and manageable named enzyme was chosen."
+"Or, glucose being turned to two ethanol, two carbon dioxide, and two hydrogen. Glucose is broken down through substrate-level phosphorylation, and like other fermentation methods, important aspects of glycolysis can be maintained even under anaerobic conditions. Fermentation is likely a very ancient metabolic strategy on Earth. Though hydrogenase does play a role in clostridial fermentation, responsible for waste management and the production of hydrogen, it technically isn’t the fundamental enzyme for the process. Other enzymes, such as pyruvate:ferredoxin oxidoreductase (POR), play a more unique and central role in anaerobic fermentation; though, due to their relative difficulty to represent in game, a more familiar enzyme with a more manageable name was chosen."
 
 msgid "WIKI_HYDROGENASE_STRATEGY"
 msgstr ""
@@ -6873,7 +7081,7 @@ msgstr "Coming soon."
 
 msgid "WIKI_INDUSTRIAL_STAGE_INTRO"
 msgstr ""
-"Industrial stage is the sixth of seven Thrive's gameplay stages, coming after the [color=#3796e1][url=thriveopedia:society_stage]Society Stage[/url][/color] with the invention of industrial machines. Technology and culture are much more advanced now, and civilization is largely reliant on machines to sustain itself. The whole planet is now mostly explored and populated, allowing you communicate or wage wars practically anywhere. Diplomatic and leadership skills are needed more than ever before.\n"
+"Industrial stage is the seventh of nine Thrive's gameplay stages, coming after the [color=#3796e1][url=thriveopedia:society_stage]Society Stage[/url][/color] with the invention of industrial machines. Technology and culture are much more advanced now, and civilization is largely reliant on machines to sustain itself. The whole planet is now mostly explored and populated, allowing you communicate or wage wars practically anywhere. Diplomatic and leadership skills are needed more than ever before.\n"
 "\n"
 "Technological advance is rapidly accelerating, with complicated machinery invented in tens of years unlike hundreds of years before. New powered vehicles, medical methods, industrial machines, but also new weapons, including those of mass destruction, are to be counted with.\n"
 "\n"
@@ -6944,6 +7152,40 @@ msgstr ""
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "No upgrades."
 
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr ""
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] \t\t\t[/indent]\n"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Terrain color concept[/url][/color] \t\t\t[/indent]"
+
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Prototype level of the development of the macroscopic stage has started."
+
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr ""
+"In this stage the player continues to be able to edit cell types, but instead of placing them in a cell bodyplan, the cell types are now used as blobs of tissue, which are placed in the fully 3D macroscopic body plan editor. The editor is based on placing and editing metaballs that represent the structure of the species.\n"
+"\n"
+"The player becomes a macroscopic creature. This shifts the game's scale so that microbes are no longer visible and the player moves onto sculpting tissues instead of placing individual cells.\n"
+"\n"
+"There is a separate page for the Macroscopic Stage GDD describing the stage mechanics in more details."
+
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "In the Macroscopic Stage, your colony of cells will turn into a blob of tissue types that exisit ina 3D environment. The stage ends when your creature first develops a certain level of sentience."
+
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr ""
+"Life in the oceans flourishes. There will be a lot of diversity. The world has suddenly gotten a lot bigger for the player.\n"
+"\n"
+"The player will now control a proper creature made up of tissue. The scale starts from the centimeter scale and goes up from there. Individual cells are no longer visible or simulated in this stage."
+
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr ""
+"The stage starts when a multicellular cell colony becomes big enough to be able to transition to being a collection of tissues. Currently this is planned to happen around size of 20 cells.\n"
+"\n"
+"It ends when the player's species evolves a nervous system (that is complex enough)."
+
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Nothing has been discussed."
+
 msgid "WIKI_MECHANICS"
 msgstr "Mechanics"
 
@@ -6964,7 +7206,7 @@ msgstr "No modifications."
 
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
-"[b]Protein Respiration[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Protein Respiration[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound]\n"
 "\n"
 "A method of energy production, superior to that in [b][color=#3796e1][url=thriveopedia:cytoplasm]Cytoplasm[/url][/color][/b] but inferior to [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondria[/url][/color][/b]. Requires a steady influx of [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with the concentration of environmental [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
@@ -7030,7 +7272,7 @@ msgstr ""
 "\n"
 "[b][u]Cell editor[/u][/b]\n"
 "\n"
-"The editor page is where the player will be able to customize their cell part by part. The majority of the editor is taken up by a hex field where the cell parts are placed, with the center being occupied by the player's current cell. To the left of this large space is the part list where the player will select parts to place on their cell, or otherwise change its qualities such as color or membrane type. The top right space is occupied by the organism statistics describing what the cell is capable of, as well as including the ATP balance bar which informs the player on the amount of ATP they produce versus how much they consume. The player should always make sure that the red bar is shorter than the green bar, or else they will meet an untimely demise of their own creation. In the bottom right, players will find the autoevo prediction screen which details how well their species is expected to perform with the changes they make according to the autoevo algorithm. Finally, the top left of the editor contains the tabs used to navigate between the previous pages, as well as the MP bar that displays the player's current bank of MP.\n"
+"The editor page is where the player will be able to customize their cell part by part. The majority of the editor is taken up by a hex field where the cell parts are placed, with the center being occupied by the player's current cell. To the left of this large space is the part list where the player will select parts to place on their cell, or otherwise change its qualities such as color or membrane type. The top right space is occupied by the organism statistics describing what the cell is capable of, as well as including the [thrive:compound type=\"atp\"][/thrive:compound] balance bar which informs the player on the amount of [thrive:compound type=\"atp\"][/thrive:compound] they produce versus how much they consume. The player should always make sure that the red bar is shorter than the green bar, or else they will meet an untimely demise of their own creation. In the bottom right, players will find the autoevo prediction screen which details how well their species is expected to perform with the changes they make according to the autoevo algorithm. Finally, the top left of the editor contains the tabs used to navigate between the previous pages, as well as the MP bar that displays the player's current bank of MP.\n"
 "\n"
 "The player is able to place new parts or hexes adjacent to any preexisting occupied hex, or atop a cytoplasm hex to replace it with a new part. Should the player desire to, they can delete parts of their cell by right-clicking placed parts at a cost of 10 MP per deletion. Alternatively, the player can use the arrow buttons located at the bottom of the editor screen to undo or redo previous actions, however this functionality will only work on changes made in the current editor section. The button in the middle of the arrow buttons is the symmetry key, which when clicked will change the player's current symmetry mode. All parts can be deleted except for three exceptions, the nucleus, binding agents, and the last hex of the cell. These parts can still be moved however, so don't stress if you don't like it's current position!\n"
 "\n"
@@ -7052,7 +7294,7 @@ msgstr ""
 
 msgid "WIKI_MICROBE_STAGE_GAMEPLAY"
 msgstr ""
-"The Microbe Stage takes place in a 3D environment viewed from a 2D perspective, as if being viewed from a microscope. Here, the player must steer their cell into brightly colored compound clouds to sustain and grow their cell until they can reproduce. At the beginning of the game there will be no predators, the only dangers being starvation and the occasional toxin. However, as the player reproduces, new competing species will branch away from the player's species and steadily become an increasingly dangerous obstacle for the player to overcome. While at first the player is a tiny cell only capable of consuming glucose ammonia and phosphates, the player will be able to adapt their cell in any way they choose after every reproduction, granting the player new abilities and options as time goes on. This comes at a cost however, as the player cell becomes larger and more complex, it will require more food to sustain. The player must take care to ensure that their cell is always sustainable or they will quickly starve. Additionally, species that arise from your own will inherit your adaptations, so the player must be cautious of how soon they develop things such as weaponry.\n"
+"The Microbe Stage takes place in a 3D environment viewed from a 2D perspective, as if being viewed from a microscope. Here, the player must steer their cell into brightly colored compound clouds to sustain and grow their cell until they can reproduce. At the beginning of the game there will be no predators, the only dangers being starvation and the occasional toxin. However, as the player reproduces, new competing species will branch away from the player's species and steadily become an increasingly dangerous obstacle for the player to overcome. While at first the player is a tiny cell only capable of consuming [thrive:compound type=\"glucose\"][/thrive:compound] [thrive:compound type=\"ammonia\"][/thrive:compound] and [thrive:compound type=\"phosphates\"][/thrive:compound], the player will be able to adapt their cell in any way they choose after every reproduction, granting the player new abilities and options as time goes on. This comes at a cost however, as the player cell becomes larger and more complex, it will require more food to sustain. The player must take care to ensure that their cell is always sustainable or they will quickly starve. Additionally, species that arise from your own will inherit your adaptations, so the player must be cautious of how soon they develop things such as weaponry.\n"
 "\n"
 "[b][u]Controls[/u][/b]\n"
 "\n"
@@ -7078,22 +7320,23 @@ msgstr ""
 "\n"
 "These are gasses that are present within a patch and do not have a physical presence in the game world. These elements act as a passive effect on various processes of the cell and can be required for certain proteins and organelles to function.\n"
 "\n"
-"[indent]—   [b]Oxygen:[/b] An important gas for aerobic respiration, oxygen is used by parts such as metabolosomes to perform their purposes. The more oxygen that is present in a patch, the better these parts will perform. Currently, oxygen has no other effect on cells and is at a constant 21% concentration in all patches.[/indent]\n"
+"[thrive:compound type=\"oxygen\"][/thrive:compound] [b]Oxygen:[/b] An important gas for aerobic respiration, [b]Oxygen[/b] is used by parts such as [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color][/b] to perform their purposes. The more [b]Oxygen[/b]  that is present in a patch, the better these parts will perform. Currently, [b]Oxygen[/b]  has no other effect on cells. The concentration starts at 0% in all patches, increases by frequency of photosynthesis, and decreases by frequency of respiration, aerobic [thrive:compound type=\"nitrogen\"][/thrive:compound] fixation and some toxin synthesis.\n"
 "\n"
-"[indent]—   [b]Nitrogen:[/b] A gas used by cells for nitrogen fixation in the synthesis of ammonia. Nitrogen currently has no other effect on cells and is at a constant 70% concentration in all patches.[/indent]\n"
+"[thrive:compound type=\"nitrogen\"][/thrive:compound] [b]Nitrogen:[/b] A gas used by cells for [b]Nitrogen[/b] fixation in the synthesis of [thrive:compound type=\"ammonia\"][/thrive:compound]. [b]Nitrogen[/b] currently has no other effect on cells. Concentration decreases by frequency of [b]Nitrogen[/b] fixation.\n"
 "\n"
-"[indent]—   [b]Carbon Dioxide:[/b] An important gas for chemosynthesis and photosynthesis. Carbon dioxide is currently at a constant 9% concentration in all patches.[/indent]\n"
+"[thrive:compound type=\"carbondioxide\"][/thrive:compound] [b]Carbon Dioxide:[/b] An important gas for chemosynthesis and photosynthesis. [b]Carbon Dioxide[/b] currently starts at a concentration from 8% to 30% in different patches. The concentration decreases by frequency of photosynthesis and [thrive:compound type=\"iron\"][/thrive:compound] or [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] chemosyntheis, and increases by frequency of respiration.\n"
 "\n"
 "There are several compounds present in the Microbe Stage. Below is a list of all compounds and their uses.\n"
 "\n"
-"[indent]—   [b]Glucose:[/b] Primary ATP storage for cells, and initial source of food for the player. Glucose is consumed by several organelles and proteins to produce ATP, the most notable being the metabolosomes and mitochondria as they are specifically used for glucose. When the player dies they will respawn with a reserve of glucose within their cell, allowing them to readily resume gameplay without fear of starvation. The player must take care should they rely on the readily available glucose found in the environment, as every generation the global glucose amounts decrease by 80%. Glucose clouds are white in color.[/indent]\n"
+"[thrive:compound type=\"glucose\"][/thrive:compound] [b]Glucose:[/b] Primary [thrive:compound type=\"atp\"][/thrive:compound] storage for cells, and initial source of food for the player. [b]Glucose[/b] is consumed by several organelles and proteins to produce [thrive:compound type=\"atp\"][/thrive:compound], the most notable being the [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:mitochondrion]Mitochondrion[/url][/color][/b] as they are specifically used for [b]Glucose[/b]. When the player dies they will respawn with a reserve of [b]Glucose[/b] within their cell, allowing them to readily resume gameplay without fear of starvation. The player must take care should they rely on the readily available [b]Glucose[/b] found in the environment, as every generation the global [b]Glucose[/b] amounts decrease. [b]Glucose[/b] clouds are white in color.\n"
 "\n"
-"[indent]—   [b]Ammonia:[/b] Vital compounds required for reproduction. Ammonia is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the nitrogenase and nitrogen-fixing plastid can produce ammonia from ATP and nitrogen, saving the player from having to actively seek it out in the environment to reproduce. Ammonia clouds are orange in color.[/indent]\n"
+"[thrive:compound type=\"ammonia\"][/thrive:compound] [b]Ammonia:[/b] Vital compounds required for reproduction. [b]Ammonia[/b] is used to grow and copy the proteins and organelles within the cell and can be found readily throughout the environment. Parts such as the [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b] and [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b] can produce [b]Ammonia[/b] from [thrive:compound type=\"atp\"][/thrive:compound] and [thrive:compound type=\"nitrogen\"][/thrive:compound], saving the player from having to actively seek it out in the environment to reproduce. [b]Ammonia[/b] clouds are orange in color.\n"
 "\n"
-"[indent]—   [b]Phosphate:[/b] Identical in purpose to ammonia, phosphate is a requirement for reproduction. Unlike ammonia, however, there are no methods of synthesizing phosphate so it can only be found in the environment or from predation. Phosphate clouds are purple in color.[/indent]\n"
+"[thrive:compound type=\"phosphates\"][/thrive:compound] [b]Phosphate:[/b] Identical in purpose to [thrive:compound type=\"ammonia\"][/thrive:compound], [b]Phosphate[/b] is a requirement for reproduction. Unlike [thrive:compound type=\"ammonia\"][/thrive:compound], however, there are no methods of synthesizing [b]Phosphate[/b] so it can only be found in the environment or from predation. [b]Phosphates[/b] clouds are purple in color. [b]Phosphates[/b] crystals are blue or blue-green.\n"
 "\n"
-"[indent]—   [b]Hydrogen Sulfide:[/b] An alternative source of glucose for cells, that can be found in high quantities in a select few patches. Should a player intend to use hydrogen sulfide for energy, they must take care to ensure that the patch they inhabit contains the compound. Hydrogen sulfide is only usable if the player possesses chemosynthesizing proteins, otherwise the player cannot take in the compound, and any already stored within the cell will be quickly expelled.[/indent]\n"
-"[indent]—   [b]Iron:[/b] Another alternative source of ATP, iron is a relatively uncommon resource found in almost, but not all, patches in the world. Unlike any other compound, iron can not only be found in clouds but also as variably sized chunks that trail iron clouds as they drift. Iron can only be used by a cell if it possesses rustycyanin. Iron clouds appear brown in color. The chunks themselves can be engulfed for a significant source of iron.[/indent]"
+"[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] [b]Hydrogen Sulfide:[/b] An alternative source of [thrive:compound type=\"glucose\"][/thrive:compound] for cells, that can be found in high quantities in a select few patches. Should a player intend to use [b]Hydrogen Sulfide[/b] for energy, they must take care to ensure that the patch they inhabit contains the compound. [b]Hydrogen Sulfide[/b] is only usable if the player possesses [b][color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Chemosynthesizing Proteins[/url][/color][/b], otherwise the player cannot take in the compound, and any already stored within the cell will be quickly expelled.\n"
+"\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] [b]Iron:[/b] Another alternative source of [thrive:compound type=\"atp\"][/thrive:compound], [b]Iron[/b] is a relatively uncommon resource found in almost, but not all, patches in the world. Unlike any other compound, [b]Iron[/b] can not only be found in clouds but also as variably sized chunks that trail [b]Iron[/b] clouds as they drift. [b]Iron[/b] can only be used by a cell if it possesses [b][color=#3796e1][url=thriveopedia:rusticyanin]Rusticyanin[/url][/color][/b]. [b]Iron[/b] clouds appear brown in color. The chunks themselves can be engulfed for a significant source of [b]Iron[/b]."
 
 msgid "WIKI_MICROBE_STAGE_GDD"
 msgstr "There is a separate game design document for the microbe stage that goes into more details: Microbe Stage GDD"
@@ -7104,7 +7347,7 @@ msgstr ""
 "\n"
 "Next stage: [color=#3796e1][url=thriveopedia:multicellular_stage]Multicellular Stage[/url][/color]\n"
 "\n"
-"The Microbe Stage is the first stage of the game. The stage begins with the first species to exist in the world, fresh from the primordial origins of life exploring the nutrient-rich Pangonian Vents. It is here that the player assumes the role of a tiny prokaryotic blob of cytoplasm, one of a few individuals of their species. At this point, the player must rely entirely on finding loose glucose to survive as they do not yet possess ways to process other nutrients and seek out phosphates and ammonia to grow bigger in preparation for reproduction. Once the player has reached a sufficient size they will be capable of reproducing, which will bring the player to the microbe editor should they choose to do so. As the game continues, the player will steadily adapt their cell to better survive in a world that grows gradually harsher each generation, and compete with new species that have arisen from the player's own."
+"The Microbe Stage is the first stage of the game. The stage begins with the first species to exist in the world, fresh from the primordial origins of life exploring the nutrient-rich Pangonian Vents. It is here that the player assumes the role of a tiny prokaryotic blob of cytoplasm, one of a few individuals of their species. At this point, the player must rely entirely on finding loose [thrive:compound type=\"glucose\"][/thrive:compound] to survive as they do not yet possess ways to process other nutrients and seek out [thrive:compound type=\"phosphates\"][/thrive:compound] and [thrive:compound type=\"ammonia\"][/thrive:compound] to grow bigger in preparation for reproduction. Once the player has reached a sufficient size they will be capable of reproducing, which will bring the player to the microbe editor should they choose to do so. As the game continues, the player will steadily adapt their cell to better survive in a world that grows gradually harsher each generation, and compete with new species that have arisen from the player's own."
 
 msgid "WIKI_MITOCHONDRION_EFFECTS"
 msgstr "No effects."
@@ -7117,9 +7360,9 @@ msgstr "No modifications."
 
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
-"[b]Aerobic Respiration[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"[b]Aerobic Respiration[/b]: [thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"carbondioxide\"][/thrive:compound]\n"
 "\n"
-"One of the main methods of energy production, superior to that in [color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color]. Requires a steady influx of [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with the concentration of environmental [thrive:compound type=\"oxygen\"][/thrive:compound]."
+"One of the main methods of energy production, superior to that in  [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color][/b]. Requires a steady influx of [thrive:compound type=\"glucose\"][/thrive:compound]. Rate scales with the concentration of environmental [thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "WIKI_MITOCHONDRION_REQUIREMENTS"
 msgstr ""
@@ -7127,11 +7370,18 @@ msgstr ""
 "\n"
 "If organelle upgrades are enabled in game settings, [i]both[/i] of the following conditions must also be true [i]for the player cell[/i]:\n"
 "\n"
-"[indent]—   Contains [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color][/b] for at least [b]7[/b] generations in a row.[/indent]\n"
+"[indent]—   Contains at least [b]4[/b]  [b][color=#3796e1][url=thriveopedia:metabolosome]Metabolosomes[/url][/color][/b] for at least [b]5[/b] generations in a row.[/indent]\n"
 "[indent]—   Produces at least [b]+20[/b] [thrive:compound type=\"atp\"][/thrive:compound].[/indent]"
 
 msgid "WIKI_MITOCHONDRION_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"Mitochondria are bilayered (having both an inner and outer membrane) organelles that generate ATP through a process called Oxidative Phosphorylation. In this process, energy generated from the breakdown of nutrients (such as glucose and lipids) is used to generate a proton gradient across the inner membrane, which it can then use to convert ADP into ATP.\n"
+"\n"
+"While in the game, mitochondria are depicted as sausage-shaped organelles, their shape and size is actually very flexible. Mitochondria are constantly fusing together and splitting apart depending on the demands of the cell. They can even form large networks with other mitochondria within the cell. These dynamics are important for (among other things) regulating metabolism and mitochondrial quality control, as mitochondrial shape greatly affects their function.\n"
+"\n"
+"One notable aspect of the mitochondrion that separates it from most organelles is that it contains its own DNA. Because the mitochondrion was originally an independent organism that was acquired by a host cell, it contains DNA plasmids within its matrix (inside the inner membrane). Over time, the mitochondrion became more and more dependent on the host cell and lost its ability to live independently.\n"
+"\n"
+"While the mitochondrion is best known for being the powerhouse of the cell, it actually does so much more than provide energy. It is an integral part of programmed cell death, cell signalling, and the synthesis of various molecules such as phospholipids. Currently, there is research trying to understand these processes, as well as trying to uncover new roles that the mitochondrion plays."
 
 msgid "WIKI_MITOCHONDRION_STRATEGY"
 msgstr ""
@@ -7145,36 +7395,35 @@ msgstr "No upgrades."
 msgid "WIKI_MULTICELLULAR_STAGE_CONCEPT_ART"
 msgstr ""
 "[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/7/75/Multiperceptionconcept.jpg/120px-Multiperceptionconcept.jpg]Perception concept[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] \t\t\t[/indent]\n"
-"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/92/Multicolorconcept.png/120px-Multicolorconcept.png]Terrain color concept[/url][/color] \t\t\t[/indent]"
+"[indent]—   [color=#3796e1][url=https://wiki.revolutionarygamesstudio.com/images/thumb/9/9f/Multieditorconcept.jpeg/120px-Multieditorconcept.jpeg]Editor concept[/url][/color] \t\t\t[/indent]"
 
 msgid "WIKI_MULTICELLULAR_STAGE_CURRENT_DEVELOPMENT"
-msgstr "Prototype level of the development of the multicellular stage has started. Early multicellular is mostly playable. Later multicellular stage is more experimental prototype."
+msgstr "Multicellular stage development has started but it is not very fleshed out yet."
 
 msgid "WIKI_MULTICELLULAR_STAGE_FEATURES"
 msgstr ""
-"The gameplay of the first segment of the stage will feel a lot like the Microbe Stage. Gameplay will continue on the 2D plane with other cells, but the difference will be that the player will now control a growing colony. The difference from the end of microbe stage is that the colony can no longer be disbanded, instead it acts like a permanently stuck together, singular organism. This is the early part of the multicellular where the microbe environment is still used and the player can interact with microbes.\n"
+"The gameplay of the multicellular stage will feel a lot like the Microbe Stage. Gameplay will continue on the 2D plane with other cells, but the difference will be that the player will now control a growing colony. The difference from the end of microbe stage is that the colony can no longer be disbanded, instead it acts like a permanently stuck together, singular organism. The microbe environment is still used and the player can interact with microbes.\n"
 "\n"
 "In the editor, the player can now create and edit cell types in addition to making changes to the structure and organelles of those cells. Any change made to one cell of a cell type in the colony will automatically apply to all other cells of that type. Using different cell types the player will be able to specialize different cells in his colony towards different functions, giving them a big advantage over unicellular organisms.\n"
 "\n"
-"In the later part of multicellular stage, the player becomes a macroscopic creature. This shifts the game's scale so that microbes are no longer visible and the player moves onto sculpting tissues instead of placing individual cells.\n"
+"At the end of the stage the player controls a large colony of cells that can dominate the microscopic world, and then take a leap to grow even bigger and become a macroscopic creature.\n"
 "\n"
 "There is a separate page for the Multicellular Stage GDD describing the stage mechanics in more details."
 
 msgid "WIKI_MULTICELLULAR_STAGE_INTRO"
-msgstr "In the Multicellular Stage, your colony will become more complex and specialized, as well as experiencing a transition into a 3D environment, until it becomes a macroscopic multicellular organism. The stage ends when your creature first develops a certain level of sentience."
+msgstr "In the Multicellular Stage, your cell colony will become more complex and specialized, until it becomes a macroscopic organism. The stage ends when your species becomes big enough in size to become macroscopic and move onto the [color=#3796e1][url=thriveopedia:macroscopic_stage]Macroscopic Stage[/url][/color]."
 
 msgid "WIKI_MULTICELLULAR_STAGE_OVERVIEW"
 msgstr ""
-"Life in the oceans flourishes. There will be a lot of diversity. The world has suddenly gotten a lot bigger for the player.\n"
+"Life in the oceans flourishes. There will be a lot of diversity. The world has suddenly gotten a lot smaller for the player as they are the biggest thing around in the microscopic environment.\n"
 "\n"
-"The player will now control a colony of cells that form a larger organism. The scale will gradually increase in size."
+"The player will now control a colony of cells that form a larger organism. The colony size will gradually increase with more specialized cell types preparing the move to macroscopic."
 
 msgid "WIKI_MULTICELLULAR_STAGE_TRANSITIONS"
 msgstr ""
-"The stage starts when cells bind together through use of Binding Agents (Adhesion Proteins) and the cells can no longer unbind (they become actually a single organism). The move to multicellular requires a large enough cell colony to exist as a precondition.\n"
+"The stage starts when cells bind together through use of Binding Agents (Adhesion Proteins) and the cells can no longer unbind (they become actually a single organism).\n"
 "\n"
-"It ends when the player's species evolves a nervous system."
+"It ends when the player's species evolves to be a big enough cluster of cells to move to macroscopic size."
 
 msgid "WIKI_MULTICELLULAR_STAGE_UI"
 msgstr "Nothing has been discussed."
@@ -7206,42 +7455,12 @@ msgstr "No upgrades"
 msgid "WIKI_NATION_EDITOR"
 msgstr "Nation Editor"
 
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "No effects."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. More efficient than the prokaryotic [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "No modifications."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr ""
-"[b]Aerobic Nitrogen Fixation[/b]\n"
-"\n"
-"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]. More efficient than the equivalent process in [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Nitrogen-Fixing Plastids[/b]."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr ""
-"We recommend replacing [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b] with [b]Nitrogen-Fixing Plastids[/b] when your cell develops a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b], as the latter can more efficiently generate resources needed for reproduction.\n"
-"\n"
-"As with [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b], [b]Nitrogen-Fixing Plastids[/b] are a sensible choice if you have [thrive:compound type=\"atp\"][/thrive:compound] to spare. Creating reproduction resources yourself removes a limiting factor on your ability to progress through generations more quickly."
-
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "No upgrades."
-
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "No effects."
 
 msgid "WIKI_NITROGENASE_INTRO"
 msgstr ""
-"Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. Less efficient than the eukaryotic [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitrogen-Fixing Plastid[/url][/color][/b].\n"
+"Performs [b]Anaerobic Nitrogen Fixation[/b] to produce [thrive:compound type=\"ammonia\"][/thrive:compound] from gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound], producing one of the components of growth for cellular reproduction. Less efficient than the eukaryotic [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b].\n"
 "\n"
 "Also performs some [b]Glycolysis[/b] to produce [thrive:compound type=\"atp\"][/thrive:compound] from [thrive:compound type=\"glucose\"][/thrive:compound]."
 
@@ -7252,7 +7471,7 @@ msgid "WIKI_NITROGENASE_PROCESSES"
 msgstr ""
 "[b]Anaerobic Nitrogen Fixation[/b]: [thrive:compound type=\"atp\"][/thrive:compound] + [thrive:compound type=\"nitrogen\"][/thrive:compound] → [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
 "\n"
-"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound]. Less efficient than the equivalent process in the [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitrogen-Fixing Plastid[/url][/color][/b].\n"
+"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound]. Less efficient than the equivalent process in the [b][color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplast[/url][/color][/b].\n"
 "\n"
 "[b]Glycolysis[/b]\n"
 "\n"
@@ -7269,11 +7488,46 @@ msgstr "TBA"
 
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
-"The [thrive:compound type=\"ammonia\"][/thrive:compound] produced by [b]Nitrogenase[/b] contributes towards stored resources for reproduction. Cells with [b]Nitrogenase[/b] therefore need only find [thrive:compound type=\"phosphates\"][/thrive:compound] from the environment to reproduce at a faster rate than the base rate (the base rate is zero if passive reproduction progress is disabled in options for the current game).\n"
+"The [thrive:compound type=\"ammonia\"][/thrive:compound] produced by [b]Nitrogenase[/b] contributes towards stored resources for reproduction. Cells with [b]Nitrogenase[/b] therefore need only find [thrive:compound type=\"phosphates\"][/thrive:compound] from the environment to reproduce at a faster rate than the base rate (the base rate is zero if passive reproduction progress is disabled in options for the current game). A good strategy is seeking out [thrive:compound type=\"phosphates\"][/thrive:compound] chunks to engulf or stay close to.\n"
 "\n"
 "Since [b]Anaerobic Nitrogen Fixation[/b] consumes [thrive:compound type=\"atp\"][/thrive:compound], you should have excess [thrive:compound type=\"atp\"][/thrive:compound] available before adding this organelle to your cell. The small amount of [b]Glycolysis[/b] performed by [b]Nitrogenase[/b] is not enough to offset its own osmoregulation cost."
 
 msgid "WIKI_NITROGENASE_UPGRADES"
+msgstr "No upgrades."
+
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "No effects."
+
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "The Nitroplast is a membrane-bound organelle used to produce [thrive:compound type=\"ammonia\"][/thrive:compound], one of the components of growth for cellular reproduction. Performs [b]Anaerobic Nitrogen Fixation[/b] to convert gaseous [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"atp\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound]. More efficient than the prokaryotic [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
+
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "No modifications."
+
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr ""
+"[b]Aerobic Nitrogen Fixation[/b]\n"
+"\n"
+"Fixes atmospheric [thrive:compound type=\"nitrogen\"][/thrive:compound] into [thrive:compound type=\"ammonia\"][/thrive:compound] by expending energy. Rate scales with the amount of environmental [thrive:compound type=\"nitrogen\"][/thrive:compound] and [thrive:compound type=\"oxygen\"][/thrive:compound]. More efficient than the equivalent process in [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b]."
+
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "A cell must have a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b] to evolve [b]Nitroplasts[/b]."
+
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr ""
+"Nitroplasts have been shown to have evolved from endosymbionts in eukaryotic cells.\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Nitroplast]https://en.wikipedia.org/wiki/Nitroplast[/url][/color]\n"
+"\n"
+"https://www.science.org/doi/10.1126/science.ado8571"
+
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr ""
+"We recommend replacing [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b] with [b]Nitroplasts[/b] when your cell develops a [b][color=#3796e1][url=thriveopedia:nucleus]Nucleus[/url][/color][/b], as the latter can more efficiently generate resources needed for reproduction.\n"
+"\n"
+"As with [b][color=#3796e1][url=thriveopedia:nitrogenase]Nitrogenase[/url][/color][/b], [b]Nitroplasts[/b] are a sensible choice if you have [thrive:compound type=\"atp\"][/thrive:compound] to spare. Creating reproduction resources yourself removes a limiting factor on your ability to progress through generations more quickly. This will also require gathering extra [thrive:compound type=\"phosphates\"][/thrive:compound], which can be gained from floating chunks of crystal, or from purple clouds."
+
+msgid "WIKI_NITROPLAST_UPGRADES"
 msgstr "No upgrades."
 
 msgid "WIKI_NO"
@@ -7425,6 +7679,9 @@ msgstr "Editors And Mutations"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Environmental Conditions"
 
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Ferroplast"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagellum"
 
@@ -7436,6 +7693,9 @@ msgstr "Industrial Stage"
 
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosome"
+
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Macroscopic Stage"
 
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Mechanics"
@@ -7455,11 +7715,11 @@ msgstr "Multicellular Stage"
 msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Myofibril"
 
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Nitrogen-Fixing Plastid"
-
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Nitroplast"
 
 msgid "WIKI_PAGE_NUCLEUS"
 msgstr "Nucleus"
@@ -7644,13 +7904,16 @@ msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "No requirements."
 
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
-msgstr "TBA"
+msgstr ""
+"[b]Rusticyanin[/b] can be found in the membranes of some bacteria and archaea. It transfers electrons from [b]Iron[/b] and uses this to draw ions into the cell to help create new [b]ATP[/b] molecules.\n"
+"\n"
+"[color=#3796e1][url=https://en.wikipedia.org/wiki/Rusticyanin]https://en.wikipedia.org/wiki/Rusticyanin[/url][/color]"
 
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
-"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment. Rust-eating cells are likely to enjoy plentiful nutrients in patches where [thrive:compound type=\"iron\"][/thrive:compound] is abundant.\n"
+"[thrive:compound type=\"iron\"][/thrive:compound] is a valuable alternative resource to use instead of [thrive:compound type=\"glucose\"][/thrive:compound] since it doesn't decay in the environment until much later. Rust-eating cells are likely to enjoy plentiful nutrients in patches where [thrive:compound type=\"iron\"][/thrive:compound] is abundant.\n"
 "\n"
-"Ingesting [thrive:compound type=\"iron\"][/thrive:compound] chunks may be tempting, but often you'll get more [thrive:compound type=\"iron\"][/thrive:compound] by holding near a chunk as it produces more of the compound in cloud form."
+"Ingesting [thrive:compound type=\"iron\"][/thrive:compound] chunks may be tempting, but often you'll get more [thrive:compound type=\"iron\"][/thrive:compound] by holding near a bigger chunk as it produces more of the compound in cloud form. However, an ingested [thrive:compound type=\"iron\"][/thrive:compound] chunk allows you to carry more [thrive:compound type=\"iron\"][/thrive:compound] with you for longer journeys."
 
 msgid "WIKI_RUSTICYANIN_UPGRADES"
 msgstr "No upgrades."
@@ -8101,6 +8364,18 @@ msgstr "Zoom in"
 msgid "ZOOM_OUT"
 msgstr "Zoom out"
 
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Macroscopic Stage"
+
+#~ msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
+#~ msgstr "2D (early), 3D (late)"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Multicellular"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Loading Early Multicellular Editor"
+
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Eruption in {0}"
 
@@ -8223,9 +8498,6 @@ msgstr "Zoom out"
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
 
-#~ msgid "QUESTION"
-#~ msgstr "?"
-
 #~ msgid "SPEED_BELOW"
 #~ msgstr "speed falls below {0}"
 
@@ -8324,9 +8596,6 @@ msgstr "Zoom out"
 
 #~ msgid "AUTO_GPU_NAME"
 #~ msgstr "{0}"
-
-#~ msgid "AUTO_VIDEO_MEMORY"
-#~ msgstr "{0} MiB"
 
 #~ msgid "HEX_VIEW"
 #~ msgstr "Hex View"

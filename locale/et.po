@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -398,6 +398,9 @@ msgstr ""
 msgid "BACK"
 msgstr "tagasi"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Kaldkriips"
 
@@ -551,6 +554,22 @@ msgstr "Autor:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Autor Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Pealkiri puudub"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "kaltsiumkarbonaat"
 
@@ -640,6 +659,14 @@ msgstr "Tselluloos"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Peata mäng"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Peata mäng"
+
 msgid "CELL_TYPE_NAME"
 msgstr "Lahtri tüübi nimi"
 
@@ -680,8 +707,16 @@ msgstr "Kemoretseptor"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud teavet ümbritseva kohta. Selle organelli lisamine tähendab peenhäälestatud kemoretseptsiooni arenemist. Kuna mängijale antakse nägemine isegi raku staadiumis, kujutab see nähtavast ekraanialast väljapoole suunatud joont, mis näitab läheduses olevaid ühendeid, mida mängija veel ei näinud."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Minimaalne tuvastatav summa:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Kemoretseptor võimaldab tuvastada ühendeid kaugemalt. Ühenduse tüübi ja juhtjoone värvi valimiseks muutke, kui see on asetatud."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Kõik rakud \"näevad\" ainult kemoretseptsiooni kaudu. Nii saavad rakud teavet ümbritseva kohta. Selle organelli lisamine tähendab peenhäälestatud kemoretseptsiooni arenemist. Kuna mängijale antakse nägemine isegi raku staadiumis, kujutab see nähtavast ekraanialast väljapoole suunatud joont, mis näitab läheduses olevaid ühendeid, mida mängija veel ei näinud."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -754,6 +789,9 @@ msgstr "Organismi statistika"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Vanade salvestuste puhastamine"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Sulge"
@@ -925,6 +963,22 @@ msgstr "{0} kontsentratsioon on vähenenud {1} võrra"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} tarbimine"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Liitsaldod"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Näita/peida keskkonda ja ühendeid"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Liitpilved"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1301,6 +1355,14 @@ msgstr "Krediidid"
 msgid "CTRL"
 msgstr "Ctrl"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Kuvamisvõimaluste riba"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Jätkake mängu"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Praegused arendajad"
 
@@ -1587,6 +1649,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Möödunud aeg: {0:#,#} aastat"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "vabasurm"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Kiirus:"
 
@@ -1648,15 +1714,14 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Kahekihiline membraan kaitseb paremini kahjustuste eest ja võtab vähem energiat, et mitte deformeeruda. Siiski aeglustab see raku tööd ja aeglustab ressursside neelamise kiirust."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 msgid "DUPLICATE_TYPE"
 msgstr "Duplikaadi tüüp"
-
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomade suhetest, mida on aastakümneid uuritud. Nüüd, kas sa oled Didinium või Paramecium? Kiskja või saak?"
@@ -1745,6 +1810,14 @@ msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomad
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Kartlikud mikroobid põgenevad suuremate vahemaade taha\n"
+"ja üldiselt põgenevad nad suurema tõenäosusega röövloomade eest.\n"
+"Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
+"ja tõenäoliselt ründab tagasi."
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 "Kartlikud mikroobid põgenevad suuremate vahemaade taha\n"
 "ja üldiselt põgenevad nad suurema tõenäosusega röövloomade eest.\n"
@@ -1933,6 +2006,10 @@ msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. L
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Näita/peida keskkonda ja ühendeid"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Keskkond"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelaagiline"
 
@@ -1968,6 +2045,10 @@ msgstr "Viga laadimisel"
 
 msgid "ERROR_SAVING"
 msgstr "Viga salvestamisel"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Viga laadimisel"
 
 msgid "ESCAPE"
 msgstr "esc"
@@ -2411,6 +2492,10 @@ msgstr "Graafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Graafika meeskond"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "KINNITA"
+
 msgid "GUI"
 msgstr ""
 
@@ -2747,6 +2832,13 @@ msgstr "Raua kemolitoautotroofia"
 msgid "ITCH_TOOLTIP"
 msgstr "vabasurm"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
 msgid "JANUARY"
 msgstr "jaanuaril"
 
@@ -2941,10 +3033,6 @@ msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 msgid "LAUNCH0"
 msgstr "Käivitage 0"
@@ -3173,12 +3261,12 @@ msgstr "Laadimine"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laadimine..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Mikroobide redaktori laadimine"
-
 msgid "LOADING_GAME"
 msgstr "Mängu laadimine"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
@@ -3255,6 +3343,21 @@ msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thriv
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Kemosüntees"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Muuta makroskoopiliseks ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3271,11 +3374,19 @@ msgstr "Mere lumi"
 msgid "MASTER_VOLUME"
 msgstr "Master helitugevus"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Jätkake mängu"
+
 msgid "MAX_FPS"
 msgstr "max FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Piiramatu"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Suurus:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3304,6 +3415,10 @@ msgstr "Meedia rekord"
 
 msgid "MEDIASTOP"
 msgstr "Meediapeatus"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Väike raua tükk"
 
 msgid "MEGA_YEARS"
 msgstr "mega aastat"
@@ -3345,6 +3460,10 @@ msgstr ""
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Lapist välja surnud"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3495,6 +3614,10 @@ msgstr "Microbe Freebuildi redaktor"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organismi statistika"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Organismi statistika"
 
 #, fuzzy
@@ -3911,6 +4034,14 @@ msgstr "Liigu alla või kükita"
 msgid "MOVE_FORWARD"
 msgstr "Edasi liikuma"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Modifikatsioon üleslaadimiseks:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Liigu paremale"
+
 msgid "MOVE_LEFT"
 msgstr "Liigu vasakule"
 
@@ -4004,6 +4135,10 @@ msgstr "Kemosüntees"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Peata mäng"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
@@ -4145,13 +4280,13 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Lämmastikku fikseeriv plastiid"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
 
 msgid "NONE"
@@ -4232,6 +4367,10 @@ msgstr "Ekraanitõmmiste kataloogi ei leitud"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Modifikatsiooni pole valitud"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolutsioon:"
 
 msgid "NUCLEUS"
 msgstr "Tuum"
@@ -4386,8 +4525,16 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
 
 #, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
 
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4413,6 +4560,14 @@ msgstr "Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organellid"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Pausi menüü"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4718,6 +4873,10 @@ msgstr "populatsioon laikudena:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "Isikukood"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} rööv"
 
@@ -4841,6 +5000,18 @@ msgstr "Paljundamine"
 msgid "REPRODUCTION_BUDDING"
 msgstr "lootustandev"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Paljundamine:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Paljundamine:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Paljundamine:"
 
@@ -4863,6 +5034,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Kas lähtestada sisendid normaalseks?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Kas lähtestada sisendid normaalseks?"
 
 #, fuzzy
@@ -5247,6 +5422,10 @@ msgid "SHOW_HELP"
 msgstr "Näita abi"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Näita õpetusi"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
@@ -5335,6 +5514,10 @@ msgstr "Väike raua tükk"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Väike raua tükk"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Väike raua tükk"
 
 msgid "SNOWFLAKE"
@@ -6081,10 +6264,6 @@ msgid "TUTORIAL"
 msgstr "Õpetus"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Mikroobide redaktori laadimine"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "See on plaastri kaart.\n"
@@ -6262,6 +6441,10 @@ msgstr ""
 "Olete sisenenud sidumise tühistamise režiimi. Selles režiimis saate klõpsata koloonia liikmetel, et need lahti siduda.\n"
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Mikroobide redaktori laadimine"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
@@ -6490,6 +6673,9 @@ msgstr "vabasurm"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Kasutage kohandatud kasutajanime"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Taustalõimede arvu käsitsi määramine"
 
@@ -6554,6 +6740,10 @@ msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [t
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Keela kõik"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6630,9 +6820,6 @@ msgstr "meie Viki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "meie Viki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7090,6 +7277,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
@@ -7318,6 +7537,55 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Tuum"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Asetage organell"
 
@@ -7506,38 +7774,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Luba redaktor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
@@ -7567,6 +7803,38 @@ msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Lämmastik on valk, mis on võimeline kasutama gaasilist lämmastikku ja rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse anaeroobseks lämmastiku fikseerimiseks. Kuna lämmastik suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"ammoniaak\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"nitrogen\"][/thrive:compound] ja [thrive:compound type=\"oxygen\"][/thrive:compound] kontsentratsiooniga."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Lämmastikku fikseeriv plastiid on valk, mis on võimeline kasutama gaasilist lämmastikku ja hapnikku ning rakuenergiat ATP kujul, et toota ammoniaaki, mis on rakkude kasvu peamine toitaine. Seda protsessi nimetatakse aeroobseks lämmastiku fikseerimiseks."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Lämmastikku fikseeriv plastiid"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7713,6 +7981,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitokondrid"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vibur"
 
@@ -7727,6 +7999,10 @@ msgstr "Sideaine"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oksütoksisoom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Lämmastik"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7753,12 +8029,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Lämmastikku fikseeriv plastiid"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Lämmastikku fikseeriv plastiid"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8371,6 +8647,25 @@ msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr ""
+#~ "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+#~ "\n"
+#~ "Elu.\n"
+#~ "\n"
+#~ "Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+#~ "\n"
+#~ "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "lootustandev"
 
@@ -8434,17 +8729,6 @@ msgstr "Suumi välja"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Mikroobide redaktori laadimine"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr ""
-#~ "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
-#~ "\n"
-#~ "Elu.\n"
-#~ "\n"
-#~ "Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
-#~ "\n"
-#~ "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8562,10 +8846,6 @@ msgstr "Suumi välja"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolutsioon:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

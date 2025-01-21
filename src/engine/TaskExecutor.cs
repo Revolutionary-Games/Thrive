@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
-using System.Runtime.Intrinsics.X86;
 using System.Threading;
 using System.Threading.Tasks;
 using DefaultEcs.Threading;
@@ -232,7 +231,7 @@ public class TaskExecutor : IParallelRunner
             }
 
             // Reduce hyperthreading resource use while waiting
-            X86Base.Pause();
+            CPUHelpers.HyperThreadPause();
         }
 
 #if DEBUG
@@ -476,7 +475,7 @@ public class TaskExecutor : IParallelRunner
                     ++noWorkCounter;
 
                     // Reduce hyperthreading resource use while just busy looping
-                    X86Base.Pause();
+                    CPUHelpers.HyperThreadPause();
                 }
             }
         }

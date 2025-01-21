@@ -36,7 +36,7 @@ region_rect = Rect2(0, 0, 258, 1)
 
 [sub_resource type="StyleBoxEmpty" id="7"]
 
-[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("damageEffect", "strainVisibility", "displayMicrobeBackgroundDistortionToggle", "bloomEffectToggle", "bloomSlider")]
+[node name="OptionsMenu" type="Control" node_paths=PackedStringArray("damageEffect", "strainVisibility", "displayMicrobeBackgroundDistortionToggle", "bloomEffectToggle", "bloomSlider", "blurSlider", "useDiskCaching", "maxCacheSizeSlider", "maxCacheSizeLabel", "currentCacheSize", "maxMemoryCacheTimeSlider", "maxMemoryCacheTimeLabel", "maxDiskCacheTimeSlider", "maxDiskCacheTimeLabel", "maxMemoryItemsSlider", "maxMemoryItemsLabel", "maxMemoryOnlyCacheTimeSlider", "maxMemoryOnlyCacheTimeLabel")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -152,6 +152,19 @@ strainVisibility = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxCon
 displayMicrobeBackgroundDistortionToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/BackgroundDistortion")
 bloomEffectToggle = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer12/Bloom")
 bloomSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer12/BloomAmount")
+blurSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer13/BlurAmount")
+useDiskCaching = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/DiskCache")
+maxCacheSizeSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CacheSizeSlider")
+maxCacheSizeLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/DesiredCacheSize")
+currentCacheSize = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/HBoxContainer/CacheSize")
+maxMemoryCacheTimeSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration/CacheValue")
+maxMemoryCacheTimeLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration/HBoxContainer/Value")
+maxDiskCacheTimeSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime/CacheValue")
+maxDiskCacheTimeLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime/HBoxContainer/Value")
+maxMemoryItemsSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems/CacheValue")
+maxMemoryItemsLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems/HBoxContainer/Value")
+maxMemoryOnlyCacheTimeSlider = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime/CacheValue")
+maxMemoryOnlyCacheTimeLabel = NodePath("CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime/HBoxContainer/Value")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -445,6 +458,28 @@ text = "DISPLAY_BACKGROUND_PARTICLES"
 layout_mode = 2
 size_flags_horizontal = 0
 text = "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
+
+[node name="HBoxContainer13" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer13"]
+layout_mode = 2
+text = "BACKGROUND_BLUR"
+
+[node name="Separator" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer13"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BlurAmount" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer13"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 1
+focus_neighbor_top = NodePath("../../HBoxContainer5/ChromaticAmount")
+focus_neighbor_bottom = NodePath("../../DisplayBackgroundParticles")
+max_value = 2.0
+step = 0.05
+value = 2.0
+scrollable = false
 
 [node name="Menu3DBackgroundsToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -1103,10 +1138,194 @@ layout_mode = 2
 [node name="NativeThreadCountSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_bottom = NodePath("../../../HBoxContainer8/DiskCache")
+focus_next = NodePath("../../../HBoxContainer8/DiskCache")
 min_value = 1.0
 max_value = 64.0
 value = 4.0
 rounded = true
+scrollable = false
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer11" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CachingTitle" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+text = "CACHING_TITLE"
+label_settings = ExtResource("8_jegpj")
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer11"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("8")
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DiskCache" type="CheckBox" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 0
+tooltip_text = "DISK_CACHE_TOOLTIP"
+button_pressed = true
+text = "USE_DISK_CACHE"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "CURRENT_CACHE_SIZE_TOOLTIP"
+mouse_filter = 1
+text = "CURRENT_CACHE_SIZE"
+
+[node name="CacheSize" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/HBoxContainer"]
+layout_mode = 2
+tooltip_text = "CURRENT_CACHE_SIZE_TOOLTIP"
+mouse_filter = 1
+text = "0"
+
+[node name="HBoxContainer10" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ClearCache" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+text = "CLEAR_CACHE"
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+tooltip_text = "MAX_CACHE_SIZE_TOOLTIP"
+mouse_filter = 1
+text = "MAX_SIZE_COLON"
+
+[node name="DesiredCacheSize" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10"]
+layout_mode = 2
+tooltip_text = "MAX_CACHE_SIZE_TOOLTIP"
+mouse_filter = 1
+
+[node name="CacheSizeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "MAX_CACHE_SIZE_TOOLTIP"
+min_value = 1.04858e+08
+max_value = 1.04858e+10
+step = 1024.0
+value = 1.04858e+08
+scrollable = false
+
+[node name="AdvancedCaching" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer"]
+editor_description = "Advanced caching that could do with being in a CollapsibleList"
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="MemoryCacheDuration" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CACHE_TIME_MEMORY"
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="CacheValue" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration"]
+layout_mode = 2
+min_value = 10.0
+max_value = 3600.0
+step = 10.0
+value = 180.0
+scrollable = false
+
+[node name="DiskCacheMaxTime" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CACHE_DISK_MAX_TIME"
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="CacheValue" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime"]
+layout_mode = 2
+min_value = 1800.0
+max_value = 2.365e+07
+step = 1800.0
+value = 1800.0
+scrollable = false
+
+[node name="MaxMemoryItems" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CACHE_MEMORY_MAX_ITEMS"
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="CacheValue" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems"]
+layout_mode = 2
+min_value = 10.0
+max_value = 1000.0
+value = 10.0
+scrollable = false
+
+[node name="MemoryOnlyCacheTime" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "CACHE_TIME_MEMORY_ONLY"
+autowrap_mode = 3
+
+[node name="Value" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime/HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="CacheValue" type="HSlider" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime"]
+layout_mode = 2
+min_value = 1.0
+max_value = 500.0
+value = 1.0
 scrollable = false
 
 [node name="Inputs" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer"]
@@ -1873,6 +2092,7 @@ grow_vertical = 1
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer12/BloomAmount" to="." method="OnBloomStrengthChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayBackgroundParticles" to="." method="OnDisplayBackgroundParticlesToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/BackgroundDistortion" to="." method="OnMicrobeBackgroundDistortionToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer13/BlurAmount" to="." method="OnBlurStrengthChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/Menu3DBackgroundsToggle" to="." method="OnDisplay3DMenuBackgroundsToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ControllerPromptType" to="." method="OnControllerTypeSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Graphics/ScrollContainer/MarginContainer/VBoxContainer/DisplayAbilitiesBar" to="." method="OnDisplayAbilitiesHotBarToggled"]
@@ -1904,6 +2124,13 @@ grow_vertical = 1
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer4/VBoxContainer/ThreadCountSlider" to="." method="OnManualThreadCountChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/UseNativeManualThreadCount" to="." method="OnManualNativeThreadsToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer6/VBoxContainer/NativeThreadCountSlider" to="." method="OnManualNativeThreadCountChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer8/DiskCache" to="." method="OnDiskCachingToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer10/ClearCache" to="." method="OnClearDiskCachePressed"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/CacheSizeSlider" to="." method="OnMaxCacheSizeChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryCacheDuration/CacheValue" to="." method="OnMemoryDiskCacheTimeChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/DiskCacheMaxTime/CacheValue" to="." method="OnDiskCacheDurationChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MaxMemoryItems/CacheValue" to="." method="OnMemoryMaxItemsChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Performance/ScrollContainer/MarginContainer/VBoxContainer/AdvancedCaching/MemoryOnlyCacheTime/CacheValue" to="." method="OnMemoryOnlyCacheTimeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/MouseFirstLine/SameBothAxesSensitivity" to="." method="OnMouseAxesBoundToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/Horizontal" to="." method="OnMouseHorizontalSensitivityChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/VBoxContainer/VBoxContainer/PanelContainer/Inputs/MarginContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/Mouse/HorizontalInverted" to="." method="OnInvertedMouseHorizontalToggled"]

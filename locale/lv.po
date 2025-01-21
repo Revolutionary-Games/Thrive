@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -373,6 +373,9 @@ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/t
 msgid "BACK"
 msgstr "Atpakaļ"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Atpakaļ"
 
@@ -525,6 +528,22 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Šūnas procesi"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcija Karbonāts"
 
@@ -617,6 +636,14 @@ msgstr "Celuloze"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Atsākt spēli"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Atsākt spēli"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -660,8 +687,16 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Modifikācijas Apraksts:"
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Hemoplasts"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Modifikācijas Apraksts:"
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -735,6 +770,9 @@ msgstr "Organisma statistika"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Dzēst vecos saglabāšanas failus"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Aizvērt"
@@ -894,6 +932,22 @@ msgstr ""
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} Patēriņš"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Savienojumu mākonis"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1269,6 +1323,14 @@ msgstr ""
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Automātiski saglabāt progresu spēles laikā"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Atsākt spēli"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1539,6 +1601,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Atsākt spēli"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Ātrums:"
 
@@ -1599,16 +1665,15 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "Dublēt Spēlētāju"
-
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Novietot organoīdu"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Jautrs fakts; Didīnijs un Paramēcijs ir mācību grāmats piemērs plēsēja un upura attiecībām, ko pētīja vairākas desmitgades. Šobrī, vai jūs esat Didīnijs, vai tomēr Paramēcijs? Plēsējs vai upurs?"
@@ -1697,6 +1762,14 @@ msgstr "Jautrs fakts; Didīnijs un Paramēcijs ir mācību grāmats piemērs pl�
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 "Bailīgie mikrobi muks tālas distances\n"
 "un visbiežāk muks no plēsējiem kopumā.\n"
@@ -1867,6 +1940,10 @@ msgstr ""
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Vide"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelaģiāle"
 
@@ -1902,6 +1979,14 @@ msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr ""
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr ""
+"Bailīgie mikrobi muks tālas distances\n"
+"un visbiežāk muks no plēsējiem kopumā.\n"
+"Drosmīgos mikrobus neiebiedēs apkārtējie plēsēji\n"
+"un visbiežāk uzbruks pretī."
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2326,6 +2411,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafikas Komanda"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "APSTIPRINĀT"
+
 msgid "GUI"
 msgstr ""
 
@@ -2646,6 +2735,13 @@ msgstr "Dzelža Ķīmolitoautotrofija"
 msgid "ITCH_TOOLTIP"
 msgstr "Atsākt spēli"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
+
 msgid "JANUARY"
 msgstr ""
 
@@ -2840,10 +2936,6 @@ msgstr ""
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Novietot organoīdu"
 
 msgid "LAUNCH0"
 msgstr ""
@@ -3076,11 +3168,12 @@ msgstr "Lādējas"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Augšuplādē..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr ""
-
 msgid "LOADING_GAME"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Novietot organoīdu"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
@@ -3153,6 +3246,13 @@ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thri
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Hemosintēze"
 
+msgid "MACROSCOPIC"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3169,11 +3269,19 @@ msgstr "Jūras sniegs"
 msgid "MASTER_VOLUME"
 msgstr "Skaļums"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Atsākt spēli"
+
 msgid "MAX_FPS"
 msgstr "Augstākais FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Bezgalīgi"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Izmērs:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3202,6 +3310,10 @@ msgstr ""
 
 msgid "MEDIASTOP"
 msgstr ""
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Mazs dzelzs gabals"
 
 msgid "MEGA_YEARS"
 msgstr ""
@@ -3243,6 +3355,10 @@ msgstr ""
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "Izmira no plankuma"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3375,6 +3491,10 @@ msgstr ""
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organisma statistika"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Organisma statistika"
 
 #, fuzzy
@@ -3790,6 +3910,14 @@ msgstr ""
 msgid "MOVE_FORWARD"
 msgstr "Pārvietoties uz priekšu"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Izmira no plankuma"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Pārvietoties pa labi"
+
 msgid "MOVE_LEFT"
 msgstr "Pārvietoties pa kreisi"
 
@@ -3848,6 +3976,10 @@ msgstr "Hemosintēze"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Novietot organoīdu"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
@@ -3986,13 +4118,13 @@ msgstr ""
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Slāpekļa fiksējošs plastids"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr ""
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr ""
 
 msgid "NONE"
@@ -4071,6 +4203,10 @@ msgstr "Nav atrasta ekrānuzņēmuma direktorija"
 
 msgid "NO_SELECTED_MOD"
 msgstr "Nav atlasīto modifikāciju"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Izšķirtspēja:"
 
 msgid "NUCLEUS"
 msgstr "Kodols"
@@ -4226,8 +4362,18 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thrive:compound type=\"atp\"][/thrive:compound]."
 
 #, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4254,6 +4400,14 @@ msgstr "Pīluss"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pīluss"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organoīdi"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4568,6 +4722,9 @@ msgstr "{0} ({1})"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "{0} Plēsonība"
 
@@ -4689,6 +4846,20 @@ msgid "REPRODUCTION_BUDDING"
 msgstr ""
 
 #, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
+
+#, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "ATP RAŽOŠANA IR PĀRĀK ZEMA!"
 
@@ -4710,6 +4881,9 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr ""
+
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr ""
 
 msgid "RESET_KEYBINDINGS"
@@ -5081,6 +5255,10 @@ msgid "SHOW_HELP"
 msgstr "Rādīt palīdzību"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Rādīt tutoriālus"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Ala"
 
@@ -5177,6 +5355,10 @@ msgstr "Mazs dzelzs gabals"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Mazs dzelzs gabals"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Mazs dzelzs gabals"
 
 msgid "SNOWFLAKE"
@@ -5904,10 +6086,6 @@ msgid "TUTORIAL"
 msgstr "Tutoriāls"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Novietot organoīdu"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
@@ -6076,6 +6254,10 @@ msgstr ""
 "Jūs esat iegājuši atsaistīšanas režīmā. Šajā režīmā jūs varat uzklikšķināt uz kolonijas locekļiem, lai tos atsaistītu.\n"
 "\n"
 "Lai pamestu koloniju vispārīgi, jūs varat uzklikšķināt uz savas šūnas vai uzspiest atsaistīt visu pogu."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Novietot organoīdu"
 
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
@@ -6296,6 +6478,9 @@ msgstr ""
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Izmantot pielāgotu lietotājvārdu"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
@@ -6360,6 +6545,10 @@ msgstr "Pārveido [thrive:compound type=\"glucose\"][/thrive:compound] par [thri
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Pārskatīt tagad"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Ala"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6433,9 +6622,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6874,6 +7060,38 @@ msgstr "Anaerobiskā slāpekļa fiksācija"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplasts"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplasts"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplasts"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplasts"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -7094,6 +7312,34 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Kodols"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Novietot organoīdu"
 
@@ -7255,38 +7501,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Ieslēgt redaktoru"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrāzes"
 
@@ -7315,6 +7529,38 @@ msgstr "Nitrāzes"
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Slāpekļa fiksējošs plastids"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Slāpekļa fiksējošs plastids"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7451,6 +7697,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitohondrijs"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplasts"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vica"
 
@@ -7465,6 +7715,10 @@ msgstr "Saistviela"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oksitoksisoma"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrāzes"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7491,12 +7745,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pīluss"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Slāpekļa fiksējošs plastids"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrāzes"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Slāpekļa fiksējošs plastids"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8048,6 +8302,14 @@ msgid "ZOOM_OUT"
 msgstr "Attālināt"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Novietot organoīdu"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Apraksts ir pārāk garš"
 
@@ -8100,10 +8362,6 @@ msgstr "Attālināt"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Ieslēgt redaktoru"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8188,10 +8446,6 @@ msgstr "Attālināt"
 
 #~ msgid "TREBLEDOWN"
 #~ msgstr "Treble Down (taustiņš)"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Izšķirtspēja:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

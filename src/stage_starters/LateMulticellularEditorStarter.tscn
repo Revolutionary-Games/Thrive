@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5t3dgxermnxu"]
-
-[ext_resource type="Script" path="res://src/stage_starters/SimpleStageStarter.cs" id="1"]
-
-[node name="LateMulticellularEditorStarter" type="Node"]
-script = ExtResource("1")
-StageToSwitchTo = 5

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-19 21:07+0000\n"
 "Last-Translator: Paradox Edge <xxzemonxx@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -376,6 +376,9 @@ msgstr "Mikrob Stadiet"
 msgid "BACK"
 msgstr "Backåt"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Omvänt snedstreck"
 
@@ -531,6 +534,22 @@ msgstr "Av:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Av Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "DU HAR FRODATS!"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalciumkarbonat"
 
@@ -621,6 +640,14 @@ msgstr "Cellulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Detta membran har en vägg, vilket leder till bättre skydd mot allmän skada och särskilt mot fysisk skada. Den kostar också mindre energi för att bibehålla sin form, men kan inte ta upp resurser lika snabbt och är trögare. [b]Cellulas kan smälta denna vägg[/b] vilket gör den sårbar mot uppslukning av rovdjur."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Fortsätt"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Fortsätt"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -665,7 +692,15 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Kemoreceptor"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr "Kemoplasten är en dubbelmembranstruktur som innehåller proteiner som kan omvandla vätesulfid, vatten och gasformig koldioxid till glukos i en process som kallas vätesulfidkemosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av vatten och koldioxid."
 
 #, fuzzy
@@ -740,6 +775,9 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Organismstatistik"
 
 msgid "CLEAN_UP_OLD_SAVES"
+msgstr ""
+
+msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLOSE"
@@ -910,6 +948,22 @@ msgstr "{0} koncentrationer har minskat med {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} konsumtion"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Hjälp"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Molekylmoln"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1286,6 +1340,14 @@ msgstr "Eftertext"
 msgid "CTRL"
 msgstr "Ctrl"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Visa förmågor"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Slem sekretion"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Nuvarande utvecklare"
 
@@ -1570,6 +1632,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Hjälp"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Självmord"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Hastighet:"
 
@@ -1632,15 +1698,14 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr ""
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicera Typ"
-
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Placera organell"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett rovdjursförhållande som har studerats i årtionden, är du Didinium eller Paramecium? Rovdjur eller byte?"
@@ -1729,6 +1794,14 @@ msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett ro
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 "Aggressiva mikrober jagar byte över större avstånd\n"
 "och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
@@ -1905,6 +1978,10 @@ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Hjälp"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Miljö"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagisk"
 
@@ -1941,6 +2018,10 @@ msgstr "Laddningsfel"
 
 msgid "ERROR_SAVING"
 msgstr "Sparningsfel"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Laddningsfel"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2366,6 +2447,10 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "BEKRÄFTA"
+
 msgid "GUI"
 msgstr ""
 
@@ -2698,6 +2783,13 @@ msgstr "Järnkemolitoautotrofi"
 msgid "ITCH_TOOLTIP"
 msgstr "Självmord"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "med concentration av"
+
 msgid "JANUARY"
 msgstr "Januari"
 
@@ -2894,10 +2986,6 @@ msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla h
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Placera organell"
 
 msgid "LAUNCH0"
 msgstr "Avfyra 0"
@@ -3127,12 +3215,12 @@ msgstr "Laddar"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laddar..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Laddar mikrobredigerare"
-
 msgid "LOADING_GAME"
 msgstr "Laddar Spel"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Laddar mikrobredigerare"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Laddar mikrobredigerare"
@@ -3198,6 +3286,14 @@ msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Mucilagesyntes"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Bli Makroskopisk ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Mikrob Stadiet"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3213,11 +3309,19 @@ msgstr "Marinsnö"
 msgid "MASTER_VOLUME"
 msgstr "Huvudvolym"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Slem sekretion"
+
 msgid "MAX_FPS"
 msgstr "Max Frames Per Sekund:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Obegränsad"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Storlek:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3247,6 +3351,10 @@ msgstr "Media Spela in"
 
 msgid "MEDIASTOP"
 msgstr "Media Stopp"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Liten Järnbit"
 
 msgid "MEGA_YEARS"
 msgstr "Miljoner År"
@@ -3289,6 +3397,10 @@ msgstr ""
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "dog ut på planeten"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3414,6 +3526,10 @@ msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organismstatistik"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Organismstatistik"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3824,6 +3940,14 @@ msgstr "Rörelse neråt eller ducka"
 msgid "MOVE_FORWARD"
 msgstr "Rör dig framåt"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Flytta till Denna Plats"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Rör dig höger"
+
 msgid "MOVE_LEFT"
 msgstr "Rör dig vänster"
 
@@ -3887,6 +4011,10 @@ msgstr "Mucilagesyntes"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Självmord"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Placera organell"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Flercellig Redigerare"
@@ -4025,14 +4153,14 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Kväve-Fixande Plastid"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
 #, fuzzy
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
 
 msgid "NONE"
@@ -4114,6 +4242,10 @@ msgstr "Hittade ingen screenshots mapp"
 
 msgid "NO_SELECTED_MOD"
 msgstr ""
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Upplösning:"
 
 msgid "NUCLEUS"
 msgstr "Kärna"
@@ -4264,8 +4396,16 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
 
 #, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Placera organell"
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Placera organell"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4292,6 +4432,14 @@ msgstr "Rov Tagg"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Rov Tagg"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organeller"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Hjälp"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4604,6 +4752,9 @@ msgstr "befolkning på platser:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "INVÅNARE:"
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Plundring av {0}"
 
@@ -4730,6 +4881,18 @@ msgstr "Fortplantning"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Producerar"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduktion:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reproduktion:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
 
@@ -4752,6 +4915,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Nollställ kontroller till default?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Nollställ kontroller till default?"
 
 #, fuzzy
@@ -5136,6 +5303,10 @@ msgid "SHOW_HELP"
 msgstr "Visa hjälp"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Visa handledningar"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Grotta"
 
@@ -5237,6 +5408,10 @@ msgstr "Liten Järnbit"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Liten Järnbit"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Liten Järnbit"
 
 msgid "SNOWFLAKE"
@@ -5973,10 +6148,6 @@ msgid "TUTORIAL"
 msgstr "Handledning"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Laddar mikrobredigerare"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -6109,6 +6280,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Laddar mikrobredigerare"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6336,6 +6511,9 @@ msgstr "Självmord"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Använd ett anpassat användarnamn"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Sätt antalet bakgrundstrådar manuellt"
 
@@ -6401,6 +6579,10 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Tidslinje"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Grotta"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6474,9 +6656,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6915,6 +7094,38 @@ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Kväve-Fixande Plastid"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -7134,6 +7345,34 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Slemmstråle"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Placera organell"
 
@@ -7297,38 +7536,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Aktivera Cellredigeraren"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Kväve-Fixande Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Kväve-Fixande Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Kväve-Fixande Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Kväve-Fixande Plastid"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Kväve-Fixande Plastid"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
@@ -7358,6 +7565,38 @@ msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellul
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Kväve-Fixande Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Kväve-Fixande Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Kväve-Fixande Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Nitrogen Fixing Plastid är ett protein som kan använda gasformigt kväve och syre och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas aerob kvävefixering."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Kväve-Fixande Plastid"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Kväve-Fixande Plastid"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7495,6 +7734,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitochondria"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagell"
 
@@ -7509,6 +7752,10 @@ msgstr "Bindemedel"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Kvävegenas"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7535,12 +7782,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Rov Tagg"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Kväve-Fixande Plastid"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Kväve-Fixande Plastid"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8106,6 +8353,18 @@ msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Mikrob Stadiet"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Placera organell"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Laddar mikrobredigerare"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
 
@@ -8162,10 +8421,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Mikrobredigerare"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Mikrob Stadiet"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8294,10 +8549,6 @@ msgstr "Zooma ut"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Upplösning:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

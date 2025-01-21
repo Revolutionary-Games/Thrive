@@ -315,7 +315,7 @@ public partial class ChemicalEquation : VBoxContainer
                     CustomMinimumSize = new Vector2(20, 20),
                     Texture = equationArrowTexture,
                     StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
-                    SizeFlagsVertical = SizeFlags.ShrinkBegin,
+                    SizeFlagsVertical = SizeFlags.ShrinkCenter,
                 };
                 firstLineContainer.AddChild(equationArrow);
             }

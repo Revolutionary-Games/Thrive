@@ -1,5 +1,4 @@
 ﻿using System;
-using Godot;
 
 /// <summary>
 ///   Shows a visualization of a cell's hexes in the GUI
@@ -17,29 +16,30 @@ public partial class CellHexesPreview : PhotographablePreview
                 return;
 
             microbeSpecies = value;
-            UpdatePreview();
+
+            if (microbeSpecies != null)
+            {
+                UpdatePreview();
+            }
+            else
+            {
+                ResetPreview();
+            }
         }
     }
 
-    protected override ImageTask SetupImageTask()
+    protected override IImageTask SetupImageTask()
     {
         if (microbeSpecies == null)
             throw new InvalidOperationException("No species set to generate image of hexes for");
 
         var hash = CellHexesPhotoBuilder.GetVisualHash(microbeSpecies);
 
-        var task = PhotoStudio.Instance.TryGetFromCache(hash, KeepPlainImageInMemory);
+        var task = PhotoStudio.Instance.TryGetFromCache(hash);
 
         if (task != null)
-        {
-            // This should no longer be able to trigger but just for safety against future bugs this is left in
-            if (KeepPlainImageInMemory && !task.WillStorePlainImage)
-                GD.PrintErr("Already existing task doesn't have store plain image enabled like this preview wants");
-
             return task;
-        }
 
-        return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority,
-            KeepPlainImageInMemory);
+        return PhotoStudio.Instance.GenerateImage(new CellHexesPhotoBuilder { Species = microbeSpecies }, Priority);
     }
 }

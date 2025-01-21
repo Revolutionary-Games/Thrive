@@ -745,6 +745,13 @@ public partial class MainMenu : NodeWithInput
         // Load the menu background only here as the 3D ones are performance intensive so they aren't very nice to
         // consume power unnecessarily while showing the video
         RandomizeBackground();
+
+        // Report to cache that we are in the main menu and that it'd be a good time to clean stuff without affecting
+        // game performance
+        DiskCache.Instance.InMainMenu();
+
+        // Any lag spike here from GC should not be visible
+        GC.Collect();
     }
 
     private void CheckStartupSuccess()
@@ -900,11 +907,11 @@ public partial class MainMenu : NodeWithInput
             OnEnteringGame();
 
             // Instantiate a new editor scene
-            var editor = (EarlyMulticellularEditor)SceneManager.Instance
-                .LoadScene(MainGameState.EarlyMulticellularEditor).Instantiate();
+            var editor = (MulticellularEditor)SceneManager.Instance
+                .LoadScene(MainGameState.MulticellularEditor).Instantiate();
 
             // Start freebuild game
-            editor.CurrentGame = GameProperties.StartNewEarlyMulticellularGame(new WorldGenerationSettings(), true);
+            editor.CurrentGame = GameProperties.StartNewMulticellularGame(new WorldGenerationSettings(), true);
 
             // Switch to the editor scene
             SceneManager.Instance.SwitchToScene(editor);

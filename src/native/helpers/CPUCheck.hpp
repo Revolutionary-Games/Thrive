@@ -14,17 +14,39 @@
 // MinGW
 #include <intrin.h>
 
-void cpuid(int info[4], unsigned int infoType)
+inline void cpuid(int info[4], unsigned int infoType)
 {
     __cpuid(info, infoType);
 }
 #endif
 
+#elif defined(__aarch64__) || defined(__arm__)
+#include <cstdlib>
+#include <iostream>
+
+#pragma message("Early check is not implemented for ARM!")
+
+inline void cpuid(int info[4], unsigned int infoType)
+{
+    UNUSED(infoType);
+    UNUSED(info);
+    std::cout << "Early check is not implemented for ARM" << std::endl;
+    std::abort();
+}
+
+// This is only for x86 so we need to provide a dummy one
+inline int _xgetbv(int dummy) // NOLINT(*-reserved-identifier)
+{
+    UNUSED(dummy);
+    std::cout << "Using dummy _xgetbv for ARM\n";
+    return 0x6;
+}
+
 #else
 #include <cpuid.h>
 #include <immintrin.h>
 
-void cpuid(int info[4], unsigned int infoType)
+inline void cpuid(int info[4], unsigned int infoType)
 {
     __cpuid_count(infoType, 0, info[0], info[1], info[2], info[3]);
 }

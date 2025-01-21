@@ -18,18 +18,30 @@ public partial class SpeciesPreview : PhotographablePreview
             previewSpecies = value;
 
             if (previewSpecies != null)
+            {
                 UpdatePreview();
+            }
+            else
+            {
+                ResetPreview();
+            }
         }
     }
 
-    protected override ImageTask? SetupImageTask()
+    protected override IImageTask? SetupImageTask()
     {
-        if (previewSpecies is MicrobeSpecies microbeSpecies)
+        if (previewSpecies == null)
         {
-            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority, KeepPlainImageInMemory);
+            GD.PrintErr("No species set to preview, can't create image task");
+            return null;
         }
 
-        GD.PrintErr("Unknown species type to preview: ", previewSpecies);
+        if (previewSpecies is MicrobeSpecies microbeSpecies)
+        {
+            return PhotoStudio.Instance.GenerateImage(microbeSpecies, Priority);
+        }
+
+        GD.PrintErr("Unknown species type to preview: ", previewSpecies, " (", previewSpecies.GetType().Name, ")");
         return null;
     }
 }

@@ -1,102 +1,68 @@
-[gd_scene load_steps=9 format=3 uid="uid://yxuatqlicwtn"]
+[gd_scene load_steps=6 format=3 uid="uid://yxuatqlicwtn"]
 
-[ext_resource type="PackedScene" uid="uid://d2keheblwnnfe" path="res://assets/models/organelles/Cilia.glb" id="1_3ulh5"]
-[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2"]
-[ext_resource type="Script" path="res://src/microbe_stage/OrganelleMeshWithChildren.cs" id="2_tprqq"]
-[ext_resource type="Texture2D" uid="uid://dpu27qlhym5wd" path="res://assets/textures/cilia.png" id="3"]
-[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="4"]
+[ext_resource type="PackedScene" uid="uid://d2keheblwnnfe" path="res://assets/models/organelles/Cilia.glb" id="1_3y8uh"]
+[ext_resource type="Shader" path="res://shaders/OrganelleTransparent.gdshader" id="2_dkpan"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_uptes"]
+[ext_resource type="Texture2D" uid="uid://1cvtjasc84ub" path="res://assets/textures/FilamentousOrganelle.png" id="4_52435"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_clbvq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jjmap"]
 resource_local_to_scene = true
 render_priority = 0
-shader = ExtResource("2")
+shader = ExtResource("2_dkpan")
 shader_parameter/dissolveValue = 0.0
+shader_parameter/dissolveScale = 1.0
 shader_parameter/fresnelValue = 1.0
 shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
+shader_parameter/outlineWidth = 0.0
+shader_parameter/growColor = Color(0.5, 0.5, 0.5, 1)
 shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("3")
-shader_parameter/dissolveTexture = ExtResource("4")
+shader_parameter/jiggleAmount = 0.0
+shader_parameter/texture = ExtResource("4_52435")
+shader_parameter/dissolveTexture = ExtResource("3_uptes")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_axf8n"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("2")
-shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
-shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("3")
-shader_parameter/dissolveTexture = ExtResource("4")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w2p6n"]
-resource_local_to_scene = true
-render_priority = 0
-shader = ExtResource("2")
-shader_parameter/dissolveValue = 0.0
-shader_parameter/fresnelValue = 1.0
-shader_parameter/fresnelActive = false
-shader_parameter/outlineWidth = null
-shader_parameter/growColor = null
-shader_parameter/tint = Color(1, 1, 1, 1)
-shader_parameter/jiggleAmount = 0.0005
-shader_parameter/texture = ExtResource("3")
-shader_parameter/dissolveTexture = ExtResource("4")
-
-[node name="Cilia" instance=ExtResource("1_3ulh5")]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0.273)
-
-[node name="Armature" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, -1, 3.89414e-07, 0, -3.89414e-07, -1, 0, 0.340916, 0.0558868)
+[node name="Cilia" instance=ExtResource("1_3y8uh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.128127)
 
 [node name="Skeleton3D" parent="Armature" index="0"]
-bones/0/rotation = Quaternion(-0.485885, -0.513727, 0.513727, -0.485885)
-bones/1/rotation = Quaternion(-1.33624e-11, -9.40246e-09, -9.31323e-09, 1)
-bones/2/rotation = Quaternion(7.3723e-08, -1.65488e-08, 0.122949, 0.992413)
-bones/2/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(0.040004, 0.000781606, 0.0195197, 0.999009)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(1.05938e-08, 5.53445e-08, 3.49052e-08, 1)
-bones/6/rotation = Quaternion(-0.0183167, -0.00669896, -0.108578, 0.993897)
+bones/0/rotation = Quaternion(0.00725351, -0.723076, -0.00759352, 0.690688)
+bones/1/rotation = Quaternion(-0.00406095, -0.0784843, -0.146779, 0.986042)
+bones/2/rotation = Quaternion(-0.0267779, -0.113322, -0.0598286, 0.991394)
+bones/3/rotation = Quaternion(0.0200702, 0.208145, 0.098232, 0.972946)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(-0.0251332, 0.300555, 0.0605301, 0.95151)
+bones/5/rotation = Quaternion(-0.0769956, -0.163386, 0.0971606, 0.978742)
+bones/6/rotation = Quaternion(-0.0346544, -0.138487, 0.212578, 0.96666)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/rotation = Quaternion(-0.0291426, -0.134586, 0.143836, 0.979974)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/rotation = Quaternion(0.0469107, 0.0911712, 0.250107, 0.962774)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/rotation = Quaternion(-0.0234258, 0.663388, -0.0280769, 0.747382)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/rotation = Quaternion(0.087049, 0.268526, -0.140924, 0.948924)
+bones/11/rotation = Quaternion(0.0638744, -0.107675, -0.227062, 0.9658)
+bones/11/scale = Vector3(1, 1, 1)
+bones/12/rotation = Quaternion(0.0419051, -0.165545, -0.164275, 0.971521)
+bones/13/rotation = Quaternion(0.00155651, 0.162287, -0.133275, 0.977701)
+bones/14/rotation = Quaternion(-0.00339819, 0.130045, -0.0368417, 0.990818)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(-0.0144584, 0.194441, 0.0159522, 0.980678)
+bones/16/rotation = Quaternion(-0.019944, -0.0555706, 0.0309134, 0.997777)
+bones/17/rotation = Quaternion(-0.0848186, 0.703251, -0.0844622, 0.700793)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(0.0126939, 0.128431, 0.0230852, 0.991368)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/rotation = Quaternion(-0.0174936, -0.10195, 0.064275, 0.992557)
+bones/20/rotation = Quaternion(0.0187206, -0.153898, 0.166147, 0.973838)
+bones/20/scale = Vector3(1, 1, 1)
+bones/21/rotation = Quaternion(0.0234958, -0.02778, 0.0446901, 0.998338)
+bones/22/rotation = Quaternion(-0.00509515, 0.223582, 0.0359652, 0.974008)
+bones/23/rotation = Quaternion(0.00162125, 0.115492, 0.00921006, 0.993264)
+bones/24/rotation = Quaternion(-0.00903337, -0.101841, 0.00500631, 0.994747)
 
-[node name="Cube_003" parent="Armature/Skeleton3D" index="0" node_paths=PackedStringArray("meshChildren")]
-material_override = SubResource("ShaderMaterial_clbvq")
-script = ExtResource("2_tprqq")
-meshChildren = [NodePath("../../../Armature_001/Skeleton3D/Cube_001"), NodePath("../../../Armature_002/Skeleton3D/Cube_002")]
+[node name="CiliaMesh" parent="Armature/Skeleton3D" index="0"]
+material_override = SubResource("ShaderMaterial_jjmap")
 
-[node name="Skeleton3D" parent="Armature_001" index="0"]
-bones/0/rotation = Quaternion(0.462067, 0.535251, -0.535251, 0.462067)
-bones/1/rotation = Quaternion(1.2279e-09, -1.0329e-08, 0.0105148, 0.999945)
-bones/2/rotation = Quaternion(7.37679e-08, -1.65588e-08, 0.123286, 0.992371)
-bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(1.15463e-14, 2.1946e-08, 1.11759e-08, 1)
-bones/4/rotation = Quaternion(0.0400095, 0.000414821, 0.0103601, 0.999146)
-bones/4/scale = Vector3(1, 1, 1)
-bones/6/rotation = Quaternion(-0.0184077, -0.00274773, -0.0445342, 0.998835)
-bones/7/rotation = Quaternion(1.7993e-08, 5.6693e-08, 6.58101e-08, 1)
-
-[node name="Cube_001" parent="Armature_001/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_axf8n")
-
-[node name="Skeleton3D" parent="Armature_002" index="0"]
-bones/0/rotation = Quaternion(0.476189, 0.522727, -0.522727, 0.476189)
-bones/2/rotation = Quaternion(7.419e-08, -1.66529e-08, 0.126457, 0.991972)
-bones/2/scale = Vector3(1, 1, 1)
-bones/3/rotation = Quaternion(9.24412e-15, 2.1946e-08, 1.11759e-08, 1)
-bones/4/rotation = Quaternion(0.040004, 0.000781606, 0.0195197, 0.999009)
-bones/4/scale = Vector3(1, 1, 1)
-bones/5/rotation = Quaternion(5.39554e-09, 0.000422143, 0.00526191, 0.999986)
-bones/6/rotation = Quaternion(-0.0183167, -0.00669896, -0.108578, 0.993897)
-bones/7/rotation = Quaternion(1.7993e-08, 5.6693e-08, 6.58101e-08, 1)
-
-[node name="Cube_002" parent="Armature_002/Skeleton3D" index="0"]
-material_override = SubResource("ShaderMaterial_w2p6n")
-
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="1"]
 autoplay = "wiggle"
 speed_scale = 0.2

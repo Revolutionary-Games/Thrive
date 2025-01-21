@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -365,6 +365,9 @@ msgstr "שלב המיקרובי"
 msgid "BACK"
 msgstr "חזור"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "לוכסן שמאלי"
 
@@ -511,6 +514,24 @@ msgstr "על ידי:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "עלי ידי Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY"
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
+
+#, fuzzy
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr "שימוש נוכחי בזיכרון וידיאו:"
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "חסרה כותרת"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "סידן פחמתי"
 
@@ -598,6 +619,14 @@ msgstr "תאית"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "לממברנה זו יש דופן, שעוזרת להגנה טובה יותר מול נזק בכללי ובמיוחד נגד פגיעה פיזיקלית. זה גם עולה פחות אנרגיה בשביל לתחזק את צורתו, אבל לא מסוגל לספוג חומרים מהר יותר והוא איטי. [b] צילונאז מסוגל לעכל את הדופן זה[/b] והופך אותו לפגיע לבליעה מטורפים."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "הערך משומש ביצור העולם, ועל כך, שחייב להיות מספר שלם חיובי"
+
 msgid "CELL_TYPE_NAME"
 msgstr "שם סוג תא"
 
@@ -638,8 +667,16 @@ msgstr "כימורצפטור"
 msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
+#, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "כמות מינימלית למצוא:"
+
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "הכימוריצפטור מאפשר לך לאתר תרכובות מרחוק. שנה ברגע שמיקמת בשביל לשנות את סוג התרכובת ואת צבע הקו מכוון."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "כל התאים מסוגלים \"לראות\" דרך הכימורצפטור. זה איך התא אוסף מידע סביבו. הוספת אברון זה מאפשרת לכימורצפטור להיות יותר מדויק. מכיוון שהשחקן מסוגל לראות אפילו בשלב התא, זה מיוצג על ידי קו שמצביע מחוץ להמסך הנראה לעין המראה תרכובות קרובים שהשחקן עדיין לא ראה."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -708,6 +745,9 @@ msgstr "סטטיסטיקת האורגניזם"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "נקה שמירות ישנות"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "סגור"
@@ -869,6 +909,22 @@ msgstr "ריכוזי ה{0} ירדו ב{1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "{0} צריכה"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "מאזן תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "הראה/החבא תרכובות"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "ריכוז ענני תרכובת"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1281,6 +1337,14 @@ msgstr "קרדיט"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "הצג שמות כפתורי בחירת חלקים"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "הפרש ריר"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "מפתחים נוכחים"
 
@@ -1547,6 +1611,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "היצטרפו לשרת הדיסטורט הקהילתי שלנו"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "ראו את דף Itch.io שלנו"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "מהירות עיכול:"
 
@@ -1609,15 +1677,14 @@ msgstr "לחץ פעמיים בשביל להציג במסך מלא"
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "קרום עם שתי שכבות, יש לו הגנה טובה יותר מפני נזק ולוקח פחות אנרגיה על מנת שלא להתעוות. יחד עם זאת, זה מאט את התא במעט ומוריד את הקצב שבו הוא ספוג משאבים מהסביבה."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr "נטוש SceneTree"
 
 msgid "DUPLICATE_TYPE"
 msgstr "שכפל סוג"
-
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "רב תאים"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "עובדה משעשעת: הדידיניום והסנדלית הם דוגמה קלאסית של יחסי טורף - נטרף שנחקר במשך עשורים. אז האם אתה דידיניום או סנדלית? הטורף או הנטרף?"
@@ -1704,6 +1771,10 @@ msgid "EASTER_EGGS"
 msgstr "לכלול ביצי פסחא"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(באקראי מייצר סודות במשחק)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(באקראי מייצר סודות במשחק)"
 
 #, fuzzy
@@ -1877,6 +1948,10 @@ msgstr "(כמות הגלוקוז שנשמר בסביבה בכל דור)"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "הראה/החבא סביבה"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "סביבה"
+
 msgid "EPIPELAGIC"
 msgstr "אפיפלגית"
 
@@ -1908,6 +1983,10 @@ msgstr "טוען שגיאה"
 
 msgid "ERROR_SAVING"
 msgstr "שומר שגיאה"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "טוען שגיאה"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2336,6 +2415,10 @@ msgstr "גרפיקה"
 msgid "GRAPHICS_TEAM"
 msgstr "צוות גרפיקה"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "הגבל שימוש בתרכובות לצורך גידול"
+
 msgid "GUI"
 msgstr "ממשק משתמש"
 
@@ -2670,6 +2753,13 @@ msgstr "כימוליתו-אוטוטרופי מברזל"
 msgid "ITCH_TOOLTIP"
 msgstr "ראו את דף Itch.io שלנו"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "סיים דור אחד"
+
 msgid "JANUARY"
 msgstr "ינואר"
 
@@ -2864,10 +2954,6 @@ msgstr "תרגום זה מאוד לא מוכן ({0}% מושלם), בבקשה ת�
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "לא ניתן להסיר את האברון האחרון"
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "רב תאים"
 
 msgid "LAUNCH0"
 msgstr "מקש Launch 0"
@@ -3080,11 +3166,12 @@ msgstr "טוען"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "טוען..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "טוען עורך הקדם רב-תאי"
-
 msgid "LOADING_GAME"
 msgstr "טוען משחק"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "טוען עורך המיקרובי"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "טוען עורך המיקרובי"
@@ -3155,6 +3242,14 @@ msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים ש�
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "ייצור ריר"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "להפוך למקרוסקופי ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "שלב המיקרובי"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3170,11 +3265,19 @@ msgstr "שלג ימי"
 msgid "MASTER_VOLUME"
 msgstr "עוצמה כללית"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "הפרש ריר"
+
 msgid "MAX_FPS"
 msgstr "מקסימום FPS:"
 
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "ללא הגבלה"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "גודל:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr "מספר מרבי של ישויות:"
@@ -3203,6 +3306,10 @@ msgstr "מקש Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "מקש Media Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "גוש ברזל קטן"
 
 msgid "MEGA_YEARS"
 msgstr "מיליון שנה"
@@ -3260,6 +3367,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "נכחד מהאזור"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3402,6 +3513,10 @@ msgstr "עורך ארגז חול המיקרובי"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "סטטיסטיקת האורגניזם"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "סטטיסטיקת האורגניזם"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3810,6 +3925,14 @@ msgstr "נוע מטה או תתכופף"
 msgid "MOVE_FORWARD"
 msgstr "זוז קדימה"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "עבור ליבשה"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "זוז ימינה"
+
 msgid "MOVE_LEFT"
 msgstr "זוז שמאלה"
 
@@ -3879,6 +4002,10 @@ msgstr "ייצור ריר"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "ראו את דף הפטריון שלנו"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "רב תאים"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "עורך הרב-תאי"
@@ -4010,13 +4137,13 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזו של ה[thrive:compound type=\"nitrogen\"][/thrive:compound]."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "פלסטיד מקבע חנקן"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
 
 msgid "NONE"
@@ -4095,6 +4222,10 @@ msgstr "לא נמצאה ספריית צילומי מסך"
 
 msgid "NO_SELECTED_MOD"
 msgstr "לא נבחר מוד"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "רזולוציה:"
 
 msgid "NUCLEUS"
 msgstr "גרעין התא"
@@ -4245,8 +4376,16 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "דקור תאים אחרים בעזרתו."
 
 #, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "רב תאים"
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "רב תאים"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "(כאשר מופעל מגביל מהירות הצמיחה, ואם מושבת רק תרכובות הזמינות משפיעות על מהירות הצמיחה)"
 
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4272,6 +4411,14 @@ msgstr "פילוס טורף"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "פילוס טורף"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "אברונים"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "טען שמירות שנשמרו"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4571,6 +4718,10 @@ msgstr "אכלוסיה באזורים:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "{0} ({1})"
 
+#, fuzzy
+msgid "POSITION_NUMBER"
+msgstr "מספר ID"
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "טריפה של {0}"
 
@@ -4688,6 +4839,18 @@ msgstr "א-מינית"
 msgid "REPRODUCTION_BUDDING"
 msgstr "הנצה"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "סוגי רבייה:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "(באופן פסיבי צובר תרכובות מהסביבה לתהליכי רבייה מבלי שצריך לעשות דבר)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "סוגי רבייה:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "סוגי רבייה:"
 
@@ -4708,6 +4871,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "איפוס קלטים לברירת מחדל?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "איפוס קלטים לברירת מחדל?"
 
 msgid "RESET_KEYBINDINGS"
@@ -5078,6 +5245,10 @@ msgid "SHOW_HELP"
 msgstr "הצג עזרה"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "הצג מדריכים"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
@@ -5164,6 +5335,10 @@ msgstr "גוש ברזל קטן"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "גוש ברזל קטן"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "גוש ברזל קטן"
 
 msgid "SNOWFLAKE"
@@ -5881,18 +6056,6 @@ msgstr "נסה לצלם כמה צילומי מסך!"
 msgid "TUTORIAL"
 msgstr "מדריך"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"ברוכים הבאים לשלב הרב תאי הקדמוני!\n"
-"\n"
-"הצלחת להדריך את המין שלך דרך השלב החד תאי.\n"
-"\n"
-"המשחק עוקב אחר מכניקת הליבה של שלב המיקרובי. אתה עדיין צריך להמשיך לגדל את האורגניזם שלך על מנת להתרבות ולהגיע לעורך.\n"
-"\n"
-"עם זאת, כעת תוכל לעצב את פריסת המושבה שלך בעורך ותוכל להתמחות תאים לתפקידים שונים. זכור שחברי מושבה אינם מסוגלים לשתף [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"אם אתה משתמש בצורת רבייה מסוג הנצה (ברירת המחדל), אתה מתחיל בכך שאתה שלוט בניצן קטן ומצריך אותך לגדל את שאר פריסת המושבה שלך."
-
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6071,6 +6234,19 @@ msgstr ""
 "אתה נכנסת ל\"מצב שחרר\". במצב זה אתה יכול ללחוץ על חברי המושבה שלך על מנת להשתחרר מהם.\n"
 "\n"
 "על מנת לעזוב את המושבה אתה יכול ללחוץ על התא שלך או ללחוץ על מקש [thrive:input]g_unbind_all[/thrive:input]."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"ברוכים הבאים לשלב הרב תאי הקדמוני!\n"
+"\n"
+"הצלחת להדריך את המין שלך דרך השלב החד תאי.\n"
+"\n"
+"המשחק עוקב אחר מכניקת הליבה של שלב המיקרובי. אתה עדיין צריך להמשיך לגדל את האורגניזם שלך על מנת להתרבות ולהגיע לעורך.\n"
+"\n"
+"עם זאת, כעת תוכל לעצב את פריסת המושבה שלך בעורך ותוכל להתמחות תאים לתפקידים שונים. זכור שחברי מושבה אינם מסוגלים לשתף [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"אם אתה משתמש בצורת רבייה מסוג הנצה (ברירת המחדל), אתה מתחיל בכך שאתה שלוט בניצן קטן ומצריך אותך לגדל את שאר פריסת המושבה שלך."
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "הראה עכשיו"
@@ -6290,6 +6466,9 @@ msgstr "מעלה אוטומטי את Harmony מהמפרק (לא דורש מחל�
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "השתמש בשם משתמש מותאמת אישית"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "הגדר ידנית את מספר נושאי הרקע"
 
@@ -6352,6 +6531,10 @@ msgstr "מגדיל את מהירות הסיבוב של תאים גדולים."
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "השבת הכל"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "{0} {1}"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6428,9 +6611,6 @@ msgstr "בויקי שלנו"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "בויקי שלנו"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6870,6 +7050,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "מייצר [thrive:compound type=\"glucose\"][/thrive:compound]. בהתאם לריכוזו של [thrive:compound type=\"carbondioxide\"][/thrive:compound] ושל הטמפרטורה."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "התרמופלסט הוא אברון בעל קרום כפול המכיל פיגמנטים רגישים לחום הנערמים יחד בתוך שקי קרום האוקריוטי שלו. זהו פרוקריוט שהשתנה לצרכי המארח האיקוריוטי. הפיגמנטים בתרמופלסט מסוגלים להשתמש באנרגיה של בדלי החום בסביבה בכדי ליצור [thrive:compound type=\"atp\"][/thrive:compound] ממים בתהליך שנקרא [b]תרמוסינתזה[/b]. קצב ייצור ה[thrive:compound type=\"atp\"][/thrive:compound] שלו משתנה עם ריכוז ה[thrive:compound type=\"atp\"][/thrive:compound] וה[thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "השוטון (ברבים: שוטונים) הוא צרור סיבי חלבון דמוי שוט המשתרע מקרום התא אשר משתמש ב- ATP כדי לגלול ולהניע את התא לכיוון מסוים. מקומו של השוטון קובע את כיוונו שממנו מספק דחף לתנועת התא. כיוון הדחף מנוגד לכיוון שהשוטון פונה, למשל שוטון שמונח בכיוון השמאל של התא יספק דחף לימין."
 
@@ -7091,6 +7303,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "שלב הרב-תאי"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "מאפשר להתחבר לתאים אחרים. זהו הצד הראשון לכיוון רב-תאים. בזמן שאתה חלק ממושבה, התרכובות משותפות בין התאים . אתה לא יכול להיכנס לעורך בזמן שאתה חלק ממושבה כך שאתה צריך לשחרר באת שיש לך מספיק תרכובות על מנת לחלק את התא שלך."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "סילון ריר"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"על כוכב חייזרי מרוחק,לאחר עידנים של פעילות געשית ופגיעות של מטאוריטים, החלה לצוץ תופעה חדשה ביקום:\n"
+"\n"
+"חיים.\n"
+"\n"
+"מיקרובים פשוטים שוכנים באזורים העמוקים של האוקיינוס. אתה האב הקדמון המשותף האחרון (LUCA באנגלית) של הכוכב הזה.\n"
+"\n"
+"בשביל לשרוד בעולם העוין זה, אתה חייב למצוא כל תרכובת בדרך ולהתפתח בכל דור בכדי להצליח לתחרות במינים אחרים של מיקרובים."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "שלב המיקרובי"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "ניטרוגנאז"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "שלב המיקרובי"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "הוסף אברון"
 
@@ -7281,38 +7528,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "הפעל את העורך"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
 
@@ -7342,6 +7557,38 @@ msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "ניטרוגנאז הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] גזי ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] בכדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אנאירובי[/b]. מכיוון שהניטרוגנאז צף בציטופלזמה, הנוזל שמסביבו מבצע [b]גליקוליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "הופך [thrive:compound type=\"atp\"][/thrive:compound] ל[thrive:compound type=\"ammonia\"][/thrive:compound]. בהתאם לריכוזם של ה[thrive:compound type=\"nitrogen\"][/thrive:compound] וה[thrive:compound type=\"oxygen\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "פלסטיד מקבע חנקן הוא חלבון המסוגל להשתמש ב[thrive:compound type=\"nitrogen\"][/thrive:compound] ,[thrive:compound type=\"oxygen\"] ובאנרגיה תאית בצורת [thrive:compound type=\"atp\"][/thrive:compound] כדי לייצר [thrive:compound type=\"ammonia\"][/thrive:compound], מרכיב תזונתי מרכזי לתאים. זהו תהליך המכונה [b]קיבוע חנקן אירובי[/b]."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "פלסטיד מקבע חנקן"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "פלסטיד מקבע חנקן"
 
 #, fuzzy
 msgid "WIKI_NO"
@@ -7481,6 +7728,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "מיטוכונדריון"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "תרמופלסט"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "שוטון"
 
@@ -7495,6 +7746,10 @@ msgstr "מקשר"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "ליזוזום"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "ניטרוגנאז"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7521,12 +7776,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "פילוס טורף"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "פלסטיד מקבע חנקן"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "ניטרוגנאז"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "פלסטיד מקבע חנקן"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8090,6 +8345,17 @@ msgid "ZOOM_OUT"
 msgstr "זום החוצה"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "שלב המיקרובי"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "רב תאים"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "טוען עורך הקדם רב-תאי"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "הנצה"
 
@@ -8146,10 +8412,6 @@ msgstr "זום החוצה"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "עורך המיקרובי"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "שלב המיקרובי"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8289,10 +8551,6 @@ msgstr "זום החוצה"
 
 #~ msgid "SIXTEEN_TIMES"
 #~ msgstr "16x"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "רזולוציה:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -373,6 +373,9 @@ msgstr "Zona: {0}"
 msgid "BACK"
 msgstr "Nazad"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 #, fuzzy
 msgid "BACKSLASH"
 msgstr "Nazad"
@@ -528,6 +531,22 @@ msgstr ""
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "Hitin"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalcijum Karbonat"
 
@@ -621,6 +640,14 @@ msgstr "Celuloza"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ova membrana ima zid, što rezultira boljom zaštitom od ukupnih oštećenja, a posebno od fizičkih oštećenja. Takođe košta manje energije da bi zadržao oblik, ali ne može brzo da apsorbuje resurse i sporiji je."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Nastaviti"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Nastaviti"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -668,7 +695,15 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Hemoplast"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
+msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr "Hemoplast je dvostruka membranska struktura koja sadrži proteine koji su sposobni da pretvore vodonik-sulfid, vodu i gasoviti ugljen-dioksid u glukozu u procesu koji se naziva Hemosinteza vodonik-sulfida. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom vode i ugljen-dioksida."
 
 #, fuzzy
@@ -745,6 +780,9 @@ msgid "CITY_SHORT_STATISTICS"
 msgstr "Statistika Organizma"
 
 msgid "CLEAN_UP_OLD_SAVES"
+msgstr ""
+
+msgid "CLEAR_CACHE"
 msgstr ""
 
 msgid "CLOSE"
@@ -914,6 +952,22 @@ msgstr ""
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
+msgstr "Oblak jedinjenja"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
 msgstr "Oblak jedinjenja"
 
 #, fuzzy
@@ -1286,6 +1340,14 @@ msgstr "Krediti"
 msgid "CTRL"
 msgstr "CTRL"
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Sposobnosti"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Nastaviti"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr ""
 
@@ -1555,6 +1617,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Brzina:"
 
@@ -1615,16 +1681,15 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membrana sa dva sloja, ima bolju zaštitu od oštećenja i uzima manje energije da se ne deformiše. Međutim, to usporava ćeliju i smanjuje brzinu kojom može da apsorbuje resurse."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 #, fuzzy
 msgid "DUPLICATE_TYPE"
 msgstr "igrač je umro"
-
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Postavite organelu"
 
 #, fuzzy
 msgid "EASTEREGG_MESSAGE_1"
@@ -1718,6 +1783,10 @@ msgstr "STVARI KOJE SE MIGOLJITI!!"
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
@@ -1880,6 +1949,10 @@ msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Životna sredina"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagik"
 
@@ -1910,6 +1983,10 @@ msgstr ""
 
 msgid "ERROR_SAVING"
 msgstr ""
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 msgid "ESCAPE"
 msgstr ""
@@ -2318,6 +2395,10 @@ msgstr "Grafika"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafika"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "POTVRDI"
+
 msgid "GUI"
 msgstr ""
 
@@ -2640,6 +2721,13 @@ msgstr "Hemolitoautotrofija gvožđa"
 msgid "ITCH_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "sa koncentracijom"
+
 msgid "JANUARY"
 msgstr ""
 
@@ -2838,10 +2926,6 @@ msgstr ""
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Postavite organelu"
 
 msgid "LAUNCH0"
 msgstr ""
@@ -3064,12 +3148,12 @@ msgstr "Učitavanje"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Traži..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Učitavanje Uređivača Mikroba"
-
 msgid "LOADING_GAME"
 msgstr ""
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Učitavanje Uređivača Mikroba"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Učitavanje Uređivača Mikroba"
@@ -3136,6 +3220,13 @@ msgstr "Metabolosomi su grozdi proteina umotani u proteinske ljuske. Oni su u st
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Hemosinteza"
 
+msgid "MACROSCOPIC"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Zona: {0}"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3152,12 +3243,20 @@ msgstr "Morski sneg"
 msgid "MASTER_VOLUME"
 msgstr "Glavna jačina zvuka"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Nastaviti"
+
 msgid "MAX_FPS"
 msgstr "Maksimalni FPS:"
 
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "Maksimalni FPS:"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Veličina:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3187,6 +3286,10 @@ msgstr ""
 
 msgid "MEDIASTOP"
 msgstr ""
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Mali gvozdeni komad"
 
 msgid "MEGA_YEARS"
 msgstr ""
@@ -3228,6 +3331,10 @@ msgstr ""
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "POPULACIJA:"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3357,6 +3464,10 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Statistika Organizma"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Statistika Organizma"
 
 #, fuzzy
@@ -3709,6 +3820,14 @@ msgstr ""
 msgid "MOVE_FORWARD"
 msgstr "Kreni napred"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "POPULACIJA:"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Pomerite se desno"
+
 msgid "MOVE_LEFT"
 msgstr "Pomerite se levo"
 
@@ -3768,6 +3887,10 @@ msgstr "Hemosinteza"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Dodajte novo vezivanje tastera"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Postavite organelu"
 
 #, fuzzy
 msgid "MULTICELLULAR_EDITOR"
@@ -3903,14 +4026,14 @@ msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku ene
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastid za Fiksiranje Azota"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
 
 #, fuzzy
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
 
 msgid "NONE"
@@ -3991,6 +4114,10 @@ msgstr ""
 
 msgid "NO_SELECTED_MOD"
 msgstr ""
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Rezolucija:"
 
 msgid "NUCLEUS"
 msgstr "Ćelijsko Jezgro"
@@ -4138,8 +4265,16 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Izbodite druge ćelije sa ovo."
 
 #, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Postavite organelu"
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Postavite organelu"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
 
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4166,6 +4301,14 @@ msgstr "Grabežljiva Kosa"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Grabežljiva Kosa"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organele"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Dodajte novo vezivanje tastera"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4469,6 +4612,9 @@ msgstr "POPULACIJA:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULACIJA:"
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 
@@ -4597,6 +4743,18 @@ msgid "REPRODUCTION_BUDDING"
 msgstr "Proizvodi"
 
 #, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Proizvodi"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "Broj populacije od {0} promenio se za {1} zbog: {2}"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Proizvodi"
+
+#, fuzzy
 msgid "REPRODUCTION_METHOD"
 msgstr "Proizvodi"
 
@@ -4619,6 +4777,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Resetovati unose na podrazumevane vrednosti?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Resetovati unose na podrazumevane vrednosti?"
 
 #, fuzzy
@@ -5004,6 +5166,9 @@ msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od
 msgid "SHOW_HELP"
 msgstr "Pokažite pomoć"
 
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Pećina"
@@ -5112,6 +5277,10 @@ msgstr "Mali gvozdeni komad"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Mali gvozdeni komad"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Mali gvozdeni komad"
 
 msgid "SNOWFLAKE"
@@ -5822,10 +5991,6 @@ msgid "TUTORIAL"
 msgstr ""
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Učitavanje Uređivača Mikroba"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -5906,6 +6071,10 @@ msgstr "Slobodna-Gradnja Uređivač Mikroba"
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Slobodna-Gradnja Uređivač Mikroba"
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Učitavanje Uređivača Mikroba"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6133,6 +6302,9 @@ msgstr "Dodajte novo vezivanje tastera"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Koristite prilagođeno korisničko ime"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr ""
 
@@ -6197,6 +6369,10 @@ msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, prote
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Vremenska linija"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Pećina"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6273,9 +6449,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6720,6 +6893,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plastid za Fiksiranje Azota"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplast je dvostruka membranska struktura koja sadrži termosenzibilne pigmente složene zajedno u membranske vrećice. To je prokariot koji je asimilirao za upotrebu od svog eukariotskog domaćina. Pigmenti u termoplastu mogu da koriste energiju toplotnih razlika u okolini za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu koji se naziva termosinteza. Stopa njegove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i temperaturom."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Bič (množina: bičevi) je snop proteinskih vlakana koji se proteže od ćelijske membrane koja može da koristi ATP da bi se povaljao i pokrenuo ćeliju u pravcu."
 
@@ -6948,6 +7153,34 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Postavite organelu"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Ćelijsko Jezgro"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Zona: {0}"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Zona: {0}"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Postavite organelu"
 
@@ -7101,38 +7334,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Omogućite uređivač"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastid za Fiksiranje Azota"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastid za Fiksiranje Azota"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastid za Fiksiranje Azota"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastid za Fiksiranje Azota"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastid za Fiksiranje Azota"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
@@ -7162,6 +7363,38 @@ msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku ene
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenaza je protein u stanju da koristi gasoviti azot i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva anaerobna fiksacija azota. Pošto je nitrogenaza suspendovana direktno u citoplazmi, okolna tečnost vrši fermentaciju."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastid za Fiksiranje Azota"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastid za Fiksiranje Azota"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastid za Fiksiranje Azota"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Plastid za fiksiranje azota je protein koji može da koristi gasoviti azot i kiseonik i ćelijsku energiju u obliku ATP za proizvodnju amonijaka, ključnog hranljivog sastojka za rast ćelija. Ovo je proces koji se naziva aerobna fiksacija azota."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastid za Fiksiranje Azota"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastid za Fiksiranje Azota"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7304,6 +7537,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitohondrija"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Bič"
 
@@ -7320,6 +7557,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "OksiToksizom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenaza"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7346,12 +7587,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Grabežljiva Kosa"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastid za Fiksiranje Azota"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenaza"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastid za Fiksiranje Azota"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -7926,6 +8167,18 @@ msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Zona: {0}"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Postavite organelu"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Učitavanje Uređivača Mikroba"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Proizvodi"
 
@@ -7983,10 +8236,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Učitavanje Uređivača Mikroba"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Zona: {0}"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8059,10 +8308,6 @@ msgstr "Odzumirati"
 #, fuzzy
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Nepoznati miš"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Rezolucija:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

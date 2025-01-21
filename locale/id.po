@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-08 15:17+0200\n"
+"POT-Creation-Date: 2025-01-17 22:29+0100\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -390,6 +390,9 @@ msgstr "Tahapan Mikrob"
 msgid "BACK"
 msgstr "Kembali"
 
+msgid "BACKGROUND_BLUR"
+msgstr ""
+
 msgid "BACKSLASH"
 msgstr "Backslash"
 
@@ -544,6 +547,22 @@ msgstr "Oleh:"
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "Oleh Revolutionary Games Studio"
 
+msgid "CACHE_DISK_MAX_TIME"
+msgstr ""
+
+msgid "CACHE_MEMORY_MAX_ITEMS"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY"
+msgstr ""
+
+msgid "CACHE_TIME_MEMORY_ONLY"
+msgstr ""
+
+#, fuzzy
+msgid "CACHING_TITLE"
+msgstr "KAMU TELAH BERKEMBANG!"
+
 msgid "CALCIUM_CARBONATE"
 msgstr "Kalsium Karbonat"
 
@@ -634,6 +653,14 @@ msgstr "Selulosa"
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Membran ini memiliki dinding, mengakibatkan perlindungan yang lebih baik terhadap kerusakan secara keseluruhan dan khususnya terhadap kerusakan fisik. Juga memerlukan lebih sedikit energi untuk mempertahankan bentuknya, tetapi tidak dapat menyerap sumber daya dengan cepat dan juga memperlambat sel."
 
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Lanjutkan"
+
+#, fuzzy
+msgid "CELL_STAT_SPEED_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "CELL_TYPE_NAME"
 msgstr ""
 
@@ -678,8 +705,16 @@ msgid "CHEMORECEPTOR_DESCRIPTION"
 msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #, fuzzy
+msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
+msgstr "Kemoreseptor"
+
+#, fuzzy
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] menjadi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound]"
+
+#, fuzzy
+msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
+msgstr "Kemoplas adalah struktur membran ganda mengandung protein yang dapat mengkonversi hidrogen sulfida, air dan gas karbon dioksida menjadi glukosa dalam proses yang disebut Kemosintesis Hidrogen Sulfida. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida."
 
 #, fuzzy
 msgid "CHEMOSYNTHESIS"
@@ -752,6 +787,9 @@ msgstr "Statistika Organisme"
 
 msgid "CLEAN_UP_OLD_SAVES"
 msgstr "Bersihkan Save Lama"
+
+msgid "CLEAR_CACHE"
+msgstr ""
 
 msgid "CLOSE"
 msgstr "Tutup"
@@ -917,6 +955,22 @@ msgstr "Konsentrasi {0} menurun sebanyak {1}"
 
 msgid "COMPOUND_FOOD_SOURCE"
 msgstr "konsumsi {0}"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_KEEP"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_SPLIT_SISTER"
+msgstr "Keseimbangan Senyawa"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP"
+msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "COMPOUND_HANDLE_TOP_UP_ON_CHANGE"
+msgstr "Awan senyawa"
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
@@ -1291,6 +1345,14 @@ msgstr "Kredit"
 msgid "CTRL"
 msgstr ""
 
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE"
+msgstr "Tampilkan Bilah Kemampuan Sel"
+
+#, fuzzy
+msgid "CURRENT_CACHE_SIZE_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "CURRENT_DEVELOPERS"
 msgstr "Pengembang Masa Ini"
 
@@ -1571,6 +1633,10 @@ msgid "DISCORD_TOOLTIP"
 msgstr "Tambah keybind baru"
 
 #, fuzzy
+msgid "DISK_CACHE_TOOLTIP"
+msgstr "Keluar dari permainan"
+
+#, fuzzy
 msgid "DISMISSED_POPUPS_COLON"
 msgstr "Kecepatan:"
 
@@ -1630,15 +1696,14 @@ msgstr ""
 msgid "DOUBLE_MEMBRANE_DESCRIPTION"
 msgstr "Membran dengan dua lapis, memiliki perlindungan yang lebih baik terhadap kerusakan dan memerlukan lebih sedikit energi agar tak berubah bentuk. Namun, memperlambat sel dan mengurangi laju kemampuannya menyerap sumber daya."
 
+msgid "DRAG_TO_REORDER_ITEMS_WITH_MOUSE"
+msgstr ""
+
 msgid "DUMP_SCENE_TREE"
 msgstr ""
 
 msgid "DUPLICATE_TYPE"
 msgstr "Gandakan Tipe"
-
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Letakkan organel"
 
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang hubungan mangsa dan predator yang telah dipelajari selama puluhan tahun, sekarang apakah kamu merupakan Didinium atau Paramecium? Predator atau Mangsa?"
@@ -1727,6 +1792,10 @@ msgstr "Fakta Menarik, Didinium dan Paramecium merupakan contoh buku tentang hub
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
@@ -1903,6 +1972,10 @@ msgstr "{0} populasi berubah {1} karena: {2}"
 msgid "ENVIRONMENT_BUTTON_MICROBE_TOOLTIP"
 msgstr "Tambah keybind baru"
 
+#, fuzzy
+msgid "ENVIRONMENT_TOLERANCE"
+msgstr "Lingkungan"
+
 msgid "EPIPELAGIC"
 msgstr "Epipelagik"
 
@@ -1935,6 +2008,10 @@ msgstr "Error Memuat"
 
 msgid "ERROR_SAVING"
 msgstr "Error Menyimpan"
+
+#, fuzzy
+msgid "ERROR_UPLOADING_EXCEPTION"
+msgstr "Error Memuat"
 
 msgid "ESCAPE"
 msgstr "Esc"
@@ -2373,6 +2450,10 @@ msgstr "Grafik"
 msgid "GRAPHICS_TEAM"
 msgstr "Grafik"
 
+#, fuzzy
+msgid "GROWTH_ORDER"
+msgstr "KONFIRMASI"
+
 msgid "GUI"
 msgstr ""
 
@@ -2709,6 +2790,13 @@ msgstr "Kemolitoautotrofi Besi"
 msgid "ITCH_TOOLTIP"
 msgstr "Keluar dari permainan"
 
+msgid "ITEM_AT_2D_COORDINATES"
+msgstr ""
+
+#, fuzzy
+msgid "ITEM_NAME_SEPARATOR"
+msgstr "Selesaikan Satu Generasi"
+
 msgid "JANUARY"
 msgstr ""
 
@@ -2904,10 +2992,6 @@ msgstr "Terjemahan ini sangat belum lengkap ({0}% selesai) tolong bantu kami men
 
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
-
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Letakkan organel"
 
 msgid "LAUNCH0"
 msgstr "Launch 0"
@@ -3127,11 +3211,12 @@ msgstr "Memuat"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Memuat..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Memuat Penyunting Multiseluler Awal"
-
 msgid "LOADING_GAME"
 msgstr "Memuat Permainan"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Memuat Editor Mikroba"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Memuat Editor Mikroba"
@@ -3208,6 +3293,13 @@ msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thriv
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Kemosintesis"
 
+msgid "MACROSCOPIC"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Tahapan Mikrob"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3224,12 +3316,20 @@ msgstr "Salju laut"
 msgid "MASTER_VOLUME"
 msgstr "Volume master"
 
+#, fuzzy
+msgid "MAX_CACHE_SIZE_TOOLTIP"
+msgstr "Lanjutkan"
+
 msgid "MAX_FPS"
 msgstr "FPS Maks:"
 
 #, fuzzy
 msgid "MAX_FPS_NO_LIMIT"
 msgstr "FPS Maks:"
+
+#, fuzzy
+msgid "MAX_SIZE_COLON"
+msgstr "Ukuran:"
 
 msgid "MAX_SPAWNED_ENTITIES"
 msgstr ""
@@ -3258,6 +3358,10 @@ msgstr "Media Rec"
 
 msgid "MEDIASTOP"
 msgstr "Media Stop"
+
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Potongan Besi Kecil"
 
 msgid "MEGA_YEARS"
 msgstr "Juta tahun"
@@ -3315,6 +3419,10 @@ msgstr "{0} MiB"
 
 msgid "MICHE"
 msgstr ""
+
+#, fuzzy
+msgid "MICHES_FOR_PATCH"
+msgstr "telah punah dari planet"
 
 #, fuzzy
 msgid "MICHE_AVOID_PREDATION_SELECTION_PRESSURE"
@@ -3440,6 +3548,10 @@ msgstr "Editor Mikroba Bangun-bebas"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Statistika Organisme"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Statistika Organisme"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3855,6 +3967,14 @@ msgstr "Gerak kebawah atau jongkok"
 msgid "MOVE_FORWARD"
 msgstr "Gerak depan"
 
+#, fuzzy
+msgid "MOVE_ITEM_DOWN"
+msgstr "Pindah ke Daerah Ini"
+
+#, fuzzy
+msgid "MOVE_ITEM_UP"
+msgstr "Gerak kanan"
+
 msgid "MOVE_LEFT"
 msgstr "Gerak kiri"
 
@@ -3913,6 +4033,10 @@ msgstr "Kemosintesis"
 #, fuzzy
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Tambah keybind baru"
+
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Letakkan organel"
 
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multiseluler"
@@ -4044,13 +4168,13 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 msgid "NITROGENASE_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound]"
 
-msgid "NITROGEN_FIXING_PLASTID"
+msgid "NITROPLAST"
 msgstr "Plastida Pengikat Nitrogen"
 
-msgid "NITROGEN_FIXING_PLASTID_DESCRIPTION"
+msgid "NITROPLAST_DESCRIPTION"
 msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
 
-msgid "NITROGEN_FIXING_PLASTID_PROCESSES_DESCRIPTION"
+msgid "NITROPLAST_PROCESSES_DESCRIPTION"
 msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
 
 msgid "NONE"
@@ -4134,6 +4258,10 @@ msgstr "Buka Folder Tangkapan Layar"
 #, fuzzy
 msgid "NO_SELECTED_MOD"
 msgstr "Terpilih:"
+
+#, fuzzy
+msgid "NO_SUGGESTION"
+msgstr "Resolusi:"
 
 msgid "NUCLEUS"
 msgstr "Nukleus"
@@ -4283,8 +4411,16 @@ msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Tusuk sel lain dengan ini."
 
 #, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Letakkan organel"
+
+#, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Letakkan organel"
+
+#, fuzzy
+msgid "ORGANELLE_GROWTH_ORDER_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
 
 #, fuzzy
 msgid "ORGANELLE_MYOFIBRIL"
@@ -4311,6 +4447,14 @@ msgstr "Pilus"
 #, fuzzy
 msgid "ORGANELLE_SINGULAR"
 msgstr "Pilus"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_COLON"
+msgstr "Organel"
+
+#, fuzzy
+msgid "ORGANELLE_SUGGESTION_TOOLTIP"
+msgstr "Muat permainan yang sudah disimpan"
 
 #, fuzzy
 msgid "ORGANELLE_UNLOCKS_ENABLED"
@@ -4620,6 +4764,9 @@ msgstr "populasi di daerah-daerah:"
 msgid "POPULATION_IN_PATCH_SHORT"
 msgstr "POPULASI:"
 
+msgid "POSITION_NUMBER"
+msgstr ""
+
 msgid "PREDATION_FOOD_SOURCE"
 msgstr "Predasi {0}"
 
@@ -4742,6 +4889,18 @@ msgstr "Produksi ATP"
 msgid "REPRODUCTION_BUDDING"
 msgstr "Tunas"
 
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE"
+msgstr "Reproduksi:"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
+msgstr "{0} populasi berubah {1} karena: {2}"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reproduksi:"
+
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduksi:"
 
@@ -4764,6 +4923,10 @@ msgid "RESET_DISMISSED_POPUPS"
 msgstr ""
 
 msgid "RESET_INPUTS_TO_DEFAULTS"
+msgstr "Setel ulang input ke semula?"
+
+#, fuzzy
+msgid "RESET_ITEM_ORDER_TO_DEFAULT"
 msgstr "Setel ulang input ke semula?"
 
 #, fuzzy
@@ -5150,6 +5313,10 @@ msgid "SHOW_HELP"
 msgstr "Tampilkan bantuan"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Tampilkan tutorial"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Gua"
 
@@ -5251,6 +5418,10 @@ msgstr "Potongan Besi Kecil"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Potongan Besi Kecil"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Potongan Besi Kecil"
 
 msgid "SNOWFLAKE"
@@ -5978,10 +6149,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Memuat Editor Mikroba"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Selamat Datang ke Editor Mikroba.\n"
@@ -6170,6 +6337,10 @@ msgstr ""
 "Kamu telah memasuki mode lepas. Di mode ini kamu dapat mengklik anggota koloni untuk melepaskan mereka.\n"
 "\n"
 "Untuk lepas seluruhnya dari koloni kamu dapat mengklik pada selmu sendiri atau tekan tombol unbind all."
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Memuat Editor Mikroba"
 
 #, fuzzy
 msgid "TUTORIAL_VIEW_NOW"
@@ -6403,6 +6574,9 @@ msgstr "Tambah keybind baru"
 msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Gunakan nama pengguna kustom"
 
+msgid "USE_DISK_CACHE"
+msgstr ""
+
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Atur jumlah background thread secara manual"
 
@@ -6467,6 +6641,10 @@ msgstr "Mengubah [thrive:compound type=\"glucose\"][/thrive:compound] menjadi [t
 #, fuzzy
 msgid "VIEW_ONLINE"
 msgstr "Alur Waktu"
+
+#, fuzzy
+msgid "VIEW_PATCH_MICHES"
+msgstr "Gua"
 
 #, fuzzy
 msgid "VIEW_PATCH_NOTES"
@@ -6540,9 +6718,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6979,6 +7154,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Memproduksi [thrive:compound type=\"glucose\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"carbondioxide\"][/thrive:compound] dan suhu."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplas adalah struktur membran ganda mengandung pigmen termosensitif tertumpuk bersamaan dalam kantung membran. Ia merupakan prokariota yang terasimilasi untuk kegunaan induk sel eukariota-nya. Pigmen yang ada di termoplas dapat menggunakan perbedaan energi panas di sekelilingnya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Termosintesis. Laju produksi glukosa tersebut berbanding lurus dengan konsentrasi karbon dioksida dan suhu."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Flagela adalah bundelan serat protein yang berbentuk seperti cambuk memanjang dari membran sel yang menggunakan ATP untuk berputar dan mendorong sel ke suatu arah. Posisi flagela menentukan arah mana flagela tersebut memberi daya dorong untuk pergerakan sel. Arah dorongan berlawanan dengan arah flagela tersebut menuju, contohnya sebuah flagela yang di letakkan pada sisi kiri sebuah sel menyediakan daya dorong ketika bergerak ke kanan."
 
@@ -7200,6 +7407,41 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Tahapan Multiseluler"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Memungkinkan pelekatan antar sel. Ini merupakan tahap pertama menuju multiseluleritas. Ketika sel kamu bagian dari sebuah koloni, senyawa dibagi antar sel. Kamu tidak bisa memasuki editor selagi bagian dari koloni maka dari itu kamu perlu melepaskan diri setelah mengumpulkan senyawa yang cukup untuk melakukan pembelahan sel."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Nukleus"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Di planet asing yang jauh, ribuan tahun lamanya aktifitas vulkanik dan tumbukan meteor menyebabkan berkembangnya sebuah fenomena baru di alam semesta.\n"
+"\n"
+"Kehidupan.\n"
+"\n"
+"Mikroba-mikroba sederhana bermukim di wilayah dalam lautan. Kamu adalah leluhur universal terakhir (LUA) di planet ini.\n"
+"\n"
+"Untuk bertahan hidup di dunia ini, kamu perlu mengumpulkan tiap senyawa yang dapat kamu temukan dan berkembang tiap generasi untuk bersaing dengan spesies mikroba lain."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Tahapan Mikrob"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Letakkan organel"
 
@@ -7381,38 +7623,6 @@ msgid "WIKI_NATION_EDITOR"
 msgstr "Aktifkan editor"
 
 #, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_EFFECTS"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_INTRO"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_MODIFICATIONS"
-msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_PROCESSES"
-msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_REQUIREMENTS"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_SCIENTIFIC_BACKGROUND"
-msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_STRATEGY"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
-msgid "WIKI_NITROGEN-FIXING_PLASTID_UPGRADES"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
 msgid "WIKI_NITROGENASE_EFFECTS"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
 
@@ -7442,6 +7652,38 @@ msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energ
 #, fuzzy
 msgid "WIKI_NITROGENASE_UPGRADES"
 msgstr "Nitrogenase adalah protein yang dapat menggunakan gas nitrogen dan energi selular dalam bentuk ATP untuk memproduksi amonia, sebuah nutrisi penumbuh penting bagi sel. Ini proses yang disebut Fiksasi Nitrogen Anaerob. Karena nitrogenase tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya melakukan beberapa glikolisis."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_EFFECTS"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_INTRO"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_MODIFICATIONS"
+msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_PROCESSES"
+msgstr "Mengubah [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound]. Laju berbanding lurus dengan konsentrasi [thrive:compound type=\"nitrogen\"][/thrive:compound] dan [thrive:compound type=\"oxygen\"][/thrive:compound]"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_REQUIREMENTS"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Plastida Pengikat Nitrogen adalah protein yang dapat menggunakan gas nitrogen dan oksigen dan energi seluler dalam bentuk ATP untuk memproduksi amonia, nutrisi penumbuh penting bagi sel. Ini proses yang disebut sebagai Fiksasi Nitrogen Aerobik."
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_STRATEGY"
+msgstr "Plastida Pengikat Nitrogen"
+
+#, fuzzy
+msgid "WIKI_NITROPLAST_UPGRADES"
+msgstr "Plastida Pengikat Nitrogen"
 
 msgid "WIKI_NO"
 msgstr ""
@@ -7580,6 +7822,10 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitokondria"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplas"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagela"
 
@@ -7594,6 +7840,10 @@ msgstr "Agen Pelekat"
 #, fuzzy
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosom"
+
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenase"
 
 #, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
@@ -7620,12 +7870,12 @@ msgid "WIKI_PAGE_MYOFIBRIL"
 msgstr "Pilus"
 
 #, fuzzy
-msgid "WIKI_PAGE_NITROGEN-FIXING_PLASTID"
-msgstr "Plastida Pengikat Nitrogen"
-
-#, fuzzy
 msgid "WIKI_PAGE_NITROGENASE"
 msgstr "Nitrogenase"
+
+#, fuzzy
+msgid "WIKI_PAGE_NITROPLAST"
+msgstr "Plastida Pengikat Nitrogen"
 
 #, fuzzy
 msgid "WIKI_PAGE_NUCLEUS"
@@ -8192,6 +8442,17 @@ msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
 #, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Tahapan Mikrob"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Letakkan organel"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Memuat Penyunting Multiseluler Awal"
+
+#, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Tunas"
 
@@ -8248,10 +8509,6 @@ msgstr "Perkecil"
 #, fuzzy
 #~ msgid "WIKI_MICROBE_EDITOR"
 #~ msgstr "Editor Mikrob"
-
-#, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Tahapan Mikrob"
 
 #, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
@@ -8385,10 +8642,6 @@ msgstr "Perkecil"
 
 #~ msgid "UNKNOWN_ON_WINDOWS"
 #~ msgstr "Tidak diketahui di Windows"
-
-#, fuzzy
-#~ msgid "QUESTION"
-#~ msgstr "Resolusi:"
 
 #, fuzzy
 #~ msgid "TARGET_TIME"

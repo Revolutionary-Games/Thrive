@@ -40,7 +40,7 @@ public class VolcanismEffect : IWorldEffect
                     Constants.VOLCANISM_VENTS_CO2_THRESHOLD);
             }
             else if (patchKeyValue.Value.BiomeType is BiomeType.Epipelagic or BiomeType.Coastal or BiomeType.Estuary
-                     or BiomeType.Tidepool or BiomeType.IceShelf)
+                     or BiomeType.Tidepool or BiomeType.IceShelf or BiomeType.Banana)
             {
                 // Ice shelf gets co2 here as it seems to be pretty often the driver for early oxygen in the world
 
@@ -72,7 +72,7 @@ public class VolcanismEffect : IWorldEffect
             return;
 
         // TODO: should this clamp or not?
-        addedCo2[Compound.Carbondioxide] = Math.Clamp(amount.Ambient + co2Strength, 0, threshold);
+        addedCo2[Compound.Carbondioxide] = Math.Clamp(co2Strength, 0, threshold);
 
         patch.Biome.ApplyLongTermCompoundChanges(patch.BiomeTemplate, addedCo2, cloudSizesDummy);
     }
