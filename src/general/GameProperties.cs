@@ -360,10 +360,10 @@ public class GameProperties
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-           new Hex(0, 0), 0), workMemory1, workMemory2);
+            new Hex(0, 0), 0), workMemory1, workMemory2);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
-           new Hex(0, 1), 0), workMemory1, workMemory2);
+            new Hex(0, 1), 0), workMemory1, workMemory2);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
             new Hex(0, 2), 0), workMemory1, workMemory2);
