@@ -60,7 +60,7 @@ public class EditorAutoEvoRun : AutoEvoRun
 
         if (ApplyPlayerPopulationChangeClamp)
         {
-            AddPlayerSpeciesPopulationChangeClampStep(steps, map,
+            AddPlayerSpeciesPopulationChangeClampStep(steps, map, worldSettings,
                 OriginalEditedSpecies.PlayerSpecies ? ModifiedProperties : null, OriginalEditedSpecies);
         }
     }

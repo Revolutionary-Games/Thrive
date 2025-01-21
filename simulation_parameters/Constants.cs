@@ -1187,11 +1187,6 @@ public static class Constants
     /// </summary>
     public const int AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION = 50;
 
-    /// <summary>
-    ///   Configures how much auto-evo affects the player species compared to the normal amount
-    /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
-
     public const bool AUTO_EVO_TRACK_STEP_TIME = false;
 
     public const float AUTO_EVO_SINGLE_STEP_WARNING_TIME = 0.4f;

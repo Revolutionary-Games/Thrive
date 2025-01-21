@@ -27,7 +27,7 @@ public interface IDifficulty : IRegistryAssignable
     public float PlayerDeathPopulationPenalty { get; }
 
     /// <summary>
-    ///   Multiplier for rate of glucose decay in the environment
+    ///   Multiplier for the rate of glucose decay in the environment
     /// </summary>
     public float GlucoseDecay { get; }
 
@@ -35,6 +35,13 @@ public interface IDifficulty : IRegistryAssignable
     ///   Multiplier for player species osmoregulation cost
     /// </summary>
     public float OsmoregulationMultiplier { get; }
+
+    /// <summary>
+    ///   Multiplier on how strong of an effect the auto-evo has on the player population (0-1).
+    ///   Easier difficulties have this lower as players might struggle in keeping their species in a state that
+    ///   auto-evo likes it.
+    /// </summary>
+    public float PlayerAutoEvoStrength { get; }
 
     /// <summary>
     ///   Whether the player starts with a free glucose cloud each time they exit the editor
@@ -63,13 +70,12 @@ public interface IDifficulty : IRegistryAssignable
     public bool LimitGrowthRate { get; }
 
     /// <summary>
-    ///   How intense should the fog-of-war be
+    ///   Sets how intense should the fog-of-war be
     /// </summary>
     public FogOfWarMode FogOfWarMode { get; }
 
     /// <summary>
-    ///   Whether organelle unlocks are enabled or not
-    ///   If not, all organelles are unlocked by default
+    ///   Whether organelle unlocks are enabled or not. If false, all organelles are unlocked by default.
     /// </summary>
     public bool OrganelleUnlocksEnabled { get; }
 
@@ -93,6 +99,7 @@ public static class DifficultyHelpers
             PlayerDeathPopulationPenalty = difficulty.PlayerDeathPopulationPenalty,
             GlucoseDecay = difficulty.GlucoseDecay,
             OsmoregulationMultiplier = difficulty.OsmoregulationMultiplier,
+            PlayerAutoEvoStrength = difficulty.PlayerAutoEvoStrength,
             FreeGlucoseCloud = difficulty.FreeGlucoseCloud,
             PassiveReproduction = difficulty.PassiveReproduction,
             SwitchSpeciesOnExtinction = difficulty.SwitchSpeciesOnExtinction,
@@ -113,6 +120,7 @@ public static class DifficultyHelpers
             $", Player death population penalty: {difficulty.PlayerDeathPopulationPenalty}" +
             $", Glucose decay: {difficulty.GlucoseDecay}" +
             $", Osmoregulation multiplier: {difficulty.OsmoregulationMultiplier}" +
+            $", auto-evo strength: {difficulty.PlayerAutoEvoStrength}" +
             $", Free glucose cloud: {difficulty.FreeGlucoseCloud}" +
             $", Passive Reproduction: {difficulty.PassiveReproduction}" +
             $", Switch on Extinction: {difficulty.SwitchSpeciesOnExtinction}" +

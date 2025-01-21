@@ -1,5 +1,5 @@
 ﻿/// <summary>
-///   Customized difficulty setting
+///   Customised difficulty setting
 /// </summary>
 [CustomizedRegistryType]
 public class CustomDifficulty : IDifficulty
@@ -15,6 +15,7 @@ public class CustomDifficulty : IDifficulty
     public float PlayerDeathPopulationPenalty { get; set; }
     public float GlucoseDecay { get; set; }
     public float OsmoregulationMultiplier { get; set; }
+    public float PlayerAutoEvoStrength { get; set; }
     public bool FreeGlucoseCloud { get; set; }
     public bool PassiveReproduction { get; set; }
 
