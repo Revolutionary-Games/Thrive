@@ -337,16 +337,36 @@ public class GameProperties
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
-        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
+        var hydrogenase = simulationParameters.GetOrganelleType("hydrogenase");
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(-1, 2), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
             new Hex(-1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(-1, 0), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(1, 1), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
             new Hex(1, 0), 0), workMemory1, workMemory2);
 
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(1, -1), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+           new Hex(0, 0), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+           new Hex(0, 1), 0), workMemory1, workMemory2);
+
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
-            new Hex(0, 1), 0), workMemory1, workMemory2);
+            new Hex(0, 2), 0), workMemory1, workMemory2);
 
         playerSpecies.OnEdited();
         return playerSpecies;
