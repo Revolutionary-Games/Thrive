@@ -35,9 +35,9 @@ public class MicrobeEngulfmentExplanation : TutorialPhase
                     Show();
                 }
 
-                if (data.EntityPosition.HasValue && ShownCurrently)
+                if (ShownCurrently)
                 {
-                    chunkPosition = data.EntityPosition.Value;
+                    chunkPosition = data.EntityPosition;
                     return true;
                 }
 
@@ -58,11 +58,8 @@ public class MicrobeEngulfmentExplanation : TutorialPhase
         return false;
     }
 
-    public override Vector3 GetPositionGuidance()
+    public override Vector3? GetPositionGuidance()
     {
-        if (chunkPosition != null)
-            return chunkPosition.Value;
-
-        throw new InvalidOperationException("engulfment tutorial doesn't have position set");
+        return chunkPosition;
     }
 }
