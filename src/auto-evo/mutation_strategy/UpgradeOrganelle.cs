@@ -7,12 +7,27 @@ using AutoEvo;
 public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
 {
     private readonly FrozenSet<OrganelleDefinition> allOrganelles;
-    private readonly IComponentSpecificUpgrades upgrade;
+    private readonly IComponentSpecificUpgrades? customUpgrade;
+    private readonly string? upgradeName;
 
-    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades upgrade)
+    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, IComponentSpecificUpgrades customUpgrade)
     {
         allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
-        this.upgrade = upgrade;
+        this.customUpgrade = customUpgrade;
+    }
+
+    public UpgradeOrganelle(Func<OrganelleDefinition, bool> criteria, string upgradeName)
+    {
+        allOrganelles = SimulationParameters.Instance.GetAllOrganelles().Where(criteria).ToFrozenSet();
+        foreach (var organelle in allOrganelles)
+        {
+            if (!organelle.AvailableUpgrades.ContainsKey(upgradeName))
+            {
+                throw new ArgumentException(organelle.Name + " does not have upgrade: " + upgradeName);
+            }
+        }
+
+        this.upgradeName = upgradeName;
     }
 
     public bool Repeatable => false;
@@ -47,7 +62,15 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
                 {
                     // TODO: Once this is used with an upgrade that costs MP this will need to factor that in
                     organelle.Upgrades ??= new OrganelleUpgrades();
-                    organelle.Upgrades.CustomUpgradeData = upgrade;
+                    if (customUpgrade != null)
+                    {
+                        organelle.Upgrades.CustomUpgradeData = customUpgrade;
+                    }
+
+                    if (upgradeName != null && !organelle.Upgrades.UnlockedFeatures.Contains(upgradeName))
+                    {
+                        organelle.Upgrades.UnlockedFeatures.Add(upgradeName);
+                    }
                 }
             }
 
