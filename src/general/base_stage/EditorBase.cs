@@ -431,7 +431,7 @@ public partial class EditorBase<TAction, TStage> : NodeWithInput, IEditor, ILoad
 
     public virtual bool EnqueueAction(TAction action)
     {
-        // A sanity check to not let an action proceed if we don't have enough mutation points
+        // A sanity-check for an action to not let ot proceed if we don't have enough mutation points
         // It's required to call WhatWouldActionsCost as that will set the right context data
         if (!CheckEnoughMPForAction(WhatWouldActionsCost(action.Data)))
             return false;

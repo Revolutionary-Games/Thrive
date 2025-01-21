@@ -1177,8 +1177,17 @@ public static class Constants
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
+    public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
+
     /// <summary>
-    ///   How much auto-evo affects the player species compared to the normal amount
+    ///   When doing an auto-evo prediction, this much free population is placed into the moved-to patch if the player
+    ///   is not in the patch yet.
+    ///   Helps to give some indication on how well adapted the player species is to the target patch.
+    /// </summary>
+    public const int AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION = 50;
+
+    /// <summary>
+    ///   Configures how much auto-evo affects the player species compared to the normal amount
     /// </summary>
     public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
 

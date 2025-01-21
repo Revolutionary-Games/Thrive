@@ -28,6 +28,12 @@ public class CalculatePopulation : IRunStep
 
     public bool CanRunConcurrently => false;
 
+    /// <summary>
+    ///   Used to overwrite <see cref="SimulationConfiguration.EnsurePatchesHaveSpecies"/> for the population
+    ///   calculation run.
+    /// </summary>
+    public Dictionary<Patch, Species>? EnsurePatchesHaveSpecies { get; set; }
+
     public bool RunStep(RunResults results)
     {
         // ReSharper disable RedundantArgumentDefaultValue
@@ -35,6 +41,7 @@ public class CalculatePopulation : IRunStep
         {
             Results = results,
             CollectEnergyInformation = collectEnergyInfo,
+            EnsurePatchesHaveSpecies = EnsurePatchesHaveSpecies,
         };
 
         // ReSharper restore RedundantArgumentDefaultValue

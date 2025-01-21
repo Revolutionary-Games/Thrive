@@ -41,6 +41,9 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     [JsonProperty]
     private Species? editedSpecies;
 
+    [Signal]
+    public delegate void OnBehaviourChangedEventHandler();
+
     [JsonIgnore]
     public override bool IsSubComponent => true;
 
@@ -103,6 +106,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
     {
         behaviour = new BehaviourDictionary();
         UpdateAllBehaviouralSliders(behaviour);
+        EmitSignal(SignalName.OnBehaviourChanged);
     }
 
     public void SetBehaviouralValue(BehaviouralValueType type, float value)
@@ -201,6 +205,8 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
         Behaviour[data.Type] = data.NewValue;
         UpdateBehaviourSlider(data.Type, data.NewValue);
+
+        EmitSignal(SignalName.OnBehaviourChanged);
     }
 
     [DeserializedCallbackAllowed]
@@ -211,5 +217,7 @@ public partial class BehaviourEditorSubComponent : EditorComponentBase<ICellEdit
 
         Behaviour[data.Type] = data.OldValue;
         UpdateBehaviourSlider(data.Type, data.OldValue);
+
+        EmitSignal(SignalName.OnBehaviourChanged);
     }
 }
