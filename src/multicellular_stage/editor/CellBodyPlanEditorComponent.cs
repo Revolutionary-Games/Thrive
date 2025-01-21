@@ -58,14 +58,6 @@ public partial class CellBodyPlanEditorComponent :
     [Export]
     public NodePath CellPopupMenuPath = null!;
 
-#pragma warning disable CA2213
-    [Export]
-    public LabelSettings ATPBalanceNormalText = null!;
-
-    [Export]
-    public LabelSettings ATPBalanceNotEnoughText = null!;
-#pragma warning restore CA2213
-
     private static Vector3 microbeModelOffset = new(0, -0.1f, 0);
 
     private readonly Dictionary<string, CellTypeSelection> cellTypeSelectionButtons = new();
@@ -76,6 +68,8 @@ public partial class CellBodyPlanEditorComponent :
     private readonly HashSet<Hex> islandsWorkMemory1 = new();
     private readonly List<Hex> islandsWorkMemory2 = new();
     private readonly Queue<Hex> islandsWorkMemory3 = new();
+
+    private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
@@ -117,6 +111,9 @@ public partial class CellBodyPlanEditorComponent :
 
     [Export]
     private OrganismStatisticsPanel organismStatisticsPanel = null!;
+
+    [Export]
+    private CustomConfirmationDialog negativeAtpPopup = null!;
 #pragma warning restore CA2213
 
     [JsonProperty]
@@ -153,6 +150,23 @@ public partial class CellBodyPlanEditorComponent :
     public override bool HasIslands =>
         editedMicrobeCells.GetIslandHexes(islandResults, islandsWorkMemory1, islandsWorkMemory2,
             islandsWorkMemory3) > 0;
+
+    public override bool ShowFinishButtonWarning
+    {
+        get
+        {
+            if (base.ShowFinishButtonWarning)
+                return true;
+
+            if (IsNegativeAtpProduction())
+                return true;
+
+            if (HasIslands)
+                return true;
+
+            return false;
+        }
+    }
 
     [JsonIgnore]
     public bool NodeReferencesResolved { get; private set; }
@@ -256,6 +270,7 @@ public partial class CellBodyPlanEditorComponent :
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         UpdateCancelButtonVisibility();
+        UpdateFinishButtonWarningVisibility();
     }
 
     public override void _Process(double delta)
@@ -440,10 +455,12 @@ public partial class CellBodyPlanEditorComponent :
         if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
-        if (editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
-            return true;
-
-        // TODO: warning about not producing enough ATP if entire body plan would be negative
+        if (IsNegativeAtpProduction() &&
+            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+        {
+            negativeAtpPopup.PopupCenteredShrink();
+            return false;
+        }
 
         return true;
     }
@@ -709,6 +726,12 @@ public partial class CellBodyPlanEditorComponent :
             default:
                 throw new Exception("Invalid light level option");
         }
+    }
+
+    private bool IsNegativeAtpProduction()
+    {
+        return energyBalanceInfo != null &&
+            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
     }
 
     private void UpdateGUIAfterLoadingSpecies()
@@ -1125,6 +1148,8 @@ public partial class CellBodyPlanEditorComponent :
                 true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.GetCompoundAmountType(),
                 true, energyBalance);
         }
+
+        energyBalanceInfo = energyBalance;
 
         organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
 

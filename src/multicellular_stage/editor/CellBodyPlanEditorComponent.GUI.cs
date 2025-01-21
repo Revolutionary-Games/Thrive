@@ -18,6 +18,20 @@ public partial class CellBodyPlanEditorComponent
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
 
+    private void ConfirmFinishEditingWithNegativeATPPressed()
+    {
+        if (OnFinish == null)
+        {
+            GD.PrintErr("Confirmed editing for cell editor when finish callback is not set");
+            return;
+        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+
+        ignoredEditorWarnings.Add(EditorUserOverride.NotProducingEnoughATP);
+        OnFinish.Invoke(ignoredEditorWarnings);
+    }
+
     private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfo energyBalance,
         IBiomeConditions biome)
     {
