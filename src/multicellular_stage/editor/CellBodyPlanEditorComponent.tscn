@@ -415,10 +415,12 @@ FinishOrNextButtonPath = NodePath("BottomRight/HBoxContainer/ConfirmButton")
 
 [node name="TopPanel" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 470.0
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -170.0
 offset_top = 10.0
-offset_right = 1131.0
-offset_bottom = 64.0
+offset_right = 170.0
+offset_bottom = 57.0
 
 [node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
 layout_mode = 2
