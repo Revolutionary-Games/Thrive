@@ -41,8 +41,14 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         }
 
         bool validMutations = false;
-        foreach (OrganelleTemplate organelle in baseSpecies.Organelles)
+
+        // Manual looping to avoid one enumerator allocation per call
+        var organelleList = baseSpecies.Organelles.Organelles;
+        var count = organelleList.Count;
+        for (var i = 0; i < count; ++i)
         {
+            var organelle = organelleList[i];
+
             if (allOrganelles.Contains(organelle.Definition))
             {
                 validMutations = true;
@@ -54,10 +60,14 @@ public class UpgradeOrganelle : IMutationStrategy<MicrobeSpecies>
         {
             var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
-            MicrobeSpecies newSpecies = (MicrobeSpecies)baseSpecies.Clone();
+            var newSpecies = (MicrobeSpecies)baseSpecies.Clone();
 
-            foreach (OrganelleTemplate organelle in newSpecies.Organelles)
+            organelleList = newSpecies.Organelles.Organelles;
+            count = organelleList.Count;
+            for (var i = 0; i < count; ++i)
             {
+                var organelle = organelleList[i];
+
                 if (allOrganelles.Contains(organelle.Definition))
                 {
                     // TODO: Once this is used with an upgrade that costs MP this will need to factor that in
