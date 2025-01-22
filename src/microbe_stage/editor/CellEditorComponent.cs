@@ -174,6 +174,9 @@ public partial class CellEditorComponent :
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
     [Export]
+    private CheckBox showGrowthOrderCoordinates = null!;
+
+    [Export]
     private Control growthOrderNumberContainer = null!;
 
     [Export]
@@ -559,6 +562,10 @@ public partial class CellEditorComponent :
 
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
+
+        // TODO: make this setting persistent from somewhere
+        // showGrowthOrderCoordinates.ButtonPressed = true;
+        growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
 
         nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
         bindingAgent = SimulationParameters.Instance.GetOrganelleType("bindingAgent");
