@@ -270,7 +270,6 @@ public partial class CellBodyPlanEditorComponent :
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         UpdateCancelButtonVisibility();
-        UpdateFinishButtonWarningVisibility();
     }
 
     public override void _Process(double delta)
@@ -1112,6 +1111,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateStats();
 
         UpdateArrow();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     private void UpdateStats()
