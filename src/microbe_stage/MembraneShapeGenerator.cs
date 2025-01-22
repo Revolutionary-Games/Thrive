@@ -566,6 +566,8 @@ public class MembraneShapeGenerator
 
         average /= vertices2D.Count;
 
+        float distanceToNearest = 9.0f;
+
         // Multicellular matrix
         if (thisCellPosition != null && cellPositions != null)
         {
@@ -581,7 +583,7 @@ public class MembraneShapeGenerator
 
                 foreach (var cellPos in cellPositions)
                 {
-                    if (cellPos == thisCellPosition)
+                    if (cellPos == thisCellPosition && cellPos.DistanceTo(thisCellPosition.Value) <= distanceToNearest)
                         continue;
 
                     // Coordinates of such a point on the Voronoi edge, that a line from the cell's center to this
@@ -625,6 +627,66 @@ public class MembraneShapeGenerator
 
                 startingBuffer[i] = startingBuffer[i] + movement;
             }
+
+            // Gets rid of sharp corners (or at least most of them)
+            smoothPoints();
+            smoothPointsReverse();
+
         }
     }
-}
+
+    private void smoothPoints()
+    {
+        for (int i = 0; i < vertices2D.Count + 10; i++)
+        {
+            int k = i % vertices2D.Count;
+            var vector1 = vertices2D[k];
+            if (vector1.Length() > 5.3f)
+            {
+                continue;
+            }
+            var vector2 = vertices2D[(k + 1) % vertices2D.Count];
+            var dist = vector1.DistanceTo(vector2);
+            var vector3 = vertices2D[(k + 4) % vertices2D.Count];
+            if (dist > 2.0f)
+            {
+                var x = vector1.X;
+                var y = vector1.Y;
+                var dx = (vector3.X - vector1.X) / 4;
+                var dy = (vector3.Y - vector1.Y) / 4;
+                vertices2D[(i + 1) % vertices2D.Count] = new Vector2(x + dx, y + dy);
+                vertices2D[(i + 2) % vertices2D.Count] = new Vector2(x + 2 * dx, y + 2 * dy);
+                vertices2D[(i + 3) % vertices2D.Count] = new Vector2(x + 3 * dx, y + 3 * dy);
+                i += 3;
+            }
+        }
+    }
+
+    private void smoothPointsReverse()
+    {
+        for (int i = vertices2D.Count * 2 + 10; i >= vertices2D.Count; i--)
+        {
+            int k = i % vertices2D.Count;
+            var vector1 = vertices2D[k];
+            if (vector1.Length() > 5.3f)
+            {
+                continue;
+            }
+
+            var vector2 = vertices2D[(i - 1) % vertices2D.Count];
+            var dist = vector1.DistanceTo(vector2);
+            var vector3 = vertices2D[(i - 4) % vertices2D.Count];
+            if (dist > 2.0f)
+            {
+                var x = vector1.X;
+                var y = vector1.Y;
+                var dx = (vector3.X - vector1.X) / 4;
+                var dy = (vector3.Y - vector1.Y) / 4;
+                vertices2D[(i - 1) % vertices2D.Count] = new Vector2(x + dx, y + dy);
+                vertices2D[(i - 2) % vertices2D.Count] = new Vector2(x + 2 * dx, y + 2 * dy);
+                vertices2D[(i - 3) % vertices2D.Count] = new Vector2(x + 3 * dx, y + 3 * dy);
+                i -= 3;
+            }
+        }
+    }
+ }
