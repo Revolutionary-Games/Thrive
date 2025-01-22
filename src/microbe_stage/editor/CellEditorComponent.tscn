@@ -337,7 +337,7 @@ _data = {
 "show": SubResource("44")
 }
 
-[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
+[node name="CellEditorComponent" type="Control" node_paths=PackedStringArray("growthOrderTabButton", "toleranceTabButton", "growthOrderTab", "growthOrderGUI", "toleranceTab", "organelleSuggestionLoadingIndicator", "organelleSuggestionLabel", "pendingEndosymbiosisPopup", "endosymbiosisButton", "endosymbiosisPopup", "showGrowthOrderCoordinates", "growthOrderNumberContainer", "micheViewer", "organismStatisticsPanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -382,6 +382,7 @@ organelleSuggestionLabel = NodePath("RightPanel/VBoxContainer/AutoEvoInfoPanel/V
 pendingEndosymbiosisPopup = NodePath("CompleteEndosymbiosisWarning")
 endosymbiosisButton = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Structure/ScrollContainer/MarginContainer/StructureContainer/Endosymbiosis")
 endosymbiosisPopup = NodePath("EndosymbiosisPopup")
+showGrowthOrderCoordinates = NodePath("LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer/Coordinates")
 growthOrderNumberContainer = NodePath("GrowthOrderNumberContainer")
 micheViewer = NodePath("PopupMicheViewer")
 organismStatisticsPanel = NodePath("RightPanel/VBoxContainer/OrganismStatisticsPanel")
