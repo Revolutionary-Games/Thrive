@@ -5,6 +5,7 @@ using System.Buffers;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Components;
@@ -140,9 +141,14 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         MembranePointData? data = null;
 
         // Background thread membrane generation
-        if (entity.Has<EarlyMulticellularSpeciesMember>())
+        if (entity.Has<MulticellularSpeciesMember>())
         {
-            data = GetMulticellularMembraneDataIfReadyOrStartGenerating(ref cellProperties, ref organelleContainer, ref entity.Get<EarlyMulticellularSpeciesMember>());
+            var multi = entity.Get<MulticellularSpeciesMember>();
+            for (var i = 0; i < multi.Species.Cells.Count(); i++)
+            {
+                var cell = multi.Species.Cells[i];
+                data = GetMulticellularMembraneDataIfReadyOrStartGenerating(cell, cell.Organelles, ref multi, i);
+            }
         }
         else
         {
@@ -232,7 +238,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
             organelleContainer.Organelles!.Organelles, out var hexCount);
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType, false);
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -277,13 +283,13 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         return null;
     }
 
-    private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(ref CellProperties cellProperties,
-        ref OrganelleContainer organelleContainer, ref EarlyMulticellularSpeciesMember multicellular)
+    private MembranePointData? GetMulticellularMembraneDataIfReadyOrStartGenerating(CellTemplate cellProperties,
+        OrganelleLayout<OrganelleTemplate> organelleContainer, ref MulticellularSpeciesMember multicellular, int position)
     {
         // TODO: should we consider the situation where a membrane was requested on the previous update but is not
         // ready yet? This causes extra memory usage here in those cases.
         var hexes = MembraneComputationHelpers.PrepareHexPositionsForMembraneCalculations(
-            organelleContainer.Organelles!.Organelles, out var hexCount);
+            organelleContainer.Organelles, out var hexCount);
 
         List<Vector2> positions = new List<Vector2>();
 
@@ -295,7 +301,10 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
 
         var positionsArray = positions.ToArray();
 
-        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType, true);
+        var thisCartesian = Hex.AxialToCartesian(multicellular.Species.Cells[multicellular.MulticellularBodyPlanPartIndex].Position);
+        var thisVector2 = new Vector2(thisCartesian.X, thisCartesian.Z);
+
+        var hash = MembraneComputationHelpers.ComputeMembraneDataHash(hexes, hexCount, cellProperties.MembraneType, thisVector2);
 
         var cachedMembrane = ProceduralDataCache.Instance.ReadMembraneData(hash);
 
@@ -303,7 +312,7 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
         {
             // TODO: hopefully this can't get into a permanent loop where 2 conflicting membranes want to
             // re-generate on each game update cycle
-            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, positionsArray))
+            if (!cachedMembrane.MembraneDataFieldsEqual(hexes, hexCount, cellProperties.MembraneType, thisVector2))
             {
                 CacheableDataExtensions.OnCacheHashCollision<MembranePointData>(hash);
                 cachedMembrane = null;
@@ -330,9 +339,6 @@ public sealed class MicrobeVisualsSystem : AEntitySetSystem<float>
                 return null;
             }
         }
-
-        var thisCartesian = Hex.AxialToCartesian(multicellular.Species.Cells[multicellular.MulticellularBodyPlanPartIndex].Position);
-        var thisVector2 = new Vector2(thisCartesian.X, thisCartesian.Z);
 
         membranesToGenerate.Enqueue(new MembraneGenerationParameters(hexes, hexCount, cellProperties.MembraneType, positionsArray, thisVector2));
 

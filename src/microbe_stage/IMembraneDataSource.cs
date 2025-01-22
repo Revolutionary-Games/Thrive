@@ -13,6 +13,8 @@ public interface IMembraneDataSource
 
     public Vector2[]? MulticellularPositions { get; }
 
+    public Vector2? CellPositionInMulticellular { get; }
+
     public int HexPositionCount { get; }
     public MembraneType Type { get; }
 }
@@ -97,7 +99,7 @@ public static class MembraneComputationHelpers
 
         var cache = ProceduralDataCache.Instance;
 
-        var hash = ComputeMembraneDataHash(hexes, length, membraneType, false);
+        var hash = ComputeMembraneDataHash(hexes, length, membraneType);
 
         var result = cache.ReadMembraneData(hash);
 
@@ -123,7 +125,7 @@ public static class MembraneComputationHelpers
         return result;
     }
 
-    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type, bool multicellular)
+    public static long ComputeMembraneDataHash(Vector2[] positions, int count, MembraneType type, Vector2 vec = default(Vector2))
     {
         var nameHash = type.InternalName.GetHashCode();
 
@@ -136,11 +138,10 @@ public static class MembraneComputationHelpers
 
             for (int i = 0; i < count; ++i)
             {
-                var posHash = positions[i].GetHashCode();
-                var multicellularityAdd = multicellular ? 1 : 0;
+                var posHash = positions[i].GetHashCode() + vec.GetHashCode();
 
                 // TODO: switch to using rotate left here once we can (after Godot 4)
-                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash + multicellularityAdd) << 32);
+                hash ^= (hashMultiply * posHash) ^ ((5081L * hashMultiply * hashMultiply + posHash) << 32);
                 ++hashMultiply;
             }
 
@@ -150,17 +151,16 @@ public static class MembraneComputationHelpers
 
     public static long ComputeMembraneDataHash(this IMembraneDataSource dataSource)
     {
-        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type,
-            dataSource.MulticellularPositions == null ? false : dataSource.MulticellularPositions.Length > 0);
+        return ComputeMembraneDataHash(dataSource.HexPositions, dataSource.HexPositionCount, dataSource.Type, dataSource.CellPositionInMulticellular ?? default(Vector2));
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, IMembraneDataSource other)
     {
-        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type, other.MulticellularPositions);
+        return dataSource.MembraneDataFieldsEqual(other.HexPositions, other.HexPositionCount, other.Type, other.CellPositionInMulticellular);
     }
 
     public static bool MembraneDataFieldsEqual(this IMembraneDataSource dataSource, Vector2[] otherPoints,
-        int otherPointCount, MembraneType otherType, Vector2[]? multicellularPositions)
+        int otherPointCount, MembraneType otherType, Vector2? cellPositionInMulticellular)
     {
         if (!dataSource.Type.Equals(otherType))
             return false;
@@ -172,19 +172,19 @@ public static class MembraneComputationHelpers
 
         var sourcePoints = dataSource.HexPositions;
 
-        if (dataSource.MulticellularPositions != null)
+        if (dataSource.CellPositionInMulticellular != null)
         {
-            if (multicellularPositions == null)
+            if (cellPositionInMulticellular == null)
                 return false;
 
-            if (!dataSource.MulticellularPositions.SequenceEqual(multicellularPositions))
+            if (!dataSource.CellPositionInMulticellular.Equals(cellPositionInMulticellular))
             {
                 return false;
             }
         }
         else
         {
-            if (multicellularPositions != null)
+            if (cellPositionInMulticellular != null)
             {
                 return false;
 

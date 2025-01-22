@@ -116,7 +116,7 @@ public class MembraneShapeGenerator
         GD.Print(cellPositions == null);
 
         // This makes a copy of the vertices so the data is safe to modify in further calls to this method
-        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D, cellPositions);
+        return new MembranePointData(hexPositions, hexCount, membraneType, vertices2D, cellPositions, thisCellPosition);
     }
 
     public MembranePointData GenerateShape(ref MembraneGenerationParameters parameters)
