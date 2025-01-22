@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2025-01-10 11:45+0000\n"
 "Last-Translator: Igor Voronov <AnonimusPochtus@inbox.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -314,6 +314,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% завершено. {1:n0}/{2:n0} шагов."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Коэффициент стоимости мутации"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(стоимость органелл, мембран и т. д. в редакторе)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автосохранение во время игры"
@@ -3335,6 +3343,10 @@ msgstr "Нажмите кнопку отмены в редакторе для и
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Найдено {1} видов, среднее {2} которых"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}: Найдено {1} видов, среднее {2} которых"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Этап[/b]\n"
@@ -3750,7 +3762,7 @@ msgstr "Свободный Многоклеточный Редактор"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Многоклеточный редактор"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклеточная стадия"
@@ -6805,10 +6817,7 @@ msgstr "Улучшения"
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr ""
-"Липкие внутренности клетки. Цитоплазма - простейшая помесь ионов, протеинов, да других веществ, растворённых в воде, что заполняют внутреннюю часть клетки.\n"
-"\n"
-"Одной из функцией, что выполняет цитоплазма - [b]гликолиз[/b], конвертация [thrive:compound type=\"glucose\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]. Это то, на что клетки, что не обладают органеллами, и, соответственно, продвинутым метаболизмом полагаются в производстве энергии. Цитоплазма так же используется для хранения молекул в клетке и увеличения размеров клетки."
+msgstr "Тилакоиды - это скопления белков и светочувствительных пигментов. Пигменты способны использовать энергию [thrive:compound type=\"sunlight\"][/thrive:compound] для получения [thrive:compound type=\"glucose\"][/thrive:compound] из воды и газообразного [thrive:compound type=\"carbondioxide\"][/thrive:compound] в процессе, называемом [b]Фотосинтезом[/b]. Эти пигменты также придают им особый цвет. Скорость их выработки [thrive:compound type=\"glucose\"][/thrive:compound] зависит от концентрации [thrive:compound type=\"carbondioxide\"][/thrive:compound] и интенсивности [thrive:compound type=\"sunlight\"][/thrive:compound]. Поскольку тилакоиды находятся во взвешенном состоянии непосредственно в цитоплазме, окружающая жидкость выполняет некоторую часть [b]гликолиза[/b]."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -7969,15 +7978,32 @@ msgstr "Увеличить масштаб"
 msgid "ZOOM_OUT"
 msgstr "Уменьшить масштаб"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Ссылки"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Интересный факт: инфузории рода Didinium охотится на инфузории туфельки."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Забавный факт: амёба охотится и ловит добычу с помощью \"ног\", состоящих из цитоплазмы, которые называются псевдоподиями, когда-нибудь мы бы хотели добавить их в Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Вот совет: опасайтесь более крупных клеток и бактерий, быть съеденным не весело, а они вас съедят."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Лидер команды звуковиков Thrive сделал много песен, которые ещё не были добавлены в игру. Вы можете послушать их, или посмотреть трансляции с их созданием на его YouTube канале, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Вот совет: если ваша клетка занимает от 150 ячеек, вы можете поглотить большие куски железа."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive — это симуляция инопланетной жизни, поэтому имеет смысл, что большинство существ, которые вы найдёте, будут родственны одному или двумя другим видам из-за эволюции, происходящей вокруг вас, попробуйте их идентифицировать!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Интересный факт: команда Thrive время от времени выпускает подкасты, вам стоит их послушать!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Интересный факт: Thrive создан на движке с открытым исходным кодом Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Забавный факт: один из первых рабочих прототипов игрового процесса был создан нашим замечательным программистом — untrustedlife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -7998,6 +8024,9 @@ msgstr "Уменьшить масштаб"
 #~ "Окситоксисома: Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 #~ "\n"
 #~ "Термосинтаза: Производит [thrive:compound type=\"atp\"][/thrive:compound] используя температурные градиенты"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Как только поглощение завершено, поглощённые объекты удерживаются внутри мембраны для переваривания. Неперевариваемые объекты всегда будут выведены наружу, поэтому сначала убедитесь что у вас есть нужные для их переваривания мутации. Ферменты помогают перевариванию, их производят лизосомы, рекомендуется эволюционировать эту органеллу для более эффективного переваривания."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8044,27 +8073,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Каждый раз размножаясь, вы можете войти в Микробный Редактор, где вы можете изменить свой вида (добавляя, передвигая или удаляя органеллы), чтобы повысить успех вашего вида. Каждое посещение редактора в Микробной Фазе представляет [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов лет эволюции."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Прокариотические структуры\n"
-#~ "\n"
-#~ "Цитоплазма: Имеет свободное место и выполняет процесс гликолиза (Производит небольшое количество [thrive:compound type=\"atp\"][/thrive:compound] из [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-#~ "\n"
-#~ "Метаболосомы: Производят [thrive:compound type=\"atp\"][/thrive:compound] из [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Тилакоиды: Производят в три раза меньше [thrive:compound type=\"glucose\"][/thrive:compound] чем обычный хлоропласт, но также участвуют в гликолизе. Занимают 1 ячейку\n"
-#~ "\n"
-#~ "Хемосинтезирующие белки: Производят вдвое меньше [thrive:compound type=\"glucose\"][/thrive:compound] из [thrive:compound type=\"hydrogensulfide\"], чем хемопласты, но также участвуют в гликолизе. Занимают 1 ячейку\n"
-#~ "\n"
-#~ "Рустицианин: Превращает [thrive:compound type=\"iron\"][/thrive:compound] в [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Нитрогеназа: Превращает атмосферный азот и [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"ammonia\"][/thrive:compound] в процессе анаэробного дыхания\n"
-#~ "\n"
-#~ "Окситоксисома: Превращает [thrive:compound type=\"atp\"][/thrive:compound] в [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Термосинтаза: Производит [thrive:compound type=\"atp\"][/thrive:compound] используя температурные градиенты"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мышь — для перемещения. [thrive:input]g_fire_toxin[/thrive:input] — выпускать [thrive:compound type=\"oxytoxy\"][/thrive:compound], если есть токсиновая вакуоль. [thrive:input]g_toggle_engulf[/thrive:input] — режим поглощения. Вы можете изменять масштаб с помощью колёсика мыши."
@@ -8119,33 +8127,6 @@ msgstr "Уменьшить масштаб"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] может быть превращён в [thrive:compound type=\"glucose\"][/thrive:compound] с помощью хемопластов или белков-хемосинтетиков. [thrive:compound type=\"iron\"][/thrive:compound] может преобразоваться в [thrive:compound type=\"atp\"][/thrive:compound] при помощи рустицианина."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Забавный факт: амёба охотится и ловит добычу с помощью \"ног\", состоящих из цитоплазмы, которые называются псевдоподиями, когда-нибудь мы бы хотели добавить их в Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Вот совет: опасайтесь более крупных клеток и бактерий, быть съеденным не весело, а они вас съедят."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Лидер команды звуковиков Thrive сделал много песен, которые ещё не были добавлены в игру. Вы можете послушать их, или посмотреть трансляции с их созданием на его YouTube канале, Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Вот совет: если ваша клетка занимает от 150 ячеек, вы можете поглотить большие куски железа."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive — это симуляция инопланетной жизни, поэтому имеет смысл, что большинство существ, которые вы найдёте, будут родственны одному или двумя другим видам из-за эволюции, происходящей вокруг вас, попробуйте их идентифицировать!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Интересный факт: команда Thrive время от времени выпускает подкасты, вам стоит их послушать!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Интересный факт: Thrive создан на движке с открытым исходным кодом Godot!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Забавный факт: один из первых рабочих прототипов игрового процесса был создан нашим замечательным программистом — untrustedlife!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Как только поглощение завершено, поглощённые объекты удерживаются внутри мембраны для переваривания. Неперевариваемые объекты всегда будут выведены наружу, поэтому сначала убедитесь что у вас есть нужные для их переваривания мутации. Ферменты помогают перевариванию, их производят лизосомы, рекомендуется эволюционировать эту органеллу для более эффективного переваривания."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

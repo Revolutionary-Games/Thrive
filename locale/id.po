@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Indonesian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/id/>\n"
@@ -333,6 +333,13 @@ msgstr "Pembangkit listrik sel. Mitokondria adalah struktur membran ganda yang t
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% selesai. {1:n0}/{2:n0} tahap."
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Harga Osmoregulasi"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Save otomatis ketika bermain"
@@ -3589,6 +3596,10 @@ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika Organisme"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Statistika Organisme"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Fase[/b]\n"
@@ -4028,7 +4039,7 @@ msgstr "Editor Multiseluler"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+msgstr "Editor Multiseluler"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Tahapan Multiseluler"
@@ -7308,7 +7319,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Dalaman lengket sebuah sel. Sitoplasma adalah gabungan dasar dari ion, protein dan zat lain terlarut dalam air yang mengisi bagian dalam sel. Salah satu fungsi yang di lakukannya adalah glikolisis, perubahan glukosa menjadi energi ATP. Bagi sel yang kekurangan organel untuk memiliki tingkatan metabolisme yang lebih tinggi, ini yang mereka andalkan untuk energi. Sitoplasma juga digunakan untuk menyimpan molekul di dalam sel dan menumbuhkan ukuran sel."
+msgstr "Tilakoid adalah gugusan protein dan pigmen fotosensitif. Pigmen tersebut dapat menggunakan energi dari cahaya untuk memproduksi glukosa dari air dan gas karbon dioksida dalam proses yang disebut Fotosintesis. Pigmen-pigmen ini yang juga memberi mereka warna yang khas. Laju produksi glukosa mereka berbanding lurus dengan konsentrasi karbon dioksida dan intensitas cahaya. Karena tilakoid tersuspensi secara langsung dalam sitoplasma, cairan sekelilingnya juga melakukan beberapa glikolisis."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8438,15 +8449,32 @@ msgstr "Perbesar"
 msgid "ZOOM_OUT"
 msgstr "Perkecil"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "KAMU TELAH BERKEMBANG!"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Fakta Menarik, Didinium adalah ciliata yang memburu paramecia."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Tekan tombol undo di editor untuk membatalkan kesalahan"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Fakta menarik, Amoeba memburu dan menangkap mangsa dengan 'kaki' terbuat dari sitoplasma yang disebut pseudopoda, kami nantinya juga ingin menambahkan 'kaki' tersebut dalam Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Berikut tipsnya, hati-hati dengan sel yang lebih besar dan bakteria besar, tidak seru rasanya kalau kamu dicerna, dan mereka akan memakanmu."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Kepala tim suara Thrive telah membuat banyak lagu yang masih belum dimasukkan ke dalam game. Kamu dapat mendengar lagu-lagu tersebut, atau tonton streamingnya menyusun lagu di kanal YouTubenya, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Berikut tipsnya, jika ukuran sel kamu 150 hex, kamu dapat menelan potongan besi besar."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive dimaksudkan sebagai sebuah simulasi planet asing, dengan demikian, masuk akal jika sebagian besar makhluk yang kamu temukan akan berkaitan dengan satu atau dua spesies lainnya karena evolusi yang terjadi di sekitarmu, coba lihatlah apakah kamu mengenali mereka!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Fakta menarik, Tim Thrive melakukan podcast sesekali waktu, cobalah untuk menontonnya!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fakta menarik, Thrive dikembangkan dengan mesin game sumber terbuka Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Fakta menarik, Salah satu prototipe gameplay pertama yang dapat dimainkan dibuat oleh programmer luar biasa kita, untrustedlife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8463,6 +8491,9 @@ msgstr "Perkecil"
 #~ "Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
 #~ "\n"
 #~ "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Setelah proses fagositosis selesai, setiap benda yang tertangkap oleh fagositosis akan disimpan didalam membran untuk dicerna. Benda yang tidak dapat dicerna akan selalu dibuang, maka pastikan kamu terlebih dahulu memiliki mutasi yang diperlukan untuk memproses benda tersebut. Enzim membantu proses pencernaan dan disediakan oleh lisosom; kembangkan organel ini agar pencernaan menjadi lebih efisien."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8495,23 +8526,6 @@ msgstr "Perkecil"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Setiap kali kamu reproduksi, kamu akan memasuki Editor Mikroba, tempat untuk membuat perubahan pada spesiesmu (Dengan cara menambahkan, memindahkan, atau melepaskan organel) agar meningkatkan keberhasilan spesiesmu. Setiap masuk ke editor di Tahap Mikroba mewakili [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] juta tahun evolusi."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Struktur Prokariotik\n"
-#~ "\n"
-#~ "Metabolosom: Menghasilkan [thrive:compound type=\"atp\"][/thrive:compound] dari [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Kemosintisasi Protein: Menghasilkan setengah [thrive:compound type=\"glucose\"][/thrive:compound] dari [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] sebagai kemoplas, tetapi juga melakukan glikolisis, perlu 1 Heks\n"
-#~ "\n"
-#~ "Tilakoid: Menghasilkan 1/3 dari jumlah [thrive:compound type=\"glucose\"][/thrive:compound] sebagai kloroplas normal, tetapi juga melakukan glikolisis, dan membutuhkan 1 Heks\n"
-#~ "\n"
-#~ "Rusticyanin: Ubah [thrive:compound type=\"iron\"][/thrive:compound] menjadi [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Nitrogenase: Ubah udara nitrogen dan [thrive:compound type=\"atp\"][/thrive:compound] menjadi [thrive:compound type=\"ammonia\"][/thrive:compound] secara anaerob\n"
-#~ "\n"
-#~ "Sitoplasma: Sebagai ruang penyimpanan yang juga dapat melakukan glikolisis (Menghasilkan sedikit [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] dan mouse untuk bergerak. [thrive:input]g_fire_toxin[/thrive:input] untuk menembakkan [thrive:compound type=\"oxytoxy\"][/thrive:compound] jika kamu punya vakula toksin. [thrive:input]g_toggle_engulf[/thrive:input] untuk menyalakan/mematikan mode penelanan (engulf)."
@@ -8566,33 +8580,6 @@ msgstr "Perkecil"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"glucose\"][/thrive:compound] melalui kemoplas dan protein pengkemosintesis. [thrive:compound type=\"iron\"][/thrive:compound] dapat dikonversi menjadi [thrive:compound type=\"atp\"][/thrive:compound] melalui rustisianin."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Fakta menarik, Amoeba memburu dan menangkap mangsa dengan 'kaki' terbuat dari sitoplasma yang disebut pseudopoda, kami nantinya juga ingin menambahkan 'kaki' tersebut dalam Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Berikut tipsnya, hati-hati dengan sel yang lebih besar dan bakteria besar, tidak seru rasanya kalau kamu dicerna, dan mereka akan memakanmu."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Kepala tim suara Thrive telah membuat banyak lagu yang masih belum dimasukkan ke dalam game. Kamu dapat mendengar lagu-lagu tersebut, atau tonton streamingnya menyusun lagu di kanal YouTubenya, Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Berikut tipsnya, jika ukuran sel kamu 150 hex, kamu dapat menelan potongan besi besar."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive dimaksudkan sebagai sebuah simulasi planet asing, dengan demikian, masuk akal jika sebagian besar makhluk yang kamu temukan akan berkaitan dengan satu atau dua spesies lainnya karena evolusi yang terjadi di sekitarmu, coba lihatlah apakah kamu mengenali mereka!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Fakta menarik, Tim Thrive melakukan podcast sesekali waktu, cobalah untuk menontonnya!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Fakta menarik, Thrive dikembangkan dengan mesin game sumber terbuka Godot!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Fakta menarik, Salah satu prototipe gameplay pertama yang dapat dimainkan dibuat oleh programmer luar biasa kita, untrustedlife!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Setelah proses fagositosis selesai, setiap benda yang tertangkap oleh fagositosis akan disimpan didalam membran untuk dicerna. Benda yang tidak dapat dicerna akan selalu dibuang, maka pastikan kamu terlebih dahulu memiliki mutasi yang diperlukan untuk memproses benda tersebut. Enzim membantu proses pencernaan dan disediakan oleh lisosom; kembangkan organel ini agar pencernaan menjadi lebih efisien."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

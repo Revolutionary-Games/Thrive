@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2025-01-17 10:20+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -314,6 +314,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "%{0:F1} tamamlandı. {1:n0}/{2:n0} adım."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Mutasyon maliyet çarpanı"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(organellerin, hücre zarlarının ve diğer öğelerin editördeki maliyeti)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Oyun esnasında otomatik olarak kaydet"
@@ -3330,6 +3338,10 @@ msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Evre[/b]\n"
@@ -3744,7 +3756,7 @@ msgstr "Serbest Çok Hücreli Yapım Editörü"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Çok Hücreli Editörü"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
@@ -7004,7 +7016,10 @@ msgstr "Geliştirmeler"
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Bileşikler"
+msgstr ""
+"Işığa hassas yeşil pigmentlerin bulunduğu proteinler kümesidir. Pigmentler, [b]Kromatofor Fotosentezi[/b] adı verilen bir işlemde, su ve [thrive:compound type=\"carbondioxide\"]karbondioksit[/thrive:compound] gazından [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretmek için [thrive:compound type=\"sunlight\"]ışık[/thrive:compound] enerjisini kullanır. Üretilen [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] oranı, [thrive:compound type=\"sunlight\"]ışığın[/thrive:compound] şiddeti ile doğru orantılı olduğundan, [b]Tilakoidler[/b] yalnızca yüzeye yakın arazilerde etkilidir.\n"
+"\n"
+"[b]Fotosentezin[/b] en üst düzeyini yerine getiren [b][color=#3796e1][url=thriveopedia:chloroplast]Kloroplastın[/url][/color][/b] prokaryotik bir formudur."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8336,15 +8351,32 @@ msgstr "Yakınlaştır"
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Bağlantılar"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapılma 'bacaklar' ile yakalar ve avlar. Bu yapıları er ya da geç Thrive'a eklemek istiyoruz."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "İşte size bir ipucu: Türünüzden büyük hücrelere ve büyük bakterilere dikkat edin, bu canlıların sindirilmesi eğlenceli değildir ve sizi yerler."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive'ın ses ekibi yöneticisi oyuna henüz eklenmeyen birçok şarkı yaptı. Bu şarkıları dinleyebilir veya sahibi Oliver Lugg'ın YouTube kanalından beste yaptığı sırada çekilen yayın akışlarını izleyebilirsiniz."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "İşte size bir ipucu: Eğer hücreniz 150 altıgen alan büyüklüğündeyse, büyük demir parçalarını yutabilirsiniz."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğunuz çoğu canlının, etrafınızda gerçekleşen evrimden dolayı, bir ya da iki farklı türe benzemesi mümkün. Onları tanıyabiliyor musunuz bir inceleyin!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "İlginç Gerçek: Thrive ekibi ara sıra podcastler yayınlıyor, onları incelemeyi unutmayın!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerinden biri bizim müthiş programcımız untrustedlife tarafından yapıldı!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8365,6 +8397,9 @@ msgstr "Uzaklaştır"
 #~ "Oksitoksizom: [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür\n"
 #~ "\n"
 #~ "Termosentaz: Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Yutma eylemi tamamlandığında, yutulan herhangi bir nesne sindirilmek üzere hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı atılır. Bu yüzden önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğunuzdan emin olun. Enzimler sindirime yardımcı olur ve lizozom tarafından sağlanır; sindirimi çok daha verimli bir hale getirmek için bu organeli evrimleştirin."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8413,27 +8448,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Hücreniz her çoğaldığında, Mikrop Editörü'ne giriş yaparsınız. Burada, türünüzün başarısını arttırmak için türünüzde (organelleri ekleyerek, taşıyarak veya kaldırarak) değişiklikler yapabilirsiniz. Mikrop Evresi'nde editöre yapılan her ziyaret, [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Prokaryotik Yapılar\n"
-#~ "\n"
-#~ "Sitoplazma: Depo alanına sahiptir ve glikoliz yapar ([thrive:compound type=\"glucose\"]glukozdan[/thrive:compound], az miktarda [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir)\n"
-#~ "\n"
-#~ "Metabolozomlar: [thrive:compound type=\"glucose\"]Glukozdan[/thrive:compound], [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir\n"
-#~ "\n"
-#~ "Tilakoidler: Normal bir kloroplast gibi [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] 3'te 1'ini üretir ve glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-#~ "\n"
-#~ "Kemosentez Yapan Proteinler: Bir kemoplast gibi [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfürden[/thrive:compound], [thrive:compound type=\"glucose\"]glukozun[/thrive:compound] yarısını üretir ve glikoliz yapar. 1 Altıgenlik yer kaplar\n"
-#~ "\n"
-#~ "Rustisiyanin: [thrive:compound type=\"iron\"]Demiri[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] çevirir\n"
-#~ "\n"
-#~ "Nitrojenaz: Atmosferdeki azotu ve [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], oksijen olmadan [thrive:compound type=\"ammonia\"]amonyağa[/thrive:compound] çevirir\n"
-#~ "\n"
-#~ "Oksitoksizom: [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound], [thrive:compound type=\"oxytoxy\"]OksiToksi NT'ye[/thrive:compound] dönüştürür\n"
-#~ "\n"
-#~ "Termosentaz: Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "Hareket etmek için [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] tuşlarını ve fareyi kullanın. Eğer toksin kofuluna sahipseniz, [thrive:compound type=\"oxytoxy\"]OksiToksi NT'yi[/thrive:compound] ateş etmek için [thrive:input]g_fire_toxin[/thrive:input] tuşuna basın. Yutma moduna geçmek için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basın. Fare tekeriyle mevcut alanı yakınlaştırıp uzaklaştırabilirsiniz."
@@ -8488,33 +8502,6 @@ msgstr "Uzaklaştır"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"]Hidrojen sülfür[/thrive:compound], kemoplastlar ve kemosentez yapan proteinler aracılığıyla [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülebilir. [thrive:compound type=\"iron\"]Demir[/thrive:compound], rustisiyanin aracılığıyla [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülebilir."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "İlginç Gerçek: Amip, avını yalancı ayak adı verilen sitoplazmadan yapılma 'bacaklar' ile yakalar ve avlar. Bu yapıları er ya da geç Thrive'a eklemek istiyoruz."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "İşte size bir ipucu: Türünüzden büyük hücrelere ve büyük bakterilere dikkat edin, bu canlıların sindirilmesi eğlenceli değildir ve sizi yerler."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Thrive'ın ses ekibi yöneticisi oyuna henüz eklenmeyen birçok şarkı yaptı. Bu şarkıları dinleyebilir veya sahibi Oliver Lugg'ın YouTube kanalından beste yaptığı sırada çekilen yayın akışlarını izleyebilirsiniz."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "İşte size bir ipucu: Eğer hücreniz 150 altıgen alan büyüklüğündeyse, büyük demir parçalarını yutabilirsiniz."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive, uzaylı bir gezegen simülasyonudur. Bu yüzden bulduğunuz çoğu canlının, etrafınızda gerçekleşen evrimden dolayı, bir ya da iki farklı türe benzemesi mümkün. Onları tanıyabiliyor musunuz bir inceleyin!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "İlginç Gerçek: Thrive ekibi ara sıra podcastler yayınlıyor, onları incelemeyi unutmayın!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "İlginç Gerçek: Thrive, açık kaynak kodlu Godot oyun motoru ile yapıldı!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "İlginç Gerçek: Thrive'ın ilk oynanabilir prototiplerinden biri bizim müthiş programcımız untrustedlife tarafından yapıldı!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Yutma eylemi tamamlandığında, yutulan herhangi bir nesne sindirilmek üzere hücre zarı içerisinde tutulacak. Sindirilemeyen nesneler her zaman dışarı atılır. Bu yüzden önce, bu nesneleri işlemeyi sağlayan gerekli mutasyonlara sahip olduğunuzdan emin olun. Enzimler sindirime yardımcı olur ve lizozom tarafından sağlanır; sindirimi çok daha verimli bir hale getirmek için bu organeli evrimleştirin."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

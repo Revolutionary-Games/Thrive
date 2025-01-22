@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -316,6 +316,13 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "삼투압 비용"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
@@ -3558,6 +3565,10 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "생체 상태창"
 
 #, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "생체 상태창"
+
+#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "ATP 막대 옆의 생명력 막대를 주시하세요(오른쪽 아래).\n"
@@ -3985,7 +3996,7 @@ msgstr "다세포 편집기"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+msgstr "다세포 편집기"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "다세포 단계"
@@ -7276,7 +7287,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8405,15 +8416,32 @@ msgstr "확대"
 msgid "ZOOM_OUT"
 msgstr "축소"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "번영했습니다!"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충입니다."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, 당신은 흡수당할 것 입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라고 생각됩니다, 맞는지 알아보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, untrustedlife가 만들었습니다!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8430,6 +8458,9 @@ msgstr "축소"
 #~ "니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
 #~ "\n"
 #~ "세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8470,23 +8501,6 @@ msgstr "축소"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세포 기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니다. 미생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "원핵 구조체\n"
-#~ "\n"
-#~ "대사체: 포도당으로부터 ATP 생산\n"
-#~ "\n"
-#~ "화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
-#~ "\n"
-#~ "틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
-#~ "\n"
-#~ "루스티시아닌: 철을 ATP로 전환\n"
-#~ "\n"
-#~ "니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
-#~ "\n"
-#~ "세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] 와 마우스를 사용하여 이동합니다. 독소 액포가 있다면 [thrive:input]g_fire_toxin[/thrive:input] 를 사용하여 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 를 사용합니다. [thrive:input]g_toggle_engulf[/thrive:input] 를 사용하여 삼킴 모드를 켜고 끕니다. 마우스 휠을 사용하여 확대/축소할 수 있습니다."
@@ -8541,33 +8555,6 @@ msgstr "축소"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "황화수소는 화학세포와 화학 합성 단백질을 통해 포도당으로 전환될 수 있습니다. 철은 루스티시아닌을 통해 ATP로 전환될 수 있습니다."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, 당신은 흡수당할 것 입니다."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라고 생각됩니다, 맞는지 알아보세요!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, untrustedlife가 만들었습니다!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

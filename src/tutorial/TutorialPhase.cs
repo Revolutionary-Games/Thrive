@@ -125,7 +125,7 @@ public abstract class TutorialPhase
         }
     }
 
-    public virtual Vector3 GetPositionGuidance()
+    public virtual Vector3? GetPositionGuidance()
     {
         throw new NotImplementedException("child class didn't override position guidance");
     }

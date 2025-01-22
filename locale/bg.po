@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-12-20 15:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -318,6 +318,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1} % на стъпка {1:n0} от {2:n0}."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Мутационен разход"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Автоматичен запис по време на игра"
@@ -3544,6 +3552,10 @@ msgstr "Натиснете бутона „Отмяна“ в редактора
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Среща се в {1} от създанията, средно по {2}"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}: Среща се в {1} от създанията, средно по {2}"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Етап[/b]\n"
@@ -3983,7 +3995,7 @@ msgstr "Многоклетъчен редактор"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+msgstr "Многоклетъчен редактор"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Многоклетъчен етап"
@@ -7181,7 +7193,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Това е вътрешността на клетката. Цитоплазмата е комбинация от разтворени във вода йони, протеини и други вещества. Една от функциите, които изпълнява е [b]гликолизата[/b] — превръщането на [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]. Клетките, които нямат органели, разчитат на цитоплазмата за да произвеждат енергия. Също така, цитоплазмата служи за съхранение на молекули в клетката за да може тя да увеличава размера си."
+msgstr "Тилакоидите са струпвания от протеини и фоточувствителни пигменти. Те използват енергията от [thrive:compound type=\"sunlight\"]светлината[/thrive:compound] за да произвеждат [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] от вода и газообразен [thrive:compound type=\"carbondioxide\"]въглероден диоксид[/thrive:compound] в процес, който се нарича [b]фотосинтеза[/b]. Благодарение на пигментите, те получават отличителен цвят. Количеството на произведената [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] зависи от концентрацията на [thrive:compound type=\"carbondioxide\"]въглеродния диоксид[/thrive:compound] и количеството [thrive:compound type=\"sunlight\"]светлина[/thrive:compound]. Понеже тилакоидите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8327,15 +8339,32 @@ msgstr "Приближаване"
 msgid "ZOOM_OUT"
 msgstr "Отдалечаване"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Заглавието липсва"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Забавен факт е, че Дидиний е ресничест вид, който ловува чехълчета."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Натиснете бутона „Отмяна“ в редактора, ако допуснете грешка"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Ето един съвет — пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Ето един съвет — може да поглъщате големите железни фрагменти, ако Вашата клетка е с размер от 150 шестоъгълника."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционния процес, опитайте се да познаете кои са те!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Забавен факт е, че „Thrive“ е създадена чрез платформата с отворен код „Godot“!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8356,6 +8385,9 @@ msgstr "Отдалечаване"
 #~ "Окситоксизома: Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]\n"
 #~ "\n"
 #~ "Термосинтаза: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Ензимите на лизозомата подобряват хранителната ефективност на клетката."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8402,27 +8434,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "По време на възпроизвеждане, микробният редактор ще бъде отворен, в него може да променяте Вашето създание (като добавяте, премествате или премахвате органели) за да увеличите шанса му за оцеляване. Всяко отваряне на редактора е равно на [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] милиона години еволюция."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Прокариотни структури\n"
-#~ "\n"
-#~ "Цитоплазма: Притежава място за съхранение и извършва процеса гликолиза (произвежда малки количества [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound])\n"
-#~ "\n"
-#~ "Метаболозоми: Произвеждат [thrive:compound type=\"atp\"]АТФ[/thrive:compound] от [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound]\n"
-#~ "\n"
-#~ "Тилакоиди: Произвеждат 1/3 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] като обикновен хлоропласт и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
-#~ "\n"
-#~ "Хемосинтезиращи протеини: Произвеждат 1/2 от [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound], чрез хемопласт от [thrive:compound type=\"hydrogensulfide\"]сероводород[/thrive:compound] и извършват процеса гликолиза, заемат 1 шестоъгълник\n"
-#~ "\n"
-#~ "Рустицианин: Превръща [thrive:compound type=\"iron\"]желязото[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound]\n"
-#~ "\n"
-#~ "Нитрогеназа: Превръща атмософерния азот и [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"ammonia\"]амоняк[/thrive:compound], чрез анаеробен процес\n"
-#~ "\n"
-#~ "Окситоксизома: Превръща [thrive:compound type=\"atp\"]АТФ[/thrive:compound] в [thrive:compound type=\"oxytoxy\"]окситоксин[/thrive:compound]\n"
-#~ "\n"
-#~ "Термосинтаза: Произвежда [thrive:compound type=\"atp\"]АТФ[/thrive:compound], чрез температурните градиенти"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "Използвайте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] и мишката за да се придвижвате. Окситоксинът се изстрелва с [thrive:input]g_fire_toxin[/thrive:input], ако имате токсична вакуола. Режимът на поглъщане се включва с [thrive:input]g_toggle_engulf[/thrive:input]. Използвайте колелцето на мишката за приближаване и отдалечаване на изгледа."
@@ -8477,33 +8488,6 @@ msgstr "Отдалечаване"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"]Сероводородът[/thrive:compound] може да се превърне в [thrive:compound type=\"glucose\"]глюкоза[/thrive:compound] чрез хемопласт и хемосинтезиращите протеини. [thrive:compound type=\"iron\"]Желязото[/thrive:compound] може да се превърне в [thrive:compound type=\"atp\"]АТФ[/thrive:compound] чрез рустицианин."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Забавен факт е, че Амебата ловува и хваща плячката си със своите „крачета“ от цитоплазма, които се наричат псевдоподи, очаквайте ги скоро и в „Thrive“."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Ето един съвет — пазете се от големите клетки и големите бактерии, няма да е приятно, ако станете част от менюто им."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "„Thrive“ има много мелодии, които все още не са добавени в играта. Може да ги чуете или да гледате как се правят в „YouTube“ канала на Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Ето един съвет — може да поглъщате големите железни фрагменти, ако Вашата клетка е с размер от 150 шестоъгълника."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "„Thrive“ се развива на извънземна планета, следователно повечето създания, които ще видите имат общи черти с едно или две определени създания, благодарение на еволюционния процес, опитайте се да познаете кои са те!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Забавен факт е, че екипът на „Thrive“ излъчва конференции от време на време, може да им хвърлите едно око!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Забавен факт е, че „Thrive“ е създадена чрез платформата с отворен код „Godot“!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Забавен факт е, че един от първите работещи прототипи на играта е създаден от нашия страхотен програмист, untrustedlife!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "След като поглъщането приключи, всички обекти, попаднали в клетката, ще бъдат съхранени в нейната мембрана, за да бъдат усвоени. Неусвоимите обекти ще бъдат изхвърлeни, освен ако не притежавате необходимите мутации, които позволяват тяхното разграждане. Ензимите на лизозомата подобряват хранителната ефективност на клетката."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

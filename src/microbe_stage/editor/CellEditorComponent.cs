@@ -366,12 +366,16 @@ public partial class CellEditorComponent :
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
     private LocalizedStringBuilder? predictionDetailsText;
+    private BehaviourDictionary? overwriteBehaviourForCalculations;
 
     private Miche? predictionMiches;
 
     private OrganelleSuggestionCalculation? inProgressSuggestion;
     private bool suggestionDirty;
     private double suggestionStartTimer;
+
+    private bool autoEvoPredictionDirty;
+    private double autoEvoPredictionStartTimer;
 
     /// <summary>
     ///   The new to set on the species (or cell type) after exiting (if null, no change)
@@ -414,7 +418,7 @@ public partial class CellEditorComponent :
     private OrganelleLayout<OrganelleTemplate> editedMicrobeOrganelles = null!;
 
     /// <summary>
-    ///   When this is true, on next process this will handle added and removed organelles and update stats etc.
+    ///   When this is true, on the next process this will handle added and removed organelles and update stats etc.
     ///   This is done to make adding a bunch of organelles at once more efficient.
     /// </summary>
     private bool organelleDataDirty = true;
@@ -869,7 +873,7 @@ public partial class CellEditorComponent :
         UpdateMicrobePartSelections();
 
         // After the "if multicellular check" so the tooltip cost factors are correct
-        // on changing editor types, as tooltip manager is persistent while the game is running
+        // on changing editor types, as the tooltip manager is persistent while the game is running
         UpdateMPCost();
 
         // Do this here as we know the editor and hence world settings have been initialised by now
@@ -900,6 +904,7 @@ public partial class CellEditorComponent :
 
         CheckRunningAutoEvoPrediction();
         CheckRunningSuggestion(delta);
+        TriggerDelayedPredictionUpdateIfNeeded(delta);
 
         if (organelleDataDirty)
         {
@@ -1044,7 +1049,7 @@ public partial class CellEditorComponent :
 
         newName = properties.FormattedName;
 
-        // This needs to be calculated here, otherwise ATP related unlock conditions would
+        // This needs to be calculated here, otherwise ATP-related unlock conditions would
         // get null as the ATP balance
         CalculateEnergyAndCompoundBalance(properties.Organelles.Organelles, properties.MembraneType,
             Editor.CurrentPatch.Biome);
@@ -1138,7 +1143,7 @@ public partial class CellEditorComponent :
             return false;
         }
 
-        // Show warning popup if trying to exit with negative atp production
+        // Show a warning popup if trying to exit with negative atp production
         // Not shown in multicellular as the popup would happen in kind of weird place
         if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
             !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
@@ -1148,13 +1153,13 @@ public partial class CellEditorComponent :
         }
 
         // This is triggered when no changes have been made. A more accurate way would be to check the action history
-        // for any undoable action, but that isn't accessible here currently so this is probably good enough.
+        // for any undoable action, but that isn't accessible here currently, so this is probably good enough.
         if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
         {
             var tutorialState = Editor.CurrentGame.TutorialState;
 
-            // In the multicellular editor the cell editor might not be visible so preventing exiting the editor
-            // without explanation is not a good idea so that's why this check is here
+            // In the multicellular editor the cell editor might not be visible, so preventing exiting the editor
+            // without explanation is not a good idea, so that's why this check is here
             if (tutorialState.Enabled && !IsMulticellularEditor)
             {
                 tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
@@ -1178,6 +1183,23 @@ public partial class CellEditorComponent :
         ApplyLightLevelOption();
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
+
+        // Redo suggestion calculations as they could depend on the patch data (though at the time of writing this is
+        // not really changing)
+        autoEvoPredictionDirty = true;
+        suggestionDirty = true;
+    }
+
+    /// <summary>
+    ///   Call when behaviour data changes, this re-triggers auto-evo prediction to use the updated values
+    /// </summary>
+    /// <param name="behaviourData">New behaviour data</param>
+    public void OnBehaviourDataUpdated(BehaviourDictionary behaviourData)
+    {
+        overwriteBehaviourForCalculations = behaviourData;
+
+        autoEvoPredictionDirty = true;
+        suggestionDirty = true;
     }
 
     public void UpdatePatchDependentBalanceData()
@@ -1950,13 +1972,17 @@ public partial class CellEditorComponent :
             new SingleEditorAction<OrganelleRemoveActionData>(DoOrganelleRemoveAction, UndoOrganelleRemoveAction, o));
     }
 
+    /// <summary>
+    ///   Immediately start a new auto-evo prediction run. For actions that can trigger quickly in a sequence prefer
+    ///   setting <see cref="autoEvoPredictionDirty"/> to false to prevent rapid restarts of the prediction.
+    /// </summary>
     private void StartAutoEvoPrediction()
     {
         // For now disabled in the multicellular editor as the microbe logic being used there doesn't make sense
         if (IsMulticellularEditor)
             return;
 
-        // First prediction can be made only after population numbers from previous run are applied
+        // The first prediction can be made only after population numbers from previous run are applied
         // so this is just here to guard against that potential programming mistake that may happen when code is
         // changed
         if (!Editor.EditorReady)
@@ -1965,7 +1991,7 @@ public partial class CellEditorComponent :
             return;
         }
 
-        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object
+        // Note that in rare cases the auto-evo run doesn't manage to stop before we edit the cached species object,
         // which may cause occasional background task errors
         CancelPreviousAutoEvoPrediction();
 
@@ -1984,8 +2010,9 @@ public partial class CellEditorComponent :
         CopyEditedPropertiesToSpecies(cachedAutoEvoPredictionSpecies);
 
         var run = new EditorAutoEvoRun(Editor.CurrentGame.GameWorld, Editor.CurrentGame.GameWorld.AutoEvoGlobalCache,
-            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
+            Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies, Editor.TargetPatch);
         run.Start();
+        autoEvoPredictionDirty = false;
 
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
     }
@@ -2294,6 +2321,10 @@ public partial class CellEditorComponent :
         UpdateSpeed(CalculateSpeed());
         UpdateRotationSpeed(CalculateRotationSpeed());
         UpdateHitpoints(CalculateHitpoints());
+
+        // Osmoregulation efficiency may play a role in the suggestion, so queue a new one
+        suggestionDirty = true;
+        autoEvoPredictionDirty = true;
     }
 
     private void OnColourChanged()
@@ -2454,7 +2485,7 @@ public partial class CellEditorComponent :
     {
         if (Settings.Instance.MoveOrganellesWithSymmetry.Value)
         {
-            // Start moving the organelles symmetrical to the clicked organelle.
+            // Start moving the organelles symmetrically to the clicked organelle.
             StartHexMoveWithSymmetry(organelleMenu.GetSelectedThatAreStillValid(editedMicrobeOrganelles));
         }
         else
@@ -2711,6 +2742,13 @@ public partial class CellEditorComponent :
                 target.IsBacteria = false;
 
             target.Organelles.AddFast(entry, hexTemporaryMemory, hexTemporaryMemory2);
+        }
+
+        // Copy behaviour if it is known
+        if (overwriteBehaviourForCalculations != null)
+        {
+            // Make a clone to make sure data cannot change while running
+            target.Behaviour = overwriteBehaviourForCalculations.CloneObject();
         }
     }
 
@@ -3133,6 +3171,7 @@ public partial class CellEditorComponent :
 
         private AutoEvoRun? currentRun;
         private BiomeConditions? biome;
+        private Patch? patch;
 
         private bool calculatedNoChange;
         private double bestResult;
@@ -3157,19 +3196,20 @@ public partial class CellEditorComponent :
 
         // ReSharper disable once UnusedAutoPropertyAccessor.Local
         /// <summary>
-        ///   If true then pure population numbers are used as the score for the suggestions (if false an energy
+        ///   If true, then pure population numbers are used as the score for the suggestions (if false an energy
         ///   estimation is used). This value can be changed to experiment with the results.
         /// </summary>
         public bool UsePurePopulationScore { get; set; }
 
         /// <summary>
-        ///   Setup this for a new suggestion calculation
+        ///   Set up this for a new suggestion calculation
         /// </summary>
         /// <param name="organellesToTry">Valid organelles to try in the suggestion</param>
         /// <param name="selectedPatch">Patch conditions to simulate in</param>
         public void StartNew(List<OrganelleDefinition> organellesToTry, Patch selectedPatch)
         {
             biome = selectedPatch.Biome;
+            patch = selectedPatch;
 
             if (currentRun != null)
             {
@@ -3198,7 +3238,7 @@ public partial class CellEditorComponent :
         /// </summary>
         public void CheckProgress()
         {
-            // When no run in progress need to start the next one
+            // When no run is in progress need to start the next one
             if (currentRun != null && !currentRun.Finished)
                 return;
 
@@ -3217,7 +3257,7 @@ public partial class CellEditorComponent :
                 }
                 else
                 {
-                    // Need to clear cache as we re-use the species objects so caching would be incorrect
+                    // Need to clear cache as we re-use the species objects, so caching would be incorrect
                     simulationCache.Clear();
 
                     var individualCost =
@@ -3232,9 +3272,9 @@ public partial class CellEditorComponent :
                     // Calculating no change energy so don't apply any changes
                     calculatedNoChange = true;
 
-                    // This is always calculated first so we can just directly set the result
+                    // This is always calculated first, so we can just directly set the result
                     // Maybe add like 1-2% extra here to ensure that very marginal improvements aren't suggested?
-                    // But that's probably not needed anymore with this issue closed:
+                    // But that's probably not needed any more with this issue closed:
                     // https://github.com/Revolutionary-Games/Thrive/issues/5799
                     bestResult = score;
                 }
@@ -3255,7 +3295,7 @@ public partial class CellEditorComponent :
 
             if (!StartNextRun())
             {
-                // Cannot start next run, this is complete
+                // Cannot start the next run, this is complete
                 IsCompleted = true;
             }
         }
@@ -3278,7 +3318,7 @@ public partial class CellEditorComponent :
 
         private void CopyPristineToCalculation()
         {
-            // TODO: there is duplication between this and
+            // TODO: there is duplication between this and CopyEditedPropertiesToSpecies
             calculationSpecies.Colour = pristineSpeciesCopy.Colour;
             calculationSpecies.MembraneType = pristineSpeciesCopy.MembraneType;
             calculationSpecies.MembraneRigidity = pristineSpeciesCopy.MembraneRigidity;
@@ -3294,6 +3334,8 @@ public partial class CellEditorComponent :
             {
                 calculationSpecies.Organelles.AddFast(entry, workMemory1, workMemory2);
             }
+
+            calculationSpecies.Behaviour = pristineSpeciesCopy.Behaviour;
         }
 
         private bool StartNextRun()
@@ -3337,7 +3379,7 @@ public partial class CellEditorComponent :
             }
 
             currentRun = new EditorAutoEvoRun(currentGameProperties.GameWorld,
-                currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies)
+                currentGameProperties.GameWorld.AutoEvoGlobalCache, editorOpenedForSpecies, calculationSpecies, patch)
             {
                 // Needed in order for the suggestion to not suggest slapping down a nucleus just to benefit from the
                 // player population clamp and increase in individual cost (which would unfairly give score in

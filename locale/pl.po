@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-12-05 05:22+0000\n"
 "Last-Translator: Nie <tym@wrozynski.com>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
@@ -317,6 +317,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Mnożnik kosztu mutacji"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
@@ -3440,6 +3448,10 @@ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Etap[/b]\n"
@@ -3873,7 +3885,7 @@ msgstr "Edytor Wielokomórkowca"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+msgstr "Edytor Wielokomórkowca"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Etap Wielokomórkowca"
@@ -6997,10 +7009,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr ""
-"Żelowe wnętrze komórki. [b]Cytoplazma[/b] to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki.\n"
-"\n"
-"Jedną z czynności, której dokonuje, jest [b]Glikoliza Cytoplazmowa[/b], przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+msgstr "Tylakoidy to struktury złożone z białek i światłoczułych pigmentów. Te pigmenty są w stanie wykorzystywać energię [thrive:compound type=\"sunlight\"][/thrive:compound] do produkcji [thrive:compound type=\"glucose\"][/thrive:compound] z wody i gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] w procesie zwanym [b]fotosyntezą[/b]. Te pigmenty nadają im również wyróżniający się kolor. Szybkość produkcji [thrive:compound type=\"glucose\"][/thrive:compound] skaluje się ze stężeniem [thrive:compound type=\"carbondioxide\"][/thrive:compound], oraz natężeniem [thrive:compound type=\"sunlight\"][/thrive:compound]. Ponieważ tylakoidy zawieszone są bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8097,15 +8106,32 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Brak tytułu"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Ciekawostka, Didinium to orzęsek który poluje na pantofelki."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych nibynóżkami, chcemy je kiedyś dodać do Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Porada, Uważaj na większe komórki i duże bakterie, nie jest fajnie być trawionym, a one cię zjedzą."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z komponowania ich na jego kanale YouTube, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Porada, jeśli twoja komórka ma 150 heksów, możesz pochłaniać wielkie odłamki żelaza."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive jest stworzone do bycia symulacją obcej planety, więc sens będzie mieć to, że większość stworzeń które znajdziesz będzie spokrewnione z jednym lub dwoma innymi gatunkami przez to, że wokół ciebie dzieje się ewolucja, sprawdź czy możesz je zidentyfikować!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Zabawny Fakt, Zespół Thrive robi co jakiś czas podcasty, powinieneś je sprawdzić!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Ciekawostka, Thrive zrobione jest w open source-owym silniku Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został stworzony przez naszego niesamowitego programistę, untrustedlife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8126,6 +8152,9 @@ msgstr "Oddal"
 #~ "Oksytoksysom: Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]\n"
 #~ "\n"
 #~ "Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić trawienie znacznie wydajniejszym."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8175,27 +8204,6 @@ msgstr "Oddal"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Za każdym razem kiedy się rozmnażasz, wejdziesz w Edytor Mikroba, w którym możesz wprowadzać zmiany do twojego gatunku (przez dodawanie, przenoszenie lub usuwanie organelli) aby zwiększyć sukces twojego gatunku. Każda wizyta edytora w Etapie Mikroba reprezentuje [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionów lat ewolucji."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Struktury Prokariotyczne\n"
-#~ "\n"
-#~ "Cytozol: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound])\n"
-#~ "\n"
-#~ "Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound]\n"
-#~ "\n"
-#~ "Białka Chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"]Siarkowodoru[/thrive:compound] niż chemoplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
-#~ "\n"
-#~ "Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound], co zwykły chloroplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
-#~ "\n"
-#~ "Rustycyjanina: Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Oksytoksysom: Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]\n"
-#~ "\n"
-#~ "Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] oraz mysz aby się poruszać. [thrive:input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound type=\"oxytoxy\"]Oksytoksyną[/thrive:compound] jeśli posiadasz toksyczną wakuolę . [thrive:input]g_toggle_engulf[/thrive:input] aby przełączać tryb fagocytozy. Możesz przybliżać i oddalać poruszając kółkiem myszki."
@@ -8250,33 +8258,6 @@ msgstr "Oddal"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"]Siarkowodór[/thrive:compound] może zostać przetworzony w [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] przez chemoplasty i białka chemosyntezujące. [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając [thrive:compound type=\"atp\"][/thrive:compound]."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych nibynóżkami, chcemy je kiedyś dodać do Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Porada, Uważaj na większe komórki i duże bakterie, nie jest fajnie być trawionym, a one cię zjedzą."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z komponowania ich na jego kanale YouTube, Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Porada, jeśli twoja komórka ma 150 heksów, możesz pochłaniać wielkie odłamki żelaza."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive jest stworzone do bycia symulacją obcej planety, więc sens będzie mieć to, że większość stworzeń które znajdziesz będzie spokrewnione z jednym lub dwoma innymi gatunkami przez to, że wokół ciebie dzieje się ewolucja, sprawdź czy możesz je zidentyfikować!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Zabawny Fakt, Zespół Thrive robi co jakiś czas podcasty, powinieneś je sprawdzić!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Ciekawostka, Thrive zrobione jest w open source-owym silniku Godot!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został stworzony przez naszego niesamowitego programistę, untrustedlife!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić trawienie znacznie wydajniejszym."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

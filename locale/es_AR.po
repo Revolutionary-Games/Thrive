@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-10-16 05:52+0000\n"
 "Last-Translator: fideos con queso <whipstickagostopp@gmail.com>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
@@ -309,6 +309,13 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} pasos."
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Este panel muestra los números que utiliza auto-evo para predecir. La energía total que una especie es capaz de capturar y el costo por individuo de la especie determina la población final. Auto-evo utiliza un modelo simplificado de la realidad para calcular qué tan bien se desempeñan las especies, basándose en la energía que pueden recolectar. Por cada fuente de alimento se muestra cuánta energía obtiene la especie. Adicionalmente, se muestra la energía total disponible de esa fuente. La fracción que la especie obtiene de la energía total disponible está basada en qué tan grande es la Aptitud comparada a la Aptitud total. La Aptitud es una métrica de qué tan bien la especie puede utilizar una fuente de alimento."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
@@ -3376,6 +3383,10 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Mover organela"
 
 #, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Mover organela"
+
+#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "Estructuras Procarioticas\n"
@@ -3798,7 +3809,7 @@ msgstr "Poner organela"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Presiona el botón de deshacer en el editor para corregir el error"
+msgstr "Poner organela"
 
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
@@ -6986,7 +6997,7 @@ msgstr "Recién levantado"
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Citoplasma"
+msgstr "Tilacoides"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8219,17 +8230,57 @@ msgid "ZOOM_OUT"
 msgstr "Alejar la pantalla"
 
 #, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "\" {0} \" - {1}"
-
-#, fuzzy
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Presiona el botón de deshacer en el editor para corregir el error"
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
+
+#, fuzzy
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Estructuras Procarioticas\n"
+#~ "\n"
+#~ "Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
+#~ "\n"
+#~ "Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
+#~ "\n"
+#~ "Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
+#~ "\n"
+#~ "Rusticianina: Convierte el hierro en ATP.\n"
+#~ "\n"
+#~ "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 #~ msgstr ""
 #~ "Estructuras Procarioticas\n"
 #~ "\n"
@@ -8303,21 +8354,6 @@ msgstr "Alejar la pantalla"
 #~ "\n"
 #~ "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Estructuras Procarioticas\n"
-#~ "\n"
-#~ "Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-#~ "\n"
-#~ "Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-#~ "\n"
-#~ "Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-#~ "\n"
-#~ "Rusticianina: Convierte el hierro en ATP.\n"
-#~ "\n"
-#~ "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
-
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "Usá W, A, S y D y el mouse para moverte. E para disparar OxiToxi NT si tenés una vacuola de toxinas. G para activar o desactivar el modo engullir."
 
@@ -8372,53 +8408,6 @@ msgstr "Alejar la pantalla"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "Los quimioplastos y proteinas quimiosintetizadoras convierten el sulfuro de hidrógeno en glucosa. La rusticianina convierte el hierro en ATP."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Tu célula usa ATP como su fuente de energía, si se acaba te morís."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr ""
-#~ "Estructuras Procarioticas\n"
-#~ "\n"
-#~ "Citoplasma: Tiene espacio de almacenamiento y hace glicólisis (produce un poco de ATP).\n"
-#~ "\n"
-#~ "Metabolosomas: Convierten sulfuro de hidrógeno en glucosa a la mitad de la eficiencia de los quimioplastos, pero también hacen glicólisis.\n"
-#~ "\n"
-#~ "Tilacoides: Producen un tercio de la cantidad de glucosa de un cloroplasto, pero hace glicólisis.\n"
-#~ "\n"
-#~ "Rusticianina: Convierte el hierro en ATP.\n"
-#~ "\n"
-#~ "Nitrogenasa: Convierte el nitrógeno atmosférico en amoníaco y consume ATP."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

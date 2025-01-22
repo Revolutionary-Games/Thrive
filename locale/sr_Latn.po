@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Serbian (Latin script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sr_Latn/>\n"
@@ -315,6 +315,13 @@ msgstr "Moć ćelije. Mitohondrion (množina: mitohondrije) je dvostruka membran
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% završeno. {1:n0}/{2:n0} koraka."
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Cena osmoregulacije"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatsko čuvanje tokom igre"
@@ -3492,6 +3499,10 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Statistika Organizma"
 
 #, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Statistika Organizma"
+
+#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "Učitavanje Uređivača Mikroba"
 
@@ -3866,7 +3877,7 @@ msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
+msgstr "Učitavanje Uređivača Mikroba"
 
 #, fuzzy
 msgid "MULTICELLULAR_STAGE"
@@ -7033,7 +7044,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Lepljiva unutrašnjost ćelije. Citoplazma je osnovna smeša jona, proteina i drugih supstanci rastvorenih u vodi koja ispunjava unutrašnjost ćelije. Jedna od funkcija koju obavlja je fermentacija, pretvaranje glukoze u ATP energiju. Da bi ćelije kojima nedostaju organeli imali napredniji metabolizam, na to se oslanjaju u energiji. Takođe se koristi za skladištenje molekula u ćeliji i za povećanje veličine ćelije."
+msgstr "Tilakoidi su grozdi proteina i fotosenzibilnih pigmenata. Pigmenti su u stanju da koriste energiju svetlosti za proizvodnju glukoze iz vode i gasovitog ugljen-dioksida u procesu nazvanom Fotosinteza. Ovi pigmenti su takođe ono što im daje prepoznatljivu boju. Stopa njihove proizvodnje glukoze skalira se sa koncentracijom ugljen-dioksida i intenzitetom svetlosti. Pošto su tilakoidi suspendovani direktno u citoplazmi, okolna tečnost vrši fermentaciju."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8146,17 +8157,51 @@ msgstr "Zumirati"
 msgid "ZOOM_OUT"
 msgstr "Odzumirati"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Dodajte novo vezivanje tastera"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Zabavna činjenica, Didinijum je cilijar koji lovi Paramecijum."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Pritisnite dugme poništi u uređivaču da biste ispravili grešku"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Zabavna činjenica je da ameba lovi i hvata plen „nogama“ napravljenim od citoplazme nazvanih pseudopodi, želimo da konačno imamo one u Thrive-u."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Evo saveta, Pazite na veće ćelije i velike bakterije, nije zabavno da budeš probavljajen i oni će vas pojesti."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Vođa zvučnog tima Thrive-a napravio je mnogo pesama koje još nisu dodate u igru. Možete ih čuti ili gledati kako on komponuje na svom YouTube kanalu Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Evo saveta, ako je vaša ćelija 150 hekse, možete progutati velike gvozdene komade."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive je zamišljen kao simulacija vanzemaljske planete, stoga ima smisla da će većina stvorenja koja nađete biti povezana sa jednom ili dve druge vrste usled evolucije koja se dešava oko vas, pogledajte da li ih možete prepoznati!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Zabavna činjenica, Thrive tim svako malo pravi podkastove, trebalo bi da ih pogledate!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Zabavna činjenica, Thrive je napravljen sa Godot, što je otvorenog koda!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Zabavna činjenica, Jedan od prvih prototipova za igranje napravio je naš sjajni programer, UntrustedLife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokariotske strukture\n"
+#~ "\n"
+#~ "Metabolosomi: Stvara ATP iz glukoze\n"
+#~ "\n"
+#~ "Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
+#~ "\n"
+#~ "Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
+#~ "\n"
+#~ "Rusticijanin: Pretvara gvožđe u ATP\n"
+#~ "\n"
+#~ "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
+#~ "\n"
+#~ "Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
 #~ msgstr ""
 #~ "Prokariotske strukture\n"
 #~ "\n"
@@ -8203,23 +8248,6 @@ msgstr "Odzumirati"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Svaki put kada se razmnožavate, ući ćete u uređivač mikroba, gde možete da izmenite vrstu (dodavanjem, premeštanjem ili uklanjanjem organela) da biste povećali uspeh svoje vrste. Svaka poseta uredniku na sceni mikroba predstavlja 100 miliona godina evolucije."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Prokariotske strukture\n"
-#~ "\n"
-#~ "Metabolosomi: Stvara ATP iz glukoze\n"
-#~ "\n"
-#~ "Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
-#~ "\n"
-#~ "Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
-#~ "\n"
-#~ "Rusticijanin: Pretvara gvožđe u ATP\n"
-#~ "\n"
-#~ "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
-#~ "\n"
-#~ "Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "W, A, S, D i miš za kretanje. E da pucate OksiToksi NT ako imate otrovna vacuole. G za prebacivanje režima gutanja."
@@ -8277,47 +8305,6 @@ msgstr "Odzumirati"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "Vodonik-sulfid se može pretvoriti u glukozu pomoću hemoplasta i hemosintetizujućih proteina. Gvožđe se može pretvoriti putem rusticianina u ATP."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Zabavna činjenica je da ameba lovi i hvata plen „nogama“ napravljenim od citoplazme nazvanih pseudopodi, želimo da konačno imamo one u Thrive-u."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Evo saveta, Pazite na veće ćelije i velike bakterije, nije zabavno da budeš probavljajen i oni će vas pojesti."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Vođa zvučnog tima Thrive-a napravio je mnogo pesama koje još nisu dodate u igru. Možete ih čuti ili gledati kako on komponuje na svom YouTube kanalu Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Evo saveta, ako je vaša ćelija 150 hekse, možete progutati velike gvozdene komade."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive je zamišljen kao simulacija vanzemaljske planete, stoga ima smisla da će većina stvorenja koja nađete biti povezana sa jednom ili dve druge vrste usled evolucije koja se dešava oko vas, pogledajte da li ih možete prepoznati!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Zabavna činjenica, Thrive tim svako malo pravi podkastove, trebalo bi da ih pogledate!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Zabavna činjenica, Thrive je napravljen sa Godot, što je otvorenog koda!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Zabavna činjenica, Jedan od prvih prototipova za igranje napravio je naš sjajni programer, UntrustedLife!"
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr ""
-#~ "Prokariotske strukture\n"
-#~ "\n"
-#~ "Metabolosomi: Stvara ATP iz glukoze\n"
-#~ "\n"
-#~ "Hemosintizujući proteini: proizvodi polovinu glukoze iz vodonik-sulfida kao hemoplast, ali takođe vrši glikolizu, zauzima 1 heks\n"
-#~ "\n"
-#~ "Tilakoidi: Proizvodi 1/3 količine glukoze kao normalni hloroplast, ali takođe vrši glikolizu i zauzima 1 heks\n"
-#~ "\n"
-#~ "Rusticijanin: Pretvara gvožđe u ATP\n"
-#~ "\n"
-#~ "Nitrogenaza: Anaerobno pretvara atmosferski azot i ATP u amonijak\n"
-#~ "\n"
-#~ "Citoplazma: Ima prostor za skladištenje i vrši glikolizu (proizvodi male količine ATP)"
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

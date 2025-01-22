@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: German <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/de/>\n"
@@ -312,6 +312,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fertig. {1:n0}/{2:n0} Schritte."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Mutationskostenmultiplikator"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(Kosten für Organellen, Membranen und andere Gegenstände im Editor)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatisches speichern während des Spieles"
@@ -3538,6 +3546,10 @@ msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu kor
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismus-Statistik"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Organismus-Statistik"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stadium[/b]\n"
@@ -3976,7 +3988,7 @@ msgstr "Mehrzelliger Editor"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+msgstr "Mehrzelliger Editor"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Mehrzelliges Stadium"
@@ -7195,7 +7207,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Die klebrigen Innereien einer Zelle. Das Zytoplasma ist die Grundmischung aus Ionen, Proteinen und anderen in Wasser gelösten Stoffen, die das Innere der Zelle ausfüllt. Eine der Funktionen, die es erfüllt, ist die [b]Glykolyse[/b], die Umwandlung von [thrive:compound type=\"glucose\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound]-Energie. Zellen, denen Organellen für einen komplexeren Stoffwechsel fehlen, sind auf diese Energieform angewiesen. Sie wird auch dazu verwendet, Moleküle in der Zelle zu speichern und die Zelle zu vergrössern."
+msgstr "Thylakoide sind Cluster aus Proteinen und lichtempfindlichen Pigmenten. Die Pigmente sind in der Lage, die Energie des Lichts zu nutzen, um in einem Prozess namens Photosynthese aus Wasser und gasförmigem Kohlendioxid Glukose herzustellen. Diese Pigmente sind es auch, die ihnen eine unverwechselbare Farbe verleihen. Die Geschwindigkeit ihrer Glukoseproduktion hängt von der Konzentration des Kohlendioxids und der Lichtintensität ab. Da die Thylakoide direkt im Zytoplasma untergebracht sind, führt die umgebende Flüssigkeit glykolyse durch."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8333,15 +8345,32 @@ msgstr "Hereinzoomen"
 msgid "ZOOM_OUT"
 msgstr "Herauszoomen"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Titel fehlt"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Interessanter Fakt: das Nasentierchen ist ein Wimpertierchen, das Pantoffeltierchen jagt."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Drücke die Rückgängig-Schaltfläche im Editor, um einen Fehler zu korrigieren"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen Spaß verdaut zu werden. Und sie werden dich fressen."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen Eisenbrocken verschlingen."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - versuche, sie zu identifizieren!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem großartigen Programmierer, untrustedlife, gemacht!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8358,6 +8387,9 @@ msgstr "Herauszoomen"
 #~ "Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um\n"
 #~ "\n"
 #~ "Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch (Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Sobald die Umschließung abgeschlossen ist, bleibt jedes Objekt, das mit umschlossen wurde, innerhalb der Membran und wird verdaut. Unverdauliche Objekte werden wieder ausgeschieden, also stelle sicher, dass du über die notwendigen Mutationen verfügst, um sie zu verstoffwechseln. Enzyme, die durch Lysome hergestellt werden, helfen bei der Verdauung; entwickle dieses Organell um Verdauungsprozesse erheblich effizienter zu machen."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8394,23 +8426,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Jedes Mal, wenn du dich reproduzierst, gelangst du in den Mikroben-Editor, wo du Änderungen an deiner Spezies vornehmen kannst (durch Hinzufügen, Verschieben oder Entfernen von Organellen), um den Erfolg deiner Spezies zu steigern. Jeder Besuch des Editors in der Mikrobenphase repräsentiert [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] Millionen Jahre Evolution."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Prokaryotische Strukturen\n"
-#~ "\n"
-#~ "Metabolismus: Produziert [thrive:compound type=\"atp\"][/thrive:compound] aus [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Chemosynthetisierende Proteine: Produziert die Hälfte der [thrive:compound type=\"glucose\"][/thrive:compound] aus [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als Chemoplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
-#~ "\n"
-#~ "Thylakoide: Produziert 1/3 der [thrive:compound type=\"glucose\"][/thrive:compound] wie ein normaler Chloroplast, führt aber auch die Glykolyse durch. Nimmt ein Feld ein\n"
-#~ "\n"
-#~ "Rusticyanin: Wandelt [thrive:compound type=\"iron\"][/thrive:compound] in [thrive:compound type=\"atp\"][/thrive:compound] um\n"
-#~ "\n"
-#~ "Nitrogenase: Verwandeln atmosphärischen Stickstoff und [thrive:compound type=\"atp\"][/thrive:compound] in [thrive:compound type=\"ammonia\"][/thrive:compound] um\n"
-#~ "\n"
-#~ "Zytoplasma: Verfügt über Speicherplatz und führt die Glykolyse durch (Produziert kleine Mengen [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] und Maus zum Bewegen. [thrive:input]g_fire_toxin[/thrive:input] drücken um [thrive:compound type=\"oxytoxy\"][/thrive:compound] zu schießen, falls eine Giftvakuole vorhanden ist. [thrive:input]g_toggle_engulf[/thrive:input] drücken um den Verschlingungsmodus umzuschalten. Mit dem Mausrad kannst du herein- und herauszoomen."
@@ -8465,33 +8480,6 @@ msgstr "Herauszoomen"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kann über Chemoplasten und chemosynthetisierende Proteine in [thrive:compound type=\"glucose\"][/thrive:compound] umgewandelt werden. [thrive:compound type=\"iron\"][/thrive:compound] kann mithilfe von Rusticyanin in [thrive:compound type=\"atp\"][/thrive:compound] verwandelt werden."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Interessanter Fakt: Amöben jagen und fangen Beute mit \"Beinen\" aus Zytoplasma, Scheinfüßchen genannt. Eines Tages wollen wir diese in Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Kleiner Tipp, achte auf größere Zellen und große Bakterien, es macht keinen Spaß verdaut zu werden. Und sie werden dich fressen."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Thrive's Sound-Teamleiter hat einige Lieder gemacht, die es noch nicht ins Spiel geschafft haben. Du kannst sie dir anhören oder Streams von ihm anschauen, wie er sie komponiert. Du findest alles auf seinem YouTube-Kanal Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Kleiner Tipp, wenn deine Zelle 150 Felder groß ist, kannst du die großen Eisenbrocken verschlingen."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive ist als eine Simulation eines fremden Planeten gedacht, daher macht es Sinn, dass die meisten Lebewesen, die du findest, mit einer oder zwei anderen Spezies verwandt sind, da die Evolution um dich herum stattfindet - versuche, sie zu identifizieren!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Interessanter Fakt: das Thrive-Team macht ab und zu Podcasts. Hör doch mal hinein!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Fun Fact. Thrive wurde mit der open Source Godot Engine erstellt!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Interessanter Fakt: einer der ersten spielbaren Prototypen wurde von unserem großartigen Programmierer, untrustedlife, gemacht!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Sobald die Umschließung abgeschlossen ist, bleibt jedes Objekt, das mit umschlossen wurde, innerhalb der Membran und wird verdaut. Unverdauliche Objekte werden wieder ausgeschieden, also stelle sicher, dass du über die notwendigen Mutationen verfügst, um sie zu verstoffwechseln. Enzyme, die durch Lysome hergestellt werden, helfen bei der Verdauung; entwickle dieses Organell um Verdauungsprozesse erheblich effizienter zu machen."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-12-09 13:53+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Portugal) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_PT/>\n"
@@ -319,6 +319,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% concluído. {1:n0}/{2:n0} etapas."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Multiplicador de custo de mutação"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(custo de organelas, membranas e outros itens no editor)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardar automaticamente durante o jogo"
@@ -3414,6 +3422,10 @@ msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}: Encontrado em {1} espécies, com uma média de {2} cada"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Estágio[/b]\n"
@@ -3846,7 +3858,7 @@ msgstr "Editor de multicelulas"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
+msgstr "Editor de multicelulas"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Fase multicelular"
@@ -7000,7 +7012,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "As entranhas pegajosas de uma célula. O citoplasma é a mistura básica de iões, proteínas e outras substâncias dissolvidas na água que preenchem o interior da célula. Uma das funções que desempenha é a glicólise, a conversão de glicose em energia ATP. Para que células onde faltam organelos tenham metabolismos mais avançados, esta é a sua dependência para obter energia. O citoplasma é também usado para armazenar moléculas na célula e aumentar o seu tamanho."
+msgstr "Tilacoides são conjuntos de proteínas e pigmentos fotossintéticos. Os pigmentos são capazes de utilizar a energia presente na luz para produzir glicose a parir de água e gás carbónico num processo denominado Fotossíntese. Estes pigmentos são também o que lhes fornece uma cor característica. A sua taxa de produção de glicose aumenta com a concentração de dióxido de carbono e intensidade da luz. Como os tilacoides estão diretamente suspensos no citoplasma, o fluido circundante realiza alguma glicólise."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8113,15 +8125,32 @@ msgstr "Ampliar"
 msgid "ZOOM_OUT"
 msgstr "Reduzir"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Falta um título"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Curiosidade, O Didinium é um ciliado que caça paramécias."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Pressione o botão \"reverter\" no editor para corrigir um erro"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Curiosidade, a Amoeba caça e captura as suas presas com \"pernas\" de citoplasma, denominadas pseudópodes. No futuro, quereremos implementá-los no jogo."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Eis uma dica, toma cuidado com células maiores e bactérias grandes, não é divertido ser se digerido, e elas comer-te-ão."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "A líder da equipa de som do jogo desenvolveu vários temas que ainda não foram adicionadas ao jogo. Podes ouvi-los, ou assistir às streams nas quais são compostas no seu canal do YouTube, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Eis uma dica, se a tua célula é composta por 150 hexágonos, podes engolfar grandes pedaços de ferro."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive foi desenvolvido com o intuito de simular um planeta alienígena, de modo que faz sentido que a maioria das criaturas que encontras estejam relacionadas com uma ou duas outras espécies devido à ocorrência de processos evolutivos em teu redor, vê se os consegues identificar!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Curiosidade, a equipa por detrás do jogo faz podcasts de vez em quando, devias inspecioná-los!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Curiosidade, Thrive é desenvolvido com o motor de código aberto Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Curiosidade, Um dos nossos primeiros protótipos jogáveis foi desenvolvido pelo nosso incrível programador, untrustedlife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8138,6 +8167,9 @@ msgstr "Reduzir"
 #~ "Nitrogenase: Converte nitrogénio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
 #~ "\n"
 #~ "Citoplasma: Tem capacidade de armazenamento e realiza glicólise (Produz pequenas quatidades de [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Quando o engolfo terminar, quaisquer objetos presos no engolfo serão mantidos dentro da membrana para serem digeridos. Objetos indigestos serão sempre expulsos, portanto, certifica-te de teres as mutações necessárias que permitam processá-los primeiro. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolui esta organela para tornar a digestão muito mais eficiente."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8174,23 +8206,6 @@ msgstr "Reduzir"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Cada vez que te reproduzires, entrarás no Editor de Microrganismos, onde poderás fazer alterações à tua espécie (ao adicionar, mover, ou remover organelos) de forma a aumentar o sucesso da tua espécie. Cada visita ao editor na Fase Microbial representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milhões de anos de evolução."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Estruturas Procariotas\n"
-#~ "\n"
-#~ "Metabolossomas: Produz [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Proteínas Quimiossintetizantes: Produz metade da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que um quimioplasto produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
-#~ "\n"
-#~ "Tilacoides: Produz 1/3 da quantidade de [thrive:compound type=\"glucose\"][/thrive:compound] que um cloroplasto normal produziria, mas também realiza glicólise, ocupa 1 Hexágono\n"
-#~ "\n"
-#~ "Rusticianina: Converte [thrive:compound type=\"iron\"][/thrive:compound] em [thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "Nitrogenase: Converte nitrogénio atmosférico e [thrive:compound type=\"atp\"][/thrive:compound] em [thrive:compound type=\"ammonia\"][/thrive:compound] anaerobicamente\n"
-#~ "\n"
-#~ "Citoplasma: Tem capacidade de armazenamento e realiza glicólise (Produz pequenas quatidades de [thrive:compound type=\"atp\"][/thrive:compound])"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] e o rato para te moveres. [thrive:input]g_fire_toxin[/thrive:input] para disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] se tiveres um vacúolo de toxinas. [thrive:input]g_toggle_engulf[/thrive:input] para ativar o modo de engolfar. Podes aumentar e diminuir o zoom com a roda do rato."
@@ -8247,33 +8262,6 @@ msgstr "Reduzir"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pode ser convertido em [thrive:compound type=\"glucose\"][/thrive:compound] através de quimioplastos e proteínas quimiossintetizantes. [thrive:compound type=\"iron\"][/thrive:compound] pode ser convertido em [thrive:compound type=\"atp\"][/thrive:compound] via rusticianina."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Curiosidade, a Amoeba caça e captura as suas presas com \"pernas\" de citoplasma, denominadas pseudópodes. No futuro, quereremos implementá-los no jogo."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Eis uma dica, toma cuidado com células maiores e bactérias grandes, não é divertido ser se digerido, e elas comer-te-ão."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "A líder da equipa de som do jogo desenvolveu vários temas que ainda não foram adicionadas ao jogo. Podes ouvi-los, ou assistir às streams nas quais são compostas no seu canal do YouTube, Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Eis uma dica, se a tua célula é composta por 150 hexágonos, podes engolfar grandes pedaços de ferro."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive foi desenvolvido com o intuito de simular um planeta alienígena, de modo que faz sentido que a maioria das criaturas que encontras estejam relacionadas com uma ou duas outras espécies devido à ocorrência de processos evolutivos em teu redor, vê se os consegues identificar!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Curiosidade, a equipa por detrás do jogo faz podcasts de vez em quando, devias inspecioná-los!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Curiosidade, Thrive é desenvolvido com o motor de código aberto Godot!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Curiosidade, Um dos nossos primeiros protótipos jogáveis foi desenvolvido pelo nosso incrível programador, untrustedlife!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Quando o engolfo terminar, quaisquer objetos presos no engolfo serão mantidos dentro da membrana para serem digeridos. Objetos indigestos serão sempre expulsos, portanto, certifica-te de teres as mutações necessárias que permitam processá-los primeiro. As enzimas ajudam na digestão e são fornecidas pelo lisossomo; evolui esta organela para tornar a digestão muito mais eficiente."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

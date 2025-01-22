@@ -1155,7 +1155,8 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 15;
+    public const float AUTO_EVO_SLIME_JET_SCORE = 6;
+    public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
@@ -1177,10 +1178,14 @@ public static class Constants
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
+    public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
+
     /// <summary>
-    ///   How much auto-evo affects the player species compared to the normal amount
+    ///   When doing an auto-evo prediction, this much free population is placed into the moved-to patch if the player
+    ///   is not in the patch yet.
+    ///   Helps to give some indication on how well adapted the player species is to the target patch.
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
+    public const int AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION = 50;
 
     public const bool AUTO_EVO_TRACK_STEP_TIME = false;
 
@@ -1634,6 +1639,8 @@ public static class Constants
     public const float MAX_GLUCOSE_DECAY = 0.95f;
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+    public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
+    public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
     // Constants for the procedural patch map
     public const float PATCH_NODE_RECT_LENGTH = 64.0f;

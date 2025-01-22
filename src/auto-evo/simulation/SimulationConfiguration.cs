@@ -46,14 +46,21 @@ public class SimulationConfiguration
     public List<Tuple<Species, SpeciesMigration>> Migrations { get; set; } = new();
 
     /// <summary>
-    ///   If not empty, only the specified patches are ran
+    ///   If not empty, only the specified patches are run
     /// </summary>
     public ISet<Patch> PatchesToRun { get; set; } = new HashSet<Patch>();
 
     /// <summary>
-    ///   If set to true then species energy sources will be stored for display to the player
+    ///   If set to true, then species energy sources will be stored for display to the player
     /// </summary>
     public bool CollectEnergyInformation { get; set; }
+
+    /// <summary>
+    ///   Specifies for a set of patches that species should be ensured it is always in them. If the population is
+    ///   lower than <see cref="Constants.AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION"/> ensures it is at least
+    ///   that.
+    /// </summary>
+    public Dictionary<Patch, Species>? EnsurePatchesHaveSpecies { get; set; }
 
     /// <summary>
     ///   Sets the patches to be simulated to be ones where the species is present (population > 0)

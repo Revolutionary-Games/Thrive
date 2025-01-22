@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2023-03-10 06:53+0000\n"
 "Last-Translator: Jonas Lindberg <eksno@pm.me>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
@@ -315,6 +315,13 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Dette panelet viser tallene som auto-evo-prediksjonen tar utgangspunkt i. Den totale energien en art er i stand til å fange, og kostnaden per individ av arten, bestemmer den endelige populasjonen. Auto-evo bruker en forenklet modell av virkeligheten for å beregne hvor godt artene klarer seg basert på energien de er i stand til å samle. For hver matkilde vises det hvor mye energi arten får fra den. I tillegg vises den totale energien som er tilgjengelig fra denne kilden. Andelen arten får ut av den totale energien er basert på hvor stor kondisjonen er sammenlignet med den totale kondisjonen. Kondisjon er et mål på hvor godt arten kan utnytte den aktuelle næringskilden."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
@@ -2130,9 +2137,8 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
-#, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "\"{0}\" - {1}"
+msgstr ""
 
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
@@ -2147,33 +2153,26 @@ msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (ve
 msgid "GENERAL"
 msgstr "Generelt"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_1"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "Mikrobe Redigerer"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -3255,6 +3254,10 @@ msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
 #, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
+
+#, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr "Mikrobestadiet"
 
@@ -3608,7 +3611,7 @@ msgstr "Flercelle Redigerer"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Mikrobe Redigerer"
+msgstr "Flercelle Redigerer"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Flercellestadiet"
@@ -6472,7 +6475,7 @@ msgstr "3D Redigerer"
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "ATP PRODUKSJON FOR LAV!"
+msgstr "Mikrobestadiet"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -7521,10 +7524,6 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."

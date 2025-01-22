@@ -488,16 +488,19 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Variant of GetGlobalPopulation for a single patch that returns null if patch not found
+    ///   Variant of GetGlobalPopulation for a single patch that returns false if a patch result is not found
     /// </summary>
-    public long? GetPopulationInPatchIfExists(Species species, Patch patch)
+    public bool GetPopulationInPatchIfExists(Species species, Patch patch, out long result)
     {
-        if (results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
+        if (results[species].NewPopulationInPatches.TryGetValue(patch, out result))
         {
-            return Math.Max(population, 0);
+            if (result < 0)
+                result = 0;
+
+            return true;
         }
 
-        return null;
+        return false;
     }
 
     /// <summary>

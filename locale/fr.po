@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-12-20 15:12+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -318,6 +318,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% terminé. {1:n0}/{2:n0} étapes."
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Multiplicateur de coût de mutation"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sauvegarde automatique en jeu"
@@ -3422,6 +3430,10 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Phase[/b] \n"
@@ -3865,7 +3877,7 @@ msgstr "Éditeur multicellulaire"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
+msgstr "Éditeur multicellulaire"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Phase multicellulaire"
@@ -7086,10 +7098,7 @@ msgstr "Améliorations"
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr ""
-"Les entrailles gluantes d'une cellule. Le [b]cytoplasme[/b] est le mélange de base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui constitue l'intérieur de la cellule.\n"
-"\n"
-"L'une de ses fonctions est la [b]glycolyse du cytoplasme[/b], la conversion du [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Chez les cellules dépourvues d'organites et dont le métabolisme est moins avancé, il permet de fournir l'énergie dont elles ont besoin. Il est également utilisé pour stocker des molécules dans la cellule et pour augmenter la taille de la cellule."
+msgstr "Les thylakoïdes sont des amas de protéines et de pigments photosensibles. Les pigments sont capables d'utiliser l'énergie de la [thrive:compound type=\"sunlight\"][/thrive:compound] pour produire du [thrive:compound type=\"glucose\"][/thrive:compound] à partir d'eau et de [thrive:compound type=\"carbondioxide\"][/thrive:compound] gazeux dans un processus appelé [b]photosynthèse[/b]. Ce sont également ces pigments qui leur donnent une couleur distinctive. Le taux de production de [thrive:compound type=\"glucose\"][/thrive:compound] dépend de la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et de l'intensité de [thrive:compound type=\"sunlight\"][/thrive:compound]. Comme les thylakoïdes sont suspendus directement dans le cytoplasme, le fluide environnant effectue une certaine [b]glycolyse[/b]."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8231,15 +8240,32 @@ msgstr "Zoomer"
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "Liens"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Fait amusant, le Didinium est un cilié qui chasse les paramécies."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Fait amusant, l'amibe chasse et attrape ses proies à l'aide de \"jambes\" constituées de cytoplasme qu'on appelle pseudopodes, nous voulons les avoir à terme dans Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Voici un conseil, prêtez attention aux cellules plus grandes et aux grandes bactéries, c'est pas drôle de se faire digérer, et elles vont vous manger."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Le chef de l'équipe sonore de Thrive a composé des sons qui n'ont pas encore été ajoutés au jeu. Vous pouvez les écouter ou le regarder composer sur sa chaîne YouTube, Olivier Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Voici une astuce : si votre cellule atteint 150 hexagones, vous pouvez engloutir les gros fragments de fer."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive se veut une simulation d'une planète alien, il est donc logique que la plupart des créatures que vous trouverez soient liées à une ou deux autres espèces à cause de l'évolution qui a lieu autour de vous, voyez si vous pouvez les identifier !"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Fait amusant, l'équipe de Thrive podcaste assez souvent, vous devriez aller voir !"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fait amusant, Thrive est développé avec le moteur open source Godot !"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Fait amusant, l'un des premiers prototypes jouables a été créé par notre merveilleux programmeur, untrustedlife !"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8260,6 +8286,9 @@ msgstr "Dézoomer"
 #~ "Oxytoxisome : transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound].\n"
 #~ "\n"
 #~ "Thermosynthase : produit de l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Une fois complètement engloutis, les objets seront maintenus dans la membrane pour être digérés. Ceux qui ne peuvent pas l'être seront automatiquement éjectés, alors vérifiez au préalable que vous avez les mutations qui permettent de les digérer. Les enzymes vous aideront pour la digestion. Elles sont produites par le lysosome ; évoluez cette organite pour rendre la digestion bien plus efficace."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8308,27 +8337,6 @@ msgstr "Dézoomer"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "À chaque fois que vous vous reproduisez, vous entrez dans l'Éditeur de microbe, où vous pouvez modifier votre espèce (en ajoutant, pivotant ou retirant des organites) pour augmenter ses chances de réussite. Chaque passage dans l'éditeur à la phase microbienne représente [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] millions d'années d'évolution."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Structures procaryotes\n"
-#~ "\n"
-#~ "Cytoplasme : possède un espace de stockage et effectue la glycolyse (produit de petites quantités de [thrive:compound type=\"atp\"][/thrive:compound] à partir de [thrive:compound type=\"glucose\"][/thrive:compound]).\n"
-#~ "\n"
-#~ "Métabolosomes : produit [thrive:compound type=\"atp\"][/thrive:compound] à partir de [thrive:compound type=\"glucose\"][/thrive:compound].\n"
-#~ "\n"
-#~ "Thylakoïdes : produit un tiers de la quantité de [thrive:compound type=\"glucose\"][/thrive:compound] d'un chloroplaste normal, mais effectue également la glycolyse et occupe 1 Hex.\n"
-#~ "\n"
-#~ "Protéines chimiosynthétisantes : produit la moitié du [thrive:compound type=\"glucose\"][/thrive:compound] à partir du [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] en tant que chimioplaste, mais effectue également la glycolyse et absorbe 1 Hex.\n"
-#~ "\n"
-#~ "Rusticyanine : convertit le [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound].\n"
-#~ "\n"
-#~ "Nitrogénase : transforme l'azote atmosphérique et [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] en anaérobie.\n"
-#~ "\n"
-#~ "Oxytoxisome : transforme [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound].\n"
-#~ "\n"
-#~ "Thermosynthase : produit de l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "Utilisez [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] et la souris pour vous déplacer. Appuyez sur [thrive:input]g_fire_toxin[/thrive:input] pour tirer des [thrive:compound type=\"oxytoxy\"][/thrive:compound] si vous avez une vacuole à toxines, et [thrive:input]g_toggle_engulf[/thrive:input] pour passer en mode absorption. Vous pouvez effectuer un zoom avant et arrière avec la molette de la souris."
@@ -8384,33 +8392,6 @@ msgstr "Dézoomer"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "Le [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] peut être converti en [thrive:compound type=\"glucose\"][/thrive:compound] par les chimioplastes et les protéines chimiosynthétisantes. Le [thrive:compound type=\"iron\"][/thrive:compound] peut être converti par la rusticyanine en de l'[thrive:compound type=\"atp\"][/thrive:compound]."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Fait amusant, l'amibe chasse et attrape ses proies à l'aide de \"jambes\" constituées de cytoplasme qu'on appelle pseudopodes, nous voulons les avoir à terme dans Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Voici un conseil, prêtez attention aux cellules plus grandes et aux grandes bactéries, c'est pas drôle de se faire digérer, et elles vont vous manger."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Le chef de l'équipe sonore de Thrive a composé des sons qui n'ont pas encore été ajoutés au jeu. Vous pouvez les écouter ou le regarder composer sur sa chaîne YouTube, Olivier Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Voici une astuce : si votre cellule atteint 150 hexagones, vous pouvez engloutir les gros fragments de fer."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive se veut une simulation d'une planète alien, il est donc logique que la plupart des créatures que vous trouverez soient liées à une ou deux autres espèces à cause de l'évolution qui a lieu autour de vous, voyez si vous pouvez les identifier !"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Fait amusant, l'équipe de Thrive podcaste assez souvent, vous devriez aller voir !"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Fait amusant, Thrive est développé avec le moteur open source Godot !"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Fait amusant, l'un des premiers prototypes jouables a été créé par notre merveilleux programmeur, untrustedlife !"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "Une fois complètement engloutis, les objets seront maintenus dans la membrane pour être digérés. Ceux qui ne peuvent pas l'être seront automatiquement éjectés, alors vérifiez au préalable que vous avez les mutations qui permettent de les digérer. Les enzymes vous aideront pour la digestion. Elles sont produites par le lysosome ; évoluez cette organite pour rendre la digestion bien plus efficace."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

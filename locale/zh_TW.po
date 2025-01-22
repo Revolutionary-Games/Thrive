@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2025-01-10 11:45+0000\n"
 "Last-Translator: xzihnago <xzihnago@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -314,6 +314,14 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成 {0:F1}%。{1:n0}/{2:n0} 步。"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "突變成本倍率"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "（編輯器中細胞器、膜與其他項目的成本）"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "遊戲中自動存檔"
@@ -3330,6 +3338,10 @@ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]階段[/b]\n"
@@ -3744,7 +3756,7 @@ msgstr "多細胞自由編輯器"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "多細胞編輯器"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "多細胞階段"
@@ -7005,7 +7017,10 @@ msgstr "升級"
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "化合物"
+msgstr ""
+"小叢蛋白質與光敏綠色色素。色素利用來自[thrive:compound type=\"sunlight\"][/thrive:compound] 的能量將水與氣態[thrive:compound type=\"carbondioxide\"][/thrive:compound] 轉化為[thrive:compound type=\"glucose\"][/thrive:compound]，此過程被稱為[b]色素細胞光合作用[/b]。由於[thrive:compound type=\"glucose\"][/thrive:compound] 的生產速率與[thrive:compound type=\"sunlight\"][/thrive:compound] 的強度成正比，[b]類囊體[/b]僅對靠近表層的區域有效。\n"
+"\n"
+"[b][color=#3796e1][url=thriveopedia:chloroplast]葉綠體[/url][/color][/b]的原核形式，一種執行完全版[b]光合作用[/b]的細胞器。"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8343,15 +8358,32 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "縮小"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "連結"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "小知識：櫛毛蟲是一種纖毛蟲，它們會捕食草履蟲。"
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "小知識：變形蟲使用被稱為偽足的細胞質構成的「腿」捕食獵物，我們希望總有一天能在 Thrive 中做出這種效果。"
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "小提示：小心較大的細胞與大型細菌，它們會吃掉您，被消化可不是什麼有趣的事。"
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive 的聲音團隊製作了許多尚未加入遊戲中的歌曲。您可以在他們的 YouTube 頻道 Oliver Lugg 上聽他們的音樂，或觀看他們直播作曲。"
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "小提示：如果您的細胞大小超過 150 個六邊形網格，您就可以吞噬大型鐵塊。"
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive 是對外星球生物演化的模擬，因此您遇上的生物都會與之前遇到的物種相關，看看您是否能識別它們！"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "小知識：Thrive 團隊經常製作播客，您應該查看一下！"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "小知識：Thrive 是用開源遊戲引擎 Godot 製作的！"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "小知識：最初可玩的遊戲原型是由我們了不起的程式設計師 untrustedlife 製作的！"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8372,6 +8404,9 @@ msgstr "縮小"
 #~ "氧化毒酶體：將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
 #~ "\n"
 #~ "熱合成酶：利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "一旦吞噬完成，任何被吞噬的物體都會在細胞膜內被消化。無法消化的物體將會被排出，因此請確保您擁有能夠處理它們的必要突變。由溶酶體提供的酶有助於消化；演化該細胞器能使消化更有效。"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8420,27 +8455,6 @@ msgstr "縮小"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "每次繁殖時，您都會進入微生物編輯器，在這裡您可以對物種進行更改（透過添加、移動或刪除細胞器）以強化物種的生存力。每次訪問微生物階段的編輯器都代表了 [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] 百萬年的演化。"
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "原核結構\n"
-#~ "\n"
-#~ "細胞質：具有儲存空間並進行糖解作用（用[thrive:compound type=\"glucose\"][/thrive:compound] 生產少量[thrive:compound type=\"atp\"][/thrive:compound]）\n"
-#~ "\n"
-#~ "代謝體：用[thrive:compound type=\"glucose\"][/thrive:compound] 生產[thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "類囊體：生產的[thrive:compound type=\"glucose\"][/thrive:compound] 量是正常葉綠體的 1/3，但能同時進行糖解，佔用 1 六邊形網格\n"
-#~ "\n"
-#~ "化能合成蛋白：從[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 生產[thrive:compound type=\"glucose\"][/thrive:compound] 的速率是化能體的一半，但能同時進行糖解，佔用 1 六邊形網格\n"
-#~ "\n"
-#~ "鐵氧化藍蛋白：將[thrive:compound type=\"iron\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]\n"
-#~ "\n"
-#~ "固氮酶：在無氧環境下將大氣中的氮與[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-#~ "\n"
-#~ "氧化毒酶體：將[thrive:compound type=\"atp\"][/thrive:compound] 轉化為[thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-#~ "\n"
-#~ "熱合成酶：利用溫度梯度生產[thrive:compound type=\"atp\"][/thrive:compound]"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "用[thrive:input]g_move_forward[/thrive:input]、[thrive:input]g_move_left[/thrive:input]、[thrive:input]g_move_backwards[/thrive:input]、[thrive:input]g_move_right[/thrive:input]與滑鼠移動。如果您有毒素液泡，可以按[thrive:input]g_fire_toxin[/thrive:input]發射[thrive:compound type=\"oxytoxy\"][/thrive:compound]。按下[thrive:input]g_toggle_engulf[/thrive:input]可切換吞噬模式。您可以使用滑鼠滾輪進行縮放。"
@@ -8495,33 +8509,6 @@ msgstr "縮小"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] 可以透過化能體與化能合成蛋白轉化為[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound] 可以透過鐵氧化藍蛋白轉化為[thrive:compound type=\"atp\"][/thrive:compound]。"
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "小知識：變形蟲使用被稱為偽足的細胞質構成的「腿」捕食獵物，我們希望總有一天能在 Thrive 中做出這種效果。"
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "小提示：小心較大的細胞與大型細菌，它們會吃掉您，被消化可不是什麼有趣的事。"
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Thrive 的聲音團隊製作了許多尚未加入遊戲中的歌曲。您可以在他們的 YouTube 頻道 Oliver Lugg 上聽他們的音樂，或觀看他們直播作曲。"
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "小提示：如果您的細胞大小超過 150 個六邊形網格，您就可以吞噬大型鐵塊。"
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive 是對外星球生物演化的模擬，因此您遇上的生物都會與之前遇到的物種相關，看看您是否能識別它們！"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "小知識：Thrive 團隊經常製作播客，您應該查看一下！"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "小知識：Thrive 是用開源遊戲引擎 Godot 製作的！"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "小知識：最初可玩的遊戲原型是由我們了不起的程式設計師 untrustedlife 製作的！"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "一旦吞噬完成，任何被吞噬的物體都會在細胞膜內被消化。無法消化的物體將會被排出，因此請確保您擁有能夠處理它們的必要突變。由溶酶體提供的酶有助於消化；演化該細胞器能使消化更有效。"
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

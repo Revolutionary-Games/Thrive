@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-20 20:15+0000\n"
+"POT-Creation-Date: 2025-01-22 09:54+0200\n"
 "PO-Revision-Date: 2024-10-19 21:07+0000\n"
 "Last-Translator: Paradox Edge <xxzemonxx@hotmail.com>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
@@ -317,6 +317,13 @@ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen.
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Osmoreguleringskost"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autospara i spelet"
@@ -3567,6 +3574,10 @@ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "Organismstatistik"
 
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Organismstatistik"
+
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
 msgstr ""
 "[b]Stadie[/b]\n"
@@ -4006,7 +4017,7 @@ msgstr "Flercellig Redigerare"
 
 #, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+msgstr "Flercellig Redigerare"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Flercelligt Stadie"
@@ -7246,7 +7257,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELPANDTIPS_INTRO"
-msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+msgstr "Thylakoider är kluster av proteiner och ljuskänsliga pigment. Pigmenten kan använda ljusets energi för att producera glukos från vatten och gasformig koldioxid i en process som kallas fotosyntes. Dessa pigment är också det som ger dem en distinkt färg. Hastigheten för deras glukosproduktion skalas med koncentrationen av koldioxid och ljusintensiteten. Eftersom tylakoiderna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -8349,15 +8360,32 @@ msgstr "Zooma in"
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
-#, fuzzy
-#~ msgid "HELP_TIPS_TITLE"
-#~ msgstr "DU HAR FRODATS!"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."
 
-#~ msgid "LOADING_TIP"
-#~ msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som kallas pseudopoder, vi vill så småningom ha dem i Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Här är ett tips, se upp för större celler och stora bakterier, det är inte kul att bli spjälkad, och de kommer att äta dig."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrives ljudteam har gjort många låtar som ännu inte har lagts till i spelet. Du kan höra dem eller titta på strömmar av honom komponera på sin YouTube-kanal, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Här är ett tips, om din cell är minst 150 hexar kan du svälja stora järnbitar."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive menas som en simulering av en annan planet, därför är det vettigt att de flesta varelser du hittar kommer att vara relaterade till en eller två andra arter på grund av evolution som sker runtomkring dig, se om du kan identifiera dem!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Rolig Fakta, Thrive-teamet gör podcasts ibland, du bör kolla in dem!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fun Fact, Thrive är gjord med Godot-motorn med öppen källkod!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Fun Fact, en av de första spelbara prototyperna för spel, gjordes av vår fantastiska programmerare, untrustedlife!"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
 #~ msgstr ""
@@ -8374,6 +8402,9 @@ msgstr "Zooma ut"
 #~ "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
 #~ "\n"
 #~ "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till att du har de nödvändiga mutationerna för att kunna bearbeta dem först. Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna organell för att göra matsmältningen mycket mer effektiv."
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
 #~ msgstr ""
@@ -8406,23 +8437,6 @@ msgstr "Zooma ut"
 
 #~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
 #~ msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
-
-#, fuzzy
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_6"
-#~ msgstr ""
-#~ "Prokaryota strukturer\n"
-#~ "\n"
-#~ "Metabolosomer: Producerar ATP från glukos\n"
-#~ "\n"
-#~ "Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
-#~ "\n"
-#~ "Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
-#~ "\n"
-#~ "Rusticyanin: Omvandlar järn till ATP\n"
-#~ "\n"
-#~ "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
-#~ "\n"
-#~ "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
 #~ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
@@ -8477,33 +8491,6 @@ msgstr "Zooma ut"
 
 #~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 #~ msgstr "Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande proteiner. Järn kan omvandlas till ATP via rusticyanin."
-
-#~ msgid "EASTEREGG_MESSAGE_20"
-#~ msgstr "Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som kallas pseudopoder, vi vill så småningom ha dem i Thrive."
-
-#~ msgid "EASTEREGG_MESSAGE_21"
-#~ msgstr "Här är ett tips, se upp för större celler och stora bakterier, det är inte kul att bli spjälkad, och de kommer att äta dig."
-
-#~ msgid "EASTEREGG_MESSAGE_22"
-#~ msgstr "Thrives ljudteam har gjort många låtar som ännu inte har lagts till i spelet. Du kan höra dem eller titta på strömmar av honom komponera på sin YouTube-kanal, Oliver Lugg."
-
-#~ msgid "EASTEREGG_MESSAGE_23"
-#~ msgstr "Här är ett tips, om din cell är minst 150 hexar kan du svälja stora järnbitar."
-
-#~ msgid "EASTEREGG_MESSAGE_24"
-#~ msgstr "Thrive menas som en simulering av en annan planet, därför är det vettigt att de flesta varelser du hittar kommer att vara relaterade till en eller två andra arter på grund av evolution som sker runtomkring dig, se om du kan identifiera dem!"
-
-#~ msgid "EASTEREGG_MESSAGE_25"
-#~ msgstr "Rolig Fakta, Thrive-teamet gör podcasts ibland, du bör kolla in dem!"
-
-#~ msgid "EASTEREGG_MESSAGE_26"
-#~ msgstr "Fun Fact, Thrive är gjord med Godot-motorn med öppen källkod!"
-
-#~ msgid "EASTEREGG_MESSAGE_27"
-#~ msgstr "Fun Fact, en av de första spelbara prototyperna för spel, gjordes av vår fantastiska programmerare, untrustedlife!"
-
-#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-#~ msgstr "När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till att du har de nödvändiga mutationerna för att kunna bearbeta dem först. Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna organell för att göra matsmältningen mycket mer effektiv."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"
