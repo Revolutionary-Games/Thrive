@@ -1833,8 +1833,8 @@ public partial class CellEditorComponent :
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
             CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
-            organismStatisticsPanel.GetCompoundAmountType(), organelles, conditionsData, energyBalance,
-            ref specificStorages, ref nominalStorage);
+                organismStatisticsPanel.GetCompoundAmountType(), organelles, conditionsData, energyBalance,
+                ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
@@ -2532,28 +2532,28 @@ public partial class CellEditorComponent :
         switch ((OrganismStatisticsPanel.LightLevelOption)option)
         {
             case OrganismStatisticsPanel.LightLevelOption.Day:
-                {
-                    Editor.DayLightFraction = 1;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = 1;
+                break;
+            }
 
             case OrganismStatisticsPanel.LightLevelOption.Night:
-                {
-                    Editor.DayLightFraction = 0;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = 1;
+                break;
+            }
 
             case OrganismStatisticsPanel.LightLevelOption.Average:
-                {
-                    Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
+                break;
+            }
 
             case OrganismStatisticsPanel.LightLevelOption.Current:
-                {
-                    Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
+                break;
+            }
 
             default:
                 throw new Exception("Invalid light level option");

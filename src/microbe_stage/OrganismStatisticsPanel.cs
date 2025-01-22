@@ -259,22 +259,22 @@ public partial class OrganismStatisticsPanel : PanelContainer
             switch (subBar.Name)
             {
                 case "osmoregulation":
-                    {
-                        displayName = Localization.Translate("OSMOREGULATION");
-                        break;
-                    }
+                {
+                    displayName = Localization.Translate("OSMOREGULATION");
+                    break;
+                }
 
                 case "baseMovement":
-                    {
-                        displayName = Localization.Translate("BASE_MOVEMENT");
-                        break;
-                    }
+                {
+                    displayName = Localization.Translate("BASE_MOVEMENT");
+                    break;
+                }
 
                 default:
-                    {
-                        displayName = SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name;
-                        break;
-                    }
+                {
+                    displayName = SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name;
+                    break;
+                }
             }
 
             tooltip.Description = Localization.Translate("ENERGY_BALANCE_TOOLTIP_CONSUMPTION")
@@ -463,36 +463,36 @@ public partial class OrganismStatisticsPanel : PanelContainer
         switch (selectedLightLevelOption)
         {
             case LightLevelOption.Day:
-                {
-                    dayButton.ButtonPressed = true;
+            {
+                dayButton.ButtonPressed = true;
 
-                    calculateBalancesAsIfDay.ButtonPressed = true;
-                    calculateBalancesAsIfDay.Disabled = true;
-                    break;
-                }
+                calculateBalancesAsIfDay.ButtonPressed = true;
+                calculateBalancesAsIfDay.Disabled = true;
+                break;
+            }
 
             case LightLevelOption.Night:
-                {
-                    nightButton.ButtonPressed = true;
+            {
+                nightButton.ButtonPressed = true;
 
-                    calculateBalancesAsIfDay.ButtonPressed = false;
-                    calculateBalancesAsIfDay.Disabled = true;
-                    break;
-                }
+                calculateBalancesAsIfDay.ButtonPressed = false;
+                calculateBalancesAsIfDay.Disabled = true;
+                break;
+            }
 
             case LightLevelOption.Average:
-                {
-                    averageLightButton.ButtonPressed = true;
+            {
+                averageLightButton.ButtonPressed = true;
 
-                    calculateBalancesAsIfDay.ButtonPressed = false;
-                    break;
-                }
+                calculateBalancesAsIfDay.ButtonPressed = false;
+                break;
+            }
 
             case LightLevelOption.Current:
-                {
-                    currentLightButton.ButtonPressed = true;
-                    break;
-                }
+            {
+                currentLightButton.ButtonPressed = true;
+                break;
+            }
 
             default:
                 throw new Exception("Invalid light level option");
@@ -503,6 +503,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)
     {
+        _ = newType;
+
         EmitSignal(SignalName.OnEnergyBalanceOptionsChanged);
     }
 

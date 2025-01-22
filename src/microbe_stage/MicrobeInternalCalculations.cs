@@ -86,8 +86,9 @@ public static class MicrobeInternalCalculations
     }
 
     /// <summary>
-    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, out float)"/> to update spawned microbe stats. The used
-    ///   <see cref="CompoundBag"/> must already have the correct nominal capacity set for this to work correctly.
+    ///   Variant of <see cref="GetTotalSpecificCapacity(IReadOnlyList{OrganelleTemplate}, out float)"/> to update
+    ///   spawned microbe stats. The used <see cref="CompoundBag"/> must already have the correct nominal capacity set
+    ///   for this to work correctly.
     /// </summary>
     /// <param name="compoundBag">Target compound bag to set info in (this doesn't update nominal capacity)</param>
     /// <param name="organelles">Organelles to find specific capacity from</param>

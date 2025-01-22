@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -287,7 +286,8 @@ public partial class CellEditorComponent
         if (healthModifier != null)
         {
             healthModifier.ModifierValue =
-                StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0", CultureInfo.CurrentCulture),
+                StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0",
+                        System.Globalization.CultureInfo.CurrentCulture),
                     healthChange);
 
             healthModifier.AdjustValueColor(healthChange);
@@ -300,7 +300,8 @@ public partial class CellEditorComponent
         if (baseMobilityModifier != null)
         {
             baseMobilityModifier.ModifierValue =
-                StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture),
+                StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0",
+                        System.Globalization.CultureInfo.CurrentCulture),
                     baseMobilityChange);
 
             baseMobilityModifier.AdjustValueColor(baseMobilityChange);
@@ -554,8 +555,8 @@ public partial class CellEditorComponent
             fillingUpTime = warningTime;
         }
 
-        organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage, specificStorages,
-            warningTime, fillingUpTime);
+        organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
+            specificStorages, warningTime, fillingUpTime);
     }
 
     private void UpdateAutoEvoPrediction(EditorAutoEvoRun startedRun, Species playerSpeciesOriginal,

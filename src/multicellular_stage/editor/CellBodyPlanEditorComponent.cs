@@ -699,28 +699,28 @@ public partial class CellBodyPlanEditorComponent :
         switch ((OrganismStatisticsPanel.LightLevelOption)option)
         {
             case OrganismStatisticsPanel.LightLevelOption.Day:
-                {
-                    Editor.DayLightFraction = 1;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = 1;
+                break;
+            }
 
             case OrganismStatisticsPanel.LightLevelOption.Night:
-                {
-                    Editor.DayLightFraction = 0;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = 0;
+                break;
+            }
 
             case OrganismStatisticsPanel.LightLevelOption.Average:
-                {
-                    Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
+                break;
+            }
 
             case OrganismStatisticsPanel.LightLevelOption.Current:
-                {
-                    Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
-                    break;
-                }
+            {
+                Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
+                break;
+            }
 
             default:
                 throw new Exception("Invalid light level option");
@@ -1119,7 +1119,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
-        organismStatisticsPanel.UpdateRotationSpeed(CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateRotationSpeed(CellBodyPlanInternalCalculations.CalculateRotationSpeed(
+            editedMicrobeCells));
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }

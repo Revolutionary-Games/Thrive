@@ -124,8 +124,8 @@ public partial class CellBodyPlanEditorComponent
             fillingUpTime = warningTime;
         }
 
-        organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage, specificStorages,
-            warningTime, fillingUpTime);
+        organismStatisticsPanel.UpdateCompoundLastingTimes(normalBalance, nightBalance, nominalStorage,
+            specificStorages, warningTime, fillingUpTime);
     }
 
     private class ATPComparer : IComparer<string>
