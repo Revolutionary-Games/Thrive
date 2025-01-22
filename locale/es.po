@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:09+0200\n"
-"PO-Revision-Date: 2025-01-05 14:32+0000\n"
-"Last-Translator: Jose Mendoza <mendozaknmgarcia22@gmail.com>\n"
+"POT-Creation-Date: 2025-01-22 13:17+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -142,6 +142,7 @@ msgstr "(permite continuar la partida con una especie en extinción diferente en
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadísticas genéricas de todos los mundos"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaciones:[/b]\n"
@@ -1304,6 +1305,7 @@ msgstr "Actualmente investigando: {0} ({1})"
 msgid "CURRENT_WORLD"
 msgstr "Mundo Actual"
 
+#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generaciones:[/b]\n"
@@ -3223,13 +3225,13 @@ msgid "MICHE_MAINTAIN_COMPOUND_PRESSURE"
 msgstr "Presión de Mantenimiento de Compuesto"
 
 msgid "MICHE_METABOLIC_STABILITY_PRESSURE"
-msgstr ""
+msgstr "Presión de estabilidad metabólica"
 
 msgid "MICHE_NO_OP_PRESSURE"
 msgstr ""
 
 msgid "MICHE_PREDATION_EFFECTIVENESS_PRESSURE"
-msgstr ""
+msgstr "Presión de efectividad de la depredación"
 
 #, fuzzy
 msgid "MICHE_PREDATOR_ROOT_PRESSURE"
@@ -3477,7 +3479,7 @@ msgid "MIGRATION_STEP_DESTINATION_EXPLANATION"
 msgstr "Fosiliza esta especie para preservarla en el Museo. Puedes acceder al Museo desde la Thrivepedia, o abrir especies fosilizadas en el editor libre."
 
 msgid "MIGRATION_STEP_ONLY_ONE_ALLOWED"
-msgstr ""
+msgstr "Solo una migración puede ser realizada por sesión de edición. Puedes ver la migración en lista de espera abajo y mantenerla o cancelarla para realizar una migración diferente"
 
 #, fuzzy
 msgid "MIGRATION_STEP_POPULATION_EXPLANATION"
@@ -3673,7 +3675,7 @@ msgid "MORE_INFO_PROMPT"
 msgstr "Mostrar más información"
 
 msgid "MOUSE_EDGE_PANNING_OPTION"
-msgstr ""
+msgstr "Rotar la vista estratégica cuando el cursor esté en el limite de la pantalla"
 
 msgid "MOUSE_LOOK_SENSITIVITY"
 msgstr "Sensibilidad del ratón"
@@ -3960,7 +3962,7 @@ msgid "NOTICE_ENGULF_STORAGE_FULL"
 msgstr "No hay espacio suficiente en el almacenamiento de materia ingerida para engullir al objetivo"
 
 msgid "NOTICE_HIT_BY_ATP_TOXIN"
-msgstr ""
+msgstr "Producción de ATP Inhibida por toxinas"
 
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
@@ -4040,8 +4042,9 @@ msgstr "2x"
 msgid "OCTOBER"
 msgstr "Octubre"
 
+#, fuzzy
 msgid "OFF"
-msgstr ""
+msgstr "Apagado"
 
 msgid "OFFICIAL_WEBSITE"
 msgstr "Sitio oficial"
@@ -4219,7 +4222,7 @@ msgid "ORGANISM_STATISTICS"
 msgstr "Estadísticas del Organismo"
 
 msgid "OR_UNLOCK_CONDITION"
-msgstr ""
+msgstr "o"
 
 msgid "OSMOREGULATION"
 msgstr "Osmorregulación"
@@ -4395,8 +4398,9 @@ msgstr "Pacífica"
 msgid "PENDING_ENDOSYMBIOSIS_EXPLANATION"
 msgstr "Estás usando Thrive en el Modo GLES2. No está probado y probablemente cause errores. Intenta actualizar tus drivers de video y/o fuerza los gráficos AMD o Nvidia para ser usados al ejecutar Thrive."
 
+#, fuzzy
 msgid "PENDING_ENDOSYMBIOSIS_TITLE"
-msgstr ""
+msgstr "Terminación del proceso de Endosimbiosis en espera"
 
 msgid "PERCENTAGE_VALUE"
 msgstr "{0}%"
@@ -4833,7 +4837,7 @@ msgid "SAVE_DELETE_WARNING"
 msgstr "Eliminar esta partida es irreversible, ¿estás seguro de querer eliminar {0} permanentemente?"
 
 msgid "SAVE_ERROR_INCLUDE_JSON_DEBUG_NOTE"
-msgstr ""
+msgstr "Al reportar un error de guardado por favor incluir [color=#3796e1][url={0}]{1}[/url][/color] desde de [color=#3796e1][url={2}]logs folder[/url][/color] pues es información critica para los desarrolladores de Thrive para averiguar cual fue el error de guardado. Sin ese Archivo, será extremadamente difícil diagnosticar y arreglar este problema."
 
 #, fuzzy
 msgid "SAVE_ERROR_TURN_ON_JSON_DEBUG_MODE"
@@ -5140,7 +5144,7 @@ msgid "SMALL_SULFUR_CHUNK"
 msgstr "Fragmento de hierro pequeño"
 
 msgid "SNOWFLAKE"
-msgstr ""
+msgstr "Copo de nieve"
 
 #, fuzzy
 msgid "SOCIETY_STAGE"
@@ -5364,14 +5368,15 @@ msgstr "Almacenamiento"
 msgid "STORAGE_COLON"
 msgstr "Almacenamiento:"
 
+#, fuzzy
 msgid "STORAGE_STATISTICS_SECONDS_OF_COMPOUND"
-msgstr ""
+msgstr "Segundos de"
 
 msgid "STORE_LOGGED_IN_AS"
 msgstr "Conectado como: {0}"
 
 msgid "STRAIN_BAR_VISIBILITY"
-msgstr ""
+msgstr "Visibilidad de la barra de fatiga"
 
 #, fuzzy
 msgid "STRATEGY_STAGES"
@@ -5399,7 +5404,7 @@ msgid "STRUCTURE_HAS_REQUIRED_RESOURCES_TO_BUILD"
 msgstr "Los materiales necesarios para la construcción han sido depositados"
 
 msgid "STRUCTURE_HUNTER_GATHERER_LODGE"
-msgstr ""
+msgstr "Choza de Cazadores-Recolectores"
 
 #, fuzzy
 msgid "STRUCTURE_IN_PROGRESS_CONSTRUCTION"
@@ -5444,7 +5449,7 @@ msgid "SUPPORTER_PATRONS"
 msgstr "Colaboradores"
 
 msgid "SURVIVAL_TITLE"
-msgstr ""
+msgstr "Supervivencia"
 
 msgid "SWITCH_TO_FRONT_CAMERA"
 msgstr "Cambia a cámara frontal"
@@ -5487,7 +5492,7 @@ msgid "TECHNOLOGY_ASCENSION"
 msgstr "Construyendo centro de sociedad"
 
 msgid "TECHNOLOGY_HUNTER_GATHERING"
-msgstr ""
+msgstr "Caza-Recolección"
 
 #, fuzzy
 msgid "TECHNOLOGY_LEVEL_ADVANCED_SPACE"
@@ -5696,7 +5701,7 @@ msgid "TIME_INDICATOR_TOOLTIP"
 msgstr "Tiempo transcurrido: {0:#,#} años"
 
 msgid "TIME_OF_DAY"
-msgstr ""
+msgstr "Tiempo"
 
 msgid "TITLE_COLON"
 msgstr "Título:"
@@ -5755,7 +5760,7 @@ msgid "TOOL_HAND_AXE"
 msgstr "Hacha de mano"
 
 msgid "TOO_MANY_RECENT_VERSIONS_TO_SHOW"
-msgstr ""
+msgstr "No se muestran todas las versiones recientes ya que son demasiadas"
 
 #, fuzzy
 msgid "TOTAL_GATHERED_ENERGY_COLON"
@@ -5765,7 +5770,7 @@ msgid "TOTAL_SAVES"
 msgstr "Partidas guardadas:"
 
 msgid "TOXIN_CHANNEL_INHIBITOR"
-msgstr ""
+msgstr "Inhibidor de canales"
 
 #, fuzzy
 msgid "TOXIN_CHANNEL_INHIBITOR_DESCRIPTION"
@@ -5784,7 +5789,7 @@ msgid "TOXIN_CYTOTOXIN_DESCRIPTION"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 msgid "TOXIN_FIRE_RATE_TOXICITY_COLON"
-msgstr ""
+msgstr "Tasa de disparo y Toxicidad:"
 
 #, fuzzy
 msgid "TOXIN_MACROLIDE"
@@ -5797,7 +5802,7 @@ msgid "TOXIN_MACROLIDE_DESCRIPTION"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR"
-msgstr ""
+msgstr "Cianuro"
 
 #, fuzzy
 msgid "TOXIN_OXYGEN_METABOLISM_INHIBITOR_DESCRIPTION"
@@ -5808,10 +5813,10 @@ msgid "TOXIN_OXYTOXY_DESCRIPTION"
 msgstr "La vacuola de toxinas es una vacuola modificada específicamente para la producción, secreción y almacenamiento de toxinas. Más vacuolas de toxinas incrementan la velocidad a la que se pueden disparar las toxinas."
 
 msgid "TOXIN_PREFER_FIRE_RATE"
-msgstr ""
+msgstr "Disparo-rápido"
 
 msgid "TOXIN_PREFER_TOXICITY"
-msgstr ""
+msgstr "Toxico"
 
 #, fuzzy
 msgid "TOXIN_PROPERTIES_HEADING"
@@ -6136,7 +6141,7 @@ msgid "UNIT_ACTION_MOVE"
 msgstr "Velocidad de mutación de la AI"
 
 msgid "UNIT_ADVANCED_SPACESHIP"
-msgstr ""
+msgstr "Nave espacial avanzada"
 
 msgid "UNIT_SIMPLE_ROCKET"
 msgstr "Cohete simple"
@@ -6181,7 +6186,7 @@ msgid "UNLOCK_ALL_ORGANELLES"
 msgstr "Multiples Orgánulos"
 
 msgid "UNLOCK_CONDITION_ATP_PRODUCTION_ABOVE"
-msgstr ""
+msgstr "Producción de [thrive:compound type=\"atp\"][/thrive:compound] alcanza {0}"
 
 msgid "UNLOCK_CONDITION_COMPOUND_IS_ABOVE"
 msgstr ""
@@ -6193,10 +6198,10 @@ msgid "UNLOCK_CONDITION_COMPOUND_IS_BETWEEN"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_DIGESTED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} microbios están digeridos  (Actualmente en {1})"
 
 msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
-msgstr ""
+msgstr "{0} microbios están engullidos ( actualmente en {1})"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
@@ -6211,14 +6216,14 @@ msgid "UNLOCK_CONDITION_REPRODUCED_WITH_IN_A_ROW"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_REPRODUCE_IN_BIOME"
-msgstr ""
+msgstr "reproduciendo en el bioma {0}"
 
 #, fuzzy
 msgid "UNLOCK_CONDITION_SPEED_BELOW"
 msgstr "Velocidad de Digestion:"
 
 msgid "UNLOCK_WITH_ANY_OF_FOLLOWING"
-msgstr ""
+msgstr "[b]{0}[/b] desbloqueados cuando"
 
 msgid "UNSAVED_CHANGE_WARNING"
 msgstr ""
@@ -6292,7 +6297,7 @@ msgid "USE_A_CUSTOM_USERNAME"
 msgstr "Usar un nombre personalizado"
 
 msgid "USE_DISK_CACHE"
-msgstr ""
+msgstr "Usar cache del disco"
 
 msgid "USE_MANUAL_THREAD_COUNT"
 msgstr "Ajustar manualmente el número de hilos en segundo plano"
@@ -6311,7 +6316,7 @@ msgid "VACUOLE_DESCRIPTION"
 msgstr "La vacuola es un orgánulo membranoso interno usado para almacenar sustancias. Está compuesta por numerosas vesículas, estructuras membranosas más pequeñas, que se han fusionado para formar una estructura más grande. Está llena de agua, que es usada para contener diferentes moléculas, enzimas, sólidos y otras sustancias. Su forma es fluida y puede variar entre células."
 
 msgid "VACUOLE_IS_SPECIALIZED"
-msgstr ""
+msgstr "Vacuola especializada"
 
 #, fuzzy
 msgid "VACUOLE_NOT_SPECIALIZED_DESCRIPTION"
@@ -6370,7 +6375,7 @@ msgid "VIEW_PATCH_NOTES_TOOLTIP"
 msgstr "{0} {1}"
 
 msgid "VIEW_PENDING_ACTIONS"
-msgstr ""
+msgstr "Ver ahora"
 
 msgid "VIEW_SOURCE_CODE"
 msgstr "Ver código fuente"
@@ -6382,10 +6387,10 @@ msgid "VISIBLE"
 msgstr "Visible"
 
 msgid "VISIBLE_WHEN_CLOSE_TO_FULL"
-msgstr ""
+msgstr "Visible cuando está casi lleno"
 
 msgid "VISIBLE_WHEN_OVER_ZERO"
-msgstr ""
+msgstr "Visible cuando está sobre cero"
 
 msgid "VISIT_SUGGESTIONS_SITE"
 msgstr "Sugerir una característica"
@@ -6441,8 +6446,9 @@ msgstr "nuestro Wiki"
 msgid "WIKI_3D"
 msgstr "nuestro Wiki"
 
+#, fuzzy
 msgid "WIKI_3D_COMMA_SANDBOX"
-msgstr ""
+msgstr "3D, Sandbox"
 
 #, fuzzy
 msgid "WIKI_3D_COMMA_STRATEGY"
@@ -6474,6 +6480,9 @@ msgstr "La Rusticianina es una proteína capaz de usar dióxido de carbono gaseo
 
 msgid "WIKI_ASCENSION_OVERVIEW"
 msgstr ""
+"Ascender es un concepto clave en Thrive, comparable a \"ganar el juego\" en otros videojuegos. Es un estado donde un organismo sentiente es transformado en energía por una puerta de ascensión y por lo tanto da poderes de Dios, usando la energía del universo (esencialmente haciendo milagros de forma gratuita).\n"
+"\n"
+"Lo que hace la ascensión es que, siempre que hayas investigado las Herramientas de Dios, habrá un nuevo panel de \"Herramientas de Dios\" accesible desde cualquier lugar de la partida, que te permitirá cambiar lo que quieras. Desde la creación de sistemas solares completos hasta las bacterias más pequeñas, desde la destrucción de civilizaciones enteras hasta la posesión de uno de sus miembros, todo es posible."
 
 #, fuzzy
 msgid "WIKI_ASCENSION_TRANSITIONS"
@@ -6508,7 +6517,7 @@ msgid "WIKI_AWAKENING_STAGE_UI"
 msgstr "Estadio del despertar"
 
 msgid "WIKI_AWARE_STAGE_CURRENT_DEVELOPMENT"
-msgstr ""
+msgstr "Se ha iniciado el nivel de prototipo del desarrollo de etapas posteriores. Los prototipos son mucho más toscos que el prototipo de la etapa Multicelular, que en sí mismo no alcanza la calidad que queremos que tenga el juego terminado."
 
 #, fuzzy
 msgid "WIKI_AWARE_STAGE_FEATURES"
@@ -6535,26 +6544,26 @@ msgid "WIKI_AXON_EFFECTS"
 msgstr "Efectos externos:"
 
 msgid "WIKI_AXON_INTRO"
-msgstr ""
+msgstr "Fibra nerviosa entre neuronas, accesible desde la Fase Multicelular. Requerida para incrementar el poder cerebral de un organismo y progresar a etapas futuras."
 
 msgid "WIKI_AXON_MODIFICATIONS"
-msgstr ""
+msgstr "No hay modificaciones."
 
 #, fuzzy
 msgid "WIKI_AXON_PROCESSES"
 msgstr "Colocar orgánulos"
 
 msgid "WIKI_AXON_REQUIREMENTS"
-msgstr ""
+msgstr "Solo disponible desde la Fase Multicelular en adelante."
 
 msgid "WIKI_AXON_SCIENTIFIC_BACKGROUND"
-msgstr ""
+msgstr "Todavía por ser anunciado"
 
 msgid "WIKI_AXON_STRATEGY"
-msgstr ""
+msgstr "Añadir [b]Axones[/b] es esencial para alcanzar fases futuras. Recomendamos añadir por lo menos un [b]Axón[/b] a varios tipos de células en tu organismo multicelular, pero añadir mas de una es redundante. Por el momento, mas[b]Axones[/b] no proveen ventaja extra."
 
 msgid "WIKI_AXON_UPGRADES"
-msgstr ""
+msgstr "No hay mejoras."
 
 #, fuzzy
 msgid "WIKI_BACTERIAL_CHEMOSYNTHESIS_COMMA_GLYCOLYSIS"
@@ -6625,7 +6634,7 @@ msgid "WIKI_BIOLUMINESCENT_VACUOLE_UPGRADES"
 msgstr "Vacuola Bioluminiscente"
 
 msgid "WIKI_BODY_PLAN_EDITOR_COMMA_CELL_EDITOR"
-msgstr ""
+msgstr "Editor del Plan de cuerpo, Editor de células"
 
 #, fuzzy
 msgid "WIKI_CHEMOPLAST_EFFECTS"
@@ -7076,7 +7085,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de iones, proteínas y otras sustancias disueltas en agua que llenan el interior de la célula. Una de sus funciones es la [b]glucólisis[/b], la transformación de [thrive:compound type=\"glucose\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]. Para que las células que carecen de orgánulos para tener metabolismos más avanzados, esto es de lo que dependen para producir energía. También se usa para almacenar moléculas y aumentar el tamaño de la célula."
+msgstr "Colocar orgánulos"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -7086,25 +7095,23 @@ msgstr "Las entrañas de una célula. El citoplasma es la mezcla básica de ione
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
 msgstr "Estadio del despertar"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
-msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
-msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
+msgstr "Estadio del despertar"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr "Estadio del despertar"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
-msgstr "Los Tilacoides son aglomeraciones de proteínas y pigmentos fotosensibles. Estos pigmentos usan la energía de la [thrive:compound type=\"sunlight\"][/thrive:compound] para producir [thrive:compound type=\"glucose\"][/thrive:compound] consumiendo agua y [thrive:compound type=\"carbondioxide\"][/thrive:compound] gaseoso en un proceso llamado [b]fotosíntesis[/b]. Los pigmentos también son lo que le dan su distintivo color. La eficiencia de su producción de [thrive:compound type=\"glucose\"][/thrive:compound] escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la intensidad de la [thrive:compound type=\"sunlight\"][/thrive:compound]. Como los tilacoides están directamente suspendidos en el citoplasma, este realiza la [b]glucólisis[/b]."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -7627,7 +7634,7 @@ msgstr "Flagelo"
 
 #, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
-msgstr "Quimioplasto"
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"

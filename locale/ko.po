@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:09+0200\n"
+"POT-Creation-Date: 2025-01-22 13:17+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2차원 움직임 방식:"
 
 msgid "3D_EDITOR"
 msgstr "3차원 편집기"
@@ -29,7 +29,7 @@ msgid "3D_MOVEMENT"
 msgstr "3차원 이동"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3차원 움직임 방식:"
 
 msgid "ABILITIES"
 msgstr "능력"
@@ -55,17 +55,17 @@ msgid "ABYSSOPELAGIC"
 msgstr "심해원양성"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "확인하기"
 
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "의식 정도 ({0:F1} / {1:F1})"
 
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "또 다른 동작을 실행할 수 없습니다"
 
 #, fuzzy
 msgid "ACTION_DELETE"
@@ -88,7 +88,7 @@ msgid "ACTION_TELEPORT"
 msgstr "나가기 확인"
 
 msgid "ACTIVE"
-msgstr ""
+msgstr "활발함"
 
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
@@ -96,6 +96,8 @@ msgstr "저장 및 계속"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
 
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -105,7 +107,7 @@ msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "발전된"
 
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
@@ -135,9 +137,13 @@ msgstr "동굴"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"공격적인 미생물들은 먼 거리에 있는 사냥감도 쫓으려 할 것이며,\n"
+"포식자에게 공격을 받을 시 맞서 싸울 것 입니다.\n"
+"평화로운 미생물들은 멀리 있는 자들에겐 신경을 쓰지 않을 것이며,\n"
+"포식자들에게 독을 자주 사용하지 않을 것 입니다."
 
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "공격적인"
 
 #, fuzzy
 msgid "AI_MUTATION_RATE"
@@ -166,13 +172,13 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr "생체 상태창"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "당신은 이미 초월했습니다"
 
 msgid "ALT"
 msgstr "Alt"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "언제나 보임"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
@@ -197,13 +203,13 @@ msgid "APPEARANCE"
 msgstr "외관"
 
 msgid "APPLY"
-msgstr ""
+msgstr "적용하기"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "변경 사항 적용하기"
 
 msgid "APRIL"
-msgstr ""
+msgstr "4월"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
@@ -220,10 +226,10 @@ msgid "ARTWORK_TITLE"
 msgstr "번영했습니다!"
 
 msgid "ART_BY"
-msgstr ""
+msgstr "{0} 의 작품"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "작품 전시관"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -231,16 +237,23 @@ msgstr "종:"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"당신은 초월을 하여 게임을 완료했습니다. 게임의 끝까지 오신 걸 축하 드립니다!\n"
+"\n"
+"원하신다면 방금 잠금 해제한 신 도구들과 함께 이 공간에서 우주 단계를 계속 진행하셔도 됩니다.\n"
+"\n"
+"이 게임에서 다시 미생물 단계로 돌아가 추가 보너스와 함께 처음부터 진행하는 것도 가능합니다.\n"
+"\n"
+"이 게임에서 초월한 총 횟수:{0}"
 
 #, fuzzy
 msgid "ASCENSION_STAGE"
 msgstr "버전:"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "어셈블리가 특정 될 경우엔 모드 어셈블리 클래스가 필요합니다"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "자동 하모니가 활성화 되었을 때엔 모드 어셈블리가 필요합니다"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
@@ -262,10 +275,10 @@ msgid "ATP_BALANCE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "외부 자원 없이"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "포도당 없이"
 
 #, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
@@ -276,7 +289,7 @@ msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr "ATP 균형"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "필요한 모든 물질들이 있을 시"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP 생산"
@@ -292,10 +305,10 @@ msgid "AT_CURSOR"
 msgstr "커서 위치에서:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "오디오 출력 기기:"
 
 msgid "AUGUST"
-msgstr ""
+msgstr "8월"
 
 msgid "AUTO"
 msgstr "자동"
@@ -338,7 +351,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo 실행 실패"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Auto-evo 결과 중 빠진 것들이 있습니다. 만일 오래된 저장된 게임을 불러온 것 이라면 결과 중 몇 개가 빠진 것 입니다. 만일 아니라면 버그를 신고해주시고, 게임 로그 파일을 저희에게 보내주십시오."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo 결과:"
@@ -366,13 +379,13 @@ msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "사용 가능한 건설 프로젝트"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "사용 가능한 모드"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "의식 단계"
 
 #, fuzzy
 msgid "AWARE_STAGE"
@@ -382,7 +395,7 @@ msgid "BACK"
 msgstr "뒤로"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "배경 흐림 처리:"
 
 #, fuzzy
 msgid "BACKSLASH"
@@ -397,13 +410,13 @@ msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "열합성"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "낮 기준으로 계산하기"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "체크할 시 패널에 적힌 숫자들이 낮을 기준으로 계산 될 것 입니다"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "움직임 비용 포함하기"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
@@ -417,7 +430,7 @@ msgid "BASE_MOVEMENT"
 msgstr "기초 이동"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "기본"
 
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
@@ -427,10 +440,10 @@ msgid "BATHYPELAGIC"
 msgstr "심해수층"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "거시 생물로 변화하기 ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "다세포 생물로 변화하기 ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
 msgstr "Thrive 시작"
@@ -463,17 +476,17 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "기준"
 
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "불러오기 완료"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "기준 단계:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "결과:"
 
 #, fuzzy
 msgid "BEST_PATCH_COLON"
@@ -514,16 +527,16 @@ msgid "BLOOM_RENDER_EFFECT"
 msgstr "외부 효과:"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "뉴런"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "용감한"
 
 msgid "BROWSE"
-msgstr ""
+msgstr "검색하기"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "창작마당 검색하기"
 
 #, fuzzy
 msgid "BUILD_CITY"
@@ -541,7 +554,7 @@ msgid "BY"
 msgstr "요인:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Revolutionary Games Studio 제작"
 
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
@@ -579,10 +592,10 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "현재 동작 취소"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "현재 당신의 신체 체제에 사용 중인 세포 종류는 삭제 될 수 없습니다"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "이미 사용한 세포 종류는 삭제 불가함"
 
 msgid "CANNOT_ENGULF"
 msgstr "삼킬 수 없음"
@@ -591,44 +604,44 @@ msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "현재 단계에 머무르기에는 뇌의 힘이 부족합니다. 현재로서 이전 단계로 돌아가는 것은 허용되지 않기 때문에, 계속 진행하기 위해선 뇌의 힘을 늘려주십시오."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "뇌의 힘을 줄여 이전 단계로 돌아가는 것은 불가함"
 
 #, fuzzy
 msgid "CANNOT_WRITE_SAVE"
 msgstr "삼킬 수 없음"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "모드 {0}의 정보 불러오기 실패"
 
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "캡스 락"
 
 msgid "CARBON_DIOXIDE"
 msgstr "이산화탄소"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "풍부함"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "적당한 양"
 
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "적음"
 
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "조금 많음"
 
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "조금"
 
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "아주 적음"
 
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "경고"
 
 #, fuzzy
 msgid "CELL"
@@ -660,7 +673,7 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "재개"
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "세포 종류 이름"
 
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -767,7 +780,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "화학 합성 단백질은 황화수소 화학 합성이라는 과정에서 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 세포질의 작은 단백질 집합입니다. 포도당 생산 속도는 이산화탄소 농도에 따라 달라집니다. 화학 합성 단백질이 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "죽은 세포 덩어리"
 
 #, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
@@ -792,7 +805,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "캐시 초기화하기"
 
 msgid "CLOSE"
 msgstr "닫기"
@@ -832,7 +845,7 @@ msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "현재 색상을 프리셋으로 설정하기"
 
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
@@ -885,14 +898,14 @@ msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "커뮤니티 포럼"
 
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "COMMUNITY_WIKI"
-msgstr ""
+msgstr "커뮤니티 위키"
 
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
@@ -960,7 +973,7 @@ msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "화합물 구름"
 
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}의 농도가 {1}만큼 줄었습니다"
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -987,7 +1000,7 @@ msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "성분 비율"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "{1} [thrive:compound type=\"{0}\"][/thrive:compound] 만이 낮 동안 생성될 수 있으나 밤을 보내기 위해선 {2}가 필요합니다."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
@@ -1022,7 +1035,7 @@ msgid "CONFIRM_EXIT"
 msgstr "나가기 확인"
 
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "덮어쓰기 확인하기"
 
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
@@ -1033,7 +1046,7 @@ msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "(AI 종이 변이하는 속도)"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "산업 단계로 넘어가기?"
 
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
@@ -1056,10 +1069,10 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "새로운 키 배치 추가"
 
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr ""
+msgstr "개체 수: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "워크샵 콘텐츠가 이 폴더에서 업로드 됩니다: {0}"
 
 #, fuzzy
 msgid "CONTINUE"
@@ -1075,15 +1088,21 @@ msgstr "Thrive 시작"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"당신은 Thrive의 \"완성 된\" 부분의 끝에 도달하였습니다.\n"
+"만약 원하신다면, 현재 게임에 포함 된 다음 단계들의 초기 버전들로 이어갈 수 있습니다. 이 단계들은 미완성 된 부분이 많고, 임시방편 그래픽을 사용하며, 매우 허술합니다. 이 단계들은 이 게임의 미래 가능성과 길을 터기 위해, 그리고 단계 사이들이 어떤 식으로 연결 될 지에 대한 저희의 시각을 보이기 위해 게임의 한 부분으로 추가되었습니다.\n"
+"\n"
+"당신은 대부분의 초기 버전들에서 게임 저장을 하지 못할 것이며, 계속 진행하다가 다시 돌아오더라도 저장은 되지 않을 것입니다. 이 단계로 다시 돌아오고 싶다면 진행 전 저장을 해주십시오.\n"
+"\n"
+"컨트롤러에 대한 지원은 초기 단계들에선 매우 허술할 것 입니다. 진행하길 택하신다면, 다음부터 나올 단계들은 초기 단계라는 것을 이해해주시고, 미완성 되어져 있다고 불평하지는 말아주십시오."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr ""
+msgstr "아무 기기"
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr ""
+msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr ""
@@ -1103,7 +1122,7 @@ msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr ""
+msgstr "R2"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr ""
@@ -1118,22 +1137,22 @@ msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr ""
+msgstr "십자 패드 아래 키"
 
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr ""
+msgstr "십자 패드 왼쪽 키"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "십자 패드 오른쪽 키"
 
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr ""
+msgstr "십자 패드 위쪽 키"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr ""
+msgstr "좌측 스틱 누르기"
 
 msgid "CONTROLLER_BUTTON_MISC1"
 msgstr ""
@@ -1151,34 +1170,34 @@ msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "Select 버튼"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr ""
+msgstr "Start 버튼"
 
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr ""
+msgstr "십자 패드 동그라미 키"
 
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr ""
+msgstr "십자 패드 X자 키"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr ""
+msgstr "L1"
 
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr ""
+msgstr "L3"
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "Options 키"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr ""
+msgstr "R1"
 
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr ""
+msgstr "R3"
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr ""
+msgstr "Share 키"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr ""
@@ -1434,7 +1453,7 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
 msgid "DEATH"
-msgstr ""
+msgstr "죽음"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1443,20 +1462,20 @@ msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "디버그 패널"
 
 msgid "DECEMBER"
-msgstr ""
+msgstr "12월"
 
 #, fuzzy
 msgid "DECREASE_ITEM_SIZE"
 msgstr "점액 분비"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "기본 출력 기기"
 
 msgid "DELETE"
-msgstr ""
+msgstr "삭제하기"
 
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
@@ -1517,7 +1536,7 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "설명:"
 
 msgid "DESPAWN_ENTITIES"
-msgstr ""
+msgstr "모든 엔티티 없애기"
 
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
@@ -1527,10 +1546,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
 
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "개발자들"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr ""
+msgstr "개발 포럼"
 
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
@@ -1540,7 +1559,7 @@ msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
 msgid "DEVELOPMENT_WIKI"
-msgstr ""
+msgstr "개발 위키"
 
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
@@ -1553,13 +1572,13 @@ msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "난이도"
 
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "난이도 프리셋"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "직접 설정"
@@ -1574,7 +1593,7 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "보통"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "소화 효율"
 
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
@@ -1589,13 +1608,13 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "속도:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/초당"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "비활성화됨"
 
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "모두 비활성화하기"
 
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
@@ -1653,10 +1672,10 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "다시 보지 않기"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "다시 경고하지 않기"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
@@ -1669,7 +1688,7 @@ msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "배경 효과 입자 보이기"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -7311,7 +7330,7 @@ msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+msgstr "세포 기관 배치"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -7319,27 +7338,25 @@ msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
-msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+msgstr "화합물"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
-msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+msgstr "미토콘드리아"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
-msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+msgstr "미생물 단계"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr "미생물 단계"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
-msgstr "틸라코이드는 단백질과 감광성 색소의 집합체입니다. 이 색소는 빛의 에너지를 사용하여 광합성이라는 과정에서 물과 기체 이산화탄소에서 포도당을 생성 할 수 있습니다. 이 색소는 또한 그들에게 독특한 색상을 부여합니다. 포도당 생산 속도는 이산화탄소 농도와 빛의 강도에 따라 달라집니다. 틸라코이드가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -7851,7 +7868,7 @@ msgstr "편모"
 
 #, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
-msgstr "화학 기관"
+msgstr "미토콘드리아"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"

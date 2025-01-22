@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:09+0200\n"
-"PO-Revision-Date: 2024-10-16 05:52+0000\n"
-"Last-Translator: fideos con queso <whipstickagostopp@gmail.com>\n"
+"POT-Creation-Date: 2025-01-22 13:17+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish (Argentina) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es_AR/>\n"
 "Language: es_AR\n"
 "MIME-Version: 1.0\n"
@@ -51,10 +51,10 @@ msgid "ACCEPT"
 msgstr "Aceptar"
 
 msgid "ACTION_AWAKEN"
-msgstr "Despertarse ({0:F1} / {1:F1})"
+msgstr "Despertar ({0:F1} / {1:F1})"
 
 msgid "ACTION_AWAKEN_TOOLTIP"
-msgstr "Ir a la etapa del despertar. Solo cuando dejes de ser un boludo y tengas suficiente poder cerebral (tipo de tejido con axones)."
+msgstr "Moverse a la etapa Despertar. Solo accesible cuando tengas suficiente poder cerebral (tipo de tejido con axones)."
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
 msgstr "Acción bloqueada mientras que otra está en proceso"
@@ -66,7 +66,7 @@ msgid "ACTION_DOUBLE_POPULATION"
 msgstr "Duplicar población"
 
 msgid "ACTION_DUPLICATE_UNITS"
-msgstr "Duplica a los pibes"
+msgstr "Duplicar unidades"
 
 msgid "ACTION_HALF_POPULATION"
 msgstr "Dividir población a la mitad"
@@ -82,11 +82,11 @@ msgstr "Hilos actuales:"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
-"Los pibes activos van a estar dando vueltas cuando nada piola pasa.\n"
-"Los pibes tranquilos van a estar quietos y esperando a que algo cambie antes de hacer boludeces."
+"Los microbios activos van deambular cuando no pase nada interesante.\n"
+"Los microbios tranquilos van a estar quietos y esperando a que algo cambie antes de actuar."
 
 msgid "ADDITIONAL_VALIDATION_FAILED"
-msgstr "Validaciones adicionales encontraron un quilombo: {0}"
+msgstr "Validaciones adicionales encontraron un problema: {0}"
 
 msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "Agrega un nuevo control personalizado"
@@ -117,51 +117,51 @@ msgstr "{0} Agente"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
-"Los pibes crackeros van a perseguir a su presa por distancias mas largas.\n"
-"Y son mas capaces de cagarse a palos cuando les rompan las bolas.\n"
-"Los pibes marihuaneros no van a hacer mucho\n"
-"Y no van a ocupar sus humos tóxicos contra los rompepijas."
+"Los microbios agresivos van a perseguir a su presa por distancias mas largas.\n"
+"y es mas probable que ataquen a otros depredadores cuando sean atacados.\n"
+"Los microbios pacíficos no atacarán a otros en distancias mayores\n"
+"y es menos probable que utilicen sus toxinas contra depredadores."
 
 msgid "AGGRESSIVE"
-msgstr "Crackero"
+msgstr "Agresivo"
 
 msgid "AI_MUTATION_RATE"
-msgstr "Cuanto va a mutar la IA"
+msgstr "Tasa de mutación de la IA"
 
 msgid "AI_MUTATION_RATE_EXPLANATION"
 msgstr "(Velocidad en la que las especies guiadas por IA mutan)"
 
 msgid "ALL"
-msgstr "Todaaa"
+msgstr "Todo"
 
-#, fuzzy
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION"
-msgstr "No mutar (Solo si no hay buenas mutaciones)"
+msgstr "Permitir cambiar a especie relacionada al extinguirse"
 
 msgid "ALLOW_SPECIES_SWITCH_ON_EXTINCTION_EXPLANATION"
-msgstr "(permite continuar el juego con una especie en extinción en vez de que te dé un game over)"
+msgstr "(permite continuar el juego con una especie distinta al extinguirse en vez de tener un \"game over\")"
 
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Estadísticas genéricas de todos los mundos"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaciones:[/b]\n"
 "  {0}\n"
-"[b]Todos los pibes:[/b]\n"
-"  promedio{1}; Que tanto se aleja {2}\n"
+"[b]Especies en total:[/b]\n"
+"  Promedio{1}; Que tanto se alejan {2}\n"
 "[b]Especies vivas:[/b]\n"
-" promedio {3}; Que tanto se aleja {4}\n"
-"[b]los pibes que hay en cada barrio:[/b]\n"
-"  promedio {5}; Que tanto se aleja {6}\n"
-"[b]Cantidad de pibes que hay en cada barrio:[/b]\n"
-"promedio {7}; Que tanto se aleja {8}\n"
-"[b]Que tan gordo están los pibes:[/b]\n"
-"  Promedio {9}; Que tanto se aleja {10}\n"
-"[b]Data típica de las organelas :[/b]"
+" Promedio {3}; Que tanto se alejan {4}\n"
+"[b]Recuento de especies por patch:[/b]\n"
+"  Promedio {5}; Que tanto se alejan {6}\n"
+"[b]Población de especies total por patch:[/b]\n"
+"Promedio {7}; Que tanto se aleja {8}\n"
+"[b]Tamaño promedio en hexágonos de las especies microbianas:[/b]\n"
+"  Promedio {9}; Que tanto se alejan {10}\n"
+"[b]Data genérica de organelas:[/b]"
 
 msgid "ALREADY_ASCENDED"
-msgstr "Ya estas re poronga pibe"
+msgstr "Tu especie ya ha ascendido"
 
 #, fuzzy
 msgid "ALT"
@@ -202,7 +202,7 @@ msgid "APRIL"
 msgstr "Abril"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
-msgstr "¿Estás seguro de que querés restablecer TODAS las configuraciónes a los valores predeterminados?"
+msgstr "¿Estás seguro de que querés restablecer TODAS las configuraciones a los valores predeterminados?"
 
 msgid "ARE_YOU_SURE_TO_RESET_INPUT_SETTINGS"
 msgstr "¿Estás seguro de que querés restablecer las configuraciónes de entrada a los valores predeterminados?"
@@ -225,10 +225,16 @@ msgstr "¡Felicitaciones!"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"Has ascendido y completado el juego. Felicitaciones por llegar al final del juego!\n"
+"\n"
+"Puedes seguir jugando en el Estado Espacial con las nuevas herramientas omnipotentes para jugar en el sandbox.\n"
+"\n"
+"También es posible descender y volver a la etapa microbiana en esta partida y jugar todos los estados de nuevo con ventajas extra.\n"
+"\n"
+"Veces ascendido en esta partida: {0}"
 
-#, fuzzy
 msgid "ASCENSION_STAGE"
-msgstr "Rusticianina"
+msgstr "Etapa de Ascensión"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
 msgstr ""
@@ -237,7 +243,7 @@ msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
 msgstr ""
 
 msgid "ASSUME_HYPERTHREADING"
-msgstr ""
+msgstr "Asumir que la CPU tiene hiperprocesamiento activado"
 
 msgid "ASSUME_HYPERTHREADING_TOOLTIP"
 msgstr ""
@@ -278,13 +284,13 @@ msgid "ATP_PRODUCTION"
 msgstr "Producción de ATP"
 
 msgid "ATP_PRODUCTION_TOO_LOW"
-msgstr ""
+msgstr "PRODUCCION DE ATP MUY BAJA!"
 
 msgid "ATTEMPT_TO_WRITE_SAVE_FAILED"
 msgstr "El intento de escribir este archivo de guardado falló. Puede que el nombre de guardado sea demasiado largo o capaz que no tengas acceso de escritura a la carpeta de guardado."
 
 msgid "AT_CURSOR"
-msgstr ""
+msgstr "En el cursor:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
 msgstr "Dispositivo de salida:"
@@ -306,6 +312,8 @@ msgstr "Predicción del Auto-evo"
 
 msgid "AUTO-EVO_PREDICTION_BOX_DESCRIPTION"
 msgstr ""
+"Este panel muestra la energía total esperada recolectada y cifras de población (en paréntesis) desde auto-evo para las especies editadas\n"
+"Auto-Evo ejecuta la simulación de población, que es la otra parte (además de tu propio rendimiento) que afecta tu población."
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% hecho. {1:n0}/{2:n0} pasos."
@@ -318,19 +326,19 @@ msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
 msgstr "Este panel muestra los números que utiliza auto-evo para predecir. La energía total que una especie es capaz de capturar y el costo por individuo de la especie determina la población final. Auto-evo utiliza un modelo simplificado de la realidad para calcular qué tan bien se desempeñan las especies, basándose en la energía que pueden recolectar. Por cada fuente de alimento se muestra cuánta energía obtiene la especie. Adicionalmente, se muestra la energía total disponible de esa fuente. La fracción que la especie obtiene de la energía total disponible está basada en qué tan grande es la Aptitud comparada a la Aptitud total. La Aptitud es una métrica de qué tan bien la especie puede utilizar una fuente de alimento."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
-msgstr ""
+msgstr "Autoguardar durante el juego"
 
 msgid "AUTO_EVO"
-msgstr ""
+msgstr "Auto-Evo"
 
 msgid "AUTO_EVO_EXPLORING_TOOL"
-msgstr ""
+msgstr "Herramienta de exploración del Auto-Evo"
 
 msgid "AUTO_EVO_FAILED"
-msgstr "Auto-evo ya no funca"
+msgstr "Auto-evo falló ejecutar"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Faltan los resultados del Auto-evo. Si cargaste una partida vieja, esto es de esperar. Si no cargaste una partida vieja, por favor reporta este bug y mandanos el archivo de registro de tu juego."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Resultado del Auto-evo:"
@@ -343,10 +351,10 @@ msgid "AUTO_EVO_RESULTS_PATCH_TITLE"
 msgstr "Resultado del Auto-evo:"
 
 msgid "AUTO_EVO_RUN_STATUS"
-msgstr "Como anda la cosa:"
+msgstr "estado de ejecución:"
 
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "Como anda el Auto-evo:"
+msgstr "Estado del Auto-evo:"
 
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Moverse automáticamente"
@@ -358,19 +366,19 @@ msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
 msgstr "Los proyectos de construcción que podes hacer"
 
 msgid "AVAILABLE_MODS"
-msgstr "Mods"
+msgstr "Mods disponibles"
 
 msgid "AWAKENING_STAGE"
-msgstr "Recién levantado"
+msgstr "Etapa de despertar"
 
 msgid "AWARE_STAGE"
-msgstr "Despierto"
+msgstr "Etapa Consciente"
 
 msgid "BACK"
-msgstr "Pa' atras"
+msgstr "Atras"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Borrosidad del fondo:"
 
 msgid "BACKSLASH"
 msgstr "Barra inversa ( / )"
@@ -391,13 +399,13 @@ msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr "Incluír costo de movimiento"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
-msgstr "Cuando está seleccionado, calcula el balance y otros números en el panel asumiendo que la célula está moviendose constantemente"
+msgstr "Cuando está seleccionado, calcula el balance y otros números en el panel asumiendo que la célula está moviéndose constantemente"
 
 msgid "BASE_MOBILITY"
-msgstr "Que tanto corres"
+msgstr "Movilidad basal"
 
 msgid "BASE_MOVEMENT"
-msgstr "Que tanto corres"
+msgstr "Movimiento basal"
 
 msgid "BASIC_VIEW"
 msgstr "Basico"
@@ -409,13 +417,13 @@ msgid "BATHYPELAGIC"
 msgstr "Batipelágico"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr "Volverte re chiquito ({0}/{1})"
+msgstr "Volverse Macroscopico ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr "Volvete re polenta al unirte con el resto de los pibes ({0}/{1})"
+msgstr "Volverse Multicelular ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
-msgstr "Empeza a vivirla"
+msgstr "Empezar a Prosperar"
 
 msgid "BEHAVIOUR"
 msgstr "Comportamiento"
@@ -427,10 +435,10 @@ msgid "BEHAVIOUR_AGGRESSION"
 msgstr "Agresividad"
 
 msgid "BEHAVIOUR_FEAR"
-msgstr "Cagon"
+msgstr "Miedo"
 
 msgid "BEHAVIOUR_FOCUS"
-msgstr "Concentrate"
+msgstr "Concentración"
 
 msgid "BEHAVIOUR_OPPORTUNISM"
 msgstr "Oportunismo"
@@ -439,28 +447,29 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "{0}-{1}Bajo el nivel del mar"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "Punto de referencia"
 
 msgid "BENCHMARK_FINISHED"
-msgstr ""
+msgstr "Punto de referencia completado"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "Fase del punto de referencia:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "Resultados:"
 
 msgid "BEST_PATCH_COLON"
-msgstr ""
+msgstr "Mejor Patch:"
 
 msgid "BIG_IRON_CHUNK"
-msgstr "Pedazote de hierro"
+msgstr "Pedazo grande de hierro"
 
 msgid "BIG_PHOSPHATE_CHUNK"
-msgstr "Tremendo cacho de fosfato"
+msgstr "Pedazo grande de fosfato"
 
+#, fuzzy
 msgid "BILLION_ABBREVIATION"
-msgstr ""
+msgstr "{0} B"
 
 #, fuzzy
 msgid "BINDING_AGENT"
@@ -473,7 +482,7 @@ msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
 msgstr "Apretá la tecla [thrive:input]g_toggle_binding[/thrive:input] para entrar al modo Aglutinación. Cuando estés en este modo, podés unirte a otras células de tu misma especie a tu colonia al entrar en contacto con ellas. Para abandonar una colonia apretá [thrive:input]g_unbind_all[/thrive:input]. No podés entrar al editor cuando estás aglutinado a otras células."
 
 msgid "BIND_AXES_SENSITIVITY"
-msgstr ""
+msgstr "Unir Axis"
 
 #, fuzzy
 msgid "BIOLUMINESCENT_VACUOLE"
@@ -483,34 +492,33 @@ msgstr "Vacuola Bioluminiscente"
 msgid "BIOME_LABEL"
 msgstr "Bioma: {0}"
 
-#, fuzzy
 msgid "BLOOM_RENDER_EFFECT"
-msgstr "Oxitocina"
+msgstr "Efecto de sombreado:"
 
 #, fuzzy
 msgid "BRAIN_CELL_NAME_DEFAULT"
 msgstr "Neurona"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "Valiente"
 
 msgid "BROWSE"
-msgstr ""
+msgstr "Buscar"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "Navegar Workshop"
 
 msgid "BUILD_CITY"
-msgstr ""
+msgstr "Construir una ciudad"
 
 msgid "BUILD_QUEUE"
-msgstr ""
+msgstr "Fila de construcción"
 
 msgid "BUILD_STRUCTURE"
-msgstr ""
+msgstr "Construir una estructura"
 
 msgid "BY"
-msgstr ""
+msgstr "Por:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
 msgstr ""
@@ -7021,7 +7029,7 @@ msgstr "Recién levantado"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "Citoplasma"
+msgstr "Poner organela"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
@@ -7031,25 +7039,23 @@ msgstr "Citoplasma"
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
 msgstr "Recién levantado"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
-msgstr "Tilacoides"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "Tilacoides"
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
-msgstr "Tilacoides"
+msgstr "Recién levantado"
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr "Recién levantado"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
-msgstr "Tilacoides"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -7588,7 +7594,7 @@ msgstr "Flagelo"
 
 #, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
-msgstr "Quimioplastia"
+msgstr "Mitocondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
