@@ -70,7 +70,7 @@ public interface IDifficulty : IRegistryAssignable
     public bool LimitGrowthRate { get; }
 
     /// <summary>
-    ///   Sets how intense should the fog-of-war be
+    ///   Sets how intense the fog-of-war should be
     /// </summary>
     public FogOfWarMode FogOfWarMode { get; }
 
