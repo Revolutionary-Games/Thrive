@@ -52,6 +52,9 @@ public class DifficultyPreset : IDifficulty, IRegistryType
     public float OsmoregulationMultiplier { get; private set; }
 
     [JsonProperty]
+    public float PlayerAutoEvoStrength { get; private set; }
+
+    [JsonProperty]
     public bool FreeGlucoseCloud { get; private set; }
 
     [JsonProperty]
@@ -148,6 +151,12 @@ public class DifficultyPreset : IDifficulty, IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 $"Invalid osmoregulation multiplier: {OsmoregulationMultiplier}");
+        }
+
+        if (PlayerAutoEvoStrength is < 0 or > 1)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                $"Invalid player auto-evo strength: {PlayerAutoEvoStrength}");
         }
     }
 

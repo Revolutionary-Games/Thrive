@@ -1187,11 +1187,6 @@ public static class Constants
     /// </summary>
     public const int AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION = 50;
 
-    /// <summary>
-    ///   Configures how much auto-evo affects the player species compared to the normal amount
-    /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
-
     public const bool AUTO_EVO_TRACK_STEP_TIME = false;
 
     public const float AUTO_EVO_SINGLE_STEP_WARNING_TIME = 0.4f;
@@ -1644,6 +1639,8 @@ public static class Constants
     public const float MAX_GLUCOSE_DECAY = 0.95f;
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+    public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
+    public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
     // Constants for the procedural patch map
     public const float PATCH_NODE_RECT_LENGTH = 64.0f;

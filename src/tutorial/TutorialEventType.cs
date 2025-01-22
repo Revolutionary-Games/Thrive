@@ -19,7 +19,7 @@ public enum TutorialEventType
     MicrobePlayerMovement,
 
     /// <summary>
-    ///   There are tutorial relevant compounds near the player, args is <see cref="EntityPositionEventArgs"/>
+    ///   There are tutorial-relevant compounds near the player, args is <see cref="EntityPositionEventArgs"/>
     /// </summary>
     MicrobeCompoundsNearPlayer,
 

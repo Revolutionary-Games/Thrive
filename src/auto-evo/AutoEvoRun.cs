@@ -281,7 +281,7 @@ public class AutoEvoRun
         if (ExternalEffects.Count < 1)
             return;
 
-        // For subsequent effects to work we need to track the changes we do
+        // For subsequent effects to work, we need to track the changes we do
         var adjustedPopulations = new Dictionary<(Species, Patch), long>();
 
         foreach (var effect in ExternalEffects)
@@ -297,7 +297,7 @@ public class AutoEvoRun
 
             if (!adjustedPopulations.TryGetValue(key, out var population))
             {
-                population = results.GetPopulationInPatchIfExists(effect.Species, effect.Patch) ?? 0;
+                results.GetPopulationInPatchIfExists(effect.Species, effect.Patch, out population);
             }
 
             var newPopulation = (long)(population * effect.Coefficient) + effect.Constant;
@@ -414,14 +414,14 @@ public class AutoEvoRun
             steps.Enqueue(new MigrateSpecies(species, map, worldSettings, new SimulationCache(worldSettings), random));
         }
 
-        // The new populations don't depend on the mutations, but will take into account changes in the miche tree.
-        // This is so that when the player edits their species the other species they are competing
+        // The new populations don't depend on the mutations but will take into account changes in the miche tree.
+        // This is so that when the player edits their species, the other species they are competing
         // against are the same (so we can show some performance predictions in the editor and suggested changes)
         steps.Enqueue(new CalculatePopulation(autoEvoConfiguration, worldSettings, map, null, true));
 
         steps.Enqueue(new RegisterNewSpecies(Parameters.World, allSpecies));
 
-        AddPlayerSpeciesPopulationChangeClampStep(steps, map, Parameters.World.PlayerSpecies);
+        AddPlayerSpeciesPopulationChangeClampStep(steps, map, worldSettings, Parameters.World.PlayerSpecies);
 
         // TODO: should this also adjust / remove migrations that are no longer possible due to updated population
         // numbers?
@@ -431,16 +431,16 @@ public class AutoEvoRun
     /// <summary>
     ///   Adds a step that adjusts the player species population results
     /// </summary>
-    /// <param name="steps">The list of steps to add the adjust step to</param>
-    /// <param name="map">Used to get list of patches to act on</param>
+    /// <param name="steps">The list of steps to add the adjustment step to</param>
+    /// <param name="map">Used to get a list of patches to act on</param>
+    /// <param name="worldSettings">World settings to apply to the step</param>
     /// <param name="playerSpecies">The species the player adjustment is performed on, if null, nothing is done</param>
     /// <param name="previousPopulationFrom">
     ///   This is the species from which the previous populations are read through. If null
     ///   <see cref="playerSpecies"/> is used instead
     /// </param>
     protected void AddPlayerSpeciesPopulationChangeClampStep(Queue<IRunStep> steps, PatchMap map,
-        Species? playerSpecies,
-        Species? previousPopulationFrom = null)
+        WorldGenerationSettings worldSettings, Species? playerSpecies, Species? previousPopulationFrom = null)
     {
         if (playerSpecies == null)
             return;
@@ -455,20 +455,21 @@ public class AutoEvoRun
 
             foreach (var entry in map.Patches)
             {
-                var resultPopulation = result.GetPopulationInPatchIfExists(playerSpecies, entry.Value);
-
-                // Going extinct in patch is not adjusted, because the minimum viable population clamping is
-                // performed already so we don't want to undo that
-                if (resultPopulation is null or 0)
+                // Going extinct in a patch is not adjusted because the minimum viable population clamping is
+                // performed already, so we don't want to undo that
+                if (!result.GetPopulationInPatchIfExists(playerSpecies, entry.Value, out var resultPopulation) ||
+                    resultPopulation <= 0)
+                {
                     continue;
+                }
 
                 // Adjust to the specified fraction of the full population change
                 var previousPopulation =
                     entry.Value.GetSpeciesSimulationPopulation(previousPopulationFrom ?? playerSpecies);
 
-                var change = resultPopulation.Value - previousPopulation;
+                var change = resultPopulation - previousPopulation;
 
-                change = (long)Math.Round(change * Constants.AUTO_EVO_PLAYER_STRENGTH_FRACTION);
+                change = (long)Math.Round(change * worldSettings.PlayerAutoEvoStrength);
 
                 result.AddPopulationResultForSpecies(playerSpecies, entry.Value, previousPopulation + change);
             }
@@ -690,7 +691,7 @@ public class AutoEvoRun
                         continue;
                     }
 
-                    long currentPopulation = results.GetPopulationInPatchIfExists(entry.Species, entry.Patch) ?? 0;
+                    results.GetPopulationInPatchIfExists(entry.Species, entry.Patch, out var currentPopulation);
 
                     results.AddPopulationResultForSpecies(entry.Species, entry.Patch,
                         currentPopulation + entry.Constant);

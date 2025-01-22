@@ -5,7 +5,7 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Tutorial pointing glucose collection out to the player
+///   Tutorial pointing glucose collecting out to the player
 /// </summary>
 public class GlucoseCollecting : TutorialPhase
 {
