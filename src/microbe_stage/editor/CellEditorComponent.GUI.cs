@@ -171,10 +171,26 @@ public partial class CellEditorComponent
                 {
                     inProgressSuggestionCheckRunning = true;
 
-                    // This allocates a task each frame, but as this would be hard to workaround and is in the editor,
+                    // This allocates a task each frame, but as this would be hard to work around and is in the editor,
                     // this is just left like this
                     TaskExecutor.Instance.AddTask(new Task(CheckSuggestionProgress));
                 }
+            }
+        }
+    }
+
+    private void TriggerDelayedPredictionUpdateIfNeeded(double delta)
+    {
+        autoEvoPredictionStartTimer += delta;
+
+        if (autoEvoPredictionStartTimer > Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
+        {
+            autoEvoPredictionStartTimer = 0;
+
+            if (autoEvoPredictionDirty)
+            {
+                StartAutoEvoPrediction();
+                autoEvoPredictionDirty = false;
             }
         }
     }
@@ -827,6 +843,11 @@ public partial class CellEditorComponent
     {
         growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
         UpdateGrowthOrderNumbers();
+    }
+
+    private void OnGrowthOrderCoordinatesToggled(bool show)
+    {
+        growthOrderGUI.ShowCoordinates = show;
     }
 
     /// <summary>

@@ -31,6 +31,8 @@ public partial class GrowthOrderPicker : Control
     private PackedScene draggableItemScene = null!;
 #pragma warning restore CA2213
 
+    private bool showCoordinates = true;
+
     private List<IPlayerReadableName?>? currentSavedOrder;
 
     private SaveComparer? savedItemComparer;
@@ -46,6 +48,28 @@ public partial class GrowthOrderPicker : Control
 
     [Signal]
     public delegate void OrderResetEventHandler();
+
+    /// <summary>
+    ///   Can be turned off to hide coordinates in the display list
+    /// </summary>
+    [Export]
+    public bool ShowCoordinates
+    {
+        get => showCoordinates;
+        set
+        {
+            if (showCoordinates == value)
+                return;
+
+            showCoordinates = value;
+
+            foreach (var control in itemControls)
+            {
+                if (control.UserData is IPlayerReadableName playerReadableName)
+                    control.SetLabelText(GetText(playerReadableName));
+            }
+        }
+    }
 
     /// <summary>
     ///   A special property to handle saving and loading of state. Can technically be used to read the data but this
@@ -110,7 +134,7 @@ public partial class GrowthOrderPicker : Control
             {
                 // Need to update this item to repurpose it for this
                 existingItem.UserData = enumerator.Current;
-                existingItem.SetLabelText(enumerator.Current.ReadableName);
+                existingItem.SetLabelText(GetText(enumerator.Current));
             }
 
             // Always enable down button, it will be disabled later for the last item
@@ -141,7 +165,7 @@ public partial class GrowthOrderPicker : Control
                 item.UserData = enumerator.Current;
 
                 item.CanMoveUp = itemControls.Count > 0;
-                item.SetLabelText(enumerator.Current.ReadableName);
+                item.SetLabelText(GetText(enumerator.Current));
 
                 itemControls.Add(item);
                 item.PositionNumber = itemControls.Count;
@@ -326,7 +350,7 @@ public partial class GrowthOrderPicker : Control
                 continue;
             }
 
-            itemControl.SetLabelText(((IPlayerReadableName)itemControl.UserData).ReadableName);
+            itemControl.SetLabelText(GetText((IPlayerReadableName)itemControl.UserData));
         }
     }
 
@@ -341,10 +365,20 @@ public partial class GrowthOrderPicker : Control
             throw new InvalidOperationException("User data to move shouldn't be null");
 
         from.UserData = to.UserData;
-        from.SetLabelText(((IPlayerReadableName)from.UserData).ReadableName);
+        from.SetLabelText(GetText((IPlayerReadableName)from.UserData));
 
         to.UserData = temp;
-        to.SetLabelText(((IPlayerReadableName)to.UserData).ReadableName);
+        to.SetLabelText(GetText((IPlayerReadableName)to.UserData));
+    }
+
+    private string GetText(IPlayerReadableName playerReadableName)
+    {
+        if (showCoordinates)
+        {
+            return playerReadableName.ReadableExactIdentifier;
+        }
+
+        return playerReadableName.ReadableName;
     }
 
     private class Comparer(List<DraggableItem> existingItems) : IComparer<IPlayerReadableName>

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-15 10:33+0200\n"
+"POT-Creation-Date: 2025-01-22 11:38+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Latvian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lv/>\n"
@@ -315,6 +315,15 @@ msgstr ""
 
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% pabeigts. {1:n0}/{2:n0} pakāpieni."
+
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Aktīvi mikrobi skraidīs apkārt un gāzīsies, kad nekas interesants nenotiek.\n"
+"Sēdošie mikrobi būs nekustīgi un gaidīs, kad vide mainīsies, pirms tie kaut ko dara."
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automātiski saglabāt progresu spēles laikā"
@@ -1705,35 +1714,8 @@ msgstr "Interesants fakts: vai zināji, ka uz Zemes ir vairāk nekā 8000 infuzo
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Jautrs fakts, Stentors ir ciliāts, kas var stiept sevi un noķert upuri ar trompetei līdzīgu muti, kas pievelk savu upuri veicinot ūdens straumi ar skropstiņām."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Jautrs fakts, Didinijs ir ciliāts, kas medī paramecijus."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Padoms: toksīnus var izmantot, lai izspiestu citus toksīnus no sevis, ja esi pietiekami ātrs."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Jautrs fakts, Amēba medī un noķer upurus ar \"kājām\", kuras veidotas no citoplazmas, ko sauc par pseidopodiem, mēs vēlamies tos drīz Thrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Rekur padoms, uzmanieties no lielām šūnām un baktēŗijām, nav jautri būt sagremotam, un tie apēdīs jūs."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive skaņas kommandas galvenais izveidoja tik daudz dziesmas, kuras vēl nav spēlē pievienotas. Jūs varat tās sadzirdēt, vai skatīties tiešraides, kur viņš sakomponē tās Youtube kanālā, Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs gabalus."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive ir domāta kā svešās planētas simulācija, tāpēc tas ir loģiski, ka vairums būtnes, ko atradīsi, būs saistīti ar vienu vai divām sugām evolūcijas dēļ, kas notiek apkārt jums, paraudzieties vai nevarat atpazīt kādu!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Jautrs faks, Thrive kommanda straumē podkastus laiku pa laikam, jums vajadzētu tos izbaudīt!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Jautrs fakts, Thrive ir veidots ar atvērtā pirmkoda dzinēju Godot!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Jautrs fakts, pirmo no spēlējamiem prototipiem izveidoja mūsu satriecošs programmētājs, untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Padoms: Osmoregulācija maksā 1 ATP sekundē par daļu tavā šūnā, katra tukšā citoplazmas daļa rada 5 ATP sekundē, kas nozīmē, ka, ja tu zaudē ATP osmoregulācijas dēļ, vienkārši pievieno vairāk tukšu citoplazmas daļu vai noņem dažus organoīdus."
@@ -2336,6 +2318,10 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Šūnas procesi"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2350,6 +2336,34 @@ msgstr "Apskatiet detalizētu informāciju aiz pareģošanas"
 #, fuzzy
 msgid "GENERAL"
 msgstr "Ģenerācija:"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -3182,9 +3196,6 @@ msgstr ""
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Novietot organoīdu"
 
-msgid "LOADING_TIP"
-msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
-
 msgid "LOAD_FINISHED"
 msgstr ""
 
@@ -3419,78 +3430,103 @@ msgstr "Ieslēgt redaktoru"
 msgid "MICROBE_EDITOR"
 msgstr "Ieslēgt redaktoru"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokariotu struktūras\n"
-"\n"
-"Metabolosomas: ražo ATP no glikozes\n"
-"\n"
-"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-"\n"
-"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
-"\n"
-"Rusticianīns : pārvērš dzelzi ATP\n"
-"\n"
-"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-"\n"
-"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Prokariotu struktūras\n"
-"\n"
-"Metabolosomas: ražo ATP no glikozes\n"
-"\n"
-"Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
-"\n"
-"Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
-"\n"
-"Rusticianīns : pārvērš dzelzi ATP\n"
-"\n"
-"Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
-"\n"
-"Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Ārējie organoīdi\n"
-"\n"
-"Vica: Pārvieto jūsu šūnu ātrāk, izmantojot [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pīluss: Var sadurt citas šūnas"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membrānas piesaistītie organoīdi\n"
-"\n"
-"Kodols: Aizņem 11 heksades un atļauj membrānai piesaistītām organoīdu evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 reizi)\n"
-"\n"
-"Saistviela: Atļauj savienoties ar citām šūnām\n"
-"\n"
-"Mitohondrijs: Ražo [thrive:compound type=\"atp\"][/thrive:compound] no [thrive:compound type=\"glucose\"][/thrive:compound] un atmosfērisku O2 efektīvāk nekā citoplazma\n"
-"\n"
-"Hloroplasti: Ražo [thrive:compound type=\"glucose\"][/thrive:compound] no saules gaismas un atmosfēriskā CO2\n"
-"\n"
-"Ķīmijplasts: Ražo [thrive:compound type=\"glucose\"][/thrive:compound] no [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Slāpekļa fiksācijas plastids: Ražo [thrive:compound type=\"ammonia\"][/thrive:compound] no [thrive:compound type=\"atp\"][/thrive:compound] un atmosfēriskā Slāpekļā un Skābekļa\n"
-"\n"
-"Vakuola: Glabā 8 sakrātos savienojumus\n"
-"\n"
-"Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Katru paaudzi, jums ir 100 mutācijas punkti (MP), ko drīkstiet patērēt, un katru izmaiņa (vai mutācija) maksās konkrētu skaitu tā MP. Pievienojot vai noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika pievienoti šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat pārvietot vai pavisam noņemt organoīdu ar labo klikšķi uz tās un izvēloties konkrēto darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu organoīdus, kāmēr jūs tās liekat, ar [thrive:input]e_rotate_left[/thrive:input] un [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Katru reizi, kad jūs pavairojaties, jūs ieejat Mikrobu Redaktorā, kur jūs varat veikt izmaiņas jūsu sugai (Pievenojot, pārvietojot vai noņemot organoīdus), lai palielinātu jūsu sugas panākumus. Katrs apmeklējums redaktorā mikroba posmā pārstāv [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonus evolucijas gadus."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Lai labotu kļūdu redaktorā, nospied \"atsaukt\""
+
+#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organisma statistika"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Organisma statistika"
 
 #, fuzzy
@@ -3559,62 +3595,6 @@ msgstr ""
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt spēlēt, kā vēlies."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru reizi, kad jūs esiet rediģētājā, tie arī evolucionē."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Savienojot citas šūnas, jūs varat veidot koloniju, kurā šūnas dalās ar savienojumiem, ko absorbē un ražo ar vienu otru. Lai varētu savieno savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un tad virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat savienoties tikai ar savas sugas pārstāvjiem. Kāmēram esiet kolonijā, jūs nevariet sadalīt savu šūnu un ieiet redaktorā(pagaidām). Lai ieietu redaktorā, vispirms ir jāpamet kolonija tad, kad jums ir pietiekami daudz savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir ceļš uz daudžšūnību (tas nav vēl spēlē)."
-
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
-
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Jūsu šūna izmanto [thrive:compound type=\"atp\"][/thrive:compound] kā enerģijas avotu, ja tā beidzas, jūs nomirsiet."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs mākonis) un fosfāts (purpurs mākonis)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:input]. Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:compound], kā arī jūs palēninās. Neaizmirsti nospiest [thrive:input]g_toggle_engulf[/thrive:input] otrreiz, lai pārtrauktu absorbēšanu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. Tas nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type=\"atp\"][/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, kad nekusties."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz dažādu spēles stilu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Dažādi savienojumu mākoņi ir:\n"
-"\n"
-"Balti - glikoze\n"
-"Dzelteni - sērūdeņradis\n"
-"Oranži - amonjaks\n"
-"Purpuri - fosfāts\n"
-"Rūsas brūni - dzelzs\n"
-"\n"
-"Glikoze ražo ATP."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot ATP."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3982,6 +3962,10 @@ msgstr ""
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Novietot organoīdu"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Novietot organoīdu"
 
 #, fuzzy
@@ -5249,6 +5233,10 @@ msgstr ""
 
 msgid "SHOW_HELP"
 msgstr "Rādīt palīdzību"
+
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Rādīt tutoriālus"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -7118,8 +7106,16 @@ msgstr "Anaerobiskā slāpekļa fiksācija"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
 
+#, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
+
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
+msgstr "Bezgalīgi daudz savienojumu"
 
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
@@ -7157,15 +7153,31 @@ msgstr ""
 msgid "WIKI_HEADING_GDD"
 msgstr "Saistviela"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Ļauj saistīties ar citām šūnām. Šis ir pirmais solis uz daudzšūnu veidošanos. Kad tava šūna ir daļā no kolonijas, savienojumi tiek dalīti starp šūnām. Jūs nevarat ieiet redaktorā, kāmēram esat daļa no kolonijas, jums nepieciešams atdalīties, kad savākts nepieciešamais savienojumu daudzums, lai sadalītu jūsu šūnu."
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7215,6 +7227,38 @@ msgstr ""
 
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "Citoplazma"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Citoplazma"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Citoplazma"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr "Tilakoīdi"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Tilakoīdi"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Tilakoīdi"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
+msgstr "Tilakoīdi"
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -7695,6 +7739,10 @@ msgstr "Termoplasts"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vica"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Hemoplasts"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8292,6 +8340,156 @@ msgstr "Pietuvināt"
 
 msgid "ZOOM_OUT"
 msgstr "Attālināt"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Jautrs fakts, Didinijs ir ciliāts, kas medī paramecijus."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Jautrs fakts, Amēba medī un noķer upurus ar \"kājām\", kuras veidotas no citoplazmas, ko sauc par pseidopodiem, mēs vēlamies tos drīz Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Rekur padoms, uzmanieties no lielām šūnām un baktēŗijām, nav jautri būt sagremotam, un tie apēdīs jūs."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive skaņas kommandas galvenais izveidoja tik daudz dziesmas, kuras vēl nav spēlē pievienotas. Jūs varat tās sadzirdēt, vai skatīties tiešraides, kur viņš sakomponē tās Youtube kanālā, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Padoms: ja tavā šūnā ir 150 daļas, tā var absorbēt lielus dzelzs gabalus."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive ir domāta kā svešās planētas simulācija, tāpēc tas ir loģiski, ka vairums būtnes, ko atradīsi, būs saistīti ar vienu vai divām sugām evolūcijas dēļ, kas notiek apkārt jums, paraudzieties vai nevarat atpazīt kādu!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Jautrs faks, Thrive kommanda straumē podkastus laiku pa laikam, jums vajadzētu tos izbaudīt!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Jautrs fakts, Thrive ir veidots ar atvērtā pirmkoda dzinēju Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Jautrs fakts, pirmo no spēlējamiem prototipiem izveidoja mūsu satriecošs programmētājs, untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokariotu struktūras\n"
+#~ "\n"
+#~ "Metabolosomas: ražo ATP no glikozes\n"
+#~ "\n"
+#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+#~ "\n"
+#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+#~ "\n"
+#~ "Rusticianīns : pārvērš dzelzi ATP\n"
+#~ "\n"
+#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+#~ "\n"
+#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr ""
+#~ "Prokariotu struktūras\n"
+#~ "\n"
+#~ "Metabolosomas: ražo ATP no glikozes\n"
+#~ "\n"
+#~ "Hemosintezējošas olbaltumvielas: No sērūdeņraža saražo uz pusi mazāk glikozes nekā hemoplasts, bet arī veic glikolīzi, aizņem 1 daļu\n"
+#~ "\n"
+#~ "Tilakoīdi: ražo 3 reizes mazāk glikozes nekā parasts hloroplasts, bet arī veic glikolīzi un aizņem 1 daļu\n"
+#~ "\n"
+#~ "Rusticianīns : pārvērš dzelzi ATP\n"
+#~ "\n"
+#~ "Nitrogenāze: no atmosfēras slāpekli un ATP ražo amonjaku\n"
+#~ "\n"
+#~ "Citoplazma: uzglabā savienojumus un veic glikolīzi (ražo ATP nelielos daudzumos)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Ārējie organoīdi\n"
+#~ "\n"
+#~ "Vica: Pārvieto jūsu šūnu ātrāk, izmantojot [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pīluss: Var sadurt citas šūnas"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membrānas piesaistītie organoīdi\n"
+#~ "\n"
+#~ "Kodols: Aizņem 11 heksades un atļauj membrānai piesaistītām organoīdu evolūcijai, kā arī dubultu šūnas lielumu (to var evolucionēt tikai 1 reizi)\n"
+#~ "\n"
+#~ "Saistviela: Atļauj savienoties ar citām šūnām\n"
+#~ "\n"
+#~ "Mitohondrijs: Ražo [thrive:compound type=\"atp\"][/thrive:compound] no [thrive:compound type=\"glucose\"][/thrive:compound] un atmosfērisku O2 efektīvāk nekā citoplazma\n"
+#~ "\n"
+#~ "Hloroplasti: Ražo [thrive:compound type=\"glucose\"][/thrive:compound] no saules gaismas un atmosfēriskā CO2\n"
+#~ "\n"
+#~ "Ķīmijplasts: Ražo [thrive:compound type=\"glucose\"][/thrive:compound] no [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Slāpekļa fiksācijas plastids: Ražo [thrive:compound type=\"ammonia\"][/thrive:compound] no [thrive:compound type=\"atp\"][/thrive:compound] un atmosfēriskā Slāpekļā un Skābekļa\n"
+#~ "\n"
+#~ "Vakuola: Glabā 8 sakrātos savienojumus\n"
+#~ "\n"
+#~ "Toksīnu Vakuolas: Ražo toksīnus (called [thrive:compound type=\"oxytoxy\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Katru paaudzi, jums ir 100 mutācijas punkti (MP), ko drīkstiet patērēt, un katru izmaiņa (vai mutācija) maksās konkrētu skaitu tā MP. Pievienojot vai noņemot organoīdus maksās MP. Tomēr noņemot organoīdus, kuri tika pievienoti šajā mutāciajs sesijā, atmaksās MP par to organoīdu. Jūs varat pārvietot vai pavisam noņemt organoīdu ar labo klikšķi uz tās un izvēloties konkrēto darbību no uznirstošās izvēlnes. Jūs varat rotēt jūsu organoīdus, kāmēr jūs tās liekat, ar [thrive:input]e_rotate_left[/thrive:input] un [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Katru reizi, kad jūs pavairojaties, jūs ieejat Mikrobu Redaktorā, kur jūs varat veikt izmaiņas jūsu sugai (Pievenojot, pārvietojot vai noņemot organoīdus), lai palielinātu jūsu sugas panākumus. Katrs apmeklējums redaktorā mikroba posmā pārstāv [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonus evolucijas gadus."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Lai vairoties, katrs no tavam organoīdiem jāsadala divās daļās. Organoīdiem ir nepieciešams amonjaks un fosfāts, lai sadalītos."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Bet, ja tu izdzīvo divdesmit ģenerācijās ar 300 iedzīvotājiem, pašlaik tiek uzskatīts, ka esi uzvarējis spēlē. Pēc uzvaras tu vari turpināt spēlēt, kā vēlies."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Esiet uzmanīgi, jo jūsu konkurenti evolucionē vienlaikus jums. Katru reizi, kad jūs esiet rediģētājā, tie arī evolucionē."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Savienojot citas šūnas, jūs varat veidot koloniju, kurā šūnas dalās ar savienojumiem, ko absorbē un ražo ar vienu otru. Lai varētu savieno savienoties ar citu šūnu, jums ir nepieciešams saistvielas organoīds un tad virzieties pretī tai pēc savienošanas režīma ieslēgšanas. Jūs varat savienoties tikai ar savas sugas pārstāvjiem. Kāmēram esiet kolonijā, jūs nevariet sadalīt savu šūnu un ieiet redaktorā(pagaidām). Lai ieietu redaktorā, vispirms ir jāpamet kolonija tad, kad jums ir pietiekami daudz savienojumi savākti un tad ieejiet redaktorā. Lielās šūnu kolonijas ir ceļš uz daudžšūnību (tas nav vēl spēlē)."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] un peli, lai kustētos. [thrive:input]g_fire_toxin[/thrive:input], lai šautu [thrive:compound type=\"oxytoxy\"][/thrive:compound], ja jums ir toksīnu vakuola. [thrive:input]g_toggle_engulf[/thrive:input], lai pārslēgtu aprīšanas režīmu. Jūs varat attālinātas un pietuvināties ar peles riteni."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Jūsu šūna izmanto [thrive:compound type=\"atp\"][/thrive:compound] kā enerģijas avotu, ja tā beidzas, jūs nomirsiet."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Lai atbloķētu redaktoru un vairoties, jums jāsavāc amonjaks (oranžs mākonis) un fosfāts (purpurs mākonis)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Jūs varat arī absorbēt šūnas, baktērijas, kā arī dzelzs un šūnu gabalus, kas ir mazāki par jūs, nospiežot [thrive:input][g_toggle_engulf[/thrive:input]. Tas maksās papildu [thrive:compound type=\"atp\"][/thrive:compound], kā arī jūs palēninās. Neaizmirsti nospiest [thrive:input]g_toggle_engulf[/thrive:input] otrreiz, lai pārtrauktu absorbēšanu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulācija izmanto [thrive:compound type=\"atp\"][/thrive:compound]. Tas nozīmē, ka, jo lielāka ir tava šūna, jo vairāk [thrive:compound type=\"atp\"][/thrive:compound] ražojošu organoīdu tev ir nepieciešams, lai nezaudētu ATP, kad nekusties."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Redaktorā ir daudz organoīdu, kurus vari attīstīt, pieļaujot daudz dažādu spēles stilu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Pagaidām, ja tava populācija samazināsies līdz nullei, tu izmirsi."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Dažādi savienojumu mākoņi ir:\n"
+#~ "\n"
+#~ "Balti - glikoze\n"
+#~ "Dzelteni - sērūdeņradis\n"
+#~ "Oranži - amonjaks\n"
+#~ "Purpuri - fosfāts\n"
+#~ "Rūsas brūni - dzelzs\n"
+#~ "\n"
+#~ "Glikoze ražo ATP."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "Sērūdeņradi var pārveidot glikozē, izmantojot hemoplastus un hemosintezējošas olbaltumvielas. Ar rusticianīnu no dzelzs var ražot ATP."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

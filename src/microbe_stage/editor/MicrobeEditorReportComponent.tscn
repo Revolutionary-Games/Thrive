@@ -457,6 +457,24 @@ ChartName = "SPECIES_POPULATION"
 YAxisTicks = 6
 LegendMode = 1
 
+[node name="AtmosphericGasses" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+layout_mode = 2
+DisplayName = "ATMOSPHERIC_GASSES"
+
+[node name="AtmosphereChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" instance=ExtResource("103")]
+layout_mode = 2
+ChartName = "ATMOSPHERIC_GASSES"
+YAxisTicks = 6
+
+[node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
+layout_mode = 2
+DisplayName = "COMPOUNDS"
+
+[node name="CompoundsChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" instance=ExtResource("103")]
+layout_mode = 2
+ChartName = "COMPOUNDS"
+YAxisTicks = 6
+
 [node name="PhysicalConditions" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
 layout_mode = 2
 DisplayName = "PHYSICAL_CONDITIONS"
@@ -505,24 +523,6 @@ layout_mode = 2
 ChartName = "SUNLIGHT"
 YAxisTicks = 6
 LegendMode = 2
-
-[node name="AtmosphericGasses" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
-layout_mode = 2
-DisplayName = "ATMOSPHERIC_GASSES"
-
-[node name="AtmosphereChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/AtmosphericGasses" instance=ExtResource("103")]
-layout_mode = 2
-ChartName = "ATMOSPHERIC_GASSES"
-YAxisTicks = 6
-
-[node name="Compounds" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("10")]
-layout_mode = 2
-DisplayName = "COMPOUNDS"
-
-[node name="CompoundsChart" parent="MarginContainer/HSplitContainer/StatisticsPanel/MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/Compounds" instance=ExtResource("103")]
-layout_mode = 2
-ChartName = "COMPOUNDS"
-YAxisTicks = 6
 
 [node name="NextTabButton" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(150, 0)

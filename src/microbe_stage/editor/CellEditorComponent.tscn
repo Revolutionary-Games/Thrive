@@ -849,6 +849,12 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
+[node name="Coordinates" type="CheckBox" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "SHOW_ITEM_COORDINATES"
+autowrap_mode = 3
+
 [node name="Spacer" type="Control" parent="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/Growth/ScrollContainer/MarginContainer/GrowthContainer"]
 layout_mode = 2
 

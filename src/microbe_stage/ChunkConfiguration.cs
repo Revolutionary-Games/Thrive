@@ -27,7 +27,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public float Size;
 
     /// <summary>
-    ///   How much compound is vented per second
+    ///   Amount of compound vented per second
     /// </summary>
     public float VentAmount;
 
@@ -39,7 +39,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     public bool DeleteOnTouch;
 
     /// <summary>
-    ///   The name of kind of damage type this chunk inflicts.
+    ///   The name of the kind of damage type this chunk inflicts.
     /// </summary>
     public string DamageType;
 
@@ -167,13 +167,13 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
         public bool IsParticles;
 
         /// <summary>
-        ///   If true animations won't be stopped on this scene when this is spawned as a chunk
+        ///   If true, animations won't be stopped on this scene when this is spawned as a chunk
         /// </summary>
         public bool PlayAnimation;
 
         /// <summary>
-        ///   If true then the default shader (material retrieve) is not done, and it is assumed that normal shader
-        ///   operations like dissolving is unavailable
+        ///   If true, then the default shader (material retrieve) is not done, and it is assumed that normal shader
+        ///   operations like dissolving are unavailable
         /// </summary>
         public bool MissingDefaultShaderSupport;
 

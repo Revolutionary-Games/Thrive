@@ -28,7 +28,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     }
 
     /// <summary>
-    ///   If this is set then the next / finish button on this tab is the next button.
+    ///   If this is set, then the next / finish button on this tab is the next button.
     ///   This or <see cref="OnFinish"/> must be set before <see cref="Init(TEditor,bool)"/> is called.
     /// </summary>
     public Action? OnNextTab { get; set; }
@@ -36,7 +36,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     public Func<List<EditorUserOverride>?, bool>? OnFinish { get; set; }
 
     /// <summary>
-    ///   Sub-editor components don't require all functionality, so they override this to disable some initialization
+    ///   Subeditor components don't require all functionality, so they override this to disable some initialization
     ///   logic
     /// </summary>
     [JsonIgnore]
@@ -83,7 +83,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 
         if (OnNextTab != null)
         {
-            // This is the default state so we don't need to do anything here
+            // This is the default state, so we don't need to do anything here
         }
         else if (OnFinish != null)
         {
@@ -108,8 +108,8 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
 
     public virtual void OnEditorReady()
     {
-        // Late initialization stuff can go here (usually overridden by component types that need that)
-        // Note that this only happens when not loading a save as when loading a save auto-evo etc. data should be
+        // Late initialisation stuff can go here (usually overridden by component types that need that)
+        // Note that this only happens when not loading a save, as when loading a save auto-evo etc. data should be
         // ready immediately
     }
 
@@ -186,7 +186,7 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     }
 
     /// <summary>
-    ///   Rebuilds and recalculates all value dependent UI elements on language change
+    ///   Rebuilds and recalculates all value-dependent UI elements on language change
     /// </summary>
     protected virtual void OnTranslationsChanged()
     {
@@ -201,13 +201,19 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
         if (IsSubComponent)
             return;
 
-        // By default this is the next button
+        // By default, this is the next button
         finishOrNextButton.RegisterToolTipForControl("nextTabButton", "editor");
     }
 
     protected virtual void NextOrFinishClicked()
     {
         GUICommon.Instance.PlayButtonPressSound();
+
+        if (!ModalManager.Instance.TryCancelModals())
+        {
+            GD.PrintErr("Cannot close open modals before continuing, not triggering next / finish action");
+            return;
+        }
 
         if (OnFinish != null)
         {

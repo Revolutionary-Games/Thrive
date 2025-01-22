@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-15 10:33+0200\n"
+"POT-Creation-Date: 2025-01-22 11:38+0000\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ko/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Generated-By: Babel 2.9.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "2차원 움직임 방식:"
 
 msgid "3D_EDITOR"
 msgstr "3차원 편집기"
@@ -29,7 +29,7 @@ msgid "3D_MOVEMENT"
 msgstr "3차원 이동"
 
 msgid "3D_MOVEMENT_TYPE_SELECTION"
-msgstr ""
+msgstr "3차원 움직임 방식:"
 
 msgid "ABILITIES"
 msgstr "능력"
@@ -55,17 +55,17 @@ msgid "ABYSSOPELAGIC"
 msgstr "심해원양성"
 
 msgid "ACCEPT"
-msgstr ""
+msgstr "확인하기"
 
 msgid "ACTION_AWAKEN"
-msgstr ""
+msgstr "의식 정도 ({0:F1} / {1:F1})"
 
 #, fuzzy
 msgid "ACTION_AWAKEN_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ACTION_BLOCKED_WHILE_ANOTHER_IN_PROGRESS"
-msgstr ""
+msgstr "또 다른 동작을 실행할 수 없습니다"
 
 #, fuzzy
 msgid "ACTION_DELETE"
@@ -88,7 +88,7 @@ msgid "ACTION_TELEPORT"
 msgstr "나가기 확인"
 
 msgid "ACTIVE"
-msgstr ""
+msgstr "활발함"
 
 #, fuzzy
 msgid "ACTIVE_THREAD_COUNT"
@@ -96,6 +96,8 @@ msgstr "저장 및 계속"
 
 msgid "ACTIVITY_EXPLANATION"
 msgstr ""
+"활발한 미생물들은 아무 일이 일어나지 않아도 계속해서 움직일 것 입니다.\n"
+"소극적인 미생물들은 환경에 변화가 생길 때까지 기다릴 것 입니다."
 
 #, fuzzy
 msgid "ADDITIONAL_VALIDATION_FAILED"
@@ -105,7 +107,7 @@ msgid "ADD_INPUT_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ADVANCED_VIEW"
-msgstr ""
+msgstr "발전된"
 
 #, fuzzy
 msgid "ADVANCED_VIEW_BUTTON_TOOLTIP"
@@ -135,9 +137,13 @@ msgstr "동굴"
 
 msgid "AGGRESSION_EXPLANATION"
 msgstr ""
+"공격적인 미생물들은 먼 거리에 있는 사냥감도 쫓으려 할 것이며,\n"
+"포식자에게 공격을 받을 시 맞서 싸울 것 입니다.\n"
+"평화로운 미생물들은 멀리 있는 자들에겐 신경을 쓰지 않을 것이며,\n"
+"포식자들에게 독을 자주 사용하지 않을 것 입니다."
 
 msgid "AGGRESSIVE"
-msgstr ""
+msgstr "공격적인"
 
 #, fuzzy
 msgid "AI_MUTATION_RATE"
@@ -166,13 +172,13 @@ msgid "ALL_WORLDS_STATISTICS"
 msgstr "생체 상태창"
 
 msgid "ALREADY_ASCENDED"
-msgstr ""
+msgstr "당신은 이미 초월했습니다"
 
 msgid "ALT"
 msgstr "Alt"
 
 msgid "ALWAYS_VISIBLE"
-msgstr ""
+msgstr "언제나 보임"
 
 msgid "AMBIANCE_VOLUME"
 msgstr "배경 음량"
@@ -197,13 +203,13 @@ msgid "APPEARANCE"
 msgstr "외관"
 
 msgid "APPLY"
-msgstr ""
+msgstr "적용하기"
 
 msgid "APPLY_CHANGES"
-msgstr ""
+msgstr "변경 사항 적용하기"
 
 msgid "APRIL"
-msgstr ""
+msgstr "4월"
 
 msgid "ARE_YOU_SURE_TO_RESET_ALL_SETTINGS"
 msgstr "모든 설정을 기본값으로 초기화하시겠습니까?"
@@ -220,10 +226,10 @@ msgid "ARTWORK_TITLE"
 msgstr "번영했습니다!"
 
 msgid "ART_BY"
-msgstr ""
+msgstr "{0} 의 작품"
 
 msgid "ART_GALLERY"
-msgstr ""
+msgstr "작품 전시관"
 
 #, fuzzy
 msgid "ASCENSION_CONGRATULATIONS"
@@ -231,16 +237,23 @@ msgstr "종:"
 
 msgid "ASCENSION_CONGRATULATIONS_CONTENT"
 msgstr ""
+"당신은 초월을 하여 게임을 완료했습니다. 게임의 끝까지 오신 걸 축하 드립니다!\n"
+"\n"
+"원하신다면 방금 잠금 해제한 신 도구들과 함께 이 공간에서 우주 단계를 계속 진행하셔도 됩니다.\n"
+"\n"
+"이 게임에서 다시 미생물 단계로 돌아가 추가 보너스와 함께 처음부터 진행하는 것도 가능합니다.\n"
+"\n"
+"이 게임에서 초월한 총 횟수:{0}"
 
 #, fuzzy
 msgid "ASCENSION_STAGE"
 msgstr "버전:"
 
 msgid "ASSEMBLY_CLASS_REQUIRED"
-msgstr ""
+msgstr "어셈블리가 특정 될 경우엔 모드 어셈블리 클래스가 필요합니다"
 
 msgid "ASSEMBLY_REQUIRED_WITH_HARMONY"
-msgstr ""
+msgstr "자동 하모니가 활성화 되었을 때엔 모드 어셈블리가 필요합니다"
 
 msgid "ASSUME_HYPERTHREADING"
 msgstr ""
@@ -262,10 +275,10 @@ msgid "ATP_BALANCE_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
-msgstr ""
+msgstr "외부 자원 없이"
 
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
-msgstr ""
+msgstr "포도당 없이"
 
 #, fuzzy
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
@@ -276,7 +289,7 @@ msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr "ATP 균형"
 
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
-msgstr ""
+msgstr "필요한 모든 물질들이 있을 시"
 
 msgid "ATP_PRODUCTION"
 msgstr "ATP 생산"
@@ -292,10 +305,10 @@ msgid "AT_CURSOR"
 msgstr "커서 위치에서:"
 
 msgid "AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "오디오 출력 기기:"
 
 msgid "AUGUST"
-msgstr ""
+msgstr "8월"
 
 msgid "AUTO"
 msgstr "자동"
@@ -317,6 +330,13 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% 완료됨. {1:n0}/{2:n0} 단계."
 
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "삼투압 비용"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "진행 중 자동 저장"
 
@@ -331,7 +351,7 @@ msgid "AUTO_EVO_FAILED"
 msgstr "Auto-evo 실행 실패"
 
 msgid "AUTO_EVO_MISSING_RESULT_DATA_OBJECT"
-msgstr ""
+msgstr "Auto-evo 결과 중 빠진 것들이 있습니다. 만일 오래된 저장된 게임을 불러온 것 이라면 결과 중 몇 개가 빠진 것 입니다. 만일 아니라면 버그를 신고해주시고, 게임 로그 파일을 저희에게 보내주십시오."
 
 msgid "AUTO_EVO_RESULTS"
 msgstr "Auto-evo 결과:"
@@ -359,13 +379,13 @@ msgid "AUTO_RESOLUTION"
 msgstr "해상도:"
 
 msgid "AVAILABLE_CONSTRUCTION_PROJECTS"
-msgstr ""
+msgstr "사용 가능한 건설 프로젝트"
 
 msgid "AVAILABLE_MODS"
-msgstr ""
+msgstr "사용 가능한 모드"
 
 msgid "AWAKENING_STAGE"
-msgstr ""
+msgstr "의식 단계"
 
 #, fuzzy
 msgid "AWARE_STAGE"
@@ -375,7 +395,7 @@ msgid "BACK"
 msgstr "뒤로"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "배경 흐림 처리:"
 
 #, fuzzy
 msgid "BACKSLASH"
@@ -390,13 +410,13 @@ msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr "열합성"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
-msgstr ""
+msgstr "낮 기준으로 계산하기"
 
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
-msgstr ""
+msgstr "체크할 시 패널에 적힌 숫자들이 낮을 기준으로 계산 될 것 입니다"
 
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
-msgstr ""
+msgstr "움직임 비용 포함하기"
 
 #, fuzzy
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
@@ -410,7 +430,7 @@ msgid "BASE_MOVEMENT"
 msgstr "기초 이동"
 
 msgid "BASIC_VIEW"
-msgstr ""
+msgstr "기본"
 
 #, fuzzy
 msgid "BASIC_VIEW_BUTTON_TOOLTIP"
@@ -420,10 +440,10 @@ msgid "BATHYPELAGIC"
 msgstr "심해수층"
 
 msgid "BECOME_MACROSCOPIC"
-msgstr ""
+msgstr "거시 생물로 변화하기 ({0}/{1})"
 
 msgid "BECOME_MULTICELLULAR"
-msgstr ""
+msgstr "다세포 생물로 변화하기 ({0}/{1})"
 
 msgid "BEGIN_THRIVING"
 msgstr "Thrive 시작"
@@ -456,17 +476,17 @@ msgid "BELOW_SEA_LEVEL"
 msgstr "해수면으로부터 {0}-{1}m"
 
 msgid "BENCHMARKS"
-msgstr ""
+msgstr "기준"
 
 #, fuzzy
 msgid "BENCHMARK_FINISHED"
 msgstr "불러오기 완료"
 
 msgid "BENCHMARK_PHASE"
-msgstr ""
+msgstr "기준 단계:"
 
 msgid "BENCHMARK_RESULTS_COLON"
-msgstr ""
+msgstr "결과:"
 
 #, fuzzy
 msgid "BEST_PATCH_COLON"
@@ -507,16 +527,16 @@ msgid "BLOOM_RENDER_EFFECT"
 msgstr "외부 효과:"
 
 msgid "BRAIN_CELL_NAME_DEFAULT"
-msgstr ""
+msgstr "뉴런"
 
 msgid "BRAVE"
-msgstr ""
+msgstr "용감한"
 
 msgid "BROWSE"
-msgstr ""
+msgstr "검색하기"
 
 msgid "BROWSE_WORKSHOP"
-msgstr ""
+msgstr "창작마당 검색하기"
 
 #, fuzzy
 msgid "BUILD_CITY"
@@ -534,7 +554,7 @@ msgid "BY"
 msgstr "요인:"
 
 msgid "BY_REVOLUTIONARY_GAMES"
-msgstr ""
+msgstr "Revolutionary Games Studio 제작"
 
 msgid "CACHE_DISK_MAX_TIME"
 msgstr ""
@@ -572,10 +592,10 @@ msgid "CANCEL_CURRENT_ACTION"
 msgstr "현재 동작 취소"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE"
-msgstr ""
+msgstr "현재 당신의 신체 체제에 사용 중인 세포 종류는 삭제 될 수 없습니다"
 
 msgid "CANNOT_DELETE_USED_CELL_TYPE_TITLE"
-msgstr ""
+msgstr "이미 사용한 세포 종류는 삭제 불가함"
 
 msgid "CANNOT_ENGULF"
 msgstr "삼킬 수 없음"
@@ -584,44 +604,44 @@ msgid "CANNOT_MOVE_METABALL_TO_DESCENDANT_TREE"
 msgstr ""
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE"
-msgstr ""
+msgstr "현재 단계에 머무르기에는 뇌의 힘이 부족합니다. 현재로서 이전 단계로 돌아가는 것은 허용되지 않기 때문에, 계속 진행하기 위해선 뇌의 힘을 늘려주십시오."
 
 msgid "CANNOT_REDUCE_BRAIN_POWER_STAGE_TITLE"
-msgstr ""
+msgstr "뇌의 힘을 줄여 이전 단계로 돌아가는 것은 불가함"
 
 #, fuzzy
 msgid "CANNOT_WRITE_SAVE"
 msgstr "삼킬 수 없음"
 
 msgid "CANT_LOAD_MOD_INFO"
-msgstr ""
+msgstr "모드 {0}의 정보 불러오기 실패"
 
 msgid "CAPSLOCK"
-msgstr ""
+msgstr "캡스 락"
 
 msgid "CARBON_DIOXIDE"
 msgstr "이산화탄소"
 
 msgid "CATEGORY_AN_ABUNDANCE"
-msgstr ""
+msgstr "풍부함"
 
 msgid "CATEGORY_A_FAIR_AMOUNT"
-msgstr ""
+msgstr "적당한 양"
 
 msgid "CATEGORY_LITTLE"
-msgstr ""
+msgstr "적음"
 
 msgid "CATEGORY_QUITE_A_BIT"
-msgstr ""
+msgstr "조금 많음"
 
 msgid "CATEGORY_SOME"
-msgstr ""
+msgstr "조금"
 
 msgid "CATEGORY_VERY_LITTLE"
-msgstr ""
+msgstr "아주 적음"
 
 msgid "CAUTIOUS"
-msgstr ""
+msgstr "경고"
 
 #, fuzzy
 msgid "CELL"
@@ -653,7 +673,7 @@ msgid "CELL_STAT_SPEED_TOOLTIP"
 msgstr "재개"
 
 msgid "CELL_TYPE_NAME"
-msgstr ""
+msgstr "세포 종류 이름"
 
 #, fuzzy
 msgid "CHANGE_DESCRIPTION_IS_TOO_LONG"
@@ -760,7 +780,7 @@ msgid "CHROMATOPHORE_PROCESSES_DESCRIPTION"
 msgstr "화학 합성 단백질은 황화수소 화학 합성이라는 과정에서 황화수소, 물 및 기체 이산화탄소를 포도당으로 전환 할 수 있는 세포질의 작은 단백질 집합입니다. 포도당 생산 속도는 이산화탄소 농도에 따라 달라집니다. 화학 합성 단백질이 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
 msgid "CHUNK_CELL_CORPSE_PART"
-msgstr ""
+msgstr "죽은 세포 덩어리"
 
 #, fuzzy
 msgid "CHUNK_FOOD_SOURCE"
@@ -785,7 +805,7 @@ msgid "CLEAN_UP_OLD_SAVES"
 msgstr "이전 저장 정리"
 
 msgid "CLEAR_CACHE"
-msgstr ""
+msgstr "캐시 초기화하기"
 
 msgid "CLOSE"
 msgstr "닫기"
@@ -825,7 +845,7 @@ msgid "COLOURBLIND_CORRECTION"
 msgstr "색맹 교정:"
 
 msgid "COLOUR_PICKER_ADD_PRESET"
-msgstr ""
+msgstr "현재 색상을 프리셋으로 설정하기"
 
 #, fuzzy
 msgid "COLOUR_PICKER_A_TOOLTIP"
@@ -878,14 +898,14 @@ msgid "COMMON_EDITING_AND_STRATEGY"
 msgstr ""
 
 msgid "COMMUNITY_FORUM"
-msgstr ""
+msgstr "커뮤니티 포럼"
 
 #, fuzzy
 msgid "COMMUNITY_FORUM_BUTTON_TOOLTIP"
 msgstr "새로운 키 배치 추가"
 
 msgid "COMMUNITY_WIKI"
-msgstr ""
+msgstr "커뮤니티 위키"
 
 #, fuzzy
 msgid "COMMUNITY_WIKI_BUTTON_TOOLTIP"
@@ -953,7 +973,7 @@ msgid "COMPOUND_CLOUD_DENSITY_EXPLANATION"
 msgstr "화합물 구름"
 
 msgid "COMPOUND_CONCENTRATIONS_DECREASED"
-msgstr ""
+msgstr "{0}의 농도가 {1}만큼 줄었습니다"
 
 #, fuzzy
 msgid "COMPOUND_FOOD_SOURCE"
@@ -980,7 +1000,7 @@ msgid "COMPOUND_STORAGE_AMOUNT_DOES_NOT_LAST_NIGHT"
 msgstr "성분 비율"
 
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_GENERATED_DURING_DAY"
-msgstr ""
+msgstr "{1} [thrive:compound type=\"{0}\"][/thrive:compound] 만이 낮 동안 생성될 수 있으나 밤을 보내기 위해선 {2}가 필요합니다."
 
 #, fuzzy
 msgid "COMPOUND_STORAGE_NOT_ENOUGH_SPACE"
@@ -1015,7 +1035,7 @@ msgid "CONFIRM_EXIT"
 msgstr "나가기 확인"
 
 msgid "CONFIRM_FOSSILISATION_OVERWRITE"
-msgstr ""
+msgstr "덮어쓰기 확인하기"
 
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE"
@@ -1026,7 +1046,7 @@ msgid "CONFIRM_MOVE_TO_ASCENSION_STAGE_EXPLANATION"
 msgstr "(AI 종이 변이하는 속도)"
 
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE"
-msgstr ""
+msgstr "산업 단계로 넘어가기?"
 
 #, fuzzy
 msgid "CONFIRM_MOVE_TO_INDUSTRIAL_STAGE_EXPLANATION"
@@ -1049,10 +1069,10 @@ msgid "CONFIRM_NEW_GAME_BUTTON_TOOLTIP_DISABLED"
 msgstr "새로운 키 배치 추가"
 
 msgid "CONSTRUCTION_UNIT_NAME"
-msgstr ""
+msgstr "개체 수: {0}"
 
 msgid "CONTENT_UPLOADED_FROM"
-msgstr ""
+msgstr "워크샵 콘텐츠가 이 폴더에서 업로드 됩니다: {0}"
 
 #, fuzzy
 msgid "CONTINUE"
@@ -1068,15 +1088,21 @@ msgstr "Thrive 시작"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
+"당신은 Thrive의 \"완성 된\" 부분의 끝에 도달하였습니다.\n"
+"만약 원하신다면, 현재 게임에 포함 된 다음 단계들의 초기 버전들로 이어갈 수 있습니다. 이 단계들은 미완성 된 부분이 많고, 임시방편 그래픽을 사용하며, 매우 허술합니다. 이 단계들은 이 게임의 미래 가능성과 길을 터기 위해, 그리고 단계 사이들이 어떤 식으로 연결 될 지에 대한 저희의 시각을 보이기 위해 게임의 한 부분으로 추가되었습니다.\n"
+"\n"
+"당신은 대부분의 초기 버전들에서 게임 저장을 하지 못할 것이며, 계속 진행하다가 다시 돌아오더라도 저장은 되지 않을 것입니다. 이 단계로 다시 돌아오고 싶다면 진행 전 저장을 해주십시오.\n"
+"\n"
+"컨트롤러에 대한 지원은 초기 단계들에선 매우 허술할 것 입니다. 진행하길 택하신다면, 다음부터 나올 단계들은 초기 단계라는 것을 이해해주시고, 미완성 되어져 있다고 불평하지는 말아주십시오."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr ""
 
 msgid "CONTROLLER_ANY_DEVICE"
-msgstr ""
+msgstr "아무 기기"
 
 msgid "CONTROLLER_AXIS_L2"
-msgstr ""
+msgstr "L2"
 
 msgid "CONTROLLER_AXIS_LEFT_TRIGGER"
 msgstr ""
@@ -1096,7 +1122,7 @@ msgid "CONTROLLER_AXIS_POSITIVE_DIRECTION"
 msgstr "질소 고정 색소체는 ATP 형태의 기체 질소와 산소 및 세포 에너지를 사용하여 세포의 핵심 성장 영양소인 암모니아를 생성 할 수 있는 단백질입니다. 이 과정은 호기성 질소 고정 이라고 불립니다."
 
 msgid "CONTROLLER_AXIS_R2"
-msgstr ""
+msgstr "R2"
 
 msgid "CONTROLLER_AXIS_RIGHT_TRIGGER"
 msgstr ""
@@ -1111,22 +1137,22 @@ msgid "CONTROLLER_AXIS_VISUALIZERS"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_DPAD_DOWN"
-msgstr ""
+msgstr "십자 패드 아래 키"
 
 msgid "CONTROLLER_BUTTON_DPAD_LEFT"
-msgstr ""
+msgstr "십자 패드 왼쪽 키"
 
 msgid "CONTROLLER_BUTTON_DPAD_RIGHT"
-msgstr ""
+msgstr "십자 패드 오른쪽 키"
 
 msgid "CONTROLLER_BUTTON_DPAD_UP"
-msgstr ""
+msgstr "십자 패드 위쪽 키"
 
 msgid "CONTROLLER_BUTTON_LEFT_SHOULDER"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_LEFT_STICK"
-msgstr ""
+msgstr "좌측 스틱 누르기"
 
 msgid "CONTROLLER_BUTTON_MISC1"
 msgstr ""
@@ -1144,34 +1170,34 @@ msgid "CONTROLLER_BUTTON_PADDLE4"
 msgstr ""
 
 msgid "CONTROLLER_BUTTON_PS3_SELECT"
-msgstr ""
+msgstr "Select 버튼"
 
 msgid "CONTROLLER_BUTTON_PS3_START"
-msgstr ""
+msgstr "Start 버튼"
 
 msgid "CONTROLLER_BUTTON_PS_CIRCLE"
-msgstr ""
+msgstr "십자 패드 동그라미 키"
 
 msgid "CONTROLLER_BUTTON_PS_CROSS"
-msgstr ""
+msgstr "십자 패드 X자 키"
 
 msgid "CONTROLLER_BUTTON_PS_L1"
-msgstr ""
+msgstr "L1"
 
 msgid "CONTROLLER_BUTTON_PS_L3"
-msgstr ""
+msgstr "L3"
 
 msgid "CONTROLLER_BUTTON_PS_OPTIONS"
-msgstr ""
+msgstr "Options 키"
 
 msgid "CONTROLLER_BUTTON_PS_R1"
-msgstr ""
+msgstr "R1"
 
 msgid "CONTROLLER_BUTTON_PS_R3"
-msgstr ""
+msgstr "R3"
 
 msgid "CONTROLLER_BUTTON_PS_SHARE"
-msgstr ""
+msgstr "Share 키"
 
 msgid "CONTROLLER_BUTTON_PS_SONY_BUTTON"
 msgstr ""
@@ -1427,7 +1453,7 @@ msgid "DEADZONE_CONFIGURATION"
 msgstr "이 저장을 삭제하는 것은 취소할 수 없습니다, 영구적으로 이 저장을 삭제하시겠습니까?"
 
 msgid "DEATH"
-msgstr ""
+msgstr "죽음"
 
 msgid "DEBUG_COORDINATES"
 msgstr ""
@@ -1436,20 +1462,20 @@ msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr ""
 
 msgid "DEBUG_PANEL"
-msgstr ""
+msgstr "디버그 패널"
 
 msgid "DECEMBER"
-msgstr ""
+msgstr "12월"
 
 #, fuzzy
 msgid "DECREASE_ITEM_SIZE"
 msgstr "점액 분비"
 
 msgid "DEFAULT_AUDIO_OUTPUT_DEVICE"
-msgstr ""
+msgstr "기본 출력 기기"
 
 msgid "DELETE"
-msgstr ""
+msgstr "삭제하기"
 
 #, fuzzy
 msgid "DELETE_ALL_OLD_SAVE_WARNING_2"
@@ -1510,7 +1536,7 @@ msgid "DESCRIPTION_TOO_LONG"
 msgstr "설명:"
 
 msgid "DESPAWN_ENTITIES"
-msgstr ""
+msgstr "모든 엔티티 없애기"
 
 #, fuzzy
 msgid "DETECTED_CPU_COUNT"
@@ -1520,10 +1546,10 @@ msgid "DEVBUILD_VERSION_INFO"
 msgstr ""
 
 msgid "DEVELOPERS"
-msgstr ""
+msgstr "개발자들"
 
 msgid "DEVELOPMENT_FORUM"
-msgstr ""
+msgstr "개발 포럼"
 
 #, fuzzy
 msgid "DEVELOPMENT_FORUM_BUTTON_TOOLTIP"
@@ -1533,7 +1559,7 @@ msgid "DEVELOPMENT_SUPPORTED_BY"
 msgstr ""
 
 msgid "DEVELOPMENT_WIKI"
-msgstr ""
+msgstr "개발 위키"
 
 #, fuzzy
 msgid "DEVELOPMENT_WIKI_BUTTON_TOOLTIP"
@@ -1546,13 +1572,13 @@ msgid "DEV_BUILD_PATRONS"
 msgstr ""
 
 msgid "DIFFICULTY"
-msgstr ""
+msgstr "난이도"
 
 msgid "DIFFICULTY_DETAILS_STRING"
 msgstr ""
 
 msgid "DIFFICULTY_PRESET"
-msgstr ""
+msgstr "난이도 프리셋"
 
 msgid "DIFFICULTY_PRESET_CUSTOM"
 msgstr "직접 설정"
@@ -1567,7 +1593,7 @@ msgid "DIFFICULTY_PRESET_NORMAL"
 msgstr "보통"
 
 msgid "DIGESTION_EFFICIENCY"
-msgstr ""
+msgstr "소화 효율"
 
 #, fuzzy
 msgid "DIGESTION_EFFICIENCY_COLON"
@@ -1582,13 +1608,13 @@ msgid "DIGESTION_SPEED_COLON"
 msgstr "속도:"
 
 msgid "DIGESTION_SPEED_VALUE"
-msgstr ""
+msgstr "{0}/초당"
 
 msgid "DISABLED"
-msgstr ""
+msgstr "비활성화됨"
 
 msgid "DISABLE_ALL"
-msgstr ""
+msgstr "모두 비활성화하기"
 
 msgid "DISCARD_AND_CONTINUE"
 msgstr "취소 및 계속"
@@ -1646,10 +1672,10 @@ msgid "DISMISSED_POPUPS_EXPLANATION"
 msgstr "다음으로 인하여 개체 수가 {0} 에서 {1} 로 변화됨: {2}"
 
 msgid "DISMISS_INFORMATION_PERMANENTLY"
-msgstr ""
+msgstr "다시 보지 않기"
 
 msgid "DISMISS_WARNING_PERMANENTLY"
-msgstr ""
+msgstr "다시 경고하지 않기"
 
 msgid "DISPLAY_3D_MENU_BACKGROUNDS"
 msgstr ""
@@ -1662,7 +1688,7 @@ msgid "DISPLAY_BACKGROUND_DISTORTION_EFFECT"
 msgstr ""
 
 msgid "DISPLAY_BACKGROUND_PARTICLES"
-msgstr ""
+msgstr "배경 효과 입자 보이기"
 
 #, fuzzy
 msgid "DISPLAY_DRIVER_OPENGL"
@@ -1738,35 +1764,8 @@ msgstr "농담 하나, 지구에는 8000 종이 넘는 섬모충이 있다는 �
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "농담 하나, 나팔벌레는 스스로 섬모로 급류를 만들어 먹이를 일종의 나팔과 같은 입으로 잡을 수 있는 섬모충입니다."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충입니다."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "팁 하나, 당신이 충분히 빠르다면 독소를 이용하여 다른 독소를 멀리 떨어 뜨릴 수 있습니다."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, 당신은 흡수당할 것 입니다."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라고 생각됩니다, 맞는지 알아보세요!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, untrustedlife가 만들었습니다!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "팁 하나, 삼투압 조절은 세포 한 칸에 초당 1의 ATP를 소모하며, 빈 세포질은 초당 5 ATP를 생산하므로, 삼투압 조절 중 ATP를 잃고 있다면 빈 세포질을 추가하거나 세포 기관을 제거하면 됩니다."
@@ -2353,6 +2352,10 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "세포 진행률"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2366,6 +2369,34 @@ msgstr "새로운 키 배치 추가"
 
 msgid "GENERAL"
 msgstr "일반"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
 
 msgid "GENERATIONS"
 msgstr "세대"
@@ -3205,9 +3236,6 @@ msgstr "미생물 편집기 불러오는 중"
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "미생물 편집기 불러오는 중"
 
-msgid "LOADING_TIP"
-msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
-
 msgid "LOAD_FINISHED"
 msgstr "불러오기 완료"
 
@@ -3460,70 +3488,103 @@ msgstr "미생물 편집기"
 msgid "MICROBE_EDITOR"
 msgstr "미생물 편집기"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"원핵 구조체\n"
-"\n"
-"대사체: 포도당으로부터 ATP 생산\n"
-"\n"
-"화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
-"\n"
-"틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
-"\n"
-"루스티시아닌: 철을 ATP로 전환\n"
-"\n"
-"니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
-"\n"
-"세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"외부 세포 기관\n"
-"\n"
-"편모: ATP를 소모하여 세포를 더 빠르게 이동\n"
-"\n"
-"선모: 다른 세포를 찌를 수 있음"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"세포막 결합 소기관\n"
-"\n"
-"핵: 헥스 11칸을 차지하며, 세포막 결합 소기관의 진화를 가능하게 하며, 세포 크기를 두 배로 늘리며, 세포가 입는 피해를 50% 감소 (한 번만 진화할 수 있음)\n"
-"\n"
-"결합 기관: 다른 세포와 결합할 수 있게 함. 다세포 단계로 진행하는 데에 필수적\n"
-"\n"
-"미토콘드리아: [thrive:compound type=\"glucose\"][/thrive:compound]과 대기 중의 산소로부터 세포질보다 훨씬 효율적으로 [thrive:compound type=\"atp\"][/thrive:compound]를 합성\n"
-"\n"
-"엽록체: 햇빛과 대기 중의 이산화탄소로부터 [thrive:compound type=\"glucose\"][/thrive:compound]을 합성\n"
-"\n"
-"열합성 기관: 온도 경사를 사용하여 [thrive:compound type=\"atp\"][/thrive:compound]를 합성\n"
-"\n"
-"리소좀: 소화 효소를 가지고 있음. 효소는 소화 능률과 속도를 개선함\n"
-"\n"
-"화학합성 기관: [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]로부터 [thrive:compound type=\"glucose\"][/thrive:compound]를 합성\n"
-"\n"
-"질소 고정 색소체: [thrive:compound type=\"atp\"][/thrive:compound] 및 대기 중의 질소와 산소로부터 [thrive:compound type=\"ammonia\"][/thrive:compound]를 합성\n"
-"\n"
-"액포: 수집한 물질을 8단위 저장\n"
-"\n"
-"독소 액포: 독소([thrive:compound type=\"oxytoxy\"][/thrive:compound])를 생산하며 이를 분비하여 옥시톡시 잔량에 따라 피해를 입힐 수 있게 함\n"
-"\n"
-"신호 기관: 세포에서 다른 세포가 반응할 수 있는 화합물을 합성할 수 있게 함"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "각 세대마다, 100 변이 점수(MP)를 사용할 수 있으며, 각각의 변화(또는 변이)는 그에 맞는 MP를 소모합니다. 세포 기관의 추가나 제거는 MP를 소모하지만, 현재 변이 세션에서 배치된 세포 기관의 제거 시 MP를 돌려받을 수 있습니다. 오른쪽-클릭 후 팝업 창의 확인을 통해 세포 기관을 이동하거나 완전히 제거할 수 있습니다. A 키와 D 키로 배치 중인 세포 기관을 회전시킬 수 있습니다."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세포 기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니다. 미생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "미생물 자유 편집기"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "편집기에서 취소 버튼을 눌러 실수를 정정 할 수 있습니다"
+
+#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "생체 상태창"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "생체 상태창"
 
 #, fuzzy
@@ -3577,60 +3638,6 @@ msgstr ""
 "생명력이 모두 떨어지면 세포는 죽게 됩니다.\n"
 "ATP가 있다면 재생할 것입니다.\n"
 "ATP를 만들기 위하여 충분한 포도당을 수집하세요."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] 와 마우스를 사용하여 이동합니다. 독소 액포가 있다면 [thrive:input]g_fire_toxin[/thrive:input] 를 사용하여 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 를 사용합니다. [thrive:input]g_toggle_engulf[/thrive:input] 를 사용하여 삼킴 모드를 켜고 끕니다. 마우스 휠을 사용하여 확대/축소할 수 있습니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "번식하려면 세포 기관을 각각 두개로 나눠야 합니다. 세포 기관을 반으로 나누기 위해 암모니아와 인산염이 필요합니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "그러나 300 명의 개체 수로 20 세대 동안 생존했다면 현재 게임에서 승리 한 것으로 간주되며, 승리 후 팝업이 나타나고 원한다면 계속 플레이 할 수 있습니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "당신의 경쟁자 또한 당신처럼 진화한다는 것을 명심하십시오. 당신이 편집기에 들어갈 때마다 그들도 진화할 것입니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "결합 기관은 당신의 세포가 같은 종의 다른 세포들과 함께 세포 군집을 형성하여 흡수하거나 생산한 물질들을 서로 공유할 수 있게 합니다. [thrive:input]g_toggle_binding[/thrive:input]를 눌러 결합 모드에 진입하세요. 군집을 이루고 있을 때는 세포를 분열시켜 편집기에 진입할 수 없습니다. 편집기에 진입하려면, 필요한 화합물을 모은 다음 [thrive:input]g_unbind_all[/thrive:input]를 눌러 군집을 떠나세요. 커다란 세포 군집은 다세포 생물로 이어질 수 있습니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "특히 셀룰로오스와 키틴 세포벽은 먼저 이들을 분해할 수 있는 효소를 가지고 있지 않으면 소화할 수 없습니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "하지만, 리소좀은 진핵생물에만 있습니다. 원핵생물은 그런 소기관을 가지고 있지 않으며 음식을 비교적 비효율적으로 소화합니다. 작은 세포들에게는 괜찮지만, 큰 세포들에게 리소좀이 없으면 아주 불리합니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "당신의 세포는 에너지원으로써 ATP를 사용하며, 전부 바닥나면 죽게 될 것입니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "편집기를 해금하고 복제하려면 암모니아(주황색 구름) 와 인산염(자주색 구름)을 모아야 합니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "G 키를 눌러 자신보다 작은 세포나 박테리아 또는 철과 세포 조각들을 삼킬 수 있습니다. 이것은 추가적인 ATP를 소모하며 더 느려지게 만듭니다. G 키를 한번 더 눌러 삼키기를 멈추는 것을 잊지 마십시오."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "삼투압 조절은 ATP를 소모하므로, 당신의 세포가 더 클수록, 미토콘드리아나 대사체나 루스티시아닌(또는 해당을 수행하는 세포질)이 정지해있을 때 ATP 손실을 방지해야 합니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "편집기에 있는 수많은 진화 가능한 세포 기관들로, 다양한 종류의 게임 진행 방식을 만들 수 있습니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "지금부터 개체 수가 전부 사라지면 멸종하게 됩니다."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"화합물 구름은 다음과 같습니다:\n"
-"\n"
-"흰색 – 포도당\n"
-"노란색 – 황화수소\n"
-"주황색 – 암모니아\n"
-"자주색 – 인산염\n"
-"적갈색 – 철\n"
-"\n"
-"포도당은 ATP를 생산합니다"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "황화수소는 화학세포와 화학 합성 단백질을 통해 포도당으로 전환될 수 있습니다. 철은 루스티시아닌을 통해 ATP로 전환될 수 있습니다."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -4004,6 +4011,10 @@ msgstr "다세포 편집기"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "다세포 편집기"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "다세포 편집기"
 
 msgid "MULTICELLULAR_STAGE"
@@ -5291,6 +5302,10 @@ msgstr "편모는 ATP를 사용하여 세포를 앞으로 나아가게 하는 �
 
 msgid "SHOW_HELP"
 msgstr "도움말 보기"
+
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "튜토리얼 보기"
 
 #, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
@@ -7190,8 +7205,16 @@ msgstr "혐기성 질소 고정"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
 
+#, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
+msgstr "화합물"
 
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
@@ -7230,15 +7253,31 @@ msgstr "게임 플레이 중 Auto-Evo 자동 진화 실행"
 msgid "WIKI_HEADING_GDD"
 msgstr "결합 기관"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "니트로게나아제는 ATP 형태의 기체 질소와 세포 에너지를 사용하여 세포의 핵심 성장 영양소 인 암모니아를 생성 할 수있는 단백질입니다. 이것은 혐기성 질소 고정이라고하는 과정입니다. 질소 분해 효소가 세포질에 의해 직접 둘러싸이면 주변 유체가 일부 발효를 수행합니다."
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "미생물 단계"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "미생물 단계"
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "미생물 단계"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "미생물 단계"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7287,6 +7326,36 @@ msgid "WIKI_HEADING_UI"
 msgstr ""
 
 msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "세포 기관 배치"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "끈적끈적한 세포 내부. 세포질은 이온, 단백질 및 세포 내부를 채우는 물에 용해된 기타 물질의 기본 혼합물입니다. 이것의 기능 중 하나는 발효를 통해 포도당을 ATP 에너지로 전환시키는 것 입니다. 세포 소 기관이 부족하고 세포가 더 발전된 신진 대사를 하는 경우, 에너지에 더욱 의존하게 됩니다. 또한 분자를 세포에 저장하고 세포의 크기를 성장시키는 데 사용됩니다."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "화합물"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "미토콘드리아"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "미생물 단계"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "미생물 단계"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
 #, fuzzy
@@ -7796,6 +7865,10 @@ msgstr "열 세포"
 #, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "편모"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "미토콘드리아"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -8407,6 +8480,146 @@ msgstr "확대"
 
 msgid "ZOOM_OUT"
 msgstr "축소"
+
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "농담 하나, 강섬모충속은 짚신벌레를 사냥하는 섬모충입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "농담 하나, 아메바는 사냥에 세포질로 만든 가짜 '다리'를 사용하는데요, 언젠간 Thrive 에서도 보고 싶군요."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "팁 하나, 커다란 세포와 박테리아를 조심하지 않으면, 진짜 먹힐 수도 있으며, 당신은 흡수당할 것 입니다."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive의 사운드 팀 리더는 게임에 아직 추가되지 않은 많은 곡을 작성했습니다. Oliver Lugg의 YouTube 채널에서 이 곡들이나 작곡 스트리밍을 감상하세요."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "팁 하나, 당신의 세포가 150칸이라면, 큰 철 덩어리를 삼킬 수 있습니다."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive란 외계 행성의 시뮬레이션이란 뜻으로써, 여러분이 발견하는 대부분의 생물들은 여러분 주변에서 진화한 한 두 종의 다른 생물들과 연관이 있을 것이라고 생각됩니다, 맞는지 알아보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "농담 하나, Thrive 팀은 자주 팟캐스트를 합니다, 꼭 확인해 보세요!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "농담 하나, Thrive는 오픈 소스 Godot 엔진으로 제작되었습니다!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "농담 하나, 실행 가능한 수준의 첫 게임 시제품은 우리 놀라운 프로그래머, untrustedlife가 만들었습니다!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "원핵 구조체\n"
+#~ "\n"
+#~ "대사체: 포도당으로부터 ATP 생산\n"
+#~ "\n"
+#~ "화학 합성 단백질: 포도당의 절반을 황화수소로부터 화학 세포로 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
+#~ "\n"
+#~ "틸라코이드: 정상적인 엽록체로 1/3의 포도당을 생성하고, 해당 과정 또한 수행하며, 세포 1칸을 차지\n"
+#~ "\n"
+#~ "루스티시아닌: 철을 ATP로 전환\n"
+#~ "\n"
+#~ "니트로게나아제: 분자상 질소와 ATP를 혐기성 암모니아로 전환\n"
+#~ "\n"
+#~ "세포질: 저장 공간을 제공하며 해당 과정을 수행(소량의 ATP를 생성)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "삼킴이 완료되면, 삼켜진 물체는 소화되기 위해 세포막 안에 남습니다. 소화할 수 없는 물체는 항상 배출되니, 대사에 필요한 변이를 가지고 있는지 먼저 확인하세요. 효소는 소화를 도우며 리소좀에서 만들어집니다; 소화를 훨씬 효율적으로 만드려면 이 소기관을 진화시키세요."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "외부 세포 기관\n"
+#~ "\n"
+#~ "편모: ATP를 소모하여 세포를 더 빠르게 이동\n"
+#~ "\n"
+#~ "선모: 다른 세포를 찌를 수 있음"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "세포막 결합 소기관\n"
+#~ "\n"
+#~ "핵: 헥스 11칸을 차지하며, 세포막 결합 소기관의 진화를 가능하게 하며, 세포 크기를 두 배로 늘리며, 세포가 입는 피해를 50% 감소 (한 번만 진화할 수 있음)\n"
+#~ "\n"
+#~ "결합 기관: 다른 세포와 결합할 수 있게 함. 다세포 단계로 진행하는 데에 필수적\n"
+#~ "\n"
+#~ "미토콘드리아: [thrive:compound type=\"glucose\"][/thrive:compound]과 대기 중의 산소로부터 세포질보다 훨씬 효율적으로 [thrive:compound type=\"atp\"][/thrive:compound]를 합성\n"
+#~ "\n"
+#~ "엽록체: 햇빛과 대기 중의 이산화탄소로부터 [thrive:compound type=\"glucose\"][/thrive:compound]을 합성\n"
+#~ "\n"
+#~ "열합성 기관: 온도 경사를 사용하여 [thrive:compound type=\"atp\"][/thrive:compound]를 합성\n"
+#~ "\n"
+#~ "리소좀: 소화 효소를 가지고 있음. 효소는 소화 능률과 속도를 개선함\n"
+#~ "\n"
+#~ "화학합성 기관: [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]로부터 [thrive:compound type=\"glucose\"][/thrive:compound]를 합성\n"
+#~ "\n"
+#~ "질소 고정 색소체: [thrive:compound type=\"atp\"][/thrive:compound] 및 대기 중의 질소와 산소로부터 [thrive:compound type=\"ammonia\"][/thrive:compound]를 합성\n"
+#~ "\n"
+#~ "액포: 수집한 물질을 8단위 저장\n"
+#~ "\n"
+#~ "독소 액포: 독소([thrive:compound type=\"oxytoxy\"][/thrive:compound])를 생산하며 이를 분비하여 옥시톡시 잔량에 따라 피해를 입힐 수 있게 함\n"
+#~ "\n"
+#~ "신호 기관: 세포에서 다른 세포가 반응할 수 있는 화합물을 합성할 수 있게 함"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "각 세대마다, 100 변이 점수(MP)를 사용할 수 있으며, 각각의 변화(또는 변이)는 그에 맞는 MP를 소모합니다. 세포 기관의 추가나 제거는 MP를 소모하지만, 현재 변이 세션에서 배치된 세포 기관의 제거 시 MP를 돌려받을 수 있습니다. 오른쪽-클릭 후 팝업 창의 확인을 통해 세포 기관을 이동하거나 완전히 제거할 수 있습니다. A 키와 D 키로 배치 중인 세포 기관을 회전시킬 수 있습니다."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "당신이 번식할 때마다, 미생물 편집기에 입장하며, 당신의 종을 변화하여(세포 기관의 추가, 이동, 제거를 통해) 성공적인 종의 종속을 이어갈 수 있습니다. 미생물 단계에서의 편집기 입장은 수백만년 분의 진화에 해당 됩니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] 와 마우스를 사용하여 이동합니다. 독소 액포가 있다면 [thrive:input]g_fire_toxin[/thrive:input] 를 사용하여 [thrive:compound type=\"oxytoxy\"][/thrive:compound] 를 사용합니다. [thrive:input]g_toggle_engulf[/thrive:input] 를 사용하여 삼킴 모드를 켜고 끕니다. 마우스 휠을 사용하여 확대/축소할 수 있습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "번식하려면 세포 기관을 각각 두개로 나눠야 합니다. 세포 기관을 반으로 나누기 위해 암모니아와 인산염이 필요합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "그러나 300 명의 개체 수로 20 세대 동안 생존했다면 현재 게임에서 승리 한 것으로 간주되며, 승리 후 팝업이 나타나고 원한다면 계속 플레이 할 수 있습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "당신의 경쟁자 또한 당신처럼 진화한다는 것을 명심하십시오. 당신이 편집기에 들어갈 때마다 그들도 진화할 것입니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "결합 기관은 당신의 세포가 같은 종의 다른 세포들과 함께 세포 군집을 형성하여 흡수하거나 생산한 물질들을 서로 공유할 수 있게 합니다. [thrive:input]g_toggle_binding[/thrive:input]를 눌러 결합 모드에 진입하세요. 군집을 이루고 있을 때는 세포를 분열시켜 편집기에 진입할 수 없습니다. 편집기에 진입하려면, 필요한 화합물을 모은 다음 [thrive:input]g_unbind_all[/thrive:input]를 눌러 군집을 떠나세요. 커다란 세포 군집은 다세포 생물로 이어질 수 있습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "특히 셀룰로오스와 키틴 세포벽은 먼저 이들을 분해할 수 있는 효소를 가지고 있지 않으면 소화할 수 없습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "하지만, 리소좀은 진핵생물에만 있습니다. 원핵생물은 그런 소기관을 가지고 있지 않으며 음식을 비교적 비효율적으로 소화합니다. 작은 세포들에게는 괜찮지만, 큰 세포들에게 리소좀이 없으면 아주 불리합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "당신의 세포는 에너지원으로써 ATP를 사용하며, 전부 바닥나면 죽게 될 것입니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "편집기를 해금하고 복제하려면 암모니아(주황색 구름) 와 인산염(자주색 구름)을 모아야 합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "G 키를 눌러 자신보다 작은 세포나 박테리아 또는 철과 세포 조각들을 삼킬 수 있습니다. 이것은 추가적인 ATP를 소모하며 더 느려지게 만듭니다. G 키를 한번 더 눌러 삼키기를 멈추는 것을 잊지 마십시오."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "삼투압 조절은 ATP를 소모하므로, 당신의 세포가 더 클수록, 미토콘드리아나 대사체나 루스티시아닌(또는 해당을 수행하는 세포질)이 정지해있을 때 ATP 손실을 방지해야 합니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "편집기에 있는 수많은 진화 가능한 세포 기관들로, 다양한 종류의 게임 진행 방식을 만들 수 있습니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "지금부터 개체 수가 전부 사라지면 멸종하게 됩니다."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "화합물 구름은 다음과 같습니다:\n"
+#~ "\n"
+#~ "흰색 – 포도당\n"
+#~ "노란색 – 황화수소\n"
+#~ "주황색 – 암모니아\n"
+#~ "자주색 – 인산염\n"
+#~ "적갈색 – 철\n"
+#~ "\n"
+#~ "포도당은 ATP를 생산합니다"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "황화수소는 화학세포와 화학 합성 단백질을 통해 포도당으로 전환될 수 있습니다. 철은 루스티시아닌을 통해 ATP로 전환될 수 있습니다."
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"
