@@ -17,7 +17,46 @@ layout_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer" index="2"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="0" node_paths=PackedStringArray("ParentPage")]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="0" node_paths=PackedStringArray("ParentPage")]
+layout_mode = 2
+script = ExtResource("3_j4d6r")
+ParentPage = NodePath("../../../../../..")
+
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="0"]
+layout_mode = 2
+text = "GAMEPLAY_BASICS_TITLE"
+label_settings = ExtResource("3_0ivu5")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="1"]
+modulate = Color(1, 1, 1, 0.25098)
+layout_mode = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="2"]
+layout_mode = 2
+
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3/HFlowContainer" index="0"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 1
+
+[node name="HelpAndTips" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3/HFlowContainer/Button" index="0" node_paths=PackedStringArray("ParentPage")]
+custom_minimum_size = Vector2(250, 40)
+layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_previous = NodePath(".")
+mouse_filter = 1
+text = "WIKI_HELP_AND_TIPS_BUTTON"
+script = ExtResource("4_1fqff")
+PageName = "HelpAndTips"
+ParentPage = NodePath("../../../../../../../../..")
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="3"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="1" node_paths=PackedStringArray("ParentPage")]
 layout_mode = 2
 script = ExtResource("3_j4d6r")
 ParentPage = NodePath("../../../../../..")
@@ -74,7 +113,7 @@ ParentPage = NodePath("../../../../../../../../..")
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="1" node_paths=PackedStringArray("ParentPage")]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="2" node_paths=PackedStringArray("ParentPage")]
 layout_mode = 2
 script = ExtResource("3_j4d6r")
 ParentPage = NodePath("../../../../../..")
@@ -113,31 +152,32 @@ ParentPage = NodePath("../../../../../../../../..")
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="2" node_paths=PackedStringArray("ParentPage")]
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer" index="4" node_paths=PackedStringArray("ParentPage")]
 layout_mode = 2
+alignment = 1
 script = ExtResource("3_j4d6r")
-ParentPage = NodePath("../../../../../..")
+ParentPage = NodePath("../../../../../../..")
 
-[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="0"]
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer4" index="0"]
 layout_mode = 2
 text = "EDITING_TITLE"
 label_settings = ExtResource("3_0ivu5")
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="1"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer4" index="1"]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="2"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer4" index="2"]
 layout_mode = 2
 
-[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4/HFlowContainer" index="0"]
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer4/HFlowContainer" index="0"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 1
 
-[node name="EditorsAndMutations" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4/HFlowContainer/Button" index="0" node_paths=PackedStringArray("ParentPage")]
+[node name="EditorsAndMutations" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer4/HFlowContainer/Button" index="0" node_paths=PackedStringArray("ParentPage")]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath(".")
@@ -146,37 +186,38 @@ mouse_filter = 1
 text = "EDITORS_AND_MUTATIONS_BUTTON"
 script = ExtResource("4_1fqff")
 PageName = "EditorsAndMutations"
-ParentPage = NodePath("../../../../../../../../..")
+ParentPage = NodePath("../../../../../../../../../..")
 
-[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer4" index="3"]
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer4" index="3"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2" index="3" node_paths=PackedStringArray("ParentPage")]
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer" index="5" node_paths=PackedStringArray("ParentPage")]
 layout_mode = 2
+alignment = 1
 script = ExtResource("3_j4d6r")
-ParentPage = NodePath("../../../../../..")
+ParentPage = NodePath("../../../../../../..")
 
-[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="0"]
+[node name="Heading" type="Label" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer3" index="0"]
 layout_mode = 2
 text = "THE_WORLD_TITLE"
 label_settings = ExtResource("3_0ivu5")
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="1"]
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer3" index="1"]
 modulate = Color(1, 1, 1, 0.25098)
 layout_mode = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="2"]
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer3" index="2"]
 layout_mode = 2
 
-[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3/HFlowContainer" index="0"]
+[node name="Button" type="MarginContainer" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer3/HFlowContainer" index="0"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 1
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 1
 
-[node name="EnvironmentalConditions" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3/HFlowContainer/Button" index="0" node_paths=PackedStringArray("ParentPage")]
+[node name="EnvironmentalConditions" type="Button" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer3/HFlowContainer/Button" index="0" node_paths=PackedStringArray("ParentPage")]
 custom_minimum_size = Vector2(250, 40)
 layout_mode = 2
 focus_neighbor_top = NodePath(".")
@@ -185,8 +226,8 @@ mouse_filter = 1
 text = "ENVIRONMENTAL_CONDITIONS_BUTTON"
 script = ExtResource("4_1fqff")
 PageName = "EnvironmentalConditions"
-ParentPage = NodePath("../../../../../../../../..")
+ParentPage = NodePath("../../../../../../../../../..")
 
-[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer3" index="3"]
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/VBoxContainer/VBoxContainer3" index="3"]
 custom_minimum_size = Vector2(0, 15)
 layout_mode = 2

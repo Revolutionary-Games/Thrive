@@ -129,9 +129,9 @@ anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
 offset_left = -260.0
-offset_top = -179.0
+offset_top = -210.0
 offset_right = 0.0
-offset_bottom = 95.0
+offset_bottom = 100.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_CONTROL_TEXT"
@@ -192,6 +192,7 @@ offset_bottom = -348.0
 ActionName = "g_move_right"
 
 [node name="GlucoseTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(260, 260)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -207,17 +208,17 @@ grow_vertical = 2
 Description = "MICROBE_STAGE_COLLECT_TEXT"
 
 [node name="DayNightTutorial" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(260, 280)
+custom_minimum_size = Vector2(290, 290)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -260.0
-offset_top = -179.0
+offset_left = -290.0
+offset_top = -235.0
 offset_right = 0.0
-offset_bottom = 61.0
+offset_bottom = 95.0
 grow_horizontal = 0
 grow_vertical = 2
 Description = "MICROBE_STAGE_DAY_NIGHT_TEXT"
@@ -239,15 +240,16 @@ grow_vertical = 2
 Description = "MICROBE_STAGE_ORGANELLE_DIVISION"
 
 [node name="BecomeMulticellularTutorial" parent="." instance=ExtResource("10")]
+custom_minimum_size = Vector2(280, 240)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 0.45
 anchor_right = 1.0
 anchor_bottom = 0.45
-offset_left = -260.0
+offset_left = -280.0
 offset_top = -187.0
-offset_right = 0.0
+offset_right = -40.0
 offset_bottom = 53.0
 Description = "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 
@@ -267,7 +269,7 @@ grow_vertical = 2
 Description = "MICROBE_STAGE_HEALTH_TEXT"
 
 [node name="ReproductionTutorial" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(260, 310)
+custom_minimum_size = Vector2(270, 310)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -437,13 +439,13 @@ grow_vertical = 2
 Description = "TUTORIAL_MICROBE_STAGE_LEAVE_COLONY_TEXT"
 
 [node name="EarlyMulticellularWelcome" parent="." instance=ExtResource("10")]
-custom_minimum_size = Vector2(450, 480)
+custom_minimum_size = Vector2(490, 490)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -830.0
-offset_bottom = -260.0
+offset_right = -790.0
+offset_bottom = -230.0
 grow_horizontal = 2
 grow_vertical = 2
 Description = "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
