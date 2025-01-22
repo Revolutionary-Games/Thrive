@@ -357,6 +357,7 @@ public class GameProperties
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
             new Hex(1, -1), 0), workMemory1, workMemory2);
 
+        // Remove the original cytoplasm in the species and replace with hydrogenase for a more efficient layout
         playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
 
         playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
