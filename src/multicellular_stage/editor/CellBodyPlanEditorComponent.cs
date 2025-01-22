@@ -257,7 +257,7 @@ public partial class CellBodyPlanEditorComponent :
 
             if (Editor.EditedCellProperties != null)
             {
-                UpdateGUIAfterLoadingSpecies();
+                UpdateGUIAfterLoadingSpecies(Editor.EditedBaseSpecies);
                 UpdateArrow(false);
             }
             else
@@ -268,8 +268,6 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
-
-        UpdateCancelButtonVisibility();
     }
 
     public override void _Process(double delta)
@@ -390,7 +388,7 @@ public partial class CellBodyPlanEditorComponent :
 
         newName = species.FormattedName;
 
-        UpdateGUIAfterLoadingSpecies();
+        UpdateGUIAfterLoadingSpecies(species);
 
         UpdateArrow(false);
     }
@@ -731,15 +729,6 @@ public partial class CellBodyPlanEditorComponent :
     {
         return energyBalanceInfo != null &&
             energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
-    }
-
-    private void UpdateGUIAfterLoadingSpecies()
-    {
-        GD.Print("Starting multicellular editor with: ", editedMicrobeCells.Count,
-            " cells in the microbe");
-
-        SetSpeciesInfo(newName,
-            behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)

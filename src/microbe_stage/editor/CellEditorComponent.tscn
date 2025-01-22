@@ -899,6 +899,13 @@ mouse_force_pass_scroll_events = false
 
 [node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("topPanel", "dayButton", "nightButton", "averageLightButton", "currentLightButton", "processList", "processListWindow") instance=ExtResource("15_tdiis")]
 layout_mode = 2
+ShowHealthStat = true
+ShowSizeStat = true
+ShowStorageStat = true
+ShowSpeedStat = true
+ShowRotationSpeedStat = true
+ShowDigestionSpeedStat = true
+ShowDigestionEfficiencyStat = true
 topPanel = NodePath("../../../TopPanel")
 dayButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
 nightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")

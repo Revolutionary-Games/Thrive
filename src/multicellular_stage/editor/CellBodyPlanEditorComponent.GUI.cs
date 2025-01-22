@@ -68,36 +68,6 @@ public partial class CellBodyPlanEditorComponent
         organismStatisticsPanel.UpdateProcessList(processStatistics);
     }
 
-    private void OnCompoundBalanceTypeChanged(BalanceDisplayType newType)
-    {
-        // Called by 2 different things so ignore the parameter and read the new values directly from the relevant
-        // objects
-        _ = newType;
-
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
-    }
-
-    private void OnBalanceShowOptionsChanged(bool pressed)
-    {
-        _ = pressed;
-
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
-    }
-
-    private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
-    {
-        var comparer = new ATPComparer();
-
-        return bar.OrderBy(i => i.Key, comparer).ToList();
-    }
-
-    private void SelectATPBalanceMode(int index)
-    {
-        balanceMode = (ResourceLimitingMode)index;
-
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
-    }
-
     private void UpdateCompoundBalances(Dictionary<Compound, CompoundBalance> balances)
     {
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds *
@@ -131,39 +101,19 @@ public partial class CellBodyPlanEditorComponent
             specificStorages, warningTime, fillingUpTime);
     }
 
-    private class ATPComparer : IComparer<string>
+    private void UpdateGUIAfterLoadingSpecies(Species species)
     {
-        /// <summary>
-        ///   Compares ATP production / consumption items
-        /// </summary>
-        /// <remarks>
-        ///   <para>
-        ///     Only works if there aren't duplicate entries of osmoregulation or baseMovement.
-        ///   </para>
-        /// </remarks>
-        public int Compare(string? stringA, string? stringB)
-        {
-            if (stringA == "osmoregulation")
-            {
-                return -1;
-            }
+        GD.Print("Starting multicellular editor with: ", editedMicrobeCells.Count,
+            " cells in the microbe");
 
-            if (stringB == "osmoregulation")
-            {
-                return 1;
-            }
+        SetSpeciesInfo(newName,
+            behaviourEditor.Behaviour ?? throw new Exception("Editor doesn't have Behaviour setup"));
 
-            if (stringA == "baseMovement")
-            {
-                return -1;
-            }
+        organismStatisticsPanel.UpdateGeneration(species.Generation);
+        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
 
-            if (stringB == "baseMovement")
-            {
-                return 1;
-            }
+        organismStatisticsPanel.ApplyLightLevelSelection();
 
-            return string.Compare(stringA, stringB, StringComparison.InvariantCulture);
-        }
+        UpdateCancelButtonVisibility();
     }
 }

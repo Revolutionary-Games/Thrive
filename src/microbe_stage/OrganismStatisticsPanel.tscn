@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
 [ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
 
-[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "generationLabel", "atpBalancePanel", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
 size_flags_vertical = 3
 mouse_filter = 1
 theme = ExtResource("1_ca4to")
@@ -34,6 +34,9 @@ hpLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxConta
 storageLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
 digestionSpeedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
 digestionEfficiencyLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
+basicStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator")
+movementStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator2")
+digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator3")
 generationLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
 atpBalancePanel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
 atpBalanceLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")

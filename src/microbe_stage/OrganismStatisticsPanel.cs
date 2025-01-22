@@ -10,6 +10,27 @@ using Godot;
 /// </summary>
 public partial class OrganismStatisticsPanel : PanelContainer
 {
+    [Export]
+    public bool ShowHealthStat;
+
+    [Export]
+    public bool ShowSizeStat;
+
+    [Export]
+    public bool ShowStorageStat;
+
+    [Export]
+    public bool ShowSpeedStat;
+
+    [Export]
+    public bool ShowRotationSpeedStat;
+
+    [Export]
+    public bool ShowDigestionSpeedStat;
+
+    [Export]
+    public bool ShowDigestionEfficiencyStat;
+
 #pragma warning disable CA2213
 
     [Export]
@@ -62,6 +83,15 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
+
+    [Export]
+    private Control basicStatsSeparator = null!;
+
+    [Export]
+    private Control movementStatsSeparator = null!;
+
+    [Export]
+    private Control digestionStatsSeparator = null!;
 
     [Export]
     private Label generationLabel = null!;
@@ -136,6 +166,24 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        UpdateStatVisibility();
+    }
+
+    public void UpdateStatVisibility()
+    {
+        hpLabel.Visible = ShowHealthStat;
+        sizeLabel.Visible = ShowSizeStat;
+        storageLabel.Visible = ShowStorageStat;
+        basicStatsSeparator.Visible = ShowHealthStat || ShowSizeStat || ShowStorageStat;
+
+        speedLabel.Visible = ShowSpeedStat;
+        rotationSpeedLabel.Visible = ShowRotationSpeedStat;
+        movementStatsSeparator.Visible = ShowSpeedStat || ShowRotationSpeedStat;
+
+        digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
+        digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
+        digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
