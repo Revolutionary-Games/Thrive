@@ -209,6 +209,12 @@ public partial class EditorComponentBase<TEditor> : ControlWithInput, IEditorCom
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        if (!ModalManager.Instance.TryCancelModals())
+        {
+            GD.PrintErr("Cannot close open modals before continuing, not triggering next / finish action");
+            return;
+        }
+
         if (OnFinish != null)
         {
             if (OnFinish!.Invoke(null))

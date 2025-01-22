@@ -121,7 +121,7 @@ public partial class ModalManager : NodeWithInput
     }
 
     /// <summary>
-    ///   Closes the top-most modal popup if any.
+    ///   Closes the top-most modal popup, if any.
     /// </summary>
     [RunOnKeyDown("ui_cancel", Priority = Constants.POPUP_CANCEL_PRIORITY)]
     public bool HideTopMostPopup()
@@ -134,15 +134,7 @@ public partial class ModalManager : NodeWithInput
         if (popup.Exclusive && !popup.ExclusiveAllowCloseOnEscape)
             return false;
 
-        // This is emitted before closing to allow window using components to differentiate between "cancel" and
-        // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
-        if (popup is CustomWindow dialog)
-            dialog.EmitSignal(CustomWindow.SignalName.Canceled);
-
-        popup.Close();
-
-        // TODO: make sure removing this is not a problem (looks like this signal no longer exists at all)
-        // popup.Notification(Control.NotificationModalClose);
+        ClosePopupDialog(popup);
 
         return true;
     }
@@ -163,6 +155,35 @@ public partial class ModalManager : NodeWithInput
         return null;
     }
 
+    /// <summary>
+    ///   Tries to cancel all open modals (or close if the modals don't support cancellation)
+    /// </summary>
+    /// <returns>True if all modals are closed, false if some refused to close</returns>
+    public bool TryCancelModals()
+    {
+        // If no modals, we don't need to do anything
+        if (modalStack.Count <= 0)
+            return true;
+
+        while (modalStack.Count > 0)
+        {
+            var modal = modalStack.First();
+
+            // TODO: implement a way for important popups to ignore this close
+            ClosePopupDialog(modal);
+
+            // Fail if modal is still not closed
+            if (modal.IsVisibleInTree())
+            {
+                GD.Print("Modal doesn't want to cancel / close failing close operation of all modals");
+                return false;
+            }
+        }
+
+        // All modals are now closed
+        return true;
+    }
+
     protected override void Dispose(bool disposing)
     {
         if (disposing)
@@ -171,6 +192,19 @@ public partial class ModalManager : NodeWithInput
         }
 
         base.Dispose(disposing);
+    }
+
+    private void ClosePopupDialog(TopLevelContainer popup)
+    {
+        // This is emitted before closing to allow window-using components to differentiate between "cancel" and
+        // "any other reason for closing" in case some logic can be simplified by handling just those two situations.
+        if (popup is CustomWindow dialog)
+            dialog.EmitSignal(CustomWindow.SignalName.Canceled);
+
+        popup.Close();
+
+        // TODO: make sure removing this is not a problem (looks like this signal no longer exists at all)
+        // popup.Notification(Control.NotificationModalClose);
     }
 
     /// <summary>
