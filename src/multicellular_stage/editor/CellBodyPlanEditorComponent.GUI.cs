@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -35,12 +34,16 @@ public partial class CellBodyPlanEditorComponent
     private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfo energyBalance,
         IBiomeConditions biome)
     {
-        var processes = new List<TweakedProcess>();
-
         // Empty list to later fill
         var processStatistics = new List<ProcessSpeedInformation>();
 
-        ProcessSystem.ComputeActiveProcessList(cells[0].Data!.Organelles, ref processes);
+        var processes = new List<TweakedProcess>();
+
+        int cellCount = cells.Count;
+        for (int i = 0; i < cellCount; i++)
+        {
+            ProcessSystem.ComputeActiveProcessList(cells[i].Data!.Organelles, ref processes);
+        }
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;
 

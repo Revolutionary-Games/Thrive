@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -286,8 +287,7 @@ public partial class CellEditorComponent
         if (healthModifier != null)
         {
             healthModifier.ModifierValue =
-                StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0",
-                        System.Globalization.CultureInfo.CurrentCulture),
+                StringUtils.FormatPositiveWithLeadingPlus(healthChange.ToString("F0", CultureInfo.CurrentCulture),
                     healthChange);
 
             healthModifier.AdjustValueColor(healthChange);
@@ -300,8 +300,7 @@ public partial class CellEditorComponent
         if (baseMobilityModifier != null)
         {
             baseMobilityModifier.ModifierValue =
-                StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0",
-                        System.Globalization.CultureInfo.CurrentCulture),
+                StringUtils.FormatPositiveWithLeadingPlus(baseMobilityChange.ToString("P0", CultureInfo.CurrentCulture),
                     baseMobilityChange);
 
             baseMobilityModifier.AdjustValueColor(baseMobilityChange);
