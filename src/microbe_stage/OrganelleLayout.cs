@@ -172,6 +172,47 @@ public class OrganelleLayout<T> : HexLayout<T>
     }
 
     /// <summary>
+    ///   Checks if the hexes an organelle would occupy are free (doesn't check for touching)
+    /// </summary>
+    /// <param name="organelleType">Type of organelle to place, used to know how many hexes it is big</param>
+    /// <param name="q">Position to test</param>
+    /// <param name="r">Position to test (r-coordinate)</param>
+    /// <param name="rotation">Rotation to test</param>
+    /// <param name="precalculatedHexCache">
+    ///   Precalculated cache from <see cref="HexLayout{T}.ComputeHexCache(HashSet{Hex},List{Hex})"/>
+    /// </param>
+    /// <param name="primaryHexWasFree">
+    ///   Returns true if the first position checked was free irrespective of if this returns true or not
+    /// </param>
+    /// <returns>True if all hex positions the organelle would occupy are free</returns>
+    public bool CheckIsOrganellePlacementFree(OrganelleDefinition organelleType, int q, int r, int rotation,
+        HashSet<Hex> precalculatedHexCache, out bool primaryHexWasFree)
+    {
+        var primaryPosition = new Hex(q, r);
+
+        // Check for overlapping hexes with existing organelles
+        var hexes = organelleType.GetRotatedHexes(rotation);
+        int hexCount = hexes.Count;
+
+        // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
+        for (int i = 0; i < hexCount; ++i)
+        {
+            if (precalculatedHexCache.Contains(hexes[i] + primaryPosition))
+            {
+                // We know the primary hex check succeeded if "i" is above zero
+                primaryHexWasFree = i > 0;
+
+                return false;
+            }
+        }
+
+        primaryHexWasFree = true;
+
+        // Basic placing doesn't have the restriction that the organelle needs to touch an existing one
+        return true;
+    }
+
+    /// <summary>
     ///   Deep clones this organelle layout as a new layout in a more efficient way than copying organelles from here
     ///   to a new instance
     /// </summary>
@@ -251,46 +292,5 @@ public class OrganelleLayout<T> : HexLayout<T>
         }
 
         return false;
-    }
-
-    /// <summary>
-    ///   Checks if the hexes an organelle would occupy are free (doesn't check for touching)
-    /// </summary>
-    /// <param name="organelleType">Type of organelle to place, used to know how many hexes it is big</param>
-    /// <param name="q">Position to test</param>
-    /// <param name="r">Position to test (r-coordinate)</param>
-    /// <param name="rotation">Rotation to test</param>
-    /// <param name="precalculatedHexCache">
-    ///   Precalculated cache from <see cref="HexLayout{T}.ComputeHexCache(HashSet{Hex},List{Hex})"/>
-    /// </param>
-    /// <param name="primaryHexWasFree">
-    ///   Returns true if the first position checked was free irrespective of if this returns true or not
-    /// </param>
-    /// <returns>True if all hex positions the organelle would occupy are free</returns>
-    private bool CheckIsOrganellePlacementFree(OrganelleDefinition organelleType, int q, int r, int rotation,
-        HashSet<Hex> precalculatedHexCache, out bool primaryHexWasFree)
-    {
-        var primaryPosition = new Hex(q, r);
-
-        // Check for overlapping hexes with existing organelles
-        var hexes = organelleType.GetRotatedHexes(rotation);
-        int hexCount = hexes.Count;
-
-        // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
-        for (int i = 0; i < hexCount; ++i)
-        {
-            if (precalculatedHexCache.Contains(hexes[i] + primaryPosition))
-            {
-                // We know the primary hex check succeeded if "i" is above zero
-                primaryHexWasFree = i > 0;
-
-                return false;
-            }
-        }
-
-        primaryHexWasFree = true;
-
-        // Basic placing doesn't have the restriction that the organelle needs to touch an existing one
-        return true;
     }
 }

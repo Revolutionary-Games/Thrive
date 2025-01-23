@@ -71,7 +71,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
         Random random)
     {
-        // If a cheaper organelle gets added this will need to be updated
+        // If a cheaper organelle gets added, this will need to be updated
         if (mp < 20)
             return null;
 
@@ -86,15 +86,17 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
+        // TODO: reuse this memory somehow
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
+        var workMemory3 = new HashSet<Hex>();
 
         foreach (var organelle in organelles)
         {
             if (organelle.MPCost > mp)
                 continue;
 
-            // Important to not accidentally add non-LAWK organelles in LAWK game
+            // Important to not accidentally add non-LAWK organelles in a LAWK game
             if (!organelle.LAWK && lawk)
                 continue;
 
@@ -109,7 +111,7 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
             // In the rare case that adding the organelle fails, this can skip adding it to be tested as the species
             // is not any different
             if (CommonMutationFunctions.AddOrganelle(organelle, direction, newSpecies, workMemory1, workMemory2,
-                    random))
+                    workMemory3, random))
             {
                 mutated.Add(Tuple.Create(newSpecies, mp - organelle.MPCost));
             }

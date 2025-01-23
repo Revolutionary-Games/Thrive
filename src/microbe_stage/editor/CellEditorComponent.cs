@@ -3168,6 +3168,7 @@ public partial class CellEditorComponent :
         private readonly Random random = new();
         private readonly List<Hex> workMemory1 = new();
         private readonly List<Hex> workMemory2 = new();
+        private readonly HashSet<Hex> workMemory3 = new();
 
         private AutoEvoRun? currentRun;
         private BiomeConditions? biome;
@@ -3366,14 +3367,14 @@ public partial class CellEditorComponent :
 
                     if (!CommonMutationFunctions.AddOrganelleWithStrategy(last.SuggestionPlacement, last,
                             CommonMutationFunctions.Direction.Neutral, calculationSpecies, workMemory1, workMemory2,
-                            random))
+                            workMemory3, random))
                     {
                         GD.PrintErr($"Cannot find placement for organelle suggestion test with {last.InternalName}");
                         availableOrganelles.RemoveAt(availableOrganelles.Count - 1);
                         continue;
                     }
 
-                    // Succeeded in adding the organelle to test, can continue to starting the run
+                    // Succeeded in adding the organelle to the test, can continue to starting the run
                     break;
                 }
             }
