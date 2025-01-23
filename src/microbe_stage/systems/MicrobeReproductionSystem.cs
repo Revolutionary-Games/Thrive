@@ -68,6 +68,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
     private readonly List<Compound> compoundWorkData = new();
     private readonly List<Hex> hexWorkData = new();
     private readonly List<Hex> hexWorkData2 = new();
+    private readonly HashSet<Hex> hexWorkData3 = new();
 
     private GameWorld? gameWorld;
 
@@ -199,8 +200,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
         reproductionDelta = delta;
 
-        // TODO: rate limit how often reproduction update is allowed to run?
-        // // Limit how often the reproduction logic is ran
+        // TODO: rate limit how often the reproduction update is allowed to run?
+        // // Limit how often the reproduction logic is run
         // if (lastCheckedReproduction < Constants.MICROBE_REPRODUCTION_PROGRESS_INTERVAL)
         //     return;
 
@@ -554,14 +555,17 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
         var workData1 = hexWorkData;
         var workData2 = hexWorkData2;
+        var workData3 = hexWorkData3;
 
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
         lock (workData1)
         {
             lock (workData2)
             {
+                // Work data 3 is not locked as it is only used when the other two are locked
+
                 // Spiral search for space for the organelle
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, q, r, workData1, workData2);
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, q, r, workData1, workData2, workData3);
             }
         }
 
@@ -620,7 +624,7 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             {
                 lock (workData2)
                 {
-                    // Return the first cell to its normal, non duplicated cell arrangement and spawn a daughter cell
+                    // Return the first cell to its normal, non-duplicated cell arrangement and spawn a daughter cell
                     organelles.ResetOrganelleLayout(ref entity.Get<CompoundStorage>(),
                         ref entity.Get<BioProcesses>(),
                         entity, species, species, worldSimulation, workData1, workData2);

@@ -12,6 +12,17 @@ using Newtonsoft.Json;
 public class OrganelleLayout<T> : HexLayout<T>
     where T : class, IPositionedOrganelle, ICloneable
 {
+    /// <summary>
+    ///   Search cache for faster finding of good enough positions (so search doesn't always have to start from the
+    ///   beginning)
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: should this be put actually into HexLayout as this ended up storing pretty basic information?
+    ///   </para>
+    /// </remarks>
+    private OrganellePlacementSearchCache searchCache;
+
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
@@ -70,8 +81,9 @@ public class OrganelleLayout<T> : HexLayout<T>
     }
 
     /// <summary>
-    ///   Returns true if organelle can be placed at location
+    ///   Checks if organelle can be placed at a location
     /// </summary>
+    /// <returns>True if organelle can be placed at the position</returns>
     public bool CanPlace(OrganelleDefinition organelleType, Hex position, int orientation,
         List<Hex> temporaryStorage, bool allowCytoplasmOverlap = false)
     {
@@ -114,7 +126,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
         var centerOfMass = CenterOfMass;
 
-        // Skip if center of mass is already correct
+        // Skip if the center of mass is already correct
         if (centerOfMass.Q == 0 && centerOfMass.R == 0)
             return false;
 
@@ -128,48 +140,71 @@ public class OrganelleLayout<T> : HexLayout<T>
     }
 
     /// <summary>
-    ///   Searches in a spiral pattern for a valid place to put the new organelle. Result is stored as the position
+    ///   Searches in a spiral pattern for a valid place to put the new organelle. The result is stored as the position
     ///   of the given new organelle object. Note that this is probably too slow for very huge cells.
     /// </summary>
     public void FindAndPlaceAtValidPosition(T newOrganelle, int startQ, int startR, List<Hex> workData1,
-        List<Hex> workData2)
+        List<Hex> workData2, HashSet<Hex> workData3)
     {
-        int radius = 1;
+        int startingRadius = 1;
 
+        // Initialise the search cache if it isn't yet
+        if (searchCache.Initialized)
+        {
+            startQ = searchCache.NextQ;
+            startR = searchCache.NextR;
+
+            // TODO: should we reset the position to 0,0 and copy a starting radius instead?
+        }
+
+        // Compute hex cache just once to speed up this method a lot
+        ComputeHexCache(workData3, workData1);
+
+        // Check any left hole positions first
+        if (searchCache.HasHoleLocation)
+        {
+            if (TestOrganellePlacementPosition(newOrganelle, searchCache.SkippedHoleQ, searchCache.SkippedHoleR,
+                    workData3, workData1, workData2))
+            {
+                // Make sure the hole is forgotten, this isn't absolutely required as the method above should do it,
+                // but the cost of writing this again is probably very small, so this is here as a safety precaution
+                searchCache.HasHoleLocation = false;
+                return;
+            }
+        }
+
+        int radius = 1;
         while (true)
         {
-            // Moves into the ring of radius "radius" around the given starting point center the old organelle
-            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
-            startQ += radiusOffset.Q;
-            startR += radiusOffset.R;
-
-            // Iterates in the ring
+            // Moves into the ring of radius "radius" around the given starting point, circle the old organelle
             for (int side = 1; side <= 6; ++side)
             {
                 var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
 
                 // Moves "radius" times into each direction
-                for (int i = 1; i <= radius; ++i)
+                for (int i = startingRadius; i <= radius; ++i)
                 {
-                    startQ += offset.Q;
-                    startR += offset.R;
+                    int nextQ = startQ + offset.Q * i;
+                    int nextR = startR + offset.R * i;
 
-                    // Checks every possible rotation value.
-                    for (int j = 0; j <= 5; ++j)
+                    if (TestOrganellePlacementPosition(newOrganelle, nextQ, nextR, workData3, workData1, workData2))
                     {
-                        newOrganelle.Position = new Hex(startQ, startR);
+                        // Remember where to continue the search
+                        searchCache.Initialized = true;
 
-                        newOrganelle.Orientation = j;
-                        if (CanPlace(newOrganelle, workData1, workData2))
-                        {
-                            AddFast(newOrganelle, workData1, workData2);
-                            return;
-                        }
+                        // Resume search from the previous position so that positions don't drift a lot over time
+                        searchCache.NextQ = nextQ - offset.Q * radius;
+                        searchCache.NextR = nextR - offset.R * radius;
+
+                        return;
                     }
                 }
             }
 
             ++radius;
+
+            if (radius == 10)
+                GD.Print("Organelle placement search is taking a really long time (radius > 9)");
         }
     }
 
@@ -217,5 +252,84 @@ public class OrganelleLayout<T> : HexLayout<T>
             return true;
 
         return false;
+    }
+
+    private bool TestOrganellePlacementPosition(T newOrganelle, int q, int r, HashSet<Hex> precalculatedHexCache,
+        List<Hex> workData1, List<Hex> workData2)
+    {
+        // Checks every possible rotation value at the position
+        for (int j = 0; j <= 5; ++j)
+        {
+            if (CheckIsOrganellePlacementFree(newOrganelle.Definition, q, r, j, precalculatedHexCache,
+                    out var wasPrimaryFree))
+            {
+                // Forget hole location if we filled it
+                if (searchCache.HasHoleLocation && searchCache.SkippedHoleQ == q && searchCache.SkippedHoleR == r)
+                    searchCache.HasHoleLocation = false;
+
+                newOrganelle.Position = new Hex(q, r);
+                newOrganelle.Orientation = j;
+                AddFast(newOrganelle, workData1, workData2);
+                return true;
+            }
+
+            if (j == 0)
+            {
+                if (wasPrimaryFree && !searchCache.HasHoleLocation)
+                {
+                    searchCache.SkippedHoleQ = q;
+                    searchCache.SkippedHoleR = r;
+                }
+                else if (!wasPrimaryFree && searchCache.HasHoleLocation)
+                {
+                    // Forget a hole that has been filled
+                    if (searchCache.SkippedHoleQ == q && searchCache.SkippedHoleR == r)
+                        searchCache.HasHoleLocation = false;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Checks if the hexes an organelle would occupy are free (doesn't check for touching)
+    /// </summary>
+    /// <param name="organelleType">Type of organelle to place, used to know how many hexes it is big</param>
+    /// <param name="q">Position to test</param>
+    /// <param name="r">Position to test (r-coordinate)</param>
+    /// <param name="rotation">Rotation to test</param>
+    /// <param name="precalculatedHexCache">
+    ///   Precalculated cache from <see cref="HexLayout{T}.ComputeHexCache(HashSet{Hex},List{Hex})"/>
+    /// </param>
+    /// <param name="primaryHexWasFree">
+    ///   Returns true if the first position checked was free irrespective of if this returns true or not
+    /// </param>
+    /// <returns>True if all hex positions the organelle would occupy are free</returns>
+    private bool CheckIsOrganellePlacementFree(OrganelleDefinition organelleType, int q, int r, int rotation,
+        HashSet<Hex> precalculatedHexCache, out bool primaryHexWasFree)
+    {
+        var primaryPosition = new Hex(q, r);
+
+        // Check for overlapping hexes with existing organelles
+        var hexes = organelleType.GetRotatedHexes(rotation);
+        int hexCount = hexes.Count;
+
+        // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
+        for (int i = 0; i < hexCount; ++i)
+        {
+            if (precalculatedHexCache.Contains(hexes[i] + primaryPosition))
+            {
+                // We know the primary hex check succeeded if "i" is above zero
+                primaryHexWasFree = i > 0;
+
+                return false;
+            }
+        }
+
+        primaryHexWasFree = true;
+
+        // Basic placing doesn't have the restriction that the organelle needs to touch an existing one
+        return true;
     }
 }

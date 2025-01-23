@@ -139,7 +139,7 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    ///   Can place variant that allocates temporary memory
+    ///   Can-place variant that allocates temporary memory
     /// </summary>
     public virtual bool CanPlaceAllocating(T hex)
     {
@@ -213,13 +213,13 @@ public abstract class HexLayout<T> : ICollection<T>, IReadOnlyList<T>
     }
 
     /// <summary>
-    ///   Searches hex list for a hex at the specified hex
+    ///   Searches the hex list for a hex at the specified hex
     /// </summary>
     public T? GetElementAt(Hex location, List<Hex> temporaryHexesStorage)
     {
         int count = existingHexes.Count;
 
-        // This uses a manual loop as this method is called a lot so this needs to ensure that this doesn't do any
+        // This uses a manual loop as this method is called a lot, so this needs to ensure that this doesn't do any
         // unnecessary computations
         for (int i = 0; i < count; ++i)
         {
