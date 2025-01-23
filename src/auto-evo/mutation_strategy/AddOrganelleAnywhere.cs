@@ -21,12 +21,13 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public bool Repeatable => true;
 
     // Formatter and inspect code disagree here
-    // @formatter:off
+    // ReSharper disable InvokeAsExtensionMethod
     public static AddOrganelleAnywhere ThatUseCompound(CompoundDefinition compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
-        return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
-            .Any(proc => proc.Process.Inputs.ContainsKey(compound)), direction);
+        return new AddOrganelleAnywhere(
+            organelle => Enumerable.Any(organelle.RunnableProcesses, proc => proc.Process.Inputs.ContainsKey(compound)),
+            direction);
     }
 
     public static AddOrganelleAnywhere ThatUseCompound(Compound compound, CommonMutationFunctions.Direction direction
@@ -40,8 +41,9 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
     public static AddOrganelleAnywhere ThatCreateCompound(CompoundDefinition compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
-        return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
-            .Any(proc => proc.Process.Outputs.ContainsKey(compound)), direction);
+        return new AddOrganelleAnywhere(organelle =>
+                Enumerable.Any(organelle.RunnableProcesses, proc => proc.Process.Outputs.ContainsKey(compound)),
+            direction);
     }
 
     public static AddOrganelleAnywhere ThatCreateCompound(Compound compound,
@@ -56,10 +58,12 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
         CompoundDefinition toCompound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
-        return new AddOrganelleAnywhere(organelle => organelle.RunnableProcesses
-            .Any(proc => proc.Process.Inputs.ContainsKey(fromCompound) &&
-                proc.Process.Outputs.ContainsKey(toCompound)), direction);
+        return new AddOrganelleAnywhere(organelle => Enumerable.Any(organelle.RunnableProcesses, proc =>
+            proc.Process.Inputs.ContainsKey(fromCompound) &&
+            proc.Process.Outputs.ContainsKey(toCompound)), direction);
     }
+
+    // ReSharper restore InvokeAsExtensionMethod
 
     public static AddOrganelleAnywhere ThatConvertBetweenCompounds(Compound fromCompound, Compound toCompound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
@@ -69,8 +73,6 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
         return ThatConvertBetweenCompounds(fromCompoundResolved, toCompoundResolved, direction);
     }
-
-    // @formatter:on
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
         Random random)
