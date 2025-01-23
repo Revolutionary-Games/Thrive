@@ -93,6 +93,9 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
     {
         var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null);
 
+        // Find the last placed organelle to efficiently find an empty position
+        var searchStart = organelles.Organelles[^1].Position;
+
         var workData1 = hexWorkData;
         var workData2 = hexWorkData2;
         var workData3 = hexWorkData3;
@@ -106,7 +109,8 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
 
                 // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
                 // allowed to do this.
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, 0, 0, workData1, workData2, workData3);
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, searchStart.Q, searchStart.R, workData1, workData2,
+                    workData3);
             }
         }
     }

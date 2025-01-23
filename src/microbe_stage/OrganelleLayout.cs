@@ -12,17 +12,6 @@ using Newtonsoft.Json;
 public class OrganelleLayout<T> : HexLayout<T>
     where T : class, IPositionedOrganelle, ICloneable
 {
-    /// <summary>
-    ///   Search cache for faster finding of good enough positions (so search doesn't always have to start from the
-    ///   beginning)
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: should this be put actually into HexLayout as this ended up storing pretty basic information?
-    ///   </para>
-    /// </remarks>
-    private OrganellePlacementSearchCache searchCache;
-
     public OrganelleLayout(Action<T> onAdded, Action<T>? onRemoved = null) : base(onAdded, onRemoved)
     {
     }
@@ -146,66 +135,40 @@ public class OrganelleLayout<T> : HexLayout<T>
     public void FindAndPlaceAtValidPosition(T newOrganelle, int startQ, int startR, List<Hex> workData1,
         List<Hex> workData2, HashSet<Hex> workData3)
     {
-        int startingRadius = 1;
-
-        // Initialise the search cache if it isn't yet
-        if (searchCache.Initialized)
-        {
-            startQ = searchCache.NextQ;
-            startR = searchCache.NextR;
-
-            // TODO: should we reset the position to 0,0 and copy a starting radius instead?
-        }
-
         // Compute hex cache just once to speed up this method a lot
         ComputeHexCache(workData3, workData1);
 
-        // Check any left hole positions first
-        if (searchCache.HasHoleLocation)
-        {
-            if (TestOrganellePlacementPosition(newOrganelle, searchCache.SkippedHoleQ, searchCache.SkippedHoleR,
-                    workData3, workData1, workData2))
-            {
-                // Make sure the hole is forgotten, this isn't absolutely required as the method above should do it,
-                // but the cost of writing this again is probably very small, so this is here as a safety precaution
-                searchCache.HasHoleLocation = false;
-                return;
-            }
-        }
+        var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
 
-        int radius = 1;
-        while (true)
+        // Moves into the ring of radius "radius" around the given starting point center the old organelle
+        for (int radius = 1; radius <= 1000; ++radius)
         {
-            // Moves into the ring of radius "radius" around the given starting point, circle the old organelle
+            startQ += radiusOffset.Q;
+            startR += radiusOffset.R;
+
+            // Iterates in the ring
             for (int side = 1; side <= 6; ++side)
             {
                 var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
 
                 // Moves "radius" times into each direction
-                for (int i = startingRadius; i <= radius; ++i)
+                for (int i = 1; i <= radius; ++i)
                 {
-                    int nextQ = startQ + offset.Q * i;
-                    int nextR = startR + offset.R * i;
+                    startQ += offset.Q;
+                    startR += offset.R;
 
-                    if (TestOrganellePlacementPosition(newOrganelle, nextQ, nextR, workData3, workData1, workData2))
+                    if (TestOrganellePlacementPosition(newOrganelle, startQ, startR, workData3, workData1, workData2))
                     {
-                        // Remember where to continue the search
-                        searchCache.Initialized = true;
-
-                        // Resume search from the previous position so that positions don't drift a lot over time
-                        searchCache.NextQ = nextQ - offset.Q * radius;
-                        searchCache.NextR = nextR - offset.R * radius;
-
                         return;
                     }
                 }
             }
 
-            ++radius;
-
             if (radius == 10)
                 GD.Print("Organelle placement search is taking a really long time (radius > 9)");
         }
+
+        GD.PrintErr("Abandoning an organelle as cannot find a position for it");
     }
 
     /// <summary>
@@ -257,16 +220,15 @@ public class OrganelleLayout<T> : HexLayout<T>
     private bool TestOrganellePlacementPosition(T newOrganelle, int q, int r, HashSet<Hex> precalculatedHexCache,
         List<Hex> workData1, List<Hex> workData2)
     {
+        bool isSingleHex = newOrganelle.Definition.Hexes.Count < 2;
+
         // Checks every possible rotation value at the position
         for (int j = 0; j <= 5; ++j)
         {
             if (CheckIsOrganellePlacementFree(newOrganelle.Definition, q, r, j, precalculatedHexCache,
                     out var wasPrimaryFree))
             {
-                // Forget hole location if we filled it
-                if (searchCache.HasHoleLocation && searchCache.SkippedHoleQ == q && searchCache.SkippedHoleR == r)
-                    searchCache.HasHoleLocation = false;
-
+                // Found a valid position, can end the method here
                 newOrganelle.Position = new Hex(q, r);
                 newOrganelle.Orientation = j;
                 AddFast(newOrganelle, workData1, workData2);
@@ -275,18 +237,17 @@ public class OrganelleLayout<T> : HexLayout<T>
 
             if (j == 0)
             {
-                if (wasPrimaryFree && !searchCache.HasHoleLocation)
+                if (!wasPrimaryFree)
                 {
-                    searchCache.SkippedHoleQ = q;
-                    searchCache.SkippedHoleR = r;
-                }
-                else if (!wasPrimaryFree && searchCache.HasHoleLocation)
-                {
-                    // Forget a hole that has been filled
-                    if (searchCache.SkippedHoleQ == q && searchCache.SkippedHoleR == r)
-                        searchCache.HasHoleLocation = false;
+                    // When failing the initial position check, that means that no matter how this is rotated, the hole
+                    // will always remain, so fail early here
+                    break;
                 }
             }
+
+            // Single hex cannot be made to fit by rotating
+            if (isSingleHex)
+                break;
         }
 
         return false;

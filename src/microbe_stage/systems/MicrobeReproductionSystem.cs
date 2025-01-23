@@ -546,12 +546,11 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
 
     private PlacedOrganelle SplitOrganelle(OrganelleLayout<PlacedOrganelle> organelles, PlacedOrganelle organelle)
     {
-        var q = organelle.Position.Q;
-        var r = organelle.Position.R;
-
         // The position used here will be overridden with the right value when we manage to find a place
         // for this organelle
-        var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(q, r), 0, organelle.Upgrades);
+        var newOrganelle = new PlacedOrganelle(organelle.Definition, new Hex(0, 0), 0, organelle.Upgrades);
+
+        var startPosition = organelle.Position;
 
         var workData1 = hexWorkData;
         var workData2 = hexWorkData2;
@@ -564,8 +563,8 @@ public sealed class MicrobeReproductionSystem : AEntitySetSystem<float>
             {
                 // Work data 3 is not locked as it is only used when the other two are locked
 
-                // Spiral search for space for the organelle
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, q, r, workData1, workData2, workData3);
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, startPosition.Q, startPosition.R, workData1,
+                    workData2, workData3);
             }
         }
 
