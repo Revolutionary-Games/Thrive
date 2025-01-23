@@ -20,6 +20,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
+    // Formatter and inspect code disagree here
+    // @formatter:off
     public static AddOrganelleAnywhere ThatUseCompound(CompoundDefinition compound,
         CommonMutationFunctions.Direction direction = CommonMutationFunctions.Direction.Neutral)
     {
@@ -67,6 +69,8 @@ public class AddOrganelleAnywhere : IMutationStrategy<MicrobeSpecies>
 
         return ThatConvertBetweenCompounds(fromCompoundResolved, toCompoundResolved, direction);
     }
+
+    // @formatter:on
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
         Random random)
