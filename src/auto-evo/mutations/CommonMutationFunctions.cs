@@ -274,7 +274,7 @@ public static class CommonMutationFunctions
                         {
                             // Face movement to move forward
 
-                            if (existingOrganelles.CheckIsOrganellePlacementFree(organelle, currentPosition.Q,
+                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
                                     currentPosition.R, 3, workMemory2, out _))
                             {
                                 result.Position = currentPosition;
@@ -288,7 +288,7 @@ public static class CommonMutationFunctions
                         {
                             result.Orientation = rotation;
 
-                            if (existingOrganelles.CheckIsOrganellePlacementFree(organelle, currentPosition.Q,
+                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
                                     currentPosition.R, rotation, workMemory2, out var primaryHexWasFree))
                             {
                                 result.Position = currentPosition;
@@ -341,7 +341,7 @@ public static class CommonMutationFunctions
 
             for (int r = -realQ; r <= checkQ; ++r)
             {
-                if (existingOrganelles.CheckIsOrganellePlacementFree(organelle, checkQ, r, 0, workMemory2, out _))
+                if (existingOrganelles.IsOrganellePositionFree(organelle, checkQ, r, 0, workMemory2, out _))
                 {
                     result.Position = new Hex(checkQ, r);
                     return result;
@@ -363,7 +363,7 @@ public static class CommonMutationFunctions
         // Assume can't be placed at 0,0 so start at -1
         for (int r = -1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; --r)
         {
-            if (existingOrganelles.CheckIsOrganellePlacementFree(organelle, 0, r, 0, workMemory2, out _))
+            if (existingOrganelles.IsOrganellePositionFree(organelle, 0, r, 0, workMemory2, out _))
             {
                 result.Position = new Hex(0, r);
                 return result;
@@ -383,7 +383,7 @@ public static class CommonMutationFunctions
         // Assume can't be placed at 0,0 so start at 1
         for (int r = 1; r < Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
         {
-            if (existingOrganelles.CheckIsOrganellePlacementFree(organelle, 0, r, 0, workMemory2, out _))
+            if (existingOrganelles.IsOrganellePositionFree(organelle, 0, r, 0, workMemory2, out _))
             {
                 result.Position = new Hex(0, r);
                 return result;

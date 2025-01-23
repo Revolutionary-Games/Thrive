@@ -185,7 +185,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     ///   Returns true if the first position checked was free irrespective of if this returns true or not
     /// </param>
     /// <returns>True if all hex positions the organelle would occupy are free</returns>
-    public bool CheckIsOrganellePlacementFree(OrganelleDefinition organelleType, int q, int r, int rotation,
+    public bool IsOrganellePositionFree(OrganelleDefinition organelleType, int q, int r, int rotation,
         HashSet<Hex> precalculatedHexCache, out bool primaryHexWasFree)
     {
         var primaryPosition = new Hex(q, r);
@@ -266,7 +266,7 @@ public class OrganelleLayout<T> : HexLayout<T>
         // Checks every possible rotation value at the position
         for (int j = 0; j <= 5; ++j)
         {
-            if (CheckIsOrganellePlacementFree(newOrganelle.Definition, q, r, j, precalculatedHexCache,
+            if (IsOrganellePositionFree(newOrganelle.Definition, q, r, j, precalculatedHexCache,
                     out var wasPrimaryFree))
             {
                 // Found a valid position, can end the method here
