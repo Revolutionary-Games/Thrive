@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://cwot2e52r7lx0"]
+[gd_scene load_steps=55 format=3 uid="uid://cwot2e52r7lx0"]
 
 [ext_resource type="PackedScene" uid="uid://bwegwjlcioasf" path="res://src/microbe_stage/editor/EditorComponentBottomLeftButtons.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://0hb8nq18ljr8" path="res://src/microbe_stage/editor/LightConfigurationPanel.tscn" id="3_yy73o"]
 [ext_resource type="Script" path="res://src/microbe_stage/editor/CellEditorComponent.cs" id="4"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="6"]
 [ext_resource type="PackedScene" uid="uid://seoiqsheiljf" path="res://src/microbe_stage/editor/MutationPointsBar.tscn" id="7"]
@@ -13,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="13"]
 [ext_resource type="PackedScene" uid="uid://bapb4m7jw7pc8" path="res://src/microbe_stage/editor/BehaviourEditorSubComponent.tscn" id="14"]
 [ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="14_fllwv"]
-[ext_resource type="Texture2D" uid="uid://c253x2crwbldo" path="res://assets/textures/gui/bevel/Sunlight.svg" id="15"]
 [ext_resource type="PackedScene" uid="uid://bdtlirrkst0vl" path="res://src/microbe_stage/editor/GrowthOrderPicker.tscn" id="15_krpbw"]
 [ext_resource type="PackedScene" uid="uid://olpir0vkwcsi" path="res://src/microbe_stage/OrganismStatisticsPanel.tscn" id="15_tdiis"]
 [ext_resource type="PackedScene" path="res://src/gui_common/FocusGrabber.tscn" id="16"]
@@ -98,8 +98,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_qst1k"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_xodoa"]
 
@@ -412,102 +410,8 @@ offset_top = 10.0
 offset_right = 170.0
 offset_bottom = 57.0
 
-[node name="PanelContainer" type="PanelContainer" parent="TopPanel"]
+[node name="LightConfigurationPanel" parent="TopPanel" instance=ExtResource("3_yy73o")]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="TopPanel/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TopPanel/PanelContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(30, 25)
-layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "SUNLIGHT"
-texture = ExtResource("15")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="Control" type="Control" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(10, 0)
-layout_mode = 2
-
-[node name="CurrentLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
-toggle_mode = true
-button_pressed = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_qst1k")
-text = "LIGHT_LEVEL_CURRENT"
-
-[node name="DayButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_qst1k")
-text = "LIGHT_LEVEL_DAY"
-
-[node name="NightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_qst1k")
-text = "LIGHT_LEVEL_NIGHT"
-
-[node name="AverageLightButton" type="Button" parent="TopPanel/PanelContainer/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_filter = 1
-theme_override_colors/font_disabled_color = Color(0.870588, 0.870588, 0.870588, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("8_07qd0")
-theme_override_font_sizes/font_size = 14
-theme_override_styles/disabled = SubResource("11")
-theme_override_styles/hover = SubResource("9")
-theme_override_styles/pressed = SubResource("10")
-theme_override_styles/normal = SubResource("12")
-toggle_mode = true
-action_mode = 0
-button_group = SubResource("ButtonGroup_qst1k")
-text = "LIGHT_LEVEL_AVERAGE"
 
 [node name="LeftPanel" type="MarginContainer" parent="."]
 custom_minimum_size = Vector2(350, 0)
@@ -898,7 +802,7 @@ layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("topPanel", "dayButton", "nightButton", "averageLightButton", "currentLightButton", "processList", "processListWindow") instance=ExtResource("15_tdiis")]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("topPanel", "processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
 layout_mode = 2
 ShowHealthStat = true
 ShowSizeStat = true
@@ -908,12 +812,9 @@ ShowRotationSpeedStat = true
 ShowDigestionSpeedStat = true
 ShowDigestionEfficiencyStat = true
 topPanel = NodePath("../../../TopPanel")
-dayButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton")
-nightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton")
-averageLightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton")
-currentLightButton = NodePath("../../../TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton")
 processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
+lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")
 
 [node name="AutoEvoInfoPanel" type="PanelContainer" parent="RightPanel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 236)
@@ -1277,10 +1178,7 @@ layout_mode = 1
 [connection signal="gui_input" from="." to="." method="OnHexEditorGuiInput"]
 [connection signal="mouse_entered" from="." to="." method="OnHexEditorMouseEntered"]
 [connection signal="mouse_exited" from="." to="." method="OnHexEditorMouseExited"]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/CurrentLightButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Current"]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/DayButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Day"]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/NightButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Night"]]
-[connection signal="pressed" from="TopPanel/PanelContainer/MarginContainer/HBoxContainer/AverageLightButton" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed" binds= ["Average"]]
+[connection signal="OnLightButtonClick" from="TopPanel/LightConfigurationPanel" to="RightPanel/VBoxContainer/OrganismStatisticsPanel" method="OnLightLevelButtonPressed"]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Structure" to="." method="SetSelectionMenuTab" binds= ["Structure"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Membrane" to="." method="SetSelectionMenuTab" binds= ["Membrane"]]
 [connection signal="pressed" from="LeftPanel/MainPanel/VBoxContainer/MarginContainer/EditingPanel/TabButtons/Behaviour" to="." method="SetSelectionMenuTab" binds= ["Behaviour"]]

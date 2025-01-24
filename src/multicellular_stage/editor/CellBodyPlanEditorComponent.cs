@@ -693,27 +693,27 @@ public partial class CellBodyPlanEditorComponent :
     private void SetLightLevelOption(int option)
     {
         // Show selected light level
-        switch ((OrganismStatisticsPanel.LightLevelOption)option)
+        switch ((LightConfigurationPanel.LightLevelOption)option)
         {
-            case OrganismStatisticsPanel.LightLevelOption.Day:
+            case LightConfigurationPanel.LightLevelOption.Day:
             {
                 Editor.DayLightFraction = 1;
                 break;
             }
 
-            case OrganismStatisticsPanel.LightLevelOption.Night:
+            case LightConfigurationPanel.LightLevelOption.Night:
             {
                 Editor.DayLightFraction = 0;
                 break;
             }
 
-            case OrganismStatisticsPanel.LightLevelOption.Average:
+            case LightConfigurationPanel.LightLevelOption.Average:
             {
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
                 break;
             }
 
-            case OrganismStatisticsPanel.LightLevelOption.Current:
+            case LightConfigurationPanel.LightLevelOption.Current:
             {
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
                 break;

@@ -43,25 +43,10 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private readonly StringBuilder atpToolTipTextBuilder = new();
 
-    private LightLevelOption selectedLightLevelOption = LightLevelOption.Current;
+    private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
+        LightConfigurationPanel.LightLevelOption.Current;
 
 #pragma warning disable CA2213
-
-    // Light level controls
-    [Export]
-    private Control topPanel = null!;
-
-    [Export]
-    private Button dayButton = null!;
-
-    [Export]
-    private Button nightButton = null!;
-
-    [Export]
-    private Button averageLightButton = null!;
-
-    [Export]
-    private Button currentLightButton = null!;
 
     [Export]
     private CellStatsIndicator sizeLabel = null!;
@@ -138,6 +123,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     [Export]
     private CustomWindow processListWindow = null!;
 
+    [Export]
+    private LightConfigurationPanel lightConfigurationPanel = null!;
+
 #pragma warning restore CA2213
 
     [Signal]
@@ -148,14 +136,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Signal]
     public delegate void OnResourceLimitingModeChangedEventHandler(int option);
-
-    public enum LightLevelOption
-    {
-        Day,
-        Night,
-        Average,
-        Current,
-    }
 
     public TutorialState? TutorialState { get; set; }
 
@@ -489,7 +469,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public void UpdateLightSelectionPanelVisibility(bool hasDayAndNight)
     {
-        topPanel.Visible = hasDayAndNight;
+        lightConfigurationPanel.Visible = hasDayAndNight;
 
         // When not in a patch with light, hide the useless always day selector
         if (!hasDayAndNight)
@@ -507,38 +487,33 @@ public partial class OrganismStatisticsPanel : PanelContainer
     {
         calculateBalancesAsIfDay.Disabled = false;
 
+        lightConfigurationPanel.ApplyLightLevelSelection(selectedLightLevelOption);
+
         // Show selected light level
         switch (selectedLightLevelOption)
         {
-            case LightLevelOption.Day:
+            case LightConfigurationPanel.LightLevelOption.Day:
             {
-                dayButton.ButtonPressed = true;
-
                 calculateBalancesAsIfDay.ButtonPressed = true;
                 calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
-            case LightLevelOption.Night:
+            case LightConfigurationPanel.LightLevelOption.Night:
             {
-                nightButton.ButtonPressed = true;
-
                 calculateBalancesAsIfDay.ButtonPressed = false;
                 calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
-            case LightLevelOption.Average:
+            case LightConfigurationPanel.LightLevelOption.Average:
             {
-                averageLightButton.ButtonPressed = true;
-
                 calculateBalancesAsIfDay.ButtonPressed = false;
                 break;
             }
 
-            case LightLevelOption.Current:
+            case LightConfigurationPanel.LightLevelOption.Current:
             {
-                currentLightButton.ButtonPressed = true;
                 break;
             }
 
@@ -577,7 +552,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        var selection = Enum.Parse<LightLevelOption>(option);
+        var selection = Enum.Parse<LightConfigurationPanel.LightLevelOption>(option);
 
         selectedLightLevelOption = selection;
 
