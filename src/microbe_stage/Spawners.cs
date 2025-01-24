@@ -212,7 +212,7 @@ public static class SpawnHelpers
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
         var selectedMesh = chunkType.Meshes.Random(random);
 
-        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
+        // Chunk is spawned with random rotation (on the 2D plane if it's an Easter egg)
         var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
 
         var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
@@ -261,7 +261,7 @@ public static class SpawnHelpers
         if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
         {
             // Stop any animations from playing on this organelle when it is dropped as a chunk. Some chunk types do
-            // want to keep playing an animation so there's this extra if
+            // want to keep playing an animation, so there's this extra if
             if (!selectedMesh.PlayAnimation)
             {
                 entity.Set(new AnimationControl
@@ -276,6 +276,8 @@ public static class SpawnHelpers
         bool hasCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
+            float radioactiveAmount = -1;
+
             // Capacity is 0 to disallow adding any more compounds to the compound bag
             var compounds = new CompoundBag(0);
 
@@ -283,6 +285,11 @@ public static class SpawnHelpers
             {
                 // Directly write compounds to avoid the capacity limit
                 compounds.Compounds.Add(entry.Key, entry.Value.Amount);
+
+                if (entry.Key == Compound.Radiation)
+                {
+                    radioactiveAmount = entry.Value.Amount;
+                }
             }
 
 #if DEBUG
@@ -300,12 +307,39 @@ public static class SpawnHelpers
 
             hasCompounds = true;
 
-            entity.Set(new CompoundVenter
+            if (radioactiveAmount > 0)
             {
-                VentEachCompoundPerSecond = chunkType.VentAmount,
-                DestroyOnEmpty = chunkType.Dissolves,
-                UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
-            });
+                if (chunkType.VentAmount > 0)
+                    GD.PrintErr("Radioactive compounds shouldn't be vented");
+
+                // Setup as a radiation emitter
+                entity.Set(new RadiationSource
+                {
+                    RadiationStrength = radioactiveAmount,
+                    Radius = Constants.ROCK_RADIATION_RADIUS,
+                });
+
+                // Need to add a physics sensor so that the rock can detect nearby things to irradiate (other
+                // parameters are handled by IrradiationSystem)
+                entity.Set(new PhysicsSensor
+                {
+                    MaxActiveContacts = Constants.MAX_SIMULTANEOUS_COLLISIONS_RADIATION_SENSOR,
+                });
+
+                // Prevent trying to vent radiation on despawn
+                hasCompounds = false;
+            }
+
+            // If the chunk doesn't vent anything, it doesn't need the venting component
+            if (chunkType.VentAmount > 0)
+            {
+                entity.Set(new CompoundVenter
+                {
+                    VentEachCompoundPerSecond = chunkType.VentAmount,
+                    DestroyOnEmpty = chunkType.Dissolves,
+                    UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
+                });
+            }
         }
 
         // Chunks that don't dissolve naturally when running out of compounds, are despawned with a timer
@@ -326,6 +360,9 @@ public static class SpawnHelpers
                 UsesMicrobialDissolveEffect = true,
                 VentCompounds = hasCompounds,
             });
+
+            if (!hasMicrobeShaderParameters)
+                GD.PrintErr("Chunk is non-dissolving but no microbe shader parameters were found for animation");
         }
 
         entity.Set(new Physics
@@ -348,7 +385,7 @@ public static class SpawnHelpers
 
         entity.Set<PhysicsShapeHolder>();
 
-        // See the remarks comment on EntityRadiusInfo
+        // See the remark comment on EntityRadiusInfo
         entity.Set(new EntityRadiusInfo(chunkType.Radius));
 
         entity.Set<CollisionManagement>();

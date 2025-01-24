@@ -580,9 +580,11 @@ public static class Constants
     public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
 
     /// <summary>
-    ///   How many collision a default sensor can detect at once
+    ///   How many collisions a default sensor can detect at once
     /// </summary>
     public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
+
+    public const int MAX_SIMULTANEOUS_COLLISIONS_RADIATION_SENSOR = 32;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -695,6 +697,16 @@ public static class Constants
     ///   small trickle damage the player can't notice from preventing health regen.
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
+
+    public const float RADIATION_DAMAGE_THRESHOLD = 0.1f;
+
+    public const float RADIATION_DAMAGE_MULTIPLIER = 5.1f;
+
+    public const float RADIATION_NATURAL_DECAY = 0.005f;
+
+    public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.01f;
+
+    public const float ROCK_RADIATION_RADIUS = 25;
 
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 

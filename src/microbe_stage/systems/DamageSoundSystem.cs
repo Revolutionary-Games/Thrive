@@ -25,8 +25,8 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
 
         var receivedDamage = health.RecentDamageReceived;
 
-        // We don't lock here before checking the count, it's probably fine as it should just read a single int
-        // but in the future if we get random crashes add a "lock" statement around also the count access.
+        // We don't lock here before checking the count, it's probably fine as it should just read a single int,
+        // but in the future if we get random crashes, add a "lock" statement around also the count access.
         if (receivedDamage == null || receivedDamage.Count < 1)
             return;
 
@@ -37,6 +37,8 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
             foreach (var damageEventNotice in receivedDamage)
             {
                 var damageSource = damageEventNotice.DamageSource;
+
+                // TODO: this would probably be the place to put player received damage tracking...
 
                 // TODO: different injectisome sound effect?
                 if (damageSource is "toxin" or "oxytoxy" or "injectisome")
@@ -65,6 +67,10 @@ public sealed class DamageSoundSystem : AEntitySetSystem<float>
                     // TODO: check the volume here as this was before set to play non-positionally
                     soundEffectPlayer.PlaySoundEffect("res://assets/sounds/soundeffects/microbe-ice-damage.ogg",
                         0.5f);
+                }
+                else if (damageSource == "radiation")
+                {
+                    soundEffectPlayer.PlaySoundEffect(TODO);
                 }
             }
 

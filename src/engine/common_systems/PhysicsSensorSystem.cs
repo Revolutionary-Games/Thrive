@@ -82,7 +82,7 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
 
             if (!sensor.Disabled)
             {
-                // Re-enable (not an error if body doesn't exist, it will be created brand-new soon)
+                // Re-enable (not an error if the body doesn't exist, it will be created brand-new soon)
                 if (detachedBodies.TryGetValue(entity, out var disabledBody))
                 {
                     worldSimulationWithPhysics.PhysicalWorld.AddBody(disabledBody);
