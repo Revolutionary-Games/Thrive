@@ -545,6 +545,9 @@ public class OrganelleDefinition : IRegistryType
                 "Both DisplayScene and CorpseChunkScene are null");
         }
 
+        if (Hexes[0] != new Hex(0, 0))
+            throw new InvalidRegistryDataException(name, GetType().Name, "First hex position must be (0, 0)");
+
         // Check for duplicate position hexes
         for (int i = 0; i < Hexes.Count; ++i)
         {

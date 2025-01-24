@@ -16,10 +16,12 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
     public bool Repeatable => true;
 
+    // Formatter and inspect code disagree here
+    // ReSharper disable InvokeAsExtensionMethod
     public static RemoveOrganelle ThatUseCompound(CompoundDefinition compound)
     {
         return new RemoveOrganelle(organelle =>
-            organelle.RunnableProcesses.Any(proc => proc.Process.Inputs.ContainsKey(compound)));
+            Enumerable.Any(organelle.RunnableProcesses, proc => proc.Process.Inputs.ContainsKey(compound)));
     }
 
     public static RemoveOrganelle ThatUseCompound(Compound compound)
@@ -32,7 +34,7 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
     public static RemoveOrganelle ThatCreateCompound(CompoundDefinition compound)
     {
         return new RemoveOrganelle(organelle =>
-            organelle.RunnableProcesses.Any(proc => proc.Process.Outputs.ContainsKey(compound)));
+            Enumerable.Any(organelle.RunnableProcesses, proc => proc.Process.Outputs.ContainsKey(compound)));
     }
 
     public static RemoveOrganelle ThatCreateCompound(Compound compound)
@@ -41,6 +43,8 @@ public class RemoveOrganelle : IMutationStrategy<MicrobeSpecies>
 
         return ThatCreateCompound(compoundResolved);
     }
+
+    // ReSharper restore InvokeAsExtensionMethod
 
     public List<Tuple<MicrobeSpecies, float>>? MutationsOf(MicrobeSpecies baseSpecies, float mp, bool lawk,
         Random random)

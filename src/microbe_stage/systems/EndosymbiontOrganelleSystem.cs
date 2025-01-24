@@ -32,6 +32,7 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
 
     private readonly List<Hex> hexWorkData = new();
     private readonly List<Hex> hexWorkData2 = new();
+    private readonly HashSet<Hex> hexWorkData3 = new();
 
     public EndosymbiontOrganelleSystem(World world, IParallelRunner parallelRunner) : base(world, parallelRunner,
         Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
@@ -92,18 +93,24 @@ public class EndosymbiontOrganelleSystem : AEntitySetSystem<float>
     {
         var newOrganelle = new PlacedOrganelle(definition, new Hex(0, 0), 0, null);
 
+        // Find the last placed organelle to efficiently find an empty position
+        var searchStart = organelles.Organelles[^1].Position;
+
         var workData1 = hexWorkData;
         var workData2 = hexWorkData2;
+        var workData3 = hexWorkData3;
 
         // TODO: https://github.com/Revolutionary-Games/Thrive/issues/4989
         lock (workData1)
         {
             lock (workData2)
             {
+                // Work data 3 is not locked as it is only used when the other two are locked
+
                 // Spiral search for space for the organelle. This will be pretty slow if huge non-player cells are
                 // allowed to do this.
-                // TODO: https://github.com/Revolutionary-Games/Thrive/issues/3273
-                organelles.FindAndPlaceAtValidPosition(newOrganelle, 0, 0, workData1, workData2);
+                organelles.FindAndPlaceAtValidPosition(newOrganelle, searchStart.Q, searchStart.R, workData1, workData2,
+                    workData3);
             }
         }
     }
