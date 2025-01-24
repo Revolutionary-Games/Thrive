@@ -465,7 +465,7 @@ public static class MicrobeInternalCalculations
         var energyBalance = new EnergyBalanceInfo();
 
         ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-            moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false, energyBalance);
+            moving, playerSpecies, worldSettings, CompoundAmountType.Biome, ref energyBalance);
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
@@ -562,7 +562,7 @@ public static class MicrobeInternalCalculations
             var energyBalance = new EnergyBalanceInfo();
 
             ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
-                moving, playerSpecies, worldSettings, CompoundAmountType.Biome, false, energyBalance);
+                moving, playerSpecies, worldSettings, CompoundAmountType.Biome, ref energyBalance);
 
             dayCompoundBalances = new Dictionary<Compound, CompoundBalance>();
 
@@ -573,7 +573,7 @@ public static class MicrobeInternalCalculations
         var energyBalanceAtMinimum = new EnergyBalanceInfo();
 
         ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType, moving, playerSpecies,
-            worldSettings, CompoundAmountType.Minimum, false, energyBalanceAtMinimum);
+            worldSettings, CompoundAmountType.Minimum, ref energyBalanceAtMinimum);
 
         var minimums = new Dictionary<Compound, CompoundBalance>();
 
