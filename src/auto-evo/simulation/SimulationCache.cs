@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Systems;
 
@@ -43,7 +44,7 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float)> cachedPredationToolsRawScores = new();
+    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, HashSet<string>)> cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -247,18 +248,20 @@ public class SimulationCache
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
         var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
-        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) = GetPredationToolsRawScores(microbeSpecies);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _, predatorEnzymes) = GetPredationToolsRawScores(microbeSpecies);
 
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
-        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
+        var (_, _, preySlimeJetScore, preyMucocystsScore, _) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+        var combinedEnzymes = predatorEnzymes.Concat(new[] { Constants.LYSOSOME_DEFAULT_ENZYME_NAME });
 
         // Only assign engulf score if one can actually engulf
         var engulfScore = 0.0f;
         if (predatorHexSize / preyHexSize >
-            Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf)
+            Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf &&
+            combinedEnzymes.Contains(prey.MembraneType.DissolverEnzyme))
         {
             // Catch scores grossly accounts for how many preys you catch in a run;
             var catchScore = 0.0f;
@@ -286,9 +289,6 @@ public class SimulationCache
 
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
-
-        // Having lots of extra Pili really doesn't help you THAT much.
-        pilusScore = MathF.Pow(pilusScore, 0.4f);
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
@@ -319,7 +319,10 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        cached = (scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore) -
+        var enzymesScore = predatorEnzymes.Count * Constants.AUTO_EVO_ENZYME_PREDATION_SCORE;
+
+        cached = (scoreMultiplier * behaviourScore *
+                (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore + enzymesScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
 
@@ -382,19 +385,21 @@ public class SimulationCache
         cachedStorageScores.Clear();
     }
 
-    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore) GetPredationToolsRawScores(
-        MicrobeSpecies microbeSpecies)
+    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore, HashSet<string> Enzymes)
+        GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
             return cached;
 
-        var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
+        var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
+        HashSet<string> enzymes = new HashSet<string>();
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
+        var pilusCount = 0;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
         var slimeJetsMultiplier = 1.0f;
@@ -405,7 +410,7 @@ public class SimulationCache
 
             if (organelle.Definition.HasPilusComponent)
             {
-                pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+                ++pilusCount;
                 continue;
             }
 
@@ -432,15 +437,23 @@ public class SimulationCache
                     oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
             }
+
+            if (organelle.Definition.HasLysosomeComponent)
+            {
+                enzymes.UnionWith(organelle.Definition.Enzymes
+                    .Where(e => e.Value > 0)
+                    .Select(e => e.Key.Name));
+            }
         }
 
-        // Having lots of extra slime jets and mucocysts really doesn't help you that much
+        // Having lots of extra pili, slime jets and mucocysts doesn't really help much
+        pilusScore *= MathF.Sqrt(pilusCount);
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
-        slimeJetScore *= slimeJetsMultiplier;
-
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
 
-        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore);
+        slimeJetScore *= slimeJetsMultiplier;
+
+        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore, enzymes);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;

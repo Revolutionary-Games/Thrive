@@ -27,6 +27,12 @@ public class Enzyme : IRegistryType
     private string? untranslatedDescription;
 #pragma warning restore 169,649
 
+    public Enzyme(string name)
+    {
+        Name = name;
+        InternalName = name;
+    }
+
     public enum EnzymeProperty
     {
         Hydrolytic,
