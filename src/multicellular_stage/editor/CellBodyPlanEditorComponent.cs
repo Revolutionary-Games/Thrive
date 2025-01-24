@@ -268,6 +268,8 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
+        UpdateCancelButtonVisibility();
     }
 
     public override void _Process(double delta)
