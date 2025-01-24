@@ -1164,8 +1164,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         {
             var percentage = worldsList.Average(w => w.MicrobeSpeciesMembranesStatistics[upgradeName].Percentage);
             var average = worldsList.Average(w => w.MicrobeSpeciesMembranesStatistics[upgradeName].Average);
-            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
-                upgradeName,
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(upgradeName,
                 percentage.ToString("P", CultureInfo.CurrentCulture),
                 average.ToString("F2", CultureInfo.CurrentCulture));
         }
@@ -1181,8 +1180,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         {
             var percentage = worldsList.Average(w => w.MicrobeSpeciesEnzymesStatistics[upgradeName].Percentage);
             var average = worldsList.Average(w => w.MicrobeSpeciesEnzymesStatistics[upgradeName].Average);
-            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
-                upgradeName,
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(upgradeName,
                 percentage.ToString("P", CultureInfo.CurrentCulture),
                 average.ToString("F2", CultureInfo.CurrentCulture));
         }
@@ -1352,8 +1350,7 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 .SelectMany(species => species.Organelles)
                 .SelectMany(organelle => organelle.Definition.Enzymes)
                 .GroupBy(enzyme => enzyme.Key.Name)
-                .ToDictionary(
-                    group => group.Key,
+                .ToDictionary(group => group.Key,
                     group => (
                         Percentage: (double)group.Count() / microbeSpecies.Count,
                         Count: (double)group.Sum(enzyme => enzyme.Value) / microbeSpecies.Count));
