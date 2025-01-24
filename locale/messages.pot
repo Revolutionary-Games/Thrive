@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 22:15+0100\n"
+"POT-Creation-Date: 2025-01-24 23:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1113
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1127
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -4591,6 +4591,11 @@ msgstr ""
 msgid "MICROBE_EDITOR"
 msgstr ""
 
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1091
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1173
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr ""
+
 #: ../src/general/MainMenu.tscn:372
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
@@ -4695,21 +4700,23 @@ msgid "MICROBE_LOADING_TIP_9"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1082
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1147
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1161
 msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1067
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1077
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1086
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1129
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1141
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1153
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1100
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1143
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1155
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1167
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1184
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1073
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1135
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1149
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr ""
 
@@ -5490,6 +5497,11 @@ msgstr ""
 
 #: ../src/microbe_stage/MicrobeCheatMenu.tscn:47
 msgid "NO_AI"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1095
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1177
+msgid "NO_DATA_STATISTICS"
 msgstr ""
 
 #: ../src/gui_common/charts/line/LineChart.cs:693

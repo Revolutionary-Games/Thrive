@@ -1088,6 +1088,20 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
         }
 
+        bbcode += "\n\n" + Localization.Translate("MICROBE_ENZYME_STATISTICS");
+
+        if (world.MicrobeSpeciesEnzymesStatistics.Count == 0)
+        {
+            bbcode += "\n" + Localization.Translate("NO_DATA_STATISTICS");
+        }
+
+        foreach (var stat in world.MicrobeSpeciesEnzymesStatistics.OrderByDescending(s => s.Value.Percentage))
+        {
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(stat.Key,
+                stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture),
+                stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
+        }
+
         currentWorldStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
@@ -1156,6 +1170,23 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 average.ToString("F2", CultureInfo.CurrentCulture));
         }
 
+        bbcode += "\n\n" + Localization.Translate("MICROBE_ENZYME_STATISTICS");
+
+        if (world.MicrobeSpeciesEnzymesStatistics.Count == 0)
+        {
+            bbcode += "\n" + Localization.Translate("NO_DATA_STATISTICS");
+        }
+
+        foreach (var upgradeName in world.MicrobeSpeciesEnzymesStatistics.Keys)
+        {
+            var percentage = worldsList.Average(w => w.MicrobeSpeciesEnzymesStatistics[upgradeName].Percentage);
+            var average = worldsList.Average(w => w.MicrobeSpeciesEnzymesStatistics[upgradeName].Average);
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
+                upgradeName,
+                percentage.ToString("P", CultureInfo.CurrentCulture),
+                average.ToString("F2", CultureInfo.CurrentCulture));
+        }
+
         allWorldsStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
@@ -1202,10 +1233,16 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             MicrobeSpeciesUpgradesStatistics = new();
 
         /// <summary>
-        ///   Used to gmembrane statistics
+        ///   Used to generate membrane statistics
         /// </summary>
         public readonly Dictionary<string, (double Percentage, double Average)>
             MicrobeSpeciesMembranesStatistics = new();
+
+        /// <summary>
+        ///   Used to generate enzymes statistics
+        /// </summary>
+        public Dictionary<string, (double Percentage, double Average)>
+            MicrobeSpeciesEnzymesStatistics = new();
 
         /// <summary>
         ///   The current generation auto-evo has evolved
@@ -1310,6 +1347,16 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                     microbeSpecies.Average(s => s.MembraneType == membrane ? 1 : 0),
                     microbeSpecies.Average(s => s.MembraneType == membrane ? 1 : 0));
             }
+
+            MicrobeSpeciesEnzymesStatistics = microbeSpecies
+                .SelectMany(species => species.Organelles)
+                .SelectMany(organelle => organelle.Definition.Enzymes)
+                .GroupBy(enzyme => enzyme.Key.Name)
+                .ToDictionary(
+                    group => group.Key,
+                    group => (
+                        Percentage: (double)group.Count() / microbeSpecies.Count,
+                        Count: (double)group.Sum(enzyme => enzyme.Value) / microbeSpecies.Count));
         }
     }
 }
