@@ -386,6 +386,29 @@
             }
           }
         },
+        "radioactiveChunk": {
+          "Name": "RADIOACTIVE_CHUNK",
+          "Meshes": [
+            {
+              "ScenePath": "res://assets/models/RadioactiveChunk1.tscn",
+              "ConvexShapePath": "res://assets/models/RadioactiveChunk1.shape"
+            }
+          ],
+          "Density": 0.0001,
+          "Dissolves": false,
+          "Radius": 10,
+          "ChunkScale": 1,
+          "PhysicsDensity": 2500,
+          "Size": 100,
+          "VentAmount": 0,
+          "Damages": 0,
+          "DeleteOnTouch": false,
+          "Compounds": {
+            "radiation": {
+              "Amount": 1000
+            }
+          }
+        },
         "googlyEyeCell": {
           "Name": "GOOGLY_EYE_CELL",
           "Meshes": [
