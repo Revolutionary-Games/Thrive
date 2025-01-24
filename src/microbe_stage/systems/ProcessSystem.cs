@@ -236,9 +236,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         result ??= new EnergyBalanceInfo();
 
-        float processATPProduction = 0.0f;
-        float processATPConsumption = 0.0f;
-        float movementATPConsumption = 0.0f;
+        var processATPProduction = 0.0f;
+        var processATPConsumption = 0.0f;
+        var movementATPConsumption = 0.0f;
 
         int hexCount = 0;
 

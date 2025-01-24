@@ -516,7 +516,6 @@ public partial class CellBodyPlanEditorComponent :
 
     public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        // TODO: merge this with nominal get to make this more efficient
         return CellBodyPlanInternalCalculations.GetTotalSpecificCapacity(editedMicrobeCells.Select(o => o.Data!),
             out nominalCapacity);
     }

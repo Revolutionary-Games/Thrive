@@ -392,15 +392,10 @@ public sealed class MicrobeMovementSystem : AEntitySetSystem<float>
     private void CalculateColonyImpactOnMovementForce(ref MicrobeColony microbeColony, Vector3 movementDirection,
         bool isBacteria, float delta, ref float force)
     {
-        // Multiplies the movement factor as if the colony has the normal microbe speed
-        // Then it subtracts movement speed from 100% up to 75%(soft cap),
-        // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
-        // when specialized cells become a reality the cap could be lowered to encourage cell specialization
-        // Note that the multiplier below was added as a workaround for colonies being faster than individual cells
-        // TODO: a proper rebalance of the algorithm would be excellent to do
-        force *= microbeColony.ColonyMembers.Length * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
-        var seriesValue = 1 - 1 / (float)Math.Pow(2, microbeColony.ColonyMembers.Length - 1);
-        force -= force * 0.15f * seriesValue;
+        // If this method is updated, the CalculateSpeed() method in CellBodyPlanInternalCalculations.cs
+        // also has to be changed
+
+        CellBodyPlanInternalCalculations.ModifyCellSpeedWithColony(ref force, microbeColony.ColonyMembers.Length);
 
         // Colony members have their movement update before organelle update, so that the movement organelles
         // see the direction

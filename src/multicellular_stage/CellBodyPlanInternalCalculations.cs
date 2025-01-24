@@ -22,6 +22,10 @@ public static class CellBodyPlanInternalCalculations
         return capacities;
     }
 
+    /// <summary>
+    ///   Calculates a colony's speed. The algorithm is an approximation, but should be based on the one in
+    ///   MicrobeMovementSystem.cs
+    /// </summary>
     public static float CalculateSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
         var leader = cells[0].Data!;
@@ -32,9 +36,7 @@ public static class CellBodyPlanInternalCalculations
         if (cells.Count == 1)
             return speed;
 
-        speed *= cells.Count * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
-        var seriesValue = 1 - 1 / (float)Math.Pow(2, cells.Count - 1);
-        speed -= speed * 0.15f * seriesValue;
+        ModifyCellSpeedWithColony(ref speed, cells.Count);
 
         var massEstimate = 0.0f;
 
@@ -72,6 +74,20 @@ public static class CellBodyPlanInternalCalculations
         }
 
         return speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
+    }
+
+    public static void ModifyCellSpeedWithColony(ref float speed, int cellCount)
+    {
+        // Multiplies the movement factor as if the colony has the normal microbe speed
+        // Then it subtracts movement speed from 100% up to 75%(soft cap),
+        // using a series that converges to 1 , value = (1/2 + 1/4 + 1/8 +.....) = 1 - 1/2^n
+        // when specialized cells become a reality the cap could be lowered to encourage cell specialization
+        // Note that the multiplier below was added as a workaround for colonies being faster than individual cells
+        // TODO: a proper rebalance of the algorithm would be excellent to do
+
+        speed *= cellCount * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
+        var seriesValue = 1 - 1 / (float)Math.Pow(2, cellCount - 1);
+        speed -= speed * 0.15f * seriesValue;
     }
 
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
