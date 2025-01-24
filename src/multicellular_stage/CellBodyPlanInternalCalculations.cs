@@ -29,12 +29,12 @@ public static class CellBodyPlanInternalCalculations
         var speed = MicrobeInternalCalculations.CalculateSpeed(leader.Organelles, leader.MembraneType,
             leader.MembraneRigidity, leader.IsBacteria);
 
+        if (cells.Count == 1)
+            return speed;
+
         speed *= cells.Count * Constants.CELL_COLONY_MOVEMENT_FORCE_MULTIPLIER;
         var seriesValue = 1 - 1 / (float)Math.Pow(2, cells.Count - 1);
         speed -= speed * 0.15f * seriesValue;
-
-        if (cells.Count == 1)
-            return speed;
 
         var massEstimate = 0.0f;
 

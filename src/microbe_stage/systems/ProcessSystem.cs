@@ -289,7 +289,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             hexCount += organelle.Definition.HexCount;
         }
 
-        float baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
         result.BaseMovement += baseMovement;
 
         if (includeMovementCost)
@@ -304,7 +304,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
 
         // Add osmoregulation
-        float osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
+        var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
 
         if (isPlayerSpecies)
