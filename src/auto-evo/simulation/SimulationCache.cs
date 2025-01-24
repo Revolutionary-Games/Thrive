@@ -243,19 +243,21 @@ public class SimulationCache
             return cached;
         }
 
+        // TODO: If these two methods were combined it might result in better performance with needing just
+        // one dictionary lookup
+        var predatorHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
+        var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) = GetPredationToolsRawScores(microbeSpecies);
+
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
+        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
-        // TODO: If these two methods were combined it might result in better performance with needing just
-        // one dictionary lookup
-        var microbeSpeciesHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
-        var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
-
         // Only assign engulf score if one can actually engulf
         var engulfScore = 0.0f;
-        if (microbeSpeciesHexSize / preyHexSize >
+        if (predatorHexSize / preyHexSize >
             Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf)
         {
             // Catch scores grossly accounts for how many preys you catch in a run;
@@ -272,14 +274,11 @@ public class SimulationCache
             // ... but you may also catch them by luck (e.g. when they run into you),
             // and this is especially easy if you're huge.
             // This is also used to incentivize size in microbe species.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
+            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize;
 
             // Allow for some degree of lucky engulfment
             engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
         }
-
-        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) = GetPredationToolsRawScores(microbeSpecies);
-        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         // If the predator is faster than the prey they don't need slime jets that much
         if (predatorSpeed > preySpeed)
@@ -292,7 +291,7 @@ public class SimulationCache
         pilusScore = MathF.Pow(pilusScore, 0.4f);
 
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
-        if (preyHexSize > microbeSpeciesHexSize)
+        if (preyHexSize > predatorHexSize)
         {
             oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }

@@ -1079,6 +1079,15 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
         }
 
+        bbcode += "\n\n" + Localization.Translate("MICROBE_MEMBRANE_STATISTICS");
+
+        foreach (var stat in world.MicrobeSpeciesMembranesStatistics.OrderByDescending(s => s.Value.Percentage))
+        {
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(stat.Key,
+                stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture),
+                stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
+        }
+
         currentWorldStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
@@ -1135,6 +1144,18 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 average.ToString("F2", CultureInfo.CurrentCulture));
         }
 
+        bbcode += "\n\n" + Localization.Translate("MICROBE_MEMBRANE_STATISTICS");
+
+        foreach (var upgradeName in world.MicrobeSpeciesMembranesStatistics.Keys)
+        {
+            var percentage = worldsList.Average(w => w.MicrobeSpeciesMembranesStatistics[upgradeName].Percentage);
+            var average = worldsList.Average(w => w.MicrobeSpeciesMembranesStatistics[upgradeName].Average);
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
+                upgradeName,
+                percentage.ToString("P", CultureInfo.CurrentCulture),
+                average.ToString("F2", CultureInfo.CurrentCulture));
+        }
+
         allWorldsStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
@@ -1181,6 +1202,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             MicrobeSpeciesUpgradesStatistics = new();
 
         /// <summary>
+        ///   Used to gmembrane statistics
+        /// </summary>
+        public readonly Dictionary<string, (double Percentage, double Average)>
+            MicrobeSpeciesMembranesStatistics = new();
+
+        /// <summary>
         ///   The current generation auto-evo has evolved
         /// </summary>
         public int CurrentGeneration;
@@ -1224,6 +1251,12 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             }
 
             MicrobeSpeciesUpgradesStatistics.Remove("none");
+
+            foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
+            {
+                MicrobeSpeciesMembranesStatistics.TryAdd(membrane.Name, (0, 0));
+            }
+
             UpdateWorldStatistics();
         }
 
@@ -1269,6 +1302,13 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                         s.Organelles.Any(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false) ? 1 : 0),
                     microbeSpecies.Average(s =>
                         s.Organelles.Count(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false)));
+            }
+
+            foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
+            {
+                MicrobeSpeciesMembranesStatistics[membrane.Name] = (
+                    microbeSpecies.Average(s => s.MembraneType == membrane ? 1 : 0),
+                    microbeSpecies.Average(s => s.MembraneType == membrane ? 1 : 0));
             }
         }
     }
