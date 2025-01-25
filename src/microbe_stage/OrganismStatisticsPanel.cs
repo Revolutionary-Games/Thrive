@@ -135,9 +135,35 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public delegate void OnEnergyBalanceOptionsChangedEventHandler();
 
     [Signal]
-    public delegate void OnResourceLimitingModeChangedEventHandler(int option);
+    public delegate void OnResourceLimitingModeChangedEventHandler();
 
     public TutorialState? TutorialState { get; set; }
+
+    public BalanceDisplayType BalanceDisplayType
+    {
+        get
+        {
+            return compoundBalance.CurrentDisplayType;
+        }
+    }
+
+    public CompoundAmountType CompoundAmountType
+    {
+        get
+        {
+            return calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current;
+        }
+    }
+
+    public ResourceLimitingMode ResourceLimitingMode { get; set; }
+
+    public bool CalculateBalancesWhenMoving
+    {
+        get
+        {
+            return calculateBalancesWhenMoving.ButtonPressed;
+        }
+    }
 
     public override void _Ready()
     {
@@ -447,24 +473,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
         }
     }
 
-    public BalanceDisplayType GetBalanceDisplayType()
-    {
-        return compoundBalance.CurrentDisplayType;
-    }
-
-    public CompoundAmountType GetCompoundAmountType()
-    {
-        return calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current;
-    }
-
     public void UpdateProcessList(List<ProcessSpeedInformation> processInfo)
     {
         processList.ProcessesToShow = processInfo;
-    }
-
-    public bool CalculateBalancesWhenMoving()
-    {
-        return calculateBalancesWhenMoving.ButtonPressed;
     }
 
     public void UpdateLightSelectionPanelVisibility(bool hasDayAndNight)
@@ -540,7 +551,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private void SelectATPBalanceMode(int index)
     {
-        EmitSignal(SignalName.OnResourceLimitingModeChanged, index);
+        ResourceLimitingMode = (ResourceLimitingMode)index;
+
+        EmitSignal(SignalName.OnResourceLimitingModeChanged);
     }
 
     private void OnProcessListButtonClicked()

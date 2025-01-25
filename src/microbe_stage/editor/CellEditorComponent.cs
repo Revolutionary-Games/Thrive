@@ -206,8 +206,6 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
-    private ResourceLimitingMode balanceMode;
-
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
@@ -1837,10 +1835,8 @@ public partial class CellEditorComponent :
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles, Membrane);
     }
 
-    private void OnResourceLimitingModeChanged(int index)
+    private void OnResourceLimitingModeChanged()
     {
-        balanceMode = (ResourceLimitingMode)index;
-
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles, Membrane);
     }
 
@@ -1852,20 +1848,20 @@ public partial class CellEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving();
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         IBiomeConditions conditionsData = biome;
 
-        if (balanceMode != ResourceLimitingMode.AllResources)
+        if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
-            conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
+            conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode, conditionsData);
         }
 
         var energyBalance = new EnergyBalanceInfo();
         energyBalance.SetupTrackingForRequiredCompounds();
 
         ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.GetCompoundAmountType(),
+            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType,
             ref energyBalance);
 
         energyBalanceInfo = energyBalance;
@@ -1877,14 +1873,14 @@ public partial class CellEditorComponent :
 
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
-            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
-                organismStatisticsPanel.GetCompoundAmountType(), organelles, conditionsData, energyBalance,
+            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
+                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
-        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
             CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
             ref nominalStorage);
 

@@ -802,7 +802,7 @@ layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("topPanel", "processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("15_tdiis")]
 layout_mode = 2
 ShowHealthStat = true
 ShowSizeStat = true
@@ -811,7 +811,6 @@ ShowSpeedStat = true
 ShowRotationSpeedStat = true
 ShowDigestionSpeedStat = true
 ShowDigestionEfficiencyStat = true
-topPanel = NodePath("../../../TopPanel")
 processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")

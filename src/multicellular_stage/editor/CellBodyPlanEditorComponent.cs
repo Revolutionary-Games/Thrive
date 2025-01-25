@@ -134,8 +134,6 @@ public partial class CellBodyPlanEditorComponent :
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
-    private ResourceLimitingMode balanceMode;
-
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -1087,10 +1085,8 @@ public partial class CellBodyPlanEditorComponent :
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
 
-    private void OnResourceLimitingModeChanged(int index)
+    private void OnResourceLimitingModeChanged()
     {
-        balanceMode = (ResourceLimitingMode)index;
-
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
 
@@ -1123,13 +1119,13 @@ public partial class CellBodyPlanEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving();
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         IBiomeConditions conditionsData = biome;
 
-        if (balanceMode != ResourceLimitingMode.AllResources)
+        if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
-            conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
+            conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode, conditionsData);
         }
 
         var energyBalance = new EnergyBalanceInfo();
@@ -1137,7 +1133,7 @@ public partial class CellBodyPlanEditorComponent :
         foreach (var hex in cells)
         {
             ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType, moving,
-                true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.GetCompoundAmountType(),
+                true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType,
                 ref energyBalance);
         }
 
@@ -1150,15 +1146,15 @@ public partial class CellBodyPlanEditorComponent :
 
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
-            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
-                organismStatisticsPanel.GetCompoundAmountType(),
+            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
+                organismStatisticsPanel.CompoundAmountType,
                 cells, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
-        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.GetBalanceDisplayType(),
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
             CompoundAmountType.Minimum, cells, conditionsData, energyBalance, ref specificStorages,
             ref nominalStorage);
 
@@ -1187,7 +1183,7 @@ public partial class CellBodyPlanEditorComponent :
                         amountType, energyBalance, compoundBalanceData);
                     break;
                 default:
-                    GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.GetBalanceDisplayType());
+                    GD.PrintErr("Unknown compound balance type: ", organismStatisticsPanel.BalanceDisplayType);
                     goto case BalanceDisplayType.EnergyEquilibrium;
             }
         }

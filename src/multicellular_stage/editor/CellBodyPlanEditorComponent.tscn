@@ -572,12 +572,11 @@ layout_mode = 2
 mouse_filter = 0
 mouse_force_pass_scroll_events = false
 
-[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("topPanel", "processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("10_al7uh")]
+[node name="OrganismStatisticsPanel" parent="RightPanel/VBoxContainer" node_paths=PackedStringArray("processList", "processListWindow", "lightConfigurationPanel") instance=ExtResource("10_al7uh")]
 layout_mode = 2
 ShowStorageStat = true
 ShowSpeedStat = true
 ShowRotationSpeedStat = true
-topPanel = NodePath("../../../TopPanel")
 processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfiguration")
