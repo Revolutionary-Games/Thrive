@@ -299,6 +299,8 @@ public partial class CellEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private TutorialState? tutorialState;
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -454,7 +456,17 @@ public partial class CellEditorComponent :
     }
 
     [JsonIgnore]
-    public TutorialState? TutorialState { get; set; }
+    public TutorialState? TutorialState
+    {
+        get => tutorialState;
+        set
+        {
+            tutorialState = value;
+
+            if (tutorialState != null)
+                organismStatisticsPanel.TutorialState = tutorialState;
+        }
+    }
 
     /// <summary>
     ///   Needed for auto-evo prediction to be able to compare the new energy to the old energy
