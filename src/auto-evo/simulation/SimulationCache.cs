@@ -322,7 +322,7 @@ public class SimulationCache
         }
 
         var enzymesScore = predatorEnzymes
-            .Sum(enzyme => Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0f);
+            .Sum(enzyme => Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0.0f);
 
         cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore + enzymesScore) -
