@@ -389,7 +389,7 @@ public static class MicrobeInternalCalculations
         var enzymes = new Dictionary<Enzyme, int>();
         var result = new Dictionary<Enzyme, float>();
 
-        var lipase = SimulationParameters.Instance.GetEnzyme("lipase");
+        var lipase = SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME);
 
         foreach (var organelle in organelles)
         {

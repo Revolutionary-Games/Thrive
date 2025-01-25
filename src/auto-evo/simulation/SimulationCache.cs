@@ -44,7 +44,8 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, HashSet<string>)> cachedPredationToolsRawScores = new();
+    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, HashSet<string>)>
+        cachedPredationToolsRawScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -248,7 +249,8 @@ public class SimulationCache
         // one dictionary lookup
         var predatorHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
         var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
-        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _, predatorEnzymes) = GetPredationToolsRawScores(microbeSpecies);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _, predatorEnzymes) =
+            GetPredationToolsRawScores(microbeSpecies);
 
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
@@ -321,7 +323,6 @@ public class SimulationCache
 
         var enzymesScore = predatorEnzymes
             .Sum(enzyme => Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0f);
-
 
         cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore + enzymesScore) -
