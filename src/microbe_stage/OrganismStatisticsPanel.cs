@@ -43,9 +43,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private readonly StringBuilder atpToolTipTextBuilder = new();
 
-    private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
-        LightConfigurationPanel.LightLevelOption.Current;
-
 #pragma warning disable CA2213
 
     [Export]
@@ -127,6 +124,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private LightConfigurationPanel lightConfigurationPanel = null!;
 
 #pragma warning restore CA2213
+
+    private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
+    LightConfigurationPanel.LightLevelOption.Current;
 
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);
