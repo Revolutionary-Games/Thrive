@@ -1130,6 +1130,8 @@ public partial class CellBodyPlanEditorComponent :
 
         var energyBalance = new EnergyBalanceInfo();
         energyBalance.SetupTrackingForRequiredCompounds();
+
+        // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
             ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType, moving,
