@@ -255,7 +255,7 @@ public class SimulationCache
         var (_, _, preySlimeJetScore, preyMucocystsScore, _) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var combinedEnzymes = predatorEnzymes.Concat(new[] { Constants.LYSOSOME_DEFAULT_ENZYME_NAME });
+        var combinedEnzymes = predatorEnzymes.Concat(new[] { Constants.LIPASE_ENZYME });
 
         // Only assign engulf score if one can actually engulf
         var engulfScore = 0.0f;
@@ -319,7 +319,9 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        var enzymesScore = predatorEnzymes.Count * Constants.AUTO_EVO_ENZYME_PREDATION_SCORE;
+        var enzymesScore = predatorEnzymes
+            .Sum(enzyme => Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0f);
+
 
         cached = (scoreMultiplier * behaviourScore *
                 (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore + enzymesScore) -

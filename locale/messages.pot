@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 23:10+0100\n"
+"POT-Creation-Date: 2025-01-25 11:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -178,7 +178,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1127
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1121
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 
@@ -4591,8 +4591,8 @@ msgstr ""
 msgid "MICROBE_EDITOR"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1091
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1173
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1090
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1164
 msgid "MICROBE_ENZYME_STATISTICS"
 msgstr ""
 
@@ -4699,24 +4699,27 @@ msgstr ""
 msgid "MICROBE_LOADING_TIP_9"
 msgstr ""
 
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1086
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1160
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr ""
+
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1082
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1161
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1155
 msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1067
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1077
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1086
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1100
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1143
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1155
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1167
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1184
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1094
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1137
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1149
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1170
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
 
 #: ../src/auto-evo/AutoEvoExploringTool.cs:1073
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1149
+#: ../src/auto-evo/AutoEvoExploringTool.cs:1143
 msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr ""
 
@@ -5499,11 +5502,6 @@ msgstr ""
 msgid "NO_AI"
 msgstr ""
 
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1095
-#: ../src/auto-evo/AutoEvoExploringTool.cs:1177
-msgid "NO_DATA_STATISTICS"
-msgstr ""
-
 #: ../src/gui_common/charts/line/LineChart.cs:693
 #: ../src/microbe_stage/editor/CellEditorComponent.cs:3102
 msgid "NO_DATA_TO_SHOW"
@@ -5788,7 +5786,7 @@ msgstr ""
 msgid "ORGANISM_STATISTICS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganelleDefinition.cs:746
+#: ../src/microbe_stage/OrganelleDefinition.cs:748
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
@@ -6179,7 +6177,7 @@ msgstr ""
 msgid "POSITION_NUMBER"
 msgstr ""
 
-#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:73
+#: ../src/auto-evo/selection_pressure/PredationEffectivenessPressure.cs:76
 msgid "PREDATION_FOOD_SOURCE"
 msgstr ""
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 23:10+0100\n"
+"POT-Creation-Date: 2025-01-25 11:57+0100\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Croatian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/hr/>\n"
@@ -3233,6 +3233,10 @@ msgid "MICROBE_LOADING_TIP_9"
 msgstr "Pritisnite gumb za poništavanje u uređivaču kako biste ispravili pogrešku"
 
 #, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
+
+#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
 msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] te miš koriste se za kretanje. [thrive:input]g_fire_toxin[/thrive:input] za ispucavanje [thrive:compound type=\"oxytoxy\"][/thrive:compound] ako posjeduješ vakuolu za toksin. [thrive:input]g_toggle_engulf[/thrive:input] za paljenje/gašenje gutanja. Kotač miša koristi se za podešavanje zumiranja."
 
@@ -3835,23 +3839,6 @@ msgstr ""
 
 msgid "NO_AI"
 msgstr ""
-
-#, fuzzy
-msgid "NO_DATA_STATISTICS"
-msgstr ""
-"[b]Generacije:[/b]\n"
-"  {0}\n"
-"[b]sveukupni broj vrsta:[/b]\n"
-"  prosječna {1}; Standardna devijacija {2}\n"
-"[b]Broj živih vrsta:[/b]\n"
-"  prosječna {3};Standardna devijacija {4}\n"
-"[b]Broj vrsta po području:[/b]\n"
-"  prosječna {5}; Standardna devijacija {6}\n"
-"[b]Broj svih vrsta po području:[/b]\n"
-"  prosječna {7}; Standardna devijacija {8}\n"
-"[b]Prosječna veličina mikrobnih vrsti po heksagonu:[/b]\n"
-"  prosječna {9}; Standardna devijacija {10}\n"
-"[b]generički podaci o organelima:[/b]"
 
 msgid "NO_DATA_TO_SHOW"
 msgstr ""
@@ -7596,6 +7583,23 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr "Povećaj"
+
+#, fuzzy
+#~ msgid "NO_DATA_STATISTICS"
+#~ msgstr ""
+#~ "[b]Generacije:[/b]\n"
+#~ "  {0}\n"
+#~ "[b]sveukupni broj vrsta:[/b]\n"
+#~ "  prosječna {1}; Standardna devijacija {2}\n"
+#~ "[b]Broj živih vrsta:[/b]\n"
+#~ "  prosječna {3};Standardna devijacija {4}\n"
+#~ "[b]Broj vrsta po području:[/b]\n"
+#~ "  prosječna {5}; Standardna devijacija {6}\n"
+#~ "[b]Broj svih vrsta po području:[/b]\n"
+#~ "  prosječna {7}; Standardna devijacija {8}\n"
+#~ "[b]Prosječna veličina mikrobnih vrsti po heksagonu:[/b]\n"
+#~ "  prosječna {9}; Standardna devijacija {10}\n"
+#~ "[b]generički podaci o organelima:[/b]"
 
 #~ msgid "EASTEREGG_MESSAGE_23"
 #~ msgstr "Jedan savjet: Ako vaša stanica ima 150 ćelija, može progutati velike komade željeza."

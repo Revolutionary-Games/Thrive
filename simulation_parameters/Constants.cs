@@ -898,7 +898,11 @@ public static class Constants
 
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
-    public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
+    public const string LIPASE_ENZYME = "lipase";
+
+    public const string CHITINASE_ENZYME = "chitinase";
+
+    public const string CELLULASE_ENZYME = "cellulase";
 
     public const string VACUOLE_DEFAULT_COMPOUND_NAME = "glucose";
 
@@ -1780,6 +1784,13 @@ public static class Constants
 
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
+
+    public static readonly Dictionary<string, float> AutoEvoLysosomeEnzymesScores = new()
+    {
+        [LIPASE_ENZYME] = 40,
+        [CHITINASE_ENZYME] = 60,
+        [CELLULASE_ENZYME] = 60,
+    };
 
     /// <summary>
     ///   The duration for which a save is considered recently performed.
