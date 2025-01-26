@@ -42,6 +42,7 @@ public static class CellBodyPlanInternalCalculations
 
         var addedSpeed = 0.0f;
 
+        // Check if it's possible to do those calculations per cell type and multiply by the types' cell counts
         foreach (var hex in cells)
         {
             var cell = hex.Data!;
