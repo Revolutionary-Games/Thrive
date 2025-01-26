@@ -276,6 +276,10 @@ public class SimulationCache
                 catchScore += predatorSpeed / preySpeed;
             }
 
+            var enzymesScore = predatorEnzymes
+                .Sum(enzyme =>
+                    Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0.0f);
+
             // ... but you may also catch them by luck (e.g. when they run into you),
             // and this is especially easy if you're huge.
             // This is also used to incentivize size in microbe species.
@@ -283,6 +287,8 @@ public class SimulationCache
 
             // Allow for some degree of lucky engulfment
             engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+
+            engulfScore *= enzymesScore;
         }
 
         // If the predator is faster than the prey they don't need slime jets that much
@@ -321,11 +327,8 @@ public class SimulationCache
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        var enzymesScore = predatorEnzymes
-            .Sum(enzyme => Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0.0f);
-
         cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore + enzymesScore) -
+                (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
             GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
 
