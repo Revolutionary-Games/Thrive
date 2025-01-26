@@ -978,11 +978,12 @@ public partial class CellEditorComponent :
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
-        if (!base.CanFinishEditing(userOverrides))
+        var editorUserOverrides = userOverrides.ToList();
+        if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
         // Show warning if the editor has an endosymbiosis that should be finished
-        if (HasFinishedPendingEndosymbiosis && !userOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
             pendingEndosymbiosisPopup.PopupCenteredShrink();
             return false;
@@ -991,7 +992,7 @@ public partial class CellEditorComponent :
         // Show a warning popup if trying to exit with negative atp production
         // Not shown in multicellular as the popup would happen in kind of weird place
         if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
-            !userOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;
@@ -1001,15 +1002,15 @@ public partial class CellEditorComponent :
         // for any undoable action, but that isn't accessible here currently, so this is probably good enough.
         if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
         {
-            var tutorialState = Editor.CurrentGame.TutorialState;
+            var tutorial = Editor.CurrentGame.TutorialState;
 
             // In the multicellular editor the cell editor might not be visible, so preventing exiting the editor
             // without explanation is not a good idea, so that's why this check is here
-            if (tutorialState.Enabled && !IsMulticellularEditor)
+            if (tutorial.Enabled && !IsMulticellularEditor)
             {
-                tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
+                tutorial.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
 
-                if (tutorialState.TutorialActive())
+                if (tutorial.TutorialActive())
                     return false;
             }
         }

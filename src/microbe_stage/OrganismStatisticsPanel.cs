@@ -126,7 +126,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 #pragma warning restore CA2213
 
     private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
-    LightConfigurationPanel.LightLevelOption.Current;
+        LightConfigurationPanel.LightLevelOption.Current;
 
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);

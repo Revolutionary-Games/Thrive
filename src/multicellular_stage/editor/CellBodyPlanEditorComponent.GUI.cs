@@ -38,10 +38,21 @@ public partial class CellBodyPlanEditorComponent
 
         var processes = new List<TweakedProcess>();
 
-        int cellCount = cells.Count;
-        for (int i = 0; i < cellCount; ++i)
+        foreach (var cellType in GetCellTypes())
         {
-            ProcessSystem.ComputeActiveProcessList(cells[i].Data!.Organelles, ref processes);
+            var newProcesses = new List<TweakedProcess>();
+
+            ProcessSystem.ComputeActiveProcessList(cellType.Type.Organelles, ref newProcesses);
+
+            for (int i = 0; i < newProcesses.Count; i++)
+            {
+                newProcesses[i] = new TweakedProcess(newProcesses[i].Process, newProcesses[i].Rate * cellType.Count)
+                {
+                    SpeedMultiplier = newProcesses[i].SpeedMultiplier,
+                };
+            }
+
+            ProcessSystem.MergeProcessLists(processes, newProcesses);
         }
 
         float consumptionProductionRatio = energyBalance.TotalConsumption / energyBalance.TotalProduction;

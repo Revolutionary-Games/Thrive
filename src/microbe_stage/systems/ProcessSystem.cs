@@ -62,8 +62,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         result ??= new List<TweakedProcess>();
 
-        // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
-        // A basic linear scan over all organelles and their processes with combining duplicates into the result
         int count = organelles.Count;
         for (int i = 0; i < count; ++i)
         {
@@ -78,72 +76,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     processes = upgraded;
             }
 
-            int processCount = processes.Count;
-
-            for (int j = 0; j < processCount; ++j)
-            {
-                var process = processes[j];
-                var processKey = process.Process;
-
-                bool added = false;
-
-                // Try to add to existing result first
-                int resultCount = result.Count;
-                for (int k = 0; k < resultCount; ++k)
-                {
-                    if (result[k].Process == processKey)
-                    {
-                        var replacedEntry = result[k];
-
-                        if (!replacedEntry.Marked)
-                        {
-                            // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
-                            // considered to be a real result entry
-                            // To keep consistent ordering no matter what the old data is, we need to move the current
-                            // item to be in place of the first non-marked item
-                            for (int l = 0; l < k; ++l)
-                            {
-                                if (!result[l].Marked)
-                                {
-                                    // Swap positions of the data, as we will write to the k index (that is updated)
-                                    // we need to only write the moving away data to perform the swap
-                                    result[k] = result[l];
-                                    k = l;
-                                    break;
-                                }
-                            }
-
-                            // Add without copying the base rate as that is outdated data we don't want to add to
-                            result[k] = new TweakedProcess(processKey, process.Rate)
-                            {
-                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
-                                Marked = true,
-                            };
-                        }
-                        else
-                        {
-                            // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
-                            result[k] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
-                            {
-                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
-                                Marked = true,
-                            };
-                        }
-
-                        added = true;
-                        break;
-                    }
-                }
-
-                if (added)
-                    continue;
-
-                // If not found, then create a new result
-                result.Add(new TweakedProcess(processKey, process.Rate)
-                {
-                    Marked = true,
-                });
-            }
+            MergeProcessLists(result, processes);
         }
 
         // Remove unmarked processes, so that old processes aren't kept around
@@ -163,6 +96,85 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // This if is not strictly necessary as RemoveRange works with also 0 items
         if (writeIndex < result.Count)
             result.RemoveRange(writeIndex, result.Count - writeIndex);
+    }
+
+    /// <summary>
+    ///   Merges <paramref name="toAdd"/> into <paramref name="result"/>. <paramref name="toAdd"/> is unaffected.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Linearly scans for duplicate processes (merging them). Might need to be updated to use a map provided by a
+    ///     parameter if the current algorithm is too slow.
+    ///   </para>
+    /// </remarks>
+    public static void MergeProcessLists(List<TweakedProcess> result, List<TweakedProcess> toAdd)
+    {
+        int processCount = toAdd.Count;
+
+        for (int i = 0; i < processCount; ++i)
+        {
+            var process = toAdd[i];
+            var processKey = process.Process;
+
+            bool added = false;
+
+            // Try to add to existing result first
+            int resultCount = result.Count;
+            for (int j = 0; j < resultCount; ++j)
+            {
+                if (result[j].Process == processKey)
+                {
+                    var replacedEntry = result[j];
+
+                    if (!replacedEntry.Marked)
+                    {
+                        // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
+                        // considered to be a real result entry
+                        // To keep consistent ordering no matter what the old data is, we need to move the current
+                        // item to be in place of the first non-marked item
+                        for (int l = 0; l < j; ++l)
+                        {
+                            if (!result[l].Marked)
+                            {
+                                // Swap positions of the data, as we will write to the k index (that is updated)
+                                // we need to only write the moving away data to perform the swap
+                                result[j] = result[l];
+                                j = l;
+                                break;
+                            }
+                        }
+
+                        // Add without copying the base rate as that is outdated data we don't want to add to
+                        result[j] = new TweakedProcess(processKey, process.Rate)
+                        {
+                            SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                            Marked = true,
+                        };
+                    }
+                    else
+                    {
+                        // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                        result[j] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
+                        {
+                            SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                            Marked = true,
+                        };
+                    }
+
+                    added = true;
+                    break;
+                }
+            }
+
+            if (added)
+                continue;
+
+            // If not found, then create a new result
+            result.Add(new TweakedProcess(processKey, process.Rate)
+            {
+                Marked = true,
+            });
+        }
     }
 
     /// <summary>

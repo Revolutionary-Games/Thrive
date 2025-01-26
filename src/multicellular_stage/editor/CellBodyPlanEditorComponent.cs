@@ -73,6 +73,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
+    private readonly Dictionary<CellType, int> cellTypesWorkMemory = new();
+
 #pragma warning disable CA2213
 
     // Selection menu tab selector buttons
@@ -448,11 +450,12 @@ public partial class CellBodyPlanEditorComponent :
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
-        if (!base.CanFinishEditing(userOverrides))
+        var editorUserOverrides = userOverrides.ToList();
+        if (!base.CanFinishEditing(editorUserOverrides))
             return false;
 
         if (IsNegativeAtpProduction() &&
-            !userOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;
@@ -1193,6 +1196,30 @@ public partial class CellBodyPlanEditorComponent :
             out nominalStorage);
 
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
+    }
+
+    private IEnumerable<(CellType Type, int Count)> GetCellTypes()
+    {
+        cellTypesWorkMemory.Clear();
+
+        foreach (var cell in editedMicrobeCells)
+        {
+            var type = cell.Data!.CellType;
+
+            if (cellTypesWorkMemory.ContainsKey(type))
+            {
+                ++cellTypesWorkMemory[type];
+            }
+            else
+            {
+                cellTypesWorkMemory.Add(type, 1);
+            }
+        }
+
+        foreach (var pair in cellTypesWorkMemory)
+        {
+            yield return (pair.Key, pair.Value);
+        }
     }
 
     /// <summary>
