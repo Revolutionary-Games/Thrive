@@ -978,12 +978,11 @@ public partial class CellEditorComponent :
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
-        var editorUserOverrides = userOverrides.ToList();
-        if (!base.CanFinishEditing(editorUserOverrides))
+        if (!base.CanFinishEditing(userOverrides))
             return false;
 
         // Show warning if the editor has an endosymbiosis that should be finished
-        if (HasFinishedPendingEndosymbiosis && !editorUserOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
+        if (HasFinishedPendingEndosymbiosis && !userOverrides.Contains(EditorUserOverride.EndosymbiosisPending))
         {
             pendingEndosymbiosisPopup.PopupCenteredShrink();
             return false;
@@ -992,7 +991,7 @@ public partial class CellEditorComponent :
         // Show a warning popup if trying to exit with negative atp production
         // Not shown in multicellular as the popup would happen in kind of weird place
         if (!IsMulticellularEditor && IsNegativeAtpProduction() &&
-            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+            !userOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;

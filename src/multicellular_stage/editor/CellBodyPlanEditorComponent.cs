@@ -448,12 +448,11 @@ public partial class CellBodyPlanEditorComponent :
 
     public override bool CanFinishEditing(IEnumerable<EditorUserOverride> userOverrides)
     {
-        var editorUserOverrides = userOverrides.ToList();
-        if (!base.CanFinishEditing(editorUserOverrides))
+        if (!base.CanFinishEditing(userOverrides))
             return false;
 
         if (IsNegativeAtpProduction() &&
-            !editorUserOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
+            !userOverrides.Contains(EditorUserOverride.NotProducingEnoughATP))
         {
             negativeAtpPopup.PopupCenteredShrink();
             return false;
