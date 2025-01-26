@@ -1107,8 +1107,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
-        organismStatisticsPanel.UpdateRotationSpeed(CellBodyPlanInternalCalculations.CalculateRotationSpeed(
-            editedMicrobeCells));
+        organismStatisticsPanel.UpdateRotationSpeed(
+            CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }
@@ -1169,8 +1169,8 @@ public partial class CellBodyPlanEditorComponent :
         HandleProcessList(cells, energyBalance, conditionsData);
     }
 
-    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(
-        BalanceDisplayType calculationType, CompoundAmountType amountType,
+    private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
+        CompoundAmountType amountType,
         IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfo energyBalance,
         ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
     {

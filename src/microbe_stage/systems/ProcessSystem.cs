@@ -356,9 +356,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///     assumed to run at normal speed even without the input compounds being present in the given biome.
     ///   </para>
     /// </remarks>
-    public static void ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
+    public static void ComputeCompoundBalance(IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome,
+            CompoundAmountType amountType,
+            bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
         void MakeSureResultExists(Compound compound)
         {
@@ -390,8 +390,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
     }
 
-    public static void ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
+    public static void ComputeCompoundBalance(IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome,
+        CompoundAmountType amountType,
         bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
         ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
@@ -408,8 +408,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///     input compounds present in <see cref="biome"/>)
     ///   </para>
     /// </remarks>
-    public static void ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
+    public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleDefinition> organelles,
+        IBiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
         void MakeSureResultExists(Compound compound)
@@ -462,8 +462,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         }
     }
 
-    public static void ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
+    public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleTemplate> organelles,
+        IBiomeConditions biome, CompoundAmountType amountType,
         EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
         ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,

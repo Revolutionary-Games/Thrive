@@ -141,31 +141,15 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public TutorialState? TutorialState { get; set; }
 
-    public BalanceDisplayType BalanceDisplayType
-    {
-        get
-        {
-            return compoundBalance.CurrentDisplayType;
-        }
-    }
+    public BalanceDisplayType BalanceDisplayType => compoundBalance.CurrentDisplayType;
 
-    public CompoundAmountType CompoundAmountType
-    {
-        get
-        {
-            return calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current;
-        }
-    }
+    public CompoundAmountType CompoundAmountType => calculateBalancesAsIfDay.ButtonPressed ?
+        CompoundAmountType.Biome :
+        CompoundAmountType.Current;
 
     public ResourceLimitingMode ResourceLimitingMode { get; set; }
 
-    public bool CalculateBalancesWhenMoving
-    {
-        get
-        {
-            return calculateBalancesWhenMoving.ButtonPressed;
-        }
-    }
+    public bool CalculateBalancesWhenMoving => calculateBalancesWhenMoving.ButtonPressed;
 
     public override void _Ready()
     {
