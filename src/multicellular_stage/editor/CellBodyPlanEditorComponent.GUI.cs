@@ -9,11 +9,9 @@ using Systems;
 /// </summary>
 public partial class CellBodyPlanEditorComponent
 {
-    private readonly StringBuilder atpToolTipTextBuilder = new();
-
     protected override void OnTranslationsChanged()
     {
-        CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+        organismStatisticsPanel.OnTranslationsChanged();
     }
 
     private void ConfirmFinishEditingWithNegativeATPPressed()

@@ -128,6 +128,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
         LightConfigurationPanel.LightLevelOption.Current;
 
+    private EnergyBalanceInfo? energyBalance;
+
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);
 
@@ -174,6 +176,14 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
         UpdateStatVisibility();
+    }
+
+    public void OnTranslationsChanged()
+    {
+        if (energyBalance != null)
+        {
+            UpdateEnergyBalance(energyBalance);
+        }
     }
 
     public void UpdateStatVisibility()
