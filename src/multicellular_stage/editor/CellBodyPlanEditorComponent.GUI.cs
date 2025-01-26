@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Godot;
 using Systems;
 
@@ -42,7 +41,7 @@ public partial class CellBodyPlanEditorComponent
 
             ProcessSystem.ComputeActiveProcessList(cellType.Type.Organelles, ref newProcesses);
 
-            for (int i = 0; i < newProcesses.Count; i++)
+            for (int i = 0; i < newProcesses.Count; ++i)
             {
                 newProcesses[i] = new TweakedProcess(newProcesses[i].Process, newProcesses[i].Rate * cellType.Count)
                 {

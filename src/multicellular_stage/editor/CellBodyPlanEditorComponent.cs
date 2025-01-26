@@ -1127,7 +1127,8 @@ public partial class CellBodyPlanEditorComponent :
 
         if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
-            conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode, conditionsData);
+            conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
+                conditionsData);
         }
 
         var energyBalance = new EnergyBalanceInfo();

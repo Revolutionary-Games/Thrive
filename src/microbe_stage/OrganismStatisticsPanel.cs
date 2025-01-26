@@ -128,7 +128,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
         LightConfigurationPanel.LightLevelOption.Current;
 
-    private EnergyBalanceInfo? energyBalance;
+    private EnergyBalanceInfo? energyBalanceInfo;
 
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);
@@ -180,9 +180,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public void OnTranslationsChanged()
     {
-        if (energyBalance != null)
+        if (energyBalanceInfo != null)
         {
-            UpdateEnergyBalance(energyBalance);
+            UpdateEnergyBalance(energyBalanceInfo);
         }
     }
 
@@ -209,6 +209,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
     {
+        energyBalanceInfo = energyBalance;
+
         if (energyBalance.FinalBalance > 0)
         {
             atpBalanceLabel.Text = Localization.Translate("ATP_PRODUCTION");
