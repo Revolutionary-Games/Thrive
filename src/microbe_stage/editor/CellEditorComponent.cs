@@ -1874,8 +1874,7 @@ public partial class CellEditorComponent :
         energyBalance.SetupTrackingForRequiredCompounds();
 
         ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType,
-            ref energyBalance);
+            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, energyBalance);
 
         energyBalanceInfo = energyBalance;
 

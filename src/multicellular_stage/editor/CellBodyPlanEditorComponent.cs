@@ -1139,7 +1139,7 @@ public partial class CellBodyPlanEditorComponent :
         {
             ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType, moving,
                 true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType,
-                ref energyBalance);
+                energyBalance);
         }
 
         energyBalanceInfo = energyBalance;

@@ -208,13 +208,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType,
-        ref EnergyBalanceInfo result)
+        EnergyBalanceInfo result)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
         ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, null, ref result);
+            isPlayerSpecies, worldSettings, amountType, null, result);
     }
 
     /// <summary>
@@ -244,7 +244,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
-        ref EnergyBalanceInfo result)
+        EnergyBalanceInfo result)
     {
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
@@ -708,8 +708,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         var balance = new EnergyBalanceInfo();
 
         ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
-            microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average,
-            ref balance);
+            microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average, balance);
 
         float balanceModifier = 1;
 
