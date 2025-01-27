@@ -23,19 +23,11 @@ public partial class LightConfigurationPanel : PanelContainer
 #pragma warning disable CA2213
 
     [Signal]
-    public delegate void OnLightButtonClickEventHandler(string type);
-
-    public enum LightLevelOption
-    {
-        Day,
-        Night,
-        Average,
-        Current,
-    }
+    public delegate void OnLightButtonClickEventHandler(int type);
 
     public void OnLightButtonClicked(string type)
     {
-        EmitSignal(SignalName.OnLightButtonClick, type);
+        EmitSignal(SignalName.OnLightButtonClick, (int)Enum.Parse<LightLevelOption>(type));
     }
 
     public void ApplyLightLevelSelection(LightLevelOption lightLevelOption)

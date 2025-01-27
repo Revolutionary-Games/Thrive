@@ -125,8 +125,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
 #pragma warning restore CA2213
 
-    private LightConfigurationPanel.LightLevelOption selectedLightLevelOption =
-        LightConfigurationPanel.LightLevelOption.Current;
+    private LightLevelOption selectedLightLevelOption =
+        LightLevelOption.Current;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -499,27 +499,27 @@ public partial class OrganismStatisticsPanel : PanelContainer
         // Show selected light level
         switch (selectedLightLevelOption)
         {
-            case LightConfigurationPanel.LightLevelOption.Day:
+            case LightLevelOption.Day:
             {
                 calculateBalancesAsIfDay.ButtonPressed = true;
                 calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
-            case LightConfigurationPanel.LightLevelOption.Night:
+            case LightLevelOption.Night:
             {
                 calculateBalancesAsIfDay.ButtonPressed = false;
                 calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
-            case LightConfigurationPanel.LightLevelOption.Average:
+            case LightLevelOption.Average:
             {
                 calculateBalancesAsIfDay.ButtonPressed = false;
                 break;
             }
 
-            case LightConfigurationPanel.LightLevelOption.Current:
+            case LightLevelOption.Current:
             {
                 break;
             }
@@ -557,11 +557,11 @@ public partial class OrganismStatisticsPanel : PanelContainer
         processListWindow.Visible = !processListWindow.Visible;
     }
 
-    private void OnLightLevelButtonPressed(string option)
+    private void OnLightLevelButtonPressed(int option)
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        var selection = Enum.Parse<LightConfigurationPanel.LightLevelOption>(option);
+        var selection = (LightLevelOption)option;
 
         selectedLightLevelOption = selection;
 
