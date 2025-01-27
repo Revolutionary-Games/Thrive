@@ -255,3 +255,36 @@ public class ReproduceWithOrganelle : StatisticBasedUnlockCondition
         return InARow ? data.GenerationsInARow : data.TotalGenerations;
     }
 }
+
+/// <summary>
+///   The player has taken enough damage from a certain source
+/// </summary>
+public class DamageFromSource : StatisticBasedUnlockCondition
+{
+    [JsonProperty]
+    public string SourceName { get; set; } = string.Empty;
+
+    [JsonProperty("Amount")]
+    public float RequiredAmount { get; set; }
+
+    public override bool Satisfied(IUnlockStateDataSource data)
+    {
+        if (data is not WorldStatsTracker tracker)
+            return false;
+
+        var damage = tracker.PlayerReceivedDamage.GetDamageBySource(SourceName);
+
+        return damage >= RequiredAmount;
+    }
+
+    public override void GenerateTooltip(LocalizedStringBuilder builder, IUnlockStateDataSource data)
+    {
+        if (data is not WorldStatsTracker tracker)
+            return;
+
+        var damage = tracker.PlayerReceivedDamage.GetDamageBySource(SourceName);
+
+        builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED", RequiredAmount,
+            damage));
+    }
+}

@@ -284,7 +284,7 @@ public class OrganelleDefinition : IRegistryType
     public bool HasCiliaComponent { get; private set; }
 
     /// <summary>
-    ///   True if this is an agent vacuole. Number of agent vacuoles determine how often a cell can shoot toxins.
+    ///   True if this is an agent vacuole. The number of agent vacuoles determines how often a cell can shoot toxins.
     /// </summary>
     public bool HasAgentVacuoleComponent { get; private set; }
 
@@ -295,10 +295,12 @@ public class OrganelleDefinition : IRegistryType
     public bool HasSignalingFeature { get; private set; }
 
     /// <summary>
-    ///   True when this organelle is one that uses oxygen as a process input (and is metabolism related). This is
+    ///   True when this organelle is one that uses oxygen as a process input (and is metabolism-related). This is
     ///   used to adjust toxin effects that have a distinction between oxygen breathers and others.
     /// </summary>
     public bool IsOxygenMetabolism { get; private set; }
+
+    public bool HasRadiationProtection { get; private set; }
 
     [JsonIgnore]
     public string UntranslatedName =>
@@ -788,6 +790,7 @@ public class OrganelleDefinition : IRegistryType
 
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
+        HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
     }
 
     private void CalculateModelOffset()
