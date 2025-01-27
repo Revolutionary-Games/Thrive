@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Components;
 using Godot;
 
 public static class CellBodyPlanInternalCalculations
@@ -91,6 +92,10 @@ public static class CellBodyPlanInternalCalculations
         speed -= speed * 0.15f * seriesValue;
     }
 
+    /// <summary>
+    ///   Calculates a colony's rotation speed. The code here should be based on the algorithm in
+    ///   <see cref="MicrobeColonyHelpers.CalculateRotationSpeed"/>
+    /// </summary>
     public static float CalculateRotationSpeed(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
         var leader = cells[0].Data!;

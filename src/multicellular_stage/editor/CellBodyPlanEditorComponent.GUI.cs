@@ -91,6 +91,8 @@ public partial class CellBodyPlanEditorComponent
         Dictionary<Compound, CompoundBalance> nightBalance, float nominalStorage,
         Dictionary<Compound, float> specificStorages)
     {
+        // TODO: Check if it's possible to move those calculations elsewhere to avoid duplication with
+        // CellEditorComponent.UpdateCompoundLastingTimes
         float lightFraction = Editor.CurrentGame.GameWorld.WorldSettings.DaytimeFraction;
 
         var warningTime = Editor.CurrentGame.GameWorld.LightCycle.DayLengthRealtimeSeconds * (1 - lightFraction);
