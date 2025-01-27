@@ -223,7 +223,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
-        radiationDamageSystem = new RadiationDamageSystem(EntitySystem, couldParallelize);
+        radiationDamageSystem = new RadiationDamageSystem(EntitySystem, parallelRunner);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         mucocystSystem = new MucocystSystem(EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);

@@ -13,11 +13,12 @@ using DefaultEcs.Threading;
 [ReadsComponent(typeof(OrganelleContainer))]
 [ReadsComponent(typeof(CellProperties))]
 [RunsAfter(typeof(OsmoregulationAndHealingSystem))]
+[RunsAfter(typeof(IrradiationSystem))]
 [RunsBefore(typeof(DamageSoundSystem))]
 public sealed class RadiationDamageSystem : AEntitySetSystem<float>
 {
     public RadiationDamageSystem(World world, IParallelRunner runner) : base(world, runner,
-        Constants.SYSTEM_NORMAL_ENTITIES_PER_THREAD)
+        Constants.SYSTEM_HIGH_ENTITIES_PER_THREAD)
     {
     }
 
@@ -50,6 +51,8 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
         // Apply damage if there is some to apply
         if (rawDamage > 0 && !health.Dead)
         {
+            // TODO: need to only apply the damage in a fixed rate otherwise the sound loudness depends on the game framerate...
+
             health.DealMicrobeDamage(ref entity.Get<CellProperties>(), rawDamage, "radiation");
         }
     }
