@@ -12,7 +12,7 @@ public static class CellBodyPlanInternalCalculations
 
         var capacities = new Dictionary<Compound, float>();
 
-        // Check if it's possible to do those calculations per cell type and multiply by the types' cell counts
+        // TODO: Check if it's possible to do those calculations per cell type and multiply by the types' cell counts
         foreach (var cell in cells)
         {
             var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.Organelles);
