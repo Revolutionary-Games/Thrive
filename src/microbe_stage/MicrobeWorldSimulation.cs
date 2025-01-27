@@ -274,6 +274,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfingSystem.SetWorld(currentGame.GameWorld);
         engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
         microbeAI.SetWorld(currentGame.GameWorld);
+        damageSoundSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }

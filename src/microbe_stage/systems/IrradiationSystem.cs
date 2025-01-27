@@ -26,8 +26,12 @@ public sealed class IrradiationSystem : AEntitySetSystem<float>
 
         if (sensor.SensorBody == null)
         {
+            // Ignore invalid configurations
+            if (source.Radius <= 0)
+                return;
+
             // Setup detection when missing
-            sensor.ActiveArea = CreateCiliaDetectorShape(source.Radius);
+            sensor.ActiveArea = CreateDetectorShape(source.Radius);
             sensor.ApplyNewShape = true;
         }
         else
@@ -52,15 +56,20 @@ public sealed class IrradiationSystem : AEntitySetSystem<float>
 
                 // Though if the storage has no capacity set, then don't add anything. This should filter out
                 // drain-only storages like chunks
-                if(compounds.NominalCapacity <= 0)
+                if (compounds.NominalCapacity <= 0)
                     continue;
 
-                HandleRadiation(radiatedEntity, compounds, radiationAmount);
+                HandleRadiation(compounds, radiationAmount);
             }
         }
     }
 
-    private void HandleRadiation(in Entity entity, CompoundBag compounds, float amount)
+    private PhysicsShape CreateDetectorShape(float sourceRadius)
+    {
+        return PhysicsShape.CreateSphere(sourceRadius);
+    }
+
+    private void HandleRadiation(CompoundBag compounds, float amount)
     {
         compounds.AddCompound(Compound.Radiation, amount);
     }
