@@ -208,7 +208,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType,
-        [NotNull] ref EnergyBalanceInfo? result)
+        ref EnergyBalanceInfo result)
     {
         var organellesList = organelles.ToList();
 
@@ -244,10 +244,8 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
-        [NotNull] ref EnergyBalanceInfo? result)
+        ref EnergyBalanceInfo result)
     {
-        result ??= new EnergyBalanceInfo();
-
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
         var movementATPConsumption = 0.0f;
