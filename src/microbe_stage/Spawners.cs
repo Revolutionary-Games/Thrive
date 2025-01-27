@@ -357,11 +357,12 @@ public static class SpawnHelpers
                 DisableCollisions = true,
                 RemoveVelocity = true,
                 DisableParticles = selectedMesh.IsParticles,
-                UsesMicrobialDissolveEffect = true,
+                UsesMicrobialDissolveEffect = !selectedMesh.IsParticles,
                 VentCompounds = hasCompounds,
             });
 
-            if (!hasMicrobeShaderParameters)
+            // Particles should be supported so don't need to trigger this warning
+            if (!hasMicrobeShaderParameters && !selectedMesh.IsParticles)
                 GD.PrintErr("Chunk is non-dissolving but no microbe shader parameters were found for animation");
         }
 
