@@ -698,6 +698,8 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
+    public const float RADIATION_STRENGTH_MULTIPLIER = 1 / 1000.0f;
+
     public const float RADIATION_DAMAGE_THRESHOLD = 0.1f;
 
     public const float RADIATION_DAMAGE_MULTIPLIER = 5.1f;

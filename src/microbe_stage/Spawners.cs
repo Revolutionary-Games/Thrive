@@ -315,7 +315,8 @@ public static class SpawnHelpers
                 // Setup as a radiation emitter
                 entity.Set(new RadiationSource
                 {
-                    RadiationStrength = radioactiveAmount,
+                    // Scale from units shown on the compound graphs to one that makes sense in the radiation system
+                    RadiationStrength = radioactiveAmount * Constants.RADIATION_STRENGTH_MULTIPLIER,
                     Radius = Constants.ROCK_RADIATION_RADIUS,
                 });
 

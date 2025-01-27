@@ -17,6 +17,8 @@ using DefaultEcs.Threading;
 /// </remarks>
 [With(typeof(RadiationSource))]
 [With(typeof(PhysicsSensor))]
+[With(typeof(WorldPosition))]
+[ReadsComponent(typeof(WorldPosition))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsBefore(typeof(CompoundAbsorptionSystem))]
 public sealed class IrradiationSystem : AEntitySetSystem<float>
@@ -50,6 +52,8 @@ public sealed class IrradiationSystem : AEntitySetSystem<float>
             if (source.RadiatedEntities.Count == 0)
                 return;
 
+            var chunkPosition = entity.Get<WorldPosition>().Position;
+
             float radiationAmount = source.RadiationStrength * delta;
 
             foreach (var radiatedEntity in source.RadiatedEntities)
@@ -58,15 +62,16 @@ public sealed class IrradiationSystem : AEntitySetSystem<float>
                 if (!radiatedEntity.Has<CompoundStorage>())
                     continue;
 
-                ref var storage = ref radiatedEntity.Get<CompoundStorage>();
-                var compounds = storage.Compounds;
+                var compounds = radiatedEntity.Get<CompoundStorage>().Compounds;
 
                 // Though if the storage has no capacity set, then don't add anything. This should filter out
                 // drain-only storages like chunks
                 if (compounds.NominalCapacity <= 0)
                     continue;
 
-                HandleRadiation(compounds, radiationAmount);
+                var distanceSquared = chunkPosition.DistanceSquaredTo(radiatedEntity.Get<WorldPosition>().Position);
+
+                HandleRadiation(compounds, radiationAmount, distanceSquared);
             }
         }
     }
@@ -76,8 +81,11 @@ public sealed class IrradiationSystem : AEntitySetSystem<float>
         return PhysicsShape.CreateSphere(sourceRadius);
     }
 
-    private void HandleRadiation(CompoundBag compounds, float amount)
+    private void HandleRadiation(CompoundBag compounds, float amount, float distanceSquared)
     {
+        // Apply inverse square law
+        amount *= 1 / distanceSquared;
+
         compounds.AddCompound(Compound.Radiation, amount);
     }
 }
