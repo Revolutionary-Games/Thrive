@@ -355,8 +355,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   </para>
     /// </remarks>
     public static void ComputeCompoundBalance(IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome,
-            CompoundAmountType amountType,
-            bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
+        CompoundAmountType amountType, bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
         void MakeSureResultExists(Compound compound)
         {
