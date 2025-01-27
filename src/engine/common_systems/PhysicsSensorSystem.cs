@@ -133,7 +133,7 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
             sensor.SensorBody = worldSimulationWithPhysics.CreateSensor(sensor.ActiveArea, position.Position,
                 Quaternion.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
 
-            // Set no entity on the sensor so anything colliding with the sensor can't do anything
+            // Set no entity on the sensor, so anything colliding with the sensor can't do anything
             sensor.SensorBody.SetEntityReference(default(Entity));
 
             sensor.ActiveCollisions = worldSimulationWithPhysics.PhysicalWorld.BodyStartCollisionRecording(

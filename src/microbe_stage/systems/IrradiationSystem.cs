@@ -9,9 +9,16 @@ using DefaultEcs.Threading;
 /// <summary>
 ///   Handles <see cref="RadiationSource"/> sending out radiation to anything that can receive it that is nearby
 /// </summary>
+/// <remarks>
+///   <para>
+///     Compound bag writing uses no safety checks from multiple threads, so this is marked as running before the most
+///     likely systems to access it.
+///   </para>
+/// </remarks>
 [With(typeof(RadiationSource))]
 [With(typeof(PhysicsSensor))]
 [RunsBefore(typeof(ProcessSystem))]
+[RunsBefore(typeof(CompoundAbsorptionSystem))]
 public sealed class IrradiationSystem : AEntitySetSystem<float>
 {
     public IrradiationSystem(World world, IParallelRunner runner) : base(world, runner,
