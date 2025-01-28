@@ -54,12 +54,17 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
         var radiationFraction = radiationAmount / compounds.GetCapacityForCompound(Compound.Radiation);
 
         if (radiationFraction < Constants.RADIATION_DAMAGE_THRESHOLD)
+        {
+            // Apply natural decay to radiation so that it doesn't infinitely stack in cells that cannot process it
+            compounds.TakeCompound(Compound.Radiation, Constants.RADIATION_NATURAL_DECAY * elapsedSinceUpdate);
             return;
+        }
+
+        // Apply faster decay as it is not fun to take damage indefinitely
+        compounds.TakeCompound(Compound.Radiation,
+            Constants.RADIATION_NATURAL_DECAY_WHEN_TAKING_DAMAGE * elapsedSinceUpdate);
 
         ref var health = ref entity.Get<Health>();
-
-        // Apply natural decay to radiation so that it doesn't infinitely stack in cells that cannot process it
-        compounds.TakeCompound(Compound.Radiation, Constants.RADIATION_NATURAL_DECAY * elapsedSinceUpdate);
 
         // Offset damage by protective organelles
         if (entity.Has<OrganelleContainer>())
@@ -74,8 +79,6 @@ public sealed class RadiationDamageSystem : AEntitySetSystem<float>
         // Apply damage if there is some to apply
         if (rawDamage > 0 && !health.Dead)
         {
-            // TODO: need to only apply the damage in a fixed rate otherwise the sound loudness depends on the game framerate...
-
             health.DealMicrobeDamage(ref entity.Get<CellProperties>(), rawDamage, "radiation");
 
             entity.SendNoticeIfPossible(() =>

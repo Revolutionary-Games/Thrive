@@ -714,7 +714,9 @@ public static class Constants
     /// </summary>
     public const float RADIATION_DAMAGE_INTERVAL = 0.6f;
 
-    public const float RADIATION_NATURAL_DECAY = 0.01f;
+    public const float RADIATION_NATURAL_DECAY = 0.02f;
+
+    public const float RADIATION_NATURAL_DECAY_WHEN_TAKING_DAMAGE = 3 * RADIATION_NATURAL_DECAY;
 
     public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.1f;
 
