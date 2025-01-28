@@ -47,6 +47,7 @@ public sealed class IrradiationSystem : AEntitySetSystem<float>
         {
             source.RadiatedEntities ??= new HashSet<Entity>();
 
+            source.RadiatedEntities.Clear();
             sensor.GetDetectedBodies(source.RadiatedEntities);
 
             if (source.RadiatedEntities.Count == 0)
