@@ -268,6 +268,14 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 MakeEditorForFreebuildAvailable();
             }
 
+            if (Player.Has<CompoundStorage>())
+            {
+                var storage = Player.Get<CompoundStorage>();
+                var compounds = storage.Compounds;
+                HUD.UpdateRadiationBar(compounds.GetCompoundAmount(Compound.Radiation),
+                    compounds.GetCapacityForCompound(Compound.Radiation));
+            }
+
             elapsedSinceEntityPositionCheck += delta;
 
             if (elapsedSinceEntityPositionCheck > Constants.TUTORIAL_ENTITY_POSITION_UPDATE_INTERVAL)
@@ -340,6 +348,8 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         else
         {
             guidanceLine.Visible = false;
+
+            HUD.UpdateRadiationBar(0, 1);
         }
 
         UpdateLinePlayerPosition();

@@ -121,6 +121,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     // TODO: implement changing pressure conditions
     protected CompoundProgressBar pressureBar = null!;
 
+    protected CompoundProgressBar radiationBar = null!;
+
     // TODO: switch to dynamically creating the following bars to allow better extensibility in terms of compound types
     protected CompoundProgressBar glucoseBar = null!;
     protected CompoundProgressBar ammoniaBar = null!;
@@ -353,12 +355,24 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             GD.Load<Texture2D>("res://assets/textures/gui/bevel/Pressure.svg"), new LocalizedString("PRESSURE_SHORT"),
             200, "kPa");
 
+        radiationBar = CompoundProgressBar.CreateSimpleWithUnit(barScene,
+            GD.Load<Texture2D>("res://assets/textures/gui/bevel/Radiation.png"), new LocalizedString("RADIATION"),
+            0, "mGy");
+
         environmentPanel.AddPrimaryBar(oxygenBar);
         environmentPanel.AddPrimaryBar(co2Bar);
         environmentPanel.AddPrimaryBar(nitrogenBar);
         environmentPanel.AddPrimaryBar(temperatureBar);
         environmentPanel.AddPrimaryBar(sunlightBar);
+
+        // TODO: should this be hidden? At least in the microbe stage this doesn't change during gameplay so this just
+        // takes up space unnecessarily
         environmentPanel.AddPrimaryBar(pressureBar);
+
+        environmentPanel.AddPrimaryBar(radiationBar);
+
+        // Hidden until it would show something
+        radiationBar.Hide();
 
         // Compound bars
         glucoseBar = CompoundProgressBar.Create(barScene, simulationParameters.GetCompoundDefinition(Compound.Glucose),
@@ -614,6 +628,12 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // pressureBar.CurrentValue = ?
     }
 
+    public void UpdateRadiationBar(float radiation, float maxRadiation)
+    {
+        radiationBar.UpdateValue(radiation, maxRadiation);
+        radiationBar.Visible = radiationBar.CurrentValue > 0;
+    }
+
     public override void PauseButtonPressed(bool buttonState)
     {
         base.PauseButtonPressed(buttonState);
@@ -738,7 +758,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     {
         var readStrainFraction = ReadPlayerStrainFraction();
 
-        // Skip the rest of the method if player does not have strain
+        // Skip the rest of the method if the player does not have strain
         if (readStrainFraction == null)
             return;
 

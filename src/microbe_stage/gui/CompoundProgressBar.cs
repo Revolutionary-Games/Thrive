@@ -215,7 +215,7 @@ public partial class CompoundProgressBar : Control
     }
 
     /// <summary>
-    ///   If true the bar value is slerped to make it animate smoother
+    ///   If true, the bar value is slerped to make it animate smoother
     /// </summary>
     [Export]
     public bool SmoothBarValue { get; set; } = true;
