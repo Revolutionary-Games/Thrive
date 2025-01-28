@@ -378,6 +378,8 @@ public partial class CompoundProgressBar : Control
 
             if (icon != null)
                 icon.SelfModulate = Colors.White;
+
+            UpdateColour();
         }
     }
 
