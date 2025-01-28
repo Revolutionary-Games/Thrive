@@ -273,7 +273,7 @@ public static class SpawnHelpers
         }
 
         // Setup compounds to vent
-        bool hasCompounds = false;
+        bool ventCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
             float radioactiveAmount = -1;
@@ -305,7 +305,7 @@ public static class SpawnHelpers
                 Compounds = compounds,
             });
 
-            hasCompounds = true;
+            ventCompounds = true;
 
             if (radioactiveAmount > 0)
             {
@@ -328,7 +328,7 @@ public static class SpawnHelpers
                 });
 
                 // Prevent trying to vent radiation on despawn
-                hasCompounds = false;
+                ventCompounds = false;
             }
 
             // If the chunk doesn't vent anything, it doesn't need the venting component
@@ -359,7 +359,7 @@ public static class SpawnHelpers
                 RemoveVelocity = true,
                 DisableParticles = selectedMesh.IsParticles,
                 UsesMicrobialDissolveEffect = !selectedMesh.IsParticles,
-                VentCompounds = hasCompounds,
+                VentCompounds = ventCompounds,
             });
 
             // Particles should be supported so don't need to trigger this warning
