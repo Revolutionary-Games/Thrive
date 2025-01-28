@@ -399,6 +399,9 @@ public partial class CompoundProgressBar : Control
             playingFlashAnimation = false;
             flashAnimationTimer = 0;
             SetProcess(false);
+
+            if (icon != null)
+                icon.SelfModulate = Colors.White;
         }
         else if (icon != null)
         {
