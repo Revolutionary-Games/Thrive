@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 10:49+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Hebrew <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/he/>\n"
@@ -1393,6 +1393,10 @@ msgstr "הופך [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "סינתזת \"אוקסיטוקסי\""
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(העלות של אברונים, ממברנה וחפצים אחרים בעורך)"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3324,6 +3328,18 @@ msgstr "גוש ברזל קטן"
 msgid "MEGA_YEARS"
 msgstr "מיליון שנה"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "מטבולוזומים"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנזימים הידרוליזטיים מסוגלים לפרק מולקולות אורגניות שונות. ליזוזומים מאפשרים לתא לעכל חומרים שנבלע דרך אנדוציטוזה ולפלוט או לפרק מוצרי פסולת בתהליך הנקרא [b]אוטופגיה[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
+
 msgid "MEMBRANE"
 msgstr "קרום"
 
@@ -4164,6 +4180,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "מהירות בסיסית"
 
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4767,6 +4786,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "האם אתה בטוח שרוצה לצאת מהמשחק?\n"
 "אתה עלול לאבד כל פעולה לא שמורה."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "נשימה ארובית"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "גוש ברזל גדול"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "תרמוסינתזה"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "שם מין אקראי"
@@ -6359,6 +6390,14 @@ msgstr ""
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "מהירות עיכול:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "מהירות עיכול:"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
 
@@ -7383,6 +7422,38 @@ msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "אברונים"
 
 #, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנזימים הידרוליזטיים מסוגלים לפרק מולקולות אורגניות שונות. ליזוזומים מאפשרים לתא לעכל חומרים שנבלע דרך אנדוציטוזה ולפלוט או לפרק מוצרי פסולת בתהליך הנקרא [b]אוטופגיה[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "הליזוזום הוא אברון קשור ממברנה שמכיל אנזימים הידרוליזטיים מסוגלים לפרק מולקולות אורגניות שונות. ליזוזומים מאפשרים לתא לעכל חומרים שנבלע דרך אנדוציטוזה ולפלוט או לפרק מוצרי פסולת בתהליך הנקרא [b]אוטופגיה[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "מכיל אנזימי עיכול. ניתן לשנותם לסוגים שונים של אנזימים שהוא יכיל בו. רק סוג אחד של אנזים מסוגל להכיל בכל רגע נתון."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
+
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "מטבולוזומים הם מקבצי חלבונים העטופים במעטפת חלבונים. הם מסוגלים להמיר [thrive:compound type=\"glucose\"][/thrive:compound] ל[thrive:compound type=\"atp\"][/thrive:compound] במהירות גבוה יותר ממה שניתן לעשות בציטופלזמה בתהליך שנקרא [b]נשימה אירובית[/b]. יחד עם זאת, הוא דורש [thrive:compound type=\"oxygen\"][/thrive:compound] כדי לתפקד, ורמות [thrive:compound type=\"oxygen\"][/thrive:compound] נמוכות יותר בסביבה יאטו את קצב ייצור של [thrive:compound type=\"atp\"][/thrive:compound]. מכיוון שהמטבולוזומים צפים בציטופלזמה, הנוזל שמסביבם מבצעים [b]גליקליזה[/b] ברמה מסוימת."
 
@@ -7797,6 +7868,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "הוסף אברון"
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "ליזוזום"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "מטבולוזומים"
 
@@ -7956,6 +8031,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "תרמוסינתזה"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8633,10 +8712,6 @@ msgstr "זום החוצה"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "שלב המיקרובי"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "תרמוסינתזה"
 
 #, fuzzy
 #~ msgid "NO"

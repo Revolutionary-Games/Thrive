@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 10:49+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Portuguese (Brazil) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pt_BR/>\n"
@@ -1380,6 +1380,10 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] em [thri
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Síntese de Oxitoxina"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(custo das organelas, membranas e outros itens do editor)"
 
 msgid "DAY_LENGTH"
 msgstr "Duração do dia"
@@ -3220,6 +3224,18 @@ msgstr "Pedaço de ferro pequeno"
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolossomo"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
+
 msgid "MEMBRANE"
 msgstr "Membrana"
 
@@ -4050,6 +4066,10 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Movimento Base"
 
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "O editor está pronto para ser utilizado"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "O editor está pronto para ser utilizado"
 
@@ -4630,6 +4650,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Tem certeza que deseja sair do jogo?\n"
 "Você vai perder seu progesso não salvo."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Respiração Aeróbica"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Pedaço de fosfato grande"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Termossíntese"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Nome da espécie aleatório"
@@ -6196,6 +6228,14 @@ msgstr ""
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Velocidade da Digestão:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Velocidade da Digestão:"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
 
@@ -7231,6 +7271,44 @@ msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Axônio"
 
 #, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr ""
+"Equipar um lisossomo com [b]quitinase[/b] ou [b]celulase[/b] permite que a célula possa digerir outras células com membranas de quitina ou celulose, respectivamente. Se uma célula não tiver um lisossomo equipado com quitinase ou celulase, ela não poderá digerir outras células que possuam essas respectivas membranas.\n"
+"\n"
+"Além de suas estatísticas gerais, cada lisossomo contribui com:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] de velocidade de digestão. A matéria ingerida será digerida mais rapidamente. [/indent]\n"
+"[indent]—   [b]+4.5%[/b] de eficiência de digestão para a enzima escolhida. Células ingeridas com a membrana alvo da enzima produzirão mais compostos quando digeridas.[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "O lisossomo é uma organela ligada à membrana que contém enzimas hidrolíticas que podem quebrar vários tipos de biomoléculas. Os lisossomos permitem a digestão de materiais ingeridos por meio da endocitose e limpar seus resíduos usando um processo chamado autofagia."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Contém enzimas digestivas. Pode ser modificado para mudar o tipo de enzima que contém. Só uma enzima pode ser utilizada ao mesmo tempo."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Uma célula precisa ter um núcleo para evoluir lisossomos."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Sem melhorias."
+
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Metabolossomos são aglomerados envoltos com cascas de proteínas. Eles conseguem converter glicose em ATP a uma taxa muito maior do que pode ser feita no citoplasma em um processo chamado Respiração Aeróbica. No entanto, necessita de oxigênio para funcionar, e níveis menores de oxigênio no ambiente vão desacelerar a taxa da produção de ATP. Como os metabolossomos são suspensos diretamente no citoplasma, os fluidos em volta realizarão a fermentação."
 
@@ -7645,6 +7723,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Colocar organela"
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lisossomo"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolossomo"
 
@@ -7805,6 +7887,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Cílios"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Termossíntese"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8482,10 +8568,6 @@ msgstr "Diminuir o zoom"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Estágio Espacial"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Termossíntese"
 
 #, fuzzy
 #~ msgid "NO"

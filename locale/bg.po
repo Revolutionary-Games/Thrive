@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 10:49+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Bulgarian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/bg/>\n"
@@ -1439,6 +1439,10 @@ msgstr "Превръща [thrive:compound type=\"glucose\"]глюкозата[/t
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Окситоксиносинтеза"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(определя разхода на мутационни точки в редактора)"
 
 msgid "DAY_LENGTH"
 msgstr "Продължителност на деня"
@@ -3334,6 +3338,18 @@ msgstr "Малък железен фрагмент"
 msgid "MEGA_YEARS"
 msgstr "млн. г."
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Метаболозоми"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
+
 msgid "MEMBRANE"
 msgstr "Мембрана"
 
@@ -4167,6 +4183,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Базово движение"
 
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4767,6 +4786,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Сигурни ли сте, че искате да излезете от играта?\n"
 "Всички незапазени промени ще бъдат изгубени."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Аеробно дишане"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Голям железен фрагмент"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Термосинтеза"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Произволно наименование"
@@ -6351,6 +6382,14 @@ msgstr ""
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Хранителна скорост:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Хранителна скорост:"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
 
@@ -7378,6 +7417,38 @@ msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Аксон"
 
 #, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Лизозомата е мембранен органел, съдържащ хидролази, които разграждат различните биомолекули. Тя позволява усвояването на обектите, погълнати чрез ендоцитоза и изхвърлянето на отпадъчните продукти на клетката в процес, който се нарича [b]автофагия[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Съдържа храносмилателни ензими. Нейните свойства определят вида на ензима, който се използва за усвояването на обектите от клетката. Ензимите подобряват хранителната ефективност на клетката."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Подлежи на уточняване"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
+
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Метаболозомите са струпвания от протеини, увити в протеинови обвивки. Те превръщат [thrive:compound type=\"glucose\"]глюкозата[/thrive:compound] в [thrive:compound type=\"atp\"]АТФ[/thrive:compound], много по-бързо от цитоплазмата в процес, който се нарича [b]аеробно дишане[/b]. За да функционират се нуждаят от [thrive:compound type=\"oxygen\"]кислород[/thrive:compound], когато той не е достатъчен произвеждането на [thrive:compound type=\"atp\"]АТФ[/thrive:compound] се забавя. Понеже метаболозомите са скачени с цитоплазма, тя извършва известна [b]гликолиза[/b]."
 
@@ -7797,6 +7868,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Добавяне на органел или друг обект"
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Лизозома"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболозоми"
 
@@ -7962,6 +8037,10 @@ msgstr "Подлежи на уточняване"
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Пробуждане"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Термосинтеза"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8636,10 +8715,6 @@ msgstr "Отдалечаване"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Космическа колонизация"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Термосинтеза"
 
 #, fuzzy
 #~ msgid "NO"
