@@ -688,25 +688,35 @@ public static class Constants
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
     /// <summary>
-    ///   Time until cell can regenerate after taking damage;
+    ///   Time until a cell can regenerate after taking damage;
     /// </summary>
     public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
 
     /// <summary>
-    ///   This much damage has to be dealt in a single instance to prevent health regen. This is pretty high to avoid
+    ///   This much damage has to be caused in a single instance to prevent health regen. This is pretty high to avoid
     ///   small trickle damage the player can't notice from preventing health regen.
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
-    public const float RADIATION_STRENGTH_MULTIPLIER = 1 / 1000.0f;
+    public const float RADIATION_STRENGTH_MULTIPLIER = 1 / 100.0f;
 
-    public const float RADIATION_DAMAGE_THRESHOLD = 0.1f;
+    /// <summary>
+    ///   Fraction of radiation (from the max amount) that starts to cause damage?
+    /// </summary>
+    public const float RADIATION_DAMAGE_THRESHOLD = 0.6f;
+
+    public const float RADIATION_WARNING = RADIATION_DAMAGE_THRESHOLD - 0.15f;
 
     public const float RADIATION_DAMAGE_MULTIPLIER = 5.1f;
 
-    public const float RADIATION_NATURAL_DECAY = 0.005f;
+    /// <summary>
+    ///   How often the radiation damage system runs (so the damage is applied)
+    /// </summary>
+    public const float RADIATION_DAMAGE_INTERVAL = 0.6f;
 
-    public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.01f;
+    public const float RADIATION_NATURAL_DECAY = 0.01f;
+
+    public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.1f;
 
     public const float ROCK_RADIATION_RADIUS = 25;
 
