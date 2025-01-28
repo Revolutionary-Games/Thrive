@@ -282,9 +282,20 @@ public class DamageFromSource : StatisticBasedUnlockCondition
         if (data is not WorldStatsTracker tracker)
             return;
 
-        var damage = tracker.PlayerReceivedDamage.GetDamageBySource(SourceName);
+        var damage = Math.Round(tracker.PlayerReceivedDamage.GetDamageBySource(SourceName), 2);
 
-        builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED", RequiredAmount,
-            damage));
+        switch (SourceName)
+        {
+            case "radiation":
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE", RequiredAmount,
+                    new LocalizedString("DAMAGE_SOURCE_RADIATION"),
+                    damage));
+                break;
+
+            default:
+                builder.Append(new LocalizedString("UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED", RequiredAmount,
+                    damage));
+                break;
+        }
     }
 }
