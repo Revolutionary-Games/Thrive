@@ -6,6 +6,7 @@
     "IsAlwaysUseful": true,
     "IsEnvironmental": false,
     "CanBeDistributed": true,
+    "CanBeInitialCompound": false,
     "Colour": {
       "r": 0.235,
       "g": 0.627,
@@ -238,17 +239,18 @@
     "Unit": "\u00B0C"
   },
   "radiation": {
-    "name": "RADIATION",
-    "volume": 1,
-    "isCloud": false,
-    "isAlwaysUseful": true,
-    "isEnvironmental": false,
-    "canBeDistributed": false,
-    "colour": {
+    "Name": "RADIATION",
+    "Volume": 1,
+    "IsCloud": false,
+    "IsAlwaysUseful": true,
+    "IsEnvironmental": false,
+    "CanBeDistributed": false,
+    "CanBeInitialCompound": false,
+    "Colour": {
       "r": 1,
       "g": 0.75,
       "b": 0
     },
-    "iconPath": "res://assets/textures/gui/bevel/Radiation.png"
+    "IconPath": "res://assets/textures/gui/bevel/Radiation.png"
   }
 }
