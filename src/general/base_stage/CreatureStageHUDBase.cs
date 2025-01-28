@@ -355,9 +355,8 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
             GD.Load<Texture2D>("res://assets/textures/gui/bevel/Pressure.svg"), new LocalizedString("PRESSURE_SHORT"),
             200, "kPa");
 
-        radiationBar = CompoundProgressBar.CreateSimpleWithUnit(barScene,
-            GD.Load<Texture2D>("res://assets/textures/gui/bevel/Radiation.png"), new LocalizedString("RADIATION"),
-            0, "mGy");
+        radiationBar = CompoundProgressBar.CreateSimpleCompound(barScene,
+            simulationParameters.GetCompoundDefinition(Compound.Radiation), 0, "mGy");
 
         environmentPanel.AddPrimaryBar(oxygenBar);
         environmentPanel.AddPrimaryBar(co2Bar);
@@ -628,10 +627,15 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         // pressureBar.CurrentValue = ?
     }
 
-    public void UpdateRadiationBar(float radiation, float maxRadiation)
+    public void UpdateRadiationBar(float radiation, float maxRadiation, float warningThreshold)
     {
         radiationBar.UpdateValue(radiation, maxRadiation);
         radiationBar.Visible = radiationBar.CurrentValue > 0;
+
+        if (radiation / maxRadiation >= warningThreshold)
+        {
+            radiationBar.Flash();
+        }
     }
 
     public override void PauseButtonPressed(bool buttonState)

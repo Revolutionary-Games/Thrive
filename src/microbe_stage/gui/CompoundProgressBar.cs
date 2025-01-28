@@ -45,6 +45,9 @@ public partial class CompoundProgressBar : Control
     private bool displayPercent;
     private bool round;
 
+    private bool playingFlashAnimation;
+    private double flashAnimationTimer;
+
     private Color fillColour = new(0.6f, 0.6f, 0.6f, 1);
 
     public enum BarMode
@@ -226,6 +229,10 @@ public partial class CompoundProgressBar : Control
     [Export]
     public bool Narrow { get; set; }
 
+    private double FlashAnimationSlerpFactor => flashAnimationTimer <= Constants.HUD_BAR_FLASH_DURATION * 0.5f ?
+        flashAnimationTimer * 2 :
+        1 - (flashAnimationTimer - Constants.HUD_BAR_FLASH_DURATION * 0.5f) * 2;
+
     public static CompoundProgressBar Create(PackedScene scene, CompoundDefinition compound, float initialValue,
         float maxValue)
     {
@@ -265,6 +272,22 @@ public partial class CompoundProgressBar : Control
         bar.RoundToWholeNumber = round;
 
         bar.UpdateValue(initialValue, 100);
+
+        return bar;
+    }
+
+    public static CompoundProgressBar CreateSimpleCompound(PackedScene scene, CompoundDefinition compound,
+        float initialValue, string? unit)
+    {
+        unit ??= compound.Unit;
+
+        var bar = scene.Instantiate<CompoundProgressBar>();
+
+        bar.SetupFromCompound(compound);
+
+        bar.Mode = BarMode.ShowOnlyCurrentValue;
+        bar.CurrentValue = initialValue;
+        bar.UnitSuffix = unit;
 
         return bar;
     }
@@ -330,18 +353,59 @@ public partial class CompoundProgressBar : Control
                 CustomMinimumSize = new Vector2(Constants.COMPOUND_BAR_NORMAL_WIDTH, CustomMinimumSize.Y);
             }
         }
+
+        SetProcess(playingFlashAnimation);
     }
 
     public override void _EnterTree()
     {
         base._EnterTree();
         Localization.Instance.OnTranslationsChanged += OnTranslationsChanged;
+
+        // Animation is reset when entering the tree
+        SetProcess(false);
     }
 
     public override void _ExitTree()
     {
         base._ExitTree();
         Localization.Instance.OnTranslationsChanged -= OnTranslationsChanged;
+
+        // Cancel animation if exiting the tree while playing one
+        if (playingFlashAnimation)
+        {
+            playingFlashAnimation = false;
+
+            if (icon != null)
+                icon.SelfModulate = Colors.White;
+        }
+    }
+
+    public override void _Process(double delta)
+    {
+        base._Process(delta);
+
+        if (!playingFlashAnimation)
+        {
+            GD.PrintErr("Flash animation not playing, but we got _Process call...");
+            SetProcess(false);
+            return;
+        }
+
+        flashAnimationTimer += delta;
+
+        if (flashAnimationTimer > Constants.HUD_BAR_FLASH_DURATION)
+        {
+            playingFlashAnimation = false;
+            flashAnimationTimer = 0;
+            SetProcess(false);
+        }
+        else if (icon != null)
+        {
+            icon.SelfModulate = Colors.White.Lerp(Colors.Red, (float)FlashAnimationSlerpFactor);
+        }
+
+        UpdateColour();
     }
 
     /// <summary>
@@ -377,6 +441,19 @@ public partial class CompoundProgressBar : Control
         Icon = compound.LoadedIcon ?? throw new Exception("Compound type has no icon loaded");
         FillColour = compound.BarColour;
         DisplayedName = new LocalizedString(compound.GetUntranslatedName());
+    }
+
+    /// <summary>
+    ///   Plays a flashing animation on this bar if not playing already
+    /// </summary>
+    public void Flash()
+    {
+        if (playingFlashAnimation)
+            return;
+
+        playingFlashAnimation = true;
+        flashAnimationTimer = 0;
+        SetProcess(true);
     }
 
     protected override void Dispose(bool disposing)
@@ -507,8 +584,17 @@ public partial class CompoundProgressBar : Control
 
     private void UpdateColour()
     {
-        if (fillStyleBox != null)
+        if (fillStyleBox == null)
+            return;
+
+        if (!playingFlashAnimation)
+        {
             fillStyleBox.BgColor = fillColour;
+        }
+        else
+        {
+            fillStyleBox.BgColor = fillColour.Lerp(Colors.Red, (float)FlashAnimationSlerpFactor);
+        }
     }
 
     private void ApplyCompactMode(bool playAnimation)

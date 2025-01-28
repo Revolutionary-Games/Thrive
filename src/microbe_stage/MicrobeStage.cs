@@ -273,7 +273,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
                 var storage = Player.Get<CompoundStorage>();
                 var compounds = storage.Compounds;
                 HUD.UpdateRadiationBar(compounds.GetCompoundAmount(Compound.Radiation),
-                    compounds.GetCapacityForCompound(Compound.Radiation));
+                    compounds.GetCapacityForCompound(Compound.Radiation), Constants.RADIATION_WARNING);
             }
 
             elapsedSinceEntityPositionCheck += delta;
@@ -349,7 +349,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         {
             guidanceLine.Visible = false;
 
-            HUD.UpdateRadiationBar(0, 1);
+            HUD.UpdateRadiationBar(0, 1, 1);
         }
 
         UpdateLinePlayerPosition();
