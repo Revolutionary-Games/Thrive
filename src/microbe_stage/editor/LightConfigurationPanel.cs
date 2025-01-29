@@ -20,7 +20,7 @@ public partial class LightConfigurationPanel : PanelContainer
     [Export]
     private Button currentLightButton = null!;
 
-#pragma warning disable CA2213
+#pragma warning restore CA2213
 
     [Signal]
     public delegate void OnLightButtonClickEventHandler(int type);
