@@ -43,6 +43,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private readonly StringBuilder atpToolTipTextBuilder = new();
 
+    private readonly ATPComparer atpComparer = new();
+
 #pragma warning disable CA2213
 
     [Export]
@@ -125,8 +127,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
 #pragma warning restore CA2213
 
-    private LightLevelOption selectedLightLevelOption =
-        LightLevelOption.Current;
+    private LightLevelOption selectedLightLevelOption = LightLevelOption.Current;
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
@@ -570,9 +571,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
     {
-        var comparer = new ATPComparer();
-
-        return bar.OrderBy(i => i.Key, comparer).ToList();
+        return bar.OrderBy(i => i.Key, atpComparer).ToList();
     }
 
     private class ATPComparer : IComparer<string>

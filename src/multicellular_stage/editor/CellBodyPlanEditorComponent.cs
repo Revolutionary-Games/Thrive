@@ -1132,6 +1132,7 @@ public partial class CellBodyPlanEditorComponent :
 
         organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
 
+        // Passing those variables by refs to the following functions to reuse them
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
 
