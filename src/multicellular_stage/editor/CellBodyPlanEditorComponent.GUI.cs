@@ -36,15 +36,15 @@ public partial class CellBodyPlanEditorComponent
         var processes = new List<TweakedProcess>();
 
         var newProcesses = new List<TweakedProcess>();
-        foreach (var cellType in GetCellTypes())
+        foreach (var cellType in cellTypesCount)
         {
             newProcesses.Clear();
 
-            ProcessSystem.ComputeActiveProcessList(cellType.Type.Organelles, ref newProcesses);
+            ProcessSystem.ComputeActiveProcessList(cellType.Key.Organelles, ref newProcesses);
 
             for (int i = 0; i < newProcesses.Count; ++i)
             {
-                newProcesses[i] = new TweakedProcess(newProcesses[i].Process, newProcesses[i].Rate * cellType.Count)
+                newProcesses[i] = new TweakedProcess(newProcesses[i].Process, newProcesses[i].Rate * cellType.Value)
                 {
                     SpeedMultiplier = newProcesses[i].SpeedMultiplier,
                 };

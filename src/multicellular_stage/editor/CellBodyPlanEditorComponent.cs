@@ -73,7 +73,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private readonly Dictionary<Compound, float> processSpeedWorkMemory = new();
 
-    private readonly Dictionary<CellType, int> cellTypesWorkMemory = new();
+    private readonly Dictionary<CellType, int> cellTypesCount = new();
 
 #pragma warning disable CA2213
 
@@ -1078,6 +1078,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnCellsChanged()
     {
+        UpdateCellTypesCounts();
+
         UpdateAlreadyPlacedVisuals();
 
         UpdateStats();
@@ -1183,27 +1185,22 @@ public partial class CellBodyPlanEditorComponent :
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
-    private IEnumerable<(CellType Type, int Count)> GetCellTypes()
+    private void UpdateCellTypesCounts()
     {
-        cellTypesWorkMemory.Clear();
+        cellTypesCount.Clear();
 
         foreach (var cell in editedMicrobeCells)
         {
             var type = cell.Data!.CellType;
 
-            if (cellTypesWorkMemory.ContainsKey(type))
+            if (cellTypesCount.ContainsKey(type))
             {
-                ++cellTypesWorkMemory[type];
+                ++cellTypesCount[type];
             }
             else
             {
-                cellTypesWorkMemory.Add(type, 1);
+                cellTypesCount.Add(type, 1);
             }
-        }
-
-        foreach (var pair in cellTypesWorkMemory)
-        {
-            yield return (pair.Key, pair.Value);
         }
     }
 
