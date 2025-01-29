@@ -14,4 +14,6 @@ public enum OrganelleFeatureTag
     ///   Adds a stabby thing to the cell, positioned similarly to the flagellum
     /// </summary>
     Pilus,
+
+    RadiationBlock,
 }

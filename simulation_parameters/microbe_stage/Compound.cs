@@ -10,19 +10,19 @@
 ///     new last value).
 ///   </para>
 ///   <para>
-///     This is defined as being size of 16 bits to be more space efficient when processing a lot of compound data.
+///     This is defined as being the size of 16 bits to be more space efficient when processing a lot of compound data.
 ///   </para>
 /// </remarks>
 public enum Compound : ushort
 {
     /// <summary>
-    ///   Special value reserved to denote, no compound type (this allows compound searches to return a non-nullable
+    ///   Special value reserved to denote no compound type (this allows compound searches to return a non-nullable
     ///   value 0)
     /// </summary>
     Invalid = 0,
 
     /// <summary>
-    ///   ATP compound. This *must be kept* as the value 1 and here at the start.
+    ///   ATP compound. This *must be kept* as value 1 and here at the start.
     /// </summary>
     ATP = 1,
 
@@ -38,13 +38,14 @@ public enum Compound : ushort
     Nitrogen = 11,
     Sunlight = 12,
     Temperature = 13,
+    Radiation = 14,
 
     /// <summary>
-    ///   Last defined compound. When adding new values this *must be* updated to match the value of the last compound.
+    ///   Last defined compound. When adding new values, this *must be* updated to match the value of the last compound.
     /// </summary>
-    LastInbuiltCompound = 13,
+    LastInbuiltCompound = 14,
 
-    // This should be plenty for us to implement anything, and leaves a lot of space for mods to load custom compound
+    // This should be plenty for us to implement anything and leaves a lot of space for mods to load custom compound
     // types into
     MaxInbuiltCompound = 8096,
 

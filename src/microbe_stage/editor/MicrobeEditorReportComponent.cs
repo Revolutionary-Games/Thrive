@@ -429,7 +429,7 @@ public partial class MicrobeEditorReportComponent : EditorComponentBase<IEditorR
             new List<(string Name, DataPoint ExtinctPoint, double TimePeriod, bool ExtinctEverywhere)>();
 
         // Populate charts with data from patch history. We use reverse loop here because the original collection is
-        // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering dependent code
+        // reversed (iterating from 500 myr to 100 myr) so it messes up any ordering-dependent code
         for (int i = patch.History.Count - 1; i >= 0; i--)
         {
             var snapshot = patch.History.ElementAt(i);

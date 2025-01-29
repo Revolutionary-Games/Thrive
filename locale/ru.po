@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-24 10:49+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2025-01-24 08:46+0000\n"
 "Last-Translator: Dark Thunderer <darkthunderer@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
@@ -1346,6 +1346,10 @@ msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compoun
 
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Синтез Цитотоксина"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "Выбери биом в котором есть твой вид. Этот биом станет основой для миграции твоего вида"
 
 msgid "DAY_LENGTH"
 msgstr "Длина дня"
@@ -3132,6 +3136,18 @@ msgstr "Средний Фрагмент Серы"
 msgid "MEGA_YEARS"
 msgstr "млн. лет"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Метаболосомы"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Содержит пищеварительные ферменты. Тип фермента может быть изменён. Только один фермент за раз."
+
 msgid "MEMBRANE"
 msgstr "Мембрана"
 
@@ -3906,6 +3922,10 @@ msgstr "Производство АТФ подавляется токсином"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Базовая скорость передвижения уменьшена из-за токсина"
 
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "Редактор теперь доступен"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Редактор теперь доступен"
 
@@ -4476,6 +4496,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Вы уверены, что хотите выйти из игры?\n"
 "Весь несохраненный прогресс будет утерян."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Аэробное дыхание"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Большой Фрагмент Фосфата"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Термосинтез"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Случайное название вида"
@@ -5978,6 +6010,14 @@ msgstr "{0} микробов втянуто (В данный момент {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "избыток [thrive:compound type=\"atp\"][/thrive:compound] достигает {0}"
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "количество смертей достигает {0} ( в данный момент {1})"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "количество смертей достигает {0} ( в данный момент {1})"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "количество смертей достигает {0} ( в данный момент {1})"
 
@@ -7032,6 +7072,54 @@ msgstr "Разместить органеллу (или другую вещь)"
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Аксон"
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr ""
+"Оснащение лизосомы [b]хитиназой[/b] или [b]целлюлазой[/b] позволяет клетке растворять другие клетки с хитиновой или целлюлозной мембраной. Если у клетки отсутствуют лизосомы, производящие хитиназу аль целлюлазу, то оно не сможет растворить те клетки, к коим относятся эти 2 фермента.\n"
+"\n"
+"Помимо данной способности каждая лизосома даёт следующий эффект:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] скорости растворения. Поглощенная материя будет растворяться немного быстрее..[/indent]\n"
+"[indent]—   [b]+4.5%[/b] эффективности растворения для выбранного фермента. Поглощенные клетки с мембраной, что является целью фермента дают их проглотившему большее количество соединений.[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr ""
+"Содержит растворяющие энзимы. Может быть модифицирована для изменения типа энзимов что она в себе содержит. В 1 лизосоме может быть лишь 1 энзим. Энзимы ускоряют и улучшают эффективность растворения\n"
+"\n"
+"Лизосома это Мембранная органелла, что содержит в себе гидролитические энзимы, что могут разбивать на простые соединения биомолекулы. Лизосомы позволяют растворять материалы с помощью процесса, именуемого \"эндоцитоз\" и очищать мусорную часть клетки в процессе, именуемой [b]аутофагией[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr ""
+"Модифицируйте [b]Лизосому[/b] для выбора энзима, коей ей придётся синтезировать.\n"
+"Изначально, она содержит [b]Липазу[/b], что акцентируется на [b]Простых мембранах[/b] и [b]Двойных мембранах[/b].\n"
+"\n"
+"[b]Лизосома[/b] , помимо липазы, может синтезировать следующее:\n"
+"\n"
+"[indent]—   [b]Хитиназа[/b], Что акцентируется на [b]Хитиновой мембране[/b].[/indent]\n"
+"[indent]—   [b]Целлюлаза[/b], Что акцентируется на [b]Целлюлозной мембране[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Процессы отсутствуют."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Клетке необходимо ядро для получения лизосом."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Улучшения отсутствуют."
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Эффекты отсутствуют."
 
@@ -7451,6 +7539,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Разместить органеллу (или другую вещь)"
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Лизосома"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболосомы"
 
@@ -7613,6 +7705,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Реснички"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Термосинтез"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8277,10 +8373,6 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Стадия Космоса"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Термосинтез"
 
 #, fuzzy
 #~ msgid "NO"

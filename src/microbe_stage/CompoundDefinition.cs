@@ -70,6 +70,11 @@ public class CompoundDefinition : IRegistryType, IEquatable<CompoundDefinition>
     public bool CanBeDistributed;
 
     /// <summary>
+    ///   If set to false, then this compound will not be given as part of initial compounds
+    /// </summary>
+    public bool CanBeInitialCompound = true;
+
+    /// <summary>
     ///   If true, this compound can be absorbed by microbes through intracellular digestion.
     /// </summary>
     public bool Digestible;

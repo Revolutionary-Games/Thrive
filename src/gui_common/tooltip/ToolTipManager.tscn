@@ -617,6 +617,13 @@ DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Desc
 DisplayDelay = 0.0
 Positioning = 1
 
+[node name="melanosome" parent="GroupHolder/processesProduction" instance=ExtResource("1")]
+visible = false
+layout_mode = 0
+DescriptionLabelPath = NodePath("../cytoplasm/MarginContainer/VBoxContainer/Description")
+DisplayDelay = 0.0
+Positioning = 1
+
 [node name="processesConsumption" type="Control" parent="GroupHolder"]
 anchors_preset = 0
 offset_right = 40.0
