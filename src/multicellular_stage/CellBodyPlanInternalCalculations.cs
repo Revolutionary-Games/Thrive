@@ -18,7 +18,7 @@ public static class CellBodyPlanInternalCalculations
             var totalNominalCap = MicrobeInternalCalculations.GetTotalNominalCapacity(cell.Organelles);
             nominalCapacity += totalNominalCap;
 
-            MicrobeInternalCalculations.AddSpecificCapacity(cell.Organelles, capacities, totalNominalCap);
+            MicrobeInternalCalculations.AddSpecificCapacity(cell.Organelles, capacities);
         }
 
         return capacities;

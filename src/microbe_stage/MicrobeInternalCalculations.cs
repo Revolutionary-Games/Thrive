@@ -59,13 +59,13 @@ public static class MicrobeInternalCalculations
 
         var capacities = new Dictionary<Compound, float>();
 
-        AddSpecificCapacity(organelles, capacities, totalNominalCap);
+        AddSpecificCapacity(organelles, capacities);
 
         return capacities;
     }
 
     public static void AddSpecificCapacity(IReadOnlyList<OrganelleTemplate> organelles,
-        Dictionary<Compound, float> capacities, float totalNominalCap)
+        Dictionary<Compound, float> capacities)
     {
         var count = organelles.Count;
 
