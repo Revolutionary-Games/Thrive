@@ -238,7 +238,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
     /// <param name="result">
-    ///   The resulting energy balance. If not null, the results are added to the passed value.
+    ///   The resulting energy balance.
     /// </param>
     public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
@@ -313,7 +313,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             result.TotalMovement = -1;
         }
 
-        // Add osmoregulation
+        // Calculate the osmoregulation
         var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
 
