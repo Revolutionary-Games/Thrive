@@ -17,7 +17,7 @@ public partial class CellBodyPlanEditorComponent
     {
         if (OnFinish == null)
         {
-            GD.PrintErr("Confirmed editing for cell editor when finish callback is not set");
+            GD.PrintErr("Confirmed editing for cell body plan editor when finish callback is not set");
             return;
         }
 
@@ -35,9 +35,10 @@ public partial class CellBodyPlanEditorComponent
 
         var processes = new List<TweakedProcess>();
 
+        var newProcesses = new List<TweakedProcess>();
         foreach (var cellType in GetCellTypes())
         {
-            var newProcesses = new List<TweakedProcess>();
+            newProcesses.Clear();
 
             ProcessSystem.ComputeActiveProcessList(cellType.Type.Organelles, ref newProcesses);
 

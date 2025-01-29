@@ -90,10 +90,9 @@ public partial class CellEditorComponent
         UpdateMicrobePartSelections();
         UpdateMutationPointsBar();
 
+        organismStatisticsPanel.OnTranslationsChanged();
         organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
         organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-
-        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
 
         UpdateOsmoregulationTooltips();
         UpdateMPCost();
