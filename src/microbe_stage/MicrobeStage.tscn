@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dva08tpqyn15k"]
+[gd_scene load_steps=15 format=3 uid="uid://dva08tpqyn15k"]
 
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeStage.cs" id="1"]
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://dqpjtfkjeuwmq" path="res://src/microbe_stage/MicrobeWorldEnvironment.tscn" id="5_jtm5v"]
 [ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
+[ext_resource type="PackedScene" uid="uid://d1mwl825xlq0t" path="res://src/microbe_stage/HeatGradientDisplay.tscn" id="8_7ghg3"]
 [ext_resource type="Script" path="res://src/microbe_stage/CompoundCloudSystem.cs" id="10"]
 [ext_resource type="PackedScene" uid="uid://devtugnggmuol" path="res://src/general/PauseMenu.tscn" id="11"]
 [ext_resource type="Script" path="res://src/microbe_stage/MicrobeInspectInfo.cs" id="22"]
@@ -49,8 +50,9 @@ script = ExtResource("22")
 script = ExtResource("7")
 
 [node name="ChromaticFilter" parent="." instance=ExtResource("67")]
-offset_left = -0.943848
-offset_right = -0.943848
+
+[node name="HeatGradientDisplay" parent="." instance=ExtResource("8_7ghg3")]
+visible = false
 
 [node name="MicrobeHUD" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("3")]
 FossilisationButtonLayerPath = NodePath("FossilisationButtonLayer")
