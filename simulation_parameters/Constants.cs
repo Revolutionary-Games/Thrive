@@ -698,7 +698,7 @@ public static class Constants
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
 
-    public const float RADIATION_STRENGTH_MULTIPLIER = 1 / 100.0f;
+    public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
 
     /// <summary>
     ///   Fraction of radiation (from the max amount) that starts to cause damage?
