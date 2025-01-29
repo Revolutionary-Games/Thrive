@@ -542,7 +542,8 @@ public class Patch
 
     public void ApplyPatchEventVisuals(PatchMapNode node)
     {
-        node.ShowEventVisuals(activeWorldEffectVisuals);
+        if (Visibility == MapElementVisibility.Shown)
+            node.ShowEventVisuals(activeWorldEffectVisuals);
     }
 
     public override string ToString()
