@@ -351,7 +351,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             if (atpLevel < compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
             {
-
                 bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
                 {
