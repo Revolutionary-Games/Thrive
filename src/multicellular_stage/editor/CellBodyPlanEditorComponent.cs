@@ -1128,6 +1128,9 @@ public partial class CellBodyPlanEditorComponent :
 
         energyBalanceInfo = energyBalance;
 
+        // TODO: It doesn't entirely make sense to sum up a colony's ATP balances and show them that way.
+        // It would be better to display those separately for each cell type.
+        // https://github.com/Revolutionary-Games/Thrive/issues/5863
         organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
 
         // Passing those variables by refs to the following functions to reuse them
