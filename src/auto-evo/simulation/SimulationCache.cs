@@ -44,8 +44,11 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float, HashSet<string>)>
+    private readonly Dictionary<MicrobeSpecies, (float, float, float, float)>
         cachedPredationToolsRawScores = new();
+
+    private readonly Dictionary<(MicrobeSpecies, MicrobeSpecies), float>
+        cachedEngulfmentToolsScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -224,21 +227,21 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetPredationScore(Species species, Species preySpecies, IBiomeConditions biomeConditions)
+    public float GetPredationScore(Species predatorSpecies, Species preySpecies, IBiomeConditions biomeConditions)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
+        if (predatorSpecies is not MicrobeSpecies predator)
             return 0;
 
         if (preySpecies is not MicrobeSpecies prey)
             return 0;
 
         // No cannibalism
-        if (microbeSpecies == prey)
+        if (predator == prey)
         {
             return 0.0f;
         }
 
-        var key = (microbeSpecies, prey, biomeConditions);
+        var key = (microbeSpecies: predator, prey, biomeConditions);
 
         if (predationScores.TryGetValue(key, out var cached))
         {
@@ -247,49 +250,16 @@ public class SimulationCache
 
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
-        var predatorHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
-        var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
-        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _, predatorEnzymes) =
-            GetPredationToolsRawScores(microbeSpecies);
-
+        var predatorHexSize = GetBaseHexSizeForSpecies(predator);
+        var predatorSpeed = GetSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
-        var (_, _, preySlimeJetScore, preyMucocystsScore, _) = GetPredationToolsRawScores(prey);
+        var engulfmentScore = GetEngulfmentScores(predator, prey);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) =
+            GetPredationToolsRawScores(predator);
+        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
-        var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-        var combinedEnzymes = predatorEnzymes.Concat(new[] { Constants.LIPASE_ENZYME });
-
-        // Only assign engulf score if one can actually engulf
-        var engulfScore = 0.0f;
-        if (predatorHexSize / preyHexSize >
-            Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf &&
-            combinedEnzymes.Contains(prey.MembraneType.DissolverEnzyme))
-        {
-            // Catch scores grossly accounts for how many preys you catch in a run;
-            var catchScore = 0.0f;
-
-            // First, you may hunt individual preys, but only if you are fast enough...
-            if (predatorSpeed > preySpeed)
-            {
-                // You catch more preys if you are fast, and if they are slow.
-                // This incentivizes engulfment strategies in these cases.
-                catchScore += predatorSpeed / preySpeed;
-            }
-
-            var enzymesScore = predatorEnzymes
-                .Sum(enzyme =>
-                    Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0.0f);
-
-            // ... but you may also catch them by luck (e.g. when they run into you),
-            // and this is especially easy if you're huge.
-            // This is also used to incentivize size in microbe species.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize;
-
-            // Allow for some degree of lucky engulfment
-            engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
-
-            engulfScore *= enzymesScore;
-        }
+        var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
         // If the predator is faster than the prey they don't need slime jets that much
         if (predatorSpeed > preySpeed)
@@ -301,11 +271,11 @@ public class SimulationCache
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
         if (preyHexSize > predatorHexSize)
         {
-            oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
         // If you can store enough to kill the prey, producing more isn't as important
-        var storageToKillRatio = microbeSpecies.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
+        var storageToKillRatio = predator.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
             prey.MembraneType.Hitpoints * prey.MembraneType.ToxinResistance;
         if (storageToKillRatio > 1)
         {
@@ -321,16 +291,16 @@ public class SimulationCache
 
         var scoreMultiplier = 1.0f;
 
-        if (!microbeSpecies.CanEngulf)
+        if (!predator.CanEngulf)
         {
             // If you can't engulf, you just get energy from the chunks leaking.
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
         cached = (scoreMultiplier * behaviourScore *
-                (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore) -
+                (pilusScore + engulfmentScore + oxytoxyScore + predatorSlimeJetScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
-            GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
+            GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
         return cached;
@@ -391,7 +361,7 @@ public class SimulationCache
         cachedStorageScores.Clear();
     }
 
-    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore, HashSet<string> Enzymes)
+    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore)
         GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
@@ -401,7 +371,6 @@ public class SimulationCache
         var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
-        HashSet<string> enzymes = new HashSet<string>();
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
@@ -443,13 +412,6 @@ public class SimulationCache
                     oxytoxyScore += oxytoxyAmount * Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                 }
             }
-
-            if (organelle.Definition.HasLysosomeComponent)
-            {
-                enzymes.UnionWith(organelle.Definition.Enzymes
-                    .Where(e => e.Value > 0)
-                    .Select(e => e.Key.Name));
-            }
         }
 
         // Having lots of extra pili, slime jets and mucocysts doesn't really help much
@@ -459,10 +421,78 @@ public class SimulationCache
 
         slimeJetScore *= slimeJetsMultiplier;
 
-        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore, enzymes);
+        var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
+    }
+
+    public float GetEngulfmentScores(MicrobeSpecies predator, MicrobeSpecies prey)
+    {
+        var key = (predator, prey);
+        if (cachedEngulfmentToolsScores.TryGetValue(key, out var cached))
+            return cached;
+
+        var predatorHexSize = GetBaseHexSizeForSpecies(predator);
+        var predatorSpeed = GetSpeedForSpecies(predator);
+        var preyHexSize = GetBaseHexSizeForSpecies(prey);
+        var preySpeed = GetSpeedForSpecies(prey);
+
+        HashSet<string> enzymes = new HashSet<string>();
+
+        var organelles = predator.Organelles.Organelles;
+        var organelleCount = organelles.Count;
+
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelle = organelles[i];
+
+            if (organelle.Definition.HasLysosomeComponent)
+            {
+                enzymes.UnionWith(organelle.Definition.Enzymes
+                    .Where(e => e.Value > 0)
+                    .Select(e => e.Key.Name));
+            }
+        }
+
+        var combinedEnzymes = enzymes.Concat(new[] { Constants.LIPASE_ENZYME });
+
+        // Only assign engulf score if one can actually engulf
+        var engulfmentScore = 0.0f;
+        if (predatorHexSize / preyHexSize >
+            Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf &&
+            combinedEnzymes.Contains(prey.MembraneType.DissolverEnzyme))
+        {
+            // Catch scores grossly accounts for how many preys you catch in a run;
+            var catchScore = 0.0f;
+
+            // First, you may hunt individual preys, but only if you are fast enough...
+            if (predatorSpeed > preySpeed)
+            {
+                // You catch more preys if you are fast, and if they are slow.
+                // This incentivizes engulfment strategies in these cases.
+                catchScore += predatorSpeed / preySpeed;
+            }
+
+            var enzymesScore = enzymes
+                .Sum(enzyme =>
+                    Constants.AutoEvoLysosomeEnzymesScores.TryGetValue(enzyme, out var value) ? value : 0.0f);
+
+            // ... but you may also catch them by luck (e.g. when they run into you),
+            // and this is especially easy if you're huge.
+            // This is also used to incentivize size in microbe species.
+            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize;
+
+            // Allow for some degree of lucky engulfment
+            engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
+
+            engulfmentScore *= enzymesScore;
+        }
+
+        var engulfmentToolsScores = engulfmentScore;
+
+        cachedEngulfmentToolsScores.Add((predator, prey), engulfmentToolsScores);
+        return engulfmentToolsScores;
     }
 
     private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)
