@@ -35,6 +35,7 @@ public partial class CellBodyPlanEditorComponent
 
         var processes = new List<TweakedProcess>();
 
+        UpdateCellTypesCounts();
         var newProcesses = new List<TweakedProcess>();
         foreach (var cellType in cellTypesCount)
         {

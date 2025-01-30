@@ -1078,8 +1078,6 @@ public partial class CellBodyPlanEditorComponent :
 
     private void OnCellsChanged()
     {
-        UpdateCellTypesCounts();
-
         UpdateAlreadyPlacedVisuals();
 
         UpdateStats();
@@ -1194,14 +1192,8 @@ public partial class CellBodyPlanEditorComponent :
         {
             var type = cell.Data!.CellType;
 
-            if (cellTypesCount.ContainsKey(type))
-            {
-                ++cellTypesCount[type];
-            }
-            else
-            {
-                cellTypesCount.Add(type, 1);
-            }
+            cellTypesCount.TryGetValue(type, out var count);
+            cellTypesCount[type] = count + 1;
         }
     }
 
