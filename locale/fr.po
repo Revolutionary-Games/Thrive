@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-25 11:57+0100\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
@@ -1368,6 +1368,10 @@ msgstr "Transforme le [thrive:compound type=\"glucose\"][/thrive:compound] en [t
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Synthèse des cytotoxines"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(coût des organites, membranes et autres éléments dans l'éditeur)"
 
 msgid "DAY_LENGTH"
 msgstr "Durée de la journée"
@@ -3215,6 +3219,18 @@ msgstr "Petit fragment de fer"
 msgid "MEGA_YEARS"
 msgstr "Ma"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Métabolosomes"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Contient des enzymes digestives. peut être modifié pour changer le type d'enzyme. Seul une enzyme peut être utilisé par lysosome. Les enzymes augmentent la vitesse et l'efficacité de la digestion."
+
 msgid "MEMBRANE"
 msgstr "Membrane"
 
@@ -3338,10 +3354,6 @@ msgid "MICROBE_EDITOR"
 msgstr "Éditeur de microbe"
 
 #, fuzzy
-msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
-
-#, fuzzy
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Éditeur de microbe"
 
@@ -3432,14 +3444,6 @@ msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour c
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Appuyez sur le bouton Annuler la dernière action dans l'éditeur pour corriger une erreur"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0} : Trouvé dans {1} espèce, en moyenne {2} chacun"
@@ -4070,6 +4074,10 @@ msgstr "Production d'ATP inhibée par une toxine"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Vitesse de déplacement réduite en raison d'une toxine"
 
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "Vous pouvez maintenant accéder à l'éditeur"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Vous pouvez maintenant accéder à l'éditeur"
 
@@ -4648,6 +4656,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Voulez-vous vraiment quitter le jeu ?\n"
 "Vous perdrez toute progression non sauvegardée."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Respiration aérobie"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Gros fragment de phosphate"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Thermosynthèse"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Nom d'espèce aléatoire"
@@ -6207,6 +6227,14 @@ msgstr "{0} microbes ont été engloutis (actuellement à {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Vitesse de digestion :"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Vitesse de digestion :"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
 
@@ -7313,6 +7341,49 @@ msgstr ""
 "\n"
 "Sélectionnez un organite dans la liste ci-dessous pour en savoir plus."
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Pas d'effets."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Le lysosome est un organite lié à la membrane qui contient des enzymes hydrolytiques capables de décomposer diverses biomolécules. Les lysosomes permettent à la cellule de digérer les matières ingérées par endocytose et de nettoyer les déchets de la cellule dans un processus appelé [b]autophagie[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Pas de processus."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr ""
+"Une cellule doit posséder un [b][color=#3796e1][url=thriveopedia:nucleus]Noyau[/url][/color][/b] pour pouvoir développer des [b]Lysosomes[/b].\n"
+"\n"
+"Si l'amélioration des organites est activée dans les paramètres du jeu, [i]au moins une[/i] des conditions suivantes doit être vraie [i]pour la cellule du joueur[/i] :\n"
+"\n"
+"[indent]—   A englouti au moins [b]20[/b] cellules depuis le début du jeu.[/indent]\n"
+"[indent]—   A digéré au moins [b]10[/b] cellules depuis le début du jeu.[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "À venir"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr ""
+"A bien des égards, les [b]Métabolosomes[/b] sont une amélioration du [b][color=#3796e1][url=thriveopedia:cytoplasme]Cytoplasme[/url][/color][/b]. Le style de jeu qui fonctionne pour la cellule de départ (LUCA) est susceptible de fonctionner pour une cellule construite à partir de [b]Métabolosomes[/b], qui recueillent simplement le [thrive:compound type=\"glucose\"][/thrive:compound] de l'environnement. La différence est un rendement accru qui peut alimenter plus d'organites avec des fonctions plus larges, comme [b][color=#3796e1][url=thriveopedia:pilus]Pilus Perforant[/url][/color][/b] ou [b][color=#3796e1][url=thriveopedia:flagellum]Flagelles[/url][/color][/b].\n"
+"\n"
+"Cependant, les concentrations naturelles de [thrive:compound type=\"glucose\"][/thrive:compound] dans l'environnement diminuent au cours du jeu, il est donc conseillé de passer à de nouvelles sources de nourriture plus tard.\n"
+"\n"
+"Une fois qu'une cellule aura développé un [b][color=#3796e1][url=thriveopedia:nucleus]Noyau[/url][/color][/b], il est conseillé de remplacer les [b]Métabolosomes[/b] par leur équivalent eucaryote, les [b][color=#3796e1][url=thriveopedia : mitochondrion]Mitochondries[/url][/color][/b], car celles-ci sont beaucoup plus performantes."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Pas d'améliorations."
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Pas d'effets."
 
@@ -7720,6 +7791,10 @@ msgstr "Phase microbienne"
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Organites"
 
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lysosome"
+
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Métabolosomes"
 
@@ -7883,6 +7958,10 @@ msgstr "Pas d'améliorations."
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Cils"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Thermosynthèse"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8300,10 +8379,6 @@ msgstr "Zoomer"
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
 
-#, fuzzy
-#~ msgid "NO_DATA_STATISTICS"
-#~ msgstr "Statistiques"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "Fait amusant, le Didinium est un cilié qui chasse les paramécies."
 
@@ -8558,10 +8633,6 @@ msgstr "Dézoomer"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Phase spatiale"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Thermosynthèse"
 
 #, fuzzy
 #~ msgid "NO"

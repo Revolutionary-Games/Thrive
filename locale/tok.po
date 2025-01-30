@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-25 11:57+0100\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2023-02-06 07:13+0000\n"
 "Last-Translator: jan-sopi <jansopi303@genocide.fun>\n"
 "Language-Team: Toki Pona <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tok/>\n"
@@ -1312,6 +1312,10 @@ msgstr ""
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "kama ante pi sike ante"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3052,6 +3056,17 @@ msgstr ""
 msgid "MEGA_YEARS"
 msgstr ""
 
+msgid "MELANOSOME"
+msgstr ""
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "pali pi kon ilo kepeken kon ala"
+
 msgid "MEMBRANE"
 msgstr ""
 
@@ -3142,23 +3157,6 @@ msgstr ""
 msgid "MICROBE_EDITOR"
 msgstr ""
 
-#, fuzzy
-msgid "MICROBE_ENZYME_STATISTICS"
-msgstr ""
-"[b]tenpo lon:[/b]\n"
-"  {0}\n"
-"[b]kule ale:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
-"[b]kule lon tenpo ni:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
-"[b]kule lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
-"[b]lon ale lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
-"[b]suli pi sike ante:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
-"[b]sona pi tomo lon sike:[/b]"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
@@ -3227,40 +3225,6 @@ msgstr ""
 
 msgid "MICROBE_LOADING_TIP_9"
 msgstr ""
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr ""
-"[b]tenpo lon:[/b]\n"
-"  {0}\n"
-"[b]kule ale:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
-"[b]kule lon tenpo ni:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
-"[b]kule lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
-"[b]lon ale lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
-"[b]suli pi sike ante:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
-"[b]sona pi tomo lon sike:[/b]"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr ""
-"[b]tenpo lon:[/b]\n"
-"  {0}\n"
-"[b]kule ale:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
-"[b]kule lon tenpo ni:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
-"[b]kule lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
-"[b]lon ale lon ma:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
-"[b]suli pi sike ante:[/b]\n"
-"  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
-"[b]sona pi tomo lon sike:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
@@ -3783,6 +3747,9 @@ msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
+msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
@@ -4331,6 +4298,16 @@ msgstr ""
 
 msgid "QUIT_GAME_WARNING"
 msgstr ""
+
+msgid "RADIATION"
+msgstr ""
+
+msgid "RADIOACTIVE_CHUNK"
+msgstr ""
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "kama ante pi sike ante"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
@@ -5678,6 +5655,12 @@ msgstr ""
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr ""
+
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr ""
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
 
@@ -6654,6 +6637,38 @@ msgstr ""
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "ilo ante 3D"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "tawa 3D"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "pali pi kon ilo kepeken kon ala"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "ilo ante 3D"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "ilo ante 3D"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "(nanpa ni: sike ante li kama ante kepeken tenpo seme)"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "ilo ante 3D"
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr ""
 
@@ -7012,6 +7027,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "kama ante pi sike ante"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "kama ante pi sike ante"
 
@@ -7167,6 +7186,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "ilo ante 3D"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -7561,23 +7584,6 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
-
-#, fuzzy
-#~ msgid "NO_DATA_STATISTICS"
-#~ msgstr ""
-#~ "[b]tenpo lon:[/b]\n"
-#~ "  {0}\n"
-#~ "[b]kule ale:[/b]\n"
-#~ "  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule  {1}; nanpa pi weka lon nanpa {2}\n"
-#~ "[b]kule lon tenpo ni:[/b]\n"
-#~ "  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {3}; nanpa pi weka lon nanpa {4}\n"
-#~ "[b]kule lon ma:[/b]\n"
-#~ "  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {5}; nanpa pi weka lon nanpa {6}\n"
-#~ "[b]lon ale lon ma:[/b]\n"
-#~ "  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {7}; nanpa pi weka lon nanpa {8}\n"
-#~ "[b]suli pi sike ante:[/b]\n"
-#~ "  nanpa ni: nanpa tan kule ale li kama wan li kipisi kepeken nanpa kule {9}; nanpa pi weka lon nanpa {10}\n"
-#~ "[b]sona pi tomo lon sike:[/b]"
 
 #, fuzzy
 #~ msgid "WIKI_MACROSCOPIC_STAGE"

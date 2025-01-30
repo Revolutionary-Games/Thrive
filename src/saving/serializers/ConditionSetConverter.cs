@@ -49,14 +49,14 @@ public class ConditionSetConverter : JsonConverter
 
             var fullyQualifiedName = $"{nameof(UnlockConstraints)}.{className}";
 
-            // When loading the registry types the used serialization binder here allows using any type, but as we
-            // use a namespace above this should be perfectly safe
+            // When loading the registry types, the used serialization binder here allows using any type, but as we
+            // use a namespace above, this should be perfectly safe
             var type = serializer.SerializationBinder.BindToType("Thrive", fullyQualifiedName) ??
                 throw new JsonException("Invalid type");
 
             reader.Read();
 
-            // Get the unlock condition
+            // Get the unlocking condition
 
             if (reader.TokenType != JsonToken.StartObject)
                 throw new JsonException("Expected object start");

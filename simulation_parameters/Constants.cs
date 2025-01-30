@@ -580,9 +580,11 @@ public static class Constants
     public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
 
     /// <summary>
-    ///   How many collision a default sensor can detect at once
+    ///   How many collisions a default sensor can detect at once
     /// </summary>
     public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
+
+    public const int MAX_SIMULTANEOUS_COLLISIONS_RADIATION_SENSOR = 32;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -686,15 +688,39 @@ public static class Constants
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
     /// <summary>
-    ///   Time until cell can regenerate after taking damage;
+    ///   Time until a cell can regenerate after taking damage;
     /// </summary>
     public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
 
     /// <summary>
-    ///   This much damage has to be dealt in a single instance to prevent health regen. This is pretty high to avoid
+    ///   This much damage has to be caused in a single instance to prevent health regen. This is pretty high to avoid
     ///   small trickle damage the player can't notice from preventing health regen.
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
+
+    public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
+
+    /// <summary>
+    ///   Fraction of radiation (from the max amount) that starts to cause damage?
+    /// </summary>
+    public const float RADIATION_DAMAGE_THRESHOLD = 0.6f;
+
+    public const float RADIATION_WARNING = RADIATION_DAMAGE_THRESHOLD - 0.15f;
+
+    public const float RADIATION_DAMAGE_MULTIPLIER = 5.1f;
+
+    /// <summary>
+    ///   How often the radiation damage system runs (so the damage is applied)
+    /// </summary>
+    public const float RADIATION_DAMAGE_INTERVAL = 0.6f;
+
+    public const float RADIATION_NATURAL_DECAY = 0.02f;
+
+    public const float RADIATION_NATURAL_DECAY_WHEN_TAKING_DAMAGE = 3 * RADIATION_NATURAL_DECAY;
+
+    public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.1f;
+
+    public const float ROCK_RADIATION_RADIUS = 25;
 
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
@@ -959,6 +985,8 @@ public static class Constants
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
     public const float MICROBE_FLASH_DURATION = 0.6f;
+
+    public const float HUD_BAR_FLASH_DURATION = 0.67f;
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;

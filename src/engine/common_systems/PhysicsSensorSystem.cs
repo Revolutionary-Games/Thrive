@@ -82,7 +82,7 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
 
             if (!sensor.Disabled)
             {
-                // Re-enable (not an error if body doesn't exist, it will be created brand-new soon)
+                // Re-enable (not an error if the body doesn't exist, it will be created brand-new soon)
                 if (detachedBodies.TryGetValue(entity, out var disabledBody))
                 {
                     worldSimulationWithPhysics.PhysicalWorld.AddBody(disabledBody);
@@ -133,7 +133,7 @@ public sealed class PhysicsSensorSystem : AEntitySetSystem<float>
             sensor.SensorBody = worldSimulationWithPhysics.CreateSensor(sensor.ActiveArea, position.Position,
                 Quaternion.Identity, sensor.DetectSleepingBodies, sensor.DetectStaticBodies);
 
-            // Set no entity on the sensor so anything colliding with the sensor can't do anything
+            // Set no entity on the sensor, so anything colliding with the sensor can't do anything
             sensor.SensorBody.SetEntityReference(default(Entity));
 
             sensor.ActiveCollisions = worldSimulationWithPhysics.PhysicalWorld.BodyStartCollisionRecording(

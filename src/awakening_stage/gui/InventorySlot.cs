@@ -124,6 +124,7 @@ public partial class InventorySlot : Button
             StretchMode = TextureRect.StretchModeEnum.Scale,
             Texture = item.Icon,
             CustomMinimumSize = new Vector2(32, 32),
+            ZIndex = 1,
         };
     }
 

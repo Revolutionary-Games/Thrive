@@ -177,6 +177,9 @@ public partial class MacroscopicStage : CreatureStageBase<MacroscopicCreature, D
             }
 
             progressBarSystem.UpdatePlayerPosition(playerPosition);
+
+            // HUD.UpdateRadiationBar(compounds.GetCompoundAmount(Compound.Radiation),
+            //     compounds.GetCapacityForCompound(Compound.Radiation), Constants.RADIATION_WARNING);
         }
 
         if (movingToSocietyStage)

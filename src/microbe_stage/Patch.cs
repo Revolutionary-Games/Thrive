@@ -383,6 +383,8 @@ public class Patch
                 return GetAmbientCompoundInSnapshot(snapshot, compound, CompoundAmountType.Biome) * 100;
             case Compound.Iron:
                 return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
+            case Compound.Radiation:
+                return GetTotalChunkCompoundAmountInSnapshot(snapshot, compound);
             default:
             {
                 BiomeCompoundProperties amount;
@@ -540,7 +542,8 @@ public class Patch
 
     public void ApplyPatchEventVisuals(PatchMapNode node)
     {
-        node.ShowEventVisuals(activeWorldEffectVisuals);
+        if (Visibility == MapElementVisibility.Shown)
+            node.ShowEventVisuals(activeWorldEffectVisuals);
     }
 
     public override string ToString()

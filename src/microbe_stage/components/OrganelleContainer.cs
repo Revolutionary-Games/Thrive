@@ -86,6 +86,11 @@ public struct OrganelleContainer
     public int MucocystCount;
 
     /// <summary>
+    ///   How much the organelles provide radiation protection
+    /// </summary>
+    public int RadiationProtection;
+
+    /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
     ///   from messing with this value if we used the Capacity from the CompoundBag for the calculations that use
     ///   this.
@@ -93,8 +98,8 @@ public struct OrganelleContainer
     public float OrganellesCapacity;
 
     /// <summary>
-    ///   To simplify toxin calculations toxicity is averaged over all the toxin vacuoles. The only alternative
-    ///   would be to track per type the toxicity and that would be quite a bit more difficult number to use, and
+    ///   To simplify toxin calculations, toxicity is averaged over all the toxin vacuoles. The only alternative
+    ///   would be to track per type the toxicity, and that would be quite a bit more difficult number to use and
     ///   would require a save upgrade step or a breakage point. For what are valid values here see:
     ///   <see cref="ToxinUpgrades.Toxicity"/>
     /// </summary>
@@ -103,7 +108,7 @@ public struct OrganelleContainer
     public int HexCount;
 
     /// <summary>
-    ///   Count of how many oxygen-using parts this cell has. Used for example to adjust different toxin damage in
+    ///   Count of how many oxygen-using parts this cell has. Used, for example, to adjust different toxin damage in
     ///   relation to oxygen users.
     /// </summary>
     public int OxygenUsingOrganelles;
@@ -476,6 +481,7 @@ public static class OrganelleContainerHelpers
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
         container.OxygenUsingOrganelles = 0;
+        container.RadiationProtection = 0;
 
         if (container.Organelles == null)
             throw new InvalidOperationException("Organelle list needs to be initialized first");
@@ -553,6 +559,9 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasBindingFeature)
                 container.HasBindingAgent = true;
+
+            if (organelleDefinition.HasRadiationProtection)
+                ++container.RadiationProtection;
 
             container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
 

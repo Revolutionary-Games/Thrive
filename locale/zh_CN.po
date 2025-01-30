@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-25 11:57+0100\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
@@ -1352,6 +1352,10 @@ msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:
 
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "细胞毒素合成"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "选择目前包含您的物种的区域作为迁移来源"
 
 msgid "DAY_LENGTH"
 msgstr "日长"
@@ -3161,6 +3165,18 @@ msgstr "小铁块"
 msgid "MEGA_YEARS"
 msgstr "*10⁶年"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "代谢体"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
+
 msgid "MEMBRANE"
 msgstr "细胞膜"
 
@@ -3274,10 +3290,6 @@ msgstr "微生物编辑器"
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
 
-#, fuzzy
-msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
@@ -3368,14 +3380,6 @@ msgstr "在编辑器中按下撤消键以纠正错误"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "在编辑器中按下撤消键以纠正错误"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
@@ -3969,6 +3973,10 @@ msgstr "ATP 生产受毒素抑制"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基础运动速度因毒素而降低"
 
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "现在可以进入编辑器"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
 
@@ -4540,6 +4548,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "你确定要退出游戏吗？\n"
 "你会失去任何未保存的进度。"
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "有氧呼吸作用"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "大磷酸盐块"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "热合成"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "随机化物种名称"
@@ -6047,6 +6067,14 @@ msgstr "吞噬{0} 个微生物（目前为{1}）"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "多余的[thrive:compound type=\"atp\"][/thrive:compound]到达{0}"
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "死亡次数到达{0} （目前为 {1}）"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "死亡次数到达{0} （目前为 {1}）"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "死亡次数到达{0} （目前为 {1}）"
 
@@ -7179,6 +7207,62 @@ msgstr ""
 "\n"
 "在下方列表中选择一个细胞器以了解更多。"
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr ""
+"包含[b]几丁质酶[/b]或[b]纤维素酶[/b]的[b]溶酶体[/b]可以让细胞获得消化拥有[b]几丁质细胞壁[/b]或[b]纤维素细胞壁[/b]的细胞的能力。如果细胞没有含有对应水解酶的溶酶体，被吞噬的细胞会被立即吐出来\n"
+"\n"
+"除了它们的基本属性，每一个[b]溶酶体[/b]还可以：\n"
+"\n"
+"[indent]—   [b]+0.05[/b]消化速度。被吞噬的物质会被更快地消化。[/indent]\n"
+"[indent]—   [b]+4.5%[/b]对应物质的消化效率。吞噬拥有对应细胞壁的细胞可以获得更多的化合物。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr ""
+"包含消化酶。可以被修改以改变其包含酶的类型。每个[b]溶酶体[/b]只能包含一种酶。酶使得消化过程更加快速高效。\n"
+"\n"
+"[b]溶酶体[/b]是一种有膜细胞器，包含有可以分解多种有机分子的水解酶。[b]溶酶体[/b]帮助细胞消化通过胞吞获得的物质，并通过名为自噬的生理过程清理细胞内的废物。"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr ""
+"修改[b]溶酶体[/b]所包含的酶的类型。默认情况下，溶酶体含有[b]脂酶[/b]，帮助消化[b]单层[/b]或[b]双层[/b]的细胞膜。\n"
+"\n"
+"[b]溶酶体[/b]可以包含以下之一：\n"
+"\n"
+"[indent]—   [b]几丁质酶[/b]，目标为[b]几丁质膜[/b]。[/indent]\n"
+"[indent]—   [b]纤维素酶[/b]，目标为[b]纤维素膜[/b]。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "无代谢过程。"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr ""
+"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]溶酶体[/b]\n"
+"\n"
+"如果细胞器升级在游戏设置中被启用，[i]玩家细胞[/i]必须满足以下[i]至少一种[/i]条件：\n"
+"\n"
+"[indent]—   已经吞噬了至少[b]20[/b] 个细胞。[/indent]\n"
+"[indent]—   已经消化了至少[b]10[/b] 个细胞。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr ""
+"对于吞噬猎物的细胞，通常建议进化至少两种[b]溶酶体[/b]，设定一种使用[b]几丁质酶[/b]，一种使用[b]纤维素酶[/b] 。 这样，您的细胞就可以消化更多类型的猎物，否则这些猎物将坚不可摧。\n"
+"\n"
+"增加更多的[b]溶酶体[/b]以及酶的种类也是个好主意。 提高消化速度可以防止摄入物质储存空间不足的问题。提高消化效率使掠食作为一种策略更加可行。"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "无升级。"
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "无效果。"
 
@@ -7631,6 +7715,10 @@ msgstr "固氮酶"
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "细胞器"
 
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "溶酶体"
+
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代谢体"
 
@@ -7798,6 +7886,10 @@ msgstr "无升级。"
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "纤毛"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "热合成"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8291,10 +8383,6 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
-#, fuzzy
-#~ msgid "NO_DATA_STATISTICS"
-#~ msgstr "统计数据"
-
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "趣闻：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
 
@@ -8539,10 +8627,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "太空阶段"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "热合成"
 
 #, fuzzy
 #~ msgid "NO"

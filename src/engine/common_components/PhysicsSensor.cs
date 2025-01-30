@@ -46,19 +46,19 @@ public struct PhysicsSensor
     public int MaxActiveContacts;
 
     /// <summary>
-    ///   If set to true then this sensor will not detect anything (gets disabled)
+    ///   If set to true, then this sensor will not detect anything (gets disabled)
     /// </summary>
     public bool Disabled;
 
     /// <summary>
-    ///   When set to true the sensor body uses kinematic movement type and detects sleeping bodies. If this is
-    ///   false this only detects active bodies within the sensor. Must be set before the sensor is created,
+    ///   When set to true, the sensor body uses kinematic movement type and detects sleeping bodies. If this is
+    ///   false, this only detects active bodies within the sensor. Must be set before the sensor is created,
     ///   doesn't apply retroactively.
     /// </summary>
     public bool DetectSleepingBodies;
 
     /// <summary>
-    ///   If true then this detects static bodies. Should be left off unless explicitly needed as static body
+    ///   If true, then this detects static bodies. Should be left off unless explicitly needed as static body
     ///   detection has quite many caveats (and performance concerns). Doesn't apply retroactively after sensor
     ///   creation.
     /// </summary>
