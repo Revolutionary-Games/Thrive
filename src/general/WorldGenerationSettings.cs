@@ -94,6 +94,9 @@ public class WorldGenerationSettings
     public float OsmoregulationMultiplier => Difficulty.OsmoregulationMultiplier;
 
     [JsonIgnore]
+    public float PlayerAutoEvoStrength => Difficulty.PlayerAutoEvoStrength;
+
+    [JsonIgnore]
     public FogOfWarMode FogOfWarMode => Difficulty.FogOfWarMode;
 
     [JsonIgnore]

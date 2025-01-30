@@ -111,31 +111,32 @@ public static class CommonMutationFunctions
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static bool AddOrganelle(OrganelleDefinition organelle, Direction direction, MicrobeSpecies newSpecies,
-        List<Hex> workMemory1, List<Hex> workMemory2, Random random)
+        List<Hex> workMemory1, List<Hex> workMemory2, HashSet<Hex> workMemory3, Random random)
     {
         return AddOrganelleWithStrategy(OrganelleAddStrategy.Realistic, organelle, direction, newSpecies, workMemory1,
-            workMemory2, random);
+            workMemory2, workMemory3, random);
     }
 
     public static bool AddOrganelleWithStrategy(OrganelleAddStrategy strategy, OrganelleDefinition organelle,
-        Direction direction, MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2, Random random)
+        Direction direction, MicrobeSpecies newSpecies, List<Hex> workMemory1, List<Hex> workMemory2,
+        HashSet<Hex> workMemory3, Random random)
     {
         OrganelleTemplate? position;
 
         switch (strategy)
         {
             case OrganelleAddStrategy.Realistic:
-                position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory2,
+                position = GetRealisticPosition(organelle, newSpecies.Organelles, direction, workMemory1, workMemory3,
                     random);
                 break;
             case OrganelleAddStrategy.Spiral:
-                position = GetSpiralPosition(organelle, newSpecies.Organelles, workMemory1, workMemory2);
+                position = GetSpiralPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
                 break;
             case OrganelleAddStrategy.Front:
-                position = GetFrontPosition(organelle, newSpecies.Organelles, workMemory1, workMemory2);
+                position = GetFrontPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
                 break;
             case OrganelleAddStrategy.Back:
-                position = GetBackPosition(organelle, newSpecies.Organelles, workMemory1, workMemory2);
+                position = GetBackPosition(organelle, newSpecies.Organelles, workMemory1, workMemory3);
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(strategy), strategy, null);
@@ -147,7 +148,7 @@ public static class CommonMutationFunctions
 
         newSpecies.Organelles.AddFast(position, workMemory1, workMemory2);
 
-        // If the new species is a eukaryote, mark this as such.
+        // If the new species is eukaryotic, mark this as such.
         if (organelle == Nucleus)
         {
             newSpecies.IsBacteria = false;
@@ -170,7 +171,7 @@ public static class CommonMutationFunctions
         // Attach islands
         while (islandHexes.Count > 0)
         {
-            // Unfortunately it seems that just barely the cache is not enough for this to not allocate memory
+            // Unfortunately, it seems that just barely the cache is not enough for this to not allocate memory
             mainHexes ??= new HashSet<Hex>();
             organelles.ComputeHexCache(mainHexes, workMemory.WorkingMemory2);
 
@@ -203,7 +204,7 @@ public static class CommonMutationFunctions
             }
 
             // Calculate the path to move island organelles.
-            // If statement is there because otherwise the path could be (0, 0).
+            // This if-statement is here because otherwise the path could be (0, 0).
             if (minSubHex.Q != minSubHex.R)
                 minSubHex.Q = (int)(minSubHex.Q * (minDistance - 1.0) / minDistance);
 
@@ -233,9 +234,13 @@ public static class CommonMutationFunctions
 
     private static OrganelleTemplate? GetRealisticPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, Direction direction, List<Hex> workMemory1,
-        List<Hex> workMemory2, Random random)
+        HashSet<Hex> workMemory2, Random random)
     {
+        bool isSingleHex = organelle.Hexes.Count < 2;
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        // Create a cache of the already used positions to have much more efficient placement checking
+        existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
         // Loop through all the organelles and find an open spot to
         // place our new organelle attached to existing organelles
@@ -263,16 +268,17 @@ public static class CommonMutationFunctions
                         // Offset by hex offset multiplied by a factor to check for greater range
                         var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
                         hexOffset *= radius;
-                        result.Position = pos + hexOffset;
+                        var currentPosition = pos + hexOffset;
 
                         if (organelle.HasMovementComponent)
                         {
                             // Face movement to move forward
-                            result.Orientation = 3;
 
-                            if (existingOrganelles
-                                .CanPlace(result, workMemory1, workMemory2))
+                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
+                                    currentPosition.R, 3, workMemory2, out _))
                             {
+                                result.Position = currentPosition;
+                                result.Orientation = 3;
                                 return result;
                             }
                         }
@@ -282,10 +288,24 @@ public static class CommonMutationFunctions
                         {
                             result.Orientation = rotation;
 
-                            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+                            if (existingOrganelles.IsOrganellePositionFree(organelle, currentPosition.Q,
+                                    currentPosition.R, rotation, workMemory2, out var primaryHexWasFree))
                             {
+                                result.Position = currentPosition;
+                                result.Orientation = rotation;
                                 return result;
                             }
+
+                            if (rotation == 0 && !primaryHexWasFree)
+                            {
+                                // If the primary hex was occupied, no rotation value can ever cause that hex to be
+                                // unoccupied, so we can fail early here to save a lot of computations
+                                break;
+                            }
+
+                            // Single hex organelles don't change what they occupy if rotated
+                            if (isSingleHex)
+                                break;
                         }
                     }
                 }
@@ -296,10 +316,11 @@ public static class CommonMutationFunctions
     }
 
     private static OrganelleTemplate? GetSpiralPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1,
-        List<Hex> workMemory2)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, HashSet<Hex> workMemory2)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
         // Assume can't be placed at 0,0 so start at distance 1 (which is 2 as we divide by two in the real search
         // coordinates)
@@ -320,10 +341,9 @@ public static class CommonMutationFunctions
 
             for (int r = -realQ; r <= checkQ; ++r)
             {
-                result.Position = new Hex(checkQ, r);
-
-                if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+                if (existingOrganelles.IsOrganellePositionFree(organelle, checkQ, r, 0, workMemory2, out _))
                 {
+                    result.Position = new Hex(checkQ, r);
                     return result;
                 }
             }
@@ -334,17 +354,18 @@ public static class CommonMutationFunctions
 
     private static OrganelleTemplate? GetFrontPosition(OrganelleDefinition organelle,
         OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1,
-        List<Hex> workMemory2)
+        HashSet<Hex> workMemory2)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
         // Assume can't be placed at 0,0 so start at -1
         for (int r = -1; r > -Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; --r)
         {
-            result.Position = new Hex(0, r);
-
-            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+            if (existingOrganelles.IsOrganellePositionFree(organelle, 0, r, 0, workMemory2, out _))
             {
+                result.Position = new Hex(0, r);
                 return result;
             }
         }
@@ -353,17 +374,18 @@ public static class CommonMutationFunctions
     }
 
     private static OrganelleTemplate? GetBackPosition(OrganelleDefinition organelle,
-        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, List<Hex> workMemory2)
+        OrganelleLayout<OrganelleTemplate> existingOrganelles, List<Hex> workMemory1, HashSet<Hex> workMemory2)
     {
         var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        existingOrganelles.ComputeHexCache(workMemory2, workMemory1);
 
         // Assume can't be placed at 0,0 so start at 1
         for (int r = 1; r < Constants.DIRECTION_ORGANELLE_CHECK_MAX_DISTANCE; ++r)
         {
-            result.Position = new Hex(0, r);
-
-            if (existingOrganelles.CanPlace(result, workMemory1, workMemory2))
+            if (existingOrganelles.IsOrganellePositionFree(organelle, 0, r, 0, workMemory2, out _))
             {
+                result.Position = new Hex(0, r);
                 return result;
             }
         }

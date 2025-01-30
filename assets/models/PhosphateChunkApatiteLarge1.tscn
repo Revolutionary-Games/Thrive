@@ -10,24 +10,22 @@
 [ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="7_j80xn"]
 [ext_resource type="ArrayMesh" uid="uid://bxhmnyjk1vfrh" path="res://assets/models/PhosphateChunkApatiteLargeRock.mesh" id="8_7qf82"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ha8r3"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfxy3"]
 resource_local_to_scene = true
 render_priority = 18
 shader = ExtResource("1_0qsxg")
-shader_parameter/albedo = Color(0.12549, 0.282353, 0.905882, 0.956863)
+shader_parameter/albedo = Color(0.262745, 0.309804, 1, 1)
 shader_parameter/useNormal = false
-shader_parameter/roughness = 0.6
+shader_parameter/roughness = 0.261
 shader_parameter/roughnessTextureChannel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.7
-shader_parameter/metallic = 0.57
-shader_parameter/metallicTextureChannel = Vector4(1, 0, 0, 0)
-shader_parameter/emission = Color(0.00715748, 0.134014, 0.652016, 0.956863)
-shader_parameter/emissionEnergy = 0.75
-shader_parameter/clearcoat = 0.3
-shader_parameter/clearcoatRoughness = 0.1
+shader_parameter/specular = 0.65
+shader_parameter/metallic = 0.15
+shader_parameter/emission = Color(0.0195242, 0.00734134, 0.53186, 0.956863)
+shader_parameter/emissionEnergy = 0.25
 shader_parameter/dissolveValue = 0.0
-shader_parameter/outlineWidth = 0.01
-shader_parameter/growColor = Color(0.12549, 0.388235, 0.643137, 1)
+shader_parameter/dissolveScale = 1.8
+shader_parameter/outlineWidth = 0.02
+shader_parameter/growColor = Color(0.1617, 0.293498, 0.77, 1)
 shader_parameter/albedoTexture = ExtResource("3_hcl7f")
 shader_parameter/roughnessTexture = ExtResource("4_7gni5")
 shader_parameter/dissolveTexture = ExtResource("2_w0d41")
@@ -36,7 +34,8 @@ shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 resource_local_to_scene = true
 render_priority = 17
 shader = ExtResource("7_j80xn")
-shader_parameter/roughness = 1.2
+shader_parameter/roughness = 1.5
+shader_parameter/metallicTextureChannel = Vector4(0, 0, 0, 0)
 shader_parameter/depletion = null
 shader_parameter/dissolveValue = 0.0
 shader_parameter/outlineWidth = null
@@ -47,7 +46,7 @@ shader_parameter/normalTexture = ExtResource("7_1vk26")
 shader_parameter/dissolveTexture = ExtResource("2_w0d41")
 
 [node name="Apatite" type="MeshInstance3D" node_paths=PackedStringArray("meshChildren")]
-material_override = SubResource("ShaderMaterial_ha8r3")
+material_override = SubResource("ShaderMaterial_bfxy3")
 mesh = ExtResource("5_cdma8")
 script = ExtResource("3_b8lrv")
 meshChildren = []

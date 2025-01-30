@@ -8,7 +8,8 @@ using LauncherThriveShared;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Holds some constants that must be kept constant after first setting
+///   Holds some constants that must be kept constant everywhere in the game. Many of these can be tweaked to adjust
+///   game balance.
 /// </summary>
 public static class Constants
 {
@@ -86,7 +87,7 @@ public static class Constants
     public const int FULL_INITIAL_GLUCOSE_SMALL_SIZE_LIMIT = 3;
 
     /// <summary>
-    ///   The maximum duration the player is shown being ingested before they are auto respawned.
+    ///   The maximum duration the player is shown being ingested before they are auto-respawned.
     /// </summary>
     public const float PLAYER_ENGULFED_DEATH_DELAY_MAX = 10.0f;
 
@@ -107,7 +108,7 @@ public static class Constants
     public const int CLOUD_SPAWN_DENSITY_SCALE_FACTOR = 10000;
 
     /// <summary>
-    ///   Scale factor for amount of compound in each spawned cloud
+    ///   Scale factor for the amount of compound in each spawned cloud
     /// </summary>
     public const float CLOUD_SPAWN_AMOUNT_SCALE_FACTOR = 0.75f;
 
@@ -123,7 +124,7 @@ public static class Constants
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Due to an earlier problem, old species spawners were never cleared so they accumulated a lot.
+    ///     Due to an earlier problem, old species spawners were never cleared, so they accumulated a lot.
     ///     This multiplier has now been increased quite a bit to try to make the lower number of species spawners
     ///     result in the same level of microbe spawning.
     ///   </para>
@@ -132,7 +133,7 @@ public static class Constants
 
     /// <summary>
     ///   Along with <see cref="MICROBE_SPAWN_DENSITY_SCALE_FACTOR"/> affects spawn density of microbes.
-    ///   The lower this multiplier is set the more evenly species with different populations are spawned.
+    ///   The lower this multiplier is set, the more even species with different populations are spawned.
     /// </summary>
     public const float MICROBE_SPAWN_DENSITY_POPULATION_MULTIPLIER = 1 / 25.0f;
 
@@ -149,12 +150,12 @@ public static class Constants
     public const int CLOUD_SQUARES_PER_SIDE = 3;
     public const int CLOUD_EDGE_WIDTH = 2;
 
-    // NOTE: these 4 constants need to match what is setup in CompoundCloudPlane.tscn
+    // NOTE: these 4 constants need to match what is set up in CompoundCloudPlane.tscn
     public const int CLOUD_WIDTH = 300;
     public const int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
     public const int CLOUD_HEIGHT = 300;
 
-    // This is cloud local Y not world Y
+    // This is cloud local Y, not world Y
     public const int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
 
     public const float CLOUD_Y_COORDINATE = 0;
@@ -237,12 +238,12 @@ public static class Constants
     public const float FLAGELLA_MIN_UPGRADE_VISUAL_LENGTH = 0.80f;
 
     /// <summary>
-    ///   As eukaryotes are immediately 50% larger they get a movement force increase to offset that
+    ///   As eukaryotes are immediately 50% larger, they get a movement force increase to offset that
     /// </summary>
     public const float EUKARYOTIC_MOVEMENT_FORCE_MULTIPLIER = 2.5f;
 
     /// <summary>
-    ///   How much extra base movement is given per hex. Only applies between
+    ///   Amount of extra base movement given per hex. Only applies between
     ///   <see cref="BASE_MOVEMENT_EXTRA_HEX_START"/> and <see cref="BASE_MOVEMENT_EXTRA_HEX_END"/>
     /// </summary>
     public const float BASE_MOVEMENT_PER_HEX = 130;
@@ -295,7 +296,7 @@ public static class Constants
     public const float CILIA_ROTATION_ANIMATION_SPEED_MULTIPLIER = 7.0f;
 
     /// <summary>
-    ///   Limits how often the cilia samples the rotation speed it should be at. Also rate limits how often the cilia
+    ///   Limits how often the cilia sample the rotation speed it should be at. Also, rate limits how often the cilia
     ///   pull physics is applied.
     /// </summary>
     public const float CILIA_ROTATION_SAMPLE_INTERVAL = 0.1f;
@@ -445,6 +446,7 @@ public static class Constants
 
     public const float DISK_CACHE_DEFAULT_KEEP = 30 * 24 * 60 * 60;
     public const long DISK_CACHE_DEFAULT_MAX_SIZE = MEBIBYTE * 1024;
+    public const int DISK_CACHE_MAX_DELETES_TO_QUEUE_AT_ONCE = 500;
 
     // Base randomness for visual hashes to make different types not conflict
     public const ulong VISUAL_HASH_CELL = 2106240777368515371UL;
@@ -578,9 +580,11 @@ public static class Constants
     public const int MAX_SIMULTANEOUS_COLLISIONS_TINY = 4;
 
     /// <summary>
-    ///   How many collision a default sensor can detect at once
+    ///   How many collisions a default sensor can detect at once
     /// </summary>
     public const int MAX_SIMULTANEOUS_COLLISIONS_SENSOR = 20;
+
+    public const int MAX_SIMULTANEOUS_COLLISIONS_RADIATION_SENSOR = 32;
 
     /// <summary>
     ///   Cooldown between agent emissions, in seconds.
@@ -684,15 +688,39 @@ public static class Constants
     public const float HEALTH_REGENERATION_RATE = 1.5f;
 
     /// <summary>
-    ///   Time until cell can regenerate after taking damage;
+    ///   Time until a cell can regenerate after taking damage;
     /// </summary>
     public const float HEALTH_REGENERATION_COOLDOWN = 5.0f;
 
     /// <summary>
-    ///   This much damage has to be dealt in a single instance to prevent health regen. This is pretty high to avoid
+    ///   This much damage has to be caused in a single instance to prevent health regen. This is pretty high to avoid
     ///   small trickle damage the player can't notice from preventing health regen.
     /// </summary>
     public const float HEALTH_REGEN_STOP_DAMAGE_THRESHOLD = 0.15f;
+
+    public const float RADIATION_STRENGTH_MULTIPLIER = 0.02f;
+
+    /// <summary>
+    ///   Fraction of radiation (from the max amount) that starts to cause damage?
+    /// </summary>
+    public const float RADIATION_DAMAGE_THRESHOLD = 0.6f;
+
+    public const float RADIATION_WARNING = RADIATION_DAMAGE_THRESHOLD - 0.15f;
+
+    public const float RADIATION_DAMAGE_MULTIPLIER = 5.1f;
+
+    /// <summary>
+    ///   How often the radiation damage system runs (so the damage is applied)
+    /// </summary>
+    public const float RADIATION_DAMAGE_INTERVAL = 0.6f;
+
+    public const float RADIATION_NATURAL_DECAY = 0.02f;
+
+    public const float RADIATION_NATURAL_DECAY_WHEN_TAKING_DAMAGE = 3 * RADIATION_NATURAL_DECAY;
+
+    public const float RADIATION_PROTECTION_PER_ORGANELLE = 0.1f;
+
+    public const float ROCK_RADIATION_RADIUS = 25;
 
     public const float SCREEN_DAMAGE_FLASH_THRESHOLD = 0.2f;
 
@@ -743,9 +771,9 @@ public static class Constants
 
     /// <summary>
     ///   A multiplier for <see cref="MICROBE_REPRODUCTION_MAX_COMPOUND_USE"/> and
-    ///   <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for early multicellular microbes
+    ///   <see cref="MICROBE_REPRODUCTION_FREE_COMPOUNDS"/> for multicellular microbes
     /// </summary>
-    public const float EARLY_MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
+    public const float MULTICELLULAR_REPRODUCTION_COMPOUND_MULTIPLIER = 2;
 
     /// <summary>
     ///   How much ammonia a microbe needs on top of the organelle initial compositions to reproduce
@@ -754,7 +782,7 @@ public static class Constants
 
     public const float MICROBE_REPRODUCTION_COST_BASE_PHOSPHATES = 16;
 
-    public const float EARLY_MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
+    public const float MULTICELLULAR_BASE_REPRODUCTION_COST_MULTIPLIER = 1.3f;
 
     /// <summary>
     ///   Determines how big of a fraction of damage (of total health)
@@ -953,6 +981,8 @@ public static class Constants
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
     public const float MICROBE_FLASH_DURATION = 0.6f;
+
+    public const float HUD_BAR_FLASH_DURATION = 0.67f;
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;
@@ -1153,7 +1183,8 @@ public static class Constants
     public const float AUTO_EVO_ENGULF_PREDATION_SCORE = 100;
     public const float AUTO_EVO_PILUS_PREDATION_SCORE = 20;
     public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 100;
-    public const float AUTO_EVO_MUCILAGE_PREDATION_SCORE = 100;
+    public const float AUTO_EVO_SLIME_JET_SCORE = 6;
+    public const float AUTO_EVO_MUCOCYST_SCORE = 40;
     public const float AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY = 0.1f;
     public const float AUTO_EVO_CHUNK_LEAK_MULTIPLIER = 0.2f;
     public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.1f;
@@ -1175,10 +1206,14 @@ public static class Constants
     public const int AUTO_EVO_ORGANELLE_ADD_ATTEMPTS = 15;
     public const int AUTO_EVO_ORGANELLE_REMOVE_ATTEMPTS = 15;
 
+    public const float AUTO_EVO_PREDICTION_UPDATE_INTERVAL = 0.95f;
+
     /// <summary>
-    ///   How much auto-evo affects the player species compared to the normal amount
+    ///   When doing an auto-evo prediction, this much free population is placed into the moved-to patch if the player
+    ///   is not in the patch yet.
+    ///   Helps to give some indication on how well adapted the player species is to the target patch.
     /// </summary>
-    public const float AUTO_EVO_PLAYER_STRENGTH_FRACTION = 0.2f;
+    public const int AUTO_EVO_PREDICTION_MOVE_EMPTY_EXTRA_POPULATION = 50;
 
     public const bool AUTO_EVO_TRACK_STEP_TIME = false;
 
@@ -1194,17 +1229,41 @@ public static class Constants
     public const float COMPOUND_DIFFUSE_BASE_MOVE_AMOUNT = 1;
     public const float COMPOUND_DIFFUSE_BASE_DISTANCE = 1;
 
+    // Configuration for how much marine snow there is based on existing species
+    public const float MINIMUM_MARINE_SNOW_DENSITY = 0.00008f;
+    public const long MINIMUM_MARINE_SNOW_POPULATION = 200;
+    public const float NORMAL_HIGH_MARINE_SNOW_DENSITY = 0.0001f;
+    public const long NORMAL_HIGH_MARINE_SNOW_POPULATION = 10000;
+    public const float MAXIMUM_MARINE_SNOW_DENSITY = 0.0004f;
+    public const long MAXIMUM_MARINE_SNOW_POPULATION = 20000;
+
+    /// <summary>
+    ///   Reduces marine snow the farther it needs to fall down
+    /// </summary>
+    public const float MARINE_SNOW_LOSS_MULTIPLIER_PER_PATCH = 0.7f;
+
     // Volcanism co2 production configuration
-    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.15f;
+    public const float VOLCANISM_VENTS_CO2_STRENGTH = 0.19f;
     public const float VOLCANISM_VENTS_CO2_THRESHOLD = 0.3f;
 
-    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.025f;
+    public const float VOLCANISM_SURFACE_CO2_STRENGTH = 0.050f;
     public const float VOLCANISM_SURFACE_CO2_THRESHOLD = 0.15f;
 
-    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.005f;
+    public const float VOLCANISM_FLOOR_CO2_STRENGTH = 0.010f;
     public const float VOLCANISM_FLOOR_CO2_THRESHOLD = 0.1f;
 
-    // These control the safe levels of nitrogen in a patch (due to other effects the max is also not really an
+    public const float MIN_HYDROGEN_SULFIDE_FRACTION = 0.496f;
+    public const double HYDROGEN_SULFIDE_ENVIRONMENT_EATING_MULTIPLIER = 0.00000002;
+
+    /// <summary>
+    ///   Below this value oxygen doesn't cause iron chunks to become less common
+    /// </summary>
+    public const float MIN_OXYGEN_BEFORE_OXIDATION = 0.01f;
+
+    public const float MIN_IRON_DENSITY_OXIDATION = 0.35f;
+    public const float CHUNK_OXIDATION_SPEED = 0.3f;
+
+    // These control the safe levels of nitrogen in a patch (due to other effects, the max is also not really an
     // absolute)
     public const float MAX_NITROGEN_LEVEL = 0.75f;
     public const float SOFT_MIN_NITROGEN_LEVEL = 0.3f;
@@ -1216,7 +1275,7 @@ public static class Constants
 
     // Patch event variables
     public const int VENT_ERUPTION_CHANCE = 15;
-    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00008f;
+    public const float VENT_ERUPTION_HYDROGEN_SULFIDE_INCREASE = 0.00004f;
     public const float VENT_ERUPTION_CARBON_DIOXIDE_INCREASE = 0.3f;
 
     // These control how many game entities can exist at once
@@ -1278,8 +1337,7 @@ public static class Constants
     public const float DAY_NIGHT_TUTORIAL_LIGHT_MIN = 0.01f;
 
     /// <summary>
-    ///   Used to limit how often the hover indicator panel are
-    ///   updated. Default value is every 0.1 seconds.
+    ///   Used to limit how often the hover indicator panels are updated. The default value is every 0.1 seconds.
     /// </summary>
     public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
 
@@ -1294,7 +1352,7 @@ public static class Constants
 
     public const float EDITOR_DEFAULT_CAMERA_HEIGHT = 10;
 
-    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 2.50f;
+    public const float CELL_BILLBOARD_DEFAULT_SCALE_MULTIPLIER = 1.8f;
 
     public const float MAX_SPECIES_NAME_LENGTH_PIXELS = 230.0f;
 
@@ -1326,7 +1384,7 @@ public static class Constants
     public const int MAIN_MENU_CANCEL_PRIORITY = -3;
 
     /// <summary>
-    ///   Pause menu has lower cancel priority to avoid handling canceling being in the menu if a an open sub menu
+    ///   Pause menu has a lower cancel priority to avoid handling canceling being in the menu if an open submenu
     ///   has special actions it needs to do
     /// </summary>
     public const int PAUSE_MENU_CANCEL_PRIORITY = -2;
@@ -1344,23 +1402,23 @@ public static class Constants
     public const bool CUSTOM_FOCUS_DRAWER_ANTIALIAS = true;
 
     /// <summary>
-    ///   Performance in FPS below this value triggers the main menu low performance warning (if 3D backgrounds are
+    ///   Performance in FPS below this value triggers the main menu low-performance warning (if 3D backgrounds are
     ///   enabled)
     /// </summary>
     public const float MAIN_MENU_LOW_PERFORMANCE_FPS = 28.5f;
 
     /// <summary>
-    ///   How many seconds until low performance warning can be triggered after the main menu is started
+    ///   How many seconds until a low-performance warning can be triggered after the main menu is started
     /// </summary>
     public const float MAIN_MENU_LOW_PERFORMANCE_CHECK_AFTER = 28.5f;
 
     /// <summary>
-    ///   Maximum amount of snapshots to store in patch history.
+    ///   Maximum number of snapshots to store in patch history.
     /// </summary>
     public const int PATCH_HISTORY_RANGE = 10;
 
     /// <summary>
-    ///   The maximum limit for amount of events by time period to store in <see cref="GameWorld"/>.
+    ///   The maximum limit for number of events by time period to store in <see cref="GameWorld"/>.
     /// </summary>
     public const int GLOBAL_EVENT_LOG_CAP = 20;
 
@@ -1547,7 +1605,7 @@ public static class Constants
 
     public const float PHOTO_STUDIO_CAMERA_FOV = 70;
     public const float PHOTO_STUDIO_CAMERA_HALF_ANGLE = PHOTO_STUDIO_CAMERA_FOV / 2.0f;
-    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 0.80f;
+    public const float PHOTO_STUDIO_CELL_RADIUS_MULTIPLIER = 1.1f;
 
     public const int RESOURCE_LOAD_TARGET_MIN_FPS = 60;
     public const float RESOURCE_TIME_BUDGET_PER_FRAME = 1.0f / RESOURCE_LOAD_TARGET_MIN_FPS;
@@ -1609,16 +1667,21 @@ public static class Constants
     public const float MAX_GLUCOSE_DECAY = 0.95f;
     public const float MIN_OSMOREGULATION_MULTIPLIER = 0.2f;
     public const float MAX_OSMOREGULATION_MULTIPLIER = 2;
+    public const float MIN_AUTO_EVO_STRENGTH_MULTIPLIER = 0.01f;
+    public const float MAX_AUTO_EVO_STRENGTH_MULTIPLIER = 1.0f;
 
-    // Constants for procedural patch map
+    // Constants for the procedural patch map
     public const float PATCH_NODE_RECT_LENGTH = 64.0f;
-    public const float PATCH_AND_REGION_MARGIN = 2 * 3.0f;
+    public const float PATCH_AND_REGION_MARGIN = 20.0f;
     public const float PATCH_REGION_CONNECTION_LINE_WIDTH = 4.0f;
     public const float PATCH_REGION_BORDER_WIDTH = 6.0f;
+    public const float PATCH_REGION_MARGIN = 5.0f;
     public const int PATCH_GENERATION_MAX_RETRIES = 100;
 
+    public const float PATCH_GENERATION_CHANCE_BANANA_BIOME = 0.03f;
+
     /// <summary>
-    ///   If set to true then physics debug draw gets enabled when the game starts
+    ///   If set to true, then physics debug draw gets enabled when the game starts
     /// </summary>
     public const bool AUTOMATICALLY_TURN_ON_PHYSICS_DEBUG_DRAW = false;
 
@@ -1700,7 +1763,7 @@ public static class Constants
     public const ControllerType DEFAULT_CONTROLLER_TYPE = ControllerType.XboxSeriesX;
     public const float MINIMUM_DELAY_BETWEEN_INPUT_TYPE_CHANGE = 0.3f;
 
-    // If we update our Godot project base resolution these *may* need to be adjusted for mouse input to feel the same
+    // If we update our Godot project base resolution, these *may* need to be adjusted for mouse input to feel the same
     public const float BASE_VERTICAL_RESOLUTION_FOR_INPUT = 720;
     public const float BASE_HORIZONTAL_RESOLUTION_FOR_INPUT = 1280;
 
@@ -1718,7 +1781,7 @@ public static class Constants
     public const float CONTROLLER_DEFAULT_DEADZONE = 0.2f;
 
     /// <summary>
-    ///   How big fraction of extra margin is added on top of a calibrated deadzone
+    ///   Configures a fraction of extra margin that is added on top of a calibrated deadzone
     /// </summary>
     public const float CONTROLLER_DEADZONE_CALIBRATION_MARGIN = 0.1f;
 
@@ -1756,7 +1819,7 @@ public static class Constants
     public static readonly TimeSpan RecentSaveTime = TimeSpan.FromSeconds(15);
 
     /// <summary>
-    ///   Colour of the custom focus highlight elements. Should be the same as what it set in Thrive theme
+    ///   Colour of the custom focus highlight elements. Should be the same as what it set in the Thrive theme
     /// </summary>
     public static readonly Color CustomFocusDrawerColour = new("#00bfb6");
 

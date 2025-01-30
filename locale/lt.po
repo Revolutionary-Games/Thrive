@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
-"PO-Revision-Date: 2023-10-12 00:43+0000\n"
-"Last-Translator: Irmantas <irmantas_i@yahoo.com>\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Lithuanian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -152,6 +152,7 @@ msgstr ""
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Bendros Visų Pasaulių Statistikos"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Kartos:[/b]\n"
@@ -324,6 +325,14 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% atlikta. {1:n0}/{2:n0} žingsniai."
 
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Mutacijos sąnaudų daugiklis"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automatinis išsaugojimas žaidimo metu"
 
@@ -376,6 +385,9 @@ msgstr "Sąmoningumo Etapas"
 
 msgid "BACK"
 msgstr "Atgal"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "Atgalinis brūkšnys"
@@ -621,6 +633,10 @@ msgstr "Celiuliozė"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ši membrana turi sienelę, todėl geriau apsaugo nuo bendros žalos ir ypač nuo fizinės žalos. Be to, jos formai išlaikyti reikia mažiau energijos, tačiau ji negali greitai įsisavinti išteklių ir yra lėtesnė. [b]Šią sienelę gali suvirškinti celiulazė[/b], todėl ji tampa pažeidžiama plėšrūnų."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1385,6 +1401,10 @@ msgstr ""
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Chemosintezė"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(organelių sąnaudos, membranos ir kiti elementai redaktoriuje)"
+
 msgid "DAY_LENGTH"
 msgstr "Dienos Ilgumas"
 
@@ -1666,10 +1686,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Daugialąstis"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
@@ -1700,34 +1716,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_3"
@@ -1755,6 +1744,9 @@ msgid "EASTER_EGGS"
 msgstr ""
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 
 msgid "EDGE_PAN_SPEED"
@@ -2272,6 +2264,10 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr "Galerijos žiūryklė"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Reikšmė, naudojama generuojant pasaulį, kuri turi būti teigiamas sveikas skaičius"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2285,6 +2281,27 @@ msgstr "Baigti žaidimą"
 
 msgid "GENERAL"
 msgstr "Bendra"
+
+msgid "GENERAL_LOADING_TIP_1"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_2"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_3"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_4"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_5"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_6"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_7"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2853,10 +2870,6 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Daugialąstis"
-
 msgid "LAUNCH0"
 msgstr ""
 
@@ -3068,19 +3081,17 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Įkeliama..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr ""
-
 msgid "LOADING_GAME"
 msgstr "Įkeliamas žaidimas"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr ""
-
-msgid "LOADING_TIP"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -3132,6 +3143,14 @@ msgstr ""
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Chemosintezė"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Tapti Makroskopiniu ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Mikroorganizmo būsena"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3190,8 +3209,22 @@ msgstr ""
 msgid "MEDIASTOP"
 msgstr ""
 
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr ""
+
 msgid "MEGA_YEARS"
 msgstr ""
+
+msgid "MELANOSOME"
+msgstr ""
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Chitinazė leidžia ląstelei suardyti chitino membraną. Kiekvienas papildymas didina veiksmingumą."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Padidina didelių ląstelių sukimosi greitį."
 
 msgid "MEMBRANE"
 msgstr "Membrana"
@@ -3288,29 +3321,103 @@ msgstr "Mikroorganizmų redaktorius"
 msgid "MICROBE_EDITOR"
 msgstr "Mikroorganizmų redaktorius"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Mikroorganizmų redaktorius"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Mikroorganizmų redaktorius"
+
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
 
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3337,51 +3444,6 @@ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr "Mikroorganizmo būsena"
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
@@ -3705,11 +3767,19 @@ msgstr ""
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Baigti žaidimą"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Daugialąstis"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr ""
 
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr ""
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
+msgstr "Daugialąstis"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr ""
@@ -3874,6 +3944,9 @@ msgstr ""
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Bazinis Judėjimas"
+
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -4051,6 +4124,10 @@ msgstr ""
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Daugialąstis"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4438,6 +4515,18 @@ msgstr "Baigti žaidimą"
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "Aprašymas:"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Didelis Geležies Gabalas"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Chemosintezė"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Atsitiktinai parinkti rūšies pavadinimą"
 
@@ -4499,6 +4588,10 @@ msgstr "ATP GAMYBA PER MAŽA!"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(greitis, kuriuo DI rūšys mutuoja)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "ATP GAMYBA PER MAŽA!"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -4870,6 +4963,10 @@ msgstr ""
 msgid "SHOW_HELP"
 msgstr ""
 
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Elemento pavadinimas:"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -4955,6 +5052,9 @@ msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr ""
+
+msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
 msgid "SNOWFLAKE"
@@ -5630,9 +5730,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr "Pamoka"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5696,6 +5793,10 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Daugialąstis"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -5817,6 +5918,12 @@ msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
+msgstr ""
+
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr ""
+
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
@@ -6044,9 +6151,6 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "Chemoplastas"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6515,6 +6619,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr "Anaerobinė Azoto Fiksacija"
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Paverčia [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] į [thrive:compound type=\"glucose\"][/thrive:compound]. Greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Elemento aprašymas:"
 
@@ -6555,7 +6691,15 @@ msgid "WIKI_HEADING_APPENDICES"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #, fuzzy
@@ -6599,7 +6743,15 @@ msgid "WIKI_HEADING_GDD"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #, fuzzy
@@ -6607,8 +6759,16 @@ msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 
 #, fuzzy
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
@@ -6669,6 +6829,36 @@ msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
 #, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "Chemoplastas"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Rišantis Agentas"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -6762,12 +6952,72 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Leidžia susisieti su kitomis ląstelėmis. Tia yra pirmas žingsnis link daugialąsčių. Kai tavo ląstelė yra dalis kolonijos, junginiai yra bendri tarp ląstelių. Kol esate kolonijos dalimi, negalite įjungti redaktoriaus, todėl turite atsisieti, kai surenkate pakankamai junginių, kad ląstelė galėtų pasidalinti."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Chemoplastas"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Chemoplastas yra dvigubos membranos struktūra, kurioje yra baltymų, galinčių paversti [thrive:compound type=\"hydrogensulfide\"][/thrive:compound], dujinį [thrive:compound type=\"carbondioxide\"][/thrive:compound] ir vandenį į [thrive:compound type=\"glucose\"][/thrive:compound], vykstant procesui, vadinamam [b]vandenilio sulfido chemosinteze[/b]. Jo [thrive:compound type=\"glucose\"][/thrive:compound] gamybos greitis priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Elemento aprašymas:"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Padidina didelių ląstelių sukimosi greitį."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Visos ląstelės \"mato\" tik per chemorecepciją. Taip ląstelės gauna informaciją apie jas supančią aplinką. Šios organelės pridėjimas reiškia, kad chemorecepcija tobulėja. Kadangi žaidėjui suteikiamas regėjimas net ląstelių etape, tai vaizduojama linija, nukreipta už matomos ekrano srities ribų ir rodanti netoliese esančius junginius, kurių žaidėjas dar nematė."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose maišeliuose yra šviesai jautrių pigmentų. Tai prokariotas, kurį perėmė ir panaudojo eukariotinis šeimininkas. Chloroplaste esantys pigmentai gali naudoti šviesos energiją ir gaminti [thrive:compound type=\"glucose\"][/thrive:compound] ir [thrive:compound type=\"carbondioxide\"][/thrive:compound] iš dujinės [thrive:compound type=\"glucose\"][/thrive:compound] ir vandeninės [thrive:compound type=\"carbondioxide\"][/thrive:compound], vykstant procesui, vadinamam [b]fotosinteze[/b]. Šie pigmentai taip pat suteikia išskirtinę spalvą. Greitis, kuriuo gaminama [thrive:compound type=\"glucose\"][/thrive:compound], priklauso nuo [thrive:compound type=\"carbondioxide\"][/thrive:compound] koncentracijos ir [thrive:compound type=\"sunlight\"][/thrive:compound] intensyvumo."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7127,8 +7377,16 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Anaerobinė Azoto Fiksacija"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Chemoplastas"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Rišantis Agentas"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -7143,7 +7401,15 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Chemoplastas"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
+msgstr "Chemoplastas"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
 msgstr "Chemoplastas"
 
 #, fuzzy
@@ -7316,6 +7582,10 @@ msgstr "Chloroplastas yra dviguba membraninė struktūra, kurioje membraniniuose
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Bendri Redaktoriaus ir Strategijos Etapai"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Chemosintezė"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -7756,13 +8026,20 @@ msgstr ""
 msgid "ZOOM_OUT"
 msgstr ""
 
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Tam, kad atrakinti redaktorių ir dauginimąsi tau reikės surinkti [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranžinis Debesis) ir [thrive:compound type=\"phosphates\"][/thrive:compound] (Purpurinis Debesis)."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Mikroorganizmo būsena"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Daugialąstis"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Aprašymas:"
-
-#, fuzzy
-#~ msgid "WIKI_CHEMOSYNTHESIS"
-#~ msgstr "Chemosintezė"
 
 #, fuzzy
 #~ msgid "WIKI_CYTOPLASM_GLYCOLYSIS"
@@ -7793,16 +8070,8 @@ msgstr ""
 #~ msgstr "Mikroorganizmų redaktorius"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Mikroorganizmo būsena"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Chemosintezė"
-
-#, fuzzy
-#~ msgid "WIKI_MULTICELLULAR_STAGE"
-#~ msgstr "Daugialąstis"
 
 #, fuzzy
 #~ msgid "WIKI_PHOTOSYNTHESIS"

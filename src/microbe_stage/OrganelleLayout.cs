@@ -70,8 +70,9 @@ public class OrganelleLayout<T> : HexLayout<T>
     }
 
     /// <summary>
-    ///   Returns true if organelle can be placed at location
+    ///   Checks if organelle can be placed at a location
     /// </summary>
+    /// <returns>True if organelle can be placed at the position</returns>
     public bool CanPlace(OrganelleDefinition organelleType, Hex position, int orientation,
         List<Hex> temporaryStorage, bool allowCytoplasmOverlap = false)
     {
@@ -114,7 +115,7 @@ public class OrganelleLayout<T> : HexLayout<T>
     {
         var centerOfMass = CenterOfMass;
 
-        // Skip if center of mass is already correct
+        // Skip if the center of mass is already correct
         if (centerOfMass.Q == 0 && centerOfMass.R == 0)
             return false;
 
@@ -128,18 +129,20 @@ public class OrganelleLayout<T> : HexLayout<T>
     }
 
     /// <summary>
-    ///   Searches in a spiral pattern for a valid place to put the new organelle. Result is stored as the position
+    ///   Searches in a spiral pattern for a valid place to put the new organelle. The result is stored as the position
     ///   of the given new organelle object. Note that this is probably too slow for very huge cells.
     /// </summary>
     public void FindAndPlaceAtValidPosition(T newOrganelle, int startQ, int startR, List<Hex> workData1,
-        List<Hex> workData2)
+        List<Hex> workData2, HashSet<Hex> workData3)
     {
-        int radius = 1;
+        // Compute hex cache just once to speed up this method a lot
+        ComputeHexCache(workData3, workData1);
 
-        while (true)
+        var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
+
+        // Moves into the ring of radius "radius" around the given starting point center the old organelle
+        for (int radius = 1; radius <= 1000; ++radius)
         {
-            // Moves into the ring of radius "radius" around the given starting point center the old organelle
-            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BottomLeft];
             startQ += radiusOffset.Q;
             startR += radiusOffset.R;
 
@@ -154,23 +157,59 @@ public class OrganelleLayout<T> : HexLayout<T>
                     startQ += offset.Q;
                     startR += offset.R;
 
-                    // Checks every possible rotation value.
-                    for (int j = 0; j <= 5; ++j)
+                    if (TestOrganellePlacementPosition(newOrganelle, startQ, startR, workData3, workData1, workData2))
                     {
-                        newOrganelle.Position = new Hex(startQ, startR);
-
-                        newOrganelle.Orientation = j;
-                        if (CanPlace(newOrganelle, workData1, workData2))
-                        {
-                            AddFast(newOrganelle, workData1, workData2);
-                            return;
-                        }
+                        return;
                     }
                 }
             }
 
-            ++radius;
+            if (radius == 10)
+                GD.Print("Organelle placement search is taking a really long time (radius > 9)");
         }
+
+        GD.PrintErr("Abandoning an organelle as cannot find a position for it");
+    }
+
+    /// <summary>
+    ///   Checks if the hexes an organelle would occupy are free (doesn't check for touching)
+    /// </summary>
+    /// <param name="organelleType">Type of organelle to place, used to know how many hexes it is big</param>
+    /// <param name="q">Position to test</param>
+    /// <param name="r">Position to test (r-coordinate)</param>
+    /// <param name="rotation">Rotation to test</param>
+    /// <param name="precalculatedHexCache">
+    ///   Precalculated cache from <see cref="HexLayout{T}.ComputeHexCache(HashSet{Hex},List{Hex})"/>
+    /// </param>
+    /// <param name="primaryHexWasFree">
+    ///   Returns true if the first position checked was free irrespective of if this returns true or not
+    /// </param>
+    /// <returns>True if all hex positions the organelle would occupy are free</returns>
+    public bool IsOrganellePositionFree(OrganelleDefinition organelleType, int q, int r, int rotation,
+        HashSet<Hex> precalculatedHexCache, out bool primaryHexWasFree)
+    {
+        var primaryPosition = new Hex(q, r);
+
+        // Check for overlapping hexes with existing organelles
+        var hexes = organelleType.GetRotatedHexes(rotation);
+        int hexCount = hexes.Count;
+
+        // Use an explicit loop to ensure no extra memory allocations as this method is called a ton
+        for (int i = 0; i < hexCount; ++i)
+        {
+            if (precalculatedHexCache.Contains(hexes[i] + primaryPosition))
+            {
+                // We know the primary hex check succeeded if "i" is above zero
+                primaryHexWasFree = i > 0;
+
+                return false;
+            }
+        }
+
+        primaryHexWasFree = true;
+
+        // Basic placing doesn't have the restriction that the organelle needs to touch an existing one
+        return true;
     }
 
     /// <summary>
@@ -215,6 +254,42 @@ public class OrganelleLayout<T> : HexLayout<T>
 
         if (replacedOrganelle != null && replacedOrganelle.Definition.InternalName == "cytoplasm")
             return true;
+
+        return false;
+    }
+
+    private bool TestOrganellePlacementPosition(T newOrganelle, int q, int r, HashSet<Hex> precalculatedHexCache,
+        List<Hex> workData1, List<Hex> workData2)
+    {
+        bool isSingleHex = newOrganelle.Definition.Hexes.Count < 2;
+
+        // Checks every possible rotation value at the position
+        for (int j = 0; j <= 5; ++j)
+        {
+            if (IsOrganellePositionFree(newOrganelle.Definition, q, r, j, precalculatedHexCache,
+                    out var wasPrimaryFree))
+            {
+                // Found a valid position, can end the method here
+                newOrganelle.Position = new Hex(q, r);
+                newOrganelle.Orientation = j;
+                AddFast(newOrganelle, workData1, workData2);
+                return true;
+            }
+
+            if (j == 0)
+            {
+                if (!wasPrimaryFree)
+                {
+                    // When failing the initial position check, that means that no matter how this is rotated, the hole
+                    // will always remain, so fail early here
+                    break;
+                }
+            }
+
+            // Single hex cannot be made to fit by rotating
+            if (isSingleHex)
+                break;
+        }
 
         return false;
     }

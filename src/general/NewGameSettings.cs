@@ -188,6 +188,13 @@ public partial class NewGameSettings : ControlWithInput
     private LineEdit glucoseDecayRateReadout = null!;
     private HSlider osmoregulationMultiplier = null!;
     private LineEdit osmoregulationMultiplierReadout = null!;
+
+    [Export]
+    private HSlider autoEvoStrengthMultiplier = null!;
+
+    [Export]
+    private LineEdit autoEvoStrengthReadout = null!;
+
     private OptionButton fogOfWarModeDropdown = null!;
     private Label fogOfWarModeDescription = null!;
 
@@ -340,6 +347,8 @@ public partial class NewGameSettings : ControlWithInput
         glucoseDecayRate.MaxValue = Constants.MAX_GLUCOSE_DECAY * 100;
         osmoregulationMultiplier.MinValue = Constants.MIN_OSMOREGULATION_MULTIPLIER;
         osmoregulationMultiplier.MaxValue = Constants.MAX_OSMOREGULATION_MULTIPLIER;
+        autoEvoStrengthMultiplier.MinValue = Constants.MIN_AUTO_EVO_STRENGTH_MULTIPLIER;
+        autoEvoStrengthMultiplier.MaxValue = Constants.MAX_AUTO_EVO_STRENGTH_MULTIPLIER;
 
         checkOptionsMenuAdviceContainer = GetNode<Container>(CheckOptionsMenuAdviceContainerPath);
 
@@ -419,6 +428,7 @@ public partial class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = difficulty.PlayerDeathPopulationPenalty;
         glucoseDecayRate.Value = difficulty.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = difficulty.OsmoregulationMultiplier;
+        autoEvoStrengthMultiplier.Value = difficulty.PlayerAutoEvoStrength;
         fogOfWarModeDropdown.Selected = (int)difficulty.FogOfWarMode;
 
         var reproductionIndex = reproductionCompoundsDropdown.GetItemIndex((int)difficulty.ReproductionCompounds);
@@ -622,6 +632,7 @@ public partial class NewGameSettings : ControlWithInput
                 PlayerDeathPopulationPenalty = (float)playerDeathPopulationPenalty.Value,
                 GlucoseDecay = (float)glucoseDecayRate.Value * 0.01f,
                 OsmoregulationMultiplier = (float)osmoregulationMultiplier.Value,
+                PlayerAutoEvoStrength = (float)autoEvoStrengthMultiplier.Value,
                 ReproductionCompounds = SelectedReproductionCompounds,
                 FogOfWarMode = (FogOfWarMode)fogOfWarModeDropdown.Selected,
                 FreeGlucoseCloud = freeGlucoseCloudButton.ButtonPressed,
@@ -761,6 +772,7 @@ public partial class NewGameSettings : ControlWithInput
         playerDeathPopulationPenalty.Value = preset.PlayerDeathPopulationPenalty;
         glucoseDecayRate.Value = preset.GlucoseDecay * 100;
         osmoregulationMultiplier.Value = preset.OsmoregulationMultiplier;
+        autoEvoStrengthMultiplier.Value = preset.PlayerAutoEvoStrength;
         fogOfWarModeDropdown.Selected = (int)preset.FogOfWarMode;
         reproductionCompoundsDropdown.Selected =
             reproductionCompoundsDropdown.GetItemIndex((int)preset.ReproductionCompounds);
@@ -800,6 +812,9 @@ public partial class NewGameSettings : ControlWithInput
                 continue;
 
             if (Math.Abs((float)osmoregulationMultiplier.Value - preset.OsmoregulationMultiplier) > MathUtils.EPSILON)
+                continue;
+
+            if (Math.Abs((float)autoEvoStrengthMultiplier.Value - preset.PlayerAutoEvoStrength) > MathUtils.EPSILON)
                 continue;
 
             if (fogOfWarModeDropdown.Selected != (int)preset.FogOfWarMode)
@@ -878,6 +893,14 @@ public partial class NewGameSettings : ControlWithInput
     {
         amount = Math.Round(amount, 1);
         osmoregulationMultiplierReadout.Text = amount.ToString(CultureInfo.CurrentCulture);
+
+        UpdateSelectedDifficultyPresetControl();
+    }
+
+    private void OnAutoEvoStrengthValueChanged(double amount)
+    {
+        amount = Math.Round(amount * 100);
+        autoEvoStrengthReadout.Text = Localization.Translate("PERCENTAGE_VALUE").FormatSafe(amount);
 
         UpdateSelectedDifficultyPresetControl();
     }

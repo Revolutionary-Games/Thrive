@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b64mbrs0kgim"]
+
+[ext_resource type="Script" path="res://src/stage_starters/SimpleStageStarter.cs" id="1_7gtc7"]
+
+[node name="MulticellularEditorStarter" type="Node"]
+script = ExtResource("1_7gtc7")
+StageToSwitchTo = 3

@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
-"PO-Revision-Date: 2024-10-19 21:07+0000\n"
-"Last-Translator: Paradox Edge <xxzemonxx@hotmail.com>\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Swedish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
@@ -142,6 +142,7 @@ msgstr "(tillåter fortsättning av spelet med en annan art vid utrotning istäl
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generisk Statistik över Alla Världar"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generationer:[/b]\n"
@@ -318,6 +319,13 @@ msgstr "Vakuolen är en inre membranorganell som används för lagring i cellen.
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klart. {1:n0}/{2:n0} steg."
 
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Osmoreguleringskost"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autospara i spelet"
 
@@ -375,6 +383,9 @@ msgstr "Mikrob Stadiet"
 
 msgid "BACK"
 msgstr "Backåt"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "Omvänt snedstreck"
@@ -636,6 +647,10 @@ msgstr "Cellulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Detta membran har en vägg, vilket leder till bättre skydd mot allmän skada och särskilt mot fysisk skada. Den kostar också mindre energi för att bibehålla sin form, men kan inte ta upp resurser lika snabbt och är trögare. [b]Cellulas kan smälta denna vägg[/b] vilket gör den sårbar mot uppslukning av rovdjur."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Fortsätt"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1383,6 +1398,10 @@ msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandnin
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "OxyToxySyntes"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(farten som AI arter muterar)"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1700,10 +1719,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicera Typ"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Placera organell"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett rovdjursförhållande som har studerats i årtionden, är du Didinium eller Paramecium? Rovdjur eller byte?"
 
@@ -1734,35 +1749,8 @@ msgstr "Rolig Fakta, visste du att det finns över 8000 ciliatarter på planeten
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Rolig fakta, The Stentor är ett ciliat som kan sträcka sig och fånga byten i en slags trumpet som mun som drar in byten genom att generera vattenströmmar med cilia."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Här är ett tips, gifter kan användas för att putta andra gifter ifrån dig om du är snabb nog."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som kallas pseudopoder, vi vill så småningom ha dem i Thrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Här är ett tips, se upp för större celler och stora bakterier, det är inte kul att bli spjälkad, och de kommer att äta dig."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrives ljudteam har gjort många låtar som ännu inte har lagts till i spelet. Du kan höra dem eller titta på strömmar av honom komponera på sin YouTube-kanal, Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Här är ett tips, om din cell är minst 150 hexar kan du svälja stora järnbitar."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive menas som en simulering av en annan planet, därför är det vettigt att de flesta varelser du hittar kommer att vara relaterade till en eller två andra arter på grund av evolution som sker runtomkring dig, se om du kan identifiera dem!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Rolig Fakta, Thrive-teamet gör podcasts ibland, du bör kolla in dem!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Fun Fact, Thrive är gjord med Godot-motorn med öppen källkod!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Fun Fact, en av de första spelbara prototyperna för spel, gjordes av vår fantastiska programmerare, untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Här är ett tips, Osmoregulering kostar 1 ATP per sekund per hex som din cell har, varje tom hex av cytoplasma genererar också 5 ATP per sekund, vilket innebär att om du tappar ATP på grund av osmoregulering, lägg bara till ett par tomma hexecytoplasmer eller ta bort några organeller ."
@@ -1791,6 +1779,14 @@ msgstr "Rolig fakta, Didinium och Paramecium är ett läroboksexempel på ett ro
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Aggressiva mikrober jagar byte över större avstånd\n"
+"och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
+"Fredliga mikrober attackerar inte andra över större avstånd\n"
+"och har lägre sannolikhet att använda gifter mot rovdjur."
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 "Aggressiva mikrober jagar byte över större avstånd\n"
 "och har större sannolikhet att kämpa emot när rovdjur attackerar.\n"
@@ -2363,6 +2359,10 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Spel Design"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Design"
 
@@ -2376,6 +2376,34 @@ msgstr "Självmord"
 
 msgid "GENERAL"
 msgstr "Allmän"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2976,10 +3004,6 @@ msgstr "Den här översättningen är mycket ofullständig ({0}% klar) snälla h
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Placera organell"
-
 msgid "LAUNCH0"
 msgstr "Avfyra 0"
 
@@ -3208,12 +3232,12 @@ msgstr "Laddar"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laddar..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Laddar mikrobredigerare"
-
 msgid "LOADING_GAME"
 msgstr "Laddar Spel"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Laddar mikrobredigerare"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Laddar mikrobredigerare"
@@ -3221,9 +3245,6 @@ msgstr "Laddar mikrobredigerare"
 #, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Laddar mikrobredigerare"
-
-msgid "LOADING_TIP"
-msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
 
 msgid "LOAD_FINISHED"
 msgstr "Färdigladdat"
@@ -3278,6 +3299,14 @@ msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Mucilagesyntes"
+
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Bli Makroskopisk ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Mikrob Stadiet"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3337,8 +3366,24 @@ msgstr "Media Spela in"
 msgid "MEDIASTOP"
 msgstr "Media Stopp"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Liten Järnbit"
+
 msgid "MEGA_YEARS"
 msgstr "Miljoner År"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolosomer"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #, fuzzy
 msgid "MEMBRANE"
@@ -3451,62 +3496,103 @@ msgstr "Mikrobredigerare"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobredigerare"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryota strukturer\n"
-"\n"
-"Metabolosomer: Producerar ATP från glukos\n"
-"\n"
-"Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
-"\n"
-"Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
-"\n"
-"Rusticyanin: Omvandlar järn till ATP\n"
-"\n"
-"Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
-"\n"
-"Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till att du har de nödvändiga mutationerna för att kunna bearbeta dem först. Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna organell för att göra matsmältningen mycket mer effektiv."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Externa organeller\n"
-"\n"
-"Flagellum: Flyttar din cell snabbare genom att förbruka ATP.\n"
-"\n"
-"Pilus: Kan användas för att sticka andra celler"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membranbundna organeller\n"
-"\n"
-"Nucleus: Tar upp 11 plattor och möjliggör utveckling av membranbundna organeller. Och fördubblar också cellens storlek. (Kan bara utvecklas en gång)\n"
-"\n"
-"Mitokondrion: Producerar ATP ur glukos och atmosfärisk O2. Mycket mer effektivt än cytoplasma\n"
-"\n"
-"Kloroplast: Gör glukos ur solljus och atmosfärisk CO2\n"
-"\n"
-"Chemoplast: Gör glukos ur vätesulfid\n"
-"\n"
-"Kvävefixerande plastid: Tillverkar ammoniak från ATP och atmosfäriskt kväve och syre\n"
-"\n"
-"Vacuole: Lagrar 15 samlade molekyler\n"
-"\n"
-"Toxin Vacuoles: Producerar gifter (kallas OxyToxy NT)"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Varje generation får du 100 mutationspoäng (MP), och varje förändring (eller mutation) kostar en viss summa av den MP. Att lägga till och ta bort organeller kostar MP, men att ta bort organeller som placerades i den aktuella mutationssessionen återbetalar MP för den organellen. Du kan flytta eller ta bort en organell genom att högerklicka på den och välja lämplig åtgärd i popup-menyn. Du kan rotera dina organeller medan du placerar dem med A och D."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Mikrob Fri Byggredigerare"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Använd ångraknapped i cellredigeraren för att fixa ett mistag"
+
+#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organismstatistik"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Organismstatistik"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3570,60 +3656,6 @@ msgstr ""
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "För att reproducera måste du dela alla dina organeller i två. Organeller behöver ammonium och fosfat för att dela på sig."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Men om du överlever i tjugo generationer med 300 av din art så anses du ha vunnit spelet, efter du vunnit får du en popup ruta och kan fortsätta spela så länge du vill."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje gång du öppnar Cellredigeraren utvecklas de också."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Genom att binda dig till andra celler, kan du bygga en cell koloni där cellerna delar de resurser dem absorberar och producerar med varandra. För att kunna binda dig till en annan cell, behöver du ha bindemedels organellen och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara binda med celler av din egen art. Medans du är i en koloni, kan du inte dela din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, först lämna din koloni när du har samlat nog med resurser, och gå sen in i redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i spelet än)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det nödvändiga enzymet som kan bryta ned dem först."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte sådana organeller och smälter sin mat tämligen ineffektivt. För små celler är det här okej, men för större celler är det en stor nackdel att inte ha några lysosomer."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Din cell använder ATP som sin energikälla, om det tar slut börjar du ta skada."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "För att låsa upp redigeraren och föröka dig måste du samla Ammoniak (Orange moln) och Fosfat (Lila Moln)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka på G en andra gång för att stänga av uppslukarläge."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulering kostar ATP, vilket innebär att ju större din cell är, desto fler mitrokondrier, metabolosomer eller Rusticyanin (eller cytoplasmer som utför Glykolys) behövs för att undvika att förlora ATP när du inte rör dig."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Det finns många Organeller i redigeraren som du kan utveckla, vilket tillåter mycket variation av olika spelstilar."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "För tillfället utrotas du om din population går ner till 0 individer."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"De olika molekylmolnen (resurser) är:\n"
-"\n"
-"Vit – Glukos\n"
-"Gul – Svavelväte\n"
-"Orange – Ammoniak\n"
-"Lila – Fosfat\n"
-"Rödaktig – Järn\n"
-"\n"
-"Glukos används till att bilda ATP"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande proteiner. Järn kan omvandlas till ATP via rusticyanin."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3989,11 +4021,19 @@ msgstr "Mucilagesyntes"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Självmord"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Placera organell"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Flercellig Redigerare"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Flercellig Redigerare"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Flercellig Redigerare"
 
 msgid "MULTICELLULAR_STAGE"
@@ -4172,6 +4212,9 @@ msgstr ""
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Grundrörelse"
+
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -4367,6 +4410,10 @@ msgstr "Organeller"
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Placera organell"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4791,6 +4838,18 @@ msgstr ""
 "Är du säker på att du vill avsluta spelet?\n"
 "Du kommer att förlora alla osparade framsteg."
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "Anding"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Stor järnbit"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Termosyntes"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Slumpa artnamn"
 
@@ -4857,6 +4916,10 @@ msgstr "Reproduktion:"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reproduktion:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproduktion:"
@@ -5268,6 +5331,10 @@ msgid "SHOW_HELP"
 msgstr "Visa hjälp"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Visa handledningar"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Grotta"
 
@@ -5369,6 +5436,10 @@ msgstr "Liten Järnbit"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Liten Järnbit"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Liten Järnbit"
 
 msgid "SNOWFLAKE"
@@ -6105,10 +6176,6 @@ msgid "TUTORIAL"
 msgstr "Handledning"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Laddar mikrobredigerare"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr "Mikrob Fri Byggredigerare"
 
@@ -6241,6 +6308,10 @@ msgstr ""
 #, fuzzy
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr "Mikrob Fri Byggredigerare"
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Laddar mikrobredigerare"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -6376,6 +6447,14 @@ msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Hastighet:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Hastighet:"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -6613,9 +6692,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -7054,6 +7130,38 @@ msgstr "{0} befolkning förändrades av {1} på grund av: {2}"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Kväve-Fixande Plastid"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplasten är en dubbelmembranstruktur som innehåller värmekänsliga pigment staplade tillsammans i membransäckar. Det är en prokaryot som har assimilerats för användning av sin eukaryota värd. Pigmenten i termoplasten kan använda energin från värmeskillnader i omgivningen för att producera glukos från vatten och gasformig koldioxid i en process som kallas termosyntes. Hastigheten för dess glukosproduktion skalas med koncentrationen av koldioxid och temperatur."
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -7088,8 +7196,16 @@ msgstr "Anaerob kvävefixering"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
 
+#, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
+msgstr "Cytoplasma"
 
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
@@ -7129,15 +7245,31 @@ msgstr "Kör auto-evo under spelgång"
 msgid "WIKI_HEADING_GDD"
 msgstr "Bindemedel"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "Mikrob Stadiet"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Mikrob Stadiet"
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "Mikrob Stadiet"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "Mikrob Stadiet"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7185,6 +7317,36 @@ msgid "WIKI_HEADING_UI"
 msgstr ""
 
 msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "Placera organell"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Det slemiga inre av en cell. Cytoplasman är den grundläggande blandningen av joner, proteiner och andra ämnen lösta i vatten som fyller cellens inre. En av funktionerna den utför är jäsning, omvandlingen av glukos till ATP-energi. För celler som saknar organeller så den har mer avancerade ämnesomsättningar är det vad de använder för energi. Det används också för att lagra molekyler i cellen och för att öka cellens storlek."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Cytoplasma"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Mitochondria"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "Mikrob Stadiet"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
 #, fuzzy
@@ -7273,12 +7435,72 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Flercelligt Stadie"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Slemmstråle"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Nitrogenas är ett protein som kan använda gasformigt kväve och cellulär energi i form av ATP för att producera ammoniak, ett viktigt tillväxtnäringsämne för celler. Detta är en process som kallas anaerob kvävefixering. Eftersom kvävgaset är suspenderat direkt i cytoplasman, utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Kvävegenas"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Mikrob Stadiet"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Placera organell"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organeller"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Metabolosomer är kluster av proteiner förpackade i proteinskal. De kan omvandla glukos till ATP i mycket högre takt än vad som kan göras i cytoplasman i en process som kallas Aerobisk Andning. Det kräver dock syre för att fungera, och lägre nivåer av syre i miljön kommer att sakta ner hastigheten för dess ATP-produktion. Eftersom metabolosomerna är suspenderade direkt i cytoplasman utför den omgivande vätskan viss jäsning."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7634,8 +7856,16 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitochondria"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagell"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Mitochondria"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -7650,8 +7880,16 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysosom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Kvävegenas"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Placera organell"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lysosom"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
@@ -7813,6 +8051,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Termosyntes"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8244,6 +8486,150 @@ msgstr "Zooma in"
 msgid "ZOOM_OUT"
 msgstr "Zooma ut"
 
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Fun Fact, The Didinum är ett ciliate som jagar paramecia."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Rolig fakta, Amöbor jagar och fångar byte med \"ben\" av cytoplasma som kallas pseudopoder, vi vill så småningom ha dem i Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Här är ett tips, se upp för större celler och stora bakterier, det är inte kul att bli spjälkad, och de kommer att äta dig."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrives ljudteam har gjort många låtar som ännu inte har lagts till i spelet. Du kan höra dem eller titta på strömmar av honom komponera på sin YouTube-kanal, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Här är ett tips, om din cell är minst 150 hexar kan du svälja stora järnbitar."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive menas som en simulering av en annan planet, därför är det vettigt att de flesta varelser du hittar kommer att vara relaterade till en eller två andra arter på grund av evolution som sker runtomkring dig, se om du kan identifiera dem!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Rolig Fakta, Thrive-teamet gör podcasts ibland, du bör kolla in dem!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Fun Fact, Thrive är gjord med Godot-motorn med öppen källkod!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Fun Fact, en av de första spelbara prototyperna för spel, gjordes av vår fantastiska programmerare, untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryota strukturer\n"
+#~ "\n"
+#~ "Metabolosomer: Producerar ATP från glukos\n"
+#~ "\n"
+#~ "Kemosyntiserande proteiner: Producerar hälften av glukosen ur svavelväte som en kemoplast, men utför också glykolys, tar upp 1 hex\n"
+#~ "\n"
+#~ "Thylakoider: Producerar 1/3 av mängden glukos som en normal kloroplast, men utför också glykolys och tar upp 1 Hex\n"
+#~ "\n"
+#~ "Rusticyanin: Omvandlar järn till ATP\n"
+#~ "\n"
+#~ "Nitrogenas: Konverterar atmosfäriskt kväve och ATP till ammoniak anaerobt\n"
+#~ "\n"
+#~ "Cytoplasmer: Har lagringsutrymme och utför glykolys (producerar små mängder ATP)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "När uppslukning avslutats stannar alla objekt som uppslukats inuti membranet för att smältas. Osmältbara objekt kommer dock alltid utstötas, så se till att du har de nödvändiga mutationerna för att kunna bearbeta dem först. Enzymer hjälper till med matsmältningen och ges av lysosomen. Evolvera denna organell för att göra matsmältningen mycket mer effektiv."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Externa organeller\n"
+#~ "\n"
+#~ "Flagellum: Flyttar din cell snabbare genom att förbruka ATP.\n"
+#~ "\n"
+#~ "Pilus: Kan användas för att sticka andra celler"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membranbundna organeller\n"
+#~ "\n"
+#~ "Nucleus: Tar upp 11 plattor och möjliggör utveckling av membranbundna organeller. Och fördubblar också cellens storlek. (Kan bara utvecklas en gång)\n"
+#~ "\n"
+#~ "Mitokondrion: Producerar ATP ur glukos och atmosfärisk O2. Mycket mer effektivt än cytoplasma\n"
+#~ "\n"
+#~ "Kloroplast: Gör glukos ur solljus och atmosfärisk CO2\n"
+#~ "\n"
+#~ "Chemoplast: Gör glukos ur vätesulfid\n"
+#~ "\n"
+#~ "Kvävefixerande plastid: Tillverkar ammoniak från ATP och atmosfäriskt kväve och syre\n"
+#~ "\n"
+#~ "Vacuole: Lagrar 15 samlade molekyler\n"
+#~ "\n"
+#~ "Toxin Vacuoles: Producerar gifter (kallas OxyToxy NT)"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Varje generation får du 100 mutationspoäng (MP), och varje förändring (eller mutation) kostar en viss summa av den MP. Att lägga till och ta bort organeller kostar MP, men att ta bort organeller som placerades i den aktuella mutationssessionen återbetalar MP för den organellen. Du kan flytta eller ta bort en organell genom att högerklicka på den och välja lämplig åtgärd i popup-menyn. Du kan rotera dina organeller medan du placerar dem med A och D."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Varje gång du reproducerar kommer du in i Cellredigeraren, där du kan göra ändringar i din art (genom att lägga till, flytta eller ta bort organeller) för att öka din arts framgång. Varje besök hos Cellredigeraren i mikrobstadiet representerar 100 miljoner år av utveckling."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "W,A,S,D och musen för att röra dig. E för att skjuta OxyToxy NT om du har en giftvakuol. G för att växla av och på upslukarläge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "För att reproducera måste du dela alla dina organeller i två. Organeller behöver ammonium och fosfat för att dela på sig."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Men om du överlever i tjugo generationer med 300 av din art så anses du ha vunnit spelet, efter du vunnit får du en popup ruta och kan fortsätta spela så länge du vill."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Var alltid försiktig, dina konkurrenter utvecklas vid sidan av dig. Varje gång du öppnar Cellredigeraren utvecklas de också."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Genom att binda dig till andra celler, kan du bygga en cell koloni där cellerna delar de resurser dem absorberar och producerar med varandra. För att kunna binda dig till en annan cell, behöver du ha bindemedels organellen och flytta dig över dom efter att ha aktiverat bindnings-läge. Du kan bara binda med celler av din egen art. Medans du är i en koloni, kan du inte dela din cell och komma åt redigeraren (för nu). För att komma åt redigeraren, först lämna din koloni när du har samlat nog med resurser, och gå sen in i redigeraren. Stora cell kolonier är vägen mot multicellularitet (inte i spelet än)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Specifikt cellulosa- och kitincellväggar kan inte smältas utan att ha det nödvändiga enzymet som kan bryta ned dem först."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Dock är lysosomer exklusiva endast till eukaryoter. Prokaryoter har inte sådana organeller och smälter sin mat tämligen ineffektivt. För små celler är det här okej, men för större celler är det en stor nackdel att inte ha några lysosomer."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Din cell använder ATP som sin energikälla, om det tar slut börjar du ta skada."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "För att låsa upp redigeraren och föröka dig måste du samla Ammoniak (Orange moln) och Fosfat (Lila Moln)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Du kan också uppsluka celler, bakterier och järnbitar som är mindre än dig genom att röra vid de medans du är i uppslukarläge (blinkar blå) genom att trycka på G. Detta kostar mer ATP och saktar ner dig. Glöm inte att trycka på G en andra gång för att stänga av uppslukarläge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulering kostar ATP, vilket innebär att ju större din cell är, desto fler mitrokondrier, metabolosomer eller Rusticyanin (eller cytoplasmer som utför Glykolys) behövs för att undvika att förlora ATP när du inte rör dig."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Det finns många Organeller i redigeraren som du kan utveckla, vilket tillåter mycket variation av olika spelstilar."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "För tillfället utrotas du om din population går ner till 0 individer."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "De olika molekylmolnen (resurser) är:\n"
+#~ "\n"
+#~ "Vit – Glukos\n"
+#~ "Gul – Svavelväte\n"
+#~ "Orange – Ammoniak\n"
+#~ "Lila – Fosfat\n"
+#~ "Rödaktig – Järn\n"
+#~ "\n"
+#~ "Glukos används till att bilda ATP"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "Svavelväte kan omvandlas till glukos via kemoplaster och kemosyntetiserande proteiner. Järn kan omvandlas till ATP via rusticyanin."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Mikrob Stadiet"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Placera organell"
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Laddar mikrobredigerare"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Producerar"
@@ -8303,10 +8689,6 @@ msgstr "Zooma ut"
 #~ msgstr "Mikrobredigerare"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Mikrob Stadiet"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Mucilagesyntes"
 
@@ -8337,10 +8719,6 @@ msgstr "Zooma ut"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Mikrob Stadiet"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Termosyntes"
 
 #, fuzzy
 #~ msgid "NO"

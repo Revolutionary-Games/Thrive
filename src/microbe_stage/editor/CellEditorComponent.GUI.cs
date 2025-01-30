@@ -174,10 +174,26 @@ public partial class CellEditorComponent
                 {
                     inProgressSuggestionCheckRunning = true;
 
-                    // This allocates a task each frame, but as this would be hard to workaround and is in the editor,
+                    // This allocates a task each frame, but as this would be hard to work around and is in the editor,
                     // this is just left like this
                     TaskExecutor.Instance.AddTask(new Task(CheckSuggestionProgress));
                 }
+            }
+        }
+    }
+
+    private void TriggerDelayedPredictionUpdateIfNeeded(double delta)
+    {
+        autoEvoPredictionStartTimer += delta;
+
+        if (autoEvoPredictionStartTimer > Constants.AUTO_EVO_PREDICTION_UPDATE_INTERVAL)
+        {
+            autoEvoPredictionStartTimer = 0;
+
+            if (autoEvoPredictionDirty)
+            {
+                StartAutoEvoPrediction();
+                autoEvoPredictionDirty = false;
             }
         }
     }
@@ -204,9 +220,25 @@ public partial class CellEditorComponent
 
         foreach (var entry in placeablePartSelectionElements)
         {
-            if (entry.Value.Undiscovered || entry.Value.Locked)
+            // Skipping invisible controls here doesn't seem to really exclude anything, but it is kept here so that
+            // if in the future there are hidden buttons they won't be suggested as the player couldn't select them
+            if (entry.Value.Undiscovered || entry.Value.Locked || !entry.Value.Visible)
                 continue;
 
+            // As non-multicellular editor can hide entire sections of organelle buttons, we need to skip those
+            // entirely here with this special logic
+            if (entry.Key.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Multicellular &&
+                !IsMulticellularEditor)
+            {
+                continue;
+            }
+
+            if (entry.Key.EditorButtonGroup == OrganelleDefinition.OrganelleGroup.Macroscopic && !IsMacroscopicEditor)
+            {
+                continue;
+            }
+
+            // Should be fine to show this organelle in a suggestion
             result.Add(entry.Key);
         }
 
@@ -1120,6 +1152,11 @@ public partial class CellEditorComponent
     {
         growthOrderGUI.UpdateItems(editedMicrobeOrganelles.Organelles);
         UpdateGrowthOrderNumbers();
+    }
+
+    private void OnGrowthOrderCoordinatesToggled(bool show)
+    {
+        growthOrderGUI.ShowCoordinates = show;
     }
 
     /// <summary>

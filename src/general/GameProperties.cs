@@ -91,7 +91,7 @@ public class GameProperties
     }
 
     /// <summary>
-    ///   Starts a new game in the early multicellular stage
+    ///   Starts a new game in the multicellular stage
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -101,8 +101,7 @@ public class GameProperties
     ///     colony
     ///   </para>s
     /// </remarks>
-    public static GameProperties StartNewEarlyMulticellularGame(WorldGenerationSettings settings,
-        bool freebuild = false)
+    public static GameProperties StartNewMulticellularGame(WorldGenerationSettings settings, bool freebuild = false)
     {
         var game = new GameProperties(settings);
 
@@ -125,22 +124,22 @@ public class GameProperties
     }
 
     /// <summary>
-    ///   Starts a new game in the late multicellular stage
+    ///   Starts a new game in the macroscopic stage
     /// </summary>
     /// <remarks>
     ///   <para>
     ///     TODO: add some other species as well to the world to make it not as empty
     ///   </para>
     /// </remarks>
-    public static GameProperties StartNewLateMulticellularGame(WorldGenerationSettings settings)
+    public static GameProperties StartNewMacroscopicGame(WorldGenerationSettings settings)
     {
         var game = new GameProperties(settings);
 
         var playerSpecies = MakePlayerOrganellesMakeSenseForMulticellular(game);
 
         var earlySpecies = game.GameWorld.ChangeSpeciesToMulticellular(playerSpecies);
-        MakeCellPlacementMakeSenseForLateMulticellular(earlySpecies);
-        game.GameWorld.ChangeSpeciesToLateMulticellular(earlySpecies);
+        MakeCellPlacementMakeSenseForMacroscopic(earlySpecies);
+        game.GameWorld.ChangeSpeciesToMacroscopic(earlySpecies);
 
         game.EnterPrototypes();
 
@@ -149,10 +148,10 @@ public class GameProperties
 
     public static GameProperties StartNewAwareStageGame(WorldGenerationSettings settings)
     {
-        var game = StartNewLateMulticellularGame(settings);
+        var game = StartNewMacroscopicGame(settings);
 
         // Modify the player species to have enough brain power to reach the target stage
-        var playerSpecies = (LateMulticellularSpecies)game.GameWorld.PlayerSpecies;
+        var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
         // Create the brain tissue type
         var brainType = (CellType)playerSpecies.CellTypes.First().Clone();
@@ -183,15 +182,15 @@ public class GameProperties
         playerSpecies.CellTypes.Add(brainType);
 
         // Place enough of that for becoming aware
-        while (LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(playerSpecies.BodyLayout,
-                   playerSpecies.Scale) == MulticellularSpeciesType.LateMulticellular)
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+                   playerSpecies.Scale) == MacroscopicSpeciesType.Macroscopic)
         {
             AddBrainTissue(playerSpecies);
         }
 
         playerSpecies.OnEdited();
 
-        if (playerSpecies.MulticellularType != MulticellularSpeciesType.Aware)
+        if (playerSpecies.MacroscopicType != MacroscopicSpeciesType.Aware)
             throw new Exception("Adding enough brain power to reach aware stage failed");
 
         return game;
@@ -202,17 +201,17 @@ public class GameProperties
         var game = StartNewAwareStageGame(settings);
 
         // Further modify the player species to qualify for awakening stage
-        var playerSpecies = (LateMulticellularSpecies)game.GameWorld.PlayerSpecies;
+        var playerSpecies = (MacroscopicSpecies)game.GameWorld.PlayerSpecies;
 
-        while (LateMulticellularSpecies.CalculateMulticellularTypeFromLayout(playerSpecies.BodyLayout,
-                   playerSpecies.Scale) != MulticellularSpeciesType.Awakened)
+        while (MacroscopicSpecies.CalculateMacroscopicTypeFromLayout(playerSpecies.BodyLayout,
+                   playerSpecies.Scale) != MacroscopicSpeciesType.Awakened)
         {
             AddBrainTissue(playerSpecies);
         }
 
         playerSpecies.OnEdited();
 
-        if (playerSpecies.MulticellularType != MulticellularSpeciesType.Awakened)
+        if (playerSpecies.MacroscopicType != MacroscopicSpeciesType.Awakened)
             throw new Exception("Adding enough brain power to reach awakening stage failed");
 
         return game;
@@ -338,22 +337,43 @@ public class GameProperties
             new Hex(0, -3), 0), workMemory1, workMemory2);
         playerSpecies.IsBacteria = false;
 
-        var mitochondrion = simulationParameters.GetOrganelleType("mitochondrion");
+        var hydrogenase = simulationParameters.GetOrganelleType("hydrogenase");
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(-1, 2), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
             new Hex(-1, 1), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(mitochondrion,
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(-1, 0), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(1, 1), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
             new Hex(1, 0), 0), workMemory1, workMemory2);
 
-        playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(1, -1), 0), workMemory1, workMemory2);
+
+        // Remove the original cytoplasm in the species and replace with hydrogenase for a more efficient layout
+        playerSpecies.Organelles.RemoveHexAt(new Hex(0, 0), workMemory1);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
+            new Hex(0, 0), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(hydrogenase,
             new Hex(0, 1), 0), workMemory1, workMemory2);
+
+        playerSpecies.Organelles.AddFast(new OrganelleTemplate(simulationParameters.GetOrganelleType("bindingAgent"),
+            new Hex(0, 2), 0), workMemory1, workMemory2);
 
         playerSpecies.OnEdited();
         return playerSpecies;
     }
 
-    private static void MakeCellPlacementMakeSenseForLateMulticellular(EarlyMulticellularSpecies species)
+    private static void MakeCellPlacementMakeSenseForMacroscopic(MulticellularSpecies species)
     {
         // We want at least COLONY_SIZE_REQUIRED_FOR_MACROSCOPIC cells in a kind of long pattern
         species.Cells.Clear();
@@ -443,7 +463,7 @@ public class GameProperties
         species.RepositionToOrigin();
     }
 
-    private static void AddBrainTissue(LateMulticellularSpecies species, float brainTissueSize = 1)
+    private static void AddBrainTissue(MacroscopicSpecies species, float brainTissueSize = 1)
     {
         var axonType = species.CellTypes.First(c => c.IsBrainTissueType());
 
@@ -461,7 +481,7 @@ public class GameProperties
             new Vector3(-1, 0, 0),
         };
 
-        var metaball = new MulticellularMetaball(axonType)
+        var metaball = new MacroscopicMetaball(axonType)
         {
             Size = brainTissueSize,
         };

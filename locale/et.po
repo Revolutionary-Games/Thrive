@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Estonian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/et/>\n"
@@ -334,6 +334,15 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% valmis. {1:n0}/{2:n0} sammu."
 
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Automaatne salvestamine mängu ajal"
 
@@ -397,6 +406,9 @@ msgstr ""
 
 msgid "BACK"
 msgstr "tagasi"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "Kaldkriips"
@@ -655,6 +667,10 @@ msgstr "Tselluloos"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Sellel membraanil on sein, mis tagab parema kaitse üldiste kahjustuste ja eriti füüsiliste kahjustuste eest. Samuti kulutab see vormi säilitamiseks vähem energiat, kuid ei suuda ressursse kiiresti omastada ja on aeglasem."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Peata mäng"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1397,6 +1413,12 @@ msgstr "Muudab [thrive:compound type=\"glucose\"][/thrive:compound] tüübiks [t
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Oksütotsiin"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr ""
+"Aktiivsed mikroobid jooksevad ja kukuvad, kui midagi huvitavat ei juhtu.\n"
+"Sessiilsed mikroobid on paigal ja ootavad enne tegutsemist, kuni keskkond muutub."
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1716,10 +1738,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Duplikaadi tüüp"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomade suhetest, mida on aastakümneid uuritud. Nüüd, kas sa oled Didinium või Paramecium? Kiskja või saak?"
 
@@ -1750,35 +1768,8 @@ msgstr "Lõbus fakt, kas teadsite, et planeedil Maa elab üle 8000 ripslooma lii
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Lõbus tõsiasi, Stentor on ripsloom, kes suudab end välja sirutada ja saaki püüda trompetilaadse suuga, mis tõmbab saaki sisse, tekitades ripsmetega veevoolusid."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Lõbus tõsiasi, Didinium on ripsloom, kes jahib parametsiat."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Siin on näpunäide: toksiine saab kasutada teiste eemaldamiseks, kui olete piisavalt kiire."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Lõbus tõsiasi, amööb jahib ja püüab saaki tsütoplasmast koosnevate jalgadega, mida nimetatakse pseudopoodideks. Me tahame need lõpuks Thrive'i saada."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Siin on näpunäide: jälgige suuremaid rakke ja suuri baktereid, seedimine pole lõbus ja nad söövad teid ära."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive'i helimeeskonna juhtkond on teinud palju lugusid, mida pole veel mängu lisatud. Saate neid kuulda või vaadata vooge tema komponeerimisest oma YouTube'i kanalil Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Siin on näpunäide: kui teie raku suurus on 150 kuusnurka, võite suured rauatükid endasse neelata."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive on mõeldud tulnukate planeedi simulatsiooniks, seetõttu on loogiline, et enamik teie leitud olendeid on teie ümber toimuva evolutsiooni tõttu seotud ühe või kahe teise liigiga, vaadake, kas saate nad tuvastada!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Lõbus tõsiasi, Thrive'i meeskond teeb taskuhäälingusaateid nii tihti, et peaksite neid vaatama!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Lõbus tõsiasi, Thrive on tehtud avatud lähtekoodiga Godoti mootoriga!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Lõbus tõsiasi, ühe esimestest mängitavatest mänguprototüüpidest valmistas meie vinge programmeerija untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Siin on näpunäide. Osmoregulatsioon maksab 1 ATP sekundis iga kuueteistkümnendiku kohta, mis teie rakus on, iga tühi tsütoplasma kuuepunkt genereerib samuti 5 ATP-d sekundis, mis tähendab, et kui te kaotate ATP-d osmoregulatsiooni tõttu, lisage lihtsalt paar tühja tsütoplasma kuuet või eemaldage mõned organellid."
@@ -1807,6 +1798,14 @@ msgstr "Lõbus fakt: Didinium ja Paramecium on õpikunäide kiskja ja saakloomad
 
 #, fuzzy
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+"Kartlikud mikroobid põgenevad suuremate vahemaade taha\n"
+"ja üldiselt põgenevad nad suurema tõenäosusega röövloomade eest.\n"
+"Vapraid mikroobe ei hirmuta läheduses olevad kiskjad\n"
+"ja tõenäoliselt ründab tagasi."
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 "Kartlikud mikroobid põgenevad suuremate vahemaade taha\n"
 "ja üldiselt põgenevad nad suurema tõenäosusega röövloomade eest.\n"
@@ -2406,6 +2405,10 @@ msgstr "Täielik modifikatsiooniteave"
 msgid "GALLERY_VIEWER"
 msgstr ""
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Mängu disainimeeskond"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Mängu disainimeeskond"
 
@@ -2420,6 +2423,34 @@ msgstr "Peata mäng"
 #, fuzzy
 msgid "GENERAL"
 msgstr "Põlvkond:"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -3023,10 +3054,6 @@ msgstr "See tõlge on väga puudulik ({0}% valmis). Palun aidake meid sellega!"
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
-
 msgid "LAUNCH0"
 msgstr "Käivitage 0"
 
@@ -3254,12 +3281,12 @@ msgstr "Laadimine"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laadimine..."
 
-#, fuzzy
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Mikroobide redaktori laadimine"
-
 msgid "LOADING_GAME"
 msgstr "Mängu laadimine"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
@@ -3267,9 +3294,6 @@ msgstr "Mikroobide redaktori laadimine"
 #, fuzzy
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
-
-msgid "LOADING_TIP"
-msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
 
 msgid "LOAD_FINISHED"
 msgstr "Laadimine lõpetatud"
@@ -3336,6 +3360,21 @@ msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thriv
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Kemosüntees"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Muuta makroskoopiliseks ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3394,8 +3433,24 @@ msgstr "Meedia rekord"
 msgid "MEDIASTOP"
 msgstr "Meediapeatus"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Väike raua tükk"
+
 msgid "MEGA_YEARS"
 msgstr "mega aastat"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolosoomid"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
 
 msgid "MEMBRANE"
 msgstr "välismembraan"
@@ -3512,82 +3567,103 @@ msgstr "Mikroobide redaktori laadimine"
 msgid "MICROBE_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokarüootsed struktuurid\n"
-"\n"
-"Metabolosoomid: toodab [thrive:compound type=\"atp\"][/thrive:compound] allikast [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Kemosünteesivad valgud: toodab poole [thrive:compound type=\"glucose\"][/thrive:compound]-st [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-st kemoplastina, kuid teostab ka glükolüüsi, ja võtab enda alla 1 Hex\n"
-"\n"
-"Tülakoidid: toodab 1/3 kogusest [thrive:compound type=\"glucose\"][/thrive:compound] kui tavaline kloroplast, kuid teostab ka glükolüüsi ja võtab 1 hex.\n"
-"\n"
-"Rustitsüaniin: teisendab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Lämmastik: muudab õhulämmastiku ja [thrive:compound type=\"atp\"][/thrive:compound] anaeroobselt [thrive:compound type=\"ammoniaak\"][/thrive:compound]-ks\n"
-"\n"
-"Tsütoplasma: sellel on salvestusruum ja see teostab glükolüüsi (toodab väikeses koguses [thrive:compound type=\"atp\"][/thrive:compound])"
-
-#, fuzzy
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-"Prokarüootsed struktuurid\n"
-"\n"
-"Metabolosoomid: toodab [thrive:compound type=\"atp\"][/thrive:compound] allikast [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Kemosünteesivad valgud: toodab poole [thrive:compound type=\"glucose\"][/thrive:compound]-st [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-st kemoplastina, kuid teostab ka glükolüüsi, ja võtab enda alla 1 Hex\n"
-"\n"
-"Tülakoidid: toodab 1/3 kogusest [thrive:compound type=\"glucose\"][/thrive:compound] kui tavaline kloroplast, kuid teostab ka glükolüüsi ja võtab 1 hex.\n"
-"\n"
-"Rustitsüaniin: teisendab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Lämmastik: muudab õhulämmastiku ja [thrive:compound type=\"atp\"][/thrive:compound] anaeroobselt [thrive:compound type=\"ammoniaak\"][/thrive:compound]-ks\n"
-"\n"
-"Tsütoplasma: sellel on salvestusruum ja see teostab glükolüüsi (toodab väikeses koguses [thrive:compound type=\"atp\"][/thrive:compound])"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Välised organellid\n"
-"\n"
-"Vibur: liigutab teie rakku kiiremini, tarbides [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: saab kasutada teiste rakkude pussitamiseks\n"
-"\n"
-"Kemoretseptor: võimaldab tuvastada ühendeid kaugemalt"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"embrane Bound Organellid\n"
-"\n"
-"Tuum: võtab enda alla 11 kuusnurka ja võimaldab areneda membraaniga seotud organellidel ning kahekordistab ka teie raku suurust (saab arendada ainult üks kord)\n"
-"\n"
-"Sideaine: võimaldab siduda teiste rakkudega\n"
-"\n"
-"Mitokondrid: toodab [thrive:compound type=\"atp\"][/thrive:compound] [thrive:compound type=\"glucose\"][/thrive:compound]-st ja atmosfääri O2-st palju tõhusamalt kui tsütoplasmas\n"
-"\n"
-"Kloroplast: muudab [thrive:compound type=\"glucose\"][/thrive:compound] päikesevalgusest ja atmosfääri CO2-st välja\n"
-"\n"
-"Kemoplast: loob [thrive:compound type=\"glucose\"][/thrive:compound] välja [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound]\n"
-"\n"
-"Lämmastikku fikseeriv plastiid: muudab [thrive:compound type=\"ammonia\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-st ja atmosfääri lämmastikust ja hapnikust\n"
-"\n"
-"Vacuool: salvestab 8 kogutud ühendit\n"
-"\n"
-"Toksiinivakuoolid: toodab toksiine (nimetatakse [thrive:compound type=\"oxytoxy\"][/thrive:compound]) ja võimaldab teil neid vabastada, tekitades kahju sõltuvalt saadaoleva oksütoksükoguse kogusest\n"
-"\n"
-"Signaalagent: lubage rakkudel luua kemikaale, millele teised rakud võivad reageerida"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Igal põlvkonnal on teil kulutada 100 mutatsioonipunkti (MP) ja iga muudatus (või mutatsioon) maksab teatud summa sellest MP-st. Organellide lisamine ja eemaldamine maksab MP-d. Praeguses mutatsiooniseansis paigutatud organellide eemaldamine tagastab aga MP selle organelli eest. Organelli saab teisaldada või täielikult eemaldada, klõpsates sellel hiire parema nupuga ja valides hüpikmenüüst sobiva toimingu. Saate oma organelle pöörata, paigutades need nuppudega [thrive:input]e_pööra_vasakule[/thrive:input] ja [thrive:input]e_pööra_paremale[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Iga kord, kui paljunete, sisenete mikroobide redaktorisse, kus saate oma liigis muudatusi teha (lisades, liigutades või eemaldades organelle), et oma liigi edu suurendada. Iga mikroobide staadiumis toimetaja külastus tähistab [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonit aastat evolutsiooni."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe Freebuildi redaktor"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Vea parandamiseks vajutage redaktoris tagasivõtmisnuppu"
+
+#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Organismi statistika"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Organismi statistika"
 
 #, fuzzy
@@ -3653,62 +3729,6 @@ msgstr ""
 "Teie rakk sureb, kui selle tervis otsa saab.\n"
 "Kui teil on ATP, taastate tervist.\n"
 "Veenduge, et kogute piisavalt glükoosi ATP tootmiseks."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Paljundamiseks peate jagama kõik oma organellid kaheks. Organellid vajavad pooleks jagunemiseks ammoniaaki ja fosfaati."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Aga kui jääte ellu kakskümmend põlvkonda 300 elanikuga, loetakse teid praeguse mängu võitnuks. Pärast võitu näete hüpikakna ja saate jätkata mängimist, nagu soovite."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Ole teadlik et su konkurendid arenevad sinuga koos. Iga kord kui sa enda rakku muudad, arenevad nad samuti."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Teiste rakkudega sidudes saate luua rakukoloonia, kus rakud jagavad omavahel neelduvaid ja toodetud ühendeid. Teise rakuga seondumiseks peavad teil olema sideainete organellid ja need pärast sidumisrežiimi sisenemist nendesse liikuma. Saate siduda ainult oma liigi rakkudega. Koloonias viibides ei saa te oma lahtrit jagada ja redaktorisse siseneda (praegu). Redaktorisse sisenemiseks lahkuge esmalt kolooniast, kui olete kogunud piisavalt ühendeid, ja seejärel sisenege redaktorisse. Suured rakukolooniad on tee mitmerakulisuse poole (pole veel mängus)."
-
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
-
-#, fuzzy
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Teie rakk kasutab energiaallikana [thrive: ühendi tüüp = \"atp\"] [/ thrive: ühend], kui see saab otsa, surete."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Redigeerija avamiseks ja reprodutseerimiseks peate koguma [thrive:compound type=\"ammonia\"][/thrive:compound] (oranž pilv) ja [thrive:compound type=\"phosphates\"][/thrive:compound] (lilla pilv) )."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Sa saad kugistada rakke, baktereid, raua tükke ja raku osi mis on sinust väiksemad vajutades [thrive:input]g_lüliti_neelama[/thrive:input]. See kasutab rohkem ATP-d ja aeglustab su liikumist. Ära unusta vajutada [thrive:input]g_lüliti_neelama[/thrive:input] uuesti kui oled lõpetada."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulatsioon maksab [thrive:compound type=\"atp\"][/thrive:compound], mis tähendab, et mida suurem on teie rakk, seda rohkem on teil vaja mitokondreid, metabolosoome või rustitsüaniini (või tsütoplasmat, mis teeb glükolüüsi), et vältida nende kadumist [thrive: ühend type=\"atp\"][/thrive:compound], kui olete paigal."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Redigeerijas on palju organelle, mida saate arendada, võimaldades laia valikut erinevaid mängustiile."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "(Praeguseks) Kui su rakkude arv väheneb 0-ks siis oled välja surnud."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Erinevad liitpilved on:\n"
-"\n"
-"Valge – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Kollane – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Oranž – [thrive:compound type=\"ammoniaak\"][/thrive:compound]\n"
-"Lilla – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Roostepruun – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] muudab [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "Vesinik sulfiidist saab sünteesida glükoosi kasutades kemoplaste ja kemosünteesivaid valke. Rauaga saab toota ATP-d kasutades roote-tsüaniini."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -4107,11 +4127,19 @@ msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Peata mäng"
 
 #, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Mikroobide redaktori laadimine"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
@@ -4291,6 +4319,9 @@ msgstr ""
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Aluse liikumine"
+
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -4489,6 +4520,10 @@ msgstr "Organellid"
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Pili (ainsuses: pilus) leidub paljude mikroorganismide pinnal ja meenutab õhukesi karvu. Mikroorganismi pinnal võib esineda kümneid kuni sadu pilisid ja neil on üks mitmest eesmärgist, sealhulgas röövloomade rollist. Patogeensed mikroorganismid kasutavad pilisid virulentsuse tagamiseks kas peremeeskudede kinnitumiseks ja nendega seondumiseks või välismembraanist mööda tungimiseks, et pääseda tsütoplasmasse. Paljud sarnased pilid on olemas, kuid ei ole evolutsiooniliselt seotud ja on tekkinud konvergentse evolutsiooni tulemusena. Ühel organismil võib olla võime ekspresseerida mitut tüüpi pilisid ja neid, mis on pinnal, muudetakse ja asendatakse pidevalt."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4905,6 +4940,18 @@ msgstr ""
 "Kas olete kindel, et soovite mängust lahkuda?\n"
 "Kaotate kõik salvestamata edusammud."
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "Aeroobne hingamine"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Suur raua tükk"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Kemosüntees"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Juhusliku liigi nimi"
 
@@ -4969,6 +5016,10 @@ msgstr "Paljundamine:"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "See paneel näitab numbreid, millest automaatse evo ennustus töötab. Lõpliku populatsiooni määrab kogu energia, mida liik suudab püüda, ja kulu liigi isendi kohta. Auto-evo kasutab lihtsustatud tegelikkuse mudelit, et arvutada, kui hästi liigid toimivad, võttes aluseks energia, mida nad suudavad koguda. Iga toiduallika puhul näidatakse, et liik saab sellest palju energiat. Lisaks kuvatakse sellest allikast saadaolev koguenergia. See, kui suur osa liikide koguenergiast võidab, põhineb sellel, kui suur on sobivus võrreldes kogu sobivusega. Fitness on mõõdik selle kohta, kui hästi liik suudab seda toiduallikat kasutada."
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Paljundamine:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Paljundamine:"
@@ -5380,6 +5431,10 @@ msgid "SHOW_HELP"
 msgstr "Näita abi"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Näita õpetusi"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
@@ -5468,6 +5523,10 @@ msgstr "Väike raua tükk"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Väike raua tükk"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Väike raua tükk"
 
 msgid "SNOWFLAKE"
@@ -6214,10 +6273,6 @@ msgid "TUTORIAL"
 msgstr "Õpetus"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Mikroobide redaktori laadimine"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "See on plaastri kaart.\n"
@@ -6396,6 +6451,10 @@ msgstr ""
 "\n"
 "Kolooniast täielikult lahkumiseks võite klõpsata oma lahtril või vajutada lahti sidumise klahvi."
 
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Mikroobide redaktori laadimine"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Vaata nüüd"
 
@@ -6531,6 +6590,14 @@ msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Kiirus:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Kiirus:"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -6770,9 +6837,6 @@ msgstr "meie Viki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "meie Viki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7230,6 +7294,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Toodab [thrive:compound type=\"glucose\"][/thrive:compound]. Hindamisskaalad [thrive:compound type=\"süsinikdioksiid\"][/thrive:compound] kontsentratsiooni ja temperatuuriga."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Lämmastikku fikseeriv plastiid"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplast on kahekordne membraanstruktuur, mis sisaldab termotundlikke pigmente, mis on virnastatud membraanikottidesse. See on prokarüoot, mis on oma eukarüootse peremehe poolt kasutamiseks assimileeritud. Termoplastis olevad pigmendid on võimelised kasutama ümbritseva soojuse erinevuste energiat, et toota veest glükoosi ja gaasilist süsinikdioksiidi protsessis, mida nimetatakse termosünteesiks. Selle glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja temperatuurist."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Lipu (mitmuses: flagella) on piitsataoline valgukiudude kimp, mis ulatub välja rakumembraanist, mis kasutab ATP-d raku lainetamiseks ja liikumiseks teatud suunas. Lipu asend määrab suuna, milles see raku liikumiseks tõukejõu annab. Tõukejõu suund on vastupidine suunale, kuhu lipp on suunatud, näiteks raku vasakule küljele asetatud lipp annab paremale liikumisel tõukejõu."
 
@@ -7265,8 +7361,16 @@ msgstr "Anaeroobne lämmastiku fikseerimine"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
 
+#, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
+msgstr "Lõpmatud ühendid"
 
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
@@ -7306,8 +7410,23 @@ msgstr "Käivitage mängu ajal auto-evo"
 msgid "WIKI_HEADING_GDD"
 msgstr "Sideaine"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
@@ -7320,8 +7439,30 @@ msgstr ""
 "\n"
 "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7371,6 +7512,45 @@ msgstr ""
 
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Raku kleepuv sisemus. Tsütoplasma on põhiline segu ioonidest, valkudest ja muudest vees lahustunud ainetest, mis täidavad raku sisemuse. Üks selle ülesandeid on glükolüüs, glükoosi muundamine ATP energiaks. Et rakkudel, millel puuduvad organellid, on arenenum ainevahetus, loodavad nad energiat just sellele. Seda kasutatakse ka molekulide säilitamiseks rakus ja raku suuruse suurendamiseks."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
+msgstr "Tülakoidid on valkude ja valgustundlike pigmentide klastrid. Pigmendid on võimelised fotosünteesiks kutsutava protsessi käigus kasutama valguse energiat glükoosi tootmiseks veest ja gaasilisest süsinikdioksiidist. Need pigmendid annavad neile ka erilise värvi. Nende glükoosi tootmise kiirus sõltub süsinikdioksiidi kontsentratsioonist ja valguse intensiivsusest. Kuna tülakoidid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud glükolüüsi."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -7458,12 +7638,93 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Võimaldab siduda teiste rakkudega. See on esimene samm mitmerakulisuse suunas. Kui teie rakk on osa kolooniast, jagatakse ühendeid rakkude vahel. Te ei saa koloonia osana redaktorisse siseneda, nii et peate lahti siduma, kui kogute raku jagamiseks piisavalt ühendeid."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Tuum"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Lämmastik"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr ""
+"Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+"\n"
+"Elu.\n"
+"\n"
+"Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+"\n"
+"Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Asetage organell"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organellid"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Muudab [thrive:compound type=\"atp\"][/thrive:compound] tüübiks [thrive:compound type=\"oxytoxy\"][/thrive:compound]. Hindamisskaalad kontsentratsiooniga [thrive:compound type=\"oxygen\"][/thrive:compound]. Võib vabastada toksiine, vajutades nuppu [thrive:input]g_fire_toxin[/thrive:input]. Kui [thrive:compound type=\"oxytoxy\"][/thrive:compound] kogus on väike, on pildistamine siiski võimalik, kuid sellega kaasneb väiksem kahju."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Metabolosoomid on valkude klastrid, mis on mähitud valgukestesse. Nad on võimelised muutma glükoosi ATP-ks palju suurema kiirusega, kui seda saab teha tsütoplasmas protsessis, mida nimetatakse aeroobseks hingamiseks. Siiski vajab see toimimiseks hapnikku ja madalam hapnikusisaldus keskkonnas aeglustab selle ATP tootmist. Kuna metabolosoomid suspendeeritakse otse tsütoplasmas, teostab ümbritsev vedelik teatud määral glükolüüsi."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7853,8 +8114,16 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitokondrid"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Vibur"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Kemoplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -7869,8 +8138,16 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Oksütoksisoom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Lämmastik"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Asetage organell"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Oksütoksisoom"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
@@ -8038,6 +8315,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Kemosüntees"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8510,6 +8791,179 @@ msgstr "Suurenda"
 msgid "ZOOM_OUT"
 msgstr "Suumi välja"
 
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Lõbus tõsiasi, Didinium on ripsloom, kes jahib parametsiat."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Lõbus tõsiasi, amööb jahib ja püüab saaki tsütoplasmast koosnevate jalgadega, mida nimetatakse pseudopoodideks. Me tahame need lõpuks Thrive'i saada."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Siin on näpunäide: jälgige suuremaid rakke ja suuri baktereid, seedimine pole lõbus ja nad söövad teid ära."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive'i helimeeskonna juhtkond on teinud palju lugusid, mida pole veel mängu lisatud. Saate neid kuulda või vaadata vooge tema komponeerimisest oma YouTube'i kanalil Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Siin on näpunäide: kui teie raku suurus on 150 kuusnurka, võite suured rauatükid endasse neelata."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive on mõeldud tulnukate planeedi simulatsiooniks, seetõttu on loogiline, et enamik teie leitud olendeid on teie ümber toimuva evolutsiooni tõttu seotud ühe või kahe teise liigiga, vaadake, kas saate nad tuvastada!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Lõbus tõsiasi, Thrive'i meeskond teeb taskuhäälingusaateid nii tihti, et peaksite neid vaatama!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Lõbus tõsiasi, Thrive on tehtud avatud lähtekoodiga Godoti mootoriga!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Lõbus tõsiasi, ühe esimestest mängitavatest mänguprototüüpidest valmistas meie vinge programmeerija untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokarüootsed struktuurid\n"
+#~ "\n"
+#~ "Metabolosoomid: toodab [thrive:compound type=\"atp\"][/thrive:compound] allikast [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Kemosünteesivad valgud: toodab poole [thrive:compound type=\"glucose\"][/thrive:compound]-st [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-st kemoplastina, kuid teostab ka glükolüüsi, ja võtab enda alla 1 Hex\n"
+#~ "\n"
+#~ "Tülakoidid: toodab 1/3 kogusest [thrive:compound type=\"glucose\"][/thrive:compound] kui tavaline kloroplast, kuid teostab ka glükolüüsi ja võtab 1 hex.\n"
+#~ "\n"
+#~ "Rustitsüaniin: teisendab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Lämmastik: muudab õhulämmastiku ja [thrive:compound type=\"atp\"][/thrive:compound] anaeroobselt [thrive:compound type=\"ammoniaak\"][/thrive:compound]-ks\n"
+#~ "\n"
+#~ "Tsütoplasma: sellel on salvestusruum ja see teostab glükolüüsi (toodab väikeses koguses [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#, fuzzy
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr ""
+#~ "Prokarüootsed struktuurid\n"
+#~ "\n"
+#~ "Metabolosoomid: toodab [thrive:compound type=\"atp\"][/thrive:compound] allikast [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Kemosünteesivad valgud: toodab poole [thrive:compound type=\"glucose\"][/thrive:compound]-st [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]-st kemoplastina, kuid teostab ka glükolüüsi, ja võtab enda alla 1 Hex\n"
+#~ "\n"
+#~ "Tülakoidid: toodab 1/3 kogusest [thrive:compound type=\"glucose\"][/thrive:compound] kui tavaline kloroplast, kuid teostab ka glükolüüsi ja võtab 1 hex.\n"
+#~ "\n"
+#~ "Rustitsüaniin: teisendab [thrive:compound type=\"iron\"][/thrive:compound] tüübiks [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Lämmastik: muudab õhulämmastiku ja [thrive:compound type=\"atp\"][/thrive:compound] anaeroobselt [thrive:compound type=\"ammoniaak\"][/thrive:compound]-ks\n"
+#~ "\n"
+#~ "Tsütoplasma: sellel on salvestusruum ja see teostab glükolüüsi (toodab väikeses koguses [thrive:compound type=\"atp\"][/thrive:compound])"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Välised organellid\n"
+#~ "\n"
+#~ "Vibur: liigutab teie rakku kiiremini, tarbides [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: saab kasutada teiste rakkude pussitamiseks\n"
+#~ "\n"
+#~ "Kemoretseptor: võimaldab tuvastada ühendeid kaugemalt"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "embrane Bound Organellid\n"
+#~ "\n"
+#~ "Tuum: võtab enda alla 11 kuusnurka ja võimaldab areneda membraaniga seotud organellidel ning kahekordistab ka teie raku suurust (saab arendada ainult üks kord)\n"
+#~ "\n"
+#~ "Sideaine: võimaldab siduda teiste rakkudega\n"
+#~ "\n"
+#~ "Mitokondrid: toodab [thrive:compound type=\"atp\"][/thrive:compound] [thrive:compound type=\"glucose\"][/thrive:compound]-st ja atmosfääri O2-st palju tõhusamalt kui tsütoplasmas\n"
+#~ "\n"
+#~ "Kloroplast: muudab [thrive:compound type=\"glucose\"][/thrive:compound] päikesevalgusest ja atmosfääri CO2-st välja\n"
+#~ "\n"
+#~ "Kemoplast: loob [thrive:compound type=\"glucose\"][/thrive:compound] välja [thrive:compound type=\"vesiniksulfiid\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Lämmastikku fikseeriv plastiid: muudab [thrive:compound type=\"ammonia\"][/thrive:compound] [thrive:compound type=\"atp\"][/thrive:compound]-st ja atmosfääri lämmastikust ja hapnikust\n"
+#~ "\n"
+#~ "Vacuool: salvestab 8 kogutud ühendit\n"
+#~ "\n"
+#~ "Toksiinivakuoolid: toodab toksiine (nimetatakse [thrive:compound type=\"oxytoxy\"][/thrive:compound]) ja võimaldab teil neid vabastada, tekitades kahju sõltuvalt saadaoleva oksütoksükoguse kogusest\n"
+#~ "\n"
+#~ "Signaalagent: lubage rakkudel luua kemikaale, millele teised rakud võivad reageerida"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Igal põlvkonnal on teil kulutada 100 mutatsioonipunkti (MP) ja iga muudatus (või mutatsioon) maksab teatud summa sellest MP-st. Organellide lisamine ja eemaldamine maksab MP-d. Praeguses mutatsiooniseansis paigutatud organellide eemaldamine tagastab aga MP selle organelli eest. Organelli saab teisaldada või täielikult eemaldada, klõpsates sellel hiire parema nupuga ja valides hüpikmenüüst sobiva toimingu. Saate oma organelle pöörata, paigutades need nuppudega [thrive:input]e_pööra_vasakule[/thrive:input] ja [thrive:input]e_pööra_paremale[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Iga kord, kui paljunete, sisenete mikroobide redaktorisse, kus saate oma liigis muudatusi teha (lisades, liigutades või eemaldades organelle), et oma liigi edu suurendada. Iga mikroobide staadiumis toimetaja külastus tähistab [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljonit aastat evolutsiooni."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Paljundamiseks peate jagama kõik oma organellid kaheks. Organellid vajavad pooleks jagunemiseks ammoniaaki ja fosfaati."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Aga kui jääte ellu kakskümmend põlvkonda 300 elanikuga, loetakse teid praeguse mängu võitnuks. Pärast võitu näete hüpikakna ja saate jätkata mängimist, nagu soovite."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Ole teadlik et su konkurendid arenevad sinuga koos. Iga kord kui sa enda rakku muudad, arenevad nad samuti."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Teiste rakkudega sidudes saate luua rakukoloonia, kus rakud jagavad omavahel neelduvaid ja toodetud ühendeid. Teise rakuga seondumiseks peavad teil olema sideainete organellid ja need pärast sidumisrežiimi sisenemist nendesse liikuma. Saate siduda ainult oma liigi rakkudega. Koloonias viibides ei saa te oma lahtrit jagada ja redaktorisse siseneda (praegu). Redaktorisse sisenemiseks lahkuge esmalt kolooniast, kui olete kogunud piisavalt ühendeid, ja seejärel sisenege redaktorisse. Suured rakukolooniad on tee mitmerakulisuse poole (pole veel mängus)."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
+
+#, fuzzy
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] ja hiirt liigutamiseks. [thrive:input]g_fire_toxin[/thrive:input], et tulistada [thrive:compound type=\"oxytoxy\"][/thrive:compound], kui teil on toksiinide vakuool. [thrive:input]g_toggle_engulf[/thrive:input] neelamisrežiimi sisse- ja väljalülitamiseks. Hiirerattaga saab sisse ja välja suumida."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Teie rakk kasutab energiaallikana [thrive: ühendi tüüp = \"atp\"] [/ thrive: ühend], kui see saab otsa, surete."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Redigeerija avamiseks ja reprodutseerimiseks peate koguma [thrive:compound type=\"ammonia\"][/thrive:compound] (oranž pilv) ja [thrive:compound type=\"phosphates\"][/thrive:compound] (lilla pilv) )."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Sa saad kugistada rakke, baktereid, raua tükke ja raku osi mis on sinust väiksemad vajutades [thrive:input]g_lüliti_neelama[/thrive:input]. See kasutab rohkem ATP-d ja aeglustab su liikumist. Ära unusta vajutada [thrive:input]g_lüliti_neelama[/thrive:input] uuesti kui oled lõpetada."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulatsioon maksab [thrive:compound type=\"atp\"][/thrive:compound], mis tähendab, et mida suurem on teie rakk, seda rohkem on teil vaja mitokondreid, metabolosoome või rustitsüaniini (või tsütoplasmat, mis teeb glükolüüsi), et vältida nende kadumist [thrive: ühend type=\"atp\"][/thrive:compound], kui olete paigal."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Redigeerijas on palju organelle, mida saate arendada, võimaldades laia valikut erinevaid mängustiile."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "(Praeguseks) Kui su rakkude arv väheneb 0-ks siis oled välja surnud."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Erinevad liitpilved on:\n"
+#~ "\n"
+#~ "Valge – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Kollane – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Oranž – [thrive:compound type=\"ammoniaak\"][/thrive:compound]\n"
+#~ "Lilla – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Roostepruun – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] muudab [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "Vesinik sulfiidist saab sünteesida glükoosi kasutades kemoplaste ja kemosünteesivaid valke. Rauaga saab toota ATP-d kasutades roote-tsüaniini."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr ""
+#~ "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
+#~ "\n"
+#~ "Elu.\n"
+#~ "\n"
+#~ "Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
+#~ "\n"
+#~ "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Liikuge mängu järgmisse etappi (mitmerakuline). Saadaval, kui teil on piisavalt suur rakukoloonia."
+
+#, fuzzy
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Mikroobide redaktori laadimine"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "lootustandev"
@@ -8576,17 +9030,6 @@ msgstr "Suumi välja"
 #~ msgstr "Mikroobide redaktori laadimine"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr ""
-#~ "Kaugel võõral planeedil on vulkaanitegevuse ja meteoriidide kokkupõrked viinud universumis uue nähtuse väljakujunemiseni.\n"
-#~ "\n"
-#~ "Elu.\n"
-#~ "\n"
-#~ "Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
-#~ "\n"
-#~ "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Kemosüntees"
 
@@ -8631,10 +9074,6 @@ msgstr "Suumi välja"
 #~ "Lihtsad mikroobid elavad ookeani sügavates piirkondades. Olete viimane universaalne ühine esivanem (LUCA) sellel planeedil.\n"
 #~ "\n"
 #~ "Selles vaenulikus maailmas ellujäämiseks peate koguma kokku kõik ühendid, mida leiate ja põlvkondade kaupa edasi arenema, et võistelda teiste mikroobiliikidega."
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Kemosüntees"
 
 #, fuzzy
 #~ msgid "NO"

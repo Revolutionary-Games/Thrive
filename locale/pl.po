@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
-"PO-Revision-Date: 2024-12-05 05:22+0000\n"
-"Last-Translator: Nie <tym@wrozynski.com>\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Polish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -143,6 +143,7 @@ msgstr "(pozwala kontynuować rozgrywkę innym gatunkiem po wymarciu pierwotnego
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Ogólne Statystyki Wszystkich Światów"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Pokolenia:[/b]\n"
@@ -318,6 +319,14 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% zrobione. {1:n0}/{2:n0} kroków."
 
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Mnożnik kosztu mutacji"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Autozapis w trakcie gry"
 
@@ -370,6 +379,9 @@ msgstr "Faza Świadomości"
 
 msgid "BACK"
 msgstr "Wróć"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "Ukośnik wsteczny"
@@ -615,6 +627,10 @@ msgstr "Celulozowa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Ta błona posiada ścianę która zapewnia lepszą ochronę przed obrażeniami a zwłaszcza przed obrażeniami fizycznymi. Kosztuje też mniej energii, ale spowalnia absorpcje zasobów i spowalnia komórkę. [b]Celulaza może strawić tę ścianę[/b] sprawiając, że jest ona wrażliwa na wchłonięcie przez drapieżniki."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Wartość używana do generacji świata (musi być dodatnią liczbą całkowitą)"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1322,6 +1338,7 @@ msgstr "Aktualnie badane: {0} ({1})"
 msgid "CURRENT_WORLD"
 msgstr "Obecny Świat"
 
+#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Pokolenia:[/b]\n"
@@ -1362,6 +1379,10 @@ msgstr "Zmienia [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] w [
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Synteza OxyToxy"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(koszt organelli, błon i innych przedmiotów w edytorze)"
 
 msgid "DAY_LENGTH"
 msgstr "Długość Dnia"
@@ -1668,9 +1689,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Powiel Typ"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Wielokomórkowy"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Ciekawostka: Didinium i Pantofelek są podręcznikowym przykładem relacji drapieżnika i ofiary, ta relacja była studiowana przez dekady. A ty, jesteś Didinium czy Pantofelkiem? Drapieżnikiem, czy ofiarą?"
 
@@ -1701,35 +1719,8 @@ msgstr "Zabawny Fakt, Czy wiedziałeś że na Ziemi jest ponad 8000 gatunków or
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Zabawny Fakt, Stentor to orzęsek który potrafi się rozciągnąć i łapać ofiary w usta przypominające trąbkę która wciąga ofiary generując prąd wodny rzęskami."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Ciekawostka, Didinium to orzęsek który poluje na pantofelki."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Porada, toksyny mogą być użyte do odbijania innych toksyn od ciebie, jeśli jesteś wystarczająco szybki."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych nibynóżkami, chcemy je kiedyś dodać do Thrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Porada, Uważaj na większe komórki i duże bakterie, nie jest fajnie być trawionym, a one cię zjedzą."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z komponowania ich na jego kanale YouTube, Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Porada, jeśli twoja komórka ma 150 heksów, możesz pochłaniać wielkie odłamki żelaza."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive jest stworzone do bycia symulacją obcej planety, więc sens będzie mieć to, że większość stworzeń które znajdziesz będzie spokrewnione z jednym lub dwoma innymi gatunkami przez to, że wokół ciebie dzieje się ewolucja, sprawdź czy możesz je zidentyfikować!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Zabawny Fakt, Zespół Thrive robi co jakiś czas podcasty, powinieneś je sprawdzić!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Ciekawostka, Thrive zrobione jest w open source-owym silniku Godot!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został stworzony przez naszego niesamowitego programistę, untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Porada, Osmoregulacja kosztuje 1 ATP na sekundę na każdy heks twojej komórki, każdy pusty heks cytozolu generuje też 5 ATP na sekundę, co znaczy, że jeżeli tracisz ATP przez osmoregulację po prostu dodaj kilka pustych heksów cytozolu albo usuń niektóre organella."
@@ -1756,6 +1747,10 @@ msgid "EASTER_EGGS"
 msgstr "Zawiera Easter eggi"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(losowo generowane sekrety w grze)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(losowo generowane sekrety w grze)"
 
 msgid "EDGE_PAN_SPEED"
@@ -2266,6 +2261,10 @@ msgstr "Pełne Informacje o Modzie"
 msgid "GALLERY_VIEWER"
 msgstr "Przeglądarka Galerii"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Designerzy Gry"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Designerzy Gry"
 
@@ -2278,6 +2277,34 @@ msgstr ""
 
 msgid "GENERAL"
 msgstr "Generalny"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
 msgid "GENERATIONS"
 msgstr "Pokolenia"
@@ -2854,10 +2881,6 @@ msgstr "Ta wersja językowa jest bardzo słabo przetłumaczona ({0}%). Jeżeli m
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Nie można usunąć ostatniej organelli"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Wielokomórkowe"
-
 msgid "LAUNCH0"
 msgstr "Uruchom 0"
 
@@ -3066,20 +3089,18 @@ msgstr "Wczytywanie"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Wczytywanie..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
-
 msgid "LOADING_GAME"
 msgstr "Wczytywanie Gry"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Wczytywanie edytora mikrobów"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Wczytywanie edytora mikrobów"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Wczytywanie Edytora Wielokomórkowca"
-
-msgid "LOADING_TIP"
-msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
 
 msgid "LOAD_FINISHED"
 msgstr "Wczytywanie zakończone"
@@ -3144,6 +3165,14 @@ msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Synteza śluzu"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Zostań organizmem makroskopijnym! ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Etap Mikroba"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3201,8 +3230,24 @@ msgstr "Nagraj Media"
 msgid "MEDIASTOP"
 msgstr "Zatrzymanie mediów"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Mały Kawałek Żelaza"
+
 msgid "MEGA_YEARS"
 msgstr "Milionów Lat"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolosomy"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Lizosom jest organellą przymocowaną do błony komórkowej która zawiera hydrolityczne enzymy które mogą rozbijać wiele biomolekuł. Lizosomy umożliwiają komórce trawienie materiałów przyjmowanych poprzez endocytozę oraz oczyszczanie odpadów komórki w procesie zwanym [b]autofagią[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
 
 msgid "MEMBRANE"
 msgstr "Membrana"
@@ -3327,82 +3372,102 @@ msgstr "Edytor Mikroba"
 msgid "MICROBE_EDITOR"
 msgstr "Edytor Mikroba"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Struktury Prokariotyczne\n"
-"\n"
-"Cytozol: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound])\n"
-"\n"
-"Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound]\n"
-"\n"
-"Białka Chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"]Siarkowodoru[/thrive:compound] niż chemoplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
-"\n"
-"Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound], co zwykły chloroplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
-"\n"
-"Rustycyjanina: Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Oksytoksysom: Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]\n"
-"\n"
-"Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić trawienie znacznie wydajniejszym."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Organella Zewnętrzne\n"
-"\n"
-"Wić: Porusza twoją komórkę szybciej używając [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Może być użyty do dźgania innych komórek bądź obrony przed wydzielanymi przez nie toksynami\n"
-"\n"
-"Chemoreceptor: Umożliwia wykrywanie związków z większej odległości\n"
-"\n"
-"Gruczoł Śluzowy: Umożliwia wydzielanie [thrive:compound type=\"mucilage\"]Śluzu[/thrive:compound] (produkowanego z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound]) aby przyspieszyć twoją komórkę\n"
-"\n"
-"Rzęski: Zwiększają prędkość obracania się komórek"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Organella Powiązane z Błoną Komórkową\n"
-"\n"
-"Jądro Komórkowe: Zajmuje 11 heksów i pozwala na ewolucję organelli powiązanych z błoną komórkową, podwaja rozmiar twojej komórki i redukuje obrażenia o 50% (Może zostać wyewoluowane tylko raz)\n"
-"\n"
-"Czynnik Wiążący: Pozwala na łączenie się z innymi komórkami. Wymagany by wkroczyć w etap wielokomórkowy\n"
-"\n"
-"Mitochondrium: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]glukozy[/thrive:compound] i atmosferycznego O₂ o wiele wydajniej niż cytozol\n"
-"\n"
-"Chloroplast: Wytwarza [thrive:compound type=\"glucose\"]glukozę[/thrive:compound] wykorzystując światło słoneczne i atmosferyczny CO₂\n"
-"\n"
-"Termoplast: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury\n"
-"\n"
-"Lizosom: Zawiera enzymy trawienne. Enzymy przyśpieszają oraz poprawiają wydajność trawienia\n"
-"\n"
-"Chemoplast: Wytwarza na drodze chemosyntezy [thrive:compound type=\"glucose\"]glukozę[/thrive:compound] zużywając [thrive:compound type=\"hydrogensulfide\"]siarkowodór[/thrive:compound]\n"
-"\n"
-"\n"
-"Ferroplast: Przekształca [thrive:compound type=\"iron\"]żelazo[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż rustycyjanina\n"
-"\n"
-"Plastyd Wiążący Azot: Produkuje [thrive:compound type=\"ammonia\"]amoniak[/thrive:compound] z [thrive:compound type=\"atp\"][/thrive:compound] oraz atmosferycznego azotu i tlenu\n"
-"\n"
-"Wakuola: Przechowuje 8 jednostek zebranych substancji\n"
-"\n"
-"Wakuola z Toksynami: Syntezuje toksyny (nazwane [thrive:compound type=\"oxytoxy\"]oksytoksyną[/thrive:compound])\n"
-"\n"
-"Czynnik Sygnalizacyjny: Pozwala komórkom na komunikację między sobą za pośrednictwem związków chemicznych"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Na każdą generację masz 100 punktów mutacji (PM) do wydania, i każda zmiana (lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli kosztuje PM. Usuwanie organelli które były dodane w obecnej generacji zwraca PM za tą organellę. Możesz przesunąć lub całkowicie usunąć organellę klikając na nią prawym przyciskiem i wybierając właściwą czynność z wyskakującego menu. Możesz obracać swoje organelle podczas dodawania ich używając klawiszy [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Za każdym razem kiedy się rozmnażasz, wejdziesz w Edytor Mikroba, w którym możesz wprowadzać zmiany do twojego gatunku (przez dodawanie, przenoszenie lub usuwanie organelli) aby zwiększyć sukces twojego gatunku. Każda wizyta edytora w Etapie Mikroba reprezentuje [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionów lat ewolucji."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Kreatywny Edytor Mikroba"
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Wciśnij przycisk \"cofnij\" w edytorze żeby poprawić błąd"
+
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: Znaleziono w {1} gatunkach, średnio {2} na każdy"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3463,60 +3528,6 @@ msgstr ""
 "Twoja komórka umrze jeśli wyczerpie się jej zdrowie.\n"
 "Kiedy masz [thrive:compound type=\"atp\"][/thrive:compound], twoje zdrowie się regeneruje.\n"
 "Pilnuj aby zbierać wystarczająco [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] by móc produkować [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] oraz mysz aby się poruszać. [thrive:input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound type=\"oxytoxy\"]Oksytoksyną[/thrive:compound] jeśli posiadasz toksyczną wakuolę . [thrive:input]g_toggle_engulf[/thrive:input] aby przełączać tryb fagocytozy. Możesz przybliżać i oddalać poruszając kółkiem myszki."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Żeby się rozmnożyć musisz podzielić każdą ze swoich organelli na dwie. Organelle potrzebują [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound], [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound] i czasu aby się podzielić."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Ale jeśli przeżyjesz przez 20 pokoleń z populacją 300, uznawane jest że wygrałeś aktualną grę. Po wygranej wyświetli się powiadomienie i będziesz mógł kontynuować grę jeśli chcesz."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Uważaj ponieważ twoi przeciwnicy ewoluują razem z tobą. Za każdym razem gdy wejdziesz do edytora oni również ewoluują."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby związać się z inną komórką, twoja komórka potrzebuje czynnika wiążącego. Po wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do edytora . Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek są drogą do wielokomórkowości."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą być trawione bez posiadania niezbędnego enzymu który może najpierw je rozbić."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Jednak lizosomy są wyłącznie dla eukariontów, prokarionty nie mają takich organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych komórek jest to w porządku, lecz dla większych, brak lizosomów jest bardzo niekorzystny."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Twoja komórka używa [thrive:compound type=\"atp\"][/thrive:compound] jako jej źródła energii, jeśli się ono wyczerpie, umrzesz."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Aby odblokować edytor i się rozmnożyć, musisz zbierać [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound] (pomarańczowe chmury) i [thrive:compound type=\"phosphates\"]Fosforany[/thrive:compound] (fioletowe chmury)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Możesz również pochłaniać komórki, bakterie, odłamki żelaza i kawałki komórek mniejsze od ciebie na drodze fagocytozy naciskając [thrive:input]g_toggle_engulf[/thrive:input]. Będzie to kosztować dodatkowe [thrive:compound type=\"atp\"][/thrive:compound] i cię spowolni. Nie zapomnij nacisnąć [thrive:input]g_toggle_engulf[/thrive:input] drugi raz aby przestać pochłaniać."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytozolu, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "W edytorze jest wiele Organelli które możesz ewoluować, pozwalając na szeroki zakres różnych stylów gry."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Jeśli twoja populacja spadnie do zera, wyginiesz."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Różne chmury związków to:\n"
-"\n"
-"Białe – [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound]\n"
-"Żółte – [thrive:compound type=\"hydrogensulfide\"]Siarkowodór[/thrive:compound]\n"
-"Pomarańczowe – [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]\n"
-"Fioletowe – [thrive:compound type=\"phosphates\"]Fosforany[/thrive:compound]\n"
-"Rdzawo-Brązowe – [thrive:compound type=\"iron\"]Żelazo[/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] jest niezbędna do produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"]Siarkowodór[/thrive:compound] może zostać przetworzony w [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] przez chemoplasty i białka chemosyntezujące. [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3880,11 +3891,18 @@ msgstr "Synteza śluzu"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Odwiedź naszego Patreona"
 
+msgid "MULTICELLULAR"
+msgstr "Wielokomórkowe"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Edytor Wielokomórkowca"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Edytor Wielokomórkowca"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Edytor Wielokomórkowca"
 
 msgid "MULTICELLULAR_STAGE"
@@ -4051,6 +4069,9 @@ msgstr ""
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Bazowa prędkość"
+
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -4242,6 +4263,10 @@ msgstr "Akson"
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Dźgaj tym inne komórki."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Wielokomórkowe"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4631,6 +4656,18 @@ msgstr ""
 "Czy na pewno chcesz wyjść z gry?\n"
 "Utracisz cały niezapisany postęp."
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "Oddychanie Tlenowe"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Duży Kawałek Żelaza"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Termosynteza"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Losuj nazwy gatunków"
 
@@ -4689,6 +4726,10 @@ msgstr "Metoda Rozmnażania:"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(biernie uzyskuj związki reprodukcji ze środowiska bez potrzeby robienia czegokolwiek)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Metoda Rozmnażania:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Metoda Rozmnażania:"
@@ -5068,6 +5109,12 @@ msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, kt
 msgid "SHOW_HELP"
 msgstr "Pokaż pomoc"
 
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+"Koordynaty pozycji: {0} \n"
+"Obserwowanie koordynatów: {1}"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -5152,6 +5199,10 @@ msgstr "Mały Kawałek Żelaza"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Mały Kawałek Żelaza"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Mały Kawałek Żelaza"
 
 msgid "SNOWFLAKE"
@@ -5853,18 +5904,6 @@ msgstr "Spróbuj zrobić kilka zrzutów ekranu!"
 msgid "TUTORIAL"
 msgstr "Samouczek"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
-"\n"
-"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
-"\n"
-"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
-"\n"
-"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Grafik produkcji ATP po prawej pokazuje ile [thrive:compound type=\"atp\"][/thrive:compound] twoja komórka produkuje w porównaniu do ile jest zużywane. Jeżeli górny słupek jest krótszy od dolnego, to produkcja [thrive:compound type=\"atp\"][/thrive:compound] jest za niska.\n"
@@ -6019,6 +6058,19 @@ msgstr ""
 "\n"
 "Żeby całkowicie opuścić kolonię możesz kliknąć własną komórkę lub nacisnąć klawisz [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Witaj we Wczesnym Etapie Wielokomórkowym!\n"
+"\n"
+"Twoje prowadzenie gatunku przez fazę jednokomórkową zakończyło się sukcesem.\n"
+"\n"
+"Rozgrywka toczy się wedle podstawowych mechanik Etapu Mikroba. Wciąż musisz rozwijać swój organizm by móc się rozmnożyć i dostać do edytora.\n"
+"\n"
+"Jednak teraz możesz tworzyć układ komórek twojej kolonii w edytorze jak i specjalizować swoje komórki do różnych zadań. Pamiętaj, że członkowie kolonii nie mogą dzielić się [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"Jeśli rozmnażasz się przez pączkowanie (sposób podstawowy), zaczynasz poprzez kontrolowanie małego pączka i musisz rozwinąć resztę swojego układu komórek."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Oglądaj Teraz"
 
@@ -6145,6 +6197,14 @@ msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "szybkość spadnie poniżej {0}"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "szybkość spadnie poniżej {0}"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -6369,9 +6429,6 @@ msgstr "Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6808,6 +6865,53 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"Wyciąga energię w formie [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Eukariotyczny variant mniej wydajnej [b][color=#3796e1][url=thriveopedia:thermosynthase]Thermosyntazy[/url][/color][/b].\n"
+"\n"
+"Organella spekulacyjna nie wykryta w prawdziwym życiu. Niedostępne w grach z włączonym trybem ŻTJZ (Życie Takie Jakie Znamy)."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]Termosynteza[/b]: [thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"Generuje energie z [thrive:compound type=\"temperature\"][/thrive:compound] w środowisku. Bardziej wydajna wersja [b]Termoyntezy Bakteryjnej[/b] która występuje w [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazie[/url][/color][/b]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"Komórka musi mieć [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] by wyewoluować [b]Czynniki Wiążące[/b].\n"
+"\n"
+"Jeżeli warunki odblokowania organelli są włączone w ustawieniach, [i]wszystkie[/i] poniższe warunki muszą być spełnione [i] dla komórki gracza[/i]:\n"
+"\n"
+"[indent]—   Zawiera [b][color=#3796e1][url=thriveopedia:nucleus]Jądro Komórkowe[/url][/color][/b] przez [b]5[/b] generacji.[/indent]\n"
+"[indent]—   Ma bilans [thrive:compound type=\"atp\"][/thrive:compound] równy [b]+15[/b] lub większy.[/indent]"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"Ponieważ [b]Termosynteza[/b] nie wymaga innych zasobów prócz [thrive:compound type=\"temperature\"][/thrive:compound], w praktyce jest darmową energią. Dodatkowo [b]Termoplast[/b] jest bardziej wydajny od [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazy[/url][/color][/b], co sprawia, że jest on najłatwiejszą metodą generacji energii w grze, pod warunkiem, że będziesz chciał zostać w gorącej strefie jak kominy hydrotermalne.\n"
+"\n"
+"Jeśli warunki odblokowania organelli są włączone, warunek rozmnożenia się wiele razy z [b][color=#3796e1][url=thriveopedia:thermosynthase]Termosyntazą[/url][/color][/b] oznacza, że gracz który wyewoluował [b]Termoplasty[/b] pewnie już jest bardzo wyspecjalizowany w [b]Termosyntezie[/b] kiedy zdobędzie [b]termoplasty[/b]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Termoplast jest strukturą z podwójną membraną zawierającą termo sensytywne pigmenty ułożone razem w membranowych workach. Jest prokariotem, który został przyswojony do użytku przez eukariotycznego hosta. Pigmenty w termoplaście mogą używać energii z różnic temperatur w otoczeniu do produkcji [thrive:compound type=\"atp\"][/thrive:compound] z wody w procesie zwanym [b]termosyntezą[/b]. Tempo produkcji [thrive:compound type=\"atp\"][/thrive:compound] skaluje się z [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Wić to biczo-podobny zbiór białek wysunięty z błony komórkowej, który zużywa ATP do obracania się i poruszania komórki w danym kierunku. Pozycja wici determinuje kierunek w którym napędza komórkę. Kierunek siły napędowej jest przeciwny do strony po której wić jest umiejscowiona, na przykład wić umieszczona po lewej napędza komórkę w prawo."
 
@@ -6843,8 +6947,16 @@ msgstr "Beztlenowe Wiązanie Azotu"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Brak ulepszeń."
 
+#, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Brak ulepszeń."
+
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
+msgstr "Nieskończone Związki"
 
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
@@ -6884,15 +6996,31 @@ msgstr "Wykonuj auto-ewo w trakcie rozgrywki"
 msgid "WIKI_HEADING_GDD"
 msgstr "Czynnik Wiążący"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Brak ulepszeń."
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "Etap Mikroba"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Etap Mikroba"
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "Etap Mikroba"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "Etap Mikroba"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -6942,6 +7070,39 @@ msgid "WIKI_HEADING_UI"
 msgstr ""
 
 msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "Organelle"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr ""
+"Żelowe wnętrze komórki. [b]Cytoplazma[/b] to podstawowa mieszanina jonów, białek, i innych substancji rozpuszczonych w wodzie, która wypełnia wnętrze komórki.\n"
+"\n"
+"Jedną z czynności, której dokonuje, jest [b]Glikoliza Cytoplazmowa[/b], przemiana [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound. Komórki nieposiadające organelli do bardziej zaawansowanych procesów metabolicznych polegają na tym procesie. Wykorzystywany jest również jako magazyn substancji oraz do zwiększenia rozmiarów komórki."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Nieskończone Związki"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Rusticyjanina to białko mogące użyć gazowego [thrive:compound type=\"carbondioxide\"][/thrive:compound] i [thrive:compound type=\"oxygen\"][/thrive:compound] do utleniania żelaza z jednego stanu chemicznego do innego. Ten proces, nazywany [b]iron respiration[/b], uwalnia energię którą komórka może zebrać."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "Etap Mikroba"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
 #, fuzzy
@@ -7039,12 +7200,82 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Etap Wielokomórkowca"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Prace nad Etapem Boskości jeszcze nie zostały rozpoczęte."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Gruczoł Śluzowy"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Na odległej obcej planecie, eony aktywności wulkanicznej i upadków meteorytów doprowadziły do powstania prawdziwego fenomenu we wszechświecie.\n"
+"\n"
+"Życia.\n"
+"\n"
+"Proste mikroby powstały w głębinach oceanu. Jesteś przodkiem wszelkiego życia na tej planecie.\n"
+"\n"
+"Żeby przetrwać w tym niesprzyjającym świecie, musisz zbierać różne związki chemiczne i ewoluować aby wygrać rywalizację z innymi gatunkami."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Etap Mikroba"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Etap Mikroba"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Organelle"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Wiele organizmów produkuje polisacharydowe szlamopodobne substancje, śluz jest jednym z takich polisacharydów. Podczas gdy mnóstwo gatunków wykorzystuje szlam do celów lokomocji, niektóre typy bakterii strzelają tymi substancjami za sobą pod wysokim ciśnieniem. Te śluzowe wyrzutnie działają jak silniki rakietowe, pchając komórki do przodu z niesamowitą prędkością. Szlam jest również używany przeciw nadciągającym drapieżnikom, więżąc je w substancji którą jedynie posiadające jety organizmy mogą nawigować."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr ""
+"Zawiera enzymy trawienne. Może być zmodyfikowany by zmienić typ enzymu który zawiera. Każdy [b]Lizosom[/b] może korzystać z tylko jednego typu enzym. Enzymy przyspieszają trawienie i polepszają efektywność trawienia.\n"
+"\n"
+"[b]Lizosom[/b] jest organellą otoczoną błoną która zawiera enzymy hydrolityczne które potrafią rozkładać wiele związków biologicznych. [b]Lizosom[/b] daje komórce umiejętność trawienia materiałów pochłoniętych w procesie endocytozy, a także oczyszczają odpady komórki w procesie zwanym autofagią."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Zawiera enzymy trawienne. Może być modyfikowany by zmienić typ enzymu, jaki zawiera. Na ten czas, tylko jeden enzym może być wykorzystany."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Brak wymagań"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Brak Danych"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Zmodyfikowany metabolosom odpowiadający za produkcję prymitywnej formy toksycznego czynnika OxyToksy NT."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Metabolosomy to grupy białek zamknięte w proteinowych powłokach. Potrafią zmieniać [thrive:compound type=\"glucose\"][/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż cytozol w procesie zwanym [b]Oddychaniem Tlenowym[/b]. Jednak żeby funkcjonować potrzebują [thrive:compound type=\"oxygen\"][/thrive:compound], więc niższe stężenia [thrive:compound type=\"oxygen\"][/thrive:compound] w środowisku spowalniają ich produkcję [thrive:compound type=\"atp\"][/thrive:compound]. Przez to, że metabolosomy są zanurzone bezpośrednio w cytozolu, otaczający płyn przeprowadza [b]glikolizę[/b]."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7397,8 +7628,16 @@ msgstr "Mitochondrium"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitochondrium"
 
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Wić"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Mitochondrium"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -7412,8 +7651,16 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lizosom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Azotaza"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Organelle"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lizosom"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomy"
@@ -7564,6 +7811,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Termosynteza"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -7985,6 +8236,173 @@ msgstr "Przybliż"
 msgid "ZOOM_OUT"
 msgstr "Oddal"
 
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Ciekawostka, Didinium to orzęsek który poluje na pantofelki."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Ciekawostka! Ameba poluje i łapie ofiary za pomocą 'odnóg' nazywanych nibynóżkami, chcemy je kiedyś dodać do Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Porada, Uważaj na większe komórki i duże bakterie, nie jest fajnie być trawionym, a one cię zjedzą."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Lider zespołu dźwiękowego Thrive stworzył wiele piosenek, które nie zostały jeszcze dodane do gry. Możesz ich posłuchać, lub oglądać transmisje z komponowania ich na jego kanale YouTube, Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Porada, jeśli twoja komórka ma 150 heksów, możesz pochłaniać wielkie odłamki żelaza."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive jest stworzone do bycia symulacją obcej planety, więc sens będzie mieć to, że większość stworzeń które znajdziesz będzie spokrewnione z jednym lub dwoma innymi gatunkami przez to, że wokół ciebie dzieje się ewolucja, sprawdź czy możesz je zidentyfikować!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Zabawny Fakt, Zespół Thrive robi co jakiś czas podcasty, powinieneś je sprawdzić!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Ciekawostka, Thrive zrobione jest w open source-owym silniku Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Zabawny Fakt, Jeden z pierwszych grywalnych prototypów rozgrywki został stworzony przez naszego niesamowitego programistę, untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Struktury Prokariotyczne\n"
+#~ "\n"
+#~ "Cytozol: Posiada miejsce magazynowe i przeprowadza glikolizę (Produkuje małe ilości [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomy: Produkują [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound]\n"
+#~ "\n"
+#~ "Białka Chemosyntezujące: Produkują o połowę mniej [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound] z [thrive:compound type=\"hydrogensulfide\"]Siarkowodoru[/thrive:compound] niż chemoplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
+#~ "\n"
+#~ "Tylakoidy: Produkują 1/3 [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound], co zwykły chloroplast, ale przeprowadzają również glikolizę. Zajmują 1 Heks\n"
+#~ "\n"
+#~ "Rustycyjanina: Utlenia [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] wydzielając [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenaza: Wiąże beztlenowo azot atmosferyczny w [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound] zużywając [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Oksytoksysom: Przekształca [thrive:compound type=\"atp\"][/thrive:compound] w [thrive:compound type=\"oxytoxy\"]Oksytoksynę[/thrive:compound]\n"
+#~ "\n"
+#~ "Termosyntaza: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów termicznych"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Gdy wchłanianie jest zakończone, jakiekolwiek obiekty złapane w jego procesie będą przetrzymywane wewnątrz błony komórkowej by zostać strawione. Niestrawne obiekty zawsze będą wydalone, więc upewnij się, że masz niezbędne mutacje, które umożliwiają ich przetwarzanie. Enzymy które pomogą z trawieniem i są dostarczane przez lizosom; wyewoluuj tą organellę by uczynić trawienie znacznie wydajniejszym."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Organella Zewnętrzne\n"
+#~ "\n"
+#~ "Wić: Porusza twoją komórkę szybciej używając [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Może być użyty do dźgania innych komórek bądź obrony przed wydzielanymi przez nie toksynami\n"
+#~ "\n"
+#~ "Chemoreceptor: Umożliwia wykrywanie związków z większej odległości\n"
+#~ "\n"
+#~ "Gruczoł Śluzowy: Umożliwia wydzielanie [thrive:compound type=\"mucilage\"]Śluzu[/thrive:compound] (produkowanego z [thrive:compound type=\"glucose\"]Glukozy[/thrive:compound]) aby przyspieszyć twoją komórkę\n"
+#~ "\n"
+#~ "Rzęski: Zwiększają prędkość obracania się komórek"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Organella Powiązane z Błoną Komórkową\n"
+#~ "\n"
+#~ "Jądro Komórkowe: Zajmuje 11 heksów i pozwala na ewolucję organelli powiązanych z błoną komórkową, podwaja rozmiar twojej komórki i redukuje obrażenia o 50% (Może zostać wyewoluowane tylko raz)\n"
+#~ "\n"
+#~ "Czynnik Wiążący: Pozwala na łączenie się z innymi komórkami. Wymagany by wkroczyć w etap wielokomórkowy\n"
+#~ "\n"
+#~ "Mitochondrium: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] z [thrive:compound type=\"glucose\"]glukozy[/thrive:compound] i atmosferycznego O₂ o wiele wydajniej niż cytozol\n"
+#~ "\n"
+#~ "Chloroplast: Wytwarza [thrive:compound type=\"glucose\"]glukozę[/thrive:compound] wykorzystując światło słoneczne i atmosferyczny CO₂\n"
+#~ "\n"
+#~ "Termoplast: Produkuje [thrive:compound type=\"atp\"][/thrive:compound] używając gradientów temperatury\n"
+#~ "\n"
+#~ "Lizosom: Zawiera enzymy trawienne. Enzymy przyśpieszają oraz poprawiają wydajność trawienia\n"
+#~ "\n"
+#~ "Chemoplast: Wytwarza na drodze chemosyntezy [thrive:compound type=\"glucose\"]glukozę[/thrive:compound] zużywając [thrive:compound type=\"hydrogensulfide\"]siarkowodór[/thrive:compound]\n"
+#~ "\n"
+#~ "\n"
+#~ "Ferroplast: Przekształca [thrive:compound type=\"iron\"]żelazo[/thrive:compound] w [thrive:compound type=\"atp\"][/thrive:compound] o wiele wydajniej niż rustycyjanina\n"
+#~ "\n"
+#~ "Plastyd Wiążący Azot: Produkuje [thrive:compound type=\"ammonia\"]amoniak[/thrive:compound] z [thrive:compound type=\"atp\"][/thrive:compound] oraz atmosferycznego azotu i tlenu\n"
+#~ "\n"
+#~ "Wakuola: Przechowuje 8 jednostek zebranych substancji\n"
+#~ "\n"
+#~ "Wakuola z Toksynami: Syntezuje toksyny (nazwane [thrive:compound type=\"oxytoxy\"]oksytoksyną[/thrive:compound])\n"
+#~ "\n"
+#~ "Czynnik Sygnalizacyjny: Pozwala komórkom na komunikację między sobą za pośrednictwem związków chemicznych"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Na każdą generację masz 100 punktów mutacji (PM) do wydania, i każda zmiana (lub mutacja) kosztuje określoną ilość PM. Dodawanie i usuwanie organelli kosztuje PM. Usuwanie organelli które były dodane w obecnej generacji zwraca PM za tą organellę. Możesz przesunąć lub całkowicie usunąć organellę klikając na nią prawym przyciskiem i wybierając właściwą czynność z wyskakującego menu. Możesz obracać swoje organelle podczas dodawania ich używając klawiszy [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Za każdym razem kiedy się rozmnażasz, wejdziesz w Edytor Mikroba, w którym możesz wprowadzać zmiany do twojego gatunku (przez dodawanie, przenoszenie lub usuwanie organelli) aby zwiększyć sukces twojego gatunku. Każda wizyta edytora w Etapie Mikroba reprezentuje [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milionów lat ewolucji."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] oraz mysz aby się poruszać. [thrive:input]g_fire_toxin[/thrive:input] aby strzelać[thrive:compound type=\"oxytoxy\"]Oksytoksyną[/thrive:compound] jeśli posiadasz toksyczną wakuolę . [thrive:input]g_toggle_engulf[/thrive:input] aby przełączać tryb fagocytozy. Możesz przybliżać i oddalać poruszając kółkiem myszki."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Żeby się rozmnożyć musisz podzielić każdą ze swoich organelli na dwie. Organelle potrzebują [thrive:compound type=\"ammonia\"]Amoniaku[/thrive:compound], [thrive:compound type=\"phosphates\"]Fosforanów[/thrive:compound] i czasu aby się podzielić."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Ale jeśli przeżyjesz przez 20 pokoleń z populacją 300, uznawane jest że wygrałeś aktualną grę. Po wygranej wyświetli się powiadomienie i będziesz mógł kontynuować grę jeśli chcesz."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Uważaj ponieważ twoi przeciwnicy ewoluują razem z tobą. Za każdym razem gdy wejdziesz do edytora oni również ewoluują."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Wiążąc się z innymi komórkami, możesz zbudować kolonię w której komórki dzielą się zasobami które wchłaniają i produkują ze sobą. Żeby związać się z inną komórką, twoja komórka potrzebuje czynnika wiążącego. Po wciśnięciu [thrive:input]g_toggle_binding[/thrive:input] musisz podpłynąć do komórki z którą chcesz się związać. Możesz łączyć się tylko z komórkami twojego gatunku. Będąc w kolonii, nie możesz podzielić swojej komórki i wejść do edytora . Żeby wejść do edytora, uzbieraj wymagane zasoby i opuść kolonię naciskając [thrive:input]g_unbind_all[/thrive:input]. Duże kolonie komórek są drogą do wielokomórkowości."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "W szczególności celulozowe oraz chitynowe ściany komórkowe nie mogą być trawione bez posiadania niezbędnego enzymu który może najpierw je rozbić."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Jednak lizosomy są wyłącznie dla eukariontów, prokarionty nie mają takich organelli więc trawią swoje jedzenie raczej nieefektywnie. Dla małych komórek jest to w porządku, lecz dla większych, brak lizosomów jest bardzo niekorzystny."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Twoja komórka używa [thrive:compound type=\"atp\"][/thrive:compound] jako jej źródła energii, jeśli się ono wyczerpie, umrzesz."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Aby odblokować edytor i się rozmnożyć, musisz zbierać [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound] (pomarańczowe chmury) i [thrive:compound type=\"phosphates\"]Fosforany[/thrive:compound] (fioletowe chmury)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Możesz również pochłaniać komórki, bakterie, odłamki żelaza i kawałki komórek mniejsze od ciebie na drodze fagocytozy naciskając [thrive:input]g_toggle_engulf[/thrive:input]. Będzie to kosztować dodatkowe [thrive:compound type=\"atp\"][/thrive:compound] i cię spowolni. Nie zapomnij nacisnąć [thrive:input]g_toggle_engulf[/thrive:input] drugi raz aby przestać pochłaniać."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulacja kosztuje [thrive:compound type=\"atp\"][/thrive:compound], co oznacza że im większa jest twoja komórka, tym więcej mitochondriów, metabolosomów lub rusticyjaniny (albo cytozolu, który przeprowadza glikolizę) będziesz potrzebować by uniknąć tracenia [thrive:compound type=\"atp\"][/thrive:compound] stojąc w miejscu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "W edytorze jest wiele Organelli które możesz ewoluować, pozwalając na szeroki zakres różnych stylów gry."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Jeśli twoja populacja spadnie do zera, wyginiesz."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Różne chmury związków to:\n"
+#~ "\n"
+#~ "Białe – [thrive:compound type=\"glucose\"]Glukoza[/thrive:compound]\n"
+#~ "Żółte – [thrive:compound type=\"hydrogensulfide\"]Siarkowodór[/thrive:compound]\n"
+#~ "Pomarańczowe – [thrive:compound type=\"ammonia\"]Amoniak[/thrive:compound]\n"
+#~ "Fioletowe – [thrive:compound type=\"phosphates\"]Fosforany[/thrive:compound]\n"
+#~ "Rdzawo-Brązowe – [thrive:compound type=\"iron\"]Żelazo[/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"]Glukoza[/thrive:compound] jest niezbędna do produkcji [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"]Siarkowodór[/thrive:compound] może zostać przetworzony w [thrive:compound type=\"glucose\"]Glukozę[/thrive:compound] przez chemoplasty i białka chemosyntezujące. [thrive:compound type=\"iron\"]Żelazo[/thrive:compound] może zostać utlenione przez rustycyjaninę wydzielając [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Etap Mikroba"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Wielokomórkowy"
+
+#, fuzzy
+#~ msgid "LATE_MULTICELLULAR"
+#~ msgstr "Wielokomórkowe"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Wczytywanie Wczesnego Edytora Wielokomórkowca"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Pączkowanie"
@@ -8044,10 +8462,6 @@ msgstr "Oddal"
 #~ msgstr "Edytor Mikroba"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Etap Mikroba"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Synteza śluzu"
 
@@ -8078,10 +8492,6 @@ msgstr "Oddal"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Etap Mikroba"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Termosynteza"
 
 #, fuzzy
 #~ msgid "NO"
@@ -8533,9 +8943,6 @@ msgstr "Oddal"
 
 #~ msgid "DIOXIDE"
 #~ msgstr "Dwutlenek"
-
-#~ msgid "MULTICELLULAR"
-#~ msgstr "Wielokomórkowe"
 
 #, fuzzy
 #~ msgid "OPEN_DETAILS"

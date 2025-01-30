@@ -27,6 +27,19 @@ public static class PatchMapGenerator
         // Potential starting patches, which must be set by the end of the generating process
         Patch? vents = null;
         Patch? tidepool = null;
+        Patch? banana = null;
+
+        // This random is outside the Easter Eggs toggle to make it not majorly affect the generated map layout
+        float easterEggRoll = (float)random.NextDouble();
+        bool useRarePatch = false;
+
+        if (settings.EasterEggs)
+        {
+            if (easterEggRoll < Constants.PATCH_GENERATION_CHANCE_BANANA_BIOME)
+            {
+                useRarePatch = true;
+            }
+        }
 
         // Create the graph's random regions
         // i is used as region id. They need to start at 0 for the hardcoded triangulation algorithm below to work
@@ -55,8 +68,15 @@ public static class PatchMapGenerator
 
             if (regionType == PatchRegion.RegionType.Continent)
             {
-                // All continents must have at least one coastal patch.
-                NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName);
+                // All continents must have at least one coastal or banana patch.
+                if (useRarePatch && banana == null)
+                {
+                    banana = NewPredefinedPatch(BiomeType.Banana, ++currentPatchId, region, regionName);
+                }
+                else
+                {
+                    NewPredefinedPatch(BiomeType.Coastal, ++currentPatchId, region, regionName);
+                }
 
                 // Ensure the region is non-empty if we need a tidepool.
                 // Region should not have duplicate biomes, so at most 2 patches will be added.
@@ -170,6 +190,7 @@ public static class PatchMapGenerator
         // Fix up initial average sunlight values. Note that in the future if there are things that update the biome
         // available sunlight in a patch, this needs to be done again
         float daytimeMultiplier = DayNightCycle.CalculateDayTimeMultiplier(settings.DaytimeFraction);
+
         foreach (var entry in map.Patches)
         {
             entry.Value.UpdateAverageSunlight(DayNightCycle.CalculateAverageSunlight(daytimeMultiplier, settings));
@@ -364,8 +385,8 @@ public static class PatchMapGenerator
 
         // Base vectors to simplify later calculation
         var topLeftPatchPosition = region.ScreenCoordinates + new Vector2(
-            Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH,
-            Constants.PATCH_AND_REGION_MARGIN + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH);
+            Constants.PATCH_AND_REGION_MARGIN * 2 + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH,
+            Constants.PATCH_AND_REGION_MARGIN * 2 + 0.5f * Constants.PATCH_REGION_BORDER_WIDTH);
         var offsetHorizontal = new Vector2(Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN, 0);
         var offsetVertical = new Vector2(0, Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN);
 
@@ -521,7 +542,7 @@ public static class PatchMapGenerator
     private static void BuildRegionSize(PatchRegion region)
     {
         // Initial size with no patch in it
-        region.Width = region.Height = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN;
+        region.Width = region.Height = Constants.PATCH_REGION_BORDER_WIDTH + Constants.PATCH_AND_REGION_MARGIN * 3;
 
         // Per patch offset
         const float offset = Constants.PATCH_NODE_RECT_LENGTH + Constants.PATCH_AND_REGION_MARGIN;
@@ -544,7 +565,7 @@ public static class PatchMapGenerator
                     region.Width += offset;
                 }
 
-                // Have 2 columns
+                // Have 3 columns
                 if (waterPatchCount > 1)
                     region.Width += offset;
 
@@ -786,6 +807,17 @@ public static class PatchMapGenerator
                     [1] = 3000,
                 },
                 ScreenCoordinates = new Vector2(100, 400),
+            },
+
+            BiomeType.Banana => new Patch(new LocalizedString("EASTER_EGG_BANANA_BIOME"),
+                id, GetBiomeTemplate("banana"), BiomeType.Banana, region)
+            {
+                Depth =
+                {
+                    [0] = 0,
+                    [1] = 200,
+                },
+                ScreenCoordinates = new Vector2(100, 100),
             },
             _ => throw new InvalidOperationException($"{nameof(biome)} is not a valid biome enum value."),
         };

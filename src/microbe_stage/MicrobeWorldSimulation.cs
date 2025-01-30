@@ -61,6 +61,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     [AssignOnlyChildItemsOnDeserialize]
     private FluidCurrentsSystem fluidCurrentsSystem = null!;
 
+    private IrradiationSystem irradiationSystem = null!;
     private MicrobeAISystem microbeAI = null!;
     private MicrobeCollisionSoundSystem microbeCollisionSoundSystem = null!;
     private MicrobeDeathSystem microbeDeathSystem = null!;
@@ -77,6 +78,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private OrganelleTickSystem organelleTickSystem = null!;
     private OsmoregulationAndHealingSystem osmoregulationAndHealingSystem = null!;
     private PilusDamageSystem pilusDamageSystem = null!;
+    private RadiationDamageSystem radiationDamageSystem = null!;
     private SlimeSlowdownSystem slimeSlowdownSystem = null!;
     private MucocystSystem mucocystSystem = null!;
 
@@ -205,6 +207,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         strainSystem = new StrainSystem(EntitySystem, couldParallelize);
         microbeMovementSystem = new MicrobeMovementSystem(PhysicalWorld, EntitySystem, parallelRunner);
 
+        irradiationSystem = new IrradiationSystem(EntitySystem, parallelRunner);
         microbeAI = new MicrobeAISystem(cloudSystem, spawnEnvironment.DaylightInfo, EntitySystem, parallelRunner);
         microbeCollisionSoundSystem = new MicrobeCollisionSoundSystem(EntitySystem, couldParallelize);
         microbeEmissionSystem = new MicrobeEmissionSystem(this, cloudSystem, EntitySystem, couldParallelize);
@@ -220,6 +223,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         organelleTickSystem = new OrganelleTickSystem(this, EntitySystem, parallelRunner);
         osmoregulationAndHealingSystem = new OsmoregulationAndHealingSystem(EntitySystem, couldParallelize);
         pilusDamageSystem = new PilusDamageSystem(EntitySystem, couldParallelize);
+        radiationDamageSystem = new RadiationDamageSystem(EntitySystem, parallelRunner);
         slimeSlowdownSystem = new SlimeSlowdownSystem(cloudSystem, EntitySystem, couldParallelize);
         mucocystSystem = new MucocystSystem(EntitySystem);
         microbePhysicsCreationAndSizeSystem = new MicrobePhysicsCreationAndSizeSystem(EntitySystem, couldParallelize);
@@ -256,7 +260,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         OnInitialized();
 
-        // In case this is loaded from a save ensure the next save has correct ignore entities
+        // In case this is loaded from a save, ensure the next save has correct ignore entities
         entitiesToNotSave.SetExtraIgnoreSource(queuedForDelete);
     }
 
@@ -274,6 +278,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         engulfingSystem.SetWorld(currentGame.GameWorld);
         engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
         microbeAI.SetWorld(currentGame.GameWorld);
+        damageSoundSystem.SetWorld(currentGame.GameWorld);
 
         CloudSystem.Init(fluidCurrentsSystem);
     }
@@ -395,7 +400,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
     protected override void Dispose(bool disposing)
     {
-        // Must disable recording to avoid dispose exceptions from metrics reporting
+        // Must disable recording to avoid disposing exceptions from metrics reporting
         physics.DisablePhysicsTimeRecording = true;
         WaitForStartedPhysicsRun();
 
@@ -403,9 +408,9 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         {
             nonParallelRunner.Dispose();
 
-            // If disposed before Init is called problems will happen without this check. This happens for example if
-            // loading a save made in the editor and quitting the game without exiting the editor first to the microbe
-            // stage.
+            // If disposed before Init is called, problems will happen without this check. This happens, for example,
+            // if loading a save made in the editor and quitting the game without exiting the editor first to the
+            // microbe stage.
             if (animationControlSystem != null!)
             {
                 animationControlSystem.Dispose();
@@ -445,6 +450,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 engulfingSystem.Dispose();
                 entitySignalingSystem.Dispose();
                 fluidCurrentsSystem.Dispose();
+                irradiationSystem.Dispose();
                 microbeAI.Dispose();
                 microbeCollisionSoundSystem.Dispose();
                 microbeDeathSystem.Dispose();
@@ -461,6 +467,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 organelleTickSystem.Dispose();
                 osmoregulationAndHealingSystem.Dispose();
                 pilusDamageSystem.Dispose();
+                radiationDamageSystem.Dispose();
                 slimeSlowdownSystem.Dispose();
                 mucocystSystem.Dispose();
                 microbePhysicsCreationAndSizeSystem.Dispose();

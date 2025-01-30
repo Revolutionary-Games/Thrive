@@ -212,7 +212,7 @@ public static class SpawnHelpers
         // Resolve the final chunk settings as the chunk configuration is a group of potential things
         var selectedMesh = chunkType.Meshes.Random(random);
 
-        // Chunk is spawned with random rotation (in the 2D plane if it's an Easter egg)
+        // Chunk is spawned with random rotation (on the 2D plane if it's an Easter egg)
         var rotationAxis = chunkType.EasterEgg ? new Vector3(0, 1, 0) : new Vector3(0, 1, 1);
 
         var entityCreator = worldSimulation.GetRecorderWorld(commandRecorder);
@@ -261,7 +261,7 @@ public static class SpawnHelpers
         if (!string.IsNullOrEmpty(selectedMesh.SceneAnimationPath))
         {
             // Stop any animations from playing on this organelle when it is dropped as a chunk. Some chunk types do
-            // want to keep playing an animation so there's this extra if
+            // want to keep playing an animation, so there's this extra if
             if (!selectedMesh.PlayAnimation)
             {
                 entity.Set(new AnimationControl
@@ -273,9 +273,11 @@ public static class SpawnHelpers
         }
 
         // Setup compounds to vent
-        bool hasCompounds = false;
+        bool ventCompounds = false;
         if (chunkType.Compounds?.Count > 0)
         {
+            float radioactiveAmount = -1;
+
             // Capacity is 0 to disallow adding any more compounds to the compound bag
             var compounds = new CompoundBag(0);
 
@@ -283,6 +285,11 @@ public static class SpawnHelpers
             {
                 // Directly write compounds to avoid the capacity limit
                 compounds.Compounds.Add(entry.Key, entry.Value.Amount);
+
+                if (entry.Key == Compound.Radiation)
+                {
+                    radioactiveAmount = entry.Value.Amount;
+                }
             }
 
 #if DEBUG
@@ -298,14 +305,42 @@ public static class SpawnHelpers
                 Compounds = compounds,
             });
 
-            hasCompounds = true;
+            ventCompounds = true;
 
-            entity.Set(new CompoundVenter
+            if (radioactiveAmount > 0)
             {
-                VentEachCompoundPerSecond = chunkType.VentAmount,
-                DestroyOnEmpty = chunkType.Dissolves,
-                UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
-            });
+                if (chunkType.VentAmount > 0)
+                    GD.PrintErr("Radioactive compounds shouldn't be vented");
+
+                // Setup as a radiation emitter
+                entity.Set(new RadiationSource
+                {
+                    // Scale from units shown on the compound graphs to one that makes sense in the radiation system
+                    RadiationStrength = radioactiveAmount * Constants.RADIATION_STRENGTH_MULTIPLIER,
+                    Radius = Constants.ROCK_RADIATION_RADIUS,
+                });
+
+                // Need to add a physics sensor so that the rock can detect nearby things to irradiate (other
+                // parameters are handled by IrradiationSystem)
+                entity.Set(new PhysicsSensor
+                {
+                    MaxActiveContacts = Constants.MAX_SIMULTANEOUS_COLLISIONS_RADIATION_SENSOR,
+                });
+
+                // Prevent trying to vent radiation on despawn
+                ventCompounds = false;
+            }
+
+            // If the chunk doesn't vent anything, it doesn't need the venting component
+            if (chunkType.VentAmount > 0)
+            {
+                entity.Set(new CompoundVenter
+                {
+                    VentEachCompoundPerSecond = chunkType.VentAmount,
+                    DestroyOnEmpty = chunkType.Dissolves,
+                    UsesMicrobialDissolveEffect = hasMicrobeShaderParameters,
+                });
+            }
         }
 
         // Chunks that don't dissolve naturally when running out of compounds, are despawned with a timer
@@ -323,9 +358,13 @@ public static class SpawnHelpers
                 DisableCollisions = true,
                 RemoveVelocity = true,
                 DisableParticles = selectedMesh.IsParticles,
-                UsesMicrobialDissolveEffect = true,
-                VentCompounds = hasCompounds,
+                UsesMicrobialDissolveEffect = !selectedMesh.IsParticles,
+                VentCompounds = ventCompounds,
             });
+
+            // Particles should be supported so don't need to trigger this warning
+            if (!hasMicrobeShaderParameters && !selectedMesh.IsParticles)
+                GD.PrintErr("Chunk is non-dissolving but no microbe shader parameters were found for animation");
         }
 
         entity.Set(new Physics
@@ -348,7 +387,7 @@ public static class SpawnHelpers
 
         entity.Set<PhysicsShapeHolder>();
 
-        // See the remarks comment on EntityRadiusInfo
+        // See the remark comment on EntityRadiusInfo
         entity.Set(new EntityRadiusInfo(chunkType.Radius));
 
         entity.Set<CollisionManagement>();
@@ -486,16 +525,16 @@ public static class SpawnHelpers
         ICellDefinition usedCellDefinition;
         MembraneType membraneType;
 
-        EarlyMulticellularSpecies? multicellular = null;
+        MulticellularSpecies? multicellular = null;
 
-        if (species is EarlyMulticellularSpecies earlyMulticellularSpecies)
+        if (species is MulticellularSpecies multicellularSpecies)
         {
-            multicellular = earlyMulticellularSpecies;
+            multicellular = multicellularSpecies;
             CellType resolvedCellType;
 
             if (multicellularData.MulticellularCellType != null)
             {
-                // Non-first cell in an early multicellular colony
+                // Non-first cell in a multicellular colony
                 if (multicellularData.CellBodyPlanIndex == 0)
                 {
                     throw new ArgumentException(
@@ -518,22 +557,22 @@ public static class SpawnHelpers
                     throw new ArgumentException("First Multicellular cell must have body plan index of 0");
                 }
 
-                resolvedCellType = earlyMulticellularSpecies.Cells[0].CellType;
+                resolvedCellType = multicellularSpecies.Cells[0].CellType;
 
                 usedCellDefinition = resolvedCellType;
                 var properties = new CellProperties(usedCellDefinition);
                 membraneType = properties.MembraneType;
                 entity.Set(properties);
 
-                entity.Set(new MulticellularGrowth(earlyMulticellularSpecies));
+                entity.Set(new MulticellularGrowth(multicellularSpecies));
             }
 
 #if DEBUG
-            if (multicellularData.CellBodyPlanIndex >= earlyMulticellularSpecies.Cells.Count)
+            if (multicellularData.CellBodyPlanIndex >= multicellularSpecies.Cells.Count)
                 throw new InvalidOperationException("Bad body plan index was generated for a cell");
 #endif
 
-            entity.Set(new EarlyMulticellularSpeciesMember(earlyMulticellularSpecies, resolvedCellType,
+            entity.Set(new MulticellularSpeciesMember(multicellularSpecies, resolvedCellType,
                 multicellularData.CellBodyPlanIndex));
         }
         else if (species is MicrobeSpecies microbeSpecies)
@@ -825,11 +864,11 @@ public static class SpawnHelpers
         clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
     }
 
-    public static MulticellularCreature SpawnCreature(Species species, Vector3 location,
+    public static MacroscopicCreature SpawnCreature(Species species, Vector3 location,
         Node worldRoot, PackedScene multicellularScene, bool aiControlled, ISpawnSystem spawnSystem,
         GameProperties currentGame)
     {
-        var creature = multicellularScene.Instantiate<MulticellularCreature>();
+        var creature = multicellularScene.Instantiate<MacroscopicCreature>();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
@@ -855,7 +894,7 @@ public static class SpawnHelpers
 
     public static PackedScene LoadMulticellularScene()
     {
-        return GD.Load<PackedScene>("res://src/late_multicellular_stage/MulticellularCreature.tscn");
+        return GD.Load<PackedScene>("res://src/macroscopic_stage/MacroscopicCreature.tscn");
     }
 
     public static ResourceEntity SpawnResourceEntity(WorldResource resourceType, Transform3D location, Node worldNode,

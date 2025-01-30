@@ -18,7 +18,7 @@ public class SocietyCenterComponent : StructureComponent
             return false;
 
         // TODO: a cleaner way to do this
-        var stage = owningStructure.FirstAncestorOfType<MulticellularStage>();
+        var stage = owningStructure.FirstAncestorOfType<MacroscopicStage>();
 
         if (stage == null)
         {

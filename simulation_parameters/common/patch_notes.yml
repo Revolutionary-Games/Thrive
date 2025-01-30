@@ -643,3 +643,84 @@
     - Improved our wiki content updating script
     - Updated wiki text content
     - Updated translations
+
+0.8.0:
+  IntroductionText: |
+    This release focused on completing the last 0.7.x roadmap items, most of which were related to the microbe editor. This release has new editor features like a way to control organelle split order and an organelle suggestion. Also a lot of tooltips and other displays in the editor were improved and fixed. Besides the editor there are a lot of microbe stage improvements, the most visible being redone microbe organelle and membrane graphics as well as improvements to the dynamic compounds system.
+  ReleaseLink: https://github.com/Revolutionary-Games/Thrive/releases/tag/v0.8.0
+  PatchNotes:
+    - Added an organelle suggestion that is shown in the editor which gives info on what auto-evo would like the player to add
+    - Added a new tab in the editor to control organelle split order for more fine tuned control over ATP during reproduction
+    - Reintroduced Mac builds of Thrive. Thrive is again playable on macOS but this is not official full support yet.
+    - "Balancing changes to microbe storage: most organelles now give much less storage to make storage an actual gameplay mechanic that needs planning"
+    - Created new membrane textures that help make the 3D membranes of different types more easily distinguishable (as the change to 3D membranes made all the membranes look very similar)
+    - Reworked all organelle 3D models
+    - Added sulfur chunks
+    - Added a bloom strength slider and enabled it by default
+    - Added an underwater vent eruption event that creates extra hydrogen sulfide and carbon dioxide in the patch
+    - Added a miche viewer to the patch map tab
+    - Improved gas update logic to make sure gases don't add up to over 100%
+    - Made compounds move much more freely between patches
+    - Made nitrogen dynamic
+    - Added hydrogen sulfide compound consumption by species
+    - Added iron chunks being oxidised by oxygen making them less common once oxygen starts spreading through the world
+    - Removed experimental compound production mode as it was too unbalanced and didn't get any work done on it since the last release
+    - Improved the microbe AI in terms of when it uses sprinting
+    - Mucocyst can now be used by the AI to defend itself
+    - Added difficulty options for what to do with stored compounds after reproducing
+    - Added disk caching for generated species images. This makes displaying species images a lot faster after restarting the game and loading a save. By default the cache aims to use at most 1 GB of disk space.
+    - Reduced unlock requirements of gas-dependent organelles
+    - Reduced base endosymbiosis time costs by one
+    - Lowered hydrogenase ATP output by 10%
+    - Made slight balancing tweaks to photosynthesis glucose production and glucose use of a few ATP-generating organelles
+    - Renamed Nitrogen-Fixing Plastid to Nitroplast
+    - Made glucose reduction text only apply to discovered patches to make the percentages higher to make it look like a more important message
+    - Added a warning tooltip for the speed stat in the editor about how it is not fully accurate
+    - Added an icon for the mucocyst upgrade
+    - Reworked the experimental siderophore feature action icon
+    - Made engulfing info be last in the membrane tooltips like it was previously (before tooltip refactoring broke it)
+    - Added a new and more visible cell membrane animation
+    - Increased visibility of engulf wave effect slightly
+    - Added bigger warning when enabling experimental features mode
+    - Added tooltips for chemoreceptor upgrade GUI amount and distance sliders
+    - Updated nitrogen icon to not have glow anymore to be more consistent with other compound icons
+    - Tweaked some GUI element alignments to be more similar to what they were before we upgraded to Godot 4
+    - Added a tip in the unlock tooltip that endosymbiosis is an alternative unlock method
+    - Fixed process toggle buttons not always matching the underlying process states and fixed processes re-enabling by themselves when organelles reproduced
+    - Fixed hex popup menu being able to operate on deleted hexes which could be exploited for infinite MP. Also fix a related bug in the prototype editors.
+    - Fixed not all patches showing up in the editor report patch selector dropdown
+    - Fixed a bug in the volcanism effect that caused it to add way more CO2 than originally intended
+    - Fixed non-LAWK unlocks showing after loading a save
+    - Fixed aspect ratio of sunlight icon in daytime selection bar
+    - Fixed chemical equation arrow to be vertically centered
+    - Fixed a bug where compound diffusion between patches could move too much compound
+    - Fixed auto-evo migration usefulness calculations using the wrong miche tree
+    - Fixed organelle scale-affecting upgrades not applying while moving that organelle to a new location
+    - Fixed bug with osmoregulation cost being shown on upgrade tooltips
+    - Fixed osmoregulation showing in rigidity slider tooltip
+    - Fixed lag when zooming out a draggable container while it is still displaying its initial animation
+    - Fixed the timeline incorrectly claiming some species to be extinct
+    - Fixed moved cell in body plan editor being invisible if no cell type to place was selected
+    - Fixed a missing wordwrap on a label in the mod manager
+    - Fixed multiple bugs in our species visual hashing algorithm that made memory caching also less efficient
+    - Fixed extinct species not having previews in auto-evo exploring tool
+    - Made auto-evo exploring tool show patch events, note that historical view for events doesn't work yet
+    - Disabled temperature miche being generated when in LAWK mode (no species could occupy it but for clarity it is entirely disabled now)
+    - Added two new multicellular loading screen artworks
+    - Tweaked PhotoStudio image capture distance math
+    - Made organelle tooltips not constantly try to refresh their displayed chemical equations
+    - Added an energy icon for the later stage prototypes
+    - Linked late multicellular prototype jump force to mass to make jumping speed more consistent
+    - Added proper content for the Thriveopedia page of ferroplast
+    - Added code for UV unwrapping of macroscopic creatures, but there's no textures yet so the code isn't enabled
+    - Native lib install tool now prints full paths to try to reduce potential confusion
+    - Started backend work on allowing more kinds of unit tests for Thrive using gdUnit4
+    - Added workaround in the C# interop code to work with newer native library compiles
+    - Added a few explicit garbage collector calls when the game is loading to hopefully reduce chance that it runs during gameplay
+    - Updated to .NET 9
+    - Updated YamlDotNet from 16.1.3 to 16.2.1
+    - Updated System.Numerics.Vectors from 4.5.0 to 4.6.0
+    - Updated automatic code checking tools
+    - Improved a few aspects of our CMake files
+    - "Steam: Fixed workshop upload dialog not showing all error conditions"
+    - Updated translations

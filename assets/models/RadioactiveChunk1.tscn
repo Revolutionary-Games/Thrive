@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://oq2aawq8xamx"]
+
+[ext_resource type="Shader" path="res://shaders/IronChunk.gdshader" id="1_v5a2o"]
+[ext_resource type="Texture2D" uid="uid://chqec76b7yinx" path="res://assets/textures/RadioactiveChunk1_normal.png" id="2_bg0yx"]
+[ext_resource type="Texture2D" uid="uid://baxuoyeo83r2u" path="res://assets/textures/dissolve_noise.tres" id="3_2gpaa"]
+[ext_resource type="Texture2D" uid="uid://cc0fmdpdq5sob" path="res://assets/textures/RadioactiveChunk1.png" id="4_14ku5"]
+[ext_resource type="ArrayMesh" uid="uid://ifcb1d7sv4x0" path="res://assets/models/RadioactiveChunk1.mesh" id="6_pkbv3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rmgh8"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_v5a2o")
+shader_parameter/roughness = 0.85
+shader_parameter/metallicTextureChannel = Vector4(0, 0, 1, 0)
+shader_parameter/depletion = 0.0
+shader_parameter/dissolveValue = 0.0
+shader_parameter/outlineWidth = 0.1
+shader_parameter/growColor = Color(0, 0, 0, 1)
+shader_parameter/fullTexture = ExtResource("4_14ku5")
+shader_parameter/depletedTexture = ExtResource("4_14ku5")
+shader_parameter/normalTexture = ExtResource("2_bg0yx")
+shader_parameter/dissolveTexture = ExtResource("3_2gpaa")
+
+[node name="RadioactiveChunk" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_rmgh8")
+mesh = ExtResource("6_pkbv3")

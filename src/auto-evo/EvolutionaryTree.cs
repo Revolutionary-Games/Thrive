@@ -71,6 +71,11 @@ public partial class EvolutionaryTree : Control
     private static readonly Vector2 DrawMargin = new(DRAW_MARGIN, DRAW_MARGIN);
 
     /// <summary>
+    ///   Additional padding to ensure some part of the tree remains on the screen
+    /// </summary>
+    private static readonly Vector2 TreePadding = new(GENERATION_SEPARATION, SPECIES_SEPARATION);
+
+    /// <summary>
     ///   Stores the created nodes for species by the species ids
     /// </summary>
     /// <remarks>
@@ -155,8 +160,7 @@ public partial class EvolutionaryTree : Control
 
     public IReadOnlyDictionary<uint, (uint ParentSpeciesId, int SplitGeneration)> SpeciesOrigin => speciesOrigin;
 
-    private Vector2 TreeSize =>
-        new(latestGeneration * GENERATION_SEPARATION + 200, maxSpeciesId * SPECIES_SEPARATION + 100);
+    private Vector2 TreeSize => new(latestGeneration * GENERATION_SEPARATION, maxSpeciesId * SPECIES_SEPARATION);
 
     public override void _Ready()
     {
@@ -389,8 +393,11 @@ public partial class EvolutionaryTree : Control
         int increment = (int)Math.Ceiling(1 / sizeFactor);
 
         // Draw time marks
-        int firstDrawnGeneration =
-            (int)Math.Ceiling((-dragOffset.X - TreeNodeSize.X / 2) / GENERATION_SEPARATION / increment) * increment;
+        int firstVisibleGeneration =
+            (int)Math.Ceiling((-dragOffset.X - TreeNodeSize.X / 2) / GENERATION_SEPARATION / increment);
+
+        // Don't draw lines past the first generation
+        int firstDrawnGeneration = Math.Max(0, firstVisibleGeneration) * increment;
 
         int lastDrawnGeneration =
             Math.Min((int)Math.Floor((Size.X / sizeFactor - dragOffset.X - TreeNodeSize.X / 2) /
@@ -469,19 +476,10 @@ public partial class EvolutionaryTree : Control
 
     private void BindOffsetToTreeSize()
     {
-        // TreeSize may be less than RectSize, so the later Min and Max is not merged into Clamp.
-        // Note that dragOffset's x and y should both be negative.
-        var start = tree.Size / sizeFactor - TreeSize;
-
-        float x = dragOffset.X;
-        x = Math.Max(x, start.X);
-        x = Math.Min(x, 0);
-
-        float y = dragOffset.Y;
-        y = Math.Max(y, start.Y);
-        y = Math.Min(y, 0);
-
-        dragOffset = new Vector2(x, y);
+        // The drag offset should go past the edge of the tree to allow zooming around the cursor:
+        // https://github.com/Revolutionary-Games/Thrive/issues/3716
+        // However some part of the tree should remain visible as determined by TREE_PADDING.
+        dragOffset = dragOffset.Max(-TreeSize + TreePadding).Min(tree.Size / sizeFactor - TreePadding);
     }
 
     /// <summary>

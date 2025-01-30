@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
-"PO-Revision-Date: 2024-10-21 20:20+0000\n"
-"Last-Translator: Pascal Smit <smitpascal@gmail.com>\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Dutch <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -143,6 +143,7 @@ msgstr "(sta toe om het spel met een andere soort na uitsterving door te gaan in
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generieke Statistieken voor Alle Werelden"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generaties:[/b]\n"
@@ -317,6 +318,14 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% klaar. {1:n0}/{2:n0} stappen."
 
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Multiplier voor mutatiekost"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(kost van organellen, membranen en andere items in de editor)"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Sla automatisch op tijdens het spelen"
 
@@ -367,6 +376,9 @@ msgstr "Bewustzijnsfase"
 
 msgid "BACK"
 msgstr "Terug"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "Backslash"
@@ -611,6 +623,10 @@ msgstr "Cellulose"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Dit membraan heeft een celwand, waardoor het beter beschermd is tegen schade en specifiek tegen fysieke schade. Het kost ook minder energie om zijn vorm te houden, maar kan grondstoffen minder snel absorberen. [b]Cellulase kan deze celwand verteren[/b] waardoor het vatbaar is voor verzwelging door roofdieren."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "De waarde die gebruikt wordt om de wereld te genereren; moet een natuurlijk getal zijn"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1346,6 +1362,7 @@ msgstr "Huidige onderzoek: {0}({1})"
 msgid "CURRENT_WORLD"
 msgstr "Huidige Wereld"
 
+#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]Generaties:[/b]\n"
@@ -1386,6 +1403,10 @@ msgstr "Zet [thrive:compound type=\"glucose\"][/thrive:compound] om in [thrive:c
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "OxyToxy-synthse"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(kost van organellen, membranen en andere items in de editor)"
 
 msgid "DAY_LENGTH"
 msgstr "Daglengte"
@@ -1690,9 +1711,6 @@ msgstr "Dump SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "Dupliceer type"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "Meercellig"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "Wist je dat de Didinium en Paramecium voorbeelden zijn van een roofdier-prooi relatie die is gestudeerd voor tientallen jaren? Ben jij nu een nakomeling van het roofdier of de prooi?"
 
@@ -1723,35 +1741,8 @@ msgstr "Wist je dat er meer dan 8000 soorten ciliaat op Aarde zijn?"
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "Wist je dat: Stentors zijn wimperdieren die zich uit te strekken en met een trompetachtige mond prooien vangen. Dit doen ze door waterstromingen te maken met hun trilharen en daarmee de prooi naar binnen zuigen."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren jaagt."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Een tip: toxine kan worden gebruikt om andere toxinen af te stoten als je snel genoeg bent."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van cytoplasma, genaamd pseudopodia of schijnvoetjes. Ooit willen we ze deze in Thrive."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Een tip, kijk uit voor grotere cellen en bacterien, want het is niet fijn om verteerd te worden, ze zullen je eten."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in de game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de grote ijzerklompen verzwelgen."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor het logisch is dat de meeste wezens die je vind verwant zijn aan één of twee andere soorten die zich door evolutie hebben aangepast, kijk of je ze kan herkennen!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "Weetje, het team van Thrive doer regelmatic podcasts, luister ze!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Tip: osmoreglatie kost 1 ATP per seconde per hex die je cel heeft. Elke lege hex aan cytoplasma genereert ook 5 ATP per seconde, wat betekent dat als je ATP verliest door osmoregulatie je gewoon wat lege hexes aan cytoplasma moet toevoegen of wat organellen moet verwijderen."
@@ -1778,6 +1769,10 @@ msgid "EASTER_EGGS"
 msgstr "Voeg Paaseieren toe"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(willekeurig geplaatste geheimen in het spel)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(willekeurig geplaatste geheimen in het spel)"
 
 msgid "EDGE_PAN_SPEED"
@@ -2303,6 +2298,10 @@ msgstr "Volledige Mod Info"
 msgid "GALLERY_VIEWER"
 msgstr "Gallerij Venster"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Spel Ontwikkel Team"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Spel Ontwikkel Team"
 
@@ -2316,6 +2315,34 @@ msgstr "Bezoek onze Patreonpagina"
 
 msgid "GENERAL"
 msgstr "Algemeen"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
 msgid "GENERATIONS"
 msgstr "Generatie"
@@ -2891,9 +2918,6 @@ msgstr "Deze vertaling is nog niet compleet ({0}% klaar) help ons hier alstublie
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "Kan laatste organel niet verwijderen"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "Late Meercellige"
-
 msgid "LAUNCH0"
 msgstr "Lanceren 0"
 
@@ -3102,20 +3126,18 @@ msgstr "Laden"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Laden..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Vroege Multicellulaire bewerker laden"
-
 msgid "LOADING_GAME"
 msgstr "Spel Wordt Geladen"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "Microbe-editor Laden"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Microbe-editor Laden"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Multicellulaire Bewerker Laden"
-
-msgid "LOADING_TIP"
-msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
 
 msgid "LOAD_FINISHED"
 msgstr "Laden afgerond"
@@ -3179,6 +3201,14 @@ msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke 
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Slijmsynthese"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Wordt Macrosopisch ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Microbieel Stage"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "Stel Handmatig Tijd In"
 
@@ -3236,8 +3266,24 @@ msgstr "Media Opnemen"
 msgid "MEDIASTOP"
 msgstr "Media Stoppen"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Klein stuk ijzer"
+
 msgid "MEGA_YEARS"
 msgstr "Mjr"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolosomen"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
 
 msgid "MEMBRANE"
 msgstr "Membraan"
@@ -3363,79 +3409,102 @@ msgstr "Microbe Prestatietest"
 msgid "MICROBE_EDITOR"
 msgstr "Microbe Bewerker"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Prokaryotische Structuren\n"
-"\n"
-"Cytoplasma: Heeft opslagcapaciteit en voert glycolyse uit (produceert kleine hoeveelheiden [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Thylakoïden: Produceert, in vergelijking met een normaal chloroplast, 1/3e van de hoeveelheid [thrive:compound type=\"glucose\"][/thrive:compound], maar voert ook glycolyse uit. Neemt 1 Hex in beslag.\n"
-"\n"
-"Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolyse uit. Neemt 1 Hex in beslag\n"
-"\n"
-"Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"Oxytoxisoom: Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Thermosynthase: Gebruikt temperatuurverschillen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Zodra verzwelgen klaar is, zullen alle objecten die verzwolgen zijn in het membraan blijven tot ze zijn verteerd. Onverteerbare objecten zullen altijd uitgestoten worden, dus zorg dat je de noodzakelijke mutaties hebt die het mogelijk maken deze objecten te verteren. Enzymen zullen met de vertering helpen en worden door het lysosoom gemaakt. Evolueer dit organel om spijsvertering veel efficiënter te maken."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Externe Organellen\n"
-"\n"
-"Flagel: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/thrive:compound] te verbruiken\n"
-"\n"
-"Pilus: Kan worden gebruikt om andere cellen te steken of te verdedigen tegen hun gifstoffen\n"
-"\n"
-"Chemoreceptor: Maakt het mogelijk om stoffen van verder af te detecteren\n"
-"\n"
-"Slijmstraal: Maakt het mogelijk om [thrive:compound type=\"mucilage\"][/thrive:compound] (gemaakt van [thrive:compound type=\"glucose\"][/thrive:compound]) uit te stoten om je cel sneller te laten bewegen.\n"
-"\n"
-"Cilia: Verhoogt de draaisnelheid van cellen"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Membraangebonden Organellen\n"
-"\n"
-"Nucleus: Neemt 11 hexen in beslag en maakt het evolueren van andere membraangebonden organellen mogelijk. Verdubbelt het formaat van je cel maar vermindert de schade die je krijgt met 50% (kan maar één keer geëvolueerd worden)\n"
-"\n"
-"Bindingsmiddel: Geeft de mogelijkheid om te binden met andere cellen. Nodig om door te gaan naar de meercellige fase.\n"
-"\n"
-"Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische O2. Dit is veel efficiënter dan glycolyse door cytoplasma\n"
-"\n"
-"Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit zonlicht en atmosferische CO2\n"
-"\n"
-"Thermoplast: Gebruikt temperatuurverschillen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren\n"
-"\n"
-"Lysosoom: Bevat spijsverteringsenzymen. Deze enzymen versnellen en verhogen de efficiëntie van spijsvertering\n"
-"\n"
-"Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Stikstofbindende plastide: Maakt [thrive:compound type=\"ammonia\"][/thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], atmosferische stikstof, en zuurstof\n"
-"\n"
-"Vacuole: Slaat 8 verzamelde chemicaliën op\n"
-"\n"
-"Gifstoffenvacuolen: Produceert gifstoffen ( [thrive:compound type=\"oxytoxy\"][/thrive:compound] genoemd) en maakt het mogelijk om deze uit te spuwen en op basis van de hoeveelheid aanwezige [thrive:compound type=\"oxytoxy\"][/thrive:compound] schade aan te doen.\n"
-"\n"
-"Signaalgever: Maakt het mogelijk om chemicaliën te gebruiken waar andere cellen op kunnen reageren"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en verwijderen van organellen kost MP, maar het terug draaien van veranderingen kost niks als deze verandering in de huidige mutatie sessie plaats hebben gevonden. Je kan een organel verplaatsen of verwijderen met rechtsklik. Je kan organellen ook draaien met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Elke keer dat je jezelf voortplant zal de Microbenbewerker worden geopend. Hier kun je aanpassingen aan je soort maken (door organellen toe te voegen, te verwijderen, of aan te passen) waarmee je je soort succesvol kan maken. Elk bezoek aan de bewerker in de Microbenfase komt neer op [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar evolutie."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Microbe vrij bouwen bewerker"
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Klik de ongedaan maken knop in de bewerker om een fout te corrigeren"
+
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}: Gevonden in {1} soorten, gemiddeld {2} per soort"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3498,60 +3567,6 @@ msgstr ""
 "Je cel sterft als het geen gezondheid meer heeft.\n"
 "Je cel repareert zichzelf als er ATP beschikbaar is.\n"
 "Zorg er voor dat je genoeg glucose verzamelt om ATP te produceren."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Om jezelf voort te planten moet je al je organellen in tweeën delen. Organellen hebben ammoniak, fosfaten en tijd nodig om in tweeën te splitsen."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Maar als je voor twintig generaties met 300 populatie overleeft, win je deze versie van het spel. Nadat je hebt gewonnen kan je nog verder spelen als je dat wilt."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je in de editor komt, evolueren zij zich ook."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Het bindmiddel maakt het mogelijk voor je cel om samen met andere cellen een celkolonie te vormen. In een celkolonie worden stoffen met elkaar gedeeld en geproduceerd. Je kunt de bindingsmodus starten door op [thrive:input]g_toggle_binding[/thrive:input] te drukken. Terwijl je cel zich in een kolonie bevindt, kan je cel zich niet delen en kun je de bewerker niet openen. Om de bewerker te openen, moet je de benodigde stoffen verzamelen en de kolonie verlaten door op [thrive:input]g_unbind_all[/thrive:input] te drukken. Grote celkoloniën zijn de weg naar meercelligheid."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Met name celwanden van cellulose en chitine kunnen niet verteerd worden zonder het benodigde enzym."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "Lysozoom is echter alleen beschikbaar voor eukaryoten. Prokaryoten hebben zulke organellen niet en verteren voedsel dus nogal slecht. Voor kleinere cellen is dat geen probleem, maar voor grotere cellen is het niet hebben van lysozomen een enorm nadeel."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als energiebron, als het opraakt ga je dood."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Om de editor te ontgrendelen en voort te planten moet je lang genoeg overleven. Door [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type=\"fosfaten\"][/thrive:compound] (Paarse Wolk) te verzamelen versnel je de groei."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou verzwelgen door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt je langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/thrive:input] te drukken om te stoppen."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. Dat betekent dat hoe groter je cel is, hoe meer mitochondriën, metabolosomen of rusticyanine (of cytoplasma, dat aan glycolyse doet) je nodig hebt om te voorkomen dat je [thrive:compound type=\"atp\"][/thrive:compound] verliest als je stilstaat."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "Er zijn veel organellen in de editor om te evolueren, wat voor een brede selectie aan speelwijzen zorgt."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"De verschillende stofwolken zijn:\n"
-"\n"
-"Wit - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Geel - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Oranje - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Paars - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Roestbruin - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"][/thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3915,11 +3930,19 @@ msgstr "Slijmsynthese"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Bezoek onze Patreonpagina"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Late Meercellige"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Meercellige Bewerker"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Meercellige Bewerker"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Meercellige Bewerker"
 
 msgid "MULTICELLULAR_STAGE"
@@ -4092,6 +4115,10 @@ msgstr ""
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Basisbeweging"
+
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "Klaar om bewerker te openen"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Klaar om bewerker te openen"
@@ -4276,6 +4303,10 @@ msgstr "Axon"
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Axonen zijn zenuwvezel die neuronen gebruiken om met elkaar te verbinden en communiceren. Het plaatsen van dit organel verandert het celtype naar breinweefsel."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Multicellulair"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "Multicellulair"
@@ -4678,6 +4709,18 @@ msgstr ""
 "Weet je zeker dat je het spel wil verlaten?\n"
 "Je zult voortgang die niet is opgeslagen verliezen."
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "aërobe ademhaling"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Groot Brokstuk Fosfaat"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Thermosynthese"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Maak willekeurige soortnaam"
 
@@ -4736,6 +4779,10 @@ msgstr "Reproductiemethode:"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(krijg passief reproductieve stoffen van de omgeving zonder iets te hoeven doen)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reproductiemethode:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproductiemethode:"
@@ -5116,6 +5163,12 @@ msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdra
 msgid "SHOW_HELP"
 msgstr "Open hulp"
 
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+"Coordinaten positie: {0}\n"
+"Kijkend naar coordinaten: {1}"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "Toon nieuwe patchnotities automatisch"
 
@@ -5201,6 +5254,10 @@ msgstr "Klein stuk ijzer"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Klein stuk ijzer"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Klein stuk ijzer"
 
 msgid "SNOWFLAKE"
@@ -5913,18 +5970,6 @@ msgstr "Maak een screenshot!"
 msgid "TUTORIAL"
 msgstr "Instructie"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"Welkom bij de Vroege Meercellige Fase!\n"
-"\n"
-"Het is je gelukt om je soort door de eencellige fase te leiden.\n"
-"\n"
-"Het spel volgt dezelfde kernmechanieken als de Microbenfase. Je moet nog steeds je organisme laten groeien en reproduceren om de bewerker te openen.\n"
-"\n"
-"Echter, je kunt nu in de bewerker vorm geven aan een celkolonie. Je kunt verschillende cellen specializeren in verschillende rollen. Houdt er rekening mee dat leden van koloniën geen [thrive:compound type=\"atp\"][/thrive:compound] kunnen delen.\n"
-"\n"
-"Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
-
 #, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
@@ -6104,6 +6149,19 @@ msgstr ""
 "\n"
 "Om de kolonie geheel te verlaten klik je op je eigen cel of druk je de knop [thrive:input]g_unbind_all[/thrive:input] in."
 
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"Welkom bij de Vroege Meercellige Fase!\n"
+"\n"
+"Het is je gelukt om je soort door de eencellige fase te leiden.\n"
+"\n"
+"Het spel volgt dezelfde kernmechanieken als de Microbenfase. Je moet nog steeds je organisme laten groeien en reproduceren om de bewerker te openen.\n"
+"\n"
+"Echter, je kunt nu in de bewerker vorm geven aan een celkolonie. Je kunt verschillende cellen specializeren in verschillende rollen. Houdt er rekening mee dat leden van koloniën geen [thrive:compound type=\"atp\"][/thrive:compound] kunnen delen.\n"
+"\n"
+"Als je als reproductie de knopvorming gebruikt (dit is de standaardmethode), dan start je met een kleine cel en moet je de rest van je vormgegeven celkolonie uitgroeien."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Bekijk Nu"
 
@@ -6231,6 +6289,14 @@ msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Verteringssnelheid:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Verteringssnelheid:"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -6455,9 +6521,6 @@ msgstr "Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -6897,6 +6960,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produceert [thrive:compound type=\"atp\"][/thrive:compound] aan de hand van temperatuurverschillen. Snelheid schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Stikstofbindende plastide"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Het thermoplast is een structuur met dubbele membraan waar hittegevoelige pigmenten samen gepakt zitten in een vliezige zakjes. Het is een prokaryoot die door een eukaryoot is geassimileerd voor zijn eigen nut. De pigmenten in het thermoplast kunnen de energie van temperatuurverschillen in de omgeving gebruiken om [thrive:compound type=\"atp\"][/thrive:compound] van water te maken in een proces genaamd [b]thermosynthese[/b]. De snelheid van de productie van [thrive:compound type=\"atp\"][/thrive:compound] schaalt met de [thrive:compound type=\"temperature\"][/thrive:compound]."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "Het flagel (meervoud: flagellen) is een zweepachtige bundel van eiwitdraadjes die uit het celmembraan komen. Een flagel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] om te golven en de cel een richting in te duwen. De positie van het flagel bepaalt de richting waar het de cel heen duwt. De richting van de beweging is tegenover de richting waar het flagel heen wijst. Als de flagel bijvoorbeeld aan de linkerkant van de cel wordt geplaatst, dan duwt het de cel richting rechts."
 
@@ -6933,7 +7028,15 @@ msgid "WIKI_HEADING_APPENDICES"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
 #, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
 #, fuzzy
@@ -6975,15 +7078,31 @@ msgstr "Gedeelde Bewerken en Strategiefasen"
 msgid "WIKI_HEADING_GDD"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "Gedeelde Bewerken en Strategiefasen"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7037,6 +7156,36 @@ msgid "WIKI_HEADING_UI"
 msgstr "Gedeelde Bewerken en Strategiefasen"
 
 msgid "WIKI_HEADING_UPGRADES"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "De gel-achtige binnenkant van een cel. Het cytoplasma is een mengsel van ionen, eiwitten, en andere stoffen die opgelost zijn in water. Dit cytoplasma vormt de binnenkant van de cel. Een van de functies die het vervult is [b]glycolyse[/b], de omzetting van [thrive:compound type=\"glucose\"][/thrive:compound] naar [thrive:compound type=\"atp\"][/thrive:compound]. Cellen die geen organellen met meer geavanceerde metabolische processen hebben, gebruiken dit als bron van energie. Het wordt ook gebruikt om moleculen in de cel te bewaren en het formaat van de cel te vergroten."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Mitochondrion"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "Gedeelde Bewerken en Strategiefasen"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
 
 #, fuzzy
@@ -7126,12 +7275,79 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Meercellige Stage"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Sta het binden met andere cellen toe. Dit is de eerste stap op weg naar multicellulariteit. Wanneer je cel onderdeel is van een kolonie worden stoffen tussen cellen gedeeld. Je kunt de bewerker niet openen terwijl je cel onderdeel is van een kolonie. Als je je cel wil aanpassen moet je dus de verbinding met andere cellen verbreken zodra je genoeg stoffen hebt om je cel te delen."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Slijmstraal"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Op een verre planeet hebben eonen van vulkaanactiviteit en meteoorinslagen tot de ontwikkeling van een nieuw fenomeen in het universum geleid.\n"
+"\n"
+"Leven.\n"
+"\n"
+"Simpele microben leven in de diepte van de oceaan. Jij bent de Meest Recente Universele Voorouder op deze planeet.\n"
+"\n"
+"Om in deze vijandige wereld te overleven zul je elke stof de je kunt vinden moeten verzamelen om generaties lang te kunnen evolueren in competitie met andere soorten microben."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Ruimtefase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Stikstofase"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Ruimtefase"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Plaats organellen"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Axon"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Het lysosoom is een organel wat aan een membraan is gebonden en bevat hydrolytische enzymen die diverse biomoleculen kunnen afbreken. Lysosomen maken het mogelijk voor de cel om opgeslokte materie af te breken door middel van endocytose. Ook kan het afvalstoffen in de cel opruimen door middel van [b]autofagie[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Bevat spijsverteringsenzymen. Het type enzym kan worden aangepast. Elke lysosoom kan maar een enzym tegelijk gebruiken. Enzymen zorgen voor een snellere en efficiëntere spijsvertering."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Metabolosomen zijn groepen van eiwitten die in een eiwitschelp zijn gewikkeld. Ze maken het mogelijk om met een veel hogere snelheid [thrive:compound type=\"glucose\"][/thrive:compound] om te zetten in [thrive:compound type=\"atp\"][/thrive:compound] dan cytoplasma dit kan doen. Ze gebruiken hierbij een proces genaamd [b]Aerobe Dissimilatie[/b]. Het heeft echter wel [thrive:compound type=\"oxygen\"][/thrive:compound] nodig om zijn werk te kunnen doen. Lagere hoeveelheden van [thrive:compound type=\"oxygen\"][/thrive:compound] in de omgeving zullen ook zorgen voor een tragere productie van [thrive:compound type=\"atp\"][/thrive:compound]. Aangezien metabolosomen direct in het cytoplasma hangen, voert de vloeistof er om heen ook enige [b]glycolyse[/b] uit."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7516,8 +7732,16 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitochondrion"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Thermoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagellum"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Mitochondrion"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -7532,8 +7756,16 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lysozoom"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Stikstofase"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Plaats organellen"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lysozoom"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
@@ -7697,6 +7929,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Gedeelde Bewerken en Strategiefasen"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Thermosynthese"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8125,6 +8361,166 @@ msgstr "Inzoomen"
 msgid "ZOOM_OUT"
 msgstr "Uitzoomen"
 
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "Wist je dat: Didinium is een trilhaardiertje die op pantoffeldieren jaagt."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "Wist je dat: Amoeben jagen en vangen hun prooi met 'benen' van cytoplasma, genaamd pseudopodia of schijnvoetjes. Ooit willen we ze deze in Thrive."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Een tip, kijk uit voor grotere cellen en bacterien, want het is niet fijn om verteerd te worden, ze zullen je eten."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Het geluidsteam van Thrive heeft veel nummers gemaakt die nog niet in de game zitten. Je kan ze luisteren op het Youtube-kanaal Oliver Lugg."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Wist je dat: Als je cel 150 zeshoeken/velden groot is, dan kan je de grote ijzerklompen verzwelgen."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive is bedoelt als een simulatie van een buitenaardse planeet, waardoor het logisch is dat de meeste wezens die je vind verwant zijn aan één of twee andere soorten die zich door evolutie hebben aangepast, kijk of je ze kan herkennen!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "Weetje, het team van Thrive doer regelmatic podcasts, luister ze!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "Weetje, Thrive is gemaakt met de open-source Godot engine!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "Weetje, de eerste speelbare prototypes waren gemaakt door untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Prokaryotische Structuren\n"
+#~ "\n"
+#~ "Cytoplasma: Heeft opslagcapaciteit en voert glycolyse uit (produceert kleine hoeveelheiden [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomen: Produceren [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Thylakoïden: Produceert, in vergelijking met een normaal chloroplast, 1/3e van de hoeveelheid [thrive:compound type=\"glucose\"][/thrive:compound], maar voert ook glycolyse uit. Neemt 1 Hex in beslag.\n"
+#~ "\n"
+#~ "Chemosynthese-eiwitten: Produceert half keer zoveel [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] als een chemoplast, maar voert ook glycolyse uit. Neemt 1 Hex in beslag\n"
+#~ "\n"
+#~ "Rusticyanine: Zet [thrive:compound type=\"iron\"][/thrive:compound] om in [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenase: Zet atmosferische stikstof en [thrive:compound type=\"atp\"][/thrive:compound] anaeroob om in [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Oxytoxisoom: Zet [thrive:compound type=\"atp\"][/thrive:compound] om in [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Thermosynthase: Gebruikt temperatuurverschillen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Zodra verzwelgen klaar is, zullen alle objecten die verzwolgen zijn in het membraan blijven tot ze zijn verteerd. Onverteerbare objecten zullen altijd uitgestoten worden, dus zorg dat je de noodzakelijke mutaties hebt die het mogelijk maken deze objecten te verteren. Enzymen zullen met de vertering helpen en worden door het lysosoom gemaakt. Evolueer dit organel om spijsvertering veel efficiënter te maken."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Externe Organellen\n"
+#~ "\n"
+#~ "Flagel: Maakt bewegen sneller door [thrive:compound type=\"atp\"][/thrive:compound] te verbruiken\n"
+#~ "\n"
+#~ "Pilus: Kan worden gebruikt om andere cellen te steken of te verdedigen tegen hun gifstoffen\n"
+#~ "\n"
+#~ "Chemoreceptor: Maakt het mogelijk om stoffen van verder af te detecteren\n"
+#~ "\n"
+#~ "Slijmstraal: Maakt het mogelijk om [thrive:compound type=\"mucilage\"][/thrive:compound] (gemaakt van [thrive:compound type=\"glucose\"][/thrive:compound]) uit te stoten om je cel sneller te laten bewegen.\n"
+#~ "\n"
+#~ "Cilia: Verhoogt de draaisnelheid van cellen"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Membraangebonden Organellen\n"
+#~ "\n"
+#~ "Nucleus: Neemt 11 hexen in beslag en maakt het evolueren van andere membraangebonden organellen mogelijk. Verdubbelt het formaat van je cel maar vermindert de schade die je krijgt met 50% (kan maar één keer geëvolueerd worden)\n"
+#~ "\n"
+#~ "Bindingsmiddel: Geeft de mogelijkheid om te binden met andere cellen. Nodig om door te gaan naar de meercellige fase.\n"
+#~ "\n"
+#~ "Mitochondrion: Produceert [thrive:compound type=\"atp\"][/thrive:compound] uit [thrive:compound type=\"glucose\"][/thrive:compound] en atmosferische O2. Dit is veel efficiënter dan glycolyse door cytoplasma\n"
+#~ "\n"
+#~ "Chloroplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit zonlicht en atmosferische CO2\n"
+#~ "\n"
+#~ "Thermoplast: Gebruikt temperatuurverschillen om [thrive:compound type=\"atp\"][/thrive:compound] te produceren\n"
+#~ "\n"
+#~ "Lysosoom: Bevat spijsverteringsenzymen. Deze enzymen versnellen en verhogen de efficiëntie van spijsvertering\n"
+#~ "\n"
+#~ "Chemoplast: Maakt [thrive:compound type=\"glucose\"][/thrive:compound] uit [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Stikstofbindende plastide: Maakt [thrive:compound type=\"ammonia\"][/thrive:compound] van [thrive:compound type=\"atp\"][/thrive:compound], atmosferische stikstof, en zuurstof\n"
+#~ "\n"
+#~ "Vacuole: Slaat 8 verzamelde chemicaliën op\n"
+#~ "\n"
+#~ "Gifstoffenvacuolen: Produceert gifstoffen ( [thrive:compound type=\"oxytoxy\"][/thrive:compound] genoemd) en maakt het mogelijk om deze uit te spuwen en op basis van de hoeveelheid aanwezige [thrive:compound type=\"oxytoxy\"][/thrive:compound] schade aan te doen.\n"
+#~ "\n"
+#~ "Signaalgever: Maakt het mogelijk om chemicaliën te gebruiken waar andere cellen op kunnen reageren"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Bij elke generatie heb je 100 mutatiepunten (MP) om te gebruiken. Elke verandering (of mutatie) kost een hoeveelheid MP. Het toevoegen en verwijderen van organellen kost MP, maar het terug draaien van veranderingen kost niks als deze verandering in de huidige mutatie sessie plaats hebben gevonden. Je kan een organel verplaatsen of verwijderen met rechtsklik. Je kan organellen ook draaien met [thrive:input]e_rotate_left[/thrive:input] en [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Elke keer dat je jezelf voortplant zal de Microbenbewerker worden geopend. Hier kun je aanpassingen aan je soort maken (door organellen toe te voegen, te verwijderen, of aan te passen) waarmee je je soort succesvol kan maken. Elk bezoek aan de bewerker in de Microbenfase komt neer op [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] miljoen jaar evolutie."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "Gebruik [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] en de muis om te bewegen. [thrive:input]g_fire_toxin[/thrive:input] om [thrive:compound type=\"oxytoxy\"][/thrive:compound] te schieten als je een vergif vacuole hebt. [thrive:input]g_toggle_engulf[/thrive:input] om de verzwelg-modus aan en uit te zetten."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Om jezelf voort te planten moet je al je organellen in tweeën delen. Organellen hebben ammoniak, fosfaten en tijd nodig om in tweeën te splitsen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Maar als je voor twintig generaties met 300 populatie overleeft, win je deze versie van het spel. Nadat je hebt gewonnen kan je nog verder spelen als je dat wilt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Wees gewaarschuwd voor je vijanden die ook evolueren. Elke keer als je in de editor komt, evolueren zij zich ook."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Het bindmiddel maakt het mogelijk voor je cel om samen met andere cellen een celkolonie te vormen. In een celkolonie worden stoffen met elkaar gedeeld en geproduceerd. Je kunt de bindingsmodus starten door op [thrive:input]g_toggle_binding[/thrive:input] te drukken. Terwijl je cel zich in een kolonie bevindt, kan je cel zich niet delen en kun je de bewerker niet openen. Om de bewerker te openen, moet je de benodigde stoffen verzamelen en de kolonie verlaten door op [thrive:input]g_unbind_all[/thrive:input] te drukken. Grote celkoloniën zijn de weg naar meercelligheid."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Met name celwanden van cellulose en chitine kunnen niet verteerd worden zonder het benodigde enzym."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "Lysozoom is echter alleen beschikbaar voor eukaryoten. Prokaryoten hebben zulke organellen niet en verteren voedsel dus nogal slecht. Voor kleinere cellen is dat geen probleem, maar voor grotere cellen is het niet hebben van lysozomen een enorm nadeel."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "Jouw cel gebruikt [thrive:compound type=\"atp\"][/thrive:compound] als energiebron, als het opraakt ga je dood."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Om de editor te ontgrendelen en voort te planten moet je lang genoeg overleven. Door [thrive:compound type=\"ammonia\"][/thrive:compound] (Oranje Wolk) en [thrive:compound type=\"fosfaten\"][/thrive:compound] (Paarse Wolk) te verzamelen versnel je de groei."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "Je kan andere cellen, bacteriën en ijzer deeltjes kleiner dan jou verzwelgen door op [thrive:input]g_toggle_engulf[/thrive:input] te drukken. Dit gebruikt extra [thrive:compound type=\"atp\"][/thrive:compound] en maakt je langzamer. Vergeet niet nog een keer op [thrive:input]g_toggle_engulf[/thrive:input] te drukken om te stoppen."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "Osmoregulatie kost [thrive:compound type=\"atp\"][/thrive:compound]. Dat betekent dat hoe groter je cel is, hoe meer mitochondriën, metabolosomen of rusticyanine (of cytoplasma, dat aan glycolyse doet) je nodig hebt om te voorkomen dat je [thrive:compound type=\"atp\"][/thrive:compound] verliest als je stilstaat."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "Er zijn veel organellen in de editor om te evolueren, wat voor een brede selectie aan speelwijzen zorgt."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Voor nu, als je populatie naar nul zakt, sterf je uit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "De verschillende stofwolken zijn:\n"
+#~ "\n"
+#~ "Wit - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Geel - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Oranje - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Paars - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Roestbruin - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] maakt [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] kan worden omgezet naar [thrive:compound type=\"glucose\"][/thrive:compound] met chemoplasten en chemosynthesende eiwitten. [thrive:compound type=\"iron\"][/thrive:compound] kan met rusticyanin worden omgezet in [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Microbieel Stage"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Meercellig"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Vroege Multicellulaire bewerker laden"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Ontkiemen"
@@ -8184,10 +8580,6 @@ msgstr "Uitzoomen"
 #~ msgstr "Microbe Bewerker"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Microbieel Stage"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Slijmsynthese"
 
@@ -8218,10 +8610,6 @@ msgstr "Uitzoomen"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Ruimtefase"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Thermosynthese"
 
 #, fuzzy
 #~ msgid "NO"

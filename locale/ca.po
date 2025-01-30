@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Catalan <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ca/>\n"
@@ -317,6 +317,14 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "{0:F1}% fet. {1:n0}/{2:n0} passos."
 
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "Multiplicador del cost de mutació"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Guardat automàtic durant el joc"
 
@@ -371,6 +379,9 @@ msgstr "Estadi de Microbi"
 
 msgid "BACK"
 msgstr "Enrere"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "Enrere"
@@ -625,6 +636,10 @@ msgstr "Cel·lulosa"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "Aquesta membrana té una paret, que ofereix una bona protecció, especialment contra agressions físiques, com ara fiblades. Consumeix poca energia, però no pot absorbir recursos ràpidament i és més lenta. [b]La cel·lulasa pot digerir aquesta membrana[/b] fent-la vulnerable a l'engoliment per part de depredadors."
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "El valor utilitzat per generar el món, que ha de ser un nombre enter positiu"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1353,6 +1368,10 @@ msgstr "Transforma [thrive:compound type=\"glucose\"][/thrive:compound] en [thri
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Síntesi de les toxines OxyToxy"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(cost d'orgànuls, membranes i altres elements a l'editor)"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1660,10 +1679,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr "Duplicar Tipus"
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Multicel·lular"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "A mode de curiositat, la relació entre les cèl·lules de l'espècie Didinium i les cèl·lules Paramecium és un exemple típic i clar, que ha estat estudiat durant dècades, d'una relació entre depredador i presa. Ara bé, la teva espècie, és l'equivalent de Didinium o de Paramecium? Ets un depredador, o bé la presa?"
 
@@ -1694,35 +1709,8 @@ msgstr "A mode de curiositat, sabies que hi ha més de 8000 espècies d'organism
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "A mode de curiositat, l'Stentor és un ciliat que es pot estendre per tal d'atrapar preses amb una boca amb forma de trompeta. Mitjançant Cilis, genera corrents d'aigua que atrapen a les preses."
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "Un petit consell, si ets prou ràpid, pots fer servir les teves pròpies toxines per a bloquejar-ne d'altres."
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran implementades al joc."
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, no és gens divertit ser engolit per una d'aquestes bestioles."
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "L'equip de so de Thrive ha composat moltes cançons, algunes de les quals encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot veure emissions en directe al canal de YouTube 'Oliver Lugg'."
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs empassar fins i tot el trossos de ferro més grans del joc."
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive representa una simulació d'un planeta alienígena. Per tant, la majoria de criatures que vagis trobant, estaran emparentades i mostraran similituds amb d'altres espècies degut al procés d'evolució. Intenta identificar-les!"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert temps. Estigues amatent i no te'n perdis ni un!"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "A mode de curiositat, Thrive està essent desenvolupat amb el motor de videojoc de codi obert anomenat Godot!"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "A mode de curiositat, un dels primers prototips jugables d'aquest joc va ser desenvolupat pel nostre gran programador untrustedlife!"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "Un petit consell, la Osmoregulació consumeix, cada segon, 1 unitat d'ATP per nombre d'hexàgons de la teva cèl·lula. Alhora, cada hexàgon de citoplasma produeix 5 unitats d'ATP cada segon. Per tant, si estas perdent ATP degut a la Osmoregulació, afegeix un parell d'hexàgons de citoplasma o bé elimina alguns orgànuls."
@@ -1749,6 +1737,10 @@ msgid "EASTER_EGGS"
 msgstr "Incloure Easter eggs"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "(secrets aleatòriament generats al joc)"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "(secrets aleatòriament generats al joc)"
 
 #, fuzzy
@@ -2324,6 +2316,10 @@ msgstr "Informació Completa del Mod"
 msgid "GALLERY_VIEWER"
 msgstr "Visor de la Galeria"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "Equip de disseny del joc"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "Equip de disseny del joc"
 
@@ -2337,6 +2333,34 @@ msgstr "Pausar el joc"
 
 msgid "GENERAL"
 msgstr "General"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2938,10 +2962,6 @@ msgstr "Aquesta traducció encara és incomplerta ({0}% traduït) siusplau ajuda
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "No es pot eliminar l'últim orgànul"
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Multicel·lular"
-
 msgid "LAUNCH0"
 msgstr "Llançar 0"
 
@@ -3155,20 +3175,18 @@ msgstr "Carregant"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "Carregant..."
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "Carregant l'Editor Multicel·lular Primerenc"
-
 msgid "LOADING_GAME"
 msgstr "Carregant el joc"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "S'està carregant l'Editor de Microbi"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "S'està carregant l'Editor de Microbi"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "Carregant l'Editor Multicel·lular"
-
-msgid "LOADING_TIP"
-msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
 
 msgid "LOAD_FINISHED"
 msgstr "Càrrega completada"
@@ -3230,6 +3248,14 @@ msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim q
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "Síntesi de mucílag"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "Esdevenir un Organisme Macroscòpic ({0}/{1})"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Estadi de Microbi"
+
 msgid "MANUALLY_SET_TIME"
 msgstr ""
 
@@ -3287,8 +3313,24 @@ msgstr "Gravar"
 msgid "MEDIASTOP"
 msgstr "Aturar Reproducció Multimèdia"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "Petit tros de Ferro"
+
 msgid "MEGA_YEARS"
 msgstr "Milions d'anys"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolosomes"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
 
 msgid "MEMBRANE"
 msgstr "Membrana"
@@ -3416,78 +3458,103 @@ msgstr "Editor de Microbi"
 msgid "MICROBE_EDITOR"
 msgstr "Editor de Microbi"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"Estructures Procariòtiques\n"
-"\n"
-"Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
-"\n"
-"Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"\n"
-"Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
-"\n"
-"Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
-"\n"
-"Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
-"\n"
-"Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
-"\n"
-"Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "Un cop l'Engoliment s'hagi completat, tots els objectes atrapats es retindran dins la membrane per a ser digerits. Els objectes no digeribles seran sempre expulsats, de manera que primer t'has d'assegurar que tens les mutacions adequades per a poder-los processar. Els enzims que proporcionen els Lisosomes ajudaran amb la digestió, de manera que és recomanat evolucionar aquest orgànul per tal d'aconseguir una digestió molt més eficient."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"Orgànuls externs\n"
-"\n"
-"Flagel: Fa que la teva cèl·lula sigui més ràpida consumint [thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"Pilus: Estructura per punxar altres cèl·lules\n"
-"\n"
-"Quimioreceptor: Permet detectar compostos a distància.\n"
-"\n"
-"Cili: Augment la velocitat de gir de les cèl·lules"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"Orgànuls adherits a la membrana\n"
-"\n"
-"Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un 50% (només es pot evolucionar una vegada)\n"
-"\n"
-"Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
-"\n"
-"Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 atmosfèric de manera molt més eficient que el citoplasma\n"
-"\n"
-"Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de llum solar i CO2 atmosfèric\n"
-"\n"
-"Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura\n"
-"\n"
-"Lysosome: Conté enzims digestius\n"
-"\n"
-"Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"\n"
-"Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
-"\n"
-"Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
-"\n"
-"Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal en funció de la quantitat de toxines disponibles\n"
-"\n"
-"Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Lliure de Microbi"
 
 #, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Prem el botó de 'desfer' per tal de corregir qualsevol equivocació"
+
+#, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "Estadístiques de la Cèl·lula"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "Estadístiques de la Cèl·lula"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3552,60 +3619,6 @@ msgstr ""
 "Si la teva cèl·lula es queda sense energia, es morirà.\n"
 "Pots recuperar la teva salut (autoregeneració) si tens prou quantitat d'ATP.\n"
 "Assegurat de recol·lectar prou Glucosa per no quedar-te sense ATP."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\" prement [thrive:input]g_toggle_binding[/thrive:input]. Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia prement [thrive:input]g_unbind_all[/thrive:input]. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "Les parets cel·lulars de Cel·lulose i Quitina, en particular, no es poden digerir si no es compta amb un enzim especial que les pot trencar."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "No obstant, els Lisosomes són exclusius dels organismes eucariotes. Els procariotes, en canvi, no poden tenir aquest orgànul, de manera que digereixen el menjar de manera bastant ineficient. Per cèl·lules petites no hi ha cap problema, però per cèl·lules més grans no tenir Lisosomes és un gran desavantatge."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"Els diferents núvols de compostos són:\n"
-"\n"
-"Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -4001,11 +4014,19 @@ msgstr "Síntesi de mucílag"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Pausar el joc"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Multicel·lular"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Editor Multicel·lular"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Editor Multicel·lular"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Editor Multicel·lular"
 
 msgid "MULTICELLULAR_STAGE"
@@ -4177,6 +4198,9 @@ msgstr ""
 #, fuzzy
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Capacitat de moviment"
+
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
@@ -4373,6 +4397,10 @@ msgstr "Orgànuls"
 #, fuzzy
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "Els Pili (singular: pilus) es troben a la superfície de molts micro-organismes i tenen forma de pèls. Hi poden haver desenes o centenars de pili a la superfície d'un micro-organisme, i es poden fer servir amb diferents finalitats, incloents la depredació. Els micro-organismes patogènics fan servir els pili per virulència, ja sigui per unir-se a teixits hoste, o per penetrar la membrana exterior i accedir al citoplasma. Molts Pili similars existeixen, però no estan evolutivament relacionats i són resultat d'evolució convergent. Un sol organisme ha de tenir l'habilitat de tenir diferents tipus de Pili, i aquells que són a la superfície són canviats i substituïts constantment."
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Multicel·lular"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4783,6 +4811,18 @@ msgstr ""
 "Estàs segur que vols sortir del joc?\n"
 "Perdràs tot el progrés no guardat."
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "Respiració aeròbica"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Gran tros de Ferro"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Termosíntesi"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Nom de l'espècie aleatori"
 
@@ -4845,6 +4885,10 @@ msgstr "Reproducció:"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(velocitat a la qual les espècies de la IA muten)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "Reproducció:"
 
 msgid "REPRODUCTION_METHOD"
 msgstr "Reproducció:"
@@ -5248,6 +5292,10 @@ msgid "SHOW_HELP"
 msgstr "Mostrar tauler d'ajuda"
 
 #, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr "Mostrar tutorials"
+
+#, fuzzy
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "{0} {1}"
 
@@ -5336,6 +5384,10 @@ msgstr "Petit tros de Ferro"
 
 #, fuzzy
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr "Petit tros de Ferro"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
 msgstr "Petit tros de Ferro"
 
 msgid "SNOWFLAKE"
@@ -6057,10 +6109,6 @@ msgid "TUTORIAL"
 msgstr "Tutorial"
 
 #, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Carregant l'Editor Multicel·lular Primerenc"
-
-#, fuzzy
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Aquest és el mapa de zones.\n"
@@ -6238,6 +6286,10 @@ msgstr ""
 "\n"
 "Per abandonar la colònia del tot, pots clicar en la teva pròpia cèl·lula o pressionar la tecla [thrive:input]g_unbind_all[/thrive:input]."
 
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Carregant l'Editor Multicel·lular Primerenc"
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "Veure ara"
 
@@ -6373,6 +6425,14 @@ msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Velocitat de Digestió:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Velocitat de Digestió:"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
@@ -6609,9 +6669,6 @@ msgstr "la nostra Wiki"
 #, fuzzy
 msgid "WIKI_2D"
 msgstr "la nostra Wiki"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 #, fuzzy
 msgid "WIKI_3D"
@@ -7051,6 +7108,38 @@ msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Produeix [thrive:compound]glucose[/thrive:compound]. La velocitat és proporcional a la concentració de [thrive:compound]carbondioxide[/thrive:compound] i temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Plastidi Fixador de Nitrogen"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "El termoplast és una estructura de doble membrana que, de manera anàloga al Cloroplast, conté pigments sensibles a l'escalfor, agrupats en petites membranes. En realitat, és un petit organisme procariota que ha estat engolit i assimilat per una cèl·lula eucariota, que actua com a hoste. Aquests pigments, produeixen Glucosa a partir d'Aigua, Diòxid de Carboni i les diferències de Temperatura al seu entorn. La velocitat de producció de la Glucosa augmenta proporcionalment a la concentració de Diòxid de Carboni i la Temperatura."
+
+#, fuzzy
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "El flagel (plural: flagels) és uns farcell de proteïnes i fibres, com un petit tentacle que sobresurt de la membrana cel·lular. Mitjançant un moviment ondulatori, permet propulsar la cèl·lula cap endavant a gran velocitat, mentre consumeix ATP. La posició dels flagels determina la direcció en la qual produeix l'impuls per moure la cèl·lula. La direcció de l'impuls és oposada a la direcció cap a la qual el flagel està apuntant. Per exemple, un flagel col·locat a l'esquerra del centre de la cèl·lula produïra impuls quan aquesta es mogui cap a la dreta."
 
@@ -7086,8 +7175,16 @@ msgstr "Fixació Anaeròbica de Nitrogen"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
 
+#, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
+msgstr "Compostos infinits"
 
 #, fuzzy
 msgid "WIKI_HEADING_CONCEPT_ART"
@@ -7127,15 +7224,31 @@ msgstr "Activa la simulació auto-evo durant el joc"
 msgid "WIKI_HEADING_GDD"
 msgstr "Agent d'Unió"
 
+#, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "Estadi de Microbi"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Estadi de Microbi"
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "Estadi de Microbi"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "Estadi de Microbi"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -7185,6 +7298,38 @@ msgstr ""
 
 msgid "WIKI_HEADING_UPGRADES"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "És la substància que forma l'interior de la cèl·lula. El Citoplasma és una barreja d'ions, proteïnes i altres substàncies dissoltes a l'aigua. Una de les seves funcions principals és dur a terme el procés de Fermentació, en el qual la Glucosa és transformada en ATP. Moltes cèl·lules simples, que no tenen orgànuls especialitzats, depenen totalment del seu citoplasma per tal de viure - és a dir, per tal de nutrir-se, relacionar-se i reproduïr-se."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "Estadi de Microbi"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
+msgstr "Els Tilacoides són cúmuls de proteïnes i pigments fotosensibles. Aquests pigments són capaços de fer servir l'energia provinent d'una font de Llum (com ara una estrella) i, combinant-la amb una certa quantitat d'Aigua i Diòxid de Carboni, produïr Glucosa, en un procés anomenat Fotosíntesi. Aquests pigments també donen un color característic als Tilacoides. La velocitat de producció de Glucosa és proporcional a la concentració de Diòxid de Carboni i a la intensitat de la Llum. Com que els Tilacoides estan suspesos en el Citoplasma, aquest fluid duu a terme una certa Fermentació."
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -7272,12 +7417,81 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Estadi Multicel·lular"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Permet unir-te amb altres cèl·lules. Aquest és el primer pas cap a esdevenir un ésser multicel·lular. Quan la teva espècie forma part d'una colònia, les cèl·lules comparteixen els seus compostos. Mentre formis part d'una colònia, no pots entrar a l'editor, de manera que t'has de desunir un cop hagis recol·lectat prou compostos per dividir la teva cèl·lula."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Raig de llim"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"Fa molt de temps, en un planeta molt i molt llunyà...\n"
+"\n"
+"S'han esdevingut milions d'anys, eons sencers, d'activitat volcànica i d'impactes de meteorits. Aquesta activitat ha causat l'aparició d'un fenomen inaudit a l'univers.\n"
+"\n"
+"La vida.\n"
+"\n"
+"A les profunditats dels mars i oceans, són a punt d'aparèixer eixams de Microbis, sopes tupides d'organismes vius. De moment, però, en tot el planeta, només hi ha un sol organisme, una petita cèl·lula formada per una fina Membrana plena de Citoplasma i Material Genètic. Aquest primer organisme serà conegut com a 'darrer avantpassat universal comú'. Ets a punt de prendre el control d'aquesta minúscula cèl·lula, per tal de guiar-ne les accions i aconseguir que es pugui reproduir.\n"
+"\n"
+"Per tal de sobreviure en aquest planeta hostil, hauràs d'arreplegar tots els compostos amb contingut nutritiu que puguis trobar. Al llarg de les diverses generacions del procés evolutiu, hauràs d'evolucionar per competir contra altres espècies pels nínxols de la cadena tròfica. Totes aquestes espècies hauran evolucionat a partir del darrer avantpassat universal comú."
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Estadi de Microbi"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Nitrogenasa"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Estadi de Microbi"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "Col·locar orgànul"
 
 #, fuzzy
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Orgànuls"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "El lisosoma és un orgànul adherit a la membrana que conté enzims hidrolítics que poden trencar diverses biomolècules. Els lisosomes permeten a la cèl·lula digerir materials ingerits mitjançant endocitosi i netejar els productes de rebuig de la cèl·lula en un procés anomenat autofàgia."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Conté enzims digestius. Es pot modificar per canviar el tipus d'enzim que conté. Només es pot utilitzar un enzim cada vegada."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Els Metabolosomes són cúmuls de proteïnes embolcallades per una membrana de proteïnes. Transformen la Glucosa en ATP mitjançant la Respiració Aeròbica, de manera més ràpida i eficient que el Citoplasma. No obstant, necessita grans quantitats d'Oxigen atmosfèric per funcionar amb eficàcia, i nivells d'Oxigen més baixos en reduïran la velocitat de producció d'ATP. Com que els Metabolosomes estan suspesos en el Citoplasma, el fluid que els envolta duu a terme una certa glicòlisi."
 
 #, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
@@ -7661,8 +7875,16 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Mitocondri"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Termoplast"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Flagel"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "Quimioplast"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -7677,8 +7899,16 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "Lisosoma"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Nitrogenasa"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Col·locar orgànul"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lisosoma"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
@@ -7840,6 +8070,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Termosíntesi"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8269,6 +8503,165 @@ msgstr "Enfocar la visió de la càmera"
 msgid "ZOOM_OUT"
 msgstr "Zoom enfora"
 
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "A mode de curiositat, el Didinum és un ciliat que caça Paramecis."
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "A mode de curiositat, les Amebes caçen i atrapen preses amb unes 'potes' fetes de Citoplasma que s'anomenen pseudòpodes. Eventualment, seran implementades al joc."
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "Un petit consell: vés amb compte amb les cèl·lules més grans que la teva, no és gens divertit ser engolit per una d'aquestes bestioles."
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "L'equip de so de Thrive ha composat moltes cançons, algunes de les quals encara no s'han afegit al joc. No obstant, les pots escoltar, i fins i tot veure emissions en directe al canal de YouTube 'Oliver Lugg'."
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "Un petit consell, si la teva cèl·lula ocupa més de 150 hexàgons, et podràs empassar fins i tot el trossos de ferro més grans del joc."
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive representa una simulació d'un planeta alienígena. Per tant, la majoria de criatures que vagis trobant, estaran emparentades i mostraran similituds amb d'altres espècies degut al procés d'evolució. Intenta identificar-les!"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "A mode de curiositat, l'equip de Thrive fa podcasts en directe cada cert temps. Estigues amatent i no te'n perdis ni un!"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "A mode de curiositat, Thrive està essent desenvolupat amb el motor de videojoc de codi obert anomenat Godot!"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "A mode de curiositat, un dels primers prototips jugables d'aquest joc va ser desenvolupat pel nostre gran programador untrustedlife!"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "Estructures Procariòtiques\n"
+#~ "\n"
+#~ "Citoplasma: Proporciona espai d'emmagatzematge i duu a terme la glicòlisi (Produeix petites quantitats de [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound])\n"
+#~ "\n"
+#~ "Metabolosomes: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Tilacoides: Produeix 1/3 part de la quantitat de [thrive:compound type=\"glucose\"][/thrive:compound] que un cloroplast normal, però també duu a terma la glicòlisi, i ocupa 1 Hexàgonbut also performs glycolysis, and takes up 1 Hex\n"
+#~ "\n"
+#~ "Proteïnes Quimiosintetitzadores: Produeix la meitat de [thrive:compound type=\"glucose\"][/thrive:compound] out of [thrive:compound type=\"hydrogensulfide\"][/thrive:compound] que el Quimioplast, però també duu a terme la glicòlisi, i ocupa 1 Hexàgon\n"
+#~ "\n"
+#~ "Rusticianina: Transforma [thrive:compound type=\"iron\"][/thrive:compound] en [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Nitrogenasa: Transforma el nitrogen atmosfèric i [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"ammonia\"][/thrive:compound] anaeròbicament\n"
+#~ "\n"
+#~ "Oxitoxisoma: Transforma [thrive:compound type=\"atp\"][/thrive:compound] en [thrive:compound type=\"oxytoxy\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Termosintasa: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "Un cop l'Engoliment s'hagi completat, tots els objectes atrapats es retindran dins la membrane per a ser digerits. Els objectes no digeribles seran sempre expulsats, de manera que primer t'has d'assegurar que tens les mutacions adequades per a poder-los processar. Els enzims que proporcionen els Lisosomes ajudaran amb la digestió, de manera que és recomanat evolucionar aquest orgànul per tal d'aconseguir una digestió molt més eficient."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "Orgànuls externs\n"
+#~ "\n"
+#~ "Flagel: Fa que la teva cèl·lula sigui més ràpida consumint [thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Pilus: Estructura per punxar altres cèl·lules\n"
+#~ "\n"
+#~ "Quimioreceptor: Permet detectar compostos a distància.\n"
+#~ "\n"
+#~ "Cili: Augment la velocitat de gir de les cèl·lules"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "Orgànuls adherits a la membrana\n"
+#~ "\n"
+#~ "Nucli: Ocupa 11 hexàgons i permet evolucionar orgànuls adherits a la membrana, duplica la mida de la teva cèl·lula i redueix el mal rebut en un 50% (només es pot evolucionar una vegada)\n"
+#~ "\n"
+#~ "Agent d'Adhesió: Permet adherir-se amb altres cèl·lules\n"
+#~ "\n"
+#~ "Mitocondri: Produeix [thrive:compound type=\"atp\"][/thrive:compound] a partir de [thrive:compound type=\"glucose\"][/thrive:compound] i O2 atmosfèric de manera molt més eficient que el citoplasma\n"
+#~ "\n"
+#~ "Cloroplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de llum solar i CO2 atmosfèric\n"
+#~ "\n"
+#~ "Thermoplast: Produeix [thrive:compound type=\"atp\"][/thrive:compound] fent servir gradients de temperatura\n"
+#~ "\n"
+#~ "Lysosome: Conté enzims digestius\n"
+#~ "\n"
+#~ "Quimioplast: Produeix [thrive:compound type=\"glucose\"][/thrive:compound] a partir de [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "\n"
+#~ "Plastidi Fixador de Nitrogen: Produeix [thrive:compound type=\"ammonia\"][/thrive:compound] a partir de [thrive:compound type=\"atp\"][/thrive:compound] i Nitrogen i Oxigen atmosfèric\n"
+#~ "\n"
+#~ "Vacúol: Emmagatzema fins a 8 unitats de compostos recol·lectats\n"
+#~ "\n"
+#~ "Vacúol de Toxines: Produeix toxines (anomenades [thrive:compound type=\"oxytoxy\"][/thrive:compound]) i et permet alliberar-les, tot produïnt mal en funció de la quantitat de toxines disponibles\n"
+#~ "\n"
+#~ "Agent de Senyalització: Permet crear productes químics als quals altres espècies hi poden reaccionar."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "Cada generació, pots gastar fins a 100 punts de mutació (PM), i cada canvi (o mutació) costarà una certa quantitat d'aquest PM. Afegir i eliminar orgànuls costa PM. No obstant, eliminar orgànuls que han estat afegits en la sessió de mutació actuals, et torna el cost en PM d'aquest orgànul. Pots moure o eliminar un orgànul tot fent clic dret a sobre d'aquest, i seleccionant l'acció adequada del menú que apareixirà. Pots rotar els teus orgànuls mentre els col·loques amb [thrive:input]e_rotate_left[/thrive:input] i [thrive:input]e_rotate_right[/thrive:input]."
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "Cada vegada que et reprodueixis entraràs a l'editor de microbi, on podràs fer canvis a la teva espècie (afegir, moure o treure orgànuls) per tal de millorar-la. Cada sessió de l'editor de microbi representa [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milions d'anys d'evolució."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] i fer servir el ratolí per canviar la orientació. [thrive:input]g_fire_toxin[/thrive:input] per disparar [thrive:compound type=\"oxytoxy\"][/thrive:compound] si tens un Vacúol de Toxines. [thrive:input]g_toggle_engulf[/thrive:input] per activar el mode Engolir. Pots ampliar o reduïr el camp de visió amb la rodeta del ratolí."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "Per tal de reproduït-te, has de dividir cadascun dels teus orgànuls en 2. Els orgànuls necessiten Amoníac i Fosfat per tal d'autoreplicar-se."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "Però si sobrevius durant 20 generacions i la teva població té més de 300 individus, hauràs guanyat el joc actual. Després de guanyar, apareixerà una finestreta d'enhorabona i, després, podràs seguir jugant."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "Estigues alerta, ja que els teus competidors no cessaran d'evolucionar en cap moment. Cada vegada que entris a l'editor, ells també faran un salt evolutiu."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "Si t'uneixes a altres cèl·lules, podràs construïr una colònia cel·lular on les cèl·lules comparteixen els compostos que absorbeixen i produeixen amb les altres. Per poder unir-te a una altra cèl·lula, has d'aconseguir l'orgànul \"agents d'unió\", entrar en contacte amb l'altra cèl·lula i, tot seguit, entrar en el \"mode d'unió\" prement [thrive:input]g_toggle_binding[/thrive:input]. Només et pots unir a cèl·lules de la teva espècie. Mentre formis part d'una colònia, no et pots reproduïr i entrar a l'editor (de moment). Per entrar a l'editor, un cop hagis recollit prou compostos hauràs d'abandonar la teva colònia prement [thrive:input]g_unbind_all[/thrive:input]. Les grans colònies de cèl·lules són la via per a esdevenir un organisme multicel·lular."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "Les parets cel·lulars de Cel·lulose i Quitina, en particular, no es poden digerir si no es compta amb un enzim especial que les pot trencar."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "No obstant, els Lisosomes són exclusius dels organismes eucariotes. Els procariotes, en canvi, no poden tenir aquest orgànul, de manera que digereixen el menjar de manera bastant ineficient. Per cèl·lules petites no hi ha cap problema, però per cèl·lules més grans no tenir Lisosomes és un gran desavantatge."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "La teva cèl·lula fa servir [thrive:compound type=\"atp\"][/thrive:compound] com a font d'energia, si se li acaba es morirà."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "Per desbloquejar l'editor i reproduïr-vos heu de recol·lectar [thrive:compound type=\"ammonia\"][/thrive:compound] (Núvol Taronja) i [thrive:compound type=\"phosphates\"][/thrive:compound] (Núvol Violeta)."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "També pots engolir cèl·lules, bacteris, fragments de Ferro i fragments de cèl·lules mortes prement [thrive:input]g_toggle_engulf[/thrive:input]. Això comporta un cost afegit [thrive:compound type=\"atp\"][/thrive:compound] i et farà més lent. No t'oblidis de prèmer [thrive:input]g_toggle_engulf[/thrive:input] una segona vegada per deixar d'engolir."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "L'Osmoregulació comporta un cost en [thrive:compound type=\"atp\"][/thrive:compound], de manera que, com més gran és la teva cèl·lula, més Mitocondris, Metabolosomes o Rusticianina (o Citoplasma, que duu a terme la Glicòlisi) necessites per evitar morir [thrive:compound type=\"atp\"][/thrive:compound] quan estàs quiet."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "A l'editor hi ha un munt d'Orgànuls que pots fer servir per evolucionar; un munt de possibilitats jugables."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "Per a la versió actual del joc, si la teva població baixa fins a 0 t'hauràs extingit."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "Els diferents núvols de compostos són:\n"
+#~ "\n"
+#~ "Blanc – [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "Groc – [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "Taronja – [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "Violeta – [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "Marró rovellat – [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound] fa [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] pot ser transformat en [thrive:compound type=\"glucose\"][/thrive:compound] per mitjà de Quimioplasts i Proteïnes Quimiosintetitzadores. [thrive:compound type=\"iron\"][/thrive:compound] pot ser transformat per mitjà de la proteïna Rusticianina en [thrive:compound type=\"atp\"][/thrive:compound]."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Estadi de Microbi"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Multicel·lular"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "Carregant l'Editor Multicel·lular Primerenc"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "Gemmació"
@@ -8328,10 +8721,6 @@ msgstr "Zoom enfora"
 #~ msgstr "Editor de Microbi"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "Estadi de Microbi"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "Síntesi de mucílag"
 
@@ -8362,10 +8751,6 @@ msgstr "Zoom enfora"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Estadi de Microbi"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Termosíntesi"
 
 #, fuzzy
 #~ msgid "NO"

@@ -181,8 +181,8 @@ public class MicrobeSpecies : Species, ICellDefinition
 
         foreach (var compoundBalance in compoundBalances)
         {
-            // Skip ATP as we don't want to give any initial ATP
-            if (compoundBalance.Key == Compound.ATP)
+            // Skip compounds we don't want to give as initial compounds
+            if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
                 continue;
 
             if (compoundBalance.Key == Compound.Glucose && giveBonusGlucose)

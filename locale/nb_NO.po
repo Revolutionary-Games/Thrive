@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
-"PO-Revision-Date: 2023-03-10 06:53+0000\n"
-"Last-Translator: Jonas Lindberg <eksno@pm.me>\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Norwegian Bokmål <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14\n"
+"X-Generator: Weblate 5.7.2\n"
 "Generated-By: Babel 2.10.3\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -151,6 +151,7 @@ msgstr "(hastighet som AI muterer med)"
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "Generisk Statistikk over Alle Verdener"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]Generasjoner:[/b]\n"
@@ -316,6 +317,13 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr ""
 
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr ""
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "Dette panelet viser tallene som auto-evo-prediksjonen tar utgangspunkt i. Den totale energien en art er i stand til å fange, og kostnaden per individ av arten, bestemmer den endelige populasjonen. Auto-evo bruker en forenklet modell av virkeligheten for å beregne hvor godt artene klarer seg basert på energien de er i stand til å samle. For hver matkilde vises det hvor mye energi arten får fra den. I tillegg vises den totale energien som er tilgjengelig fra denne kilden. Andelen arten får ut av den totale energien er basert på hvor stor kondisjonen er sammenlignet med den totale kondisjonen. Kondisjon er et mål på hvor godt arten kan utnytte den aktuelle næringskilden."
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr ""
 
@@ -366,6 +374,9 @@ msgid "AWARE_STAGE"
 msgstr "Mikrobestadiet"
 
 msgid "BACK"
+msgstr ""
+
+msgid "BACKGROUND_BLUR"
 msgstr ""
 
 msgid "BACKSLASH"
@@ -610,6 +621,10 @@ msgstr ""
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (vevstype med aksoner)."
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1302,6 +1317,10 @@ msgstr ""
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "AI mutasjonshastighet"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(hastighet som AI muterer med)"
+
 msgid "DAY_LENGTH"
 msgstr ""
 
@@ -1569,10 +1588,6 @@ msgstr ""
 msgid "DUPLICATE_TYPE"
 msgstr ""
 
-#, fuzzy
-msgid "EARLY_MULTICELLULAR"
-msgstr "Flercellestadiet"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr ""
 
@@ -1603,34 +1618,7 @@ msgstr ""
 msgid "EASTEREGG_MESSAGE_18"
 msgstr ""
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr ""
-
 msgid "EASTEREGG_MESSAGE_2"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr ""
-
-msgid "EASTEREGG_MESSAGE_27"
 msgstr ""
 
 msgid "EASTEREGG_MESSAGE_3"
@@ -1658,6 +1646,9 @@ msgid "EASTER_EGGS"
 msgstr ""
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr ""
+
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr ""
 
 msgid "EDGE_PAN_SPEED"
@@ -2151,6 +2142,9 @@ msgstr ""
 msgid "GALLERY_VIEWER"
 msgstr ""
 
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr ""
+
 msgid "GAME_DESIGN_TEAM"
 msgstr ""
 
@@ -2163,6 +2157,27 @@ msgstr "Dra til Oppvåknings Fasen. Tilgjengelig når du har nok hjernekraft (ve
 
 msgid "GENERAL"
 msgstr "Generelt"
+
+msgid "GENERAL_LOADING_TIP_1"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_2"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_3"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_4"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_5"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_6"
+msgstr ""
+
+msgid "GENERAL_LOADING_TIP_7"
+msgstr ""
 
 #, fuzzy
 msgid "GENERATIONS"
@@ -2717,10 +2732,6 @@ msgstr ""
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr ""
 
-#, fuzzy
-msgid "LATE_MULTICELLULAR"
-msgstr "Flercellestadiet"
-
 msgid "LAUNCH0"
 msgstr ""
 
@@ -2929,19 +2940,16 @@ msgstr ""
 msgid "LOADING_DOT_DOT_DOT"
 msgstr ""
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+msgid "LOADING_GAME"
 msgstr ""
 
-msgid "LOADING_GAME"
+msgid "LOADING_MACROSCOPIC_EDITOR"
 msgstr ""
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr ""
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
-msgstr ""
-
-msgid "LOADING_TIP"
 msgstr ""
 
 msgid "LOAD_FINISHED"
@@ -2992,6 +3000,13 @@ msgstr ""
 #, fuzzy
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "AI mutasjonshastighet"
+
+msgid "MACROSCOPIC"
+msgstr ""
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "Mikrobestadiet"
 
 msgid "MANUALLY_SET_TIME"
 msgstr ""
@@ -3049,8 +3064,22 @@ msgstr ""
 msgid "MEDIASTOP"
 msgstr ""
 
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr ""
+
 msgid "MEGA_YEARS"
 msgstr ""
+
+msgid "MELANOSOME"
+msgstr ""
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Anaerob Nitrogenfiksering"
 
 msgid "MEMBRANE"
 msgstr ""
@@ -3146,29 +3175,103 @@ msgstr "Mikrobe Redigerer"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrobe Redigerer"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr ""
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr ""
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr ""
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "Mikrobe Redigerer"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "Mikrobe Redigerer"
+
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr ""
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
+msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
 
 #, fuzzy
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3195,51 +3298,6 @@ msgid "MICROBE_STAGE_DAY_NIGHT_TEXT"
 msgstr "Mikrobestadiet"
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
 msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL"
@@ -3556,11 +3614,19 @@ msgstr ""
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "Legg til en ny nøkkelbinding"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "Flercellestadiet"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "Flercelle Redigerer"
 
 #, fuzzy
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
+msgstr "Flercelle Redigerer"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
 msgstr "Flercelle Redigerer"
 
 msgid "MULTICELLULAR_STAGE"
@@ -3719,6 +3785,9 @@ msgid "NOTICE_HIT_BY_ATP_TOXIN"
 msgstr ""
 
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
+msgstr ""
+
+msgid "NOTICE_RADIATION_DAMAGE"
 msgstr ""
 
 msgid "NOTICE_READY_TO_EDIT"
@@ -3891,6 +3960,10 @@ msgstr ""
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr ""
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "Flercellestadiet"
 
 #, fuzzy
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
@@ -4268,6 +4341,17 @@ msgstr ""
 msgid "QUIT_GAME_WARNING"
 msgstr ""
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "Generelt"
+
+msgid "RADIOACTIVE_CHUNK"
+msgstr ""
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "AI mutasjonshastighet"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr ""
 
@@ -4326,6 +4410,10 @@ msgstr "ATP PRODUKSJON FOR LAV!"
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "(hastighet som AI muterer med)"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "ATP PRODUKSJON FOR LAV!"
 
 msgid "REPRODUCTION_METHOD"
 msgstr ""
@@ -4685,6 +4773,9 @@ msgstr ""
 msgid "SHOW_HELP"
 msgstr ""
 
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr ""
 
@@ -4768,6 +4859,9 @@ msgid "SMALL_IRON_CHUNK"
 msgstr ""
 
 msgid "SMALL_PHOSPHATE_CHUNK"
+msgstr ""
+
+msgid "SMALL_SULFUR_CHUNK"
 msgstr ""
 
 msgid "SNOWFLAKE"
@@ -5421,10 +5515,6 @@ msgstr ""
 msgid "TUTORIAL"
 msgstr ""
 
-#, fuzzy
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr "Flercellestadiet"
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 
@@ -5487,6 +5577,10 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
+
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr "Flercellestadiet"
 
 msgid "TUTORIAL_VIEW_NOW"
 msgstr ""
@@ -5606,6 +5700,12 @@ msgid "UNLOCK_CONDITION_ENGULFED_MICROBES_ABOVE"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
+msgstr ""
+
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr ""
+
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
 msgstr ""
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
@@ -5819,9 +5919,6 @@ msgid "WIKI"
 msgstr ""
 
 msgid "WIKI_2D"
-msgstr ""
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
 msgstr ""
 
 msgid "WIKI_3D"
@@ -6234,6 +6331,38 @@ msgstr "Anaerob Nitrogenfiksering"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr "Anaerob Nitrogenfiksering"
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "Aerob Nitrogenfiksering"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr ""
 
@@ -6271,7 +6400,15 @@ msgid "WIKI_HEADING_APPENDICES"
 msgstr "3D Redigerer"
 
 #, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "3D Redigerer"
+
+#, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "Konseptkunst"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
 msgstr "Konseptkunst"
 
 #, fuzzy
@@ -6313,16 +6450,32 @@ msgid "WIKI_HEADING_GDD"
 msgstr "3D Redigerer"
 
 #, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "3D Redigerer"
+
+#, fuzzy
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "Mikrobestadiet"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Mikrobestadiet"
 
 #, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "Mikrobestadiet"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr ""
@@ -6379,6 +6532,35 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "3D Redigerer"
+
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "Konseptkunst"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "ATP PRODUKSJON FOR LAV!"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "Mikrobestadiet"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -6466,11 +6648,71 @@ msgstr "Mikrobestadiet"
 msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr "Flercellestadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "Mikrobestadiet"
+
 msgid "WIKI_MECHANICS"
 msgstr ""
 
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Anaerob Nitrogenfiksering"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "3D Redigerer"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Konseptkunst"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "3D Redigerer"
 
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr ""
@@ -6809,8 +7051,16 @@ msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "Anaerob Nitrogenfiksering"
 
 #, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "Aerob Nitrogenfiksering"
+
+#, fuzzy
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Mikrobestadiet"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "ATP Produksjon"
 
 #, fuzzy
 msgid "WIKI_PAGE_HYDROGENASE"
@@ -6824,8 +7074,16 @@ msgstr "(hastighet som AI muterer med)"
 msgid "WIKI_PAGE_LYSOSOME"
 msgstr "AI mutasjonshastighet"
 
+#, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "Mikrobestadiet"
+
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "AI mutasjonshastighet"
 
 #, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
@@ -6984,6 +7242,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Konseptkunst"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -7383,6 +7645,17 @@ msgstr ""
 
 msgid "ZOOM_OUT"
 msgstr ""
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "[thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input],[thrive:input]g_move_right[/thrive:input] og mus for bevegelse. [thrive:input]g_fire_toxin[/thrive:input] for skyting [thrive:compound type=\"oxytoxy\"][/thrive:compound] hvis du har toxin vacuole. [thrive:input]g_toggle_engulf[/thrive:input] for veksling av oppsluknings modus. Du kan zoome in og ut med mus hjulet."
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "Mikrobestadiet"
+
+#, fuzzy
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "Flercellestadiet"
 
 #, fuzzy
 #~ msgid "WIKI_AEROBIC_NITROGEN_FIXATION"

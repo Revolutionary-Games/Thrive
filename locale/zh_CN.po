@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-12 14:16+0200\n"
-"PO-Revision-Date: 2024-12-09 13:53+0000\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -143,6 +143,7 @@ msgstr "(使您能够在本物种灭绝后以另一个不同的物种继续游�
 msgid "ALL_WORLDS_GENERAL_STATISTICS"
 msgstr "所有世界的生物数据"
 
+#, fuzzy
 msgid "ALL_WORLDS_STATISTICS"
 msgstr ""
 "[b]当前代：[/b]\n"
@@ -317,6 +318,14 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "已完成{0:F1}%。{1:n0}/{2:n0}步剩余。"
 
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
+msgstr "突变成本系数"
+
+#, fuzzy
+msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
+msgstr "（细胞器，膜和编辑器中其它选项的耗费）"
+
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "游戏中启用自动保存"
 
@@ -367,6 +376,9 @@ msgstr "知觉阶段"
 
 msgid "BACK"
 msgstr "返回"
+
+msgid "BACKGROUND_BLUR"
+msgstr ""
 
 msgid "BACKSLASH"
 msgstr "反斜杠"
@@ -508,7 +520,7 @@ msgid "BY_REVOLUTIONARY_GAMES"
 msgstr "由Revolutionary Games Studio制作"
 
 msgid "CACHE_DISK_MAX_TIME"
-msgstr ""
+msgstr "自动存档删除的最大时间"
 
 msgid "CACHE_MEMORY_MAX_ITEMS"
 msgstr ""
@@ -611,6 +623,10 @@ msgstr "纤维素"
 
 msgid "CELLULOSE_MEMBRANE_DESCRIPTION"
 msgstr "这个细胞膜额外配置了一层细胞壁，各方面都有更好的防御力，尤其是物防。同时也不需要多少能量来维持形状，但吸收营养和移动的速度都很慢。[b]纤维素酶可以消化这层墙[/b]，使其容易被捕食者吞噬。"
+
+#, fuzzy
+msgid "CELL_STAT_ROTATION_TOOLTIP"
+msgstr "用于生成世界的随机数种子，必须为正整数"
 
 #, fuzzy
 msgid "CELL_STAT_SPEED_TOOLTIP"
@@ -1296,6 +1312,7 @@ msgstr "当前正在研究：{0}（{1}）"
 msgid "CURRENT_WORLD"
 msgstr "当前世界"
 
+#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
 msgstr ""
 "[b]当前代：[/b]\n"
@@ -1335,6 +1352,10 @@ msgstr "将[thrive:compound type=\"glucose\"][/thrive:compound]转换成[thrive:
 
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "细胞毒素合成"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "选择目前包含您的物种的区域作为迁移来源"
 
 msgid "DAY_LENGTH"
 msgstr "日长"
@@ -1634,9 +1655,6 @@ msgstr "转储SceneTree"
 msgid "DUPLICATE_TYPE"
 msgstr "复制类型"
 
-msgid "EARLY_MULTICELLULAR"
-msgstr "多细胞生物"
-
 msgid "EASTEREGG_MESSAGE_1"
 msgstr "小知识：栉毛虫和草履虫被当做教科书级的捕食者与猎物的关系研究了几十年。你是栉毛虫还是草履虫？是捕食者还是猎物？"
 
@@ -1667,35 +1685,8 @@ msgstr "趣闻：你知道地球上有超过8000种纤毛虫吗？"
 msgid "EASTEREGG_MESSAGE_18"
 msgstr "趣闻：喇叭虫属是一类纤毛虫，它们可以把自己拉开，用纤毛产生水流把猎物吸入自己喇叭形的嘴。"
 
-msgid "EASTEREGG_MESSAGE_19"
-msgstr "趣闻：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
-
 msgid "EASTEREGG_MESSAGE_2"
 msgstr "小提示：如果你手速够快，你可以用自己的毒素把其它毒素推开。"
-
-msgid "EASTEREGG_MESSAGE_20"
-msgstr "趣闻：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
-
-msgid "EASTEREGG_MESSAGE_21"
-msgstr "小提示：小心比你更大的细胞，它们会吃你哟，被吃可不有趣。"
-
-msgid "EASTEREGG_MESSAGE_22"
-msgstr "Thrive的声乐团队做了很多还没有被加进游戏里的曲子。你可以在他们的YouTube频道Oliver Lugg上听他们的音乐，或观看他们直播编曲。"
-
-msgid "EASTEREGG_MESSAGE_23"
-msgstr "小提示：如果你的细胞有超过150个六角格，你将可以吞噬那些大型铁块。"
-
-msgid "EASTEREGG_MESSAGE_24"
-msgstr "Thrive是对外星球生物进化的模拟，所以你遇上的大多数生物其实都是之前遇到的生物的进化型，看看你是否能辨别出来！"
-
-msgid "EASTEREGG_MESSAGE_25"
-msgstr "趣闻：Thrive的开发团队经常做播客，你应该去听听看！"
-
-msgid "EASTEREGG_MESSAGE_26"
-msgstr "趣闻：Thrive是用开源的Godot引擎做的！"
-
-msgid "EASTEREGG_MESSAGE_27"
-msgstr "趣闻：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
 
 msgid "EASTEREGG_MESSAGE_3"
 msgstr "小提示：每一个六角格每秒需消耗一个ATP来进行渗透调节，而单格细胞质每秒产生5个ATP。这意味着如果你因为渗透调节在损失ATP的话，你只要多加几格细胞质或移除一些细胞器就行了。"
@@ -1722,6 +1713,10 @@ msgid "EASTER_EGGS"
 msgstr "包含彩蛋"
 
 msgid "EASTER_EGGS_EXPLANATION"
+msgstr "（游戏中会随机生成彩蛋）"
+
+#, fuzzy
+msgid "EASTER_EGG_BANANA_BIOME"
 msgstr "（游戏中会随机生成彩蛋）"
 
 msgid "EDGE_PAN_SPEED"
@@ -2218,6 +2213,10 @@ msgstr "完整的Mod信息"
 msgid "GALLERY_VIEWER"
 msgstr "图库浏览器"
 
+#, fuzzy
+msgid "GAMEPLAY_BASICS_TITLE"
+msgstr "游戏系统"
+
 msgid "GAME_DESIGN_TEAM"
 msgstr "游戏设计团队"
 
@@ -2231,6 +2230,34 @@ msgstr ""
 
 msgid "GENERAL"
 msgstr "常规"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_1"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_2"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_3"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_4"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_5"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_6"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "GENERAL_LOADING_TIP_7"
+msgstr "在编辑器中按下撤消键以纠正错误"
 
 msgid "GENERATIONS"
 msgstr "世代"
@@ -2786,9 +2813,6 @@ msgstr "此翻译非常不完整（已完成 {0}%）请帮助我们！"
 msgid "LAST_ORGANELLE_DELETE_OPTION_DISABLED_TOOLTIP"
 msgstr "无法删除最后的细胞器"
 
-msgid "LATE_MULTICELLULAR"
-msgstr "后期多细胞生物"
-
 msgid "LAUNCH0"
 msgstr "Launch 0"
 
@@ -2996,20 +3020,18 @@ msgstr "载入中"
 msgid "LOADING_DOT_DOT_DOT"
 msgstr "载入中……"
 
-msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
-msgstr "载入早期多细胞编辑器中"
-
 msgid "LOADING_GAME"
 msgstr "载入游戏"
+
+#, fuzzy
+msgid "LOADING_MACROSCOPIC_EDITOR"
+msgstr "载入微生物编辑器中"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "载入微生物编辑器中"
 
 msgid "LOADING_MULTICELLULAR_EDITOR"
 msgstr "载入多细胞编辑器中"
-
-msgid "LOADING_TIP"
-msgstr "在编辑器中按下撤消键以纠正错误"
 
 msgid "LOAD_FINISHED"
 msgstr "载入完成"
@@ -3071,6 +3093,14 @@ msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一
 msgid "MACROLIDE_SYNTHESIS"
 msgstr "大环内酯物合成"
 
+#, fuzzy
+msgid "MACROSCOPIC"
+msgstr "成为宏观生物（{0}/{1}）"
+
+#, fuzzy
+msgid "MACROSCOPIC_STAGE"
+msgstr "微生物阶段"
+
 msgid "MANUALLY_SET_TIME"
 msgstr "手动设置时间"
 
@@ -3128,8 +3158,24 @@ msgstr "媒体录制"
 msgid "MEDIASTOP"
 msgstr "媒体停止"
 
+#, fuzzy
+msgid "MEDIUM_SULFUR_CHUNK"
+msgstr "小铁块"
+
 msgid "MEGA_YEARS"
 msgstr "*10⁶年"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "代谢体"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "溶酶体是一种具膜细胞器，含有水解酶，可以分解各种生物分子。溶酶体允许细胞消化通过内吞作用吸收的物质，并在一个称为[b]自噬[/b]的过程中清洁细胞的废物。"
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "含有消化酶。可以通过修改来改变它所含酶的类型。一次只能选择一种酶。"
 
 msgid "MEMBRANE"
 msgstr "细胞膜"
@@ -3244,81 +3290,102 @@ msgstr "微生物编辑器"
 msgid "MICROBE_EDITOR"
 msgstr "微生物编辑器"
 
-msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
-msgstr ""
-"原核结构\n"
-"\n"
-"细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/thrive:compound]）\n"
-"\n"
-"代谢体：用[thrive:compound type=\"glucose\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"类囊体：跟正常的叶绿体比只能产出1/3的[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
-"\n"
-"化学合成蛋白：跟化学质体比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能产出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
-"\n"
-"铁硫菌蓝蛋白：将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]\n"
-"\n"
-"固氮酶：在无氧环境下将大气中的氮和[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"\n"
-"毒素体：将[thrive:compound type=\"atp\"][/thrive:compound]转化为[thrive:compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
-"\n"
-"热合成酶：利用温度梯度产生[thrive:compound type=\"atp\"][/thrive:compound]"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
-msgstr "胞吞完成后，摄入的任何物体都会在细胞内消化。无法消化的物体会被排出，所以请先行确保您具有消化它们所需的突变。溶酶体中的消化酶能辅助消化，所以为了更有效地消化物体，我们建议您进化出该细胞器。"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
-msgstr ""
-"外部细胞器\n"
-"\n"
-"鞭毛：通过消耗[thrive:compound type=\"atp\"][/thrive:compound]加快你细胞的移动速度\n"
-"\n"
-"菌毛：可以用来捅其它细胞或防护毒素 (虽然，现实中的菌毛并不是以捕食为主要用途的)\n"
-"\n"
-"化学感受器：允许从更远的地方探测化合物\n"
-"\n"
-"黏液喷嘴: 允许喷射 [thrive:compound type=\"mucilage\"][/thrive:compound] (由 [thrive:compound type=\"glucose\"][/thrive:compound]转化而来) 以增加你的细胞的速度\n"
-"\n"
-"纤毛：增加细胞转动速度"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
-msgstr ""
-"膜细胞器\n"
-"\n"
-"细胞核：占用十一个六角格并允许你进化膜细胞器，使你的细胞大小翻倍的同时减少50%所受伤害。（只能被进化一次）\n"
-"\n"
-"连接器：允许和其它细胞连接在一起。提升到多细胞阶段需要此细胞器。\n"
-"\n"
-"线粒体：用[thrive:compound type=\"glucose\"][/thrive:compound]和大气中的氧气生产[thrive:compound type=\"atp\"][/thrive:compound]，比细胞质的效率高很多\n"
-"\n"
-"叶绿体：用阳光和大气中的二氧化碳生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
-"\n"
-"热能体：利用温度梯度来产生[thrive:compound type=\"atp\"][/thrive:compound]。\n"
-"\n"
-"溶酶体：含有消化酶。酶可以增加消化的速度和效率。\n"
-"\n"
-"化学质体：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
-"\n"
-"铁化能质体：将[thrive:compound type=\"iron\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]，比铁硫菌蓝蛋白更高效\n"
-"\n"
-"固氮质体：用大气中的氧气，氮和[thrive:compound type=\"atp\"][/thrive:compound]生产[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
-"\n"
-"液泡：储存8单位收集的化合物\n"
-"\n"
-"毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）并释放它，根据可用的氧化毒素量造成伤害\n"
-"\n"
-"信号剂：让细胞可以生产其它细胞可以响应的化学物质"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
-msgstr "每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗的变异点。你可以在某个细胞器上右键点击并在弹出的菜单中选择移除或移动它。你还可以用[thrive:input]e_rotate_left[/thrive:input]键和[thrive:input]e_rotate_right[/thrive:input]键旋转你的细胞器。"
-
-msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
-msgstr "你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]x10⁶年的进化时间。"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物阶段自由编辑器"
 
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_1"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_10"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_11"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_12"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_13"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_14"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_15"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_16"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_17"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_18"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_19"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_2"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_20"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_21"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_22"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_3"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_4"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_5"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_6"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_7"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_8"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
+#, fuzzy
+msgid "MICROBE_LOADING_TIP_9"
+msgstr "在编辑器中按下撤消键以纠正错误"
+
 msgid "MICROBE_ORGANELLE_STATISTICS"
+msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
+
+#, fuzzy
+msgid "MICROBE_ORGANELLE_UPGRADES_STATISTICS"
 msgstr "  {0}：{1}的物种具有该细胞器，平均数量为{2}"
 
 msgid "MICROBE_SPECIES_DETAIL_TEXT"
@@ -3381,60 +3448,6 @@ msgstr ""
 "生命值归零你的细胞就会死。\n"
 "只要你还有ATP，你的生命值就会不断恢复。\n"
 "所以要确保总是有足够的葡萄糖来产出ATP。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_1"
-msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]键和鼠标进行移动。如有一个毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]发射[thrive:compound type=\"oxytoxy\"][/thrive:compound]。[thrive:input]g_toggle_engulf[/thrive:input]键可以切换至吞噬模式。可以用鼠标滚轮进行缩放。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_10"
-msgstr "你需要将每个细胞器都一分为二才能繁殖；细胞器需要[thrive:compound type=\"ammonia\"][/thrive:compound]和[thrive:compound type=\"phosphates\"][/thrive:compound]，以及充足的时间才能分裂。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_11"
-msgstr "但是，如果你能成功的以最少300的种群数量生存了二十代，你将被视为赢得了当前游戏。获胜后会弹出一个窗口并可以选择继续游玩。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_12"
-msgstr "保持警惕，你的竞争对手也在和你一起进化。每当你进入编辑器时他们也会进化。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_13"
-msgstr "你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要连接的细胞，按[thrive:input]g_toggle_binding[/thrive:input]进入连接模式。你在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要按 [thrive:input]g_unbind_all[/thrive:input]键脱离原细胞群。大的细胞群是形成多细胞生物（开发中）的基础。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_15"
-msgstr "纤维素和几丁质细胞壁在没有对应消化酶的情况下无法被分解。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_16"
-msgstr "然而，溶酶体仅存在于真核细胞中。没有该细胞器的原核细胞消化十分缓慢。这种劣势在较大的细胞中尤为明显。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_2"
-msgstr "你的细胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）作为能量来源，如果耗尽，你的细胞将会死亡。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_3"
-msgstr "为进入细胞编辑器去繁殖，你需要先存活足够久。收集足够的[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色云）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色云）可以加快生长。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_4"
-msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]键会启动吞噬模式，使你的细胞可以吞噬比你小的细胞、细菌、铁块和细胞器。吞噬模式会花费额外的[thrive:compound type=\"atp\"][/thrive:compound]并使你减速。记得再按一次[thrive:input]g_toggle_engulf[/thrive:input]键来退出吞噬模式。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_5"
-msgstr "渗透调节消耗[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷），这意味着你的细胞越大，你所需要的线粒体/代谢体/铁硫菌蓝蛋白（或细胞质-也可进行糖酵解）就越多。否则你在静止不动时都会损失[thrive:compound type=\"atp\"][/thrive:compound]。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_6"
-msgstr "编辑器里有很多细胞器可供你进化，提供多种不同的玩法。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_7"
-msgstr "目前版本，只要你的细胞数量降到零，你就会灭绝。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_8"
-msgstr ""
-"各种化合物云分别是：\n"
-"\n"
-"白色 - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
-"黄色 - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
-"橙色 - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
-"紫色 - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
-"铁锈棕 - [thrive:compound type=\"iron\"][/thrive:compound]\n"
-"\n"
-"[thrive:compound type=\"glucose\"][/thrive:compound]用于生产[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
-
-msgid "MICROBE_STAGE_HELP_MESSAGE_9"
-msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通过色质体和化学合成蛋白转换成[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound]可以通过铁硫菌蓝蛋白转换成[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
 
 msgid "MICROBE_STAGE_INITIAL"
 msgstr ""
@@ -3780,11 +3793,19 @@ msgstr "黏液合成"
 msgid "MUCOCYST_ACTION_TOOLTIP"
 msgstr "创造护盾"
 
+#, fuzzy
+msgid "MULTICELLULAR"
+msgstr "后期多细胞生物"
+
 msgid "MULTICELLULAR_EDITOR"
 msgstr "多细胞编辑器"
 
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "多细胞生物自由编辑器"
+
+#, fuzzy
+msgid "MULTICELLULAR_LOADING_TIP_1"
+msgstr "多细胞编辑器"
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "多细胞阶段"
@@ -3951,6 +3972,10 @@ msgstr "ATP 生产受毒素抑制"
 
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基础运动速度因毒素而降低"
+
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "现在可以进入编辑器"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "现在可以进入编辑器"
@@ -4132,6 +4157,10 @@ msgstr "轴突"
 
 msgid "ORGANELLE_AXON_DESCRIPTION"
 msgstr "轴突是神经细胞用于互相连接与交流的神经纤维。拥有该细胞器的细胞会被认定为脑组织。"
+
+#, fuzzy
+msgid "ORGANELLE_CATEGORY_MACROSCOPIC"
+msgstr "多细胞生物"
 
 msgid "ORGANELLE_CATEGORY_MULTICELLULAR"
 msgstr "多细胞生物"
@@ -4520,6 +4549,18 @@ msgstr ""
 "你确定要退出游戏吗？\n"
 "你会失去任何未保存的进度。"
 
+#, fuzzy
+msgid "RADIATION"
+msgstr "有氧呼吸作用"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "大磷酸盐块"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "热合成"
+
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "随机化物种名称"
 
@@ -4578,6 +4619,10 @@ msgstr "繁殖："
 #, fuzzy
 msgid "REPRODUCTION_COMPOUNDS_MODE_EXPLANATION"
 msgstr "（从周围的环境中被动获得的用于繁殖的化合物）"
+
+#, fuzzy
+msgid "REPRODUCTION_COMPOUND_HANDLING_TOOLTIP"
+msgstr "繁殖："
 
 msgid "REPRODUCTION_METHOD"
 msgstr "繁殖："
@@ -4953,6 +4998,12 @@ msgstr "在屏幕上显示伤害效果"
 msgid "SHOW_HELP"
 msgstr "显示帮助"
 
+#, fuzzy
+msgid "SHOW_ITEM_COORDINATES"
+msgstr ""
+"位置坐标：{0}\n"
+"朝向坐标：{1}"
+
 msgid "SHOW_NEW_PATCH_NOTES"
 msgstr "自动显示新的补丁说明"
 
@@ -5036,6 +5087,10 @@ msgstr "小铁块"
 
 msgid "SMALL_PHOSPHATE_CHUNK"
 msgstr "小磷酸盐碎块"
+
+#, fuzzy
+msgid "SMALL_SULFUR_CHUNK"
+msgstr "小铁块"
 
 msgid "SNOWFLAKE"
 msgstr "雪花"
@@ -5710,18 +5765,6 @@ msgstr "试着截一些图吧！"
 msgid "TUTORIAL"
 msgstr "教程"
 
-msgid "TUTORIAL_EARLY_MULTICELLULAR_STAGE_WELCOME"
-msgstr ""
-"欢迎来到早期多细胞生物阶段!\n"
-"\n"
-"你已经成功带领你的物种度过了单细胞生物阶段.\n"
-"\n"
-"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
-"\n"
-"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
-"\n"
-"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
-
 msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "右侧的ATP生产条显示你的细胞生产和消耗[thrive:compound type=\"atp\"][/thrive:compound]的比例。如果顶段条比底段条短，说明你没有产生足够的[thrive:compound type=\"atp\"][/thrive:compound]。\n"
@@ -5893,6 +5936,19 @@ msgstr ""
 "\n"
 "要完全离开细胞群，你可以点击你自己的细胞或按[thrive:input]g_unbind_all[/thrive:input]。"
 
+#, fuzzy
+msgid "TUTORIAL_MULTICELLULAR_STAGE_WELCOME"
+msgstr ""
+"欢迎来到早期多细胞生物阶段!\n"
+"\n"
+"你已经成功带领你的物种度过了单细胞生物阶段.\n"
+"\n"
+"游戏现在的核心玩法与单细胞生物阶段并无二致. 你仍需要使你的生物持续生长以繁殖并进入编辑器.\n"
+"\n"
+"然而，你现在可以设计细胞群落中各细胞排布的位置并使它们分化以让它们分别承担不同的生命活动. 不过要记住群落中的各个细胞并不能共享 [thrive:compound type=\"atp\"][/thrive:compound].\n"
+"\n"
+"如果你使用出芽繁殖 (默认繁殖方式), 你开始时只会控制一个芽体并需要长出群落中剩下的细胞."
+
 msgid "TUTORIAL_VIEW_NOW"
 msgstr "现在就查看"
 
@@ -6010,6 +6066,14 @@ msgstr "吞噬{0} 个微生物（目前为{1}）"
 
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "多余的[thrive:compound type=\"atp\"][/thrive:compound]到达{0}"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "死亡次数到达{0} （目前为 {1}）"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "死亡次数到达{0} （目前为 {1}）"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "死亡次数到达{0} （目前为 {1}）"
@@ -6226,9 +6290,6 @@ msgstr "Wiki"
 
 msgid "WIKI_2D"
 msgstr "2D"
-
-msgid "WIKI_2D_BRACKET_EARLY_COMMA_3D_BRACKET_LATE"
-msgstr ""
 
 msgid "WIKI_3D"
 msgstr "3D"
@@ -6712,6 +6773,52 @@ msgstr "（每一代后环境葡萄糖保留的比例）"
 msgid "WIKI_ENVIRONMENTAL_CONDITIONS_THE_DAY/NIGHT_CYCLE"
 msgstr ""
 
+#, fuzzy
+msgid "WIKI_FERROPLAST_EFFECTS"
+msgstr "无效果。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_INTRO"
+msgstr ""
+"利用环境中的[thrive:compound type=\"temperature\"][/thrive:compound] 梯度以[thrive:compound type=\"atp\"][/thrive:compound] 的形式提取能量。 效率高于原核版本的[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]。\n"
+"\n"
+"这是未在现实中发现的猜想中的细胞器。 在开启仅限已知生命形式选项的游戏中不可用。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_MODIFICATIONS"
+msgstr "无修改。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_PROCESSES"
+msgstr ""
+"[b]热合成[/b]：[thrive:compound type=\"temperature\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"利用周围环境[thrive:compound type=\"temperature\"][/thrive:compound] 被动生成能量。 效率高于[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]中的[b]细菌热合成[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_REQUIREMENTS"
+msgstr ""
+"[b]热能体[/b]仅出现在关闭仅限已知生命形式(LAWK)选项的游戏中。\n"
+"\n"
+"如果在游戏设定中启用了细胞器解锁，则[i]玩家细胞[/i]必须满足以下条件：\n"
+"\n"
+"[indent]—   至少连续[b]5[/b] 代中包含[b]3[/b] 个[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][ /color][/b]。 [/indent]"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_SCIENTIFIC_BACKGROUND"
+msgstr "待定"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_STRATEGY"
+msgstr ""
+"由于[b]热合成[/b]除了环境[thrive:compound type=\"temperature\"][/thrive:compound] 以外不需要任何输入，因此它本质上是免费能量。 此外，[b]热能体[/b]比其前身[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]更高效，这使得 它们可以说是游戏中最简单的能量产生方法，前提是您愿意留在海底热泉等炎热地区。\n"
+"\n"
+"启用细胞器解锁后，需要在细胞中使用[b][color=#3796e1][url=thriveopedia:thermosynthase]热合成酶[/url][/color][/b]进行多次繁殖，意味着玩家演化[b]热能体[/b]时，他们可能已经非常专注于[b]热合成[/b]以获得[b]热能体[/b]。"
+
+#, fuzzy
+msgid "WIKI_FERROPLAST_UPGRADES"
+msgstr "无升级。"
+
 msgid "WIKI_FLAGELLUM_EFFECTS"
 msgstr "每个[b]鞭毛[/b]提供与其方向相反的方向的定向推力。 它们也在接近完全相反的方向上提供部分推力（准确地说，是那些与完全相反的向量的分量（内积）为正的方向）。 每当[b]鞭毛[/b]处于活动状态时，它就会消耗[thrive:compound type=\"atp\"][/thrive:compound]。"
 
@@ -6752,7 +6859,15 @@ msgid "WIKI_HEADING_APPENDICES"
 msgstr "可用升级"
 
 #, fuzzy
+msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
+msgstr "可用升级"
+
+#, fuzzy
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
+msgstr "代谢过程"
+
+#, fuzzy
+msgid "WIKI_HEADING_COMPOUND_CLOUDS"
 msgstr "代谢过程"
 
 #, fuzzy
@@ -6795,15 +6910,31 @@ msgid "WIKI_HEADING_GDD"
 msgstr "可用升级"
 
 #, fuzzy
+msgid "WIKI_HEADING_GENERAL_TIPS"
+msgstr "影响与效果"
+
+#, fuzzy
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr "修改选项"
+
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_PARTS"
+msgstr "代谢过程"
 
 #, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "代谢过程"
 
+#, fuzzy
+msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
+msgstr "代谢过程"
+
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "修改选项"
+
+#, fuzzy
+msgid "WIKI_HEADING_MORE_GAME_INFO"
+msgstr "代谢过程"
 
 #, fuzzy
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
@@ -6858,6 +6989,36 @@ msgstr "可用升级"
 
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "可用升级"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
+msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_BUTTON"
+msgstr "化合物"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
+msgstr "代谢过程"
+
+msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
+msgstr ""
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_INTRO"
+msgstr "细胞的发电厂。[b]线粒体[/b]进行[b]有氧呼吸[/b]，或者说用[thrive:compound type=\"oxygen\"][/thrive:compound]把[thrive:compound type=\"glucose\"]转化为[thrive:compound type=\"atp\"][/thrive:compound]。[b]线粒体[/b]执行这项功能的效率高于例如[b][color=#3796e1][url=thriveopedia:metabolosome]代谢体[/url][/color][/b]的其他细胞器。"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
+msgstr "代谢过程"
+
+#, fuzzy
+msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
+msgstr "代谢过程"
+
+msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
+msgstr ""
 
 #, fuzzy
 msgid "WIKI_HYDROGENASE_EFFECTS"
@@ -6991,6 +7152,47 @@ msgid "WIKI_LYSOSOME_UPGRADES"
 msgstr "无升级。"
 
 #, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CONCEPT_ART"
+msgstr "多细胞阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_CURRENT_DEVELOPMENT"
+msgstr ""
+"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]连接器[/b]。\n"
+"\n"
+"如果细胞器升级在游戏设置中被开启，[i]玩家细胞[/i]必须满足以下[i]全部[/i]条件：\n"
+"\n"
+"[indent]—   拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]至少[b]5[/b]个世代。[/indent]\n"
+"[indent]—   [thrive:compound type=\"atp\"][/thrive:compound]平衡至少达到[b]+15[/b]。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_FEATURES"
+msgstr "黏液喷嘴"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_INTRO"
+msgstr ""
+"在一个遥远的外星球上，恒古的火山活动和陨石冲击引发了一种新现象的出现。\n"
+"\n"
+"生命。\n"
+"\n"
+"简单的微生物栖息在海洋的深处。你便是这个星球上的最后普遍共同祖先（LUCA）。\n"
+"\n"
+"要在这个艰难的世界存活下来，你将需要任何你能找到的化合物并在多个世代里不断进化，才能跟其它的微生物竞争。"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_OVERVIEW"
+msgstr "太空阶段"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_TRANSITIONS"
+msgstr "固氮酶"
+
+#, fuzzy
+msgid "WIKI_MACROSCOPIC_STAGE_UI"
+msgstr "太空阶段"
+
+#, fuzzy
 msgid "WIKI_MECHANICS"
 msgstr "细胞器"
 
@@ -7005,6 +7207,62 @@ msgstr ""
 "\n"
 "在下方列表中选择一个细胞器以了解更多。"
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr ""
+"包含[b]几丁质酶[/b]或[b]纤维素酶[/b]的[b]溶酶体[/b]可以让细胞获得消化拥有[b]几丁质细胞壁[/b]或[b]纤维素细胞壁[/b]的细胞的能力。如果细胞没有含有对应水解酶的溶酶体，被吞噬的细胞会被立即吐出来\n"
+"\n"
+"除了它们的基本属性，每一个[b]溶酶体[/b]还可以：\n"
+"\n"
+"[indent]—   [b]+0.05[/b]消化速度。被吞噬的物质会被更快地消化。[/indent]\n"
+"[indent]—   [b]+4.5%[/b]对应物质的消化效率。吞噬拥有对应细胞壁的细胞可以获得更多的化合物。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr ""
+"包含消化酶。可以被修改以改变其包含酶的类型。每个[b]溶酶体[/b]只能包含一种酶。酶使得消化过程更加快速高效。\n"
+"\n"
+"[b]溶酶体[/b]是一种有膜细胞器，包含有可以分解多种有机分子的水解酶。[b]溶酶体[/b]帮助细胞消化通过胞吞获得的物质，并通过名为自噬的生理过程清理细胞内的废物。"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr ""
+"修改[b]溶酶体[/b]所包含的酶的类型。默认情况下，溶酶体含有[b]脂酶[/b]，帮助消化[b]单层[/b]或[b]双层[/b]的细胞膜。\n"
+"\n"
+"[b]溶酶体[/b]可以包含以下之一：\n"
+"\n"
+"[indent]—   [b]几丁质酶[/b]，目标为[b]几丁质膜[/b]。[/indent]\n"
+"[indent]—   [b]纤维素酶[/b]，目标为[b]纤维素膜[/b]。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "无代谢过程。"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr ""
+"一个细胞必须拥有一个[b][color=#3796e1][url=thriveopedia:nucleus]细胞核[/url][/color][/b]才能进化出[b]溶酶体[/b]\n"
+"\n"
+"如果细胞器升级在游戏设置中被启用，[i]玩家细胞[/i]必须满足以下[i]至少一种[/i]条件：\n"
+"\n"
+"[indent]—   已经吞噬了至少[b]20[/b] 个细胞。[/indent]\n"
+"[indent]—   已经消化了至少[b]10[/b] 个细胞。[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr ""
+"对于吞噬猎物的细胞，通常建议进化至少两种[b]溶酶体[/b]，设定一种使用[b]几丁质酶[/b]，一种使用[b]纤维素酶[/b] 。 这样，您的细胞就可以消化更多类型的猎物，否则这些猎物将坚不可摧。\n"
+"\n"
+"增加更多的[b]溶酶体[/b]以及酶的种类也是个好主意。 提高消化速度可以防止摄入物质储存空间不足的问题。提高消化效率使掠食作为一种策略更加可行。"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "无升级。"
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "无效果。"
 
@@ -7014,6 +7272,7 @@ msgstr "[b]代谢体[/b]进行[b]蛋白质呼吸[/b]，一种劣于[b][color=#37
 msgid "WIKI_METABOLOSOMES_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_PROCESSES"
 msgstr ""
 "[b]蛋白质呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7103,6 +7362,7 @@ msgstr "细胞的发电厂。[b]线粒体[/b]进行[b]有氧呼吸[/b]，或者�
 msgid "WIKI_MITOCHONDRION_MODIFICATIONS"
 msgstr "无修改。"
 
+#, fuzzy
 msgid "WIKI_MITOCHONDRION_PROCESSES"
 msgstr ""
 "[b]有氧呼吸[/b]：[thrive:compound type=\"glucose\"][/thrive:compound] + [thrive:compound type=\"oxygen\"][/thrive:compound] → [thrive:compound type=\"atp\"][/thrive:compound]\n"
@@ -7228,6 +7488,7 @@ msgstr ""
 msgid "WIKI_NITROGENASE_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_NITROGENASE_STRATEGY"
 msgstr ""
 "[b]固氮酶[/b]生产的[thrive:compound type=\"ammonia\"][/thrive:compound] 有助于储存用于繁殖的资源。 因此，具有[b]固氮酶[/b]的细胞只需要从环境中找到[thrive:compound type=\"phosphates\"][/thrive:compound]，就能以比基本速率更快的速率繁殖（如果在当前游戏选项中停用了被动繁殖进度，则基本速率为零）。\n"
@@ -7425,8 +7686,16 @@ msgstr "线粒体"
 msgid "WIKI_PAGE_ENVIRONMENTAL_CONDITIONS"
 msgstr "线粒体"
 
+#, fuzzy
+msgid "WIKI_PAGE_FERROPLAST"
+msgstr "热能体"
+
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "鞭毛"
+
+#, fuzzy
+msgid "WIKI_PAGE_HELP_AND_TIPS"
+msgstr "线粒体"
 
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "氢化酶"
@@ -7439,8 +7708,16 @@ msgid "WIKI_PAGE_LYSOSOME"
 msgstr "溶酶体"
 
 #, fuzzy
+msgid "WIKI_PAGE_MACROSCOPIC_STAGE"
+msgstr "固氮酶"
+
+#, fuzzy
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "细胞器"
+
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "溶酶体"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "代谢体"
@@ -7611,6 +7888,10 @@ msgid "WIKI_PULLING_CILIA"
 msgstr "纤毛"
 
 #, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "热合成"
+
+#, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr ""
 "用以提升非玩家细胞的储存的[b][color=#3796e1][url=thriveopedia:cytoplasm]细胞质[/url][/color][/b]的显著增强版本。无法被添加到玩家细胞中，但可能在玩家从环境中化石化的细胞中出现。\n"
@@ -7656,9 +7937,11 @@ msgstr ""
 msgid "WIKI_RUSTICYANIN_REQUIREMENTS"
 msgstr "无要求"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_SCIENTIFIC_BACKGROUND"
 msgstr "待定"
 
+#, fuzzy
 msgid "WIKI_RUSTICYANIN_STRATEGY"
 msgstr ""
 "[thrive:compound type=\"iron\"][/thrive:compound] 是一种有价值的替代资源，可以取代[thrive:compound type=\"glucose\"][/thrive:compound]，因为它不会在环境中腐烂。 以铁为食的细胞很可能在[thrive:compound type=\"iron\"][/thrive:compound] 丰富的区域中享受丰富的营养。\n"
@@ -8100,6 +8383,168 @@ msgstr "放大"
 msgid "ZOOM_OUT"
 msgstr "缩小"
 
+#~ msgid "EASTEREGG_MESSAGE_19"
+#~ msgstr "趣闻：栉毛虫是一种纤毛虫，它们会捕猎草履虫。"
+
+#~ msgid "EASTEREGG_MESSAGE_20"
+#~ msgstr "趣闻：阿米巴使用称作伪足的细胞质抓捕猎物，总有一天我们也能让Thrive能做出这种效果的。"
+
+#~ msgid "EASTEREGG_MESSAGE_21"
+#~ msgstr "小提示：小心比你更大的细胞，它们会吃你哟，被吃可不有趣。"
+
+#~ msgid "EASTEREGG_MESSAGE_22"
+#~ msgstr "Thrive的声乐团队做了很多还没有被加进游戏里的曲子。你可以在他们的YouTube频道Oliver Lugg上听他们的音乐，或观看他们直播编曲。"
+
+#~ msgid "EASTEREGG_MESSAGE_23"
+#~ msgstr "小提示：如果你的细胞有超过150个六角格，你将可以吞噬那些大型铁块。"
+
+#~ msgid "EASTEREGG_MESSAGE_24"
+#~ msgstr "Thrive是对外星球生物进化的模拟，所以你遇上的大多数生物其实都是之前遇到的生物的进化型，看看你是否能辨别出来！"
+
+#~ msgid "EASTEREGG_MESSAGE_25"
+#~ msgstr "趣闻：Thrive的开发团队经常做播客，你应该去听听看！"
+
+#~ msgid "EASTEREGG_MESSAGE_26"
+#~ msgstr "趣闻：Thrive是用开源的Godot引擎做的！"
+
+#~ msgid "EASTEREGG_MESSAGE_27"
+#~ msgstr "趣闻：我们最早的可玩游戏原型是由我们了不起的程序员，untrustedlife制作的！"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_1"
+#~ msgstr ""
+#~ "原核结构\n"
+#~ "\n"
+#~ "细胞质：有储存空间并能进行糖酵解（产出少量的[thrive:compound type=\"atp\"][/thrive:compound]）\n"
+#~ "\n"
+#~ "代谢体：用[thrive:compound type=\"glucose\"][/thrive:compound]生产[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "类囊体：跟正常的叶绿体比只能产出1/3的[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
+#~ "\n"
+#~ "化学合成蛋白：跟化学质体比同一份[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]只能产出半份[thrive:compound type=\"glucose\"][/thrive:compound]，但其同时也能进行糖酵解。占用一个六角格。\n"
+#~ "\n"
+#~ "铁硫菌蓝蛋白：将[thrive:compound type=\"iron\"][/thrive:compound]转换成[thrive:compound type=\"atp\"][/thrive:compound]\n"
+#~ "\n"
+#~ "固氮酶：在无氧环境下将大气中的氮和[thrive:compound type=\"atp\"][/thrive:compound]转换成[thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "\n"
+#~ "毒素体：将[thrive:compound type=\"atp\"][/thrive:compound]转化为[thrive:compound type=\"oxytoxy\"][/thrive:compound] 毒素\n"
+#~ "\n"
+#~ "热合成酶：利用温度梯度产生[thrive:compound type=\"atp\"][/thrive:compound]"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_14"
+#~ msgstr "胞吞完成后，摄入的任何物体都会在细胞内消化。无法消化的物体会被排出，所以请先行确保您具有消化它们所需的突变。溶酶体中的消化酶能辅助消化，所以为了更有效地消化物体，我们建议您进化出该细胞器。"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_2"
+#~ msgstr ""
+#~ "外部细胞器\n"
+#~ "\n"
+#~ "鞭毛：通过消耗[thrive:compound type=\"atp\"][/thrive:compound]加快你细胞的移动速度\n"
+#~ "\n"
+#~ "菌毛：可以用来捅其它细胞或防护毒素 (虽然，现实中的菌毛并不是以捕食为主要用途的)\n"
+#~ "\n"
+#~ "化学感受器：允许从更远的地方探测化合物\n"
+#~ "\n"
+#~ "黏液喷嘴: 允许喷射 [thrive:compound type=\"mucilage\"][/thrive:compound] (由 [thrive:compound type=\"glucose\"][/thrive:compound]转化而来) 以增加你的细胞的速度\n"
+#~ "\n"
+#~ "纤毛：增加细胞转动速度"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_3"
+#~ msgstr ""
+#~ "膜细胞器\n"
+#~ "\n"
+#~ "细胞核：占用十一个六角格并允许你进化膜细胞器，使你的细胞大小翻倍的同时减少50%所受伤害。（只能被进化一次）\n"
+#~ "\n"
+#~ "连接器：允许和其它细胞连接在一起。提升到多细胞阶段需要此细胞器。\n"
+#~ "\n"
+#~ "线粒体：用[thrive:compound type=\"glucose\"][/thrive:compound]和大气中的氧气生产[thrive:compound type=\"atp\"][/thrive:compound]，比细胞质的效率高很多\n"
+#~ "\n"
+#~ "叶绿体：用阳光和大气中的二氧化碳生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "热能体：利用温度梯度来产生[thrive:compound type=\"atp\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "溶酶体：含有消化酶。酶可以增加消化的速度和效率。\n"
+#~ "\n"
+#~ "化学质体：用[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]生产[thrive:compound type=\"glucose\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "铁化能质体：将[thrive:compound type=\"iron\"][/thrive:compound] 转化为[thrive:compound type=\"atp\"][/thrive:compound]，比铁硫菌蓝蛋白更高效\n"
+#~ "\n"
+#~ "固氮质体：用大气中的氧气，氮和[thrive:compound type=\"atp\"][/thrive:compound]生产[thrive:compound type=\"ammonia\"][/thrive:compound]。\n"
+#~ "\n"
+#~ "液泡：储存8单位收集的化合物\n"
+#~ "\n"
+#~ "毒素液泡：生产毒素（[thrive:compound type=\"oxytoxy\"][/thrive:compound]）并释放它，根据可用的氧化毒素量造成伤害\n"
+#~ "\n"
+#~ "信号剂：让细胞可以生产其它细胞可以响应的化学物质"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_4"
+#~ msgstr "每一代，你都有100个变异点可供花费，任何变化都需要花费一定量的变异点。增加或移除细胞器会花费变异点，但是移除在本代放下的细胞器会返还全部那个细胞器消耗的变异点。你可以在某个细胞器上右键点击并在弹出的菜单中选择移除或移动它。你还可以用[thrive:input]e_rotate_left[/thrive:input]键和[thrive:input]e_rotate_right[/thrive:input]键旋转你的细胞器。"
+
+#~ msgid "MICROBE_EDITOR_HELP_MESSAGE_5"
+#~ msgstr "你每次繁殖时都会进入微生物编辑器，你可以在那改变你的物种（通过添加，移动或删除细胞器）以强化你物种的生存力。在微生物阶段每次进入编辑器都代表[thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant]x10⁶年的进化时间。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_1"
+#~ msgstr "用[thrive:input]g_move_forward[/thrive:input]，[thrive:input]g_move_left[/thrive:input]，[thrive:input]g_move_backwards[/thrive:input]，[thrive:input]g_move_right[/thrive:input]键和鼠标进行移动。如有一个毒素液泡，可按下[thrive:input]g_fire_toxin[/thrive:input]发射[thrive:compound type=\"oxytoxy\"][/thrive:compound]。[thrive:input]g_toggle_engulf[/thrive:input]键可以切换至吞噬模式。可以用鼠标滚轮进行缩放。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_10"
+#~ msgstr "你需要将每个细胞器都一分为二才能繁殖；细胞器需要[thrive:compound type=\"ammonia\"][/thrive:compound]和[thrive:compound type=\"phosphates\"][/thrive:compound]，以及充足的时间才能分裂。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_11"
+#~ msgstr "但是，如果你能成功的以最少300的种群数量生存了二十代，你将被视为赢得了当前游戏。获胜后会弹出一个窗口并可以选择继续游玩。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_12"
+#~ msgstr "保持警惕，你的竞争对手也在和你一起进化。每当你进入编辑器时他们也会进化。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_13"
+#~ msgstr "你可以通过与其他细胞连接来建立细胞群。细胞群中的所有细胞共享它们吸收和产生的化合物。要跟其他细胞连接，你需要拥有连接器细胞器并在进入连接模式后接触你想要连接的细胞，按[thrive:input]g_toggle_binding[/thrive:input]进入连接模式。你在细胞群中无法复制并进入细胞编辑器。如果在收集了足够多化合物后你想要进入细胞编辑器，你需要按 [thrive:input]g_unbind_all[/thrive:input]键脱离原细胞群。大的细胞群是形成多细胞生物（开发中）的基础。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_15"
+#~ msgstr "纤维素和几丁质细胞壁在没有对应消化酶的情况下无法被分解。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_16"
+#~ msgstr "然而，溶酶体仅存在于真核细胞中。没有该细胞器的原核细胞消化十分缓慢。这种劣势在较大的细胞中尤为明显。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_2"
+#~ msgstr "你的细胞使用[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）作为能量来源，如果耗尽，你的细胞将会死亡。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_3"
+#~ msgstr "为进入细胞编辑器去繁殖，你需要先存活足够久。收集足够的[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色云）和[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色云）可以加快生长。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_4"
+#~ msgstr "按[thrive:input]g_toggle_engulf[/thrive:input]键会启动吞噬模式，使你的细胞可以吞噬比你小的细胞、细菌、铁块和细胞器。吞噬模式会花费额外的[thrive:compound type=\"atp\"][/thrive:compound]并使你减速。记得再按一次[thrive:input]g_toggle_engulf[/thrive:input]键来退出吞噬模式。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_5"
+#~ msgstr "渗透调节消耗[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷），这意味着你的细胞越大，你所需要的线粒体/代谢体/铁硫菌蓝蛋白（或细胞质-也可进行糖酵解）就越多。否则你在静止不动时都会损失[thrive:compound type=\"atp\"][/thrive:compound]。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_6"
+#~ msgstr "编辑器里有很多细胞器可供你进化，提供多种不同的玩法。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_7"
+#~ msgstr "目前版本，只要你的细胞数量降到零，你就会灭绝。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_8"
+#~ msgstr ""
+#~ "各种化合物云分别是：\n"
+#~ "\n"
+#~ "白色 - [thrive:compound type=\"glucose\"][/thrive:compound]\n"
+#~ "黄色 - [thrive:compound type=\"hydrogensulfide\"][/thrive:compound]\n"
+#~ "橙色 - [thrive:compound type=\"ammonia\"][/thrive:compound]\n"
+#~ "紫色 - [thrive:compound type=\"phosphates\"][/thrive:compound]\n"
+#~ "铁锈棕 - [thrive:compound type=\"iron\"][/thrive:compound]\n"
+#~ "\n"
+#~ "[thrive:compound type=\"glucose\"][/thrive:compound]用于生产[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
+
+#~ msgid "MICROBE_STAGE_HELP_MESSAGE_9"
+#~ msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound]可以通过色质体和化学合成蛋白转换成[thrive:compound type=\"glucose\"][/thrive:compound]。[thrive:compound type=\"iron\"][/thrive:compound]可以通过铁硫菌蓝蛋白转换成[thrive:compound type=\"atp\"][/thrive:compound]（三磷酸腺苷）。"
+
+#, fuzzy
+#~ msgid "WIKI_MACROSCOPIC_STAGE"
+#~ msgstr "微生物阶段"
+
+#~ msgid "EARLY_MULTICELLULAR"
+#~ msgstr "多细胞生物"
+
+#~ msgid "LOADING_EARLY_MULTICELLULAR_EDITOR"
+#~ msgstr "载入早期多细胞编辑器中"
+
 #, fuzzy
 #~ msgid "ERUPTION_IN"
 #~ msgstr "出芽"
@@ -8152,10 +8597,6 @@ msgstr "缩小"
 #~ msgstr "微生物编辑器"
 
 #, fuzzy
-#~ msgid "WIKI_MICROBE_STAGE"
-#~ msgstr "微生物阶段"
-
-#, fuzzy
 #~ msgid "WIKI_MUCILAGE_SYNTHESIS"
 #~ msgstr "黏液合成"
 
@@ -8186,10 +8627,6 @@ msgstr "缩小"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "太空阶段"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "热合成"
 
 #, fuzzy
 #~ msgid "NO"

@@ -1044,7 +1044,7 @@
         "Name": "UPGRADE_SLIME_JET_MUCOCYST",
         "Description": "UPGRADE_SLIME_JET_MUCOCYST_DESCRIPTION",
         "MPCost": 40,
-        "IconPath": "res://assets/textures/gui/bevel/parts/VacuoleIcon.png",
+        "IconPath": "res://assets/textures/gui/bevel/part_upgrades/MucocystIcon.svg",
         "OverrideGraphics": {
           "ScenePath": "res://assets/models/organelles/Mucocyst.tscn"
         }
@@ -1299,6 +1299,56 @@
     "EditorButtonGroup": "Organelle",
     "EditorButtonOrder": 5
   },
+  "melanosome": {
+    "MPCost": 45,
+    "InitialComposition": {
+      "ammonia": 2,
+      "phosphates": 2
+    },
+    "Hexes": [
+      {
+        "r": 0,
+        "q": 0
+      },
+      {
+        "r": -1,
+        "q": 0
+      }
+    ],
+    "Processes": {
+      "radiosynthesis": 1
+    },
+    "Components": {
+      "Storage": {
+        "Capacity": 0.5
+      }
+    },
+    "FeatureTags": [
+      "RadiationBlock"
+    ],
+    "Density": 1300,
+    "RelativeDensityVolume": 1,
+    "Graphics": {
+      "ScenePath": "res://assets/models/organelles/Melanosome.tscn"
+    },
+    "Name": "MELANOSOME",
+    "Description": "MELANOSOME_DESCRIPTION",
+    "ProcessesDescription": "MELANOSOME_PROCESSES_DESCRIPTION",
+    "ProductionColour": "#9158c5",
+    "ConsumptionColour": "#d15378",
+    "IconPath": "res://assets/textures/gui/bevel/parts/MelanosomeIcon.png",
+    "UnlockConditions": [
+      {
+        "DamageFromSource": {
+          "SourceName": "radiation",
+          "Amount": 1
+        }
+      }
+    ],
+    "RequiresNucleus": true,
+    "EditorButtonGroup": "Organelle",
+    "EditorButtonOrder": 13
+  },
   "axon": {
     "MPCost": 100,
     "InitialComposition": {
@@ -1325,7 +1375,7 @@
     "Description": "ORGANELLE_AXON_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/AxonIcon.png",
     "RequiresNucleus": true,
-    "EditorButtonGroup": "Multicellular",
+    "EditorButtonGroup": "Macroscopic",
     "EditorButtonOrder": 1
   },
   "myofibril": {
@@ -1368,7 +1418,7 @@
     "Description": "ORGANELLE_MYOFIBRIL_DESCRIPTION",
     "IconPath": "res://assets/textures/gui/bevel/parts/MyofibrilIcon.png",
     "RequiresNucleus": true,
-    "EditorButtonGroup": "Multicellular",
+    "EditorButtonGroup": "Macroscopic",
     "EditorButtonOrder": 2
   }
 }

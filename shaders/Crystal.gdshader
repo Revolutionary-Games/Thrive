@@ -1,62 +1,52 @@
 shader_type spatial;
-render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_lambert_wrap, specular_schlick_ggx;
+render_mode blend_add, depth_draw_opaque, cull_disabled, diffuse_lambert_wrap;
 
-uniform vec4 albedo : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 albedo : source_color = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 uniform sampler2D albedoTexture : source_color, filter_linear_mipmap, repeat_enable;
 uniform bool useNormal = false;
 uniform sampler2D normalTexture;
 
-uniform float roughness : hint_range(0, 1) = 0.6;
+uniform float roughness : hint_range(0, 1) = 0.6f;
 uniform sampler2D roughnessTexture : hint_roughness_r, filter_linear_mipmap, repeat_enable;
-uniform vec4 roughnessTextureChannel = vec4(1.0, 0.0, 0.0, 0.0);
+uniform vec4 roughnessTextureChannel = vec4(1.0f, 0.0f, 0.0f, 0.0f);
 
-uniform float specular : hint_range(0, 1) = 0.7;
-uniform float metallic : hint_range(0, 1) = 0.57;
-uniform vec4 metallicTextureChannel = vec4(1.0, 0.0, 0.0, 0.0);
+uniform float specular : hint_range(0, 1) = 0.7f;
+uniform float metallic : hint_range(0, 1) = 0.57f;
 
-uniform vec4 emission : source_color = vec4(0.1, 0.1, 0.1, 1.0);
-uniform float emissionEnergy = 0.25;
-
-uniform float clearcoat : hint_range(0, 1) = 0.3;
-uniform float clearcoatRoughness : hint_range(0, 1) = 0.1;
+uniform vec4 emission : source_color = vec4(0.1f, 0.1f, 0.1f, 1.0f);
+uniform float emissionEnergy = 0.25f;
 
 uniform sampler2D dissolveTexture : source_color;
-uniform float dissolveValue : hint_range(0, 1);
-uniform float outlineWidth;
-uniform vec4 growColor : source_color;
+uniform float dissolveValue : hint_range(0, 1) = 0.0f;
+uniform float dissolveScale : hint_range(0.5f, 5.0f, 0.1f) = 1.0f;
+
+uniform float outlineWidth : hint_range(0.0f, 0.25f, 0.01f) = 0.0f;
+uniform vec4 growColor : source_color = vec4(0.1f, 0.1f, 0.1f, 1.0f);
 
 void fragment() {
-    vec2 baseUV = UV;
-    vec4 albedoUV = texture(albedoTexture, baseUV);
-    albedoUV.rgb = mix(pow((albedoUV.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
-        albedoUV.rgb * (1.0 / 12.92), lessThan(albedoUV.rgb, vec3(0.04045)));
+    vec4 albedoUV = texture(albedoTexture, UV);
+    vec4 final =  albedo * albedoUV;
 
     // Handle dissolve animation
-    vec4 dissolveTex = texture(dissolveTexture, baseUV);
-    float cutoff = clamp(dot(dissolveTex.rgb, vec3(0.29, 0.29, 0.29)) -
-        float(-0.55 + clamp(dissolveValue, 0, 1)), 0, 1.0);
-    vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
-        growColor.rgb;
+    vec4 dissolveTex = texture(dissolveTexture, (UV * dissolveScale));
+    float cutoff = dot(dissolveTex.rgb, vec3(0.3f, 0.3f, 0.3f)) -
+        float(-0.5f + dissolveValue);
+    vec3 dissolveOutline = clamp(vec3(round(1.0f - float(cutoff - outlineWidth))) *
+        growColor.rgb, 0, dissolveValue);
 
-    ALBEDO = albedo.rgb * albedoUV.rgb;
-    ALPHA = round(cutoff) * albedo.a * albedoUV.a;
+    ALBEDO = final.rgb;
+    ALPHA = round(cutoff) * final.a;
     if (useNormal == true)
     {
-        vec4 normalMap = texture(normalTexture, baseUV);
+        vec4 normalMap = texture(normalTexture, UV);
         NORMAL_MAP = normalMap.xyz;
     }
 
-    float roughnessUV = 1.0 - dot(texture(roughnessTexture, baseUV), roughnessTextureChannel);
+    float roughnessUV = dot(texture(roughnessTexture, UV), roughnessTextureChannel);
     ROUGHNESS = roughnessUV * roughness;
 
-    float metallicTex = dot(texture(roughnessTexture, baseUV), metallicTextureChannel);
-    METALLIC = metallicTex * metallic;
-    SPECULAR = metallicTex * specular;
+    METALLIC = metallic;
+    SPECULAR = specular;
 
-    //float emissionAlpha = 1.0 - (texture(roughnessTexture, baseUV).a);
-    //EMISSION = emissionAlpha * dissolveOutline + (emission.rgb * emissionEnergy);
-    vec4 emissionTex = texture(roughnessTexture, baseUV);
-    EMISSION = (dissolveOutline + (emission.rgb * emissionTex.rgb) * emissionEnergy) * emissionTex.a;
-    CLEARCOAT = clearcoat;
-    CLEARCOAT_ROUGHNESS = clearcoatRoughness;
+    EMISSION = ((dissolveOutline + emission.rgb) * roughnessUV * emissionEnergy);
 }

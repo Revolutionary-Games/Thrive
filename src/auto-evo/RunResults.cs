@@ -70,7 +70,13 @@ public class RunResults
 
     public void AddNewMicheForPatch(Patch patch, Miche miche)
     {
-        micheByPatch[patch] = miche;
+        lock (micheByPatch)
+        {
+            if (!micheByPatch.TryAdd(patch, miche))
+                throw new InvalidOperationException("Patch already has a miche");
+
+            miche.Lock();
+        }
     }
 
     public void AddMutationResultForSpecies(Species species, Species? mutated,
@@ -429,14 +435,17 @@ public class RunResults
 
     public Miche GetMicheForPatch(Patch patch)
     {
-        if (!micheByPatch.TryGetValue(patch, out var miche))
-            throw new ArgumentException("Miche not found for " + patch.Name + " in MicheByPatch");
+        lock (micheByPatch)
+        {
+            if (!micheByPatch.TryGetValue(patch, out var miche))
+                throw new ArgumentException("Miche not found for " + patch.Name + " in MicheByPatch");
 
-        return miche;
+            return miche;
+        }
     }
 
     /// <summary>
-    ///   Returns the miche by patch dictionary
+    ///   Returns the miche by patch dictionary. Only for inspecting data after a run as this is not safe at all.
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -445,7 +454,12 @@ public class RunResults
     /// </remarks>
     public Dictionary<Patch, Miche> InspectPatchMicheData()
     {
-        return micheByPatch;
+        // The lock here doesn't do much but silences a warning. See the summary on this why this is still somewhat
+        // safe here.
+        lock (micheByPatch)
+        {
+            return micheByPatch;
+        }
     }
 
     /// <summary>
@@ -474,16 +488,19 @@ public class RunResults
     }
 
     /// <summary>
-    ///   Variant of GetGlobalPopulation for a single patch that returns null if patch not found
+    ///   Variant of GetGlobalPopulation for a single patch that returns false if a patch result is not found
     /// </summary>
-    public long? GetPopulationInPatchIfExists(Species species, Patch patch)
+    public bool GetPopulationInPatchIfExists(Species species, Patch patch, out long result)
     {
-        if (results[species].NewPopulationInPatches.TryGetValue(patch, out long population))
+        if (results[species].NewPopulationInPatches.TryGetValue(patch, out result))
         {
-            return Math.Max(population, 0);
+            if (result < 0)
+                result = 0;
+
+            return true;
         }
 
-        return null;
+        return false;
     }
 
     /// <summary>

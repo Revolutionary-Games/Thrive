@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -46,6 +47,8 @@ public class Miche
     /// </remarks>
     [JsonProperty]
     public Species? Occupant;
+
+    private bool locked;
 
     public Miche(SelectionPressure pressure)
     {
@@ -137,6 +140,8 @@ public class Miche
 
     public void AddChild(Miche newChild)
     {
+        ThrowIfLocked();
+
         Children.Add(newChild);
         newChild.Parent = this;
     }
@@ -235,8 +240,7 @@ public class Miche
 
     public Miche DeepCopy()
     {
-        // This doesn't copy pressures, but it shouldn't need to
-        // Pressures should not have state outside init
+        // This doesn't copy pressures, but it shouldn't need to as pressures should not have any state outside init
 
         if (IsLeafNode())
         {
@@ -254,6 +258,17 @@ public class Miche
         return newMiche;
     }
 
+    /// <summary>
+    ///   Mark miche as added to the simulation, locks this from having the children modified
+    /// </summary>
+    public void Lock()
+    {
+        if (locked)
+            throw new InvalidOperationException("Miche is already locked");
+
+        locked = true;
+    }
+
     public override int GetHashCode()
     {
         var parentHash = Parent != null ? Parent.GetHashCode() : 53;
@@ -261,6 +276,16 @@ public class Miche
         // TODO: as Occupant can change it should not be used as part of the hash code
         return Pressure.GetHashCode() * 131 ^ parentHash * 587 ^
             (Occupant == null ? 17 : Occupant.GetHashCode()) * 5171;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void ThrowIfLocked()
+    {
+        if (locked)
+        {
+            throw new InvalidOperationException(
+                "This operation cannot be done after miche is added to the simulation (locked)");
+        }
     }
 
     /// <summary>

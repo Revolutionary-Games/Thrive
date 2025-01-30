@@ -308,7 +308,7 @@ public class WikiUpdater
             if (string.IsNullOrEmpty(stagesRaw))
             {
                 throw new InvalidOperationException(
-                    $"{categoryName} root page marked as restriced to stages but has no specified stages");
+                    $"{categoryName} root page marked as restricted to stages but has no specified stages");
             }
 
             restrictedToStages = StageStringToEnumValues(stagesRaw);
@@ -506,6 +506,7 @@ public class WikiUpdater
             {
                 "microbe" => Stage.MicrobeStage,
                 "multicellular" => Stage.MulticellularStage,
+                "macroscopic" => Stage.MulticellularStage,
                 "aware" => Stage.AwareStage,
                 "awakening" => Stage.AwakeningStage,
                 "society" => Stage.SocietyStage,

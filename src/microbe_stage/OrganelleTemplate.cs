@@ -38,7 +38,10 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable, IActionHex, I
     public OrganelleUpgrades? Upgrades { get; set; }
 
     [JsonIgnore]
-    public string ReadableName => Localization.Translate("ITEM_AT_2D_COORDINATES")
+    public string ReadableName => Definition.Name;
+
+    [JsonIgnore]
+    public string ReadableExactIdentifier => Localization.Translate("ITEM_AT_2D_COORDINATES")
         .FormatSafe(Definition.Name, Position.Q, Position.R);
 
 #pragma warning disable CA1033

@@ -105,10 +105,8 @@ public class PatchManager : IChildPropertiesLoadCallback
         UpdateSpawners(currentPatch, spawnEnvironment);
 
         // Change the lighting
-        UpdateLight(currentPatch.BiomeTemplate);
         compoundCloudBrightness = currentPatch.BiomeTemplate.CompoundCloudBrightness;
-
-        UpdateAllPatchLightLevels();
+        UpdateAllPatchLightLevels(currentPatch);
 
         return patchIsChanged;
     }
@@ -135,7 +133,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         processSystem.SetBiome(currentPatch.Biome);
     }
 
-    public void UpdateAllPatchLightLevels()
+    public void UpdateAllPatchLightLevels(Patch currentPatch)
     {
         if (CurrentGame == null)
             throw new InvalidOperationException($"{nameof(PatchManager)} doesn't have {nameof(CurrentGame)} set");
@@ -145,9 +143,23 @@ public class PatchManager : IChildPropertiesLoadCallback
         if (!gameWorld.WorldSettings.DayNightCycleEnabled)
             return;
 
-        var multiplier = gameWorld.LightCycle.DayLightFraction;
-        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
         gameWorld.UpdateGlobalLightLevels();
+
+        var maxLightLevel = currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+
+        float multiplier;
+
+        if (maxLightLevel > 0.0f)
+        {
+            multiplier = currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Current).Ambient;
+        }
+        else
+        {
+            multiplier = 1.0f;
+        }
+
+        compoundCloudSystem.SetBrightnessModifier(multiplier * (compoundCloudBrightness - 1.0f) + 1.0f);
+        UpdateWorldLighting(currentPatch.BiomeTemplate, 0.2f + 0.8f * multiplier);
     }
 
     public void ApplySaveState(Patch? patch, float brightness)
@@ -305,7 +317,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         }
     }
 
-    private void UpdateLight(Biome biome)
+    private void UpdateWorldLighting(Biome biome, float lightLevel)
     {
         worldLight.Position = new Vector3(0, 0, 0);
         worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
@@ -313,7 +325,7 @@ public class PatchManager : IChildPropertiesLoadCallback
         worldLight.ShadowEnabled = biome.Sunlight.Shadows;
 
         worldLight.LightColor = biome.Sunlight.Colour;
-        worldLight.LightEnergy = biome.Sunlight.Energy;
+        worldLight.LightEnergy = biome.Sunlight.Energy * lightLevel;
         worldLight.LightSpecular = biome.Sunlight.Specular;
     }
 

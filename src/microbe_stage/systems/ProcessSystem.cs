@@ -693,6 +693,55 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     }
 
     /// <summary>
+    ///   Calculates an active process list for a species for use in <see cref="IWorldEffect"/>. Note that this only
+    ///   supports <see cref="MicrobeSpecies"/> currently.
+    /// </summary>
+    /// <returns>
+    ///   Balance modifier that is to be passed to <see cref="CalculateEffectiveProcessSpeedForEffect"/>
+    /// </returns>
+    public static float CalculateSpeciesActiveProcessListForEffect(Species species,
+        List<TweakedProcess> processesResult, BiomeConditions conditions,
+        WorldGenerationSettings worldGenerationSettings)
+    {
+        // Only microbial species can currently be handled
+        if (species is not MicrobeSpecies microbeSpecies)
+            return 0;
+
+        var balance = ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
+            microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average,
+            false);
+
+        float balanceModifier = 1;
+
+        // Scale processes to not consume excess oxygen than what is actually needed. Though, see below which
+        // actual processes use this modifier.
+        if (balance.TotalConsumption < balance.TotalProduction)
+            balanceModifier = balance.TotalConsumption / balance.TotalProduction;
+
+        // Cleared for efficiency (not strictly required before calling ComputeActiveProcessList, but the way this is
+        // called time would be wasted on trying to match up processes between different species which is unlikely to
+        // work)
+        processesResult.Clear();
+        ComputeActiveProcessList(microbeSpecies.Organelles, ref processesResult);
+
+        return balanceModifier;
+    }
+
+    public static float CalculateEffectiveProcessSpeedForEffect(TweakedProcess process, float balanceModifier,
+        BiomeConditions conditions)
+    {
+        var rate = CalculateProcessMaximumSpeed(process, conditions, CompoundAmountType.Biome, true);
+
+        // Skip checking processes that cannot run
+        if (rate.CurrentSpeed <= 0)
+            return 0;
+
+        // For metabolic processes the speed is at most to reach ATP equilibrium in order to not
+        // unnecessarily consume environmental oxygen
+        return (process.Process.IsMetabolismProcess ? balanceModifier : 1) * rate.CurrentSpeed;
+    }
+
+    /// <summary>
     ///   Since temperature works differently to other compounds, we use this method to deal with it. Logic here
     ///   is liable to be updated in the future to use alternative effect models.
     /// </summary>
