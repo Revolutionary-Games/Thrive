@@ -455,7 +455,8 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
-    public (float EnzymesScore, bool IsMembranedigestable) GetEnzymesScores(MicrobeSpecies predator, string dissolverEnzyme)
+    public (float EnzymesScore, bool IsMembranedigestable) GetEnzymesScores(MicrobeSpecies predator,
+        string dissolverEnzyme)
     {
         var key = (predator, dissolverEnzyme);
         if (cachedEnzymeScores.TryGetValue(key, out var cached))
