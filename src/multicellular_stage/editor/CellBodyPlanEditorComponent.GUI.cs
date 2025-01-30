@@ -28,7 +28,8 @@ public partial class CellBodyPlanEditorComponent
     }
 
     /// <summary>
-    ///   Updates the process list. TODO: make this only show a single cell type's processes and make the type selectable.
+    ///   Updates the process list. TODO: make this only show a single cell type's processes and make the type
+    ///   selectable.
     ///   https://github.com/Revolutionary-Games/Thrive/issues/5863
     /// </summary>
     private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfo energyBalance,
