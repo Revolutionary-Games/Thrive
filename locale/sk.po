@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:38+0000\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
 "PO-Revision-Date: 2024-10-17 07:24+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovak <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/sk/>\n"
@@ -1350,6 +1350,10 @@ msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] n
 #, fuzzy
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Syntéza OxyToxynov"
+
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "(náklady na organely, membrány a ďalšie predmety v editore)"
 
 msgid "DAY_LENGTH"
 msgstr ""
@@ -3237,6 +3241,18 @@ msgstr "Malý kus železa"
 msgid "MEGA_YEARS"
 msgstr "Miliónov rokov"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolozómy"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Popis módu:"
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
+
 msgid "MEMBRANE"
 msgstr "Membrána"
 
@@ -3987,6 +4003,9 @@ msgstr ""
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Základný pohyb"
 
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr ""
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr ""
 
@@ -4589,6 +4608,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Naozaj chceš ukončiť hru?\n"
 "Všetok neuložený postup bude stratený."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Aeróbne Dýchanie"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Veľký kus železa"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Termosyntéza"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Náhodné meno druhu"
@@ -6048,6 +6079,14 @@ msgstr ""
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr ""
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Rýchlosť trávenia:"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Rýchlosť trávenia:"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr ""
 
@@ -7049,6 +7088,38 @@ msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Organely"
 
 #, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "Metabolozómy"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "Metabolozómy"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Premieňa [thrive:compound type=\"glucose\"]glukózu[/thrive:compound] na [thrive:compound type=\"atp\"][/thrive:compound]. Množstvo závisí od koncentrácie [thrive:compound type=\"oxygen\"]kyslíka[/thrive:compound]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Plastid fixujúci dusík"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Metabolozómy"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Metabolozómy"
+
+#, fuzzy
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Metabolozómy"
 
@@ -7418,6 +7489,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Umiestniť organelu"
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lyzozóm"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozómy"
 
@@ -7576,6 +7651,10 @@ msgstr ""
 
 msgid "WIKI_PULLING_CILIA"
 msgstr ""
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Termosyntéza"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8215,10 +8294,6 @@ msgstr "Oddialiť"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Fáza Mikróbov"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Termosyntéza"
 
 #, fuzzy
 #~ msgid "NO"

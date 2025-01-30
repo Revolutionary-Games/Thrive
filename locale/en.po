@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:38+0000\n"
-"PO-Revision-Date: 2025-01-22 12:14+0200\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-28 15:22+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.5\n"
 "Generated-By: Babel 2.8.0\n"
 
 msgid "2D_MOVEMENT_TYPE_SELECTION"
@@ -1346,6 +1346,9 @@ msgstr "Turns [thrive:compound type=\"glucose\"][/thrive:compound] into [thrive:
 
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Cytotoxin Synthesis"
+
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "radiation"
 
 msgid "DAY_LENGTH"
 msgstr "Day Length"
@@ -3128,6 +3131,15 @@ msgstr "Medium Sulfur Chunk"
 msgid "MEGA_YEARS"
 msgstr "Myr"
 
+msgid "MELANOSOME"
+msgstr "Melanosome"
+
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "The melanosome is an organelle that contains melanin pigments that can absorb high-energy electromagnetic waves emitted by radioactive materials and convert them to usable energy in a process called [b]radiosynthesis[/b]. The pigments absorbing radiation also help protect more sensitive parts of the cell which increases the overall resilience against radiation."
+
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Turns [thrive:compound type=\"radiation\"][/thrive:compound] into [thrive:compound type=\"atp\"][/thrive:compound] when next to highly radioactive rocks while also providing radiation resistance"
+
 msgid "MEMBRANE"
 msgstr "Membrane"
 
@@ -3897,6 +3909,9 @@ msgstr "ATP production inhibited by toxin"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Base movement speed decreased due to toxin"
 
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "Damaged by excess radiation"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editor is now ready to be entered"
 
@@ -4464,6 +4479,15 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Are you sure you want to quit the game?\n"
 "You will lose any unsaved progress."
+
+msgid "RADIATION"
+msgstr "Radiation"
+
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Radioactive Chunk"
+
+msgid "RADIOSYNTHESIS"
+msgstr "Radiosynthesis"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Randomize species name"
@@ -5965,6 +5989,12 @@ msgstr "{0} microbes are engulfed (currently at {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "excess [thrive:compound type=\"atp\"][/thrive:compound] reaches {0}"
 
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "damage received reaches {0} (currently at {1})"
+
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "damage received from {1} reaches {0} (currently at {2})"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "death count reaches {0} (currently at {1})"
 
@@ -7337,6 +7367,33 @@ msgstr ""
 "\n"
 "The below pages explain various mechanics. Feel free to browse the pages for tips and help with the game."
 
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr "No effects."
+
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr "[b]Melanosome[/b] performs [b]Radiosynthesis[/b], which captures energy from radiation by absorbing it in melanin."
+
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr "No modifications."
+
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr ""
+"[b]Radiosynthesis[/b]: [b]Radiation[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"][/thrive:compound]\n"
+"\n"
+"A method of energy production by utilising radioactive materials."
+
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Need to receive radiation damage by being close to a radioactive chunk"
+
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Radioactive rocks are rare but abundant in energy once found. The recommended playstyle with radiosynthesis is to have plenty of storage or other ways to survive while looking for the next radioactive rock. Once found there's temporarily an abundance of energy for reproduction etc."
+
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "No upgrades."
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "No effects."
 
@@ -7845,6 +7902,9 @@ msgstr "Macroscopic Stage"
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Mechanics"
 
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Melanosome"
+
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolosomes"
 
@@ -8004,6 +8064,9 @@ msgstr "No upgrades."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Pulling Cilia"
+
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Radiosynthesis"
 
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Reproduction"

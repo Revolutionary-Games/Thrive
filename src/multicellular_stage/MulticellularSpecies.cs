@@ -81,10 +81,12 @@ public class MulticellularSpecies : Species
 
     public override void UpdateInitialCompounds()
     {
+        var simulationParameters = SimulationParameters.Instance;
+
         // Since the initial compounds are only set once per species they can't be calculated for each Biome.
         // So, the compound balance calculation uses the default biome.
         // TODO: make this also default biome independent like there's a TODO in MicrobeSpecies
-        var biomeConditions = SimulationParameters.Instance.GetBiome("default").Conditions;
+        var biomeConditions = simulationParameters.GetBiome("default").Conditions;
 
         var compoundBalances = new Dictionary<Compound, CompoundBalance>();
 
@@ -97,6 +99,10 @@ public class MulticellularSpecies : Species
         foreach (var compoundBalance in compoundBalances)
         {
             if (compoundBalance.Value.Balance >= 0)
+                continue;
+
+            // Skip compounds we don't want to give as initial compounds
+            if (!simulationParameters.GetCompoundDefinition(compoundBalance.Key).CanBeInitialCompound)
                 continue;
 
             // Initial compounds should suffice for a fixed amount of time.

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:38+0000\n"
-"PO-Revision-Date: 2025-01-21 20:29+0000\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-24 08:45+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -316,13 +316,11 @@ msgstr ""
 msgid "AUTO-EVO_STEPS_DONE"
 msgstr "%{0:F1} tamamlandı. {1:n0}/{2:n0} adım."
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER"
-msgstr "Mutasyon maliyet çarpanı"
+msgstr "Oyuncu üzerindeki oto-evrim gücü"
 
-#, fuzzy
 msgid "AUTO-EVO_STRENGHT_MULTIPLIER_EXPLANATION"
-msgstr "(organellerin, hücre zarlarının ve diğer öğelerin editördeki maliyeti)"
+msgstr "(oto-evrimin oyuncu türüne uyguladığı popülasyon değişiminin yüzdesi)"
 
 msgid "AUTOSAVE_DURING_THE_GAME"
 msgstr "Oyun esnasında otomatik olarak kaydet"
@@ -352,7 +350,7 @@ msgid "AUTO_EVO_RUN_STATUS"
 msgstr "çalışma durumu:"
 
 msgid "AUTO_EVO_STATUS_COLON"
-msgstr "Oto-Evrim Durumu:"
+msgstr "Oto-evrim Durumu:"
 
 msgid "AUTO_MOVE_FORWARDS"
 msgstr "Otomatik olarak ileri git"
@@ -472,10 +470,10 @@ msgid "BINDING_AGENT"
 msgstr "Bağlayıcı Ajan"
 
 msgid "BINDING_AGENT_DESCRIPTION"
-msgstr "Diğer hücrelerle bağ kurmayı sağlar. Bu organeli eklemek, çok hücreliğe ilk adımı sağlar. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsiniz. O yüzden hücrenizi bölmek için önce yeterli bileşik toplamanız sonra koloniyle bağınızı koparmanız gerekir."
+msgstr "Diğer hücrelerle bağ kurmayı sağlar. Bu organeli eklemek, çok hücreliğe ilk adımı sağlar. Hücreniz bir koloninin parçasıyken bileşikler hücreler arasında paylaşılır. Bir koloninin parçasıyken editöre giremezsiniz. Bu yüzden, hücrenizi bölmek için yeterli bileşik topladığınızda koloni ile bağınızı koparmanız gerekir."
 
 msgid "BINDING_AGENT_PROCESSES_DESCRIPTION"
-msgstr "Bağ kurma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] tuşuna basın. Bağ kurma modundayken, kendi türünüze ait diğer hücrelere yaklaşarak onları koloninize ekleyebilirsiniz. Bir koloniden ayrılmak için [thrive:input]g_unbind_all[/thrive:input] tuşuna basın. Diğer hücrelere bağlıyken editöre giremezsiniz."
+msgstr "Bağ kurma modunu açmak için [thrive:input]g_toggle_binding[/thrive:input] tuşuna basın. Bağ kurma modundayken, kendi türünüze ait diğer hücrelere dokunarak onları koloninize ekleyebilirsiniz. Bir koloniden ayrılmak için [thrive:input]g_unbind_all[/thrive:input] tuşuna basın. Diğer hücrelere bağlıyken editöre giremezsiniz."
 
 msgid "BIND_AXES_SENSITIVITY"
 msgstr "Eksenleri birbirine bağla"
@@ -666,16 +664,16 @@ msgid "CHEMORECEPTOR"
 msgstr "Kemoreseptör"
 
 msgid "CHEMORECEPTOR_DESCRIPTION"
-msgstr "Bütün hücreler yalnızca kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için, kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri gösteren bir çizgi ile temsil edilmektedir."
+msgstr "Hücreler, kimyasal algılama aracılığıyla \"görür\". Hücreler bu şekilde çevredekilerle ilgili bilgi toplar. Bu organeli eklemek, daha ince ayarlı bir kimyasal algılamanın evrimleşmesini ifade eder. Oyuncuya görme yeteneği ta hücre evresinde verildiği için, kimyasal algılama, görülebilen ekran alanının dışına doğru işaret ederek oyuncunun henüz göremediği ve hücrenin civarında bulunan bileşikleri ve türleri gösteren bir çizgi ile temsil edilmektedir."
 
 msgid "CHEMORECEPTOR_MINIMUM_AMOUNT_TOOLTIP"
 msgstr ""
 "Bileşik algılama eşiğini ayarlar. Düşük değerler, yararlı miktarda bileşik içermeyebilecek, çok az miktarda bulunan bileşiklere işaret edebilir.\n"
-"Örnek bir strateji, arama yarıçapını ve minimum miktarı arttırmaktır. Böylece, en yakın olan, yararlı derecede yoğun bir bulut algılanabilir.\n"
-"Kemoreseptör, bir tek \"bileşik bulutundaki\" noktaların toplamını değil, bir bileşik bulutundaki tek bir noktayı algılar."
+"Örnek bir strateji, arama yarıçapını ve minimum miktarı arttırmaktır. Böylece, en yakın ve yararlı derecede yoğun bir bulut algılanabilir.\n"
+"Kemoreseptör, bir tek bileşik bulutundaki noktaların toplamını değil, bir bileşik \"bulutundaki\" tek bir noktayı algılar."
 
 msgid "CHEMORECEPTOR_PROCESSES_DESCRIPTION"
-msgstr "Kemoreseptör, bileşikleri ya da diğer hücreleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ve bu bileşiğe işaret eden çizginin rengini seçmek için değişiklik yapın."
+msgstr "Kemoreseptör, belirli bileşikleri ve hücreleri daha uzaktan algılamayı sağlar. Bu organeli yerleştirdikten sonra, algılanacak bileşik türünü ya da hücre türünü ve bu türe işaret eden çizginin rengini seçmek için değişiklik yapın."
 
 msgid "CHEMORECEPTOR_SEARCH_RADIUS_TOOLTIP"
 msgstr ""
@@ -1009,12 +1007,15 @@ msgstr "İlerlemeye Devam Et"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
-"Thrive'ın \"tamamlanmış\" kısmının sonuna geldiniz.\n"
-"Eğer isterseniz, oyuna dahil edilen sonraki evrelerin prototipleri ile devam edebilirsiniz. Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir. Bunlar, oyunun gelecekteki gidişatını ve evrelerin nasıl bağlandığına dair genel vizyonumuzu göstermek için oyunun bir parçası olarak eklenmektedir.\n"
+"[b]Thrive'ın \"tamamlanmış\" kısmının sonuna geldiniz.[/b]\n"
 "\n"
-"Eğer oyuna bu prototipler üzerinden devam ederseniz, prototiplerin çoğunda dahil olmak üzere, bu aşamadan sonra oyununuzu kaydedemeyeceksiniz. Eğer mevcut evreye geri dönmek isterseniz, lütfen ilerlemeden önce bir kayıt oluşturun.\n"
+"Eğer isterseniz, oyuna dahil edilen [b]sonraki evrelerin prototipleri[/b] ile devam edebilirsiniz.\n"
 "\n"
-"Ayrıca kontrol cihazı desteği de prototiplerde oldukça kısıtlı. Eğer oyuna devam etmeyi seçerseniz, sonraki evrelerin prototip olduğunu lütfen anlayışla karşılayın ve onların ne kadar eksik oldukları konusunda lütfen şikayetçi olmayın."
+"Bu prototipler eksik tamamlanmış olabilir, yer tutucu grafikler kullanıyor olabilir ve genel olarak çok kaba görünebilir. Bunlar, oyunun gelecekteki gidişatını ve evrelerin nasıl bağlandığına dair genel vizyonumuzu göstermek için eklenmektedir.\n"
+"\n"
+"Eğer devam ederseniz, çoğu protitip esnasında [b]oyununuzu kaydedemeyecek[/b] veya bir önceki evreye geri dönemeyeceksiniz. Eğer [i]mevcut[/i] evreye geri dönmek isterseniz, lütfen ilerlemeden önce [b]şimdi bir kayıt[/b] oluşturun.\n"
+"\n"
+"Ayrıca, kontrol cihazı desteği de prototiplerde kısıtlı. Eğer oyuna devam etmeyi seçerseniz, sonraki evrelerin prototip olduğunu anlayışla karşılayın ve onların ne kadar eksik oldukları konusunda lütfen şikayetçi olmayın."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Prototip evreye devam edilsin mi?"
@@ -1346,6 +1347,10 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Sitotoksin Sentezi"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "Göç için kaynak görevi görmesi için şu an türünüzün olduğu bir araziyi seçin"
+
 msgid "DAY_LENGTH"
 msgstr "Gün Uzunluğu"
 
@@ -1657,46 +1662,46 @@ msgid "EASTEREGG_MESSAGE_12"
 msgstr "Ama şu mavi hücreler var ya."
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "İşte size bir ipucu: Biyomlar farklı arka planlardan çok daha fazlasıdır, farklı biyomlardaki bileşikler bazen farklı oranlarda ortaya çıkarlar."
+msgstr "Eğer hücreniz 150 altıgen alan büyüklüğünde ise, büyük demir parçalarını bile yutabilirsiniz."
 
 msgid "EASTEREGG_MESSAGE_14"
-msgstr "İşte size bir ipucu: Ne kadar kamçıya sahipseniz, o kadar hızlı gidersiniz, vınn vınnn, ama bu ayrıca daha fazla ATP'ye mal olur"
+msgstr "İlginç Gerçek: Dünya gezegeninde, 8000'den fazla silli türü vardır."
 
 msgid "EASTEREGG_MESSAGE_15"
-msgstr "İşte size bir ipucu: Demir veya başka parçaları yutabilirsiniz."
-
-msgid "EASTEREGG_MESSAGE_16"
-msgstr "İşte size bir ipucu: Çekirdeği eklemeden önce hazırlığınızı yapın. Bu tür şeyler pahalı olur! Bakım ve ön ödeme ücretiyle."
-
-msgid "EASTEREGG_MESSAGE_17"
-msgstr "İlginç Gerçek: Dünya gezegeninde 8000'in üzerinde silli türü olduğunu biliyor muydunuz?"
-
-msgid "EASTEREGG_MESSAGE_18"
 msgstr "İlginç Gerçek: Stentor, kendini esnetebilen ve silleriyle su akıntısı meydana getirerek, bir tür trompete benzeyen ağzıyla avını yakalayabilen bir silli türüdür."
 
+msgid "EASTEREGG_MESSAGE_16"
+msgstr "İlginç Gerçek: Didinyum, Paramesyumları avlayan bir sillidir."
+
+msgid "EASTEREGG_MESSAGE_17"
+msgstr "İlginç Gerçek: Amip, sitoplazmadan yapılan 'bacaklar' olarak adlandırılan yalancı ayaklar ile avını avlar ve yakalar. Thrive'da, bunlara eninde sonunda sahip olmak istiyoruz."
+
+msgid "EASTEREGG_MESSAGE_18"
+msgstr "Bakteriler göründüklerinden daha güçlü olabilirler; küçük görünürler, ancak onların bazıları seni delebilir ve bu şekilde öldürebilir!"
+
 msgid "EASTEREGG_MESSAGE_2"
-msgstr "İşte size bir ipucu: Yeterince hızlı davranıldığında toksinler diğer toksinleri vurup uzaklaştırmak için kullanılabilir."
+msgstr "İlk oynanabilir oyun prototiplerden biri, bizim harika programcımız Untrustedlife tarafından yapıldı!"
 
 msgid "EASTEREGG_MESSAGE_3"
-msgstr "İşte size bir ipucu: Ozmoregülasyon, hücrenizin sahip olduğu her bir altıgen alan için saniyede 1 ATP'ye mal olur. Sitoplazmanın bulunduğu her boş altıgen alan da saniyede 5 ATP üretir. Bu da demek oluyor ki, eğer ozmoregülasyondan dolayı ATP kaybediyorsanız, sadece birkaç altıgen alanı sitoplazmayla doldurmalı veya bazı organelleri kaldırmalısınız."
+msgstr "Oyundaki bütün canlılar ortak bir atadan evrimleşir. Hangilerinin birbirine daha yakın olduğunu belirlemek için bir bakın!"
 
 msgid "EASTEREGG_MESSAGE_4"
-msgstr "İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan Biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok Yüzeyli organeller olarak adlandırılır."
+msgstr "İlginç Gerçek: Gerçek hayatta prokaryotlar, organeller gibi davranan biyokompartman adı verilen yapılara sahiptir ve bunlar aslında Çok Yüzeyli organeller olarak adlandırılır."
 
 msgid "EASTEREGG_MESSAGE_5"
 msgstr "İlginç Gerçek: Metabolozom, Çok yüzeyli bir organel olarak adlandırılır."
 
 msgid "EASTEREGG_MESSAGE_6"
-msgstr "İşte size bir ipucu: Bazen en iyisi yalnızca diğer hücrelerden kaçmaktır."
+msgstr "Thrive'ın ses ekibi başı oyuna henüz eklenmeyen birçok şarkı yaptı. Bu şarkıları dinleyebilir veya onun bu şarkıları bestelediği canlı yayın akışlarını kendi YouTube kanalından, Oliver Lugg, izleyebilirsiniz."
 
 msgid "EASTEREGG_MESSAGE_7"
-msgstr "İşte size bir ipucu: Eğer bir hücre sizin büyüklüğünüzün yarısı kadarsa, bu onu yutabileceğiniz anlamına gelir."
+msgstr "Thrive, uzaylı bir gezegen simülasyonu olarak amaçlandı. Bu yüzden, Dünya'daki aynı canlıların tümünü burada bulacağınızı düşünmeyin!"
 
 msgid "EASTEREGG_MESSAGE_8"
-msgstr "İşte size bir ipucu. Bakteriler göründüklerinden daha güçlü olabilirler; küçük görünebilirler ama bazıları arkanızdan kuyu kazıp sizi bu şekilde öldürebilirler!"
+msgstr "İlginç Gerçek: Thrive ekibi, ara sıra sesli yayın içerikleri yapıyor. Bu yayınları incelemelisiniz!"
 
 msgid "EASTEREGG_MESSAGE_9"
-msgstr "İşte size bir ipucu: Eğer yeterince dikkatli olmazsanız, diğer türleri avlayarak soylarının tükenmesine neden olabilirsiniz. Bu duruma ayrıca başka türler de neden olabilir."
+msgstr "İlginç Gerçek: Thrive, açık kaynaklı Godot oyun motoru ile yapılmıştır ve bütün oyun kodları online olarak incelenebilir."
 
 msgid "EASTER_EGGS"
 msgstr "Sürpriz yumurtaları dahil et"
@@ -1728,9 +1733,9 @@ msgstr ""
 "\n"
 "Burada, geçmiş kuşaklardan beri neler olduğunu inceleyebilir ve sonrasında türünüzde değişiklikler yapabilirsiniz.\n"
 "\n"
-"Mevcut sekme, şu an bulunduğunuz arazideki değişikliklerin listesini verir. Dünyanızdaki olaylarla ilgili daha fazla şey öğrenmek için dilediğinizde çeşitli araçları keşfetmeyi deneyebilirsiniz!\n"
+"Rapor Ekranı, şu an bulunduğunuz arazideki değişikliklerin listesini verir. Dünyanızdaki olaylarla ilgili daha fazla şey öğrenmek için dilediğinizde çeşitli araçları keşfetmeyi deneyebilirsiniz!\n"
 "\n"
-"Hazır olduğunuzda, devam etmek için sağ alttaki \"sonraki\" butonuna basın."
+"Hazır olduğunuzda, Arazi Haritası Ekranı'na devam etmek için sağ alttaki \"sonraki\" butonuna basın."
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -2197,9 +2202,8 @@ msgstr "Tam Mod Bilgisi"
 msgid "GALLERY_VIEWER"
 msgstr "Galeri Görüntüleyicisi"
 
-#, fuzzy
 msgid "GAMEPLAY_BASICS_TITLE"
-msgstr "Oyun Sistemleri"
+msgstr "Oynanış Bilgileri"
 
 msgid "GAME_DESIGN_TEAM"
 msgstr "Oyun Tasarım Ekibi"
@@ -2215,33 +2219,26 @@ msgstr ""
 msgid "GENERAL"
 msgstr "Genel"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_1"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Yaptığınız bir hatayı düzeltmek için editördeki Geri Al butonuna basın"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Daha büyük organizmalara dikkat edin. Sizi yiyebilirler ama sindirilmek eğlenceli değil!"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Aynı türleri defalarca avlarken dikkatli olun. Çünkü bu türleri avlayarak soylarını tüketebilirsiniz. Diğer türler de bunu yapabilir."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Bazen sadece kaçmak en iyisidir."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Oto-Evrim popülasyonunuzun düştüğünü tahmin ettiğinde, bu popülasyonu yine de iyi performans göstererek arttırabilirsiniz."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Unutmayın, imlecin altındaki öğeyi görmek için ekranın sağ üstündeki paneli kullanabilirsiniz."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Eğer popülasyonunuz sıfıra düşerse, soyunuz tükenir."
 
 msgid "GENERATIONS"
 msgstr "Kuşaklar"
@@ -3135,6 +3132,18 @@ msgstr "Orta Büyüklükte Kükürt Parçası"
 msgid "MEGA_YEARS"
 msgstr "Mn. Yıl"
 
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Metabolozomlar"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir."
+
 msgid "MEMBRANE"
 msgstr "Hücre Zarı"
 
@@ -3249,13 +3258,11 @@ msgstr "Mikrop Editörü"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Serbest Mikrop Yapım Editörü"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_1"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Her bir altıgenlik sitoplazmayı sürdürmek, saniyede 1 [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur. Ama bu sitoplazma 3 [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Eğer [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] birazcık azsa, birkaç altıgen alan eklemeyi deneyin veya bazı organelleri kaldırın."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_10"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Hücreniz, enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] kullanır. ATP tükenirse, ölürsünüz."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
@@ -3925,6 +3932,10 @@ msgstr "ATP üretimi, toksin tarafından engellendi"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Temel hareket hızı toksin nedeniyle azaldı"
 
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "Editör, şimdi girilmek için hazır"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editör, şimdi girilmek için hazır"
 
@@ -4492,6 +4503,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Oyundan çıkmak istediğinize emin misiniz?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Oksijenli Solunum"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Büyük Fosfat Parçası"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Termosentez"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Tür adını rastgele seç"
@@ -5993,6 +6016,14 @@ msgstr "{0} mikrop yutulmalı (şu anda {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "Fazladan [thrive:compound type=\"atp\"]ATP[/thrive:compound] miktarı {0} değerine ulaşmalı"
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
 
@@ -7228,6 +7259,62 @@ msgstr ""
 "\n"
 "Aşağıdaki sayfalar, birçok mekaniği açıklamaktadır. Oyunla ilgili ipuçları ve yardım için bu sayfalarda rahatça gezinebilirsiniz."
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr ""
+"[b]Kitinaz[/b] veya [b]Selülaza[/b] sahip bir [b]Lizozom[/b] almak, bir hücrenin sırasıyla [b]Kitin[/b] veya [b]Selüloza[/b] sahip hücre zarı olan hücreleri sindirmesini sağlar. Sindirilemeyen hücreler (bir hücrenin sindirmek için gerekli enzime sahip olmadığı hücreler), hemen dışarı atılır.\n"
+"\n"
+"Genel istatistiklerin yanı sıra, her [b]Lizozom[/b] bunlara da katkıda bulunur:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] sindirim hızı. Yutulan madde daha çabuk sindirilir.[/indent]\n"
+"[indent]—   Seçili enzim için [b]+%4.5[/b] sindirim verimliliği. Enzimin hedeflediği hücre zarına sahip olan yutulan hücreler, sindirildiklerinde daha fazla bileşik verirler. [/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr ""
+"Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. [b]Lizozom[/b] başına aynı anda yalnızca bir enzim kullanılabilir.\n"
+"\n"
+"[b]Lizozom[/b], çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. [b]Lizozomlar[/b], hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve otofaji adı verilen bir işlemle yan ürünleri temizler."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr ""
+"İçerdiği enzimi seçmek için [b]Lizozomda[/b] değişiklik yapın. Varsayılan olarak bu organel, [b]Normal Hücre Zarlarını[/b] ve [b]Çift Katlı Hücre Zarlarını[/b] hedefleyen [b]Lipaz[/b] enzimini içerir.\n"
+"\n"
+"Bir [b]Lizozom[/b] bunun yerine, aşağıdaki enzimlerden birini içerebilir:\n"
+"\n"
+"[indent]—   [b]Kitin Hücre Zarını[/b] hedefleyen [b]Kitinaz[/b][/indent]\n"
+"[indent]—   [b]Selüloz Hücre Zarını[/b] hedefleyen [b]Selülaz[/b][/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "İşlem yok."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr ""
+"Bir hücre, [b]Lizozomları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"\n"
+"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
+"\n"
+"[indent]—   Oyun sırasında, şu ana kadar en az [b]20[/b] hücre yutmuş olmak.[/indent]\n"
+"[indent]—   Oyun sırasında, şu ana kadar en az [b]10[/b] hücre sindirmiş olmak.[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "TBA"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr ""
+"Avını yutan hücreler için genellikle, biri [b]Kitinaz[/b] diğeri [b]Selülaz[/b] olarak kullanılmak üzere ayarlanan, en az iki [b]Lizozom[/b] evrimleştirilmesi tavsiye edilir. Bu şekilde, hücreniz yutulmaya karşı savunmasız kalacak daha fazla av türünü sindirebilir.\n"
+"\n"
+"Daha fazla [b]Lizozom[/b] eklemek, enzim seçimini yaymak da iyi bir fikirdir. Artan sindirim hızı, bütün yutulan maddeler için ortaya çıkan yetersiz depolama sorununu önleyebilir ve artan sindirim verimliliği, avcılığı önemli ölçüde daha uygulanabilir bir strateji haline getirir."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Geliştirme yok."
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Etki yok."
 
@@ -7737,6 +7824,10 @@ msgstr "Makroskopik Evresi"
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Mekanikler"
 
+#, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Lizozom"
+
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomlar"
 
@@ -7896,6 +7987,10 @@ msgstr "Geliştirme yok."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Çeken Siller"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Termosentez"
 
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Üreme"
@@ -8648,10 +8743,6 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Uzay Evresi"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Termosentez"
 
 #, fuzzy
 #~ msgid "NO"

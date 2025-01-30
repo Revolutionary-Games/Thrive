@@ -23,8 +23,10 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
 
         var mutated = new List<Tuple<MicrobeSpecies, float>>();
 
+        // TODO: try to avoid these temporary list allocations
         var workMemory1 = new List<Hex>();
         var workMemory2 = new List<Hex>();
+        var workMemory3 = new HashSet<Hex>();
 
         foreach (OrganelleTemplate organelle in baseSpecies.Organelles.Where(x => allOrganelles.Contains(x.Definition)))
         {
@@ -33,7 +35,7 @@ internal class MoveOrganelleBack : IMutationStrategy<MicrobeSpecies>
             newSpecies.Organelles.Remove(organelle);
 
             if (CommonMutationFunctions.AddOrganelle(organelle.Definition, CommonMutationFunctions.Direction.Rear,
-                    newSpecies, workMemory1, workMemory2, random))
+                    newSpecies, workMemory1, workMemory2, workMemory3, random))
             {
                 // Add mutation attempt only if was able to place the organelle
                 // TODO: maybe this should add the attempt anyway as this may act as a separate remove organelle step

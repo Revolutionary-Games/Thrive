@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
@@ -41,6 +42,7 @@ public struct Hex : IEquatable<Hex>
     public int Q;
     public int R;
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Hex(int q, int r)
     {
         Q = q;
@@ -83,16 +85,19 @@ public struct Hex : IEquatable<Hex>
         TopLeft = 6,
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Hex operator +(Hex a, Hex b)
     {
         return new Hex(a.Q + b.Q, a.R + b.R);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Hex operator -(Hex a, Hex b)
     {
         return new Hex(a.Q - b.Q, a.R - b.R);
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static Hex operator *(Hex a, int b)
     {
         return new Hex(a.Q * b, a.R * b);
@@ -161,7 +166,7 @@ public struct Hex : IEquatable<Hex>
     }
 
     /// <summary>
-    ///   Converts cube based hex coordinates to axial hex
+    ///   Converts cube-based hex coordinates to axial hex
     ///   coordinates. Basically just seems to discard the z value.
     /// </summary>
     /// <returns>hex coordinates.</returns>

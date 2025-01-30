@@ -18,4 +18,7 @@ public class WorldStatsTracker : IUnlockStateDataSource
 
     [JsonProperty]
     public ReproductionStatistic PlayerReproductionStatistic { get; private set; } = new();
+
+    [JsonProperty]
+    public DamageStatistic PlayerReceivedDamage { get; private set; } = new();
 }

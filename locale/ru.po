@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-22 11:38+0000\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
-"Last-Translator: Anonymous <noreply@weblate.org>\n"
+"POT-Creation-Date: 2025-01-28 15:03+0200\n"
+"PO-Revision-Date: 2025-01-24 08:46+0000\n"
+"Last-Translator: Dark Thunderer <darkthunderer@mail.ru>\n"
 "Language-Team: Russian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -376,7 +376,7 @@ msgid "BACK"
 msgstr "Назад"
 
 msgid "BACKGROUND_BLUR"
-msgstr ""
+msgstr "Размытие фона:"
 
 msgid "BACKSLASH"
 msgstr "Обратный Слэш"
@@ -1347,6 +1347,10 @@ msgstr "Превращает [thrive:compound type=\"=glucose\"][/thrive:compoun
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Синтез Цитотоксина"
 
+#, fuzzy
+msgid "DAMAGE_SOURCE_RADIATION"
+msgstr "Выбери биом в котором есть твой вид. Этот биом станет основой для миграции твоего вида"
+
 msgid "DAY_LENGTH"
 msgstr "Длина дня"
 
@@ -2221,29 +2225,23 @@ msgstr "Общее"
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Берегитесь крупных организмов. Они могут вас поглотить и переварить!"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Старайтесь избегать охоты на один и тот же вид, ведь можете своими действиями истребить его."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Иногда бегство оказывается лучшим выходом из ситуации."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Когда Авто-Эво пророчит вашему виду стремительное вымирание, вы можете повысить популяцию своей хорошей игрой."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Вы можете узнать на что направлен ваш курсор, обратив внимание на панель в правом верхнем углу экрана."
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Если популяция вашего вида достигнет нуля, он вымрет."
 
 msgid "GENERATIONS"
 msgstr "Поколения"
@@ -3002,9 +3000,8 @@ msgstr "Загрузка..."
 msgid "LOADING_GAME"
 msgstr "Загрузка Игры"
 
-#, fuzzy
 msgid "LOADING_MACROSCOPIC_EDITOR"
-msgstr "Загрузка Микробного Редактора"
+msgstr "Загрузка Редактора Макроскопического Организма"
 
 msgid "LOADING_MICROBE_EDITOR"
 msgstr "Загрузка Микробного Редактора"
@@ -3076,9 +3073,8 @@ msgstr "Синтез Макролида"
 msgid "MACROSCOPIC"
 msgstr "Стать макроскопическим ({0}/{1})"
 
-#, fuzzy
 msgid "MACROSCOPIC_STAGE"
-msgstr "Одноклеточная стадия"
+msgstr "Стадия Макроскопического Организма"
 
 msgid "MANUALLY_SET_TIME"
 msgstr "Вручную установить время"
@@ -3139,6 +3135,18 @@ msgstr "Средний Фрагмент Серы"
 
 msgid "MEGA_YEARS"
 msgstr "млн. лет"
+
+#, fuzzy
+msgid "MELANOSOME"
+msgstr "Метаболосомы"
+
+#, fuzzy
+msgid "MELANOSOME_DESCRIPTION"
+msgstr "Лизосома — мембранная органелла, содержащая гидролитические ферменты, которые могут расщеплять разнообразные биологические молекулы. Лизосомы позволяют клетке переваривать поглощённые материалы с помощью эндоцитоза и избавляться от собственных отходов с помощью [b]аутофагии[/b]."
+
+#, fuzzy
+msgid "MELANOSOME_PROCESSES_DESCRIPTION"
+msgstr "Содержит пищеварительные ферменты. Тип фермента может быть изменён. Только один фермент за раз."
 
 msgid "MEMBRANE"
 msgstr "Мембрана"
@@ -3254,81 +3262,63 @@ msgstr "Одноклеточный редактор"
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Свободный микробный редактор"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_1"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Каждый сегмент цитоплазмы стоит 1 [thrive:compound type=\"atp\"][/thrive:compound] в секунду на осморегуляцию, но производит 3 [thrive:compound type=\"atp\"][/thrive:compound] в секунду. Если вам не хватает [thrive:compound type=\"atp\"][/thrive:compound], добавьте пару сегментов или удалите ненужные органеллы."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_10"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Ваша клетка использует [thrive:compound type=\"atp\"][/thrive:compound] как источник энергии для своих процессов. Когда [thrive:compound type=\"atp\"][/thrive:compound] закончится вы умрете."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Чтобы разблокировать Редактор и воспроизвестись вам необходимо прожить необходимое для накопления [thrive:compound type=\"ammonia\"][/thrive:compound] и [thrive:compound type=\"phosphates\"][/thrive:compound] время. Вы можете ускорить процесс, собирая [thrive:compound type=\"ammonia\"][/thrive:compound] и [thrive:compound type=\"phosphates\"][/thrive:compound] из оранжевых и фиолетовых облаков."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Вы можете поглощать объекты мельче вас в режиме поглощения, активируемого кнопкой [thrive:input]g_toggle_engulf[/thrive:input]. Это требует определенного количества [thrive:compound type=\"atp\"][/thrive:compound] и значительно вас замедляет. Не забудьте отключить режим поглощения после того как закончите трапезу."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Чем больше ваша клетка, тем больше [thrive:compound type=\"atp\"][/thrive:compound]-производящих органелл вам потребуется для поддержания жизнедеятельности. [thrive:compound type=\"atp\"][/thrive:compound] способны производить метаболосомы, рустицианин, гидрогеназа и даже цитоплазма."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_14"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "В редакторе вы можете найти множество органелл, обеспечивающих большое игровое разнообразие."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Ресурсы, доступные вашему виду, весьма ограничены, потому увеличение размера клеток часто приводит к снижению популяции."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Используйте [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input] and [thrive:input]g_move_right[/thrive:input] для движения, и компьютерную мышь для вращения. Нажмите [thrive:input]g_fire_toxin[/thrive:input] чтобы выстрелить [thrive:compound type=\"oxytoxy\"][/thrive:compound] если в вашей клетке присутствует запасающая токсин вакуоль. Нажмите [thrive:input]g_toggle_engulf[/thrive:input] чтобы включить режим поглощения. Колесиком мыши вы можете приближать или отдалять камеру."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_17"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Чтобы воспроизвестись вам необходимо создать копию каждой органеллы. Для этого необходимо время. К счастью поглощение [thrive:compound type=\"ammonia\"][/thrive:compound] и [thrive:compound type=\"phosphates\"][/thrive:compound] сильно ускоряет процесс."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_18"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Не забывайте что ваши конкуренты эволюционируют вместе с вами. Каждый раз когда вы входите в Редактор они тоже приобретают новые черты."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_19"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Связующий агент позволяет образовать колонию клеток, срастаясь с другими клетками вашего вида. Все клетки в колонии делят меж собой соединения, двигаются в одну сторону и могут эволюционировать в многоклеточный организм."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Чем больше жгутиков есть у вашей клетки (и чем они длиннее), тем быстрее вы передвигаетесь! Ценой за это станет увеличенный расход АТФ."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_20"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Клетки с целлюлозной или хитиновой оболочкой не могут быть поглощены прокариотами. А вот эукариоты с лизосомами могут производить необходимые для разрушения клеточных стенок энзимы."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_21"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "[thrive:compound type=\"hydrogensulfide\"][/thrive:compound] может быть превращен в [thrive:compound type=\"glucose\"][/thrive:compound] с помощью хемопластов и хемосинтезирующих белков. [thrive:compound type=\"iron\"][/thrive:compound] может быть использовано для получения [thrive:compound type=\"atp\"][/thrive:compound] рустицианином или ферропластами."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Каждое открытие Редактора на Стадии Микроорганизма представляет собой результат [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] миллионов лет эволюции."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Вы можете поглощать плавающие в воде обломки горных пород и останки погибших клеток."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Не стоит ставить ядро хорошенько не подготовившись. Оно очень дорогое - как по стоимости в ОМ так и по требованиям к АТФ!"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_5"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Выстрелы токсинами могут отражать друг-друга."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_6"
-msgstr "Нажмите кнопку отмены в редакторе для исправления ошибки"
+msgstr "Поглощаемая вами клетка не должна превышать половины вашего размера."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_7"
@@ -3932,6 +3922,10 @@ msgstr "Производство АТФ подавляется токсином"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Базовая скорость передвижения уменьшена из-за токсина"
 
+#, fuzzy
+msgid "NOTICE_RADIATION_DAMAGE"
+msgstr "Редактор теперь доступен"
+
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Редактор теперь доступен"
 
@@ -4502,6 +4496,18 @@ msgid "QUIT_GAME_WARNING"
 msgstr ""
 "Вы уверены, что хотите выйти из игры?\n"
 "Весь несохраненный прогресс будет утерян."
+
+#, fuzzy
+msgid "RADIATION"
+msgstr "Аэробное дыхание"
+
+#, fuzzy
+msgid "RADIOACTIVE_CHUNK"
+msgstr "Большой Фрагмент Фосфата"
+
+#, fuzzy
+msgid "RADIOSYNTHESIS"
+msgstr "Термосинтез"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Случайное название вида"
@@ -6004,6 +6010,14 @@ msgstr "{0} микробов втянуто (В данный момент {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "избыток [thrive:compound type=\"atp\"][/thrive:compound] достигает {0}"
 
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
+msgstr "количество смертей достигает {0} ( в данный момент {1})"
+
+#, fuzzy
+msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
+msgstr "количество смертей достигает {0} ( в данный момент {1})"
+
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "количество смертей достигает {0} ( в данный момент {1})"
 
@@ -6561,6 +6575,44 @@ msgstr ""
 
 msgid "WIKI_COMPOUNDS_TYPES_OF_COMPOUNDS"
 msgstr ""
+"В Thrive вы можете встретить множество [b]Соединений[/b].\n"
+"\n"
+"[b][u]Соединения в облаках[/u][/b]\n"
+"\n"
+"Эти соединения представлены облаками в вашей [b]среде обитания[/b].\n"
+"\n"
+"[indent]—   [thrive:compound type=\"glucose\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound] (Может выделяться из [b]Обломков[/b])[/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"ammonia\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Растворенные газы[/u][/b]\n"
+"\n"
+"Эти соединения не встречаются в облаках, а равномерно распределены по всему биому, влияя на различные клеточные процессы. Количество таких соединений измеряется в процентах от общего объема растворенных газов. Чтобы узнать больше: [color=#3796e1][url=thriveopedia:EnvironmentalConditions]Условия среды обитания[/url][/color].\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxygen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"nitrogen\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"carbondioxide\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Соединения из обломков[/u][/b]\n"
+"\n"
+"Эти соединения выделяются из обломков горных пород, присутствующих в некоторых биомах. \n"
+"\n"
+"[indent]—   [thrive:compound type=\"iron\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"hydrogensulfide\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"phosphates\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]Биологические агенты[/u][/b]\n"
+"\n"
+"Эти соединения образуются в некоторых [color=#3796e1][url=thriveopedia:OrganellesRoot]органеллах[/url][/color] и используются клетками для разных задач.\n"
+"\n"
+"[indent]—   [thrive:compound type=\"oxytoxy\"][/thrive:compound][/indent]\n"
+"[indent]—   [thrive:compound type=\"mucilage\"][/thrive:compound][/indent]\n"
+"\n"
+"[b][u]АТФ[/u][/b]\n"
+"\n"
+"[thrive:compound type=\"atp\"][/thrive:compound] в основном образуется из [thrive:compound type=\"glucose\"][/thrive:compound] и используется для всех жизненно-важных процессов клетки."
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_COMPOUNDS_LIST"
 msgstr ""
@@ -6573,6 +6625,9 @@ msgstr ""
 
 msgid "WIKI_COMPOUND_SYSTEM_DEVELOPMENT_OVERVIEW"
 msgstr ""
+"[indent]—   В Thrive игровые ресурсы представлены Соединениями, из которых можно создавать различные объекты. Они не ограничены научным определением \"Соединения\" как сложного вещества образованного химической связью между двумя или более атомами. Соединения как ресурсы могут представлять элементы (например кислород), соединения в научном понимании (например аммиак), и прочие вещества (химические агенты или токсины).[/indent]\n"
+"\n"
+"[indent]—   Практически все в игре состоит из тех или иных соединений. Система соединений следит за тем из чего состоит организм, чем он питался, что вырастил из этой пищи и какие ее части остались непереваренными. Все в игре является частью среды, и может использоваться разными организмами.[/indent]"
 
 msgid "WIKI_CYTOPLASM_EFFECTS"
 msgstr "Любая органелла может заменить цитоплазму без затраты дополнительных очков мутаций (Исключение - цена самой органеллы)."
@@ -7017,6 +7072,54 @@ msgstr "Разместить органеллу (или другую вещь)"
 msgid "WIKI_MECHANICS_ROOT_INTRO"
 msgstr "Аксон"
 
+#, fuzzy
+msgid "WIKI_MELANOSOME_EFFECTS"
+msgstr ""
+"Оснащение лизосомы [b]хитиназой[/b] или [b]целлюлазой[/b] позволяет клетке растворять другие клетки с хитиновой или целлюлозной мембраной. Если у клетки отсутствуют лизосомы, производящие хитиназу аль целлюлазу, то оно не сможет растворить те клетки, к коим относятся эти 2 фермента.\n"
+"\n"
+"Помимо данной способности каждая лизосома даёт следующий эффект:\n"
+"\n"
+"[indent]—   [b]+0.05[/b] скорости растворения. Поглощенная материя будет растворяться немного быстрее..[/indent]\n"
+"[indent]—   [b]+4.5%[/b] эффективности растворения для выбранного фермента. Поглощенные клетки с мембраной, что является целью фермента дают их проглотившему большее количество соединений.[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_INTRO"
+msgstr ""
+"Содержит растворяющие энзимы. Может быть модифицирована для изменения типа энзимов что она в себе содержит. В 1 лизосоме может быть лишь 1 энзим. Энзимы ускоряют и улучшают эффективность растворения\n"
+"\n"
+"Лизосома это Мембранная органелла, что содержит в себе гидролитические энзимы, что могут разбивать на простые соединения биомолекулы. Лизосомы позволяют растворять материалы с помощью процесса, именуемого \"эндоцитоз\" и очищать мусорную часть клетки в процессе, именуемой [b]аутофагией[/b]."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_MODIFICATIONS"
+msgstr ""
+"Модифицируйте [b]Лизосому[/b] для выбора энзима, коей ей придётся синтезировать.\n"
+"Изначально, она содержит [b]Липазу[/b], что акцентируется на [b]Простых мембранах[/b] и [b]Двойных мембранах[/b].\n"
+"\n"
+"[b]Лизосома[/b] , помимо липазы, может синтезировать следующее:\n"
+"\n"
+"[indent]—   [b]Хитиназа[/b], Что акцентируется на [b]Хитиновой мембране[/b].[/indent]\n"
+"[indent]—   [b]Целлюлаза[/b], Что акцентируется на [b]Целлюлозной мембране[/b].[/indent]"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_PROCESSES"
+msgstr "Процессы отсутствуют."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Клетке необходимо ядро для получения лизосом."
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_STRATEGY"
+msgstr "Не готово"
+
+#, fuzzy
+msgid "WIKI_MELANOSOME_UPGRADES"
+msgstr "Улучшения отсутствуют."
+
 msgid "WIKI_METABOLOSOMES_EFFECTS"
 msgstr "Эффекты отсутствуют."
 
@@ -7436,6 +7539,10 @@ msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Разместить органеллу (или другую вещь)"
 
 #, fuzzy
+msgid "WIKI_PAGE_MELANOSOME"
+msgstr "Лизосома"
+
+#, fuzzy
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Метаболосомы"
 
@@ -7598,6 +7705,10 @@ msgstr ""
 #, fuzzy
 msgid "WIKI_PULLING_CILIA"
 msgstr "Реснички"
+
+#, fuzzy
+msgid "WIKI_RADIOSYNTHESIS"
+msgstr "Термосинтез"
 
 #, fuzzy
 msgid "WIKI_REPRODUCTION_BUTTON"
@@ -8262,10 +8373,6 @@ msgstr "Уменьшить масштаб"
 #, fuzzy
 #~ msgid "WIKI_SPACE_STAGE"
 #~ msgstr "Стадия Космоса"
-
-#, fuzzy
-#~ msgid "WIKI_THERMOSYNTHESIS"
-#~ msgstr "Термосинтез"
 
 #, fuzzy
 #~ msgid "NO"

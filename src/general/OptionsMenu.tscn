@@ -2069,6 +2069,14 @@ theme_override_fonts/font = ExtResource("13_8qfyf")
 theme_override_font_sizes/font_size = 18
 text = "CLOSE"
 
+[node name="FocusGrabber" parent="CenterContainer/PatchNotesBox" instance=ExtResource("13")]
+layout_mode = 3
+anchors_preset = 0
+Priority = 4
+NodeToGiveFocusTo = NodePath("../VBoxContainer/HBoxContainer/Close")
+GrabFocusWhenBecomingVisible = true
+SkipOverridingFocusForElements = Array[NodePath]([])
+
 [node name="ControllerDeadzoneConfiguration" parent="." instance=ExtResource("12")]
 anchors_preset = 0
 anchor_right = 0.0
