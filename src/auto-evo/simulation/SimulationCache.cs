@@ -466,19 +466,14 @@ public class SimulationCache
         var isMembraneDigestable = dissolverEnzyme == Constants.LIPASE_ENZYME;
         var enzymesScore = 1.0f;
 
-        for (int i = 0; i < organelles.Count; ++i)
+        foreach (var organelle in organelles)
         {
-            var organelle = organelles[i];
-
             if (organelle.Definition.HasLysosomeComponent)
             {
-                foreach (var enzyme in organelle.Definition.Enzymes)
+                foreach (var enzyme in organelle.Definition.Enzymes.Where(enzyme => enzyme.Value > 0))
                 {
-                    if (enzyme.Value > 0)
-                    {
-                        isMembraneDigestable = isMembraneDigestable || enzyme.Key.Name == dissolverEnzyme;
-                        enzymesScore += Constants.AutoEvoLysosomeEnzymesScores.GetValueOrDefault(enzyme.Key.Name, 0);
-                    }
+                    isMembraneDigestable = isMembraneDigestable || enzyme.Key.Name == dissolverEnzyme;
+                    enzymesScore += Constants.AutoEvoLysosomeEnzymesScores.GetValueOrDefault(enzyme.Key.Name, 0);
                 }
             }
         }
