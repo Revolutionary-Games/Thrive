@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-30 20:29+0100\n"
+"POT-Creation-Date: 2025-01-31 14:17+0200\n"
 "PO-Revision-Date: 2025-01-24 08:45+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
@@ -1662,7 +1662,7 @@ msgid "EASTEREGG_MESSAGE_12"
 msgstr "Ama şu mavi hücreler var ya."
 
 msgid "EASTEREGG_MESSAGE_13"
-msgstr "Eğer hücreniz 150 altıgen alan büyüklüğünde ise, büyük demir parçalarını bile yutabilirsiniz."
+msgstr "Eğer hücreniz 150 altıgen alan büyüklüğünde ise, büyük demir parçalarını bile yutabilirsiniz!"
 
 msgid "EASTEREGG_MESSAGE_14"
 msgstr "İlginç Gerçek: Dünya gezegeninde, 8000'den fazla silli türü vardır."
@@ -3255,10 +3255,6 @@ msgstr "Mikrop Performansı"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrop Editörü"
 
-#, fuzzy
-msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
-
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Serbest Mikrop Yapım Editörü"
 
@@ -3268,93 +3264,65 @@ msgstr "Her bir altıgenlik sitoplazmayı sürdürmek, saniyede 1 [thrive:compou
 msgid "MICROBE_LOADING_TIP_10"
 msgstr "Hücreniz, enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] kullanır. ATP tükenirse, ölürsünüz."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Editörü açmak ve çoğalmak için yeterince uzun süre hayatta kalmanız gerekiyor. thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) toplamak büyümeyi hızlandırır."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "[thrive:input]g_toggle_engulf[/thrive:input] tuşuna basarak, sizden daha küçük şeyler ile beslenmek için onları yutabilirsiniz. Bu fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve sizi yavaşlatır. Yutmayı durdurmak için tekrar [thrive:input]g_toggle_engulf[/thrive:input] butonuna basmayı unutmayın."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Hücreniz ne kadar büyükse, sadece hayatta kalmak için o kadar [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten parçaya ihtiyaç duyarsınız. Metabolozomlar, rustisiyanin, hidrojenaz ve hatta sitoplazma [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_14"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Editörde, çok çeşitli oyun tarzlarına imkan veren, evrimleşebileceğiniz birçok organel bulunmaktadır."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Her tür için sınırlı miktarda kaynak mevcuttur. Bu nedenle hücrenizin büyüklüğünü arttırmak, maksimum popülasyonunuzu azaltır."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Hareket etmek için [thrive:input]g_move_forward[/thrive:input], [thrive:input]g_move_left[/thrive:input], [thrive:input]g_move_backwards[/thrive:input] ve [thrive:input]g_move_right[/thrive:input] tuşlarını ve dönmek için fareyi kullanın. Eğer bir toksin kofulunuz varsa, [thrive:compound type=\"oxytoxy\"]OksiToksi'yi[/thrive:compound] ateş etmek için [thrive:input]g_fire_toxin[/thrive:input] tuşunu kullanın. Yutma modunu açmak için [thrive:input]g_toggle_engulf[/thrive:input] tuşuna basın. Fare tekeri ile görüş alanınızı büyütüp küçültebilirsiniz."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_17"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Çoğalmak için organellerinizi ikiye bölmeniz gerekir. Organellerin bölünmesi için zaman gerekir. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplamak bu işlemi hızlandırır."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_18"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Dikkatli olun çünkü rakipleriniz sizinle birlikte evrimleşiyor. Editöre her girdiğinizde, onlar da evrimleşiyor."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_19"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Bağlayıcı ajanlar, türünüzün diğer üyeleri ile bir hücre kolonisi kurmanızı sağlar. Bütün hücreler bileşikleri paylaşır, grup halinde hareket eder ve çok hücreli bir organizmaya evrimleşmenizi sağlar."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_2"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Ne kadar (ya da daha uzun) kamçıya sahipseniz, o kadar hızlı gidersiniz - vınn vıınn! Ama bu daha fazla ATP'ye mal olur."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_20"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Selülozlu ya da kitinli hücre zarına sahip hücreler prokaryotlar tarafından sindirilemezler. Lizozomlara sahip bir ökaryot, hücre duvarlarını parçalamak için enzimler üreterek, bunlarla beslenebilir."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_21"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Kemoplastlar ve kemosentez yapan proteinler aracılığıyla, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülebilir. Rustisiyanin veya ferroplast aracılığıyla, [thrive:compound type=\"iron\"]demir[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülebilir."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Editöre yapılan her ziyaret, Mikrop Evresi'nde [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milyon yıllık evrimi temsil eder."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Ölü hücre ya da mineral olduğuna bakılmaksızın, yüzen madde parçalarını yutabilirsiniz."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_4"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Bir çekirdek eklemeden önce hazırlık yapın. Bu şeyler, hem peşin ödeme hem de bakım masrafı açısından pahalıdır!"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_5"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Eğer yeterince hızlıysanız, toksinler, diğer toksinleri vurup uzaklaştırmak için kullanılabilir."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_6"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Eğer bir hücre sizin hücrenizin yaklaşık yarısından daha küçükse, işte o zaman onları yutabilirsiniz."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_7"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Biyomlar farklı arkaplanlardan çok daha fazlasıdır. Farklı biyomlardaki bileşikler ve yüzen parçalar, farklı oranlarda oluşur."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_8"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
+msgstr "Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcarsınız."
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
-msgstr "Yaptığınız bir hatayı düzeltmek için editördeki geri al butonuna basın"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
-msgstr "[b]Organel Geliştirme Verileri:[/b]"
-
-#, fuzzy
-msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
+msgstr "Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
@@ -3384,7 +3352,7 @@ msgid "MICROBE_STAGE_BECOME_MULTICELLULAR_TEXT"
 msgstr ""
 "[b]Çok hücreliliğe[/b] doğru ilerlemeyi sağlayan bir becerinin kilidini açtınız. Bu, yolculuğunuzdaki bir sonraki adımdır.\n"
 "\n"
-"Devam etmek için \"Çok Hücreli Ol\" butonuna basın."
+"Devam etmek için [b]\"Çok Hücreli Ol\"[/b] butonuna basın."
 
 msgid "MICROBE_STAGE_COLLECT_TEXT"
 msgstr ""
@@ -3396,7 +3364,7 @@ msgstr ""
 
 msgid "MICROBE_STAGE_CONTROL_TEXT"
 msgstr ""
-"Hücrenizi kontrol etmek için hücrenizin etrafında gösterilen tuşları (ekranın ortası) ve hücrenin yönünü kontrol etmek için fareyi kullanın.\n"
+"Hücrenizi kontrol etmek amacıyla, hücrenin etrafında gösterilen tuşları (ekranın ortası) hareket etmek için ve fareyi ise hücrenin yönünü kontrol etmek için kullanın.\n"
 "\n"
 "Hareket modu, ayarlar menüsünden değiştirilebilir.\n"
 "\n"
@@ -3404,7 +3372,7 @@ msgstr ""
 
 msgid "MICROBE_STAGE_CONTROL_TEXT_CONTROLLER"
 msgstr ""
-"Hücrenizi kontrol etmek için hücrenizin etrafında gösterilen kontrolleri ve hücreyi işaret etmek için diğer çubuğu kullanın.\n"
+"Hücrenizi kontrol etmek amacıyla, hücrenizin etrafında gösterilen kontrolleri hareket etmek için ve diğer çubuğu ise hücreyi yöneltmek için kullanın.\n"
 "UYARI: Kontrol cihazı girişleri deneyseldir ve tam anlamıyla kullanılamaz (dokunmatik yüzey olmadan). Ayrıca, bazı hatalar olabilir.\n"
 "Devam etmek için birkaç saniyeliğine ekranda gösterilen tüm yönlendirmeleri deneyin."
 
@@ -3413,8 +3381,8 @@ msgstr ""
 "Ortam panelinde, [b]güneş ışığı[/b] göstergesindeki düşüşlere dikkat edin.\n"
 "\n"
 "Ortam karardıkça gece vakti yaklaşır.\n"
-"Fotosentez gece vaktinde etkisizdir.\n"
-"Bu yüzden, gece hayatta kalmak için yeterince depoya [thrive:icon]StorageIcon[/thrive:icon] sahip olduğunuzdan emin olun."
+"\n"
+"Fotosentez gece vaktinde etkisizdir. Bu yüzden fotosenteze muhtaç olan herhangi bir hücrenin, gece hayatta kalmak için yeterli depoya [thrive:icon]StorageIcon[/thrive:icon] sahip olması gerekir."
 
 msgid "MICROBE_STAGE_HEALTH_TEXT"
 msgstr ""
@@ -3435,7 +3403,7 @@ msgstr ""
 
 msgid "MICROBE_STAGE_INITIAL_PANSPERMIA"
 msgstr ""
-"Uzaklardaki bir uzaylı gezegende, uçsuz bucaksız astronomik mesafelerden gelen bir göktaşı çarptı ve yeni bir olayın oluşması için gerekli tohumları bu gezegene taşıdı.\n"
+"Uzaklardaki bir uzaylı gezegende, muazzam astronomik mesafeler kat eden bir göktaşı yere çarptı ve yeni bir olayın meydana gelmesi için gerekli tohumları bu gezegene taşıdı.\n"
 "\n"
 "Hayat.\n"
 "\n"
@@ -3489,7 +3457,7 @@ msgid "MIGRATION_STEP_SOURCE_EXPLANATION"
 msgstr "Göç için kaynak görevi görmesi için şu an türünüzün olduğu bir araziyi seçin"
 
 msgid "MIGRATION_TOOLTIP"
-msgstr "Kendi bulunduğunuz araziden ayrılmadan, türünüzü bir araziden başka bir araziye taşıyın"
+msgstr "Farklı bir araziye taşınmadan, türünüzü bir araziden başka bir araziye taşıyın"
 
 msgid "MILLION_ABBREVIATION"
 msgstr "{0} Mn"
@@ -3717,10 +3685,12 @@ msgid "MOVE_TO_LAND"
 msgstr "Karaya Çık"
 
 msgid "MOVE_TO_MACROSCOPIC_TOOLTIP"
-msgstr "İleri çok hücreli evresine git (makroskopik). Yeterince büyük bir hücre koloniniz olduğunda açılır."
+msgstr ""
+"Makroskopik Evre'ye geç. Yeterince büyük bir hücre koloniniz olduğunda açılır.\n"
+"Bu evre, editörde yeterli miktarda hücre eklemeyi ve sonrasında koloninizi minimum büyüklüğe çıkarmayı gerektirir."
 
 msgid "MOVE_TO_MULTICELLULAR_STAGE_TOOLTIP"
-msgstr "Oyunun sonraki evresine git (ilk çok hücreli). Yeterince büyük bir hücre koloniniz olduğunda açılır."
+msgstr "Oyunun sonraki evresine git: Çok Hücreli. Yeterince büyük bir hücre koloniniz olduğunda açılır."
 
 msgid "MOVE_TO_THIS_PATCH"
 msgstr "Bu Araziye Git"
@@ -3774,9 +3744,8 @@ msgstr "Çok Hücreli Editörü"
 msgid "MULTICELLULAR_FREEBUILD_EDITOR"
 msgstr "Serbest Çok Hücreli Yapım Editörü"
 
-#, fuzzy
 msgid "MULTICELLULAR_LOADING_TIP_1"
-msgstr "Çok Hücreli Editörü"
+msgstr "Hücreleriniz bileşikleri paylaşsa da, her hücrenin kendi [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] üretmesi gerekir. Herhangi bir hücre, bu molekülden yoksun kalırsa ölür."
 
 msgid "MULTICELLULAR_STAGE"
 msgstr "Çok Hücreli Evresi"
@@ -3999,7 +3968,7 @@ msgstr ""
 "Ancak, eğer çekirdek mevcut süreçte yerleştirildiyse, bu değişikliği geri alma ya da yinelemeye izin verilir."
 
 msgid "NUCLEUS_DESCRIPTION"
-msgstr "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik retikulum ve golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem geliştirmek amacıyla prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin birbirine karışmasını engeller. Bu yapı, yeni zarlı organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş olmasını sağlar. Ancak çekirdeği eklemenin, hücrenin daha büyük olması ve bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
+msgstr "Ökaryotik hücrelerinin belirleyici özelliği. Çekirdek ayrıca endoplazmik retikulum ve Golgi aygıtını içerir. Bu kısım, hücre iç zarında bir sistem geliştirmek amacıyla prokaryotik hücrelerin kendi içlerinde başka bir prokaryotu özümsemesiyle tanıştığı bir evrimdir. Çekirdek, hücre içindeki işlemlerin farklı bölümlere ayrılmasını veya uzaklaştırılmasını sağlar ve bu işlemlerin birbirine karışmasını engeller. Bu yapı, yeni zarlı organellerin, sitoplazmadaki serbest yapılardan daha kompleks, etkili ve özelleşmiş olmasını sağlar. Ancak çekirdeği eklemenin, hücrenin daha büyük olması ve bakım için hücrenin enerjisini daha fazla kullanması gibi bedelleri var."
 
 msgid "NUCLEUS_SMALL_DESCRIPTION"
 msgstr "Daha kompleks olan zarlı organellerin evrimleşmesini sağlar ve hasarı %50'ye indirir. Bakımı bir sürü ATP'ye mal olur. Bu geri dönüşü olmayan bir evrimdir."
@@ -5732,8 +5701,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_ATP_BALANCE_INTRO"
 msgstr ""
 "Sağdaki ATP Üretim çubuğu, tüketilen ATP'ye nazaran, hücrenizin ne kadar [thrive:compound type=\"atp\"]ATP[/thrive:compound] ürettiğini gösterir. Eğer üstteki çubuk alttakinden daha kısa ise, bu yeterince [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmiyorsunuz demektir.\n"
 "\n"
-"Alttaki çubuk, [b]ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon] maliyetini ve [b]hareket[/b] [thrive:icon]MovementIcon[/thrive:icon] maliyetini kapsar.\n"
-"[b]Ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon], [u]hayatta kalmanın taban fiyatıdır[/u]. Eklediğiniz her parça, bu fiyatı arttırır.\n"
+"Alttaki çubuk, [b]ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon] maliyetini ve [b]hareket[/b] [thrive:icon]MovementIcon[/thrive:icon] maliyetini kapsar. [b]Ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon], [u]hayatta kalmanın taban fiyatıdır[/u]. Eklediğiniz her parça, bu fiyatı arttırır.\n"
 "\n"
 "Eğer [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretiminiz negatif ise, [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini arttırdığınızdan emin olun veya kısa süreliğine dinlenip hareket etmek için [b]depo[/b] [thrive:icon]StorageIcon[/thrive:icon] ekleyin."
 
@@ -5741,11 +5709,11 @@ msgid "TUTORIAL_MICROBE_EDITOR_AUTO-EVO_PREDICTION"
 msgstr ""
 "Bu panel, sizin gelecekte kazanacağınız toplam tahmini enerjiyi gösterir. Bu rakamlar, [b]oto-evrimin[/b] simülasyonundan gelir.\n"
 "\n"
-"Bu tahminler, sizin bireysel performansınızı hesaba katmaz. Böylece editöre girdiğinizde, bulunduğunuz arazide daha iyi performans sergileyebilirsiniz.\n"
+"Bu tahminler, sizin bireysel performansınızı hesaba katmaz. Yani bulunduğunuz arazideki son sayılar, oto-evrimde olacağından farklı olur. Türünüzün popülasyonu, hücrenizin öldüğü her an azalır ve editöre girdiğiniz her an artar.\n"
 "\n"
-"Ama doğrudan dahil olmasanız bile, bu değeri yukarıda tutmaya çalışmalısınız.\n"
+"Ama doğrudan dahil olmadığınız arazilerde bile bu sayıları yukarıda tutmayı denemelisiniz.\n"
 "\n"
-"Paneldeki soru işaretli butona basarak oto-evrim tahmininin ardındaki detaylı bilgiyi inceleyebilirsiniz. Devam etmek için bu butona basın."
+"[b]Paneldeki soru işaretli butona basarak[/b] oto-evrim tahmininin ardındaki detaylı bilgiyi inceleyebilirsiniz. Devam etmek için bu butona basın."
 
 msgid "TUTORIAL_MICROBE_EDITOR_CELL_TEXT"
 msgstr ""
@@ -5759,7 +5727,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_CHEMORECEPTOR"
 msgstr ""
 "Hücrenize bir [b]kemoreseptör[/b] organeli ekleyebilirsiniz.\n"
 "\n"
-"Kemoreseptörler, türünüzün bileşikleri algılama becerisini temsil eder.\n"
+"Kemoreseptörler, türünüzün etrafındaki şeyleri algılama becerisini arttırır.\n"
 "\n"
 "Bir tane yerleştirmek [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] gibi bileşikleri algılamanızı sağlar ve sizi o bileşiklere yönlendirir. Bu organel, diğer türlerin hücrelerini algılamak için de kullanılabilir."
 
@@ -5777,7 +5745,7 @@ msgid "TUTORIAL_MICROBE_EDITOR_FLAGELLUM"
 msgstr ""
 "[b]Kamçılar[/b], yerleştirildikleri yönün tersine doğru mikrobunuzu iter.\n"
 "\n"
-"İleri bakan okun ters tarafına bir kamçı yerleştirmek mikrobunuzu ileri doğru iter.\n"
+"İleri bakan okun ters tarafına bir kamçı yerleştirmek mikrobunuzu ileri doğru iter. [b]Balçık Fışkırtıcılar[/b] da, aynı şekilde yerleştirilir.\n"
 "\n"
 "Kamçılar, yoğun [thrive:compound type=\"atp\"]ATP[/thrive:compound] gerektiren organellerdir ve bu yüzden küçük hücreler için çok iyi değildirler.\n"
 "\n"
@@ -5797,7 +5765,7 @@ msgstr ""
 "\n"
 "Bütün işlemleri çalıştırırken ve hareket ederken, hücreniz [thrive:compound type=\"atp\"]ATP'sini[/thrive:compound] tüketecek ve ölecek.\n"
 "\n"
-"[thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini düzenlemek için birçok yol var. Üretimi arttırmak için [b]Metabolozomlar[/b] gibi [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten organeller ekleyebilirsiniz. Ayrıca bazı [b]hücre zarları[/b] size ozmoregülasyon [thrive:icon]OsmoIcon[/thrive:icon] indirimleri verir.\n"
+"[thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimini düzenlemek için birçok yol var. Üretimi arttırmak için [b]Hidrojenaz[/b] gibi [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten organeller ekleyebilirsiniz. Ayrıca bazı [b]hücre zarları[/b] size ozmoregülasyon [thrive:icon]OsmoIcon[/thrive:icon] indirimleri verir.\n"
 "\n"
 "Alternatif olarak, ihtiyaç duyulmayan ya da gereksiz organelleri kaldırabilirsiniz."
 
@@ -5806,6 +5774,7 @@ msgstr ""
 "Türünüzde herhangi bir değişiklik yapmadınız.\n"
 "\n"
 "Editörden ayrıldığınızda, [u]bir sonraki sefer çoğalana dek türünüzü düzenleyemeyeceksiniz[/u].\n"
+"\n"
 "Oyunda ilerlemek için evrimleşmeniz ve uyum sağlamanız gerekir. Bu yüzden türünüzü, çoğu editör sürecinde, düzenlemeniz tavsiye edilir."
 
 msgid "TUTORIAL_MICROBE_EDITOR_PATCH_TEXT"
@@ -5814,7 +5783,7 @@ msgstr ""
 "\n"
 "Her simge yaşayabileceğiniz eşsiz bir ortamı temsil eder. Sağ tarafta bulunan panelde ise mevcut seçili arazinin koşulları tarif edilmektedir.\n"
 "\n"
-"Eğer bulunduğunuz araziye (yanıp sönen bir yeşil kenarlık ile vurgulanmış) bağlı bir arazi seçerseniz, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsiniz.\n"
+"Eğer bulunduğunuz araziye (yanıp sönen bir yeşil kenarlık ile vurgulanır) bağlı bir arazi seçerseniz, sağdaki \"Bu Araziye Git\" butonuna basarak oraya gidebilirsiniz.\n"
 "\n"
 "Devam etmek için bir arazi seçmeyi deneyin."
 
@@ -5830,9 +5799,9 @@ msgstr ""
 
 msgid "TUTORIAL_MICROBE_EDITOR_SELECT_ORGANELLE_TEXT"
 msgstr ""
-"Menüde parçalar seçerken, onların neler yaptığını anlamak için [u]araç ipuçlarına dikkat edin[/u]. Eğer parçaların [u]işlevlerine dikkat etmezseniz, onların faydadan çok zararı olur[/u].\n"
+"Parçaları seçerken, onların neler yaptığını anlamak için [u]araç ipuçlarına dikkat edin[/u]. Eğer parçaların [u]işlevlerini dikkate almazsanız, onların faydadan çok zararı olur[/u].\n"
 "\n"
-"Her parça, bakım ([b]ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon] olarak adlandırılır) gerektirir ve bazıları çalışmak için belli bileşikler gerektiren [b]işlemler[/b] yürütür.\n"
+"Her parça, bakım ([b]ozmoregülasyon[/b] [thrive:icon]OsmoIcon[/thrive:icon] olarak adlandırılır) gerektirir ve bunlardan bazıları çalışmak için belli bileşikler gerektiren [b]işlemler[/b] yürütür.\n"
 "\n"
 "Ayrıca daha fazla parça eklemeniz, çoğalmak için daha fazla bileşiğe ihtiyaç duymanız demektir.\n"
 "\n"
@@ -5852,7 +5821,7 @@ msgstr ""
 "\n"
 "Hücreniz her çoğaldığında, editöre yönlendirilirsiniz.\n"
 "\n"
-"Editöre girmek için sağ altta yanıp sönen büyük butona basın."
+"Editöre girmek için sağ alttaki büyük yuvarlak butona basın."
 
 msgid "TUTORIAL_MICROBE_STAGE_ENGULFED_TEXT"
 msgstr ""
@@ -5891,7 +5860,7 @@ msgid "TUTORIAL_MICROBE_STAGE_REPRODUCE_TEXT"
 msgstr ""
 "Hücrenizi çoğaltmak için bütün organellerinizi ikiye katlamak zorundasınız. Bu, hayatta kaldığınız sürece, kademeli şekilde meydana gelir. Ama [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplayarak bu işlemi hızlandırabilirsiniz.\n"
 "\n"
-"Sağ alttaki çubuklar ilerlemenizi gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
+"Sağ alttaki turuncu ve mor çubuklar ilerlemenizi gösterir. Hücreniz çoğalmaya hazır olduğunda, bu çubuklar beyaza döner."
 
 msgid "TUTORIAL_MICROBE_STAGE_UNBIND_TEXT"
 msgstr ""
@@ -6971,16 +6940,14 @@ msgstr "Glikoliz, Oksijensiz Azot Fiksasyonu"
 msgid "WIKI_HEADING_APPENDICES"
 msgstr "Ekler"
 
-#, fuzzy
 msgid "WIKI_HEADING_BASIC_GAME_MECHANICS"
-msgstr "Ekler"
+msgstr "Temel oyun mekanikleri"
 
 msgid "WIKI_HEADING_COMPOUNDS_LIST"
 msgstr "Bileşikler Listesi"
 
-#, fuzzy
 msgid "WIKI_HEADING_COMPOUND_CLOUDS"
-msgstr "Bileşikler Listesi"
+msgstr "Bileşikler bulutları"
 
 msgid "WIKI_HEADING_CONCEPT_ART"
 msgstr "Konsept Çizimi"
@@ -7012,30 +6979,26 @@ msgstr "Oynanış"
 msgid "WIKI_HEADING_GDD"
 msgstr "GDD"
 
-#, fuzzy
 msgid "WIKI_HEADING_GENERAL_TIPS"
-msgstr "Etkiler"
+msgstr "Genel Tavsiyeler"
 
 msgid "WIKI_HEADING_GENERATIONS_AND_EDITOR_SESSIONS"
 msgstr "Kuşaklar ve Editör Süreçleri"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_PARTS"
-msgstr "Mikrop Evresi"
+msgstr "Mikrop Parçaları"
 
 msgid "WIKI_HEADING_MICROBE_STAGE"
 msgstr "Mikrop Evresi"
 
-#, fuzzy
 msgid "WIKI_HEADING_MICROBE_STAGE_TIPS"
-msgstr "Mikrop Evresi"
+msgstr "Mikrop Evresi Tavsiyeleri"
 
 msgid "WIKI_HEADING_MODIFICATIONS"
 msgstr "Değişiklikler"
 
-#, fuzzy
 msgid "WIKI_HEADING_MORE_GAME_INFO"
-msgstr "Mikrop Evresi"
+msgstr "Daha Fazla Oyun Bilgisi"
 
 msgid "WIKI_HEADING_MUTATIONS_AND_MUTATION_POINTS"
 msgstr "Mutasyonlar ve Mutasyon Puanları"
@@ -7082,35 +7045,125 @@ msgstr "Kullanıcı Arayüzü"
 msgid "WIKI_HEADING_UPGRADES"
 msgstr "Geliştirmeler"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BASIC_GAME_MECHANICS"
-msgstr "Mekanikler"
+msgstr ""
+"Oyuncu, dünyaya yayılması gereken bir türün üyelerini kontrol eder ve daha karmaşık yaşam formlarına evrimleşir. Ttürünüzün bir tek hücresini kontrol edersiniz: Eğer bu hücre ölürse, başka bir hücrenin kontrolünü ele alırsınız. Diğer türden hücrelerle rekabet edersiniz. Bu yüzden, kendi türünüzün hayatta kalacağından emin olmalısınız.\n"
+"\n"
+"Dünya, [b]arazilere[/b] ayrılır. Oyuncu hücresinin yaşadığı alan sizin [b]mevcut arazinizdir[/b].\n"
+"\n"
+"Mevcut arazinizde hayatta kalmak için [b]bileşikler[/b] toplamalı ve [b]çoğalmak[/b] için yeterince büyümelisiniz. Hücreniz çoğaldığında, milyonlarca yıl ileriye gider ve [b]Editöre[/b] geçersiniz.\n"
+"\n"
+"[b]Editörde[/b], kendi biyolojilerinin ve mevcut arazinizdeki performansınızın bir sonucu olarak, varolan tüm türlere milyonlarca yıl boyunca ne olduğunu görebilirsiniz. Hangi yeni türlerin [b]evrimleştiğini[/b], hangilerinin [b]soyunun tükendiğini[/b] ve [b]popülasyon[/b] sayılarının nasıl değiştiğini görebilirsiniz.\n"
+"\n"
+"[b]Editörün[/b] [b]Arazi Haritası[/b] bölümünde, mevcut arazinizi değiştirebilir ve türünüzün diğer üyelerini başka bir araziye taşıyabilirsiniz. Ayrıca türünüzü [b]düzenleyerek[/b] türünüzün nasıl evrimleşeceğini belirleyebilirsiniz.\n"
+"\n"
+"Türünüzün davranışını değiştirmekle birlikte, hücrenize parça ekleyerek, hücrenizden parça kaldırarak ya da hücrenizdeki parçaları ayarlayarak türünüzü [b]düzenlersiniz[/b].\n"
+"\n"
+"[b]Editörden[/b] ayrıldığınzda, mevcut arazinize geçer ve döngüyü yeniden başlatırsınız.  Her turda yapılan küçük değişiklikler, gezegenin yaşamı boyunca büyük değişikliklere yol açar."
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_BUTTON"
-msgstr "Bileşikler"
+msgstr "Yardım ve Tavsiyeler"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_COMPOUND_CLOUDS"
-msgstr "Bileşikler Listesi"
+msgstr ""
+"Bu bileşikler, bir arazide bileşik bulutları olarak ortaya çıkan kullanışlı kimyasallardır.\n"
+"\n"
+"Beyaz – [thrive:compound type=\"glucose\"]Glukoz[/thrive:compound]\n"
+"\n"
+"Sarı – [thrive:compound type=\"hydrogensulfide\"]Hidrojen Sülfür[/thrive:compound]\n"
+"\n"
+"Turuncu – [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound]\n"
+"\n"
+"Mor – [thrive:compound type=\"phosphates\"]Fosfat[/thrive:compound]\n"
+"\n"
+"Kırmızı – [thrive:compound type=\"iron\"]Demir[/thrive:compound]"
 
 msgid "WIKI_HELP_AND_TIPS_GENERAL_TIPS"
 msgstr ""
+"Bu bölüm, yükleme ekranında görüntülenen ve birden fazla evre için geçerli olan tüm oyun tavsiyelerini listelemektedir.\n"
+"\n"
+"\n"
+"Yaptığınız bir hatayı düzeltmek için editördeki [b]Geri Al[/b] butonuna basın\n"
+"\n"
+"Daha büyük organizmalara dikkat edin. Sizi yiyebilirler ama sindirilmek eğlenceli değil!\n"
+"\n"
+"Aynı türleri defalarca avlarken dikkatli olun. Çünkü bu türleri avlayarak soylarını tüketebilirsiniz. Diğer türler de bunu yapabilir.\n"
+"\n"
+"Bazen sadece kaçmak en iyisidir.\n"
+"\n"
+"Oto-Evrim popülasyonunuzun düştüğünü tahmin ettiğinde, bu popülasyonu yine de iyi performans göstererek arttırabilirsiniz.\n"
+"\n"
+"Unutmayın, imlecin altındaki öğeyi görmek için ekranın sağ üstündeki paneli kullanabilirsiniz.\n"
+"\n"
+"Eğer popülasyonunuz sıfıra düşerse, soyunuz tükenir."
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_INTRO"
-msgstr "Thrive'ın ana oyun döngüsü, [color=#3796e1][url=thriveopedia:Reproduction]üreme[/url][/color] ve türünüzü düzenleme etrafında döner. Ürediğiniz her an, bulunduğunuz evreye bağlı olarak çeşitli [b]Editörlere[/b] erişim sağlarsınız. Bu sayede, türünüzde değişiklikler veya [b]Mutasyonlar[/b] yapabilirsiniz."
+msgstr "Bu sayfa, Thrive'ın oynanışı ile ilgili bazı temel bilgiler ve genel tavsiyeler içermektedir."
 
 #, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
 msgstr "Mikrop Evresi"
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
-msgstr "Mikrop Evresi"
+msgstr ""
+"Bu bölüm, yükleme ekranında Mikrop Evresi için görüntülenen tüm oyun tavsiyelerini içermektedir.\n"
+"\n"
+"\n"
+"Her bir altıgenlik sitoplazmayı sürdürmek, saniyede 1 [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur. Ama bu sitoplazma 3 [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Eğer [thrive:compound type=\"atp\"]ATP'niz[/thrive:compound] birazcık azsa, birkaç altıgen alan eklemeyi deneyin veya bazı organelleri kaldırın.\n"
+"\n"
+"Hücreniz, enerji kaynağı olarak [thrive:compound type=\"atp\"]ATP'yi[/thrive:compound] kullanır. ATP tükenirse, ölürsünüz.\n"
+"\n"
+"Editörü açmak ve çoğalmak için yeterince uzun süre hayatta kalmanız gerekiyor. thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] (turuncu bulut) ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] (mor bulut) toplamak büyümeyi hızlandırır.\n"
+"\n"
+"[b]G[/b] tuşuna basarak, sizden daha küçük şeyler ile beslenmek için onları yutabilirsiniz. Bu fazladan [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] mal olur ve sizi yavaşlatır. Yutmayı durdurmak için tekrar [b]G[/b] butonuna basmayı unutmayın.\n"
+"\n"
+"Hücreniz ne kadar büyükse, sadece hayatta kalmak için o kadar [thrive:compound type=\"atp\"]ATP[/thrive:compound] üreten parçaya ihtiyaç duyarsınız. Metabolozomlar, rustisiyanin, hidrojenaz ve hatta sitoplazma [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir.\n"
+"\n"
+"Editörde, çok çeşitli oyun tarzlarına imkan veren, evrimleşebileceğiniz birçok organel bulunmaktadır.\n"
+"\n"
+"Her tür için sınırlı miktarda kaynak mevcuttur. Bu nedenle hücrenizin büyüklüğünü arttırmak, maksimum popülasyonunuzu azaltır.\n"
+"\n"
+"Hareket etmek için [b]W[/b], [b]A[/b], [b]S[/b] ve [b]D[/b] tuşlarını ve dönmek için fareyi kullanın. Eğer bir toksin kofulunuz varsa, [b]toksinleri[/b] ateş etmek için [b]E[/b] tuşunu kullanın. Yutma modunu açmak için [b]G[/b] tuşuna basın. Fare tekeri ile görüş alanınızı büyütüp küçültebilirsiniz.\n"
+"\n"
+"Çoğalmak için organellerinizi ikiye bölmeniz gerekir. Organellerin bölünmesi için zaman gerekir. [thrive:compound type=\"ammonia\"]Amonyak[/thrive:compound] ve [thrive:compound type=\"phosphates\"]fosfat[/thrive:compound] toplamak bu işlemi hızlandırır.\n"
+"\n"
+"Dikkatli olun çünkü rakipleriniz sizinle birlikte evrimleşiyor. Editöre her girdiğinizde, onlar da evrimleşiyor.\n"
+"\n"
+"Bağlayıcı ajanlar, türünüzün diğer üyeleri ile bir hücre kolonisi kurmanızı sağlar. Bütün hücreler bileşikleri paylaşır, grup halinde hareket eder ve çok hücreli bir organizmaya evrimleşmenizi sağlar.\n"
+"\n"
+"Ne kadar (ya da daha uzun) kamçıya sahipseniz, o kadar hızlı gidersiniz - vınn vıınn! Ama bu daha fazla ATP'ye mal olur.\n"
+"\n"
+"Selülozlu ya da kitinli hücre zarına sahip hücreler prokaryotlar tarafından sindirilemezler. Lizozomlara sahip bir ökaryot, hücre duvarlarını parçalamak için enzimler üreterek, bunlarla beslenebilir.\n"
+"\n"
+"Kemoplastlar ve kemosentez yapan proteinler aracılığıyla, [thrive:compound type=\"hydrogensulfide\"]hidrojen sülfür[/thrive:compound], [thrive:compound type=\"glucose\"]glukoza[/thrive:compound] dönüştürülebilir. Rustisiyanin veya ferroplast aracılığıyla, [thrive:compound type=\"iron\"]demir[/thrive:compound], [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüştürülebilir.\n"
+"\n"
+"Editöre yapılan her ziyaret, Mikrop Evresi'nde 100 milyon yıllık evrimi temsil eder.\n"
+"\n"
+"Ölü hücre ya da mineral olduğuna bakılmaksızın, yüzen madde parçalarını yutabilirsiniz.\n"
+"\n"
+"Bir çekirdek eklemeden önce hazırlık yapın. Bu şeyler, hem peşin ödeme hem de bakım masrafı açısından pahalıdır!\n"
+"\n"
+"Eğer yeterince hızlıysanız, toksinler, diğer toksinleri vurup uzaklaştırmak için kullanılabilir.\n"
+"\n"
+"Eğer bir hücre sizin hücrenizin yaklaşık yarısından daha küçükse, işte o zaman onları yutabilirsiniz.\n"
+"\n"
+"Biyomlar farklı arkaplanlardan çok daha fazlasıdır. Farklı biyomlardaki bileşikler ve yüzen parçalar, farklı oranlarda oluşur.\n"
+"\n"
+"Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık fışkırtıcı yerleştirin. Aksi takdirde, enerjiyi boşa harcarsınız.\n"
+"\n"
+"Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
 
 msgid "WIKI_HELP_AND_TIPS_MORE_GAME_INFO"
 msgstr ""
+"Her kuşakta, harcayabileceğiniz 100 mutasyon puanınız (MP) vardır ve her değişiklik (ya da mutasyon), bu MP'nin belirli bir miktarına mal olur. Organel eklemek ve kaldırmak MP'ye mal olur. Ancak, mevcut Editör sürecinde yerleştirilen organelleri kaldırmak o organel için harcanan MP'yi geri kazandırır. Organelin üzerine sağ tıklayarak ve pencere menüden seçerek bir organeli taşıyabilir (ve döndürebilir) ya da o organeli kaldırabilirsiniz.\n"
+"\n"
+"Hücrelerin enerji kazanmasının ana yolları, çevrelerindeki maddelerle beslenmek (buna [b]ototrofi[/b] denir) ve diğer hücrelerle veya ölü hücrelerden gelen parçalarla beslenmek (buna [b]heterotrofi[/b] denir) şeklindedir. Her ikisi de [b]besin zincirinin[/b] önemli parçalarıdır.\n"
+"\n"
+"[b]Selüloz[/b] ve [b]kitin[/b] hücre duvarları, ilk önce onları parçalayan enzimlere sahip olmadan sindirilemez. Bu enzimler, ökaryotlara özgü olan [color=#3796e1][url=thriveopedia:lysosome]Lizozomlar[/url][/color] tarafından üretilir. Prokaryotlar, böyle organellere sahip değildirler ve besinleri daha verimsiz şekilde sindirirler. Küçük hücreler için bu sorun değildir. Ancak büyük hücreler için, [color=#3796e1][url=thriveopedia:lysosome]Lizozomlara[/url][/color] sahip olmamak büyük bir dezavantajdır.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajanlar[/url][/color], hücrenizin ve diğer özdeş türlerin emdiği ve ürettiği bileşikleri paylaştığı bir hücre [b]kolonisi[/b] kurmasını sağlar. Bir koloni içindeyken, editöre giremezsiniz. Bunu yapmak için [b]Hepsinin bağını kopar[/b] tuşuna basarak koloniden ayrılmalısınız. Büyük hücre kolonileri, [b]Çok hücreliliğe[/b] giden yoldur ve Tek Hücreli Evresi'nin sonudur.\n"
+"\n"
+"Eğer 300 popülasyon ile yirmi kuşak boyunca hayatta kalırsanız, mevcut oyunu \"kazanmış\" sayılırsınız. Yine de, oyunu dilediğiniz gibi oynamaya devam edebilirsiniz."
 
 msgid "WIKI_HYDROGENASE_EFFECTS"
 msgstr "Etki yok."
@@ -7817,9 +7870,8 @@ msgstr "Ferroplast"
 msgid "WIKI_PAGE_FLAGELLUM"
 msgstr "Kamçı"
 
-#, fuzzy
 msgid "WIKI_PAGE_HELP_AND_TIPS"
-msgstr "Editörler ve Mutasyonlar"
+msgstr "Yardım ve Tavsiyeler"
 
 msgid "WIKI_PAGE_HYDROGENASE"
 msgstr "Hidrojenaz"
@@ -7999,10 +8051,6 @@ msgstr "Geliştirme yok."
 
 msgid "WIKI_PULLING_CILIA"
 msgstr "Çeken Siller"
-
-#, fuzzy
-msgid "WIKI_RADIOSYNTHESIS"
-msgstr "Termosentez"
 
 msgid "WIKI_REPRODUCTION_BUTTON"
 msgstr "Üreme"
@@ -8507,6 +8555,10 @@ msgstr "Yakınlaştır"
 
 msgid "ZOOM_OUT"
 msgstr "Uzaklaştır"
+
+#, fuzzy
+#~ msgid "WIKI_RADIOSYNTHESIS"
+#~ msgstr "Termosentez"
 
 #~ msgid "EASTEREGG_MESSAGE_19"
 #~ msgstr "İlginç Gerçek: Didinyum, paramesyumları avlayan bir silli türüdür."
@@ -9259,3 +9311,7 @@ msgstr "Uzaklaştır"
 #, fuzzy
 #~ msgid "QUESTION"
 #~ msgstr "Çözünürlük:"
+
+#, fuzzy
+#~ msgid "WIKI_THERMOSYNTHESIS"
+#~ msgstr "Termosentez"

@@ -85,10 +85,12 @@ public class SimulationCache
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.Organelles);
 
+        cached = new EnergyBalanceInfo();
+
         // Auto-evo uses the average values of compound during the course of a simulated day
-        cached = ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
-            maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, false,
-            this);
+        ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
+            maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
+            cached);
 
         cachedEnergyBalances.Add(key, cached);
         return cached;

@@ -706,6 +706,27 @@ public partial class HexEditorComponentBase<TEditor, TCombinedAction, TAction, T
         }
     }
 
+    protected void UpdateVisualLightLevel(float dayLightFraction, Patch currentPatch)
+    {
+        var maxLightLevel = currentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
+        var templateMaxLightLevel =
+            currentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
+
+        // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
+        // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
+        // reduce light level in such patches without things looking bad. So we have to check the template light level
+        // is non-zero too.
+        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
+        {
+            camera!.LightLevel = dayLightFraction;
+        }
+        else
+        {
+            // Don't change lighting for patches without day/night effects
+            camera!.LightLevel = 1.0f;
+        }
+    }
+
     protected MeshInstance3D CreateEditorHex()
     {
         var hex = (MeshInstance3D)hexScene.Instantiate();
