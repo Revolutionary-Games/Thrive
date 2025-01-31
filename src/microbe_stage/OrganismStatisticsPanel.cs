@@ -218,12 +218,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
 
-        if (Visible)
-        {
-            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
-                new EnergyBalanceEventArgs(energyBalance), this);
-        }
-
         UpdateEnergyBalanceToolTips(energyBalance);
     }
 

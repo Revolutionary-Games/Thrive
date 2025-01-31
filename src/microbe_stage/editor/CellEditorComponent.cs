@@ -1864,6 +1864,12 @@ public partial class CellEditorComponent :
 
         organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
 
+        if (Visible)
+        {
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+                new EnergyBalanceEventArgs(energyBalance), this);
+        }
+
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
 
