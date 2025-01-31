@@ -461,7 +461,7 @@ public class SimulationCache
 
         var organelles = predator.Organelles.Organelles;
         var isMembraneDigestible = dissolverEnzyme == Constants.LIPASE_ENZYME;
-        var enzymesScore = 1.0f;
+        var enzymesScore = 0.0f;
 
         if (isMembraneDigestible)
         {

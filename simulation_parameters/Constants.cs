@@ -1199,7 +1199,7 @@ public static class Constants
     /// <summary>
     ///   Default cell's score, value is compared to <see cref="AutoEvoLysosomeEnzymesScores"/>
     /// </summary>
-    public const float AUTO_EVO_BASE_DIGESTION_SCORE = 5;
+    public const float AUTO_EVO_BASE_DIGESTION_SCORE = 1;
 
     public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
     public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
@@ -1822,9 +1822,9 @@ public static class Constants
     /// </summary>
     public static readonly Dictionary<string, float> AutoEvoLysosomeEnzymesScores = new()
     {
-        [LIPASE_ENZYME] = 40,
-        [CHITINASE_ENZYME] = 60,
-        [CELLULASE_ENZYME] = 60,
+        [LIPASE_ENZYME] = 3,
+        [CHITINASE_ENZYME] = 4.5f,
+        [CELLULASE_ENZYME] = 4.5f,
     };
 
     /// <summary>
