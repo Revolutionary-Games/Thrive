@@ -2,7 +2,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Systems;
 
@@ -47,8 +46,7 @@ public class SimulationCache
     private readonly Dictionary<MicrobeSpecies, (float, float, float, float)>
         cachedPredationToolsRawScores = new();
 
-    private readonly Dictionary<(MicrobeSpecies, string), (float, bool)>
-        cachedEnzymeScores = new();
+    private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -254,17 +252,17 @@ public class SimulationCache
         var predatorSpeed = GetSpeedForSpecies(predator);
         var preyHexSize = GetBaseHexSizeForSpecies(prey);
         var preySpeed = GetSpeedForSpecies(prey);
-        var (enzymesScores, isMembraneDigestable) = GetEnzymesScores(predator, prey.MembraneType.DissolverEnzyme);
+        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
         var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) =
             GetPredationToolsRawScores(predator);
         var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
         var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
 
-        // Only assign engulf score if one can actually engulf
+        // Only assign engulf score if one can actually engulf (and digest)
         var engulfmentScore = 0.0f;
         if (predatorHexSize / preyHexSize >
-            Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf && isMembraneDigestable)
+            Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf && enzymesScore > 0.0f)
         {
             // Catch scores grossly accounts for how many preys you catch in a run;
             var catchScore = 0.0f;
@@ -285,7 +283,7 @@ public class SimulationCache
             // Allow for some degree of lucky engulfment
             engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
 
-            engulfmentScore *= enzymesScores;
+            engulfmentScore *= enzymesScore;
         }
 
         // If the predator is faster than the prey they don't need slime jets that much
@@ -455,33 +453,50 @@ public class SimulationCache
         return predationToolsRawScores;
     }
 
-    public (float EnzymesScore, bool IsMembranedigestable) GetEnzymesScores(MicrobeSpecies predator,
-        string dissolverEnzyme)
+    public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme)
     {
         var key = (predator, dissolverEnzyme);
         if (cachedEnzymeScores.TryGetValue(key, out var cached))
             return cached;
 
         var organelles = predator.Organelles.Organelles;
-        var isMembraneDigestable = dissolverEnzyme == Constants.LIPASE_ENZYME;
+        var isMembraneDigestible = dissolverEnzyme == Constants.LIPASE_ENZYME;
         var enzymesScore = 1.0f;
 
-        foreach (var organelle in organelles)
+        if (isMembraneDigestible)
         {
-            if (organelle.Definition.HasLysosomeComponent)
+            // Add the base digestion score that works even without any organelles added
+            enzymesScore += Constants.AUTO_EVO_BASE_DIGESTION_SCORE;
+        }
+
+        var count = organelles.Count;
+        for (var i = 0; i < count; ++i)
+        {
+            var organelle = organelles[i].Definition;
+            if (!organelle.HasLysosomeComponent)
+                continue;
+
+            foreach (var enzyme in organelle.Enzymes)
             {
-                foreach (var enzyme in organelle.Definition.Enzymes.Where(enzyme => enzyme.Value > 0))
-                {
-                    isMembraneDigestable = isMembraneDigestable || enzyme.Key.Name == dissolverEnzyme;
-                    enzymesScore += Constants.AutoEvoLysosomeEnzymesScores.GetValueOrDefault(enzyme.Key.Name, 0);
-                }
+                if (enzyme.Key.InternalName != dissolverEnzyme)
+                    continue;
+
+                // No need to check the amount here as organelle data validates are enzyme amounts are above 0
+
+                isMembraneDigestible = true;
+
+                // This doesn't use safety as it will be otherwise masking very subtle bugs with some enzyme not
+                // working in auto-evo
+                enzymesScore += Constants.AutoEvoLysosomeEnzymesScores[enzyme.Key.InternalName];
             }
         }
 
-        var enzymesToolsScore = (enzymesScore, isMembraneDigestable);
+        // If not digestible, mark that as a 0 score
+        if (!isMembraneDigestible)
+            enzymesScore = 0;
 
-        cachedEnzymeScores.Add((predator, dissolverEnzyme), enzymesToolsScore);
-        return enzymesToolsScore;
+        cachedEnzymeScores.Add((predator, dissolverEnzyme), enzymesScore);
+        return enzymesScore;
     }
 
     private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)

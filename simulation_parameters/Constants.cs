@@ -1196,6 +1196,11 @@ public static class Constants
     public const float AUTO_EVO_CHUNK_ENERGY_AMOUNT = 90000000;
     public const float AUTO_EVO_CHUNK_AMOUNT_NERF = 0.01f;
 
+    /// <summary>
+    ///   Default cell's score, value is compared to <see cref="AutoEvoLysosomeEnzymesScores"/>
+    /// </summary>
+    public const float AUTO_EVO_BASE_DIGESTION_SCORE = 5;
+
     public const float AUTO_EVO_NIGHT_STORAGE_NOT_ENOUGH_PENALTY = 0.1f;
     public const float AUTO_EVO_NIGHT_SESSILITY_COLLECTING_PENALTY_MULTIPLIER = 1.2f;
     public const float AUTO_EVO_MAX_NIGHT_SESSILITY_COLLECTING_PENALTY = 0.7f;
@@ -1812,6 +1817,9 @@ public static class Constants
     public const string CONDITION_GREEN_COLOUR = "#70f423";
     public const string CONDITION_RED_COLOUR = "#ff4d4d";
 
+    /// <summary>
+    ///   Also see <see cref="AUTO_EVO_BASE_DIGESTION_SCORE"/>
+    /// </summary>
     public static readonly Dictionary<string, float> AutoEvoLysosomeEnzymesScores = new()
     {
         [LIPASE_ENZYME] = 40,
