@@ -343,8 +343,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // make sure engulfing doesn't kill the cell. The cell won't engulf if it would kill it
         if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
                 ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
-                speciesAggression, speciesActivity, speciesOpportunism, strain, random, true,
-                atpLevel))
+                speciesAggression, speciesActivity, speciesOpportunism, strain, random, true))
         {
             return;
         }
@@ -482,7 +481,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
                 ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
                 speciesAggression,
-                speciesActivity, speciesOpportunism, strain, random, false, atpLevel))
+                speciesActivity, speciesOpportunism, strain, random, false))
         {
             return;
         }
@@ -507,7 +506,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         ref OrganelleContainer organelles, ref SpeciesMember ourSpecies,
         ref Engulfer engulfer, ref CellProperties cellProperties, ref MicrobeControl control, ref Health health,
         ref CompoundStorage compoundStorage, in Entity entity, float speciesFocus, float speciesAggression,
-        float speciesActivity, float speciesOpportunism, float strain, Random random, bool outOfAtp, float atpLevel)
+        float speciesActivity, float speciesOpportunism, float strain, Random random, bool outOfAtp)
     {
         var compounds = compoundStorage.Compounds;
 
@@ -540,7 +539,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
 
             EngagePrey(ref ai, ref control, ref organelles, ref position, ref compoundStorage, ref health, entity,
-                prey, engulfPrey, speciesAggression, speciesFocus, speciesActivity, strain, random, atpLevel);
+                prey, engulfPrey, speciesAggression, speciesFocus, speciesActivity, strain, random);
             return true;
         }
 
@@ -897,11 +896,14 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private void EngagePrey(ref MicrobeAI ai, ref MicrobeControl control, ref OrganelleContainer organelles,
         ref WorldPosition position, ref CompoundStorage compoundStorage, ref Health health, in Entity entity,
         Vector3 target, bool engulf, float speciesAggression, float speciesFocus, float speciesActivity,
-        float strain, Random random, float atpLevel)
+        float strain, Random random)
     {
         var ourCompounds = compoundStorage.Compounds;
 
-        control.EnterEngulfModeForcedState(ref health, ref compoundStorage, entity, Compound.ATP);
+        if (engulf)
+        {
+            control.EnterEngulfModeForcedState(ref health, ref compoundStorage, entity, Compound.ATP);
+        }
 
         ai.TargetPosition = target;
         control.LookAtPoint = ai.TargetPosition;
