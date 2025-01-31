@@ -7,12 +7,12 @@ uniform sampler2D screenTexture : hint_screen_texture, filter_linear_mipmap;
 // Shader adapted from: https://www.shadertoy.com/view/XssGz8
 // If changed, BarrelDistortion() in ScreenUtils should be updated to match
 
-float remap(float t, float a, float b) 
+float remap(float t, float a, float b)
 {
     return clamp((t - a) / (b - a), 0.0, 1.0);
 }
 
-vec2 remapVec(vec2 t, vec2 a, vec2 b) 
+vec2 remapVec(vec2 t, vec2 a, vec2 b)
 {
     return clamp( (t - a) / (b - a), 0.0, 1.0 );
 }
@@ -23,7 +23,7 @@ vec3 spectrum_offset_rgb(float t)
     // note: optimisation from https://twitter.com/Stubbesaurus/status/818847844790575104
     float t0 = 3.0 * t - 1.5;
     vec3 ret = clamp(vec3(-t0, 1.0-abs(t0), t0), 0.0, 1.0);
-    
+
     return ret;
 }
 
@@ -90,7 +90,7 @@ vec2 brownConradyDistortion(vec2 uv, float dist)
 
     float r2 = dot(uv,uv);
     uv *= 1.0 + barrelDistortion1 * r2 + barrelDistortion2 * r2 * r2;
-    
+
     // tangential distortion (due to off center lens elements)
     // is not modeled in this function, but if it was, the terms would go here
     return uv * 0.5 + 0.5;
@@ -123,20 +123,20 @@ vec3 render(vec2 uv, sampler2D tex)
     return srgb2lin(texture(tex, uv).rgb);
 }
 
-void fragment() 
+void fragment()
 {
     vec4 px = texture(screenTexture, SCREEN_UV);
     vec2 uv = SCREEN_UV;
     vec3 col = px.xyz;
-    
+
     vec2 iResolution = 1.0f / SCREEN_PIXEL_SIZE;
     float max_distort_px = MAX_DIST_PX;
     vec2 max_distort = vec2(max_distort_px) / iResolution.xy;
     vec2 min_distort = 0.5 * max_distort;
-    
+
     vec2 oversiz = distort(vec2(1.0), 1.0, min_distort, max_distort);
     uv = remapVec(uv, 1.0-oversiz, oversiz );
-    
+
     const int num_iter = 7;
     const float stepsiz = 1.0 / (float(num_iter)-1.0);
     float rnd = fract(1.61803398875 + texture(screenTexture,
@@ -145,7 +145,7 @@ void fragment()
 
     vec3 sumcol = vec3(0.0);
     vec3 sumw = vec3(0.0);
-    
+
     for (int i=0; i<num_iter; ++i)
     {
         vec3 w = spectrum_offset(t);
@@ -155,7 +155,7 @@ void fragment()
         t += stepsiz;
     }
     sumcol.rgb /= sumw;
-    
+
     vec3 outcol = sumcol.rgb;
     outcol = lin2srgb(outcol);
     outcol += rnd/255.0;
