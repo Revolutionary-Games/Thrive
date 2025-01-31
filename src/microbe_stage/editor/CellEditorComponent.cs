@@ -26,18 +26,6 @@ public partial class CellEditorComponent :
     public NodePath? TopPanelPath;
 
     [Export]
-    public NodePath DayButtonPath = null!;
-
-    [Export]
-    public NodePath NightButtonPath = null!;
-
-    [Export]
-    public NodePath AverageLightButtonPath = null!;
-
-    [Export]
-    public NodePath CurrentLightButtonPath = null!;
-
-    [Export]
     public NodePath TabButtonsPath = null!;
 
     [Export]
@@ -65,33 +53,6 @@ public partial class CellEditorComponent :
     public NodePath MembraneTypeSelectionPath = null!;
 
     [Export]
-    public NodePath SizeLabelPath = null!;
-
-    [Export]
-    public NodePath OrganismStatisticsPath = null!;
-
-    [Export]
-    public NodePath SpeedLabelPath = null!;
-
-    [Export]
-    public NodePath RotationSpeedLabelPath = null!;
-
-    [Export]
-    public NodePath HpLabelPath = null!;
-
-    [Export]
-    public NodePath StorageLabelPath = null!;
-
-    [Export]
-    public NodePath DigestionSpeedLabelPath = null!;
-
-    [Export]
-    public NodePath DigestionEfficiencyLabelPath = null!;
-
-    [Export]
-    public NodePath GenerationLabelPath = null!;
-
-    [Export]
     public NodePath AutoEvoPredictionPanelPath = null!;
 
     [Export]
@@ -108,21 +69,6 @@ public partial class CellEditorComponent :
 
     [Export]
     public NodePath MembraneColorPickerPath = null!;
-
-    [Export]
-    public NodePath ATPBalancePanelPath = null!;
-
-    [Export]
-    public NodePath ATPProductionLabelPath = null!;
-
-    [Export]
-    public NodePath ATPConsumptionLabelPath = null!;
-
-    [Export]
-    public NodePath ATPProductionBarPath = null!;
-
-    [Export]
-    public NodePath ATPConsumptionBarPath = null!;
 
     [Export]
     public NodePath RigiditySliderPath = null!;
@@ -145,14 +91,6 @@ public partial class CellEditorComponent :
     [Export]
     public NodePath RightPanelScrollContainerPath = null!;
 
-#pragma warning disable CA2213
-    [Export]
-    public LabelSettings ATPBalanceNormalText = null!;
-
-    [Export]
-    public LabelSettings ATPBalanceNotEnoughText = null!;
-#pragma warning restore CA2213
-
     /// <summary>
     ///   Temporary hex memory for use by the main thread in this component
     /// </summary>
@@ -172,13 +110,6 @@ public partial class CellEditorComponent :
     private readonly List<EditorUserOverride> ignoredEditorWarnings = new();
 
 #pragma warning disable CA2213
-
-    // Light level controls
-    private Control topPanel = null!;
-    private Button dayButton = null!;
-    private Button nightButton = null!;
-    private Button averageLightButton = null!;
-    private Button currentLightButton = null!;
 
     // Selection menu tab selector buttons
     private Button structureTabButton = null!;
@@ -212,36 +143,6 @@ public partial class CellEditorComponent :
     private VBoxContainer partsSelectionContainer = null!;
     private CollapsibleList membraneTypeSelection = null!;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator sizeLabel = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator speedLabel = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator rotationSpeedLabel = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator hpLabel = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator storageLabel = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator digestionSpeedLabel = null!;
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private CellStatsIndicator digestionEfficiencyLabel = null!;
-
-    private Label generationLabel = null!;
-
     private CellStatsIndicator totalEnergyLabel = null!;
     private Label autoEvoPredictionFailedLabel = null!;
     private Label bestPatchLabel = null!;
@@ -258,16 +159,6 @@ public partial class CellEditorComponent :
     private Slider rigiditySlider = null!;
     private TweakedColourPicker membraneColorPicker = null!;
 
-    private Control atpBalancePanel = null!;
-
-    [Export]
-    private Label atpBalanceLabel = null!;
-
-    private Label atpProductionLabel = null!;
-    private Label atpConsumptionLabel = null!;
-    private SegmentedBar atpProductionBar = null!;
-    private SegmentedBar atpConsumptionBar = null!;
-
     private CustomConfirmationDialog negativeAtpPopup = null!;
 
     [Export]
@@ -283,37 +174,16 @@ public partial class CellEditorComponent :
     private OrganelleUpgradeGUI organelleUpgradeGUI = null!;
 
     [Export]
-    private CheckBox calculateBalancesAsIfDay = null!;
-
-    [Export]
-    private CheckBox calculateBalancesWhenMoving = null!;
-
-    [Export]
-    private CompoundBalanceDisplay compoundBalance = null!;
-
-    [Export]
-    private CompoundStorageStatistics compoundStorageLastingTimes = null!;
-
-    [Export]
-    private CustomRichTextLabel notEnoughStorageWarning = null!;
-
-    [Export]
-    private Button processListButton = null!;
-
-    [Export]
-    private ProcessList processList = null!;
-
-    [Export]
     private CheckBox showGrowthOrderCoordinates = null!;
 
     [Export]
     private Control growthOrderNumberContainer = null!;
 
     [Export]
-    private CustomWindow processListWindow = null!;
+    private PopupMicheViewer micheViewer = null!;
 
     [Export]
-    private PopupMicheViewer micheViewer = null!;
+    private OrganismStatisticsPanel organismStatisticsPanel = null!;
 
     private CustomWindow autoEvoPredictionExplanationPopup = null!;
     private CustomRichTextLabel autoEvoPredictionExplanationLabel = null!;
@@ -336,8 +206,6 @@ public partial class CellEditorComponent :
 
     private EnergyBalanceInfo? energyBalanceInfo;
 
-    private ResourceLimitingMode balanceMode;
-
     private string? bestPatchName;
 
     // This and worstPatchPopulation used to be displayed but are now kept for potential future use
@@ -359,9 +227,6 @@ public partial class CellEditorComponent :
 
     [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
-
-    [JsonProperty]
-    private LightLevelOption selectedLightLevelOption = LightLevelOption.Current;
 
     private bool? autoEvoPredictionRunSuccessful;
     private PendingAutoEvoPrediction? waitingForPrediction;
@@ -434,6 +299,8 @@ public partial class CellEditorComponent :
 
     private bool showGrowthOrderNumbers;
 
+    private TutorialState? tutorialState;
+
     public enum SelectionMenuTab
     {
         Structure,
@@ -441,14 +308,6 @@ public partial class CellEditorComponent :
         Behaviour,
         GrowthOrder,
         Tolerance,
-    }
-
-    public enum LightLevelOption
-    {
-        Day,
-        Night,
-        Average,
-        Current,
     }
 
     /// <summary>
@@ -597,7 +456,17 @@ public partial class CellEditorComponent :
     }
 
     [JsonIgnore]
-    public TutorialState? TutorialState { get; set; }
+    public TutorialState? TutorialState
+    {
+        get => tutorialState;
+        set
+        {
+            tutorialState = value;
+
+            if (tutorialState != null)
+                organismStatisticsPanel.TutorialState = tutorialState;
+        }
+    }
 
     /// <summary>
     ///   Needed for auto-evo prediction to be able to compare the new energy to the old energy
@@ -704,10 +573,6 @@ public partial class CellEditorComponent :
         // Hidden in the Godot editor to make selecting other things easier
         organelleUpgradeGUI.Visible = true;
 
-        atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
-        atpProductionBar.IsProduction = true;
-        atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
-
         // TODO: make this setting persistent from somewhere
         // showGrowthOrderCoordinates.ButtonPressed = true;
         growthOrderGUI.ShowCoordinates = showGrowthOrderCoordinates.ButtonPressed;
@@ -740,12 +605,6 @@ public partial class CellEditorComponent :
 
         NodeReferencesResolved = true;
 
-        topPanel = GetNode<Control>(TopPanelPath);
-        dayButton = GetNode<Button>(DayButtonPath);
-        nightButton = GetNode<Button>(NightButtonPath);
-        averageLightButton = GetNode<Button>(AverageLightButtonPath);
-        currentLightButton = GetNode<Button>(CurrentLightButtonPath);
-
         structureTab = GetNode<PanelContainer>(StructureTabPath);
 
         appearanceTab = GetNode<PanelContainer>(AppearanceTabPath);
@@ -755,14 +614,6 @@ public partial class CellEditorComponent :
         partsSelectionContainer = GetNode<VBoxContainer>(PartsSelectionContainerPath);
         membraneTypeSelection = GetNode<CollapsibleList>(MembraneTypeSelectionPath);
 
-        sizeLabel = GetNode<CellStatsIndicator>(SizeLabelPath);
-        speedLabel = GetNode<CellStatsIndicator>(SpeedLabelPath);
-        rotationSpeedLabel = GetNode<CellStatsIndicator>(RotationSpeedLabelPath);
-        hpLabel = GetNode<CellStatsIndicator>(HpLabelPath);
-        storageLabel = GetNode<CellStatsIndicator>(StorageLabelPath);
-        digestionSpeedLabel = GetNode<CellStatsIndicator>(DigestionSpeedLabelPath);
-        digestionEfficiencyLabel = GetNode<CellStatsIndicator>(DigestionEfficiencyLabelPath);
-        generationLabel = GetNode<Label>(GenerationLabelPath);
         totalEnergyLabel = GetNode<CellStatsIndicator>(TotalEnergyLabelPath);
         autoEvoPredictionFailedLabel = GetNode<Label>(AutoEvoPredictionFailedLabelPath);
         worstPatchLabel = GetNode<Label>(WorstPatchLabelPath);
@@ -772,12 +623,6 @@ public partial class CellEditorComponent :
 
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<TweakedColourPicker>(MembraneColorPickerPath);
-
-        atpBalancePanel = GetNode<Control>(ATPBalancePanelPath);
-        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
-        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
-        atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
-        atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
         negativeAtpPopup = GetNode<CustomConfirmationDialog>(NegativeAtpPopupPath);
         organelleMenu = GetNode<OrganellePopupMenu>(OrganelleMenuPath);
@@ -879,7 +724,8 @@ public partial class CellEditorComponent :
         // Do this here as we know the editor and hence world settings have been initialised by now
         UpdateOrganelleLAWKSettings();
 
-        UpdateLightSelectionPanelVisibility();
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         ApplySymmetryForCurrentOrganelle();
     }
@@ -1156,15 +1002,15 @@ public partial class CellEditorComponent :
         // for any undoable action, but that isn't accessible here currently, so this is probably good enough.
         if (Editor.MutationPoints == Constants.BASE_MUTATION_POINTS)
         {
-            var tutorialState = Editor.CurrentGame.TutorialState;
+            var tutorial = Editor.CurrentGame.TutorialState;
 
             // In the multicellular editor the cell editor might not be visible, so preventing exiting the editor
             // without explanation is not a good idea, so that's why this check is here
-            if (tutorialState.Enabled && !IsMulticellularEditor)
+            if (tutorial.Enabled && !IsMulticellularEditor)
             {
-                tutorialState.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
+                tutorial.SendEvent(TutorialEventType.MicrobeEditorNoChangesMade, EventArgs.Empty, this);
 
-                if (tutorialState.TutorialActive())
+                if (tutorial.TutorialActive())
                     return false;
             }
         }
@@ -1180,7 +1026,9 @@ public partial class CellEditorComponent :
     {
         _ = patch;
 
-        ApplyLightLevelOption();
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
+
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
 
@@ -1208,7 +1056,8 @@ public partial class CellEditorComponent :
         if (IsMulticellularEditor && editedMicrobeOrganelles.Organelles.Count < 1)
             return;
 
-        UpdateLightSelectionPanelVisibility();
+        organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
+            Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
 
         // Calculate and send energy balance and compound balance to the GUI
         CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles.Organelles, Membrane);
@@ -1411,15 +1260,9 @@ public partial class CellEditorComponent :
         return maxHitpoints;
     }
 
-    public float GetNominalCapacity()
+    public Dictionary<Compound, float> GetAdditionalCapacities(out float nominalCapacity)
     {
-        return MicrobeInternalCalculations.GetTotalNominalCapacity(editedMicrobeOrganelles);
-    }
-
-    public Dictionary<Compound, float> GetAdditionalCapacities()
-    {
-        // TODO: merge this with nominal get to make this more efficient
-        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out _);
+        return MicrobeInternalCalculations.GetTotalSpecificCapacity(editedMicrobeOrganelles, out nominalCapacity);
     }
 
     public float CalculateTotalDigestionSpeed()
@@ -1434,23 +1277,7 @@ public partial class CellEditorComponent :
 
     public override void OnLightLevelChanged(float dayLightFraction)
     {
-        var maxLightLevel = Editor.CurrentPatch.Biome.GetCompound(Compound.Sunlight, CompoundAmountType.Biome).Ambient;
-        var templateMaxLightLevel =
-            Editor.CurrentPatch.GetCompoundAmountForDisplay(Compound.Sunlight, CompoundAmountType.Template);
-
-        // Currently, patches whose templates have zero sunlight can be given non-zero sunlight as an instance. But
-        // nighttime shaders haven't been created for these patches (specifically the sea floor) so for now we can't
-        // reduce light level in such patches without things looking bad. So we have to check the template light level
-        // is non-zero too.
-        if (maxLightLevel > 0.0f && templateMaxLightLevel > 0.0f)
-        {
-            camera!.LightLevel = dayLightFraction;
-        }
-        else
-        {
-            // Don't change lighting for patches without day/night effects
-            camera!.LightLevel = 1.0f;
-        }
+        UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
 
         CalculateOrganelleEffectivenessInCurrentPatch();
         UpdatePatchDependentBalanceData();
@@ -1636,10 +1463,6 @@ public partial class CellEditorComponent :
             if (TopPanelPath != null)
             {
                 TopPanelPath.Dispose();
-                DayButtonPath.Dispose();
-                NightButtonPath.Dispose();
-                AverageLightButtonPath.Dispose();
-                CurrentLightButtonPath.Dispose();
                 TabButtonsPath.Dispose();
                 StructureTabButtonPath.Dispose();
                 AppearanceTabButtonPath.Dispose();
@@ -1649,26 +1472,12 @@ public partial class CellEditorComponent :
                 BehaviourTabPath.Dispose();
                 PartsSelectionContainerPath.Dispose();
                 MembraneTypeSelectionPath.Dispose();
-                SizeLabelPath.Dispose();
-                OrganismStatisticsPath.Dispose();
-                SpeedLabelPath.Dispose();
-                RotationSpeedLabelPath.Dispose();
-                HpLabelPath.Dispose();
-                StorageLabelPath.Dispose();
-                DigestionSpeedLabelPath.Dispose();
-                DigestionEfficiencyLabelPath.Dispose();
-                GenerationLabelPath.Dispose();
                 AutoEvoPredictionPanelPath.Dispose();
                 TotalEnergyLabelPath.Dispose();
                 AutoEvoPredictionFailedLabelPath.Dispose();
                 WorstPatchLabelPath.Dispose();
                 BestPatchLabelPath.Dispose();
                 MembraneColorPickerPath.Dispose();
-                ATPBalancePanelPath.Dispose();
-                ATPProductionLabelPath.Dispose();
-                ATPConsumptionLabelPath.Dispose();
-                ATPProductionBarPath.Dispose();
-                ATPConsumptionBarPath.Dispose();
                 RigiditySliderPath.Dispose();
                 NegativeAtpPopupPath.Dispose();
                 OrganelleMenuPath.Dispose();
@@ -2017,6 +1826,16 @@ public partial class CellEditorComponent :
         UpdateAutoEvoPrediction(run, Editor.EditedBaseSpecies, cachedAutoEvoPredictionSpecies);
     }
 
+    private void OnEnergyBalanceOptionsChanged()
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles, Membrane);
+    }
+
+    private void OnResourceLimitingModeChanged()
+    {
+        CalculateEnergyAndCompoundBalance(editedMicrobeOrganelles, Membrane);
+    }
+
     /// <summary>
     ///   Calculates the energy balance and compound balance for a cell with the given organelles and membrane
     /// </summary>
@@ -2025,42 +1844,51 @@ public partial class CellEditorComponent :
     {
         biome ??= Editor.CurrentPatch.Biome;
 
-        bool moving = calculateBalancesWhenMoving.ButtonPressed;
+        bool moving = organismStatisticsPanel.CalculateBalancesWhenMoving;
 
         IBiomeConditions conditionsData = biome;
 
-        if (balanceMode != ResourceLimitingMode.AllResources)
+        if (organismStatisticsPanel.ResourceLimitingMode != ResourceLimitingMode.AllResources)
         {
-            conditionsData = new BiomeResourceLimiterAdapter(balanceMode, conditionsData);
+            conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
+                conditionsData);
         }
 
-        var energyBalance = ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
-            Editor.CurrentGame.GameWorld.WorldSettings,
-            calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current, true);
+        var energyBalance = new EnergyBalanceInfo();
+        energyBalance.SetupTrackingForRequiredCompounds();
 
-        UpdateEnergyBalance(energyBalance);
+        ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
+            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, energyBalance);
+
+        energyBalanceInfo = energyBalance;
+
+        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
+
+        if (Visible)
+        {
+            TutorialState?.SendEvent(TutorialEventType.MicrobeEditorPlayerEnergyBalanceChanged,
+                new EnergyBalanceEventArgs(energyBalance), this);
+        }
 
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
 
         // This takes balanceType into account as well, https://github.com/Revolutionary-Games/Thrive/issues/2068
         var compoundBalanceData =
-            CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
-                calculateBalancesAsIfDay.ButtonPressed ? CompoundAmountType.Biome : CompoundAmountType.Current,
-                organelles, conditionsData, energyBalance,
+            CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
+                organismStatisticsPanel.CompoundAmountType, organelles, conditionsData, energyBalance,
                 ref specificStorages, ref nominalStorage);
 
         UpdateCompoundBalances(compoundBalanceData);
 
         // TODO: should this skip on being affected by the resource limited?
-        var nightBalanceData = CalculateCompoundBalanceWithMethod(compoundBalance.CurrentDisplayType,
+        var nightBalanceData = CalculateCompoundBalanceWithMethod(organismStatisticsPanel.BalanceDisplayType,
             CompoundAmountType.Minimum, organelles, conditionsData, energyBalance, ref specificStorages,
             ref nominalStorage);
 
         UpdateCompoundLastingTimes(compoundBalanceData, nightBalanceData, nominalStorage,
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
-        // Handle process list
         HandleProcessList(energyBalance, conditionsData);
     }
 
@@ -2069,18 +1897,18 @@ public partial class CellEditorComponent :
         IBiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
-        Dictionary<Compound, CompoundBalance> compoundBalanceData;
+        var compoundBalanceData = new Dictionary<Compound, CompoundBalance>();
         switch (calculationType)
         {
             case BalanceDisplayType.MaxSpeed:
-                compoundBalanceData = ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true);
+                ProcessSystem.ComputeCompoundBalance(organelles, biome, amountType, true, compoundBalanceData);
                 break;
             case BalanceDisplayType.EnergyEquilibrium:
-                compoundBalanceData = ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome,
-                    amountType, energyBalance);
+                ProcessSystem.ComputeCompoundBalanceAtEquilibrium(organelles, biome, amountType, energyBalance,
+                    compoundBalanceData);
                 break;
             default:
-                GD.PrintErr("Unknown compound balance type: ", compoundBalance.CurrentDisplayType);
+                GD.PrintErr("Unknown compound balance type: ", calculationType);
                 goto case BalanceDisplayType.EnergyEquilibrium;
         }
 
@@ -2118,7 +1946,7 @@ public partial class CellEditorComponent :
             processStatistics.Add(singleProcess);
         }
 
-        processList.ProcessesToShow = processStatistics;
+        organismStatisticsPanel.UpdateProcessList(processStatistics);
     }
 
     /// <summary>
@@ -2318,9 +2146,9 @@ public partial class CellEditorComponent :
     {
         UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO));
 
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateHitpoints(CalculateHitpoints());
+        organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
+        organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
+        organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
 
         // Osmoregulation efficiency may play a role in the suggestion, so queue a new one
         suggestionDirty = true;
@@ -2334,12 +2162,12 @@ public partial class CellEditorComponent :
 
     private void UpdateStats()
     {
-        UpdateSpeed(CalculateSpeed());
-        UpdateRotationSpeed(CalculateRotationSpeed());
-        UpdateHitpoints(CalculateHitpoints());
-        UpdateStorage(GetNominalCapacity(), GetAdditionalCapacities());
-        UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
-        UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
+        organismStatisticsPanel.UpdateSpeed(CalculateSpeed());
+        organismStatisticsPanel.UpdateRotationSpeed(CalculateRotationSpeed());
+        organismStatisticsPanel.UpdateHitpoints(CalculateHitpoints());
+        organismStatisticsPanel.UpdateStorage(GetAdditionalCapacities(out var nominalCapacity), nominalCapacity);
+        organismStatisticsPanel.UpdateTotalDigestionSpeed(CalculateTotalDigestionSpeed());
+        organismStatisticsPanel.UpdateDigestionEfficiencies(CalculateDigestionEfficiencies());
     }
 
     /// <summary>
@@ -2399,7 +2227,7 @@ public partial class CellEditorComponent :
         UpdatePatchDependentBalanceData();
 
         // Send to gui current status of cell
-        UpdateSize(MicrobeHexSize);
+        organismStatisticsPanel.UpdateSize(MicrobeHexSize);
         UpdateStats();
 
         UpdateCellVisualization();
@@ -2752,59 +2580,31 @@ public partial class CellEditorComponent :
         }
     }
 
-    private void OnLightLevelButtonPressed(string option)
+    private void SetLightLevelOption(int option)
     {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        var selection = (LightLevelOption)Enum.Parse(typeof(LightLevelOption), option);
-        SetLightLevelOption(selection);
-    }
-
-    private void SetLightLevelOption(LightLevelOption selection)
-    {
-        selectedLightLevelOption = selection;
-        ApplyLightLevelOption();
-    }
-
-    private void ApplyLightLevelOption()
-    {
-        calculateBalancesAsIfDay.Disabled = false;
-
         // Show selected light level
-        switch (selectedLightLevelOption)
+        switch ((LightLevelOption)option)
         {
             case LightLevelOption.Day:
             {
-                dayButton.ButtonPressed = true;
                 Editor.DayLightFraction = 1;
-
-                calculateBalancesAsIfDay.ButtonPressed = true;
-                calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
             case LightLevelOption.Night:
             {
-                nightButton.ButtonPressed = true;
                 Editor.DayLightFraction = 0;
-
-                calculateBalancesAsIfDay.ButtonPressed = false;
-                calculateBalancesAsIfDay.Disabled = true;
                 break;
             }
 
             case LightLevelOption.Average:
             {
-                averageLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.AverageSunlight;
-
-                calculateBalancesAsIfDay.ButtonPressed = false;
                 break;
             }
 
             case LightLevelOption.Current:
             {
-                currentLightButton.ButtonPressed = true;
                 Editor.DayLightFraction = Editor.CurrentGame.GameWorld.LightCycle.DayLightFraction;
                 break;
             }
@@ -3114,11 +2914,6 @@ public partial class CellEditorComponent :
 
         var organelle = GetOrganelleDefinition(ActiveActionName);
         componentBottomLeftButtons.SymmetryEnabled = !organelle.Unique;
-    }
-
-    private void ToggleProcessList()
-    {
-        processListWindow.Visible = !processListWindow.Visible;
     }
 
     private void OnMicheViewRequested()

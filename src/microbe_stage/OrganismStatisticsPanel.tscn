@@ -1,0 +1,288 @@
+[gd_scene load_steps=20 format=3 uid="uid://olpir0vkwcsi"]
+
+[ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1_ca4to"]
+[ext_resource type="Script" path="res://src/microbe_stage/OrganismStatisticsPanel.cs" id="1_hd1ty"]
+[ext_resource type="LabelSettings" uid="uid://w2g8aleycqpl" path="res://src/gui_common/fonts/Title-Regular-Bigger.tres" id="2_pxb83"]
+[ext_resource type="PackedScene" uid="uid://c027xyogk08vx" path="res://src/microbe_stage/editor/CellStatsIndicator.tscn" id="3_mvl7o"]
+[ext_resource type="LabelSettings" uid="uid://o0tip7etc0x2" path="res://src/gui_common/fonts/Body-Bold-Small-Red.tres" id="3_u6vqe"]
+[ext_resource type="Texture2D" uid="uid://cq25ojg73mpr" path="res://assets/textures/gui/bevel/HealthIcon.png" id="4_6j8dv"]
+[ext_resource type="Texture2D" uid="uid://b6s4ekosu7unk" path="res://assets/textures/gui/bevel/SizeIcon.png" id="5_wtbqs"]
+[ext_resource type="Texture2D" uid="uid://bmu3av0d807dw" path="res://assets/textures/gui/bevel/StorageIcon.png" id="6_6daqi"]
+[ext_resource type="Texture2D" uid="uid://c4w7v5wtq2d1b" path="res://assets/textures/gui/bevel/SpeedIcon.png" id="7_qfkhg"]
+[ext_resource type="Texture2D" uid="uid://5ivblyrfrfc0" path="res://assets/textures/gui/bevel/RotationIcon.png" id="8_52j0g"]
+[ext_resource type="Texture2D" uid="uid://ctdcp7ts77dhd" path="res://assets/textures/gui/bevel/DigestionSpeedIcon.png" id="9_yl0er"]
+[ext_resource type="Texture2D" uid="uid://bqq2yi8f6l4lt" path="res://assets/textures/gui/bevel/DigestionIcon.png" id="10_l6acm"]
+[ext_resource type="LabelSettings" uid="uid://chasppwihgufu" path="res://src/gui_common/fonts/Body-Bold-Small.tres" id="11_bfneb"]
+[ext_resource type="LabelSettings" uid="uid://terwl7t76t4h" path="res://src/gui_common/fonts/Body-Regular-AlmostSmall.tres" id="12_mwh2k"]
+[ext_resource type="PackedScene" path="res://src/gui_common/SegmentedBar.tscn" id="13_rekbr"]
+[ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="14_0mgfc"]
+[ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="15_ogl68"]
+[ext_resource type="PackedScene" uid="uid://sxqf3o1pkl0n" path="res://src/microbe_stage/editor/CompoundBalanceDisplay.tscn" id="16_wlbdy"]
+[ext_resource type="PackedScene" uid="uid://doveokjve1v3t" path="res://src/microbe_stage/editor/CompoundStorageStatistics.tscn" id="17_pca5e"]
+
+[node name="OrganismStatisticsPanel" type="PanelContainer" node_paths=PackedStringArray("sizeLabel", "speedLabel", "rotationSpeedLabel", "hpLabel", "storageLabel", "digestionSpeedLabel", "digestionEfficiencyLabel", "basicStatsSeparator", "movementStatsSeparator", "digestionStatsSeparator", "generationLabel", "atpBalancePanel", "atpBalanceLabel", "atpProductionLabel", "atpConsumptionLabel", "atpProductionBar", "atpConsumptionBar", "compoundBalance", "compoundStorageLastingTimes", "notEnoughStorageWarning", "calculateBalancesAsIfDay", "calculateBalancesWhenMoving", "processListButton")]
+size_flags_vertical = 3
+mouse_filter = 1
+theme = ExtResource("1_ca4to")
+script = ExtResource("1_hd1ty")
+ATPBalanceNormalText = ExtResource("11_bfneb")
+ATPBalanceNotEnoughText = ExtResource("3_u6vqe")
+sizeLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Size")
+speedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Speed")
+rotationSpeedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Rotation")
+hpLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Hp")
+storageLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Storage")
+digestionSpeedLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionSpeed")
+digestionEfficiencyLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/DigestionEfficiency")
+basicStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator")
+movementStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator2")
+digestionStatsSeparator = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/HSeparator3")
+generationLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation/Value")
+atpBalancePanel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel")
+atpBalanceLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceTitle")
+atpProductionLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
+atpConsumptionLabel = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/Label")
+atpProductionBar = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
+atpConsumptionBar = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
+compoundBalance = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay")
+compoundStorageLastingTimes = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundStorageStatistics")
+notEnoughStorageWarning = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/StorageNotEnough")
+calculateBalancesAsIfDay = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay")
+calculateBalancesWhenMoving = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving")
+processListButton = NodePath("VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Header" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+
+[node name="Title" type="Label" parent="VBoxContainer/Header"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "ORGANISM_STATISTICS"
+label_settings = ExtResource("2_pxb83")
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Body" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Body"]
+layout_mode = 2
+follow_focus = true
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hp" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("4_6j8dv")
+Description = "HP_COLON"
+
+[node name="Size" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("5_wtbqs")
+Description = "SIZE_COLON"
+
+[node name="Storage" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("6_6daqi")
+Description = "STORAGE_COLON"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Speed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_SPEED_TOOLTIP"
+Icon = ExtResource("7_qfkhg")
+Description = "SPEED_COLON"
+
+[node name="Rotation" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+tooltip_text = "CELL_STAT_ROTATION_TOOLTIP"
+Icon = ExtResource("8_52j0g")
+Description = "ROTATION_COLON"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DigestionSpeed" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("9_yl0er")
+Description = "DIGESTION_SPEED_COLON"
+
+[node name="DigestionEfficiency" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_mvl7o")]
+layout_mode = 2
+Icon = ExtResource("10_l6acm")
+Description = "DIGESTION_EFFICIENCY_COLON"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Generation" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Description" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+layout_mode = 2
+text = "GENERATION_COLON"
+label_settings = ExtResource("11_bfneb")
+
+[node name="Value" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/Generation"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "n/a"
+label_settings = ExtResource("12_mwh2k")
+
+[node name="ATPBalancePanel" type="MarginContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ATPBalanceTitle" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "ATP_BALANCE_TOOLTIP"
+mouse_filter = 1
+text = "ATP_BALANCE"
+label_settings = ExtResource("11_bfneb")
+autowrap_mode = 3
+
+[node name="Separator" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ATPBarContainer" type="VBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="ATPProductionBar" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer" instance=ExtResource("13_rekbr")]
+custom_minimum_size = Vector2(190, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00000"
+label_settings = ExtResource("14_0mgfc")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+
+[node name="ATPConsumptionBar" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2" instance=ExtResource("13_rekbr")]
+custom_minimum_size = Vector2(190, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "00000"
+label_settings = ExtResource("14_0mgfc")
+
+[node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="ATPBalanceMode" type="OptionButton" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer"]
+layout_mode = 2
+text_overrun_behavior = 3
+clip_text = true
+selected = 0
+fit_to_longest_item = false
+item_count = 5
+popup/item_0/text = "ATP_BALANCE_WITH_ALL_COMPOUNDS"
+popup/item_1/text = "ATP_BALANCE_WITHOUT_GLUCOSE"
+popup/item_1/id = 1
+popup/item_2/text = "ATP_BALANCE_WITHOUT_IRON"
+popup/item_2/id = 2
+popup/item_3/text = "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
+popup/item_3/id = 3
+popup/item_4/text = "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
+popup/item_4/id = 4
+
+[node name="StorageNotEnough" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("15_ogl68")]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0.301961, 0.301961, 1)
+fit_content = true
+
+[node name="NumbersAtDay" type="CheckBox" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
+theme_override_font_sizes/font_size = 12
+text = "BALANCE_DISPLAY_AT_DAY_ALWAYS"
+text_overrun_behavior = 4
+clip_text = true
+
+[node name="NumbersWhenMoving" type="CheckBox" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
+theme_override_font_sizes/font_size = 12
+button_pressed = true
+text = "BALANCE_DISPLAY_WHILE_MOVING"
+text_overrun_behavior = 4
+clip_text = true
+
+[node name="Separator2" type="Control" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="CompoundBalanceDisplay" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("16_wlbdy")]
+layout_mode = 2
+
+[node name="CompoundStorageStatistics" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource("17_pca5e")]
+layout_mode = 2
+
+[node name="ProcessListButton" type="Button" parent="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "VIEW_CELL_PROCESSES"
+text_overrun_behavior = 3
+clip_text = true
+
+[connection signal="item_selected" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBalanceMode" to="." method="SelectATPBalanceMode"]
+[connection signal="toggled" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersAtDay" to="." method="OnBalanceShowOptionsChanged"]
+[connection signal="toggled" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/NumbersWhenMoving" to="." method="OnBalanceShowOptionsChanged"]
+[connection signal="BalanceTypeChanged" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/CompoundBalanceDisplay" to="." method="OnCompoundBalanceTypeChanged"]
+[connection signal="pressed" from="VBoxContainer/Body/ScrollContainer/MarginContainer/VBoxContainer/ProcessListButton" to="." method="OnProcessListButtonClicked"]

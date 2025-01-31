@@ -62,8 +62,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
         result ??= new List<TweakedProcess>();
 
-        // TODO: need to add a temporary work area map as parameter to this method if this is too slow approach
-        // A basic linear scan over all organelles and their processes with combining duplicates into the result
         int count = organelles.Count;
         for (int i = 0; i < count; ++i)
         {
@@ -78,72 +76,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                     processes = upgraded;
             }
 
-            int processCount = processes.Count;
-
-            for (int j = 0; j < processCount; ++j)
-            {
-                var process = processes[j];
-                var processKey = process.Process;
-
-                bool added = false;
-
-                // Try to add to existing result first
-                int resultCount = result.Count;
-                for (int k = 0; k < resultCount; ++k)
-                {
-                    if (result[k].Process == processKey)
-                    {
-                        var replacedEntry = result[k];
-
-                        if (!replacedEntry.Marked)
-                        {
-                            // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
-                            // considered to be a real result entry
-                            // To keep consistent ordering no matter what the old data is, we need to move the current
-                            // item to be in place of the first non-marked item
-                            for (int l = 0; l < k; ++l)
-                            {
-                                if (!result[l].Marked)
-                                {
-                                    // Swap positions of the data, as we will write to the k index (that is updated)
-                                    // we need to only write the moving away data to perform the swap
-                                    result[k] = result[l];
-                                    k = l;
-                                    break;
-                                }
-                            }
-
-                            // Add without copying the base rate as that is outdated data we don't want to add to
-                            result[k] = new TweakedProcess(processKey, process.Rate)
-                            {
-                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
-                                Marked = true,
-                            };
-                        }
-                        else
-                        {
-                            // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
-                            result[k] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
-                            {
-                                SpeedMultiplier = replacedEntry.SpeedMultiplier,
-                                Marked = true,
-                            };
-                        }
-
-                        added = true;
-                        break;
-                    }
-                }
-
-                if (added)
-                    continue;
-
-                // If not found, then create a new result
-                result.Add(new TweakedProcess(processKey, process.Rate)
-                {
-                    Marked = true,
-                });
-            }
+            MergeProcessLists(result, processes);
         }
 
         // Remove unmarked processes, so that old processes aren't kept around
@@ -163,6 +96,85 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         // This if is not strictly necessary as RemoveRange works with also 0 items
         if (writeIndex < result.Count)
             result.RemoveRange(writeIndex, result.Count - writeIndex);
+    }
+
+    /// <summary>
+    ///   Merges <paramref name="toAdd"/> into <paramref name="result"/>. <paramref name="toAdd"/> is unaffected.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Linearly scans for duplicate processes (merging them). Might need to be updated to use a map provided by a
+    ///     parameter if the current algorithm is too slow.
+    ///   </para>
+    /// </remarks>
+    public static void MergeProcessLists(List<TweakedProcess> result, List<TweakedProcess> toAdd)
+    {
+        int processCount = toAdd.Count;
+
+        for (int i = 0; i < processCount; ++i)
+        {
+            var process = toAdd[i];
+            var processKey = process.Process;
+
+            bool added = false;
+
+            // Try to add to existing result first
+            int resultCount = result.Count;
+            for (int j = 0; j < resultCount; ++j)
+            {
+                if (result[j].Process == processKey)
+                {
+                    var replacedEntry = result[j];
+
+                    if (!replacedEntry.Marked)
+                    {
+                        // Added to an entry that is kept for keeping a consistent speed multiplier, but isn't yet
+                        // considered to be a real result entry
+                        // To keep consistent ordering no matter what the old data is, we need to move the current
+                        // item to be in place of the first non-marked item
+                        for (int l = 0; l < j; ++l)
+                        {
+                            if (!result[l].Marked)
+                            {
+                                // Swap positions of the data, as we will write to the k index (that is updated)
+                                // we need to only write the moving away data to perform the swap
+                                result[j] = result[l];
+                                j = l;
+                                break;
+                            }
+                        }
+
+                        // Add without copying the base rate as that is outdated data we don't want to add to
+                        result[j] = new TweakedProcess(processKey, process.Rate)
+                        {
+                            SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                            Marked = true,
+                        };
+                    }
+                    else
+                    {
+                        // Add to the existing rate, as TweakedProcess is a struct this doesn't allocate memory
+                        result[j] = new TweakedProcess(processKey, process.Rate + replacedEntry.Rate)
+                        {
+                            SpeedMultiplier = replacedEntry.SpeedMultiplier,
+                            Marked = true,
+                        };
+                    }
+
+                    added = true;
+                    break;
+                }
+            }
+
+            if (added)
+                continue;
+
+            // If not found, then create a new result
+            result.Add(new TweakedProcess(processKey, process.Rate)
+            {
+                Marked = true,
+            });
+        }
     }
 
     /// <summary>
@@ -193,15 +205,16 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   Computes the energy balance for the given organelles in biome and at a given time during the day (or type
     ///   can be specified to be a different type of value)
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
-        WorldGenerationSettings worldSettings, CompoundAmountType amountType, bool calculateRequiredResources)
+        WorldGenerationSettings worldSettings, CompoundAmountType amountType,
+        EnergyBalanceInfo result)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        return ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, calculateRequiredResources, null);
+        ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
+            isPlayerSpecies, worldSettings, amountType, null, result);
     }
 
     /// <summary>
@@ -223,27 +236,19 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
     /// <param name="worldSettings">The world generation settings for this game</param>
     /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
-    /// <param name="calculateRequiredResources">
-    ///   If true, then the required input compounds to run at the given energy balance are stored per energy producer
-    /// </param>
     /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    /// <param name="result">
+    ///   The resulting energy balance.
+    /// </param>
+    public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
-        CompoundAmountType amountType, bool calculateRequiredResources, SimulationCache? cache)
+        CompoundAmountType amountType, SimulationCache? cache,
+        EnergyBalanceInfo result)
     {
-        // TODO: cache this somehow to not need to create a bunch of these which contain dictionaries to contain
-        // further items
-        var result = new EnergyBalanceInfo();
-
-        if (calculateRequiredResources)
-        {
-            result.SetupTrackingForRequiredCompounds();
-        }
-
-        float processATPProduction = 0.0f;
-        float processATPConsumption = 0.0f;
-        float movementATPConsumption = 0.0f;
+        var processATPProduction = 0.0f;
+        var processATPConsumption = 0.0f;
+        var movementATPConsumption = 0.0f;
 
         int hexCount = 0;
 
@@ -294,33 +299,36 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             hexCount += organelle.Definition.HexCount;
         }
 
-        result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        var baseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        result.BaseMovement += baseMovement;
 
         if (includeMovementCost)
         {
             // Add movement consumption together
-            result.AddConsumption("baseMovement", result.BaseMovement);
-            result.TotalMovement = movementATPConsumption + result.BaseMovement;
+            result.AddConsumption("baseMovement", baseMovement);
+            result.TotalMovement += movementATPConsumption + baseMovement;
         }
         else
         {
             result.TotalMovement = -1;
         }
 
-        // Add osmoregulation
-        result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
+        // Calculate the osmoregulation
+        var osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
             membrane.OsmoregulationFactor;
 
         if (isPlayerSpecies)
         {
-            result.Osmoregulation *= worldSettings.OsmoregulationMultiplier;
+            osmoregulation *= worldSettings.OsmoregulationMultiplier;
         }
 
-        result.AddConsumption("osmoregulation", result.Osmoregulation);
+        result.Osmoregulation += osmoregulation;
+
+        result.AddConsumption("osmoregulation", osmoregulation);
 
         // Compute totals
-        result.TotalProduction = processATPProduction;
-        result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
+        result.TotalProduction += processATPProduction;
+        result.TotalConsumptionStationary += processATPConsumption + osmoregulation;
 
         if (includeMovementCost)
         {
@@ -333,8 +341,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
-
-        return result;
     }
 
     /// <summary>
@@ -348,12 +354,9 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///     assumed to run at normal speed even without the input compounds being present in the given biome.
     ///   </para>
     /// </remarks>
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome)
+    public static void ComputeCompoundBalance(IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome,
+        CompoundAmountType amountType, bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
-        var result = new Dictionary<Compound, CompoundBalance>();
-
         void MakeSureResultExists(Compound compound)
         {
             if (!result.ContainsKey(compound))
@@ -382,16 +385,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
             }
         }
-
-        return result;
     }
 
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
-        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        bool requireInputCompoundsInBiome)
+    public static void ComputeCompoundBalance(IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome,
+        CompoundAmountType amountType,
+        bool requireInputCompoundsInBiome, Dictionary<Compound, CompoundBalance> result)
     {
-        return ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
-            requireInputCompoundsInBiome);
+        ComputeCompoundBalance(organelles.Select(o => o.Definition), biome, amountType,
+            requireInputCompoundsInBiome, result);
     }
 
     /// <summary>
@@ -404,12 +405,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///     input compounds present in <see cref="biome"/>)
     ///   </para>
     /// </remarks>
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleDefinition> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance)
+    public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleDefinition> organelles,
+        IBiomeConditions biome, CompoundAmountType amountType,
+        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
-        var result = new Dictionary<Compound, CompoundBalance>();
-
         void MakeSureResultExists(Compound compound)
         {
             if (!result.ContainsKey(compound))
@@ -458,16 +457,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
                 }
             }
         }
-
-        return result;
     }
 
-    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalanceAtEquilibrium(
-        IEnumerable<OrganelleTemplate> organelles, IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance)
+    public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleTemplate> organelles,
+        IBiomeConditions biome, CompoundAmountType amountType,
+        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
-        return ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
-            energyBalance);
+        ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
+            energyBalance, result);
     }
 
     /// <summary>
@@ -707,9 +704,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var balance = ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
-            microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average,
-            false);
+        var balance = new EnergyBalanceInfo();
+
+        ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
+            microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average, balance);
 
         float balanceModifier = 1;
 

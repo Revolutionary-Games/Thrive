@@ -834,6 +834,7 @@ public static class MicrobeColonyHelpers
         // shape.TestYRotationInertiaFactor() how to make this take the colony shape into account in rotation to
         // be more physically accurate
 
+        // When changing this method's logic also update the corresponding method in CellBodyPlanInternalCalculations
         float colonyRotation = MicrobeInternalCalculations
             .CalculateRotationSpeed(colony.Leader.Get<OrganelleContainer>().Organelles!.Organelles);
 
