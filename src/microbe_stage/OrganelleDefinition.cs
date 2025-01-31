@@ -302,6 +302,8 @@ public class OrganelleDefinition : IRegistryType
 
     public bool HasRadiationProtection { get; private set; }
 
+    public bool HasHeatCollection { get; private set; }
+
     [JsonIgnore]
     public string UntranslatedName =>
         untranslatedName ?? throw new InvalidOperationException("Translations not initialized");
@@ -791,6 +793,7 @@ public class OrganelleDefinition : IRegistryType
         HasBindingFeature = HasFeatureTag(OrganelleFeatureTag.BindingAgent);
         HasSignalingFeature = HasFeatureTag(OrganelleFeatureTag.SignalingAgent);
         HasRadiationProtection = HasFeatureTag(OrganelleFeatureTag.RadiationBlock);
+        HasHeatCollection = HasFeatureTag(OrganelleFeatureTag.HeatCollecting);
     }
 
     private void CalculateModelOffset()

@@ -920,7 +920,15 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
+    public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+
+    public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 50.0f;
+
+    public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 5.0f;
+
+    public const float THERMOPLAST_HEAT_UP_SPEED = 2;
 
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 

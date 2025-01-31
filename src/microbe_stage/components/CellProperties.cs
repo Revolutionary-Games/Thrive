@@ -7,9 +7,10 @@ using DefaultEcs;
 using DefaultEcs.Command;
 using Godot;
 using Newtonsoft.Json;
+using Systems;
 
 /// <summary>
-///   Base properties of a microbe (separate from the species info as multicellular species object couldn't
+///   Base properties of a microbe (separate from the species info as multicellular species-object couldn't
 ///   work there)
 /// </summary>
 [JSONDynamicTypeAllowed]
@@ -29,6 +30,18 @@ public struct CellProperties
     public float MembraneRigidity;
 
     /// <summary>
+    ///   The temperature the cell is currently at. Used, for example, by <see cref="MicrobeHeatAccumulationSystem"/>
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     It probably makes sense for this to be here as this is like a physical state of the cell currently and
+    ///     could maybe in the future affect something like rendering. Though, a more weighting factor was that
+    ///     <see cref="OrganelleContainer"/> is already a very big struct.
+    ///   </para>
+    /// </remarks>
+    public float Temperature;
+
+    /// <summary>
     ///   The membrane created for this cell. This is here so that some other systems apart from the visuals system
     ///   can have access to the membrane data.
     /// </summary>
@@ -38,7 +51,12 @@ public struct CellProperties
     public bool IsBacteria;
 
     /// <summary>
-    ///   Set to false when shape needs to be recreated
+    ///   Used to make the initial heat value match the environment on spawn
+    /// </summary>
+    public bool HeatInitialized;
+
+    /// <summary>
+    ///   Set to false when the shape needs to be recreated
     /// </summary>
     [JsonIgnore]
     public bool ShapeCreated;
@@ -578,6 +596,11 @@ public static class CellPropertiesHelpers
 
         targetMembrane.MovementWigglyNess = cellProperties.MembraneType.MovementWigglyness -
             cellProperties.MembraneRigidity / cellProperties.MembraneType.BaseWigglyness * 0.2f;
+    }
+
+    public static float CalculateSurfaceAreaToVolume(this ref CellProperties cellProperties, int hexCount)
+    {
+        return cellProperties.UnadjustedRadius / hexCount;
     }
 
     /// <summary>

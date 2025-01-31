@@ -122,8 +122,10 @@ public struct OrganelleContainer
 
     public bool HasBindingAgent;
 
+    public bool HasHeatCollection;
+
     /// <summary>
-    ///   True once all organelles are divided to not continuously run code that is triggered when a cell is ready
+    ///   Set true once all organelles are divided to not continuously run code that is triggered when a cell is ready
     ///   to reproduce.
     /// </summary>
     /// <remarks>
@@ -479,6 +481,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HasHeatCollection = false;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
 
@@ -561,6 +564,9 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;
+
+            if (organelleDefinition.HasHeatCollection)
+                container.HasHeatCollection = true;
 
             container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
 
