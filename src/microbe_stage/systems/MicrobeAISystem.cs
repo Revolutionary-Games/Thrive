@@ -345,7 +345,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
                 ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
                 speciesAggression, speciesActivity, speciesOpportunism, strain, random, true,
                 atpLevel))
+        {
             return;
+        }
 
         if (ai.ATPThreshold > MathUtils.EPSILON)
         {
@@ -477,11 +479,13 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
 
         // Check if species can hunt any prey and if so - engage in chase
-        bool isHunting = CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
-            ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus, speciesAggression,
-            speciesActivity, speciesOpportunism, strain, random, false, atpLevel);
-        if (isHunting)
+        if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+                ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
+                speciesAggression,
+                speciesActivity, speciesOpportunism, strain, random, false, atpLevel))
+        {
             return;
+        }
 
         // There is no reason to be engulfing at this stage
         control.SetStateColonyAware(entity, MicrobeState.Normal);
