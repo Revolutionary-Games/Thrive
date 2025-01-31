@@ -99,6 +99,19 @@ public class GenerateMiche : IRunStep
             generatedMiche.AddChild(hydrogenSulfideMiche);
         }
 
+        var hasRadioactiveChunk =
+            patch.Biome.Chunks.TryGetValue("radioactiveChunk", out var radioactiveChunk) &&
+            radioactiveChunk.Density > 0;
+
+        // Radioactive Chunk
+        if (hasRadioactiveChunk)
+        {
+            var radiationMiche = new Miche(globalCache.RadiationConversionEfficiencyPressure);
+            radiationMiche.AddChild(new Miche(globalCache.RadioactiveChunkPressure));
+
+            generatedMiche.AddChild(radiationMiche);
+        }
+
         // Sunlight
         // TODO: should there be a dynamic energy level requirement rather than an absolute value?
         if (patch.Biome.TryGetCompound(Compound.Sunlight, CompoundAmountType.Biome, out var sunlightAmount) &&
