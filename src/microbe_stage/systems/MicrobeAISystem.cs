@@ -904,6 +904,10 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         {
             control.EnterEngulfModeForcedState(ref health, ref compoundStorage, entity, Compound.ATP);
         }
+        else
+        {
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
+        }
 
         ai.TargetPosition = target;
         control.LookAtPoint = ai.TargetPosition;
