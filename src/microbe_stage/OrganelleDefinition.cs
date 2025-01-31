@@ -681,6 +681,12 @@ public class OrganelleDefinition : IRegistryType
                 var enzyme = parameters.GetEnzyme(entry.Key);
 
                 Enzymes[enzyme] = entry.Value;
+
+                if (entry.Value <= 0)
+                {
+                    throw new InvalidRegistryDataException(InternalName, nameof(OrganelleDefinition),
+                        "Enzyme amount value should be above 0");
+                }
             }
         }
 
