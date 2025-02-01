@@ -335,7 +335,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         var radiationAmount = compounds.GetCompoundAmount(Compound.Radiation);
         var radiationFraction = radiationAmount / compounds.GetCapacityForCompound(Compound.Radiation);
 
-        if (radiationFraction > Constants.RADIATION_DAMAGE_THRESHOLD)
+        if (radiationFraction > Constants.RADIATION_DAMAGE_THRESHOLD * 0.7f)
         {
             if (RunFromNearestRadioactiveChunk(ref position, ref ai, ref control))
             {
