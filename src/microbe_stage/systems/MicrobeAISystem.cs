@@ -510,6 +510,16 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // There is no reason to be engulfing at this stage
         control.SetStateColonyAware(entity, MicrobeState.Normal);
 
+        // If the microbe has radiation protection it means it has melanosomes and can stay near tha radioactive chunks
+        // to produce ATP
+        if (organelles.RadiationProtection > 0)
+        {
+            if (GoNearRadioactiveChunk(ref position, ref ai, ref control, speciesFocus))
+            {
+                return;
+            }
+        }
+
         // Otherwise just wander around and look for compounds
         if (!isSessile)
         {
@@ -523,8 +533,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
     }
 
-    private bool RunFromNearestRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
-        ref MicrobeControl control)
+    private (Entity Entity, Vector3 Position, CompoundBag Compounds)? GetNearestRadioactiveChunk(ref WorldPosition position, float maxDistance)
     {
         (Entity Entity, Vector3 Position, CompoundBag Compounds)? chosenChunk = null;
         float bestFoundChunkDistance = float.MaxValue;
@@ -543,24 +552,58 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             if (distance > bestFoundChunkDistance)
                 continue;
 
-            if (distance > 3000.0f)
+            if (distance > maxDistance)
                 continue;
 
             chosenChunk = chunk;
         }
+
+        return chosenChunk;
+    }
+
+    private bool RunFromNearestRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
+        ref MicrobeControl control)
+    {
+        var chosenChunk = GetNearestRadioactiveChunk(ref position, 500.0f);
 
         if (chosenChunk == null)
         {
             return false;
         }
 
-        var oppositedirection = 2 * position.Position - chosenChunk.Value.Position;
+        var oppositeDirection = position.Position + (position.Position - chosenChunk.Value.Position);
 
-        ai.TargetPosition = chosenChunk.Value.Position * -1;
-        control.LookAtPoint = oppositedirection;
+        ai.TargetPosition = oppositeDirection;
+        control.LookAtPoint = ai.TargetPosition;
 
-        control.SetMoveSpeedTowardsPoint(ref position, oppositedirection, Constants.AI_BASE_MOVEMENT);
+        control.SetMoveSpeedTowardsPoint(ref position, ai.TargetPosition, Constants.AI_BASE_MOVEMENT);
         control.Sprinting = true;
+
+        return true;
+    }
+
+    private bool GoNearRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
+        ref MicrobeControl control, float speciesFocus)
+    {
+        var maxDistance = 30000.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS + 3000.0f;
+        var chosenChunk = GetNearestRadioactiveChunk(ref position, maxDistance);
+
+        if (chosenChunk == null)
+        {
+            return false;
+        }
+
+        // If the microbe is close to the chunk it doesn't need to go any closer
+        if (position.Position.DistanceSquaredTo(chosenChunk.Value.Position) < 700.0f)
+        {
+            control.SetMoveSpeed(0.0f);
+            return true;
+        }
+
+        ai.TargetPosition = chosenChunk.Value.Position;
+        control.LookAtPoint = ai.TargetPosition;
+
+        control.SetMoveSpeedTowardsPoint(ref position, ai.TargetPosition, Constants.AI_BASE_MOVEMENT);
 
         return true;
     }
