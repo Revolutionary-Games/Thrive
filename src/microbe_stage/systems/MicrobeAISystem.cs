@@ -533,7 +533,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
     }
 
-    private (Entity Entity, Vector3 Position, CompoundBag Compounds)? GetNearestRadioactiveChunk(ref WorldPosition position, float maxDistance)
+    private (Entity Entity, Vector3 Position, CompoundBag Compounds)? GetNearestRadioactiveChunk(
+        ref WorldPosition position, float maxDistance)
     {
         (Entity Entity, Vector3 Position, CompoundBag Compounds)? chosenChunk = null;
         float bestFoundChunkDistance = float.MaxValue;
