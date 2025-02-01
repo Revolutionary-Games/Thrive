@@ -62,6 +62,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     // New access to the world stuff for AI to see
     private readonly EntitySet microbesSet;
     private readonly EntitySet chunksSet;
+    private readonly EntitySet terrainChunksSet;
 
     private readonly List<uint> speciesCachesToDrop = new();
 
@@ -70,6 +71,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
     private readonly List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)>
         chunkDataCache = new();
+
+    private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
+        terrainChunkDataCache = new();
 
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
     private readonly HashSet<BioProcess> varyingCompoundsTemporary = new();
@@ -103,9 +107,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         microbesSet = world.GetEntities().With<WorldPosition>().With<SpeciesMember>()
             .With<Health>().With<Engulfer>().With<Engulfable>().Without<AttachedToEntity>().AsSet();
 
-        // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
-        // also aren't eaten already
-        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundStorage>()
+        // Chunks that aren't cells or attached so that they also aren't eaten already
+        chunksSet = world.GetEntities().With<WorldPosition>().With<CompoundStorage>()
             .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
     }
 
@@ -330,6 +333,17 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             control.SetMucocystState(ref organelles, ref compoundStorage, entity, false);
         }
 
+        var radiationAmount = compounds.GetCompoundAmount(Compound.Radiation);
+        var radiationFraction = radiationAmount / compounds.GetCapacityForCompound(Compound.Radiation);
+
+        if (radiationFraction > Constants.RADIATION_DAMAGE_THRESHOLD)
+        {
+            if (RunFromNearestRadioactiveChunk(ref position, ref ai, ref control))
+            {
+                return;
+            }
+        }
+
         // If this microbe is out of ATP, pick an amount of time to rest
         if (compounds.GetCompoundAmount(Compound.ATP) < 1.0f)
         {
@@ -508,6 +522,48 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
         }
+    }
+
+    private bool RunFromNearestRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
+        ref MicrobeControl control)
+    {
+        (Entity Entity, Vector3 Position, CompoundBag Compounds)? chosenChunk = null;
+        float bestFoundChunkDistance = float.MaxValue;
+
+        BuildChunksCache();
+
+        foreach (var chunk in terrainChunkDataCache)
+        {
+            if (!chunk.Compounds.Compounds.Keys.Contains(Compound.Radiation))
+            {
+                continue;
+            }
+
+            var distance = (chunk.Position - position.Position).LengthSquared();
+
+            if (distance > bestFoundChunkDistance)
+                continue;
+
+            if (distance > 3000.0f)
+                continue;
+
+            chosenChunk = chunk;
+        }
+
+        if (chosenChunk == null)
+        {
+            return false;
+        }
+
+        var oppositedirection = 2 * position.Position - chosenChunk.Value.Position;
+
+        ai.TargetPosition = chosenChunk.Value.Position * -1;
+        control.LookAtPoint = oppositedirection;
+
+        control.SetMoveSpeedTowardsPoint(ref position, oppositedirection, Constants.AI_BASE_MOVEMENT);
+        control.Sprinting = true;
+
+        return true;
     }
 
     private (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? GetNearestChunkItem(
@@ -1320,34 +1376,45 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // To allow multithreaded AI access safely
         lock (chunkDataCache)
         {
-            if (chunkCacheBuilt)
-                return;
-
-            foreach (ref readonly var chunk in chunksSet.GetEntities())
+            lock (terrainChunkDataCache)
             {
-                if (chunk.Has<TimedLife>())
-                {
-                    // Ignore already despawning chunks
-                    ref var timed = ref chunk.Get<TimedLife>();
+                if (chunkCacheBuilt)
+                    return;
 
-                    if (timed.TimeToLiveRemaining <= 0)
+                foreach (ref readonly var chunk in chunksSet.GetEntities())
+                {
+                    if (chunk.Has<TimedLife>())
+                    {
+                        // Ignore already despawning chunks
+                        ref var timed = ref chunk.Get<TimedLife>();
+
+                        if (timed.TimeToLiveRemaining <= 0)
+                            continue;
+                    }
+
+                    // Ignore chunks that wouldn't yield any useful compounds when absorbing
+                    ref var compounds = ref chunk.Get<CompoundStorage>();
+
+                    if (!compounds.Compounds.HasAnyCompounds())
                         continue;
+
+                    // TODO: determine if it is a good idea to resolve this data here immediately
+                    ref var position = ref chunk.Get<WorldPosition>();
+
+                    if (chunk.Has<Engulfable>())
+                    {
+                        ref var engulfable = ref chunk.Get<Engulfable>();
+                        chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize,
+                            compounds.Compounds));
+                    }
+                    else
+                    {
+                        terrainChunkDataCache.Add((chunk, position.Position, compounds.Compounds));
+                    }
                 }
 
-                // Ignore chunks that wouldn't yield any useful compounds when absorbing
-                ref var compounds = ref chunk.Get<CompoundStorage>();
-
-                if (!compounds.Compounds.HasAnyCompounds())
-                    continue;
-
-                // TODO: determine if it is a good idea to resolve this data here immediately
-                ref var position = ref chunk.Get<WorldPosition>();
-                ref var engulfable = ref chunk.Get<Engulfable>();
-
-                chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize, compounds.Compounds));
+                chunkCacheBuilt = true;
             }
-
-            chunkCacheBuilt = true;
         }
     }
 
