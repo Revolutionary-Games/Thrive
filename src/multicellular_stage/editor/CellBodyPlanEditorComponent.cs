@@ -134,7 +134,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool forceUpdateCellGraphics;
 
-    private EnergyBalanceInfo? energyBalanceInfo;
+    private EnergyBalanceInfoFull? energyBalanceInfo;
 
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
@@ -1115,7 +1115,7 @@ public partial class CellBodyPlanEditorComponent :
                 conditionsData);
         }
 
-        var energyBalance = new EnergyBalanceInfo();
+        var energyBalance = new EnergyBalanceInfoFull();
         energyBalance.SetupTrackingForRequiredCompounds();
 
         // TODO: improve performance by calculating the balance per cell type
@@ -1159,7 +1159,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType,
-        IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfo energyBalance,
+        IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoSimple energyBalance,
         ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();

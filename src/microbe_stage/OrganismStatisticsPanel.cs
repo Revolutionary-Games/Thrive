@@ -129,7 +129,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     private LightLevelOption selectedLightLevelOption = LightLevelOption.Current;
 
-    private EnergyBalanceInfo? energyBalanceInfo;
+    private EnergyBalanceInfoFull? energyBalanceInfo;
 
     [Signal]
     public delegate void OnLightLevelChangedEventHandler(int option);
@@ -192,7 +192,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         tutorial.AtpBalanceIntroduction.ATPBalanceBarControl = atpBalancePanel;
     }
 
-    public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
+    public void UpdateEnergyBalance(EnergyBalanceInfoFull energyBalance)
     {
         energyBalanceInfo = energyBalance;
 
@@ -221,7 +221,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         UpdateEnergyBalanceToolTips(energyBalance);
     }
 
-    public void UpdateEnergyBalanceToolTips(EnergyBalanceInfo energyBalance)
+    public void UpdateEnergyBalanceToolTips(EnergyBalanceInfoFull energyBalance)
     {
         var simulationParameters = SimulationParameters.Instance;
 

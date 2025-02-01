@@ -462,7 +462,7 @@ public static class MicrobeInternalCalculations
         IReadOnlyList<OrganelleTemplate> organelles, MembraneType membraneType, bool moving, bool playerSpecies,
         BiomeConditions biomeConditions, WorldGenerationSettings worldSettings)
     {
-        var energyBalance = new EnergyBalanceInfo();
+        var energyBalance = new EnergyBalanceInfoSimple();
 
         ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
             moving, playerSpecies, worldSettings, CompoundAmountType.Biome, energyBalance);
@@ -559,7 +559,7 @@ public static class MicrobeInternalCalculations
     {
         if (dayCompoundBalances == null)
         {
-            var energyBalance = new EnergyBalanceInfo();
+            var energyBalance = new EnergyBalanceInfoSimple();
 
             ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType,
                 moving, playerSpecies, worldSettings, CompoundAmountType.Biome, energyBalance);
@@ -570,7 +570,7 @@ public static class MicrobeInternalCalculations
                 biomeConditions, CompoundAmountType.Biome, energyBalance, dayCompoundBalances);
         }
 
-        var energyBalanceAtMinimum = new EnergyBalanceInfo();
+        var energyBalanceAtMinimum = new EnergyBalanceInfoSimple();
 
         ProcessSystem.ComputeEnergyBalance(organelles, biomeConditions, membraneType, moving, playerSpecies,
             worldSettings, CompoundAmountType.Minimum, energyBalanceAtMinimum);

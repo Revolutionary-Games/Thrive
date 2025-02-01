@@ -208,17 +208,25 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, bool includeMovementCost, bool isPlayerSpecies,
         WorldGenerationSettings worldSettings, CompoundAmountType amountType,
-        EnergyBalanceInfo result)
+        EnergyBalanceInfoSimple result)
     {
         var organellesList = organelles.ToList();
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organellesList);
-        ComputeEnergyBalance(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
-            isPlayerSpecies, worldSettings, amountType, null, result);
+        if (result is EnergyBalanceInfoFull fullEnergyBalance)
+        {
+            ComputeEnergyBalanceFull(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
+                isPlayerSpecies, worldSettings, amountType, null, fullEnergyBalance);
+        }
+        else
+        {
+            ComputeEnergyBalanceSimple(organellesList, biome, membrane, maximumMovementDirection, includeMovementCost,
+                isPlayerSpecies, worldSettings, amountType, null, result);
+        }
     }
 
     /// <summary>
-    ///   Computes the energy balance for the given organelles in biome
+    ///   Computes the simple energy balance for the given organelles in biome
     /// </summary>
     /// <param name="organelles">The organelles to compute the balance with</param>
     /// <param name="biome">The conditions the organelles are simulated in</param>
@@ -240,11 +248,11 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// <param name="result">
     ///   The resulting energy balance.
     /// </param>
-    public static void ComputeEnergyBalance(IReadOnlyList<OrganelleTemplate> organelles,
+    public static void ComputeEnergyBalanceSimple(IReadOnlyList<OrganelleTemplate> organelles,
         IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache,
-        EnergyBalanceInfo result)
+        EnergyBalanceInfoSimple result)
     {
         var processATPProduction = 0.0f;
         var processATPConsumption = 0.0f;
@@ -257,33 +265,16 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         {
             var organelle = organelles[i];
 
-            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache, result);
+            var (production, consumption) = CalculateOrganelleATPBalance(organelle, biome, amountType, cache);
 
             processATPProduction += production;
             processATPConsumption += consumption;
 
             // Take special cell components that take energy into account
-            if (includeMovementCost && organelle.Definition.HasMovementComponent)
+            if (MovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection) is { } cost)
             {
-                float amount;
-
-                if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
-                {
-                    amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
-                        * Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE;
-                }
-                else
-                {
-                    amount = Constants.FLAGELLA_ENERGY_COST;
-                }
-
-                var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
-                if (organelleDirection.Dot(onlyMovementInDirection) > 0)
-                {
-                    movementATPConsumption += amount;
-                    result.Flagella += amount;
-                    result.AddConsumption(organelle.Definition.InternalName, amount);
-                }
+                movementATPConsumption += cost;
+                result.Flagella += cost;
             }
 
             if (includeMovementCost && organelle.Definition.HasCiliaComponent)
@@ -292,7 +283,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
                 movementATPConsumption += amount;
                 result.Cilia += amount;
-                result.AddConsumption(organelle.Definition.InternalName, amount);
             }
 
             // Store hex count
@@ -305,7 +295,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         if (includeMovementCost)
         {
             // Add movement consumption together
-            result.AddConsumption("baseMovement", baseMovement);
             result.TotalMovement += movementATPConsumption + baseMovement;
         }
         else
@@ -324,8 +313,6 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         result.Osmoregulation += osmoregulation;
 
-        result.AddConsumption("osmoregulation", osmoregulation);
-
         // Compute totals
         result.TotalProduction += processATPProduction;
         result.TotalConsumptionStationary += processATPConsumption + osmoregulation;
@@ -341,6 +328,61 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         result.FinalBalance = result.TotalProduction - result.TotalConsumption;
         result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
+    }
+
+    /// <summary>
+    ///   Computes the full energy balance for the given organelles in biome
+    /// </summary>
+    /// <param name="organelles">The organelles to compute the balance with</param>
+    /// <param name="biome">The conditions the organelles are simulated in</param>
+    /// <param name="membrane">The membrane type to adjust the energy balance with</param>
+    /// <param name="onlyMovementInDirection">
+    ///   Only movement organelles that can move in this (cell origin relative) direction are calculated. Other
+    ///   movement organelles are assumed to be inactive in the balance calculation.
+    /// </param>
+    /// <param name="includeMovementCost">
+    ///   Only when true are movement related energy costs included in the calculation. When false base movement data
+    ///   is provided, but it is not taken into account in the sums, but total movement cost is not calculated. If that
+    ///   is required then include movement cost parameter should be set to true and from the result the variables
+    ///   giving balance without movement should be used as an alternative to setting this false.
+    /// </param>
+    /// <param name="isPlayerSpecies">Whether this microbe is a member of the player's species</param>
+    /// <param name="worldSettings">The world generation settings for this game</param>
+    /// <param name="amountType">Specifies how changes during an in-game day are taken into account</param>
+    /// <param name="cache">Auto-Evo Cache for speeding up the function</param>
+    /// <param name="result">The resulting energy balance.</param>
+    public static void ComputeEnergyBalanceFull(IReadOnlyList<OrganelleTemplate> organelles,
+        IBiomeConditions biome, MembraneType membrane, Vector3 onlyMovementInDirection,
+        bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
+        CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
+    {
+        ComputeEnergyBalanceSimple(organelles, biome, membrane, onlyMovementInDirection,
+            includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
+
+        int organelleCount = organelles.Count;
+        for (int i = 0; i < organelleCount; ++i)
+        {
+            var organelle = organelles[i];
+
+            AddOrganelleATPTracking(organelle, biome, amountType, cache, result);
+
+            // Take special cell components that take energy into account
+            if (MovementCostForOrganelle(includeMovementCost, organelle, onlyMovementInDirection) is { } cost)
+                result.AddConsumption(organelle.Definition.InternalName, cost);
+
+            if (includeMovementCost && organelle.Definition.HasCiliaComponent)
+            {
+                var amount = Constants.CILIA_ENERGY_COST;
+                result.AddConsumption(organelle.Definition.InternalName, amount);
+            }
+        }
+
+        if (includeMovementCost)
+        {
+            result.AddConsumption("baseMovement", result.BaseMovement);
+        }
+
+        result.AddConsumption("osmoregulation", result.Osmoregulation);
     }
 
     /// <summary>
@@ -407,7 +449,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     /// </remarks>
     public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleDefinition> organelles,
         IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
+        EnergyBalanceInfoSimple energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
         void MakeSureResultExists(Compound compound)
         {
@@ -461,7 +503,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
     public static void ComputeCompoundBalanceAtEquilibrium(IEnumerable<OrganelleTemplate> organelles,
         IBiomeConditions biome, CompoundAmountType amountType,
-        EnergyBalanceInfo energyBalance, Dictionary<Compound, CompoundBalance> result)
+        EnergyBalanceInfoSimple energyBalance, Dictionary<Compound, CompoundBalance> result)
     {
         ComputeCompoundBalanceAtEquilibrium(organelles.Select(o => o.Definition), biome, amountType,
             energyBalance, result);
@@ -495,7 +537,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     ///   input compounds present in the biome can run)
     /// </summary>
     public static (float Production, float Consumption) CalculateOrganelleATPBalance(OrganelleTemplate organelle,
-        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfo? result)
+        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache)
     {
         float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
@@ -513,25 +555,45 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             }
 
             var amount = processData.ATPConsumption;
-
             if (amount > 0)
-            {
                 processATPConsumption += amount;
 
-                result?.AddConsumption(organelle.Definition.InternalName, amount);
-            }
-
             amount = processData.ATPProduction;
-
             if (amount > 0)
-            {
-                result?.AddProduction(organelle.Definition.InternalName, amount, processData.WritableInputs);
-
                 processATPProduction += amount;
-            }
         }
 
         return (processATPProduction, processATPConsumption);
+    }
+
+    /// <summary>
+    ///   Adds the ATP balance tracking to the <see cref="EnergyBalanceInfoFull"/> for the given organelle in the given
+    ///   <see cref="biome"/> (so only processes with input compounds present in the biome can run)
+    /// </summary>
+    public static void AddOrganelleATPTracking(OrganelleTemplate organelle,
+        IBiomeConditions biome, CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull? result)
+    {
+        foreach (var process in organelle.Definition.RunnableProcesses)
+        {
+            ProcessSpeedInformation processData;
+            if (cache != null && amountType == CompoundAmountType.Average)
+            {
+                processData = cache.GetProcessMaximumSpeed(process, biome);
+            }
+            else
+            {
+                processData = CalculateProcessMaximumSpeed(process, biome, amountType, true);
+            }
+
+            var amount = processData.ATPConsumption;
+
+            if (amount > 0)
+                result?.AddConsumption(organelle.Definition.InternalName, amount);
+
+            amount = processData.ATPProduction;
+            if (amount > 0)
+                result?.AddProduction(organelle.Definition.InternalName, amount, processData.WritableInputs);
+        }
     }
 
     /// <summary>
@@ -704,7 +766,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         if (species is not MicrobeSpecies microbeSpecies)
             return 0;
 
-        var balance = new EnergyBalanceInfo();
+        var balance = new EnergyBalanceInfoSimple();
 
         ComputeEnergyBalance(microbeSpecies.Organelles, conditions,
             microbeSpecies.MembraneType, false, false, worldGenerationSettings, CompoundAmountType.Average, balance);
@@ -798,6 +860,31 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         ref var processes = ref entity.Get<BioProcesses>();
 
         ProcessNode(ref processes, ref storage, delta);
+    }
+
+    private static float? MovementCostForOrganelle(bool includeMovementCost, OrganelleTemplate organelle,
+        Vector3 onlyMovementInDirection)
+    {
+        if (!includeMovementCost || !organelle.Definition.HasMovementComponent)
+            return null;
+
+        float amount;
+
+        if (organelle.Upgrades?.CustomUpgradeData is FlagellumUpgrades flagellumUpgrades)
+        {
+            amount = Constants.FLAGELLA_ENERGY_COST + flagellumUpgrades.LengthFraction
+                * Constants.FLAGELLA_MAX_UPGRADE_ATP_USAGE;
+        }
+        else
+        {
+            amount = Constants.FLAGELLA_ENERGY_COST;
+        }
+
+        var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
+        if (organelleDirection.Dot(onlyMovementInDirection) > 0)
+            return amount;
+
+        return null;
     }
 
     private static float GetAmbientInBiome(Compound compound, IBiomeConditions biome, CompoundAmountType amountType)
