@@ -62,7 +62,6 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     // New access to the world stuff for AI to see
     private readonly EntitySet microbesSet;
     private readonly EntitySet chunksSet;
-    private readonly EntitySet terrainChunksSet;
 
     private readonly List<uint> speciesCachesToDrop = new();
 
