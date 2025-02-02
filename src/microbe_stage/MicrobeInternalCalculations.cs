@@ -464,7 +464,7 @@ public static class MicrobeInternalCalculations
     {
         var energyBalance = new EnergyBalanceInfoSimple();
 
-        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
+        var maximumMovementDirection = MaximumSpeedDirection(organelles);
         ProcessSystem.ComputeEnergyBalanceSimple(organelles, biomeConditions, membraneType,
             maximumMovementDirection, moving, playerSpecies, worldSettings, CompoundAmountType.Biome, null,
             energyBalance);
