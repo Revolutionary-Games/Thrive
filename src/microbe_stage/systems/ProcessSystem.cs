@@ -6,6 +6,7 @@ namespace Systems;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using AutoEvo;
@@ -232,7 +233,13 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
     {
 #if DEBUG
         if (result is EnergyBalanceInfoFull)
-            throw new ArgumentException("Call the full result variant when you have a full result object");
+        {
+            if (Debugger.IsAttached)
+                Debugger.Break();
+
+            throw new ArgumentException("Call the full result variant when you have a full result object " +
+                "(otherwise it won't be filled correctly)");
+        }
 #endif
 
         CalculateSimplePartOfEnergyBalance(organelles, biome, membrane, onlyMovementInDirection, includeMovementCost,
