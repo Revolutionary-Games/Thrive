@@ -1857,8 +1857,11 @@ public partial class CellEditorComponent :
         var energyBalance = new EnergyBalanceInfoFull();
         energyBalance.SetupTrackingForRequiredCompounds();
 
-        ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, energyBalance);
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
+
+        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, membrane, maximumMovementDirection, moving,
+            true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, null,
+            energyBalance);
 
         energyBalanceInfo = energyBalance;
 

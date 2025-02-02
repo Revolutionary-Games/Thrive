@@ -1118,12 +1118,16 @@ public partial class CellBodyPlanEditorComponent :
         var energyBalance = new EnergyBalanceInfoFull();
         energyBalance.SetupTrackingForRequiredCompounds();
 
+        // Cells can't individually move in the body plan, so this probably makes sense
+        var maximumMovementDirection =
+            MicrobeInternalCalculations.MaximumSpeedDirection(cells[0].Data!.CellType.Organelles);
+
         // TODO: improve performance by calculating the balance per cell type
         foreach (var hex in cells)
         {
-            ProcessSystem.ComputeEnergyBalance(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType, moving,
-                true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType,
-                energyBalance);
+            ProcessSystem.ComputeEnergyBalanceFull(hex.Data!.Organelles, conditionsData, hex.Data.MembraneType,
+                maximumMovementDirection, moving, true, Editor.CurrentGame.GameWorld.WorldSettings,
+                organismStatisticsPanel.CompoundAmountType, null, energyBalance);
         }
 
         energyBalanceInfo = energyBalance;
