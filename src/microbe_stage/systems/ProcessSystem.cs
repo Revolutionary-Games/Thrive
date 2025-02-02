@@ -272,7 +272,7 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         bool includeMovementCost, bool isPlayerSpecies, WorldGenerationSettings worldSettings,
         CompoundAmountType amountType, SimulationCache? cache, EnergyBalanceInfoFull result)
     {
-        ComputeEnergyBalanceSimple(organelles, biome, membrane, onlyMovementInDirection,
+        CalculateSimplePartOfEnergyBalance(organelles, biome, membrane, onlyMovementInDirection,
             includeMovementCost, isPlayerSpecies, worldSettings, amountType, cache, result);
 
         // Once simple balance is calculated we add the extra info on top, this approach loops the organelles twice
