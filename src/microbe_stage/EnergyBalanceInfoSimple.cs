@@ -1,9 +1,9 @@
 ﻿/// <summary>
-///   Info regarding a microbe's energy balance in a patch, excluding consumption and production
+///   Info regarding a microbe's energy balance in a patch, excluding consumption and production tracking
 /// </summary>
 /// <remarks>
 ///   <para>
-///     This does not take special modes the microbe can be into account, for example engulfing or binding
+///     This does not take special modes the microbe can be into account, for example, engulfing or binding
 ///   </para>
 ///   <para>
 ///     The consumption and production is not tracked, use <see cref="EnergyBalanceInfoFull"/> to store it

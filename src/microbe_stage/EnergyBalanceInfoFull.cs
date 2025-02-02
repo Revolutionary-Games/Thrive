@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 /// <summary>
-///   Info regarding a microbe's energy balance in a patch, including consumption and production
+///   Info regarding a microbe's energy balance in a patch, including consumption and production info
 /// </summary>
 /// <remarks>
 ///   <para>
