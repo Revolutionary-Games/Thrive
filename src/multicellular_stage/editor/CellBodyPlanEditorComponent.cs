@@ -1159,7 +1159,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
         CompoundAmountType amountType,
-        IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoSimple energyBalance,
+        IReadOnlyList<HexWithData<CellTemplate>> cells, IBiomeConditions biome, EnergyBalanceInfoFull energyBalance,
         ref Dictionary<Compound, float>? specificStorages, ref float nominalStorage)
     {
         Dictionary<Compound, CompoundBalance> compoundBalanceData = new();

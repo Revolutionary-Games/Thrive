@@ -40,10 +40,10 @@ public class WorldAndPlayerDataSource : IUnlockStateDataSource
 {
     public readonly Patch CurrentPatch;
     public readonly GameWorld World;
-    public readonly EnergyBalanceInfoSimple? EnergyBalance;
+    public readonly EnergyBalanceInfoFull? EnergyBalance;
     public readonly ICellDefinition? PlayerData;
 
-    public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, EnergyBalanceInfoSimple? energyBalance,
+    public WorldAndPlayerDataSource(GameWorld world, Patch currentPatch, EnergyBalanceInfoFull? energyBalance,
         ICellDefinition? playerData)
     {
         World = world;
