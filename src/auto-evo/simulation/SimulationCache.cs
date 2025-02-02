@@ -79,7 +79,6 @@ public class SimulationCache
         // different species but with same organelles to be able to use the same cache value) would be nice here
         var key = (species, biomeConditions);
 
-        // TODO: check if caching instances of these objects would be better than always recreating
         if (cachedSimpleEnergyBalances.TryGetValue(key, out var cached))
         {
             return cached;
@@ -87,6 +86,7 @@ public class SimulationCache
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.Organelles);
 
+        // TODO: check if caching instances of these objects would be better than always recreating
         cached = new EnergyBalanceInfoSimple();
 
         // Auto-evo uses the average values of compound during the course of a simulated day
