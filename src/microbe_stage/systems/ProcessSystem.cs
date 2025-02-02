@@ -862,11 +862,14 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
         ProcessNode(ref processes, ref storage, delta);
     }
 
-    private static float? MovementCostForOrganelle(bool includeMovementCost, OrganelleTemplate organelle,
-        Vector3 onlyMovementInDirection)
+    private static bool TryGetMovementCostForOrganelle(bool includeMovementCost, OrganelleTemplate organelle,
+        Vector3 onlyMovementInDirection, out float movementCost)
     {
         if (!includeMovementCost || !organelle.Definition.HasMovementComponent)
-            return null;
+        {
+            movementCost = 0;
+            return false;
+        }
 
         float amount;
 
@@ -880,11 +883,15 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
             amount = Constants.FLAGELLA_ENERGY_COST;
         }
 
+        movementCost = amount;
+
         var organelleDirection = MicrobeInternalCalculations.GetOrganelleDirection(organelle);
         if (organelleDirection.Dot(onlyMovementInDirection) > 0)
-            return amount;
+        {
+            return true;
+        }
 
-        return null;
+        return false;
     }
 
     private static float GetAmbientInBiome(Compound compound, IBiomeConditions biome, CompoundAmountType amountType)
