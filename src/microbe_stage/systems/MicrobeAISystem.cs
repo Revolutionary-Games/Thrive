@@ -599,7 +599,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         var randomMultiplier = (float)random.NextDouble() * 0.4f + 0.8f;
 
         // If the microbe is close to the chunk it doesn't need to go any closer
-        if (position.Position.DistanceSquaredTo(chosenChunk.Value.Position) < 700.0f * randomMultiplier)
+        if (position.Position.DistanceSquaredTo(chosenChunk.Value.Position) < 800.0f * randomMultiplier)
         {
             control.SetMoveSpeed(0.0f);
             return true;
