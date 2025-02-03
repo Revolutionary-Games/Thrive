@@ -121,10 +121,10 @@ public partial class EditorComponentBottomLeftButtons : MarginContainer
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
-        symmetryIconDefault = GD.Load<Texture2D>("res://assets/textures/gui/bevel/1xSymmetry.png");
-        symmetryIcon2X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/2xSymmetry.png");
-        symmetryIcon4X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/4xSymmetry.png");
-        symmetryIcon6X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/6xSymmetry.png");
+        symmetryIconDefault = GD.Load<Texture2D>("res://assets/textures/gui/bevel/1xSymmetry.svg");
+        symmetryIcon2X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/2xSymmetry.svg");
+        symmetryIcon4X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/4xSymmetry.svg");
+        symmetryIcon6X = GD.Load<Texture2D>("res://assets/textures/gui/bevel/6xSymmetry.svg");
 
         UpdateNewButtonVisibility();
         UpdateRandomButtonVisibility();
