@@ -339,8 +339,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
-        // Even if we are out of ATP and there is microbe nearby, engulf them.
-        // make sure engulfing doesn't kill the cell. The cell won't engulf if it would kill it
+        // Allow the microbe to engulf the prey even if out of ATP
         if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
                 ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
                 speciesAggression, speciesActivity, speciesOpportunism, strain, random, true))
