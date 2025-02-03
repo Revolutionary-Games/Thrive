@@ -510,11 +510,11 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         // There is no reason to be engulfing at this stage
         control.SetStateColonyAware(entity, MicrobeState.Normal);
 
-        // If the microbe has radiation protection it means it has melanosomes and can stay near tha radioactive chunks
+        // If the microbe has radiation protection it means it has melanosomes and can stay near the radioactive chunks
         // to produce ATP
         if (organelles.RadiationProtection > 0)
         {
-            if (GoNearRadioactiveChunk(ref position, ref ai, ref control, speciesFocus))
+            if (GoNearRadioactiveChunk(ref position, ref ai, ref control, speciesFocus, random))
             {
                 return;
             }
@@ -573,6 +573,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         }
 
         var oppositeDirection = position.Position + (position.Position - chosenChunk.Value.Position);
+        oppositeDirection = oppositeDirection.Normalized() * 500.0f;
 
         ai.TargetPosition = oppositeDirection;
         control.LookAtPoint = ai.TargetPosition;
@@ -584,7 +585,7 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private bool GoNearRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
-        ref MicrobeControl control, float speciesFocus)
+        ref MicrobeControl control, float speciesFocus, Random random)
     {
         var maxDistance = 30000.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS + 3000.0f;
         var chosenChunk = GetNearestRadioactiveChunk(ref position, maxDistance);
@@ -594,8 +595,11 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             return false;
         }
 
+        // Range from 0.8 to 1.2
+        var randomMultiplier = (float)random.NextDouble() * 0.4f + 0.8f;
+
         // If the microbe is close to the chunk it doesn't need to go any closer
-        if (position.Position.DistanceSquaredTo(chosenChunk.Value.Position) < 700.0f)
+        if (position.Position.DistanceSquaredTo(chosenChunk.Value.Position) < 700.0f * randomMultiplier)
         {
             control.SetMoveSpeed(0.0f);
             return true;
@@ -1417,47 +1421,37 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private void BuildChunksCache()
     {
         // To allow multithreaded AI access safely
+        // As the chunk lock is always held when building all of the chunk caches,
+        // the other individual cache objects don't need separate locks to protect them
         lock (chunkDataCache)
         {
-            lock (terrainChunkDataCache)
+            if (chunkCacheBuilt)
+                return;
+
+            foreach (ref readonly var chunk in chunksSet.GetEntities())
             {
-                if (chunkCacheBuilt)
-                    return;
+                // Ignore chunks that wouldn't yield any useful compounds when absorbing
+                ref var compounds = ref chunk.Get<CompoundStorage>();
 
-                foreach (ref readonly var chunk in chunksSet.GetEntities())
+                if (!compounds.Compounds.HasAnyCompounds())
+                    continue;
+
+                // TODO: determine if it is a good idea to resolve this data here immediately
+                ref var position = ref chunk.Get<WorldPosition>();
+
+                if (chunk.Has<Engulfable>())
                 {
-                    if (chunk.Has<TimedLife>())
-                    {
-                        // Ignore already despawning chunks
-                        ref var timed = ref chunk.Get<TimedLife>();
-
-                        if (timed.TimeToLiveRemaining <= 0)
-                            continue;
-                    }
-
-                    // Ignore chunks that wouldn't yield any useful compounds when absorbing
-                    ref var compounds = ref chunk.Get<CompoundStorage>();
-
-                    if (!compounds.Compounds.HasAnyCompounds())
-                        continue;
-
-                    // TODO: determine if it is a good idea to resolve this data here immediately
-                    ref var position = ref chunk.Get<WorldPosition>();
-
-                    if (chunk.Has<Engulfable>())
-                    {
-                        ref var engulfable = ref chunk.Get<Engulfable>();
-                        chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize,
-                            compounds.Compounds));
-                    }
-                    else
-                    {
-                        terrainChunkDataCache.Add((chunk, position.Position, compounds.Compounds));
-                    }
+                    ref var engulfable = ref chunk.Get<Engulfable>();
+                    chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize,
+                        compounds.Compounds));
                 }
-
-                chunkCacheBuilt = true;
+                else
+                {
+                    terrainChunkDataCache.Add((chunk, position.Position, compounds.Compounds));
+                }
             }
+
+            chunkCacheBuilt = true;
         }
     }
 
