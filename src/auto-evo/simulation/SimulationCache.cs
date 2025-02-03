@@ -483,7 +483,7 @@ public class SimulationCache
                 if (enzyme.Key.InternalName != dissolverEnzyme)
                     continue;
 
-                // No need to check the amount here as organelle data validates are enzyme amounts are above 0
+                // No need to check the amount here as organelle data validates enzyme amounts are above 0
 
                 isMembraneDigestible = true;
 
@@ -497,7 +497,7 @@ public class SimulationCache
         if (!isMembraneDigestible)
             enzymesScore = 0;
 
-        cachedEnzymeScores.Add((predator, dissolverEnzyme), enzymesScore);
+        cachedEnzymeScores.Add(key, enzymesScore);
         return enzymesScore;
     }
 
