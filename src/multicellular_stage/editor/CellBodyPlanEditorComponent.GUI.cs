@@ -32,7 +32,7 @@ public partial class CellBodyPlanEditorComponent
     ///   selectable.
     ///   https://github.com/Revolutionary-Games/Thrive/issues/5863
     /// </summary>
-    private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfo energyBalance,
+    private void HandleProcessList(IReadOnlyList<HexWithData<CellTemplate>> cells, EnergyBalanceInfoFull energyBalance,
         IBiomeConditions biome)
     {
         // Empty list to later fill

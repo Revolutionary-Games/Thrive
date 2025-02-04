@@ -343,17 +343,26 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
         }
 
+        float atpLevel = compounds.GetCompoundAmount(Compound.ATP);
+
         // If this microbe is out of ATP, pick an amount of time to rest
-        if (compounds.GetCompoundAmount(Compound.ATP) < 1.0f)
+        if (atpLevel < 1.0f)
         {
             // Keep the maximum at 95% full, as there is flickering when near full
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
+        // Allow the microbe to engulf the prey even if out of ATP
+        if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+                ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
+                speciesAggression, speciesActivity, speciesOpportunism, strain, random, true))
+        {
+            return;
+        }
+
         if (ai.ATPThreshold > MathUtils.EPSILON)
         {
-            if (compounds.GetCompoundAmount(Compound.ATP) <
-                compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
+            if (atpLevel < compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
             {
                 bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
@@ -480,30 +489,12 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
         }
 
-        // If there are no chunks, look for living prey to hunt
-        var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
-            compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
-        if (possiblePrey != default && possiblePrey.IsAlive)
+        // Check if species can hunt any prey and if so - engage in chase
+        if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+                ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
+                speciesAggression,
+                speciesActivity, speciesOpportunism, strain, random, false))
         {
-            Vector3 prey;
-
-            try
-            {
-                prey = possiblePrey.Get<WorldPosition>().Position;
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("Microbe AI tried to engage prey with no position: " + e);
-                ai.FocusedPrey = default;
-                return;
-            }
-
-            bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
-                EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
-                10.0f * engulfer.EngulfingSize;
-
-            EngagePrey(ref ai, ref control, ref organelles, ref position, compounds, entity, prey, engulfPrey,
-                speciesAggression, speciesFocus, speciesActivity, strain, random);
             return;
         }
 
@@ -531,6 +522,50 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             // This organism is sessile, and will not act until the environment changes
             control.SetMoveSpeed(0.0f);
         }
+    }
+
+    private bool CheckForHuntingConditions(ref MicrobeAI ai, ref WorldPosition position,
+        ref OrganelleContainer organelles, ref SpeciesMember ourSpecies,
+        ref Engulfer engulfer, ref CellProperties cellProperties, ref MicrobeControl control, ref Health health,
+        ref CompoundStorage compoundStorage, in Entity entity, float speciesFocus, float speciesAggression,
+        float speciesActivity, float speciesOpportunism, float strain, Random random, bool outOfAtp)
+    {
+        var compounds = compoundStorage.Compounds;
+
+        // If there are no chunks, look for living prey to hunt
+        var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+            compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
+        if (possiblePrey != default && possiblePrey.IsAlive)
+        {
+            Vector3 prey;
+
+            try
+            {
+                prey = possiblePrey.Get<WorldPosition>().Position;
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr("Microbe AI tried to engage prey with no position: " + e);
+                ai.FocusedPrey = default;
+                return false;
+            }
+
+            bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
+                EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
+                10.0f * engulfer.EngulfingSize;
+
+            // If out of ATP and the prey is out of reach to engulf, do nothing
+            if (outOfAtp && !engulfPrey)
+            {
+                return false;
+            }
+
+            EngagePrey(ref ai, ref control, ref organelles, ref position, ref compoundStorage, ref health, entity,
+                prey, engulfPrey, speciesAggression, speciesFocus, speciesActivity, strain, random);
+            return true;
+        }
+
+        return false;
     }
 
     private (Entity Entity, Vector3 Position, CompoundBag Compounds)? GetNearestRadioactiveChunk(
@@ -961,10 +996,21 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void EngagePrey(ref MicrobeAI ai, ref MicrobeControl control, ref OrganelleContainer organelles,
-        ref WorldPosition position, CompoundBag ourCompounds, in Entity entity, Vector3 target, bool engulf,
-        float speciesAggression, float speciesFocus, float speciesActivity, float strain, Random random)
+        ref WorldPosition position, ref CompoundStorage compoundStorage, ref Health health, in Entity entity,
+        Vector3 target, bool engulf, float speciesAggression, float speciesFocus, float speciesActivity,
+        float strain, Random random)
     {
-        control.SetStateColonyAware(entity, engulf ? MicrobeState.Engulf : MicrobeState.Normal);
+        var ourCompounds = compoundStorage.Compounds;
+
+        if (engulf)
+        {
+            control.EnterEngulfModeForcedState(ref health, ref compoundStorage, entity, Compound.ATP);
+        }
+        else
+        {
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
+        }
+
         ai.TargetPosition = target;
         control.LookAtPoint = ai.TargetPosition;
         if (CanShootToxin(ourCompounds, speciesFocus))

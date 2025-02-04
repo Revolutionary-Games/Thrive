@@ -16,7 +16,7 @@ public class LysosomeComponent : IOrganelleComponent
 
         var enzyme = configuration is LysosomeUpgrades upgrades ?
             upgrades.Enzyme :
-            SimulationParameters.Instance.GetEnzyme("lipase");
+            SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME);
 
         // TODO: avoid allocating memory like this for each lysosome component
         // Could most likely refactor the PlacedOrganelle.GetEnzymes to take in the container.AvailableEnzymes

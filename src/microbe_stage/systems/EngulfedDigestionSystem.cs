@@ -53,7 +53,7 @@ public sealed class EngulfedDigestionSystem : AEntitySetSystem<float>
         var simulationParameters = SimulationParameters.Instance;
         digestibleCompounds = simulationParameters.GetAllCompounds().Values.Where(c => c.Digestible).Select(c => c.ID)
             .ToList();
-        lipase = simulationParameters.GetEnzyme("lipase");
+        lipase = simulationParameters.GetEnzyme(Constants.LIPASE_ENZYME);
     }
 
     public void SetWorld(GameWorld world)

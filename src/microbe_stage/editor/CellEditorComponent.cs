@@ -204,7 +204,7 @@ public partial class CellEditorComponent :
 
     private OrganelleDefinition cytoplasm = null!;
 
-    private EnergyBalanceInfo? energyBalanceInfo;
+    private EnergyBalanceInfoFull? energyBalanceInfo;
 
     private string? bestPatchName;
 
@@ -1854,11 +1854,14 @@ public partial class CellEditorComponent :
                 conditionsData);
         }
 
-        var energyBalance = new EnergyBalanceInfo();
+        var energyBalance = new EnergyBalanceInfoFull();
         energyBalance.SetupTrackingForRequiredCompounds();
 
-        ProcessSystem.ComputeEnergyBalance(organelles, conditionsData, membrane, moving, true,
-            Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, energyBalance);
+        var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(organelles);
+
+        ProcessSystem.ComputeEnergyBalanceFull(organelles, conditionsData, membrane, maximumMovementDirection, moving,
+            true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, null,
+            energyBalance);
 
         energyBalanceInfo = energyBalance;
 
@@ -1893,8 +1896,8 @@ public partial class CellEditorComponent :
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
-        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles,
-        IBiomeConditions biome, EnergyBalanceInfo energyBalance, ref Dictionary<Compound, float>? specificStorages,
+        CompoundAmountType amountType, IReadOnlyList<OrganelleTemplate> organelles, IBiomeConditions biome,
+        EnergyBalanceInfoFull energyBalance, ref Dictionary<Compound, float>? specificStorages,
         ref float nominalStorage)
     {
         var compoundBalanceData = new Dictionary<Compound, CompoundBalance>();
@@ -1917,7 +1920,7 @@ public partial class CellEditorComponent :
         return ProcessSystem.ComputeCompoundFillTimes(compoundBalanceData, nominalStorage, specificStorages);
     }
 
-    private void HandleProcessList(EnergyBalanceInfo energyBalance, IBiomeConditions biome)
+    private void HandleProcessList(EnergyBalanceInfoFull energyBalance, IBiomeConditions biome)
     {
         var processes = new List<TweakedProcess>();
 
