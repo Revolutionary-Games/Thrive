@@ -38,7 +38,7 @@ public partial class LysosomeUpgradeGUI : VBoxContainer, IOrganelleUpgrader
 
         // Select lipase by default
         var defaultCompoundIndex =
-            shownChoices.FindIndex(c => c.InternalName == Constants.LYSOSOME_DEFAULT_ENZYME_NAME);
+            shownChoices.FindIndex(c => c.InternalName == Constants.LIPASE_ENZYME);
 
         if (defaultCompoundIndex < 0)
             defaultCompoundIndex = 0;
