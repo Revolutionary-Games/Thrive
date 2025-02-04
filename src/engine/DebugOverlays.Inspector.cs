@@ -26,8 +26,9 @@ public partial class DebugOverlays
     {
         heat = heatValue;
 
-        // Enable heat display with a valid value
-        hasHeat = float.IsNormal(heat);
+        // Enable heat display with a valid value (allows infinities, but hopefully those don't show up, gameplay
+        // would be more broken than this debug panel in that situation)
+        hasHeat = float.IsRealNumber(heat);
     }
 
     public void StopHeatReporting()

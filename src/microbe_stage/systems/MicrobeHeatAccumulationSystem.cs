@@ -58,8 +58,6 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         var sampleX = (position.X * Constants.MICROBE_HEAT_NOISE_TO_WORLD_RATIO + 0.5f) % 1.0f;
         var sampleY = (position.Z * Constants.MICROBE_HEAT_NOISE_TO_WORLD_RATIO + 0.5f) % 1.0f;
 
-        GD.Print("UV: " + sampleX + ",\t" + sampleY);
-
         // Map negative values back to valid range
         if (sampleX < 0)
             sampleX += 1;
@@ -68,7 +66,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
             sampleY += 1;
 
         // Finally, convert UV coordinates to pixel coordinates (rounding down should be accurate enough)
-        var rawNoise = noiseImage.GetPixel((int)(sampleX * noiseWidth), (int)sampleY * noiseHeight).R;
+        var rawNoise = noiseImage.GetPixel((int)(sampleX * noiseWidth), (int)(sampleY * noiseHeight)).R;
 
         // return patchTemperatureMiddle + (-0.5f + rawNoise) * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
         return rawNoise;
