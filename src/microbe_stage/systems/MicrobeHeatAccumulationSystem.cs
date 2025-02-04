@@ -67,7 +67,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         // Only process microbes that can capture heat
-        if (!organelleContainer.HasHeatCollection)
+        if (organelleContainer.HeatCollection < 1)
             return;
 
         ref var properties = ref entity.Get<CellProperties>();
@@ -95,8 +95,12 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
                 properties.Temperature <= Constants.THERMOPLAST_MAX_ATP_TEMPERATURE)
             {
                 var compounds = entity.Get<CompoundStorage>().Compounds;
+
+                // Scale given heat by the number of gathering components to make this energy source scale for bigger
+                // cells
                 compounds.AddCompound(Compound.Temperature,
-                    change * Constants.TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER);
+                    organelleContainer.HeatCollection * change *
+                    Constants.TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER);
             }
 
             properties.Temperature += change;
