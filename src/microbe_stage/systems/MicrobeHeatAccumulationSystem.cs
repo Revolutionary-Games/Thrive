@@ -41,6 +41,27 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         gameWorld = world;
     }
 
+    public float SampleTemperatureAt(Vector3 position)
+    {
+        // Scale world position into heat plane UV coordinate space
+        position *= Constants.MICROBE_HEAT_NOISE_TO_WORLD_RATIO;
+
+        // And then use modulo to get to noise-space
+        var sampleX = position.X % Constants.MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE * 0.5f;
+        var sampleY = position.X % Constants.MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE * 0.5f;
+
+        // Handle negative sampling positions to be positive
+        if (sampleX < 0)
+            sampleX = 1 + sampleX;
+
+        if (sampleY < 0)
+            sampleY = 1 + sampleY;
+
+        var rawNoise = noise.GetNoise2D(sampleX, sampleY);
+
+        return patchTemperatureMiddle + (rawNoise - 0.5f) * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
+    }
+
     protected override void PreUpdate(float delta)
     {
         if (gameWorld == null)
@@ -105,11 +126,5 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 
             properties.Temperature += change;
         }
-    }
-
-    private float SampleTemperatureAt(Vector3 position)
-    {
-        return patchTemperatureMiddle +
-            noise.GetNoise2D(position.X, position.Z) * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
     }
 }

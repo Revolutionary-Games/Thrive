@@ -291,6 +291,11 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         ProcessSystem.SetBiome(biomeConditions);
     }
 
+    public float SampleTemperatureAt(Vector3 worldPosition)
+    {
+        return microbeHeatAccumulationSystem.SampleTemperatureAt(worldPosition);
+    }
+
     /// <summary>
     ///   Clears system data that has been stored based on the player location. Call this when the player changes
     ///   locations a lot by respawning or by moving patches
