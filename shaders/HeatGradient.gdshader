@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode blend_mix, depth_draw_always;
+render_mode blend_mix, depth_draw_never, depth_test_disabled;
 render_mode unshaded;
 
 uniform sampler2D heat;
@@ -22,6 +22,6 @@ void fragment() {
 	float noiseValue = texture(noise, scaledUV).r;
 	noiseValue = 1.0f + (0.5f - noiseValue * noiseMultiplier);
 
-    ALPHA = alphaMultiplier * (heatValue * noiseValue * noiseValue);
+    ALPHA = alphaMultiplier * (max(heatValue, 1.0f - heatValue) * noiseValue * noiseValue);
     ALBEDO = colour.rgb;
 }
