@@ -23,7 +23,12 @@ using Godot;
 // [RunsOnMainThread]
 public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 {
-    private readonly Noise noise;
+    private readonly NoiseTexture2D noise;
+
+    private Image? noiseImage;
+
+    private int noiseWidth;
+    private int noiseHeight;
 
     private GameWorld? gameWorld;
 
@@ -32,8 +37,9 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
     public MicrobeHeatAccumulationSystem(World world, IParallelRunner runner) : base(world, runner,
         Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
     {
-        noise = GD.Load<NoiseTexture2D>("res://src/microbe_stage/HeatGradientNoise.tres").Noise ??
-            throw new Exception("Heat noise texture doesn't have noise set");
+        // For easily consistent code with the rendering, we read the noise texture as an image and sample it
+        noise = GD.Load<NoiseTexture2D>("res://src/microbe_stage/HeatGradientNoise.tres") ??
+            throw new Exception("Heat noise texture couldn't be loaded");
     }
 
     public void SetWorld(GameWorld world)
@@ -43,29 +49,54 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 
     public float SampleTemperatureAt(Vector3 position)
     {
-        // Scale world position into heat plane UV coordinate space
-        position *= Constants.MICROBE_HEAT_NOISE_TO_WORLD_RATIO;
+        if (noiseImage == null)
+            return float.NaN;
 
-        // And then use modulo to get to noise-space
-        var sampleX = position.X % Constants.MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE * 0.5f;
-        var sampleY = position.X % Constants.MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE * 0.5f;
+        // Convert world position to UV coordinates in the noise texture.
+        // The noise plane is centered on its origin, so that's why we add 0.5 here.
+        // And to map back to the first "tile" of the texture, we do modulo with one.
+        var sampleX = (position.X * Constants.MICROBE_HEAT_NOISE_TO_WORLD_RATIO + 0.5f) % 1.0f;
+        var sampleY = (position.Z * Constants.MICROBE_HEAT_NOISE_TO_WORLD_RATIO + 0.5f) % 1.0f;
 
-        // Handle negative sampling positions to be positive
+        GD.Print("UV: " + sampleX + ",\t" + sampleY);
+
+        // Map negative values back to valid range
         if (sampleX < 0)
-            sampleX = 1 + sampleX;
+            sampleX += 1;
 
         if (sampleY < 0)
-            sampleY = 1 + sampleY;
+            sampleY += 1;
 
-        var rawNoise = noise.GetNoise2D(sampleX, sampleY);
+        // Finally, convert UV coordinates to pixel coordinates (rounding down should be accurate enough)
+        var rawNoise = noiseImage.GetPixel((int)(sampleX * noiseWidth), (int)sampleY * noiseHeight).R;
 
-        return patchTemperatureMiddle + (rawNoise - 0.5f) * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
+        // return patchTemperatureMiddle + (-0.5f + rawNoise) * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
+        return rawNoise;
+    }
+
+    public sealed override void Dispose()
+    {
+        Dispose(true);
+        base.Dispose();
+        GC.SuppressFinalize(this);
     }
 
     protected override void PreUpdate(float delta)
     {
         if (gameWorld == null)
             throw new InvalidOperationException("GameWorld not set");
+
+        // Grab the noise image once it is ready
+        if (noiseImage == null)
+        {
+            noiseImage = noise.GetImage();
+
+            if (noiseImage != null)
+            {
+                noiseWidth = noiseImage.GetWidth();
+                noiseHeight = noiseImage.GetHeight();
+            }
+        }
 
         if (gameWorld.Map.CurrentPatch == null)
         {
@@ -85,6 +116,10 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 
     protected override void Update(float delta, in Entity entity)
     {
+        // Can't process when the noise isn't ready yet
+        if (noiseImage == null)
+            return;
+
         ref var organelleContainer = ref entity.Get<OrganelleContainer>();
 
         // Only process microbes that can capture heat
@@ -98,6 +133,12 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         var ratio = properties.CalculateSurfaceAreaToVolume(organelleContainer.HexCount);
 
         var heat = SampleTemperatureAt(position.Position);
+
+        if (float.IsNaN(heat))
+        {
+            GD.PrintErr("Generated NaN temperature for microbe");
+            return;
+        }
 
         // Initialise temperature to the environment when initially spawning
         if (!properties.HeatInitialized)
@@ -125,6 +166,14 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
             }
 
             properties.Temperature += change;
+        }
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (disposing)
+        {
+            noiseImage?.Dispose();
         }
     }
 }
