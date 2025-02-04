@@ -238,6 +238,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (HasPlayer)
         {
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+            DebugOverlays.Instance.ReportHeatValue(WorldSimulation.SampleTemperatureAt(Camera.CursorWorldPos));
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(playerPosition.Rotation, playerPosition.Rotation.GetEuler()), this);

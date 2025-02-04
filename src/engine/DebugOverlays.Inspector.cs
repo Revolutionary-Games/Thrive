@@ -9,6 +9,9 @@ public partial class DebugOverlays
     private Vector3 positionCoordinates;
     private Vector3 lookingAtCoordinates;
 
+    private float heat;
+    private bool hasHeat;
+
     public void ReportPositionCoordinates(Vector3 coordinates)
     {
         positionCoordinates = coordinates;
@@ -19,10 +22,33 @@ public partial class DebugOverlays
         lookingAtCoordinates = coordinates;
     }
 
+    public void ReportHeatValue(float heatValue)
+    {
+        heat = heatValue;
+
+        // Enable heat display with a valid value
+        hasHeat = float.IsNormal(heat);
+    }
+
+    public void StopHeatReporting()
+    {
+        ReportHeatValue(float.NaN);
+    }
+
     private void UpdateInspector()
     {
-        debugCoordinates.Text = Localization.Translate("DEBUG_COORDINATES")
+        var coordinates = Localization.Translate("DEBUG_COORDINATES")
             .FormatSafe(positionCoordinates, lookingAtCoordinates);
+
+        if (hasHeat)
+        {
+            debugCoordinates.Text = coordinates + "\n" + Localization.Translate("DEBUG_HEAT_AT_CURSOR")
+                .FormatSafe(heat);
+        }
+        else
+        {
+            debugCoordinates.Text = coordinates;
+        }
     }
 
     private void OnInspectorToggled()
