@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1mwl825xlq0t"]
+
+[ext_resource type="Shader" path="res://shaders/HeatGradient.gdshader" id="1_6qe5p"]
+[ext_resource type="Texture2D" uid="uid://5y2h7opa1yq6" path="res://src/microbe_stage/HeatGradientNoise.tres" id="2_fflnq"]
+[ext_resource type="Script" path="res://src/microbe_stage/HeatGradientPlane.cs" id="3_gsvnq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_68py0"]
+size = Vector2(400, 400)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q12wg"]
+frequency = 0.0377
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_d28l8"]
+noise = SubResource("FastNoiseLite_q12wg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7dchk"]
+resource_local_to_scene = true
+render_priority = -2
+shader = ExtResource("1_6qe5p")
+shader_parameter/warmColour = Color(1, 0.359565, 0.239655, 1)
+shader_parameter/coldColour = Color(0.233659, 0.0244511, 0.882812, 1)
+shader_parameter/uvOffset = Vector2(0, 0)
+shader_parameter/alphaMultiplier = 0.361
+shader_parameter/noiseMultiplier = 0.446
+shader_parameter/heat = ExtResource("2_fflnq")
+shader_parameter/noise = SubResource("NoiseTexture2D_d28l8")
+
+[node name="HeatGradientPlane" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_68py0")
+surface_material_override/0 = SubResource("ShaderMaterial_7dchk")
+script = ExtResource("3_gsvnq")

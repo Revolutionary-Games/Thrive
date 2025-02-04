@@ -930,6 +930,9 @@ public static class Constants
 
     public const float THERMOPLAST_HEAT_UP_SPEED = 2;
 
+    public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
+    public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
+
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 
     public const string LYSOSOME_DEFAULT_ENZYME_NAME = "lipase";
