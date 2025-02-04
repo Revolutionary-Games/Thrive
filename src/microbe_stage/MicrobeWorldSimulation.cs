@@ -68,6 +68,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
     private MicrobeEmissionSystem microbeEmissionSystem = null!;
     private MicrobeEventCallbackSystem microbeEventCallbackSystem = null!;
     private MicrobeFlashingSystem microbeFlashingSystem = null!;
+    private MicrobeHeatAccumulationSystem microbeHeatAccumulationSystem = null!;
     private MicrobeMovementSoundSystem microbeMovementSoundSystem = null!;
     private MicrobeMovementSystem microbeMovementSystem = null!;
     private StrainSystem strainSystem = null!;
@@ -214,6 +215,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
 
         microbeEventCallbackSystem = new MicrobeEventCallbackSystem(cloudSystem, microbeAI, EntitySystem);
         microbeFlashingSystem = new MicrobeFlashingSystem(EntitySystem, couldParallelize);
+        microbeHeatAccumulationSystem = new MicrobeHeatAccumulationSystem(EntitySystem, parallelRunner);
         microbeMovementSoundSystem = new MicrobeMovementSoundSystem(EntitySystem, couldParallelize);
         microbeShaderSystem = new MicrobeShaderSystem(EntitySystem);
         microbeTemporaryEffectsSystem = new MicrobeTemporaryEffectsSystem(EntitySystem, parallelRunner);
@@ -274,6 +276,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
         osmoregulationAndHealingSystem.SetWorld(currentGame.GameWorld);
         microbeReproductionSystem.SetWorld(currentGame.GameWorld);
         microbeDeathSystem.SetWorld(currentGame.GameWorld);
+        microbeHeatAccumulationSystem.SetWorld(currentGame.GameWorld);
         multicellularGrowthSystem.SetWorld(currentGame.GameWorld);
         engulfingSystem.SetWorld(currentGame.GameWorld);
         engulfedDigestionSystem.SetWorld(currentGame.GameWorld);
@@ -457,6 +460,7 @@ public partial class MicrobeWorldSimulation : WorldSimulationWithPhysics
                 microbeEmissionSystem.Dispose();
                 microbeEventCallbackSystem.Dispose();
                 microbeFlashingSystem.Dispose();
+                microbeHeatAccumulationSystem.Dispose();
                 microbeMovementSoundSystem.Dispose();
                 microbeMovementSystem.Dispose();
                 strainSystem.Dispose();
