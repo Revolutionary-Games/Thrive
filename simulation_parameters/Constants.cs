@@ -928,6 +928,12 @@ public static class Constants
     public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 5.0f;
     public const float THERMOPLAST_HEAT_UP_SPEED = 2;
 
+    /// <summary>
+    ///   Biases the noise used for local temperature variations. Should correspond to what is set in
+    ///   "HeatGradientPlane.tscn"
+    /// </summary>
+    public const float MICROBE_HEAT_NOISE_MIDDLE_POINT = 0.5f;
+
     public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
     public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
 

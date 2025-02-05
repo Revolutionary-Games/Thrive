@@ -18,12 +18,9 @@ using Godot;
 [ReadsComponent(typeof(OrganelleContainer))]
 [RunsBefore(typeof(ProcessSystem))]
 [RunsAfter(typeof(MicrobePhysicsCreationAndSizeSystem))]
-
-// Test if reading noise resource is thread safe in Godot
-// [RunsOnMainThread]
 public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
 {
-    private readonly NoiseTexture2D noise;
+    private readonly NoiseTexture2D noiseSource;
 
     private Image? noiseImage;
 
@@ -38,7 +35,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         Constants.SYSTEM_EXTREME_ENTITIES_PER_THREAD)
     {
         // For easily consistent code with the rendering, we read the noise texture as an image and sample it
-        noise = GD.Load<NoiseTexture2D>("res://src/microbe_stage/HeatGradientNoise.tres") ??
+        noiseSource = GD.Load<NoiseTexture2D>("res://src/microbe_stage/HeatGradientNoise.tres") ??
             throw new Exception("Heat noise texture couldn't be loaded");
     }
 
@@ -68,8 +65,9 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         // Finally, convert UV coordinates to pixel coordinates (rounding down should be accurate enough)
         var rawNoise = noiseImage.GetPixel((int)(sampleX * noiseWidth), (int)(sampleY * noiseHeight)).R;
 
-        // return patchTemperatureMiddle + (-0.5f + rawNoise) * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
-        return rawNoise;
+        var differenceFromMiddle = rawNoise - Constants.MICROBE_HEAT_NOISE_MIDDLE_POINT;
+
+        return patchTemperatureMiddle + differenceFromMiddle * Constants.NOISE_EFFECT_ON_LOCAL_TEMPERATURE;
     }
 
     public sealed override void Dispose()
@@ -87,7 +85,7 @@ public class MicrobeHeatAccumulationSystem : AEntitySetSystem<float>
         // Grab the noise image once it is ready
         if (noiseImage == null)
         {
-            noiseImage = noise.GetImage();
+            noiseImage = noiseSource.GetImage();
 
             if (noiseImage != null)
             {
