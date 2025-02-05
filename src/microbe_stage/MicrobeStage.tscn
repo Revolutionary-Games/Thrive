@@ -15,10 +15,11 @@
 [ext_resource type="PackedScene" path="res://src/engine/GuidanceLine.tscn" id="75"]
 [ext_resource type="PackedScene" uid="uid://dwkek50fju0fu" path="res://src/microbe_stage/PatchNameOverlay.tscn" id="85"]
 
-[node name="MicrobeStage" type="Node"]
+[node name="MicrobeStage" type="Node" node_paths=PackedStringArray("heatViewOverlay")]
 process_priority = -1
 script = ExtResource("1")
 GuidanceLinePath = NodePath("World/GuidanceLine")
+heatViewOverlay = NodePath("World/PrimaryCamera/HeatGradientPlane")
 PauseMenuPath = NodePath("PauseMenu")
 HUDRootPath = NodePath("MicrobeHUD")
 
@@ -30,6 +31,7 @@ AutoProcessWhilePaused = true
 
 [node name="HeatGradientPlane" parent="World/PrimaryCamera" instance=ExtResource("8_7ghg3")]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.62921e-06, -10)
+visible = false
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 

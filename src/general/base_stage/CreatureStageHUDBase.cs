@@ -1225,6 +1225,24 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
         ThriveopediaManager.OpenPage("CurrentWorld");
     }
 
+    private void HeatViewButtonPressed(bool pressed)
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("No stage to set view mode");
+            return;
+        }
+
+        if (pressed)
+        {
+            stage.SetSpecialViewMode(ViewMode.Heat);
+        }
+        else
+        {
+            stage.SetSpecialViewMode(ViewMode.Normal);
+        }
+    }
+
     private void UpdateFossilisationButtons()
     {
         if (!fossilisationButtonLayer.Visible)

@@ -599,14 +599,19 @@ grow_vertical = 0
 offset_bottom = -24.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(550, 69)
-layout_mode = 0
+custom_minimum_size = Vector2(500, 69)
+layout_mode = 1
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -274.0
-offset_top = -69.0
+offset_left = -249.0
+offset_top = -67.0
+offset_right = 251.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 0
 theme = ExtResource("5")
 
 [node name="HotBar" type="HBoxContainer" parent="ScrollContainer"]
@@ -764,6 +769,7 @@ show_percentage = false
 
 [connection signal="OnCompoundsToggled" from="BottomLeft/HUDBottomBar" to="." method="CompoundButtonPressed"]
 [connection signal="OnEnvironmentToggled" from="BottomLeft/HUDBottomBar" to="." method="EnvironmentButtonPressed"]
+[connection signal="OnHeatToggled" from="BottomLeft/HUDBottomBar" to="." method="HeatViewButtonPressed"]
 [connection signal="OnHelpPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenHelp"]
 [connection signal="OnMenuPressed" from="BottomLeft/HUDBottomBar" to="." method="OpenMenu"]
 [connection signal="OnPausePressed" from="BottomLeft/HUDBottomBar" to="." method="PauseButtonPressed"]

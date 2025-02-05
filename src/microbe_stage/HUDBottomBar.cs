@@ -75,6 +75,9 @@ public partial class HUDBottomBar : HBoxContainer
     [Signal]
     public delegate void OnStatisticsPressedEventHandler();
 
+    [Signal]
+    public delegate void OnHeatToggledEventHandler(bool expanded);
+
     public bool Paused
     {
         get => pauseButton.Paused;
@@ -198,6 +201,12 @@ public partial class HUDBottomBar : HBoxContainer
     private void PausePressed(bool paused)
     {
         EmitSignal(SignalName.OnPausePressed, paused);
+    }
+
+    private void HeatButtonPressed(bool pressed)
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        EmitSignal(SignalName.OnHeatToggled, pressed);
     }
 
     private void UpdateCompoundButton()
