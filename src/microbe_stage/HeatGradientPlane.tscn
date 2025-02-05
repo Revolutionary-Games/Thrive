@@ -17,6 +17,7 @@ shader = ExtResource("1_6qe5p")
 shader_parameter/warmColour = Color(1, 0.359565, 0.239655, 1)
 shader_parameter/coldColour = Color(0.233659, 0.0244511, 0.882812, 1)
 shader_parameter/uvOffset = Vector2(0, 0)
+shader_parameter/heatThreshold = 0.5
 shader_parameter/alphaMultiplier = 0.077
 shader_parameter/noiseMultiplier = 0.099
 shader_parameter/heat = ExtResource("2_fflnq")
