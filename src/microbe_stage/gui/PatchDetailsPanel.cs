@@ -304,8 +304,8 @@ public partial class PatchDetailsPanel : PanelContainer
         // Species list
         speciesInfoDisplay = speciesParentContainer.GetItem<CustomRichTextLabel>("SpeciesList");
 
-        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/increase.png");
-        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/decrease.png");
+        increaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/arrowIncrease.svg");
+        decreaseIcon = GD.Load<Texture2D>("res://assets/textures/gui/bevel/arrowDecrease.svg");
 
         UpdateMoveToPatchButton();
         UpdateMigrationManagerVisibility();
