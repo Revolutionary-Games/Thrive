@@ -28,14 +28,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer"]
+[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("heatButton")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = -37.0
-offset_right = 446.0
+offset_right = 434.0
 offset_bottom = -2.0
 grow_vertical = 0
 script = ExtResource("26")
@@ -44,6 +44,7 @@ CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
 SuicideButtonPath = NodePath("SuicideButton")
+heatButton = NodePath("HeatViewButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(50, 35)
@@ -153,6 +154,8 @@ editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 tooltip_text = "TOGGLE_HEAT_VIEW_TOOLTIP"
+focus_mode = 0
+disabled = true
 toggle_mode = true
 text = "T"
 

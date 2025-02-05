@@ -492,6 +492,8 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         if (unbindAllHotkey.ActionNameAsStringName != null)
             unbindAllHotkey.ButtonPressed = Input.IsActionPressed(unbindAllHotkey.ActionNameAsStringName);
+
+        bottomLeftBar.HeatViewAvailable = organelles.HeatCollection > 0;
     }
 
     protected override void UpdateHoverInfo(float delta)
