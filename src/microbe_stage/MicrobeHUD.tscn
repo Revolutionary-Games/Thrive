@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bt2fv82h01ice"]
+[gd_scene load_steps=52 format=3 uid="uid://bt2fv82h01ice"]
 
 [ext_resource type="PackedScene" uid="uid://ddbq6kni0re0u" path="res://src/gui_common/RadialPopup.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="5"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cx6phrsjqkebq" path="res://assets/textures/gui/bevel/actions/Siderophore.svg" id="34_bs2fk"]
 [ext_resource type="PackedScene" uid="uid://uq64skmnc1ob" path="res://src/microbe_stage/gui/DamageEffect.tscn" id="35_h7kw8"]
 [ext_resource type="LabelSettings" uid="uid://bgokf8pxiak4n" path="res://src/gui_common/fonts/Title-SemiBold-Tiny.tres" id="39_2oma1"]
+[ext_resource type="PackedScene" uid="uid://bocoy7fjgtnue" path="res://src/microbe_stage/gui/HeatAccumulationBar.tscn" id="39_al48g"]
 [ext_resource type="LabelSettings" uid="uid://c07qrffjvqfw" path="res://src/gui_common/fonts/Body-Regular-Tiny.tres" id="39_nfpcw"]
 [ext_resource type="Texture2D" uid="uid://on8072s1tlly" path="res://assets/textures/gui/bevel/Hitpoints.png" id="42"]
 [ext_resource type="Texture2D" uid="uid://o0q204t8ees3" path="res://assets/textures/gui/bevel/AtpBar.png" id="43"]
@@ -266,7 +267,7 @@ corner_radius_top_right = 1
 corner_radius_bottom_right = 1
 corner_radius_bottom_left = 1
 
-[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
+[node name="MicrobeHUD" type="Control" node_paths=PackedStringArray("bindingModeHotkey", "unbindAllHotkey", "siderophoreHotkey", "multicellularButton", "multicellularConfirmPopup", "macroscopicButton", "heatAccumulationBar", "environmentPanel", "compoundsPanel", "editorButton", "mucocystHotkey", "sprintHotkey", "strainBar", "damageScreenEffect", "pausePrompt", "pauseInfo", "hudMessages")]
 process_mode = 3
 process_priority = 4
 layout_mode = 3
@@ -287,6 +288,7 @@ siderophoreHotkey = NodePath("ScrollContainer/HotBar/Siderophore")
 multicellularButton = NodePath("BottomRight/VBoxContainer/Control/Multicellular")
 multicellularConfirmPopup = NodePath("StagePrototypeConfirm")
 macroscopicButton = NodePath("BottomRight/VBoxContainer/Control/Macroscopic")
+heatAccumulationBar = NodePath("HeatAccumulationBar")
 MouseHoverPanelPath = NodePath("TopRight/MouseHoverPanel")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
 HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
@@ -746,6 +748,19 @@ offset_bottom = 97.0
 
 [node name="DamageEffect" parent="." instance=ExtResource("35_h7kw8")]
 layout_mode = 1
+
+[node name="HeatAccumulationBar" parent="." instance=ExtResource("39_al48g")]
+visible = false
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 923.0
+offset_top = 681.0
+offset_right = 1051.0
+offset_bottom = 715.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="Strain" type="ProgressBar" parent="."]
 visible = false
