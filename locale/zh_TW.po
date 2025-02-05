@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-04 16:08+0200\n"
+"POT-Creation-Date: 2025-02-05 10:26+0200\n"
 "PO-Revision-Date: 2025-01-21 12:01+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Traditional Han script) <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/zh_Hant/>\n"
@@ -1344,9 +1344,8 @@ msgstr "將[thrive:compound type=\"glucose\"][/thrive:compound] 轉化為[thrive
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "細胞毒素合成"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "選擇目前包含您的物種的區域作為遷移來源"
+msgstr "輻射"
 
 msgid "DAY_LENGTH"
 msgstr "一日時長"
@@ -2220,33 +2219,26 @@ msgstr ""
 msgid "GENERAL"
 msgstr "一般"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_1"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_2"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "小心更大的生物。它們會吃掉您，而且被消化的過程可不好受！"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_3"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "反覆捕獵同一物種時要小心，因為您可能會將它們捕獵至滅絕。其他物種也可以做到這一點。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_4"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "有時逃跑就是最好的選擇。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_5"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "當 Auto-Evo 預測您的物種量會下降時，您仍然可以透過良好的表現來提高物種量。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_6"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "別忘了，您可以使用螢幕右上角的面板查看遊標下的內容。"
 
-#, fuzzy
 msgid "GENERAL_LOADING_TIP_7"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "如果您的物種量降至零，您就會滅絕。"
 
 msgid "GENERATIONS"
 msgstr "世代"
@@ -3140,17 +3132,14 @@ msgstr "中硫磺塊"
 msgid "MEGA_YEARS"
 msgstr "百萬年"
 
-#, fuzzy
 msgid "MELANOSOME"
-msgstr "代謝體"
+msgstr "黑色素體"
 
-#, fuzzy
 msgid "MELANOSOME_DESCRIPTION"
-msgstr "溶酶體是一種有膜細胞器，含有可以分解各種生物分子的水解酶。溶酶體可讓細胞消化經由內吞作用攝取的物質，並在稱為[b]自噬[/b]的過程中清除細胞的廢物。"
+msgstr "黑色素體是一種含有黑色素的有膜細胞器，可以吸收放射性物質發射的高能量電磁波，並透過稱為[b]放射合成[/b]的代謝過程將其轉化為可用能量。吸收輻射的色素也有助於保護細胞更敏感的部分，從而提高整體抵抗輻射的能力。"
 
-#, fuzzy
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "含有消化酶。可以進行修改以改變其所含酶的類型。每個溶酶體一次只能利用一種酶。酶加速並提高消化效率。"
+msgstr "當靠近高放射性岩塊時，將[thrive:compound type=\"radiation\"][/thrive:compound] 轉化為[thrive:compound type=\"atp\"][/thrive:compound]，同時提供抗輻射能力"
 
 msgid "MEMBRANE"
 msgstr "細胞膜"
@@ -3263,36 +3252,33 @@ msgstr "微生物性能基準測試"
 msgid "MICROBE_EDITOR"
 msgstr "微生物編輯器"
 
+#, fuzzy
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "微生物階段自由編輯器"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_1"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "每個網格的細胞質每秒需要消耗 1 [thrive:compound type=\"atp\"][/thrive:compound] 來維持，但它能夠生產 3 [thrive:compound type=\"atp\"][/thrive:compound]。如果您有點缺乏[thrive:compound type=\"atp\"][/thrive:compound]，請嘗試加入幾個細胞質或移除一些細胞器。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_10"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "您的細胞使用[thrive:compound type=\"atp\"][/thrive:compound] 作為能量來源。如果用完了，您就會死。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_11"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "要解鎖編輯器並繁殖，您需要存活足夠長的時間。收集[thrive:compound type=\"ammonia\"][/thrive:compound]（橙色雲）與[thrive:compound type=\"phosphates\"][/thrive:compound]（紫色雲）可加速生長。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "您可以透過按下[thrive:input]g_toggle_engulf[/thrive:input]吞噬比您小的物體並以它們為食。這會花費額外的[thrive:compound type=\"atp\"][/thrive:compound] 並減慢您的速度。別忘了再次按下[thrive:input]g_toggle_engulf[/thrive:input]以停止吞噬。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "您的細胞越大，您維持生命所需的[thrive:compound type=\"atp\"][/thrive:compound] 生產部件就越多。代謝體、鐵氧化藍蛋白、氫化酶甚至細胞質都會生產[thrive:compound type=\"atp\"][/thrive:compound]。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_14"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "編輯器中有許多細胞器可供您演化，從而允許您實現多種不同的遊戲風格。"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_15"
-msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+msgstr "每個物種可用的資源都是有限的，因此增加細胞的大小也會減少最大物種量。"
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
@@ -3353,6 +3339,14 @@ msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "在編輯器中點擊撤消按鈕以糾正錯誤"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "[b]細胞器升級資料：[/b]"
+
+#, fuzzy
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}：存在於 {1} 個物種中，平均每個物種為 {2} 個"
@@ -3941,9 +3935,8 @@ msgstr "ATP 生產受毒素抑制"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "基礎移動速度因毒素而降低"
 
-#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
-msgstr "可以進入編輯器了"
+msgstr "過量輻射損傷"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "可以進入編輯器了"
@@ -4513,17 +4506,14 @@ msgstr ""
 "您確定要退出遊戲嗎？\n"
 "您將遺失所有未儲存的進度。"
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "有氧呼吸"
+msgstr "輻射"
 
-#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "大磷酸鹽塊"
+msgstr "放射性岩塊"
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "熱合成"
+msgstr "放射合成"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "隨機化物種名稱"
@@ -6025,13 +6015,11 @@ msgstr "吞噬 {0} 個微生物（目前為 {1}）"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "多餘的[thrive:compound type=\"atp\"][/thrive:compound] 達到 {0}"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr "死亡次數達到 {0}（目前為 {1}）"
+msgstr "接受傷害達到 {0}（目前為 {1}）"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "死亡次數達到 {0}（目前為 {1}）"
+msgstr "來自{1}的傷害達到 {0}（目前為 {2}）"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "死亡次數達到 {0}（目前為 {1}）"

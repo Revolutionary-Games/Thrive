@@ -167,7 +167,8 @@ public struct OrganelleContainer
 
 public static class OrganelleContainerHelpers
 {
-    private static readonly Lazy<Enzyme> Lipase = new(() => SimulationParameters.Instance.GetEnzyme("lipase"));
+    private static readonly Lazy<Enzyme> Lipase = new(() =>
+        SimulationParameters.Instance.GetEnzyme(Constants.LIPASE_ENZYME));
 
     /// <summary>
     ///   Returns the check result whether this microbe can digest the target (has the enzyme necessary).

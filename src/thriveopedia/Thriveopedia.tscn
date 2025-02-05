@@ -6,14 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://w4gnovw8c1hc" path="res://assets/textures/gui/bevel/homeButton.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://bwhpoof7sbjta" path="res://assets/textures/gui/bevel/homeButtonActive.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://bcy1o8pg86owe" path="res://src/thriveopedia/pages/ThriveopediaHomePage.tscn" id="6"]
-[ext_resource type="Texture2D" uid="uid://vcyi34wajt1n" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://bl7eohr5btm05" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="8"]
-[ext_resource type="Texture2D" uid="uid://waxpjj3uceh8" path="res://assets/textures/gui/bevel/redoButtonDisabled.png" id="9"]
-[ext_resource type="Texture2D" uid="uid://qxt24jxghje" path="res://assets/textures/gui/bevel/redoButtonHover.png" id="10"]
-[ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="11"]
-[ext_resource type="Texture2D" uid="uid://myvmqsv45fl2" path="res://assets/textures/gui/bevel/redoButton.png" id="12"]
-[ext_resource type="Texture2D" uid="uid://c16bkoqqx7w3h" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://dgn0a345ydfa1" path="res://assets/textures/gui/bevel/redoButtonActive.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://dkl35gpkwqmvf" path="res://assets/textures/gui/bevel/undoButton.svg" id="6_rd700"]
+[ext_resource type="Texture2D" uid="uid://b5wnch57nfdkl" path="res://assets/textures/gui/bevel/undoButtonActive.svg" id="7_3656w"]
+[ext_resource type="Texture2D" uid="uid://bqw1s2p3cp5m7" path="res://assets/textures/gui/bevel/undoButtonHover.svg" id="8_kjc2f"]
+[ext_resource type="Texture2D" uid="uid://dkiesgcdqnups" path="res://assets/textures/gui/bevel/undoButtonDisabled.svg" id="9_gn4g4"]
+[ext_resource type="Texture2D" uid="uid://cvvbaukcnwwnx" path="res://assets/textures/gui/bevel/redoButton.svg" id="10_qwpey"]
+[ext_resource type="Texture2D" uid="uid://cwh0nxswd7bbw" path="res://assets/textures/gui/bevel/redoButtonActive.svg" id="11_kq81e"]
+[ext_resource type="Texture2D" uid="uid://bhlaommxe558b" path="res://assets/textures/gui/bevel/redoButtonHover.svg" id="12_78la0"]
+[ext_resource type="Texture2D" uid="uid://gwmteib7k8wi" path="res://assets/textures/gui/bevel/redoButtonDisabled.svg" id="13_howxx"]
 [ext_resource type="LabelSettings" uid="uid://cdmmfuswkgrko" path="res://src/gui_common/fonts/Title-Regular-Big.tres" id="17_rwtrt"]
 [ext_resource type="Texture2D" uid="uid://drtvfxngr7b3l" path="res://assets/textures/gui/bevel/closeButton.png" id="19"]
 [ext_resource type="Texture2D" uid="uid://dvvbhlhu5q75n" path="res://assets/textures/gui/bevel/closeButtonHover.png" id="20"]
@@ -221,11 +221,11 @@ focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginCo
 focus_next = NodePath("../ForwardButton")
 focus_previous = NodePath("../CollapseTreeButton")
 disabled = true
-texture_normal = ExtResource("11")
-texture_pressed = ExtResource("7")
-texture_hover = ExtResource("13")
-texture_disabled = ExtResource("8")
-texture_focused = ExtResource("13")
+texture_normal = ExtResource("6_rd700")
+texture_pressed = ExtResource("7_3656w")
+texture_hover = ExtResource("8_kjc2f")
+texture_disabled = ExtResource("9_gn4g4")
+texture_focused = ExtResource("8_kjc2f")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -239,11 +239,11 @@ focus_neighbor_bottom = NodePath("../../HBoxContainer3/MarginContainer2/MarginCo
 focus_next = NodePath("../HomeButton")
 focus_previous = NodePath("../BackButton")
 disabled = true
-texture_normal = ExtResource("12")
-texture_pressed = ExtResource("14")
-texture_hover = ExtResource("10")
-texture_disabled = ExtResource("9")
-texture_focused = ExtResource("10")
+texture_normal = ExtResource("10_qwpey")
+texture_pressed = ExtResource("11_kq81e")
+texture_hover = ExtResource("12_78la0")
+texture_disabled = ExtResource("13_howxx")
+texture_focused = ExtResource("12_78la0")
 ignore_texture_size = true
 stretch_mode = 5
 

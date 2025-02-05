@@ -7,13 +7,14 @@
 [ext_resource type="Texture2D" uid="uid://d2v0q7sf3ickp" path="res://assets/textures/gui/bevel/searchButton.png" id="5"]
 [ext_resource type="PackedScene" uid="uid://7fwavluq5q7o" path="res://src/gui_common/PlayButton.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://d1oasx2uc34g2" path="res://assets/textures/gui/bevel/environmentButton.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://dmv0hstevg4ut" path="res://assets/textures/gui/bevel/chemicalButton.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://ddjiqgcij2n2l" path="res://assets/textures/gui/bevel/compoundsButton.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://cmqynxgbt4jvj" path="res://assets/textures/gui/bevel/environmentButtonActive.png" id="10"]
 [ext_resource type="Texture2D" uid="uid://qqpvmk0a71tk" path="res://assets/textures/gui/bevel/MainMenuActive.png" id="11"]
 [ext_resource type="Texture2D" uid="uid://oq2xa0j5c6af" path="res://assets/textures/gui/bevel/MainMenuHover.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://r3tppwbfq4mw" path="res://assets/textures/gui/bevel/chemicalButton.svg" id="12_r44vw"]
 [ext_resource type="Texture2D" uid="uid://d2g6mdtpedlsu" path="res://assets/textures/gui/bevel/compoundsButtonHover.png" id="13"]
-[ext_resource type="Texture2D" uid="uid://dp1seimx750wi" path="res://assets/textures/gui/bevel/chemicalButtonHover.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://n0vyshk4aji7" path="res://assets/textures/gui/bevel/chemicalButtonActive.svg" id="13_qgxfk"]
+[ext_resource type="Texture2D" uid="uid://ceko5ytw6ytnr" path="res://assets/textures/gui/bevel/chemicalButtonHover.svg" id="14_ti1r5"]
 [ext_resource type="Texture2D" uid="uid://csoia3qjosic0" path="res://assets/textures/gui/bevel/environmentButtonHover.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://dbudy6jb7bhad" path="res://assets/textures/gui/bevel/helpButtonHover.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://doeuoye8slhmb" path="res://assets/textures/gui/bevel/searchButtonActive.png" id="17"]
@@ -23,7 +24,6 @@
 [ext_resource type="Texture2D" uid="uid://c8fnery2jphca" path="res://assets/textures/gui/bevel/searchButtonHover.png" id="22"]
 [ext_resource type="Texture2D" uid="uid://c6rgyr5rhb352" path="res://assets/textures/gui/bevel/suicideButtonHover.png" id="23"]
 [ext_resource type="Texture2D" uid="uid://dt32f5t6b4u1u" path="res://assets/textures/gui/bevel/statisticsButtonActive.png" id="24"]
-[ext_resource type="Texture2D" uid="uid://dccll5yu8syu5" path="res://assets/textures/gui/bevel/chemicalButtonActive.png" id="25"]
 [ext_resource type="Script" path="res://src/microbe_stage/HUDBottomBar.cs" id="26"]
 
 [sub_resource type="StyleBoxEmpty" id="27"]
@@ -97,9 +97,9 @@ layout_mode = 2
 tooltip_text = "CHEMICAL_BUTTON_MICROBE_TOOLTIP"
 focus_mode = 0
 toggle_mode = true
-texture_normal = ExtResource("8")
-texture_pressed = ExtResource("25")
-texture_hover = ExtResource("14")
+texture_normal = ExtResource("12_r44vw")
+texture_pressed = ExtResource("13_qgxfk")
+texture_hover = ExtResource("14_ti1r5")
 ignore_texture_size = true
 stretch_mode = 5
 

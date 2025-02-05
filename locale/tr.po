@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-04 16:08+0200\n"
-"PO-Revision-Date: 2025-01-24 08:45+0000\n"
+"POT-Creation-Date: 2025-02-05 10:26+0200\n"
+"PO-Revision-Date: 2025-02-03 11:41+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -1347,9 +1347,8 @@ msgstr "[thrive:compound type=\"glucose\"]Glukozu[/thrive:compound], [thrive:com
 msgid "CYTOTOXIN_SYNTHESIS"
 msgstr "Sitotoksin Sentezi"
 
-#, fuzzy
 msgid "DAMAGE_SOURCE_RADIATION"
-msgstr "Göç için kaynak görevi görmesi için şu an türünüzün olduğu bir araziyi seçin"
+msgstr "radyasyon"
 
 msgid "DAY_LENGTH"
 msgstr "Gün Uzunluğu"
@@ -3136,17 +3135,14 @@ msgstr "Orta Büyüklükte Kükürt Parçası"
 msgid "MEGA_YEARS"
 msgstr "Mn. Yıl"
 
-#, fuzzy
 msgid "MELANOSOME"
-msgstr "Metabolozomlar"
+msgstr "Melanozom"
 
-#, fuzzy
 msgid "MELANOSOME_DESCRIPTION"
-msgstr "Lizozom, çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. Lizozomlar, hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve [b]otofaji[/b] adı verilen bir işlemle yan ürünleri temizler."
+msgstr "Melanozom, [b]radyosentez[/b] adı verilen bir işlemde, radyoaktif maddeler tarafından yayılan yüksek enerjili elektromanyetik dalgaları emebilen ve kullanılabilir enerjiye dönüştürebilen melanin pigmentleri içeren zarlı bir organeldir. Radyasyonu emen pigmentler, ayrıca hücrenin daha hassas bölümlerini korumaya yardımcı olarak hücrenin radyasyona karşı genel direncini arttırır."
 
-#, fuzzy
 msgid "MELANOSOME_PROCESSES_DESCRIPTION"
-msgstr "Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. Lizozom başına aynı anda yalnızca bir enzim kullanılabilir."
+msgstr "Yüksek derecede radyoaktif olan taşların yanında, radyasyona karşı direnç sağlarken, aynı zamanda [thrive:compound type=\"radiation\"]radyasyonu[/thrive:compound] ATP'ye dönüştürür."
 
 msgid "MEMBRANE"
 msgstr "Hücre Zarı"
@@ -3259,6 +3255,9 @@ msgstr "Mikrop Performansı"
 msgid "MICROBE_EDITOR"
 msgstr "Mikrop Editörü"
 
+msgid "MICROBE_ENZYME_STATISTICS"
+msgstr "[b]Enzim Verisi:[/b]"
+
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Serbest Mikrop Yapım Editörü"
 
@@ -3327,6 +3326,12 @@ msgstr "Hücrenizin arkasına, simetrik olacak şekilde, kamçı veya balçık f
 
 msgid "MICROBE_LOADING_TIP_9"
 msgstr "Parçaları nereye yerleştirdiğiniz önemlidir. Hücrenizin şekli, hareket ve dönme hızınızı etkiler."
+
+msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
+msgstr "{0}: {1} türde bulundu"
+
+msgid "MICROBE_MEMBRANE_STATISTICS"
+msgstr "[b]Hücre Zarı Verisi:[/b]"
 
 msgid "MICROBE_ORGANELLE_STATISTICS"
 msgstr "  {0}: {1} türde bulundu, her birinde ortalama {2} değerinde"
@@ -3917,9 +3922,8 @@ msgstr "ATP üretimi, toksin tarafından engellendi"
 msgid "NOTICE_HIT_BY_BASE_MOVEMENT_TOXIN"
 msgstr "Temel hareket hızı toksin nedeniyle azaldı"
 
-#, fuzzy
 msgid "NOTICE_RADIATION_DAMAGE"
-msgstr "Editör, şimdi girilmek için hazır"
+msgstr "Aşırı radyasyondan hasar alınıyor"
 
 msgid "NOTICE_READY_TO_EDIT"
 msgstr "Editör, şimdi girilmek için hazır"
@@ -4489,17 +4493,14 @@ msgstr ""
 "Oyundan çıkmak istediğinize emin misiniz?\n"
 "Kaydedilmemiş ilerlemeler kaybedilecek."
 
-#, fuzzy
 msgid "RADIATION"
-msgstr "Oksijenli Solunum"
+msgstr "Radyasyon"
 
-#, fuzzy
 msgid "RADIOACTIVE_CHUNK"
-msgstr "Büyük Fosfat Parçası"
+msgstr "Radyoaktif Taş Parçası"
 
-#, fuzzy
 msgid "RADIOSYNTHESIS"
-msgstr "Termosentez"
+msgstr "Radyosentez"
 
 msgid "RANDOMIZE_SPECIES_NAME"
 msgstr "Tür adını rastgele seç"
@@ -6001,13 +6002,11 @@ msgstr "{0} mikrop yutulmalı (şu anda {1})"
 msgid "UNLOCK_CONDITION_EXCESS_ATP_ABOVE"
 msgstr "Fazladan [thrive:compound type=\"atp\"]ATP[/thrive:compound] miktarı {0} değerine ulaşmalı"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED"
-msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
+msgstr "Alınan hasar {0} değerine ulaşmalı (şu anda {1})"
 
-#, fuzzy
 msgid "UNLOCK_CONDITION_PLAYER_DAMAGE_RECEIVED_SOURCE"
-msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
+msgstr "{1} kaynağından alınan hasar {0} değerine ulaşmalı (şu anda {2})"
 
 msgid "UNLOCK_CONDITION_PLAYER_DEATH_COUNT_ABOVE"
 msgstr "Ölüm sayısı {0} değerine ulaşmalı (şu anda {1})"
@@ -7104,9 +7103,61 @@ msgstr ""
 msgid "WIKI_HELP_AND_TIPS_INTRO"
 msgstr "Bu sayfa, Thrive'ın oynanışı ile ilgili bazı temel bilgiler ve genel tavsiyeler içermektedir."
 
-#, fuzzy
 msgid "WIKI_HELP_AND_TIPS_MICROBE_PARTS"
-msgstr "Mikrop Evresi"
+msgstr ""
+"Bunlar, büyüklük, depolama ve besin ya da enerji üretimi için hücrelere eklenebilen parçalardır.\n"
+"\n"
+"[b][u]Prokaryotik Proteinler[/u][/b]\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:cytoplasm]Sitoplazma[/url][/color], [color=#3796e1][url=thriveopedia:hydrogenase]Hidrojenaz[/url][/color], [color=#3796e1][url=thriveopedia:metabolosome]Metabolozomlar[/url][/color] ve [color=#3796e1][url=thriveopedia:rusticyanin]Rustisiyanin[/url][/color] (ayrıca [color=#3796e1][url=thriveopedia:chromatophore]Tilakoidler[/url][/color] ve [color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinler[/url][/color]), [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:chemoSynthesizingProteins]Kemosentez Yapan Proteinler[/url][/color], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:chromatophore]Tilakoidler[/url][/color], güneş ışığı ve [thrive:compound type=\"carbondioxide\"]karbondiosit[/thrive:compound] olduğu sürece, bedava [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:nitrogenase]Nitrojenaz[/url][/color], fazladan [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:oxytoxyProteins]Toksizomlar[/url][/color], diğer hücrelere hasar verebilen veya onları etkisizleştirebilen toksinler üretir.\n"
+"\n"
+"[b][u]Dış Organeller[/u][/b]\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:flagellum]Kamçı[/url][/color], tek bir doğrultuda hızınızı arttırır.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:pilus]Piluslar[/url][/color], diğer hücreleri delmek ya da hücrenizi onlara karşı savunmak için kullanılabilir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:chemoreceptor]Kemoreseptörler[/url][/color], uzak mesafelerden bileşikleri ve hücreleri algılamanızı sağlar.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:slimeJet]Balçık Fışkırtıcılar[/url][/color], tek bir doğrultuda kısa bir hız artışı sağlar.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:cilia]Siller[/url][/color], hücrelerin dönme hızını arttırır ve öğeleri kendinizi doğru çekmek üzere geliştirilebilir.\n"
+"\n"
+"[b][u]Zarlı Organeller[/u][/b]\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:nucleus]Çekirdek[/url][/color], hücrenizin büyüklüğünü iki katına çıkarır, alınan tüm hasarı %50 azaltır ve diğer zarlı organellerin kilidini açar.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:mitochondrion]Mitokonriler[/url][/color] ve [color=#3796e1][url=thriveopedia:ferroplast]Ferroplastlar[/url][/color], [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:chemoplast]Kemoplastlar[/url][/color], [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:chloroplast]Kloroplastlar[/url][/color], güneş ışığı ve [thrive:compound type=\"carbondioxide\"]karbondiosit[/thrive:compound] olduğu sürece, bedava [thrive:compound type=\"glucose\"]glukoz[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:nitrogenfixingplastid]Nitroplastlar[/url][/color], fazladan [thrive:compound type=\"ammonia\"]amonyak[/thrive:compound] üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:vacuole]Kofullar[/url][/color], bileşikleri saklamak için size bir sürü depo alanı verir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:oxytoxy]Toksin Kofulları[/url][/color], diğer hücrelere hasar verebilen veya onları etkisizleştirebilen toksinler üretir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:lysosome]Lizozomlar[/url][/color], diğer hücreler ile daha etkili bir şekilde beslenmenizi sağlar ve kitinli ya da selülozlu hücre zarı ile hücreleri yutmanıza izin verir.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:signalingAgent]Sinyal Veren Ajanlar[/url][/color], dost hücrelerin karşılık verebileceği sinyaller göndermenizi sağlar.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:bindingAgent]Bağlayıcı Ajanlar[/url][/color] diğer hücreler ile bağ kurmanızı sağlar. Çok Hücreli Evresi'ne yükselmek için bu organel gereklidir.\n"
+"\n"
+"[b][u]BH'de olmayan parçalar[/u][/b]\n"
+"\n"
+"Bu parçalar, Yeni Oyun ayarlarında, yalnızca 'Sadece BH' seçimini kaldırdığınızda mevcut olur.\n"
+"\n"
+"[color=#3796e1][url=thriveopedia:thermosynthase]Termosentaz[/url][/color] ve [color=#3796e1][url=thriveopedia:thermoplast]Termoplastlar[/url][/color], ortam yeterince sıcak olduğu sürece, bedava [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir."
 
 msgid "WIKI_HELP_AND_TIPS_MICROBE_STAGE_TIPS"
 msgstr ""
@@ -7328,59 +7379,30 @@ msgstr ""
 "\n"
 "Aşağıdaki sayfalar, birçok mekaniği açıklamaktadır. Oyunla ilgili ipuçları ve yardım için bu sayfalarda rahatça gezinebilirsiniz."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_EFFECTS"
-msgstr ""
-"[b]Kitinaz[/b] veya [b]Selülaza[/b] sahip bir [b]Lizozom[/b] almak, bir hücrenin sırasıyla [b]Kitin[/b] veya [b]Selüloza[/b] sahip hücre zarı olan hücreleri sindirmesini sağlar. Sindirilemeyen hücreler (bir hücrenin sindirmek için gerekli enzime sahip olmadığı hücreler), hemen dışarı atılır.\n"
-"\n"
-"Genel istatistiklerin yanı sıra, her [b]Lizozom[/b] bunlara da katkıda bulunur:\n"
-"\n"
-"[indent]—   [b]+0.05[/b] sindirim hızı. Yutulan madde daha çabuk sindirilir.[/indent]\n"
-"[indent]—   Seçili enzim için [b]+%4.5[/b] sindirim verimliliği. Enzimin hedeflediği hücre zarına sahip olan yutulan hücreler, sindirildiklerinde daha fazla bileşik verirler. [/indent]"
+msgstr "Etki yok."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_INTRO"
-msgstr ""
-"Sindirim enzimleri içerir. İçerdiği enzim türünü değiştirmek için modifiye edilebilir. [b]Lizozom[/b] başına aynı anda yalnızca bir enzim kullanılabilir.\n"
-"\n"
-"[b]Lizozom[/b], çeşitli biyomolekülleri parçalayabilen hidrolitik enzimler içeren, zarlı bir organeldir. [b]Lizozomlar[/b], hücrenin endositoz ile içeri aldığı maddeleri sindirmesini sağlar ve otofaji adı verilen bir işlemle yan ürünleri temizler."
+msgstr "[b]Melanozomlar[/b], [b]Radyosentez[/b] yapar. Bu işlem, radyasyondaki enerjiyi melaninler ile emerek alır."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_MODIFICATIONS"
-msgstr ""
-"İçerdiği enzimi seçmek için [b]Lizozomda[/b] değişiklik yapın. Varsayılan olarak bu organel, [b]Normal Hücre Zarlarını[/b] ve [b]Çift Katlı Hücre Zarlarını[/b] hedefleyen [b]Lipaz[/b] enzimini içerir.\n"
-"\n"
-"Bir [b]Lizozom[/b] bunun yerine, aşağıdaki enzimlerden birini içerebilir:\n"
-"\n"
-"[indent]—   [b]Kitin Hücre Zarını[/b] hedefleyen [b]Kitinaz[/b][/indent]\n"
-"[indent]—   [b]Selüloz Hücre Zarını[/b] hedefleyen [b]Selülaz[/b][/indent]"
+msgstr "Değişiklikler yok."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_PROCESSES"
-msgstr "İşlem yok."
-
-#, fuzzy
-msgid "WIKI_MELANOSOME_REQUIREMENTS"
 msgstr ""
-"Bir hücre, [b]Lizozomları[/b] evrimleştirmek için [b][color=#3796e1][url=thriveopedia:nucleus]Çekirdeğe[/url][/color][/b] sahip olmalıdır.\n"
+"[b]Radyosentez[/b]: [b]Radyasyon[/b] File:RadiationIcon.png → [thrive:compound type=\"atp\"]ATP[/thrive:compound]\n"
 "\n"
-"Eğer organel geliştirmeleri oyun ayarlarından etkinleştirildiyse, aşağıdaki koşullardan [i]en az biri[/i] [i]oyuncu hücresi[/i] için doğru olmalıdır:\n"
-"\n"
-"[indent]—   Oyun sırasında, şu ana kadar en az [b]20[/b] hücre yutmuş olmak.[/indent]\n"
-"[indent]—   Oyun sırasında, şu ana kadar en az [b]10[/b] hücre sindirmiş olmak.[/indent]"
+"Radyoaktif maddelerden yararlanarak enerji üreten bir yöntemdir."
 
-#, fuzzy
+msgid "WIKI_MELANOSOME_REQUIREMENTS"
+msgstr "Radyasyon hasarı almak için bir radyoaktif parçaya yakın olmak gerekir"
+
 msgid "WIKI_MELANOSOME_SCIENTIFIC_BACKGROUND"
 msgstr "TBA"
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_STRATEGY"
-msgstr ""
-"Avını yutan hücreler için genellikle, biri [b]Kitinaz[/b] diğeri [b]Selülaz[/b] olarak kullanılmak üzere ayarlanan, en az iki [b]Lizozom[/b] evrimleştirilmesi tavsiye edilir. Bu şekilde, hücreniz yutulmaya karşı savunmasız kalacak daha fazla av türünü sindirebilir.\n"
-"\n"
-"Daha fazla [b]Lizozom[/b] eklemek, enzim seçimini yaymak da iyi bir fikirdir. Artan sindirim hızı, bütün yutulan maddeler için ortaya çıkan yetersiz depolama sorununu önleyebilir ve artan sindirim verimliliği, avcılığı önemli ölçüde daha uygulanabilir bir strateji haline getirir."
+msgstr "Radyoaktif taşlar nadirdir, ancak bulunduklarında bol miktarda enerji sağlar. Radyosentez ile önerilen oyun tarzı, bir sonraki radyoaktif taşı ararken yeterli depoya sahip olmak ya da hayatta kalmayı sağlayan diğer yolları bulmaktır. Bir taş bulunduğunda, üreme vb. için geçici olarak bol miktarda enerji sağlanır."
 
-#, fuzzy
 msgid "WIKI_MELANOSOME_UPGRADES"
 msgstr "Geliştirme yok."
 
@@ -7892,9 +7914,8 @@ msgstr "Makroskopik Evresi"
 msgid "WIKI_PAGE_MECHANICS_ROOT"
 msgstr "Mekanikler"
 
-#, fuzzy
 msgid "WIKI_PAGE_MELANOSOME"
-msgstr "Lizozom"
+msgstr "Melanozom"
 
 msgid "WIKI_PAGE_METABOLOSOMES"
 msgstr "Metabolozomlar"

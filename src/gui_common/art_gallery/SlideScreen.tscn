@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=3 uid="uid://oslha78a5bb"]
 
 [ext_resource type="Theme" uid="uid://b4cx0o110g4b6" path="res://src/gui_common/thrive_theme.tres" id="1"]
-[ext_resource type="Texture2D" uid="uid://b2xjfcb1b7fup" path="res://assets/textures/gui/bevel/graphMarkerCross.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://dj12vy45xfnoj" path="res://src/gui_common/PlaybackControls.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://src/general/OrbitCamera.tscn" id="6"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/SlideScreen.cs" id="7"]
+[ext_resource type="Texture2D" uid="uid://bkoy6kqmc5tld" path="res://assets/textures/gui/bevel/closeCross.svg" id="7_i42j0"]
 [ext_resource type="PackedScene" uid="uid://cgdp2u78cxxe7" path="res://src/gui_common/CrossFadableTextureRect.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://cba187yaeukt3" path="res://src/gui_common/TopLevelContainer.tscn" id="9"]
 [ext_resource type="Script" path="res://src/gui_common/art_gallery/CrossFadableGalleryViewport.cs" id="10"]
@@ -117,7 +117,7 @@ offset_top = -9.0
 offset_right = 9.0
 offset_bottom = 9.0
 mouse_filter = 2
-texture = ExtResource("2")
+texture = ExtResource("7_i42j0")
 expand_mode = 1
 stretch_mode = 5
 

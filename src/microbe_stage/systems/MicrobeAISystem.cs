@@ -71,6 +71,9 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private readonly List<(Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)>
         chunkDataCache = new();
 
+    private readonly List<(Entity Entity, Vector3 Position, CompoundBag Compounds)>
+        terrainChunkDataCache = new();
+
     private readonly Dictionary<Species, bool> speciesUsingVaryingCompounds = new();
     private readonly HashSet<BioProcess> varyingCompoundsTemporary = new();
 
@@ -103,9 +106,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
         microbesSet = world.GetEntities().With<WorldPosition>().With<SpeciesMember>()
             .With<Health>().With<Engulfer>().With<Engulfable>().Without<AttachedToEntity>().AsSet();
 
-        // Engulfables, which are basically all chunks when they aren't cells, and aren't attached so that they
-        // also aren't eaten already
-        chunksSet = world.GetEntities().With<Engulfable>().With<WorldPosition>().With<CompoundStorage>()
+        // Chunks that aren't cells or attached so that they also aren't eaten already
+        chunksSet = world.GetEntities().With<WorldPosition>().With<CompoundStorage>()
             .Without<SpeciesMember>().Without<AttachedToEntity>().AsSet();
     }
 
@@ -330,17 +332,37 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             control.SetMucocystState(ref organelles, ref compoundStorage, entity, false);
         }
 
+        var radiationAmount = compounds.GetCompoundAmount(Compound.Radiation);
+        var radiationFraction = radiationAmount / compounds.GetCapacityForCompound(Compound.Radiation);
+
+        if (radiationFraction > Constants.RADIATION_DAMAGE_THRESHOLD * 0.7f)
+        {
+            if (RunFromNearestRadioactiveChunk(ref position, ref ai, ref control))
+            {
+                return;
+            }
+        }
+
+        float atpLevel = compounds.GetCompoundAmount(Compound.ATP);
+
         // If this microbe is out of ATP, pick an amount of time to rest
-        if (compounds.GetCompoundAmount(Compound.ATP) < 1.0f)
+        if (atpLevel < 1.0f)
         {
             // Keep the maximum at 95% full, as there is flickering when near full
             ai.ATPThreshold = 0.95f * speciesFocus / Constants.MAX_SPECIES_FOCUS;
         }
 
+        // Allow the microbe to engulf the prey even if out of ATP
+        if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+                ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
+                speciesAggression, speciesActivity, speciesOpportunism, strain, random, true))
+        {
+            return;
+        }
+
         if (ai.ATPThreshold > MathUtils.EPSILON)
         {
-            if (compounds.GetCompoundAmount(Compound.ATP) <
-                compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
+            if (atpLevel < compounds.GetCapacityForCompound(Compound.ATP) * ai.ATPThreshold)
             {
                 bool outOfSomething = false;
                 foreach (var compound in compounds.Compounds)
@@ -467,6 +489,49 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             }
         }
 
+        // Check if species can hunt any prey and if so - engage in chase
+        if (CheckForHuntingConditions(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
+                ref cellProperties, ref control, ref health, ref compoundStorage, entity, speciesFocus,
+                speciesAggression,
+                speciesActivity, speciesOpportunism, strain, random, false))
+        {
+            return;
+        }
+
+        // There is no reason to be engulfing at this stage
+        control.SetStateColonyAware(entity, MicrobeState.Normal);
+
+        // If the microbe has radiation protection it means it has melanosomes and can stay near the radioactive chunks
+        // to produce ATP
+        if (organelles.RadiationProtection > 0)
+        {
+            if (GoNearRadioactiveChunk(ref position, ref ai, ref control, speciesFocus, random))
+            {
+                return;
+            }
+        }
+
+        // Otherwise just wander around and look for compounds
+        if (!isSessile)
+        {
+            SeekCompounds(in entity, ref ai, ref position, ref control, ref organelles, ref absorber, compounds,
+                speciesActivity, speciesFocus, random);
+        }
+        else
+        {
+            // This organism is sessile, and will not act until the environment changes
+            control.SetMoveSpeed(0.0f);
+        }
+    }
+
+    private bool CheckForHuntingConditions(ref MicrobeAI ai, ref WorldPosition position,
+        ref OrganelleContainer organelles, ref SpeciesMember ourSpecies,
+        ref Engulfer engulfer, ref CellProperties cellProperties, ref MicrobeControl control, ref Health health,
+        ref CompoundStorage compoundStorage, in Entity entity, float speciesFocus, float speciesAggression,
+        float speciesActivity, float speciesOpportunism, float strain, Random random, bool outOfAtp)
+    {
+        var compounds = compoundStorage.Compounds;
+
         // If there are no chunks, look for living prey to hunt
         var possiblePrey = GetNearestPreyItem(ref ai, ref position, ref organelles, ref ourSpecies, ref engulfer,
             compounds, speciesFocus, speciesAggression, speciesOpportunism, random);
@@ -482,32 +547,105 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
             {
                 GD.PrintErr("Microbe AI tried to engage prey with no position: " + e);
                 ai.FocusedPrey = default;
-                return;
+                return false;
             }
 
             bool engulfPrey = cellProperties.CanEngulfObject(ref ourSpecies, ref engulfer, possiblePrey) ==
                 EngulfCheckResult.Ok && position.Position.DistanceSquaredTo(prey) <
                 10.0f * engulfer.EngulfingSize;
 
-            EngagePrey(ref ai, ref control, ref organelles, ref position, compounds, entity, prey, engulfPrey,
-                speciesAggression, speciesFocus, speciesActivity, strain, random);
-            return;
+            // If out of ATP and the prey is out of reach to engulf, do nothing
+            if (outOfAtp && !engulfPrey)
+            {
+                return false;
+            }
+
+            EngagePrey(ref ai, ref control, ref organelles, ref position, ref compoundStorage, ref health, entity,
+                prey, engulfPrey, speciesAggression, speciesFocus, speciesActivity, strain, random);
+            return true;
         }
 
-        // There is no reason to be engulfing at this stage
-        control.SetStateColonyAware(entity, MicrobeState.Normal);
+        return false;
+    }
 
-        // Otherwise just wander around and look for compounds
-        if (!isSessile)
+    private (Entity Entity, Vector3 Position, CompoundBag Compounds)? GetNearestRadioactiveChunk(
+        ref WorldPosition position, float maxDistance)
+    {
+        (Entity Entity, Vector3 Position, CompoundBag Compounds)? chosenChunk = null;
+        float bestFoundChunkDistance = float.MaxValue;
+
+        BuildChunksCache();
+
+        foreach (var chunk in terrainChunkDataCache)
         {
-            SeekCompounds(in entity, ref ai, ref position, ref control, ref organelles, ref absorber, compounds,
-                speciesActivity, speciesFocus, random);
+            if (!chunk.Compounds.Compounds.Keys.Contains(Compound.Radiation))
+            {
+                continue;
+            }
+
+            var distance = (chunk.Position - position.Position).LengthSquared();
+
+            if (distance > bestFoundChunkDistance)
+                continue;
+
+            if (distance > maxDistance)
+                continue;
+
+            chosenChunk = chunk;
         }
-        else
+
+        return chosenChunk;
+    }
+
+    private bool RunFromNearestRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
+        ref MicrobeControl control)
+    {
+        var chosenChunk = GetNearestRadioactiveChunk(ref position, 500.0f);
+
+        if (chosenChunk == null)
         {
-            // This organism is sessile, and will not act until the environment changes
+            return false;
+        }
+
+        var oppositeDirection = position.Position + (position.Position - chosenChunk.Value.Position);
+        oppositeDirection = oppositeDirection.Normalized() * 500.0f;
+
+        ai.TargetPosition = oppositeDirection;
+        control.LookAtPoint = ai.TargetPosition;
+
+        control.SetMoveSpeedTowardsPoint(ref position, ai.TargetPosition, Constants.AI_BASE_MOVEMENT);
+        control.Sprinting = true;
+
+        return true;
+    }
+
+    private bool GoNearRadioactiveChunk(ref WorldPosition position, ref MicrobeAI ai,
+        ref MicrobeControl control, float speciesFocus, Random random)
+    {
+        var maxDistance = 30000.0f * speciesFocus / Constants.MAX_SPECIES_FOCUS + 3000.0f;
+        var chosenChunk = GetNearestRadioactiveChunk(ref position, maxDistance);
+
+        if (chosenChunk == null)
+        {
+            return false;
+        }
+
+        // Range from 0.8 to 1.2
+        var randomMultiplier = (float)random.NextDouble() * 0.4f + 0.8f;
+
+        // If the microbe is close to the chunk it doesn't need to go any closer
+        if (position.Position.DistanceSquaredTo(chosenChunk.Value.Position) < 800.0f * randomMultiplier)
+        {
             control.SetMoveSpeed(0.0f);
+            return true;
         }
+
+        ai.TargetPosition = chosenChunk.Value.Position;
+        control.LookAtPoint = ai.TargetPosition;
+
+        control.SetMoveSpeedTowardsPoint(ref position, ai.TargetPosition, Constants.AI_BASE_MOVEMENT);
+
+        return true;
     }
 
     private (Entity Entity, Vector3 Position, float EngulfSize, CompoundBag Compounds)? GetNearestChunkItem(
@@ -858,10 +996,21 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     }
 
     private void EngagePrey(ref MicrobeAI ai, ref MicrobeControl control, ref OrganelleContainer organelles,
-        ref WorldPosition position, CompoundBag ourCompounds, in Entity entity, Vector3 target, bool engulf,
-        float speciesAggression, float speciesFocus, float speciesActivity, float strain, Random random)
+        ref WorldPosition position, ref CompoundStorage compoundStorage, ref Health health, in Entity entity,
+        Vector3 target, bool engulf, float speciesAggression, float speciesFocus, float speciesActivity,
+        float strain, Random random)
     {
-        control.SetStateColonyAware(entity, engulf ? MicrobeState.Engulf : MicrobeState.Normal);
+        var ourCompounds = compoundStorage.Compounds;
+
+        if (engulf)
+        {
+            control.EnterEngulfModeForcedState(ref health, ref compoundStorage, entity, Compound.ATP);
+        }
+        else
+        {
+            control.SetStateColonyAware(entity, MicrobeState.Normal);
+        }
+
         ai.TargetPosition = target;
         control.LookAtPoint = ai.TargetPosition;
         if (CanShootToxin(ourCompounds, speciesFocus))
@@ -1318,6 +1467,8 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
     private void BuildChunksCache()
     {
         // To allow multithreaded AI access safely
+        // As the chunk lock is always held when building all of the chunk caches,
+        // the other individual cache objects don't need separate locks to protect them
         lock (chunkDataCache)
         {
             if (chunkCacheBuilt)
@@ -1342,9 +1493,17 @@ public sealed class MicrobeAISystem : AEntitySetSystem<float>, ISpeciesMemberLoc
 
                 // TODO: determine if it is a good idea to resolve this data here immediately
                 ref var position = ref chunk.Get<WorldPosition>();
-                ref var engulfable = ref chunk.Get<Engulfable>();
 
-                chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize, compounds.Compounds));
+                if (chunk.Has<Engulfable>())
+                {
+                    ref var engulfable = ref chunk.Get<Engulfable>();
+                    chunkDataCache.Add((chunk, position.Position, engulfable.AdjustedEngulfSize,
+                        compounds.Compounds));
+                }
+                else
+                {
+                    terrainChunkDataCache.Add((chunk, position.Position, compounds.Compounds));
+                }
             }
 
             chunkCacheBuilt = true;

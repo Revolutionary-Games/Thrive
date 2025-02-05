@@ -28,7 +28,10 @@ public class SimulationCache
     private readonly WorldGenerationSettings worldSettings;
 
     private readonly Dictionary<(Species, SelectionPressure, Patch), float> cachedPressureScores = new();
-    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfo> cachedEnergyBalances = new();
+
+    private readonly Dictionary<(MicrobeSpecies, IBiomeConditions), EnergyBalanceInfoSimple>
+        cachedSimpleEnergyBalances = [];
+
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseSpeeds = new();
     private readonly Dictionary<MicrobeSpecies, float> cachedBaseHexSizes = new();
 
@@ -43,7 +46,10 @@ public class SimulationCache
     private readonly Dictionary<(TweakedProcess, IBiomeConditions), ProcessSpeedInformation> cachedProcessSpeeds =
         new();
 
-    private readonly Dictionary<MicrobeSpecies, (float, float, float, float)> cachedPredationToolsRawScores = new();
+    private readonly Dictionary<MicrobeSpecies, (float, float, float, float)>
+        cachedPredationToolsRawScores = new();
+
+    private readonly Dictionary<(MicrobeSpecies, string), float> cachedEnzymeScores = new();
 
     private readonly Dictionary<(MicrobeSpecies, BiomeConditions), bool> cachedUsesVaryingCompounds = new();
 
@@ -69,27 +75,29 @@ public class SimulationCache
         return cached;
     }
 
-    public EnergyBalanceInfo GetEnergyBalanceForSpecies(MicrobeSpecies species, IBiomeConditions biomeConditions)
+    public EnergyBalanceInfoSimple GetEnergyBalanceForSpecies(MicrobeSpecies species,
+        IBiomeConditions biomeConditions)
     {
         // TODO: this gets called an absolute ton with the new auto-evo so a more efficient caching method (to allow
         // different species but with same organelles to be able to use the same cache value) would be nice here
         var key = (species, biomeConditions);
 
-        if (cachedEnergyBalances.TryGetValue(key, out var cached))
+        if (cachedSimpleEnergyBalances.TryGetValue(key, out var cached))
         {
             return cached;
         }
 
         var maximumMovementDirection = MicrobeInternalCalculations.MaximumSpeedDirection(species.Organelles);
 
-        cached = new EnergyBalanceInfo();
+        // TODO: check if caching instances of these objects would be better than always recreating
+        cached = new EnergyBalanceInfoSimple();
 
         // Auto-evo uses the average values of compound during the course of a simulated day
-        ProcessSystem.ComputeEnergyBalance(species.Organelles, biomeConditions, species.MembraneType,
+        ProcessSystem.ComputeEnergyBalanceSimple(species.Organelles, biomeConditions, species.MembraneType,
             maximumMovementDirection, true, species.PlayerSpecies, worldSettings, CompoundAmountType.Average, this,
             cached);
 
-        cachedEnergyBalances.Add(key, cached);
+        cachedSimpleEnergyBalances.Add(key, cached);
         return cached;
     }
 
@@ -224,41 +232,44 @@ public class SimulationCache
         return cached;
     }
 
-    public float GetPredationScore(Species species, Species preySpecies, IBiomeConditions biomeConditions)
+    public float GetPredationScore(Species predatorSpecies, Species preySpecies, IBiomeConditions biomeConditions)
     {
-        if (species is not MicrobeSpecies microbeSpecies)
+        if (predatorSpecies is not MicrobeSpecies predator)
             return 0;
 
         if (preySpecies is not MicrobeSpecies prey)
             return 0;
 
         // No cannibalism
-        if (microbeSpecies == prey)
+        if (predator == prey)
         {
             return 0.0f;
         }
 
-        var key = (microbeSpecies, prey, biomeConditions);
+        var key = (microbeSpecies: predator, prey, biomeConditions);
 
         if (predationScores.TryGetValue(key, out var cached))
         {
             return cached;
         }
 
-        var preyHexSize = GetBaseHexSizeForSpecies(prey);
-        var preySpeed = GetSpeedForSpecies(prey);
-
-        var behaviourScore = microbeSpecies.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
-
         // TODO: If these two methods were combined it might result in better performance with needing just
         // one dictionary lookup
-        var microbeSpeciesHexSize = GetBaseHexSizeForSpecies(microbeSpecies);
-        var predatorSpeed = GetSpeedForSpecies(microbeSpecies);
+        var predatorHexSize = GetBaseHexSizeForSpecies(predator);
+        var predatorSpeed = GetSpeedForSpecies(predator);
+        var preyHexSize = GetBaseHexSizeForSpecies(prey);
+        var preySpeed = GetSpeedForSpecies(prey);
+        var enzymesScore = GetEnzymesScore(predator, prey.MembraneType.DissolverEnzyme);
+        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) =
+            GetPredationToolsRawScores(predator);
+        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
 
-        // Only assign engulf score if one can actually engulf
-        var engulfScore = 0.0f;
-        if (microbeSpeciesHexSize / preyHexSize >
-            Constants.ENGULF_SIZE_RATIO_REQ && microbeSpecies.CanEngulf)
+        var behaviourScore = predator.Behaviour.Aggression / Constants.MAX_SPECIES_AGGRESSION;
+
+        // Only assign engulf score if one can actually engulf (and digest)
+        var engulfmentScore = 0.0f;
+        if (predatorHexSize / preyHexSize >
+            Constants.ENGULF_SIZE_RATIO_REQ && predator.CanEngulf && enzymesScore > 0.0f)
         {
             // Catch scores grossly accounts for how many preys you catch in a run;
             var catchScore = 0.0f;
@@ -274,14 +285,13 @@ public class SimulationCache
             // ... but you may also catch them by luck (e.g. when they run into you),
             // and this is especially easy if you're huge.
             // This is also used to incentivize size in microbe species.
-            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * microbeSpeciesHexSize;
+            catchScore += Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY * predatorHexSize;
 
             // Allow for some degree of lucky engulfment
-            engulfScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
-        }
+            engulfmentScore = catchScore * Constants.AUTO_EVO_ENGULF_PREDATION_SCORE;
 
-        var (pilusScore, oxytoxyScore, predatorSlimeJetScore, _) = GetPredationToolsRawScores(microbeSpecies);
-        var (_, _, preySlimeJetScore, preyMucocystsScore) = GetPredationToolsRawScores(prey);
+            engulfmentScore *= enzymesScore;
+        }
 
         // If the predator is faster than the prey they don't need slime jets that much
         if (predatorSpeed > preySpeed)
@@ -290,17 +300,14 @@ public class SimulationCache
         // Pili are much more useful if the microbe can close to melee
         pilusScore *= predatorSpeed > preySpeed ? 1.0f : Constants.AUTO_EVO_ENGULF_LUCKY_CATCH_PROBABILITY;
 
-        // Having lots of extra Pili really doesn't help you THAT much.
-        pilusScore = MathF.Pow(pilusScore, 0.4f);
-
         // Predators are less likely to use toxin against larger prey, unless they are opportunistic
-        if (preyHexSize > microbeSpeciesHexSize)
+        if (preyHexSize > predatorHexSize)
         {
-            oxytoxyScore *= microbeSpecies.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
+            oxytoxyScore *= predator.Behaviour.Opportunism / Constants.MAX_SPECIES_OPPORTUNISM;
         }
 
         // If you can store enough to kill the prey, producing more isn't as important
-        var storageToKillRatio = microbeSpecies.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
+        var storageToKillRatio = predator.StorageCapacities.Nominal * Constants.OXYTOXY_DAMAGE /
             prey.MembraneType.Hitpoints * prey.MembraneType.ToxinResistance;
         if (storageToKillRatio > 1)
         {
@@ -316,15 +323,16 @@ public class SimulationCache
 
         var scoreMultiplier = 1.0f;
 
-        if (!microbeSpecies.CanEngulf)
+        if (!predator.CanEngulf)
         {
             // If you can't engulf, you just get energy from the chunks leaking.
             scoreMultiplier *= Constants.AUTO_EVO_CHUNK_LEAK_MULTIPLIER;
         }
 
-        cached = (scoreMultiplier * behaviourScore * (pilusScore + engulfScore + oxytoxyScore + predatorSlimeJetScore) -
+        cached = (scoreMultiplier * behaviourScore *
+                (pilusScore + engulfmentScore + oxytoxyScore + predatorSlimeJetScore) -
                 (preySlimeJetScore + preyMucocystsScore)) /
-            GetEnergyBalanceForSpecies(microbeSpecies, biomeConditions).TotalConsumption;
+            GetEnergyBalanceForSpecies(predator, biomeConditions).TotalConsumption;
 
         predationScores.Add(key, cached);
         return cached;
@@ -373,7 +381,7 @@ public class SimulationCache
     public void Clear()
     {
         cachedPressureScores.Clear();
-        cachedEnergyBalances.Clear();
+        cachedSimpleEnergyBalances.Clear();
         cachedBaseSpeeds.Clear();
         cachedBaseHexSizes.Clear();
         cachedCompoundScores.Clear();
@@ -381,23 +389,25 @@ public class SimulationCache
         predationScores.Clear();
         cachedProcessSpeeds.Clear();
         cachedPredationToolsRawScores.Clear();
+        cachedEnzymeScores.Clear();
         cachedUsesVaryingCompounds.Clear();
         cachedStorageScores.Clear();
     }
 
-    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore) GetPredationToolsRawScores(
-        MicrobeSpecies microbeSpecies)
+    public (float PilusScore, float OxytoxyScore, float SlimeJetScore, float MucocystsScore)
+        GetPredationToolsRawScores(MicrobeSpecies microbeSpecies)
     {
         if (cachedPredationToolsRawScores.TryGetValue(microbeSpecies, out var cached))
             return cached;
 
-        var pilusScore = 0.0f;
         var oxytoxyScore = 0.0f;
+        var pilusScore = Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
         var slimeJetScore = Constants.AUTO_EVO_SLIME_JET_SCORE;
         var mucocystsScore = Constants.AUTO_EVO_MUCOCYST_SCORE;
 
         var organelles = microbeSpecies.Organelles.Organelles;
         var organelleCount = organelles.Count;
+        var pilusCount = 0;
         var slimeJetsCount = 0;
         var mucocystsCount = 0;
         var slimeJetsMultiplier = 1.0f;
@@ -408,7 +418,7 @@ public class SimulationCache
 
             if (organelle.Definition.HasPilusComponent)
             {
-                pilusScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+                ++pilusCount;
                 continue;
             }
 
@@ -437,16 +447,63 @@ public class SimulationCache
             }
         }
 
-        // Having lots of extra slime jets and mucocysts really doesn't help you that much
+        // Having lots of extra pili, slime jets and mucocysts doesn't really help much
+        pilusScore *= MathF.Sqrt(pilusCount);
         slimeJetScore *= MathF.Sqrt(slimeJetsCount);
-        slimeJetScore *= slimeJetsMultiplier;
-
         mucocystsScore *= MathF.Sqrt(mucocystsCount);
+
+        slimeJetScore *= slimeJetsMultiplier;
 
         var predationToolsRawScores = (pilusScore, oxytoxyScore, slimeJetScore, mucocystsScore);
 
         cachedPredationToolsRawScores.Add(microbeSpecies, predationToolsRawScores);
         return predationToolsRawScores;
+    }
+
+    public float GetEnzymesScore(MicrobeSpecies predator, string dissolverEnzyme)
+    {
+        var key = (predator, dissolverEnzyme);
+        if (cachedEnzymeScores.TryGetValue(key, out var cached))
+            return cached;
+
+        var organelles = predator.Organelles.Organelles;
+        var isMembraneDigestible = dissolverEnzyme == Constants.LIPASE_ENZYME;
+        var enzymesScore = 0.0f;
+
+        if (isMembraneDigestible)
+        {
+            // Add the base digestion score that works even without any organelles added
+            enzymesScore += Constants.AUTO_EVO_BASE_DIGESTION_SCORE;
+        }
+
+        var count = organelles.Count;
+        for (var i = 0; i < count; ++i)
+        {
+            var organelle = organelles[i].Definition;
+            if (!organelle.HasLysosomeComponent)
+                continue;
+
+            foreach (var enzyme in organelle.Enzymes)
+            {
+                if (enzyme.Key.InternalName != dissolverEnzyme)
+                    continue;
+
+                // No need to check the amount here as organelle data validates enzyme amounts are above 0
+
+                isMembraneDigestible = true;
+
+                // This doesn't use safety as it will be otherwise masking very subtle bugs with some enzyme not
+                // working in auto-evo
+                enzymesScore += Constants.AutoEvoLysosomeEnzymesScores[enzyme.Key.InternalName];
+            }
+        }
+
+        // If not digestible, mark that as a 0 score
+        if (!isMembraneDigestible)
+            enzymesScore = 0;
+
+        cachedEnzymeScores.Add(key, enzymesScore);
+        return enzymesScore;
     }
 
     private float CalculateStorageScore(MicrobeSpecies species, BiomeConditions biomeConditions, Compound compound)

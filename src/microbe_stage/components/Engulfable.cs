@@ -182,6 +182,11 @@ public static class EngulfableHelpers
             entity.Get<MicrobeControl>().State = MicrobeState.Normal;
         }
 
+        if (entity.Has<StrainAffected>())
+        {
+            entity.Get<StrainAffected>().IsUnderStrain = false;
+        }
+
         // Disable compound venting
         if (entity.Has<UnneededCompoundVenter>())
         {

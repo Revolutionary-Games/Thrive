@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 using AutoEvo;
 using Godot;
 
@@ -1079,6 +1080,23 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                 stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
         }
 
+        bbcode += "\n\n" + Localization.Translate("MICROBE_MEMBRANE_STATISTICS");
+
+        foreach (var stat in world.MicrobeSpeciesMembranesStatistics.OrderByDescending(s => s.Value))
+        {
+            bbcode += "\n" + Localization.Translate("MICROBE_MEMBRANE_PERCENTAGE_STATISTICS").FormatSafe(stat.Key,
+                stat.Value.ToString("P", CultureInfo.CurrentCulture));
+        }
+
+        bbcode += "\n\n" + Localization.Translate("MICROBE_ENZYME_STATISTICS");
+
+        foreach (var stat in world.MicrobeSpeciesEnzymesStatistics.OrderByDescending(s => s.Value.Percentage))
+        {
+            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(stat.Key.Name,
+                stat.Value.Percentage.ToString("P", CultureInfo.CurrentCulture),
+                stat.Value.Average.ToString("F2", CultureInfo.CurrentCulture));
+        }
+
         currentWorldStatisticsLabel.ExtendedBbcode = bbcode;
     }
 
@@ -1101,7 +1119,8 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
         var (microbeSpeciesHexSizeAverage, microbeSpeciesHexSizeStandardDeviation) =
             worldsList.Select(w => w.MicrobeSpeciesAverageHexSize).CalculateAverageAndStandardDeviation();
 
-        var bbcode = Localization.Translate("ALL_WORLDS_STATISTICS").FormatSafe(worldGenerations,
+        var stringBuilder = new StringBuilder(1000);
+        stringBuilder.Append(Localization.Translate("ALL_WORLDS_STATISTICS").FormatSafe(worldGenerations,
             totalSpeciesAverage.ToString("F2", CultureInfo.CurrentCulture),
             totalSpeciesStandardDeviation.ToString("F2", CultureInfo.CurrentCulture),
             speciesStillAliveAverage.ToString("F2", CultureInfo.CurrentCulture),
@@ -1111,31 +1130,59 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             populationPerPatchAverage.ToString("F2", CultureInfo.CurrentCulture),
             populationPerPatchStandardDeviation.ToString("F2", CultureInfo.CurrentCulture),
             microbeSpeciesHexSizeAverage.ToString("F2", CultureInfo.CurrentCulture),
-            microbeSpeciesHexSizeStandardDeviation.ToString("F2", CultureInfo.CurrentCulture));
+            microbeSpeciesHexSizeStandardDeviation.ToString("F2", CultureInfo.CurrentCulture)));
 
         foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
         {
             var percentage = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Percentage);
             var average = worldsList.Average(w => w.MicrobeSpeciesOrganelleStatistics[organelle].Average);
-            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
                 organelle.NameWithoutSpecialCharacters,
                 percentage.ToString("P", CultureInfo.CurrentCulture),
-                average.ToString("F2", CultureInfo.CurrentCulture));
+                average.ToString("F2", CultureInfo.CurrentCulture)));
         }
 
-        bbcode += "\n\n" + Localization.Translate("MICROBE_ORGANELLE_UPGRADES_STATISTICS");
+        stringBuilder.Append("\n\n");
+        stringBuilder.Append(Localization.Translate("MICROBE_ORGANELLE_UPGRADES_STATISTICS"));
 
         foreach (var upgradeName in world.MicrobeSpeciesUpgradesStatistics.Keys)
         {
             var percentage = worldsList.Average(w => w.MicrobeSpeciesUpgradesStatistics[upgradeName].Percentage);
             var average = worldsList.Average(w => w.MicrobeSpeciesUpgradesStatistics[upgradeName].Average);
-            bbcode += "\n" + Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(
                 worldsList[0].MicrobeSpeciesUpgradesStatistics[upgradeName].Name,
                 percentage.ToString("P", CultureInfo.CurrentCulture),
-                average.ToString("F2", CultureInfo.CurrentCulture));
+                average.ToString("F2", CultureInfo.CurrentCulture)));
         }
 
-        allWorldsStatisticsLabel.ExtendedBbcode = bbcode;
+        stringBuilder.Append("\n\n");
+        stringBuilder.Append(Localization.Translate("MICROBE_MEMBRANE_STATISTICS"));
+
+        foreach (var upgradeName in world.MicrobeSpeciesMembranesStatistics.Keys)
+        {
+            var percentage = worldsList.Average(w => w.MicrobeSpeciesMembranesStatistics[upgradeName]);
+            stringBuilder.Append("\n");
+            stringBuilder.Append("  ");
+            stringBuilder.Append(Localization.Translate("MICROBE_MEMBRANE_PERCENTAGE_STATISTICS").FormatSafe(
+                upgradeName, percentage.ToString("P", CultureInfo.CurrentCulture)));
+        }
+
+        stringBuilder.Append("\n\n");
+        stringBuilder.Append(Localization.Translate("MICROBE_ENZYME_STATISTICS"));
+
+        foreach (var upgradeName in world.MicrobeSpeciesEnzymesStatistics.Keys)
+        {
+            var percentage = worldsList.Average(w => w.MicrobeSpeciesEnzymesStatistics[upgradeName].Percentage);
+            var average = worldsList.Average(w => w.MicrobeSpeciesEnzymesStatistics[upgradeName].Average);
+            stringBuilder.Append("\n");
+            stringBuilder.Append(Localization.Translate("MICROBE_ORGANELLE_STATISTICS").FormatSafe(upgradeName.Name,
+                percentage.ToString("P", CultureInfo.CurrentCulture),
+                average.ToString("F2", CultureInfo.CurrentCulture)));
+        }
+
+        allWorldsStatisticsLabel.ExtendedBbcode = stringBuilder.ToString();
     }
 
     /// <summary>
@@ -1181,6 +1228,18 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             MicrobeSpeciesUpgradesStatistics = new();
 
         /// <summary>
+        ///   Used to generate membrane statistics
+        /// </summary>
+        public readonly Dictionary<string, double>
+            MicrobeSpeciesMembranesStatistics = new();
+
+        /// <summary>
+        ///   Used to generate enzymes statistics
+        /// </summary>
+        public readonly Dictionary<Enzyme, (double Percentage, double Average)>
+            MicrobeSpeciesEnzymesStatistics = new();
+
+        /// <summary>
         ///   The current generation auto-evo has evolved
         /// </summary>
         public int CurrentGeneration;
@@ -1224,6 +1283,17 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
             }
 
             MicrobeSpeciesUpgradesStatistics.Remove("none");
+
+            foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
+            {
+                MicrobeSpeciesMembranesStatistics.TryAdd(membrane.Name, 0);
+            }
+
+            foreach (var enzyme in SimulationParameters.Instance.GetAllEnzymes())
+            {
+                MicrobeSpeciesEnzymesStatistics.TryAdd(enzyme, (0, 0));
+            }
+
             UpdateWorldStatistics();
         }
 
@@ -1269,6 +1339,23 @@ public partial class AutoEvoExploringTool : NodeWithInput, ISpeciesDataProvider
                         s.Organelles.Any(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false) ? 1 : 0),
                     microbeSpecies.Average(s =>
                         s.Organelles.Count(o => o.Upgrades?.UnlockedFeatures.Contains(upgradeName) ?? false)));
+            }
+
+            foreach (var membrane in SimulationParameters.Instance.GetAllMembranes())
+            {
+                MicrobeSpeciesMembranesStatistics[membrane.Name] =
+                    microbeSpecies.Average(s => s.MembraneType == membrane ? 1 : 0);
+            }
+
+            foreach (var enzyme in MicrobeSpeciesEnzymesStatistics.Keys)
+            {
+                MicrobeSpeciesEnzymesStatistics[enzyme] = (
+                    microbeSpecies.Average(s => s.Organelles.Any(o =>
+                        o.Definition.Enzymes.TryGetValue(enzyme, out var value) && value > 0) ?
+                        1 :
+                        0),
+                    microbeSpecies.Average(s => s.Organelles.Count(o =>
+                        o.Definition.Enzymes.TryGetValue(enzyme, out var value) && value > 0)));
             }
         }
     }

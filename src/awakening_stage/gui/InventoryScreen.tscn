@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" path="res://src/gui_common/dialogs/CustomWindow.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bjd7m7yy3slb0" path="res://assets/textures/gui/CreaturePlaceholder.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bembxnxct020" path="res://assets/textures/gui/bevel/WhiteArrow.png" id="4"]
-[ext_resource type="Texture2D" uid="uid://vcyi34wajt1n" path="res://assets/textures/gui/bevel/undoButtonActive.png" id="5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="5_aa5gb"]
-[ext_resource type="Texture2D" uid="uid://bl7eohr5btm05" path="res://assets/textures/gui/bevel/undoButtonDisabled.png" id="6"]
-[ext_resource type="Texture2D" uid="uid://c16bkoqqx7w3h" path="res://assets/textures/gui/bevel/undoButtonHover.png" id="7"]
-[ext_resource type="Texture2D" uid="uid://dwsqu6nwbwg5s" path="res://assets/textures/gui/bevel/undoButton.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dkl35gpkwqmvf" path="res://assets/textures/gui/bevel/undoButton.svg" id="6_bf3fu"]
+[ext_resource type="Texture2D" uid="uid://b5wnch57nfdkl" path="res://assets/textures/gui/bevel/undoButtonActive.svg" id="7_jce37"]
+[ext_resource type="Texture2D" uid="uid://bqw1s2p3cp5m7" path="res://assets/textures/gui/bevel/undoButtonHover.svg" id="8_1f4ig"]
+[ext_resource type="Texture2D" uid="uid://dkiesgcdqnups" path="res://assets/textures/gui/bevel/undoButtonDisabled.svg" id="9_jlso7"]
 [ext_resource type="PackedScene" path="res://src/gui_common/AddWindowReorderingSupportToSiblings.tscn" id="10"]
 
 [sub_resource type="Animation" id="1"]
@@ -79,7 +79,8 @@ GroundSlotContainerPath = NodePath("GroundPanel/ScrollContainer/HBoxContainer")
 anchors_preset = 0
 
 [node name="GroundPanel" parent="." instance=ExtResource("2")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_top = 0.74
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -106,7 +107,8 @@ size_flags_vertical = 3
 theme_override_constants/separation = 5
 
 [node name="MainInventory" parent="." instance=ExtResource("2")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = 100.0
@@ -168,7 +170,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="CraftingPanel" parent="." instance=ExtResource("2")]
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -239,11 +242,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 tooltip_text = "CRAFTING_CLEAR_INPUTS"
 disabled = true
-texture_normal = ExtResource("8")
-texture_pressed = ExtResource("5")
-texture_hover = ExtResource("7")
-texture_disabled = ExtResource("6")
-texture_focused = ExtResource("7")
+texture_normal = ExtResource("6_bf3fu")
+texture_pressed = ExtResource("7_jce37")
+texture_hover = ExtResource("8_1f4ig")
+texture_disabled = ExtResource("9_jlso7")
+texture_focused = ExtResource("8_1f4ig")
 ignore_texture_size = true
 stretch_mode = 5
 
