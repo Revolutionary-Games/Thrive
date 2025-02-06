@@ -9,6 +9,9 @@ public partial class HeatAccumulationBar : VBoxContainer
     public float IndicatorImageCenterOffset = 8;
 
     [Export]
+    public float IndicatorStickGoodStateSeconds = 0.3f;
+
+    [Export]
     public Color PositiveIndicatorDirectionColour = Colors.LightSeaGreen;
 
 #pragma warning disable CA2213
@@ -32,6 +35,8 @@ public partial class HeatAccumulationBar : VBoxContainer
 
 #pragma warning restore CA2213
 
+    private double goodIndicatorTime;
+
     private bool firstUpdate = true;
 
     public override void _Ready()
@@ -40,6 +45,16 @@ public partial class HeatAccumulationBar : VBoxContainer
 
     public override void _Process(double delta)
     {
+        if (goodIndicatorTime > 0)
+        {
+            goodIndicatorTime -= delta;
+
+            if (goodIndicatorTime <= 0)
+            {
+                currentPositionImage.SelfModulate = Colors.White;
+            }
+        }
+
         // TODO: smooth animation?
     }
 
@@ -93,15 +108,17 @@ public partial class HeatAccumulationBar : VBoxContainer
         currentPositionImage.OffsetLeft = currentHeat * width - IndicatorImageCenterOffset;
     }
 
+    /// <summary>
+    ///   Call with true when the indicator should be turned to a good colour. The colour sticks for a little bit even
+    ///   when this is called with false to make sure the colour doesn't flicker.
+    /// </summary>
+    /// <param name="goingUp">True when the indicator should be marked as good</param>
     public void UpdateIndicator(bool goingUp)
     {
         if (goingUp)
         {
             currentPositionImage.SelfModulate = PositiveIndicatorDirectionColour;
-        }
-        else
-        {
-            currentPositionImage.SelfModulate = Colors.White;
+            goodIndicatorTime = IndicatorStickGoodStateSeconds;
         }
     }
 }
