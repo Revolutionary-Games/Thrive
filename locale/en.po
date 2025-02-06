@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-28 15:22+0200\n"
+"POT-Creation-Date: 2025-02-06 14:42+0200\n"
+"PO-Revision-Date: 2025-02-06 14:44+0200\n"
 "Last-Translator: Henri Hyyryläinen <hhyyrylainen@revolutionarygamesstudio.com>\n"
 "Language-Team: English <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/en/>\n"
 "Language: en\n"
@@ -1385,6 +1385,9 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Physics debug draw not available in this build type"
 
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Heat value: {0}"
+
 msgid "DEBUG_PANEL"
 msgstr "Debug Panel"
 
@@ -2314,6 +2317,12 @@ msgstr "GUI volume"
 
 msgid "HEALTH"
 msgstr "Health"
+
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr ""
+"This bar shows the current temperature of your cell. The yellow indicators show the effective energy generation range.\n"
+"The white vertical bar shows the environmental temperature which the bar is going to go towards.\n"
+"The indicator below the bar changes colour when energy is being generated."
 
 msgid "HELP"
 msgstr "Help"
@@ -5419,19 +5428,19 @@ msgid "THERMOPLAST"
 msgstr "Thermoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce [thrive:compound type=\"atp\"][/thrive:compound] from water in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with change in [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when exposed to heat, then unfold and recycle it into [thrive:compound type=\"atp\"][/thrive:compound] when exposed to cooling in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Thermosynthase is a protein that uses thermal convection to change its form, allowing it to fold and bind to ADP when exposed to heat, then unfold and recycle it into [thrive:compound type=\"atp\"][/thrive:compound] when exposed to cooling in a process called [b]thermosynthesis[/b]. The rate of its [thrive:compound type=\"atp\"][/thrive:compound] production scales with [thrive:compound type=\"temperature\"][/thrive:compound] delta."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with [thrive:compound type=\"temperature\"][/thrive:compound]."
+msgstr "Produces [thrive:compound type=\"atp\"][/thrive:compound] using temperature gradients. Rate scales with change in [thrive:compound type=\"temperature\"][/thrive:compound]. Use thermal vision to find hot and cold areas."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Thermosynthesis"
@@ -5566,6 +5575,9 @@ msgstr "Toggle FPS display"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Toggle fullscreen"
+
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Toggle between normal and thermal view"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Toggle HUD"

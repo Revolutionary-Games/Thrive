@@ -920,7 +920,23 @@ public static class Constants
     /// </summary>
     public const float ENZYME_DIGESTION_EFFICIENCY_MAXIMUM = 0.6f;
 
+    public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
+    public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+    public const float THERMOPLAST_GUI_MAX_TEMPERATURE = 140.0f;
+
+    public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 70.0f;
+    public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 40.0f;
+    public const float THERMOPLAST_HEAT_UP_SPEED = 0.25f;
+
+    /// <summary>
+    ///   Biases the noise used for local temperature variations. Should correspond to what is set in
+    ///   "HeatGradientPlane.tscn"
+    /// </summary>
+    public const float MICROBE_HEAT_NOISE_MIDDLE_POINT = 0.5f;
+
+    public const float MICROBE_HEAT_NOISE_TO_WORLD_RATIO = 1 / MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE;
+    public const float MICROBE_HEAT_AREA_REPEAT_EVERY_WORLD_COORDINATE = 400;
 
     public const float ADDITIONAL_DIGESTIBLE_GLUCOSE_AMOUNT_MULTIPLIER = 1.25f;
 

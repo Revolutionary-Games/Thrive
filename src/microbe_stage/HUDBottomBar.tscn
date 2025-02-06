@@ -28,14 +28,14 @@
 
 [sub_resource type="StyleBoxEmpty" id="27"]
 
-[node name="HUDBottomBar" type="HBoxContainer"]
+[node name="HUDBottomBar" type="HBoxContainer" node_paths=PackedStringArray("heatButton")]
 custom_minimum_size = Vector2(0, 35)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 1.0
 offset_top = -37.0
-offset_right = 446.0
+offset_right = 434.0
 offset_bottom = -2.0
 grow_vertical = 0
 script = ExtResource("26")
@@ -44,6 +44,7 @@ CompoundsButtonPath = NodePath("CompoundsButton")
 EnvironmentButtonPath = NodePath("EnvironmentButton")
 ProcessPanelButtonPath = NodePath("ChemicalButton")
 SuicideButtonPath = NodePath("SuicideButton")
+heatButton = NodePath("HeatViewButton")
 
 [node name="OpenMenu" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(50, 35)
@@ -126,6 +127,17 @@ texture_hover = ExtResource("22")
 ignore_texture_size = true
 stretch_mode = 5
 
+[node name="SuicideButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+tooltip_text = "SUICIDE_BUTTON_TOOLTIP"
+focus_mode = 0
+texture_normal = ExtResource("1")
+texture_pressed = ExtResource("23")
+texture_hover = ExtResource("23")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="QuestionMarkButton" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
@@ -137,16 +149,15 @@ texture_hover = ExtResource("16")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SuicideButton" type="TextureButton" parent="."]
+[node name="HeatViewButton" type="Button" parent="."]
+editor_description = "PLACEHOLDER"
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-tooltip_text = "SUICIDE_BUTTON_TOOLTIP"
+tooltip_text = "TOGGLE_HEAT_VIEW_TOOLTIP"
 focus_mode = 0
-texture_normal = ExtResource("1")
-texture_pressed = ExtResource("23")
-texture_hover = ExtResource("23")
-ignore_texture_size = true
-stretch_mode = 5
+disabled = true
+toggle_mode = true
+text = "T"
 
 [node name="HSeparator" type="HSeparator" parent="."]
 custom_minimum_size = Vector2(15, 0)
@@ -159,5 +170,6 @@ theme_override_styles/separator = SubResource("27")
 [connection signal="pressed" from="CompoundsButton" to="." method="CompoundsButtonPressed"]
 [connection signal="pressed" from="ChemicalButton" to="." method="ProcessButtonPressed"]
 [connection signal="pressed" from="StatisticsButton" to="." method="StatisticsButtonPressed"]
-[connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]
 [connection signal="pressed" from="SuicideButton" to="." method="SuicideButtonPressed"]
+[connection signal="pressed" from="QuestionMarkButton" to="." method="HelpButtonPressed"]
+[connection signal="toggled" from="HeatViewButton" to="." method="HeatButtonPressed"]

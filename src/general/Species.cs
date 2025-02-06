@@ -284,7 +284,7 @@ public abstract class Species : ICloneable
             Genus = match.Groups["genus"].Value;
             Epithet = match.Groups["epithet"].Value;
 
-            GD.Print("Edited species name is now ", FormattedName);
+            GD.Print("Modified species name to: ", FormattedName);
         }
         else
         {
