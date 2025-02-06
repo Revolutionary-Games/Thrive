@@ -225,7 +225,7 @@ public partial class MacroscopicEditor : EditorBase<EditorAction, MacroscopicSta
 
     protected override void InitEditor(bool fresh)
     {
-        patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+        patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
 
         base.InitEditor(fresh);
 

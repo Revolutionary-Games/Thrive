@@ -45,6 +45,7 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+    private PackedScene populationIndicatorScene = null!;
     private Control patchNodeContainer = null!;
     private Control lineContainer = null!;
 #pragma warning restore CA2213
@@ -141,6 +142,11 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
 
+    /// <summary>
+    ///   Player species ID for player population indicator (dots on patch map)
+    /// </summary>
+    public uint PlayerSpeciesID { get; set; }
+
     public override void _Ready()
     {
         base._Ready();
@@ -149,6 +155,7 @@ public partial class PatchMapDrawer : Control
         lineContainer = GetNode<Control>(LineContainerPath);
 
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
+        populationIndicatorScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapPopulationIndicator.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
         {
@@ -1108,6 +1115,24 @@ public partial class PatchMapDrawer : Control
         node.Enabled = patchEnableStatusesToBeApplied?[patch] ?? true;
 
         patch.ApplyPatchEventVisuals(node);
+
+        var playerSpecies = patch.FindSpeciesByID(PlayerSpeciesID);
+        if (playerSpecies != null)
+        {
+            var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
+
+            for (var i = 0; i < playerPopulation * 0.001; i++)
+            {
+                var indicator = populationIndicatorScene.Instantiate<PatchMapPopulationIndicator>();
+                indicator.IndicatorPositionModifier = i;
+                indicator.Position = position;
+                indicator.MouseFilter = MouseFilterEnum.Ignore;
+                indicator.UpdateIndicator(node);
+                node.AddChild(indicator);
+
+                indicator.ShowBehindParent = true;
+            }
+        }
 
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
