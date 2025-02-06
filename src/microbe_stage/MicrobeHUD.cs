@@ -757,7 +757,7 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
             Constants.THERMOPLAST_MAX_ATP_TEMPERATURE, Constants.THERMOPLAST_GUI_MAX_TEMPERATURE);
 
         if (!float.IsNaN(previousTemperature))
-            heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.0001f);
+            heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.00001f);
 
         previousTemperature = cellProperties.Temperature;
     }

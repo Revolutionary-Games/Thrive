@@ -925,9 +925,9 @@ public static class Constants
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
     public const float THERMOPLAST_GUI_MAX_TEMPERATURE = 140.0f;
 
-    public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 50.0f;
-    public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 5.0f;
-    public const float THERMOPLAST_HEAT_UP_SPEED = 2;
+    public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 70.0f;
+    public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 40.0f;
+    public const float THERMOPLAST_HEAT_UP_SPEED = 0.25f;
 
     /// <summary>
     ///   Biases the noise used for local temperature variations. Should correspond to what is set in
