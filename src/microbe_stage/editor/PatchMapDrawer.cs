@@ -155,7 +155,8 @@ public partial class PatchMapDrawer : Control
         lineContainer = GetNode<Control>(LineContainerPath);
 
         nodeScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapNode.tscn");
-        populationIndicatorScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/PatchMapPopulationIndicator.tscn");
+        populationIndicatorScene = GD.Load<PackedScene>(
+            "res://src/microbe_stage/editor/PatchMapPopulationIndicator.tscn");
 
         if (DrawDefaultMapIfEmpty && Map == null)
         {
@@ -1121,7 +1122,7 @@ public partial class PatchMapDrawer : Control
         {
             var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
 
-            for (var i = 0; i < playerPopulation * 0.001; i++)
+            for (var i = 0; i < playerPopulation * 0.001; ++i)
             {
                 var indicator = populationIndicatorScene.Instantiate<PatchMapPopulationIndicator>();
                 indicator.IndicatorPositionModifier = i;

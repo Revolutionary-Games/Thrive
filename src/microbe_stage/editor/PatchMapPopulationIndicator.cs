@@ -1,5 +1,4 @@
-using AngleSharp.Dom;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Dots scattered around patch map nodes, indication population of player species
@@ -30,7 +29,7 @@ public partial class PatchMapPopulationIndicator : Control
         var nodeModifier = parent.Position.LengthSquared();
         var modifierSinus = Mathf.Sin(IndicatorPositionModifier);
 
-        indicator.Position = Size * 0.5f + new Vector2(0, 40).Rotated(nodeModifier * 20) + new Vector2(0, modifierSinus * 50).Rotated(
-            IndicatorPositionModifier * 6 * modifierSinus + nodeModifier);
+        indicator.Position = Size * 0.5f + new Vector2(0, 40).Rotated(nodeModifier * 20) + new Vector2(
+            0, modifierSinus * 50).Rotated(IndicatorPositionModifier * 6 * modifierSinus + nodeModifier);
     }
 }
