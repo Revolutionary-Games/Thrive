@@ -923,6 +923,7 @@ public static class Constants
     public const float THERMOPLAST_MIN_ATP_TEMPERATURE = 20.0f;
     public const float THERMOPLAST_MAX_ATP_TEMPERATURE = 120.0f;
     public const float OPTIMAL_THERMOPLAST_TEMPERATURE = 100.0f;
+    public const float THERMOPLAST_GUI_MAX_TEMPERATURE = 140.0f;
 
     public const float NOISE_EFFECT_ON_LOCAL_TEMPERATURE = 50.0f;
     public const float TEMPERATURE_CHANGE_TO_TEMPERATURE_MULTIPLIER = 5.0f;

@@ -65,10 +65,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
     private bool playerWasDigested;
 
     /// <summary>
-    ///   Wether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
+    ///   Whether or not the player has the <see cref="StrainAffected"/> component, if not an error will be printed
     ///   and updating the bar will be ignored
     /// </summary>
     private bool playerMissingStrainAffected;
+
+    private float previousTemperature = float.NaN;
 
     [Signal]
     public delegate void OnToggleEngulfButtonPressedEventHandler();
@@ -752,7 +754,12 @@ public partial class MicrobeHUD : CreatureStageHUDBase<MicrobeStage>
 
         heatAccumulationBar.UpdateHeat(Math.Max(cellProperties.Temperature, 0), ReadTemperature(null),
             Constants.THERMOPLAST_MIN_ATP_TEMPERATURE, Constants.OPTIMAL_THERMOPLAST_TEMPERATURE,
-            Constants.THERMOPLAST_MAX_ATP_TEMPERATURE);
+            Constants.THERMOPLAST_MAX_ATP_TEMPERATURE, Constants.THERMOPLAST_GUI_MAX_TEMPERATURE);
+
+        if (!float.IsNaN(previousTemperature))
+            heatAccumulationBar.UpdateIndicator(cellProperties.Temperature > previousTemperature + 0.0001f);
+
+        previousTemperature = cellProperties.Temperature;
     }
 
     private void OnBecomeMulticellularPressed()
