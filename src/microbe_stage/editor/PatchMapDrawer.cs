@@ -22,6 +22,9 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     [Export]
+    public Texture2D IndicatorTexture = null!;
+
+    [Export]
     public ShaderMaterial MonochromeMaterial = null!;
 #pragma warning restore CA2213
 
@@ -39,6 +42,9 @@ public partial class PatchMapDrawer : Control
 
 #pragma warning disable CA2213
     private PackedScene nodeScene = null!;
+
+    [Export]
+    private Control populationIndicatorContainer = null!;
 
     [Export]
     private Control patchNodeContainer = null!;
@@ -138,6 +144,11 @@ public partial class PatchMapDrawer : Control
     ///   Called when the currently shown patch properties should be looked up again
     /// </summary>
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
+
+    /// <summary>
+    ///   Player species ID for player population indicator (dots on patch map)
+    /// </summary>
+    public uint PlayerSpeciesID { get; set; }
 
     public override void _Ready()
     {
@@ -286,6 +297,7 @@ public partial class PatchMapDrawer : Control
     public void ClearMap()
     {
         lineContainer.QueueFreeChildren(false);
+        populationIndicatorContainer.QueueFreeChildren(false);
         patchNodeContainer.FreeChildren();
         nodes.Clear();
         connections.Clear();
@@ -1100,8 +1112,41 @@ public partial class PatchMapDrawer : Control
 
         patch.ApplyPatchEventVisuals(node);
 
+        var playerSpecies = patch.FindSpeciesByID(PlayerSpeciesID);
+        if (playerSpecies != null)
+        {
+            var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
+
+            for (var i = 0; i < MathF.Sqrt(playerPopulation) * Constants.INDICATORS_NUMBER_PER_POPULATION_SQUARED; ++i)
+            {
+                var lifeIndicator = new TextureRect
+                {
+                    Texture = IndicatorTexture,
+                    Position = GetIndicatorPosition(node, i, IndicatorTexture),
+                    MouseFilter = MouseFilterEnum.Ignore,
+                };
+
+                populationIndicatorContainer.AddChild(lifeIndicator);
+            }
+        }
+
         patchNodeContainer.AddChild(node);
         nodes.Add(node.Patch, node);
+    }
+
+    private Vector2 GetIndicatorPosition(Control parent, int dotIndex, Texture2D texture)
+    {
+        var indexModifier = MathF.Sin(dotIndex) * 0.5f + 0.5f;
+        var nodeModifier = parent.Position.LengthSquared();
+        var nodeCenter = parent.Position + new Vector2(Constants.PATCH_NODE_RECT_LENGTH / 2,
+            Constants.PATCH_NODE_RECT_LENGTH / 2) - new Vector2(texture.GetWidth() / 2.0f, texture.GetHeight() / 2.0f);
+
+        var offset = new Vector2(0,
+            indexModifier * Constants.PATCH_LIFE_INDICATOR_RADIUS_SCALE + Constants.PATCH_LIFE_INDICATOR_RADIUS_BASE);
+        var angle = dotIndex * indexModifier * 1.618f + nodeModifier;
+        offset = offset.Rotated(angle);
+
+        return nodeCenter + offset;
     }
 
     private void BuildPatchToRegionConnections(PatchRegion region1, PatchRegion region2, Vector2 regionPoint,

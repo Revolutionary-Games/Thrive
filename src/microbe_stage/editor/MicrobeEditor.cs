@@ -217,7 +217,7 @@ public partial class MicrobeEditor : EditorBase<EditorAction, MicrobeStage>, IEd
 
     protected override void InitEditor(bool fresh)
     {
-        patchMapTab.SetMap(CurrentGame.GameWorld.Map);
+        patchMapTab.SetMap(CurrentGame.GameWorld.Map, CurrentGame.GameWorld.PlayerSpecies.ID);
 
         // Register showing certain parts of the GUI as the tutorial progresses
         TutorialState.EditorRedoTutorial.OnOpened += OnShowStatisticsForTutorial;

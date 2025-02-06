@@ -148,8 +148,9 @@ public partial class PatchMapEditorComponent<TEditor> : EditorComponentBase<TEdi
         fogOfWar = (FogOfWarMode)reader.ReadInt32();
     }
 
-    public void SetMap(PatchMap map)
+    public void SetMap(PatchMap map, uint playerSpeciesID)
     {
+        mapDrawer.PlayerSpeciesID = playerSpeciesID;
         mapDrawer.Map = map;
     }
 
