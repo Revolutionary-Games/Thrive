@@ -5,14 +5,13 @@
 /// </summary>
 public class CompoundBalance
 {
-    public readonly Dictionary<string, float> Consumption = new();
+    public Dictionary<string, float>? ConsumptionOrganelles;
 
-    public readonly Dictionary<string, float> Production = new();
+    public Dictionary<string, float>? ProductionOrganelles;
 
-    /// <summary>
-    ///   Total balance of this compound
-    /// </summary>
-    public float Balance;
+    public float Consumption;
+
+    public float Production;
 
     /// <summary>
     ///   Optionally calculated value for how long it takes for this compound to fill storage (0 when not calculated,
@@ -20,21 +19,38 @@ public class CompoundBalance
     /// </summary>
     public float FillTime;
 
+    /// <summary>
+    ///   Total balance of this compound
+    /// </summary>
+    public float Balance
+    {
+        get
+        {
+            return Production - Consumption;
+        }
+    }
+
     public void AddConsumption(string organelleName, float amount)
     {
-        Consumption.TryGetValue(organelleName, out var existing);
+        if (ConsumptionOrganelles != null)
+        {
+            ConsumptionOrganelles.TryGetValue(organelleName, out var existing);
 
-        Consumption[organelleName] = existing + amount;
+            ConsumptionOrganelles[organelleName] = existing + amount;
+        }
 
-        Balance -= amount;
+        Consumption += amount;
     }
 
     public void AddProduction(string organelleName, float amount)
     {
-        Production.TryGetValue(organelleName, out var existing);
+        if (ProductionOrganelles != null)
+        {
+            ProductionOrganelles.TryGetValue(organelleName, out var existing);
 
-        Production[organelleName] = existing + amount;
+            ProductionOrganelles[organelleName] = existing + amount;
+        }
 
-        Balance += amount;
+        Production += amount;
     }
 }

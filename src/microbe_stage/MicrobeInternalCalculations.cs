@@ -605,7 +605,7 @@ public static class MicrobeInternalCalculations
 
             // Found a compound that is generated during the day more than night
 
-            var drainRate = -minimumValue?.Balance ?? normalBalance.Value.Consumption.SumValues();
+            var drainRate = -minimumValue?.Balance ?? normalBalance.Value.Consumption;
 
             // As things slowly pick up again after the night, it isn't fully this bad, this is just a worst case
             // scenario

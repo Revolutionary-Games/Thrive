@@ -196,12 +196,12 @@ public class MicrobeSpecies : Species, ICellDefinition
             var balanceValue = compoundBalance.Value;
 
             // Skip compounds there's no consumption for (from processes)
-            if (balanceValue.Consumption.Count < 1)
+            if (balanceValue.Consumption <= MathUtils.EPSILON)
                 continue;
 
             // Initial compounds should suffice for a fixed amount of time of consumption.
             var compoundInitialAmount =
-                Math.Abs(balanceValue.Consumption.SumValues()) * Constants.INITIAL_COMPOUND_TIME;
+                Math.Abs(balanceValue.Consumption) * Constants.INITIAL_COMPOUND_TIME;
 
             if (compoundInitialAmount > cachedCapacity)
                 compoundInitialAmount = cachedCapacity;
