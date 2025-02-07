@@ -14,6 +14,20 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
     [Export]
     public PermanentDismissTypeEnum PermanentDismissType = PermanentDismissTypeEnum.RememberOnConfirm;
 
+    /// <summary>
+    ///   If set to true, then the checkbox to permanently dismiss this dialog is automatically checked when this is
+    ///   opened
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Note that this only works perfectly when using <see cref="PopupIfNotDismissed"/> otherwise this is only
+    ///     applied when this enters the scene tree. So if a popup is reused in a way that
+    ///     <see cref="PopupIfNotDismissed"/> is not called, this option may not get applied.
+    ///   </para>
+    /// </remarks>
+    [Export]
+    public bool AutomaticallyCheckDismissPermanently;
+
 #pragma warning disable CA2213 // Disposable fields should be disposed
     private CheckBox checkbox = null!;
 #pragma warning restore CA2213 // Disposable fields should be disposed
@@ -45,6 +59,11 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
                 checkbox.Text = Localization.Translate("DISMISS_WARNING_PERMANENTLY");
                 break;
         }
+
+        if (AutomaticallyCheckDismissPermanently)
+        {
+            checkbox.ButtonPressed = true;
+        }
     }
 
     /// <summary>
@@ -57,6 +76,12 @@ public partial class PermanentlyDismissibleDialog : CustomConfirmationDialog
         if (!Settings.Instance.IsNoticePermanentlyDismissed(NoticeType))
         {
             PopupCenteredShrink();
+
+            if (AutomaticallyCheckDismissPermanently)
+            {
+                checkbox.ButtonPressed = true;
+            }
+
             return true;
         }
 
