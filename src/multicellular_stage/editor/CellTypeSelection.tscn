@@ -1,13 +1,46 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cn0sqyg1htg45"]
 
 [ext_resource type="PackedScene" uid="uid://bkck67cp1p68u" path="res://src/microbe_stage/editor/MicrobePartSelection.tscn" id="1"]
 [ext_resource type="Script" path="res://src/multicellular_stage/editor/CellTypeSelection.cs" id="2"]
 
-[sub_resource type="ButtonGroup" id=1]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xjxp1"]
+bg_color = Color(0.321545, 0.077991, 0.077618, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.22769, 0.0443489, 0.0444666, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[node name="CellTypeSelection" instance=ExtResource( 1 )]
-script = ExtResource( 2 )
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rvnar"]
+bg_color = Color(0.651654, 0.201407, 0.199912, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="CellTypeSelection" node_paths=PackedStringArray("atpProductionBar", "atpConsumptionBar") instance=ExtResource("1")]
+script = ExtResource("2")
+atpProductionBar = NodePath("VBoxContainer/VBoxContainer2/ProgressBar2")
+atpConsumptionBar = NodePath("VBoxContainer/VBoxContainer2/ProgressBar")
 AlwaysShowLabel = true
 
-[node name="Button" parent="VBoxContainer" index="0"]
-group = SubResource( 1 )
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ProgressBar2" type="ProgressBar" parent="VBoxContainer/VBoxContainer2" index="0"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+show_percentage = false
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/VBoxContainer2" index="1"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_xjxp1")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rvnar")
+show_percentage = false

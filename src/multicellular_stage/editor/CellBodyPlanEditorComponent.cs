@@ -1019,6 +1019,25 @@ public partial class CellBodyPlanEditorComponent :
             ClearSelectedAction();
     }
 
+    private void UpdateCellTypeSelectionsBalances()
+    {
+        foreach (var button in cellTypeSelectionButtons)
+        {
+            var energyBalance = new EnergyBalanceInfoSimple();
+
+            var maximumMovementDirection =
+                MicrobeInternalCalculations.MaximumSpeedDirection(button.Value.CellType.Organelles);
+
+            ProcessSystem.ComputeEnergyBalanceSimple(button.Value.CellType.Organelles, Editor.CurrentPatch.Biome,
+                button.Value.CellType.MembraneType, maximumMovementDirection, organismStatisticsPanel.CalculateBalancesWhenMoving,
+                true, Editor.CurrentGame.GameWorld.WorldSettings, organismStatisticsPanel.CompoundAmountType, null,
+                energyBalance);
+
+            button.Value.EnergyProduction = energyBalance.TotalProduction;
+            button.Value.EnergyConsumption = energyBalance.TotalConsumption;
+        }
+    }
+
     private void OnCellToPlaceSelected(string cellTypeName)
     {
         if (!cellTypeSelectionButtons.TryGetValue(cellTypeName, out _))
@@ -1132,11 +1151,6 @@ public partial class CellBodyPlanEditorComponent :
 
         energyBalanceInfo = energyBalance;
 
-        // TODO: It doesn't entirely make sense to sum up a colony's ATP balances and show them that way.
-        // It would be better to display those separately for each cell type.
-        // https://github.com/Revolutionary-Games/Thrive/issues/5863
-        organismStatisticsPanel.UpdateEnergyBalance(energyBalance);
-
         // Passing those variables by refs to the following functions to reuse them
         float nominalStorage = 0;
         Dictionary<Compound, float>? specificStorages = null;
@@ -1159,6 +1173,8 @@ public partial class CellBodyPlanEditorComponent :
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
         HandleProcessList(cells, energyBalance, conditionsData);
+
+        UpdateCellTypeSelectionsBalances();
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,

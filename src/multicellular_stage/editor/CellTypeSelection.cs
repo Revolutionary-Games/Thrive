@@ -12,9 +12,18 @@ public partial class CellTypeSelection : MicrobePartSelection
     private Texture2D placeholderIcon = null!;
 
     private Texture2D? cellImage;
+
+    [Export]
+    private ProgressBar atpProductionBar = null!;
+
+    [Export]
+    private ProgressBar atpConsumptionBar = null!;
 #pragma warning restore CA2213
 
     private IImageTask? imageTask;
+
+    private float energyProduction;
+    private float energyConsumption;
 
     public CellType CellType
     {
@@ -26,6 +35,28 @@ public partial class CellTypeSelection : MicrobePartSelection
 
             ReportTypeChanged();
             cellType = value;
+        }
+    }
+
+    public float EnergyProduction
+    {
+        get => energyProduction;
+        set
+        {
+            energyProduction = value;
+
+            UpdateProductionBar();
+        }
+    }
+
+    public float EnergyConsumption
+    {
+        get => energyConsumption;
+        set
+        {
+            energyConsumption = value;
+
+            UpdateConsumptionBar();
         }
     }
 
@@ -70,5 +101,15 @@ public partial class CellTypeSelection : MicrobePartSelection
         // recreate the image (caching layer should probably maybe go into PhotoStudio)
         cellImage = null;
         imageTask = null;
+    }
+
+    public void UpdateProductionBar()
+    {
+        atpProductionBar.Value = EnergyProduction;
+    }
+
+    public void UpdateConsumptionBar()
+    {
+        atpConsumptionBar.Value = energyConsumption;
     }
 }
