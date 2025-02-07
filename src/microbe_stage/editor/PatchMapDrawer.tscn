@@ -11,6 +11,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 1
@@ -21,12 +23,12 @@ LineContainerPath = NodePath("LineContainer")
 MonochromeMaterial = SubResource("1")
 populationIndicatorContainer = NodePath("PopulationIndicatorContainer")
 
+[node name="PopulationIndicatorContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+
 [node name="LineContainer" type="Control" parent="."]
 anchors_preset = 0
 
 [node name="PatchNodeContainer" type="Control" parent="."]
-anchors_preset = 0
-
-[node name="PopulationIndicatorContainer" type="Control" parent="."]
-layout_mode = 3
 anchors_preset = 0
