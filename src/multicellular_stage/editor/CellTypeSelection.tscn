@@ -25,21 +25,26 @@ corner_radius_bottom_left = 3
 
 [node name="CellTypeSelection" node_paths=PackedStringArray("atpProductionBar", "atpConsumptionBar") instance=ExtResource("1")]
 script = ExtResource("2")
-atpProductionBar = NodePath("VBoxContainer/VBoxContainer2/ProgressBar2")
-atpConsumptionBar = NodePath("VBoxContainer/VBoxContainer2/ProgressBar")
+atpProductionBar = NodePath("VBoxContainer/MarginContainer/VBoxContainer2/ProgressBar2")
+atpConsumptionBar = NodePath("VBoxContainer/MarginContainer/VBoxContainer2/ProgressBar")
 AlwaysShowLabel = true
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" index="2"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" index="2"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/MarginContainer" index="0"]
 layout_mode = 2
 theme_override_constants/separation = 2
 
-[node name="ProgressBar2" type="ProgressBar" parent="VBoxContainer/VBoxContainer2" index="0"]
-custom_minimum_size = Vector2(0, 5)
+[node name="ProgressBar2" type="ProgressBar" parent="VBoxContainer/MarginContainer/VBoxContainer2" index="0"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 show_percentage = false
 
-[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/VBoxContainer2" index="1"]
-custom_minimum_size = Vector2(0, 5)
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/MarginContainer/VBoxContainer2" index="1"]
+custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_xjxp1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rvnar")

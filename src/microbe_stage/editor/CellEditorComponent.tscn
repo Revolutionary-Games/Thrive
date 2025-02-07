@@ -811,6 +811,7 @@ ShowSpeedStat = true
 ShowRotationSpeedStat = true
 ShowDigestionSpeedStat = true
 ShowDigestionEfficiencyStat = true
+ShowATPBalance = true
 processList = NodePath("../../../ProcessPanel/ScrollContainer/ProcessList")
 processListWindow = NodePath("../../../ProcessPanel")
 lightConfigurationPanel = NodePath("../../../TopPanel/LightConfigurationPanel")

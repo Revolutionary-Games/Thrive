@@ -31,6 +31,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     [Export]
     public bool ShowDigestionEfficiencyStat;
 
+    [Export]
+    public bool ShowATPBalance;
+
 #pragma warning disable CA2213
 
     [Export]
@@ -185,6 +188,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
         digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
+
+        atpBalancePanel.Visible = ShowATPBalance;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
@@ -212,6 +217,8 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
+
+        GD.Print($"{energyBalance.TotalProduction}, {energyBalance.TotalConsumption} => {maxValue}");
         atpProductionBar.MaxValue = maxValue;
         atpConsumptionBar.MaxValue = maxValue;
 
