@@ -42,12 +42,11 @@ public partial class HUDBottomBar : HBoxContainer
     private PlayButton pauseButton = null!;
 
     [Export]
-    private Button heatButton = null!;
-
     private TextureButton? compoundsButton;
     private TextureButton? environmentButton;
     private TextureButton? processPanelButton;
     private TextureButton? suicideButton;
+    private TextureButton? heatButton;
 #pragma warning restore CA2213
 
     private bool compoundsPressed = true;
