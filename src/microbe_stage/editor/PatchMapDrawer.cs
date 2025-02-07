@@ -1176,8 +1176,6 @@ public partial class PatchMapDrawer : Control
                 indicator.Position = node.Position + new Vector2(0, 20)
                     .Rotated(nodeModifier * 30) + new Vector2(0, modifierSinus * 50).Rotated(
                         i * 6 * modifierSinus + nodeModifier);
-
-                indicator.ZIndex = -1;
             }
         }
 
