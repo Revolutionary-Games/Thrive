@@ -1132,8 +1132,9 @@ public partial class PatchMapDrawer : Control
             var playerPopulationIndicatorAmount = (int)Math.Ceiling(
                 patch.GetSpeciesSimulationPopulation(playerSpecies) * 0.004);
 
-            var indicatorExcess = Mathf.Clamp(
-                playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount, 0, playerSpeciesPopulationIndicators.Count);
+            var indicatorExcess = Math.Clamp(
+                playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount, 0,
+                playerSpeciesPopulationIndicators.Count);
 
             for (int i = 0; i < indicatorExcess; ++i)
             {
@@ -1163,7 +1164,7 @@ public partial class PatchMapDrawer : Control
                 indicator.MouseFilter = MouseFilterEnum.Ignore;
 
                 var nodeModifier = node.Position.LengthSquared();
-                var modifierSinus = Mathf.Sin(i);
+                var modifierSinus = MathF.Sin(i);
 
                 if (noCached)
                 {
