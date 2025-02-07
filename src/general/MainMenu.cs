@@ -115,6 +115,8 @@ public partial class MainMenu : NodeWithInput
     [Export]
     public NodePath MenusPath = null!;
 
+    private const string MainWebsiteLink = "https://revolutionarygamesstudio.com";
+
 #pragma warning disable CA2213
     private TextureRect background = null!;
     private Node3D? created3DBackground;
@@ -184,9 +186,11 @@ public partial class MainMenu : NodeWithInput
     private bool canShowThanks;
 
     /// <summary>
-    ///   The store specific page link. Defaults to the website link if we don't know a valid store name
+    ///   The store-specific page link. Defaults to the website link if we don't know a valid store name
     /// </summary>
     private string storeBuyLink = "https://revolutionarygamesstudio.com/releases/";
+
+    private string storeDisplayName = "ERROR";
 
     private double averageFrameRate;
 
@@ -220,7 +224,7 @@ public partial class MainMenu : NodeWithInput
 
         RunMenuSetup();
 
-        // Start intro video
+        // Start the intro video
         if (Settings.Instance.PlayIntroVideo && LaunchOptions.VideosEnabled && !IsReturningToMenu &&
             SafeModeStartupHandler.AreVideosAllowed())
         {
@@ -284,9 +288,10 @@ public partial class MainMenu : NodeWithInput
                 {
                     GD.Print("We are most likely a store version of Thrive, showing the thanks dialog");
 
-                    // The text has a store link template, so we need to update the right links into it
+                    // The text has link templates, so we need to update the right links into it
                     thanksDialog.DialogText =
-                        Localization.Translate("THANKS_FOR_BUYING_THRIVE").FormatSafe(storeBuyLink);
+                        Localization.Translate("THANKS_FOR_BUYING_THRIVE_2")
+                            .FormatSafe(storeBuyLink, storeDisplayName, MainWebsiteLink);
 
                     thanksDialog.PopupCenteredShrink();
                 }
@@ -632,6 +637,7 @@ public partial class MainMenu : NodeWithInput
                     break;
                 case "itch":
                     storeBuyLink = "https://revolutionarygames.itch.io/thrive";
+                    storeDisplayName = "itch.io";
                     break;
                 default:
                     GD.PrintErr("Unknown store name for link: ", LaunchOptions.StoreVersionName);
@@ -657,6 +663,7 @@ public partial class MainMenu : NodeWithInput
 
             canShowThanks = true;
             storeBuyLink = "https://store.steampowered.com/app/1779200";
+            storeDisplayName = "Steam";
         }
     }
 

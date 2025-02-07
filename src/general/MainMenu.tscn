@@ -853,6 +853,7 @@ custom_minimum_size = Vector2(550, 0)
 offset_right = 163.0
 offset_bottom = 97.0
 DialogType = 1
+AutomaticallyCheckDismissPermanently = false
 CenterText = false
 HideCancelButton = true
 DialogText = "MODS_INSTALLED_BUT_NOT_ENABLED"
@@ -878,9 +879,10 @@ custom_minimum_size = Vector2(500, 0)
 offset_right = 163.0
 offset_bottom = 97.0
 NoticeType = 1
+AutomaticallyCheckDismissPermanently = true
 CenterText = false
 HideCancelButton = true
-DialogText = "THANKS_FOR_BUYING_THRIVE"
+DialogText = "THANKS_FOR_BUYING_THRIVE_2"
 WindowTitle = "THANK_YOU_TITLE"
 
 [node name="SteamFailedDialog" parent="." instance=ExtResource("4")]
@@ -896,6 +898,7 @@ custom_minimum_size = Vector2(500, 0)
 NoticeType = 2
 DialogType = 1
 PermanentDismissType = 1
+AutomaticallyCheckDismissPermanently = false
 DialogText = "LOW_MENU_PERFORMANCE_DESCRIPTION"
 WindowTitle = "LOW_MENU_PERFORMANCE"
 ShowCloseButton = false
