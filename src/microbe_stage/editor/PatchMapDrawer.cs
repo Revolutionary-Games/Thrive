@@ -1168,7 +1168,7 @@ public partial class PatchMapDrawer : Control
 
                 if (noCached)
                 {
-                    patchNodeContainer.AddChild(indicator);
+                    populationIndicatorContainer.AddChild(indicator);
                 }
 
                 playerSpeciesPopulationIndicators.Remove(indicator);
