@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2025-02-06 14:42+0200\n"
-"PO-Revision-Date: 2025-02-03 11:41+0000\n"
+"PO-Revision-Date: 2025-02-06 20:34+0000\n"
 "Last-Translator: punctdan <yunusemredilek@hotmail.com>\n"
 "Language-Team: Turkish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/tr/>\n"
 "Language: tr\n"
@@ -1385,9 +1385,8 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Fizik hata ayıklama çizimi bu sürüm türünde mevcut değil"
 
-#, fuzzy
 msgid "DEBUG_HEAT_AT_CURSOR"
-msgstr "İmleç Üzerinde:"
+msgstr "Isı değeri: {0}"
 
 msgid "DEBUG_PANEL"
 msgstr "Hata Ayıklama Paneli"
@@ -2319,9 +2318,11 @@ msgstr "Arayüz sesi"
 msgid "HEALTH"
 msgstr "Sağlık"
 
-#, fuzzy
 msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
-msgstr "Assembly'den Harmony yamalarını otomatik olarak yükle (mod sınıfı belirlemeyi gerektirmez)"
+msgstr ""
+"Bu çubuk, hücrenizin mevcut sıcaklığını gösterir. Sarı göstergeler, etkili enerji oluşturma aralığını göstermektedir.\n"
+"Beyaz dikey çubuk, çevresel sıcaklığı göstermektedir ve çubuk bu değere doğru gitmektedir.\n"
+"Çubuğun altındaki gösterge, enerji oluşturulduğunda renk değiştirir."
 
 msgid "HELP"
 msgstr "Yardım"
@@ -5427,19 +5428,19 @@ msgid "THERMOPLAST"
 msgstr "Termoplast"
 
 msgid "THERMOPLAST_DESCRIPTION"
-msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklıkla[/thrive:compound] doğru orantılıdır."
+msgstr "Termoplast zarsı keseler içinde birbirinin üstüne dizili, ısıya hassas pigmentler içeren bir çift zarlı yapıdır. Bu yapı, kendi ökaryotik konağı tarafından kullanılmak üzere özümsenmiş bir prokaryottur. Termoplasttaki pigmentler, [b]termosentez[/b] adı verilen bir işlemde, sudan [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretmek için çevredeki ısı farkını kullanır. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
-msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] değişim ile doğru orantılıdır."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosentaz"
 
 msgid "THERMOSYNTHASE_DESCRIPTION"
-msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
+msgstr "Termosentaz, ısı aktarımını kullanarak şekil değiştiren bir proteindir. Bu onun, [b]termosentez[/b] adı verilen bir işlemde, ısıya maruz kalırken katlanmasını ve ADP'ye bağlanmasını, sonra daha düşük sıcaklıklara maruz kalırken de açılmasını ve ADP'nin [thrive:compound type=\"atp\"]ATP'ye[/thrive:compound] dönüşmesini sağlar. [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretimi, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] farkı ile doğru orantılıdır."
 
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
-msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklık[/thrive:compound] ile doğru orantılıdır."
+msgstr "Sıcaklık değişimini kullanarak [thrive:compound type=\"atp\"]ATP[/thrive:compound] üretir. Bu oran, [thrive:compound type=\"temperature\"]sıcaklıktaki[/thrive:compound] değişim ile doğru orantılıdır. Sıcak ve soğuk alanları bulmak için termal görüşü kullanın."
 
 msgid "THERMOSYNTHESIS"
 msgstr "Termosentez"
@@ -5575,11 +5576,8 @@ msgstr "FPS göstergesini aç"
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Tam ekrana geç"
 
-#, fuzzy
 msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
-msgstr ""
-"Etkinken, daha fazla ATP kullanılması karşılığında\n"
-"çeşitli parçaların yanı sıra daha küçük organizmaları yutmak için yutma moduna geç"
+msgstr "Normal ve termal görüş arasında geçiş yap"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Oyun arayüzünü gizle"
