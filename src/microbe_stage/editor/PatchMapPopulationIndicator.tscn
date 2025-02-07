@@ -1,19 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d368temjpdpxv"]
+[gd_scene load_steps=2 format=3 uid="uid://d368temjpdpxv"]
 
-[ext_resource type="Script" path="res://src/microbe_stage/editor/PatchMapPopulationIndicator.cs" id="1_8o4yl"]
-[ext_resource type="Texture2D" uid="uid://cs4ewaw3baruk" path="res://assets/textures/gui/bevel/GrabClick.svg" id="1_r6jqg"]
+[ext_resource type="Texture2D" uid="uid://cbkfqk0lk6dhl" path="res://assets/textures/gui/bevel/MapDotIndicator.svg" id="2_15hpe"]
 
-[node name="PatchMapPopulationIndicator" type="Control" node_paths=PackedStringArray("indicator")]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 64.0
-offset_bottom = 64.0
-script = ExtResource("1_8o4yl")
-indicator = NodePath("TextureRect")
-
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
-offset_right = 10.0
-offset_bottom = 10.0
-texture = ExtResource("1_r6jqg")
+[node name="PatchMapPopulationIndicator" type="TextureRect"]
+offset_right = 6.0
+offset_bottom = 6.0
+texture = ExtResource("2_15hpe")
 expand_mode = 1

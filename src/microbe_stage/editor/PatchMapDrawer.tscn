@@ -1,23 +1,32 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ui60hm6q35fb"]
 
-[ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.cs" type="Script" id=1]
-[ext_resource path="res://shaders/Monochrome.gdshader" type="Shader" id=2]
+[ext_resource type="Script" path="res://src/microbe_stage/editor/PatchMapDrawer.cs" id="1"]
+[ext_resource type="Shader" path="res://shaders/Monochrome.gdshader" id="2"]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 2 )
+[sub_resource type="ShaderMaterial" id="1"]
+shader = ExtResource("2")
 
-[node name="PatchMapDrawer" type="Control"]
+[node name="PatchMapDrawer" type="Control" node_paths=PackedStringArray("populationIndicatorContainer")]
+layout_mode = 3
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 1 )
+mouse_filter = 1
+script = ExtResource("1")
 DrawDefaultMapIfEmpty = true
 PatchNodeContainerPath = NodePath("PatchNodeContainer")
 LineContainerPath = NodePath("LineContainer")
-MonochromeMaterial = SubResource( 1 )
+MonochromeMaterial = SubResource("1")
+populationIndicatorContainer = NodePath("PopulationIndicatorContainer")
 
 [node name="LineContainer" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="PatchNodeContainer" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="PopulationIndicatorContainer" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0

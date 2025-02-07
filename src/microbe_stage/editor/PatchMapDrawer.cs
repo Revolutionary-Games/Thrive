@@ -11,6 +11,8 @@ public partial class PatchMapDrawer : Control
     [Export]
     public bool DrawDefaultMapIfEmpty;
 
+    public uint PlayerSpeciesID = int.MaxValue;
+
     [Export(PropertyHint.ColorNoAlpha)]
     public Color InterConnectionColor = Colors.WebGreen;
 
@@ -48,6 +50,9 @@ public partial class PatchMapDrawer : Control
     private PackedScene populationIndicatorScene = null!;
     private Control patchNodeContainer = null!;
     private Control lineContainer = null!;
+
+    [Export]
+    private Control populationIndicatorContainer = null!;
 #pragma warning restore CA2213
 
     private PatchMap map = null!;
@@ -55,6 +60,8 @@ public partial class PatchMapDrawer : Control
     private bool dirty = true;
 
     private bool alreadyDrawn;
+
+    private List<Control> playerSpeciesPopulationIndicators = new();
 
     private Dictionary<Patch, bool>? patchEnableStatusesToBeApplied;
 
@@ -141,11 +148,6 @@ public partial class PatchMapDrawer : Control
     ///   Called when the currently shown patch properties should be looked up again
     /// </summary>
     public Action<PatchMapDrawer>? OnSelectedPatchChanged { get; set; }
-
-    /// <summary>
-    ///   Player species ID for player population indicator (dots on patch map)
-    /// </summary>
-    public uint PlayerSpeciesID { get; set; }
 
     public override void _Ready()
     {
@@ -1055,6 +1057,13 @@ public partial class PatchMapDrawer : Control
     /// </summary>
     private void RebuildMap()
     {
+        playerSpeciesPopulationIndicators = new();
+        foreach (var node in populationIndicatorContainer.GetChildren())
+        {
+            if (node is Control indicator)
+                playerSpeciesPopulationIndicators.Add(indicator);
+        }
+
         patchNodeContainer.FreeChildren();
         nodes.Clear();
         connections.Clear();
@@ -1120,18 +1129,54 @@ public partial class PatchMapDrawer : Control
         var playerSpecies = patch.FindSpeciesByID(PlayerSpeciesID);
         if (playerSpecies != null)
         {
-            var playerPopulation = patch.GetSpeciesSimulationPopulation(playerSpecies);
+            var playerPopulationIndicatorAmount = (int)Math.Ceiling(
+                patch.GetSpeciesSimulationPopulation(playerSpecies) * 0.004);
 
-            for (var i = 0; i < playerPopulation * 0.001; ++i)
+            var indicatorExcess = Mathf.Clamp(
+                playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount, 0, playerSpeciesPopulationIndicators.Count);
+
+            for (int i = 0; i < indicatorExcess; ++i)
             {
-                var indicator = populationIndicatorScene.Instantiate<PatchMapPopulationIndicator>();
-                indicator.IndicatorPositionModifier = i;
+                playerSpeciesPopulationIndicators.Last().QueueFree();
+            }
+
+            // Trip the list to keep it clean of disposed objects
+            var range = playerSpeciesPopulationIndicators.Count - indicatorExcess;
+            if (range > 0)
+                playerSpeciesPopulationIndicators = playerSpeciesPopulationIndicators.GetRange(0, range);
+
+            for (int i = 0; i < playerPopulationIndicatorAmount; ++i)
+            {
+                var noCached = i >= playerSpeciesPopulationIndicators.Count;
+
+                Control indicator;
+                if (noCached)
+                {
+                    indicator = populationIndicatorScene.Instantiate<Control>();
+                }
+                else
+                {
+                    indicator = playerSpeciesPopulationIndicators[i];
+                }
+
                 indicator.Position = position;
                 indicator.MouseFilter = MouseFilterEnum.Ignore;
-                indicator.UpdateIndicator(node);
-                node.AddChild(indicator);
 
-                indicator.ShowBehindParent = true;
+                var nodeModifier = node.Position.LengthSquared();
+                var modifierSinus = Mathf.Sin(i);
+
+                if (noCached)
+                {
+                    patchNodeContainer.AddChild(indicator);
+                }
+
+                playerSpeciesPopulationIndicators.Remove(indicator);
+
+                indicator.Position = node.Position + new Vector2(0, 20)
+                    .Rotated(nodeModifier * 30) + new Vector2(0, modifierSinus * 50).Rotated(
+                        i * 6 * modifierSinus + nodeModifier);
+
+                indicator.ZIndex = -1;
             }
         }
 
