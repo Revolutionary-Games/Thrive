@@ -298,10 +298,10 @@ public sealed class ProcessSystem : AEntitySetSystem<float>
 
         if (includeMovementCost)
         {
-            result.AddConsumption("baseMovement", result.BaseMovement);
+            result.Consumption["baseMovement"] = result.BaseMovement;
         }
 
-        result.AddConsumption("osmoregulation", result.Osmoregulation);
+        result.Consumption["osmoregulation"] = result.Osmoregulation;
     }
 
     /// <summary>
