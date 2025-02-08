@@ -217,7 +217,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
         atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
-
         atpProductionBar.MaxValue = maxValue;
         atpConsumptionBar.MaxValue = maxValue;
 

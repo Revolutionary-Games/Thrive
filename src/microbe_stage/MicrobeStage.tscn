@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bako5jivv1dji" path="res://src/microbe_stage/MicrobeCamera.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://bt2fv82h01ice" path="res://src/microbe_stage/MicrobeHUD.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://dew8qwd0buvnb" path="res://src/thriveopedia/fossilisation/FossilisationDialog.tscn" id="4"]
-[ext_resource type="Shader" path="res://shaders/HeatGradient.gdshader" id="4_ssvhb"]
-[ext_resource type="Texture2D" uid="uid://djhao1vrfwnls" path="res://src/microbe_stage/HeatGradientNoise.tres" id="5_4roik"]
+[ext_resource type="PackedScene" uid="uid://dqpjtfkjeuwmq" path="res://src/microbe_stage/MicrobeWorldEnvironment.tscn" id="5_jtm5v"]
+[ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
 [ext_resource type="PackedScene" uid="uid://d1mwl825xlq0t" path="res://src/microbe_stage/HeatGradientPlane.tscn" id="8_7ghg3"]
 [ext_resource type="Script" path="res://src/microbe_stage/PlayerMicrobeInput.cs" id="7"]
 [ext_resource type="PackedScene" path="res://src/microbe_stage/HeatGradientPlane.tscn" id="8_7ghg3"]
@@ -34,7 +34,6 @@ AutoProcessWhilePaused = true
 [node name="HeatGradientPlane" parent="World/PrimaryCamera" instance=ExtResource("8_7ghg3")]
 transform = Transform3D(1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 1.62921e-06, -10)
 visible = false
-material_override = SubResource("ShaderMaterial_e3m5g")
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
