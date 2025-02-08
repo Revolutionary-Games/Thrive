@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Thrive VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-08 22:16+0300\n"
+"POT-Creation-Date: 2025-02-08 22:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -303,40 +303,44 @@ msgstr ""
 msgid "ATP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:177
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:176
 msgid "ATP_BALANCE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:175
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:361
 msgid "ATP_BALANCE_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:241
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:365
+msgid "ATP_BALANCE_TOOLTIP_MULTICELLULAR"
+msgstr ""
+
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:240
 msgid "ATP_BALANCE_WITHOUT_EXTERNAL_RESOURCES"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:235
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:234
 msgid "ATP_BALANCE_WITHOUT_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:239
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:238
 msgid "ATP_BALANCE_WITHOUT_HYDROGEN_SULFIDE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:237
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:236
 msgid "ATP_BALANCE_WITHOUT_IRON"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:234
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:233
 msgid "ATP_BALANCE_WITH_ALL_COMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:209
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:214
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:212
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:217
 msgid "ATP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:215
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:218
 msgid "ATP_PRODUCTION_TOO_LOW"
 msgstr ""
 
@@ -488,19 +492,19 @@ msgstr ""
 msgid "BACTERIAL_THERMOSYNTHESIS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:255
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:254
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:253
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:252
 msgid "BALANCE_DISPLAY_AT_DAY_ALWAYS_TOOLTIP"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:264
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:263
 msgid "BALANCE_DISPLAY_WHILE_MOVING"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:261
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:260
 msgid "BALANCE_DISPLAY_WHILE_MOVING_TOOLTIP"
 msgstr ""
 
@@ -514,7 +518,7 @@ msgstr ""
 msgid "BASE_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:322
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:325
 msgid "BASE_MOVEMENT"
 msgstr ""
 
@@ -2015,7 +2019,7 @@ msgstr ""
 msgid "DIGESTION_SPEED_COLON"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:427
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:439
 msgid "DIGESTION_SPEED_VALUE"
 msgstr ""
 
@@ -2361,19 +2365,19 @@ msgstr ""
 msgid "ENDOSYMBIOSIS_TITLE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:263
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:266
 msgid "ENERGY_BALANCE_REQUIRED_COMPOUND_LINE"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:333
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:336
 msgid "ENERGY_BALANCE_TOOLTIP_CONSUMPTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:295
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:298
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:285
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:288
 msgid "ENERGY_BALANCE_TOOLTIP_PRODUCTION_WITH_REQUIREMENT"
 msgstr ""
 
@@ -4915,7 +4919,7 @@ msgstr ""
 msgid "MITOCHONDRION_PROCESSES_DESCRIPTION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:440
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:452
 msgid "MIXED_DOT_DOT_DOT"
 msgstr ""
 
@@ -5839,7 +5843,7 @@ msgstr ""
 msgid "OR_UNLOCK_CONDITION"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:316
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:319
 msgid "OSMOREGULATION"
 msgstr ""
 
@@ -6075,8 +6079,8 @@ msgstr ""
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:161
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:173
 #: ../src/microbe_stage/organelle_unlocks/WorldBasedUnlockCondition.cs:174
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:435
-#: ../src/microbe_stage/OrganismStatisticsPanel.cs:461
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:447
+#: ../src/microbe_stage/OrganismStatisticsPanel.cs:473
 #: ../src/society_stage/gui/ResearchScreen.cs:46
 msgid "PERCENTAGE_VALUE"
 msgstr ""
@@ -8416,7 +8420,7 @@ msgstr ""
 msgid "VIEW_ALL"
 msgstr ""
 
-#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:282
+#: ../src/microbe_stage/OrganismStatisticsPanel.tscn:281
 msgid "VIEW_CELL_PROCESSES"
 msgstr ""
 
