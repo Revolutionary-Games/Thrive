@@ -32,7 +32,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
     public bool ShowDigestionEfficiencyStat;
 
     [Export]
-    public bool ShowATPBalance;
+    public bool ShowATPBalanceBars;
 
 #pragma warning disable CA2213
 
@@ -85,6 +85,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     private Control atpBalancePanel = null!;
+
+    [Export]
+    private Control atpBalanceBarContainer = null!;
 
     [Export]
     private Label atpBalanceLabel = null!;
@@ -189,7 +192,7 @@ public partial class OrganismStatisticsPanel : PanelContainer
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
         digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
 
-        atpBalancePanel.Visible = ShowATPBalance;
+        atpBalanceBarContainer.Visible = ShowATPBalanceBars;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
