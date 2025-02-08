@@ -1019,7 +1019,7 @@ public partial class CellBodyPlanEditorComponent :
             ClearSelectedAction();
     }
 
-    private void UpdateCellTypeSelectionsBalances()
+    private void UpdateCellTypeBalances()
     {
         foreach (var button in cellTypeSelectionButtons)
         {
@@ -1088,11 +1088,15 @@ public partial class CellBodyPlanEditorComponent :
     private void OnEnergyBalanceOptionsChanged()
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
     }
 
     private void OnResourceLimitingModeChanged()
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
     }
 
     private void OnCellsChanged()
@@ -1114,6 +1118,8 @@ public partial class CellBodyPlanEditorComponent :
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
     }
 
     /// <summary>
@@ -1173,8 +1179,6 @@ public partial class CellBodyPlanEditorComponent :
             specificStorages ?? throw new Exception("Special storages should have been calculated"));
 
         HandleProcessList(cells, energyBalance, conditionsData);
-
-        UpdateCellTypeSelectionsBalances();
     }
 
     private Dictionary<Compound, CompoundBalance> CalculateCompoundBalanceWithMethod(BalanceDisplayType calculationType,
