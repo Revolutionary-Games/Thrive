@@ -1133,7 +1133,8 @@ public partial class PatchMapDrawer : Control
                 patch.GetSpeciesSimulationPopulation(playerSpecies) * 0.004);
 
             var indicatorExcess = Math.Clamp(
-                playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount, 0,
+                playerSpeciesPopulationIndicators.Count - playerPopulationIndicatorAmount,
+                0,
                 playerSpeciesPopulationIndicators.Count);
 
             for (int i = 0; i < indicatorExcess; ++i)
@@ -1160,7 +1161,6 @@ public partial class PatchMapDrawer : Control
                     indicator = playerSpeciesPopulationIndicators[i];
                 }
 
-                indicator.Position = position;
                 indicator.MouseFilter = MouseFilterEnum.Ignore;
 
                 var nodeModifier = node.Position.LengthSquared();
@@ -1173,9 +1173,9 @@ public partial class PatchMapDrawer : Control
 
                 playerSpeciesPopulationIndicators.Remove(indicator);
 
-                indicator.Position = node.Position + new Vector2(0, 20)
-                    .Rotated(nodeModifier * 30) + new Vector2(0, modifierSinus * 50).Rotated(
-                    i * 6 * modifierSinus + nodeModifier);
+                indicator.Position = position + node.Size * 0.5f + new Vector2(0, 20)
+                    .Rotated(nodeModifier * 30) +
+                    new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
             }
         }
 
