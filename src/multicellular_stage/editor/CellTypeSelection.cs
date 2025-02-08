@@ -105,7 +105,7 @@ public partial class CellTypeSelection : MicrobePartSelection
 
     public void UpdateProductionBar()
     {
-        atpProductionBar.Value = EnergyProduction;
+        atpProductionBar.Value = energyProduction;
     }
 
     public void UpdateConsumptionBar()
