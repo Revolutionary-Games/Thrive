@@ -1,0 +1,86 @@
+[gd_scene load_steps=7 format=3 uid="uid://bocoy7fjgtnue"]
+
+[ext_resource type="Script" path="res://src/microbe_stage/gui/HeatAccumulationBar.cs" id="1_1srer"]
+[ext_resource type="Texture2D" uid="uid://d03mjimd54adn" path="res://assets/textures/gui/bevel/ExpandUp.svg" id="1_5nw5g"]
+
+[sub_resource type="Gradient" id="Gradient_rpr7e"]
+colors = PackedColorArray(0, 0.290196, 0.34902, 0.745098, 0, 0.290196, 0.34902, 0.745098)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n0dee"]
+gradient = SubResource("Gradient_rpr7e")
+width = 128
+height = 18
+
+[sub_resource type="Gradient" id="Gradient_rnget"]
+colors = PackedColorArray(0, 0, 0.756863, 1, 1, 0.201579, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kxt86"]
+gradient = SubResource("Gradient_rnget")
+width = 128
+height = 18
+
+[node name="HeatAccumulationBar" type="VBoxContainer" node_paths=PackedStringArray("progressBar", "leftIndicator", "middleIndicator", "rightIndicator", "currentIndicator", "currentPositionImage")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "HEAT_ACCUMULATION_BAR_TOOLTIP"
+mouse_filter = 0
+theme_override_constants/separation = 0
+script = ExtResource("1_1srer")
+progressBar = NodePath("TextureProgressBar")
+leftIndicator = NodePath("TextureProgressBar/LeftMarker")
+middleIndicator = NodePath("TextureProgressBar/CenterMarker")
+rightIndicator = NodePath("TextureProgressBar/RightMarker")
+currentIndicator = NodePath("TextureProgressBar/CurrentPosition")
+currentPositionImage = NodePath("PositionIndicator")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 0
+max_value = 1.0
+step = 0.001
+texture_under = SubResource("GradientTexture2D_n0dee")
+texture_progress = SubResource("GradientTexture2D_kxt86")
+
+[node name="LeftMarker" type="ColorRect" parent="TextureProgressBar"]
+visible = false
+custom_minimum_size = Vector2(4, 18)
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 12.0
+color = Color(0.980061, 1, 0.010492, 1)
+
+[node name="CenterMarker" type="ColorRect" parent="TextureProgressBar"]
+visible = false
+custom_minimum_size = Vector2(4, 18)
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 18.0
+color = Color(0.27013, 0.867188, 0, 1)
+
+[node name="RightMarker" type="ColorRect" parent="TextureProgressBar"]
+visible = false
+custom_minimum_size = Vector2(4, 18)
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 12.0
+color = Color(0.980061, 1, 0.010492, 1)
+
+[node name="CurrentPosition" type="ColorRect" parent="TextureProgressBar"]
+visible = false
+custom_minimum_size = Vector2(2, 18)
+layout_mode = 0
+offset_right = 2.0
+offset_bottom = 18.0
+
+[node name="PositionIndicator" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_5nw5g")
+expand_mode = 3
+stretch_mode = 5

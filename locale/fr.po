@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: French <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/fr/>\n"
 "Language: fr\n"
@@ -1409,6 +1409,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Le dessin de débogage physique n'est pas disponible dans ce type de build"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Au pointeur :"
+
 msgid "DEBUG_PANEL"
 msgstr "Débogueur"
 
@@ -2378,6 +2382,10 @@ msgstr "Volume de l'interface"
 
 msgid "HEALTH"
 msgstr "Santé"
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Chargement automatique des patchs Harmony à partir de l'Assembleur (ne nécessite pas de spécifier la classe de mod)"
 
 msgid "HELP"
 msgstr "Aide"
@@ -5602,7 +5610,8 @@ msgstr "Temp."
 msgid "TESTING_TEAM"
 msgstr "Équipe de test"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
 "\n"
@@ -5625,18 +5634,22 @@ msgstr "Équipe de théoriciens"
 msgid "THERMOPLAST"
 msgstr "Thermoplaste"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Le thermoplaste est une structure à double membrane contenant des pigments thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du thermoplaste sont capables d'utiliser l'énergie des différences de chaleur dans l'environnement pour produire de l'[thrive:compound type=\"atp\"][/thrive:compound] à partir de l'eau dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produit du [thrive:compound type=\"glucose\"][/thrive:compound]. Taux proportionnel à la concentration de [thrive:compound type=\"carbondioxide\"][/thrive:compound] et à la température."
 
 msgid "THERMOSYNTHASE"
 msgstr "Thermosynthase"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "La thermosynthase est une protéine qui utilise la convection thermique pour changer de forme, ce qui lui permet de se replier et de se lier à l'ADP lorsqu'elle est exposée à la chaleur, puis de se déplier et de le recycler en [thrive:compound type=\"atp\"][/thrive:compound] lorsqu'elle est exposée au froid, dans un processus appelé [b]thermosynthèse[/b]. Le taux de production d'[thrive:compound type=\"atp\"][/thrive:compound] varie avec la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produit l'[thrive:compound type=\"atp\"][/thrive:compound] en utilisant les gradients de température. Le taux varie en fonction de la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5780,6 +5793,12 @@ msgstr "Afficher/cacher les FPS"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Plein écran"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"Activez le mode engloutissement pour engloutir divers fragments,\n"
+"ou bien de petits organismes au prix d'une plus grande consommation d'ATP pendant ce temps"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Activer/désactiver l'ATH"
@@ -8386,6 +8405,14 @@ msgstr "Zoomer"
 
 msgid "ZOOM_OUT"
 msgstr "Dézoomer"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Merci de soutenir le développement de Thrive en achetant cette copie de Thrive !\n"
+#~ "\n"
+#~ "Si vous n'avez pas acheté cette copie, s'il vous plaît achetez-la [color=#3796e1][url={0}]ici[/url][/color] ou aller voir sur notre [color=#3796e1][url=https://revolutionarygamesstudio.com/releases/]site web[/url][/color].\n"
+#~ "\n"
+#~ "Si vous souhaitez voir le lanceur Thrive avant le démarrage de Thrive, vous pouvez utiliser le bouton du menu principal pour sortir du lanceur, puis désactiver le mode transparent dans le menu des options du lanceur."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

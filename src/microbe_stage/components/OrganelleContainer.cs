@@ -91,6 +91,11 @@ public struct OrganelleContainer
     public int RadiationProtection;
 
     /// <summary>
+    ///   How many heat-collecting organelles this container has
+    /// </summary>
+    public int HeatCollection;
+
+    /// <summary>
     ///   The microbe stores here the sum of capacity of all the current organelles. This is here to prevent anyone
     ///   from messing with this value if we used the Capacity from the CompoundBag for the calculations that use
     ///   this.
@@ -123,7 +128,7 @@ public struct OrganelleContainer
     public bool HasBindingAgent;
 
     /// <summary>
-    ///   True once all organelles are divided to not continuously run code that is triggered when a cell is ready
+    ///   Set true once all organelles are divided to not continuously run code that is triggered when a cell is ready
     ///   to reproduce.
     /// </summary>
     /// <remarks>
@@ -480,6 +485,7 @@ public static class OrganelleContainerHelpers
         container.OrganellesCapacity = 0;
         container.HasSignalingAgent = false;
         container.HasBindingAgent = false;
+        container.HeatCollection = 0;
         container.OxygenUsingOrganelles = 0;
         container.RadiationProtection = 0;
 
@@ -562,6 +568,10 @@ public static class OrganelleContainerHelpers
 
             if (organelleDefinition.HasRadiationProtection)
                 ++container.RadiationProtection;
+
+            // TODO: should prokaryotic parts give more heat collecting here?
+            if (organelleDefinition.HasHeatCollection)
+                ++container.HeatCollection;
 
             container.IronBreakdownEfficiency += organelleDefinition.IronBreakdownEfficiency;
 
