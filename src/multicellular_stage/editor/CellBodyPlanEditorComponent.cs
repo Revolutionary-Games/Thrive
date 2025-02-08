@@ -526,6 +526,8 @@ public partial class CellBodyPlanEditorComponent :
     {
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
 
+        UpdateCellTypeBalances();
+
         organismStatisticsPanel.UpdateLightSelectionPanelVisibility(
             Editor.CurrentGame.GameWorld.WorldSettings.DayNightCycleEnabled && Editor.CurrentPatch.HasDayAndNight);
     }
@@ -535,6 +537,8 @@ public partial class CellBodyPlanEditorComponent :
         UpdateVisualLightLevel(dayLightFraction, Editor.CurrentPatch);
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
+
+        UpdateCellTypeBalances();
     }
 
     protected CellType CellTypeFromName(string name)
@@ -1021,6 +1025,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private void UpdateCellTypeBalances()
     {
+        float maxValue = 0.0f;
+
         foreach (var button in cellTypeSelectionButtons)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
@@ -1038,6 +1044,18 @@ public partial class CellBodyPlanEditorComponent :
 
             button.Value.EnergyProduction = energyBalance.TotalProduction;
             button.Value.EnergyConsumption = energyBalance.TotalConsumption;
+
+            if (energyBalance.TotalProduction > maxValue)
+                maxValue = energyBalance.TotalProduction;
+
+            if (energyBalance.TotalConsumption > maxValue)
+                maxValue = energyBalance.TotalConsumption;
+        }
+
+        foreach (var button in cellTypeSelectionButtons)
+        {
+            button.Value.MaxEnergyValue = maxValue;
+            button.Value.UpdateBalanceBars();
         }
     }
 

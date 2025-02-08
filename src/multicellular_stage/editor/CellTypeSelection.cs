@@ -6,6 +6,15 @@ using Godot;
 /// </summary>
 public partial class CellTypeSelection : MicrobePartSelection
 {
+    public float EnergyProduction;
+
+    public float EnergyConsumption;
+
+    /// <summary>
+    ///   The maximum production/consumption across all other cell type selection buttons.
+    /// </summary>
+    public float MaxEnergyValue;
+
     private CellType? cellType;
 
 #pragma warning disable CA2213
@@ -22,9 +31,6 @@ public partial class CellTypeSelection : MicrobePartSelection
 
     private IImageTask? imageTask;
 
-    private float energyProduction;
-    private float energyConsumption;
-
     public CellType CellType
     {
         get => cellType ?? throw new InvalidOperationException("No cell type set");
@@ -35,28 +41,6 @@ public partial class CellTypeSelection : MicrobePartSelection
 
             ReportTypeChanged();
             cellType = value;
-        }
-    }
-
-    public float EnergyProduction
-    {
-        get => energyProduction;
-        set
-        {
-            energyProduction = value;
-
-            UpdateProductionBar();
-        }
-    }
-
-    public float EnergyConsumption
-    {
-        get => energyConsumption;
-        set
-        {
-            energyConsumption = value;
-
-            UpdateConsumptionBar();
         }
     }
 
@@ -103,13 +87,25 @@ public partial class CellTypeSelection : MicrobePartSelection
         imageTask = null;
     }
 
-    public void UpdateProductionBar()
+    public void UpdateBalanceBars()
     {
-        atpProductionBar.Value = energyProduction;
+        UpdateProductionBar();
+        UpdateConsumptionBar();
     }
 
-    public void UpdateConsumptionBar()
+    private void UpdateProductionBar()
     {
-        atpConsumptionBar.Value = energyConsumption;
+        atpProductionBar.Value = 100.0f * EnergyProduction / MaxEnergyValue;
+
+        atpProductionBar.TooltipText = Localization.Translate("CELL_TYPE_BUTTON_ATP_PRODUCTION")
+            .FormatSafe(MathF.Round(EnergyProduction, 2));
+    }
+
+    private void UpdateConsumptionBar()
+    {
+        atpConsumptionBar.Value = 100.0f * EnergyConsumption / MaxEnergyValue;
+
+        atpConsumptionBar.TooltipText = Localization.Translate("CELL_TYPE_BUTTON_ATP_CONSUMPTION")
+            .FormatSafe(MathF.Round(EnergyConsumption, 2));
     }
 }

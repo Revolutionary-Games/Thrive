@@ -41,13 +41,11 @@ theme_override_constants/separation = 2
 [node name="ProductionBar" type="ProgressBar" parent="VBoxContainer/MarginContainer/VBoxContainer2" index="0"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
-tooltip_text = "CELL_TYPE_BUTTON_ATP_PRODUCTION"
 show_percentage = false
 
 [node name="ConsumptionBar" type="ProgressBar" parent="VBoxContainer/MarginContainer/VBoxContainer2" index="1"]
 custom_minimum_size = Vector2(0, 4)
 layout_mode = 2
-tooltip_text = "CELL_TYPE_BUTTON_ATP_CONSUMPTION"
 theme_override_styles/background = SubResource("StyleBoxFlat_xjxp1")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rvnar")
 show_percentage = false
