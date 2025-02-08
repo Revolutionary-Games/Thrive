@@ -218,7 +218,6 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
 
-        GD.Print($"{energyBalance.TotalProduction}, {energyBalance.TotalConsumption} => {maxValue}");
         atpProductionBar.MaxValue = maxValue;
         atpConsumptionBar.MaxValue = maxValue;
 
