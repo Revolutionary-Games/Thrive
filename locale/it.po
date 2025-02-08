@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-02-06 14:42+0200\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Italian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/it/>\n"
 "Language: it\n"
@@ -1002,21 +1002,23 @@ msgstr "I contenuti del Workshop saranno caricati da questa cartella: {0}"
 msgid "CONTINUE"
 msgstr "Continua"
 
-#, fuzzy
 msgid "CONTINUE_AS_SPECIES"
-msgstr "Seleziona una specie"
+msgstr "[center]Il gioco non è ancora finito, però. Si può [b]continuare[/b] passando a giocare nei panni della specie {0} con una popolazione di {1}.[/center]"
 
 msgid "CONTINUE_THRIVING"
 msgstr "Continua a prosperare"
 
 msgid "CONTINUE_TO_PROTOTYPES"
 msgstr ""
-"Hai raggiunto la fine della parte \"completa\" di Thrive.\n"
-"Se lo desideri, puoi andare ai prototipi delle fasi future di gioco inclusi in questa versione. Questi potrebbero essere molto incompleti, generalmente grezzi, e utilizzare elementi grafici segnaposto. La loro funzione è quella di mostrare la potenziale direzione futura del gioco e la nostra visione generale di come le fasi saranno collegate.\n"
+"[b]Avete raggiunto la fine della parte “completa” di Thrive.[/b]\n"
 "\n"
-"Non sarai in grado di salvare o tornare indietro una volta che continui. Se vuoi tornare al punto dove sei ora, salva ora prima di procedere.\n"
+"Se volete, potete continuare con i [b]prototipi di fase successiva[/b] inclusi nel gioco.\n"
 "\n"
-"Se scegli di continuare, ti preghiamo di comprendere che le fasi successive sono prototipi e di non lamentarti di quanto siano incomplete."
+"Questi possono risultare incompleti, utilizzare grafica provvisoria e, in generale, risultare grezzi. Sono stati inclusi per mostrare la potenziale direzione futura del gioco e la nostra visione generale di come le varie fasi sono collegate tra loro.\n"
+"\n"
+"Se si continua, durante la maggior parte dei prototipi [b]non sarà possibile salvare[/b] o tornare alla fase precedente. Se si vuole tornare a [i]questa[/i] fase, si prega di effettuare un [b]salvataggio ora[/b] prima di procedere.\n"
+"\n"
+"Anche il supporto dei controller è incompleto nei prototipi. Se si sceglie di continuare, è bene comprendere che le fasi successive sono prototipi e quindi non lamentarsi della loro parziale incompletezza."
 
 msgid "CONTINUE_TO_PROTOTYPES_PROMPT"
 msgstr "Continuare ai prototipi?"
@@ -1311,9 +1313,28 @@ msgstr "Apri la finestra di aiuto"
 msgid "CURRENT_WORLD"
 msgstr "Sviluppatori attuali"
 
-#, fuzzy
 msgid "CURRENT_WORLD_STATISTICS"
-msgstr "Statistiche dell'organismo"
+msgstr ""
+"[b]Generazioni:[/b]\n"
+"  {0}\n"
+"[b]Zone totali:[/b]\n"
+"  {1}\n"
+"[b]Tempo totale di Auto-Evo:[/b]\n"
+"  {2}\n"
+"[b]Specie totali:[/b]\n"
+"  {3}\n"
+"[b]Specie ancora vive:[/b]\n"
+"  {4}\n"
+"[b]Conteggio delle specie per zona:[/b]\n"
+"  Media {5}; Deviazione normale {6}\n"
+"[b]Popolazione totale:[/b]\n"
+"  {7}\n"
+"[b]Specie maggiormente popolata:[/b]\n"
+"  {8}\n"
+"[b] Specie microbiche di base:[/b]\n"
+"  Dimensione media dell'esagono: {9}\n"
+"\n"
+"[b]Dati generici sugli organelli:[/b]"
 
 msgid "CUSTOM_USERNAME"
 msgstr "Nome utente personalizzato:"
@@ -1734,13 +1755,13 @@ msgstr "Apri l'editor e modifica la tua specie"
 
 msgid "EDITOR_TUTORIAL_EDITOR_TEXT"
 msgstr ""
-"Benvenuto nell'Editor Microbico.\n"
+"Benvenuti nel [b]Editor dei microbi[/b].\n"
 "\n"
-"Qui puoi osservare cosa è successo alle generazioni precendenti, e poi modificare la tua specie.\n"
+"Qui è possibile esaminare ciò che è accaduto durante le generazioni precedenti e apportare modifiche alla propria specie.\n"
 "\n"
-"In questo pannello trovi un resoconto delle zone che la tua specie occupa al momento. Prova i vari strumenti a tua disposizione per sapere di più sugli eventi nel tuo mondo!\n"
+"La schermata dei rapporti fornisce un elenco dei cambiamenti avvenuti nella zona attualmente occupata. Provate a esplorare i vari strumenti a vostra disposizione per saperne di più sugli eventi del vostro mondo!\n"
 "\n"
-"Quando ti ritieni pronto, premi il pulsante \"AVANTI\" in basso a destra per continuare."
+"Quando siete pronti, premete il pulsante “Avanti” in basso a destra per passare alla schermata Mappa della zona."
 
 msgid "EIGHT_TIMES"
 msgstr "8x"
@@ -3375,19 +3396,14 @@ msgstr "Nuvole di composti"
 msgid "MICHE_COMPOUND_EFFICIENCY_PRESSURE"
 msgstr ""
 
-#, fuzzy
 msgid "MICHE_DETAIL_TEXT"
 msgstr ""
-"[b]Specie[/b]\n"
-"  {0}:{1}\n"
-"[b]Generazione[/b]\n"
-"  {2}\n"
-"[b]Popolazione[/b]\n"
-"  {3}\n"
-"[b]Colore[/b]\n"
-"  #{4}\n"
-"[b]Comportamento[/b]\n"
-"  {5}"
+"[b]Pressione della Selezione[/b]\n"
+"  {0}\n"
+"[b]Energia[/b]\n"
+"  {1}\n"
+"[b]Punteggio degli occupanti[/b]\n"
+"  {2}"
 
 msgid "MICHE_ENVIRONMENTAL_COMPOUND_PRESSURE"
 msgstr ""
@@ -3429,9 +3445,8 @@ msgstr "Editor Microbico"
 msgid "MICROBE_EDITOR"
 msgstr "Editor Microbico"
 
-#, fuzzy
 msgid "MICROBE_ENZYME_STATISTICS"
-msgstr "Statistiche dell'organismo"
+msgstr "[b]Dati sugli enzimi:[/b]"
 
 msgid "MICROBE_FREEBUILD_EDITOR"
 msgstr "Editor Microbico Libero"
@@ -3448,9 +3463,8 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "MICROBE_LOADING_TIP_11"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_12"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Potete fagocitare gli elementi più piccoli di voi per nutrirvi di loro premendo [thrive:input]g_toggle_engulf[/thrive:input]. Questa azione comporta un costo aggiuntivo di [thrive:compound type=“atp”][/thrive:compound] e vi rallenterà. Non dimenticare di premere nuovamente [thrive:input]g_toggle_engulf[/thrive:input] per interrompere la fagocitazione."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_13"
@@ -3464,9 +3478,8 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "MICROBE_LOADING_TIP_15"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_16"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Usate [thrive:input]g_move_forward[/thrive:input],[thrive:input]g_move_left[/thrive:input],[thrive:input]g_move_backwards[/thrive:input] e [thrive:input]g_move_right[/thrive:input] per muovervi e il mouse per ruotare. Usate [thrive:input]g_fire_toxin[/thrive:input] per sparare [thrive:compound type=“oxytoxy”][/thrive:compound] se avete un vacuolo di tossine. Premere [thrive:input]g_toggle_engulf[/thrive:input] per attivare la modalità di fagocitazione. È possibile ingrandire e rimpicciolire la mappa con la rotella del mouse."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_17"
@@ -3492,9 +3505,8 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "MICROBE_LOADING_TIP_21"
 msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
 
-#, fuzzy
 msgid "MICROBE_LOADING_TIP_22"
-msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere eventuali errori"
+msgstr "Ogni visita all'editor nella fase microbica rappresenta [thrive:constant]EDITOR_TIME_JUMP_MILLION_YEARS[/thrive:constant] milioni di anni di evoluzione."
 
 #, fuzzy
 msgid "MICROBE_LOADING_TIP_3"
@@ -3528,9 +3540,8 @@ msgstr "Nell'editor, premi il tasto \"Annulla l'ultima azione\" per correggere e
 msgid "MICROBE_MEMBRANE_PERCENTAGE_STATISTICS"
 msgstr "Statistiche dell'organismo"
 
-#, fuzzy
 msgid "MICROBE_MEMBRANE_STATISTICS"
-msgstr "Statistiche dell'organismo"
+msgstr "[b]Dati sulle membrane:[/b]"
 
 #, fuzzy
 msgid "MICROBE_ORGANELLE_STATISTICS"
@@ -5751,7 +5762,7 @@ msgid "TESTING_TEAM"
 msgstr "Squadra Collaudatori"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Grazie per aver giocato!\n"
 "\n"
@@ -5773,18 +5784,22 @@ msgstr "Squadra Teorici"
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Il termoplasto è una struttura a doppia membrana. Si tratta di un organismo procariote, vivente all'interno di un eucariote. Contiene pigmenti termosensibili, impilati insieme in sacchetti membranosi, in grado di sfruttare l'energia delle differenze di calore vicine per produrre [thrive:compound type=\"atp\"][/thrive:compound] a partire dall'acqua. Questo processo si chiama [b]termosintesi[/b]. Il tasso aumenta con la temperatura."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosintasi"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "La termosintasi è una proteina che cambia forma in base alle convezioni termiche del liquido in cui è immersa. Esposta al calore, si piega, legandosi così all'ADP. Raffreddata, si apre, riciclandola in [thrive:compound type=\"atp\"][/thrive:compound]. Questo processo si chiama [b]termosintesi[/b]. Il tasso di produzione di [thrive:compound type=\"atp\"][/thrive:compound] aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound] circostante."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"atp\"][/thrive:compound]. Il tasso aumenta con la [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -8463,6 +8478,13 @@ msgstr "Zoom avanti"
 
 msgid "ZOOM_OUT"
 msgstr "Zoom indietro"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Grazie per aver giocato!\n"
+#~ "\n"
+#~ "Se il gioco ti è piaciuto, parlane anche ai tuoi amici."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"
