@@ -22,13 +22,7 @@ public class CompoundBalance
     /// <summary>
     ///   Total balance of this compound
     /// </summary>
-    public float Balance
-    {
-        get
-        {
-            return Production - Consumption;
-        }
-    }
+    public float Balance => Production - Consumption;
 
     public void AddConsumption(string organelleName, float amount)
     {
