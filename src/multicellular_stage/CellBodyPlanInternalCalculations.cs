@@ -79,8 +79,7 @@ public static class CellBodyPlanInternalCalculations
     }
 
     /// <summary>
-    ///   Calculates a colony's speed. The algorithm is an approximation, but should be based on the one in
-    ///   MicrobeMovementSystem.cs
+    ///   Calculates a colony's nutrient cost
     /// </summary>
     public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCost(IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
