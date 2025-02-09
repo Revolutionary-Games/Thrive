@@ -621,7 +621,7 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         sunlightBar.SetValueAsPercentageFromFraction(biome.CurrentCompoundAmounts[Compound.Sunlight].Ambient);
 
-        temperatureBar.CurrentValue = biome.CurrentCompoundAmounts[Compound.Temperature].Ambient;
+        temperatureBar.CurrentValue = ReadTemperature(biome);
 
         // TODO: pressure?
         // pressureBar.CurrentValue = ?
@@ -707,6 +707,11 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
 
         // Stop processing the layer
         fossilisationButtonLayer.Visible = false;
+    }
+
+    protected virtual float ReadTemperature(BiomeConditions biome)
+    {
+        return biome.CurrentCompoundAmounts[Compound.Temperature].Ambient;
     }
 
     protected virtual void UpdateHealth(float delta)
@@ -1223,6 +1228,24 @@ public partial class CreatureStageHUDBase<TStage> : HUDWithPausing, ICreatureSta
     private void StatisticsButtonPressed()
     {
         ThriveopediaManager.OpenPage("CurrentWorld");
+    }
+
+    private void HeatViewButtonPressed(bool pressed)
+    {
+        if (stage == null)
+        {
+            GD.PrintErr("No stage to set view mode");
+            return;
+        }
+
+        if (pressed)
+        {
+            stage.SetSpecialViewMode(ViewMode.Heat);
+        }
+        else
+        {
+            stage.SetSpecialViewMode(ViewMode.Normal);
+        }
     }
 
     private void UpdateFossilisationButtons()

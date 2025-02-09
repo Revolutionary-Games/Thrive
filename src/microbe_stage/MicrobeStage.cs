@@ -29,6 +29,9 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
     private float tempPatchManagerBrightness;
 
 #pragma warning disable CA2213
+    [Export]
+    private Node3D heatViewOverlay = null!;
+
     private MicrobeTutorialGUI tutorialGUI = null!;
     private GuidanceLine guidanceLine = null!;
 #pragma warning restore CA2213
@@ -238,6 +241,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (HasPlayer)
         {
             DebugOverlays.Instance.ReportLookingAtCoordinates(Camera.CursorWorldPos);
+            DebugOverlays.Instance.ReportHeatValue(WorldSimulation.SampleTemperatureAt(Camera.CursorWorldPos));
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(playerPosition.Rotation, playerPosition.Rotation.GetEuler()), this);
@@ -401,6 +405,22 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
         if (HUD.GetFocusOwner() == null)
         {
             HUD.PauseButtonPressed(!HUD.Paused);
+        }
+    }
+
+    public override void SetSpecialViewMode(ViewMode mode)
+    {
+        if (mode == ViewMode.Normal)
+        {
+            heatViewOverlay.Visible = false;
+        }
+        else if (mode == ViewMode.Heat)
+        {
+            heatViewOverlay.Visible = true;
+        }
+        else
+        {
+            base.SetSpecialViewMode(mode);
         }
     }
 

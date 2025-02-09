@@ -44,6 +44,7 @@ public class LocalizationUpdate : LocalizationUpdateBase<LocalizationOptionsBase
         "la",
         "lb_LU",
         "it",
+        "ja",
         "mk",
         "nb_NO",
         "nl",

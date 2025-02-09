@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Ukrainian <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/uk/>\n"
 "Language: uk\n"
@@ -1400,6 +1400,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Зневаджувальна промальовка фізики не є доступним у цьому типі збірки"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "Під курсором:"
+
 msgid "DEBUG_PANEL"
 msgstr "панель налагоджування"
 
@@ -2353,6 +2357,10 @@ msgstr "Гучність GUI"
 
 msgid "HEALTH"
 msgstr "Здоров'я"
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Автоматичне завантаження патчів Гармонії зі збірки (не вимагає вказувати клас моду)"
 
 msgid "HELP"
 msgstr "Допомога"
@@ -5531,7 +5539,8 @@ msgstr "Темп."
 msgid "TESTING_TEAM"
 msgstr "Команда тестувальників"
 
-msgid "THANKS_FOR_BUYING_THRIVE"
+#, fuzzy
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "Дякуємо за підтримку розробки Thrive, придбавши цю копію Thrive!\n"
 "\n"
@@ -5554,18 +5563,22 @@ msgstr "Команда теоретиків"
 msgid "THERMOPLAST"
 msgstr "Термопласт"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "Термопласти– це двохмембранні структури, що містить термочутливі пігменти зібрані разом у мішечки. Це прокаріот, захоплений для використання еукаріотичним господарем. Пігменти в термопласті здатні використовувати перепад температур в оточені, щоб продукувати [thrive:compound type=\"atp\"][/thrive:compound] з води та газуватого вуглекислого газу в процесі, що зветься [b]Термосинтез[/b]. Кількість продукованого [thrive:compound type=\"atp\"][/thrive:compound] залежить від [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"glucose\"][/thrive:compound]. Кількість залежить від [thrive:compound type=\"carbondioxide\"][/thrive:compound] та температури."
 
 msgid "THERMOSYNTHASE"
 msgstr "Термосинтаза"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "Термосинтаза– білок, що використовував теплову конвекцію для зміни своєї форми, даючи змогу згортатися та зв'язуватися з АДФ під дією тепла, а потім розгортатися перероблюючи [thrive:compound type=\"atp\"][/thrive:compound], під дією нижчих температур у процесі, що зветься [b]термосинтезом [/b]. Швидкість виробництва [thrive:compound type=\"atp\"][/thrive:compound] змінюється залежно від [thrive:compound type=\"temperature\"][/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Продукує [thrive:compound type=\"atp\"][/thrive:compound] використовує температурний градієнт. Кількість залежить від [thrive:compound type=\"temperature\"][/thrive:compound]."
 
@@ -5704,6 +5717,12 @@ msgstr "Перемикання FPS дисплаю"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Змінити повноекранність"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr ""
+"Перемкнути режим поглинання для поглинання різних брил\n"
+"та менших організмів в обмін на більше використання АТФ, поки є активним"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Перемкнути HUD"
@@ -8237,6 +8256,14 @@ msgstr "Приблизитись"
 
 msgid "ZOOM_OUT"
 msgstr "Віддалитись"
+
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "Дякуємо за підтримку розробки Thrive, придбавши цю копію Thrive!\n"
+#~ "\n"
+#~ "Якщо ви не купували цю копію, будь ласка, отримайте свою копію [color=#3796e1][url={0}]from here[/url][/color] or check out our [color=#3796e1]\n"
+#~ "\n"
+#~ "Якщо ви хотіли б бачити лаунчер Thrive до запуску Thrive, ви можете вийти до лаунчера через кнопку у головному меню гри, та потім вимкнути плавний режим у меню налаштувань лаунчера."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"

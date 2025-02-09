@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-31 20:54+0100\n"
-"PO-Revision-Date: 2025-01-21 12:01+0000\n"
+"POT-Creation-Date: 2025-02-07 11:01+0200\n"
+"PO-Revision-Date: 2025-02-06 13:29+0000\n"
 "Last-Translator: Anonymous <noreply@weblate.org>\n"
 "Language-Team: Spanish <https://translate.revolutionarygamesstudio.com/projects/thrive/thrive-game/es/>\n"
 "Language: es\n"
@@ -1385,6 +1385,10 @@ msgstr ""
 msgid "DEBUG_DRAW_NOT_AVAILABLE"
 msgstr "Trazado de depuración de físicas no disponible en este tipo de versión"
 
+#, fuzzy
+msgid "DEBUG_HEAT_AT_CURSOR"
+msgstr "En el puntero:"
+
 msgid "DEBUG_PANEL"
 msgstr "Panel de Depuración"
 
@@ -2322,6 +2326,10 @@ msgstr "Volumen de la interfaz"
 
 msgid "HEALTH"
 msgstr "Salud"
+
+#, fuzzy
+msgid "HEAT_ACCUMULATION_BAR_TOOLTIP"
+msgstr "Automáticamente carga parches de Harmony desde Assembly (no requiere especificar la clase del mod)"
 
 msgid "HELP"
 msgstr "Ayuda"
@@ -5596,7 +5604,7 @@ msgid "TESTING_TEAM"
 msgstr "Equipo de testeo"
 
 #, fuzzy
-msgid "THANKS_FOR_BUYING_THRIVE"
+msgid "THANKS_FOR_BUYING_THRIVE_2"
 msgstr ""
 "¡Gracias por jugar!\n"
 "\n"
@@ -5618,18 +5626,22 @@ msgstr "Equipo de teoria"
 msgid "THERMOPLAST"
 msgstr "Termoplasto"
 
+#, fuzzy
 msgid "THERMOPLAST_DESCRIPTION"
 msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir energía en un proceso llamado Termosíntesis. La producción de glucosa dependerá de la concentración de dióxido de carbono y temperatura."
 
+#, fuzzy
 msgid "THERMOPLAST_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la temperatura."
 
 msgid "THERMOSYNTHASE"
 msgstr "Termosintasa"
 
+#, fuzzy
 msgid "THERMOSYNTHASE_DESCRIPTION"
 msgstr "El Termoplasto es una estructura de doble membrana que contiene pigmentos termosensibles apilados en sacos membranosos. Es una procariota asimilada para uso de su anfitrión eucariota. Los pigmentos en el Termoplasto usan las diferencias de energía térmica en el ambiente para producir [thrive:compound type=\"atp\"]ATP[/thrive:compound] en un proceso llamado [b]Termosíntesis[/b]. La producción de glucosa dependerá de la concentración de dióxido de carbono y [thrive:compound type=\"temperature\"]temperatura[/thrive:compound]."
 
+#, fuzzy
 msgid "THERMOSYNTHASE_PROCESSES_DESCRIPTION"
 msgstr "Produce [thrive:compound type=\"glucose\"][/thrive:compound]. La tasa de producción escala con la concentración de [thrive:compound type=\"carbondioxide\"][/thrive:compound] y la temperatura."
 
@@ -5772,6 +5784,10 @@ msgstr "Activar monitor FPS"
 
 msgid "TOGGLE_FULLSCREEN"
 msgstr "Pantalla Completa"
+
+#, fuzzy
+msgid "TOGGLE_HEAT_VIEW_TOOLTIP"
+msgstr "Alternar engullir"
 
 msgid "TOGGLE_HUD_HIDE"
 msgstr "Activar HUD"
@@ -8339,6 +8355,13 @@ msgstr "Hacer zoom"
 
 msgid "ZOOM_OUT"
 msgstr "Alejar el zoom"
+
+#, fuzzy
+#~ msgid "THANKS_FOR_BUYING_THRIVE"
+#~ msgstr ""
+#~ "¡Gracias por jugar!\n"
+#~ "\n"
+#~ "Si te gustó el juego, cuéntale a tus amigos sobre nosotros."
 
 #, fuzzy
 #~ msgid "WIKI_RADIOSYNTHESIS"
