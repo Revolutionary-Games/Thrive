@@ -1027,15 +1027,15 @@ public partial class CellBodyPlanEditorComponent :
     {
         float maxValue = 0.0f;
 
+        var maximumMovementDirection =
+            MicrobeInternalCalculations.MaximumSpeedDirection(editedMicrobeCells[0].Data!.Organelles);
+
+        var conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
+            Editor.CurrentPatch.Biome);
+
         foreach (var button in cellTypeSelectionButtons)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
-
-            var maximumMovementDirection =
-                MicrobeInternalCalculations.MaximumSpeedDirection(button.Value.CellType.Organelles);
-
-            var conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
-                Editor.CurrentPatch.Biome);
 
             ProcessSystem.ComputeEnergyBalanceSimple(button.Value.CellType.Organelles, conditionsData,
                 button.Value.CellType.MembraneType, maximumMovementDirection,
