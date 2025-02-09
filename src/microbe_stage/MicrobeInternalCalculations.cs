@@ -409,7 +409,7 @@ public static class MicrobeInternalCalculations
         return result;
     }
 
-    public static (int Ammonia, int Phosphates) CalculateOrganellesCosts(IEnumerable<OrganelleTemplate> organelles)
+    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts(IEnumerable<OrganelleTemplate> organelles)
     {
         float ammoniaCostTotal = 0, phosphatesCostTotal = 0;
 

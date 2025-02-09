@@ -1093,6 +1093,8 @@ public partial class CellBodyPlanEditorComponent :
         organismStatisticsPanel.UpdateSpeed(CellBodyPlanInternalCalculations.CalculateSpeed(editedMicrobeCells));
         organismStatisticsPanel.UpdateRotationSpeed(
             CellBodyPlanInternalCalculations.CalculateRotationSpeed(editedMicrobeCells));
+        organismStatisticsPanel.UpdateOrganellesCost(
+            CellBodyPlanInternalCalculations.CalculateOrganellesCost(editedMicrobeCells));
 
         CalculateEnergyAndCompoundBalance(editedMicrobeCells);
     }

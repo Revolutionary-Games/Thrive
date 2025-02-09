@@ -78,6 +78,27 @@ public static class CellBodyPlanInternalCalculations
         return speed / cells.Count + addedSpeed / (massEstimate * 1.4f);
     }
 
+    /// <summary>
+    ///   Calculates a colony's speed. The algorithm is an approximation, but should be based on the one in
+    ///   MicrobeMovementSystem.cs
+    /// </summary>
+    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCost(IReadOnlyList<HexWithData<CellTemplate>> cells)
+    {
+        float ammoniaCostTotal = 0, phosphatesCostTotal = 0;
+        foreach (var hex in cells)
+        {
+            var cell = hex.Data!;
+
+            foreach (var organelle in cell.Organelles)
+            {
+                ammoniaCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0);
+                phosphatesCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0);
+            }
+        }
+
+        return ((int)ammoniaCostTotal, (int)phosphatesCostTotal);
+    }
+
     public static void ModifyCellSpeedWithColony(ref float speed, int cellCount)
     {
         // Multiplies the movement factor as if the colony has the normal microbe speed

@@ -1275,8 +1275,7 @@ public partial class CellEditorComponent :
         return MicrobeInternalCalculations.CalculateDigestionEfficiencies(editedMicrobeOrganelles);
     }
 
-    public (int, int) CalculateOrganellesCosts()
-    
+    public (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCosts()
     {
         return MicrobeInternalCalculations.CalculateOrganellesCosts(editedMicrobeOrganelles);
     }
