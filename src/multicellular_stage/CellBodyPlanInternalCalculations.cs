@@ -81,7 +81,8 @@ public static class CellBodyPlanInternalCalculations
     /// <summary>
     ///   Calculates a colony's nutrient cost
     /// </summary>
-    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCost(IReadOnlyList<HexWithData<CellTemplate>> cells)
+    public static (int AmmoniaCost, int PhosphatesCost) CalculateOrganellesCost(
+        IReadOnlyList<HexWithData<CellTemplate>> cells)
     {
         float ammoniaCostTotal = 0, phosphatesCostTotal = 0;
         foreach (var hex in cells)
@@ -91,7 +92,8 @@ public static class CellBodyPlanInternalCalculations
             foreach (var organelle in cell.Organelles)
             {
                 ammoniaCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Ammonia, 0);
-                phosphatesCostTotal += organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0);
+                phosphatesCostTotal +=
+                    organelle.Definition.InitialComposition.GetValueOrDefault(Compound.Phosphates, 0);
             }
         }
 
