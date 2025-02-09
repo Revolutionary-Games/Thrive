@@ -1174,8 +1174,8 @@ public partial class PatchMapDrawer : Control
                 playerSpeciesPopulationIndicators.Remove(indicator);
 
                 indicator.Position = position + node.Size * 0.5f + new Vector2(0, 20)
-                    .Rotated(nodeModifier * 30) +
-                    new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
+                        .Rotated(nodeModifier * 30) +
+                        new Vector2(0, modifierSinus * 50).Rotated(i * 6 * modifierSinus + nodeModifier);
             }
         }
 
