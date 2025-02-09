@@ -24,6 +24,12 @@ public class CompoundBalance
     /// </summary>
     public float Balance => Production - Consumption;
 
+    public void SetupForOrganelleDataTracking()
+    {
+        ConsumptionOrganelles = new();
+        ProductionOrganelles = new();
+    }
+
     public void AddConsumption(string organelleName, float amount)
     {
         if (ConsumptionOrganelles != null)
