@@ -136,6 +136,8 @@ public partial class CellBodyPlanEditorComponent :
 
     private EnergyBalanceInfoFull? energyBalanceInfo;
 
+    private bool hasNegativeATPCells;
+
     [Signal]
     public delegate void OnCellTypeToEditSelectedEventHandler(string name, bool switchTab);
 
@@ -478,6 +480,8 @@ public partial class CellBodyPlanEditorComponent :
         RegenerateCellTypeIcon(changedType);
 
         UpdateStats();
+
+        UpdateFinishButtonWarningVisibility();
     }
 
     /// <summary>
@@ -716,8 +720,7 @@ public partial class CellBodyPlanEditorComponent :
 
     private bool IsNegativeAtpProduction()
     {
-        return energyBalanceInfo != null &&
-            energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary;
+        return hasNegativeATPCells;
     }
 
     private void SetSpeciesInfo(string name, BehaviourDictionary behaviour)
@@ -1033,6 +1036,9 @@ public partial class CellBodyPlanEditorComponent :
         var conditionsData = new BiomeResourceLimiterAdapter(organismStatisticsPanel.ResourceLimitingMode,
             Editor.CurrentPatch.Biome);
 
+        UpdateCellTypesCounts();
+        hasNegativeATPCells = false;
+
         foreach (var button in cellTypeSelectionButtons)
         {
             var energyBalance = new EnergyBalanceInfoSimple();
@@ -1050,12 +1056,21 @@ public partial class CellBodyPlanEditorComponent :
 
             if (energyBalance.TotalConsumption > maxValue)
                 maxValue = energyBalance.TotalConsumption;
+
+            cellTypesCount.TryGetValue(button.Value.CellType, out var count);
+
+            if (energyBalance.TotalConsumption > energyBalance.TotalProduction
+                && count > 0)
+            {
+                // This cell is present in the microbe and has a negative energy balance
+                hasNegativeATPCells = true;
+            }
         }
 
         foreach (var button in cellTypeSelectionButtons)
         {
             button.Value.MaxEnergyValue = maxValue;
-            button.Value.UpdateBalanceBars();
+            button.Value.UpdateATPBalanceDisplay();
         }
     }
 

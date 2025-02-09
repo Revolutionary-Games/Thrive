@@ -27,21 +27,24 @@ public partial class CellTypeSelection : MicrobePartSelection
 
     [Export]
     private ProgressBar atpConsumptionBar = null!;
+
+    [Export]
+    private Control atpBalanceWarningBadge = null!;
 #pragma warning restore CA2213
 
     private IImageTask? imageTask;
 
-    private bool enableATPBalanceBars = true;
+    private bool enableATPBalanceDisplay = true;
 
     public bool EnableATPBalanceBars
     {
-        get => enableATPBalanceBars;
+        get => enableATPBalanceDisplay;
         set
         {
-            if (enableATPBalanceBars == value)
+            if (enableATPBalanceDisplay == value)
                 return;
 
-            enableATPBalanceBars = value;
+            enableATPBalanceDisplay = value;
 
             UpdateATPBalanceBarVisibility();
         }
@@ -105,14 +108,19 @@ public partial class CellTypeSelection : MicrobePartSelection
 
     public void UpdateATPBalanceBarVisibility()
     {
-        atpConsumptionBar.Visible = enableATPBalanceBars;
-        atpProductionBar.Visible = enableATPBalanceBars;
+        atpConsumptionBar.Visible = enableATPBalanceDisplay;
+        atpProductionBar.Visible = enableATPBalanceDisplay;
+
+        if (!enableATPBalanceDisplay)
+            atpBalanceWarningBadge.Visible = false;
     }
 
-    public void UpdateBalanceBars()
+    public void UpdateATPBalanceDisplay()
     {
         UpdateProductionBar();
         UpdateConsumptionBar();
+
+        atpBalanceWarningBadge.Visible = enableATPBalanceDisplay && EnergyConsumption > EnergyProduction;
     }
 
     private void UpdateProductionBar()
