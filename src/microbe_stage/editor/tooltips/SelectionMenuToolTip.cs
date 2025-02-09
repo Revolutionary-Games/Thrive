@@ -19,6 +19,9 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
     [Export]
     private VBoxContainer modifierInfoList = null!;
 
+    [Export]
+    private VBoxContainer organelleCostInfoList = null!;
+
     private PackedScene modifierInfoScene = null!;
     private LabelSettings noProcessesFont = null!;
     private LabelSettings processTitleFont = null!;
@@ -241,6 +244,26 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
         {
             modifierInfoList.MoveChild(modifierInfoList.GetChild(count - 2), count - 1);
         }
+    }
+
+    /// <summary>
+    ///   Instances the UI element for a modifier info
+    /// </summary>
+    public void AddOrganelleCostInfo(string name, string value, float valueForColourApplying = 0,
+        string? iconPath = null, StringName? nodeName = null)
+    {
+        var modifierInfo = modifierInfoScene.Instantiate<ModifierInfoLabel>();
+
+        modifierInfo.DisplayName = name;
+        if (nodeName != null)
+            modifierInfo.Name = nodeName;
+
+        modifierInfo.ModifierValue = value;
+
+        modifierInfo.AdjustValueColor(valueForColourApplying);
+        modifierInfo.ModifierIcon = string.IsNullOrEmpty(iconPath) ? null : GD.Load<Texture2D>(iconPath);
+
+        organelleCostInfoList.AddChild(modifierInfo);
     }
 
     /// <summary>

@@ -31,6 +31,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     [Export]
     public bool ShowDigestionEfficiencyStat;
 
+    [Export]
+    public bool ShowOrganellesCostStat;
+
 #pragma warning disable CA2213
 
     [Export]
@@ -67,6 +70,12 @@ public partial class OrganismStatisticsPanel : PanelContainer
 
     [Export]
     private CellStatsIndicator digestionEfficiencyLabel = null!;
+
+    [Export]
+    private CellStatsIndicator ammoniaCostLabel = null!;
+
+    [Export]
+    private CellStatsIndicator phosphatesCostLabel = null!;
 
     [Export]
     private Control basicStatsSeparator = null!;
@@ -185,6 +194,10 @@ public partial class OrganismStatisticsPanel : PanelContainer
         digestionSpeedLabel.Visible = ShowDigestionSpeedStat;
         digestionEfficiencyLabel.Visible = ShowDigestionEfficiencyStat;
         digestionStatsSeparator.Visible = ShowDigestionSpeedStat || ShowDigestionEfficiencyStat;
+
+        ammoniaCostLabel.Visible = ShowOrganellesCostStat;
+        phosphatesCostLabel.Visible = ShowOrganellesCostStat;
+        digestionStatsSeparator.Visible = ShowOrganellesCostStat;
     }
 
     public void SendObjectsToTutorials(TutorialState tutorial, MicrobeEditorTutorialGUI gui)
@@ -462,6 +475,12 @@ public partial class OrganismStatisticsPanel : PanelContainer
         {
             GD.PrintErr("Can't update digestion efficiency tooltip");
         }
+    }
+
+    public void UpdateOrganellesCost((int AmmoniaCost, int PhosphatesCost) costs)
+    {
+        ammoniaCostLabel.Value = costs.AmmoniaCost;
+        phosphatesCostLabel.Value = costs.PhosphatesCost;
     }
 
     public void UpdateProcessList(List<ProcessSpeedInformation> processInfo)

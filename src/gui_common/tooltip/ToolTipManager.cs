@@ -592,6 +592,12 @@ public partial class ToolTipManager : CanvasLayer
                 "res://assets/textures/gui/bevel/StorageIcon.png", "storage");
         }
 
+        tooltip.AddOrganelleCostInfo("AMMONIA_COST", "+" + organelle.InitialComposition[Compound.Ammonia], 0,
+            "res://assets/textures/gui/bevel/Ammonia.svg", "ammoniaCost");
+
+        tooltip.AddOrganelleCostInfo("PHOSPHATES_COST", "+" + organelle.InitialComposition[Compound.Phosphates], 0,
+            "res://assets/textures/gui/bevel/Phosphates.svg", "phosphateCost");
+
         UpdateModifierInfoWithTranslations(organelle, tooltip);
     }
 
@@ -635,6 +641,22 @@ public partial class ToolTipManager : CanvasLayer
         {
             modifierInfo.DisplayName = "SPEED";
             modifierInfo.ModifierValue = "+" + Constants.FLAGELLA_SPEED_BONUS_DISPLAY;
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("ammoniaCost");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "AMMONIA";
+            modifierInfo.ModifierValue = organelle.InitialComposition[Compound.Ammonia].ToString();
+        }
+
+        modifierInfo = selectionMenuTooltip.GetModifierInfo("phosphateCost");
+
+        if (modifierInfo != null)
+        {
+            modifierInfo.DisplayName = "PHOSPHATE";
+            modifierInfo.ModifierValue = organelle.InitialComposition[Compound.Phosphates].ToString();
         }
     }
 
