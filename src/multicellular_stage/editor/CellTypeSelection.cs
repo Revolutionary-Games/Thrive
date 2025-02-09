@@ -31,6 +31,22 @@ public partial class CellTypeSelection : MicrobePartSelection
 
     private IImageTask? imageTask;
 
+    private bool enableATPBalanceBars = true;
+
+    public bool EnableATPBalanceBars
+    {
+        get => enableATPBalanceBars;
+        set
+        {
+            if (enableATPBalanceBars == value)
+                return;
+
+            enableATPBalanceBars = value;
+
+            UpdateATPBalanceBarVisibility();
+        }
+    }
+
     public CellType CellType
     {
         get => cellType ?? throw new InvalidOperationException("No cell type set");
@@ -85,6 +101,12 @@ public partial class CellTypeSelection : MicrobePartSelection
         // recreate the image (caching layer should probably maybe go into PhotoStudio)
         cellImage = null;
         imageTask = null;
+    }
+
+    public void UpdateATPBalanceBarVisibility()
+    {
+        atpConsumptionBar.Visible = enableATPBalanceBars;
+        atpProductionBar.Visible = enableATPBalanceBars;
     }
 
     public void UpdateBalanceBars()
