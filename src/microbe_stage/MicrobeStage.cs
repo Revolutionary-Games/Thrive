@@ -586,10 +586,7 @@ public partial class MicrobeStage : CreatureStageBase<Entity, MicrobeWorldSimula
             throw new Exception("failed to keep the current scene root");
         }
 
-        var endosymbiosis = GameWorld.PlayerSpecies.Endosymbiosis;
-
-        if (endosymbiosis.StartedEndosymbiosis != null)
-            endosymbiosis.CancelEndosymbiosisTarget((int)endosymbiosis.StartedEndosymbiosis.Species.ID);
+        GameWorld.PlayerSpecies.Endosymbiosis.CancelAllEndosymbiosisTargets();
 
         // TODO: The multicellular stage needs to be able to track statistics and not break organelle unlocks
         GameWorld.UnlockProgress.UnlockAll = true;
