@@ -87,6 +87,9 @@ public partial class OrganismStatisticsPanel : PanelContainer
     private Control digestionStatsSeparator = null!;
 
     [Export]
+    private Control organellesCostsSeparator = null!;
+
+    [Export]
     private Label generationLabel = null!;
 
     [Export]
