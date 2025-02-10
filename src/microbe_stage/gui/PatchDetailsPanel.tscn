@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bjl5o7oy7yr15"]
+[gd_scene load_steps=29 format=3 uid="uid://bjl5o7oy7yr15"]
 
 [ext_resource type="PackedScene" path="res://src/gui_common/CustomRichTextLabel.tscn" id="1"]
 [ext_resource type="LabelSettings" uid="uid://dcekwe8j7ep16" path="res://src/gui_common/fonts/Title-SemiBold-AlmostHuge.tres" id="3_lpicf"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://drlnrba2dvitm" path="res://assets/textures/gui/bevel/Glucose.svg" id="19_xgafm"]
 [ext_resource type="Texture2D" uid="uid://nckpuxkhcb0u" path="res://assets/textures/gui/bevel/Phosphates.svg" id="20_nvinp"]
 [ext_resource type="Texture2D" uid="uid://d0lhje01k1lij" path="res://assets/textures/gui/bevel/Iron.svg" id="21_dqoqo"]
+[ext_resource type="Texture2D" uid="uid://djm45ct5jk8oj" path="res://assets/textures/gui/bevel/Radiation.svg" id="22_00ty1"]
 [ext_resource type="LabelSettings" uid="uid://fua052cwp5ap" path="res://src/gui_common/fonts/Body-Regular-AlmostSmaller.tres" id="23_8qra5"]
 [ext_resource type="LabelSettings" uid="uid://dvqx73nhtr0y2" path="res://src/gui_common/fonts/Body-Regular-Small.tres" id="24_21yun"]
 [ext_resource type="LabelSettings" uid="uid://bl7dig4lq5ko" path="res://src/gui_common/fonts/Body-Regular-Small-Red.tres" id="25_dd3af"]
@@ -85,7 +86,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NothingSelected" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -99,7 +99,6 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="UnknownPatch" type="VBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -449,6 +448,31 @@ text = "5%"
 label_settings = ExtResource("15_ng6rp")
 
 [node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Iron"]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+expand_mode = 1
+
+[node name="Radiation" type="HBoxContainer" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_vertical = 4
+tooltip_text = "IRON"
+texture = ExtResource("22_00ty1")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
+editor_description = "PLACEHOLDER"
+layout_mode = 2
+text = "5%"
+label_settings = ExtResource("15_ng6rp")
+
+[node name="Situation" type="TextureRect" parent="NormalContent/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Radiation"]
 custom_minimum_size = Vector2(12, 12)
 layout_mode = 2
 size_flags_vertical = 4
