@@ -321,7 +321,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
                     break;
                 case "canEngulf":
                 case "engulfInvulnerable":
-                    deltaValue = 0;
+                    deltaValue = 1;
                     break;
                 default:
                     throw new Exception("Unhandled modifier type: " + modifier.Name);
@@ -329,11 +329,7 @@ public partial class SelectionMenuToolTip : ControlWithInput, ICustomToolTip
 
             // All stats with +0 value that are not part of the selected membrane is made hidden
             // on the tooltip so it'll be easier to digest and compare modifier changes
-            if (Name == referenceMembrane.InternalName)
-            {
-                modifier.Visible = true;
-            }
-            else if (modifier.ShowValue)
+            if (Name == referenceMembrane.InternalName || modifier.ShowValue)
             {
                 modifier.Visible = deltaValue != 0;
             }
